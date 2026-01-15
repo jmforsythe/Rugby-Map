@@ -1,0 +1,14 @@
+**/*
+!make_tier_maps.py
+!scrape_league_teams.py
+!fetch_addresses.py
+!geocode_addresses.py
+!download_boundaries.py
+!geocoded_teams/
+!geocoded_teams/*
+!.gitignore
+!config.py.example
+!.github/
+!.github/workflows/
+!.github/workflows/*
+!README.md

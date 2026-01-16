@@ -115,7 +115,8 @@ def league_color(index: int) -> str:
     palette = [
         '#e6194b','#3cb44b','#ffe119','#0082c8','#f58231','#911eb4','#46f0f0','#f032e6',
         '#d2f53c','#fabebe','#008080','#e6beff','#aa6e28','#fffac8','#800000','#aaffc3',
-        '#808000','#ffd8b1','#000080','#808080'
+        '#808000','#ffd8b1','#000080','#808080','#ff6b6b','#4ecdc4','#95e1d3','#f38181',
+        '#aa96da','#fcbad3','#a8d8ea','#ffcfd2',
     ]
     return palette[index % len(palette)]
 
@@ -653,11 +654,14 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         for i, league in enumerate(sorted(teams_by_league.keys())):
             league_colors[league] = league_color(i)
         
-        # Create feature groups for each league (will contain both regions and markers)
-        league_groups = {}
+        # Create separate feature groups for shading and markers
+        shading_groups = {}
+        marker_groups = {}
         for league in sorted(teams_by_league.keys()):
-            league_groups[league] = folium.FeatureGroup(name=league, show=True)
-            m.add_child(league_groups[league])
+            shading_groups[league] = folium.FeatureGroup(name=f"{league} - Territory", show=True)
+            marker_groups[league] = folium.FeatureGroup(name=f"{league} - Teams", show=True)
+            m.add_child(shading_groups[league])
+            m.add_child(marker_groups[league])
         
         # Add colored ITL regions to their respective league groups
         multi_league_regions = region_colors.get('itl3_multi_league', [])
@@ -685,7 +689,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                     folium.GeoJson(
                         feat,
                         style_function=style_function
-                    ).add_to(league_groups[league])
+                    ).add_to(shading_groups[league])
         
         # Collect all geometries for each league (regular regions + Voronoi cells)
         from shapely.ops import unary_union
@@ -779,7 +783,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                 folium.GeoJson(
                     mapping(merged_geom),
                     style_function=style_function
-                ).add_to(league_groups[league])
+                ).add_to(shading_groups[league])
         
         # Add debug boundary layers for ITL regions
         if show_debug:
@@ -841,26 +845,25 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                         popup=folium.Popup(popup_html, max_width=250),
                         icon=icon,
                         tooltip=team['name']
-                    ).add_to(league_groups[league])
-                else:
-                    # No image URL - use fallback logo
-                    icon_html = f'''
-                    <div style="text-align: center;">
-                        <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                             style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
-                    </div>
-                    '''
-                    icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-                    folium.Marker(
-                        location=[team['latitude'], team['longitude']],
-                        popup=folium.Popup(popup_html, max_width=250),
-                        icon=icon,
-                        tooltip=team['name']
-                    ).add_to(league_groups[league])
-        
+                ).add_to(marker_groups[league])
+            else:
+                # No image URL - use fallback logo
+                icon_html = f'''
+                <div style="text-align: center;">
+                    <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
+                         style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
+                </div>
+                '''
+                icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
+                folium.Marker(
+                    location=[team['latitude'], team['longitude']],
+                    popup=folium.Popup(popup_html, max_width=250),
+                    icon=icon,
+                    tooltip=team['name']
+                ).add_to(marker_groups[league])
         # Add layer control
         folium.LayerControl(collapsed=False).add_to(m)
-        
+
         # Add legend for leagues
         legend_html = f'''
         <style>
@@ -994,13 +997,16 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     for i, league in enumerate(sorted(all_leagues)):
         league_colors[league] = league_color(i)
     
-    # Create feature groups for each tier (only first tier shown by default)
-    tier_groups = {}
+    # Create separate feature groups for territories and markers (only first tier shown by default)
+    territory_groups = {}
+    marker_groups = {}
     sorted_tiers = [tier for tier in TIER_ORDER if tier in teams_by_tier]
     for idx, tier in enumerate(sorted_tiers):
         # Show only the Counties 1 tier by default
-        tier_groups[tier] = folium.FeatureGroup(name=tier, show=(tier == "Counties 1"))
-        m.add_child(tier_groups[tier])
+        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=(tier == "Counties 1"))
+        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=(tier == "Counties 1"))
+        m.add_child(territory_groups[tier])
+        m.add_child(marker_groups[tier])
     
     # Add colored regions for each tier
     for tier, teams in sorted(teams_by_tier.items()):
@@ -1115,7 +1121,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
                 folium.GeoJson(
                     mapping(merged_geom),
                     style_function=style_function
-                ).add_to(tier_groups[tier])
+                ).add_to(territory_groups[tier])
     
     # Add markers for each team to their tier's feature group
     all_teams = []
@@ -1154,7 +1160,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
                     popup=folium.Popup(popup_html, max_width=250),
                     icon=icon,
                     tooltip=team['name']
-                ).add_to(tier_groups[tier])
+                ).add_to(marker_groups[tier])
             else:
                 # No image URL - use fallback logo
                 icon_html = f'''
@@ -1169,7 +1175,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
                     popup=folium.Popup(popup_html, max_width=250),
                     icon=icon,
                     tooltip=team['name']
-                ).add_to(tier_groups[tier])
+                ).add_to(marker_groups[tier])
     
     # Add debug boundary layers for ITL regions
     if show_debug:

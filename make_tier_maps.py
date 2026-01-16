@@ -7,23 +7,13 @@ from shapely.geometry.base import BaseGeometry
 from shapely.prepared import PreparedGeometry, prep
 from typing import Dict, List, Any, Optional, TypedDict, NotRequired
 
-# Type definitions for team data
-class Team(TypedDict):
-    name: str
-    latitude: float
-    longitude: float
-    address: str
-    league: str
-    league_url: str
-    tier: str
-    image_url: str
-    url: str
-    itl1: Optional[str]
-    itl2: Optional[str]
-    itl3: Optional[str]
+from utils import ITLRegion, MapTeam
 
-# Type definitions for ITL region data
-class ITLRegion(TypedDict):
+# Extended type definitions for mapping (adds geospatial fields to base types)
+
+# Type definitions for ITL region data with geometry
+class ITLRegionGeom(TypedDict):
+    """ITL region with geospatial data"""
     name: str
     code: Optional[str]
     geom: BaseGeometry
@@ -31,18 +21,18 @@ class ITLRegion(TypedDict):
     centroid: Point
 
 class ITLHierarchy(TypedDict):
-    itl3_regions: List[ITLRegion]
-    itl2_regions: List[ITLRegion]
-    itl1_regions: List[ITLRegion]
+    itl3_regions: List[ITLRegionGeom]
+    itl2_regions: List[ITLRegionGeom]
+    itl1_regions: List[ITLRegionGeom]
     itl3_to_itl2: Dict[str, str]
     itl2_to_itl1: Dict[str, str]
     itl1_to_itl2s: Dict[str, List[str]]
     itl2_to_itl3s: Dict[str, List[str]]
 
 class RegionToTeams(TypedDict):
-    itl1: Dict[str, List[Team]]
-    itl2: Dict[str, List[Team]]
-    itl3: Dict[str, List[Team]]
+    itl1: Dict[str, List[MapTeam]]
+    itl2: Dict[str, List[MapTeam]]
+    itl3: Dict[str, List[MapTeam]]
 
 class RegionColors(TypedDict):
     itl1: Dict[str, str]
@@ -52,31 +42,35 @@ class RegionColors(TypedDict):
 
 def extract_tier(filename: str) -> str:
     """Extract tier information from filename."""
-    if 'National_League_1' in filename:
+    if filename.startswith('Premiership'):
+        return 'Premiership'
+    elif filename.startswith('Championship'):
+        return 'Championship'
+    elif filename.startswith('National_League_1'):
         return 'National League 1'
-    elif 'National_League_2' in filename:
+    elif filename.startswith('National_League_2'):
         return 'National League 2'
-    elif 'Regional_1' in filename:
+    elif filename.startswith('Regional_1'):
         return 'Regional 1'
-    elif 'Regional_2' in filename:
+    elif filename.startswith('Regional_2'):
         return 'Regional 2'
-    elif 'Counties_1' in filename:
+    elif filename.startswith('Counties_1'):
         return 'Counties 1'
-    elif 'Counties_2' in filename:
+    elif filename.startswith('Counties_2'):
         return 'Counties 2'
-    elif 'Counties_3' in filename:
+    elif filename.startswith('Counties_3'):
         return 'Counties 3'
-    elif 'Counties_4' in filename:
+    elif filename.startswith('Counties_4'):
         return 'Counties 4'
-    elif 'Counties_5' in filename:
+    elif filename.startswith('Counties_5'):
         return 'Counties 5'
     return 'Unknown'
 
-TIER_ORDER = ["National League 1", "National League 2", "Regional 1", "Regional 2", "Counties 1", "Counties 2", "Counties 3", "Counties 4", "Counties 5"]
+TIER_ORDER = ["Premiership", "Championship", "National League 1", "National League 2", "Regional 1", "Regional 2", "Counties 1", "Counties 2", "Counties 3", "Counties 4", "Counties 5"]
 
-def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[Team]]:
+def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[MapTeam]]:
     """Load all teams from geocoded JSON files."""
-    teams_by_tier: Dict[str, List[Team]] = {}
+    teams_by_tier: Dict[str, List[MapTeam]] = {}
     
     for filename in os.listdir(geocoded_teams_dir):
         if filename.endswith('.json'):
@@ -95,16 +89,18 @@ def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[Team]]:
             
             for team in data.get('teams', []):
                 if 'latitude' in team and 'longitude' in team:
-                    team_data: Team = {
+                    team_data: MapTeam = {
                         'name': team['name'],
                         'latitude': team['latitude'],
                         'longitude': team['longitude'],
                         'address': team.get('formatted_address', team.get('address', '')),
-                        'league': league_name,
-                        'league_url': league_url,
-                        'tier': tier,
-                        'image_url': team.get('image_url', ''),
                         'url': team.get('url', ''),
+                        'image_url': team.get('image_url'),
+                        'formatted_address': team.get('formatted_address'),
+                        'place_id': team.get('place_id'),
+                        'league': league_name,
+                        'league_url': league_url,  # type: ignore
+                        'tier': tier,
                         'itl1': None,
                         'itl2': None,
                         'itl3': None
@@ -122,7 +118,7 @@ def league_color(index: int) -> str:
     ]
     return palette[index % len(palette)]
 
-def create_bounded_voronoi(teams: List[Team], boundary_geom: BaseGeometry, league_colors: Dict[str, str]) -> List[Dict[str, Any]]:
+def create_bounded_voronoi(teams: List[MapTeam], boundary_geom: BaseGeometry, league_colors: Dict[str, str]) -> List[Dict[str, Any]]:
     """Create Voronoi diagram bounded by rectangular box, then merge by league and clip to boundary.
     
     Args:
@@ -309,7 +305,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         'itl2_to_itl3s': itl2_to_itl3s
     }
 
-def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[Team]], itl_hierarchy: ITLHierarchy) -> RegionToTeams:
+def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[MapTeam]], itl_hierarchy: ITLHierarchy) -> RegionToTeams:
     """Assign each team to ITL regions using the hierarchy (ITL1 -> ITL2 -> ITL3 for efficiency).
     
     Returns a dictionary with reverse mappings: {
@@ -331,9 +327,9 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[Team]], itl_hierar
     itl3_by_name: Dict[str, ITLRegion] = {r['name']: r for r in itl3_regions}
     
     # Create reverse mappings: region -> teams
-    itl1_to_teams: Dict[str, List[Team]] = {}
-    itl2_to_teams: Dict[str, List[Team]] = {}
-    itl3_to_teams: Dict[str, List[Team]] = {}
+    itl1_to_teams: Dict[str, List[MapTeam]] = {}
+    itl2_to_teams: Dict[str, List[MapTeam]] = {}
+    itl3_to_teams: Dict[str, List[MapTeam]] = {}
     
     total_assigned: int = 0
     total_teams: int = 0
@@ -410,7 +406,7 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[Team]], itl_hierar
         'itl3': itl3_to_teams
     }
 
-def color_regions_by_league(teams: List[Team], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy) -> Dict:
+def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy) -> Dict:
     """Determine which regions should be colored based on league ownership.
     
     Returns a dict with level-specific league mappings: {
@@ -599,13 +595,13 @@ def color_regions_by_league(teams: List[Team], region_to_teams: RegionToTeams, i
         'itl3_multi_league': itl3_multi_league
     }
 
-def create_tier_maps(teams_by_tier: Dict[str, List[Team]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
     """Create individual maps for each tier, with teams separated by league."""
     
     # Create output directory
     Path(output_dir).mkdir(exist_ok=True)
     
-    for tier, teams in sorted(teams_by_tier.items()):
+    for tier, teams in sorted(teams_by_tier.items(), key=lambda x: TIER_ORDER.index(x[0]) if x[0] in TIER_ORDER else len(TIER_ORDER)):
         # Create base map centered on England
         m = folium.Map(
             location=[52.5, -1.5],
@@ -892,7 +888,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[Team]], region_to_teams: Regi
         m.save(output_file)
         print(f'Saved {tier} map with {len(teams)} teams to: {output_file}')
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[Team]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory

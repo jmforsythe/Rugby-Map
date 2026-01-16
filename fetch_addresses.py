@@ -4,28 +4,30 @@ Scrapes each team page for Google Maps URL and extracts the address.
 Saves intermediate results with addresses but no coordinates.
 """
 
-import requests
 from bs4 import BeautifulSoup
 from urllib.parse import parse_qs, urlparse, unquote
 import time
 import json
 from pathlib import Path
-import re
 import argparse
 import concurrent.futures
 import threading
 import random
+from typing import Optional, Dict, Tuple, List
 
-_thread_local = threading.local()
+from utils import (
+    Team, AddressTeam, AddressLeague, League,
+    get_session, get_headers, print_block
+)
+
 _cache_lock = threading.RLock()
-_print_lock = threading.Lock()
 
 # Cache for club -> address data
-club_cache = {}
+club_cache: Dict[str, str] = {}
 CLUB_CACHE_FILE = "club_address_cache.json"
 
 
-def load_cache():
+def load_cache() -> None:
     """Load club address cache from file."""
     global club_cache
     if Path(CLUB_CACHE_FILE).exists():
@@ -34,48 +36,13 @@ def load_cache():
         print(f"Loaded {len(club_cache)} cached club addresses")
 
 
-def save_cache():
+def save_cache() -> None:
     """Save club address cache to file."""
     with open(CLUB_CACHE_FILE, 'w', encoding='utf-8') as f:
         json.dump(club_cache, f, indent=2, ensure_ascii=False)
 
 
-def get_session() -> requests.Session:
-    """Thread-local session (requests.Session is not thread-safe)."""
-    sess = getattr(_thread_local, "session", None)
-    if sess is None:
-        sess = requests.Session()
-        _thread_local.session = sess
-    return sess
-
-
-def get_headers(referer=None):
-    """Get headers with optional referer"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin' if referer else 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0'
-    }
-    if referer:
-        headers['Referer'] = referer
-    return headers
-
-
-def _print_block(text: str) -> None:
-    """Print multi-line text without interleaving across threads."""
-    with _print_lock:
-        print(text, flush=True)
-
-
-def extract_address_from_maps_url(maps_url):
+def extract_address_from_maps_url(maps_url: str) -> Optional[str]:
     """Extract address from Google Maps search URL."""
     parsed = urlparse(maps_url)
     params = parse_qs(parsed.query)
@@ -89,14 +56,32 @@ def extract_address_from_maps_url(maps_url):
 
 class AntiBotDetected(Exception):
     """Exception raised when anti-bot detection is triggered."""
-    def __init__(self, message: str, *, log_text: str | None = None):
+    log_text: Optional[str]
+    
+    def __init__(self, message: str, *, log_text: Optional[str] = None) -> None:
         super().__init__(message)
         self.log_text = log_text
 
 
-def get_team_address(team_url, delay_seconds: float = 2.0, max_retries: int = 3):
-    """Scrape team page to get the Google Maps URL from club details button."""
-    log_lines = []
+def team_name_to_club_name(team_name: str) -> str:
+    """Convert team name to club name (remove II, III, IV suffixes)."""
+    last_word = team_name.split(" ")[-1]
+    if last_word in ["II", "III", "IV"]:
+        return " ".join(team_name.split(" ")[:-1])
+    return team_name
+
+
+def get_club_address_from_page(
+    team_url: str,
+    delay_seconds: float = 2.0,
+    max_retries: int = 3
+) -> Tuple[Optional[str], List[str]]:
+    """Scrape team page to get the Google Maps URL from club details button.
+    
+    Returns:
+        Tuple of (maps_url, log_lines)
+    """
+    log_lines: List[str] = []
     
     for attempt in range(max_retries):
         try:
@@ -132,15 +117,27 @@ def get_team_address(team_url, delay_seconds: float = 2.0, max_retries: int = 3)
     return None, log_lines
 
 
-def process_team(team_name, team_url, team_image_url, delay_seconds: float = 2.0, max_retries: int = 3):
-    """Process a single team: scrape page, extract address.
+def fetch_club_address(
+    club_name: str,
+    team_url: str,
+    delay_seconds: float = 2.0,
+    max_retries: int = 3
+) -> Tuple[Optional[str], str]:
+    """Fetch address for a club by scraping a team page.
     
-    Returns (result, log_text) so the caller can print without interleaving.
+    Args:
+        club_name: Name of the club (team name with II/III/IV suffix removed)
+        team_url: URL to any team page for this club
+        delay_seconds: Delay between requests
+        max_retries: Maximum retry attempts
+    
+    Returns:
+        Tuple of (address string, log_text) for thread-safe printing.
     """
-    log_lines = [f"  Processing: {team_name}", f"    URL: {team_url}"]
+    log_lines: List[str] = [f"  Fetching: {club_name}", f"    URL: {team_url}"]
     
     try:
-        maps_url, fetch_logs = get_team_address(team_url, delay_seconds=delay_seconds, max_retries=max_retries)
+        maps_url, fetch_logs = get_club_address_from_page(team_url, delay_seconds=delay_seconds, max_retries=max_retries)
         log_lines.extend(fetch_logs)
     except AntiBotDetected as e:
         if getattr(e, "log_text", None) is None:
@@ -149,7 +146,7 @@ def process_team(team_name, team_url, team_image_url, delay_seconds: float = 2.0
     
     if not maps_url:
         log_lines.append(f"    ✗ No maps URL found - likely anti-bot detection triggered")
-        raise AntiBotDetected(f"No maps URL found for {team_name}", log_text="\n".join(log_lines))
+        raise AntiBotDetected(f"No maps URL found for {club_name}", log_text="\n".join(log_lines))
     
     address = extract_address_from_maps_url(maps_url)
     
@@ -160,24 +157,15 @@ def process_team(team_name, team_url, team_image_url, delay_seconds: float = 2.0
     log_lines.append(f"    Address: {address}")
     log_lines.append(f"    ✓ Address extracted")
     
-    return ({
-        'name': team_name,
-        'url': team_url,
-        'image_url': team_image_url,
-        'address': address,
-        'maps_url': maps_url
-    }, "\n".join(log_lines))
+    return (address, "\n".join(log_lines))
 
 
-def team_name_to_club_name(team_name):
-    """Convert team name to club name (remove II, III, IV suffixes)."""
-    last_word = team_name.split(" ")[-1]
-    if last_word in ["II", "III", "IV"]:
-        return " ".join(team_name.split(" ")[:-1])
-    return team_name
-
-
-def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max_retries=3):
+def process_league_file(
+    league_file_path: Path,
+    max_workers: int = 14,
+    delay_seconds: float = 2.0,
+    max_retries: int = 3
+) -> None:
     """Process a single league JSON file and fetch all addresses."""
     print(f"{'='*80}")
     print(f"Processing: {league_file_path.name}")
@@ -191,27 +179,29 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
     
     # Load league data
     with open(league_file_path, 'r', encoding='utf-8') as f:
-        league_data = json.load(f)
+        league_data: League = json.load(f)
     
-    league_name = league_data['league_name']
-    teams = league_data['teams']
+    league_name: str = league_data['league_name']
+    teams: List[Team] = league_data['teams']
     
     print(f"League: {league_name}")
     print(f"Teams to process: {len(teams)}")
     
-    team_results = [None] * len(teams)
-    club_futures = {}
-    club_dependents = {}
+    team_results: List[Optional[AddressTeam]] = [None] * len(teams)
+    club_futures: Dict[str, concurrent.futures.Future] = {}
+    club_dependents: Dict[str, List[Tuple[int, Team]]] = {}
     
-    def materialize_team_result(base, team):
-        result = dict(base)
-        result["name"] = team["name"]
-        result["url"] = team["url"]
-        result["image_url"] = team.get("image_url")
-        return result
+    def create_team_address(address: Optional[str], team: Team) -> AddressTeam:
+        """Create TeamAddress by combining club name, address, and team-specific fields."""
+        return {
+            "name": team["name"],
+            "url": team["url"],
+            "image_url": team.get("image_url"),
+            "address": address,
+        }
     
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures_to_club = {}
+        futures_to_club: Dict[concurrent.futures.Future, str] = {}
         
         for idx, team in enumerate(teams):
             team_name = team['name']
@@ -224,19 +214,19 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
             club_name = team_name_to_club_name(team_name)
             
             with _cache_lock:
-                cached_club = club_cache.get(club_name)
+                cached_address = club_cache.get(club_name)
             
-            if cached_club:
-                team_result = materialize_team_result(cached_club, team)
+            if cached_address is not None:
+                team_result = create_team_address(cached_address, team)
                 team_results[idx] = team_result
                 
                 log_lines = [
                     f"  Processing: {team_name}",
                     f"    ✓ Using cached club result ({club_name})",
-                    f"    Address: {team_result.get('address', 'N/A')}"
+                    f"    Address: {cached_address or 'N/A'}"
                 ]
                 
-                _print_block("\n".join(log_lines))
+                print_block("\n".join(log_lines))
                 continue
             
             club_dependents.setdefault(club_name, []).append((idx, team))
@@ -244,7 +234,7 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
             if club_name in club_futures:
                 continue
             
-            future = executor.submit(process_team, team_name, team_url, team_image_url, delay_seconds, max_retries)
+            future = executor.submit(fetch_club_address, club_name, team_url, delay_seconds, max_retries)
             club_futures[club_name] = future
             futures_to_club[future] = club_name
         
@@ -253,13 +243,15 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
                 club_name = futures_to_club[future]
                 
                 try:
-                    base_result, log_text = future.result()
-                    _print_block(log_text)
+                    fetched_address: Optional[str]
+                    log_text: str
+                    fetched_address, log_text = future.result()
+                    print_block(log_text)
                 except AntiBotDetected as e:
                     for f in futures_to_club:
                         f.cancel()
                     if getattr(e, "log_text", None):
-                        _print_block(e.log_text)
+                        print_block(e.log_text)
                     print(f"{'='*80}")
                     print(f"ANTI-BOT DETECTION TRIGGERED")
                     print(f"Aborting processing to avoid being blocked")
@@ -267,26 +259,23 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
                     save_cache()
                     raise
                 except Exception as e:
-                    _print_block(f"  Processing: {club_name}\n    ✗ Error: {e}")
-                    base_result = {"error": f"exception: {e}"}
+                    print_block(f"  Processing: {club_name}\n    ✗ Error: {e}")
+                    fetched_address = None
                 
-                if base_result is not None:
-                    with _cache_lock:
-                        club_cache[club_name] = dict(base_result)
+                # Store in cache (address only)
+                with _cache_lock:
+                    club_cache[club_name] = {"address": fetched_address}
                 
                 for idx, team in club_dependents.get(club_name, []):
-                    if base_result is None:
-                        team_results[idx] = None
-                    else:
-                        team_results[idx] = materialize_team_result(base_result, team)
+                    team_results[idx] = create_team_address(fetched_address, team)
         
         finally:
             save_cache()
     
-    teams_with_addresses = [r for r in team_results if r]
+    teams_with_addresses: List[AddressTeam] = [r for r in team_results if r]
     
     # Save results
-    output_data = {
+    output_data: AddressLeague = {
         'league_name': league_name,
         'league_url': league_data['league_url'],
         'teams': teams_with_addresses,
@@ -303,10 +292,10 @@ def process_league_file(league_file_path, max_workers=14, delay_seconds=2.0, max
     print(f"  Successfully fetched: {output_data['success_count']}/{len(teams_with_addresses)}")
 
 
-def main():
+def main() -> None:
     """Main function to process all league files."""
     parser = argparse.ArgumentParser(description="Fetch addresses from RFU team pages")
-    parser.add_argument("--workers", type=int, default=14, help="Max concurrent requests (default: 14)")
+    parser.add_argument("--workers", type=int, default=7, help="Max concurrent requests (default: 7)")
     parser.add_argument("--delay", type=float, default=2.0, help="Seconds between requests (default: 2.0)")
     parser.add_argument("--retries", type=int, default=3, help="Max retries for failed requests (default: 3)")
     parser.add_argument("--league", type=str, default=None, help="Process only a single league")
@@ -319,7 +308,7 @@ def main():
         print("Error: league_data directory not found")
         return
     
-    league_files = sorted(league_dir.glob('*.json'))
+    league_files: List[Path] = sorted(league_dir.glob('*.json'))
     
     if args.league:
         league_arg = Path(args.league)

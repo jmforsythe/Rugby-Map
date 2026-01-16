@@ -4,12 +4,11 @@ import json
 import time
 import re
 from pathlib import Path
-from urllib.parse import urlparse
+from typing import Optional, List
 
-# Create a session to maintain cookies
-session = requests.Session()
+from utils import Team, LeagueInfo, League, get_headers, make_request
 
-META_LEAGUE_URLS = [
+META_LEAGUE_URLS: List[str] = [
     "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&season=2025-2026", # South West
     "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&season=2025-2026", # Midlands
     "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2025-2026", # London and SE
@@ -17,9 +16,9 @@ META_LEAGUE_URLS = [
     "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&season=2025-2026" # National Leagues
 ]
 
-leagues = [
+leagues: List[LeagueInfo] = [
     {
-        "name": "Premier",
+        "name": "Premiership",
         "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division=68225&season=2025-2026",
         "parent_url": "https://www.englandrugby.com/fixtures-and-results"
     },
@@ -30,49 +29,14 @@ leagues = [
     }
 ]
 
-def get_headers(referer=None):
-    """Get headers with optional referer"""
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin' if referer else 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0'
-    }
-    if referer:
-        headers['Referer'] = referer
-    return headers
-
-def make_request(url, referer=None, max_retries=3):
-    """Make a request with retry logic and exponential backoff"""
-    for attempt in range(max_retries):
-        try:
-            time.sleep(2 + attempt * 2)  # Increase delay with each attempt
-            response = session.get(url, timeout=30, headers=get_headers(referer))
-            response.raise_for_status()
-            return response
-        except requests.exceptions.RequestException as e:
-            if attempt == max_retries - 1:
-                raise
-            print(f"    Attempt {attempt + 1} failed, retrying... ({e})")
-            time.sleep(5 * (attempt + 1))  # Exponential backoff
-    return None
-
-
-def clean_filename(text):
+def clean_filename(text: str) -> str:
     """Convert text to a safe filename"""
     # Remove or replace invalid filename characters
     text = re.sub(r'[<>:"/\\|?*]', '_', text)
     text = re.sub(r'\s+', '_', text)
     return text.strip('_')
 
-def scrape_teams_from_league(league_url, league_name, referer=None):
+def scrape_teams_from_league(league_url: str, league_name: str, referer: Optional[str] = None) -> List[Team]:
     """Scrape team data from a league table"""
     # Add season parameter and tables anchor if not already present
     if '&season=2025-2026#tables' not in league_url:
@@ -84,7 +48,7 @@ def scrape_teams_from_league(league_url, league_name, referer=None):
         else:
             league_url = f"{base_url}#tables"
     
-    print(f"  Scraping teams from: {league_url}")
+    print(f"Scraping teams from: {league_url}")
     
     try:
         response = make_request(league_url, referer=referer)
@@ -108,7 +72,7 @@ def scrape_teams_from_league(league_url, league_name, referer=None):
                 
                 # Find image sibling
                 img = cell.find('img')
-                team_image_url = None
+                team_image_url: Optional[str] = None
                 if img and img.get('src'):
                     team_image_url = img['src']
                     # Make absolute URL if needed
@@ -121,14 +85,14 @@ def scrape_teams_from_league(league_url, league_name, referer=None):
                     'image_url': team_image_url
                 })
         
-        print(f"    Found {len(teams)} teams in {league_name}")
+        print(f"  Found {len(teams)} teams in {league_name}")
         return teams
     
     except Exception as e:
-        print(f"    Error scraping teams from {league_name}: {e}")
+        print(f"  Error scraping teams from {league_name}: {e}")
         return []
 
-def scrape_leagues_from_page(page_url):
+def scrape_leagues_from_page(page_url: str) -> List[LeagueInfo]:
     """Scrape league links from the related-leagues-overview div"""
     print(f"\nScraping leagues from: {page_url}")
     
@@ -143,7 +107,7 @@ def scrape_leagues_from_page(page_url):
             print("  Warning: Could not find div with id 'related-leagues-overview'")
             return []
         
-        leagues = []
+        leagues: List[LeagueInfo] = []
         
         # Find all hrefs within this div
         links = leagues_div.find_all('a', href=True)
@@ -170,7 +134,7 @@ def scrape_leagues_from_page(page_url):
         print(f"  Error scraping page: {e}")
         return []
 
-def main():    
+def main() -> None:    
     # Create output directory if it doesn't exist
     output_dir = Path('league_data')
     output_dir.mkdir(exist_ok=True)
@@ -194,14 +158,14 @@ def main():
         
         # Skip if file already exists
         if output_path.exists():
-            print(f"  Skipping {league_name} (already exists)")
+            print(f"Skipping {league_name} (already exists)")
             continue
         
         # Scrape teams from this league
         teams = scrape_teams_from_league(league_url, league_name, referer=parent_url)
         
         # Prepare data for JSON output
-        league_data = {
+        league_data: League = {
             'league_name': league_name,
             'league_url': league_url,
             'teams': teams,

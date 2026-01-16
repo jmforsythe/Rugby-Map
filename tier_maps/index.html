@@ -1,36 +1,122 @@
-<!doctype html>
-<html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset='utf-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <title>Rugby Tier Maps</title>
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
-    .wrap { max-width: 900px; }
-    .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-    select { font-size: 16px; padding: 8px 10px; }
-    .hint { color: #555; font-size: 14px; margin-top: 6px; }
-    ul { columns: 2; -webkit-columns: 2; -moz-columns: 2; padding-left: 18px; }
-    li { break-inside: avoid; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Rugby Union Team Maps</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.3em;
+            color: #2c3e50;
+            text-align: center;
+        }
+        body > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        li {
+            margin: 0.7em 0;
+        }
+        a {
+            display: block;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: all 0.2s;
+            padding: 0.8em 1.5em;
+            background: #f5f7fa;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        a:hover {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
+        }
+        .all-tiers a {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            font-weight: 600;
+        }
+        .all-tiers a:hover {
+            background: #0052a3;
+            border-color: #0052a3;
+        }
+        .separator {
+            margin: 2em 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .footer {
+            margin-top: 3em;
+            padding-top: 2em;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .footer a {
+            color: #0066cc;
+            font-size: 1em;
+        }
+        .footer p {
+            margin: 0.5em 0;
+        }
+    </style>
 </head>
 <body>
-  <div class='wrap'>
-    <h1>Rugby Tier Maps</h1>
+    <h1>English Rugby Union Team Maps</h1>
+    <p>Interactive maps showing the geographic distribution of teams across England.</p>
+    
     <ul>
-      <li><a href='all_tiers.html'>All Tiers</a></li>
-      <li><a href='Premiership.html'>Premiership</a></li>
-      <li><a href='Championship.html'>Championship</a></li>
-      <li><a href='National_League_1.html'>National League 1</a></li>
-      <li><a href='National_League_2.html'>National League 2</a></li>
-      <li><a href='Regional_1.html'>Regional 1</a></li>
-      <li><a href='Regional_2.html'>Regional 2</a></li>
-      <li><a href='Counties_1.html'>Counties 1</a></li>
-      <li><a href='Counties_2.html'>Counties 2</a></li>
-      <li><a href='Counties_3.html'>Counties 3</a></li>
-      <li><a href='Counties_4.html'>Counties 4</a></li>
-      <li><a href='Counties_5.html'>Counties 5</a></li>
+        <li class="all-tiers"><a href="All_Tiers.html">All Tiers</a></li>
     </ul>
-  </div>
+    
+    <div class="separator"></div>
+    
+    <ul>
+        <li><a href="Premiership.html">Premiership</a></li>
+        <li><a href="Championship.html">Championship</a></li>
+        <li><a href="National_League_1.html">National League 1</a></li>
+        <li><a href="National_League_2.html">National League 2</a></li>
+        <li><a href="Regional_1.html">Regional 1</a></li>
+        <li><a href="Regional_2.html">Regional 2</a></li>
+        <li><a href="Counties_1.html">Counties 1</a></li>
+        <li><a href="Counties_2.html">Counties 2</a></li>
+        <li><a href="Counties_3.html">Counties 3</a></li>
+        <li><a href="Counties_4.html">Counties 4</a></li>
+        <li><a href="Counties_5.html">Counties 5</a></li>
+    </ul>
+    
+    <div class="footer">
+        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
+        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a>, <a href="https://geoportal.statistics.gov.uk/">ONS</a>, <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
+    </div>
 </body>
 </html>

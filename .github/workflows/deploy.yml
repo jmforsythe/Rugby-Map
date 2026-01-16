@@ -36,7 +36,7 @@ jobs:
       
       - name: Generate maps
         run: |
-          python make_tier_maps.py
+          python make_tier_maps.py --no-debug
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

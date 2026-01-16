@@ -1,5 +1,6 @@
 import json
 import os
+import argparse
 import folium
 from pathlib import Path
 from shapely.geometry import shape, Point
@@ -589,7 +590,7 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
         'itl3_multi_league': itl3_multi_league
     }
 
-def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps', show_debug: bool = True) -> None:
     """Create individual maps for each tier, with teams separated by league."""
     
     # Create output directory
@@ -781,28 +782,29 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                 ).add_to(league_groups[league])
         
         # Add debug boundary layers for ITL regions
-        for level, geojson_path, layer_name in [
-            ('itl1', 'boundaries/ITL_1.geojson', 'Debug: ITL1 Boundaries'),
-            ('itl2', 'boundaries/ITL_2.geojson', 'Debug: ITL2 Boundaries'),
-            ('itl3', 'boundaries/ITL_3.geojson', 'Debug: ITL3 Boundaries')
-        ]:
-            if os.path.exists(geojson_path):
-                with open(geojson_path, 'r', encoding='utf-8') as f:
-                    itl_data = json.load(f)
-                
-                debug_group = folium.FeatureGroup(name=layer_name, show=False)
-                
-                folium.GeoJson(
-                    itl_data,
-                    style_function=lambda x: {
-                        'fillColor': 'transparent',
-                        'color': 'red',
-                        'weight': 2,
-                        'fillOpacity': 0
-                    }
-                ).add_to(debug_group)
-                
-                m.add_child(debug_group)
+        if show_debug:
+            for level, geojson_path, layer_name in [
+                ('itl1', 'boundaries/ITL_1.geojson', 'Debug: ITL1 Boundaries'),
+                ('itl2', 'boundaries/ITL_2.geojson', 'Debug: ITL2 Boundaries'),
+                ('itl3', 'boundaries/ITL_3.geojson', 'Debug: ITL3 Boundaries')
+            ]:
+                if os.path.exists(geojson_path):
+                    with open(geojson_path, 'r', encoding='utf-8') as f:
+                        itl_data = json.load(f)
+                    
+                    debug_group = folium.FeatureGroup(name=layer_name, show=False)
+                    
+                    folium.GeoJson(
+                        itl_data,
+                        style_function=lambda x: {
+                            'fillColor': 'transparent',
+                            'color': 'red',
+                            'weight': 2,
+                            'fillOpacity': 0
+                        }
+                    ).add_to(debug_group)
+                    
+                    m.add_child(debug_group)
         
         # Add markers for each team to their league's feature group
         for league, league_teams in teams_by_league.items():
@@ -935,7 +937,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         m.save(output_file)
         print(f'Saved {tier} map with {len(teams)} teams to: {output_file}')
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps') -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = 'tier_maps', show_debug: bool = True) -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
@@ -1169,6 +1171,31 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
                     tooltip=team['name']
                 ).add_to(tier_groups[tier])
     
+    # Add debug boundary layers for ITL regions
+    if show_debug:
+        for level, geojson_path, layer_name in [
+            ('itl1', 'boundaries/ITL_1.geojson', 'Debug: ITL1 Boundaries'),
+            ('itl2', 'boundaries/ITL_2.geojson', 'Debug: ITL2 Boundaries'),
+            ('itl3', 'boundaries/ITL_3.geojson', 'Debug: ITL3 Boundaries')
+        ]:
+            if os.path.exists(geojson_path):
+                with open(geojson_path, 'r', encoding='utf-8') as f:
+                    itl_data = json.load(f)
+                
+                debug_group = folium.FeatureGroup(name=layer_name, show=False)
+                
+                folium.GeoJson(
+                    itl_data,
+                    style_function=lambda x: {
+                        'fillColor': 'transparent',
+                        'color': 'red',
+                        'weight': 2,
+                        'fillOpacity': 0
+                    }
+                ).add_to(debug_group)
+                
+                m.add_child(debug_group)
+    
     # Add layer control
     folium.LayerControl(collapsed=False).add_to(m)
     
@@ -1256,6 +1283,12 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     print(f'Saved All Tiers map with {len(all_teams)} teams to: {output_file}')
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description='Generate rugby tier maps')
+    parser.add_argument('--no-debug', action='store_true', help='Disable debug boundary layers')
+    args = parser.parse_args()
+    
+    show_debug = not args.no_debug
+    
     print('Loading teams data...')
     teams_by_tier = load_teams_data('geocoded_teams')
     
@@ -1278,10 +1311,10 @@ def main() -> None:
     region_to_teams = assign_teams_to_itl_regions(teams_by_tier, itl_hierarchy)
     
     print('\nCreating tier maps...')
-    create_tier_maps(teams_by_tier, region_to_teams, itl_hierarchy)
+    create_tier_maps(teams_by_tier, region_to_teams, itl_hierarchy, show_debug=show_debug)
     
     print('\nCreating all tiers map...')
-    create_all_tiers_map(teams_by_tier, region_to_teams, itl_hierarchy)
+    create_all_tiers_map(teams_by_tier, region_to_teams, itl_hierarchy, show_debug=show_debug)
     
     print('\n✓ All maps created successfully!')
     print('Check \'tier_maps/\' folder for maps')

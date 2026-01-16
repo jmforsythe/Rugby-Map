@@ -600,9 +600,15 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         m = folium.Map(
             location=[52.5, -1.5],
             zoom_start=7,
-            tiles='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-            attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            tiles=None
         )
+        
+        # Add basemap without adding to layer control
+        folium.TileLayer(
+            tiles='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+            attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            control=False
+        ).add_to(m)
         
         # Add England outline
         countries_geojson_path = 'boundaries/countries.geojson'
@@ -855,11 +861,44 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         
         # Add legend for leagues
         legend_html = f'''
-        <div style="position: fixed; 
+        <style>
+        .legend-toggle {{
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            float: right;
+            font-weight: bold;
+            font-size: 18px;
+        }}
+        .legend-content.collapsed {{
+            display: none;
+        }}
+        @media only screen and (max-width: 768px) {{
+            .map-legend {{
+                bottom: 10px !important;
+                right: 10px !important;
+                width: 180px !important;
+                max-height: 250px !important;
+                font-size: 11px !important;
+                padding: 8px !important;
+            }}
+            .map-legend h4 {{
+                font-size: 13px !important;
+            }}
+            .map-legend i {{
+                width: 14px !important;
+                height: 14px !important;
+            }}
+        }}
+        </style>
+        <div class="map-legend" style="position: fixed; 
                     bottom: 50px; right: 50px; width: 250px; max-height: 400px; overflow-y: auto;
                     background-color: white; z-index:9999; font-size:14px;
                     border:2px solid grey; border-radius: 5px; padding: 10px">
-        <h4 style="margin-top: 0;">{tier} - Leagues</h4>
+        <h4 style="margin-top: 0;">{tier} - Leagues
+            <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
+        </h4>
+        <div class="legend-content">
         '''
         
         for league in sorted(teams_by_league.keys()):
@@ -873,7 +912,21 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
             </p>
             '''
         
-        legend_html += '</div>'
+        legend_html += '''</div></div>
+        <script>
+        function toggleLegend() {
+            var content = document.querySelector('.legend-content');
+            var toggle = document.querySelector('.legend-toggle');
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '−';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '+';
+            }
+        }
+        </script>
+        '''
         m.get_root().html.add_child(folium.Element(legend_html))
         
         # Save map
@@ -892,9 +945,15 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     m = folium.Map(
         location=[52.5, -1.5],
         zoom_start=7,
-        tiles='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        tiles=None
     )
+    
+    # Add basemap without adding to layer control
+    folium.TileLayer(
+        tiles='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        control=False
+    ).add_to(m)
     
     # Add England outline
     countries_geojson_path = 'boundaries/countries.geojson'
@@ -1115,11 +1174,44 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     
     # Add legend for tiers and leagues
     legend_html = f'''
-    <div style="position: fixed; 
+    <style>
+    .legend-toggle {{
+        cursor: pointer;
+        user-select: none;
+        display: inline-block;
+        float: right;
+        font-weight: bold;
+        font-size: 18px;
+    }}
+    .legend-content.collapsed {{
+        display: none;
+    }}
+    @media only screen and (max-width: 768px) {{
+        .map-legend {{
+            bottom: 10px !important;
+            right: 10px !important;
+            width: 200px !important;
+            max-height: 300px !important;
+            font-size: 11px !important;
+            padding: 8px !important;
+        }}
+        .map-legend h4 {{
+            font-size: 13px !important;
+        }}
+        .map-legend i {{
+            width: 12px !important;
+            height: 12px !important;
+        }}
+    }}
+    </style>
+    <div class="map-legend" style="position: fixed; 
                 bottom: 50px; right: 50px; width: 300px; max-height: 500px; overflow-y: auto;
                 background-color: white; z-index:9999; font-size:14px;
                 border:2px solid grey; border-radius: 5px; padding: 10px">
-    <h4 style="margin-top: 0;">All Tiers - Leagues</h4>
+    <h4 style="margin-top: 0;">All Tiers - Leagues
+        <span class="legend-toggle" onclick="toggleAllLegend()" title="Toggle legend">−</span>
+    </h4>
+    <div class="legend-content">
     '''
     
     for tier in TIER_ORDER:
@@ -1141,7 +1233,21 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
             </p>
             '''
     
-    legend_html += '</div>'
+    legend_html += '''</div></div>
+    <script>
+    function toggleAllLegend() {
+        var content = document.querySelector('.legend-content');
+        var toggle = document.querySelector('.legend-toggle');
+        if (content.classList.contains('collapsed')) {
+            content.classList.remove('collapsed');
+            toggle.textContent = '−';
+        } else {
+            content.classList.add('collapsed');
+            toggle.textContent = '+';
+        }
+    }
+    </script>
+    '''
     m.get_root().html.add_child(folium.Element(legend_html))
     
     # Save map

@@ -17,7 +17,7 @@ from typing import Optional, Dict, Tuple, List
 
 from utils import (
     Team, AddressTeam, AddressLeague, League,
-    get_session, get_headers, print_block
+    get_session, get_headers, print_block, AntiBotDetected
 )
 
 _cache_lock = threading.RLock()
@@ -52,15 +52,6 @@ def extract_address_from_maps_url(maps_url: str) -> Optional[str]:
         address = address.replace('\n', ', ')
         return address
     return None
-
-
-class AntiBotDetected(Exception):
-    """Exception raised when anti-bot detection is triggered."""
-    log_text: Optional[str]
-    
-    def __init__(self, message: str, *, log_text: Optional[str] = None) -> None:
-        super().__init__(message)
-        self.log_text = log_text
 
 
 def team_name_to_club_name(team_name: str) -> str:

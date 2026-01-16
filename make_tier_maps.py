@@ -422,7 +422,7 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
     3. ITL1 owned by league: owns multiple ITL2s, no teams from other leagues in tier in the ITL1
     
     Special cases:
-    - National League 1: All of England is shaded
+    - Premiership / Championship / National League 1: All of England is shaded
     - National League 2: Loosen ITL1/ITL2 requirements - any teams from one league, none from others
     """
     itl1_to_teams = region_to_teams['itl1']
@@ -437,11 +437,11 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
     
     # Detect tier for special handling
     tier_name = teams[0]['tier'] if teams else None
-    is_national_league_1 = tier_name == 'National League 1'
+    do_national_shading = tier_name in ['Premiership', 'Championship', 'National League 1']
     is_national_league_2 = tier_name == 'National League 2'
     
-    # Special early return for National League 1: shade all of England
-    if is_national_league_1 and len(all_leagues) == 1:
+    # Special early return for top tiers: shade all of England
+    if do_national_shading and len(all_leagues) == 1:
         return {
             'itl0': {'England': all_leagues[0]},
             'itl1': {},
@@ -497,43 +497,37 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
     # Step 3: Determine ITL1 regions owned by each league
     itl1_ownership: Dict[str, str] = {}  # itl1_name -> league
     
-    # Special case: National League 1 owns all of England
-    if is_national_league_1 and len(all_leagues) == 1:
-        league = all_leagues[0]
-        for itl1_name in itl1_to_teams.keys():
-            itl1_ownership[itl1_name] = league
-    else:
-        for itl1_name, teams_in_region in itl1_to_teams.items():
-            # Check if this ITL1 has teams from other leagues in this tier
-            tier_teams = [t for t in teams_in_region if t in teams]
-            if len(tier_teams) == 0:
+    for itl1_name, teams_in_region in itl1_to_teams.items():
+        # Check if this ITL1 has teams from other leagues in this tier
+        tier_teams = [t for t in teams_in_region if t in teams]
+        if len(tier_teams) == 0:
+            continue
+        
+        leagues_in_itl1 = set(t['league'] for t in tier_teams)
+        if len(leagues_in_itl1) > 1:
+            # Multiple leagues in this ITL1, cannot be owned
+            continue
+        
+        # For National League 2, loosen requirements: any teams from one league is enough
+        if is_national_league_2:
+            if len(leagues_in_itl1) == 1:
+                league = leagues_in_itl1.pop()
+                itl1_ownership[itl1_name] = league
                 continue
-            
-            leagues_in_itl1 = set(t['league'] for t in tier_teams)
-            if len(leagues_in_itl1) > 1:
-                # Multiple leagues in this ITL1, cannot be owned
-                continue
-            
-            # For National League 2, loosen requirements: any teams from one league is enough
-            if is_national_league_2:
-                if len(leagues_in_itl1) == 1:
-                    league = leagues_in_itl1.pop()
-                    itl1_ownership[itl1_name] = league
-                    continue
-            
-            # Standard logic: Count owned ITL2s by league
-            itl2s_in_itl1 = itl1_to_itl2s.get(itl1_name, [])
-            league_itl2_counts: Dict[str, int] = {}
-            for itl2_name in itl2s_in_itl1:
-                if itl2_name in itl2_ownership:
-                    league = itl2_ownership[itl2_name]
-                    league_itl2_counts[league] = league_itl2_counts.get(league, 0) + 1
-            
-            # ITL1 is owned if one league owns multiple ITL2s or one league owns the only ITL2
-            for league, count in league_itl2_counts.items():
-                if count >= 2 or (count == 1 and len(itl2s_in_itl1) == 1):
-                    itl1_ownership[itl1_name] = league
-                    break
+        
+        # Standard logic: Count owned ITL2s by league
+        itl2s_in_itl1 = itl1_to_itl2s.get(itl1_name, [])
+        league_itl2_counts: Dict[str, int] = {}
+        for itl2_name in itl2s_in_itl1:
+            if itl2_name in itl2_ownership:
+                league = itl2_ownership[itl2_name]
+                league_itl2_counts[league] = league_itl2_counts.get(league, 0) + 1
+        
+        # ITL1 is owned if one league owns multiple ITL2s or one league owns the only ITL2
+        for league, count in league_itl2_counts.items():
+            if count >= 2 or (count == 1 and len(itl2s_in_itl1) == 1):
+                itl1_ownership[itl1_name] = league
+                break
     
     # Return league ownership (not colors)
     itl1_leagues: Dict[str, str] = {}
@@ -617,7 +611,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                 countries_data = json.load(f)
             england_features = [
                 feat for feat in countries_data['features']
-                if feat['properties'].get('CTRY23NM') == 'England'
+                if feat['properties'].get('CTRY24NM') == 'England'
             ]
             if england_features:
                 england_data = {
@@ -668,7 +662,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
                 countries_data = json.load(f)
             
             for feat in countries_data['features']:
-                country_name = feat['properties'].get('CTRY23NM')
+                country_name = feat['properties'].get('CTRY24NM')
                 if country_name in itl0_colors:
                     league = itl0_colors[country_name]
                     color = league_colors[league]
@@ -909,7 +903,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
             countries_data = json.load(f)
         england_features = [
             feat for feat in countries_data['features']
-            if feat['properties'].get('CTRY23NM') == 'England'
+            if feat['properties'].get('CTRY24NM') == 'England'
         ]
         if england_features:
             england_data = {
@@ -966,7 +960,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
                 countries_data = json.load(f)
             
             for feat in countries_data['features']:
-                country_name = feat['properties'].get('CTRY23NM')
+                country_name = feat['properties'].get('CTRY24NM')
                 if country_name in itl0_colors:
                     league = itl0_colors[country_name]
                     if league not in league_geometries_for_tier:

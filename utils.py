@@ -104,6 +104,15 @@ class ITLRegion(TypedDict):
 # Shared Utility Functions
 # ============================================================================
 
+class AntiBotDetected(Exception):
+    """Exception raised when anti-bot detection is triggered."""
+    log_text: Optional[str]
+    
+    def __init__(self, message: str, *, log_text: Optional[str] = None) -> None:
+        super().__init__(message)
+        self.log_text = log_text
+
+
 _thread_local = threading.local()
 _print_lock = threading.Lock()
 

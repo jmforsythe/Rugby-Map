@@ -1,4 +1,3 @@
-import requests
 from bs4 import BeautifulSoup
 import json
 import time
@@ -6,7 +5,8 @@ import re
 from pathlib import Path
 from typing import Optional, List
 
-from utils import Team, LeagueInfo, League, get_headers, make_request
+from utils import Team, LeagueInfo, League, make_request, AntiBotDetected
+
 
 META_LEAGUE_URLS: List[str] = [
     "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&season=2025-2026", # South West
@@ -52,6 +52,12 @@ def scrape_teams_from_league(league_url: str, league_name: str, referer: Optiona
     
     try:
         response = make_request(league_url, referer=referer)
+        
+        # Check for anti-bot 202 response
+        if response.status_code == 202:
+            print(f"    \u2717 202 code - bot detection triggered for {league_name}")
+            raise AntiBotDetected(f"202 response for {league_name}")
+        
         soup = BeautifulSoup(response.content, 'html.parser')
         
         teams = []
@@ -98,6 +104,12 @@ def scrape_leagues_from_page(page_url: str) -> List[LeagueInfo]:
     
     try:
         response = make_request(page_url)
+        
+        # Check for anti-bot 202 response
+        if response.status_code == 202:
+            print(f"  ✗ 202 code - bot detection triggered")
+            raise AntiBotDetected(f"202 response for {page_url}")
+        
         soup = BeautifulSoup(response.content, 'html.parser')
         
         # Find the div with id 'related-leagues-overview'
@@ -144,7 +156,12 @@ def main() -> None:
     # Process each top-level URL
     for meta_url in META_LEAGUE_URLS:
         # Scrape leagues from this page
-        leagues.extend(scrape_leagues_from_page(meta_url))
+        try:
+            leagues.extend(scrape_leagues_from_page(meta_url))
+        except AntiBotDetected as e:
+            print(f"\n✗ Anti-bot detection triggered while scraping {meta_url}")
+            print(f"Please wait before running the script again.")
+            return
         
     # For each league, scrape teams and create JSON file
     for league in leagues:

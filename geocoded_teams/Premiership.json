@@ -1,0 +1,107 @@
+{
+  "league_name": "Premiership",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division=68225&season=2025-2026",
+  "teams": [
+    {
+      "name": "Northampton Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=49",
+      "image_url": "https://images.englandrugby.com/club_images/49.png",
+      "address": "Clubs Office, Training & Playing Ground, Northampton Rfc, Franklin Gardens, Northampton, Northamptonshire, NN5 5BG, United Kingdom",
+      "latitude": 52.2396946,
+      "longitude": -0.919472,
+      "formatted_address": "Weedon Rd, Northampton NN5 5BG, UK",
+      "place_id": "ChIJx0Jey_kOd0gR1Tu25RFFNcE"
+    },
+    {
+      "name": "Bath Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=42",
+      "image_url": "https://images.englandrugby.com/club_images/42.png",
+      "address": "Farleigh House, Farleigh, Hungerford, Nr Bath, Somerset, BA2 7RW, United Kingdom",
+      "latitude": 51.3120184,
+      "longitude": -2.2915186,
+      "formatted_address": "Farleigh House, Farleigh Hungerford, Bath BA2 7RW, UK",
+      "place_id": "ChIJV1DR-7IqckgRgHh2m4wgmNQ"
+    },
+    {
+      "name": "Exeter Chiefs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=41",
+      "image_url": "https://images.englandrugby.com/club_images/41.png",
+      "address": "Sandy Park Stadium Sandy Park Way Exeter DEVON EX2 7NN UNITED KINGDOM ",
+      "latitude": 50.7095567,
+      "longitude": -3.4683403,
+      "formatted_address": "Sandy Park Way, Exeter EX2 7NN, UK",
+      "place_id": "ChIJFWO7lGGhbUgRewwT_hPkQY8"
+    },
+    {
+      "name": "Bristol Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=43",
+      "image_url": "https://images.englandrugby.com/club_images/43.png",
+      "address": "Bristol Bears Hpc, Beggar Bush Lane, Henbury, Bristol, Bristol, BS8 3TF, United Kingdom",
+      "latitude": 51.4481735,
+      "longitude": -2.6663017,
+      "formatted_address": "Bristol BS8 3TF, UK",
+      "place_id": "ChIJ5Y0TWGWNcUgRA_Olb8lEN7c"
+    },
+    {
+      "name": "Leicester Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=46",
+      "image_url": "https://images.englandrugby.com/club_images/46.png",
+      "address": "Mattioli Woods Welford Road, Leicester Tigers Rfc, Aylestone Road, Leicester, Leicestershire, LE2 7TR, United Kingdom",
+      "latitude": 52.6241667,
+      "longitude": -1.1330556,
+      "formatted_address": "Aylestone Rd, Leicester LE2 7TR, UK",
+      "place_id": "ChIJs6W2tSdhd0gR9JSzvMXRvJc"
+    },
+    {
+      "name": "Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=51",
+      "image_url": "https://images.englandrugby.com/club_images/51.png",
+      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
+      "latitude": 51.6030216,
+      "longitude": -0.2235209,
+      "formatted_address": "Greenlands Ln, London NW4 1RL, UK",
+      "place_id": "ChIJe2cSDDIXdkgRxlo2mFPYfuU"
+    },
+    {
+      "name": "Sale Sharks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=50",
+      "image_url": "https://images.englandrugby.com/club_images/50.png",
+      "address": "Sale Sharks Training Ground, Carrington Lane, Carrington, Cheshire, M31 4AE, United Kingdom",
+      "latitude": 53.43220119999999,
+      "longitude": -2.3739182,
+      "formatted_address": "Carrington Ln., Carrington, Manchester M31 4AB, UK",
+      "place_id": "ChIJ1RijyYqre0gR0rbUZBBKjEs"
+    },
+    {
+      "name": "Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45",
+      "image_url": "https://images.englandrugby.com/club_images/45.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4511992,
+      "longitude": -0.3445463,
+      "formatted_address": "The Twickenham Stoop, Langhorn Dr, Twickenham TW2 7SX, UK",
+      "place_id": "ChIJ05PqM5MMdkgRPYCBs_bT51o"
+    },
+    {
+      "name": "Gloucester Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=44",
+      "image_url": "https://images.englandrugby.com/club_images/44.png",
+      "address": "Kingsholm Stadium, Kingsholm Stadium, Kingsholm Road, Gloucester, Gloucestershire, GL1 3AX, United Kingdom",
+      "latitude": 51.8711897,
+      "longitude": -2.2428511,
+      "formatted_address": "Kingsholm Rd, Kingsholm, Gloucester GL1 3AX, UK",
+      "place_id": "ChIJC0G8F34GcUgRIpXTy2YF8os"
+    },
+    {
+      "name": "Newcastle Red Bulls",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=48",
+      "image_url": "https://images.englandrugby.com/club_images/48.png",
+      "address": "Kingston Park Stadium, Brunton Road, Kingston Park, Newcastle Upon Tyne, Tyne And Wear, NE13 8AF, United Kingdom",
+      "latitude": 55.0187597,
+      "longitude": -1.672132,
+      "formatted_address": "Brunton Rd, Kenton Bank Foot, Newcastle upon Tyne NE13 8AF, UK",
+      "place_id": "ChIJvdhMnIt2fkgR8gwa3rrlmoc"
+    }
+  ],
+  "team_count": 10
+}

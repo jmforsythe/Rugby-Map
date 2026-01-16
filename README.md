@@ -1,13 +1,12 @@
 # English Rugby Union Team Mapping
 
-Interactive maps showing the geographic distribution of English rugby union teams.
+Interactive maps showing the geographic distribution of English rugby union teams across tiers and counties.
 
 ## Setup
 
 ### Prerequisites
 
 - Python 3.12+
-- Google Maps Geocoding API key (for geocoding new teams)
 
 ### Installation
 
@@ -16,16 +15,6 @@ Interactive maps showing the geographic distribution of English rugby union team
 2. Install Python dependencies:
 ```bash
 pip install folium shapely scipy numpy requests beautifulsoup4
-```
-
-3. Create your API key configuration:
-```bash
-cp config.py.example config.py
-```
-
-4. Edit `config.py` and add your Google API key:
-```python
-GOOGLE_API_KEY = "your_actual_api_key_here"
 ```
 
 ### Download Boundary Data
@@ -52,7 +41,8 @@ python download_boundaries.py --detail BFC
 
 ## Data Pipeline
 
-Pre-computed gepgraphic data for each league is included in `geocoded_teams` as getting the data from the RFU can be difficult, and geocoding that data requires a google API key
+Pre-computed geographic data for each league is included in `geocoded_teams/` as getting the data from the RFU can be difficult.
+
 The project follows a multi-stage pipeline to collect and process team data:
 
 ### 1. Scrape League Data
@@ -76,9 +66,7 @@ This step can fail due to rate-limiting / anti-bot detection.
 python geocode_addresses.py
 ```
 
-Converts addresses to coordinates using Google Geocoding API. Requires API key in `config.py`.
-
-**Important:** This step costs money based on Google API usage. The cache ensures you only geocode each unique address once.
+Converts addresses to coordinates using **OpenStreetMap Nominatim API** (free, no API key required).
 
 ### 4. Generate Maps
 ```bash
@@ -86,6 +74,9 @@ python make_tier_maps.py
 ```
 
 Creates all interactive maps with Voronoi diagrams.
+
+**Options:**
+- `--no-debug`: Exclude debug boundary layers (ITL1, ITL2, ITL3) for cleaner production maps
 
 **Features:**
 - Team markers with RFU profile links and fallback logos
@@ -96,15 +87,12 @@ Creates all interactive maps with Voronoi diagrams.
 ```
 mapping/
 ├── README.md                      # This file
-├── config.py                      # API keys (gitignored)
-├── config.py.example              # Template for API configuration
+├── utils.py                       # Shared type definitions and utilities
 ├── download_boundaries.py         # Download ONS boundary data
 ├── scrape_leagues_teams.py        # Scrape RFU for teams
 ├── fetch_addresses.py             # Fetch addresses from RFU
-├── geocode_addresses.py           # Geocode with Google API
+├── geocode_addresses.py           # Geocode with OpenStreetMap Nominatim
 ├── make_tier_maps.py              # Generate maps
-├── club_address_cache.json        # Club name → address cache
-├── address_cache.json             # Address → coordinates cache
 ├── boundaries/                    # ONS boundary GeoJSON files (gitignored)
 │   ├── ITL_1.geojson
 │   ├── ITL_2.geojson
@@ -120,5 +108,12 @@ mapping/
     ├── Counties_1.html
     ├── Counties_2.html
     ├── ...
-    └── all_tiers.html
+    └── All_Tiers.html
 ```
+
+## License & Data Sources
+
+- **Boundary Data**: © Crown copyright and database rights, Office for National Statistics
+- **Team Data**: Scraped from England Rugby (RFU) website
+- **Geocoding**: OpenStreetMap contributors
+- **Map Tiles**: © OpenStreetMap contributors, © CartoDB

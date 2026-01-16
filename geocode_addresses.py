@@ -1,5 +1,5 @@
 """  
-Script to geocode team addresses using Google Geocoding API.
+Script to geocode team addresses using OpenStreetMap Nominatim API.
 Reads team addresses from team_addresses/ directory and adds coordinates.
 Includes client-side caching by address to minimize API calls.
 """
@@ -7,12 +7,12 @@ Includes client-side caching by address to minimize API calls.
 import requests
 import time
 import json
+import re
 from pathlib import Path
 import argparse
 import concurrent.futures
 import threading
 from typing import Optional, Dict, List, Tuple
-from config import GOOGLE_API_KEY
 
 from utils import (
     AddressTeam, GeocodedTeam, GeocodedLeague, GeocodeResult, AddressLeague,
@@ -65,15 +65,25 @@ def save_cache() -> None:
         json.dump(geocode_cache, f, indent=2, ensure_ascii=False)
 
 
+def extract_uk_postcode(address: str) -> Optional[str]:
+    """Extract UK postcode from address string."""
+    # UK postcode pattern: https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom
+    postcode_pattern = r'\b[A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2}\b'
+    match = re.search(postcode_pattern, address, re.IGNORECASE)
+    if match:
+        return match.group(0).strip()
+    return None
 
-def geocode_with_google(
+
+
+def geocode_with_nominatim(
     address: str,
     max_retries: int = 3,
     backoff_base_seconds: float = 1.0,
     log_lines: Optional[List[str]] = None
 ) -> Tuple[Optional[GeocodeResult], List[str]]:
     """
-    Convert address to latitude and longitude using Google Geocoding API.
+    Convert address to latitude and longitude using OpenStreetMap Nominatim API.
     Uses cache if address is found in cache.
     
     Returns:
@@ -90,47 +100,82 @@ def geocode_with_google(
         log_lines.append(f"    ✓ Using cached coordinates for address")
         return cached, log_lines
     
-    base_url = "https://maps.googleapis.com/maps/api/geocode/json"
+    base_url = "https://nominatim.openstreetmap.org/search"
     
     params = {
-        'address': address,
-        'key': GOOGLE_API_KEY
+        'q': address,
+        'format': 'json',
+        'limit': 1,
+        'countrycodes': 'gb',  # Restrict to UK
+        'addressdetails': 1
     }
     
-    retry_statuses = {"OVER_QUERY_LIMIT", "UNKNOWN_ERROR", "RESOURCE_EXHAUSTED"}
+    headers = {
+        'User-Agent': 'RugbyMappingProject/1.0 (https://github.com/jmforsythe/Rugby-Map)'
+    }
+    
+    retry_statuses = {503, 429}  # Service unavailable, rate limit
     
     for attempt in range(max_retries + 1):
         try:
-            response = requests.get(base_url, params=params, timeout=10)
-            data = response.json()
+            # Nominatim requires 1 second between requests
+            time.sleep(1.0)
             
-            if data.get('status') == 'OK' and len(data.get('results', [])) > 0:
-                location = data['results'][0]['geometry']['location']
-                result: GeocodeResult = {
-                    'latitude': location['lat'],
-                    'longitude': location['lng'],
-                    'formatted_address': data['results'][0]['formatted_address'],
-                    'place_id': data['results'][0].get('place_id', '')
-                }
-                                
-                with _cache_lock:
-                    geocode_cache[address] = result
-                _mark_address_cache_dirty()
+            response = requests.get(base_url, params=params, headers=headers, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
                 
-                return result, log_lines
+                if len(data) > 0:
+                    result: GeocodeResult = {
+                        'latitude': float(data[0]['lat']),
+                        'longitude': float(data[0]['lon']),
+                        'formatted_address': data[0].get('display_name', address),
+                        'place_id': data[0].get('place_id', '')
+                    }
+                    
+                    with _cache_lock:
+                        geocode_cache[address] = result
+                    _mark_address_cache_dirty()
+                    
+                    return result, log_lines
+                else:
+                    # No results - try with just postcode if we haven't already
+                    if params['q'] == address:  # First attempt with full address
+                        postcode = extract_uk_postcode(address)
+                        if postcode:
+                            log_lines.append(f"    ! No results for full address, trying postcode: {postcode}")
+                            params['q'] = postcode
+                            time.sleep(1.0)
+                            response = requests.get(base_url, params=params, headers=headers, timeout=10)
+                            
+                            if response.status_code == 200:
+                                data = response.json()
+                                if len(data) > 0:
+                                    result: GeocodeResult = {
+                                        'latitude': float(data[0]['lat']),
+                                        'longitude': float(data[0]['lon']),
+                                        'formatted_address': data[0].get('display_name', address),
+                                        'place_id': data[0].get('place_id', '')
+                                    }
+                                    
+                                    with _cache_lock:
+                                        geocode_cache[address] = result
+                                    _mark_address_cache_dirty()
+                                    
+                                    log_lines.append(f"    ✓ Found using postcode")
+                                    return result, log_lines
+                    
+                    log_lines.append(f"    ✗ No results found for address or postcode")
+                    return None, log_lines
             
-            status = data.get('status', 'UNKNOWN')
-            if status == 'REQUEST_DENIED':
-                log_lines.append(f"    ✗ Google API error: {data.get('error_message', 'API key required or invalid')}")
-                return None, log_lines
-            
-            if status in retry_statuses and attempt < max_retries:
+            if response.status_code in retry_statuses and attempt < max_retries:
                 sleep_seconds = backoff_base_seconds * (2 ** attempt)
-                log_lines.append(f"    ! Google geocoding retry ({status}) in {sleep_seconds:.1f}s")
+                log_lines.append(f"    ! Nominatim retry (status {response.status_code}) in {sleep_seconds:.1f}s")
                 time.sleep(sleep_seconds)
                 continue
             
-            log_lines.append(f"    ✗ Google geocoding failed: {status}")
+            log_lines.append(f"    ✗ Nominatim error: HTTP {response.status_code}")
             return None, log_lines
         
         except Exception as e:
@@ -171,7 +216,7 @@ def process_team(team: AddressTeam, google_retries: int = 3) -> Tuple[GeocodedTe
     
     # Geocode the address
     coords: Optional[GeocodeResult]
-    coords, log_lines = geocode_with_google(
+    coords, log_lines = geocode_with_nominatim(
         address,
         max_retries=google_retries,
         log_lines=log_lines

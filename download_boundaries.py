@@ -17,7 +17,7 @@ import argparse
 from pathlib import Path
 
 # ONS Open Geography portal ArcGIS REST API FeatureServer services
-def get_boundary_services(detail_level='BFC'):
+def get_boundary_services(detail_level="BFC"):
     """
     Get boundary service URLs for the specified detail level.
     
@@ -27,24 +27,24 @@ def get_boundary_services(detail_level='BFC'):
     # ITL3 uses _V2 suffix and layer ID 1 for generalised versions
     # ITL1/2 use layer ID 0
     # Countries service name varies by detail level
-    if detail_level in ['BGC', 'BSC', 'BUC']:
-        itl3_service = f'ITL3_JAN_2025_UK_{detail_level}_V2'
-        itl3_layer = '1'
-        countries_service = f'Countries_December_2024_Boundaries_UK_{detail_level}'
+    if detail_level in ["BGC", "BSC", "BUC"]:
+        itl3_service = f"ITL3_JAN_2025_UK_{detail_level}_V2"
+        itl3_layer = "1"
+        countries_service = f"Countries_December_2024_Boundaries_UK_{detail_level}"
     else:
-        itl3_service = f'ITL3_JAN_2025_UK_{detail_level}'
-        itl3_layer = '0'
-        countries_service = f'CTRY_DEC_2024_UK_{detail_level}'
+        itl3_service = f"ITL3_JAN_2025_UK_{detail_level}"
+        itl3_layer = "0"
+        countries_service = f"CTRY_DEC_2024_UK_{detail_level}"
     
     return {
-        'ITL_1.geojson': f'https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level}/FeatureServer/0',
-        'ITL_2.geojson': f'https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level}/FeatureServer/0',
-        'ITL_3.geojson': f'https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{itl3_service}/FeatureServer/{itl3_layer}',
-        'countries.geojson': f'https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{countries_service}/FeatureServer/0',
+        "ITL_1.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level}/FeatureServer/0",
+        "ITL_2.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level}/FeatureServer/0",
+        "ITL_3.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{itl3_service}/FeatureServer/{itl3_layer}",
+        "countries.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{countries_service}/FeatureServer/0",
     }
 
 
-def download_arcgis_layer(service_url, filename, output_dir='boundaries', max_records=2000):
+def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_records=2000):
     """
     Download a complete ArcGIS FeatureServer layer as GeoJSON using pagination.
     
@@ -64,14 +64,14 @@ def download_arcgis_layer(service_url, filename, output_dir='boundaries', max_re
         
         # First, get the total count
         count_params = {
-            'where': '1=1',
-            'returnCountOnly': 'true',
-            'f': 'json'
+            "where": "1=1",
+            "returnCountOnly": "true",
+            "f": "json"
         }
         
         count_response = requests.get(query_url, params=count_params, timeout=30)
         count_response.raise_for_status()
-        total_count = count_response.json().get('count', 0)
+        total_count = count_response.json().get("count", 0)
         
         print(f"  Total features: {total_count}")
         
@@ -81,19 +81,19 @@ def download_arcgis_layer(service_url, filename, output_dir='boundaries', max_re
         
         while offset < total_count:
             query_params = {
-                'where': '1=1',
-                'outFields': '*',
-                'f': 'geojson',
-                'outSR': '4326',
-                'resultOffset': offset,
-                'resultRecordCount': max_records
+                "where": "1=1",
+                "outFields": "*",
+                "f": "geojson",
+                "outSR": "4326",
+                "resultOffset": offset,
+                "resultRecordCount": max_records
             }
             
             response = requests.get(query_url, params=query_params, timeout=60)
             response.raise_for_status()
             
             data = response.json()
-            features = data.get('features', [])
+            features = data.get("features", [])
             
             if not features:
                 break
@@ -101,19 +101,19 @@ def download_arcgis_layer(service_url, filename, output_dir='boundaries', max_re
             all_features.extend(features)
             offset += len(features)
             
-            print(f"  Downloaded {offset}/{total_count} features", end='\r', flush=True)
+            print(f"  Downloaded {offset}/{total_count} features", end="\r", flush=True)
             time.sleep(0.5)  # Be nice to the server
         
         print(f"  Downloaded {len(all_features)}/{total_count} features")
         
         # Construct the final GeoJSON
         geojson = {
-            'type': 'FeatureCollection',
-            'features': all_features
+            "type": "FeatureCollection",
+            "features": all_features
         }
         
         # Save to file
-        with open(output_path, 'w', encoding='utf-8') as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             json.dump(geojson, f, ensure_ascii=False, indent=2)
         
         print(f"  ✓ Saved to {output_path}")
@@ -129,7 +129,7 @@ def download_arcgis_layer(service_url, filename, output_dir='boundaries', max_re
 def main():
     """Download all boundary files."""
     parser = argparse.ArgumentParser(
-        description='Download boundary GeoJSON files from ONS Open Geography portal',
+        description="Download boundary GeoJSON files from ONS Open Geography portal",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Detail levels:
@@ -141,10 +141,10 @@ Detail levels:
         """
     )
     parser.add_argument(
-        '--detail',
-        choices=['BFE', 'BFC', 'BGC', 'BSC', 'BUC'],
-        default='BGC',
-        help='Boundary detail level (default: BGC for smaller file sizes)'
+        "--detail",
+        choices=["BFE", "BFC", "BGC", "BSC", "BUC"],
+        default="BGC",
+        help="Boundary detail level (default: BGC for smaller file sizes)"
     )
     args = parser.parse_args()
     

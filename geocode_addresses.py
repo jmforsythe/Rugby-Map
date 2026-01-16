@@ -27,14 +27,14 @@ _address_cache_dirty = False
 
 # Cache for address -> coordinates
 geocode_cache: Dict[str, GeocodeResult] = {}
-CACHE_FILE = 'geocode_cache.json'
+CACHE_FILE = "geocode_cache.json"
 
 
 def load_cache() -> None:
     """Load address cache from file."""
     global geocode_cache
     if Path(CACHE_FILE).exists():
-        with open(CACHE_FILE, 'r', encoding='utf-8') as f:
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
             geocode_cache = json.load(f)
         print(f"Loaded {len(geocode_cache)} cached addresses")
 
@@ -61,14 +61,14 @@ def flush_cache(force: bool = False) -> None:
 
 def save_cache() -> None:
     """Save address cache to file."""
-    with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(geocode_cache, f, indent=2, ensure_ascii=False)
 
 
 def extract_uk_postcode(address: str) -> Optional[str]:
     """Extract UK postcode from address string."""
     # UK postcode pattern: https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom
-    postcode_pattern = r'\b[A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2}\b'
+    postcode_pattern = r"\b[A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2}\b"
     match = re.search(postcode_pattern, address, re.IGNORECASE)
     if match:
         return match.group(0).strip()
@@ -103,15 +103,15 @@ def geocode_with_nominatim(
     base_url = "https://nominatim.openstreetmap.org/search"
     
     params = {
-        'q': address,
-        'format': 'json',
-        'limit': 1,
-        'countrycodes': 'gb',  # Restrict to UK
-        'addressdetails': 1
+        "q": address,
+        "format": "json",
+        "limit": 1,
+        "countrycodes": "gb",  # Restrict to UK
+        "addressdetails": 1
     }
     
     headers = {
-        'User-Agent': 'RugbyMappingProject/1.0 (https://github.com/jmforsythe/Rugby-Map)'
+        "User-Agent": "RugbyMappingProject/1.0 (https://github.com/jmforsythe/Rugby-Map)"
     }
     
     retry_statuses = {503, 429}  # Service unavailable, rate limit
@@ -128,10 +128,10 @@ def geocode_with_nominatim(
                 
                 if len(data) > 0:
                     result: GeocodeResult = {
-                        'latitude': float(data[0]['lat']),
-                        'longitude': float(data[0]['lon']),
-                        'formatted_address': data[0].get('display_name', address),
-                        'place_id': data[0].get('place_id', '')
+                        "latitude": float(data[0]["lat"]),
+                        "longitude": float(data[0]["lon"]),
+                        "formatted_address": data[0].get("display_name", address),
+                        "place_id": data[0].get("place_id", "")
                     }
                     
                     with _cache_lock:
@@ -140,12 +140,12 @@ def geocode_with_nominatim(
                     
                     return result, log_lines
                 else:
-                    # No results - try with just postcode if we haven't already
-                    if params['q'] == address:  # First attempt with full address
+                    # No results - try with just postcode if we haven"t already
+                    if params["q"] == address:  # First attempt with full address
                         postcode = extract_uk_postcode(address)
                         if postcode:
                             log_lines.append(f"    ! No results for full address, trying postcode: {postcode}")
-                            params['q'] = postcode
+                            params["q"] = postcode
                             time.sleep(1.0)
                             response = requests.get(base_url, params=params, headers=headers, timeout=10)
                             
@@ -153,10 +153,10 @@ def geocode_with_nominatim(
                                 data = response.json()
                                 if len(data) > 0:
                                     result: GeocodeResult = {
-                                        'latitude': float(data[0]['lat']),
-                                        'longitude': float(data[0]['lon']),
-                                        'formatted_address': data[0].get('display_name', address),
-                                        'place_id': data[0].get('place_id', '')
+                                        "latitude": float(data[0]["lat"]),
+                                        "longitude": float(data[0]["lon"]),
+                                        "formatted_address": data[0].get("display_name", address),
+                                        "place_id": data[0].get("place_id", "")
                                     }
                                     
                                     with _cache_lock:
@@ -199,19 +199,19 @@ def process_team(team: AddressTeam, google_retries: int = 3) -> Tuple[GeocodedTe
     Returns:
         Tuple of (GeocodedTeam, log_text) so the caller can print without interleaving.
     """
-    log_lines: List[str] = [f"  Geocoding: {team['name']}"]
+    log_lines: List[str] = [f"  Geocoding: {team["name"]}"]
     
-    if 'error' in team:
+    if "error" in team:
         log_lines.append(f"    ✗ Skipped - error in address fetch")
         result: GeocodedTeam = dict(team)  # type: ignore
         return result, "\n".join(log_lines)
     
-    address: Optional[str] = team.get('address')
+    address: Optional[str] = team.get("address")
     
     if not address:
         log_lines.append(f"    ✗ No address available")
         result = dict(team)  # type: ignore
-        result['error'] = 'no_address'  # type: ignore
+        result["error"] = "no_address"  # type: ignore
         return result, "\n".join(log_lines)
     
     # Geocode the address
@@ -226,9 +226,9 @@ def process_team(team: AddressTeam, google_retries: int = 3) -> Tuple[GeocodedTe
     
     if coords:
         result.update(coords)  # type: ignore
-        log_lines.append(f"    ✓ Coordinates: {coords['latitude']}, {coords['longitude']}")
+        log_lines.append(f"    ✓ Coordinates: {coords["latitude"]}, {coords["longitude"]}")
     else:
-        result['error'] = 'geocoding_failed'  # type: ignore
+        result["error"] = "geocoding_failed"  # type: ignore
         log_lines.append(f"    ✗ Geocoding failed")
     
     return result, "\n".join(log_lines)
@@ -240,22 +240,22 @@ def process_address_file(
     google_retries: int = 3
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
-    print(f"{'='*80}")
+    print(f"{"="*80}")
     print(f"Processing: {address_file_path.name}")
-    print(f"{'='*80}")
+    print(f"{"="*80}")
     
     # Check if output file already exists
-    output_file = address_file_path.parent.parent / 'geocoded_teams' / address_file_path.name
+    output_file = address_file_path.parent.parent / "geocoded_teams" / address_file_path.name
     if output_file.exists():
         print(f"  Skipping - already geocoded")
         return
     
     # Load address data
-    with open(address_file_path, 'r', encoding='utf-8') as f:
+    with open(address_file_path, "r", encoding="utf-8") as f:
         address_data: AddressLeague = json.load(f)
     
-    league_name: str = address_data['league_name']
-    teams: List[AddressTeam] = address_data['teams']
+    league_name: str = address_data["league_name"]
+    teams: List[AddressTeam] = address_data["teams"]
     
     print(f"League: {league_name}")
     print(f"Teams to geocode: {len(teams)}")
@@ -280,7 +280,7 @@ def process_address_file(
                 except Exception as e:
                     print_block(f"  ✗ Error processing team: {e}")
                     error_result: GeocodedTeam = dict(teams[idx])  # type: ignore
-                    error_result['error'] = f"exception: {e}"  # type: ignore
+                    error_result["error"] = f"exception: {e}"  # type: ignore
                     team_results[idx] = error_result
         
         finally:
@@ -289,19 +289,19 @@ def process_address_file(
     geocoded_teams: List[GeocodedTeam] = [r for r in team_results if r]
     
     # Count successes
-    success_count: int = len([t for t in geocoded_teams if 'error' not in t])
+    success_count: int = len([t for t in geocoded_teams if "error" not in t])
     
     # Save results
     output_data: GeocodedLeague = {
-        'league_name': league_name,
-        'league_url': address_data['league_url'],
-        'teams': geocoded_teams,
-        'team_count': len(geocoded_teams)
+        "league_name": league_name,
+        "league_url": address_data["league_url"],
+        "teams": geocoded_teams,
+        "team_count": len(geocoded_teams)
     }
     
     output_file.parent.mkdir(exist_ok=True)
     
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
     
     print(f"✓ Saved to: {output_file}")
@@ -318,13 +318,13 @@ def main() -> None:
     
     load_cache()
     
-    address_dir = Path('team_addresses')
+    address_dir = Path("team_addresses")
     if not address_dir.exists():
         print("Error: team_addresses directory not found")
         print("Run fetch_addresses.py first to get team addresses")
         return
     
-    address_files: List[Path] = sorted(address_dir.glob('*.json'))
+    address_files: List[Path] = sorted(address_dir.glob("*.json"))
     
     if args.league:
         league_arg = Path(args.league)
@@ -350,10 +350,10 @@ def main() -> None:
             traceback.print_exc()
             flush_cache(force=True)
     
-    print(f"{'='*80}")
-    print(f"Complete! Geocoded data saved to 'geocoded_teams' directory")
+    print(f"{"="*80}")
+    print(f"Complete! Geocoded data saved to \"geocoded_teams\" directory")
     print(f"Address cache size: {len(geocode_cache)}")
-    print(f"{'='*80}")
+    print(f"{"="*80}")
 
 
 if __name__ == "__main__":

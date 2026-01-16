@@ -31,14 +31,14 @@ def load_cache() -> None:
     """Load club address cache from file."""
     global club_cache
     if Path(CLUB_CACHE_FILE).exists():
-        with open(CLUB_CACHE_FILE, 'r', encoding='utf-8') as f:
+        with open(CLUB_CACHE_FILE, "r", encoding="utf-8") as f:
             club_cache = json.load(f)
         print(f"Loaded {len(club_cache)} cached club addresses")
 
 
 def save_cache() -> None:
     """Save club address cache to file."""
-    with open(CLUB_CACHE_FILE, 'w', encoding='utf-8') as f:
+    with open(CLUB_CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(club_cache, f, indent=2, ensure_ascii=False)
 
 
@@ -47,9 +47,9 @@ def extract_address_from_maps_url(maps_url: str) -> Optional[str]:
     parsed = urlparse(maps_url)
     params = parse_qs(parsed.query)
     
-    if 'query' in params:
-        address = unquote(params['query'][0])
-        address = address.replace('\n', ', ')
+    if "query" in params:
+        address = unquote(params["query"][0])
+        address = address.replace("\n", ", ")
         return address
     return None
 
@@ -86,11 +86,11 @@ def get_club_address_from_page(
 
             response.raise_for_status()
             
-            soup = BeautifulSoup(response.content, 'html.parser')
-            club_btn = soup.find(class_='c036-club-details-btn')
+            soup = BeautifulSoup(response.content, "html.parser")
+            club_btn = soup.find(class_="c036-club-details-btn")
             
-            if club_btn and club_btn.get('href'):
-                maps_url = club_btn.get('href').replace('&amp;', '&')
+            if club_btn and club_btn.get("href"):
+                maps_url = club_btn.get("href").replace("&amp;", "&")
                 return maps_url, log_lines
             
             return None, log_lines
@@ -158,22 +158,22 @@ def process_league_file(
     max_retries: int = 3
 ) -> None:
     """Process a single league JSON file and fetch all addresses."""
-    print(f"{'='*80}")
+    print(f"{"="*80}")
     print(f"Processing: {league_file_path.name}")
-    print(f"{'='*80}")
+    print(f"{"="*80}")
     
     # Check if output file already exists
-    output_file = league_file_path.parent.parent / 'team_addresses' / league_file_path.name
+    output_file = league_file_path.parent.parent / "team_addresses" / league_file_path.name
     if output_file.exists():
         print(f"  Skipping - already processed")
         return
     
     # Load league data
-    with open(league_file_path, 'r', encoding='utf-8') as f:
+    with open(league_file_path, "r", encoding="utf-8") as f:
         league_data: League = json.load(f)
     
-    league_name: str = league_data['league_name']
-    teams: List[Team] = league_data['teams']
+    league_name: str = league_data["league_name"]
+    teams: List[Team] = league_data["teams"]
     
     print(f"League: {league_name}")
     print(f"Teams to process: {len(teams)}")
@@ -195,9 +195,9 @@ def process_league_file(
         futures_to_club: Dict[concurrent.futures.Future, str] = {}
         
         for idx, team in enumerate(teams):
-            team_name = team['name']
-            team_url = team['url']
-            team_image_url = team.get('image_url')
+            team_name = team["name"]
+            team_url = team["url"]
+            team_image_url = team.get("image_url")
             
             if team_name.startswith("To be arranged"):
                 continue
@@ -214,7 +214,7 @@ def process_league_file(
                 log_lines = [
                     f"  Processing: {team_name}",
                     f"    ✓ Using cached club result ({club_name})",
-                    f"    Address: {cached_address or 'N/A'}"
+                    f"    Address: {cached_address or "N/A"}"
                 ]
                 
                 print_block("\n".join(log_lines))
@@ -243,10 +243,10 @@ def process_league_file(
                         f.cancel()
                     if getattr(e, "log_text", None):
                         print_block(e.log_text)
-                    print(f"{'='*80}")
+                    print(f"{"="*80}")
                     print(f"ANTI-BOT DETECTION TRIGGERED")
                     print(f"Aborting processing to avoid being blocked")
-                    print(f"{'='*80}")
+                    print(f"{"="*80}")
                     save_cache()
                     raise
                 except Exception as e:
@@ -267,20 +267,20 @@ def process_league_file(
     
     # Save results
     output_data: AddressLeague = {
-        'league_name': league_name,
-        'league_url': league_data['league_url'],
-        'teams': teams_with_addresses,
-        'team_count': len(teams_with_addresses),
-        'success_count': len([t for t in teams_with_addresses if 'error' not in t])
+        "league_name": league_name,
+        "league_url": league_data["league_url"],
+        "teams": teams_with_addresses,
+        "team_count": len(teams_with_addresses),
+        "success_count": len([t for t in teams_with_addresses if "error" not in t])
     }
     
     output_file.parent.mkdir(exist_ok=True)
     
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
     
     print(f"✓ Saved to: {output_file}")
-    print(f"  Successfully fetched: {output_data['success_count']}/{len(teams_with_addresses)}")
+    print(f"  Successfully fetched: {output_data["success_count"]}/{len(teams_with_addresses)}")
 
 
 def main() -> None:
@@ -294,12 +294,12 @@ def main() -> None:
     
     load_cache()
     
-    league_dir = Path('league_data')
+    league_dir = Path("league_data")
     if not league_dir.exists():
         print("Error: league_data directory not found")
         return
     
-    league_files: List[Path] = sorted(league_dir.glob('*.json'))
+    league_files: List[Path] = sorted(league_dir.glob("*.json"))
     
     if args.league:
         league_arg = Path(args.league)
@@ -330,10 +330,10 @@ def main() -> None:
             traceback.print_exc()
             save_cache()
     
-    print(f"{'='*80}")
-    print(f"Complete! Addresses saved to 'team_addresses' directory")
+    print(f"{"="*80}")
+    print(f"Complete! Addresses saved to \"team_addresses\" directory")
     print(f"Club cache size: {len(club_cache)}")
-    print(f"{'='*80}")
+    print(f"{"="*80}")
 
 
 if __name__ == "__main__":

@@ -178,6 +178,10 @@ def geocode_with_nominatim(
             log_lines.append(f"    ✗ Nominatim error: HTTP {response.status_code}")
             return None, log_lines
         
+        except KeyboardInterrupt:
+            log_lines.append(f"    ✗ Interrupted by user")
+            raise
+        
         except Exception as e:
             if attempt < max_retries:
                 sleep_seconds = backoff_base_seconds * (2 ** attempt)
@@ -189,12 +193,12 @@ def geocode_with_nominatim(
             return None, log_lines
 
 
-def process_team(team: AddressTeam, google_retries: int = 3) -> Tuple[GeocodedTeam, str]:
+def process_team(team: AddressTeam, api_retries: int = 3) -> Tuple[GeocodedTeam, str]:
     """Process a single team: geocode the address.
     
     Args:
         team: Team data with address to geocode
-        google_retries: Number of retries for transient failures
+        api_retries: Number of retries for transient failures
     
     Returns:
         Tuple of (GeocodedTeam, log_text) so the caller can print without interleaving.
@@ -218,7 +222,7 @@ def process_team(team: AddressTeam, google_retries: int = 3) -> Tuple[GeocodedTe
     coords: Optional[GeocodeResult]
     coords, log_lines = geocode_with_nominatim(
         address,
-        max_retries=google_retries,
+        max_retries=api_retries,
         log_lines=log_lines
     )
     
@@ -277,6 +281,9 @@ def process_address_file(
                     result, log_text = future.result()
                     print_block(log_text)
                     team_results[idx] = result
+                except KeyboardInterrupt:
+                    print_block(f"  ✗ Interrupted by user")
+                    raise
                 except Exception as e:
                     print_block(f"  ✗ Error processing team: {e}")
                     error_result: GeocodedTeam = dict(teams[idx])  # type: ignore
@@ -344,6 +351,11 @@ def main() -> None:
     for address_file in address_files:
         try:
             process_address_file(address_file, max_workers=args.workers, google_retries=args.google_retries)
+        except KeyboardInterrupt:
+            print(f"\n\n✗ Interrupted by user")
+            print(f"Saving cache and exiting...")
+            flush_cache(force=True)
+            raise
         except Exception as e:
             print(f"\n✗ Error processing {address_file.name}: {e}")
             import traceback

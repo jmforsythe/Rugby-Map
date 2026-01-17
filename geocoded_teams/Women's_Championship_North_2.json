@@ -1,0 +1,107 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66838",
+  "teams": [
+    {
+      "name": "Bishop Auckland Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2358",
+      "image_url": "https://images.englandrugby.com/club_images/2358.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM ",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "Driffield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6749",
+      "image_url": "https://images.englandrugby.com/club_images/6749.png",
+      "address": "The Clubhouse, Kelleythorpe, Driffield, East Riding Of Yorkshire, YO25 9DW, United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352190496
+    },
+    {
+      "name": "Liverpool St Helens Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124997",
+      "image_url": "https://images.englandrugby.com/club_images/124997.png",
+      "address": "Moss Lane Windle St. Helens MERSEYSIDE WA11 7PL UNITED KINGDOM ",
+      "latitude": 53.47099,
+      "longitude": -2.77798,
+      "formatted_address": "WA11 7PL, Windle, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 352124822
+    },
+    {
+      "name": "Manchester Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Chester Devas Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM ",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 256952260
+    },
+    {
+      "name": "Sheffield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19088",
+      "image_url": "https://images.englandrugby.com/club_images/19088.png",
+      "address": "Abbeydale Sports Club, Abbeydale Road South, Sheffield, South Yorkshire, S17 3LJ, United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351842613
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Sefton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18962",
+      "image_url": "https://images.englandrugby.com/club_images/18962.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Kendal Wasps",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11253",
+      "image_url": "https://images.englandrugby.com/club_images/11253.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South West (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66887",
+  "teams": [
+    {
+      "name": "Newbury Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125827",
+      "image_url": "https://images.englandrugby.com/club_images/125827.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Didcot Valkyries",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6430",
+      "image_url": "https://images.englandrugby.com/club_images/6430.png",
+      "address": "Boundary Park Greenwood Way Harwell Didcot Oxfordshire OX11 0AB United Kingdom",
+      "latitude": 51.6080606,
+      "longitude": -1.2695259,
+      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
+      "place_id": 259422465
+    },
+    {
+      "name": "Alton Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=517",
+      "image_url": "https://images.englandrugby.com/club_images/517.png",
+      "address": "The Clubhouse Anstey Park Anstey Lane Alton Hampshire GU34 2NB United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350192111
+    },
+    {
+      "name": "Andover Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124785",
+      "image_url": "https://images.englandrugby.com/club_images/124785.png",
+      "address": "The Goodship Ground Foxcotte Park Andover Hampshire SP11 0TA United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351512271
+    },
+    {
+      "name": "Basingstoke Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1569",
+      "image_url": "https://images.englandrugby.com/club_images/1569.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    },
+    {
+      "name": "Crowthorne Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5940",
+      "image_url": "https://images.englandrugby.com/club_images/5940.png",
+      "address": "The Sports Club (the Nest) Lower Broadmoor Road Crowthorne Berkshire RG45 7HA United Kingdom",
+      "latitude": 51.36553,
+      "longitude": -0.77842,
+      "formatted_address": "RG45 7HA, Crowthorne, Bracknell Forest, England, United Kingdom",
+      "place_id": 351366185
+    }
+  ],
+  "team_count": 6
+}

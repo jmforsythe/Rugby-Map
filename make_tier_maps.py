@@ -6,7 +6,7 @@ from pathlib import Path
 from shapely.geometry import shape, Point
 from shapely.geometry.base import BaseGeometry
 from shapely.prepared import PreparedGeometry, prep
-from typing import Dict, List, Any, Optional, TypedDict, NotRequired
+from typing import Dict, List, Any, Optional, TypedDict
 
 from utils import ITLRegion, MapTeam
 
@@ -65,9 +65,23 @@ def extract_tier(filename: str) -> str:
         return "Counties 4"
     elif filename.startswith("Counties_5"):
         return "Counties 5"
+    elif filename.startswith("Women's_Premiership"):
+        return "Premiership Women's"
+    elif filename.startswith("Women's_Championship"):
+        if filename.endswith("1.json"):
+            return "Championship 1"
+        elif filename.endswith("2.json"):
+            return "Championship 2"
+    elif filename.startswith("Women's_NC_1"):
+        return "National Challenge 1"
+    elif filename.startswith("Women's_NC_2"):
+        return "National Challenge 2"
+    elif filename.startswith("Women's_NC_3"):
+        return "National Challenge 3"
     return "Unknown"
 
 TIER_ORDER = ["Premiership", "Championship", "National League 1", "National League 2", "Regional 1", "Regional 2", "Counties 1", "Counties 2", "Counties 3", "Counties 4", "Counties 5"]
+WOMENS_TIER_ORDER = ["Premiership Women's", "Championship 1", "Championship 2", "National Challenge 1", "National Challenge 2", "National Challenge 3"]
 
 def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[MapTeam]]:
     """Load all teams from geocoded JSON files."""
@@ -222,7 +236,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         itl1_data = json.load(f)
     
     # Parse ITL3 regions
-    itl3_regions: List[ITLRegion] = []
+    itl3_regions: List[ITLRegionGeom] = []
     for feat in itl3_data["features"]:
         geom = shape(feat["geometry"])
         itl3_regions.append({
@@ -234,7 +248,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         })
     
     # Parse ITL2 regions
-    itl2_regions: List[ITLRegion] = []
+    itl2_regions: List[ITLRegionGeom] = []
     for feat in itl2_data["features"]:
         geom = shape(feat["geometry"])
         itl2_regions.append({
@@ -246,7 +260,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         })
     
     # Parse ITL1 regions
-    itl1_regions: List[ITLRegion] = []
+    itl1_regions: List[ITLRegionGeom] = []
     for feat in itl1_data["features"]:
         geom = shape(feat["geometry"])
         itl1_regions.append({
@@ -317,16 +331,16 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[MapTeam]], itl_hie
     }
     """
     
-    itl1_regions: List[ITLRegion] = itl_hierarchy["itl1_regions"]
-    itl2_regions: List[ITLRegion] = itl_hierarchy["itl2_regions"]
-    itl3_regions: List[ITLRegion] = itl_hierarchy["itl3_regions"]
+    itl1_regions: List[ITLRegionGeom] = itl_hierarchy["itl1_regions"]
+    itl2_regions: List[ITLRegionGeom] = itl_hierarchy["itl2_regions"]
+    itl3_regions: List[ITLRegionGeom] = itl_hierarchy["itl3_regions"]
     itl1_to_itl2s: Dict[str, List[str]] = itl_hierarchy["itl1_to_itl2s"]
     itl2_to_itl3s: Dict[str, List[str]] = itl_hierarchy["itl2_to_itl3s"]
 
     
     # Create lookup dictionaries for faster access
-    itl2_by_name: Dict[str, ITLRegion] = {r["name"]: r for r in itl2_regions}
-    itl3_by_name: Dict[str, ITLRegion] = {r["name"]: r for r in itl3_regions}
+    itl2_by_name: Dict[str, ITLRegionGeom] = {r["name"]: r for r in itl2_regions}
+    itl3_by_name: Dict[str, ITLRegionGeom] = {r["name"]: r for r in itl3_regions}
     
     # Create reverse mappings: region -> teams
     itl1_to_teams: Dict[str, List[MapTeam]] = {}
@@ -439,8 +453,8 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
     
     # Detect tier for special handling
     tier_name = teams[0]["tier"] if teams else None
-    do_national_shading = tier_name in ["Premiership", "Championship", "National League 1"]
-    is_national_league_2 = tier_name == "National League 2"
+    do_national_shading = tier_name in ["Premiership", "Championship", "National League 1", "Premiership Women's"]
+    do_bigger_shading = tier_name in ["National League 2", "Championship 1", "Championship 2"]
     
     # Special early return for top tiers: shade all of England
     if do_national_shading and len(all_leagues) == 1:
@@ -475,8 +489,8 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
             # Multiple leagues in this ITL2, cannot be owned
             continue
         
-        # For National League 2, loosen requirements: any teams from one league is enough
-        if is_national_league_2:
+        # For higher leagues, loosen requirements: any teams from one league is enough
+        if do_bigger_shading:
             if len(leagues_in_itl2) == 1:
                 league = leagues_in_itl2.pop()
                 itl2_ownership[itl2_name] = league
@@ -511,7 +525,7 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
             continue
         
         # For National League 2, loosen requirements: any teams from one league is enough
-        if is_national_league_2:
+        if do_bigger_shading:
             if len(leagues_in_itl1) == 1:
                 league = leagues_in_itl1.pop()
                 itl1_ownership[itl1_name] = league
@@ -591,13 +605,13 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
         "itl3_multi_league": itl3_multi_league
     }
 
-def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True) -> None:
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True) -> None:
     """Create individual maps for each tier, with teams separated by league."""
     
     # Create output directory
     Path(output_dir).mkdir(exist_ok=True)
     
-    for tier, teams in sorted(teams_by_tier.items(), key=lambda x: TIER_ORDER.index(x[0]) if x[0] in TIER_ORDER else len(TIER_ORDER)):
+    for tier, teams in sorted(teams_by_tier.items(), key=lambda x: tier_order.index(x[0]) if x[0] in tier_order else len(tier_order)):
         # Create base map centered on England
         m = folium.Map(
             location=[52.5, -1.5],
@@ -642,7 +656,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
         
         # Group teams by league
-        teams_by_league = {}
+        teams_by_league: Dict[str, List[MapTeam]] = {}
         for team in teams:
             league = team["league"]
             if league not in teams_by_league:
@@ -694,7 +708,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         # Collect all geometries for each league (regular regions + Voronoi cells)
         from shapely.ops import unary_union
         from shapely.geometry import mapping
-        league_geometries = {}
+        league_geometries: Dict[str, List[BaseGeometry]] = {}
         
         for level, geojson_path in [("itl1", "boundaries/ITL_1.geojson"),
                                       ("itl2", "boundaries/ITL_2.geojson"),
@@ -940,7 +954,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: R
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True) -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, default_visible_tier: Optional[str] = None) -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
@@ -1000,11 +1014,11 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     # Create separate feature groups for territories and markers (only first tier shown by default)
     territory_groups = {}
     marker_groups = {}
-    sorted_tiers = [tier for tier in TIER_ORDER if tier in teams_by_tier]
+    sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
     for idx, tier in enumerate(sorted_tiers):
         # Show only the Counties 1 tier by default
-        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=(tier == "Counties 1"))
-        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=(tier == "Counties 1"))
+        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=(tier == default_visible_tier))
+        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=(tier == default_visible_tier))
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
     
@@ -1018,7 +1032,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
         # Collect all geometries for each league (regular regions + Voronoi cells)
         from shapely.ops import unary_union
         from shapely.geometry import mapping
-        league_geometries_for_tier = {}
+        league_geometries_for_tier: Dict[str, List[BaseGeometry]] = {}
         
         # Handle ITL0 (country level) - special case for National League 1
         itl0_colors = region_colors.get("itl0", {})
@@ -1247,7 +1261,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     <div class="legend-content">
     """
     
-    for tier in TIER_ORDER:
+    for tier in tier_order:
         if tier not in teams_by_tier:
             continue
         teams = teams_by_tier[tier]
@@ -1284,7 +1298,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], region_to_team
     m.get_root().html.add_child(folium.Element(legend_html))
     
     # Save map
-    output_file = os.path.join(output_dir, "All_Tiers.html")
+    output_file = os.path.join(output_dir, output_name)
     m.save(output_file)
     print(f"Saved All Tiers map with {len(all_teams)} teams to: {output_file}")
 
@@ -1302,7 +1316,7 @@ def main() -> None:
     print(f"\nFound {total_teams} teams across {len(teams_by_tier)} tiers")
     
     print("\nTeams by tier:")
-    for tier in TIER_ORDER:
+    for tier in TIER_ORDER + WOMENS_TIER_ORDER:
         if tier not in teams_by_tier:
             continue
         print(f"  {tier}: {len(teams_by_tier[tier])} teams")
@@ -1315,12 +1329,17 @@ def main() -> None:
     
     print("\nAssigning teams to ITL regions...")
     region_to_teams = assign_teams_to_itl_regions(teams_by_tier, itl_hierarchy)
-    
+
+    mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
+    womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
+
     print("\nCreating tier maps...")
-    create_tier_maps(teams_by_tier, region_to_teams, itl_hierarchy, show_debug=show_debug)
+    create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
+    create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
     
-    print("\nCreating all tiers map...")
-    create_all_tiers_map(teams_by_tier, region_to_teams, itl_hierarchy, show_debug=show_debug)
+    print("\nCreating all tiers maps...")
+    create_all_tiers_map(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug, default_visible_tier="Counties 1")
+    create_all_tiers_map(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug, default_visible_tier="National Challenge 2")
     
     print("\n✓ All maps created successfully!")
     print("Check \"tier_maps/\" folder for maps")

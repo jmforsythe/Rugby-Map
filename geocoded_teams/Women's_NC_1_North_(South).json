@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 1 North (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66844",
+  "teams": [
+    {
+      "name": "Lincoln Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12285",
+      "image_url": "https://images.englandrugby.com/club_images/12285.png",
+      "address": "Lincoln Rfc, Longdales Park, Lodge Lane, Nettleham, Lincoln, Lincolnshire , LN2 2RS, United Kingdom",
+      "latitude": 53.2629838,
+      "longitude": -0.4763172,
+      "formatted_address": "LN2 2RS, Nettleham CP, Nettleham, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688502
+    },
+    {
+      "name": "Sheffield Tigers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125413",
+      "image_url": "https://images.englandrugby.com/club_images/125413.png",
+      "address": "Dore Moor Hathersage Road Sheffield SOUTH YORKSHIRE S17 3AB UNITED KINGDOM ",
+      "latitude": 53.3341659,
+      "longitude": -1.5500457,
+      "formatted_address": "Dore Moor Inn, Hathersage Road, Dore, Sheffield, South Yorkshire, England, S17 3AB, United Kingdom",
+      "place_id": 256014652
+    },
+    {
+      "name": "Broughton Park Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3505",
+      "image_url": "https://images.englandrugby.com/club_images/3505.png",
+      "address": "Broughton Park Fc , 2 Houghend Crescent, Off Mauldeth Road West, Manchester, Lancashire, M21 7TL, United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    },
+    {
+      "name": "Trafford MV Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123916",
+      "image_url": "https://images.englandrugby.com/club_images/123916.png",
+      "address": "Finny Bank Road, Macpherson Park, Sale, Cheshire, M33 6LR, United Kingdom",
+      "latitude": 53.43238,
+      "longitude": -2.3294,
+      "formatted_address": "M33 6LR, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351552940
+    },
+    {
+      "name": "Leigh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12124",
+      "image_url": "https://images.englandrugby.com/club_images/12124.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Doncaster Demons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "Eccles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284",
+      "image_url": "https://images.englandrugby.com/club_images/7284.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Southport Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19782",
+      "image_url": "https://images.englandrugby.com/club_images/19782.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    }
+  ],
+  "team_count": 8
+}

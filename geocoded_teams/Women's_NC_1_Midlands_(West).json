@@ -1,0 +1,107 @@
+{
+  "league_name": "Women's NC 1 Midlands (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66842",
+  "teams": [
+    {
+      "name": "Birmingham Moseley Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2345",
+      "image_url": "https://images.englandrugby.com/club_images/2345.png",
+      "address": "Birmingham Moseley Rugby, Billesley Common, Yardley Wood Road, Birmingham, West Midlands, B13 0HN, United Kingdom",
+      "latitude": 52.4282264,
+      "longitude": -1.8710828,
+      "formatted_address": "B13 0HN, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350462368
+    },
+    {
+      "name": "West Bridgford Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24736",
+      "image_url": "https://images.englandrugby.com/club_images/24736.png",
+      "address": "The Memorial Ground, Stamford Road, West Bridgford, NOTTINGHAMSHIRE, NG2 6GF, UNITED KINGDOM, ",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652439
+    },
+    {
+      "name": "Buckingham Swans Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3543",
+      "image_url": "https://images.englandrugby.com/club_images/3543.png",
+      "address": "The Floyd Field, Maids Moreton, Nr Buckingham, Buckinghamshire, MK18 1RF, United Kingdom",
+      "latitude": 52.0123836,
+      "longitude": -0.979128,
+      "formatted_address": "MK18 1RF, Maids Moreton, Buckinghamshire, England, United Kingdom",
+      "place_id": 350702984
+    },
+    {
+      "name": "Lichfield Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12242",
+      "image_url": "https://images.englandrugby.com/club_images/12242.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
+      "name": "Aston Old Edwardians Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1002",
+      "image_url": "https://images.englandrugby.com/club_images/1002.png",
+      "address": "Sunnybank Avenue, Perry Common, Birmingham, West Midlands, B44 0HP, United Kingdom",
+      "latitude": 52.5380523,
+      "longitude": -1.8739717,
+      "formatted_address": "B44 0HP, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350477749
+    },
+    {
+      "name": "Bournville Womens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2822",
+      "image_url": "https://images.englandrugby.com/club_images/2822.png",
+      "address": "Avery Fields Sports & Events, 79 Sandon Road, Edgbaston, Birmingham, West Midlands, B17 8DT, United Kingdom",
+      "latitude": 52.4748818,
+      "longitude": -1.9633017,
+      "formatted_address": "B17 8DT, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350464923
+    },
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Old Leamingtonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15809",
+      "image_url": "https://images.englandrugby.com/club_images/15809.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Derby Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6343",
+      "image_url": "https://images.englandrugby.com/club_images/6343.png",
+      "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576784
+    },
+    {
+      "name": "Handsworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9328",
+      "image_url": "https://images.englandrugby.com/club_images/9328.png",
+      "address": "Handsworth RUFC Charles Lewis Memorial Ground 450 Birmingham Road Walsall WEST MIDLANDS WS5 3JP ENGLAND ",
+      "latitude": 52.5655038,
+      "longitude": -1.9488862,
+      "formatted_address": "WS5 3JP, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896088
+    }
+  ],
+  "team_count": 10
+}

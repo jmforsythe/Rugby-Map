@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's NC 1 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66846",
+  "teams": [
+    {
+      "name": "Hove Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10507",
+      "image_url": "https://images.englandrugby.com/club_images/10507.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Dorking Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6612",
+      "image_url": "https://images.englandrugby.com/club_images/6612.png",
+      "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
+      "latitude": 51.23505,
+      "longitude": -0.28549,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827752
+    },
+    {
+      "name": "Medway Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Jersey Rugby Football Club Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club, Rue Des Landes, St Peter, JE3 7BG, Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Canterbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Aylesford Bulls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94090",
+      "image_url": "https://images.englandrugby.com/club_images/94090.png",
+      "address": "The Jack Williams Ground, Hall Road, Hall Road, Aylesford, Kent, ME20 7DS, United Kingdom",
+      "latitude": 51.29934,
+      "longitude": 0.47961,
+      "formatted_address": "ME20 7DS, Aylesford, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 351573177
+    },
+    {
+      "name": "Portsmouth Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17137",
+      "image_url": "https://images.englandrugby.com/club_images/17137.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Horsham Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10448",
+      "image_url": "https://images.englandrugby.com/club_images/10448.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    }
+  ],
+  "team_count": 8
+}

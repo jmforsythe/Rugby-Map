@@ -29,6 +29,18 @@ leagues: List[LeagueInfo] = [
     }
 ]
 
+WOMENS_META_LEAGUE_URLS: List[str] = [
+    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2025-2026"
+]
+
+womens_leagues: List[LeagueInfo] = [
+    {
+        "name": "Women's Premiership",
+        "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764&division=68284&season=2025-2026",
+        "parent_url": "https://www.englandrugby.com/fixtures-and-results"
+    }
+]
+
 def clean_filename(text: str) -> str:
     """Convert text to a safe filename"""
     # Remove or replace invalid filename characters
@@ -153,8 +165,19 @@ def main() -> None:
             print(f"Please wait before running the script again.")
             return
         
+    global womens_leagues
+
+    for meta_url in WOMENS_META_LEAGUE_URLS:
+        # Scrape leagues from this page
+        try:
+            womens_leagues.extend(scrape_leagues_from_page(meta_url))
+        except AntiBotDetected as e:
+            print(f"\n✗ Anti-bot detection triggered while scraping {meta_url}")
+            print(f"Please wait before running the script again.")
+            return
+        
     # For each league, scrape teams and create JSON file
-    for league in leagues:
+    for league in leagues + womens_leagues:
         league_name = league["name"]
         league_url = league["url"]
         parent_url = league["parent_url"]

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South West (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66886",
+  "teams": [
+    {
+      "name": "Withycombe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25789",
+      "image_url": "https://images.englandrugby.com/club_images/25789.png",
+      "address": "Raleigh Park 36, Hulham Road Exmouth DEVON EX8 3HS UNITED KINGDOM",
+      "latitude": 50.62962,
+      "longitude": -3.40649,
+      "formatted_address": "EX8 3HS, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350813482
+    },
+    {
+      "name": "Wellington Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128521",
+      "image_url": "https://images.englandrugby.com/club_images/128521.png",
+      "address": "The Athletic Ground Corams Lane Wellington SOMERSET TA21 8LL UNITED KINGDOM",
+      "latitude": 50.9802859,
+      "longitude": -3.2392788,
+      "formatted_address": "TA21 8LL, Wellington, Somerset, England, United Kingdom",
+      "place_id": 350395814
+    },
+    {
+      "name": "Exmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7830",
+      "image_url": "https://images.englandrugby.com/club_images/7830.png",
+      "address": "Exmouth R.F.C. Imperial Recreation Ground The Royal Avenue Exmouth DEVON EX8 1DG UNITED KINGDOM",
+      "latitude": 50.6203688,
+      "longitude": -3.4178223,
+      "formatted_address": "EX8 1DG, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350172787
+    },
+    {
+      "name": "Sidmouth Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124689",
+      "image_url": "https://images.englandrugby.com/club_images/124689.png",
+      "address": "Sidmouth Rfc Heydons Lane Sidmouth Devon EX10 8NJ United Kingdom",
+      "latitude": 50.6802599,
+      "longitude": -3.24122,
+      "formatted_address": "EX10 8NJ, Sidmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350797688
+    },
+    {
+      "name": "Brixham Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123998",
+      "image_url": "https://images.englandrugby.com/club_images/123998.png",
+      "address": "Brixham Rugby Club Astley Park Rea Barn Road Brixham Devon TQ5 9ED United Kingdom",
+      "latitude": 50.3909578,
+      "longitude": -3.5081523,
+      "formatted_address": "Brixham Rugby Club - Astley Park, Rea Barn Road, Rea Hill, Brixham, Torbay, Devon and Torbay, England, TQ5 9EE, United Kingdom",
+      "place_id": 260555154
+    },
+    {
+      "name": "Teignmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21776",
+      "image_url": "https://images.englandrugby.com/club_images/21776.png",
+      "address": "Bitton Sports Ground Bitton Park Road Teignmouth Devon TQ14 9DQ United Kingdom",
+      "latitude": 50.5476295,
+      "longitude": -3.5073944,
+      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350409625
+    }
+  ],
+  "team_count": 6
+}

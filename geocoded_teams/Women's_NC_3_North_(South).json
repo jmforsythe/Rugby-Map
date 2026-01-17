@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66879",
+  "teams": [
+    {
+      "name": "West Park Leeds Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24891",
+      "image_url": "https://images.englandrugby.com/club_images/24891.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM ",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 257819656
+    },
+    {
+      "name": "Huddersfield Laund Hill Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10611",
+      "image_url": "https://images.englandrugby.com/club_images/10611.png",
+      "address": "Laund Hill Community Club Sports Complex, New Hey Road, Salendine Nook,  , Huddersfield, West Yorkshire, HD3 3XF, United Kingdom",
+      "latitude": 53.65746,
+      "longitude": -1.84767,
+      "formatted_address": "HD3 3XF, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351346848
+    },
+    {
+      "name": "Rochdale Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94381",
+      "image_url": "https://images.englandrugby.com/club_images/94381.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Wharfedale Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127002",
+      "image_url": "https://images.englandrugby.com/club_images/127002.png",
+      "address": "Wharfeside Avenue Threshfield Skipton NORTH YORKSHIRE BD23 5BS UNITED KINGDOM ",
+      "latitude": 54.0712748,
+      "longitude": -2.0123857,
+      "formatted_address": "BD23 5BS, Threshfield, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350494906
+    },
+    {
+      "name": "Oldham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16158",
+      "image_url": "https://images.englandrugby.com/club_images/16158.png",
+      "address": "Manor Park, Byrth Road, Bardsley, Oldham, Lancashire, OL8 2TJ, United Kingdom",
+      "latitude": 53.5128708,
+      "longitude": -2.1088621,
+      "formatted_address": "OL8 2TJ, Oldham, Greater Manchester, England, United Kingdom",
+      "place_id": 350752536
+    },
+    {
+      "name": "Clitheroe Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127544",
+      "image_url": "https://images.englandrugby.com/club_images/127544.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    }
+  ],
+  "team_count": 6
+}

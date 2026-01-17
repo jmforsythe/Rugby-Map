@@ -1,0 +1,74 @@
+{
+  "league_name": "Women's NC 3 South East (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66880",
+  "teams": [
+    {
+      "name": "Grasshoppers RFC Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128959",
+      "image_url": "https://images.englandrugby.com/club_images/128959.png",
+      "address": "Grasshoppers Rugby Club Syon Lane Isleworth Middlesex TW7 5PN United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Wimbledon Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25520",
+      "image_url": "https://images.englandrugby.com/club_images/25520.png",
+      "address": "Wimbledon Rugby Football Club Limited Beverley Meads Barham Road Wimbledon Surrey SW20 0ET United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350390573
+    },
+    {
+      "name": "Ealing 1871 Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127654",
+      "image_url": "https://images.englandrugby.com/club_images/127654.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Belsize Park Rangers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124831",
+      "image_url": "https://images.englandrugby.com/club_images/124831.png",
+      "address": "Coram's Fields 93 Guilford Street London WC1N 1DN United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Kilburn Cosmos Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11435",
+      "image_url": "https://images.englandrugby.com/club_images/11435.png",
+      "address": "Gladstone Park Jct Of Anson & Kendal Road London NW2 6BH United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351247867
+    },
+    {
+      "name": "Barnes Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1409",
+      "image_url": "https://images.englandrugby.com/club_images/1409.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
+    },
+    {
+      "name": "Teddington Antlers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21736",
+      "image_url": "https://images.englandrugby.com/club_images/21736.png",
+      "address": "Teddington Rfc Bushy Park Teddington Middlesex TW11 0EA United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    }
+  ],
+  "team_count": 7
+}

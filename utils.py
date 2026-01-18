@@ -94,12 +94,6 @@ class MapTeam(GeocodedTeam):
     itl3: Optional[str]
 
 
-class ITLRegion(TypedDict):
-    """ITL region data"""
-    code: str
-    name: str
-    level: int  # 1, 2, or 3
-
 # ============================================================================
 # Shared Utility Functions
 # ============================================================================

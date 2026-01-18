@@ -1,3 +1,4 @@
+from collections import defaultdict
 import json
 import os
 import argparse
@@ -8,7 +9,7 @@ from shapely.geometry.base import BaseGeometry
 from shapely.prepared import PreparedGeometry, prep
 from typing import Dict, List, Any, Optional, TypedDict
 
-from utils import ITLRegion, MapTeam
+from utils import MapTeam
 
 # Extended type definitions for mapping (adds geospatial fields to base types)
 
@@ -790,7 +791,7 @@ def add_markers_for_teams(group: folium.FeatureGroup, teams: List[MapTeam], colo
             icon_html = f"""
             <div style="text-align: center;">
                 <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                     style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
+                     style="width: 30px; height: 30px; border-radius: 50%;">
             </div>
             """
             icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
@@ -936,10 +937,14 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     territory_groups = {}
     marker_groups = {}
     sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
+    
+    # Create groups in display order (for layer control ordering)
     for idx, tier in enumerate(sorted_tiers):
-        # Show only the Counties 1 tier by default
         territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
         marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=True)
+    
+    # Add groups to map in REVERSE order so higher tiers render on top
+    for tier in reversed(sorted_tiers):
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
     
@@ -948,17 +953,41 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
         league_geometries_for_tier = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
         add_territories_from_geometries(territory_groups[tier], league_geometries_for_tier, league_colors)
     
-    # Add markers for each team to their tier"s feature group
+    # Group teams by location to apply small offsets for co-located teams
     all_teams = []
+    location_to_teams: Dict[tuple, List[tuple]] = defaultdict(list)  # (lat, lon) -> [(tier, team), ...]
+    
     for tier, teams in teams_by_tier.items():
         all_teams.extend(teams)
-        
         for team in teams:
+            location_key = (round(team["latitude"], 6), round(team["longitude"], 6))
+            location_to_teams[location_key].append((tier, team))
+    
+    # Add individual markers for each team with small offsets for co-located teams
+    for tier, teams in teams_by_tier.items():
+        for team in teams:
+            location_key = (round(team["latitude"], 6), round(team["longitude"], 6))
+            teams_at_location = location_to_teams[location_key]
+            
+            # Calculate offset for this team if multiple teams at same location
+            offset_lat = 0.0
+            offset_lon = 0.0
+            if len(teams_at_location) > 1:
+                # Find this team's index in the list
+                team_index = next(i for i, (t, tm) in enumerate(teams_at_location) if tm == team)
+                # Apply small circular offset (roughly 5-10 meters at UK latitudes)
+                import math
+                angle = (2 * math.pi * team_index) / len(teams_at_location)
+                offset_distance = 0.0001  # approximately 10 meters
+                offset_lat = offset_distance * math.cos(angle)
+                offset_lon = offset_distance * math.sin(angle)
+            
+            # Create individual popup for this team
             color = league_colors[team["league"]]
             team_url = team.get("url", "")
             league_url = team.get("league_url", "")
             popup_html = f"""
-            <div style="font-family: Arial; width: 200px;">
+            <div style="font-family: Arial; width: 220px;">
                 <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
                 <hr style="margin: 5px 0;">
                 <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
@@ -969,39 +998,33 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
             </div>
             """
             
+            # Create marker icon
             icon_size = 30
-            # Create marker with image and fallback
             if team.get("image_url"):
-                # Use DivIcon with img tag that has onerror fallback to default RFU logo
                 icon_html = f"""
                 <div style="text-align: center;">
                     <img src="{team["image_url"]}" 
                          style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
-                         onerror="this.onerror=null; this.src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";">
+                         onerror="this.onerror=null; this.src='https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';">
                 </div>
                 """
-                icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
-                folium.Marker(
-                    location=[team["latitude"], team["longitude"]],
-                    popup=folium.Popup(popup_html, max_width=250),
-                    icon=icon,
-                    tooltip=team["name"]
-                ).add_to(marker_groups[tier])
             else:
-                # No image URL - use fallback logo
                 icon_html = f"""
                 <div style="text-align: center;">
                     <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                         style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
+                         style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;">
                 </div>
                 """
-                icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-                folium.Marker(
-                    location=[team["latitude"], team["longitude"]],
-                    popup=folium.Popup(popup_html, max_width=250),
-                    icon=icon,
-                    tooltip=team["name"]
-                ).add_to(marker_groups[tier])
+            
+            icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
+            
+            # Add marker with offset to its tier group
+            folium.Marker(
+                location=[team["latitude"] + offset_lat, team["longitude"] + offset_lon],
+                popup=folium.Popup(popup_html, max_width=250),
+                icon=icon,
+                tooltip=team["name"]
+            ).add_to(marker_groups[tier])
     
     # Add debug boundary layers for ITL regions
     add_debug_boundaries(m, show_debug)

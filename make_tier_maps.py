@@ -605,277 +605,235 @@ def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams
         "itl3_multi_league": itl3_multi_league
     }
 
+def build_base_map() -> folium.Map:
+    """Create a base England-centered map with light tiles and outline."""
+    m = folium.Map(
+        location=[52.5, -1.5],
+        zoom_start=7,
+        tiles=None
+    )
+
+    folium.TileLayer(
+        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        attr="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
+        control=False
+    ).add_to(m)
+
+    countries_geojson_path = "boundaries/countries.geojson"
+    if os.path.exists(countries_geojson_path):
+        with open(countries_geojson_path, "r", encoding="utf-8") as f:
+            countries_data = json.load(f)
+        england_features = [
+            feat for feat in countries_data["features"]
+            if feat["properties"].get("CTRY24NM") == "England"
+        ]
+        if england_features:
+            england_data = {
+                "type": "FeatureCollection",
+                "features": england_features
+            }
+            folium.GeoJson(
+                england_data,
+                name="England",
+                style_function=lambda x: {
+                    "fillColor": "lightgray",
+                    "color": "black",
+                    "weight": 2,
+                    "fillOpacity": 0.1,
+                },
+                control=False
+            ).add_to(m)
+    return m
+
+def add_debug_boundaries(m: folium.Map, show_debug: bool) -> None:
+    """Optionally add ITL boundary debug layers to the map."""
+    if not show_debug:
+        return
+    for level, geojson_path, layer_name in [
+        ("itl1", "boundaries/ITL_1.geojson", "Debug: ITL1 Boundaries"),
+        ("itl2", "boundaries/ITL_2.geojson", "Debug: ITL2 Boundaries"),
+        ("itl3", "boundaries/ITL_3.geojson", "Debug: ITL3 Boundaries")
+    ]:
+        if os.path.exists(geojson_path):
+            with open(geojson_path, "r", encoding="utf-8") as f:
+                itl_data = json.load(f)
+            debug_group = folium.FeatureGroup(name=layer_name, show=False)
+            folium.GeoJson(
+                itl_data,
+                style_function=lambda x: {
+                    "fillColor": "transparent",
+                    "color": "red",
+                    "weight": 2,
+                    "fillOpacity": 0
+                }
+            ).add_to(debug_group)
+            m.add_child(debug_group)
+
+def collect_league_geometries_for_tier(
+    teams: List[MapTeam],
+    region_to_teams: RegionToTeams,
+    itl_hierarchy: ITLHierarchy,
+    league_colors: Dict[str, str]
+) -> Dict[str, List[BaseGeometry]]:
+    """Compute unionable geometries per league for a given tier.
+
+    Includes ITL0 (country), ITL1/2/3 regions and bounded Voronoi for multi-league ITL3s.
+    """
+    from shapely.geometry import shape as shp_shape
+
+    region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
+    multi_league_regions = region_colors.get("itl3_multi_league", [])
+
+    league_geometries: Dict[str, List[BaseGeometry]] = {}
+
+    # ITL0 (country-level) shapes
+    itl0_colors = region_colors.get("itl0", {})
+    if itl0_colors and os.path.exists("boundaries/countries.geojson"):
+        with open("boundaries/countries.geojson", "r", encoding="utf-8") as f:
+            countries_data = json.load(f)
+        for feat in countries_data["features"]:
+            country_name = feat["properties"].get("CTRY24NM")
+            if country_name in itl0_colors:
+                league = itl0_colors[country_name]
+                league_geometries.setdefault(league, []).append(shp_shape(feat["geometry"]))
+
+    # Regular ITL regions
+    for level, geojson_path in [("itl1", "boundaries/ITL_1.geojson"),
+                                ("itl2", "boundaries/ITL_2.geojson"),
+                                ("itl3", "boundaries/ITL_3.geojson")]:
+        level_colors = region_colors.get(level, {})
+        if not level_colors:
+            continue
+        if os.path.exists(geojson_path):
+            with open(geojson_path, "r", encoding="utf-8") as f:
+                itl_data = json.load(f)
+            property_name = f"ITL{level[3]}25NM"
+            for feat in itl_data["features"]:
+                region_name = feat["properties"].get(property_name)
+                if level == "itl3" and region_name in multi_league_regions:
+                    continue
+                if region_name in level_colors:
+                    league = level_colors[region_name]
+                    league_geometries.setdefault(league, []).append(shp_shape(feat["geometry"]))
+
+    # Voronoi for multi-league ITL3s
+    if multi_league_regions and os.path.exists("boundaries/ITL_3.geojson"):
+        with open("boundaries/ITL_3.geojson", "r", encoding="utf-8") as f:
+            itl3_data = json.load(f)
+        itl3_to_teams = region_to_teams["itl3"]
+        itl2_to_teams = region_to_teams["itl2"]
+        itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
+        for feat in itl3_data["features"]:
+            region_name = feat["properties"].get("ITL325NM")
+            if region_name in multi_league_regions:
+                boundary_geom = shp_shape(feat["geometry"])
+                teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
+                if len(teams_in_region) >= 2:
+                    parent_itl2 = itl3_to_itl2.get(region_name)
+                    leagues_in_itl2 = set()
+                    if parent_itl2:
+                        itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
+                        leagues_in_itl2 = {t["league"] for t in itl2_teams}
+                    teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
+                    if len(teams_for_voronoi) >= 2:
+                        voronoi_cells = create_bounded_voronoi(teams_for_voronoi, boundary_geom, league_colors)
+                        for cell in voronoi_cells:
+                            league = cell["league"]
+                            league_geometries.setdefault(league, []).append(cell["geometry"])
+
+    return league_geometries
+
+def add_territories_from_geometries(group: folium.FeatureGroup, league_geometries: Dict[str, List[BaseGeometry]], league_colors: Dict[str, str]) -> None:
+    """Merge and add unioned geometries to the given feature group per league."""
+    from shapely.ops import unary_union
+    from shapely.geometry import mapping
+    for league, geometries in league_geometries.items():
+        if geometries:
+            merged_geom = unary_union(geometries)
+            color = league_colors[league]
+            def style_function(feature, c=color):
+                return {
+                    "fillColor": c,
+                    "color": c,
+                    "weight": 1,
+                    "fillOpacity": 0.6,
+                    "opacity": 0.6
+                }
+            folium.GeoJson(mapping(merged_geom), style_function=style_function).add_to(group)
+
+def add_markers_for_teams(group: folium.FeatureGroup, teams: List[MapTeam], color: str, tier: str) -> None:
+    """Add team markers with image fallback to a feature group."""
+    for team in teams:
+        team_url = team.get("url", "")
+        league_url = team.get("league_url", "")
+        popup_html = f"""
+        <div style="font-family: Arial; width: 200px;">
+            <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
+            <hr style="margin: 5px 0;">
+            <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
+            <p style="margin: 2px 0;"><b>Tier:</b> {tier}</p>
+            <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
+            {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
+            {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+        </div>
+        """
+        if team.get("image_url"):
+            icon_html = f"""
+            <div style="text-align: center;">
+                <img src="{team["image_url"]}" 
+                     style="width: 30px; height: 30px; border-radius: 50%;"
+                     onerror="this.onerror=null; this.src=\"https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg\";">
+            </div>
+            """
+            icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
+        else:
+            icon_html = f"""
+            <div style="text-align: center;">
+                <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
+                     style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
+            </div>
+            """
+            icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
+        folium.Marker(
+            location=[team["latitude"], team["longitude"]],
+            popup=folium.Popup(popup_html, max_width=250),
+            icon=icon,
+            tooltip=team["name"]
+        ).add_to(group)
+
 def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True) -> None:
     """Create individual maps for each tier, with teams separated by league."""
-    
-    # Create output directory
     Path(output_dir).mkdir(exist_ok=True)
-    
     for tier, teams in sorted(teams_by_tier.items(), key=lambda x: tier_order.index(x[0]) if x[0] in tier_order else len(tier_order)):
-        # Create base map centered on England
-        m = folium.Map(
-            location=[52.5, -1.5],
-            zoom_start=7,
-            tiles=None
-        )
-        
-        # Add basemap without adding to layer control
-        folium.TileLayer(
-            tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-            attr="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
-            control=False
-        ).add_to(m)
-        
-        # Add England outline
-        countries_geojson_path = "boundaries/countries.geojson"
-        if os.path.exists(countries_geojson_path):
-            with open(countries_geojson_path, "r", encoding="utf-8") as f:
-                countries_data = json.load(f)
-            england_features = [
-                feat for feat in countries_data["features"]
-                if feat["properties"].get("CTRY24NM") == "England"
-            ]
-            if england_features:
-                england_data = {
-                    "type": "FeatureCollection",
-                    "features": england_features
-                }
-                folium.GeoJson(
-                    england_data,
-                    name="England",
-                    style_function=lambda x: {
-                        "fillColor": "lightgray",
-                        "color": "black",
-                        "weight": 2,
-                        "fillOpacity": 0.1,
-                    },
-                    control=False
-                ).add_to(m)
-        
-        # Determine which regions to color based on league homogeneity
-        region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
-        
-        # Group teams by league
+        m = build_base_map()
+
+        # Group teams by league and assign colors
         teams_by_league: Dict[str, List[MapTeam]] = {}
         for team in teams:
-            league = team["league"]
-            if league not in teams_by_league:
-                teams_by_league[league] = []
-            teams_by_league[league].append(team)
-        
-        # Assign colors to leagues
-        league_colors = {}
-        for i, league in enumerate(sorted(teams_by_league.keys())):
-            league_colors[league] = league_color(i)
-        
-        # Create separate feature groups for shading and markers
-        shading_groups = {}
-        marker_groups = {}
+            teams_by_league.setdefault(team["league"], []).append(team)
+        league_colors = {league: league_color(i) for i, league in enumerate(sorted(teams_by_league.keys()))}
+
+        # Feature groups
+        shading_groups: Dict[str, folium.FeatureGroup] = {}
+        marker_groups: Dict[str, folium.FeatureGroup] = {}
         for league in sorted(teams_by_league.keys()):
             shading_groups[league] = folium.FeatureGroup(name=f"{league} - Territory", show=True)
             marker_groups[league] = folium.FeatureGroup(name=f"{league} - Teams", show=True)
             m.add_child(shading_groups[league])
             m.add_child(marker_groups[league])
-        
-        # Add colored ITL regions to their respective league groups
-        multi_league_regions = region_colors.get("itl3_multi_league", [])
-        
-        # Handle ITL0 (country level) - special case for National League 1
-        itl0_colors = region_colors.get("itl0", {})
-        if itl0_colors and os.path.exists("boundaries/countries.geojson"):
-            with open("boundaries/countries.geojson", "r", encoding="utf-8") as f:
-                countries_data = json.load(f)
-            
-            for feat in countries_data["features"]:
-                country_name = feat["properties"].get("CTRY24NM")
-                if country_name in itl0_colors:
-                    league = itl0_colors[country_name]
-                    color = league_colors[league]
-                    
-                    def style_function(feature, c=color):
-                        return {
-                            "fillColor": c,
-                            "color": c,
-                            "weight": 1,
-                            "fillOpacity": 0.6
-                        }
-                    
-                    folium.GeoJson(
-                        feat,
-                        style_function=style_function
-                    ).add_to(shading_groups[league])
-        
-        # Collect all geometries for each league (regular regions + Voronoi cells)
-        from shapely.ops import unary_union
-        from shapely.geometry import mapping
-        league_geometries: Dict[str, List[BaseGeometry]] = {}
-        
-        for level, geojson_path in [("itl1", "boundaries/ITL_1.geojson"),
-                                      ("itl2", "boundaries/ITL_2.geojson"),
-                                      ("itl3", "boundaries/ITL_3.geojson")]:
-            level_colors = region_colors.get(level, {})
-            if not level_colors:
-                continue
-                
-            if os.path.exists(geojson_path):
-                with open(geojson_path, "r", encoding="utf-8") as f:
-                    itl_data = json.load(f)
-                
-                property_name = f"ITL{level[3]}25NM"
-                
-                # Collect geometries by league
-                for feat in itl_data["features"]:
-                    region_name = feat["properties"].get(property_name)
-                    
-                    # Skip ITL3 regions that will use Voronoi
-                    if level == "itl3" and region_name in multi_league_regions:
-                        continue
-                    
-                    if region_name in level_colors:
-                        league = level_colors[region_name]
-                        if league not in league_geometries:
-                            league_geometries[league] = []
-                        league_geometries[league].append(shape(feat["geometry"]))
-        
-        # Handle multi-league ITL3 regions with bounded Voronoi
-        if multi_league_regions and os.path.exists("boundaries/ITL_3.geojson"):
-            with open("boundaries/ITL_3.geojson", "r", encoding="utf-8") as f:
-                itl3_data = json.load(f)
-            
-            itl3_to_teams = region_to_teams["itl3"]
-            itl2_to_teams = region_to_teams["itl2"]
-            itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
-            
-            for feat in itl3_data["features"]:
-                region_name = feat["properties"].get("ITL325NM")
-                if region_name in multi_league_regions:
-                    boundary_geom = shape(feat["geometry"])
-                    teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
-                    
-                    if len(teams_in_region) >= 2:
-                        # Find parent ITL2 region
-                        parent_itl2 = itl3_to_itl2.get(region_name)
-                        
-                        # Get leagues that have presence in the parent ITL2
-                        leagues_in_itl2 = set()
-                        if parent_itl2:
-                            itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
-                            leagues_in_itl2 = {t["league"] for t in itl2_teams}
-                        
-                        # Use all teams from leagues that have presence in the ITL2
-                        teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
-                        
-                        if len(teams_for_voronoi) >= 2:
-                            voronoi_cells = create_bounded_voronoi(
-                                teams_for_voronoi,
-                                boundary_geom,
-                                league_colors
-                            )
-                            
-                            # Add Voronoi cells to league geometries
-                            for cell in voronoi_cells:
-                                league = cell["league"]
-                                if league not in league_geometries:
-                                    league_geometries[league] = []
-                                league_geometries[league].append(cell["geometry"])
-        
-        # Merge and add all geometries for each league
-        for league, geometries in league_geometries.items():
-            if geometries:
-                merged_geom = unary_union(geometries)
-                color = league_colors[league]
-                
-                def style_function(feature, color=color):
-                    return {
-                        "fillColor": color,
-                        "color": color,
-                        "weight": 1,
-                        "fillOpacity": 0.6,
-                        "opacity": 0.6
-                    }
-                
-                folium.GeoJson(
-                    mapping(merged_geom),
-                    style_function=style_function
-                ).add_to(shading_groups[league])
-        
-        # Add debug boundary layers for ITL regions
-        if show_debug:
-            for level, geojson_path, layer_name in [
-                ("itl1", "boundaries/ITL_1.geojson", "Debug: ITL1 Boundaries"),
-                ("itl2", "boundaries/ITL_2.geojson", "Debug: ITL2 Boundaries"),
-                ("itl3", "boundaries/ITL_3.geojson", "Debug: ITL3 Boundaries")
-            ]:
-                if os.path.exists(geojson_path):
-                    with open(geojson_path, "r", encoding="utf-8") as f:
-                        itl_data = json.load(f)
-                    
-                    debug_group = folium.FeatureGroup(name=layer_name, show=False)
-                    
-                    folium.GeoJson(
-                        itl_data,
-                        style_function=lambda x: {
-                            "fillColor": "transparent",
-                            "color": "red",
-                            "weight": 2,
-                            "fillOpacity": 0
-                        }
-                    ).add_to(debug_group)
-                    
-                    m.add_child(debug_group)
-        
-        # Add markers for each team to their league"s feature group
+
+        # Territories
+        league_geometries = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
+        for league, group in shading_groups.items():
+            add_territories_from_geometries(group, {league: league_geometries.get(league, [])}, league_colors)
+
+        # Debug boundaries
+        add_debug_boundaries(m, show_debug)
+
+        # Markers
         for league, league_teams in teams_by_league.items():
-            color = league_colors[league]
-            
-            for team in league_teams:
-                team_url = team.get("url", "")
-                league_url = team.get("league_url", "")
-                popup_html = f"""
-                <div style="font-family: Arial; width: 200px;">
-                    <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
-                    <hr style="margin: 5px 0;">
-                    <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
-                    <p style="margin: 2px 0;"><b>Tier:</b> {tier}</p>
-                    <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
-                    {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
-                    {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
-                </div>
-                """
-                
-                # Create marker with image and fallback
-                if team.get("image_url"):
-                    # Use DivIcon with img tag that has onerror fallback to default RFU logo
-                    icon_html = f"""
-                    <div style="text-align: center;">
-                        <img src="{team["image_url"]}" 
-                             style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};"
-                             onerror="this.onerror=null; this.src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";">
-                    </div>
-                    """
-                    icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-                    folium.Marker(
-                        location=[team["latitude"], team["longitude"]],
-                        popup=folium.Popup(popup_html, max_width=250),
-                        icon=icon,
-                        tooltip=team["name"]
-                ).add_to(marker_groups[league])
-            else:
-                # No image URL - use fallback logo
-                icon_html = f"""
-                <div style="text-align: center;">
-                    <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                         style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};">
-                </div>
-                """
-                icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-                folium.Marker(
-                    location=[team["latitude"], team["longitude"]],
-                    popup=folium.Popup(popup_html, max_width=250),
-                    icon=icon,
-                    tooltip=team["name"]
-                ).add_to(marker_groups[league])
-        # Add layer control
+            add_markers_for_teams(marker_groups[league], league_teams, league_colors[league], tier)
+
         folium.LayerControl(collapsed=False).add_to(m)
 
         # Add legend for leagues
@@ -961,44 +919,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     Path(output_dir).mkdir(exist_ok=True)
     
     # Create base map centered on England
-    m = folium.Map(
-        location=[52.5, -1.5],
-        zoom_start=7,
-        tiles=None
-    )
-    
-    # Add basemap without adding to layer control
-    folium.TileLayer(
-        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        attr="&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
-        control=False
-    ).add_to(m)
-    
-    # Add England outline
-    countries_geojson_path = "boundaries/countries.geojson"
-    if os.path.exists(countries_geojson_path):
-        with open(countries_geojson_path, "r", encoding="utf-8") as f:
-            countries_data = json.load(f)
-        england_features = [
-            feat for feat in countries_data["features"]
-            if feat["properties"].get("CTRY24NM") == "England"
-        ]
-        if england_features:
-            england_data = {
-                "type": "FeatureCollection",
-                "features": england_features
-            }
-            folium.GeoJson(
-                england_data,
-                name="England",
-                style_function=lambda x: {
-                    "fillColor": "lightgray",
-                    "color": "black",
-                    "weight": 2,
-                    "fillOpacity": 0.1,
-                },
-                control=False
-            ).add_to(m)
+    m = build_base_map()
     
     # Get all unique leagues across all tiers
     all_leagues = set()
@@ -1024,118 +945,8 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     
     # Add colored regions for each tier
     for tier, teams in sorted(teams_by_tier.items()):
-        
-        # Get region colors for this tier
-        region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
-        multi_league_regions = region_colors.get("itl3_multi_league", [])
-        
-        # Collect all geometries for each league (regular regions + Voronoi cells)
-        from shapely.ops import unary_union
-        from shapely.geometry import mapping
-        league_geometries_for_tier: Dict[str, List[BaseGeometry]] = {}
-        
-        # Handle ITL0 (country level) - special case for National League 1
-        itl0_colors = region_colors.get("itl0", {})
-        if itl0_colors and os.path.exists("boundaries/countries.geojson"):
-            with open("boundaries/countries.geojson", "r", encoding="utf-8") as f:
-                countries_data = json.load(f)
-            
-            for feat in countries_data["features"]:
-                country_name = feat["properties"].get("CTRY24NM")
-                if country_name in itl0_colors:
-                    league = itl0_colors[country_name]
-                    if league not in league_geometries_for_tier:
-                        league_geometries_for_tier[league] = []
-                    league_geometries_for_tier[league].append(shape(feat["geometry"]))
-        
-        # Collect regular ITL regions
-        for level, geojson_path in [("itl1", "boundaries/ITL_1.geojson"),
-                                      ("itl2", "boundaries/ITL_2.geojson"),
-                                      ("itl3", "boundaries/ITL_3.geojson")]:
-            level_colors = region_colors.get(level, {})
-            if not level_colors:
-                continue
-                
-            if os.path.exists(geojson_path):
-                with open(geojson_path, "r", encoding="utf-8") as f:
-                    itl_data = json.load(f)
-                
-                property_name = f"ITL{level[3]}25NM"
-                
-                for feat in itl_data["features"]:
-                    region_name = feat["properties"].get(property_name)
-                    
-                    # Skip ITL3 regions that will use Voronoi
-                    if level == "itl3" and region_name in multi_league_regions:
-                        continue
-                    
-                    if region_name in level_colors:
-                        league = level_colors[region_name]
-                        if league not in league_geometries_for_tier:
-                            league_geometries_for_tier[league] = []
-                        league_geometries_for_tier[league].append(shape(feat["geometry"]))
-        
-        # Handle multi-league ITL3 regions with bounded Voronoi
-        if multi_league_regions and os.path.exists("boundaries/ITL_3.geojson"):
-            with open("boundaries/ITL_3.geojson", "r", encoding="utf-8") as f:
-                itl3_data = json.load(f)
-            
-            itl3_to_teams = region_to_teams["itl3"]
-            itl2_to_teams = region_to_teams["itl2"]
-            itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
-            
-            for feat in itl3_data["features"]:
-                region_name = feat["properties"].get("ITL325NM")
-                if region_name in multi_league_regions:
-                    boundary_geom = shape(feat["geometry"])
-                    teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
-                    
-                    if len(teams_in_region) >= 2:
-                        # Find parent ITL2 region
-                        parent_itl2 = itl3_to_itl2.get(region_name)
-                        
-                        # Get leagues that have presence in the parent ITL2
-                        leagues_in_itl2 = set()
-                        if parent_itl2:
-                            itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
-                            leagues_in_itl2 = {t["league"] for t in itl2_teams}
-                        
-                        # Use all teams from leagues that have presence in the ITL2
-                        teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
-                        
-                        if len(teams_for_voronoi) >= 2:
-                            voronoi_cells = create_bounded_voronoi(
-                                teams_for_voronoi,
-                                boundary_geom,
-                                league_colors
-                            )
-                            
-                            # Add Voronoi cells to league geometries
-                            for cell in voronoi_cells:
-                                league = cell["league"]
-                                if league not in league_geometries_for_tier:
-                                    league_geometries_for_tier[league] = []
-                                league_geometries_for_tier[league].append(cell["geometry"])
-        
-        # Merge and add all geometries for each league
-        for league, geometries in league_geometries_for_tier.items():
-            if geometries:
-                merged_geom = unary_union(geometries)
-                color = league_colors[league]
-                
-                def style_function(feature, c=color):
-                    return {
-                        "fillColor": c,
-                        "color": c,
-                        "weight": 1,
-                        "fillOpacity": 0.6,
-                        "opacity": 0.6
-                    }
-                
-                folium.GeoJson(
-                    mapping(merged_geom),
-                    style_function=style_function
-                ).add_to(territory_groups[tier])
+        league_geometries_for_tier = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
+        add_territories_from_geometries(territory_groups[tier], league_geometries_for_tier, league_colors)
     
     # Add markers for each team to their tier"s feature group
     all_teams = []
@@ -1158,17 +969,18 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
             </div>
             """
             
+            icon_size = 30
             # Create marker with image and fallback
             if team.get("image_url"):
                 # Use DivIcon with img tag that has onerror fallback to default RFU logo
                 icon_html = f"""
                 <div style="text-align: center;">
                     <img src="{team["image_url"]}" 
-                         style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid {color};"
+                         style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
                          onerror="this.onerror=null; this.src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";">
                 </div>
                 """
-                icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
+                icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
                 folium.Marker(
                     location=[team["latitude"], team["longitude"]],
                     popup=folium.Popup(popup_html, max_width=250),
@@ -1192,29 +1004,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
                 ).add_to(marker_groups[tier])
     
     # Add debug boundary layers for ITL regions
-    if show_debug:
-        for level, geojson_path, layer_name in [
-            ("itl1", "boundaries/ITL_1.geojson", "Debug: ITL1 Boundaries"),
-            ("itl2", "boundaries/ITL_2.geojson", "Debug: ITL2 Boundaries"),
-            ("itl3", "boundaries/ITL_3.geojson", "Debug: ITL3 Boundaries")
-        ]:
-            if os.path.exists(geojson_path):
-                with open(geojson_path, "r", encoding="utf-8") as f:
-                    itl_data = json.load(f)
-                
-                debug_group = folium.FeatureGroup(name=layer_name, show=False)
-                
-                folium.GeoJson(
-                    itl_data,
-                    style_function=lambda x: {
-                        "fillColor": "transparent",
-                        "color": "red",
-                        "weight": 2,
-                        "fillOpacity": 0
-                    }
-                ).add_to(debug_group)
-                
-                m.add_child(debug_group)
+    add_debug_boundaries(m, show_debug)
     
     # Add layer control
     folium.LayerControl(collapsed=False).add_to(m)

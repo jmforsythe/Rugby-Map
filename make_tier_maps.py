@@ -954,7 +954,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, default_visible_tier: Optional[str] = None) -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True) -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
@@ -1017,8 +1017,8 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
     for idx, tier in enumerate(sorted_tiers):
         # Show only the Counties 1 tier by default
-        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=(tier == default_visible_tier))
-        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=(tier == default_visible_tier))
+        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
+        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=True)
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
     
@@ -1338,8 +1338,8 @@ def main() -> None:
     create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
     
     print("\nCreating all tiers maps...")
-    create_all_tiers_map(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug, default_visible_tier="Counties 1")
-    create_all_tiers_map(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug, default_visible_tier="National Challenge 2")
+    create_all_tiers_map(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug)
+    create_all_tiers_map(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug)
     
     print("\n✓ All maps created successfully!")
     print("Check \"tier_maps/\" folder for maps")

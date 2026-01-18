@@ -938,13 +938,9 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     marker_groups = {}
     sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
     
-    # Create groups in display order (for layer control ordering)
     for idx, tier in enumerate(sorted_tiers):
         territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
         marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=True)
-    
-    # Add groups to map in REVERSE order so higher tiers render on top
-    for tier in reversed(sorted_tiers):
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
     
@@ -952,35 +948,26 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     for tier, teams in sorted(teams_by_tier.items()):
         league_geometries_for_tier = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
         add_territories_from_geometries(territory_groups[tier], league_geometries_for_tier, league_colors)
-    
-    # Group teams by location to apply small offsets for co-located teams
-    all_teams = []
-    location_to_teams: Dict[tuple, List[tuple]] = defaultdict(list)  # (lat, lon) -> [(tier, team), ...]
-    
-    for tier, teams in teams_by_tier.items():
-        all_teams.extend(teams)
-        for team in teams:
-            location_key = (round(team["latitude"], 6), round(team["longitude"], 6))
-            location_to_teams[location_key].append((tier, team))
-    
+
+    num_teams = 0
+
+    num_teams_at_location: Dict[tuple, int] = {}
+
     # Add individual markers for each team with small offsets for co-located teams
-    for tier, teams in teams_by_tier.items():
+    for tier in reversed(sorted_tiers):
+        teams = teams_by_tier[tier]
         for team in teams:
             location_key = (round(team["latitude"], 6), round(team["longitude"], 6))
-            teams_at_location = location_to_teams[location_key]
+            num_teams_at_location[location_key] = num_teams_at_location.get(location_key, 1) + 1
             
             # Calculate offset for this team if multiple teams at same location
             offset_lat = 0.0
             offset_lon = 0.0
-            if len(teams_at_location) > 1:
-                # Find this team's index in the list
-                team_index = next(i for i, (t, tm) in enumerate(teams_at_location) if tm == team)
-                # Apply small circular offset (roughly 5-10 meters at UK latitudes)
-                import math
-                angle = (2 * math.pi * team_index) / len(teams_at_location)
-                offset_distance = 0.0001  # approximately 10 meters
-                offset_lat = offset_distance * math.cos(angle)
-                offset_lon = offset_distance * math.sin(angle)
+
+            # Place subsequent teams to the north west (top left) by 10 metres per team
+            offset_distance = 0.0001  # approximately 10 metres
+            offset_lat = offset_distance * (num_teams_at_location[location_key] - 1)
+            offset_lon = -offset_distance * (num_teams_at_location[location_key] - 1)
             
             # Create individual popup for this team
             color = league_colors[team["league"]]
@@ -1025,6 +1012,8 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
                 icon=icon,
                 tooltip=team["name"]
             ).add_to(marker_groups[tier])
+
+            num_teams += 1
     
     # Add debug boundary layers for ITL regions
     add_debug_boundaries(m, show_debug)
@@ -1113,7 +1102,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     # Save map
     output_file = os.path.join(output_dir, output_name)
     m.save(output_file)
-    print(f"Saved All Tiers map with {len(all_teams)} teams to: {output_file}")
+    print(f"Saved All Tiers map with {num_teams} teams to: {output_file}")
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate rugby tier maps")

@@ -1118,9 +1118,25 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate rugby tier maps")
     parser.add_argument("--no-debug", action="store_true", help="Disable debug boundary layers")
+    parser.add_argument("--tiers", nargs="+", help="Specific tiers to generate (e.g., 'Premiership' 'Championship'). If omitted, generates all tiers.")
+    parser.add_argument("--mens", action="store_true", help="Generate men's tier maps (individual)")
+    parser.add_argument("--womens", action="store_true", help="Generate women's tier maps (individual)")
+    parser.add_argument("--all-tiers", action="store_true", help="Generate all-tiers combined maps")
+    parser.add_argument("--all-tiers-mens", action="store_true", help="Generate men's all-tiers map only")
+    parser.add_argument("--all-tiers-womens", action="store_true", help="Generate women's all-tiers map only")
     args = parser.parse_args()
     
     show_debug = not args.no_debug
+    
+    # If no specific flags, generate everything
+    if not (args.mens or args.womens or args.all_tiers or args.all_tiers_mens or args.all_tiers_womens):
+        generate_mens_individual = True
+        generate_womens_individual = True
+        generate_all_tiers = True
+    else:
+        generate_mens_individual = args.mens
+        generate_womens_individual = args.womens
+        generate_all_tiers = args.all_tiers or args.all_tiers_mens or args.all_tiers_womens
     
     print("Loading teams data...")
     teams_by_tier = load_teams_data("geocoded_teams")
@@ -1145,14 +1161,32 @@ def main() -> None:
 
     mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
     womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
-
-    print("\nCreating tier maps...")
-    create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
-    create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
     
-    print("\nCreating all tiers maps...")
-    create_all_tiers_map(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug)
-    create_all_tiers_map(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug)
+    # Filter by specific tiers if requested
+    if args.tiers:
+        mens = {tier_name: teams for tier_name, teams in mens.items() if tier_name in args.tiers}
+        womens = {tier_name: teams for tier_name, teams in womens.items() if tier_name in args.tiers}
+
+    # Generate individual tier maps
+    if generate_mens_individual and mens:
+        print("\nCreating men's tier maps...")
+        create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
+    
+    if generate_womens_individual and womens:
+        print("\nCreating women's tier maps...")
+        create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
+    
+    # Generate all-tiers maps
+    if generate_all_tiers:
+        if args.all_tiers or args.all_tiers_mens or (not args.all_tiers_womens and mens):
+            print("\nCreating men's all tiers map...")
+            full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
+            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug)
+        
+        if args.all_tiers or args.all_tiers_womens or (not args.all_tiers_mens and womens):
+            print("\nCreating women's all tiers map...")
+            full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
+            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug)
     
     print("\n✓ All maps created successfully!")
     print("Check \"tier_maps/\" folder for maps")

@@ -1,0 +1,71 @@
+{
+  "league_name": "Women's NC 1 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56662",
+  "teams": [
+    {
+      "name": "Dartford Valley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6165",
+      "image_url": "https://images.englandrugby.com/club_images/6165.png",
+      "address": "Sophie Warren Chair Dvrfc, Dartford Valley Rfc, Dartford Valley Community Rugby Club, Cotton Lane, Dartford, Kent, DA2 6QZ, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Heathfield & W Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9825",
+      "image_url": "https://images.englandrugby.com/club_images/9825.png",
+      "address": "The Hardy Roberts Recreation Ground, Cross-in-hand, Heathfield, East Sussex, TN21 0TA, England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Canterbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Medway Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Horsham Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10448",
+      "image_url": "https://images.englandrugby.com/club_images/10448.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Jersey Rugby Football Club Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club, Rue Des Landes, St Peter, JE3 7BG, Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Pulborough Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17259",
+      "image_url": "https://images.englandrugby.com/club_images/17259.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799035
+    }
+  ],
+  "team_count": 7
+}

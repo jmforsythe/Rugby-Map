@@ -1,0 +1,121 @@
+{
+  "league_name": "Counties 4 Midlands West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=56590",
+  "teams": [
+    {
+      "name": "Bishops Castle & Onny Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2412",
+      "image_url": "https://images.englandrugby.com/club_images/2412.png",
+      "address": "0, Love Lane, Bishops Castle, Shropshire, SY9 5BX, United Kingdom",
+      "latitude": 52.4888806,
+      "longitude": -2.9938455,
+      "formatted_address": "Love Lane, Bishop's Castle, Shropshire, England, SY9 5DH, United Kingdom",
+      "place_id": 254217798
+    },
+    {
+      "name": "Evesham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7736",
+      "image_url": "https://images.englandrugby.com/club_images/7736.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Droitwich II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6794",
+      "image_url": "https://images.englandrugby.com/club_images/6794.png",
+      "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
+      "latitude": 52.26735,
+      "longitude": -2.13631,
+      "formatted_address": "WR9 8PR, Droitwich Spa, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352164792
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Kidderminster Carolians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11412",
+      "image_url": "https://images.englandrugby.com/club_images/11412.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Old Halesonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15752",
+      "image_url": "https://images.englandrugby.com/club_images/15752.png",
+      "address": "Old Halesonians Rfc, Wassell Grove Lane, Hagley, Stourbridge, West Midlands, DY9 9JP, England",
+      "latitude": 52.4328583,
+      "longitude": -2.1106772,
+      "formatted_address": "DY9 9JP, Hagley, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 351210321
+    },
+    {
+      "name": "Old Leamingtonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15806",
+      "image_url": "https://images.englandrugby.com/club_images/15806.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Birmingham Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2318",
+      "image_url": "https://images.englandrugby.com/club_images/2318.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon  Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM ",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488076
+    },
+    {
+      "name": "Five Ways Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8184",
+      "image_url": "https://images.englandrugby.com/club_images/8184.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Redditch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17592",
+      "image_url": "https://images.englandrugby.com/club_images/17592.png",
+      "address": "Redditch Cricket Hockey And Rugby Football Club, Bromsgrove Road, Redditch, Worcestershire, B97 4SP, United Kingdom",
+      "latitude": 52.305942,
+      "longitude": -1.9553051,
+      "formatted_address": "B97 4SP, Redditch, Worcestershire, England, United Kingdom",
+      "place_id": 350489490
+    },
+    {
+      "name": "Trinity Guild",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23189",
+      "image_url": "https://images.englandrugby.com/club_images/23189.png",
+      "address": "Martin Wheeler Fields, Segro Park, Samaritan Way, Baginton, Coventry, Warwickshire, CV8 3EE, United Kingdom",
+      "latitude": 52.35863,
+      "longitude": -1.48417,
+      "formatted_address": "CV8 3EE, Segro Park, Baginton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126992
+    }
+  ],
+  "team_count": 12
+}

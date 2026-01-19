@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 3 Herts/Middx",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=60798",
+  "teams": [
+    {
+      "name": "Royston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18248",
+      "image_url": "https://images.englandrugby.com/club_images/18248.png",
+      "address": "The Heath Sports Club, Therfield Heath, Baldock Road, Royston, SG8 5BG, United Kingdom",
+      "latitude": 52.0471273,
+      "longitude": -0.0320448,
+      "formatted_address": "SG8 5BG, Therfield, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350816524
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    },
+    {
+      "name": "Chess Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4663",
+      "image_url": "https://images.englandrugby.com/club_images/4663.png",
+      "address": "Croxley Guild Of Sport, The Green, Rickmansworth, Hertfordshire, WD3 3HT, United Kingdom",
+      "latitude": 51.6494884,
+      "longitude": -0.4543582,
+      "formatted_address": "WD3 3HT, Croxley Green, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 352139344
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Finsbury Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8119",
+      "image_url": "https://images.englandrugby.com/club_images/8119.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.58897,
+      "longitude": -0.0852099,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Watford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439",
+      "image_url": "https://images.englandrugby.com/club_images/24439.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
+      "name": "Stevenage Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20924",
+      "image_url": "https://images.englandrugby.com/club_images/20924.png",
+      "address": "The Clubhouse, North Road, Stevenage, Hertfordshire, SG1 4BB, England",
+      "latitude": 51.9258,
+      "longitude": -0.21076,
+      "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
+      "place_id": 351906609
+    }
+  ],
+  "team_count": 8
+}

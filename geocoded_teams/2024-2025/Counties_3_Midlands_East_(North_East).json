@@ -1,0 +1,114 @@
+{
+  "league_name": "Counties 3 Midlands East (North East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=56586",
+  "teams": [
+    {
+      "name": "Sleaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19492",
+      "image_url": "https://images.englandrugby.com/club_images/19492.png",
+      "address": "The David Williams Pavilion Ruskington Road Sleaford LINCOLN NG34 8SP UNITED KINGDOM ",
+      "latitude": 53.01434,
+      "longitude": -0.39223,
+      "formatted_address": "NG34 8SP, Sleaford, Quarrington, North Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351660243
+    },
+    {
+      "name": "Ollerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "image_url": "https://images.englandrugby.com/club_images/16182.png",
+      "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
+      "latitude": 53.20915,
+      "longitude": -0.98362,
+      "formatted_address": "NG22 9JU, Ollerton and Boughton CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351654770
+    },
+    {
+      "name": "Grimsby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8979",
+      "image_url": "https://images.englandrugby.com/club_images/8979.png",
+      "address": "The Pavilion, Springfield Road, Scartho, Grimsby, Lincolnshire, DN33 3JF, United Kingdom",
+      "latitude": 53.5364366,
+      "longitude": -0.0955494,
+      "formatted_address": "DN33 3JF, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350596920
+    },
+    {
+      "name": "Market Rasen & Louth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13399",
+      "image_url": "https://images.englandrugby.com/club_images/13399.png",
+      "address": "Market Rasen And Louth Rufc, Willingham Road, Market Rasen, Lincolnshire, LN8 3RE, United Kingdom",
+      "latitude": 53.3842792,
+      "longitude": -0.3185409,
+      "formatted_address": "LN8 3RE, Market Rasen, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351513235
+    },
+    {
+      "name": "Cleethorpes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191",
+      "image_url": "https://images.englandrugby.com/club_images/5191.png",
+      "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 $AW, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "North Hykeham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14720",
+      "image_url": "https://images.englandrugby.com/club_images/14720.png",
+      "address": "North Hykeham Rufc, Ruston Sport & Social Club, Newark Road, North Hykeham, Lincolnshire, LN6 8RN, United Kingdom",
+      "latitude": 53.1962467,
+      "longitude": -0.5749063,
+      "formatted_address": "LN6 8RN, Lincoln, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688779
+    },
+    {
+      "name": "Skegness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463",
+      "image_url": "https://images.englandrugby.com/club_images/19463.png",
+      "address": "Wainfleet Road Playing Fields Skegness PE25 2EL UNITED KINGDOM ",
+      "latitude": 53.1437068,
+      "longitude": 0.323573,
+      "formatted_address": "PE25 2EL, Skegness, East Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350761303
+    },
+    {
+      "name": "Meden Vale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "image_url": "https://images.englandrugby.com/club_images/13583.png",
+      "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
+      "latitude": 53.2233769,
+      "longitude": -1.1306623,
+      "formatted_address": "NG20 9PS, Warsop, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351653546
+    },
+    {
+      "name": "East Retford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191",
+      "image_url": "https://images.englandrugby.com/club_images/7191.png",
+      "address": "Ordsall Road, Retford, DN22 7PW, United Kingdom",
+      "latitude": 53.3139372,
+      "longitude": -0.9585027,
+      "formatted_address": "Ordsall Road, Thrumpton, Retford, Bassetlaw, Nottinghamshire, East Midlands, England, DN22 7PW, United Kingdom",
+      "place_id": 256350282
+    },
+    {
+      "name": "Worksop",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26105",
+      "image_url": "https://images.englandrugby.com/club_images/26105.png",
+      "address": "Worksop Rufc, The Meadows, Stubbing Lane, Worksop, Nottinghamshire, S80 1NF, United Kingdom",
+      "latitude": 53.3068404,
+      "longitude": -1.135115,
+      "formatted_address": "S80 1NF, Worksop, Bassetlaw, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351866379
+    },
+    {
+      "name": "Lincoln II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12277",
+      "image_url": "https://images.englandrugby.com/club_images/12277.png",
+      "address": "Lincoln Rfc, Longdales Park, Lodge Lane, Nettleham, Lincoln, Lincolnshire , LN2 2RS, United Kingdom",
+      "latitude": 53.2629838,
+      "longitude": -0.4763172,
+      "formatted_address": "LN2 2RS, Nettleham CP, Nettleham, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688502
+    }
+  ],
+  "team_count": 11
+}

@@ -1,0 +1,124 @@
+{
+  "league_name": "Counties 1 Midlands West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=68601",
+  "teams": [
+    {
+      "name": "Luctonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12885",
+      "image_url": "https://images.englandrugby.com/club_images/12885.png",
+      "address": "Luctonians R.F.C. Mortimer Park Hereford Road,  Kingsland Leominster HEREFORDSHIRE HR6 9SB UNITED KINGDOM ",
+      "latitude": 52.25107,
+      "longitude": -2.82568,
+      "formatted_address": "HR6 9SB, Kingsland, Herefordshire, England, United Kingdom",
+      "place_id": 351370187
+    },
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    },
+    {
+      "name": "Camp Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4063",
+      "image_url": "https://images.englandrugby.com/club_images/4063.png",
+      "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
+      "latitude": 52.4112632,
+      "longitude": -1.8343111,
+      "formatted_address": "B90 2EF, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486022
+    },
+    {
+      "name": "Evesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "image_url": "https://images.englandrugby.com/club_images/7735.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Alcester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=368",
+      "image_url": "https://images.englandrugby.com/club_images/368.png",
+      "address": "Birmingham Road Kings Coughton Alcester WARWICKSHIRE B49 5QF UNITED KINGDOM ",
+      "latitude": 52.2295076,
+      "longitude": -1.8797491,
+      "formatted_address": "B49 5QF, Alcester, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350479269
+    },
+    {
+      "name": "Worcester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26044",
+      "image_url": "https://images.englandrugby.com/club_images/26044.png",
+      "address": "Worcester Rugby Football Club, Westons Fields, Offerton Lane, Hindlip, Worcester, Worcestershire, WR3 8TR, United Kingdom",
+      "latitude": 52.21841,
+      "longitude": -2.16082,
+      "formatted_address": "WR3 8TR, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352161983
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Leamington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942",
+      "image_url": "https://images.englandrugby.com/club_images/11942.png",
+      "address": "Leamington R.u.f.c. 'moorefields' Blackdown Kenilworth Road Leamington Spa Warwickshire CV32 6RG United Kingdom",
+      "latitude": 52.3103,
+      "longitude": -1.53883,
+      "formatted_address": "CV32 6RG, Old Milverton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119215
+    },
+    {
+      "name": "Droitwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6793",
+      "image_url": "https://images.englandrugby.com/club_images/6793.png",
+      "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
+      "latitude": 52.26735,
+      "longitude": -2.13631,
+      "formatted_address": "WR9 8PR, Droitwich Spa, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352164792
+    },
+    {
+      "name": "Berkswell & Balsall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2008",
+      "image_url": "https://images.englandrugby.com/club_images/2008.png",
+      "address": "Honiley Road, Meer End, Kenilworth, Warwickshire, CV8 1NQ, United Kingdom",
+      "latitude": 52.3623405,
+      "longitude": -1.6657484,
+      "formatted_address": "CV8 1NQ, Jaguar Land Rover Fen End, Beausale, Haseley, Honiley and Wroxall, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 350567035
+    },
+    {
+      "name": "Barkers Butts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1339",
+      "image_url": "https://images.englandrugby.com/club_images/1339.png",
+      "address": "Pickford Grange Lane, Allesley, Coventry, CV5 9AR, United Kingdom",
+      "latitude": 52.4313182,
+      "longitude": -1.6008732,
+      "formatted_address": "Pickford Grange Lane, Pickford Green, Allesley, Coventry, West Midlands, England, CV5 9AR, United Kingdom",
+      "place_id": 258896103
+    },
+    {
+      "name": "Bromsgrove II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3436",
+      "image_url": "https://images.englandrugby.com/club_images/3436.png",
+      "address": "Bromsgrove RFC Finstall Park Finstall Road Finstall Road Bromsgrove WORCESTERSHIRE B60 3DH UNITED KINGDOM ",
+      "latitude": 52.32506,
+      "longitude": -2.03982,
+      "formatted_address": "B60 3DH, Finstall CP, Tutnall, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918826
+    }
+  ],
+  "team_count": 12
+}

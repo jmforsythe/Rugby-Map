@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 South West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56679",
+  "teams": [
+    {
+      "name": "Winscombe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25677",
+      "image_url": "https://images.englandrugby.com/club_images/25677.png",
+      "address": "The Recreation Ground, Winscombe, Avon, BS251AZ, United Kingdom",
+      "latitude": 51.3097368,
+      "longitude": -2.8312719,
+      "formatted_address": "BS25 1AZ, Winscombe and Sandford, Sandford, North Somerset, England, United Kingdom",
+      "place_id": 350512214
+    },
+    {
+      "name": "Melksham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13650",
+      "image_url": "https://images.englandrugby.com/club_images/13650.png",
+      "address": "Melksham Rugby Club, Oakfields, Eastern Way, Melksham, Wiltshire, SN12 7GU, United Kingdom",
+      "latitude": 51.3800088,
+      "longitude": -2.1060921,
+      "formatted_address": "SN12 7GU, Melksham Without, Wiltshire, England, United Kingdom",
+      "place_id": 350823284
+    },
+    {
+      "name": "Devizes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6361",
+      "image_url": "https://images.englandrugby.com/club_images/6361.png",
+      "address": "Devizes Sports Club, London Road, Devizes, Wiltshire, SN10 2DL, United Kingdom",
+      "latitude": 51.3554878,
+      "longitude": -1.9863511,
+      "formatted_address": "Devizes Sports Club, London Road, Devizes, Wiltshire, England, SN10 2DL, United Kingdom",
+      "place_id": 261154926
+    },
+    {
+      "name": "Chew Valley Cats Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4738",
+      "image_url": "https://images.englandrugby.com/club_images/4738.png",
+      "address": "Lobbingtons, Chew Lane, Chew Stoke, Bristol, Bristol, BS40 8UE, United Kingdom",
+      "latitude": 51.3560626,
+      "longitude": -2.6286898,
+      "formatted_address": "BS40 8UE, Chew Stoke, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350517156
+    },
+    {
+      "name": "Yeovil Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=126473",
+      "image_url": "https://images.englandrugby.com/club_images/126473.png",
+      "address": "Church Lane, Yeovil, Somerset, BA22 9TR, United Kingdom",
+      "latitude": 50.92421,
+      "longitude": -2.63455,
+      "formatted_address": "BA22 9TR, Barwick, Somerset, England, United Kingdom",
+      "place_id": 350939001
+    },
+    {
+      "name": "Swanage & Wareham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21498",
+      "image_url": "https://images.englandrugby.com/club_images/21498.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "North Dorset Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14698",
+      "image_url": "https://images.englandrugby.com/club_images/14698.png",
+      "address": "North Dorset R.F.C. Slaughtergate Longbury Hill Lane Gillingham DORSET SP8 5SY UNITED KINGDOM ",
+      "latitude": 51.04585,
+      "longitude": -2.3043,
+      "formatted_address": "SP8 5SY, Gillingham, Dorset, England, United Kingdom",
+      "place_id": 351969660
+    },
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    }
+  ],
+  "team_count": 8
+}

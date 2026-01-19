@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 1 Midlands (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56658",
+  "teams": [
+    {
+      "name": "Long Eaton Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12699",
+      "image_url": "https://images.englandrugby.com/club_images/12699.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
+    },
+    {
+      "name": "West Bridgford Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24736",
+      "image_url": "https://images.englandrugby.com/club_images/24736.png",
+      "address": "The Memorial Ground, Stamford Road, West Bridgford, NOTTINGHAMSHIRE, NG2 6GF, UNITED KINGDOM, ",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652439
+    },
+    {
+      "name": "Lincoln Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12285",
+      "image_url": "https://images.englandrugby.com/club_images/12285.png",
+      "address": "Lincoln Rfc, Longdales Park, Lodge Lane, Nettleham, Lincoln, Lincolnshire , LN2 2RS, United Kingdom",
+      "latitude": 53.2629838,
+      "longitude": -0.4763172,
+      "formatted_address": "LN2 2RS, Nettleham CP, Nettleham, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688502
+    },
+    {
+      "name": "Doncaster Demons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "Derby Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6343",
+      "image_url": "https://images.englandrugby.com/club_images/6343.png",
+      "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576784
+    },
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Hull Ionian Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10640",
+      "image_url": "https://images.englandrugby.com/club_images/10640.png",
+      "address": "Brantingham Park Elloughton Road Elloughton Road Brantingham EAST RIDING OF YORKSHIRE HU15 1HX UNITED KINGDOM ",
+      "latitude": 53.742916,
+      "longitude": -0.5682622,
+      "formatted_address": "HU15 1HX, Elloughton-cum-Brough, Brough, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351374888
+    }
+  ],
+  "team_count": 7
+}

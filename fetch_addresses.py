@@ -221,6 +221,7 @@ def fetch_club_address(
 
 def process_league_file(
     league_file_path: Path,
+    season: str,
     max_workers: int = 14,
     delay_seconds: float = 2.0,
     max_retries: int = 3
@@ -231,7 +232,7 @@ def process_league_file(
     print(f"{"="*80}")
     
     # Check if output file already exists
-    output_file = league_file_path.parent.parent / "team_addresses" / league_file_path.name
+    output_file = Path("team_addresses") / season / league_file_path.name
     if output_file.exists():
         print(f"  Skipping - already processed")
         return
@@ -342,7 +343,7 @@ def process_league_file(
         "success_count": len([t for t in teams_with_addresses if "error" not in t])
     }
     
-    output_file.parent.mkdir(exist_ok=True)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
@@ -354,17 +355,21 @@ def process_league_file(
 def main() -> None:
     """Main function to process all league files."""
     parser = argparse.ArgumentParser(description="Fetch addresses from RFU team pages")
+    parser.add_argument("--season", type=str, default="2025-2026", help="Season to process (e.g., 2024-2025, 2025-2026). Default: 2025-2026")
     parser.add_argument("--workers", type=int, default=7, help="Max concurrent requests (default: 7)")
     parser.add_argument("--delay", type=float, default=2.0, help="Seconds between requests (default: 2.0)")
     parser.add_argument("--retries", type=int, default=3, help="Max retries for failed requests (default: 3)")
     parser.add_argument("--league", type=str, default=None, help="Process only a single league")
     args = parser.parse_args()
     
+    season = args.season
+    print(f"Processing season: {season}")
+    
     load_cache()
     
-    league_dir = Path("league_data")
+    league_dir = Path("league_data") / season
     if not league_dir.exists():
-        print("Error: league_data directory not found")
+        print(f"Error: league_data/{season} directory not found")
         return
     
     league_files: List[Path] = sorted(league_dir.glob("*.json"))
@@ -386,7 +391,7 @@ def main() -> None:
     
     for league_file in league_files:
         try:
-            process_league_file(league_file, max_workers=args.workers, delay_seconds=args.delay, max_retries=args.retries)
+            process_league_file(league_file, season, max_workers=args.workers, delay_seconds=args.delay, max_retries=args.retries)
         except AntiBotDetected:
             print(f"\n✗ Anti-bot detection triggered")
             print(f"Please wait before running the script again.")

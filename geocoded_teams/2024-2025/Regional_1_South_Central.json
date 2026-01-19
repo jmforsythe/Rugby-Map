@@ -1,0 +1,124 @@
+{
+  "league_name": "Regional 1 South Central",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=56591",
+  "teams": [
+    {
+      "name": "London Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12635",
+      "image_url": "https://images.englandrugby.com/club_images/12635.png",
+      "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872292
+    },
+    {
+      "name": "Jersey Rugby Football Club",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11098",
+      "image_url": "https://images.englandrugby.com/club_images/11098.png",
+      "address": "Jersey Rugby Football Club, Rue Des Landes, St Peter, JE3 7BG, Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "CS Stags 1863",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5987",
+      "image_url": "https://images.englandrugby.com/club_images/5987.png",
+      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "Camberley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3972",
+      "image_url": "https://images.englandrugby.com/club_images/3972.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Bracknell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2889",
+      "image_url": "https://images.englandrugby.com/club_images/2889.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Old Alleynians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15398",
+      "image_url": "https://images.englandrugby.com/club_images/15398.png",
+      "address": "Alleynian Rugby, The Old Alleynian Sports Club, Dulwich Common, London, Greater London, SE21 7HA, United Kingdom",
+      "latitude": 51.44068,
+      "longitude": -0.07495,
+      "formatted_address": "SE21 7HA, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899114
+    },
+    {
+      "name": "Hammersmith & Fulham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9257",
+      "image_url": "https://images.englandrugby.com/club_images/9257.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Tunbridge Wells",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23285",
+      "image_url": "https://images.englandrugby.com/club_images/23285.png",
+      "address": "St. Marks Recreation Ground, Frant Road, Tunbridge Wells, Kent, TN2 5LS, United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350854535
+    },
+    {
+      "name": "Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3206",
+      "image_url": "https://images.englandrugby.com/club_images/3206.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
+    },
+    {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    }
+  ],
+  "team_count": 12
+}

@@ -240,6 +240,7 @@ def process_team(team: AddressTeam, api_retries: int = 3) -> Tuple[GeocodedTeam,
 
 def process_address_file(
     address_file_path: Path,
+    season: str,
     max_workers: int = 10,
     google_retries: int = 3
 ) -> None:
@@ -249,7 +250,7 @@ def process_address_file(
     print(f"{"="*80}")
     
     # Check if output file already exists
-    output_file = address_file_path.parent.parent / "geocoded_teams" / address_file_path.name
+    output_file = Path("geocoded_teams") / season / address_file_path.name
     if output_file.exists():
         print(f"  Skipping - already geocoded")
         return
@@ -306,7 +307,7 @@ def process_address_file(
         "team_count": len(geocoded_teams)
     }
     
-    output_file.parent.mkdir(exist_ok=True)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
@@ -317,17 +318,21 @@ def process_address_file(
 
 def main() -> None:
     """Main function to process all address files."""
-    parser = argparse.ArgumentParser(description="Geocode team addresses using Google API")
+    parser = argparse.ArgumentParser(description="Geocode team addresses using OpenStreetMap Nominatim API")
+    parser.add_argument("--season", type=str, default="2025-2026", help="Season to process (e.g., 2024-2025, 2025-2026). Default: 2025-2026")
     parser.add_argument("--workers", type=int, default=10, help="Max concurrent geocoding requests (default: 10)")
-    parser.add_argument("--google-retries", type=int, default=3, help="Retries for transient failures (default: 3)")
+    parser.add_argument("--api-retries", type=int, default=3, help="Retries for transient failures (default: 3)")
     parser.add_argument("--league", type=str, default=None, help="Process only a single league")
     args = parser.parse_args()
     
+    season = args.season
+    print(f"Processing season: {season}")
+    
     load_cache()
     
-    address_dir = Path("team_addresses")
+    address_dir = Path("team_addresses") / season
     if not address_dir.exists():
-        print("Error: team_addresses directory not found")
+        print(f"Error: team_addresses/{season} directory not found")
         print("Run fetch_addresses.py first to get team addresses")
         return
     
@@ -350,7 +355,7 @@ def main() -> None:
     
     for address_file in address_files:
         try:
-            process_address_file(address_file, max_workers=args.workers, google_retries=args.google_retries)
+            process_address_file(address_file, season, max_workers=args.workers, google_retries=args.google_retries)
         except KeyboardInterrupt:
             print(f"\n\n✗ Interrupted by user")
             print(f"Saving cache and exiting...")

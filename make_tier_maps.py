@@ -93,9 +93,15 @@ def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[MapTeam]]:
     """Load all teams from geocoded JSON files."""
     teams_by_tier: Dict[str, List[MapTeam]] = {}
     
-    for filename in os.listdir(geocoded_teams_dir):
-        if filename.endswith(".json"):
+    # Support both season subdirectories and root directory
+    if os.path.isdir(geocoded_teams_dir):
+        files_to_process = []
+        for filename in os.listdir(geocoded_teams_dir):
             filepath = os.path.join(geocoded_teams_dir, filename)
+            if filename.endswith(".json"):
+                files_to_process.append((filepath, filename))
+        
+        for filepath, filename in files_to_process:
             
             data = json_load_cache(filepath)
             
@@ -756,7 +762,7 @@ def add_markers_for_teams(group: folium.FeatureGroup, teams: List[MapTeam], colo
         league_url = team.get("league_url", "")
         popup_html = f"""
         <div style="font-family: Arial; width: 200px;">
-            <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
+            <h4 style="margin: 0; color: black;">{team["name"]}</h4>
             <hr style="margin: 5px 0;">
             <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
             <p style="margin: 2px 0;"><b>Tier:</b> {tier}</p>
@@ -789,9 +795,9 @@ def add_markers_for_teams(group: folium.FeatureGroup, teams: List[MapTeam], colo
             tooltip=team["name"]
         ).add_to(group)
 
-def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True) -> None:
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "") -> None:
     """Create individual maps for each tier, with teams separated by league."""
-    Path(output_dir).mkdir(exist_ok=True)
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
     for tier, teams in sorted(teams_by_tier.items(), key=lambda x: tier_order.index(x[0]) if x[0] in tier_order else len(tier_order)):
         m = build_base_map()
 
@@ -860,7 +866,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
                     bottom: 50px; right: 50px; width: 250px; max-height: 400px; overflow-y: auto;
                     background-color: white; z-index:9999; font-size:14px;
                     border:2px solid grey; border-radius: 5px; padding: 10px">
-        <h4 style="margin-top: 0;">{tier} - Leagues
+        <h4 style="margin-top: 0;">{tier}{" - " + season if season else ""} - Leagues
             <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
         </h4>
         <div class="legend-content">
@@ -900,11 +906,11 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True) -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "") -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
-    Path(output_dir).mkdir(exist_ok=True)
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
     
     # Create base map centered on England
     m = build_base_map()
@@ -1156,6 +1162,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate rugby tier maps")
+    parser.add_argument("--season", type=str, default="2025-2026", help="Season to process (e.g., 2024-2025, 2025-2026). Default: 2025-2026")
     parser.add_argument("--no-debug", action="store_true", help="Disable debug boundary layers")
     parser.add_argument("--tiers", nargs="+", help="Specific tiers to generate (e.g., 'Premiership' 'Championship'). If omitted, generates all tiers.")
     parser.add_argument("--mens", action="store_true", help="Generate men's tier maps (individual)")
@@ -1164,6 +1171,9 @@ def main() -> None:
     parser.add_argument("--all-tiers-mens", action="store_true", help="Generate men's all-tiers map only")
     parser.add_argument("--all-tiers-womens", action="store_true", help="Generate women's all-tiers map only")
     args = parser.parse_args()
+    
+    season = args.season
+    print(f"Generating maps for season: {season}")
     
     show_debug = not args.no_debug
     
@@ -1178,7 +1188,8 @@ def main() -> None:
         generate_all_tiers = args.all_tiers or args.all_tiers_mens or args.all_tiers_womens
     
     print("Loading teams data...")
-    teams_by_tier = load_teams_data("geocoded_teams")
+    geocoded_dir = os.path.join("geocoded_teams", season)
+    teams_by_tier = load_teams_data(geocoded_dir)
     
     total_teams = sum(len(teams) for teams in teams_by_tier.values())
     print(f"\nFound {total_teams} teams across {len(teams_by_tier)} tiers")
@@ -1206,29 +1217,32 @@ def main() -> None:
         mens = {tier_name: teams for tier_name, teams in mens.items() if tier_name in args.tiers}
         womens = {tier_name: teams for tier_name, teams in womens.items() if tier_name in args.tiers}
 
+    # Output directory for this season
+    output_dir = os.path.join("tier_maps", season)
+
     # Generate individual tier maps
     if generate_mens_individual and mens:
         print("\nCreating men's tier maps...")
-        create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
+        create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season)
     
     if generate_womens_individual and womens:
         print("\nCreating women's tier maps...")
-        create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, show_debug=show_debug)
+        create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season)
     
     # Generate all-tiers maps
     if generate_all_tiers:
         if args.all_tiers or args.all_tiers_mens or (not args.all_tiers_womens and mens):
             print("\nCreating men's all tiers map...")
             full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
-            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers.html", show_debug=show_debug)
+            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers.html", show_debug=show_debug, season=season)
         
         if args.all_tiers or args.all_tiers_womens or (not args.all_tiers_mens and womens):
             print("\nCreating women's all tiers map...")
             full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
-            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_name="All_Tiers_Women.html", show_debug=show_debug)
+            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers_Women.html", show_debug=show_debug, season=season)
     
     print("\n✓ All maps created successfully!")
-    print("Check \"tier_maps/\" folder for maps")
+    print(f"Check \"{output_dir}\" folder for maps")
 
 if __name__ == "__main__":
     main()

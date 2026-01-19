@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 2 Midlands West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=56571",
+  "teams": [
+    {
+      "name": "Newent",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14504",
+      "image_url": "https://images.englandrugby.com/club_images/14504.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Moseley Oak",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14182",
+      "image_url": "https://images.englandrugby.com/club_images/14182.png",
+      "address": "Moseley Rugby Club, Billesley Common, Yardley Wood Road, Billesley, Birmingham, B13 0HN, England",
+      "latitude": 52.4282264,
+      "longitude": -1.8710828,
+      "formatted_address": "B13 0HN, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350462368
+    },
+    {
+      "name": "Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7361",
+      "image_url": "https://images.englandrugby.com/club_images/7361.png",
+      "address": "The Memorial Ground, Streetsbrook Road, Solihull, West Midlands, B90 3PE, United Kingdom",
+      "latitude": 52.4213495,
+      "longitude": -1.821653,
+      "formatted_address": "B90 3PE, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486320
+    },
+    {
+      "name": "Shipston on Stour",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19229",
+      "image_url": "https://images.englandrugby.com/club_images/19229.png",
+      "address": "Mayo Road Shipston on Stour WARWICKSHIRE CV36 4BH UNITED KINGDOM ",
+      "latitude": 52.0678607,
+      "longitude": -1.6248161,
+      "formatted_address": "Mayo Road, Shipston on Stour, Shipston-on-Stour, Stratford-on-Avon, Warwickshire, England, CV36 4BH, United Kingdom",
+      "place_id": 258406940
+    },
+    {
+      "name": "Ludlow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12909",
+      "image_url": "https://images.englandrugby.com/club_images/12909.png",
+      "address": "Ludlow Rfc, The Linney, Ludlow, Shropshire, SY8 1EE, United Kingdom",
+      "latitude": 52.369544,
+      "longitude": -2.7228007,
+      "formatted_address": "SY8 1EE, Ludlow, Shropshire, England, United Kingdom",
+      "place_id": 350844609
+    },
+    {
+      "name": "Cheltenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4514",
+      "image_url": "https://images.englandrugby.com/club_images/4514.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 259583358
+    },
+    {
+      "name": "Stratford Upon Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21232",
+      "image_url": "https://images.englandrugby.com/club_images/21232.png",
+      "address": "Pearcecroft, Loxley Road, Stratford Upon Avon, CV37 7DP, United Kingdom",
+      "latitude": 52.1916445,
+      "longitude": -1.6935516,
+      "formatted_address": "CV37 7DP, Stratford-upon-Avon, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350565903
+    },
+    {
+      "name": "Old Halesonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15751",
+      "image_url": "https://images.englandrugby.com/club_images/15751.png",
+      "address": "Old Halesonians Rfc, Wassell Grove Lane, Hagley, Stourbridge, West Midlands, DY9 9JP, England",
+      "latitude": 52.4328583,
+      "longitude": -2.1106772,
+      "formatted_address": "DY9 9JP, Hagley, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 351210321
+    },
+    {
+      "name": "Malvern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13208",
+      "image_url": "https://images.englandrugby.com/club_images/13208.png",
+      "address": "Malvern Rfc, Spring Lane, Malvern Link, Worcestershire , WR14 1AJ, United Kingdom",
+      "latitude": 52.1269617,
+      "longitude": -2.3075001,
+      "formatted_address": "WR14 1AJ, Malvern, Malvern Hills, Worcestershire, England, United Kingdom",
+      "place_id": 350893965
+    },
+    {
+      "name": "Hereford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10011",
+      "image_url": "https://images.englandrugby.com/club_images/10011.png",
+      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
+      "latitude": 52.0522599,
+      "longitude": -2.72805,
+      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 351368605
+    },
+    {
+      "name": "Ledbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11963",
+      "image_url": "https://images.englandrugby.com/club_images/11963.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Whitchurch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25225",
+      "image_url": "https://images.englandrugby.com/club_images/25225.png",
+      "address": "The Clubhouse Edgeley Park Heath Road Whitchurch SHROPSHIRE SY13 1EU UNITED KINGDOM ",
+      "latitude": 52.96355,
+      "longitude": -2.67675,
+      "formatted_address": "SY13 1EU, Whitchurch Urban, Whitchurch, Shropshire, England, United Kingdom",
+      "place_id": 352021177
+    }
+  ],
+  "team_count": 12
+}

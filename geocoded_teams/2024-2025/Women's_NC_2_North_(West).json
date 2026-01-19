@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 North (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56672",
+  "teams": [
+    {
+      "name": "Lancaster Lionesses Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127629",
+      "image_url": "https://images.englandrugby.com/club_images/127629.png",
+      "address": "Lancaster University Sports Centre, Lancaster, Lancashire, LA1 4YQ, United Kingdom",
+      "latitude": 54.0129312,
+      "longitude": -2.7921636,
+      "formatted_address": "Lancaster University Sports Centre, Sports Centre Drive, Bowland College, Bailrigg, Lancaster, Lancashire, England, LA1 4AT, United Kingdom",
+      "place_id": 261041902
+    },
+    {
+      "name": "Workington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26097",
+      "image_url": "https://images.englandrugby.com/club_images/26097.png",
+      "address": "Ellis Sports Ground, Moss Bay Road, Workington, Cumbria, CA14 3XZ, United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    },
+    {
+      "name": "Skipton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124601",
+      "image_url": "https://images.englandrugby.com/club_images/124601.png",
+      "address": "Skipton RFC The Coulhurst Memorial Ground Sandylands Engine Shed Lane Skipton NORTH YORKSHIRE BD23 2AZ UNITED KINGDOM ",
+      "latitude": 53.9556585,
+      "longitude": -2.0266967,
+      "formatted_address": "BD23 2AZ, Skipton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350494745
+    },
+    {
+      "name": "Old Crossleyans Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15621",
+      "image_url": "https://images.englandrugby.com/club_images/15621.png",
+      "address": "Standeven House Broomfield Avenue, Savile Park Halifax WEST YORKSHIRE HX3 0JE UNITED KINGDOM ",
+      "latitude": 53.70547,
+      "longitude": -1.87241,
+      "formatted_address": "HX3 0JE, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350931053
+    },
+    {
+      "name": "Preston Grasshoppers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17189",
+      "image_url": "https://images.englandrugby.com/club_images/17189.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 256777271
+    },
+    {
+      "name": "Old Brodleians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123961",
+      "image_url": "https://images.englandrugby.com/club_images/123961.png",
+      "address": "Woodhead Denholme Gate Road, Hipperholme Denholme Gate Road, Hipperholme Halifax WEST YORKSHIRE HX3 8JU UNITED KINGDOM ",
+      "latitude": 53.73147,
+      "longitude": -1.81622,
+      "formatted_address": "HX3 8JU, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 351382960
+    },
+    {
+      "name": "North Ribblesdale Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14768",
+      "image_url": "https://images.englandrugby.com/club_images/14768.png",
+      "address": "Grove Park, Lower Greenfoot, Settle, North Yorkshire, BD24 9RB, United Kingdom",
+      "latitude": 54.0649015,
+      "longitude": -2.2763432,
+      "formatted_address": "BD24 9RB, Settle, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350514696
+    },
+    {
+      "name": "Yarnbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124602",
+      "image_url": "https://images.englandrugby.com/club_images/124602.png",
+      "address": "The Clubhouse Brownberrie Lane Horsforth Leeds WEST YORKSHIRE LS18 5HB UNITED KINGDOM ",
+      "latitude": 53.8499397,
+      "longitude": -1.6496186,
+      "formatted_address": "LS18 5HB, Horsforth, West Yorkshire, England, United Kingdom",
+      "place_id": 350690771
+    }
+  ],
+  "team_count": 8
+}

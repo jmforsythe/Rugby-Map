@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56654",
+  "teams": [
+    {
+      "name": "Blaydon Red Kites 1XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123854",
+      "image_url": "https://images.englandrugby.com/club_images/123854.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Driffield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6749",
+      "image_url": "https://images.englandrugby.com/club_images/6749.png",
+      "address": "The Clubhouse, Kelleythorpe, Driffield, East Riding Of Yorkshire, YO25 9DW, United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352190496
+    },
+    {
+      "name": "Sefton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18962",
+      "image_url": "https://images.englandrugby.com/club_images/18962.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Liverpool St Helens Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124997",
+      "image_url": "https://images.englandrugby.com/club_images/124997.png",
+      "address": "Moss Lane Windle St. Helens MERSEYSIDE WA11 7PL UNITED KINGDOM ",
+      "latitude": 53.47099,
+      "longitude": -2.77798,
+      "formatted_address": "WA11 7PL, Windle, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 352124822
+    },
+    {
+      "name": "Kendal Wasps",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11253",
+      "image_url": "https://images.englandrugby.com/club_images/11253.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Manchester Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Southport Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19782",
+      "image_url": "https://images.englandrugby.com/club_images/19782.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    }
+  ],
+  "team_count": 8
+}

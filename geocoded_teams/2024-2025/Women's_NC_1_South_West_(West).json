@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's NC 1 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56664",
+  "teams": [
+    {
+      "name": "Bath Ladies United",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1596",
+      "image_url": "https://images.englandrugby.com/club_images/1596.png",
+      "address": "Lambridge Rugby Ground, Lambridge, Bath, Avon, BA2 4DS, England",
+      "latitude": 51.3826539,
+      "longitude": -2.3560958,
+      "formatted_address": "BA2 4DS, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350040740
+    },
+    {
+      "name": "Launceston Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11907",
+      "image_url": "https://images.englandrugby.com/club_images/11907.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "Hornets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10433",
+      "image_url": "https://images.englandrugby.com/club_images/10433.png",
+      "address": "Hutton Moor Road, Weston-super-mare, Somerset, BS22 8LY, United Kingdom",
+      "latitude": 51.3444168,
+      "longitude": -2.947101,
+      "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
+      "place_id": 261865175
+    },
+    {
+      "name": "Yeovil Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26439",
+      "image_url": "https://images.englandrugby.com/club_images/26439.png",
+      "address": "Church Lane, Yeovil, Somerset, BA22 9TR, United Kingdom",
+      "latitude": 50.92421,
+      "longitude": -2.63455,
+      "formatted_address": "BA22 9TR, Barwick, Somerset, England, United Kingdom",
+      "place_id": 350939001
+    },
+    {
+      "name": "Crediton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5836",
+      "image_url": "https://images.englandrugby.com/club_images/5836.png",
+      "address": "Crediton R.f.c., Blagdon, Exhibition Road, Crediton, Devon, EX17 1BY, United Kingdom",
+      "latitude": 50.79388,
+      "longitude": -3.64396,
+      "formatted_address": "EX17 1BY, Crediton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351253152
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 8
+}

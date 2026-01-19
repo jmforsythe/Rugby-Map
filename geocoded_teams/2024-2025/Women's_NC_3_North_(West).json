@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 3 North (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56688",
+  "teams": [
+    {
+      "name": "Ossett Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16307",
+      "image_url": "https://images.englandrugby.com/club_images/16307.png",
+      "address": "Ossett Rufc Ossett Cricket & Athletic Club Queens Terrace Ossett West Yorkshire WF5 8JT United Kingdom",
+      "latitude": 53.6755805,
+      "longitude": -1.5818007,
+      "formatted_address": "WF5 8JT, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350890217
+    },
+    {
+      "name": "Fleetwood Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8195",
+      "image_url": "https://images.englandrugby.com/club_images/8195.png",
+      "address": "Fleetwood Rugby Club Melbourne Avenue Fleetwood LANCASHIRE FY7 8AY UNITED KINGDOM",
+      "latitude": 53.9038537,
+      "longitude": -3.0345288,
+      "formatted_address": "FY7 8AY, Fleetwood, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 350175065
+    },
+    {
+      "name": "Huddersfield Laund Hill Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10611",
+      "image_url": "https://images.englandrugby.com/club_images/10611.png",
+      "address": "Laund Hill Community Club Sports Complex, New Hey Road, Salendine Nook,  , Huddersfield, West Yorkshire, HD3 3XF, United Kingdom",
+      "latitude": 53.65746,
+      "longitude": -1.84767,
+      "formatted_address": "HD3 3XF, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351346848
+    },
+    {
+      "name": "Rochdale Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94381",
+      "image_url": "https://images.englandrugby.com/club_images/94381.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Clitheroe Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127544",
+      "image_url": "https://images.englandrugby.com/club_images/127544.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    },
+    {
+      "name": "Aldwinian Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94010",
+      "image_url": "https://images.englandrugby.com/club_images/94010.png",
+      "address": "Audenshaw Park, Droylsden Road, Audenshaw,  GREATER MANCHESTER M34 5SN UNITED KINGDOM ",
+      "latitude": 53.4768912,
+      "longitude": -2.1387899,
+      "formatted_address": "M34 5SN, Tameside, Greater Manchester, England, United Kingdom",
+      "place_id": 350698316
+    },
+    {
+      "name": "Aspull Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125690",
+      "image_url": "https://images.englandrugby.com/club_images/125690.png",
+      "address": "Aspull Rugby Club Woods Road, Aspull, Wigan. LANCASHIRE WN21PJ UNITED KINGDOM",
+      "latitude": 53.56447,
+      "longitude": -2.58729,
+      "formatted_address": "WN2 1PJ, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 351701161
+    },
+    {
+      "name": "Oldham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16158",
+      "image_url": "https://images.englandrugby.com/club_images/16158.png",
+      "address": "Manor Park, Byrth Road, Bardsley, Oldham, Lancashire, OL8 2TJ, United Kingdom",
+      "latitude": 53.5128708,
+      "longitude": -2.1088621,
+      "formatted_address": "OL8 2TJ, Oldham, Greater Manchester, England, United Kingdom",
+      "place_id": 350752536
+    }
+  ],
+  "team_count": 8
+}

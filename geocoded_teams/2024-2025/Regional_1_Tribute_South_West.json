@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 1 Tribute South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=56617",
+  "teams": [
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Brixham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3314",
+      "image_url": "https://images.englandrugby.com/club_images/3314.png",
+      "address": "Brixham Rugby Club , Astley Park, Rea Barn Road, Brixham, Devon, TQ5 9ED, United Kingdom",
+      "latitude": 50.3902975,
+      "longitude": -3.509536,
+      "formatted_address": "TQ5 9ED, Brixham, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350863502
+    },
+    {
+      "name": "Exmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7823",
+      "image_url": "https://images.englandrugby.com/club_images/7823.png",
+      "address": "Exmouth R.F.C. Imperial Recreation Ground The Royal Avenue Exmouth DEVON EX8 1DG UNITED KINGDOM ",
+      "latitude": 50.6203688,
+      "longitude": -3.4178223,
+      "formatted_address": "EX8 1DG, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350623447
+    },
+    {
+      "name": "St Austell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20157",
+      "image_url": "https://images.englandrugby.com/club_images/20157.png",
+      "address": "St. Austell R.f.c., Tregorrick Park, Tregorrick Lane, St.austell, Cornw, PL26 7FH, United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351770069
+    },
+    {
+      "name": "Launceston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11893",
+      "image_url": "https://images.englandrugby.com/club_images/11893.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "Sidmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19335",
+      "image_url": "https://images.englandrugby.com/club_images/19335.png",
+      "address": "Sidmouth Rfc, Heydons Lane, Sidmouth, Devon, EX10 8NJ, United Kingdom",
+      "latitude": 50.6802599,
+      "longitude": -3.24122,
+      "formatted_address": "EX10 8NJ, Sidmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351248575
+    },
+    {
+      "name": "Matson",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13534",
+      "image_url": "https://images.englandrugby.com/club_images/13534.png",
+      "address": "Matson Rfc, Redwell Road, Matson Rugby Club House, Matson, Gloucestershire, GL4 6JG, United Kingdom",
+      "latitude": 51.83322,
+      "longitude": -2.21803,
+      "formatted_address": "GL4 6JG, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351314722
+    },
+    {
+      "name": "Royal Wootton Bassett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18228",
+      "image_url": "https://images.englandrugby.com/club_images/18228.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Lydney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12992",
+      "image_url": "https://images.englandrugby.com/club_images/12992.png",
+      "address": "Lydney RFC Regentsholme Regent Street Lydney GLOUCESTERSHIRE GL15 5RN UNITED KINGDOM ",
+      "latitude": 51.72619,
+      "longitude": -2.5302699,
+      "formatted_address": "GL15 5RN, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309782
+    },
+    {
+      "name": "Marlborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13418",
+      "image_url": "https://images.englandrugby.com/club_images/13418.png",
+      "address": "The Clubhouse, The Common, Frees Avenue, Marlborough, Wiltshire, SN8 1DL, United Kingdom",
+      "latitude": 51.42447,
+      "longitude": -1.73146,
+      "formatted_address": "SN8 1DL, Marlborough, Wiltshire, England, United Kingdom",
+      "place_id": 351950315
+    },
+    {
+      "name": "Chew Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4734",
+      "image_url": "https://images.englandrugby.com/club_images/4734.png",
+      "address": "Lobbingtons, Chew Lane, Chew Stoke, Bristol, Bristol, BS40 8UE, United Kingdom",
+      "latitude": 51.3560626,
+      "longitude": -2.6286898,
+      "formatted_address": "BS40 8UE, Chew Stoke, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350517156
+    },
+    {
+      "name": "Ivybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11039",
+      "image_url": "https://images.englandrugby.com/club_images/11039.png",
+      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
+      "latitude": 50.3855432,
+      "longitude": -3.9018249,
+      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351768115
+    }
+  ],
+  "team_count": 12
+}

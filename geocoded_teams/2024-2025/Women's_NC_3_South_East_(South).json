@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56691",
+  "teams": [
+    {
+      "name": "Sevenoaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128128",
+      "image_url": "https://images.englandrugby.com/club_images/128128.png",
+      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM",
+      "latitude": 51.27407,
+      "longitude": 0.19735,
+      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352051169
+    },
+    {
+      "name": "Cranbrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5763",
+      "image_url": "https://images.englandrugby.com/club_images/5763.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    },
+    {
+      "name": "Tunbridge Wells Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124654",
+      "image_url": "https://images.englandrugby.com/club_images/124654.png",
+      "address": "St. Marks Recreation Ground Frant Road Tunbridge Wells Kent TN2 5LS United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350403765
+    },
+    {
+      "name": "Maidstone Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127249",
+      "image_url": "https://images.englandrugby.com/club_images/127249.png",
+      "address": "The William Day Mem. Ground The Mote, Willow Way Maidstone Kent ME15 7RN United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350250249
+    },
+    {
+      "name": "Sheppey Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125726",
+      "image_url": "https://images.englandrugby.com/club_images/125726.png",
+      "address": "Sheppey Rugby Football Club The Clubhouse Stupple Field Lower Road, Minster, Sheerness Kent ME12 3RT United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351114830
+    },
+    {
+      "name": "Folkestone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125334",
+      "image_url": "https://images.englandrugby.com/club_images/125334.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    }
+  ],
+  "team_count": 6
+}

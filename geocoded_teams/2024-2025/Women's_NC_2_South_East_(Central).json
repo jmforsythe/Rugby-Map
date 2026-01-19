@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 South East (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56673",
+  "teams": [
+    {
+      "name": "Bec Belles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123876",
+      "image_url": "https://images.englandrugby.com/club_images/123876.png",
+      "address": "Ashcroft Technology Academy School Sports Pitches, Openview, Sw18 3ny, Earlsfield, SW18 3PD, United Kingdom",
+      "latitude": 51.4423161,
+      "longitude": -0.1868965,
+      "formatted_address": "SW18 3NY, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350840280
+    },
+    {
+      "name": "Battersea Ironsides Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1647",
+      "image_url": "https://images.englandrugby.com/club_images/1647.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Richmond Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17750",
+      "image_url": "https://images.englandrugby.com/club_images/17750.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Hammersmith & Fulham Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9262",
+      "image_url": "https://images.englandrugby.com/club_images/9262.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Sutton & Epsom Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21421",
+      "image_url": "https://images.englandrugby.com/club_images/21421.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Chobham Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123901",
+      "image_url": "https://images.englandrugby.com/club_images/123901.png",
+      "address": "Fowlers Wells, Windsor Road, Chobham, Woking, Surrey, GU24 8LD, England",
+      "latitude": 51.3527217,
+      "longitude": -0.6059972,
+      "formatted_address": "GU24 8LD, Chobham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350191027
+    },
+    {
+      "name": "London Welsh Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12643",
+      "image_url": "https://images.englandrugby.com/club_images/12643.png",
+      "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872292
+    }
+  ],
+  "team_count": 7
+}

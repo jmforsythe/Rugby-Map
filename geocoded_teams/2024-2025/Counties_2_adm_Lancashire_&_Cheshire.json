@@ -1,0 +1,127 @@
+{
+  "league_name": "Counties 2 adm Lancashire & Cheshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=56560",
+  "teams": [
+    {
+      "name": "Wigan",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25389",
+      "image_url": "https://images.englandrugby.com/club_images/25389.png",
+      "address": "Douglas Valley Wingates Road Leyland Mill Lane Wigan LANCASHIRE WN1 2SJ UNITED KINGDOM",
+      "latitude": 53.5691293,
+      "longitude": -2.6306799,
+      "formatted_address": "WN1 2SJ, Haigh, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 352152290
+    },
+    {
+      "name": "Warrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24339",
+      "image_url": "https://images.englandrugby.com/club_images/24339.png",
+      "address": "South Warrington Sports Club Stockton Lane Grappenhall Warrington Cheshire WA4 3HQ United Kingdom",
+      "latitude": 53.3713965,
+      "longitude": -2.563598,
+      "formatted_address": "WA4 3HQ, Grappenhall and Thelwall, Warrington, England, United Kingdom",
+      "place_id": 350880607
+    },
+    {
+      "name": "Littleborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12373",
+      "image_url": "https://images.englandrugby.com/club_images/12373.png",
+      "address": "Club House, The Deep Lane, Off Rakewood Road, Rakewood, Littleborough, Lancashire, OL15 0AP, United Kingdom",
+      "latitude": 53.62433,
+      "longitude": -2.08514,
+      "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351710750
+    },
+    {
+      "name": "Southport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19778",
+      "image_url": "https://images.englandrugby.com/club_images/19778.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    },
+    {
+      "name": "Tyldesley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23369",
+      "image_url": "https://images.englandrugby.com/club_images/23369.png",
+      "address": "St. George's Park, Astley Street, Astley Street, Tyldesley., Lancs, M29 8HG, United Kingdom",
+      "latitude": 53.5133491,
+      "longitude": -2.4671813,
+      "formatted_address": "M29 8HG, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 351549693
+    },
+    {
+      "name": "Bolton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2702",
+      "image_url": "https://images.englandrugby.com/club_images/2702.png",
+      "address": "Mortfield Pavilion, Avenue Street, Off Chorley Old Road, Bolton, Lancashire, BL1 3AW, England",
+      "latitude": 53.58545,
+      "longitude": -2.44494,
+      "formatted_address": "BL1 3AW, Bolton, Greater Manchester, England, United Kingdom",
+      "place_id": 350983497
+    },
+    {
+      "name": "Sefton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18947",
+      "image_url": "https://images.englandrugby.com/club_images/18947.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Thornton Cleveleys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22752",
+      "image_url": "https://images.englandrugby.com/club_images/22752.png",
+      "address": "Thornton Sports Centre Victoria Road East Thornton Cleveleys. FY5 3SX United Kingdom",
+      "latitude": 53.8741166,
+      "longitude": -3.0170559,
+      "formatted_address": "YMCA Thornton Sports Centre, Victoria Road East, Norcross, Thornton, Wyre, Lancashire, England, FY5 3SX, United Kingdom",
+      "place_id": 255937534
+    },
+    {
+      "name": "Leigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12118",
+      "image_url": "https://images.englandrugby.com/club_images/12118.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Liverpool Collegiate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12413",
+      "image_url": "https://images.englandrugby.com/club_images/12413.png",
+      "address": "Liverpool Collegiate R.u.f.c., C/o Liverpool Cricket Club, Aigburth Road, Grassendale, Liverpool, Merseyside, L19 3QF, United Kingdom",
+      "latitude": 53.36363,
+      "longitude": -2.918,
+      "formatted_address": "L19 3QF, Liverpool City Region, England, United Kingdom",
+      "place_id": 351444820
+    },
+    {
+      "name": "Oldham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16153",
+      "image_url": "https://images.englandrugby.com/club_images/16153.png",
+      "address": "Manor Park, Byrth Road, Bardsley, Oldham, Lancashire, OL8 2TJ, United Kingdom",
+      "latitude": 53.5128708,
+      "longitude": -2.1088621,
+      "formatted_address": "OL8 2TJ, Oldham, Greater Manchester, England, United Kingdom",
+      "place_id": 350752536
+    },
+    {
+      "name": "Hoylake",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10541",
+      "image_url": "https://images.englandrugby.com/club_images/10541.png",
+      "address": "Carham Road Hoylake Wirral MERSEYSIDE CH47 4FF UNITED KINGDOM ",
+      "latitude": 53.39131,
+      "longitude": -3.17232,
+      "formatted_address": "CH47 4FF, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062703
+    }
+  ],
+  "team_count": 12
+}

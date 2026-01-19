@@ -2,44 +2,78 @@ from bs4 import BeautifulSoup
 import json
 import time
 import re
+import argparse
 from pathlib import Path
 from typing import Optional, List
+import urllib.parse
 
 from utils import Team, LeagueInfo, League, make_request, AntiBotDetected
 
 
-META_LEAGUE_URLS: List[str] = [
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&season=2025-2026", # South West
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&season=2025-2026", # Midlands
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2025-2026", # London and SE
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&season=2025-2026", # Northern
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&season=2025-2026" # National Leagues
-]
+def get_meta_league_urls(season: str) -> List[str]:
+    """Get meta league URLs for the given season."""
+    return [
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&season={season}", # South West
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&season={season}", # Midlands
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season={season}", # London and SE
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&season={season}", # Northern
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&season={season}" # National Leagues
+    ]
 
-leagues: List[LeagueInfo] = [
-    {
-        "name": "Premiership",
-        "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division=68225&season=2025-2026",
-        "parent_url": "https://www.englandrugby.com/fixtures-and-results"
-    },
-    {
-        "name": "Championship",
-        "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division=67198&season=2025-2026",
-        "parent_url": "https://www.englandrugby.com/fixtures-and-results"
-    }
-]
+PREM_MAP = {
+    "2025-2026": "68225",
+    "2024-2025": "67686",
+    "2023-2024": "51168",
+    "2022-2023": "42405",
+    "2021-2022": "35441",
+}
 
-WOMENS_META_LEAGUE_URLS: List[str] = [
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2025-2026"
-]
+CHAMP_MAP = {
+    "2025-2026": "67198",
+    "2024-2025": "57597",
+    "2023-2024": "47253",
+    "2022-2023": "39369",
+    "2021-2022": "33636",
+}
 
-womens_leagues: List[LeagueInfo] = [
-    {
-        "name": "Women's Premiership",
-        "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764&division=68284&season=2025-2026",
-        "parent_url": "https://www.englandrugby.com/fixtures-and-results"
-    }
-]
+def get_leagues(season: str) -> List[LeagueInfo]:
+    """Get initial league list for the given season."""
+    return [
+        {
+            "name": "Premiership",
+            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division={PREM_MAP[season]}&season={season}",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results"
+        },
+        {
+            "name": "Championship",
+            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division={CHAMP_MAP[season]}&season={season}",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results"
+        }
+    ]
+
+def get_womens_meta_league_urls(season: str) -> List[str]:
+    """Get women's meta league URLs for the given season."""
+    return [
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season={season}"
+    ]
+
+WOMENS_PREM_MAP = {
+    "2025-2026": "68284",
+    "2024-2025": "58646",
+    "2023-2024": "49157",
+    "2022-2023": "41643",
+    "2021-2022": "33312",
+}
+
+def get_womens_leagues(season: str) -> List[LeagueInfo]:
+    """Get initial women's league list for the given season."""
+    return [
+        {
+            "name": "Women's Premiership",
+            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764&division={WOMENS_PREM_MAP[season]}&season={season}",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results"
+        }
+    ]
 
 def clean_filename(text: str) -> str:
     """Convert text to a safe filename"""
@@ -48,17 +82,22 @@ def clean_filename(text: str) -> str:
     text = re.sub(r"\s+", "_", text)
     return text.strip("_")
 
-def scrape_teams_from_league(league_url: str, league_name: str, referer: Optional[str] = None) -> List[Team]:
-    """Scrape team data from a league table"""
-    # Add season parameter and tables anchor if not already present
-    if "&season=2025-2026#tables" not in league_url:
-        # Remove any existing anchor
-        base_url = league_url.split("#")[0]
-        # Add season if not present
-        if "season=" not in base_url:
-            league_url = f"{base_url}&season=2025-2026#tables"
-        else:
-            league_url = f"{base_url}#tables"
+def scrape_teams_from_league(league_url: str, league_name: str, season: str, referer: Optional[str] = None) -> List[Team]:
+    parsed_url = urllib.parse.urlparse(league_url)
+    # Add season parameter if not present
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    fragment = parsed_url.fragment
+    if "season" not in query_params:
+        query_params["season"] = [season]
+    new_query = urllib.parse.urlencode(query_params, doseq=True)
+    league_url = urllib.parse.urlunparse((
+        parsed_url.scheme,
+        parsed_url.netloc,
+        parsed_url.path,
+        parsed_url.params,
+        new_query,
+        "#table"
+    ))
     
     print(f"Scraping teams from: {league_url}")
     
@@ -148,15 +187,31 @@ def scrape_leagues_from_page(page_url: str) -> List[LeagueInfo]:
     print(f"  Found {len(leagues)} leagues")
     return leagues
 
-def main() -> None:    
-    # Create output directory if it doesn"t exist
-    output_dir = Path("league_data")
-    output_dir.mkdir(exist_ok=True)
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Scrape RFU website for league and team data."
+    )
+    parser.add_argument(
+        "--season",
+        type=str,
+        default="2025-2026",
+        help="Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026"
+    )
+    args = parser.parse_args()
+    season = args.season
     
-    global leagues
+    print(f"Scraping data for season: {season}")
+    
+    # Create output directory for this season
+    output_dir = Path("league_data") / season
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Get league URLs for this season
+    leagues = get_leagues(season)
+    meta_league_urls = get_meta_league_urls(season)
 
     # Process each top-level URL
-    for meta_url in META_LEAGUE_URLS:
+    for meta_url in meta_league_urls:
         # Scrape leagues from this page
         try:
             leagues.extend(scrape_leagues_from_page(meta_url))
@@ -165,9 +220,11 @@ def main() -> None:
             print(f"Please wait before running the script again.")
             return
         
-    global womens_leagues
+    # Get women's leagues for this season
+    womens_leagues = get_womens_leagues(season)
+    womens_meta_league_urls = get_womens_meta_league_urls(season)
 
-    for meta_url in WOMENS_META_LEAGUE_URLS:
+    for meta_url in womens_meta_league_urls:
         # Scrape leagues from this page
         try:
             womens_leagues.extend(scrape_leagues_from_page(meta_url))
@@ -175,7 +232,9 @@ def main() -> None:
             print(f"\n✗ Anti-bot detection triggered while scraping {meta_url}")
             print(f"Please wait before running the script again.")
             return
-        
+    
+    skipped_leagues: List[LeagueInfo] = []
+
     # For each league, scrape teams and create JSON file
     for league in leagues + womens_leagues:
         league_name = league["name"]
@@ -193,7 +252,12 @@ def main() -> None:
         
         try:
             # Scrape teams from this league
-            teams = scrape_teams_from_league(league_url, league_name, referer=parent_url)
+            teams = scrape_teams_from_league(league_url, league_name, season, referer=parent_url)
+
+            if len(teams) == 0:
+                print(f"  Skipping saving {league_name} (no teams found)")
+                skipped_leagues.append(league)
+                continue
             
             # Prepare data for JSON output
             league_data: League = {
@@ -214,10 +278,10 @@ def main() -> None:
             print(f"Please wait before running the script again.")
             return
         
-        # Be polite to the server - longer delay
-        time.sleep(3)
             
     print(f"\nComplete! League data saved to \"{output_dir}\" directory")
+    for skipped in skipped_leagues:
+        print(f"Skipped league {skipped["name"]}: {skipped["url"]}")
 
 if __name__ == "__main__":
     main()

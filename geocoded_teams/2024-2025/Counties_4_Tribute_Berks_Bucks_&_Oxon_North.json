@@ -1,0 +1,57 @@
+{
+  "league_name": "Counties 4 Tribute Berks Bucks & Oxon North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=56643",
+  "teams": [
+    {
+      "name": "Gosford All Blacks II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8771",
+      "image_url": "https://images.englandrugby.com/club_images/8771.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Banbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1272",
+      "image_url": "https://images.englandrugby.com/club_images/1272.png",
+      "address": "Bodicote Park, Oxford Road, Banbury, Oxfd, OX15 4AF, United Kingdom",
+      "latitude": 52.0354758,
+      "longitude": -1.3188274,
+      "formatted_address": "OX15 4AF, Bodicote, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 350754076
+    },
+    {
+      "name": "Chipping Norton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4869",
+      "image_url": "https://images.englandrugby.com/club_images/4869.png",
+      "address": "Chipping Norton Rugby Club, Greystones, Burford Road, Chipping Norton, Oxfordshire, OX7 5UY, United Kingdom",
+      "latitude": 51.930187,
+      "longitude": -1.5393698,
+      "formatted_address": "OX7 5UY, Chipping Norton, West Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350756240
+    },
+    {
+      "name": "Didcot II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6429",
+      "image_url": "https://images.englandrugby.com/club_images/6429.png",
+      "address": "Boundary Park, Greenwood Way, Harwell, Didcot, Oxfordshire, OX11 0AB, United Kingdom",
+      "latitude": 51.6080606,
+      "longitude": -1.2695259,
+      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
+      "place_id": 259301410
+    },
+    {
+      "name": "Abingdon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=247",
+      "image_url": "https://images.englandrugby.com/club_images/247.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    }
+  ],
+  "team_count": 5
+}

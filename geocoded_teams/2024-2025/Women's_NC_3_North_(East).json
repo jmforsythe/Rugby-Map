@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56684",
+  "teams": [
+    {
+      "name": "Northallerton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14845",
+      "image_url": "https://images.englandrugby.com/club_images/14845.png",
+      "address": "Northallerton R.u.f.c., Brompton Lodge, Northallerton Road, Brompton, Northallerton, North Yorkshire, DL6 2PZ, United Kingdom",
+      "latitude": 54.35287,
+      "longitude": -1.4337,
+      "formatted_address": "DL6 2PZ, Northallerton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351174035
+    },
+    {
+      "name": "Yarm Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123253",
+      "image_url": "https://images.englandrugby.com/club_images/123253.png",
+      "address": "Yarm Rugby Club Wass Way Durham Lane Industrial Park Stockton-on-tees Cleveland TS16 0RG United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081237
+    },
+    {
+      "name": "Durham City Dragons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127289",
+      "image_url": "https://images.englandrugby.com/club_images/127289.png",
+      "address": "Durham City RFC, Hollow Drift, Green Lane, Durham, COUNTY DURHAM, DH1 3JU, UNITED KINGDOM, ",
+      "latitude": 54.7736961,
+      "longitude": -1.5613055,
+      "formatted_address": "DH1 3JU, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586188
+    },
+    {
+      "name": "Houghton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124529",
+      "image_url": "https://images.englandrugby.com/club_images/124529.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "Hartlepool Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9560",
+      "image_url": "https://images.englandrugby.com/club_images/9560.png",
+      "address": "Mayfield Park, Easington Road, Hartlepool, County Durham, TS24 9BA, United Kingdom",
+      "latitude": 54.70523,
+      "longitude": -1.23388,
+      "formatted_address": "TS24 9BA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086474
+    },
+    {
+      "name": "Acklam Hurricanes Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=277",
+      "image_url": "https://images.englandrugby.com/club_images/277.png",
+      "address": "Acklam Rugby Club Talbot Park Lacy Road Middlesbrough Cleveland TS4 3PR United Kingdom",
+      "latitude": 54.5415584,
+      "longitude": -1.221159,
+      "formatted_address": "TS4 3PR, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 350869656
+    }
+  ],
+  "team_count": 6
+}

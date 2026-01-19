@@ -4,13 +4,12 @@
 !fetch_addresses.py
 !geocode_addresses.py
 !download_boundaries.py
+!generate_webpages.py
 !utils.py
 !geocoded_teams/
-!geocoded_teams/*
+!geocoded_teams/**/*
 !.gitignore
 !.github/
 !.github/workflows/
 !.github/workflows/*
 !README.md
-!tier_maps/
-!tier_maps/index.html

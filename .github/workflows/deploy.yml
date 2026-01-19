@@ -36,7 +36,10 @@ jobs:
       
       - name: Generate maps
         run: |
-          python make_tier_maps.py --no-debug
+          python make_tier_maps.py --no-debug --season=2025-2026
+          python make_tier_maps.py --no-debug --season=2024-2025
+
+          python generate_webpages.py
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,0 +1,77 @@
+{
+  "league_name": "Counties 3 Tribute Cornwall",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=63250",
+  "teams": [
+    {
+      "name": "Launceston II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11905",
+      "image_url": "https://images.englandrugby.com/club_images/11905.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "Roseland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18000",
+      "image_url": "https://images.englandrugby.com/club_images/18000.png",
+      "address": "Philleigh., Truro, Cornwall, TR2 5ND, United Kingdom",
+      "latitude": 50.21638,
+      "longitude": -4.99117,
+      "formatted_address": "TR2 5ND, Philleigh, Cornwall, England, United Kingdom",
+      "place_id": 352073158
+    },
+    {
+      "name": "Saltash II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18630",
+      "image_url": "https://images.englandrugby.com/club_images/18630.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
+    },
+    {
+      "name": "St Ives (SW) II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20430",
+      "image_url": "https://images.englandrugby.com/club_images/20430.png",
+      "address": "Alexandra Road, St. Ives, Cornw, TR26 1ER, United Kingdom",
+      "latitude": 50.21043,
+      "longitude": -5.49292,
+      "formatted_address": "TR26 1ER, St. Ives, Cornwall, England, United Kingdom",
+      "place_id": 352073872
+    },
+    {
+      "name": "Illogan Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10851",
+      "image_url": "https://images.englandrugby.com/club_images/10851.png",
+      "address": "Sports Field, Paynters Lane End, Redruth, Cornwall, TR16 4RR, United Kingdom",
+      "latitude": 50.2452489,
+      "longitude": -5.2674444,
+      "formatted_address": "TR16 4RR, Illogan, Cornwall, England, United Kingdom",
+      "place_id": 350867104
+    },
+    {
+      "name": "Camborne S o M",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4006",
+      "image_url": "https://images.englandrugby.com/club_images/4006.png",
+      "address": "Camborne School of Mines Tremough Campus Penryn CORNWALL TR10 9EZ UNITED KINGDOM ",
+      "latitude": 50.16863,
+      "longitude": -5.1259,
+      "formatted_address": "TR10 9EZ, Mabe, Cornwall, England, United Kingdom",
+      "place_id": 352067944
+    }
+  ],
+  "team_count": 7
+}

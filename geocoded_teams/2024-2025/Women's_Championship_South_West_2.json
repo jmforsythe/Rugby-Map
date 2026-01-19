@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship South West 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56656",
+  "teams": [
+    {
+      "name": "Exeter Athletic Dakota Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7764",
+      "image_url": "https://images.englandrugby.com/club_images/7764.png",
+      "address": "Bravelands Oil Mill Lane Clyst St Mary Exeter Devon EX5 1AF United Kingdom",
+      "latitude": 50.70773,
+      "longitude": -3.44062,
+      "formatted_address": "EX5 1AF, Clyst St. Mary, Clyst St Mary, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351262289
+    },
+    {
+      "name": "Ivybridge Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124080",
+      "image_url": "https://images.englandrugby.com/club_images/124080.png",
+      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
+      "latitude": 50.3855432,
+      "longitude": -3.9018249,
+      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351768115
+    },
+    {
+      "name": "Newbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14436",
+      "image_url": "https://images.englandrugby.com/club_images/14436.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Reading Abbey Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17512",
+      "image_url": "https://images.englandrugby.com/club_images/17512.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Cullompton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6008",
+      "image_url": "https://images.englandrugby.com/club_images/6008.png",
+      "address": "Cullompton RFC Stafford Park Knowle Lane Cullompton DEVON EX15 1PZ UNITED KINGDOM ",
+      "latitude": 50.8566579,
+      "longitude": -3.4117713,
+      "formatted_address": "EX15 1PZ, Cullompton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350619042
+    },
+    {
+      "name": "Cheltenham Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4538",
+      "image_url": "https://images.englandrugby.com/club_images/4538.png",
+      "address": "Newlands Park Southam Lane Southam Cheltenham Gloucestershire GL523PE United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 260400794
+    },
+    {
+      "name": "Drybrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6838",
+      "image_url": "https://images.englandrugby.com/club_images/6838.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Dings Crusaders Mavericks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123223",
+      "image_url": "https://images.englandrugby.com/club_images/123223.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    }
+  ],
+  "team_count": 8
+}

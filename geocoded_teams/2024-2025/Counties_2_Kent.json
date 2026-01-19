@@ -1,0 +1,121 @@
+{
+  "league_name": "Counties 2 Kent",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=56602",
+  "teams": [
+    {
+      "name": "Old Elthamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15658",
+      "image_url": "https://images.englandrugby.com/club_images/15658.png",
+      "address": "Queen Mary Sports Ground (east Ground), Perry Street, Chislehurst, BR7 6HB, England",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gillingham Anchorians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8574",
+      "image_url": "https://images.englandrugby.com/club_images/8574.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "Old Alleynians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15399",
+      "image_url": "https://images.englandrugby.com/club_images/15399.png",
+      "address": "Alleynian Rugby, The Old Alleynian Sports Club, Dulwich Common, London, Greater London, SE21 7HA, United Kingdom",
+      "latitude": 51.44068,
+      "longitude": -0.07495,
+      "formatted_address": "SE21 7HA, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899114
+    },
+    {
+      "name": "Folkestone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8214",
+      "image_url": "https://images.englandrugby.com/club_images/8214.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Sidcup II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19315",
+      "image_url": "https://images.englandrugby.com/club_images/19315.png",
+      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
+      "latitude": 51.425832,
+      "longitude": 0.092888,
+      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351138781
+    },
+    {
+      "name": "Thanet Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21901",
+      "image_url": "https://images.englandrugby.com/club_images/21901.png",
+      "address": "Thanet Wanderers RUFC St. Peters Recreation Ground Callis Court Road Broadstairs KENT CT10 3AE UNITED KINGDOM ",
+      "latitude": 51.3681825,
+      "longitude": 1.4300997,
+      "formatted_address": "CT10 3AE, Broadstairs and St Peters, Thanet, Kent, England, United Kingdom",
+      "place_id": 350560134
+    },
+    {
+      "name": "Aylesford Bulls",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1151",
+      "image_url": "https://images.englandrugby.com/club_images/1151.png",
+      "address": "The Jack Williams Ground, Hall Road, Hall Road, Aylesford, Kent, ME20 7DS, United Kingdom",
+      "latitude": 51.29934,
+      "longitude": 0.47961,
+      "formatted_address": "ME20 7DS, Aylesford, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 351573177
+    },
+    {
+      "name": "Medway II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13596",
+      "image_url": "https://images.englandrugby.com/club_images/13596.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Westcombe Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24981",
+      "image_url": "https://images.englandrugby.com/club_images/24981.png",
+      "address": "Westcombe Park RFC Goddington Dene Goddington Lane Orpington KENT BR6 9SX UNITED KINGDOM ",
+      "latitude": 51.36372,
+      "longitude": 0.1147,
+      "formatted_address": "BR6 9SX, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351014717
+    },
+    {
+      "name": "Maidstone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13128",
+      "image_url": "https://images.englandrugby.com/club_images/13128.png",
+      "address": "The William Day Mem. Ground, The Mote, Willow Way, Maidstone, Kent, ME15 7RN, United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350700950
+    },
+    {
+      "name": "Vigo",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24006",
+      "image_url": "https://images.englandrugby.com/club_images/24006.png",
+      "address": "Swanswood Field Vigo Village, Harvel Road Vigo KENT DA13 0UA UNITED KINGDOM ",
+      "latitude": 51.3348783,
+      "longitude": 0.3683709,
+      "formatted_address": "DA13 0UA, Luddesdown, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569797
+    },
+    {
+      "name": "Dartford Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6149",
+      "image_url": "https://images.englandrugby.com/club_images/6149.png",
+      "address": "Sophie Warren Chair Dvrfc, Dartford Valley Rfc, Dartford Valley Community Rugby Club, Cotton Lane, Dartford, Kent, DA2 6QZ, United Kingdom",
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 12
+}

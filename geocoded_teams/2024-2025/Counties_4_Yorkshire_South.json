@@ -1,0 +1,77 @@
+{
+  "league_name": "Counties 4 Yorkshire South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=56569",
+  "teams": [
+    {
+      "name": "Dearne Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128218",
+      "image_url": "https://images.englandrugby.com/club_images/128218.png",
+      "address": "Dearne Valley Rufc Clubhouse, Vancouver Drive, South Yorkshire, S63 8DT, United Kingdom",
+      "latitude": 53.51847,
+      "longitude": -1.32819,
+      "formatted_address": "S63 8DT, Barnsley, South Yorkshire, England, United Kingdom",
+      "place_id": 351857334
+    },
+    {
+      "name": "Sheffield Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089",
+      "image_url": "https://images.englandrugby.com/club_images/19089.png",
+      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
+      "latitude": 53.3796125,
+      "longitude": -1.5026038,
+      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840574
+    },
+    {
+      "name": "Maltby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127767",
+      "image_url": "https://images.englandrugby.com/club_images/127767.png",
+      "address": "Maltby Colliery Institute And Recreation Ground, Muglet Lane, Rotherham, South Yorkshire, S66 7JQ, United Kingdom",
+      "latitude": 53.4168,
+      "longitude": -1.19445,
+      "formatted_address": "S66 7JQ, Maltby, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351859557
+    },
+    {
+      "name": "Stocksbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21011",
+      "image_url": "https://images.englandrugby.com/club_images/21011.png",
+      "address": "Stocksbridge Rugby Club, 634 Manchester Road, Stocksbridge, Sheffield, Yorks                         , S36 1DY, United Kingdom",
+      "latitude": 53.4837885,
+      "longitude": -1.5989857,
+      "formatted_address": "S36 1DY, Stocksbridge, Deepcar, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351847660
+    },
+    {
+      "name": "Hessle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10084",
+      "image_url": "https://images.englandrugby.com/club_images/10084.png",
+      "address": "Hessle RUFC Livingstone Road HESSLE YORKSHIRE HU13 0EG UNITED KINGDOM ",
+      "latitude": 53.7180562,
+      "longitude": -0.4295394,
+      "formatted_address": "HU13 0EG, Hessle, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350651819
+    },
+    {
+      "name": "Wortley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26159",
+      "image_url": "https://images.englandrugby.com/club_images/26159.png",
+      "address": "Wortley Rufc, Finkle Street Lane, Sheffield, South Yorkshire, S35 7DH, United Kingdom",
+      "latitude": 53.4895317,
+      "longitude": -1.5480414,
+      "formatted_address": "S35 7DH, Wortley, Barnsley, South Yorkshire, England, United Kingdom",
+      "place_id": 350801719
+    },
+    {
+      "name": "Knottingley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11763",
+      "image_url": "https://images.englandrugby.com/club_images/11763.png",
+      "address": "Knottingley RUFC Howards Field, Marsh Lane Knottingley WF11 9DE UNITED KINGDOM ",
+      "latitude": 53.710701,
+      "longitude": -1.2335157,
+      "formatted_address": "WF11 9DE, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350887020
+    }
+  ],
+  "team_count": 7
+}

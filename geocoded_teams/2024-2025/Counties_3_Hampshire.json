@@ -1,0 +1,97 @@
+{
+  "league_name": "Counties 3 Hampshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=56608",
+  "teams": [
+    {
+      "name": "Andover II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=660",
+      "image_url": "https://images.englandrugby.com/club_images/660.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "Romsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17976",
+      "image_url": "https://images.englandrugby.com/club_images/17976.png",
+      "address": "Ganger Farm Sports Pavilion, Ganger Farm Way, Romsey, Hampshire, SO51 0EE, United Kingdom",
+      "latitude": 51.0083812,
+      "longitude": -1.4653368,
+      "formatted_address": "SO51 0EE, Romsey, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832300
+    },
+    {
+      "name": "Southampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19705",
+      "image_url": "https://images.englandrugby.com/club_images/19705.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827847
+    },
+    {
+      "name": "Tottonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23028",
+      "image_url": "https://images.englandrugby.com/club_images/23028.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Aldershot & Fleet",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=401",
+      "image_url": "https://images.englandrugby.com/club_images/401.png",
+      "address": "Aldershot & Fleet Rugby Club, Aldershot Park, Heronwood Road, Aldershot, Hampshire, GU12 4AL, United Kingdom",
+      "latitude": 51.2362253,
+      "longitude": -0.742555,
+      "formatted_address": "GU12 4AL, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 351320808
+    },
+    {
+      "name": "Portsmouth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17119",
+      "image_url": "https://images.englandrugby.com/club_images/17119.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Eastleigh II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7251",
+      "image_url": "https://images.englandrugby.com/club_images/7251.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Ventnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23953",
+      "image_url": "https://images.englandrugby.com/club_images/23953.png",
+      "address": "ventnor rugby club Watcombe Bottom Whitwell Road Ventnor ISLE OF WIGHT PO38 1LP UNITED KINGDOM",
+      "latitude": 50.5925029,
+      "longitude": -1.2323758,
+      "formatted_address": "PO38 1LP, Ventnor, Isle of Wight, England, United Kingdom",
+      "place_id": 350777582
+    },
+    {
+      "name": "Overton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16399",
+      "image_url": "https://images.englandrugby.com/club_images/16399.png",
+      "address": "The Old Cricket Ground, Oddball Lane, Watch Lane, Laverstoke, Nr. Overton., RG28 7NU, United Kingdom",
+      "latitude": 51.24338,
+      "longitude": -1.2949108,
+      "formatted_address": "RG28 7NU, Laverstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350788034
+    }
+  ],
+  "team_count": 9
+}

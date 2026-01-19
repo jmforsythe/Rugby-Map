@@ -1,0 +1,104 @@
+{
+  "league_name": "Women's NC 3 North (South East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=56686",
+  "teams": [
+    {
+      "name": "Sandal Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18659",
+      "image_url": "https://images.englandrugby.com/club_images/18659.png",
+      "address": "Sandal RUFC Milnthorpe Green Standbridge Lane, Sandal Wakefield WEST YORKSHIRE WF2 7DY UNITED KINGDOM ",
+      "latitude": 53.6493023,
+      "longitude": -1.4942685,
+      "formatted_address": "WF2 7DY, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350888776
+    },
+    {
+      "name": "York Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26464",
+      "image_url": "https://images.englandrugby.com/club_images/26464.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    },
+    {
+      "name": "West Park Leeds Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24891",
+      "image_url": "https://images.englandrugby.com/club_images/24891.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM ",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 257819656
+    },
+    {
+      "name": "Doncaster Demons Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128038",
+      "image_url": "https://images.englandrugby.com/club_images/128038.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "Hornsea Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10438",
+      "image_url": "https://images.englandrugby.com/club_images/10438.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Malton & Norton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13187",
+      "image_url": "https://images.englandrugby.com/club_images/13187.png",
+      "address": "THE GANNOCK OLD MALTON ROAD MALTON NORTH YORKSHIRE YO17 7EY UNITED KINGDOM ",
+      "latitude": 54.1389817,
+      "longitude": -0.7882645,
+      "formatted_address": "YO17 7EY, Malton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350447864
+    },
+    {
+      "name": "Beverley Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127233",
+      "image_url": "https://images.englandrugby.com/club_images/127233.png",
+      "address": "Norwood Beverley HU17 9HT UNITED KINGDOM",
+      "latitude": 53.8490669,
+      "longitude": -0.4255272,
+      "formatted_address": "Norwood, Beverley, East Riding of Yorkshire, Hull and East Yorkshire, England, HU17 9HT, United Kingdom",
+      "place_id": 256319119
+    },
+    {
+      "name": "Selby Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125826",
+      "image_url": "https://images.englandrugby.com/club_images/125826.png",
+      "address": "Selby RUFC Sandhill Lane Leeds Road Selby YO8 4JP UNITED KINGDOM ",
+      "latitude": 53.777782,
+      "longitude": -1.097705,
+      "formatted_address": "YO8 4JP, Selby, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350901654
+    },
+    {
+      "name": "Pocklington Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127288",
+      "image_url": "https://images.englandrugby.com/club_images/127288.png",
+      "address": "Pocklington R.u.f.c., Feathers Field, Percy Road, Pocklington, East Yorkshire, YO42 2QB, United Kingdom",
+      "latitude": 53.929475,
+      "longitude": -0.7728368,
+      "formatted_address": "YO42 2QB, Pocklington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350450147
+    },
+    {
+      "name": "Hemsworth Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123842",
+      "image_url": "https://images.englandrugby.com/club_images/123842.png",
+      "address": "Moxon Fields Lowfield Road, Hemsworth Pontefract WEST YORKSHIRE WF9 4JT UNITED KINGDOM",
+      "latitude": 53.6141561,
+      "longitude": -1.3399592,
+      "formatted_address": "WF9 4JT, Hemsworth, Kinsley, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350891305
+    }
+  ],
+  "team_count": 10
+}

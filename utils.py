@@ -8,6 +8,8 @@ Data flows through the following stages:
 4. make_tier_maps.py -> tier_maps/*.html
 """
 
+import functools
+import json
 import requests
 import time
 import threading
@@ -188,3 +190,9 @@ def print_block(text: str) -> None:
     """Print multi-line text without interleaving across threads."""
     with _print_lock:
         print(text, flush=True)
+
+@functools.cache
+def json_load_cache(filename: str) -> Dict:
+    """Load geocode cache from JSON file."""
+    with open(filename, "r", encoding="utf-8") as f:
+        return json.load(f)

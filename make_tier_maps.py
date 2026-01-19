@@ -1,15 +1,18 @@
 from collections import defaultdict
-import json
 import os
 import argparse
 import folium
 from pathlib import Path
-from shapely.geometry import shape, Point
+from shapely.geometry import shape, Point, Polygon, mapping
 from shapely.geometry.base import BaseGeometry
 from shapely.prepared import PreparedGeometry, prep
+from shapely.ops import unary_union
 from typing import Dict, List, Any, Optional, TypedDict
+import numpy as np
+from scipy.spatial import Voronoi
+from collections import defaultdict
 
-from utils import MapTeam
+from utils import MapTeam, json_load_cache
 
 # Extended type definitions for mapping (adds geospatial fields to base types)
 
@@ -23,9 +26,10 @@ class ITLRegionGeom(TypedDict):
     centroid: Point
 
 class ITLHierarchy(TypedDict):
-    itl3_regions: List[ITLRegionGeom]
-    itl2_regions: List[ITLRegionGeom]
-    itl1_regions: List[ITLRegionGeom]
+    itl3_regions: Dict[str, ITLRegionGeom]
+    itl2_regions: Dict[str, ITLRegionGeom]
+    itl1_regions: Dict[str, ITLRegionGeom]
+    itl0_regions: Dict[str, ITLRegionGeom]
     itl3_to_itl2: Dict[str, str]
     itl2_to_itl1: Dict[str, str]
     itl1_to_itl2s: Dict[str, List[str]]
@@ -92,8 +96,7 @@ def load_teams_data(geocoded_teams_dir: str) -> Dict[str, List[MapTeam]]:
         if filename.endswith(".json"):
             filepath = os.path.join(geocoded_teams_dir, filename)
             
-            with open(filepath, "r", encoding="utf-8") as f:
-                data = json.load(f)
+            data = json_load_cache(filepath)
             
             tier = extract_tier(filename)
             
@@ -148,13 +151,7 @@ def create_bounded_voronoi(teams: List[MapTeam], boundary_geom: BaseGeometry, le
     """
     if len(teams) < 2:
         return []
-    
-    import numpy as np
-    from scipy.spatial import Voronoi
-    from shapely.geometry import Polygon, box
-    from shapely.ops import unary_union
-    from collections import defaultdict
-    
+        
     # Get team positions
     points = np.array([[t["latitude"], t["longitude"]] for t in teams])
     
@@ -216,7 +213,7 @@ def create_bounded_voronoi(teams: List[MapTeam], boundary_geom: BaseGeometry, le
         if cells:
             merged = unary_union(cells)
             result.append({
-                "geometry": merged,
+                "geom": merged,
                 "color": league_colors[league],
                 "league": league
             })
@@ -227,50 +224,58 @@ def load_itl_hierarchy() -> ITLHierarchy:
     """Load ITL regions and compute hierarchy (ITL3 -> ITL2 -> ITL1)."""
     
     # Load all ITL regions
-    with open("boundaries/ITL_3.geojson", "r", encoding="utf-8") as f:
-        itl3_data = json.load(f)
-    
-    with open("boundaries/ITL_2.geojson", "r", encoding="utf-8") as f:
-        itl2_data = json.load(f)
-    
-    with open("boundaries/ITL_1.geojson", "r", encoding="utf-8") as f:
-        itl1_data = json.load(f)
+    itl3_data = json_load_cache("boundaries/ITL_3.geojson")
+    itl2_data = json_load_cache("boundaries/ITL_2.geojson")
+    itl1_data = json_load_cache("boundaries/ITL_1.geojson")
+    itl0_data = json_load_cache("boundaries/countries.geojson")
     
     # Parse ITL3 regions
-    itl3_regions: List[ITLRegionGeom] = []
+    itl3_regions: Dict[str, ITLRegionGeom] = {}
     for feat in itl3_data["features"]:
         geom = shape(feat["geometry"])
-        itl3_regions.append({
+        itl3_regions[feat["properties"]["ITL325NM"]] = {
             "name": feat["properties"]["ITL325NM"],
             "code": feat["properties"].get("ITL325CD"),
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid
-        })
+        }
     
     # Parse ITL2 regions
-    itl2_regions: List[ITLRegionGeom] = []
+    itl2_regions: Dict[str, ITLRegionGeom] = {}
     for feat in itl2_data["features"]:
         geom = shape(feat["geometry"])
-        itl2_regions.append({
+        itl2_regions[feat["properties"]["ITL225NM"]] = {
             "name": feat["properties"]["ITL225NM"],
             "code": feat["properties"].get("ITL225CD"),
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid
-        })
+        }
     
     # Parse ITL1 regions
-    itl1_regions: List[ITLRegionGeom] = []
+    itl1_regions: Dict[str, ITLRegionGeom] = {}
     for feat in itl1_data["features"]:
         geom = shape(feat["geometry"])
-        itl1_regions.append({
+        itl1_regions[feat["properties"]["ITL125NM"]] = {
             "name": feat["properties"]["ITL125NM"],
             "code": feat["properties"].get("ITL125CD"),
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid
-        })
+        }
+    
+    # Parse ITL0 regions (countries)
+    itl0_regions: Dict[str, ITLRegionGeom] = {}
+    for feat in itl0_data["features"]:
+        geom = shape(feat["geometry"])
+        itl0_regions[feat["properties"]["CTRY24NM"]] = {
+            "name": feat["properties"]["CTRY24NM"],
+            "code": feat["properties"].get("CTRY24CD"),
+            "geom": geom,
+            "prepared": prep(geom),
+            "centroid": geom.centroid
+        }
     
     # Build code-based lookups for hierarchy
     # ITL codes follow pattern: TL + ITL1_digit + ITL2_digit + ITL3_digit
@@ -278,13 +283,13 @@ def load_itl_hierarchy() -> ITLHierarchy:
     # ITL2: TLXX (e.g., "TLC1") 
     # ITL3: TLXXX (e.g., "TLC11")
     
-    itl1_by_code = {r["code"]: r["name"] for r in itl1_regions if r["code"]}
-    itl2_by_code = {r["code"]: r["name"] for r in itl2_regions if r["code"]}
-    itl3_by_code = {r["code"]: r["name"] for r in itl3_regions if r["code"]}
+    itl1_by_code = {r["code"]: r["name"] for r in itl1_regions.values() if r["code"]}
+    itl2_by_code = {r["code"]: r["name"] for r in itl2_regions.values() if r["code"]}
+    itl3_by_code = {r["code"]: r["name"] for r in itl3_regions.values() if r["code"]}
     
     # Build hierarchy: ITL3 -> ITL2 (extract first 4 chars from ITL3 code)
     itl3_to_itl2: Dict[str, str] = {}
-    for itl3 in itl3_regions:
+    for itl3 in itl3_regions.values():
         if itl3["code"] and len(itl3["code"]) >= 4:
             parent_code = itl3["code"][:4]  # TLX + digit = ITL2 code
             if parent_code in itl2_by_code:
@@ -292,7 +297,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
     
     # Build hierarchy: ITL2 -> ITL1 (extract first 3 chars from ITL2 code)
     itl2_to_itl1: Dict[str, str] = {}
-    for itl2 in itl2_regions:
+    for itl2 in itl2_regions.values():
         if itl2["code"] and len(itl2["code"]) >= 3:
             parent_code = itl2["code"][:3]  # TLX = ITL1 code
             if parent_code in itl1_by_code:
@@ -316,6 +321,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         "itl3_regions": itl3_regions,
         "itl2_regions": itl2_regions,
         "itl1_regions": itl1_regions,
+        "itl0_regions": itl0_regions,
         "itl3_to_itl2": itl3_to_itl2,
         "itl2_to_itl1": itl2_to_itl1,
         "itl1_to_itl2s": itl1_to_itl2s,
@@ -332,16 +338,16 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[MapTeam]], itl_hie
     }
     """
     
-    itl1_regions: List[ITLRegionGeom] = itl_hierarchy["itl1_regions"]
-    itl2_regions: List[ITLRegionGeom] = itl_hierarchy["itl2_regions"]
-    itl3_regions: List[ITLRegionGeom] = itl_hierarchy["itl3_regions"]
+    itl1_regions: Dict[str, ITLRegionGeom] = itl_hierarchy["itl1_regions"]
+    itl2_regions: Dict[str, ITLRegionGeom] = itl_hierarchy["itl2_regions"]
+    itl3_regions: Dict[str, ITLRegionGeom] = itl_hierarchy["itl3_regions"]
     itl1_to_itl2s: Dict[str, List[str]] = itl_hierarchy["itl1_to_itl2s"]
     itl2_to_itl3s: Dict[str, List[str]] = itl_hierarchy["itl2_to_itl3s"]
 
     
     # Create lookup dictionaries for faster access
-    itl2_by_name: Dict[str, ITLRegionGeom] = {r["name"]: r for r in itl2_regions}
-    itl3_by_name: Dict[str, ITLRegionGeom] = {r["name"]: r for r in itl3_regions}
+    itl2_by_name: Dict[str, ITLRegionGeom] = itl2_regions
+    itl3_by_name: Dict[str, ITLRegionGeom] = itl3_regions
     
     # Create reverse mappings: region -> teams
     itl1_to_teams: Dict[str, List[MapTeam]] = {}
@@ -363,7 +369,7 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[MapTeam]], itl_hie
             
             # Step 1: Find which ITL1 region (only 12 to check!)
             found_itl1 = None
-            for itl1 in itl1_regions:
+            for itl1 in itl1_regions.values():
                 if itl1["prepared"].contains(point):
                     found_itl1 = itl1["name"]
                     team["itl1"] = found_itl1
@@ -423,7 +429,13 @@ def assign_teams_to_itl_regions(teams_by_tier: Dict[str, List[MapTeam]], itl_hie
         "itl3": itl3_to_teams
     }
 
-def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy) -> Dict:
+class LeagueRegionColors(TypedDict):
+    itl1: Dict[str, str]
+    itl2: Dict[str, str]
+    itl3: Dict[str, str]
+    itl3_multi_league: List[str]
+
+def color_regions_by_league(teams: List[MapTeam], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy) -> LeagueRegionColors:
     """Determine which regions should be colored based on league ownership.
     
     Returns a dict with level-specific league mappings: {
@@ -622,8 +634,7 @@ def build_base_map() -> folium.Map:
 
     countries_geojson_path = "boundaries/countries.geojson"
     if os.path.exists(countries_geojson_path):
-        with open(countries_geojson_path, "r", encoding="utf-8") as f:
-            countries_data = json.load(f)
+        countries_data = json_load_cache(countries_geojson_path)
         england_features = [
             feat for feat in countries_data["features"]
             if feat["properties"].get("CTRY24NM") == "England"
@@ -656,8 +667,7 @@ def add_debug_boundaries(m: folium.Map, show_debug: bool) -> None:
         ("itl3", "boundaries/ITL_3.geojson", "Debug: ITL3 Boundaries")
     ]:
         if os.path.exists(geojson_path):
-            with open(geojson_path, "r", encoding="utf-8") as f:
-                itl_data = json.load(f)
+            itl_data = json_load_cache(geojson_path)
             debug_group = folium.FeatureGroup(name=layer_name, show=False)
             folium.GeoJson(
                 itl_data,
@@ -680,77 +690,53 @@ def collect_league_geometries_for_tier(
 
     Includes ITL0 (country), ITL1/2/3 regions and bounded Voronoi for multi-league ITL3s.
     """
-    from shapely.geometry import shape as shp_shape
-
     region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
     multi_league_regions = region_colors.get("itl3_multi_league", [])
 
     league_geometries: Dict[str, List[BaseGeometry]] = {}
 
-    # ITL0 (country-level) shapes
-    itl0_colors = region_colors.get("itl0", {})
-    if itl0_colors and os.path.exists("boundaries/countries.geojson"):
-        with open("boundaries/countries.geojson", "r", encoding="utf-8") as f:
-            countries_data = json.load(f)
-        for feat in countries_data["features"]:
-            country_name = feat["properties"].get("CTRY24NM")
-            if country_name in itl0_colors:
-                league = itl0_colors[country_name]
-                league_geometries.setdefault(league, []).append(shp_shape(feat["geometry"]))
-
     # Regular ITL regions
-    for level, geojson_path in [("itl1", "boundaries/ITL_1.geojson"),
-                                ("itl2", "boundaries/ITL_2.geojson"),
-                                ("itl3", "boundaries/ITL_3.geojson")]:
+    for level in ["itl0", "itl1", "itl2", "itl3"]:
         level_colors = region_colors.get(level, {})
         if not level_colors:
             continue
-        if os.path.exists(geojson_path):
-            with open(geojson_path, "r", encoding="utf-8") as f:
-                itl_data = json.load(f)
-            property_name = f"ITL{level[3]}25NM"
-            for feat in itl_data["features"]:
-                region_name = feat["properties"].get(property_name)
-                if level == "itl3" and region_name in multi_league_regions:
-                    continue
-                if region_name in level_colors:
-                    league = level_colors[region_name]
-                    league_geometries.setdefault(league, []).append(shp_shape(feat["geometry"]))
+        level_regions = itl_hierarchy[f"{level}_regions"]
+        for region_name, region_geom in level_regions.items():
+            if level == "itl3" and region_name in multi_league_regions:
+                continue
+            if region_name in level_colors:
+                league = level_colors[region_name]
+                league_geometries.setdefault(league, []).append(region_geom["geom"])
 
     # Voronoi for multi-league ITL3s
-    if multi_league_regions and os.path.exists("boundaries/ITL_3.geojson"):
-        with open("boundaries/ITL_3.geojson", "r", encoding="utf-8") as f:
-            itl3_data = json.load(f)
+    if multi_league_regions:
         itl3_to_teams = region_to_teams["itl3"]
         itl2_to_teams = region_to_teams["itl2"]
         itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
-        for feat in itl3_data["features"]:
-            region_name = feat["properties"].get("ITL325NM")
-            if region_name in multi_league_regions:
-                boundary_geom = shp_shape(feat["geometry"])
-                teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
-                if len(teams_in_region) >= 2:
-                    parent_itl2 = itl3_to_itl2.get(region_name)
-                    leagues_in_itl2 = set()
-                    if parent_itl2:
-                        itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
-                        leagues_in_itl2 = {t["league"] for t in itl2_teams}
-                    teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
-                    if len(teams_for_voronoi) >= 2:
-                        voronoi_cells = create_bounded_voronoi(teams_for_voronoi, boundary_geom, league_colors)
-                        for cell in voronoi_cells:
-                            league = cell["league"]
-                            league_geometries.setdefault(league, []).append(cell["geometry"])
+        for region_name in multi_league_regions:
+            boundary_geom = itl_hierarchy["itl3_regions"][region_name]["geom"]
+            teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
+            if len(teams_in_region) >= 2:
+                parent_itl2 = itl3_to_itl2.get(region_name)
+                leagues_in_itl2 = set()
+                if parent_itl2:
+                    itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
+                    leagues_in_itl2 = {t["league"] for t in itl2_teams}
+                teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
+                if len(teams_for_voronoi) >= 2:
+                    voronoi_cells = create_bounded_voronoi(teams_for_voronoi, boundary_geom, league_colors)
+                    for cell in voronoi_cells:
+                        league = cell["league"]
+                        league_geometries.setdefault(league, []).append(cell["geom"])
 
     return league_geometries
 
 def add_territories_from_geometries(group: folium.FeatureGroup, league_geometries: Dict[str, List[BaseGeometry]], league_colors: Dict[str, str]) -> None:
     """Merge and add unioned geometries to the given feature group per league."""
-    from shapely.ops import unary_union
-    from shapely.geometry import mapping
     for league, geometries in league_geometries.items():
         if geometries:
-            merged_geom = unary_union(geometries)
+            simplified_geometries = [geom.simplify(0.001, preserve_topology=True) for geom in geometries]
+            merged_geom = unary_union(simplified_geometries)
             color = league_colors[league]
             def style_function(feature, c=color):
                 return {

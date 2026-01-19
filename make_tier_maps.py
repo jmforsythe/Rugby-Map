@@ -2,6 +2,7 @@ from collections import defaultdict
 import os
 import argparse
 import folium
+from folium.plugins import MarkerCluster, FeatureGroupSubGroup
 from pathlib import Path
 from shapely.geometry import shape, Point, Polygon, mapping
 from shapely.geometry.base import BaseGeometry
@@ -924,9 +925,78 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     marker_groups = {}
     sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
     
+    # JavaScript function to create cluster icon showing the highest tier team's icon
+    # Lower tierOrder = higher tier (Premiership=0, Championship=1, etc.)
+    icon_create_function = """
+    function(cluster) {
+        var markers = cluster.getAllChildMarkers();
+        var bestMarker = null;
+        var bestTier = Infinity;
+        var teamNames = [];
+        
+        for (var i = 0; i < markers.length; i++) {
+            var m = markers[i];
+            if (m.options.tierOrder !== undefined && m.options.tierOrder < bestTier) {
+                bestTier = m.options.tierOrder;
+                bestMarker = m;
+            }
+            // Collect team names for tooltip
+            if (m.options.teamName) {
+                teamNames.push(m.options.teamName);
+            }
+        }
+        teamNames.sort();
+
+        
+        var imageUrl = bestMarker && bestMarker.options.imageUrl 
+            ? bestMarker.options.imageUrl 
+            : 'https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';
+        var count = cluster.getChildCount();
+        
+        // Build tooltip text showing all teams in the cluster (using newlines for title attr)
+        var tooltipText = count + ' teams at this location';
+        if (teamNames.length > 0) {
+            tooltipText = teamNames.slice(0, 5).join('\\n');
+        }
+        
+        return L.divIcon({
+            html: '<div style="text-align: center; position: relative;" title="' + tooltipText.replace(/"/g, '&quot;') + '">' +
+                  '<img src="' + imageUrl + '" style="width: 30px; height: 30px; border-radius: 50%;" ' +
+                  'onerror="this.onerror=null; this.src=\\'https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg\\';">' +
+                  '<span style="position: absolute; bottom: -5px; right: -5px; background: #333; color: white; ' +
+                  'border-radius: 50%; width: 16px; height: 16px; font-size: 10px; line-height: 16px; text-align: center;">' +
+                  count + '</span></div>',
+            className: 'marker-cluster-custom',
+            iconSize: L.point(30, 30),
+            iconAnchor: L.point(15, 15)
+        });
+    }
+    """
+    
+    # Create parent MarkerCluster (not in layer control) - handles clustering of co-located teams
+    parent_cluster = MarkerCluster(
+        control=False,  # Not shown in layer control
+        options={
+            'maxClusterRadius': 1,              # Only cluster markers within 1 pixel (co-located)
+            'disableClusteringAtZoom': None,    # Cluster at all zoom levels
+            'spiderfyOnMaxZoom': True,          # Spread out when clicked
+            'spiderfyDistanceMultiplier': 2,    # More spread when spiderfied
+            'showCoverageOnHover': False,       # No polygon on hover
+            'zoomToBoundsOnClick': False,       # Don't zoom, just spiderfy
+            'animate': False,                   # Disable animations for better zoom performance
+            'animateAddingMarkers': False,      # No animation when adding markers
+        },
+        icon_create_function=icon_create_function
+    )
+    m.add_child(parent_cluster)
+    
+    # Build tier order lookup for markers (lower = higher tier)
+    tier_order_map = {tier: idx for idx, tier in enumerate(tier_order)}
+    
     for idx, tier in enumerate(sorted_tiers):
         territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
-        marker_groups[tier] = folium.FeatureGroup(name=f"{tier} - Teams", show=True)
+        # Use FeatureGroupSubGroup so markers obey tier visibility toggle while using parent cluster
+        marker_groups[tier] = FeatureGroupSubGroup(parent_cluster, name=f"{tier} - Teams", show=True)
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
     
@@ -937,25 +1007,10 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
 
     num_teams = 0
 
-    num_teams_at_location: Dict[tuple, int] = {}
-
-    # Add individual markers for each team with small offsets for co-located teams
+    # Add markers for each team - clustering handles co-located teams via spiderfy
     for tier in reversed(sorted_tiers):
         teams = teams_by_tier[tier]
         for team in teams:
-            location_key = (round(team["latitude"], 6), round(team["longitude"], 6))
-            num_teams_at_location[location_key] = num_teams_at_location.get(location_key, 1) + 1
-            
-            # Calculate offset for this team if multiple teams at same location
-            offset_lat = 0.0
-            offset_lon = 0.0
-
-            # Place subsequent teams to the north west (top left) by 10 metres per team
-            offset_distance = 0.0001  # approximately 10 metres
-            offset_lat = offset_distance * (num_teams_at_location[location_key] - 1)
-            offset_lon = -offset_distance * (num_teams_at_location[location_key] - 1)
-            
-            # Create individual popup for this team
             color = league_colors[team["league"]]
             team_url = team.get("url", "")
             league_url = team.get("league_url", "")
@@ -991,13 +1046,22 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
             
             icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
             
-            # Add marker with offset to its tier group
-            folium.Marker(
-                location=[team["latitude"] + offset_lat, team["longitude"] + offset_lon],
+            # Get tier order and image URL for cluster icon selection
+            team_tier_order = tier_order_map.get(tier, 999)
+            team_image_url = team.get("image_url") or "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+            
+            # Add marker to tier subgroup with custom options for clustering
+            marker = folium.Marker(
+                location=[team["latitude"], team["longitude"]],
                 popup=folium.Popup(popup_html, max_width=250),
                 icon=icon,
                 tooltip=team["name"]
-            ).add_to(marker_groups[tier])
+            )
+            # Add custom options for cluster icon selection and tooltip
+            marker.options["tierOrder"] = team_tier_order
+            marker.options["imageUrl"] = team_image_url
+            marker.options["teamName"] = team["name"]  # Used by cluster iconCreateFunction for tooltip
+            marker.add_to(marker_groups[tier])
 
             num_teams += 1
     

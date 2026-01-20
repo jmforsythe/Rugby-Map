@@ -1,0 +1,104 @@
+{
+  "league_name": "Counties 3 Kent",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47010&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Old Elthamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15658&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15658.png",
+      "address": "Queen Mary Sports Ground (east Ground), Perry Street, Chislehurst, BR7 6HB, England",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Old Alleynians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15399&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15399.png",
+      "address": "Alleynian Rugby, The Old Alleynian Sports Club, Dulwich Common, London, Greater London, SE21 7HA, United Kingdom",
+      "latitude": 51.44068,
+      "longitude": -0.07495,
+      "formatted_address": "SE21 7HA, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899114
+    },
+    {
+      "name": "Tonbridge Juddians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22916&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/22916.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Sittingbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19441&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19441.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
+    },
+    {
+      "name": "Tunbridge Wells II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23286&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23286.png",
+      "address": "St. Marks Recreation Ground, Frant Road, Tunbridge Wells, Kent, TN2 5LS, United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350854535
+    },
+    {
+      "name": "Whitstable",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25320&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25320.png",
+      "address": "The ClubHouse Reeves Way Chestfield Whitstable KENT CT5 3QS UNITED KINGDOM ",
+      "latitude": 51.3579132,
+      "longitude": 1.0622394,
+      "formatted_address": "CT5 3QS, Chestfield, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350562610
+    },
+    {
+      "name": "Hastings & Bexhill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9653&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9653.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Gravesend II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8881&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8881.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    },
+    {
+      "name": "New Ash Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14306&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14306.png",
+      "address": "The Pavilion, Punchcroft Road, New Ash Green, Longfield, Kent, DA3 8HS, United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570813
+    },
+    {
+      "name": "Faversham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8022&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8022.png",
+      "address": "Faversham Rufc, The Lodge, Recreation Ground, Park Road, Faversham, Kent , ME13 8HA, United Kingdom",
+      "latitude": 51.31141,
+      "longitude": 0.89756,
+      "formatted_address": "ME13 8HA, Faversham, Ospringe, Swale, Kent, England, United Kingdom",
+      "place_id": 351566722
+    }
+  ],
+  "team_count": 10
+}

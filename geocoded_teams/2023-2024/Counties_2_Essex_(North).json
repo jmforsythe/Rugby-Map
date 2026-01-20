@@ -1,0 +1,77 @@
+{
+  "league_name": "Counties 2 Essex (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47006&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Burnham-on-Crouch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3700.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Harwich & Dovercourt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9612&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9612.png",
+      "address": "Wick Lane, Dovercourt, Harwich, CO12 3TA, United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Clacton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5113&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5113.png",
+      "address": "Not For Post, Rugby Clubhouse, Recreation Ground, Valley Road, Clacton-on-sea, CO15 6NA, United Kingdom",
+      "latitude": 51.8023489,
+      "longitude": 1.1643234,
+      "formatted_address": "CO15 6NA, Tendring, Essex, England, United Kingdom",
+      "place_id": 350555075
+    },
+    {
+      "name": "Kelvedon and Feering",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124853&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124853.png",
+      "address": "Rye Mill Lane, Feering, Colchester, Essex , CO5 9SB, United Kingdom",
+      "latitude": 51.84722,
+      "longitude": 0.71123,
+      "formatted_address": "CO5 9SB, Feering, Braintree, Essex, England, United Kingdom",
+      "place_id": 351090134
+    },
+    {
+      "name": "Writtle Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26200&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26200.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    },
+    {
+      "name": "Witham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25764&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25764.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    },
+    {
+      "name": "South Woodham Ferrers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19679&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19679.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    }
+  ],
+  "team_count": 7
+}

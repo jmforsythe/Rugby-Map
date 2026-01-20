@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47344&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Launceston Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11907&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11907.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2160&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/2160.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "Helston Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125409&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/125409.png",
+      "address": "King George V Playing Fields, Clodgey Lane, Helston, Cornwall, TR13 8PJ, United Kingdom",
+      "latitude": 50.1048847,
+      "longitude": -5.2657992,
+      "formatted_address": "TR13 8PJ, Helston, Cornwall, England, United Kingdom",
+      "place_id": 350866499
+    },
+    {
+      "name": "Devonport Services Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6408&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6408.png",
+      "address": "The Rectory Field 2nd Avenue Plymouth DEVON PL1 5QD UNITED KINGDOM",
+      "latitude": 50.37235,
+      "longitude": -4.16522,
+      "formatted_address": "PL1 5QD, Plymouth, England, United Kingdom",
+      "place_id": 351762380
+    },
+    {
+      "name": "Topsham Tempest Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22936&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/22936.png",
+      "address": "Topsham Rfc, Bonfire Field, Exeter Road, Exeter, Devon, EX3 0LY, United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620960
+    },
+    {
+      "name": "Bude Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3607&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3607.png",
+      "address": "Bencoolen Meadow, Bude, EX23 8QG, United Kingdom",
+      "latitude": 50.8242199,
+      "longitude": -4.54266,
+      "formatted_address": "EX23 8QG, Bude–Stratton, Cornwall, England, United Kingdom",
+      "place_id": 351256697
+    },
+    {
+      "name": "Totnes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23004&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23004.png",
+      "address": "The Clubhouse Borough Park Totnes Devon TQ9 5JG United Kingdom",
+      "latitude": 50.4343203,
+      "longitude": -3.6876159,
+      "formatted_address": "TQ9 5JG, Totnes, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350865257
+    }
+  ],
+  "team_count": 7
+}

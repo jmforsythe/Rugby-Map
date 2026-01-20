@@ -242,7 +242,7 @@ def process_address_file(
     address_file_path: Path,
     season: str,
     max_workers: int = 10,
-    google_retries: int = 3
+    api_retries: int = 3
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
     print(f"{"="*80}")
@@ -271,7 +271,7 @@ def process_address_file(
         futures_to_idx: Dict[concurrent.futures.Future, int] = {}
         
         for idx, team in enumerate(teams):
-            future = executor.submit(process_team, team, google_retries)
+            future = executor.submit(process_team, team, api_retries)
             futures_to_idx[future] = idx
         
         try:
@@ -355,7 +355,7 @@ def main() -> None:
     
     for address_file in address_files:
         try:
-            process_address_file(address_file, season, max_workers=args.workers, google_retries=args.google_retries)
+            process_address_file(address_file, season, max_workers=args.workers, api_retries=args.api_retries)
         except KeyboardInterrupt:
             print(f"\n\n✗ Interrupted by user")
             print(f"Saving cache and exiting...")

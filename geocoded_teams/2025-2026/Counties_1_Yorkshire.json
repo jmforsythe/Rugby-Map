@@ -1,10 +1,10 @@
 {
   "league_name": "Counties 1 Yorkshire",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=66495",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=66495&season=2025-2026#tables",
   "teams": [
     {
       "name": "Dinnington",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6492",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6492&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6492.png",
       "address": "Dinnington Rufc, Lodge Lane , Dinnington, Sheffield, South Yorkshire, S25 2PB, United Kingdom",
       "latitude": 53.3714398,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Wath Upon Dearne",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24461",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24461&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24461.png",
       "address": "Moor Road, Wath-upon-dearne, Rotherham, South Yorkshire, S63 7RT, United Kingdom",
       "latitude": 53.5043283,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Yarnbury",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26392",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26392&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/26392.png",
       "address": "The Clubhouse Brownberrie Lane Horsforth Leeds WEST YORKSHIRE LS18 5HB UNITED KINGDOM ",
       "latitude": 53.8499397,
@@ -34,7 +34,7 @@
     },
     {
       "name": "Keighley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11209",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11209&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/11209.png",
       "address": "Skipton Road, Utley, Keighley, BD20 6DT, United Kingdom",
       "latitude": 53.8814057,
@@ -44,7 +44,7 @@
     },
     {
       "name": "Harrogate Pythons",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9502",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9502&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9502.png",
       "address": "Harrogate Pythons Rfc, Station View, Starbeck, Harrogate, North Yorkshire, HG2 7JA, United Kingdom",
       "latitude": 53.99858,
@@ -54,7 +54,7 @@
     },
     {
       "name": "West Leeds",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24808",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24808&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24808.png",
       "address": "Bluehill Lane, Leeds, Wyorks, LS12 4NZ, United Kingdom",
       "latitude": 53.7873669,
@@ -64,7 +64,7 @@
     },
     {
       "name": "Goole",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8707",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8707&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/8707.png",
       "address": "Westfield Lane, Hook, Goole, Yorks, DN14 5PW, United Kingdom",
       "latitude": 53.7188212,
@@ -74,7 +74,7 @@
     },
     {
       "name": "Wensleydale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24711",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24711&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24711.png",
       "address": "Wensleydale RUFC, Cawkill Park Wensley Road Leyburn NORTH YORKSHIRE DL8 5ED UNITED KINGDOM ",
       "latitude": 54.30745,
@@ -84,7 +84,7 @@
     },
     {
       "name": "Hullensians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10675",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10675&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/10675.png",
       "address": "Hullensians RUFC Springhead Lane Springfield Way, Anlaby Common Hull YORKSHIRE HU4 7RU UNITED KINGDOM ",
       "latitude": 53.74494,
@@ -94,7 +94,7 @@
     },
     {
       "name": "Old Rishworthian",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16003",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16003&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16003.png",
       "address": "Old Rishworthian Rufc, Copley, Halifax, West Yorkshire, HX3 0UG, England",
       "latitude": 53.7009104,
@@ -104,7 +104,7 @@
     },
     {
       "name": "Beverley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2073",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2073&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2073.png",
       "address": "Norwood Beverley HU17 9HT UNITED KINGDOM",
       "latitude": 53.8490669,
@@ -114,7 +114,7 @@
     },
     {
       "name": "Leodiensian",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12170",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12170&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12170.png",
       "address": "Crag Lane off King Lane, Alwoodley off King Lane, Alwoodley Leeds LS17 5PR UNITED KINGDOM ",
       "latitude": 53.8559293,

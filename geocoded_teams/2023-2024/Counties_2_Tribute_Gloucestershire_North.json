@@ -1,0 +1,114 @@
+{
+  "league_name": "Counties 2 Tribute Gloucestershire North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=47067&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Gordon League",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8752&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8752.png",
+      "address": "Gordon League RFC Hempsted Lane Gloucester GLOUCESTERSHIRE GL2 5JN UNITED KINGDOM ",
+      "latitude": 51.8547791,
+      "longitude": -2.2634932,
+      "formatted_address": "GL2 5JN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631368
+    },
+    {
+      "name": "Old Patesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15879&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15879.png",
+      "address": "Old Patesians R.F.C. Old Patesians Clubhouse Everest Road Cheltenham GLOUCESTERSHIRE GL53 9LG UNITED KINGDOM ",
+      "latitude": 51.8773802,
+      "longitude": -2.0692466,
+      "formatted_address": "GL53 9LG, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350636802
+    },
+    {
+      "name": "Smiths Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19533&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19533.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Stroud",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21275&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21275.png",
+      "address": "Stroud Rugby, Fromehall Park, Dudbridge Hill, Stroud, Gloucestershire, GL5 3HS, United Kingdom",
+      "latitude": 51.73949,
+      "longitude": -2.23306,
+      "formatted_address": "GL5 3HS, Rodborough, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351315264
+    },
+    {
+      "name": "Hucclecote",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10560&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10560.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Cheltenham North",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4540&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4540.png",
+      "address": "Cheltenham North Rfc Ltd, Stoke Orchard Road, Bishops Cleeve, Cheltenham, Gloucestershire, GL52 7DG, United Kingdom",
+      "latitude": 51.9465333,
+      "longitude": -2.0824434,
+      "formatted_address": "GL52 7DG, Bishop's Cleeve, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350635623
+    },
+    {
+      "name": "Old Richians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15969&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15969.png",
+      "address": "Old Richians RFC Sandyleaze Longlevens Gloucester GLOUCESTERSHIRE GL2 0PX UNITED KINGDOM ",
+      "latitude": 51.86988,
+      "longitude": -2.20765,
+      "formatted_address": "GL2 0PX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351311696
+    },
+    {
+      "name": "Coney Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5554&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5554.png",
+      "address": "Coney Hill RFC Metz Way Barnwood Gloucester GLOUCESTERSHIRE GL4 7RT UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cirencester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5065&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5065.png",
+      "address": "Cirencester Rfc, The Whiteway, Cirencester, Gloucestershire, GL7 2ER, United Kingdom",
+      "latitude": 51.72343,
+      "longitude": -1.9667,
+      "formatted_address": "GL7 2ER, Cirencester, Chesterton, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351318278
+    },
+    {
+      "name": "Brockworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3400&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3400.png",
+      "address": "Brockworth Rfc, Mill Lane, Brockworth, Gloucester, GL3 4HQ, United Kingdom",
+      "latitude": 51.8437399,
+      "longitude": -2.15203,
+      "formatted_address": "GL3 4HQ, Brockworth, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 351313752
+    },
+    {
+      "name": "Old Cryptians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15624&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15624.png",
+      "address": "Old Cryptians RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    }
+  ],
+  "team_count": 11
+}

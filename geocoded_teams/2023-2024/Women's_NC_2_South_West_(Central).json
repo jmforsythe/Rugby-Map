@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 South West (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47341&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Hornets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10433&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10433.png",
+      "address": "Hutton Moor Road, Weston-super-mare, Somerset, BS22 8LY, United Kingdom",
+      "latitude": 51.3444168,
+      "longitude": -2.947101,
+      "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
+      "place_id": 261865175
+    },
+    {
+      "name": "Winscombe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25677&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25677.png",
+      "address": "The Recreation Ground, Winscombe, Avon, BS251AZ, United Kingdom",
+      "latitude": 51.3097368,
+      "longitude": -2.8312719,
+      "formatted_address": "BS25 1AZ, Winscombe and Sandford, Sandford, North Somerset, England, United Kingdom",
+      "place_id": 350512214
+    },
+    {
+      "name": "Chew Valley Cats Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4738&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4738.png",
+      "address": "Lobbingtons, Chew Lane, Chew Stoke, Bristol, Bristol, BS40 8UE, United Kingdom",
+      "latitude": 51.3560626,
+      "longitude": -2.6286898,
+      "formatted_address": "BS40 8UE, Chew Stoke, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350517156
+    },
+    {
+      "name": "Avonmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1086&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1086.png",
+      "address": "Barracks Lane, Avonmouth, Bristol, BS11 9NG, United Kingdom",
+      "latitude": 51.4966619,
+      "longitude": -2.682831,
+      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
+      "place_id": 259517279
+    },
+    {
+      "name": "Bridgwater & Albion Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3138&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3138.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    },
+    {
+      "name": "Aretians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=732&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/732.png",
+      "address": "Aretians R.f.c., Station Road, Little Stoke, Bristol, Bristol, BS34 6HW, United Kingdom",
+      "latitude": 51.529744,
+      "longitude": -2.5642251,
+      "formatted_address": "BS34 6HW, Stoke Gifford, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350514350
+    },
+    {
+      "name": "Bath Ladies Spartans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124779&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124779.png",
+      "address": "Lambridge Rugby Ground Lambridge Bath Avon BA2 4DS England",
+      "latitude": 51.3826539,
+      "longitude": -2.3560958,
+      "formatted_address": "BA2 4DS, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350491076
+    }
+  ],
+  "team_count": 7
+}

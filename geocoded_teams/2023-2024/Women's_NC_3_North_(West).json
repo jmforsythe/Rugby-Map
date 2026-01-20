@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47356&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Lancaster Lionesses Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127629&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/127629.png",
+      "address": "Lancaster University Sports Centre, Lancaster, Lancashire, LA1 4YQ, United Kingdom",
+      "latitude": 54.0129312,
+      "longitude": -2.7921636,
+      "formatted_address": "Lancaster University Sports Centre, Sports Centre Drive, Bowland College, Bailrigg, Lancaster, Lancashire, England, LA1 4AT, United Kingdom",
+      "place_id": 261041902
+    },
+    {
+      "name": "Liverpool Collegiate Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12418&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12418.png",
+      "address": "Liverpool Collegiate R.u.f.c. C/o Liverpool Cricket Club Aigburth Road Grassendale Liverpool Merseyside L19 3QF United Kingdom",
+      "latitude": 53.36363,
+      "longitude": -2.918,
+      "formatted_address": "L19 3QF, Liverpool City Region, England, United Kingdom",
+      "place_id": 350993734
+    },
+    {
+      "name": "Moore Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94322&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/94322.png",
+      "address": "Moss Lane Moore Warrington Cheshire WA4 6UU United Kingdom",
+      "latitude": 53.3577779,
+      "longitude": -2.637244,
+      "formatted_address": "WA4 6UU, Moore, Halton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350430517
+    },
+    {
+      "name": "Aspull Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125690&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/125690.png",
+      "address": "Aspull Rugby Club Woods Road, Aspull, Wigan. LANCASHIRE WN21PJ UNITED KINGDOM",
+      "latitude": 53.56447,
+      "longitude": -2.58729,
+      "formatted_address": "WN2 1PJ, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 351701161
+    },
+    {
+      "name": "Wirral Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94490&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/94490.png",
+      "address": "Memorial Ground Thornton Common Road Clatterbridge Bebington MERSEYSIDE CH63 0LT UNITED KINGDOM",
+      "latitude": 53.3243906,
+      "longitude": -3.0198623,
+      "formatted_address": "CH63 0LT, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350614529
+    },
+    {
+      "name": "Fleetwood Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8195&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8195.png",
+      "address": "Fleetwood Rugby Club Melbourne Avenue Fleetwood LANCASHIRE FY7 8AY UNITED KINGDOM",
+      "latitude": 53.9038537,
+      "longitude": -3.0345288,
+      "formatted_address": "FY7 8AY, Fleetwood, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 350175065
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 1 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47323&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Blaydon Redkites Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123854&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/123854.png",
+      "address": "Crow Trees Ground Hexham Road Newcastle Upon Tyne Tyne And Wear NE16 3BN United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350710013
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Horden & Peterlee Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10389&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10389.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Doncaster Demons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "Novocastrians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15175&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15175.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    }
+  ],
+  "team_count": 6
+}

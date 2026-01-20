@@ -1,10 +1,10 @@
 {
   "league_name": "National League 2 East",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=66417",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=66417&season=2025-2026#tables",
   "teams": [
     {
       "name": "Old Albanians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15377.png",
       "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
       "latitude": 51.7778629,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Oundle",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16352",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16352&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16352.png",
       "address": "Occupation Road, Oundle, Peterborough, Cambridgeshire, PE8 4RU, United Kingdom",
       "latitude": 52.4895299,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Bury St Edmunds",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3824",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3824&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/3824.png",
       "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
       "latitude": 52.23618,
@@ -34,7 +34,7 @@
     },
     {
       "name": "Canterbury",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4123",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4123&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/4123.png",
       "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
       "latitude": 51.25767,
@@ -44,7 +44,7 @@
     },
     {
       "name": "Dorking",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6609",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6609&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6609.png",
       "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
       "latitude": 51.23505,
@@ -54,7 +54,7 @@
     },
     {
       "name": "Barnes",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1400",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1400&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/1400.png",
       "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
       "latitude": 51.4749448,
@@ -64,7 +64,7 @@
     },
     {
       "name": "Westcombe Park",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24978",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24978&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24978.png",
       "address": "Westcombe Park RFC Goddington Dene Goddington Lane Orpington KENT BR6 9SX UNITED KINGDOM ",
       "latitude": 51.36372,
@@ -74,14 +74,14 @@
     },
     {
       "name": "Guernsey",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9028.png",
       "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
       "error": "geocoding_failed"
     },
     {
       "name": "Esher",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7650.png",
       "address": "369 Esher Rfc, Molesey Road, Hersham, Surrey, KT12 3PF, United Kingdom",
       "latitude": 51.3780876,
@@ -91,7 +91,7 @@
     },
     {
       "name": "London Welsh",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12635",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12635&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12635.png",
       "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
       "latitude": 51.4689273,
@@ -101,7 +101,7 @@
     },
     {
       "name": "Havant",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9690",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9690&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9690.png",
       "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
       "latitude": 50.85684,
@@ -111,7 +111,7 @@
     },
     {
       "name": "Sevenoaks",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19006",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19006&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19006.png",
       "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
       "latitude": 51.27407,
@@ -121,7 +121,7 @@
     },
     {
       "name": "Henley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9984.png",
       "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
       "latitude": 51.5423199,
@@ -131,7 +131,7 @@
     },
     {
       "name": "Oxford Harlequins",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16431",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16431&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16431.png",
       "address": "Oxford Road, Horspath, Oxford, Oxfordshire, OX4 2RR, United Kingdom",
       "latitude": 51.725202,

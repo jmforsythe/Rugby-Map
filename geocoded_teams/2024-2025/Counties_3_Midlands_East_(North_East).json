@@ -1,10 +1,10 @@
 {
   "league_name": "Counties 3 Midlands East (North East)",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=56586",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=56586&season=2024-2025#tables",
   "teams": [
     {
       "name": "Sleaford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19492",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19492&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/19492.png",
       "address": "The David Williams Pavilion Ruskington Road Sleaford LINCOLN NG34 8SP UNITED KINGDOM ",
       "latitude": 53.01434,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Ollerton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/16182.png",
       "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
       "latitude": 53.20915,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Grimsby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8979",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8979&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/8979.png",
       "address": "The Pavilion, Springfield Road, Scartho, Grimsby, Lincolnshire, DN33 3JF, United Kingdom",
       "latitude": 53.5364366,
@@ -34,7 +34,7 @@
     },
     {
       "name": "Market Rasen & Louth II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13399",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13399&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/13399.png",
       "address": "Market Rasen And Louth Rufc, Willingham Road, Market Rasen, Lincolnshire, LN8 3RE, United Kingdom",
       "latitude": 53.3842792,
@@ -44,14 +44,14 @@
     },
     {
       "name": "Cleethorpes",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/5191.png",
       "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 $AW, United Kingdom",
       "error": "geocoding_failed"
     },
     {
       "name": "North Hykeham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14720",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14720&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/14720.png",
       "address": "North Hykeham Rufc, Ruston Sport & Social Club, Newark Road, North Hykeham, Lincolnshire, LN6 8RN, United Kingdom",
       "latitude": 53.1962467,
@@ -61,7 +61,7 @@
     },
     {
       "name": "Skegness",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/19463.png",
       "address": "Wainfleet Road Playing Fields Skegness PE25 2EL UNITED KINGDOM ",
       "latitude": 53.1437068,
@@ -71,7 +71,7 @@
     },
     {
       "name": "Meden Vale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/13583.png",
       "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
       "latitude": 53.2233769,
@@ -81,7 +81,7 @@
     },
     {
       "name": "East Retford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/7191.png",
       "address": "Ordsall Road, Retford, DN22 7PW, United Kingdom",
       "latitude": 53.3139372,
@@ -91,7 +91,7 @@
     },
     {
       "name": "Worksop",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26105",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26105&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/26105.png",
       "address": "Worksop Rufc, The Meadows, Stubbing Lane, Worksop, Nottinghamshire, S80 1NF, United Kingdom",
       "latitude": 53.3068404,
@@ -101,7 +101,7 @@
     },
     {
       "name": "Lincoln II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12277",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12277&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/12277.png",
       "address": "Lincoln Rfc, Longdales Park, Lodge Lane, Nettleham, Lincoln, Lincolnshire , LN2 2RS, United Kingdom",
       "latitude": 53.2629838,

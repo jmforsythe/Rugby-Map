@@ -1,0 +1,127 @@
+{
+  "league_name": "Counties 1 Kent",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47008&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Canterbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4124&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4124.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Dartfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6166&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6166.png",
+      "address": "War Memorial Club House Bourne Road Bexley KENT DA5 1LW UNITED KINGDOM ",
+      "latitude": 51.4429686,
+      "longitude": 0.1516309,
+      "formatted_address": "DA5 1LW, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 350570907
+    },
+    {
+      "name": "Beccehamian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1747&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1747.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
+      "name": "Bromley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3410&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3410.png",
+      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504060
+    },
+    {
+      "name": "Crowborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5917&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5917.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Dover",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6688&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6688.png",
+      "address": "Dover Rugby Football Club Crabble Athletic Ground Crabble Road, River Dover Kent CT17 0JB United Kingdom",
+      "latitude": 51.1398353,
+      "longitude": 1.2871083,
+      "formatted_address": "CT17 0JB, River, Dover, Kent, England, United Kingdom",
+      "place_id": 350561191
+    },
+    {
+      "name": "Heathfield & Waldron",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9826&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9826.png",
+      "address": "The Hardy Roberts Recreation Ground Cross-in-hand Heathfield East Sussex TN21 0TA England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Deal & Betteshanger",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6261&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6261.png",
+      "address": "The Drill Field Canada Road Deal KENT CT14 7EJ UNITED KINGDOM",
+      "latitude": 51.2139894,
+      "longitude": 1.3976372,
+      "formatted_address": "CT14 7EJ, Walmer, Dover, Kent, England, United Kingdom",
+      "place_id": 351101643
+    },
+    {
+      "name": "Ashford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=876&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/876.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Cranbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5760&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5760.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    },
+    {
+      "name": "Charlton Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4416&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4416.png",
+      "address": "60a Broad Walk Kidbrooke London SE3 8NB UNITED KINGDOM",
+      "latitude": 51.4653964,
+      "longitude": 0.0338301,
+      "formatted_address": "SE3 8NB, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351902521
+    },
+    {
+      "name": "Thanet Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21901&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21901.png",
+      "address": "Thanet Wanderers RUFC St. Peters Recreation Ground Callis Court Road Broadstairs KENT CT10 3AE UNITED KINGDOM ",
+      "latitude": 51.3681825,
+      "longitude": 1.4300997,
+      "formatted_address": "CT10 3AE, Broadstairs and St Peters, Thanet, Kent, England, United Kingdom",
+      "place_id": 350560134
+    }
+  ],
+  "team_count": 12
+}

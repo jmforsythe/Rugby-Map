@@ -1,10 +1,10 @@
 {
   "league_name": "Counties 1 Midlands West (South)",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=68601",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=68601&season=2024-2025#tables",
   "teams": [
     {
       "name": "Luctonians II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12885",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12885&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/12885.png",
       "address": "Luctonians R.F.C. Mortimer Park Hereford Road,  Kingsland Leominster HEREFORDSHIRE HR6 9SB UNITED KINGDOM ",
       "latitude": 52.25107,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Old Coventrians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/15578.png",
       "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
       "latitude": 52.4038659,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Camp Hill",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4063",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4063&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/4063.png",
       "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
       "latitude": 52.4112632,
@@ -34,14 +34,14 @@
     },
     {
       "name": "Evesham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/7735.png",
       "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
       "error": "geocoding_failed"
     },
     {
       "name": "Alcester",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=368",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=368&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/368.png",
       "address": "Birmingham Road Kings Coughton Alcester WARWICKSHIRE B49 5QF UNITED KINGDOM ",
       "latitude": 52.2295076,
@@ -51,7 +51,7 @@
     },
     {
       "name": "Worcester",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26044",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26044&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/26044.png",
       "address": "Worcester Rugby Football Club, Westons Fields, Offerton Lane, Hindlip, Worcester, Worcestershire, WR3 8TR, United Kingdom",
       "latitude": 52.21841,
@@ -61,7 +61,7 @@
     },
     {
       "name": "Old Leamingtonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/15805.png",
       "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
       "latitude": 52.32242,
@@ -71,7 +71,7 @@
     },
     {
       "name": "Leamington",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/11942.png",
       "address": "Leamington R.u.f.c. 'moorefields' Blackdown Kenilworth Road Leamington Spa Warwickshire CV32 6RG United Kingdom",
       "latitude": 52.3103,
@@ -81,7 +81,7 @@
     },
     {
       "name": "Droitwich",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6793",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6793&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/6793.png",
       "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
       "latitude": 52.26735,
@@ -91,7 +91,7 @@
     },
     {
       "name": "Berkswell & Balsall",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2008",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2008&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/2008.png",
       "address": "Honiley Road, Meer End, Kenilworth, Warwickshire, CV8 1NQ, United Kingdom",
       "latitude": 52.3623405,
@@ -101,7 +101,7 @@
     },
     {
       "name": "Barkers Butts",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1339",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1339&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/1339.png",
       "address": "Pickford Grange Lane, Allesley, Coventry, CV5 9AR, United Kingdom",
       "latitude": 52.4313182,
@@ -111,7 +111,7 @@
     },
     {
       "name": "Bromsgrove II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3436",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3436&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/3436.png",
       "address": "Bromsgrove RFC Finstall Park Finstall Road Finstall Road Bromsgrove WORCESTERSHIRE B60 3DH UNITED KINGDOM ",
       "latitude": 52.32506,

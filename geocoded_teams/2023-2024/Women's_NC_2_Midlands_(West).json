@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 Midlands (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47333&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Handsworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9328&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9328.png",
+      "address": "Handsworth RUFC Charles Lewis Memorial Ground 450 Birmingham Road Walsall WEST MIDLANDS WS5 3JP ENGLAND ",
+      "latitude": 52.5655038,
+      "longitude": -1.9488862,
+      "formatted_address": "WS5 3JP, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896088
+    },
+    {
+      "name": "Bournville Womens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2822&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/2822.png",
+      "address": "Avery Fields Sports & Events, 79 Sandon Road, Edgbaston, Birmingham, West Midlands, B17 8DT, United Kingdom",
+      "latitude": 52.4748818,
+      "longitude": -1.9633017,
+      "formatted_address": "B17 8DT, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350464923
+    },
+    {
+      "name": "Stafford Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26813&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26813.png",
+      "address": "Stafford Rugby Club, The County Ground, Blackberry Lane, Stafford, Staffordshire, ST16 2TT, United Kingdom",
+      "latitude": 52.8118304,
+      "longitude": -2.1324176,
+      "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836744
+    },
+    {
+      "name": "Telford Hornets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21800&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21800.png",
+      "address": "Town Park Hinkshay Road Dawley Telford SHROPSHIRE TF4 3NZ UNITED KINGDOM",
+      "latitude": 52.6683891,
+      "longitude": -2.4447884,
+      "formatted_address": "TF4 3NZ, Great Dawley, Dawley, Telford and Wrekin, England, United Kingdom",
+      "place_id": 350851302
+    },
+    {
+      "name": "Stourbridge Panthers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21150&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21150.png",
+      "address": "Stourbridge Rugby Football Club Ltd Stourton Park Bridgnorth Road Stourton , Stourbridge West Midlands DY7 6QZ United Kingdom",
+      "latitude": 52.4595,
+      "longitude": -2.18182,
+      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351208633
+    },
+    {
+      "name": "Old Halesonians Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15755&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15755.png",
+      "address": "Old Halesonians Rfc, Wassell Grove Lane, Hagley, Stourbridge, West Midlands, DY9 9JP, England",
+      "latitude": 52.4328583,
+      "longitude": -2.1106772,
+      "formatted_address": "DY9 9JP, Hagley, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 351210321
+    },
+    {
+      "name": "Wolverhampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25912&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25912.png",
+      "address": "Wolverhampton Rufc, Castlecroft, Castlecroft Road, Wolverhampton, West Midlands, WV3 8NA, England",
+      "latitude": 52.5767267,
+      "longitude": -2.1915032,
+      "formatted_address": "WV3 8NA, Lower Penn, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 352178955
+    },
+    {
+      "name": "Dudley Kingswinford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6861&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6861.png",
+      "address": "Dudley Kingswinford Rfc, Heathbrook, Swindon Road,, Wall Heath, Kingswinford, West Midlands, DY6 0AW, United Kingdom",
+      "latitude": 52.50217,
+      "longitude": -2.19073,
+      "formatted_address": "DY6 0AW, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351207673
+    }
+  ],
+  "team_count": 8
+}

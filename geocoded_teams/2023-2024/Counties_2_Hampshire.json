@@ -1,0 +1,104 @@
+{
+  "league_name": "Counties 2 Hampshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47149&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Sandown & Shanklin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/18708.png",
+      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
+      "latitude": 50.6561004,
+      "longitude": -1.1652962,
+      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
+      "place_id": 350777134
+    },
+    {
+      "name": "Basingstoke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1565&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1565.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Guernsey II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9030&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9030.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "United Services, Portsmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23499&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23499.png",
+      "address": "United Services Sports Club, Burnaby Road, Portsmouth, Hamps, PO1 2EJ, United Kingdom",
+      "latitude": 50.7965238,
+      "longitude": -1.0982525,
+      "formatted_address": "PO1 2EJ, Portsmouth, England, United Kingdom",
+      "place_id": 351777555
+    },
+    {
+      "name": "Millbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/13878.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Winchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25576&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25576.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
+      "name": "Chichester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4754&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4754.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Locksheath Pumas",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12485&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12485.png",
+      "address": "The Sir Joseph Paxton 272 Hunts Pond Road Fareham Hampshire PO14 4PF United Kingdom",
+      "latitude": 50.8554981,
+      "longitude": -1.2565358,
+      "formatted_address": "PO14 4PF, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 350774961
+    },
+    {
+      "name": "Fordingbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8240&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8240.png",
+      "address": "Recreation Ground Fordingbridge HAMPSHIRE SP6 1AN UNITED KINGDOM ",
+      "latitude": 50.92568,
+      "longitude": -1.78717,
+      "formatted_address": "SP6 1AN, Fordingbridge, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 351968133
+    },
+    {
+      "name": "Tottonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23028&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23028.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    }
+  ],
+  "team_count": 10
+}

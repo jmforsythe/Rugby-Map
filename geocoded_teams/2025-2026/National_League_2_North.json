@@ -1,10 +1,10 @@
 {
   "league_name": "National League 2 North",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=66416",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=66416&season=2025-2026#tables",
   "teams": [
     {
       "name": "Sheffield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19073",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19073&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19073.png",
       "address": "Abbeydale Sports Club, Abbeydale Road South, Sheffield, South Yorkshire, S17 3LJ, United Kingdom",
       "latitude": 53.32524,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Macclesfield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13064.png",
       "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
       "latitude": 53.2725255,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Tynedale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23390.png",
       "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
       "latitude": 54.9685943,
@@ -34,7 +34,7 @@
     },
     {
       "name": "Hull Ionians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10641",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10641&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/10641.png",
       "address": "Brantingham Park Elloughton Road Elloughton Road Brantingham EAST RIDING OF YORKSHIRE HU15 1HX UNITED KINGDOM ",
       "latitude": 53.742916,
@@ -44,7 +44,7 @@
     },
     {
       "name": "Darlington Mowden Park",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6105",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6105&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6105.png",
       "address": "Darlington Arena, Neasham Road, Darlington, County Durham, DL2 1DL, United Kingdom",
       "latitude": 54.50806,
@@ -54,14 +54,14 @@
     },
     {
       "name": "Fylde",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8426",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8426&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/8426.png",
       "address": null,
       "error": "no_address"
     },
     {
       "name": "Wharfedale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25147",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25147&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/25147.png",
       "address": "Wharfeside Avenue Threshfield Skipton NORTH YORKSHIRE BD23 5BS UNITED KINGDOM ",
       "latitude": 54.0712748,
@@ -71,7 +71,7 @@
     },
     {
       "name": "Preston Grasshoppers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17180",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17180&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17180.png",
       "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
       "latitude": 53.7971627,
@@ -81,7 +81,7 @@
     },
     {
       "name": "Otley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16336.png",
       "address": "Otley R.u.f.c., Cross Green, Otley, Wyorks, LS21 1HE, United Kingdom",
       "latitude": 53.9065945,
@@ -91,7 +91,7 @@
     },
     {
       "name": "Sheffield Tigers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19099.png",
       "address": "Dore Moor Hathersage Road Sheffield SOUTH YORKSHIRE S17 3AB UNITED KINGDOM ",
       "latitude": 53.3341659,
@@ -101,7 +101,7 @@
     },
     {
       "name": "Billingham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2221",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2221&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2221.png",
       "address": "Greenwood Road, Billingham, Ctydur, TS23 4BA, United Kingdom",
       "latitude": 54.6029991,
@@ -111,7 +111,7 @@
     },
     {
       "name": "Hull",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/10634.png",
       "address": "Hull Sports Centre, Ferens Ground, Chanterlands Avenue, Hull, Yorkshire, HU5 4EF, United Kingdom",
       "latitude": 53.7641862,
@@ -121,7 +121,7 @@
     },
     {
       "name": "Scunthorpe",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18838",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18838&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18838.png",
       "address": "Heslam Park, Ashby Road, Scunthorpe, Lincolnshire, DN16 2AG, United Kingdom",
       "latitude": 53.5768867,
@@ -131,7 +131,7 @@
     },
     {
       "name": "Rossendale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18009.png",
       "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
       "latitude": 53.7035387,

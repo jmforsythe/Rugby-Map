@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 North (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47336&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Trafford MV Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123916&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/123916.png",
+      "address": "Finny Bank Road, Macpherson Park, Sale, Cheshire, M33 6LR, United Kingdom",
+      "latitude": 53.43238,
+      "longitude": -2.3294,
+      "formatted_address": "M33 6LR, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351552940
+    },
+    {
+      "name": "Liverpool St Helens Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124998&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124998.png",
+      "address": "Moss Lane Windle St. Helens MERSEYSIDE WA11 7PL UNITED KINGDOM ",
+      "latitude": 53.47099,
+      "longitude": -2.77798,
+      "formatted_address": "WA11 7PL, Windle, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 352124822
+    },
+    {
+      "name": "Leigh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12124&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12124.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Preston Grasshoppers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17189&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/17189.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 256777271
+    },
+    {
+      "name": "Winnington Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25654&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25654.png",
+      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
+      "latitude": 53.25223,
+      "longitude": -2.54034,
+      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350683530
+    },
+    {
+      "name": "Bury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3821&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3821.png",
+      "address": "Radcliffe Road Bury LANCASHIRE BL9 9JX UNITED KINGDOM ",
+      "latitude": 53.58371,
+      "longitude": -2.30082,
+      "formatted_address": "BL9 9JX, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 350991687
+    },
+    {
+      "name": "Littleborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12376&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12376.png",
+      "address": "Club House, The Deep Lane, Off Rakewood Road, Rakewood, Littleborough, Lancashire, OL15 0AP, United Kingdom",
+      "latitude": 53.62433,
+      "longitude": -2.08514,
+      "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351710750
+    },
+    {
+      "name": "Oldham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16158&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16158.png",
+      "address": "Manor Park, Byrth Road, Bardsley, Oldham, Lancashire, OL8 2TJ, United Kingdom",
+      "latitude": 53.5128708,
+      "longitude": -2.1088621,
+      "formatted_address": "OL8 2TJ, Oldham, Greater Manchester, England, United Kingdom",
+      "place_id": 350752536
+    }
+  ],
+  "team_count": 8
+}

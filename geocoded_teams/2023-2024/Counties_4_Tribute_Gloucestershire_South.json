@@ -1,0 +1,77 @@
+{
+  "league_name": "Counties 4 Tribute Gloucestershire South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=47072&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Kingswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11689&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11689.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Dings Crusaders III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6472&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6472.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Frampton Cotterell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8292&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8292.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Yate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26410&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26410.png",
+      "address": "Yate Outdoor Sports Complex, Broad Lane, Yate, BS37 7LB, England",
+      "latitude": 51.5522403,
+      "longitude": -2.4258913,
+      "formatted_address": "BS37 7LB, Yate, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516592
+    },
+    {
+      "name": "Barton Hill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1515&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1515.png",
+      "address": "Club House, Duncombe Lane, Bristol, BS15 1NS, England",
+      "latitude": 51.4691065,
+      "longitude": -2.5281799,
+      "formatted_address": "BS15 1NS, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506812
+    },
+    {
+      "name": "Bristol Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3246&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3246.png",
+      "address": "Bristol Barbarians (formerly British Gas Bristol), Norton Lane, Whitchurch, Bristol, Bristol, BS14 0BT, United Kingdom",
+      "latitude": 51.396328,
+      "longitude": -2.5560784,
+      "formatted_address": "BS14 0BT, Whitchurch, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350506538
+    },
+    {
+      "name": "Whitehall II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25259&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25259.png",
+      "address": "Whitehall RFC Speedwell Recreation Ground Foundry Lane, Speedwell Bristol BRISTOL BS5 7UE UNITED KINGDOM ",
+      "latitude": 51.4703526,
+      "longitude": -2.5375935,
+      "formatted_address": "BS5 7UE, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350519395
+    }
+  ],
+  "team_count": 7
+}

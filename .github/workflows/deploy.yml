@@ -38,6 +38,7 @@ jobs:
         run: |
           python make_tier_maps.py --no-debug --season=2025-2026
           python make_tier_maps.py --no-debug --season=2024-2025
+          python make_tier_maps.py --no-debug --season=2023-2024
 
           python generate_webpages.py
       

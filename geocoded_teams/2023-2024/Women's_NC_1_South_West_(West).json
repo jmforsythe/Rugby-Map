@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 1 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47328&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Exeter Athletic Dakota Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7764&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/7764.png",
+      "address": "Bravelands Oil Mill Lane Clyst St Mary Exeter Devon EX5 1AF United Kingdom",
+      "latitude": 50.70773,
+      "longitude": -3.44062,
+      "formatted_address": "EX5 1AF, Clyst St. Mary, Clyst St Mary, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351262289
+    },
+    {
+      "name": "Crediton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5836&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5836.png",
+      "address": "Crediton R.f.c., Blagdon, Exhibition Road, Crediton, Devon, EX17 1BY, United Kingdom",
+      "latitude": 50.79388,
+      "longitude": -3.64396,
+      "formatted_address": "EX17 1BY, Crediton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351253152
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "North Petherton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14752&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14752.png",
+      "address": "North Petherton RFC Beggars Brook North Petherton SOMERSET TA6 6NW UNITED KINGDOM",
+      "latitude": 51.0779287,
+      "longitude": -3.0196718,
+      "formatted_address": "TA6 6NW, North Petherton, Somerset, England, United Kingdom",
+      "place_id": 350849758
+    }
+  ],
+  "team_count": 6
+}

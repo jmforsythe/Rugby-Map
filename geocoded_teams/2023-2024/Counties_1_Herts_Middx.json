@@ -1,0 +1,124 @@
+{
+  "league_name": "Counties 1 Herts/Middx",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47015&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "London Scottish Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12611&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12611.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Old Streetonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16054&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16054.png",
+      "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
+      "latitude": 51.5527479,
+      "longitude": -0.0255018,
+      "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
+      "place_id": 259818900
+    },
+    {
+      "name": "Finchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8090&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8090.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
+      "name": "Cheshunt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4636&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4636.png",
+      "address": "Rosedale Sports Club, Andrews Lane, Andrews Lane, Cheshunt, Hertfordshire, EN7 6TB, United Kingdom",
+      "latitude": 51.71103,
+      "longitude": -0.06665,
+      "formatted_address": "EN7 6TB, Broxbourne, Hertfordshire, England, United Kingdom",
+      "place_id": 351246567
+    },
+    {
+      "name": "Chiswick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4929&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4929.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Welwyn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24681&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/24681.png",
+      "address": "Handside Playing Fields Hobbs Way, Colgrove Welwyn Garden City HERTFORDSHIRE AL8 6HX UNITED KINGDOM ",
+      "latitude": 51.7944448,
+      "longitude": -0.2146882,
+      "formatted_address": "AL8 6HX, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350915715
+    },
+    {
+      "name": "Hitchin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10216&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10216.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Ruislip",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18366&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/18366.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Hackney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9154&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9154.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
+    },
+    {
+      "name": "Datchworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6196&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6196.png",
+      "address": "Datchworth Green Datchworth Datchworth Datchworth Hertfordshire SG3 6TL UNITED KINGDOM ",
+      "latitude": 51.8495634,
+      "longitude": -0.1627916,
+      "formatted_address": "Datchworth Green, Painter's Green, Datchworth, Datchworth Green, East Hertfordshire, Hertfordshire, England, SG3 6TL, United Kingdom",
+      "place_id": 257359028
+    },
+    {
+      "name": "Hampstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9291&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9291.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Enfield Ignatians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/7513.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    }
+  ],
+  "team_count": 12
+}

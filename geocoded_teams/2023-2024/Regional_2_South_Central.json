@@ -1,0 +1,124 @@
+{
+  "league_name": "Regional 2 South Central",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=47148&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Jersey Rugby Football Club",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11098&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11098.png",
+      "address": "Jersey Rugby Football Club, Rue Des Landes, St Peter, JE3 7BG, Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Winchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25574&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25574.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
+      "name": "Tottonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23023&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23023.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Guildford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9045&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9045.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
+    },
+    {
+      "name": "London Irish Wild Geese",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12579&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12579.png",
+      "address": "Hazelwood Drive, Green Street, Sunbury-on-thames, Middlesex, TW16 6QU, United Kingdom",
+      "latitude": 51.40733,
+      "longitude": -0.4202,
+      "formatted_address": "TW16 6QU, Sunbury-on-Thames, Surrey, England, United Kingdom",
+      "place_id": 351644829
+    },
+    {
+      "name": "Witney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25806&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25806.png",
+      "address": "Hailey Road, Witney, Oxfordshire, OX29 9UH, United Kingdom",
+      "latitude": 51.7986155,
+      "longitude": -1.4843439,
+      "formatted_address": "Hailey Road, Madley Park, Witney, Poffley End, West Oxfordshire, Oxfordshire, England, OX28 1HQ, United Kingdom",
+      "place_id": 261044972
+    },
+    {
+      "name": "Farnham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7986&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/7986.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Wimborne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25549&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25549.png",
+      "address": "Wimborne RFC Leigh Park Gordon Road Gordon Road Wimborne DORSET BH21 2AP UNITED KINGDOM ",
+      "latitude": 50.79679,
+      "longitude": -1.97171,
+      "formatted_address": "BH21 2AP, Leigh Park, St Johns, Wimborne Minster, Dorset, England, United Kingdom",
+      "place_id": 350975510
+    },
+    {
+      "name": "Chichester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4753.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Newbury Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14433&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14433.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Salisbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18607&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/18607.png",
+      "address": "C/o Salisbury Rfc, Castle Rd, Salisbury, Wiltshire, SP1 3SA, United Kingdom",
+      "latitude": 51.0859327,
+      "longitude": -1.8010028,
+      "formatted_address": "SP1 3SA, Salisbury, Wiltshire, England, United Kingdom",
+      "place_id": 350833936
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    }
+  ],
+  "team_count": 12
+}

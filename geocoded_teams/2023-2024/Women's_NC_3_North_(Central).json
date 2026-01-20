@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47352&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "North Ribblesdale Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14768&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14768.png",
+      "address": "Grove Park, Lower Greenfoot, Settle, North Yorkshire, BD24 9RB, United Kingdom",
+      "latitude": 54.0649015,
+      "longitude": -2.2763432,
+      "formatted_address": "BD24 9RB, Settle, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350514696
+    },
+    {
+      "name": "West Park Leeds Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24891&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/24891.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "Malton & Norton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13187&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/13187.png",
+      "address": "THE GANNOCK OLD MALTON ROAD MALTON NORTH YORKSHIRE YO17 7EY UNITED KINGDOM ",
+      "latitude": 54.1389817,
+      "longitude": -0.7882645,
+      "formatted_address": "YO17 7EY, Malton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350447864
+    },
+    {
+      "name": "Pocklington Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127288&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/127288.png",
+      "address": "Pocklington R.u.f.c., Feathers Field, Percy Road, Pocklington, East Yorkshire, YO42 2QB, United Kingdom",
+      "latitude": 53.929475,
+      "longitude": -0.7728368,
+      "formatted_address": "YO42 2QB, Pocklington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350450147
+    },
+    {
+      "name": "York Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26464&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26464.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    },
+    {
+      "name": "Hornsea Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10438&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10438.png",
+      "address": "The Hollis Recreation Ground Westwood Avenue Hornsea HU18 1EE UNITED KINGDOM",
+      "latitude": 53.9140795,
+      "longitude": -0.1791274,
+      "formatted_address": "HU18 1EE, Hornsea, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350652721
+    }
+  ],
+  "team_count": 6
+}

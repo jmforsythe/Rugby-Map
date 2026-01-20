@@ -1,10 +1,10 @@
 {
   "league_name": "Counties 2 Midlands East (North)",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=68603",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=68603&season=2024-2025#tables",
   "teams": [
     {
       "name": "Keyworth",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11394",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11394&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/11394.png",
       "address": "The Clubhouse Willoughby Road Widmerpool Nottingham Nottinghamshire NG12 5PU United Kingdom",
       "latitude": 52.8438933,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Ashby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=819",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=819&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/819.png",
       "address": "Ashby R.f.c. Clubhouse & Grounds Nottingham Road Ashby-de-la-zouch Leicestershire LE65 1DP United Kingdom",
       "latitude": 52.751755,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Ashbourne",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=800",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=800&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/800.png",
       "address": "The Recreation Ground, Cokayne Avenue, Ashbourne, Derbyshire, DE6 1EJ, United Kingdom",
       "latitude": 53.019799,
@@ -34,7 +34,7 @@
     },
     {
       "name": "Nottingham Casuals",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15077",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15077&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/15077.png",
       "address": "The Rugby Pavilion, Weir Fields Recreation Ground, Canalside, Beeston, Nottingham, Nottinghamshire, NG9 1NG, United Kingdom",
       "latitude": 52.9154134,
@@ -44,7 +44,7 @@
     },
     {
       "name": "Melton Mowbray",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13693",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13693&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/13693.png",
       "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
       "latitude": 52.7528715,
@@ -54,7 +54,7 @@
     },
     {
       "name": "Mosborough",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/14164.png",
       "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
       "latitude": 53.3265437,
@@ -64,7 +64,7 @@
     },
     {
       "name": "Gainsborough",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8458",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8458&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/8458.png",
       "address": "Roses Sports Ground, North Warren Road, Gainsborough, Lincolnshire, DN212TU, United Kingdom",
       "latitude": 53.4094709,
@@ -74,7 +74,7 @@
     },
     {
       "name": "Boston",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2741",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2741&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/2741.png",
       "address": "Boston R.F.C. Princess Royal Arena Great Fen Road Wyberton Boston LINCOLNSHIRE PE21 7PB UNITED KINGDOM ",
       "latitude": 52.9754823,
@@ -84,7 +84,7 @@
     },
     {
       "name": "Birstall",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2349",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2349&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/2349.png",
       "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
       "latitude": 52.6676,
@@ -94,7 +94,7 @@
     },
     {
       "name": "Derby II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6320",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6320&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/6320.png",
       "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
       "latitude": 52.9425757,
@@ -104,7 +104,7 @@
     },
     {
       "name": "Newark II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14388",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14388&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/14388.png",
       "address": "Newark RUFC The Rugby Ground Kelham Road Newark NOTTINGHAMSHIRE NG24 1WN UNITED KINGDOM ",
       "latitude": 53.08347,
@@ -114,7 +114,7 @@
     },
     {
       "name": "Ashfield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=852",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=852&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/852.png",
       "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
       "latitude": 53.1126952,

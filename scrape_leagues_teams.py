@@ -83,22 +83,6 @@ def clean_filename(text: str) -> str:
     return text.strip("_")
 
 def scrape_teams_from_league(league_url: str, league_name: str, season: str, referer: Optional[str] = None) -> List[Team]:
-    parsed_url = urllib.parse.urlparse(league_url)
-    # Add season parameter if not present
-    query_params = urllib.parse.parse_qs(parsed_url.query)
-    fragment = parsed_url.fragment
-    if "season" not in query_params:
-        query_params["season"] = [season]
-    new_query = urllib.parse.urlencode(query_params, doseq=True)
-    league_url = urllib.parse.urlunparse((
-        parsed_url.scheme,
-        parsed_url.netloc,
-        parsed_url.path,
-        parsed_url.params,
-        new_query,
-        "#table"
-    ))
-    
     print(f"Scraping teams from: {league_url}")
     
     response = make_request(league_url, referer=referer)
@@ -240,6 +224,11 @@ def main() -> None:
         league_name = league["name"]
         league_url = league["url"]
         parent_url = league["parent_url"]
+
+        banned_words = ["playoff", "play-off", "phase"]
+        if any(word in league_name.lower() for word in banned_words):
+            print(f"Skipping {league_name} (playoff/phase league)")
+            continue
         
         # Create filename from league name
         filename = clean_filename(league_name) + ".json"
@@ -250,6 +239,21 @@ def main() -> None:
             print(f"Skipping {league_name} (already exists)")
             continue
         
+        parsed_url = urllib.parse.urlparse(league_url)
+        # Add season parameter if not present
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        if "season" not in query_params:
+            query_params["season"] = [season]
+        new_query = urllib.parse.urlencode(query_params, doseq=True)
+        league_url = urllib.parse.urlunparse((
+            parsed_url.scheme,
+            parsed_url.netloc,
+            parsed_url.path,
+            parsed_url.params,
+            new_query,
+            "tables"
+        ))
+
         try:
             # Scrape teams from this league
             teams = scrape_teams_from_league(league_url, league_name, season, referer=parent_url)

@@ -1,0 +1,64 @@
+{
+  "league_name": "Women's NC 1 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47324&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Liverpool St Helens Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124997&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124997.png",
+      "address": "Moss Lane Windle St. Helens MERSEYSIDE WA11 7PL UNITED KINGDOM ",
+      "latitude": 53.47099,
+      "longitude": -2.77798,
+      "formatted_address": "WA11 7PL, Windle, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 352124822
+    },
+    {
+      "name": "Chester Devas Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM ",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 256952260
+    },
+    {
+      "name": "Broughton Park Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3505&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3505.png",
+      "address": "Broughton Park Fc , 2 Houghend Crescent, Off Mauldeth Road West, Manchester, Lancashire, M21 7TL, United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    },
+    {
+      "name": "Didsbury Toc H Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6450.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM ",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
+      "name": "Eccles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/7284.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Vagabond Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23886&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23886.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 6
+}

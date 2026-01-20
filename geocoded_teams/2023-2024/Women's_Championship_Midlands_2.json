@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's Championship Midlands 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47317&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Lichfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12241&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12241.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
+      "name": "Old Albanians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15383&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15383.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Bury Foxes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3830&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3830.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Hitchin Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10221&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10221.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Shelford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19149&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19149.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Sutton Coldfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21458&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21458.png",
+      "address": "Sutton Coldfield R.F.C. The Roger Smoldon Recreation Ground 160 Walmley Road Sutton Coldfield WEST MIDLANDS B76 2QA UNITED KINGDOM ",
+      "latitude": 52.545986,
+      "longitude": -1.7982853,
+      "formatted_address": "B76 2QA, Sutton Coldfield, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350484308
+    },
+    {
+      "name": "Long Eaton Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12699&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12699.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
+    }
+  ],
+  "team_count": 7
+}

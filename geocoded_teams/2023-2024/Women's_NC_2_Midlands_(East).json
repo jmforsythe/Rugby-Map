@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 Midlands (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47330&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Ipswich Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10946&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10946.png",
+      "address": "Ipswich Rugby Football Club, Humber Doucy Lane, Ipswich, IP4 3PZ, United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Colchester Iceni",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123160&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/123160.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Lakenham Union Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road, Swardeston, Norwich, Norfolk, NR14 8DU, United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Southwold Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19853&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19853.png",
+      "address": "William Godell Pavilion, The Common, Southwold, Suffolk, IP18 6TB, United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Woodbridge Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM ",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351390957
+    },
+    {
+      "name": "Diss Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6522&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6522.png",
+      "address": "Diss R.F.C. Mackenders Bellrope Lane Roydon Diss NORFOLK IP22 5RG UNITED KINGDOM ",
+      "latitude": 52.3827516,
+      "longitude": 1.079028,
+      "formatted_address": "IP22 5RG, Roydon, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350661359
+    },
+    {
+      "name": "Crusaders Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5962&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5962.png",
+      "address": "Little Melton Road, Hethersett, Norwich, Norfolk, NR9 3NP, United Kingdom",
+      "latitude": 52.6119295,
+      "longitude": 1.1804873,
+      "formatted_address": "NR9 3NP, Little Melton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350297922
+    },
+    {
+      "name": "Shelford Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123167&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/123167.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    }
+  ],
+  "team_count": 8
+}

@@ -1,10 +1,10 @@
 {
   "league_name": "Regional 1 North East",
-  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=62922",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=62922&season=2024-2025#tables",
   "teams": [
     {
       "name": "Scunthorpe",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18838",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18838&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/18838.png",
       "address": "Heslam Park, Ashby Road, Scunthorpe, Lincolnshire, DN16 2AG, United Kingdom",
       "latitude": 53.5768867,
@@ -14,7 +14,7 @@
     },
     {
       "name": "Huddersfield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10581",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10581&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/10581.png",
       "address": "HRUFC Lockwood Park Brewery Drive Brewery Drive Huddersfield West Yorkshire HD4 6EN UNITED KINGDOM ",
       "latitude": 53.6306,
@@ -24,7 +24,7 @@
     },
     {
       "name": "Heath",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9817",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9817&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/9817.png",
       "address": "Heath R.U.F.C. North Dean Stainland Road Greetland Halifax WEST YORKSHIRE HX4 8LS UNITED KINGDOM ",
       "latitude": 53.6892238,
@@ -34,7 +34,7 @@
     },
     {
       "name": "York",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26458",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26458&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/26458.png",
       "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
       "latitude": 53.9744206,
@@ -44,7 +44,7 @@
     },
     {
       "name": "Alnwick",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=486",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=486&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/486.png",
       "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
       "latitude": 55.40438,
@@ -54,7 +54,7 @@
     },
     {
       "name": "Cleckheaton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=99485",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=99485&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/99485.png",
       "address": "The Pavilion, Bradford Road, Moorend, Cleckheaton, West Yorkshire, BD19 3UD, United Kingdom",
       "latitude": 53.73195,
@@ -64,7 +64,7 @@
     },
     {
       "name": "Ilkley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10834",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10834&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/10834.png",
       "address": "Stacks Field Denton Road Ilkley WEST YORKSHIRE LS29 0AF UNITED KINGDOM ",
       "latitude": 53.93008,
@@ -74,7 +74,7 @@
     },
     {
       "name": "Driffield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6745",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6745&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/6745.png",
       "address": "The Clubhouse, Kelleythorpe, Driffield, East Riding Of Yorkshire, YO25 9DW, United Kingdom",
       "latitude": 53.9942793,
@@ -84,7 +84,7 @@
     },
     {
       "name": "Sandal",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18658",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18658&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/18658.png",
       "address": "Sandal RUFC Milnthorpe Green Standbridge Lane, Sandal Wakefield WEST YORKSHIRE WF2 7DY UNITED KINGDOM ",
       "latitude": 53.6493023,
@@ -94,7 +94,7 @@
     },
     {
       "name": "Blaydon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/2565.png",
       "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
       "latitude": 54.9532684,
@@ -104,7 +104,7 @@
     },
     {
       "name": "Percy Park",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16747",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16747&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/16747.png",
       "address": "The Club House, Preston Avenue, North Shields, Tyne  Wear, NE30 2BE, United Kingdom",
       "latitude": 55.01683,
@@ -114,7 +114,7 @@
     },
     {
       "name": "Selby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18969",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18969&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/18969.png",
       "address": "Selby RUFC Sandhill Lane Leeds Road Selby YO8 4JP UNITED KINGDOM ",
       "latitude": 53.777782,

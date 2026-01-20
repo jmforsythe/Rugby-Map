@@ -1,0 +1,144 @@
+{
+  "league_name": "National League 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=46996&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Esher",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/7650.png",
+      "address": "369 Esher Rfc, Molesey Road, Hersham, Surrey, KT12 3PF, United Kingdom",
+      "latitude": 51.3780876,
+      "longitude": -0.3898402,
+      "formatted_address": "KT12 3PF, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669902
+    },
+    {
+      "name": "Barnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1400&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1400.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
+    },
+    {
+      "name": "Dorking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6609&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/6609.png",
+      "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
+      "latitude": 51.23505,
+      "longitude": -0.28549,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827752
+    },
+    {
+      "name": "Henley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9984.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Tonbridge Juddians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22915&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/22915.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Bury St Edmunds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3824&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3824.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Canterbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4123&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4123.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Old Albanians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15377.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Westcombe Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24978&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/24978.png",
+      "address": "Westcombe Park RFC Goddington Dene Goddington Lane Orpington KENT BR6 9SX UNITED KINGDOM ",
+      "latitude": 51.36372,
+      "longitude": 0.1147,
+      "formatted_address": "BR6 9SX, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351014717
+    },
+    {
+      "name": "Guernsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9028.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sevenoaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19006&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19006.png",
+      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
+      "latitude": 51.27407,
+      "longitude": 0.19735,
+      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352051169
+    },
+    {
+      "name": "Worthing",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26122&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26122.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "North Walsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14805&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14805.png",
+      "address": "Norwich Road Scottow Near North Walsham NORFOLK NR10 5BU UNITED KINGDOM ",
+      "latitude": 52.7686657,
+      "longitude": 1.3831734,
+      "formatted_address": "NR10 5BU, Scottow, North Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350734463
+    }
+  ],
+  "team_count": 14
+}

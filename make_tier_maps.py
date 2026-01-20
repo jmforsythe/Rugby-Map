@@ -8,7 +8,7 @@ from shapely.geometry import shape, Point, Polygon, mapping
 from shapely.geometry.base import BaseGeometry
 from shapely.prepared import PreparedGeometry, prep
 from shapely.ops import unary_union
-from typing import Dict, List, Any, Optional, TypedDict
+from typing import Dict, List, Any, Optional, Set, TypedDict
 import numpy as np
 from scipy.spatial import Voronoi
 from collections import defaultdict
@@ -916,15 +916,20 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     m = build_base_map()
     
     # Get all unique leagues across all tiers
-    all_leagues = set()
-    for teams in teams_by_tier.values():
+    all_leagues: Set[str] = set()
+    leagues_by_tier: Dict[str, Set[str]] = {}
+    for tier, teams in teams_by_tier.items():
         for team in teams:
             all_leagues.add(team["league"])
-    
+        leagues_by_tier[tier] = set(t["league"] for t in teams)
+
     # Assign colors to leagues
-    league_colors = {}
-    for i, league in enumerate(sorted(all_leagues)):
-        league_colors[league] = league_color(i)
+    league_colors: Dict[str, str] = {}
+    for tier in tier_order:
+        tier_leagues = leagues_by_tier.get(tier, set())
+        for i, league in enumerate(sorted(tier_leagues)):
+            league_colors[league] = league_color(i)
+
     
     # Create separate feature groups for territories and markers (only first tier shown by default)
     territory_groups = {}

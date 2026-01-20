@@ -2,6 +2,9 @@
 
 Interactive maps showing the geographic distribution of English rugby union teams across tiers and counties.
 
+![Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season](example.png)
+*Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season*
+
 ## Setup
 
 ### Prerequisites

@@ -755,188 +755,59 @@ def add_territories_from_geometries(group: folium.FeatureGroup, league_geometrie
                 }
             folium.GeoJson(mapping(merged_geom), style_function=style_function).add_to(group)
 
-def add_markers_for_teams(group: folium.FeatureGroup, teams: List[MapTeam], color: str, tier: str) -> None:
-    """Add team markers with image fallback to a feature group."""
-    for team in teams:
-        team_url = team.get("url", "")
-        league_url = team.get("league_url", "")
-        popup_html = f"""
-        <div style="font-family: Arial; width: 200px;">
-            <h4 style="margin: 0; color: black;">{team["name"]}</h4>
-            <hr style="margin: 5px 0;">
-            <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
-            <p style="margin: 2px 0;"><b>Tier:</b> {tier}</p>
-            <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
-            {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
-            {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+def add_marker(marker_group: FeatureGroupSubGroup, team: MapTeam, color: str, team_tier_order: Optional[int] = None) -> None:
+    team_url = team.get("url", "")
+    league_url = team.get("league_url", "")
+    popup_html = f"""
+    <div style="font-family: Arial; width: 220px;">
+        <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
+        <hr style="margin: 5px 0;">
+        <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
+        <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+    </div>
+    """
+    
+    # Create marker icon
+    icon_size = 30
+    if team.get("image_url"):
+        icon_html = f"""
+        <div style="text-align: center;">
+            <img src="{team["image_url"]}" 
+                    style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
+                    onerror="this.onerror=null; this.src='https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';">
         </div>
         """
-        if team.get("image_url"):
-            icon_html = f"""
-            <div style="text-align: center;">
-                <img src="{team["image_url"]}" 
-                     style="width: 30px; height: 30px; border-radius: 50%;"
-                     onerror="this.onerror=null; this.src=\"https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg\";">
-            </div>
-            """
-            icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-        else:
-            icon_html = f"""
-            <div style="text-align: center;">
-                <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                     style="width: 30px; height: 30px; border-radius: 50%;">
-            </div>
-            """
-            icon = folium.DivIcon(html=icon_html, icon_size=(30, 30), icon_anchor=(15, 15))
-        folium.Marker(
-            location=[team["latitude"], team["longitude"]],
-            popup=folium.Popup(popup_html, max_width=250),
-            icon=icon,
-            tooltip=team["name"]
-        ).add_to(group)
-
-def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "") -> None:
-    """Create individual maps for each tier, with teams separated by league."""
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    for tier, teams in sorted(teams_by_tier.items(), key=lambda x: tier_order.index(x[0]) if x[0] in tier_order else len(tier_order)):
-        m = build_base_map()
-
-        # Group teams by league and assign colors
-        teams_by_league: Dict[str, List[MapTeam]] = {}
-        for team in teams:
-            teams_by_league.setdefault(team["league"], []).append(team)
-        league_colors = {league: league_color(i) for i, league in enumerate(sorted(teams_by_league.keys()))}
-
-        # Feature groups
-        shading_groups: Dict[str, folium.FeatureGroup] = {}
-        marker_groups: Dict[str, folium.FeatureGroup] = {}
-        for league in sorted(teams_by_league.keys()):
-            shading_groups[league] = folium.FeatureGroup(name=f"{league} - Territory", show=True)
-            marker_groups[league] = folium.FeatureGroup(name=f"{league} - Teams", show=True)
-            m.add_child(shading_groups[league])
-            m.add_child(marker_groups[league])
-
-        # Territories
-        league_geometries = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
-        for league, group in shading_groups.items():
-            add_territories_from_geometries(group, {league: league_geometries.get(league, [])}, league_colors)
-
-        # Debug boundaries
-        add_debug_boundaries(m, show_debug)
-
-        # Markers
-        for league, league_teams in teams_by_league.items():
-            add_markers_for_teams(marker_groups[league], league_teams, league_colors[league], tier)
-
-        folium.LayerControl(collapsed=False).add_to(m)
-
-        # Add legend for leagues
-        legend_html = f"""
-        <style>
-        .legend-toggle {{
-            cursor: pointer;
-            user-select: none;
-            display: inline-block;
-            float: right;
-            font-weight: bold;
-            font-size: 18px;
-        }}
-        .legend-content.collapsed {{
-            display: none;
-        }}
-        @media only screen and (max-width: 768px) {{
-            .map-legend {{
-                bottom: 10px !important;
-                right: 10px !important;
-                width: 180px !important;
-                max-height: 250px !important;
-                font-size: 11px !important;
-                padding: 8px !important;
-            }}
-            .map-legend h4 {{
-                font-size: 13px !important;
-            }}
-            .map-legend i {{
-                width: 14px !important;
-                height: 14px !important;
-            }}
-        }}
-        </style>
-        <div class="map-legend" style="position: fixed; 
-                    bottom: 50px; right: 50px; width: 250px; max-height: 400px; overflow-y: auto;
-                    background-color: white; z-index:9999; font-size:14px;
-                    border:2px solid grey; border-radius: 5px; padding: 10px">
-        <h4 style="margin-top: 0;">{tier}{" - " + season if season else ""} - Leagues
-            <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
-        </h4>
-        <div class="legend-content">
+    else:
+        icon_html = f"""
+        <div style="text-align: center;">
+            <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
+                    style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;">
+        </div>
         """
-        
-        for league in sorted(teams_by_league.keys()):
-            color = league_colors[league]
-            count = len(teams_by_league[league])
-            legend_html += f"""
-            <p style="margin: 5px 0;">
-                <i style="background:{color}; width: 20px; height: 20px; 
-                   display: inline-block; border-radius: 50%; border: 1px solid black;"></i>
-                {league} ({count})
-            </p>
-            """
-        
-        legend_html += """</div></div>
-        <script>
-        function toggleLegend() {
-            var content = document.querySelector(".legend-content");
-            var toggle = document.querySelector(".legend-toggle");
-            if (content.classList.contains("collapsed")) {
-                content.classList.remove("collapsed");
-                toggle.textContent = "−";
-            } else {
-                content.classList.add("collapsed");
-                toggle.textContent = "+";
-            }
-        }
-        </script>
-        """
-        m.get_root().html.add_child(folium.Element(legend_html))
-        
-        # Save map
-        tier_name = tier.replace(" ", "_")
-        output_file = os.path.join(output_dir, f"{tier_name}.html")
-        m.save(output_file)
-        print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
+    
+    icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
+    
+    # Get tier order and image URL for cluster icon selection
+    team_image_url = team.get("image_url") or "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+    
+    # Add marker to tier subgroup with custom options for clustering
+    marker = folium.Marker(
+        location=[team["latitude"], team["longitude"]],
+        popup=folium.Popup(popup_html, max_width=250),
+        icon=icon,
+        tooltip=team["name"]
+    )
+    # Add custom options for cluster icon selection and tooltip
+    marker.options["tierOrder"] = team_tier_order
+    marker.options["imageUrl"] = team_image_url
+    marker.options["teamName"] = team["name"]  # Used by cluster iconCreateFunction for tooltip
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "") -> None:
-    """Create a single map with all tiers, where checkboxes control tiers."""
-    
-    # Create output directory
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    
-    # Create base map centered on England
-    m = build_base_map()
-    
-    # Get all unique leagues across all tiers
-    all_leagues: Set[str] = set()
-    leagues_by_tier: Dict[str, Set[str]] = {}
-    for tier, teams in teams_by_tier.items():
-        for team in teams:
-            all_leagues.add(team["league"])
-        leagues_by_tier[tier] = set(t["league"] for t in teams)
+    marker.add_to(marker_group)
 
-    # Assign colors to leagues
-    league_colors: Dict[str, str] = {}
-    for tier in tier_order:
-        tier_leagues = leagues_by_tier.get(tier, set())
-        for i, league in enumerate(sorted(tier_leagues)):
-            league_colors[league] = league_color(i)
-
-    
-    # Create separate feature groups for territories and markers (only first tier shown by default)
-    territory_groups = {}
-    marker_groups = {}
-    sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
-    
-    # JavaScript function to create cluster icon showing the highest tier team's icon
+def add_marker_cluster(m: folium.Map) -> MarkerCluster:
+        # JavaScript function to create cluster icon showing the highest tier team's icon
     # Lower tierOrder = higher tier (Premiership=0, Championship=1, etc.)
     icon_create_function = """
     function(cluster) {
@@ -1000,89 +871,9 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
         icon_create_function=icon_create_function
     )
     m.add_child(parent_cluster)
-    
-    # Build tier order lookup for markers (lower = higher tier)
-    tier_order_map = {tier: idx for idx, tier in enumerate(tier_order)}
-    
-    for idx, tier in enumerate(sorted_tiers):
-        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
-        # Use FeatureGroupSubGroup so markers obey tier visibility toggle while using parent cluster
-        marker_groups[tier] = FeatureGroupSubGroup(parent_cluster, name=f"{tier} - Teams", show=True)
-        m.add_child(territory_groups[tier])
-        m.add_child(marker_groups[tier])
-    
-    # Add colored regions for each tier
-    for tier, teams in sorted(teams_by_tier.items()):
-        league_geometries_for_tier = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
-        add_territories_from_geometries(territory_groups[tier], league_geometries_for_tier, league_colors)
+    return parent_cluster
 
-    num_teams = 0
-
-    # Add markers for each team - clustering handles co-located teams via spiderfy
-    for tier in reversed(sorted_tiers):
-        teams = teams_by_tier[tier]
-        for team in teams:
-            color = league_colors[team["league"]]
-            team_url = team.get("url", "")
-            league_url = team.get("league_url", "")
-            popup_html = f"""
-            <div style="font-family: Arial; width: 220px;">
-                <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
-                <hr style="margin: 5px 0;">
-                <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
-                <p style="margin: 2px 0;"><b>Tier:</b> {tier}</p>
-                <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
-                {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
-                {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
-            </div>
-            """
-            
-            # Create marker icon
-            icon_size = 30
-            if team.get("image_url"):
-                icon_html = f"""
-                <div style="text-align: center;">
-                    <img src="{team["image_url"]}" 
-                         style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
-                         onerror="this.onerror=null; this.src='https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';">
-                </div>
-                """
-            else:
-                icon_html = f"""
-                <div style="text-align: center;">
-                    <img src="https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg" 
-                         style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;">
-                </div>
-                """
-            
-            icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
-            
-            # Get tier order and image URL for cluster icon selection
-            team_tier_order = tier_order_map.get(tier, 999)
-            team_image_url = team.get("image_url") or "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
-            
-            # Add marker to tier subgroup with custom options for clustering
-            marker = folium.Marker(
-                location=[team["latitude"], team["longitude"]],
-                popup=folium.Popup(popup_html, max_width=250),
-                icon=icon,
-                tooltip=team["name"]
-            )
-            # Add custom options for cluster icon selection and tooltip
-            marker.options["tierOrder"] = team_tier_order
-            marker.options["imageUrl"] = team_image_url
-            marker.options["teamName"] = team["name"]  # Used by cluster iconCreateFunction for tooltip
-            marker.add_to(marker_groups[tier])
-
-            num_teams += 1
-    
-    # Add debug boundary layers for ITL regions
-    add_debug_boundaries(m, show_debug)
-    
-    # Add layer control
-    folium.LayerControl(collapsed=False).add_to(m)
-    
-    # Add legend for tiers and leagues
+def legend(legend_title: str, teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], league_colors: Dict[str, str]) -> folium.Element:
     legend_html = f"""
     <style>
     .legend-toggle {{
@@ -1118,8 +909,8 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
                 bottom: 50px; right: 50px; width: 300px; max-height: 500px; overflow-y: auto;
                 background-color: white; z-index:9999; font-size:14px;
                 border:2px solid grey; border-radius: 5px; padding: 10px">
-    <h4 style="margin-top: 0;">All Tiers - Leagues
-        <span class="legend-toggle" onclick="toggleAllLegend()" title="Toggle legend">−</span>
+    <h4 style="margin-top: 0;">{legend_title}
+        <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
     </h4>
     <div class="legend-content">
     """
@@ -1145,7 +936,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     
     legend_html += """</div></div>
     <script>
-    function toggleAllLegend() {
+    function toggleLegend() {
         var content = document.querySelector(".legend-content");
         var toggle = document.querySelector(".legend-toggle");
         if (content.classList.contains("collapsed")) {
@@ -1158,7 +949,111 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     }
     </script>
     """
-    m.get_root().html.add_child(folium.Element(legend_html))
+    return folium.Element(legend_html)
+
+
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "") -> None:
+    """Create individual maps for each tier, with teams separated by league."""
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    for tier_num, tier in enumerate(tier_order):
+        if tier not in teams_by_tier:
+            continue
+        teams = teams_by_tier[tier]
+        m = build_base_map()
+
+        # Group teams by league and assign colors
+        leagues = set(t["league"] for t in teams)
+        league_colors = {league: league_color(tier_num+j) for j, league in enumerate(sorted(leagues))}
+
+        # Feature groups
+        shading_groups: Dict[str, folium.FeatureGroup] = {}
+        marker_groups: Dict[str, folium.FeatureGroup] = {}
+        for league in sorted(leagues):
+            shading_groups[league] = folium.FeatureGroup(name=f"{league} - Territory", show=True)
+            marker_groups[league] = folium.FeatureGroup(name=f"{league} - Teams", show=True)
+            m.add_child(shading_groups[league])
+            m.add_child(marker_groups[league])
+
+        # Territories
+        league_geometries = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
+        for league, group in shading_groups.items():
+            add_territories_from_geometries(group, {league: league_geometries.get(league, [])}, league_colors)
+
+        # Debug boundaries
+        add_debug_boundaries(m, show_debug)
+
+        # Markers
+        for team in teams:
+            add_marker(marker_groups[team["league"]], team, league_colors[team["league"]])
+
+        folium.LayerControl(collapsed=False).add_to(m)
+        
+        m.get_root().html.add_child(legend(f"{tier} - Leagues", {tier: teams}, [tier], league_colors))
+        
+        # Save map
+        tier_name = tier.replace(" ", "_")
+        output_file = os.path.join(output_dir, f"{tier_name}.html")
+        m.save(output_file)
+        print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
+
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "") -> None:
+    """Create a single map with all tiers, where checkboxes control tiers."""
+    
+    # Create output directory
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    
+    # Create base map centered on England
+    m = build_base_map()
+    
+    # Get all unique leagues across all tiers
+    leagues_by_tier: Dict[str, Set[str]] = {tier: set(t["league"] for t in teams) for tier, teams in teams_by_tier.items()}
+
+    # Assign colors to leagues
+    league_colors: Dict[str, str] = {}
+    for tier_num, tier in enumerate(tier_order):
+        tier_leagues = leagues_by_tier.get(tier, set())
+        for j, league in enumerate(sorted(tier_leagues)):
+            league_colors[league] = league_color(tier_num+j)
+
+    # Create separate feature groups for territories and markers (only first tier shown by default)
+    territory_groups: Dict[str, folium.FeatureGroup] = {}
+    marker_groups: Dict[str, FeatureGroupSubGroup] = {}
+    sorted_tiers = [tier for tier in tier_order if tier in teams_by_tier]
+
+    parent_cluster = add_marker_cluster(m)
+
+    # Add feature groups for each tier
+    for idx, tier in enumerate(sorted_tiers):
+        territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
+        # Use FeatureGroupSubGroup so markers obey tier visibility toggle while using parent cluster
+        marker_groups[tier] = FeatureGroupSubGroup(parent_cluster, name=f"{tier} - Teams", show=True)
+        m.add_child(territory_groups[tier])
+        m.add_child(marker_groups[tier])
+    
+    # Add colored regions for each tier
+    for tier, teams in sorted(teams_by_tier.items()):
+        league_geometries_for_tier = collect_league_geometries_for_tier(teams, region_to_teams, itl_hierarchy, league_colors)
+        add_territories_from_geometries(territory_groups[tier], league_geometries_for_tier, league_colors)
+
+    # Build tier order lookup for markers (lower = higher tier)
+    tier_order_map = {tier: idx for idx, tier in enumerate(tier_order)}
+
+    # Add markers for each team - clustering handles co-located teams via spiderfy
+    num_teams = 0
+    for tier in reversed(sorted_tiers):
+        teams = teams_by_tier[tier]
+        for team in teams:
+            add_marker(marker_groups[tier], team, league_colors[team["league"]], tier_order_map.get(tier, 999))
+            num_teams += 1
+    
+    # Add debug boundary layers for ITL regions
+    add_debug_boundaries(m, show_debug)
+    
+    # Add layer control
+    folium.LayerControl(collapsed=False).add_to(m)
+    
+    # Add legend for tiers and leagues
+    m.get_root().html.add_child(legend("All Tiers - Leagues", teams_by_tier, sorted_tiers, league_colors))
     
     # Save map
     output_file = os.path.join(output_dir, output_name)

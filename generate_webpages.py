@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 from typing import List, Dict
 
+from utils import get_google_analytics_script
+
 
 def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     """Generate HTML content for a season's index page."""
@@ -116,6 +118,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
             padding: 0.5em 1em;
         }}
     </style>
+    {get_google_analytics_script()}
 </head>
 <body>
     <div class="back-link">
@@ -180,14 +183,14 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
 
 def get_top_level_index_html(seasons: List[str]) -> str:
     """Generate HTML content for the top-level index page."""
-    html = """<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Rugby Union Team Maps</title>
     <style>
-        body {
+        body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 800px;
             margin: 60px auto;
@@ -195,19 +198,19 @@ def get_top_level_index_html(seasons: List[str]) -> str:
             line-height: 1.6;
             color: #333;
             background: #f9f9f9;
-        }
-        h1 {
+        }}
+        h1 {{
             font-size: 2.2em;
             margin-bottom: 0.3em;
             color: #2c3e50;
             text-align: center;
-        }
-        body > p {
+        }}
+        body > p {{
             text-align: center;
             color: #666;
             margin-bottom: 2em;
-        }
-        ul {
+        }}
+        ul {{
             list-style: none;
             padding: 0;
             text-align: center;
@@ -215,11 +218,11 @@ def get_top_level_index_html(seasons: List[str]) -> str:
             border-radius: 8px;
             padding: 1.5em;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        li {
+        }}
+        li {{
             margin: 0.7em 0;
-        }
-        a {
+        }}
+        a {{
             display: block;
             color: #2c3e50;
             text-decoration: none;
@@ -229,15 +232,15 @@ def get_top_level_index_html(seasons: List[str]) -> str:
             background: #f5f7fa;
             border-radius: 6px;
             border: 1px solid #e0e0e0;
-        }
-        a:hover {
+        }}
+        a:hover {{
             background: #0066cc;
             color: white;
             border-color: #0066cc;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-        }
-        .footer {
+        }}
+        .footer {{
             margin-top: 3em;
             padding-top: 2em;
             border-top: 1px solid #ddd;
@@ -248,15 +251,16 @@ def get_top_level_index_html(seasons: List[str]) -> str:
             border-radius: 8px;
             padding: 1.5em;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .footer a {
+        }}
+        .footer a {{
             color: #0066cc;
             font-size: 1em;
-        }
-        .footer p {
+        }}
+        .footer p {{
             margin: 0.5em 0;
-        }
+        }}
     </style>
+    {get_google_analytics_script()}
 </head>
 <body>
     <h1>English Rugby Union Team Maps</h1>

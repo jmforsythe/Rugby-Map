@@ -13,7 +13,7 @@ import numpy as np
 from scipy.spatial import Voronoi
 from collections import defaultdict
 
-from utils import MapTeam, json_load_cache
+from utils import MapTeam, json_load_cache, get_google_analytics_script
 
 # Extended type definitions for mapping (adds geospatial fields to base types)
 
@@ -965,6 +965,8 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
             continue
         teams = teams_by_tier[tier]
         m = build_base_map()
+        m.get_root().header.add_child(folium.Element(get_google_analytics_script()))
+        m.get_root().header.add_child(folium.Element(f"<title>{season} {tier}</title>"))
 
         # Group teams by league and assign colors
         leagues = set(t["league"] for t in teams)
@@ -1009,7 +1011,9 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     
     # Create base map centered on England
     m = build_base_map()
-    
+    m.get_root().header.add_child(folium.Element(get_google_analytics_script()))
+    m.get_root().header.add_child(folium.Element(f"<title>{season} All Tiers {"Men" if tier_order[0].find('Women')==-1 else "Women"}</title>"))
+
     # Get all unique leagues across all tiers
     leagues_by_tier: Dict[str, Set[str]] = {tier: set(t["league"] for t in teams) for tier, teams in teams_by_tier.items()}
 

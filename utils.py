@@ -196,3 +196,17 @@ def json_load_cache(filename: str) -> Dict:
     """Load geocode cache from JSON file."""
     with open(filename, "r", encoding="utf-8") as f:
         return json.load(f)
+
+def get_google_analytics_script() -> str:
+    """Return Google Analytics script for embedding in HTML pages."""
+    return """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-30KPY67PSR"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-30KPY67PSR');
+    </script>
+"""

@@ -225,7 +225,7 @@ def main() -> None:
         league_url = league["url"]
         parent_url = league["parent_url"]
 
-        banned_words = ["playoff", "play-off", "phase"]
+        banned_words = ["playoff", "play-off", "phase", "shield", "trophy"]
         if any(word in league_name.lower() for word in banned_words):
             print(f"Skipping {league_name} (playoff/phase league)")
             continue

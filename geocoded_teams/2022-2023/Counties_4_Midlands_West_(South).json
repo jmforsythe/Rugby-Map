@@ -1,0 +1,104 @@
+{
+  "league_name": "Counties 4 Midlands West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=39142&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Hereford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10012",
+      "image_url": "https://images.englandrugby.com/club_images/10012.png",
+      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
+      "latitude": 52.0522599,
+      "longitude": -2.72805,
+      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 351368605
+    },
+    {
+      "name": "Worcester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26046",
+      "image_url": "https://images.englandrugby.com/club_images/26046.png",
+      "address": "Worcester Rugby Football Club, Westons Fields, Offerton Lane, Hindlip, Worcester, Worcestershire, WR3 8TR, United Kingdom",
+      "latitude": 52.21841,
+      "longitude": -2.16082,
+      "formatted_address": "WR3 8TR, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352161983
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Malvern II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13209",
+      "image_url": "https://images.englandrugby.com/club_images/13209.png",
+      "address": "Malvern Rfc, Spring Lane, Malvern Link, Worcestershire , WR14 1AJ, United Kingdom",
+      "latitude": 52.1269617,
+      "longitude": -2.3075001,
+      "formatted_address": "WR14 1AJ, Malvern, Malvern Hills, Worcestershire, England, United Kingdom",
+      "place_id": 350893965
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Droitwich II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6794",
+      "image_url": "https://images.englandrugby.com/club_images/6794.png",
+      "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
+      "latitude": 52.26735,
+      "longitude": -2.13631,
+      "formatted_address": "WR9 8PR, Droitwich Spa, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352164792
+    },
+    {
+      "name": "Five Ways Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8184",
+      "image_url": "https://images.englandrugby.com/club_images/8184.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Bishops Castle & Onny Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2412",
+      "image_url": "https://images.englandrugby.com/club_images/2412.png",
+      "address": "0, Love Lane, Bishops Castle, Shropshire, SY9 5BX, United Kingdom",
+      "latitude": 52.4888806,
+      "longitude": -2.9938455,
+      "formatted_address": "Love Lane, Bishop's Castle, Shropshire, England, SY9 5DH, United Kingdom",
+      "place_id": 254217798
+    },
+    {
+      "name": "Redditch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17592",
+      "image_url": "https://images.englandrugby.com/club_images/17592.png",
+      "address": "Redditch Cricket Hockey And Rugby Football Club, Bromsgrove Road, Redditch, Worcestershire, B97 4SP, United Kingdom",
+      "latitude": 52.305942,
+      "longitude": -1.9553051,
+      "formatted_address": "B97 4SP, Redditch, Worcestershire, England, United Kingdom",
+      "place_id": 350489490
+    },
+    {
+      "name": "Evesham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7736",
+      "image_url": "https://images.englandrugby.com/club_images/7736.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 10
+}

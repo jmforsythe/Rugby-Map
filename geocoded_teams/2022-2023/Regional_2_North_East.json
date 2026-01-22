@@ -1,0 +1,124 @@
+{
+  "league_name": "Regional 2 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39147&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Pontefract",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17027",
+      "image_url": "https://images.englandrugby.com/club_images/17027.png",
+      "address": "Pontefract R.u.f.c., Moor Lane, Carleton, Pontefract, West Yorkshire, WF8 3RX, United Kingdom",
+      "latitude": 53.6740821,
+      "longitude": -1.2927013,
+      "formatted_address": "WF8 3RX, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350891085
+    },
+    {
+      "name": "Moortown",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14078",
+      "image_url": "https://images.englandrugby.com/club_images/14078.png",
+      "address": "Moortown R.u.f.c., Moss Valley, King Lane, Alwoodley, Leeds, West Yorkshire, LS17 7NT, United Kingdom",
+      "latitude": 53.8567818,
+      "longitude": -1.5544581,
+      "formatted_address": "LS17 7NT, Alwoodley, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350690630
+    },
+    {
+      "name": "Malton and Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13184",
+      "image_url": "https://images.englandrugby.com/club_images/13184.png",
+      "address": "THE GANNOCK OLD MALTON ROAD MALTON NORTH YORKSHIRE YO17 7EY UNITED KINGDOM ",
+      "latitude": 54.1389817,
+      "longitude": -0.7882645,
+      "formatted_address": "YO17 7EY, Malton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350447864
+    },
+    {
+      "name": "Bridlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3154",
+      "image_url": "https://images.englandrugby.com/club_images/3154.png",
+      "address": "Dukes Park Queens Gate Bridlington EAST RIDING OF YORKSHIRE YO16 7LN UNITED KINGDOM ",
+      "latitude": 54.0903597,
+      "longitude": -0.1973737,
+      "formatted_address": "YO16 7LN, Bridlington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352186394
+    },
+    {
+      "name": "Scarborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18780",
+      "image_url": "https://images.englandrugby.com/club_images/18780.png",
+      "address": "The J M Guthrie Clubhouse, Silver Royd, Scalby, Scarborough, North Yorkshire, YO13 0NL, United Kingdom",
+      "latitude": 54.30982,
+      "longitude": -0.44518,
+      "formatted_address": "YO13 0NL, Burniston, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351733322
+    },
+    {
+      "name": "Dronfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6819",
+      "image_url": "https://images.englandrugby.com/club_images/6819.png",
+      "address": "Gosforth Fields Sports Association, Gosforth Fields, Bubnell Drive (off Stubley Drive), Dronfield, Derbyshire, S18 8QY, United Kingdom",
+      "latitude": 53.304955,
+      "longitude": -1.4887735,
+      "formatted_address": "S18 8QY, Dronfield, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351843304
+    },
+    {
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
+    },
+    {
+      "name": "Old Brodleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15485",
+      "image_url": "https://images.englandrugby.com/club_images/15485.png",
+      "address": "Woodhead Denholme Gate Road, Hipperholme Denholme Gate Road, Hipperholme Halifax WEST YORKSHIRE HX3 8JU UNITED KINGDOM ",
+      "latitude": 53.73147,
+      "longitude": -1.81622,
+      "formatted_address": "HX3 8JU, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 351382960
+    },
+    {
+      "name": "Selby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18969",
+      "image_url": "https://images.englandrugby.com/club_images/18969.png",
+      "address": "Selby RUFC Sandhill Lane Leeds Road Selby YO8 4JP UNITED KINGDOM ",
+      "latitude": 53.777782,
+      "longitude": -1.097705,
+      "formatted_address": "YO8 4JP, Selby, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350901654
+    },
+    {
+      "name": "Old Crossleyans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15619",
+      "image_url": "https://images.englandrugby.com/club_images/15619.png",
+      "address": "Standeven House Broomfield Avenue, Savile Park Halifax WEST YORKSHIRE HX3 0JE UNITED KINGDOM ",
+      "latitude": 53.70547,
+      "longitude": -1.87241,
+      "formatted_address": "HX3 0JE, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350931053
+    },
+    {
+      "name": "Pocklington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17000",
+      "image_url": "https://images.englandrugby.com/club_images/17000.png",
+      "address": "Pocklington R.u.f.c., Feathers Field, Percy Road, Pocklington, East Yorkshire, YO42 2QB, United Kingdom",
+      "latitude": 53.929475,
+      "longitude": -0.7728368,
+      "formatted_address": "YO42 2QB, Pocklington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350450147
+    },
+    {
+      "name": "Bradford & Bingley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2918",
+      "image_url": "https://images.englandrugby.com/club_images/2918.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 12
+}

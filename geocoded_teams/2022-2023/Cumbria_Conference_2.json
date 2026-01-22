@@ -1,0 +1,67 @@
+{
+  "league_name": "Cumbria Conference 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=44764&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Penrith II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16687",
+      "image_url": "https://images.englandrugby.com/club_images/16687.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Hawcoat Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9735",
+      "image_url": "https://images.englandrugby.com/club_images/9735.png",
+      "address": "Hawcoat Park Sports & Social Club Hawcoat Lane Barrow In Furness Cumbria LA14 4HF United Kingdom",
+      "latitude": 54.1300027,
+      "longitude": -3.214462,
+      "formatted_address": "LA14 4HF, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350678163
+    },
+    {
+      "name": "St Benedicts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20199",
+      "image_url": "https://images.englandrugby.com/club_images/20199.png",
+      "address": "Newlands Avenue Mirehouse Whitehaven Cumbria CA28 9SH United Kingdom",
+      "latitude": 54.5295053,
+      "longitude": -3.578969,
+      "formatted_address": "CA28 9SH, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 350528453
+    },
+    {
+      "name": "Creighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5852",
+      "image_url": "https://images.englandrugby.com/club_images/5852.png",
+      "address": "Sycamore Lane Parkland Carlisle CUMBRIA CA1 3SR UNITED KINGDOM",
+      "latitude": 54.8755644,
+      "longitude": -2.8871217,
+      "formatted_address": "CA1 3SR, St Cuthbert Without, Durdar, Cumberland, England, United Kingdom",
+      "place_id": 350527740
+    },
+    {
+      "name": "Silloth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19382",
+      "image_url": "https://images.englandrugby.com/club_images/19382.png",
+      "address": "The Jim W Brough Silloth Rugby Park Eden Street Silloth Cumbria CA7 4AX United Kingdom",
+      "latitude": 54.86706,
+      "longitude": -3.38731,
+      "formatted_address": "CA7 4AX, Silloth-on-Solway, Cumberland, England, United Kingdom",
+      "place_id": 350583568
+    },
+    {
+      "name": "Workington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26096",
+      "image_url": "https://images.englandrugby.com/club_images/26096.png",
+      "address": "Ellis Sports Ground Moss Bay Road Workington Cumbria CA14 3XZ United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    }
+  ],
+  "team_count": 6
+}

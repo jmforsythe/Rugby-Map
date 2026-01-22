@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 1 South West (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39208&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Drybrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6838",
+      "image_url": "https://images.englandrugby.com/club_images/6838.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Havant Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9703",
+      "image_url": "https://images.englandrugby.com/club_images/9703.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Bath Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1596",
+      "image_url": "https://images.englandrugby.com/club_images/1596.png",
+      "address": "Lambridge Rugby Ground, Lambridge, Bath, Avon, BA2 4DS, England",
+      "latitude": 51.3826539,
+      "longitude": -2.3560958,
+      "formatted_address": "BA2 4DS, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350040740
+    },
+    {
+      "name": "Gordano Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8731",
+      "image_url": "https://images.englandrugby.com/club_images/8731.png",
+      "address": "Gordano Rfc Caswell Lane Portbury Bristol Bristol BS20 7UF United Kingdom",
+      "latitude": 51.4733448,
+      "longitude": -2.7246778,
+      "formatted_address": "BS20 7UF, Portbury, North Somerset, England, United Kingdom",
+      "place_id": 350509743
+    },
+    {
+      "name": "Ellingham & Ringwood Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7456",
+      "image_url": "https://images.englandrugby.com/club_images/7456.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Amesbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=625",
+      "image_url": "https://images.englandrugby.com/club_images/625.png",
+      "address": "Archers Gate Centenary Pavilion Archers Gate Amesbury Wilts SP4 7YT England",
+      "latitude": 51.16196,
+      "longitude": -1.76851,
+      "formatted_address": "SP4 7YT, Amesbury, Wiltshire, England, United Kingdom",
+      "place_id": 351966899
+    },
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    }
+  ],
+  "team_count": 7
+}

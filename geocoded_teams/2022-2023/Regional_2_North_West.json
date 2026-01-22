@@ -1,0 +1,124 @@
+{
+  "league_name": "Regional 2 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39148&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Anselmians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=686",
+      "image_url": "https://images.englandrugby.com/club_images/686.png",
+      "address": "Malone Field, Eastham Village Road, Eastham, Wirral, Merseyside, CH62 0AN, United Kingdom",
+      "latitude": 53.31497,
+      "longitude": -2.96101,
+      "formatted_address": "CH62 0AN, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351064551
+    },
+    {
+      "name": "Bowdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2849",
+      "image_url": "https://images.englandrugby.com/club_images/2849.png",
+      "address": "Clay Lane Timperley Altrincham CHESHIRE WA15 7AF UNITED KINGDOM ",
+      "latitude": 53.38779,
+      "longitude": -2.31441,
+      "formatted_address": "WA15 7AF, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127702
+    },
+    {
+      "name": "Birkenhead Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=96825",
+      "image_url": "https://images.englandrugby.com/club_images/96825.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Rochdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17889",
+      "image_url": "https://images.englandrugby.com/club_images/17889.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Firwood Waterloo",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8162",
+      "image_url": "https://images.englandrugby.com/club_images/8162.png",
+      "address": "The Memorial Ground, St Anthony's Road, Blundellsands, Merseyside, L23 8TW, England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Altrincham Kersal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=536",
+      "image_url": "https://images.englandrugby.com/club_images/536.png",
+      "address": "Stelfox Avenue, Timperley, Altrincham, Cheshire, WA15 6UL, United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351676138
+    },
+    {
+      "name": "Vale of Lune",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23900",
+      "image_url": "https://images.englandrugby.com/club_images/23900.png",
+      "address": "Vale Of Lune Rufc, Powderhouse Lane, Lancaster., Lancashire, LA1 2TT, United Kingdom",
+      "latitude": 54.0619369,
+      "longitude": -2.8191176,
+      "formatted_address": "LA1 2TT, England, United Kingdom",
+      "place_id": 350226941
+    },
+    {
+      "name": "Winnington Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25649",
+      "image_url": "https://images.englandrugby.com/club_images/25649.png",
+      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
+      "latitude": 53.25223,
+      "longitude": -2.54034,
+      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350683530
+    },
+    {
+      "name": "Glossop",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8611",
+      "image_url": "https://images.englandrugby.com/club_images/8611.png",
+      "address": "Hargate Hill Lane, Charlesworth, Glossop, Derbyshire, SK13 5HG, United Kingdom",
+      "latitude": 53.4379058,
+      "longitude": -1.9874281,
+      "formatted_address": "Hargate Hill Lane, Charlesworth, Gamesley, High Peak, Derbyshire, East Midlands, England, SK13 5HG, United Kingdom",
+      "place_id": 256963181
+    },
+    {
+      "name": "Douglas (I.O.M.)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6674",
+      "image_url": "https://images.englandrugby.com/club_images/6674.png",
+      "address": "The Clubhouse, Port-e-chee, Im2 2ra, Douglas, Isle Of Man, IM2 2RA, Isle Of Man",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Broughton Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3497",
+      "image_url": "https://images.englandrugby.com/club_images/3497.png",
+      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    },
+    {
+      "name": "Wilmslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25471",
+      "image_url": "https://images.englandrugby.com/club_images/25471.png",
+      "address": "Memorial Ground Kings Road Pownall Park Wilmslow Cheshire SK9 5PZ United Kingdom",
+      "latitude": 53.3344312,
+      "longitude": -2.2483284,
+      "formatted_address": "SK9 5PZ, Wilmslow, Cheshire East, England, United Kingdom",
+      "place_id": 350820137
+    }
+  ],
+  "team_count": 12
+}

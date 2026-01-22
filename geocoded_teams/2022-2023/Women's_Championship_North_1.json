@@ -1,0 +1,107 @@
+{
+  "league_name": "Women's Championship North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39196&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Leicester Tigers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124608",
+      "image_url": "https://images.englandrugby.com/club_images/124608.png",
+      "address": "Mattioli Woods Welford Road Leicester Tigers Rfc Aylestone Road Leicester Leicestershire LE2 7TR United Kingdom",
+      "latitude": 52.6246099,
+      "longitude": -1.1329,
+      "formatted_address": "LE2 7TR, City of Leicester, England, United Kingdom",
+      "place_id": 351027026
+    },
+    {
+      "name": "Cheltenham Tigers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4537",
+      "image_url": "https://images.englandrugby.com/club_images/4537.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 259583358
+    },
+    {
+      "name": "Worcester Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124147",
+      "image_url": "https://images.englandrugby.com/club_images/124147.png",
+      "address": "Worcester Rugby Football Club Westons Fields Offerton Lane Hindlip Worcester Worcestershire WR3 8TR United Kingdom",
+      "latitude": 52.21841,
+      "longitude": -2.16082,
+      "formatted_address": "WR3 8TR, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352162002
+    },
+    {
+      "name": "West Park Leeds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24890",
+      "image_url": "https://images.englandrugby.com/club_images/24890.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "Loughborough Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12838",
+      "image_url": "https://images.englandrugby.com/club_images/12838.png",
+      "address": "Loughborough Rfc The Clubhouse Derby Road Playing Fields Off Cotton Way Loughborough Leicestershire LE11 5FJ United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351019657
+    },
+    {
+      "name": "Novocastrians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15174",
+      "image_url": "https://images.englandrugby.com/club_images/15174.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Barnsley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1461",
+      "image_url": "https://images.englandrugby.com/club_images/1461.png",
+      "address": "Barnsley Rugby Club Ltd, Shaw Lane, Barnsley, South Yorkshire, S70 6HZ, United Kingdom",
+      "latitude": 53.5502194,
+      "longitude": -1.4929965,
+      "formatted_address": "S70 6HZ, Barnsley, South Yorkshire, England, United Kingdom",
+      "place_id": 351861271
+    },
+    {
+      "name": "Kenilworth Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11258",
+      "image_url": "https://images.englandrugby.com/club_images/11258.png",
+      "address": "The Jack Davies Memorial Ground, Glasshouse Lane, Kenilworth, Warwickshire , CV8 2AJ, United Kingdom",
+      "latitude": 52.3382842,
+      "longitude": -1.5597896,
+      "formatted_address": "CV8 2AJ, Kenilworth, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126681
+    },
+    {
+      "name": "Bishop Auckland Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2358",
+      "image_url": "https://images.englandrugby.com/club_images/2358.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM ",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "Harrogate Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9499",
+      "image_url": "https://images.englandrugby.com/club_images/9499.png",
+      "address": "Apollo Capital Stadium, Rudding Lane, Follifoot, Harrogate, HG3 1DQ, England",
+      "latitude": 53.97342,
+      "longitude": -1.50176,
+      "formatted_address": "HG3 1DQ, Follifoot, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352797
+    }
+  ],
+  "team_count": 10
+}

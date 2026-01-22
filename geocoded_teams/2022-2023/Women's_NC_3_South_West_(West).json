@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39240&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Helston Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125409",
+      "image_url": "https://images.englandrugby.com/club_images/125409.png",
+      "address": "King George V Playing Fields, Clodgey Lane, Helston, Cornwall, TR13 8PJ, United Kingdom",
+      "latitude": 50.1048847,
+      "longitude": -5.2657992,
+      "formatted_address": "TR13 8PJ, Helston, Cornwall, England, United Kingdom",
+      "place_id": 350866499
+    },
+    {
+      "name": "Sidmouth Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124689",
+      "image_url": "https://images.englandrugby.com/club_images/124689.png",
+      "address": "Sidmouth Rfc Heydons Lane Sidmouth Devon EX10 8NJ United Kingdom",
+      "latitude": 50.6802599,
+      "longitude": -3.24122,
+      "formatted_address": "EX10 8NJ, Sidmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350797688
+    },
+    {
+      "name": "Okehampton Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123932",
+      "image_url": "https://images.englandrugby.com/club_images/123932.png",
+      "address": "Showfield, Oaklands, Okehampton, Devon, EX20 1LN, United Kingdom",
+      "latitude": 50.74082,
+      "longitude": -4.00763,
+      "formatted_address": "EX20 1LN, Okehampton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351254687
+    },
+    {
+      "name": "Paignton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16532",
+      "image_url": "https://images.englandrugby.com/club_images/16532.png",
+      "address": "The Club House, Queens Park, Queens Road, Paignton, Devon, TQ4 6AT, United Kingdom",
+      "latitude": 50.4335657,
+      "longitude": -3.5626724,
+      "formatted_address": "TQ4 6AT, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350862697
+    },
+    {
+      "name": "Truro Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124321",
+      "image_url": "https://images.englandrugby.com/club_images/124321.png",
+      "address": "Truro R.f.c., St. Clements Hill, Truro, Cornw, TR1 1NY, United Kingdom",
+      "latitude": 50.2644421,
+      "longitude": -5.0330982,
+      "formatted_address": "TR1 1NY, Truro, Cornwall, England, United Kingdom",
+      "place_id": 350866161
+    },
+    {
+      "name": "Teignmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21776",
+      "image_url": "https://images.englandrugby.com/club_images/21776.png",
+      "address": "Bitton Sports Ground Bitton Park Road Teignmouth Devon TQ14 9DQ United Kingdom",
+      "latitude": 50.5476295,
+      "longitude": -3.5073944,
+      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350409625
+    }
+  ],
+  "team_count": 6
+}

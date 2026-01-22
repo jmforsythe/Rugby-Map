@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 Midlands (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39210&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Peterborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16824",
+      "image_url": "https://images.englandrugby.com/club_images/16824.png",
+      "address": "Peterborough R.u.f.c. Second Drove Fengate Peterborough Cambridgeshire PE1 5XA United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759253
+    },
+    {
+      "name": "Milton Keynes Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125069",
+      "image_url": "https://images.englandrugby.com/club_images/125069.png",
+      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
+      "latitude": 52.0023636,
+      "longitude": -0.7803565,
+      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703816
+    },
+    {
+      "name": "St Neots Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20644",
+      "image_url": "https://images.englandrugby.com/club_images/20644.png",
+      "address": "The Clubhouse, The Common, New Street, St Neots, Cambridgeshire, PE19 1RU, United Kingdom",
+      "latitude": 52.2359806,
+      "longitude": -0.2661029,
+      "formatted_address": "PE19 1RU, St. Neots, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759693
+    },
+    {
+      "name": "Bedford Blues Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124041",
+      "image_url": "https://images.englandrugby.com/club_images/124041.png",
+      "address": "Bedford Blues Rfc, Goldington Road, Bedford, Bedfordshire, MK40 3NF, United Kingdom",
+      "latitude": 52.1405326,
+      "longitude": -0.4595905,
+      "formatted_address": "MK40 3NF, Bedford, England, United Kingdom",
+      "place_id": 350703433
+    },
+    {
+      "name": "Rugby Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18288",
+      "image_url": "https://images.englandrugby.com/club_images/18288.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    },
+    {
+      "name": "Buckingham Swans Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3543",
+      "image_url": "https://images.englandrugby.com/club_images/3543.png",
+      "address": "The Floyd Field, Maids Moreton, Nr Buckingham, Buckinghamshire, MK18 1RF, United Kingdom",
+      "latitude": 52.0123836,
+      "longitude": -0.979128,
+      "formatted_address": "MK18 1RF, Maids Moreton, Buckinghamshire, England, United Kingdom",
+      "place_id": 350702984
+    },
+    {
+      "name": "Biggleswade Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2184",
+      "image_url": "https://images.englandrugby.com/club_images/2184.png",
+      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
+      "latitude": 52.0699871,
+      "longitude": -0.2705866,
+      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
+      "place_id": 258315732
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,104 @@
+{
+  "league_name": "Counties 3 adm Lancashire & Cheshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39143&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Hoylake",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10541",
+      "image_url": "https://images.englandrugby.com/club_images/10541.png",
+      "address": "Carham Road Hoylake Wirral MERSEYSIDE CH47 4FF UNITED KINGDOM ",
+      "latitude": 53.39131,
+      "longitude": -3.17232,
+      "formatted_address": "CH47 4FF, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062703
+    },
+    {
+      "name": "New Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14326",
+      "image_url": "https://images.englandrugby.com/club_images/14326.png",
+      "address": "Reeds Lane Leasowe Moreton Wirral Merseyside CH46 3RH United Kingdom",
+      "latitude": 53.41533,
+      "longitude": -3.10597,
+      "formatted_address": "CH46 3RH, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062213
+    },
+    {
+      "name": "Garstang",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8484",
+      "image_url": "https://images.englandrugby.com/club_images/8484.png",
+      "address": "Hudson Park, Garstang Sports & Social Club, High Street, Garstang, Preston, Lancashire, PR3 1EB, England",
+      "latitude": 53.9032376,
+      "longitude": -2.7728825,
+      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 351801066
+    },
+    {
+      "name": "Thornton Cleveleys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22752",
+      "image_url": "https://images.englandrugby.com/club_images/22752.png",
+      "address": "Thornton Sports Centre Victoria Road East Thornton Cleveleys. FY5 3SX United Kingdom",
+      "latitude": 53.8741166,
+      "longitude": -3.0170559,
+      "formatted_address": "YMCA Thornton Sports Centre, Victoria Road East, Norcross, Thornton, Wyre, Lancashire, England, FY5 3SX, United Kingdom",
+      "place_id": 255937534
+    },
+    {
+      "name": "Dukinfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6889",
+      "image_url": "https://images.englandrugby.com/club_images/6889.png",
+      "address": "Blocksages Playing Fields Birch Lane Dukinfield SK16 5AP UNITED KINGDOM",
+      "latitude": 53.4727063,
+      "longitude": -2.0768579,
+      "formatted_address": "SK16 5AP, Tameside, Greater Manchester, England, United Kingdom",
+      "place_id": 350818885
+    },
+    {
+      "name": "Ellesmere Port",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7430",
+      "image_url": "https://images.englandrugby.com/club_images/7430.png",
+      "address": "Ellesmere Port RUFC Whitby Sports & Social Club Chester Road, Whitby, Ellesmere Port CHESHIRE CH65 6QF UNITED KINGDOM",
+      "latitude": 53.2621334,
+      "longitude": -2.9094102,
+      "formatted_address": "CH65 6QF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350545909
+    },
+    {
+      "name": "Old Bedians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15430",
+      "image_url": "https://images.englandrugby.com/club_images/15430.png",
+      "address": "Old Bedians Sports Centre Millgate Lane DIDSBURY Manchester GREATER MANCHESTER M20 5QX UNITED KINGDOM",
+      "latitude": 53.40308,
+      "longitude": -2.23785,
+      "formatted_address": "M20 5QX, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541956
+    },
+    {
+      "name": "Bury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3809",
+      "image_url": "https://images.englandrugby.com/club_images/3809.png",
+      "address": "Radcliffe Road Bury LANCASHIRE BL9 9JX UNITED KINGDOM ",
+      "latitude": 53.58371,
+      "longitude": -2.30082,
+      "formatted_address": "BL9 9JX, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 350991687
+    },
+    {
+      "name": "Vagabonds (I.O.M.)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23887",
+      "image_url": "https://images.englandrugby.com/club_images/23887.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Port Sunlight",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17100",
+      "image_url": "https://images.englandrugby.com/club_images/17100.png",
+      "address": "Leverhulme Playing Fields Warren Lane Bromborough Wirral MERSEYSIDE CH62 3QQ UNITED KINGDOM",
+      "latitude": 53.32787,
+      "longitude": -2.96649,
+      "formatted_address": "CH62 3QQ, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350613940
+    }
+  ],
+  "team_count": 10
+}

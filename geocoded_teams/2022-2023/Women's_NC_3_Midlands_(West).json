@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC 3 Midlands (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39228&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Stafford Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26813",
+      "image_url": "https://images.englandrugby.com/club_images/26813.png",
+      "address": "Stafford Rugby Club, The County Ground, Blackberry Lane, Stafford, Staffordshire, ST16 2TT, United Kingdom",
+      "latitude": 52.8118304,
+      "longitude": -2.1324176,
+      "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836744
+    },
+    {
+      "name": "Silhillians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19366",
+      "image_url": "https://images.englandrugby.com/club_images/19366.png",
+      "address": "Warwick Road Copt Heath, Knowle Solihull WEST MIDLANDS B93 9LW UNITED KINGDOM ",
+      "latitude": 52.4007409,
+      "longitude": -1.7467371,
+      "formatted_address": "B93 9LW, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488627
+    },
+    {
+      "name": "Clee Hill Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124632",
+      "image_url": "https://images.englandrugby.com/club_images/124632.png",
+      "address": "Tenbury Road Clee Hill Ludlow SHROPSHIRE SY8 3NJ UNITED KINGDOM ",
+      "latitude": 52.3646,
+      "longitude": -2.59257,
+      "formatted_address": "SY8 3NJ, Nash, Shropshire, England, United Kingdom",
+      "place_id": 352026682
+    },
+    {
+      "name": "Stone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21103",
+      "image_url": "https://images.englandrugby.com/club_images/21103.png",
+      "address": "Stone Hockey And Rugby Club , Enson Lane, Stone, Staffordshire, ST15 0BJ, United Kingdom",
+      "latitude": 52.88415,
+      "longitude": -2.12831,
+      "formatted_address": "ST15 0BJ, Stone Rural, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 351990503
+    }
+  ],
+  "team_count": 4
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39146&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Penrith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16686",
+      "image_url": "https://images.englandrugby.com/club_images/16686.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Morpeth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14137",
+      "image_url": "https://images.englandrugby.com/club_images/14137.png",
+      "address": "Grange House Field, Mitford Road, Morpeth, Northumberland , NE61 1RJ, United Kingdom",
+      "latitude": 55.1696699,
+      "longitude": -1.7006437,
+      "formatted_address": "NE61 1RJ, Morpeth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350713146
+    },
+    {
+      "name": "Northern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14948",
+      "image_url": "https://images.englandrugby.com/club_images/14948.png",
+      "address": "Mccracken Park, Great North Road, Newcastle Upon Tyne, Tyne And Wear, NE3 2DT, United Kingdom",
+      "latitude": 55.0206406,
+      "longitude": -1.6226242,
+      "formatted_address": "NE3 2DT, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350711879
+    },
+    {
+      "name": "Percy Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16747",
+      "image_url": "https://images.englandrugby.com/club_images/16747.png",
+      "address": "The Club House, Preston Avenue, North Shields, Tyne  Wear, NE30 2BE, United Kingdom",
+      "latitude": 55.01683,
+      "longitude": -1.44498,
+      "formatted_address": "NE30 2BE, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351626964
+    },
+    {
+      "name": "Middlesbrough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13793",
+      "image_url": "https://images.englandrugby.com/club_images/13793.png",
+      "address": "Acklam Park Green Lane, Acklam Middlesbrough NORTH YORKSHIRE TS5 7SL UNITED KINGDOM ",
+      "latitude": 54.55121,
+      "longitude": -1.2515,
+      "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 352090787
+    },
+    {
+      "name": "Durham City",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6950",
+      "image_url": "https://images.englandrugby.com/club_images/6950.png",
+      "address": "Durham City RFC, Hollow Drift, Green Lane, Durham, COUNTY DURHAM, DH1 3JU, UNITED KINGDOM, ",
+      "latitude": 54.7736961,
+      "longitude": -1.5613055,
+      "formatted_address": "DH1 3JU, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586188
+    },
+    {
+      "name": "Aspatria",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=979",
+      "image_url": "https://images.englandrugby.com/club_images/979.png",
+      "address": "Bower Park Station Road Aspatria Wigton CUMBRIA CA7 2AJ UNITED KINGDOM ",
+      "latitude": 54.7611,
+      "longitude": -3.33202,
+      "formatted_address": "CA7 2AJ, Aspatria, Cumberland, England, United Kingdom",
+      "place_id": 351034073
+    },
+    {
+      "name": "Consett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5587",
+      "image_url": "https://images.englandrugby.com/club_images/5587.png",
+      "address": "The Demi Albert Road Consett COUNTY DURHAM DH8 5QU UNITED KINGDOM ",
+      "latitude": 54.8522459,
+      "longitude": -1.8347675,
+      "formatted_address": "The Demi, 45, Albert Road, Blackhill, Templetown, Consett, County Durham, North East, England, DH8 5QU, United Kingdom",
+      "place_id": 252541782
+    },
+    {
+      "name": "Keswick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11329",
+      "image_url": "https://images.englandrugby.com/club_images/11329.png",
+      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
+      "latitude": 54.6006588,
+      "longitude": -3.1439604,
+      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
+      "place_id": 350527467
+    },
+    {
+      "name": "Stockton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21024",
+      "image_url": "https://images.englandrugby.com/club_images/21024.png",
+      "address": "The Grangefield Ground 52a Oxbridge Avenue Stockton-on-tees Ctydur TS18 4JF United Kingdom",
+      "latitude": 54.56503,
+      "longitude": -1.33826,
+      "formatted_address": "TS18 4JF, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352082792
+    },
+    {
+      "name": "South Shields Westoe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19654",
+      "image_url": "https://images.englandrugby.com/club_images/19654.png",
+      "address": "Wood Terrace Dean Road SOUTH SHIELDS TYNE AND WEAR NE33 4EA ENGLAND",
+      "latitude": 54.9861247,
+      "longitude": -1.4253023,
+      "formatted_address": "NE33 4EA, South Tyneside, North East, England, United Kingdom",
+      "place_id": 350711999
+    },
+    {
+      "name": "Carlisle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4206",
+      "image_url": "https://images.englandrugby.com/club_images/4206.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    }
+  ],
+  "team_count": 12
+}

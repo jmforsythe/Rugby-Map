@@ -1,0 +1,57 @@
+{
+  "league_name": "Counties 3 Tribute Dorset & Wilts South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=39425&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Ellingham & Ringwood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7454",
+      "image_url": "https://images.englandrugby.com/club_images/7454.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Dorchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6586",
+      "image_url": "https://images.englandrugby.com/club_images/6586.png",
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
+    },
+    {
+      "name": "Oakmeadians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15297",
+      "image_url": "https://images.englandrugby.com/club_images/15297.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM ",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350497630
+    },
+    {
+      "name": "Poole",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17076",
+      "image_url": "https://images.englandrugby.com/club_images/17076.png",
+      "address": "Hamworthy Recreation Ground, Turlin Moor, Blandford Road, Hamworthy, Poole, Dorset, BH16 5BW, United Kingdom",
+      "latitude": 50.73017,
+      "longitude": -2.02195,
+      "formatted_address": "BH16 5BW, Poole, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350973420
+    },
+    {
+      "name": "Salisbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18609",
+      "image_url": "https://images.englandrugby.com/club_images/18609.png",
+      "address": "C/o Salisbury Rfc, Castle Rd, Salisbury, Wiltshire, SP1 3SA, United Kingdom",
+      "latitude": 51.0859327,
+      "longitude": -1.8010028,
+      "formatted_address": "SP1 3SA, Salisbury, Wiltshire, England, United Kingdom",
+      "place_id": 350833936
+    }
+  ],
+  "team_count": 5
+}

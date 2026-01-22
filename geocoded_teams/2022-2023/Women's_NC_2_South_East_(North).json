@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 South East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39219&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Welwyn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123555",
+      "image_url": "https://images.englandrugby.com/club_images/123555.png",
+      "address": "Handside Playing Fields Hobbs Way, Colgrove Welwyn Garden City HERTFORDSHIRE AL8 6HX UNITED KINGDOM ",
+      "latitude": 51.7944448,
+      "longitude": -0.2146882,
+      "formatted_address": "AL8 6HX, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350915715
+    },
+    {
+      "name": "Epping Upper Clapton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123630",
+      "image_url": "https://images.englandrugby.com/club_images/123630.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Harlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9431",
+      "image_url": "https://images.englandrugby.com/club_images/9431.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Harpenden Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9453",
+      "image_url": "https://images.englandrugby.com/club_images/9453.png",
+      "address": "Redbourn Lane Harpenden AL5 2BA United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258790061
+    },
+    {
+      "name": "Fullerians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94228",
+      "image_url": "https://images.englandrugby.com/club_images/94228.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Stockwood Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21051",
+      "image_url": "https://images.englandrugby.com/club_images/21051.png",
+      "address": "Stockwood Park London Road Luton BEDFORDSHIRE LU1 3RN UNITED KINGDOM",
+      "latitude": 51.86615,
+      "longitude": -0.4184,
+      "formatted_address": "LU1 3RN, Luton, England, United Kingdom",
+      "place_id": 351081083
+    },
+    {
+      "name": "Hitchin Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26690",
+      "image_url": "https://images.englandrugby.com/club_images/26690.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Bishop's Stortford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2428",
+      "image_url": "https://images.englandrugby.com/club_images/2428.png",
+      "address": "Silver Leys Hadham Road Bishops Stortford Hertfordshire CM23 2QE United Kingdom",
+      "latitude": 51.8761437,
+      "longitude": 0.1444547,
+      "formatted_address": "CM23 2QE, Bishop's Stortford, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350549497
+    }
+  ],
+  "team_count": 8
+}

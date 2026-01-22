@@ -1,0 +1,107 @@
+{
+  "league_name": "Counties 4 adm Lancashire & Cheshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39151&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Clitheroe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5288",
+      "image_url": "https://images.englandrugby.com/club_images/5288.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    },
+    {
+      "name": "Burnley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3736",
+      "image_url": "https://images.englandrugby.com/club_images/3736.png",
+      "address": "Holden Road, Reedley, Burnley. LANCASHIRE BB10 2LE UNITED KINGDOM ",
+      "latitude": 53.81496,
+      "longitude": -2.23459,
+      "formatted_address": "BB10 2LE, Reedley Hallows, Fence, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350944241
+    },
+    {
+      "name": "Ashton-Under-Lyne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=958",
+      "image_url": "https://images.englandrugby.com/club_images/958.png",
+      "address": "Gambrel Bank, St. Albans Avenue, Ashton-under-lyne, Lancashire, OL6 8TU, United Kingdom",
+      "latitude": 53.5064121,
+      "longitude": -2.091525,
+      "formatted_address": "OL6 8TU, Tameside, Greater Manchester, England, United Kingdom",
+      "place_id": 350752407
+    },
+    {
+      "name": "Colne & Nelson",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5460",
+      "image_url": "https://images.englandrugby.com/club_images/5460.png",
+      "address": "The Club House, Holt House, Harrison Drive, Colne                              , Lancashire, BB8 9SF, United Kingdom",
+      "latitude": 53.86244,
+      "longitude": -2.17995,
+      "formatted_address": "BB8 9SF, Colne, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350953683
+    },
+    {
+      "name": "Marple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13469",
+      "image_url": "https://images.englandrugby.com/club_images/13469.png",
+      "address": "Wood Lane Sports Pavillion Wood Lane Marple Stockport Chesh SK6 7RE United Kingdom",
+      "latitude": 53.39042,
+      "longitude": -2.07722,
+      "formatted_address": "SK6 7RE, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351924084
+    },
+    {
+      "name": "Birchfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2260",
+      "image_url": "https://images.englandrugby.com/club_images/2260.png",
+      "address": "Wilmere Lane Sports Ground Wilmere Lane Wilmere Lane Widnes Cheshire WA8 5UP United Kingdom",
+      "latitude": 53.39609,
+      "longitude": -2.73647,
+      "formatted_address": "WA8 5UP, Widnes, Halton, Liverpool City Region, England, United Kingdom",
+      "place_id": 352131644
+    },
+    {
+      "name": "Blackpool",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2527",
+      "image_url": "https://images.englandrugby.com/club_images/2527.png",
+      "address": "Fleetwood Road Norbreck Blackpool LANCASHIRE FY5 1RN UNITED KINGDOM",
+      "latitude": 53.8630795,
+      "longitude": -3.038701,
+      "formatted_address": "Fleetwood Road, Churchtown, Bispham, Blackpool, Lancashire, England, FY5 1RD, United Kingdom",
+      "place_id": 253323592
+    },
+    {
+      "name": "Broughton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3495",
+      "image_url": "https://images.englandrugby.com/club_images/3495.png",
+      "address": "Yew Street Salford Lancashire M7 2HL United Kingdom",
+      "latitude": 53.502714,
+      "longitude": -2.26627,
+      "formatted_address": "M7 2HL, Salford, Greater Manchester, England, United Kingdom",
+      "place_id": 350249258
+    },
+    {
+      "name": "North Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14729",
+      "image_url": "https://images.englandrugby.com/club_images/14729.png",
+      "address": "Tudor Lodge Victoria Avenue East Moston Manchester Lancashire M40 5SH United Kingdom",
+      "latitude": 53.52584,
+      "longitude": -2.17848,
+      "formatted_address": "M40 5SH, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351104965
+    },
+    {
+      "name": "Manchester Medics",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13243",
+      "image_url": "https://images.englandrugby.com/club_images/13243.png",
+      "address": "Manchester Medics Rufc Broughton Park Rugby Club 2 Houghend Crescent Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351091252
+    }
+  ],
+  "team_count": 10
+}

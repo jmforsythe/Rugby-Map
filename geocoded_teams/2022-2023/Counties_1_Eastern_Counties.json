@@ -1,0 +1,127 @@
+{
+  "league_name": "Counties 1 Eastern Counties",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39104&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Saffron Walden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18501",
+      "image_url": "https://images.englandrugby.com/club_images/18501.png",
+      "address": "Saffron Walden Rfc Springate Chickney Road Henham Essex CM22 6BQ United Kingdom",
+      "latitude": 51.93679,
+      "longitude": 0.26852,
+      "formatted_address": "CM22 6BQ, Chickney, Uttlesford, Essex, England, United Kingdom",
+      "place_id": 351078223
+    },
+    {
+      "name": "Holt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10307",
+      "image_url": "https://images.englandrugby.com/club_images/10307.png",
+      "address": "The Clubhouse Bridge Road High Kelling Holt NORFOLK NR25 6QT UNITED KINGDOM ",
+      "latitude": 52.9176794,
+      "longitude": 1.1189376,
+      "formatted_address": "NR25 6QT, High Kelling, North Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350742530
+    },
+    {
+      "name": "Wymondham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26280",
+      "image_url": "https://images.englandrugby.com/club_images/26280.png",
+      "address": "Wymondham Rfc, Barnard Fields, Bray Drive (off Reeve Way), Wymondham, Norfolk, NR18 0GQ, United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350738793
+    },
+    {
+      "name": "Shelford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19150",
+      "image_url": "https://images.englandrugby.com/club_images/19150.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Ely",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7485",
+      "image_url": "https://images.englandrugby.com/club_images/7485.png",
+      "address": "The Playing Fields Downham Road Ely Cambridgeshire CB6 2SH United Kingdom",
+      "latitude": 52.4099901,
+      "longitude": 0.2498483,
+      "formatted_address": "CB6 2SH, Ely, East Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350536736
+    },
+    {
+      "name": "Southwold",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19838",
+      "image_url": "https://images.englandrugby.com/club_images/19838.png",
+      "address": "William Godell Pavilion The Common Southwold Suffolk IP18 6TB United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Cantabrigian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4117",
+      "image_url": "https://images.englandrugby.com/club_images/4117.png",
+      "address": "Cantabrigian Rufc, 23 Sedley Taylor Road, Cambridge, Cambridgeshire, CB2 8PW, United Kingdom",
+      "latitude": 52.1819189,
+      "longitude": 0.1334156,
+      "formatted_address": "CB2 8PW, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350534450
+    },
+    {
+      "name": "Bury St Edmunds II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3850",
+      "image_url": "https://images.englandrugby.com/club_images/3850.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Ipswich Y.M.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10964",
+      "image_url": "https://images.englandrugby.com/club_images/10964.png",
+      "address": "The Tru7 Community Rugby Ground The Street Rushmere St Andrew Ipswich Suffolk IP5 1DG United Kingdom",
+      "latitude": 52.0707079,
+      "longitude": 1.2080595,
+      "formatted_address": "IP5 1DG, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665802
+    },
+    {
+      "name": "West Norfolk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24847",
+      "image_url": "https://images.englandrugby.com/club_images/24847.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Diss",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6516",
+      "image_url": "https://images.englandrugby.com/club_images/6516.png",
+      "address": "Diss R.F.C. Mackenders Bellrope Lane Roydon Diss NORFOLK IP22 5RG UNITED KINGDOM ",
+      "latitude": 52.3827516,
+      "longitude": 1.079028,
+      "formatted_address": "IP22 5RG, Roydon, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350661359
+    },
+    {
+      "name": "Thurston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22795",
+      "image_url": "https://images.englandrugby.com/club_images/22795.png",
+      "address": "Robinson Field Ixworth Road Thurston SUFFOLK IP31 3QE UNITED KINGDOM ",
+      "latitude": 52.257411,
+      "longitude": 0.8111505,
+      "formatted_address": "IP31 3QE, Suffolk, England, United Kingdom",
+      "place_id": 350664225
+    }
+  ],
+  "team_count": 12
+}

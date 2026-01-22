@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 1 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39202&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Old Albanians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15383",
+      "image_url": "https://images.englandrugby.com/club_images/15383.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Wymondham Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26303",
+      "image_url": "https://images.englandrugby.com/club_images/26303.png",
+      "address": "Wymondham Rfc Barnard Fields Bray Drive (off Reeve Way) Wymondham Norfolk NR18 0GQ United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350288069
+    },
+    {
+      "name": "Olney Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16188",
+      "image_url": "https://images.englandrugby.com/club_images/16188.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "East London Vixens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7167",
+      "image_url": "https://images.englandrugby.com/club_images/7167.png",
+      "address": "71 Holland Road, West Ham, London, E15 3BP, United Kingdom",
+      "latitude": 51.5292709,
+      "longitude": 0.010343,
+      "formatted_address": "Strength Ambassadors, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91270651
+    },
+    {
+      "name": "Bletchley Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2606",
+      "image_url": "https://images.englandrugby.com/club_images/2606.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM ",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703148
+    },
+    {
+      "name": "Old Northamptonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15848",
+      "image_url": "https://images.englandrugby.com/club_images/15848.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "Romford & GP Ravens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17962",
+      "image_url": "https://images.englandrugby.com/club_images/17962.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM ",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    }
+  ],
+  "team_count": 8
+}

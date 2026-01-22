@@ -84,6 +84,11 @@ def extract_tier(filename: str) -> str:
         return "National Challenge 2"
     elif filename.startswith("Women's_NC_3"):
         return "National Challenge 3"
+    elif filename.startswith("Cumbria_Conference"):
+        if filename.endswith("1.json"):
+            return "Counties 2"
+        elif filename.endswith("2.json"):
+            return "Counties 3"
     return "Unknown"
 
 TIER_ORDER = ["Premiership", "Championship", "National League 1", "National League 2", "Regional 1", "Regional 2", "Counties 1", "Counties 2", "Counties 3", "Counties 4", "Counties 5"]

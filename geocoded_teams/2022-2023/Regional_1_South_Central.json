@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 1 South Central",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39099&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Havant",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9690",
+      "image_url": "https://images.englandrugby.com/club_images/9690.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Camberley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3972",
+      "image_url": "https://images.englandrugby.com/club_images/3972.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
+    },
+    {
+      "name": "Oxford Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16431",
+      "image_url": "https://images.englandrugby.com/club_images/16431.png",
+      "address": "Oxford Road, Horspath, Oxford, Oxfordshire, OX4 2RR, United Kingdom",
+      "latitude": 51.725202,
+      "longitude": -1.1833194,
+      "formatted_address": "Oxford Road, Garsington, Horspath, South Oxfordshire, Oxfordshire, England, OX44 9AX, United Kingdom",
+      "place_id": 261026846
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "London Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12635",
+      "image_url": "https://images.englandrugby.com/club_images/12635.png",
+      "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872292
+    },
+    {
+      "name": "Bournemouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2789",
+      "image_url": "https://images.englandrugby.com/club_images/2789.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Bracknell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2889",
+      "image_url": "https://images.englandrugby.com/club_images/2889.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    },
+    {
+      "name": "Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3206",
+      "image_url": "https://images.englandrugby.com/club_images/3206.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
+    },
+    {
+      "name": "Banbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1270",
+      "image_url": "https://images.englandrugby.com/club_images/1270.png",
+      "address": "Bodicote Park, Oxford Road, Banbury, Oxfd, OX15 4AF, United Kingdom",
+      "latitude": 52.0354758,
+      "longitude": -1.3188274,
+      "formatted_address": "OX15 4AF, Bodicote, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 350754076
+    },
+    {
+      "name": "Royal Wootton Bassett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18228",
+      "image_url": "https://images.englandrugby.com/club_images/18228.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Sutton & Epsom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21414",
+      "image_url": "https://images.englandrugby.com/club_images/21414.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    }
+  ],
+  "team_count": 12
+}

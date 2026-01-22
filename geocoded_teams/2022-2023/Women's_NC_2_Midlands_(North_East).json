@@ -1,0 +1,97 @@
+{
+  "league_name": "Women's NC 2 Midlands (North East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39212&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Boston Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2743",
+      "image_url": "https://images.englandrugby.com/club_images/2743.png",
+      "address": "Boston R.F.C. Princess Royal Arena Great Fen Road Wyberton Boston LINCOLNSHIRE PE21 7PB UNITED KINGDOM ",
+      "latitude": 52.9754823,
+      "longitude": -0.0669964,
+      "formatted_address": "PE21 7PB, Wyberton CP, Wyberton, Boston, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350760887
+    },
+    {
+      "name": "Burton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3790",
+      "image_url": "https://images.englandrugby.com/club_images/3790.png",
+      "address": "Burton Rfc Ltd, Battlestead Croft, Branston Road, Tatenhill, Burton Upon Trent, Staffordshire, DE13 9SB, England",
+      "latitude": 52.7964095,
+      "longitude": -1.6817842,
+      "formatted_address": "DE13 9SB, Branston, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350575056
+    },
+    {
+      "name": "Ashfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=857",
+      "image_url": "https://images.englandrugby.com/club_images/857.png",
+      "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
+      "latitude": 53.1126952,
+      "longitude": -1.26137,
+      "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351649727
+    },
+    {
+      "name": "Sleaford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19496",
+      "image_url": "https://images.englandrugby.com/club_images/19496.png",
+      "address": "The David Williams Pavilion Ruskington Road Sleaford LINCOLN NG34 8SP UNITED KINGDOM",
+      "latitude": 53.01434,
+      "longitude": -0.39223,
+      "formatted_address": "NG34 8SP, Sleaford, Quarrington, North Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351208937
+    },
+    {
+      "name": "Sutton Bonington Students Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21451",
+      "image_url": "https://images.englandrugby.com/club_images/21451.png",
+      "address": "Sutton Bonington Sports Centre College Road Sutton Bonington LEICESTERSHIRE LE12 5RD ENGLAND",
+      "latitude": 52.8306393,
+      "longitude": -1.2514917,
+      "formatted_address": "LE12 5RD, Sutton Bonington, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350231187
+    },
+    {
+      "name": "Mellish Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13671",
+      "image_url": "https://images.englandrugby.com/club_images/13671.png",
+      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
+      "latitude": 53.0091092,
+      "longitude": -1.1009749,
+      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350719287
+    },
+    {
+      "name": "Kesteven Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11312",
+      "image_url": "https://images.englandrugby.com/club_images/11312.png",
+      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
+      "latitude": 52.890697,
+      "longitude": -0.5950534,
+      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350718958
+    },
+    {
+      "name": "Mansfield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123868",
+      "image_url": "https://images.englandrugby.com/club_images/123868.png",
+      "address": "Clubhouse Grounds & Sports Centre, Eakring Road, Mansfield, Nottinghamshire, NG18 3EW, United Kingdom",
+      "latitude": 53.1486988,
+      "longitude": -1.1253882,
+      "formatted_address": "NG18 3EW, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350717341
+    },
+    {
+      "name": "Sileby Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19362",
+      "image_url": "https://images.englandrugby.com/club_images/19362.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC 3 North (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39229&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Skipton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124601",
+      "image_url": "https://images.englandrugby.com/club_images/124601.png",
+      "address": "Skipton RFC The Coulhurst Memorial Ground Sandylands Engine Shed Lane Skipton NORTH YORKSHIRE BD23 2AZ UNITED KINGDOM ",
+      "latitude": 53.9556585,
+      "longitude": -2.0266967,
+      "formatted_address": "BD23 2AZ, Skipton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350494745
+    },
+    {
+      "name": "Wetherby Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25073",
+      "image_url": "https://images.englandrugby.com/club_images/25073.png",
+      "address": "Wetherby R.u.f.c. Grange Park Sports Club Grange Park Wetherby West Yorkshire LS22 5NB United Kingdom",
+      "latitude": 53.9195614,
+      "longitude": -1.3811227,
+      "formatted_address": "LS22 5NB, Wetherby, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350240522
+    },
+    {
+      "name": "North Ribblesdale Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14768",
+      "image_url": "https://images.englandrugby.com/club_images/14768.png",
+      "address": "Grove Park, Lower Greenfoot, Settle, North Yorkshire, BD24 9RB, United Kingdom",
+      "latitude": 54.0649015,
+      "longitude": -2.2763432,
+      "formatted_address": "BD24 9RB, Settle, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350514696
+    },
+    {
+      "name": "West Park Leeds Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24891",
+      "image_url": "https://images.englandrugby.com/club_images/24891.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    }
+  ],
+  "team_count": 4
+}

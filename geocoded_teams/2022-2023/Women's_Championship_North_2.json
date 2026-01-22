@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39199&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Sale 1861 Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18560",
+      "image_url": "https://images.englandrugby.com/club_images/18560.png",
+      "address": "Corpacq Stadium Heywood Road Brooklands Sale Cheshire M33 3WB United Kingdom",
+      "latitude": 53.4173187,
+      "longitude": -2.3215055,
+      "formatted_address": "M33 3WB, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 350247419
+    },
+    {
+      "name": "Sheffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19088",
+      "image_url": "https://images.englandrugby.com/club_images/19088.png",
+      "address": "Abbeydale Sports Club Abbeydale Road South Sheffield South Yorkshire S17 3LJ United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351391086
+    },
+    {
+      "name": "Sefton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18962",
+      "image_url": "https://images.englandrugby.com/club_images/18962.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Manchester Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
+    },
+    {
+      "name": "Driffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6749",
+      "image_url": "https://images.englandrugby.com/club_images/6749.png",
+      "address": "The Clubhouse Kelleythorpe Driffield East Riding Of Yorkshire YO25 9DW United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351738920
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Didsbury Toc H Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450",
+      "image_url": "https://images.englandrugby.com/club_images/6450.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM ",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Counties 3 Surrey",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39120&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Old Wimbledonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16099",
+      "image_url": "https://images.englandrugby.com/club_images/16099.png",
+      "address": "143 Coombe Lane London SW20 0BJ UNITED KINGDOM",
+      "latitude": 51.4117552,
+      "longitude": -0.2409752,
+      "formatted_address": "Coombe Lane, Cottenham Park, Raynes Park, London Borough of Merton, Greater London, England, SW20 0PH, United Kingdom",
+      "place_id": 260103652
+    },
+    {
+      "name": "Old Caterhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510",
+      "image_url": "https://images.englandrugby.com/club_images/15510.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    },
+    {
+      "name": "Worth Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26117",
+      "image_url": "https://images.englandrugby.com/club_images/26117.png",
+      "address": "Whiteley House, North Avenue, Whiteley Village, Walton-on-thames, Surrey , KT12 4EJ, United Kingdom",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669931
+    },
+    {
+      "name": "Old Johnians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15785",
+      "image_url": "https://images.englandrugby.com/club_images/15785.png",
+      "address": "Wimbledon Rfc, Barham Road, London, Greater London, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Old Wellingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16082",
+      "image_url": "https://images.englandrugby.com/club_images/16082.png",
+      "address": "Old Wellingtonians RFC 27 Ruxley Lane Kingston Road Ewell SURREY KT19 0JB UNITED KINGDOM",
+      "latitude": 51.3675488,
+      "longitude": -0.2653627,
+      "formatted_address": "KT19 0JB, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 350220174
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    },
+    {
+      "name": "Metropolitan Police",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13775",
+      "image_url": "https://images.englandrugby.com/club_images/13775.png",
+      "address": "Metropolitan Police RFC Imber Court Ember Lane E. Molesey SURREY KT8 0BT UNITED KINGDOM ",
+      "latitude": 51.3902693,
+      "longitude": -0.3525791,
+      "formatted_address": "KT8 0BT, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351430023
+    },
+    {
+      "name": "London Media",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12587",
+      "image_url": "https://images.englandrugby.com/club_images/12587.png",
+      "address": "Battersea Park, Albert Bridge Road Entrance , Battersea Park, London, Surrey , SW11 4NJ, United Kingdom",
+      "latitude": 51.481421,
+      "longitude": -0.1561104,
+      "formatted_address": "SW11 4NJ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350838388
+    },
+    {
+      "name": "Cranleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5785",
+      "image_url": "https://images.englandrugby.com/club_images/5785.png",
+      "address": "Cranleigh Rfc, Clubhouse, Wildwood Lane, Cranleigh, Surrey , GU6 8JR, United Kingdom",
+      "latitude": 51.11491,
+      "longitude": -0.50442,
+      "formatted_address": "GU6 8JR, Alfold, Alfold Crossways, Waverley, Surrey, England, United Kingdom",
+      "place_id": 351333911
+    }
+  ],
+  "team_count": 9
+}

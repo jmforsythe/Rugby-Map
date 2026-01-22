@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 1 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39209&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Yeovil Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26439",
+      "image_url": "https://images.englandrugby.com/club_images/26439.png",
+      "address": "Church Lane, Yeovil, Somerset, BA22 9TR, United Kingdom",
+      "latitude": 50.92421,
+      "longitude": -2.63455,
+      "formatted_address": "BA22 9TR, Barwick, Somerset, England, United Kingdom",
+      "place_id": 350939001
+    },
+    {
+      "name": "Crediton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5836",
+      "image_url": "https://images.englandrugby.com/club_images/5836.png",
+      "address": "Crediton R.f.c., Blagdon, Exhibition Road, Crediton, Devon, EX17 1BY, United Kingdom",
+      "latitude": 50.79388,
+      "longitude": -3.64396,
+      "formatted_address": "EX17 1BY, Crediton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351253152
+    },
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "North Petherton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14752",
+      "image_url": "https://images.englandrugby.com/club_images/14752.png",
+      "address": "North Petherton RFC Beggars Brook North Petherton SOMERSET TA6 6NW UNITED KINGDOM",
+      "latitude": 51.0779287,
+      "longitude": -3.0196718,
+      "formatted_address": "TA6 6NW, North Petherton, Somerset, England, United Kingdom",
+      "place_id": 350849758
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Devonport Services Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6408",
+      "image_url": "https://images.englandrugby.com/club_images/6408.png",
+      "address": "The Rectory Field 2nd Avenue Plymouth DEVON PL1 5QD UNITED KINGDOM",
+      "latitude": 50.37235,
+      "longitude": -4.16522,
+      "formatted_address": "PL1 5QD, Plymouth, England, United Kingdom",
+      "place_id": 351762380
+    },
+    {
+      "name": "Topsham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22936",
+      "image_url": "https://images.englandrugby.com/club_images/22936.png",
+      "address": "Topsham Rfc Bonfire Field Exeter Road Exeter Devon EX3 0LY United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350170301
+    }
+  ],
+  "team_count": 8
+}

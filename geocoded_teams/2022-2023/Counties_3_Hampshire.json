@@ -1,0 +1,124 @@
+{
+  "league_name": "Counties 3 Hampshire",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39114&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Guernsey II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9030",
+      "image_url": "https://images.englandrugby.com/club_images/9030.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Winchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25576",
+      "image_url": "https://images.englandrugby.com/club_images/25576.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
+      "name": "Locksheath Pumas",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12485",
+      "image_url": "https://images.englandrugby.com/club_images/12485.png",
+      "address": "The Sir Joseph Paxton 272 Hunts Pond Road Fareham Hampshire PO14 4PF United Kingdom",
+      "latitude": 50.8554981,
+      "longitude": -1.2565358,
+      "formatted_address": "PO14 4PF, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 350774961
+    },
+    {
+      "name": "Andover II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=660",
+      "image_url": "https://images.englandrugby.com/club_images/660.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "Overton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16399",
+      "image_url": "https://images.englandrugby.com/club_images/16399.png",
+      "address": "The Old Cricket Ground, Oddball Lane, Watch Lane, Laverstoke, Nr. Overton., RG28 7NU, United Kingdom",
+      "latitude": 51.24338,
+      "longitude": -1.2949108,
+      "formatted_address": "RG28 7NU, Laverstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350788034
+    },
+    {
+      "name": "Isle Of Wight",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11009",
+      "image_url": "https://images.englandrugby.com/club_images/11009.png",
+      "address": "The Clubhouse, Wootton Recreation Ground, Footways, Wootton Bridge, Isle Of Wight , PO33 4NQ, United Kingdom",
+      "latitude": 50.7277705,
+      "longitude": -1.239036,
+      "formatted_address": "PO33 4NQ, Wootton Bridge, Isle of Wight, England, United Kingdom",
+      "place_id": 350776812
+    },
+    {
+      "name": "Havant III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9702",
+      "image_url": "https://images.englandrugby.com/club_images/9702.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Romsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17976",
+      "image_url": "https://images.englandrugby.com/club_images/17976.png",
+      "address": "Ganger Farm Sports Pavilion, Ganger Farm Way, Romsey, Hampshire, SO51 0EE, United Kingdom",
+      "latitude": 51.0083812,
+      "longitude": -1.4653368,
+      "formatted_address": "SO51 0EE, Romsey, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832300
+    },
+    {
+      "name": "Ventnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23953",
+      "image_url": "https://images.englandrugby.com/club_images/23953.png",
+      "address": "ventnor rugby club Watcombe Bottom Whitwell Road Ventnor ISLE OF WIGHT PO38 1LP UNITED KINGDOM",
+      "latitude": 50.5925029,
+      "longitude": -1.2323758,
+      "formatted_address": "PO38 1LP, Ventnor, Isle of Wight, England, United Kingdom",
+      "place_id": 350777582
+    },
+    {
+      "name": "Portsmouth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17119",
+      "image_url": "https://images.englandrugby.com/club_images/17119.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Fareham Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7929",
+      "image_url": "https://images.englandrugby.com/club_images/7929.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Gosport & Fareham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8811",
+      "image_url": "https://images.englandrugby.com/club_images/8811.png",
+      "address": "Gosport Park, Dolphin Crescent, Gosport, Hampshire, PO12 2HE, United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774642
+    }
+  ],
+  "team_count": 12
+}

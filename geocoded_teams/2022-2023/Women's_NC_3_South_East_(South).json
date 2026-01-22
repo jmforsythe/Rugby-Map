@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39235&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "East Grinstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7139",
+      "image_url": "https://images.englandrugby.com/club_images/7139.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Havant Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124603",
+      "image_url": "https://images.englandrugby.com/club_images/124603.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Farnham Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124606",
+      "image_url": "https://images.englandrugby.com/club_images/124606.png",
+      "address": "Farnham Rufc Wilkinson Way Monkton Lane Farnham Surrey GU9 9ND United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644641
+    },
+    {
+      "name": "Portsmouth Valkyries Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=122878",
+      "image_url": "https://images.englandrugby.com/club_images/122878.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Camberley Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123207",
+      "image_url": "https://images.englandrugby.com/club_images/123207.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
+    },
+    {
+      "name": "Basingstoke Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1569",
+      "image_url": "https://images.englandrugby.com/club_images/1569.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    }
+  ],
+  "team_count": 6
+}

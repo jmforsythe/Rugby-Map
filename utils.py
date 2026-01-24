@@ -95,6 +95,24 @@ class MapTeam(GeocodedTeam):
     itl2: Optional[str]
     itl3: Optional[str]
 
+class TeamTravelDistances(TypedDict):
+    """Travel distance statistics for a team"""
+    name: str
+    league: str
+    total_distance_km: Optional[float]
+    avg_distance_km: Optional[float]
+
+class LeagueTravelDistances(TypedDict):
+    """Travel distance statistics for a league"""
+    league_name: str
+    league_url: str
+    avg_distance_km: Optional[float]
+
+class TravelDistances(TypedDict):
+    """Travel distance statistics for teams and leagues"""
+    teams: Dict[str, TeamTravelDistances]
+    leagues: Dict[str, LeagueTravelDistances]
+    summary: Dict[str, Optional[float]]
 
 # ============================================================================
 # Shared Utility Functions

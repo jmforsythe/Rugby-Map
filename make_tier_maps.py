@@ -13,7 +13,7 @@ import numpy as np
 from scipy.spatial import Voronoi
 from collections import defaultdict
 
-from utils import MapTeam, json_load_cache, get_google_analytics_script
+from utils import MapTeam, TravelDistances, json_load_cache, get_google_analytics_script
 
 # Extended type definitions for mapping (adds geospatial fields to base types)
 
@@ -760,9 +760,20 @@ def add_territories_from_geometries(group: folium.FeatureGroup, league_geometrie
                 }
             folium.GeoJson(mapping(merged_geom), style_function=style_function).add_to(group)
 
-def add_marker(marker_group: FeatureGroupSubGroup, team: MapTeam, color: str, team_tier_order: Optional[int] = None) -> None:
+def add_marker(marker_group: FeatureGroupSubGroup, team: MapTeam, color: str, team_tier_order: Optional[int] = None, travel_distances: Optional[TravelDistances] = None) -> None:
     team_url = team.get("url", "")
     league_url = team.get("league_url", "")
+    distance_html = ""
+    if travel_distances:
+        team_distance_info = travel_distances["teams"].get(team["name"], None)
+        league_distance_info = travel_distances["leagues"].get(team["league"], None)
+        if team_distance_info and league_distance_info:
+            distance_html = f"""
+        <hr style=\"margin: 5px 0;\"><p style=\"margin: 2px 0;\"><b>Travel Distances:</b></p>
+        {f"<p style=\"margin: 2px 0;\">Team Average Travel Distance: {team_distance_info["avg_distance_km"]:.2f} km</p>"}
+        {f"<p style=\"margin: 2px 0;\">Team Total Travel Distance: {team_distance_info["total_distance_km"]:.2f} km</p>"}
+        {f"<p style=\"margin: 2px 0;\">League Average Travel Distance: {league_distance_info["avg_distance_km"]:.2f} km</p>"}
+            """
     popup_html = f"""
     <div style="font-family: Arial; width: 220px;">
         <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
@@ -771,6 +782,7 @@ def add_marker(marker_group: FeatureGroupSubGroup, team: MapTeam, color: str, te
         <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
         {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+        {distance_html}
     </div>
     """
     
@@ -957,7 +969,7 @@ def legend(legend_title: str, teams_by_tier: Dict[str, List[MapTeam]], tier_orde
     return folium.Element(legend_html)
 
 
-def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "") -> None:
+def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None, ) -> None:
     """Create individual maps for each tier, with teams separated by league."""
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     for tier_num, tier in enumerate(tier_order):
@@ -991,7 +1003,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
 
         # Markers
         for team in teams:
-            add_marker(marker_groups[team["league"]], team, league_colors[team["league"]])
+            add_marker(marker_groups[team["league"]], team, league_colors[team["league"]], travel_distances=team_travel_distances)
 
         folium.LayerControl(collapsed=False).add_to(m)
         
@@ -1003,7 +1015,7 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "") -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None) -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
@@ -1052,7 +1064,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     for tier in reversed(sorted_tiers):
         teams = teams_by_tier[tier]
         for team in teams:
-            add_marker(marker_groups[tier], team, league_colors[team["league"]], tier_order_map.get(tier, 999))
+            add_marker(marker_groups[tier], team, league_colors[team["league"]], tier_order_map.get(tier, 999), travel_distances=team_travel_distances)
             num_teams += 1
     
     # Add debug boundary layers for ITL regions
@@ -1118,6 +1130,15 @@ def main() -> None:
     print("\nAssigning teams to ITL regions...")
     region_to_teams = assign_teams_to_itl_regions(teams_by_tier, itl_hierarchy)
 
+    print("\nLoading team travel distances...")
+    travel_distance_path = Path("distance_cache_folder") / f"{args.season}.json"
+    team_travel_distances = None
+    if travel_distance_path.exists():
+        team_travel_distances = json_load_cache(travel_distance_path)
+        print(f"  Loaded travel distances for {len(team_travel_distances)} teams")
+    else:
+        print("  No travel distance data found")
+
     mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
     womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
     
@@ -1132,23 +1153,23 @@ def main() -> None:
     # Generate individual tier maps
     if generate_mens_individual and mens:
         print("\nCreating men's tier maps...")
-        create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season)
+        create_tier_maps(mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     if generate_womens_individual and womens:
         print("\nCreating women's tier maps...")
-        create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season)
+        create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     # Generate all-tiers maps
     if generate_all_tiers:
         if args.all_tiers or args.all_tiers_mens or (not args.all_tiers_womens and mens):
             print("\nCreating men's all tiers map...")
             full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
-            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers.html", show_debug=show_debug, season=season)
+            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers.html", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
         
         if args.all_tiers or args.all_tiers_womens or (not args.all_tiers_mens and womens):
             print("\nCreating women's all tiers map...")
             full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
-            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers_Women.html", show_debug=show_debug, season=season)
+            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers_Women.html", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     print("\n✓ All maps created successfully!")
     print(f"Check \"{output_dir}\" folder for maps")

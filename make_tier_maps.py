@@ -968,6 +968,21 @@ def legend(legend_title: str, teams_by_tier: Dict[str, List[MapTeam]], tier_orde
     """
     return folium.Element(legend_html)
 
+def add_layer_control(m: folium.Map) -> None:
+    folium.LayerControl().add_to(m)
+    # Add custom CSS for LayerControl
+    m.get_root().header.add_child(folium.Element("""
+    <style>
+    .leaflet-control-layers-list {
+        overflow-y: auto !important;
+    }
+    @media only screen and (max-width: 768px) {
+        .leaflet-control-layers-list {
+            font-size: large !important;
+        }
+    }
+    </style>
+    """))
 
 def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None, ) -> None:
     """Create individual maps for each tier, with teams separated by league."""
@@ -1005,8 +1020,8 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
         for team in teams:
             add_marker(marker_groups[team["league"]], team, league_colors[team["league"]], travel_distances=team_travel_distances)
 
-        folium.LayerControl(collapsed=False).add_to(m)
-        
+        add_layer_control(m)
+
         m.get_root().html.add_child(legend(f"{tier} - Leagues", {tier: teams}, [tier], league_colors))
         
         # Save map
@@ -1070,8 +1085,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     # Add debug boundary layers for ITL regions
     add_debug_boundaries(m, show_debug)
     
-    # Add layer control
-    folium.LayerControl(collapsed=False).add_to(m)
+    add_layer_control(m)
     
     # Add legend for tiers and leagues
     m.get_root().html.add_child(legend("All Tiers - Leagues", teams_by_tier, sorted_tiers, league_colors))

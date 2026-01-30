@@ -984,6 +984,8 @@ def add_layer_control(m: folium.Map) -> None:
     </style>
     """))
 
+HTML_EXTENSION = ".html"
+
 def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None, ) -> None:
     """Create individual maps for each tier, with teams separated by league."""
     Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -1026,11 +1028,11 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
         
         # Save map
         tier_name = tier.replace(" ", "_")
-        output_file = os.path.join(output_dir, f"{tier_name}.html")
+        output_file = os.path.join(output_dir, f"{tier_name}{HTML_EXTENSION}")
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
-def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = "All_Tiers.html", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None) -> None:
+def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[str], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy, output_dir: str = "tier_maps", output_name: str = f"All_Tiers{HTML_EXTENSION}", show_debug: bool = True, season: str = "", team_travel_distances: Optional[TravelDistances] = None) -> None:
     """Create a single map with all tiers, where checkboxes control tiers."""
     
     # Create output directory
@@ -1105,8 +1107,13 @@ def main() -> None:
     parser.add_argument("--all-tiers", action="store_true", help="Generate all-tiers combined maps")
     parser.add_argument("--all-tiers-mens", action="store_true", help="Generate men's all-tiers map only")
     parser.add_argument("--all-tiers-womens", action="store_true", help="Generate women's all-tiers map only")
+    parser.add_argument("--no-html-extension", action="store_true", help="Disable .html extension in filenames")
     args = parser.parse_args()
-    
+
+    if args.no_html_extension:
+        global HTML_EXTENSION
+        HTML_EXTENSION = ""
+
     season = args.season
     print(f"Generating maps for season: {season}")
     
@@ -1178,12 +1185,12 @@ def main() -> None:
         if args.all_tiers or args.all_tiers_mens or (not args.all_tiers_womens and mens):
             print("\nCreating men's all tiers map...")
             full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
-            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers.html", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
+            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers{HTML_EXTENSION}", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
         
         if args.all_tiers or args.all_tiers_womens or (not args.all_tiers_mens and womens):
             print("\nCreating women's all tiers map...")
             full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
-            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name="All_Tiers_Women.html", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
+            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers_Women{HTML_EXTENSION}", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     print("\n✓ All maps created successfully!")
     print(f"Check \"{output_dir}\" folder for maps")

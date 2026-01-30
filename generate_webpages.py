@@ -5,12 +5,13 @@ Creates:
 - A top-level index.html in tier_maps/ that links to season pages
 """
 
-import os
+import argparse
 from pathlib import Path
 from typing import List, Dict
 
 from utils import get_google_analytics_script
 
+HTML_EXTENSION = ".html"
 
 def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     """Generate HTML content for a season's index page."""
@@ -122,7 +123,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
 </head>
 <body>
     <div class="back-link">
-        <a href="../">← All Seasons</a>
+        <a href="../{ "index.html" if HTML_EXTENSION else "" }">← All Seasons</a>
     </div>
     
     <h1>English Rugby Union Team Maps</h1>
@@ -134,7 +135,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
         html += """    
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers.html">All Men's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers{HTML_EXTENSION}">All Men's Tiers</a></li>
     </ul>
         
     <ul>
@@ -153,10 +154,10 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     <div class="separator"></div>
 """
         
-        html += """
+        html += f"""
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers_Women.html">All Women's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers_Women{HTML_EXTENSION}">All Women's Tiers</a></li>
     </ul>
     
     <ul>
@@ -271,7 +272,7 @@ def get_top_level_index_html(seasons: List[str]) -> str:
     
     # Add season links (most recent first)
     for season in sorted(seasons, reverse=True):
-        html += f'        <li><a href="{season}/">Season {season}</a></li>\n'
+        html += f'        <li><a href="{season}/{ "index.html" if HTML_EXTENSION else ""}">Season {season}</a></li>\n'
     
     html += """    </ul>
     
@@ -291,27 +292,27 @@ def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
     
     # Men's tiers in order
     mens_tier_order = [
-        ("Premiership", "Premiership.html"),
-        ("Championship", "Championship.html"),
-        ("National League 1", "National_League_1.html"),
-        ("National League 2", "National_League_2.html"),
-        ("Regional 1", "Regional_1.html"),
-        ("Regional 2", "Regional_2.html"),
-        ("Counties 1", "Counties_1.html"),
-        ("Counties 2", "Counties_2.html"),
-        ("Counties 3", "Counties_3.html"),
-        ("Counties 4", "Counties_4.html"),
-        ("Counties 5", "Counties_5.html"),
+        ("Premiership", f"Premiership{HTML_EXTENSION}"),
+        ("Championship", f"Championship{HTML_EXTENSION}"),
+        ("National League 1", f"National_League_1{HTML_EXTENSION}"),
+        ("National League 2", f"National_League_2{HTML_EXTENSION}"),
+        ("Regional 1", f"Regional_1{HTML_EXTENSION}"),
+        ("Regional 2", f"Regional_2{HTML_EXTENSION}"),
+        ("Counties 1", f"Counties_1{HTML_EXTENSION}"),
+        ("Counties 2", f"Counties_2{HTML_EXTENSION}"),
+        ("Counties 3", f"Counties_3{HTML_EXTENSION}"),
+        ("Counties 4", f"Counties_4{HTML_EXTENSION}"),
+        ("Counties 5", f"Counties_5{HTML_EXTENSION}"),
     ]
     
     # Women's tiers in order
     womens_tier_order = [
-        ("Premiership", "Premiership_Women's.html"),
-        ("Championship 1", "Championship_1.html"),
-        ("Championship 2", "Championship_2.html"),
-        ("National Challenge 1", "National_Challenge_1.html"),
-        ("National Challenge 2", "National_Challenge_2.html"),
-        ("National Challenge 3", "National_Challenge_3.html"),
+        ("Premiership", f"Premiership_Women's{HTML_EXTENSION}"),
+        ("Championship 1", f"Championship_1{HTML_EXTENSION}"),
+        ("Championship 2", f"Championship_2{HTML_EXTENSION}"),
+        ("National Challenge 1", f"National_Challenge_1{HTML_EXTENSION}"),
+        ("National Challenge 2", f"National_Challenge_2{HTML_EXTENSION}"),
+        ("National Challenge 3", f"National_Challenge_3{HTML_EXTENSION}"),
     ]
     
     mens_tiers = []
@@ -333,6 +334,13 @@ def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Generate index.html pages for rugby maps.")
+    parser.add_argument("--no-html-extension", action="store_true", help="Disable .html extension in filenames")
+    args = parser.parse_args()
+    global HTML_EXTENSION
+    if args.no_html_extension:
+        HTML_EXTENSION = ""
+
     """Generate index.html files for all seasons and top-level."""
     tier_maps_dir = Path("tier_maps")
     
@@ -367,7 +375,7 @@ def main() -> None:
             continue
         
         html_content = get_season_index_html(season, tier_files)
-        index_path = season_dir / "index.html"
+        index_path = season_dir / f"index.html"
         
         with open(index_path, 'w', encoding='utf-8') as f:
             f.write(html_content)
@@ -376,7 +384,7 @@ def main() -> None:
     
     # Generate top-level index.html
     top_level_html = get_top_level_index_html(seasons)
-    top_level_path = tier_maps_dir / "index.html"
+    top_level_path = tier_maps_dir / f"index.html"
     
     with open(top_level_path, 'w', encoding='utf-8') as f:
         f.write(top_level_html)

@@ -41,12 +41,12 @@ jobs:
           python calculate_team_distances.py --season=2023-2024
           python calculate_team_distances.py --season=2022-2023
 
-          python make_tier_maps.py --no-debug --season=2025-2026
-          python make_tier_maps.py --no-debug --season=2024-2025
-          python make_tier_maps.py --no-debug --season=2023-2024
-          python make_tier_maps.py --no-debug --season=2022-2023
+          python make_tier_maps.py --no-debug --season=2025-2026 --no-html-extension
+          python make_tier_maps.py --no-debug --season=2024-2025 --no-html-extension
+          python make_tier_maps.py --no-debug --season=2023-2024 --no-html-extension
+          python make_tier_maps.py --no-debug --season=2022-2023 --no-html-extension
 
-          python generate_webpages.py
+          python generate_webpages.py --no-html-extension
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

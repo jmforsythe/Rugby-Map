@@ -122,7 +122,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
 </head>
 <body>
     <div class="back-link">
-        <a href="../index.html">← All Seasons</a>
+        <a href="../">← All Seasons</a>
     </div>
     
     <h1>English Rugby Union Team Maps</h1>
@@ -271,7 +271,7 @@ def get_top_level_index_html(seasons: List[str]) -> str:
     
     # Add season links (most recent first)
     for season in sorted(seasons, reverse=True):
-        html += f'        <li><a href="{season}/index.html">Season {season}</a></li>\n'
+        html += f'        <li><a href="{season}/">Season {season}</a></li>\n'
     
     html += """    </ul>
     

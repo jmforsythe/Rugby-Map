@@ -189,6 +189,11 @@ def get_top_level_index_html(seasons: List[str]) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="English Rugby Union Team Maps" />
+    <meta property="og:description" content="Interactive maps showing the geographic distribution of English rugby union teams and leagues." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/jmforsythe/Rugby-Map/main/example.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://rugbyunionmap.uk" />
     <title>English Rugby Union Team Maps</title>
     <style>
         body {{

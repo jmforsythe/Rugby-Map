@@ -262,6 +262,9 @@ def get_top_level_index_html(seasons: List[str]) -> str:
             color: #0066cc;
             font-size: 1em;
         }}
+        .footer a:hover {{
+            color: white;
+        }}
         .footer p {{
             margin: 0.5em 0;
         }}
@@ -297,27 +300,27 @@ def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
     
     # Men's tiers in order
     mens_tier_order = [
-        ("Premiership", f"Premiership{"/" if IS_PRODUCTION else ""}"),
-        ("Championship", f"Championship{"/" if IS_PRODUCTION else ""}"),
-        ("National League 1", f"National_League_1{"/" if IS_PRODUCTION else ""}"),
-        ("National League 2", f"National_League_2{"/" if IS_PRODUCTION else ""}"),
-        ("Regional 1", f"Regional_1{"/" if IS_PRODUCTION else ""}"),
-        ("Regional 2", f"Regional_2{"/" if IS_PRODUCTION else ""}"),
-        ("Counties 1", f"Counties_1{"/" if IS_PRODUCTION else ""}"),
-        ("Counties 2", f"Counties_2{"/" if IS_PRODUCTION else ""}"),
-        ("Counties 3", f"Counties_3{"/" if IS_PRODUCTION else ""}"),
-        ("Counties 4", f"Counties_4{"/" if IS_PRODUCTION else ""}"),
-        ("Counties 5", f"Counties_5{"/" if IS_PRODUCTION else ""}"),
+        ("Premiership", f"Premiership{"/" if IS_PRODUCTION else ".html"}"),
+        ("Championship", f"Championship{"/" if IS_PRODUCTION else ".html"}"),
+        ("National League 1", f"National_League_1{"/" if IS_PRODUCTION else ".html"}"),
+        ("National League 2", f"National_League_2{"/" if IS_PRODUCTION else ".html"}"),
+        ("Regional 1", f"Regional_1{"/" if IS_PRODUCTION else ".html"}"),
+        ("Regional 2", f"Regional_2{"/" if IS_PRODUCTION else ".html"}"),
+        ("Counties 1", f"Counties_1{"/" if IS_PRODUCTION else ".html"}"),
+        ("Counties 2", f"Counties_2{"/" if IS_PRODUCTION else ".html"}"),
+        ("Counties 3", f"Counties_3{"/" if IS_PRODUCTION else ".html"}"),
+        ("Counties 4", f"Counties_4{"/" if IS_PRODUCTION else ".html"}"),
+        ("Counties 5", f"Counties_5{"/" if IS_PRODUCTION else ".html"}"),
     ]
     
     # Women's tiers in order
     womens_tier_order = [
-        ("Premiership", f"Premiership_Women's{"/" if IS_PRODUCTION else ""}"),
-        ("Championship 1", f"Championship_1{"/" if IS_PRODUCTION else ""}"),
-        ("Championship 2", f"Championship_2{"/" if IS_PRODUCTION else ""}"),
-        ("National Challenge 1", f"National_Challenge_1{"/" if IS_PRODUCTION else ""}"),
-        ("National Challenge 2", f"National_Challenge_2{"/" if IS_PRODUCTION else ""}"),
-        ("National Challenge 3", f"National_Challenge_3{"/" if IS_PRODUCTION else ""}"),
+        ("Premiership", f"Premiership_Women's{"/" if IS_PRODUCTION else ".html"}"),
+        ("Championship 1", f"Championship_1{"/" if IS_PRODUCTION else ".html"}"),
+        ("Championship 2", f"Championship_2{"/" if IS_PRODUCTION else ".html"}"),
+        ("National Challenge 1", f"National_Challenge_1{"/" if IS_PRODUCTION else ".html"}"),
+        ("National Challenge 2", f"National_Challenge_2{"/" if IS_PRODUCTION else ".html"}"),
+        ("National Challenge 3", f"National_Challenge_3{"/" if IS_PRODUCTION else ".html"}"),
     ]
     
     mens_tiers = []

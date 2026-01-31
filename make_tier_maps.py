@@ -923,13 +923,13 @@ def legend(legend_title: str, teams_by_tier: Dict[str, List[MapTeam]], tier_orde
     }}
     </style>
     <div class="map-legend" style="position: fixed; 
-                bottom: 50px; right: 50px; width: 300px; max-height: 500px; overflow-y: auto;
+                bottom: 50px; right: 50px; width: 300px;
                 background-color: white; z-index:9999; font-size:14px;
                 border:2px solid grey; border-radius: 5px; padding: 10px">
     <h4 style="margin-top: 0;">{legend_title}
         <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
     </h4>
-    <div class="legend-content">
+    <div class="legend-content" style="overflow-y: auto; max-height: 500px;">
     """
     
     for tier in tier_order:
@@ -967,6 +967,33 @@ def legend(legend_title: str, teams_by_tier: Dict[str, List[MapTeam]], tier_orde
     </script>
     """
     return folium.Element(legend_html)
+
+def back_button_element() -> folium.Element:
+    js = f"""
+    <script>
+    function addBackButtonToLeafletZoom() {{
+        var zoom = document.querySelector('.leaflet-control-zoom');
+        if (!zoom) return;
+        var zoomClone = zoom.cloneNode(true);
+        zoomClone.innerHTML = '';
+        var backBtn = document.createElement('a');
+        backBtn.className = 'leaflet-control-zoom-back leaflet-bar-part';
+        backBtn.href = '{"../" if IS_PRODUCTION else "index.html"}';
+        backBtn.title = 'Back';
+        backBtn.setAttribute('role', 'button');
+        backBtn.setAttribute('aria-label', 'Back');
+        backBtn.innerHTML = '&larr;';
+        zoomClone.appendChild(backBtn);
+        zoom.parentNode.insertBefore(zoomClone, zoom);
+    }}
+    if (window.addEventListener) {{
+        window.addEventListener('DOMContentLoaded', addBackButtonToLeafletZoom);
+    }} else {{
+        window.attachEvent('onload', addBackButtonToLeafletZoom);
+    }}
+    </script>
+    """
+    return folium.Element(js)
 
 def add_layer_control(m: folium.Map) -> None:
     folium.LayerControl().add_to(m)
@@ -1024,7 +1051,9 @@ def create_tier_maps(teams_by_tier: Dict[str, List[MapTeam]], tier_order: List[s
 
         add_layer_control(m)
 
-        m.get_root().html.add_child(legend(f"{tier} - Leagues", {tier: teams}, [tier], league_colors))
+        m.get_root().html.add_child(legend(f"{tier} - {len(teams)} teams", {tier: teams}, [tier], league_colors))
+        
+        m.get_root().html.add_child(back_button_element())
         
         # Save map
         tier_name = tier.replace(" ", "_")
@@ -1092,7 +1121,9 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     add_layer_control(m)
     
     # Add legend for tiers and leagues
-    m.get_root().html.add_child(legend("All Tiers - Leagues", teams_by_tier, sorted_tiers, league_colors))
+    m.get_root().html.add_child(legend(f"All Tiers - {num_teams} teams - Leagues", teams_by_tier, sorted_tiers, league_colors))
+
+    m.get_root().html.add_child(back_button_element())
     
     # Save map
     if IS_PRODUCTION:
@@ -1157,10 +1188,10 @@ def main() -> None:
 
     print("\nLoading team travel distances...")
     travel_distance_path = Path("distance_cache_folder") / f"{args.season}.json"
-    team_travel_distances = None
+    team_travel_distances: Optional[TravelDistances] = None
     if travel_distance_path.exists():
         team_travel_distances = json_load_cache(travel_distance_path)
-        print(f"  Loaded travel distances for {len(team_travel_distances)} teams")
+        print(f"  Loaded travel distances for {len(team_travel_distances["teams"])} teams")
     else:
         print("  No travel distance data found")
 
@@ -1186,12 +1217,12 @@ def main() -> None:
     
     # Generate all-tiers maps
     if generate_all_tiers:
-        if args.all_tiers or args.all_tiers_mens or (not args.all_tiers_womens and mens):
+        if args.all_tiers or args.all_tiers_mens:
             print("\nCreating men's all tiers map...")
             full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
             create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
         
-        if args.all_tiers or args.all_tiers_womens or (not args.all_tiers_mens and womens):
+        if args.all_tiers or args.all_tiers_womens:
             print("\nCreating women's all tiers map...")
             full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
             create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers_Women", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)

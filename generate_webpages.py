@@ -135,7 +135,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
         html += f"""    
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers{"/" if IS_PRODUCTION else ""}">All Men's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers{"/" if IS_PRODUCTION else ".html"}">All Men's Tiers</a></li>
     </ul>
         
     <ul>
@@ -157,7 +157,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
         html += f"""
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers_Women{"/" if IS_PRODUCTION else ""}">All Women's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers_Women{"/" if IS_PRODUCTION else ".html"}">All Women's Tiers</a></li>
     </ul>
     
     <ul>

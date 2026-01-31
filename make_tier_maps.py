@@ -1158,11 +1158,13 @@ def main() -> None:
     if not (args.mens or args.womens or args.all_tiers or args.all_tiers_mens or args.all_tiers_womens):
         generate_mens_individual = True
         generate_womens_individual = True
-        generate_all_tiers = True
+        generate_all_tiers_men = True
+        generate_all_tiers_women = True
     else:
         generate_mens_individual = args.mens
         generate_womens_individual = args.womens
-        generate_all_tiers = args.all_tiers or args.all_tiers_mens or args.all_tiers_womens
+        generate_all_tiers_men = args.all_tiers_mens or args.all_tiers
+        generate_all_tiers_women = args.all_tiers_womens or args.all_tiers
     
     print("Loading teams data...")
     geocoded_dir = os.path.join("geocoded_teams", season)
@@ -1216,16 +1218,15 @@ def main() -> None:
         create_tier_maps(womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     # Generate all-tiers maps
-    if generate_all_tiers:
-        if args.all_tiers or args.all_tiers_mens:
-            print("\nCreating men's all tiers map...")
-            full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
-            create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
-        
-        if args.all_tiers or args.all_tiers_womens:
-            print("\nCreating women's all tiers map...")
-            full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
-            create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers_Women", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
+    if generate_all_tiers_men:
+        print("\nCreating men's all tiers map...")
+        full_mens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER}
+        create_all_tiers_map(full_mens, TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
+    
+    if generate_all_tiers_women:
+        print("\nCreating women's all tiers map...")
+        full_womens = {tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in WOMENS_TIER_ORDER}
+        create_all_tiers_map(full_womens, WOMENS_TIER_ORDER, region_to_teams, itl_hierarchy, output_dir=output_dir, output_name=f"All_Tiers_Women", show_debug=show_debug, season=season, team_travel_distances=team_travel_distances)
     
     print("\n✓ All maps created successfully!")
     print(f"Check \"{output_dir}\" folder for maps")

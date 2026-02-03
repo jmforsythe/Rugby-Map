@@ -13,6 +13,115 @@ from utils import get_google_analytics_script
 
 IS_PRODUCTION = False
 
+
+def get_common_css() -> str:
+    """Return common CSS styles used across all pages."""
+    return """body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.3em;
+            color: #2c3e50;
+            text-align: center;
+        }
+        body > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        li {
+            margin: 0.7em 0;
+        }
+        a {
+            display: block;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: all 0.2s;
+            padding: 0.8em 1.5em;
+            background: #f5f7fa;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        a:hover {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
+        }
+        .all-tiers a {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            font-weight: 600;
+        }
+        .all-tiers a:hover {
+            background: #0052a3;
+            border-color: #0052a3;
+        }
+        .separator {
+            margin: 2em 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .back-link {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .back-link a {
+            display: inline-block;
+            color: #666;
+            font-size: 0.95em;
+            padding: 0.5em 1em;
+        }
+        .footer {
+            margin-top: 3em;
+            padding-top: 2em;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #666;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .footer a {
+            color: #0066cc;
+            font-size: 1em;
+        }
+        .footer a:hover {
+            color: white;
+        }
+        .footer p {
+            margin: 0.5em 0;
+        }"""
+
+
+def get_footer_html() -> str:
+    """Return common footer HTML."""
+    return """    <div class="footer">
+        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
+        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a> <a href="https://geoportal.statistics.gov.uk/">ONS</a> <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
+    </div>"""
+
+
 def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     """Generate HTML content for a season's index page."""
     mens_tiers = tier_files.get('mens', [])
@@ -25,99 +134,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Rugby Union Team Maps - {season}</title>
     <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
-        }}
-        h1 {{
-            font-size: 2.2em;
-            margin-bottom: 0.3em;
-            color: #2c3e50;
-            text-align: center;
-        }}
-        body > p {{
-            text-align: center;
-            color: #666;
-            margin-bottom: 2em;
-        }}
-        ul {{
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        li {{
-            margin: 0.7em 0;
-        }}
-        a {{
-            display: block;
-            color: #2c3e50;
-            text-decoration: none;
-            font-size: 1.05em;
-            transition: all 0.2s;
-            padding: 0.8em 1.5em;
-            background: #f5f7fa;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-        }}
-        a:hover {{
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-        }}
-        .all-tiers a {{
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            font-weight: 600;
-        }}
-        .all-tiers a:hover {{
-            background: #0052a3;
-            border-color: #0052a3;
-        }}
-        .separator {{
-            margin: 2em 0;
-            border-bottom: 2px solid #e0e0e0;
-        }}
-        .footer {{
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #666;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        .footer a {{
-            color: #0066cc;
-            font-size: 1em;
-        }}
-        .footer p {{
-            margin: 0.5em 0;
-        }}
-        .back-link {{
-            text-align: center;
-            margin-bottom: 2em;
-        }}
-        .back-link a {{
-            display: inline-block;
-            color: #666;
-            font-size: 0.95em;
-            padding: 0.5em 1em;
-        }}
+        {get_common_css()}
     </style>
     {get_google_analytics_script()}
 </head>
@@ -170,15 +187,11 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
 """
     
     # Footer
-    html += """    
-    <div class="footer">
-        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
-        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a> <a href="https://geoportal.statistics.gov.uk/">ONS</a> <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
-    </div>
+    html += f"""
+{get_footer_html()}
 </body>
 </html>
 """
-    
     return html
 
 
@@ -196,78 +209,7 @@ def get_top_level_index_html(seasons: List[str]) -> str:
     <meta property="og:url" content="https://rugbyunionmap.uk" />
     <title>English Rugby Union Team Maps</title>
     <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
-        }}
-        h1 {{
-            font-size: 2.2em;
-            margin-bottom: 0.3em;
-            color: #2c3e50;
-            text-align: center;
-        }}
-        body > p {{
-            text-align: center;
-            color: #666;
-            margin-bottom: 2em;
-        }}
-        ul {{
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        li {{
-            margin: 0.7em 0;
-        }}
-        a {{
-            display: block;
-            color: #2c3e50;
-            text-decoration: none;
-            font-size: 1.05em;
-            transition: all 0.2s;
-            padding: 0.8em 1.5em;
-            background: #f5f7fa;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-        }}
-        a:hover {{
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-        }}
-        .footer {{
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #666;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        .footer a {{
-            color: #0066cc;
-            font-size: 1em;
-        }}
-        .footer a:hover {{
-            color: white;
-        }}
-        .footer p {{
-            margin: 0.5em 0;
-        }}
+        {get_common_css()}
     </style>
     {get_google_analytics_script()}
 </head>
@@ -282,12 +224,9 @@ def get_top_level_index_html(seasons: List[str]) -> str:
     for season in sorted(seasons, reverse=True):
         html += f'        <li><a href="{season}/{ "" if IS_PRODUCTION else "index.html"}">Season {season}</a></li>\n'
     
-    html += """    </ul>
+    html += f"""    </ul>
     
-    <div class="footer">
-        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
-        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a> <a href="https://geoportal.statistics.gov.uk/">ONS</a> <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
-    </div>
+{get_footer_html()}
 </body>
 </html>
 """

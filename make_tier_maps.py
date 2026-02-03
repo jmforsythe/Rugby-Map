@@ -1121,7 +1121,7 @@ def create_all_tiers_map(teams_by_tier: Dict[str, List[MapTeam]], tier_order: Li
     add_layer_control(m)
     
     # Add legend for tiers and leagues
-    m.get_root().html.add_child(legend(f"All Tiers - {num_teams} teams - Leagues", teams_by_tier, sorted_tiers, league_colors))
+    m.get_root().html.add_child(legend(f"All Tiers - {num_teams} teams", teams_by_tier, sorted_tiers, league_colors))
 
     m.get_root().html.add_child(back_button_element())
     

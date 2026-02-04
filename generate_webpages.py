@@ -7,7 +7,6 @@ Creates:
 
 import argparse
 from pathlib import Path
-from typing import List, Dict
 
 from utils import get_google_analytics_script
 
@@ -122,11 +121,11 @@ def get_footer_html() -> str:
     </div>"""
 
 
-def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
+def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
     """Generate HTML content for a season's index page."""
-    mens_tiers = tier_files.get('mens', [])
-    womens_tiers = tier_files.get('womens', [])
-    
+    mens_tiers = tier_files.get("mens", [])
+    womens_tiers = tier_files.get("womens", [])
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,50 +141,50 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     <div class="back-link">
         <a href="../{ "" if IS_PRODUCTION else "index.html" }">← All Seasons</a>
     </div>
-    
+
     <h1>English Rugby Union Team Maps</h1>
     <p>Season: {season}</p>
 """
-    
+
     # Men's tiers section
     if mens_tiers:
-        html += f"""    
+        html += f"""
     <div>
     <ul>
         <li class="all-tiers"><a href="All_Tiers{"/" if IS_PRODUCTION else ".html"}">All Men's Tiers</a></li>
     </ul>
-        
+
     <ul>
 """
         for tier_name, tier_file in mens_tiers:
             html += f'        <li><a href="{tier_file}">{tier_name}</a></li>\n'
-        
+
         html += """    </ul>
     </div>
 """
-    
+
     # Women's tiers section
     if womens_tiers:
         if mens_tiers:
             html += """
     <div class="separator"></div>
 """
-        
+
         html += f"""
     <div>
     <ul>
         <li class="all-tiers"><a href="All_Tiers_Women{"/" if IS_PRODUCTION else ".html"}">All Women's Tiers</a></li>
     </ul>
-    
+
     <ul>
 """
         for tier_name, tier_file in womens_tiers:
             html += f'        <li><a href="{tier_file}">{tier_name}</a></li>\n'
-        
+
         html += """    </ul>
     </div>
 """
-    
+
     # Footer
     html += f"""
 {get_footer_html()}
@@ -195,7 +194,7 @@ def get_season_index_html(season: str, tier_files: Dict[str, List[str]]) -> str:
     return html
 
 
-def get_top_level_index_html(seasons: List[str]) -> str:
+def get_top_level_index_html(seasons: list[str]) -> str:
     """Generate HTML content for the top-level index page."""
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -216,27 +215,27 @@ def get_top_level_index_html(seasons: List[str]) -> str:
 <body>
     <h1>English Rugby Union Team Maps</h1>
     <p>Interactive maps showing the geographic distribution of teams across England.</p>
-    
+
     <ul>
 """
-    
+
     # Add season links (most recent first)
     for season in sorted(seasons, reverse=True):
         html += f'        <li><a href="{season}/{ "" if IS_PRODUCTION else "index.html"}">Season {season}</a></li>\n'
-    
+
     html += f"""    </ul>
-    
+
 {get_footer_html()}
 </body>
 </html>
 """
-    
+
     return html
 
 
-def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
+def detect_tier_files(season_dir: Path) -> dict[str, list[tuple]]:
     """Detect available tier map files in a season directory."""
-    
+
     # Men's tiers in order
     mens_tier_order = [
         ("Premiership", f"Premiership{"/" if IS_PRODUCTION else ".html"}"),
@@ -251,7 +250,7 @@ def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
         ("Counties 4", f"Counties_4{"/" if IS_PRODUCTION else ".html"}"),
         ("Counties 5", f"Counties_5{"/" if IS_PRODUCTION else ".html"}"),
     ]
-    
+
     # Women's tiers in order
     womens_tier_order = [
         ("Premiership", f"Premiership_Women's{"/" if IS_PRODUCTION else ".html"}"),
@@ -261,28 +260,27 @@ def detect_tier_files(season_dir: Path) -> Dict[str, List[tuple]]:
         ("National Challenge 2", f"National_Challenge_2{"/" if IS_PRODUCTION else ".html"}"),
         ("National Challenge 3", f"National_Challenge_3{"/" if IS_PRODUCTION else ".html"}"),
     ]
-    
+
     mens_tiers = []
     womens_tiers = []
-    
+
     # Check which files exist
     for tier_name, tier_file in mens_tier_order:
         if (season_dir / tier_file).exists():
             mens_tiers.append((tier_name, tier_file))
-    
+
     for tier_name, tier_file in womens_tier_order:
         if (season_dir / tier_file).exists():
             womens_tiers.append((tier_name, tier_file))
-    
-    return {
-        'mens': mens_tiers,
-        'womens': womens_tiers
-    }
+
+    return {"mens": mens_tiers, "womens": womens_tiers}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate index.html pages for rugby maps.")
-    parser.add_argument("--production", action="store_true", help="Change folder structure for production")
+    parser.add_argument(
+        "--production", action="store_true", help="Change folder structure for production"
+    )
     args = parser.parse_args()
     global IS_PRODUCTION
     if args.production:
@@ -290,54 +288,58 @@ def main() -> None:
 
     """Generate index.html files for all seasons and top-level."""
     tier_maps_dir = Path("tier_maps")
-    
+
     if not tier_maps_dir.exists():
         print(f"Error: {tier_maps_dir} directory not found")
         return
-    
+
     # Find all season directories
     seasons = []
     for item in tier_maps_dir.iterdir():
-        if item.is_dir() and not item.name.startswith('.'):
-            # Check if it looks like a season (YYYY-YYYY format)
-            if '-' in item.name and len(item.name) == 9:
-                seasons.append(item.name)
-    
+        # Check if it looks like a season (YYYY-YYYY format)
+        if (
+            item.is_dir()
+            and not item.name.startswith(".")
+            and "-" in item.name
+            and len(item.name) == 9
+        ):
+            seasons.append(item.name)
+
     if not seasons:
         print(f"No season directories found in {tier_maps_dir}")
         return
-    
+
     print(f"Found {len(seasons)} season(s): {', '.join(sorted(seasons))}")
-    
+
     # Generate index.html for each season
     for season in seasons:
         season_dir = tier_maps_dir / season
         tier_files = detect_tier_files(season_dir)
-        
-        mens_count = len(tier_files.get('mens', []))
-        womens_count = len(tier_files.get('womens', []))
-        
+
+        mens_count = len(tier_files.get("mens", []))
+        womens_count = len(tier_files.get("womens", []))
+
         if mens_count == 0 and womens_count == 0:
             print(f"  Skipping {season} - no tier maps found")
             continue
-        
+
         html_content = get_season_index_html(season, tier_files)
-        index_path = season_dir / f"index.html"
-        
-        with open(index_path, 'w', encoding='utf-8') as f:
+        index_path = season_dir / "index.html"
+
+        with open(index_path, "w", encoding="utf-8") as f:
             f.write(html_content)
-        
+
         print(f"  ✓ Created {index_path} ({mens_count} men's tiers, {womens_count} women's tiers)")
-    
+
     # Generate top-level index.html
     top_level_html = get_top_level_index_html(seasons)
-    top_level_path = tier_maps_dir / f"index.html"
-    
-    with open(top_level_path, 'w', encoding='utf-8') as f:
+    top_level_path = tier_maps_dir / "index.html"
+
+    with open(top_level_path, "w", encoding="utf-8") as f:
         f.write(top_level_html)
-    
+
     print(f"\n✓ Created {top_level_path}")
-    print(f"\nAll index pages generated successfully!")
+    print("\nAll index pages generated successfully!")
 
 
 if __name__ == "__main__":

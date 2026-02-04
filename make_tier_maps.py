@@ -593,6 +593,46 @@ def color_regions_by_league(
                 itl2_ownership[itl2_name] = league
                 break
 
+    # Step 2.5: Enhanced ITL2 ownership - if an ITL3 is owned, no other leagues in the ITL2,
+    # and another ITL2 within that ITL1 is owned by the same league, then own that ITL2
+    for itl2_name, teams_in_region in itl2_to_teams.items():
+        # Skip if already owned
+        if itl2_name in itl2_ownership:
+            continue
+
+        tier_teams = [t for t in teams_in_region if t in teams]
+        if len(tier_teams) == 0:
+            continue
+
+        # Check: no other leagues in this ITL2 (only one league present)
+        leagues_in_itl2 = {t["league"] for t in tier_teams}
+        if len(leagues_in_itl2) != 1:
+            continue
+
+        league = next(iter(leagues_in_itl2))
+
+        # Check: at least one ITL3 in this ITL2 is owned by this league
+        itl3s_in_itl2 = itl2_to_itl3s.get(itl2_name, [])
+        has_owned_itl3 = any(
+            itl3_name in itl3_ownership and itl3_ownership[itl3_name] == league
+            for itl3_name in itl3s_in_itl2
+        )
+        if not has_owned_itl3:
+            continue
+
+        # Check: another ITL2 within the same ITL1 is owned by this league
+        parent_itl1 = itl2_to_itl1.get(itl2_name)
+        if parent_itl1:
+            itl2s_in_itl1 = itl1_to_itl2s.get(parent_itl1, [])
+            sibling_itl2_owned = any(
+                other_itl2_name != itl2_name
+                and other_itl2_name in itl2_ownership
+                and itl2_ownership[other_itl2_name] == league
+                for other_itl2_name in itl2s_in_itl1
+            )
+            if sibling_itl2_owned:
+                itl2_ownership[itl2_name] = league
+
     # Step 3: Determine ITL1 regions owned by each league
     itl1_ownership: dict[str, str] = {}  # itl1_name -> league
 
@@ -1075,9 +1115,7 @@ def back_button_element() -> folium.Element:
 def add_layer_control(m: folium.Map) -> None:
     folium.LayerControl().add_to(m)
     # Add custom CSS for LayerControl
-    m.get_root().header.add_child(
-        folium.Element(
-            """
+    m.get_root().header.add_child(folium.Element("""
     <style>
     .leaflet-control-layers-list {
         overflow-y: auto !important;
@@ -1088,9 +1126,7 @@ def add_layer_control(m: folium.Map) -> None:
         }
     }
     </style>
-    """
-        )
-    )
+    """))
 
 
 IS_PRODUCTION = False

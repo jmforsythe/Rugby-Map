@@ -3,7 +3,7 @@
 Interactive maps showing the geographic distribution of English rugby union teams across tiers and counties.
 
 ![Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season](example.png)
-*Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season*
+_Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season_
 
 ## Setup
 
@@ -16,9 +16,19 @@ Interactive maps showing the geographic distribution of English rugby union team
 1. Clone or download this repository
 
 2. Install Python dependencies:
+
 ```bash
 pip install folium shapely scipy numpy requests beautifulsoup4
 ```
+
+3. (Optional) Install development tools for code formatting and linting:
+
+```bash
+pip install black isort ruff mypy pre-commit
+pre-commit install
+```
+
+This enables automatic code formatting on save (in VS Code) and before commits.
 
 ### Download Boundary Data
 
@@ -31,6 +41,7 @@ python download_boundaries.py
 This downloads ITL1, ITL2, ITL3, and Countries boundaries to the `boundaries/` directory.
 
 **Detail Level Options:**
+
 - `--detail BGC` (default): Generalised Clipped - smaller files, faster download
 - `--detail BFC`: Full Clipped - more detailed boundaries
 - `--detail BSC`: Super Generalised - very simplified
@@ -38,6 +49,7 @@ This downloads ITL1, ITL2, ITL3, and Countries boundaries to the `boundaries/` d
 - `--detail BFE`: Full Extent - most detailed, largest files
 
 Example:
+
 ```bash
 python download_boundaries.py --detail BFC
 ```
@@ -49,6 +61,7 @@ Pre-computed geographic data for each league is included in `geocoded_teams/` as
 The project follows a multi-stage pipeline to collect and process team data. All commands support a `--season` parameter to specify which season to process (default: 2025-2026).
 
 ### 1. Scrape League Data
+
 ```bash
 python scrape_leagues_teams.py --season 2025-2026
 ```
@@ -57,9 +70,11 @@ Scrapes the RFU website for all leagues and teams, saving to `league_data/[seaso
 This step can fail due to rate-limiting / anti-bot detection.
 
 **Options:**
+
 - `--season YYYY-YYYY`: Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026
 
 ### 2. Fetch Team Addresses
+
 ```bash
 python fetch_addresses.py --season 2025-2026
 ```
@@ -68,6 +83,7 @@ Fetches physical addresses from RFU team profile pages. This step is free (no AP
 This step can fail due to rate-limiting / anti-bot detection.
 
 **Options:**
+
 - `--season YYYY-YYYY`: Season to process. Default: 2025-2026
 - `--workers N`: Max concurrent requests (default: 7)
 - `--delay SECONDS`: Delay between requests (default: 2.0)
@@ -75,6 +91,7 @@ This step can fail due to rate-limiting / anti-bot detection.
 - `--league NAME`: Process only a single league
 
 ### 3. Geocode Addresses
+
 ```bash
 python geocode_addresses.py --season 2025-2026
 ```
@@ -82,12 +99,14 @@ python geocode_addresses.py --season 2025-2026
 Converts addresses to coordinates using **OpenStreetMap Nominatim API** (free, no API key required).
 
 **Options:**
+
 - `--season YYYY-YYYY`: Season to process. Default: 2025-2026
 - `--workers N`: Max concurrent geocoding requests (default: 10)
 - `--google-retries N`: Retries for transient failures (default: 3)
 - `--league NAME`: Process only a single league
 
 ### 4. Generate Maps
+
 ```bash
 python make_tier_maps.py --season 2025-2026 --all-tiers
 ```
@@ -95,6 +114,7 @@ python make_tier_maps.py --season 2025-2026 --all-tiers
 Creates all interactive maps with Voronoi diagrams.
 
 **Options:**
+
 - `--season YYYY-YYYY`: Season to process. Default: 2025-2026
 - `--no-debug`: Exclude debug boundary layers (ITL1, ITL2, ITL3) for cleaner production maps
 - `--tiers TIER [TIER ...]`: Generate specific tiers only (e.g., 'Premiership' 'Championship')
@@ -105,6 +125,7 @@ Creates all interactive maps with Voronoi diagrams.
 - `--all-tiers-womens`: Generate women's all-tiers map only
 
 **Features:**
+
 - Team markers with RFU profile links and fallback logos
 - Checkbox controls for showing/hiding leagues or tiers
 
@@ -146,6 +167,7 @@ mapping/
 All data and outputs are now organized by season. To work with a different season:
 
 1. Scrape data for the desired season:
+
    ```bash
    python scrape_leagues_teams.py --season 2024-2025
    ```

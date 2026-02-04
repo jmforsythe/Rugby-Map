@@ -1,0 +1,6 @@
+# .git-blame-ignore-revs
+# Git blame ignore file - contains commits that should be ignored in git blame
+# Usage: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Apply code formatting with black and isort
+bd241878945dbcf95c94746944ec5b5956f33e66

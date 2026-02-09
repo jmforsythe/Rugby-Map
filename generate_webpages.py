@@ -15,7 +15,8 @@ IS_PRODUCTION = False
 
 def get_common_css() -> str:
     """Return common CSS styles used across all pages."""
-    return """body {
+    return """
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 800px;
             margin: 60px auto;
@@ -81,13 +82,25 @@ def get_common_css() -> str:
         }
         .back-link {
             text-align: center;
-            margin-bottom: 2em;
+            margin: 2em 0;
         }
         .back-link a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 0.8em 1.5em;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
             display: inline-block;
-            color: #666;
-            font-size: 0.95em;
-            padding: 0.5em 1em;
+            transition: all 0.2s;
+        }
+        .back-link a:hover {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
         }
         .footer {
             margin-top: 3em;
@@ -223,8 +236,17 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     for season in sorted(seasons, reverse=True):
         html += f'        <li><a href="{season}/{ "" if IS_PRODUCTION else "index.html"}">Season {season}</a></li>\n'
 
-    html += f"""    </ul>
+    html += """    </ul>"""
 
+    # Add link to all teams page
+    html += f"""
+        <div class="separator"></div>
+        <ul>
+        <li><a href="./teams/{ "" if IS_PRODUCTION else "index.html" }">Teams</a></li>
+        </ul>
+"""
+
+    html += f"""
 {get_footer_html()}
 </body>
 </html>

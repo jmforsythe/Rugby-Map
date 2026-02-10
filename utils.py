@@ -10,6 +10,7 @@ Data flows through the following stages:
 
 import functools
 import json
+import re
 import threading
 import time
 from typing import NotRequired, TypedDict
@@ -248,3 +249,17 @@ def get_google_analytics_script() -> str:
     gtag('config', 'G-30KPY67PSR');
     </script>
 """
+
+
+def sanitize_team_name(team_name: str) -> str:
+    """Convert team name to URL-safe format."""
+    # Replace special characters with url-safe equivalents
+    sanitized = team_name.replace(" ", "_").replace("/", "_").replace("&", "and")
+    # Replace spaces and multiple hyphens/underscores with single underscore
+    sanitized = re.sub(r"[\s_-]+", "_", sanitized)
+    return sanitized.strip("_")
+
+
+def team_name_to_filepath(team_name: str) -> str:
+    """Convert team name to corresponding HTML filename."""
+    return sanitize_team_name(team_name) + ".html"

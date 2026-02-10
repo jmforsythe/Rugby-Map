@@ -1,0 +1,87 @@
+{
+  "league_name": "Harvey’s Brewery Sussex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=31791&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "East Grinstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7134",
+      "image_url": "https://images.englandrugby.com/club_images/7134.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Eastbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7209",
+      "image_url": "https://images.englandrugby.com/club_images/7209.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Lewes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12206",
+      "image_url": "https://images.englandrugby.com/club_images/12206.png",
+      "address": "The Club House, Stanley Turner Ground, Kingston Road, Lewes, BN7 3NB, United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409471522
+    },
+    {
+      "name": "Seaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868",
+      "image_url": "https://images.englandrugby.com/club_images/18868.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Hellingly",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9891",
+      "image_url": "https://images.englandrugby.com/club_images/9891.png",
+      "address": "Hellingly Rfc Hellingly Sports Club Horsebridge Recreational Ground Lower Horsebridge Nr. Hailsham East Sussex BN27 4DJ United Kingdom",
+      "latitude": 50.8813025,
+      "longitude": 0.2394541,
+      "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350502212
+    },
+    {
+      "name": "Hove II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10504",
+      "image_url": "https://images.englandrugby.com/club_images/10504.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    }
+  ],
+  "team_count": 8
+}

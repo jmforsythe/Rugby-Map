@@ -13,7 +13,13 @@ from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 from shapely.prepared import PreparedGeometry, prep
 
-from utils import MapTeam, TravelDistances, get_google_analytics_script, json_load_cache
+from utils import (
+    MapTeam,
+    TravelDistances,
+    get_google_analytics_script,
+    json_load_cache,
+    team_name_to_filepath,
+)
 
 # Extended type definitions for mapping (adds geospatial fields to base types)
 
@@ -53,77 +59,166 @@ class RegionColors(TypedDict):
     itl3_multi_league: list[str]  # List of ITL3 regions with 2+ leagues
 
 
-def extract_tier(filename: str) -> str:
-    """Extract tier information from filename."""
+def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
+    season_start_year = int(season.split("-")[0])
+
+    # 2021-2022 season and earlier use different league naming
+    if season_start_year <= 2021:
+        return extract_tier_2021(filename)
+    else:
+        # 2022-2023 onwards use current naming
+        return extract_tier_current(filename)
+
+
+def extract_tier_current(filename: str) -> tuple[int, str]:
+    """Extract tier from 2022-2023 onwards filename format."""
     if filename.startswith("Premiership"):
-        return "Premiership"
-    elif filename.startswith("Championship"):
-        return "Championship"
-    elif filename.startswith("National_League_1"):
-        return "National League 1"
-    elif filename.startswith("National_League_2"):
-        return "National League 2"
-    elif filename.startswith("Regional_1"):
-        return "Regional 1"
-    elif filename.startswith("Regional_2"):
-        return "Regional 2"
-    elif filename.startswith("Counties_1"):
-        return "Counties 1"
-    elif filename.startswith("Counties_2"):
-        return "Counties 2"
-    elif filename.startswith("Counties_3"):
-        return "Counties 3"
-    elif filename.startswith("Counties_4"):
-        return "Counties 4"
-    elif filename.startswith("Counties_5"):
-        return "Counties 5"
-    elif filename.startswith("Women's_Premiership"):
-        return "Premiership Women's"
-    elif filename.startswith("Women's_Championship"):
+        return (1, "Premiership")
+    if filename.startswith("Championship"):
+        return (2, "Championship")
+    if filename.startswith("National_League_1"):
+        return (3, "National League 1")
+    if filename.startswith("National_League_2"):
+        return (4, "National League 2")
+    if filename.startswith("Regional_1"):
+        return (5, "Regional 1")
+    if filename.startswith("Regional_2"):
+        return (6, "Regional 2")
+    if filename.startswith("Counties_1"):
+        return (7, "Counties 1")
+    if filename.startswith("Counties_2"):
+        return (8, "Counties 2")
+    if filename.startswith("Counties_3"):
+        return (9, "Counties 3")
+    if filename.startswith("Counties_4"):
+        return (10, "Counties 4")
+    if filename.startswith("Counties_5"):
+        return (11, "Counties 5")
+    if filename.startswith("Women's_Premiership"):
+        return (101, "Premiership Women's")
+    if filename.startswith("Women's_Championship"):
         if filename.endswith("1.json"):
-            return "Championship 1"
-        elif filename.endswith("2.json"):
-            return "Championship 2"
-    elif filename.startswith("Women's_NC_1"):
-        return "National Challenge 1"
-    elif filename.startswith("Women's_NC_2"):
-        return "National Challenge 2"
-    elif filename.startswith("Women's_NC_3"):
-        return "National Challenge 3"
-    elif filename.startswith("Cumbria_Conference"):
+            return (102, "Championship 1")
+        if filename.endswith("2.json"):
+            return (103, "Championship 2")
+    if filename.startswith("Women's_NC_1"):
+        return (104, "National Challenge 1")
+    if filename.startswith("Women's_NC_2"):
+        return (105, "National Challenge 2")
+    if filename.startswith("Women's_NC_3"):
+        return (106, "National Challenge 3")
+    if filename.startswith("Cumbria_Conference"):
         if filename.endswith("1.json"):
-            return "Counties 2"
-        elif filename.endswith("2.json"):
-            return "Counties 3"
-    return "Unknown"
+            return (107, "Counties 2")
+        if filename.endswith("2.json"):
+            return (108, "Counties 3")
+    return (999, "Unknown")
 
 
-TIER_ORDER = [
-    "Premiership",
-    "Championship",
-    "National League 1",
-    "National League 2",
-    "Regional 1",
-    "Regional 2",
-    "Counties 1",
-    "Counties 2",
-    "Counties 3",
-    "Counties 4",
-    "Counties 5",
-]
-WOMENS_TIER_ORDER = [
-    "Premiership Women's",
-    "Championship 1",
-    "Championship 2",
-    "National Challenge 1",
-    "National Challenge 2",
-    "National Challenge 3",
-]
+def extract_tier_2021(filename: str) -> tuple[int, str]:
+    """Extract tier from 2021-2022 and earlier filename format."""
+    # set "zeroth tier" of prefix, numbers will be used as offsets
+    filename = (
+        filename.removeprefix("Tribute_")
+        .removeprefix("Wadworth_")
+        .removeprefix("Harvey's_of_")
+        .removeprefix("Harvey\u2019s_Brewery_")
+        .removeprefix("Greene_King_IPA_")
+        .removeprefix("Shepherd_Neame_")
+    )
+
+    zeroth_tier_map = {
+        "North": 5,
+        "Midlands": 5,
+        "London": 5,
+        "South_West": 5,
+        "Cumbria": 6,
+        "Durham_Northumberland": 6,
+        "Essex": 8,
+        "Eastern_Counties": 8,
+        "Hampshire": 9,
+        "Sussex": 8,
+        "Herts_Middlesex": 8,
+        "Kent": 8,
+        "Surrey": 8,
+        "Berks_Bucks_&_Oxon": 8,
+        "Cornwall": 8,
+        "Devon": 8,
+        "Dorset": 7,
+        "Gloucester": 8,
+        "Somerset": 8,
+        "Southern_Counties": 7,
+        "Western_Counties": 7,
+        "Yorkshire": 6,
+        "Lancs_Cheshire": 7,
+    }
+
+    if filename.startswith("Premiership"):
+        return (1, "Premiership")
+    if filename.startswith("Championship"):
+        return (2, "Championship")
+    if filename.startswith("National_League_1"):
+        return (3, "National League 1")
+    if filename.startswith("National_League_2"):
+        return (4, "National League 2")
+    for prefix, offset in zeroth_tier_map.items():
+        if filename.startswith(prefix):
+            # Extract number after prefix, e.g. "North_1" -> 1
+            other_words = filename.removesuffix(".json")[len(prefix) :].removeprefix("_").split("_")
+            num_map = {
+                "1": 1,
+                "One": 1,
+                "2": 2,
+                "Two": 2,
+                "3": 3,
+                "Three": 3,
+                "4": 4,
+                "Four": 4,
+                "5": 5,
+                "Five": 5,
+            }
+            num = 0
+            for part in other_words:
+                if part in num_map:
+                    num = num_map[part]
+                    break
+            tier = offset + num
+            return (tier, f"Level {tier}")
+
+    # Women's leagues
+    if filename.startswith("Women's_Premiership"):
+        return (101, "Premiership Women's")
+    if filename.startswith("Women's_Championship"):
+        if "_1" in filename or filename.endswith("1.json"):
+            return (102, "Championship 1")
+        if "_2" in filename or filename.endswith("2.json"):
+            return (103, "Championship 2")
+    if filename.startswith("Women's_NC_1"):
+        return (104, "National Challenge 1")
+    if filename.startswith("Women's_NC_2"):
+        return (105, "National Challenge 2")
+    if filename.startswith("Women's_NC_3"):
+        return (106, "National Challenge 3")
+    print(f"Warning: Could not extract tier from filename '{filename}' using 2021 logic")
+    return (999, "Unknown")
 
 
-def load_teams_data(geocoded_teams_dir: str) -> dict[str, list[MapTeam]]:
-    """Load all teams from geocoded JSON files."""
+def load_teams_data(
+    geocoded_teams_dir: str, season: str = "2025-2026"
+) -> tuple[dict[str, list[MapTeam]], dict[str, int]]:
+    """Load all teams from geocoded JSON files.
+
+    Args:
+        geocoded_teams_dir: Directory containing geocoded team JSON files
+        season: Season in format 'YYYY-YYYY' for tier extraction
+
+    Returns:
+        Tuple of (teams_by_tier, tier_numbers) where:
+        - teams_by_tier: Dictionary mapping tier names to lists of teams
+        - tier_numbers: Dictionary mapping tier names to tier numbers
+    """
     teams_by_tier: dict[str, list[MapTeam]] = {}
+    tier_numbers: dict[str, int] = {}
 
     # Support both season subdirectories and root directory
     if os.path.isdir(geocoded_teams_dir):
@@ -137,10 +232,11 @@ def load_teams_data(geocoded_teams_dir: str) -> dict[str, list[MapTeam]]:
 
             data = json_load_cache(filepath)
 
-            tier = extract_tier(filename)
+            tier_num, tier_name = extract_tier(filename, season)
 
-            if tier not in teams_by_tier:
-                teams_by_tier[tier] = []
+            if tier_name not in teams_by_tier:
+                teams_by_tier[tier_name] = []
+                tier_numbers[tier_name] = tier_num
 
             league_name = data.get("league_name", "Unknown League")
             league_url = data.get("league_url", "")
@@ -158,14 +254,14 @@ def load_teams_data(geocoded_teams_dir: str) -> dict[str, list[MapTeam]]:
                         "place_id": team.get("place_id"),
                         "league": league_name,
                         "league_url": league_url,  # type: ignore
-                        "tier": tier,
+                        "tier": tier_name,
                         "itl1": None,
                         "itl2": None,
                         "itl3": None,
                     }
-                    teams_by_tier[tier].append(team_data)
+                    teams_by_tier[tier_name].append(team_data)
 
-    return teams_by_tier
+    return teams_by_tier, tier_numbers
 
 
 # Distinct colors for leagues
@@ -530,14 +626,16 @@ def color_regions_by_league(
     # Get all leagues in this tier
     all_leagues = sorted({t["league"] for t in teams})
 
-    # Detect tier for special handling
+    # Detect tier for special handling using tier names
     tier_name = teams[0]["tier"] if teams else None
+    # Top tiers (0-2, 100) get national shading
     do_national_shading = tier_name in [
         "Premiership",
         "Championship",
         "National League 1",
         "Premiership Women's",
     ]
+    # National League 2 tier gets bigger shading
     do_bigger_shading = tier_name in ["National League 2", "Championship 1", "Championship 2"]
 
     # Special early return for top tiers: shade all of England
@@ -888,6 +986,7 @@ def add_marker(
         <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
         {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{"" if IS_PRODUCTION else "../"}/teams/{team_name_to_filepath(team['name'])}\" target=\"_blank\">View Info page</a></p>" if league_url else ""}
         {distance_html}
     </div>
     """
@@ -1350,7 +1449,12 @@ def main() -> None:
 
     # If no specific flags, generate everything
     if not (
-        args.mens or args.womens or args.all_tiers or args.all_tiers_mens or args.all_tiers_womens
+        args.mens
+        or args.womens
+        or args.all_tiers
+        or args.all_tiers_mens
+        or args.all_tiers_womens
+        or args.tiers
     ):
         generate_mens_individual = True
         generate_womens_individual = True
@@ -1364,15 +1468,20 @@ def main() -> None:
 
     print("Loading teams data...")
     geocoded_dir = os.path.join("geocoded_teams", season)
-    teams_by_tier = load_teams_data(geocoded_dir)
+    teams_by_tier, tier_numbers = load_teams_data(geocoded_dir, season)
+
+    # Sort tiers by tier number
+    sorted_tier_names = sorted(teams_by_tier.keys(), key=lambda t: tier_numbers[t])
+
+    # Separate mens and womens based on tier number (1-99 = mens, 100+ = womens)
+    mens_tier_order = [t for t in sorted_tier_names if tier_numbers[t] < 100]
+    womens_tier_order = [t for t in sorted_tier_names if tier_numbers[t] >= 100]
 
     total_teams = sum(len(teams) for teams in teams_by_tier.values())
     print(f"\nFound {total_teams} teams across {len(teams_by_tier)} tiers")
 
     print("\nTeams by tier:")
-    for tier in TIER_ORDER + WOMENS_TIER_ORDER:
-        if tier not in teams_by_tier:
-            continue
+    for tier in sorted_tier_names:
         print(f"  {tier}: {len(teams_by_tier[tier])} teams")
 
     print("\nLoading ITL hierarchy...")
@@ -1393,13 +1502,16 @@ def main() -> None:
     else:
         print("  No travel distance data found")
 
+    # Separate mens and womens teams
     mens = {
-        tier_name: teams for tier_name, teams in teams_by_tier.items() if tier_name in TIER_ORDER
+        tier_name: teams
+        for tier_name, teams in teams_by_tier.items()
+        if tier_name in mens_tier_order
     }
     womens = {
         tier_name: teams
         for tier_name, teams in teams_by_tier.items()
-        if tier_name in WOMENS_TIER_ORDER
+        if tier_name in womens_tier_order
     }
 
     # Filter by specific tiers if requested
@@ -1408,6 +1520,9 @@ def main() -> None:
         womens = {
             tier_name: teams for tier_name, teams in womens.items() if tier_name in args.tiers
         }
+        # Update tier orders to only include filtered tiers
+        mens_tier_order = [t for t in mens_tier_order if t in args.tiers]
+        womens_tier_order = [t for t in womens_tier_order if t in args.tiers]
 
     # Output directory for this season
     output_dir = os.path.join("tier_maps", season)
@@ -1417,7 +1532,7 @@ def main() -> None:
         print("\nCreating men's tier maps...")
         create_tier_maps(
             mens,
-            TIER_ORDER,
+            mens_tier_order,
             region_to_teams,
             itl_hierarchy,
             output_dir=output_dir,
@@ -1430,7 +1545,7 @@ def main() -> None:
         print("\nCreating women's tier maps...")
         create_tier_maps(
             womens,
-            WOMENS_TIER_ORDER,
+            womens_tier_order,
             region_to_teams,
             itl_hierarchy,
             output_dir=output_dir,
@@ -1445,11 +1560,11 @@ def main() -> None:
         full_mens = {
             tier_name: teams
             for tier_name, teams in teams_by_tier.items()
-            if tier_name in TIER_ORDER
+            if tier_name in mens_tier_order
         }
         create_all_tiers_map(
             full_mens,
-            TIER_ORDER,
+            mens_tier_order,
             region_to_teams,
             itl_hierarchy,
             output_dir=output_dir,
@@ -1464,11 +1579,11 @@ def main() -> None:
         full_womens = {
             tier_name: teams
             for tier_name, teams in teams_by_tier.items()
-            if tier_name in WOMENS_TIER_ORDER
+            if tier_name in womens_tier_order
         }
         create_all_tiers_map(
             full_womens,
-            WOMENS_TIER_ORDER,
+            womens_tier_order,
             region_to_teams,
             itl_hierarchy,
             output_dir=output_dir,

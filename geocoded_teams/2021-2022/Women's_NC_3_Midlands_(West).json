@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC 3 Midlands (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31861&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Stourbridge Panthers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21150",
+      "image_url": "https://images.englandrugby.com/club_images/21150.png",
+      "address": "Stourbridge Rugby Football Club Ltd Stourton Park Bridgnorth Road Stourton , Stourbridge West Midlands DY7 6QZ United Kingdom",
+      "latitude": 52.4595,
+      "longitude": -2.18182,
+      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351208633
+    },
+    {
+      "name": "Telford Hornets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21800",
+      "image_url": "https://images.englandrugby.com/club_images/21800.png",
+      "address": "Town Park Hinkshay Road Dawley Telford SHROPSHIRE TF4 3NZ UNITED KINGDOM",
+      "latitude": 52.6683891,
+      "longitude": -2.4447884,
+      "formatted_address": "TF4 3NZ, Great Dawley, Dawley, Telford and Wrekin, England, United Kingdom",
+      "place_id": 350851302
+    },
+    {
+      "name": "Stone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21103",
+      "image_url": "https://images.englandrugby.com/club_images/21103.png",
+      "address": "Stone Hockey And Rugby Club , Enson Lane, Stone, Staffordshire, ST15 0BJ, United Kingdom",
+      "latitude": 52.88415,
+      "longitude": -2.12831,
+      "formatted_address": "ST15 0BJ, Stone Rural, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 351990503
+    },
+    {
+      "name": "Trinity Guild Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124599",
+      "image_url": "https://images.englandrugby.com/club_images/124599.png",
+      "address": "Martin Wheeler Fields Segro Park, Samaritan Way Baginton Coventry Warwickshire CV8 3EE United Kingdom",
+      "latitude": 52.35863,
+      "longitude": -1.48417,
+      "formatted_address": "CV8 3EE, Segro Park, Baginton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 350676082
+    }
+  ],
+  "team_count": 4
+}

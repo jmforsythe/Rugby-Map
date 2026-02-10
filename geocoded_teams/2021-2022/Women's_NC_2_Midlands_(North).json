@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 Midlands (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31846&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Long Eaton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12699",
+      "image_url": "https://images.englandrugby.com/club_images/12699.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
+    },
+    {
+      "name": "Burton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3790",
+      "image_url": "https://images.englandrugby.com/club_images/3790.png",
+      "address": "Burton Rfc Ltd, Battlestead Croft, Branston Road, Tatenhill, Burton Upon Trent, Staffordshire, DE13 9SB, England",
+      "latitude": 52.7964095,
+      "longitude": -1.6817842,
+      "formatted_address": "DE13 9SB, Branston, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350575056
+    },
+    {
+      "name": "Sileby Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19362",
+      "image_url": "https://images.englandrugby.com/club_images/19362.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    },
+    {
+      "name": "Mellish Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13671",
+      "image_url": "https://images.englandrugby.com/club_images/13671.png",
+      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
+      "latitude": 53.0091092,
+      "longitude": -1.1009749,
+      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350719287
+    },
+    {
+      "name": "Mansfield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123868",
+      "image_url": "https://images.englandrugby.com/club_images/123868.png",
+      "address": "Clubhouse Grounds & Sports Centre, Eakring Road, Mansfield, Nottinghamshire, NG18 3EW, United Kingdom",
+      "latitude": 53.1486988,
+      "longitude": -1.1253882,
+      "formatted_address": "NG18 3EW, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350717341
+    },
+    {
+      "name": "Ashfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=857",
+      "image_url": "https://images.englandrugby.com/club_images/857.png",
+      "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
+      "latitude": 53.1126952,
+      "longitude": -1.26137,
+      "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351649727
+    },
+    {
+      "name": "Amber Valley Tigers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=564",
+      "image_url": "https://images.englandrugby.com/club_images/564.png",
+      "address": "Amber Valley Rugby Club, Pye Bridge, Lower Somercotes, Alfreton, DE55 4PD, United Kingdom",
+      "latitude": 53.0736151,
+      "longitude": -1.352606,
+      "formatted_address": "DE55 4PD, Somercotes CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351153942
+    }
+  ],
+  "team_count": 7
+}

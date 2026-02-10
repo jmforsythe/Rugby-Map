@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 Midlands (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=36945&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Sudbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123169",
+      "image_url": "https://images.englandrugby.com/club_images/123169.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "Ipswich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10946",
+      "image_url": "https://images.englandrugby.com/club_images/10946.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Southwold Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19853",
+      "image_url": "https://images.englandrugby.com/club_images/19853.png",
+      "address": "William Godell Pavilion, The Common, Southwold, Suffolk, IP18 6TB, United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "University of East Anglia Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23593",
+      "image_url": "https://images.englandrugby.com/club_images/23593.png",
+      "address": "Uea+sport, Uea Rfc Sportspark, University Of East Anglia Norwich Norwich Norfolk NR4 7TJ United Kingdom",
+      "latitude": 52.6222522,
+      "longitude": 1.2405417,
+      "formatted_address": "NR4 7TJ, Norwich, Norfolk, England, United Kingdom",
+      "place_id": 350296428
+    },
+    {
+      "name": "Braintree Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123157",
+      "image_url": "https://images.englandrugby.com/club_images/123157.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Haverhill & Dist Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9725",
+      "image_url": "https://images.englandrugby.com/club_images/9725.png",
+      "address": "Haverhill Rugby Club, Castle Playing Fields, School Lane, Haverhill, Suffolk, CB9 9DE, United Kingdom",
+      "latitude": 52.0813377,
+      "longitude": 0.4200035,
+      "formatted_address": "CB9 9DE, Haverhill, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350089033
+    }
+  ],
+  "team_count": 8
+}

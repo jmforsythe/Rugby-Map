@@ -1,0 +1,127 @@
+{
+  "league_name": "London 3 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21522&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Reeds Weybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17645",
+      "image_url": "https://images.englandrugby.com/club_images/17645.png",
+      "address": "North Avenue Whiteley Village Walton On Thames SURREY KT12 4EJ UNITED KINGDOM ",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350219256
+    },
+    {
+      "name": "Old Tiffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068",
+      "image_url": "https://images.englandrugby.com/club_images/16068.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
+    },
+    {
+      "name": "Old Georgians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15708",
+      "image_url": "https://images.englandrugby.com/club_images/15708.png",
+      "address": "Old Georgians Clubhouse - St Georges College, Weybridge Road, Addlestone, Surrey , KT15 2QS, United Kingdom",
+      "latitude": 51.3778622,
+      "longitude": -0.4789792,
+      "formatted_address": "KT15 2QS, Runnymede, Surrey, England, United Kingdom",
+      "place_id": 350670367
+    },
+    {
+      "name": "Warlingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24282",
+      "image_url": "https://images.englandrugby.com/club_images/24282.png",
+      "address": "Warlingham Rugby Football Club  Limpsfield Road Warlingham SURREY CR6 9RB UNITED KINGDOM ",
+      "latitude": 51.31586,
+      "longitude": -0.06236,
+      "formatted_address": "CR6 9RB, Warlingham, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 351097274
+    },
+    {
+      "name": "Weybridge Vandals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25094",
+      "image_url": "https://images.englandrugby.com/club_images/25094.png",
+      "address": "Brownacres Walton Lane Walton on Thames SURREY KT12 1QP UNITED KINGDOM",
+      "latitude": 51.3851494,
+      "longitude": -0.436515,
+      "formatted_address": "KT12 1QP, Spelthorne, Surrey, England, United Kingdom",
+      "place_id": 351420526
+    },
+    {
+      "name": "Portsmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17112",
+      "image_url": "https://images.englandrugby.com/club_images/17112.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Basingstoke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1565",
+      "image_url": "https://images.englandrugby.com/club_images/1565.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Andover",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=657",
+      "image_url": "https://images.englandrugby.com/club_images/657.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "Trojans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23216",
+      "image_url": "https://images.englandrugby.com/club_images/23216.png",
+      "address": "Trojans Club, Stoneham Park  , Stoneham Lane, Eastleigh, Southampton, Hampshire, SO50 9HT, United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832256
+    },
+    {
+      "name": "Gosport & Fareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8808",
+      "image_url": "https://images.englandrugby.com/club_images/8808.png",
+      "address": "Gosport Park, Dolphin Crescent, Gosport, Hampshire, PO12 2HE, United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774642
+    },
+    {
+      "name": "Effingham & Leatherhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7373",
+      "image_url": "https://images.englandrugby.com/club_images/7373.png",
+      "address": "Effingham & Leatherhead R.F.C. King George V Hall King George V Playing Fields Browns Lane Effingham SURREY KT24 5ND UNITED KINGDOM ",
+      "latitude": 51.2703433,
+      "longitude": -0.3954898,
+      "formatted_address": "KT24 5ND, Effingham, Guildford, Surrey, England, United Kingdom",
+      "place_id": 350671350
+    },
+    {
+      "name": "United Services, Portsmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23499",
+      "image_url": "https://images.englandrugby.com/club_images/23499.png",
+      "address": "United Services Sports Club, Burnaby Road, Portsmouth, Hamps, PO1 2EJ, United Kingdom",
+      "latitude": 50.7965238,
+      "longitude": -1.0982525,
+      "formatted_address": "PO1 2EJ, Portsmouth, England, United Kingdom",
+      "place_id": 351777555
+    }
+  ],
+  "team_count": 12
+}

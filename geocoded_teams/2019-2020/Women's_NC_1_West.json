@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 1 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=27757&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Sutton Coldfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21458",
+      "image_url": "https://images.englandrugby.com/club_images/21458.png",
+      "address": "Sutton Coldfield R.F.C. The Roger Smoldon Recreation Ground 160 Walmley Road Sutton Coldfield WEST MIDLANDS B76 2QA UNITED KINGDOM ",
+      "latitude": 52.545986,
+      "longitude": -1.7982853,
+      "formatted_address": "B76 2QA, Sutton Coldfield, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350484308
+    },
+    {
+      "name": "Cannock Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4114",
+      "image_url": "https://images.englandrugby.com/club_images/4114.png",
+      "address": "The Morgan Ground Stafford Road Huntington Cannock STAFFORDSHIRE WS12 4NU ",
+      "latitude": 52.7131327,
+      "longitude": -2.0409029,
+      "formatted_address": "WS12 4NU, Huntington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350895011
+    },
+    {
+      "name": "Five Ways Old Edwardians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8189",
+      "image_url": "https://images.englandrugby.com/club_images/8189.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Drybrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6838",
+      "image_url": "https://images.englandrugby.com/club_images/6838.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Old Leamingtonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15809",
+      "image_url": "https://images.englandrugby.com/club_images/15809.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Rugby Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18288",
+      "image_url": "https://images.englandrugby.com/club_images/18288.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    },
+    {
+      "name": "Greyhound Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8971",
+      "image_url": "https://images.englandrugby.com/club_images/8971.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd, Grandstand Road, Hereford, Herefordshire, HR4 9NG, England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Hucclecote Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10564",
+      "image_url": "https://images.englandrugby.com/club_images/10564.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    }
+  ],
+  "team_count": 8
+}

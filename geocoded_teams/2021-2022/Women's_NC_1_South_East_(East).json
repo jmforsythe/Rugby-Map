@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's NC 1 South East (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31840&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Canterbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground Merton Lane (north) Nackington Road Canterbury Kent CT4 7DZ United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350656514
+    },
+    {
+      "name": "Heathfield & W Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9825",
+      "image_url": "https://images.englandrugby.com/club_images/9825.png",
+      "address": "The Hardy Roberts Recreation Ground, Cross-in-hand, Heathfield, East Sussex, TN21 0TA, England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Streatham-Croydon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21258",
+      "image_url": "https://images.englandrugby.com/club_images/21258.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559757
+    },
+    {
+      "name": "Blackheath Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2506",
+      "image_url": "https://images.englandrugby.com/club_images/2506.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Tonbridge Juddian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22914",
+      "image_url": "https://images.englandrugby.com/club_images/22914.png",
+      "address": "Tonbridge Juddians Rfc The Clubhouse The Slade Tonbridge Kent TN9 1HR United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350406169
+    },
+    {
+      "name": "Guernsey Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9031",
+      "image_url": "https://images.englandrugby.com/club_images/9031.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cranbrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5763",
+      "image_url": "https://images.englandrugby.com/club_images/5763.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    },
+    {
+      "name": "Beccehamian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1749",
+      "image_url": "https://images.englandrugby.com/club_images/1749.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    }
+  ],
+  "team_count": 8
+}

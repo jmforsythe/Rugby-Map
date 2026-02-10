@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 South West (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=33811&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Gordano Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8731",
+      "image_url": "https://images.englandrugby.com/club_images/8731.png",
+      "address": "Gordano Rfc Caswell Lane Portbury Bristol Bristol BS20 7UF United Kingdom",
+      "latitude": 51.4733448,
+      "longitude": -2.7246778,
+      "formatted_address": "BS20 7UF, Portbury, North Somerset, England, United Kingdom",
+      "place_id": 350509743
+    },
+    {
+      "name": "Hornettes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10433",
+      "image_url": "https://images.englandrugby.com/club_images/10433.png",
+      "address": "Hutton Moor Road Weston-super-mare Somerset BS22 8LY United Kingdom",
+      "latitude": 51.3444168,
+      "longitude": -2.947101,
+      "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
+      "place_id": 260068591
+    },
+    {
+      "name": "Avonmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1086",
+      "image_url": "https://images.englandrugby.com/club_images/1086.png",
+      "address": "Barracks Lane, Avonmouth, Bristol, BS11 9NG, United Kingdom",
+      "latitude": 51.4966619,
+      "longitude": -2.682831,
+      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
+      "place_id": 259517279
+    },
+    {
+      "name": "Dursley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7027",
+      "image_url": "https://images.englandrugby.com/club_images/7027.png",
+      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
+      "latitude": 51.691656,
+      "longitude": -2.3834713,
+      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350629371
+    },
+    {
+      "name": "Chipping Sodbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4892",
+      "image_url": "https://images.englandrugby.com/club_images/4892.png",
+      "address": "Wickwar Road Chipping Sodbury BRISTOL BS37 6GA UNITED KINGDOM",
+      "latitude": 51.5431748,
+      "longitude": -2.3952242,
+      "formatted_address": "BS37 6GA, Sodbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516413
+    },
+    {
+      "name": "Aretians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=732",
+      "image_url": "https://images.englandrugby.com/club_images/732.png",
+      "address": "Aretians R.f.c., Station Road, Little Stoke, Bristol, Bristol, BS34 6HW, United Kingdom",
+      "latitude": 51.529744,
+      "longitude": -2.5642251,
+      "formatted_address": "BS34 6HW, Stoke Gifford, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350514350
+    },
+    {
+      "name": "Old Bristolians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15465",
+      "image_url": "https://images.englandrugby.com/club_images/15465.png",
+      "address": "Old Bristolians RFC Memorial Playing Field Longwood Lane, Failand Bristol BRISTOL BS8 3TQ UNITED KINGDOM",
+      "latitude": 51.4430181,
+      "longitude": -2.6705286,
+      "formatted_address": "BS8 3TQ, Long Ashton, North Somerset, England, United Kingdom",
+      "place_id": 350071277
+    }
+  ],
+  "team_count": 7
+}

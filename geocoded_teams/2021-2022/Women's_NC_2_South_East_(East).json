@@ -1,0 +1,94 @@
+{
+  "league_name": "Women's NC 2 South East (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31853&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Dartford Valley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6165",
+      "image_url": "https://images.englandrugby.com/club_images/6165.png",
+      "address": "Sophie Warren Chair Dvrfc, Dartford Valley Rfc, Dartford Valley Community Rugby Club, Cotton Lane, Dartford, Kent, DA2 6QZ, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Westcliff Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24958",
+      "image_url": "https://images.englandrugby.com/club_images/24958.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Aylesford Bulls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94090",
+      "image_url": "https://images.englandrugby.com/club_images/94090.png",
+      "address": "The Jack Williams Ground, Hall Road, Hall Road, Aylesford, Kent, ME20 7DS, United Kingdom",
+      "latitude": 51.29934,
+      "longitude": 0.47961,
+      "formatted_address": "ME20 7DS, Aylesford, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 351573177
+    },
+    {
+      "name": "Lordswood Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12811",
+      "image_url": "https://images.englandrugby.com/club_images/12811.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Southend Saints Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19724",
+      "image_url": "https://images.englandrugby.com/club_images/19724.png",
+      "address": "Sumpters Way, Warners Bridge Park, Southend-on-sea, Essex, SS2 5RE, United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 351981743
+    },
+    {
+      "name": "Gravesend Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=122847",
+      "image_url": "https://images.englandrugby.com/club_images/122847.png",
+      "address": "Rectory Field Donald Biggs Drive Milton Road Gravesend Kent DA12 2TL United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350119186
+    },
+    {
+      "name": "Ashford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=880",
+      "image_url": "https://images.englandrugby.com/club_images/880.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM ",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "New Ash Green Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14309",
+      "image_url": "https://images.englandrugby.com/club_images/14309.png",
+      "address": "The Pavilion Punchcroft Road New Ash Green, Longfield Kent DA3 8HS United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570829
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    }
+  ],
+  "team_count": 9
+}

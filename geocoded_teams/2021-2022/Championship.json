@@ -1,0 +1,114 @@
+{
+  "league_name": "Championship",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division=33636&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Ealing Trailfinders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7084",
+      "image_url": "https://images.englandrugby.com/club_images/7084.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM ",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350873620
+    },
+    {
+      "name": "Doncaster Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6559",
+      "image_url": "https://images.englandrugby.com/club_images/6559.png",
+      "address": "Doncaster RFC Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5327399,
+      "longitude": -1.0799,
+      "formatted_address": "DN2 5QB, Doncaster, South Yorkshire, England, United Kingdom",
+      "place_id": 351183408
+    },
+    {
+      "name": "Cornish Pirates",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5644",
+      "image_url": "https://images.englandrugby.com/club_images/5644.png",
+      "address": "c/o Penzance/Newlyn RFC Westholme Lodge Alexandra Road Penzance CORNWALL TR18 4LY UNITED KINGDOM ",
+      "latitude": 50.1127876,
+      "longitude": -5.5413017,
+      "formatted_address": "TR18 4LY, Penzance, Cornwall, England, United Kingdom",
+      "place_id": 350867273
+    },
+    {
+      "name": "Jersey Reds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11099",
+      "image_url": "https://images.englandrugby.com/club_images/11099.png",
+      "address": "Jersey Rugby Football Club Rue Des Landes St Peter JE3 7BG Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bedford Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1827",
+      "image_url": "https://images.englandrugby.com/club_images/1827.png",
+      "address": "Bedford Blues Rfc, Goldington Road, Bedford, Bedfordshire, MK40 3NF, United Kingdom",
+      "latitude": 52.1405326,
+      "longitude": -0.4595905,
+      "formatted_address": "MK40 3NF, Bedford, England, United Kingdom",
+      "place_id": 350703433
+    },
+    {
+      "name": "Ampthill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=632",
+      "image_url": "https://images.englandrugby.com/club_images/632.png",
+      "address": "Dillingham Park Woburn Street Ampthill Bedfordshire MK45 2HX UNITED KINGDOM ",
+      "latitude": 52.0318695,
+      "longitude": -0.4991971,
+      "formatted_address": "MK45 2HX, Ampthill, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350704166
+    },
+    {
+      "name": "Hartpury University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9602",
+      "image_url": "https://images.englandrugby.com/club_images/9602.png",
+      "address": "Hartpury College Hartpury House Hartpury Gloucester GLOUCESTERSHIRE GL19 3BE UNITED KINGDOM",
+      "latitude": 51.9076884,
+      "longitude": -2.3091654,
+      "formatted_address": "GL19 3BE, Hartpury, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630894
+    },
+    {
+      "name": "Coventry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
+      "image_url": "https://images.englandrugby.com/club_images/5722.png",
+      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
+      "latitude": 52.4061896,
+      "longitude": -1.5259715,
+      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350563719
+    },
+    {
+      "name": "Richmond",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17742",
+      "image_url": "https://images.englandrugby.com/club_images/17742.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Nottingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15075",
+      "image_url": "https://images.englandrugby.com/club_images/15075.png",
+      "address": "Nottingham Rugby, Nottingham Rugby Ltd., The Bay, 1 Holme Road, West Bridgford, Nottingham, Nottinghamshire, NG2 5AA, United Kingdom",
+      "latitude": 52.9399328,
+      "longitude": -1.1261495,
+      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718250
+    },
+    {
+      "name": "London Scottish",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12602",
+      "image_url": "https://images.englandrugby.com/club_images/12602.png",
+      "address": "Richmond Athletic Ground, Kew Foot Road, Richmond, Surrey, TW9 2SS, United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872407
+    }
+  ],
+  "team_count": 11
+}

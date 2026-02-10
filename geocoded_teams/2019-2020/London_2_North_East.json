@@ -1,0 +1,127 @@
+{
+  "league_name": "London 2 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21516&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Norwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15036",
+      "image_url": "https://images.englandrugby.com/club_images/15036.png",
+      "address": "Norwich Rfc Ltd., Beeston Hyrne, Beeston Hyrne, Norwich, Norfolk, NR12 7BW, United Kingdom",
+      "latitude": 52.6727282,
+      "longitude": 1.3230308,
+      "formatted_address": "NR12 7BW, Sprowston, Broadland, Norfolk, England, United Kingdom",
+      "place_id": 350735750
+    },
+    {
+      "name": "Southwold",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19838",
+      "image_url": "https://images.englandrugby.com/club_images/19838.png",
+      "address": "William Godell Pavilion The Common Southwold Suffolk IP18 6TB United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Ipswich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10940",
+      "image_url": "https://images.englandrugby.com/club_images/10940.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Wymondham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26280",
+      "image_url": "https://images.englandrugby.com/club_images/26280.png",
+      "address": "Wymondham Rfc, Barnard Fields, Bray Drive (off Reeve Way), Wymondham, Norfolk, NR18 0GQ, United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350738793
+    },
+    {
+      "name": "Diss",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6516",
+      "image_url": "https://images.englandrugby.com/club_images/6516.png",
+      "address": "Diss R.F.C. Mackenders Bellrope Lane Roydon Diss NORFOLK IP22 5RG UNITED KINGDOM ",
+      "latitude": 52.3827516,
+      "longitude": 1.079028,
+      "formatted_address": "IP22 5RG, Roydon, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350661359
+    },
+    {
+      "name": "Stowmarket",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21185",
+      "image_url": "https://images.englandrugby.com/club_images/21185.png",
+      "address": "Stowmarket Rugby Club Chilton Fields Sports Club Chilton Way Stowmarket SUFFOLK IP14 1SZ UNITED KINGDOM",
+      "latitude": 52.1938224,
+      "longitude": 0.9758336,
+      "formatted_address": "IP14 1SZ, Stowmarket, Suffolk, England, United Kingdom",
+      "place_id": 350659207
+    },
+    {
+      "name": "Saffron Walden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18501",
+      "image_url": "https://images.englandrugby.com/club_images/18501.png",
+      "address": "Saffron Walden Rfc Springate Chickney Road Henham Essex CM22 6BQ United Kingdom",
+      "latitude": 51.93679,
+      "longitude": 0.26852,
+      "formatted_address": "CM22 6BQ, Chickney, Uttlesford, Essex, England, United Kingdom",
+      "place_id": 351078223
+    },
+    {
+      "name": "South Woodham Ferrers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19679",
+      "image_url": "https://images.englandrugby.com/club_images/19679.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    },
+    {
+      "name": "Wanstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24241",
+      "image_url": "https://images.englandrugby.com/club_images/24241.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Romford & Gidea Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17957",
+      "image_url": "https://images.englandrugby.com/club_images/17957.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Holt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10307",
+      "image_url": "https://images.englandrugby.com/club_images/10307.png",
+      "address": "The Clubhouse Bridge Road High Kelling Holt NORFOLK NR25 6QT UNITED KINGDOM ",
+      "latitude": 52.9176794,
+      "longitude": 1.1189376,
+      "formatted_address": "NR25 6QT, High Kelling, North Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350742530
+    },
+    {
+      "name": "Epping Upper Clapton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7624",
+      "image_url": "https://images.englandrugby.com/club_images/7624.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    }
+  ],
+  "team_count": 12
+}

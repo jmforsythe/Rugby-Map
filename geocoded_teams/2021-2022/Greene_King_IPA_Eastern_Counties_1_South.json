@@ -1,0 +1,87 @@
+{
+  "league_name": "Greene King IPA Eastern Counties 1 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=31770&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Sudbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21303",
+      "image_url": "https://images.englandrugby.com/club_images/21303.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "Ipswich II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10945",
+      "image_url": "https://images.englandrugby.com/club_images/10945.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Mistley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14007",
+      "image_url": "https://images.englandrugby.com/club_images/14007.png",
+      "address": "Furze Hill Playing Fields, Shrublands Road, Manningtree, Essex, CO11 1HS, United Kingdom",
+      "latitude": 51.9405743,
+      "longitude": 1.0851074,
+      "formatted_address": "CO11 1HS, Mistley, Mistley Heath, Tendring, Essex, England, United Kingdom",
+      "place_id": 350551914
+    },
+    {
+      "name": "Stowmarket II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21186",
+      "image_url": "https://images.englandrugby.com/club_images/21186.png",
+      "address": "Stowmarket Rugby Club Chilton Fields Sports Club Chilton Way Stowmarket SUFFOLK IP14 1SZ UNITED KINGDOM",
+      "latitude": 52.1938224,
+      "longitude": 0.9758336,
+      "formatted_address": "IP14 1SZ, Stowmarket, Suffolk, England, United Kingdom",
+      "place_id": 350659207
+    },
+    {
+      "name": "Colchester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5390",
+      "image_url": "https://images.englandrugby.com/club_images/5390.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    },
+    {
+      "name": "Braintree II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2977",
+      "image_url": "https://images.englandrugby.com/club_images/2977.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Hadleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9184",
+      "image_url": "https://images.englandrugby.com/club_images/9184.png",
+      "address": "Hadleigh Rugby Football Club Layham Road Sports Ground Hadleigh, Ipswich Suffolk IP7 5NE United Kingdom",
+      "latitude": 52.0401144,
+      "longitude": 0.9522395,
+      "formatted_address": "IP7 5NE, Hadleigh, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350666494
+    }
+  ],
+  "team_count": 8
+}

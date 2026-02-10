@@ -1,0 +1,77 @@
+{
+  "league_name": "Yorkshire Division Four (North West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=22219&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Bramley Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3008",
+      "image_url": "https://images.englandrugby.com/club_images/3008.png",
+      "address": "The Warrels Grosmont Terrace Off Warrels Road Bramley Leeds WEST YORKSHIRE LS13 3NY UNITED KINGDOM ",
+      "latitude": 53.811082,
+      "longitude": -1.6337279,
+      "formatted_address": "LS13 3NY, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350689722
+    },
+    {
+      "name": "Burley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679",
+      "image_url": "https://images.englandrugby.com/club_images/3679.png",
+      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
+      "latitude": 53.8233843,
+      "longitude": -1.6141636,
+      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350692295
+    },
+    {
+      "name": "Leeds Modernians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12006",
+      "image_url": "https://images.englandrugby.com/club_images/12006.png",
+      "address": "Cookridge Lane Cookridge Leeds WEST YORKSHIRE LS16 7ND UNITED KINGDOM ",
+      "latitude": 53.8653942,
+      "longitude": -1.6179847,
+      "formatted_address": "Cookridge Lane, Cookridge, Leeds, West Yorkshire, England, LS16 7NE, United Kingdom",
+      "place_id": 257387387
+    },
+    {
+      "name": "Halifax",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9214",
+      "image_url": "https://images.englandrugby.com/club_images/9214.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Leeds Medics and Dentists",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11999",
+      "image_url": "https://images.englandrugby.com/club_images/11999.png",
+      "address": "Leeds Medics & Dentists Rfc, Sports Park Weetwood, University Of Leeds, Leeds, West Yorkshire, LS16 5AU, United Kingdom",
+      "latitude": 53.8377662,
+      "longitude": -1.5889204,
+      "formatted_address": "LS16 5AU, West Yorkshire, England, United Kingdom",
+      "place_id": 350690363
+    },
+    {
+      "name": "Thirsk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22640",
+      "image_url": "https://images.englandrugby.com/club_images/22640.png",
+      "address": "Thirsk Athletic Club Newsham Road Thirsk YO7 4DB UNITED KINGDOM ",
+      "latitude": 54.2394294,
+      "longitude": -1.3744136,
+      "formatted_address": "YO7 4DB, Thirsk, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 352196664
+    },
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    }
+  ],
+  "team_count": 7
+}

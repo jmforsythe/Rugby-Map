@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 1 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31836&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Shelford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19149",
+      "image_url": "https://images.englandrugby.com/club_images/19149.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Lakenham Hewett Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Lutterworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12966",
+      "image_url": "https://images.englandrugby.com/club_images/12966.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    },
+    {
+      "name": "Wymondham Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26303",
+      "image_url": "https://images.englandrugby.com/club_images/26303.png",
+      "address": "Wymondham Rfc Barnard Fields Bray Drive (off Reeve Way) Wymondham Norfolk NR18 0GQ United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350288069
+    },
+    {
+      "name": "Old Northamptonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15848",
+      "image_url": "https://images.englandrugby.com/club_images/15848.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "West Norfolk Warriors Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24850",
+      "image_url": "https://images.englandrugby.com/club_images/24850.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM ",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Rugby Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18288",
+      "image_url": "https://images.englandrugby.com/club_images/18288.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    }
+  ],
+  "team_count": 7
+}

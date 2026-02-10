@@ -1,0 +1,114 @@
+{
+  "league_name": "Herts/Middlesex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=26530&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Hendon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9974",
+      "image_url": "https://images.englandrugby.com/club_images/9974.png",
+      "address": "Greenlands Lane Copthall Playing Fields Hendon NW4 1RL United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700919
+    },
+    {
+      "name": "St Albans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20102",
+      "image_url": "https://images.englandrugby.com/club_images/20102.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Barnet Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1427",
+      "image_url": "https://images.englandrugby.com/club_images/1427.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Wasps FC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24412",
+      "image_url": "https://images.englandrugby.com/club_images/24412.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "London Scottish Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12611",
+      "image_url": "https://images.englandrugby.com/club_images/12611.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Saracens Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18731",
+      "image_url": "https://images.englandrugby.com/club_images/18731.png",
+      "address": "Bramley Road Sports Ground Green Road Southgate London N14 4AB United Kingdom",
+      "latitude": 51.6423,
+      "longitude": -0.14298,
+      "formatted_address": "N14 4AB, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604318
+    },
+    {
+      "name": "Bank Lane",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1314",
+      "image_url": "https://images.englandrugby.com/club_images/1314.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    },
+    {
+      "name": "Verulamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23976",
+      "image_url": "https://images.englandrugby.com/club_images/23976.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    },
+    {
+      "name": "Mill Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13869",
+      "image_url": "https://images.englandrugby.com/club_images/13869.png",
+      "address": "Mill Hill RFC Copthall Playing Fields Page Street Mill Hill MIDDLESEX NW7 2ED UNITED KINGDOM",
+      "latitude": 51.60637,
+      "longitude": -0.2324,
+      "formatted_address": "NW7 2ED, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351703547
+    },
+    {
+      "name": "U.C.S.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23417",
+      "image_url": "https://images.englandrugby.com/club_images/23417.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    }
+  ],
+  "team_count": 11
+}

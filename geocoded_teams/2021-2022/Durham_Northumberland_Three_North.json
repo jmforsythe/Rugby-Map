@@ -1,0 +1,87 @@
+{
+  "league_name": "Durham/Northumberland Three North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=31817&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Wallsend",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24182",
+      "image_url": "https://images.englandrugby.com/club_images/24182.png",
+      "address": "St. Peters Field, St Peter's Road, Holycross, Wallsend, Tyne And Wear, NE28 7JN, United Kingdom",
+      "latitude": 55.00318,
+      "longitude": -1.51599,
+      "formatted_address": "NE28 7JN, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351624457
+    },
+    {
+      "name": "Seghill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18967",
+      "image_url": "https://images.englandrugby.com/club_images/18967.png",
+      "address": "Seghill R.f.c. Welfare Park Seghill Cramlington Northumberland NE23 7EZ United Kingdom",
+      "latitude": 55.0651899,
+      "longitude": -1.5534856,
+      "formatted_address": "NE23 7EZ, Seghill, Seaton Valley, Seghill, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710787
+    },
+    {
+      "name": "Blyth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2631",
+      "image_url": "https://images.englandrugby.com/club_images/2631.png",
+      "address": "Blyth R.F.C. Plessey Road Blyth NORTHUMBERLAND NE24 3LE UNITED KINGDOM ",
+      "latitude": 55.1159891,
+      "longitude": -1.5131331,
+      "formatted_address": "NE24 3LE, Blyth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710916
+    },
+    {
+      "name": "Prudhoe & Stocksfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17245",
+      "image_url": "https://images.englandrugby.com/club_images/17245.png",
+      "address": "Stocksfield Sportsfield &Cricket Club Main Road Stocksfield NORTHUMBERLAND NE43 7NN UNITED KINGDOM",
+      "latitude": 54.9489937,
+      "longitude": -1.9110313,
+      "formatted_address": "NE43 7NN, New Ridley, Broomley and Stocksfield, Stocksfield, Northumberland, North East, England, United Kingdom",
+      "place_id": 350712569
+    },
+    {
+      "name": "Gosforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8790",
+      "image_url": "https://images.englandrugby.com/club_images/8790.png",
+      "address": "Broadway Playing Fields, Broadway West, Gosforth, Newcastle Upon Tyne, Tyne And Wear, NE3 2HY, United Kingdom",
+      "latitude": 55.01674,
+      "longitude": -1.62686,
+      "formatted_address": "NE3 2HY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351626037
+    },
+    {
+      "name": "West End",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24764",
+      "image_url": "https://images.englandrugby.com/club_images/24764.png",
+      "address": "7 Tower View Benwell Newcastle Upon Tyne NE15 6NY England",
+      "latitude": 54.97528,
+      "longitude": -1.67305,
+      "formatted_address": "NE15 6NY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351617770
+    },
+    {
+      "name": "Jarrovians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11078",
+      "image_url": "https://images.englandrugby.com/club_images/11078.png",
+      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
+      "latitude": 54.9606054,
+      "longitude": -1.4955724,
+      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
+      "place_id": 253817836
+    },
+    {
+      "name": "South Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19649",
+      "image_url": "https://images.englandrugby.com/club_images/19649.png",
+      "address": "Brinkburn Harton Lane South Shields Tyne And Wear NE34 0PJ United Kingdom",
+      "latitude": 54.9736278,
+      "longitude": -1.4264188,
+      "formatted_address": "Brinkburn CIO, Harton Lane, Cauldwell, South Shields, South Tyneside, Tyne and Wear, North East, England, NE34 0PJ, United Kingdom",
+      "place_id": 254518611
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 1 Midlands",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=21838&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Hitchin Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10221",
+      "image_url": "https://images.englandrugby.com/club_images/10221.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Lutterworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12966",
+      "image_url": "https://images.englandrugby.com/club_images/12966.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    },
+    {
+      "name": "Derby Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6343",
+      "image_url": "https://images.englandrugby.com/club_images/6343.png",
+      "address": "Derby R.f.c. Haslams Lane Darley Abbey Derby Derbyshire DE22 1EB United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350126279
+    },
+    {
+      "name": "Shelford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19149",
+      "image_url": "https://images.englandrugby.com/club_images/19149.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "West Norfolk Warriors Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24850",
+      "image_url": "https://images.englandrugby.com/club_images/24850.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM ",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Olney Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16188",
+      "image_url": "https://images.englandrugby.com/club_images/16188.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Peterborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16824",
+      "image_url": "https://images.englandrugby.com/club_images/16824.png",
+      "address": "Peterborough R.u.f.c. Second Drove Fengate Peterborough Cambridgeshire PE1 5XA United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759253
+    }
+  ],
+  "team_count": 8
+}

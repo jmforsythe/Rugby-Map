@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31863&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Horden & Peterlee Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10389",
+      "image_url": "https://images.englandrugby.com/club_images/10389.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Stockton Rockets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124307",
+      "image_url": "https://images.englandrugby.com/club_images/124307.png",
+      "address": "The Grangefield Ground, 52a Oxbridge Avenue, Stockton-on-tees, Ctydur, TS18 4JF, United Kingdom",
+      "latitude": 54.56503,
+      "longitude": -1.33826,
+      "formatted_address": "TS18 4JF, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352082792
+    },
+    {
+      "name": "Houghton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124529",
+      "image_url": "https://images.englandrugby.com/club_images/124529.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "Richmondshire Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17796",
+      "image_url": "https://images.englandrugby.com/club_images/17796.png",
+      "address": "The Clubhouse Theakston Lane Richmond North Yorkshire DL10 4LL United Kingdom",
+      "latitude": 54.3994665,
+      "longitude": -1.726758,
+      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350591546
+    },
+    {
+      "name": "Percy Park Panthers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124477",
+      "image_url": "https://images.englandrugby.com/club_images/124477.png",
+      "address": "The Club House, Preston Avenue, North Shields, Tyne  Wear, NE30 2BE, United Kingdom",
+      "latitude": 55.01683,
+      "longitude": -1.44498,
+      "formatted_address": "NE30 2BE, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351626964
+    },
+    {
+      "name": "Barnard Castle Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123431",
+      "image_url": "https://images.englandrugby.com/club_images/123431.png",
+      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM",
+      "latitude": 54.5425415,
+      "longitude": -1.9196797,
+      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
+      "place_id": 350141324
+    }
+  ],
+  "team_count": 6
+}

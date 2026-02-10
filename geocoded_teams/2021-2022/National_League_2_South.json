@@ -1,0 +1,164 @@
+{
+  "league_name": "National League 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=33218&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Esher",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650",
+      "image_url": "https://images.englandrugby.com/club_images/7650.png",
+      "address": "369 Esher Rfc, Molesey Road, Hersham, Surrey, KT12 3PF, United Kingdom",
+      "latitude": 51.3780876,
+      "longitude": -0.3898402,
+      "formatted_address": "KT12 3PF, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669902
+    },
+    {
+      "name": "Redruth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17621",
+      "image_url": "https://images.englandrugby.com/club_images/17621.png",
+      "address": "Cardrew Lane Redruth TR15 1SY UNITED KINGDOM",
+      "latitude": 50.2384118,
+      "longitude": -5.2288534,
+      "formatted_address": "Cardrew Lane, Redruth, Cornwall, England, TR15 1LU, United Kingdom",
+      "place_id": 262938649
+    },
+    {
+      "name": "Clifton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5262",
+      "image_url": "https://images.englandrugby.com/club_images/5262.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Worthing",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26122",
+      "image_url": "https://images.englandrugby.com/club_images/26122.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Leicester Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12077",
+      "image_url": "https://images.englandrugby.com/club_images/12077.png",
+      "address": "Leicester Lions Rfc Ltd, Westleigh Park, Lutterworth Road, Blaby, Leicestershire, LE8 4DY, United Kingdom",
+      "latitude": 52.56378,
+      "longitude": -1.17023,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486432
+    },
+    {
+      "name": "Bury St Edmunds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3824",
+      "image_url": "https://images.englandrugby.com/club_images/3824.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Dings Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6469",
+      "image_url": "https://images.englandrugby.com/club_images/6469.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Henley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984",
+      "image_url": "https://images.englandrugby.com/club_images/9984.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Old Albanians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377",
+      "image_url": "https://images.englandrugby.com/club_images/15377.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Guernsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028",
+      "image_url": "https://images.englandrugby.com/club_images/9028.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Barnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1400",
+      "image_url": "https://images.englandrugby.com/club_images/1400.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
+    },
+    {
+      "name": "Canterbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4123",
+      "image_url": "https://images.englandrugby.com/club_images/4123.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Hinckley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10189",
+      "image_url": "https://images.englandrugby.com/club_images/10189.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM ",
+      "latitude": 52.5539703,
+      "longitude": -1.3493076,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 259020759
+    },
+    {
+      "name": "Rochford Hundred",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17906",
+      "image_url": "https://images.englandrugby.com/club_images/17906.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "Westcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24949",
+      "image_url": "https://images.englandrugby.com/club_images/24949.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    }
+  ],
+  "team_count": 16
+}

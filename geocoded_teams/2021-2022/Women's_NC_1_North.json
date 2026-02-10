@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 1 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31838&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Driffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6749",
+      "image_url": "https://images.englandrugby.com/club_images/6749.png",
+      "address": "The Clubhouse Kelleythorpe Driffield East Riding Of Yorkshire YO25 9DW United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351738920
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Novocastrians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15175",
+      "image_url": "https://images.englandrugby.com/club_images/15175.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Kendal Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11253",
+      "image_url": "https://images.englandrugby.com/club_images/11253.png",
+      "address": "Kendal R.u.f.c. Mint Bridge Shap Road Kendal Cumbria LA9 6NY United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350230488
+    },
+    {
+      "name": "York Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26464",
+      "image_url": "https://images.englandrugby.com/club_images/26464.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    },
+    {
+      "name": "Hartlepool Rovers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9570",
+      "image_url": "https://images.englandrugby.com/club_images/9570.png",
+      "address": "The Friarage Low Warren, Westview Road Hartlepool Ctydur TS24 0BP United Kingdom",
+      "latitude": 54.7059315,
+      "longitude": -1.2107166,
+      "formatted_address": "TS24 0BP, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350418393
+    }
+  ],
+  "team_count": 6
+}

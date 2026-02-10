@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21543&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Old Walcountians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16075",
+      "image_url": "https://images.englandrugby.com/club_images/16075.png",
+      "address": "Clockhouse Carshalton Road WOODMANSTERNE SURREY SM7 3HU UNITED KINGDOM",
+      "latitude": 51.3287532,
+      "longitude": -0.1686178,
+      "formatted_address": "Walcountians Sports Club, Carshalton Road, Little Woodcote, London Borough of Sutton, Reigate and Banstead, Surrey, England, SM7 3HU, United Kingdom",
+      "place_id": 258301321
+    },
+    {
+      "name": "Law Society",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11925",
+      "image_url": "https://images.englandrugby.com/club_images/11925.png",
+      "address": "Raynes Park Sports Ground, Taunton Avenue, West Wimbledon, SW20 0BH, United Kingdom",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Kingston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11663",
+      "image_url": "https://images.englandrugby.com/club_images/11663.png",
+      "address": "Kingston Rugby Football Club, Rear Of Clubhouse, King Edward Recreation Ground, Hook Road, Chessington, Surrey, KT9 1PL, United Kingdom",
+      "latitude": 51.37138,
+      "longitude": -0.30599,
+      "formatted_address": "KT9 1PL, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351430498
+    },
+    {
+      "name": "Trinity",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23175",
+      "image_url": "https://images.englandrugby.com/club_images/23175.png",
+      "address": "The Clubhouse Lime Meadow Avenue Sanderstead South Croydon CR2 9AS England",
+      "latitude": 51.32993,
+      "longitude": -0.06961,
+      "formatted_address": "CR2 9AS, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 351095386
+    },
+    {
+      "name": "Teddington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21732",
+      "image_url": "https://images.englandrugby.com/club_images/21732.png",
+      "address": "Teddington Rfc , Bushy Park, Teddington, Middlesex, TW11 0EA, United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    },
+    {
+      "name": "Old Whitgiftian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16090",
+      "image_url": "https://images.englandrugby.com/club_images/16090.png",
+      "address": "Old Whitgiftian Clubhouse, Croham Manor Road, South Croydon, Surrey, CR2 7BG, United Kingdom",
+      "latitude": 51.3594023,
+      "longitude": -0.0846485,
+      "formatted_address": "CR2 7BG, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350558822
+    },
+    {
+      "name": "Old Haileyburians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15747",
+      "image_url": "https://images.englandrugby.com/club_images/15747.png",
+      "address": "Arthur Road New Malden Surrey KT3 6LX United Kingdom",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671643
+    },
+    {
+      "name": "Purley John Fisher",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17281",
+      "image_url": "https://images.englandrugby.com/club_images/17281.png",
+      "address": "Parsons Pightle Coulsdon Road Old Coulsdon SURREY CR5 1EE UNITED KINGDOM ",
+      "latitude": 51.2990344,
+      "longitude": -0.1170159,
+      "formatted_address": "CR5 1EE, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559178
+    },
+    {
+      "name": "Old Freemens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15702",
+      "image_url": "https://images.englandrugby.com/club_images/15702.png",
+      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
+      "latitude": 51.3077453,
+      "longitude": -0.2864699,
+      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 350671240
+    },
+    {
+      "name": "Chipstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4908",
+      "image_url": "https://images.englandrugby.com/club_images/4908.png",
+      "address": "Chipstead Rfc, The Meads, Chipstead, Surrey , CR5 3SB, United Kingdom",
+      "latitude": 51.2968646,
+      "longitude": -0.1682766,
+      "formatted_address": "CR5 3SB, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 350559676
+    }
+  ],
+  "team_count": 10
+}

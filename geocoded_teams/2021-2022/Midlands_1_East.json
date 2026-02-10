@@ -1,0 +1,147 @@
+{
+  "league_name": "Midlands 1 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=31795&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Bedford Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1822",
+      "image_url": "https://images.englandrugby.com/club_images/1822.png",
+      "address": "Bedford Athletic Rufc, Putnoe Wood, Wentworth Drive, Wentworth Drive, Bedford, Bedfordshire, MK41 8QA, United Kingdom",
+      "latitude": 52.1600173,
+      "longitude": -0.437261,
+      "formatted_address": "MK41 8QA, England, United Kingdom",
+      "place_id": 350703599
+    },
+    {
+      "name": "West Bridgford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24733",
+      "image_url": "https://images.englandrugby.com/club_images/24733.png",
+      "address": "The Memorial Ground, Stamford Road, West Bridgford, NOTTINGHAMSHIRE, NG2 6GF, UNITED KINGDOM, ",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652439
+    },
+    {
+      "name": "Derby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6319",
+      "image_url": "https://images.englandrugby.com/club_images/6319.png",
+      "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576784
+    },
+    {
+      "name": "Peterborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16819",
+      "image_url": "https://images.englandrugby.com/club_images/16819.png",
+      "address": "Peterborough R.u.f.c., Second Drove, Fengate, Peterborough, Cambridgeshire, PE1 5XA, United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759246
+    },
+    {
+      "name": "Dronfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6819",
+      "image_url": "https://images.englandrugby.com/club_images/6819.png",
+      "address": "Gosforth Fields Sports Association, Gosforth Fields, Bubnell Drive (off Stubley Drive), Dronfield, Derbyshire, S18 8QY, United Kingdom",
+      "latitude": 53.304955,
+      "longitude": -1.4887735,
+      "formatted_address": "S18 8QY, Dronfield, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351843304
+    },
+    {
+      "name": "Market Harborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13377",
+      "image_url": "https://images.englandrugby.com/club_images/13377.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM ",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    },
+    {
+      "name": "Old Northamptonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15843",
+      "image_url": "https://images.englandrugby.com/club_images/15843.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "Kettering",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11346",
+      "image_url": "https://images.englandrugby.com/club_images/11346.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Belgrave",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1895",
+      "image_url": "https://images.englandrugby.com/club_images/1895.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Oadby Wyggestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15254",
+      "image_url": "https://images.englandrugby.com/club_images/15254.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road,  Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM ",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Lutterworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12958",
+      "image_url": "https://images.englandrugby.com/club_images/12958.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    },
+    {
+      "name": "Towcestrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23056",
+      "image_url": "https://images.englandrugby.com/club_images/23056.png",
+      "address": "Greens Norton Road Towcester Northamptonshire NN12 8AW United Kingdom",
+      "latitude": 52.1431842,
+      "longitude": -1.0200695,
+      "formatted_address": "Greens Norton Church of England Primary School, Calvert Road, Littleworth, Towcester, West Northamptonshire, England, NN12 8DD, United Kingdom",
+      "place_id": 259097787
+    },
+    {
+      "name": "Peterborough Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16825",
+      "image_url": "https://images.englandrugby.com/club_images/16825.png",
+      "address": "Peterborough Lions Rufc, Sostice Park, Flaxlands, Bretton Woods, Peterborough, Cambridgeshire, PE3 8DF, United Kingdom",
+      "latitude": 52.5912022,
+      "longitude": -0.2837504,
+      "formatted_address": "PE3 8DF, Bretton Centre, Bretton, Peterborough, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350768902
+    },
+    {
+      "name": "Rugby Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18289",
+      "image_url": "https://images.englandrugby.com/club_images/18289.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    }
+  ],
+  "team_count": 14
+}

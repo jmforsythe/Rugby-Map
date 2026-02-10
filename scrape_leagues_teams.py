@@ -26,6 +26,8 @@ PREM_MAP = {
     "2023-2024": "51168",
     "2022-2023": "42405",
     "2021-2022": "35441",
+    "2020-2021": "69325",
+    "2019-2020": "69319",
 }
 
 CHAMP_MAP = {
@@ -34,6 +36,8 @@ CHAMP_MAP = {
     "2023-2024": "47253",
     "2022-2023": "39369",
     "2021-2022": "33636",
+    "2020-2021": "31117",
+    "2019-2020": "21751",
 }
 
 
@@ -66,6 +70,8 @@ WOMENS_PREM_MAP = {
     "2023-2024": "49157",
     "2022-2023": "41643",
     "2021-2022": "33312",
+    "2020-2021": "31109",
+    "2019-2020": "24448",
 }
 
 
@@ -225,7 +231,7 @@ def main() -> None:
         league_url = league["url"]
         parent_url = league["parent_url"]
 
-        banned_words = ["playoff", "play-off", "phase", "shield", "trophy"]
+        banned_words = ["playoff", "play-off", "phase", "shield", "trophy", "plate", "salver"]
         if any(word in league_name.lower() for word in banned_words):
             print(f"Skipping {league_name} (playoff/phase league)")
             continue

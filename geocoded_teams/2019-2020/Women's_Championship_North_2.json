@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=21832&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Sefton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18962",
+      "image_url": "https://images.englandrugby.com/club_images/18962.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
+    },
+    {
+      "name": "Manchester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club Grove Park Grove Lane Cheadle Hulme Cheshire SK8 7NB United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351474723
+    },
+    {
+      "name": "Darlington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6104",
+      "image_url": "https://images.englandrugby.com/club_images/6104.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM ",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    },
+    {
+      "name": "Didsbury Toc H Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450",
+      "image_url": "https://images.englandrugby.com/club_images/6450.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM ",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
+      "name": "Eccles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284",
+      "image_url": "https://images.englandrugby.com/club_images/7284.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Sunderland Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21344",
+      "image_url": "https://images.englandrugby.com/club_images/21344.png",
+      "address": "Ashbrooke Sports Club Ashbrooke Road Sunderland SR2 7HH United Kingdom",
+      "latitude": 54.89405,
+      "longitude": -1.38595,
+      "formatted_address": "SR2 7HH, Sunderland, North East, England, United Kingdom",
+      "place_id": 351970438
+    }
+  ],
+  "team_count": 8
+}

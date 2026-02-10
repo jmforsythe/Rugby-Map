@@ -1,0 +1,137 @@
+{
+  "league_name": "South West Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=21710&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Weston-super-Mare",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25046",
+      "image_url": "https://images.englandrugby.com/club_images/25046.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Okehampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15342",
+      "image_url": "https://images.englandrugby.com/club_images/15342.png",
+      "address": "Showfield, Oaklands, Okehampton, Devon, EX20 1LN, United Kingdom",
+      "latitude": 50.74082,
+      "longitude": -4.00763,
+      "formatted_address": "EX20 1LN, Okehampton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351254687
+    },
+    {
+      "name": "Brixham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3314",
+      "image_url": "https://images.englandrugby.com/club_images/3314.png",
+      "address": "Brixham Rugby Club , Astley Park, Rea Barn Road, Brixham, Devon, TQ5 9ED, United Kingdom",
+      "latitude": 50.3902975,
+      "longitude": -3.509536,
+      "formatted_address": "TQ5 9ED, Brixham, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350863502
+    },
+    {
+      "name": "Exeter University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7801",
+      "image_url": "https://images.englandrugby.com/club_images/7801.png",
+      "address": "Au, University Of Exeter, Sports Park, Stocker Road, EX4 4QN, United Kingdom",
+      "latitude": 50.7377482,
+      "longitude": -3.5372481,
+      "formatted_address": "EX4 4QN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350622100
+    },
+    {
+      "name": "Drybrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6835",
+      "image_url": "https://images.englandrugby.com/club_images/6835.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Ivybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11039",
+      "image_url": "https://images.englandrugby.com/club_images/11039.png",
+      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
+      "latitude": 50.3855432,
+      "longitude": -3.9018249,
+      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351768115
+    },
+    {
+      "name": "Camborne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4001",
+      "image_url": "https://images.englandrugby.com/club_images/4001.png",
+      "address": "Crane Park Clubhouse, Cranberry Road, Camborne, Cornwall, TR14 7PW, United Kingdom",
+      "latitude": 50.2120292,
+      "longitude": -5.3095459,
+      "formatted_address": "TR14 7PW, Camborne, Cornwall, England, United Kingdom",
+      "place_id": 350866731
+    },
+    {
+      "name": "Exmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7823",
+      "image_url": "https://images.englandrugby.com/club_images/7823.png",
+      "address": "Exmouth R.F.C. Imperial Recreation Ground The Royal Avenue Exmouth DEVON EX8 1DG UNITED KINGDOM ",
+      "latitude": 50.6203688,
+      "longitude": -3.4178223,
+      "formatted_address": "EX8 1DG, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350623447
+    },
+    {
+      "name": "Launceston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11893",
+      "image_url": "https://images.englandrugby.com/club_images/11893.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "Newbury Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14433",
+      "image_url": "https://images.englandrugby.com/club_images/14433.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Bracknell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2889",
+      "image_url": "https://images.englandrugby.com/club_images/2889.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    }
+  ],
+  "team_count": 13
+}

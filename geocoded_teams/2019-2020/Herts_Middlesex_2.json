@@ -1,0 +1,111 @@
+{
+  "league_name": "Herts/Middlesex 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21615&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Ealing Trailfinders 1871",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26562",
+      "image_url": "https://images.englandrugby.com/club_images/26562.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Old Millhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15828",
+      "image_url": "https://images.englandrugby.com/club_images/15828.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    },
+    {
+      "name": "Uxbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23880",
+      "image_url": "https://images.englandrugby.com/club_images/23880.png",
+      "address": "Uxbridge Cricket Club Park Road Uxbridge MIDDLESEX UB8 1NR UNITED KINGDOM",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352107282
+    },
+    {
+      "name": "West London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24823",
+      "image_url": "https://images.englandrugby.com/club_images/24823.png",
+      "address": "London Marathon Playing Fields Birkbeck Avenue Greenford Middlesex UB6 8LS United Kingdom",
+      "latitude": 51.54131,
+      "longitude": -0.34867,
+      "formatted_address": "UB6 8LS, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352106300
+    },
+    {
+      "name": "Watford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439",
+      "image_url": "https://images.englandrugby.com/club_images/24439.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
+      "name": "Cuffley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5994",
+      "image_url": "https://images.englandrugby.com/club_images/5994.png",
+      "address": "Botany Bay Cricket Club, East Lodge Lane, Enfield, Middlesex, EN2 8AS, United Kingdom",
+      "latitude": 51.6772957,
+      "longitude": -0.1229335,
+      "formatted_address": "EN2 8AS, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616438
+    },
+    {
+      "name": "Chess Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4663",
+      "image_url": "https://images.englandrugby.com/club_images/4663.png",
+      "address": "Croxley Guild Of Sport, The Green, Rickmansworth, Hertfordshire, WD3 3HT, United Kingdom",
+      "latitude": 51.6494884,
+      "longitude": -0.4543582,
+      "formatted_address": "WD3 3HT, Croxley Green, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 352139344
+    },
+    {
+      "name": "London French",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12521",
+      "image_url": "https://images.englandrugby.com/club_images/12521.png",
+      "address": "Barn Elms Playing Fields, Queen Elizabeth Walk, Rocks Lane, London, SW13 9WT, United Kingdom",
+      "latitude": 51.4769355,
+      "longitude": -0.2348877,
+      "formatted_address": "SW13 9WT, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838989
+    },
+    {
+      "name": "Staines",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20832",
+      "image_url": "https://images.englandrugby.com/club_images/20832.png",
+      "address": "Staines Rugby Football Club Ltd, The Reeves, Snakey Lane, Hanworth, Middlesex, TW13 7NB, United Kingdom",
+      "latitude": 51.432,
+      "longitude": -0.41309,
+      "formatted_address": "TW13 7NB, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352095030
+    },
+    {
+      "name": "Pinner & Grammarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16926",
+      "image_url": "https://images.englandrugby.com/club_images/16926.png",
+      "address": "Shaftesbury Playing Fields Grimsdyke Road Grimsdyke Road Hatch End Middlesex HA4 4PW United Kingdom",
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 11
+}

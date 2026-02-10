@@ -1,0 +1,77 @@
+{
+  "league_name": "Yorkshire Four SE",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=31823&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Rotherham Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18086",
+      "image_url": "https://images.englandrugby.com/club_images/18086.png",
+      "address": "Herringthorpe Playing Fields, Badsley Moor Lane, Rotherham, South Yorkshire, S65 2PX, England",
+      "latitude": 53.42816,
+      "longitude": -1.34046,
+      "formatted_address": "S65 2PX, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351858539
+    },
+    {
+      "name": "Hornsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10436",
+      "image_url": "https://images.englandrugby.com/club_images/10436.png",
+      "address": "The Hollis Recreation Ground Westwood Avenue Hornsea HU18 1EE UNITED KINGDOM ",
+      "latitude": 53.9140795,
+      "longitude": -0.1791274,
+      "formatted_address": "HU18 1EE, Hornsea, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350652703
+    },
+    {
+      "name": "Mosborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164",
+      "image_url": "https://images.englandrugby.com/club_images/14164.png",
+      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
+      "latitude": 53.3265437,
+      "longitude": -1.3605033,
+      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 350801206
+    },
+    {
+      "name": "Stocksbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21011",
+      "image_url": "https://images.englandrugby.com/club_images/21011.png",
+      "address": "Stocksbridge Rugby Club, 634 Manchester Road, Stocksbridge, Sheffield, Yorks                         , S36 1DY, United Kingdom",
+      "latitude": 53.4837885,
+      "longitude": -1.5989857,
+      "formatted_address": "S36 1DY, Stocksbridge, Deepcar, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351847660
+    },
+    {
+      "name": "Hessle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10084",
+      "image_url": "https://images.englandrugby.com/club_images/10084.png",
+      "address": "Hessle RUFC Livingstone Road HESSLE YORKSHIRE HU13 0EG UNITED KINGDOM ",
+      "latitude": 53.7180562,
+      "longitude": -0.4295394,
+      "formatted_address": "HU13 0EG, Hessle, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350651819
+    },
+    {
+      "name": "Sheffield Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19093",
+      "image_url": "https://images.englandrugby.com/club_images/19093.png",
+      "address": "Parsons Cross Park Pavillion Buchanan Road Sheffield South Yorkshire S5 8AL United Kingdom",
+      "latitude": 53.4232423,
+      "longitude": -1.4718951,
+      "formatted_address": "S5 8AL, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351401289
+    },
+    {
+      "name": "Stanley Rodillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20909",
+      "image_url": "https://images.englandrugby.com/club_images/20909.png",
+      "address": "The Clubhouse Manley Park Lee Moor Road Stanley Wakefield West Yorkshire WF3 4EF United Kingdom",
+      "latitude": 53.7180155,
+      "longitude": -1.477567,
+      "formatted_address": "WF3 4EF, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350438818
+    }
+  ],
+  "team_count": 7
+}

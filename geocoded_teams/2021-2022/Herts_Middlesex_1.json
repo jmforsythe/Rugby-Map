@@ -1,0 +1,101 @@
+{
+  "league_name": "Herts/Middlesex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=32091&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "London Scottish Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12611",
+      "image_url": "https://images.englandrugby.com/club_images/12611.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Barnet Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1427",
+      "image_url": "https://images.englandrugby.com/club_images/1427.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Ealing Trailfinders 1871",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26562",
+      "image_url": "https://images.englandrugby.com/club_images/26562.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Wasps FC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24412",
+      "image_url": "https://images.englandrugby.com/club_images/24412.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "Saracens Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18731",
+      "image_url": "https://images.englandrugby.com/club_images/18731.png",
+      "address": "Bramley Road Sports Ground Green Road Southgate London N14 4AB United Kingdom",
+      "latitude": 51.6423,
+      "longitude": -0.14298,
+      "formatted_address": "N14 4AB, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604318
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Bank Lane",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1314",
+      "image_url": "https://images.englandrugby.com/club_images/1314.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    },
+    {
+      "name": "Verulamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23976",
+      "image_url": "https://images.englandrugby.com/club_images/23976.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    }
+  ],
+  "team_count": 10
+}

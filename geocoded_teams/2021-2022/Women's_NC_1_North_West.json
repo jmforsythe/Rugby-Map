@@ -1,0 +1,74 @@
+{
+  "league_name": "Women's NC 1 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31839&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Preston Grasshoppers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17189",
+      "image_url": "https://images.englandrugby.com/club_images/17189.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 255236508
+    },
+    {
+      "name": "Broughton Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3505",
+      "image_url": "https://images.englandrugby.com/club_images/3505.png",
+      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Chester Devas Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 257237409
+    },
+    {
+      "name": "Vagabond Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23886",
+      "image_url": "https://images.englandrugby.com/club_images/23886.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Leigh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12124",
+      "image_url": "https://images.englandrugby.com/club_images/12124.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Littleborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12376",
+      "image_url": "https://images.englandrugby.com/club_images/12376.png",
+      "address": "Club House, The Deep Lane, Off Rakewood Road, Rakewood, Littleborough, Lancashire, OL15 0AP, United Kingdom",
+      "latitude": 53.62433,
+      "longitude": -2.08514,
+      "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351710750
+    }
+  ],
+  "team_count": 7
+}

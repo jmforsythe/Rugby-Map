@@ -6,18 +6,10 @@ from pathlib import Path
 
 from fetch_addresses import team_name_to_club_name
 from generate_webpages import get_common_css, get_footer_html
-from utils import GeocodedLeague, get_google_analytics_script
+from make_tier_maps import extract_tier
+from utils import GeocodedLeague, get_google_analytics_script, team_name_to_filepath
 
 IS_PRODUCTION = False
-
-
-def sanitize_team_name(team_name: str) -> str:
-    """Convert team name to URL-safe format."""
-    # Replace special characters with url-safe equivalents
-    sanitized = team_name.replace(" ", "_").replace("/", "_").replace("&", "and")
-    # Replace spaces and multiple hyphens/underscores with single underscore
-    sanitized = re.sub(r"[\s_-]+", "_", sanitized)
-    return sanitized.strip("_")
 
 
 def collect_all_teams_data() -> dict[str, dict]:
@@ -82,7 +74,14 @@ def collect_all_teams_data() -> dict[str, dict]:
 
                 # Add league participation to history
                 teams_data[team_name]["league_history"].append(
-                    {"season": season, "league": league_name, "position": position}
+                    {
+                        "season": season,
+                        "league": league_name,
+                        "position": position,
+                        "tier": extract_tier(
+                            league_name.replace(" ", "_").replace("/", "_") + ".json", season
+                        ),
+                    }
                 )
 
     return dict(teams_data)
@@ -288,8 +287,7 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
         <ul class="club-teams">
 """
         for club_team in club_teams:
-            team_url = sanitize_team_name(club_team)
-            html += f'            <li><a href="{team_url}.html">{club_team}</a></li>\n'
+            html += f'            <li><a href="{team_name_to_filepath(club_team)}">{club_team}</a></li>\n'
 
         html += """        </ul>
     </div>
@@ -303,7 +301,7 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
             <thead>
                 <tr>
                     <th>Season</th>
-                    <th>League</th>
+                    <th>Tier: League</th>
                     <th>Position</th>
                 </tr>
             </thead>
@@ -314,6 +312,7 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
             season = entry["season"]
             league = entry["league"]
             position = entry["position"]
+            tier = entry["tier"]
 
             # Don't show position for current season (in progress)
             if season == "2025-2026":
@@ -323,7 +322,7 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
 
             html += f"""                <tr>
                     <td>{season}</td>
-                    <td>{league}</td>
+                    <td>{tier[0]%100}: {league}</td>
                     <td>{position_display}</td>
                 </tr>
 """
@@ -368,7 +367,7 @@ def generate_team_pages() -> None:
             html_content = get_team_page_html(team_name, team_data, all_teams)
 
             # Create filename from team name
-            filename = sanitize_team_name(team_name) + ".html"
+            filename = team_name_to_filepath(team_name)
             filepath = teams_dir / filename
 
             with open(filepath, "w", encoding="utf-8") as f:

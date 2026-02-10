@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 3 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31869&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Bridgwater & Albion Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3138",
+      "image_url": "https://images.englandrugby.com/club_images/3138.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    },
+    {
+      "name": "Cheddar Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4465",
+      "image_url": "https://images.englandrugby.com/club_images/4465.png",
+      "address": "Cheddar Valley Rugby Club Sharpham Road Cheddar Somerset BS27 3DR United Kingdom",
+      "latitude": 51.2783991,
+      "longitude": -2.7933316,
+      "formatted_address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, England, BS27 3DR, United Kingdom",
+      "place_id": 261542605
+    },
+    {
+      "name": "Hardwicke & Quedgeley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9375",
+      "image_url": "https://images.englandrugby.com/club_images/9375.png",
+      "address": "Kingsway Sports Pavilion Newhaven Road Kingsway Business Park Gloucester Gloucestershire GL2 2SN United Kingdom",
+      "latitude": 51.8203675,
+      "longitude": -2.2758346,
+      "formatted_address": "GL2 2SN, Kingsway Business Park, Quedgeley, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350180641
+    },
+    {
+      "name": "St Mary's OB Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124356",
+      "image_url": "https://images.englandrugby.com/club_images/124356.png",
+      "address": "St Mary's Old Boys Rfc Northwood Park Trench Lane Bradley Stoke Winterbourne Avon BS36 1RY United Kingdom",
+      "latitude": 51.5386109,
+      "longitude": -2.5309005,
+      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350065380
+    },
+    {
+      "name": "Ashley Down OB Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=921",
+      "image_url": "https://images.englandrugby.com/club_images/921.png",
+      "address": "Lockleaze Combination Ground Bonnington Walk Lockleaze Bristol BRISTOL BS7 9YU UNITED KINGDOM",
+      "latitude": 51.4987321,
+      "longitude": -2.5656862,
+      "formatted_address": "BS7 9YU, Stoke Park and Cheswick, Harry Stoke, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350521213
+    },
+    {
+      "name": "North Bristol Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124605",
+      "image_url": "https://images.englandrugby.com/club_images/124605.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350513558
+    },
+    {
+      "name": "Trowbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124598",
+      "image_url": "https://images.englandrugby.com/club_images/124598.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 260663007
+    }
+  ],
+  "team_count": 7
+}

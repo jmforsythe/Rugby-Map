@@ -1,0 +1,74 @@
+{
+  "league_name": "Women's NC 2 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31854&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Pulborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17259",
+      "image_url": "https://images.englandrugby.com/club_images/17259.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799035
+    },
+    {
+      "name": "Horsham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10448",
+      "image_url": "https://images.englandrugby.com/club_images/10448.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Worthing Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26130",
+      "image_url": "https://images.englandrugby.com/club_images/26130.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Jersey Reds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club Rue Des Landes St Peter JE3 7BG Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Seaford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18874",
+      "image_url": "https://images.englandrugby.com/club_images/18874.png",
+      "address": "The Clubhouse Salts Recreation Ground Richmond Road (off Dane Road) Seaford East Sussex BN25 1DR United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501879
+    },
+    {
+      "name": "Hove Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10508",
+      "image_url": "https://images.englandrugby.com/club_images/10508.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Lewes Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12211",
+      "image_url": "https://images.englandrugby.com/club_images/12211.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    }
+  ],
+  "team_count": 7
+}

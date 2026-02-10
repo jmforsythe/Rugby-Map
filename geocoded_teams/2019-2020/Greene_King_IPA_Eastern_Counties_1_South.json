@@ -1,0 +1,87 @@
+{
+  "league_name": "Greene King IPA Eastern Counties 1 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21858&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Sudbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21303",
+      "image_url": "https://images.englandrugby.com/club_images/21303.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "Colchester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5390",
+      "image_url": "https://images.englandrugby.com/club_images/5390.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Hadleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9184",
+      "image_url": "https://images.englandrugby.com/club_images/9184.png",
+      "address": "Hadleigh Rugby Football Club Layham Road Sports Ground Hadleigh, Ipswich Suffolk IP7 5NE United Kingdom",
+      "latitude": 52.0401144,
+      "longitude": 0.9522395,
+      "formatted_address": "IP7 5NE, Hadleigh, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350666494
+    },
+    {
+      "name": "Ipswich II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10945",
+      "image_url": "https://images.englandrugby.com/club_images/10945.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Stowmarket II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21186",
+      "image_url": "https://images.englandrugby.com/club_images/21186.png",
+      "address": "Stowmarket Rugby Club Chilton Fields Sports Club Chilton Way Stowmarket SUFFOLK IP14 1SZ UNITED KINGDOM",
+      "latitude": 52.1938224,
+      "longitude": 0.9758336,
+      "formatted_address": "IP14 1SZ, Stowmarket, Suffolk, England, United Kingdom",
+      "place_id": 350659207
+    },
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Braintree II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2977",
+      "image_url": "https://images.englandrugby.com/club_images/2977.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Halstead Templars",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9242",
+      "image_url": "https://images.englandrugby.com/club_images/9242.png",
+      "address": "Courtaulds Sports Ground Colchester Road Halstead Essex CO9 2ET United Kingdom",
+      "latitude": 51.9424599,
+      "longitude": 0.64797,
+      "formatted_address": "CO9 2ET, Halstead, Braintree, Essex, England, United Kingdom",
+      "place_id": 351091938
+    }
+  ],
+  "team_count": 8
+}

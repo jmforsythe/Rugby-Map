@@ -1,0 +1,127 @@
+{
+  "league_name": "London 2 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=21519&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Battersea Ironsides",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1641",
+      "image_url": "https://images.englandrugby.com/club_images/1641.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Farnham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7986",
+      "image_url": "https://images.englandrugby.com/club_images/7986.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Eastleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7248",
+      "image_url": "https://images.englandrugby.com/club_images/7248.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Winchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25574",
+      "image_url": "https://images.englandrugby.com/club_images/25574.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
+      "name": "Old Reigatian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15944",
+      "image_url": "https://images.englandrugby.com/club_images/15944.png",
+      "address": "Geoffrey Knight Fields, Park Lane, Reigate, Surrey, RH2 8JX, United Kingdom",
+      "latitude": 51.23613,
+      "longitude": -0.21252,
+      "formatted_address": "RH2 8JX, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351375222
+    },
+    {
+      "name": "Chobham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4945",
+      "image_url": "https://images.englandrugby.com/club_images/4945.png",
+      "address": "Fowlers Wells, Windsor Road, Chobham, Woking, Surrey, GU24 8LD, England",
+      "latitude": 51.3527217,
+      "longitude": -0.6059972,
+      "formatted_address": "GU24 8LD, Chobham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350191027
+    },
+    {
+      "name": "Tottonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23023",
+      "image_url": "https://images.englandrugby.com/club_images/23023.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Twickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23336",
+      "image_url": "https://images.englandrugby.com/club_images/23336.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "London Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12513",
+      "image_url": "https://images.englandrugby.com/club_images/12513.png",
+      "address": "Barn Elms Sports Centre, Queen Elizabeth Walk, Barnes, London, SW13 0DG, United Kingdom",
+      "latitude": 51.4757632,
+      "longitude": -0.2296689,
+      "formatted_address": "Barn Elms Sports Centre, Queen Elizabeth Walk, London Borough of Richmond upon Thames, Greater London, England, SW13 9SA, United Kingdom",
+      "place_id": 258421450
+    },
+    {
+      "name": "Old Tonbridgians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16070",
+      "image_url": "https://images.englandrugby.com/club_images/16070.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872396
+    },
+    {
+      "name": "Old Emanuel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15679",
+      "image_url": "https://images.englandrugby.com/club_images/15679.png",
+      "address": "Richard Challoner School , Sports Playing Fields, Manor Drive, London, Greater London, KT3 5PE, United Kingdom",
+      "latitude": 51.3854824,
+      "longitude": -0.2654359,
+      "formatted_address": "KT3 5PE, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350671595
+    },
+    {
+      "name": "Old Cranleighans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15615",
+      "image_url": "https://images.englandrugby.com/club_images/15615.png",
+      "address": "Portsmouth Road, Thames Ditton, Surrey, KT7 0HB, United Kingdom",
+      "latitude": 51.381985,
+      "longitude": -0.3378078,
+      "formatted_address": "Portsmouth Road, Long Ditton, Thames Ditton, Elmbridge, Surrey, England, KT7 0EZ, United Kingdom",
+      "place_id": 259932709
+    }
+  ],
+  "team_count": 12
+}

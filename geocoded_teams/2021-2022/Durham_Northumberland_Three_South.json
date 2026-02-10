@@ -1,0 +1,67 @@
+{
+  "league_name": "Durham/Northumberland Three South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=36640&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "DMP Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123465",
+      "image_url": "https://images.englandrugby.com/club_images/123465.png",
+      "address": "Darlington Arena Neasham Road Darlington County Durham DL2 1DL United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171191
+    },
+    {
+      "name": "Yarm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26377",
+      "image_url": "https://images.englandrugby.com/club_images/26377.png",
+      "address": "Yarm Rugby Club Wass Way Durham Lane Industrial Park Stockton-on-tees Cleveland TS16 0RG United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081237
+    },
+    {
+      "name": "Houghton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10480",
+      "image_url": "https://images.englandrugby.com/club_images/10480.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "Seaton Carew",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18902",
+      "image_url": "https://images.englandrugby.com/club_images/18902.png",
+      "address": "Hornby Park, Elizabeth Way Seaton Carew Hartlepool County Durham TS25 2AZ United Kingdom",
+      "latitude": 54.655817,
+      "longitude": -1.1882955,
+      "formatted_address": "TS25 2AZ, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086867
+    },
+    {
+      "name": "Richmondshire",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17794",
+      "image_url": "https://images.englandrugby.com/club_images/17794.png",
+      "address": "The Clubhouse, Theakston Lane, Richmond, North Yorkshire, DL10 4LL, United Kingdom",
+      "latitude": 54.3994665,
+      "longitude": -1.726758,
+      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350591529
+    },
+    {
+      "name": "West Hartlepool T.D.S.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24779",
+      "image_url": "https://images.englandrugby.com/club_images/24779.png",
+      "address": "Wiltshire Way Hartlepool TS26 0TB UNITED KINGDOM",
+      "latitude": 54.69609,
+      "longitude": -1.2385856,
+      "formatted_address": "Wiltshire Way, Throston Grange, Hartlepool, Tees Valley, England, TS26 0TJ, United Kingdom",
+      "place_id": 252303047
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Cumbria One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=31814&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Upper Eden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23815",
+      "image_url": "https://images.englandrugby.com/club_images/23815.png",
+      "address": "Pennine Park, Westgarth Rd, Kirkby Stephen, Cumbria, CA17 4TF, United Kingdom",
+      "latitude": 54.4707847,
+      "longitude": -2.355303,
+      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350528061
+    },
+    {
+      "name": "Whitehaven",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25273",
+      "image_url": "https://images.englandrugby.com/club_images/25273.png",
+      "address": "The Playground Richmond Terrace WHITEHAVEN CUMBRIA CA28 7QR",
+      "latitude": 54.54485,
+      "longitude": -3.58938,
+      "formatted_address": "CA28 7QR, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 351031866
+    },
+    {
+      "name": "Wigton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25403",
+      "image_url": "https://images.englandrugby.com/club_images/25403.png",
+      "address": "Wigton Rugby Club, Lowmoor Road, Wigton, Cumbria, CA7 9QT, United Kingdom",
+      "latitude": 54.8208816,
+      "longitude": -3.1464255,
+      "formatted_address": "CA7 9QT, Woodside, Cumberland, England, United Kingdom",
+      "place_id": 351034905
+    },
+    {
+      "name": "Egremont",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7411",
+      "image_url": "https://images.englandrugby.com/club_images/7411.png",
+      "address": "Bleach Green Egremont CUMBRIA CA22 2NL UNITED KINGDOM",
+      "latitude": 54.47751,
+      "longitude": -3.52821,
+      "formatted_address": "CA22 2NL, Egremont, Cumberland, England, United Kingdom",
+      "place_id": 351030946
+    },
+    {
+      "name": "Hawcoat Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9735",
+      "image_url": "https://images.englandrugby.com/club_images/9735.png",
+      "address": "Hawcoat Park Sports & Social Club Hawcoat Lane Barrow In Furness Cumbria LA14 4HF United Kingdom",
+      "latitude": 54.1300027,
+      "longitude": -3.214462,
+      "formatted_address": "LA14 4HF, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350678163
+    },
+    {
+      "name": "Millom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13890",
+      "image_url": "https://images.englandrugby.com/club_images/13890.png",
+      "address": "Wilson Park Haverigg Millom CUMBRIA LA18 4ES ENGLAND",
+      "latitude": 54.19591,
+      "longitude": -3.28845,
+      "formatted_address": "LA18 4ES, Millom, Cumberland, England, United Kingdom",
+      "place_id": 351462135
+    },
+    {
+      "name": "Furness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8419",
+      "image_url": "https://images.englandrugby.com/club_images/8419.png",
+      "address": "Furness R.U.F.C. The Strawberry Grounds Croslands Park Road Barrow-in-Furness CUMBRIA LA13 9LA UNITED KINGDOM",
+      "latitude": 54.12984,
+      "longitude": -3.20967,
+      "formatted_address": "LA13 9LA, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351460684
+    },
+    {
+      "name": "Workington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26096",
+      "image_url": "https://images.englandrugby.com/club_images/26096.png",
+      "address": "Ellis Sports Ground Moss Bay Road Workington Cumbria CA14 3XZ United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    },
+    {
+      "name": "Creighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5852",
+      "image_url": "https://images.englandrugby.com/club_images/5852.png",
+      "address": "Sycamore Lane Parkland Carlisle CUMBRIA CA1 3SR UNITED KINGDOM",
+      "latitude": 54.8755644,
+      "longitude": -2.8871217,
+      "formatted_address": "CA1 3SR, St Cuthbert Without, Durdar, Cumberland, England, United Kingdom",
+      "place_id": 350527740
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,107 @@
+{
+  "league_name": "Tribute Berks/Bucks & Oxon 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=31750&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Henley III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9996",
+      "image_url": "https://images.englandrugby.com/club_images/9996.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Maidenhead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13108",
+      "image_url": "https://images.englandrugby.com/club_images/13108.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16885",
+      "image_url": "https://images.englandrugby.com/club_images/16885.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
+    },
+    {
+      "name": "Bracknell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2893",
+      "image_url": "https://images.englandrugby.com/club_images/2893.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    },
+    {
+      "name": "Rams IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17421",
+      "image_url": "https://images.englandrugby.com/club_images/17421.png",
+      "address": "Old Redingensians Sports Ground Old Bath Road, Sonning Reading BERKSHIRE RG4 6TQ UNITED KINGDOM ",
+      "latitude": 51.4683196,
+      "longitude": -0.901799,
+      "formatted_address": "RG4 6TQ, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790627
+    },
+    {
+      "name": "Tadley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21608",
+      "image_url": "https://images.englandrugby.com/club_images/21608.png",
+      "address": "Frank Jose Park, Red Lane, Aldermaston, Berkshire, RG7 4PA, United Kingdom",
+      "latitude": 51.37191,
+      "longitude": -1.1217299,
+      "formatted_address": "RG7 4PA, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 351818569
+    },
+    {
+      "name": "Marlow III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13444",
+      "image_url": "https://images.englandrugby.com/club_images/13444.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Reading III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17535",
+      "image_url": "https://images.englandrugby.com/club_images/17535.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Berkshire Shire Hall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2003",
+      "image_url": "https://images.englandrugby.com/club_images/2003.png",
+      "address": "Berkshire Shire Hall Rfc, Berkshire Sports And Social Club, Sonning Lane, Sonning, Reading, Berkshire, RG4 6ST, United Kingdom",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Slough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19518",
+      "image_url": "https://images.englandrugby.com/club_images/19518.png",
+      "address": "Farnham Common Sports Club, One Pin Lane, Farnham Common, Slough, Berkshire, SL2 3QY, United Kingdom",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820537
+    }
+  ],
+  "team_count": 10
+}

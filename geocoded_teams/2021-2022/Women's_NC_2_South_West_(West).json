@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 2 South West (West)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31859&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Crediton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5836",
+      "image_url": "https://images.englandrugby.com/club_images/5836.png",
+      "address": "Crediton R.f.c., Blagdon, Exhibition Road, Crediton, Devon, EX17 1BY, United Kingdom",
+      "latitude": 50.79388,
+      "longitude": -3.64396,
+      "formatted_address": "EX17 1BY, Crediton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351253152
+    },
+    {
+      "name": "Launceston Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11907",
+      "image_url": "https://images.englandrugby.com/club_images/11907.png",
+      "address": "Polson Bridge, Launceston, Cornwall, PL15 9QT, United Kingdom",
+      "latitude": 50.63694,
+      "longitude": -4.33228,
+      "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
+      "place_id": 351765570
+    },
+    {
+      "name": "Bude Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3607",
+      "image_url": "https://images.englandrugby.com/club_images/3607.png",
+      "address": "Bencoolen Meadow, Bude, EX23 8QG, United Kingdom",
+      "latitude": 50.8242199,
+      "longitude": -4.54266,
+      "formatted_address": "EX23 8QG, Bude–Stratton, Cornwall, England, United Kingdom",
+      "place_id": 351256697
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2160",
+      "image_url": "https://images.englandrugby.com/club_images/2160.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "Totnes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23004",
+      "image_url": "https://images.englandrugby.com/club_images/23004.png",
+      "address": "The Clubhouse Borough Park Totnes Devon TQ9 5JG United Kingdom",
+      "latitude": 50.4343203,
+      "longitude": -3.6876159,
+      "formatted_address": "TQ9 5JG, Totnes, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350865257
+    },
+    {
+      "name": "Teignmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21776",
+      "image_url": "https://images.englandrugby.com/club_images/21776.png",
+      "address": "Bitton Sports Ground Bitton Park Road Teignmouth Devon TQ14 9DQ United Kingdom",
+      "latitude": 50.5476295,
+      "longitude": -3.5073944,
+      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350409625
+    }
+  ],
+  "team_count": 6
+}

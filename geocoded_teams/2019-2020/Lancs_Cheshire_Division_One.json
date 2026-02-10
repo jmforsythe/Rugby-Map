@@ -1,0 +1,84 @@
+{
+  "league_name": "Lancs/Cheshire Division One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=21632&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Orrell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16278",
+      "image_url": "https://images.englandrugby.com/club_images/16278.png",
+      "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
+      "latitude": 53.54627,
+      "longitude": -2.72694,
+      "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 352156955
+    },
+    {
+      "name": "Congleton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5565",
+      "image_url": "https://images.englandrugby.com/club_images/5565.png",
+      "address": "78 The Woodman Park Street Congleton CHESHIRE CW12 1EG UNITED KINGDOM ",
+      "latitude": 53.1639541,
+      "longitude": -2.2071438,
+      "formatted_address": "CW12 1EG, Congleton, Cheshire East, England, United Kingdom",
+      "place_id": 350567347
+    },
+    {
+      "name": "Hoylake",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10541",
+      "image_url": "https://images.englandrugby.com/club_images/10541.png",
+      "address": "Carham Road Hoylake Wirral MERSEYSIDE CH47 4FF UNITED KINGDOM ",
+      "latitude": 53.39131,
+      "longitude": -3.17232,
+      "formatted_address": "CH47 4FF, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062703
+    },
+    {
+      "name": "Ellesmere Port",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7430",
+      "image_url": "https://images.englandrugby.com/club_images/7430.png",
+      "address": "Ellesmere Port RUFC Whitby Sports & Social Club Chester Road, Whitby, Ellesmere Port CHESHIRE CH65 6QF UNITED KINGDOM",
+      "latitude": 53.2621334,
+      "longitude": -2.9094102,
+      "formatted_address": "CH65 6QF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350545909
+    },
+    {
+      "name": "Garstang",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8484",
+      "image_url": "https://images.englandrugby.com/club_images/8484.png",
+      "address": "Hudson Park, Garstang Sports & Social Club, High Street, Garstang, Preston, Lancashire, PR3 1EB, England",
+      "latitude": 53.9032376,
+      "longitude": -2.7728825,
+      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 351801066
+    },
+    {
+      "name": "New Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14326",
+      "image_url": "https://images.englandrugby.com/club_images/14326.png",
+      "address": "Reeds Lane Leasowe Moreton Wirral Merseyside CH46 3RH United Kingdom",
+      "latitude": 53.41533,
+      "longitude": -3.10597,
+      "formatted_address": "CH46 3RH, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062213
+    },
+    {
+      "name": "Birchfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2260",
+      "image_url": "https://images.englandrugby.com/club_images/2260.png",
+      "address": "Wilmere Lane Sports Ground Wilmere Lane Wilmere Lane Widnes Cheshire WA8 5UP United Kingdom",
+      "latitude": 53.39609,
+      "longitude": -2.73647,
+      "formatted_address": "WA8 5UP, Widnes, Halton, Liverpool City Region, England, United Kingdom",
+      "place_id": 352131644
+    },
+    {
+      "name": "Ramsey (IoM)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17450",
+      "image_url": "https://images.englandrugby.com/club_images/17450.png",
+      "address": "Ramsey Rufc, Mooragh Promenade, Ramsey, Isle Of Man, Isle Of Man, IM8 3AP, United Kingdom",
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 2 South West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31858&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Yeovil Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26439",
+      "image_url": "https://images.englandrugby.com/club_images/26439.png",
+      "address": "Church Lane Yeovil Somerset BA22 9TR United Kingdom",
+      "latitude": 50.92421,
+      "longitude": -2.63455,
+      "formatted_address": "BA22 9TR, Barwick, Somerset, England, United Kingdom",
+      "place_id": 350488158
+    },
+    {
+      "name": "Crewkerne Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5883",
+      "image_url": "https://images.englandrugby.com/club_images/5883.png",
+      "address": "The George Reynolds Ctr South Street Crewkerne Somerset TA18 8DA United Kingdom",
+      "latitude": 50.8839098,
+      "longitude": -2.793289,
+      "formatted_address": "TA18 8DA, Crewkerne, Somerset, England, United Kingdom",
+      "place_id": 350395229
+    },
+    {
+      "name": "Melksham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13650",
+      "image_url": "https://images.englandrugby.com/club_images/13650.png",
+      "address": "Melksham Rugby Club, Oakfields, Eastern Way, Melksham, Wiltshire, SN12 7GU, United Kingdom",
+      "latitude": 51.3800088,
+      "longitude": -2.1060921,
+      "formatted_address": "SN12 7GU, Melksham Without, Wiltshire, England, United Kingdom",
+      "place_id": 350823284
+    },
+    {
+      "name": "Oakmeadians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15299",
+      "image_url": "https://images.englandrugby.com/club_images/15299.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350047310
+    },
+    {
+      "name": "Trojans Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26628",
+      "image_url": "https://images.englandrugby.com/club_images/26628.png",
+      "address": "Trojans Club Stoneham Park Stoneham Lane Eastleigh Southampton Hampshire SO50 9HT United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832263
+    },
+    {
+      "name": "Swanage & Wareham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21498",
+      "image_url": "https://images.englandrugby.com/club_images/21498.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Westbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24935",
+      "image_url": "https://images.englandrugby.com/club_images/24935.png",
+      "address": "Westbury Rfc Knott Field White Horse Country Park Coach Road Westbury Wilts BA13 4LX United Kingdom",
+      "latitude": 51.2691673,
+      "longitude": -2.1613529,
+      "formatted_address": "BA13 4LX, Wiltshire, England, United Kingdom",
+      "place_id": 350039848
+    },
+    {
+      "name": "Dorchester/Weymouth & P Roses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6608",
+      "image_url": "https://images.englandrugby.com/club_images/6608.png",
+      "address": "Dorchester Rfc Coburg Road Dorchester Dorset DT1 2HX England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 350743556
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC 3 South East (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=31866&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Belsize Park Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1947",
+      "image_url": "https://images.englandrugby.com/club_images/1947.png",
+      "address": "Coram's Fields 93 Guilford Street London WC1N 1DN United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Bec Belles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123876",
+      "image_url": "https://images.englandrugby.com/club_images/123876.png",
+      "address": "Ashcroft Technology Academy School Sports Pitches, Openview, Sw18 3ny, Earlsfield, SW18 3PD, United Kingdom",
+      "latitude": 51.4423161,
+      "longitude": -0.1868965,
+      "formatted_address": "SW18 3NY, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350840280
+    },
+    {
+      "name": "Battersea Ironsides Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1647",
+      "image_url": "https://images.englandrugby.com/club_images/1647.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Ruislip Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124110",
+      "image_url": "https://images.englandrugby.com/club_images/124110.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Hackney Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9173",
+      "image_url": "https://images.englandrugby.com/club_images/9173.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
+    },
+    {
+      "name": "Barnes Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1409",
+      "image_url": "https://images.englandrugby.com/club_images/1409.png",
+      "address": "Barn Elms Sports Fields Queen Elizabeth Walk Queen Elizabeth Walk Barnes SW13 9SA United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350388223
+    },
+    {
+      "name": "Staines Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124115",
+      "image_url": "https://images.englandrugby.com/club_images/124115.png",
+      "address": "Staines Rugby Football Club Ltd, The Reeves, Snakey Lane, Hanworth, Middlesex, TW13 7NB, United Kingdom",
+      "latitude": 51.432,
+      "longitude": -0.41309,
+      "formatted_address": "TW13 7NB, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352095030
+    },
+    {
+      "name": "Ealing Trailfinders Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7080",
+      "image_url": "https://images.englandrugby.com/club_images/7080.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    }
+  ],
+  "team_count": 8
+}

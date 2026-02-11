@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13946&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Bury Foxes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3830",
+      "image_url": "https://images.englandrugby.com/club_images/3830.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "West Norfolk Warriors Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24850",
+      "image_url": "https://images.englandrugby.com/club_images/24850.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM ",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Southwold Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19853",
+      "image_url": "https://images.englandrugby.com/club_images/19853.png",
+      "address": "William Godell Pavilion, The Common, Southwold, Suffolk, IP18 6TB, United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Lakenham Hewett Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    }
+  ],
+  "team_count": 7
+}

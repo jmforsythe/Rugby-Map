@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's NC South East West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13962&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Portsmouth Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17137",
+      "image_url": "https://images.englandrugby.com/club_images/17137.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "London Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12643",
+      "image_url": "https://images.englandrugby.com/club_images/12643.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Guernsey Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9031",
+      "image_url": "https://images.englandrugby.com/club_images/9031.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Havant Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9703",
+      "image_url": "https://images.englandrugby.com/club_images/9703.png",
+      "address": "Hooks Lane Ground Fraser Road Bedhampton Havant Hampshire PO9 3EJ United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351345426
+    },
+    {
+      "name": "Windsor Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25612",
+      "image_url": "https://images.englandrugby.com/club_images/25612.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932058
+    },
+    {
+      "name": "Reading Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17537",
+      "image_url": "https://images.englandrugby.com/club_images/17537.png",
+      "address": "Holme Park Sonning Lane Reading Berkshire RG4 6ST England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350339871
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18042",
+      "image_url": "https://images.englandrugby.com/club_images/18042.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Witney Angels Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25809",
+      "image_url": "https://images.englandrugby.com/club_images/25809.png",
+      "address": "Hailey Road Witney Oxfordshire OX29 9UH United Kingdom",
+      "latitude": 51.7986155,
+      "longitude": -1.4843439,
+      "formatted_address": "Hailey Road, Madley Park, Witney, Poffley End, West Oxfordshire, Oxfordshire, England, OX28 1HQ, United Kingdom",
+      "place_id": 260844113
+    }
+  ],
+  "team_count": 8
+}

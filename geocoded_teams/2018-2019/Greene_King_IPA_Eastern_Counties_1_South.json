@@ -1,0 +1,87 @@
+{
+  "league_name": "Greene King IPA Eastern Counties 1 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14017&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Hadleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9184",
+      "image_url": "https://images.englandrugby.com/club_images/9184.png",
+      "address": "Hadleigh Rugby Football Club Layham Road Sports Ground Hadleigh, Ipswich Suffolk IP7 5NE United Kingdom",
+      "latitude": 52.0401144,
+      "longitude": 0.9522395,
+      "formatted_address": "IP7 5NE, Hadleigh, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350666494
+    },
+    {
+      "name": "Colchester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5390",
+      "image_url": "https://images.englandrugby.com/club_images/5390.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Ipswich II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10945",
+      "image_url": "https://images.englandrugby.com/club_images/10945.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Bury St Edmunds III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3832",
+      "image_url": "https://images.englandrugby.com/club_images/3832.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Sudbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21303",
+      "image_url": "https://images.englandrugby.com/club_images/21303.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "Halstead Templars",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9242",
+      "image_url": "https://images.englandrugby.com/club_images/9242.png",
+      "address": "Courtaulds Sports Ground Colchester Road Halstead Essex CO9 2ET United Kingdom",
+      "latitude": 51.9424599,
+      "longitude": 0.64797,
+      "formatted_address": "CO9 2ET, Halstead, Braintree, Essex, England, United Kingdom",
+      "place_id": 351091938
+    },
+    {
+      "name": "Harwich & Dovercourt II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9613",
+      "image_url": "https://images.englandrugby.com/club_images/9613.png",
+      "address": "Wick Lane, Dovercourt, Harwich, CO12 3TA, United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    }
+  ],
+  "team_count": 8
+}

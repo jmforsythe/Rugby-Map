@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's Championship South East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13944&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Old Albanians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15382",
+      "image_url": "https://images.englandrugby.com/club_images/15382.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Hammersmith & Fulham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9261",
+      "image_url": "https://images.englandrugby.com/club_images/9261.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 351564189
+    },
+    {
+      "name": "Hampstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9298",
+      "image_url": "https://images.englandrugby.com/club_images/9298.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Old Elthamians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15663",
+      "image_url": "https://images.englandrugby.com/club_images/15663.png",
+      "address": "Queen Mary Sports Ground (east Ground) Perry Street Chislehurst BR7 6HB England",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Lewes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12210",
+      "image_url": "https://images.englandrugby.com/club_images/12210.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    },
+    {
+      "name": "Medway Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields Rochester KENT ME1 3AD UNITED KINGDOM",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351564006
+    },
+    {
+      "name": "Beckenham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1790",
+      "image_url": "https://images.englandrugby.com/club_images/1790.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4601",
+      "image_url": "https://images.englandrugby.com/club_images/4601.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    }
+  ],
+  "team_count": 8
+}

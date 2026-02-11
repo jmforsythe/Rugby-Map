@@ -1,0 +1,111 @@
+{
+  "league_name": "Lancs/Cheshire Division Three",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=13910&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Ramsey (IoM)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17450",
+      "image_url": "https://images.englandrugby.com/club_images/17450.png",
+      "address": "Ramsey Rufc, Mooragh Promenade, Ramsey, Isle Of Man, Isle Of Man, IM8 3AP, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ellesmere Port",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7430",
+      "image_url": "https://images.englandrugby.com/club_images/7430.png",
+      "address": "Ellesmere Port RUFC Whitby Sports & Social Club Chester Road, Whitby, Ellesmere Port CHESHIRE CH65 6QF UNITED KINGDOM",
+      "latitude": 53.2621334,
+      "longitude": -2.9094102,
+      "formatted_address": "CH65 6QF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350545909
+    },
+    {
+      "name": "Old Bedians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15430",
+      "image_url": "https://images.englandrugby.com/club_images/15430.png",
+      "address": "Old Bedians Sports Centre Millgate Lane DIDSBURY Manchester GREATER MANCHESTER M20 5QX UNITED KINGDOM",
+      "latitude": 53.40308,
+      "longitude": -2.23785,
+      "formatted_address": "M20 5QX, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541956
+    },
+    {
+      "name": "Liverpool University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12463",
+      "image_url": "https://images.englandrugby.com/club_images/12463.png",
+      "address": "Geoffrey Hughes Memorial Ground Wyncote, Mather Avenue Allerton L18 6HF UNITED KINGDOM",
+      "latitude": 53.381305,
+      "longitude": -2.9092887,
+      "formatted_address": "L18 6HF, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674840
+    },
+    {
+      "name": "Oldershaw",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16132",
+      "image_url": "https://images.englandrugby.com/club_images/16132.png",
+      "address": "Bevidere Recreation Ground Belvidere Field Belvidere Road, Wallasey Wallasey MERSEYSIDE CH45 4RZ ENGLAND",
+      "latitude": 53.42299,
+      "longitude": -3.05297,
+      "formatted_address": "CH45 4RZ, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350610804
+    },
+    {
+      "name": "Mossley Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14201",
+      "image_url": "https://images.englandrugby.com/club_images/14201.png",
+      "address": "Mossley Hill Road Liverpool MERSEYSIDE L18 8BX UNITED KINGDOM",
+      "latitude": 53.3736046,
+      "longitude": -2.9214784,
+      "formatted_address": "L18 8BX, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674852
+    },
+    {
+      "name": "Ruskin Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18436",
+      "image_url": "https://images.englandrugby.com/club_images/18436.png",
+      "address": "Ruskin Drive Sportsground Ruskin Drive, St. Helens. WA10 6RP UNITED KINGDOM",
+      "latitude": 53.4592563,
+      "longitude": -2.7588376,
+      "formatted_address": "WA10 6RP, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 350877472
+    },
+    {
+      "name": "Vagabonds (I.O.M.)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23887",
+      "image_url": "https://images.englandrugby.com/club_images/23887.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Newton-le-Willows",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14633",
+      "image_url": "https://images.englandrugby.com/club_images/14633.png",
+      "address": "Newton Sports Club Crow Lane East Newton-le-Willows MERSEYSIDE WA12 9XE UNITED KINGDOM",
+      "latitude": 53.4580727,
+      "longitude": -2.6273602,
+      "formatted_address": "WA12 9XE, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 350877789
+    },
+    {
+      "name": "Oxton Parkonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16502",
+      "image_url": "https://images.englandrugby.com/club_images/16502.png",
+      "address": "Martin Curphey Memorial Ground Holm Lane, Oxton Birkenhead, Wirral CHESHIRE CH43 2HU UNITED KINGDOM",
+      "latitude": 53.37679,
+      "longitude": -3.0513499,
+      "formatted_address": "CH43 2HU, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351060067
+    },
+    {
+      "name": "Prenton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17162",
+      "image_url": "https://images.englandrugby.com/club_images/17162.png",
+      "address": "Prenton Dell Road Prenton Wirral Birkenhead Merseyside CH43 3BS United Kingdom",
+      "latitude": 53.36471,
+      "longitude": -3.05514,
+      "formatted_address": "CH43 3BS, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351060152
+    }
+  ],
+  "team_count": 11
+}

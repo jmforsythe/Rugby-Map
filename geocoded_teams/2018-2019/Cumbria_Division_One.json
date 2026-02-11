@@ -1,0 +1,87 @@
+{
+  "league_name": "Cumbria Division One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=14645&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Keswick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11329",
+      "image_url": "https://images.englandrugby.com/club_images/11329.png",
+      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
+      "latitude": 54.6006588,
+      "longitude": -3.1439604,
+      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
+      "place_id": 350527467
+    },
+    {
+      "name": "Aspatria",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=979",
+      "image_url": "https://images.englandrugby.com/club_images/979.png",
+      "address": "Bower Park Station Road Aspatria Wigton CUMBRIA CA7 2AJ UNITED KINGDOM ",
+      "latitude": 54.7611,
+      "longitude": -3.33202,
+      "formatted_address": "CA7 2AJ, Aspatria, Cumberland, England, United Kingdom",
+      "place_id": 351034073
+    },
+    {
+      "name": "Cockermouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5361",
+      "image_url": "https://images.englandrugby.com/club_images/5361.png",
+      "address": "Grasmoor Sports Centre, Strawberry How Strawberry How Lorton Road Cockermouth CUMBRIA CA13 9XQ UNITED KINGDOM",
+      "latitude": 54.6568216,
+      "longitude": -3.3488062,
+      "formatted_address": "CA13 9XQ, Cockermouth, Cumberland, England, United Kingdom",
+      "place_id": 351027650
+    },
+    {
+      "name": "Wigton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25403",
+      "image_url": "https://images.englandrugby.com/club_images/25403.png",
+      "address": "Wigton Rugby Club, Lowmoor Road, Wigton, Cumbria, CA7 9QT, United Kingdom",
+      "latitude": 54.8208816,
+      "longitude": -3.1464255,
+      "formatted_address": "CA7 9QT, Woodside, Cumberland, England, United Kingdom",
+      "place_id": 351034905
+    },
+    {
+      "name": "Whitehaven",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25273",
+      "image_url": "https://images.englandrugby.com/club_images/25273.png",
+      "address": "The Playground Richmond Terrace WHITEHAVEN CUMBRIA CA28 7QR",
+      "latitude": 54.54485,
+      "longitude": -3.58938,
+      "formatted_address": "CA28 7QR, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 351031866
+    },
+    {
+      "name": "Upper Eden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23815",
+      "image_url": "https://images.englandrugby.com/club_images/23815.png",
+      "address": "Pennine Park, Westgarth Rd, Kirkby Stephen, Cumbria, CA17 4TF, United Kingdom",
+      "latitude": 54.4707847,
+      "longitude": -2.355303,
+      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350528061
+    },
+    {
+      "name": "Hawcoat Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9735",
+      "image_url": "https://images.englandrugby.com/club_images/9735.png",
+      "address": "Hawcoat Park Sports & Social Club Hawcoat Lane Barrow In Furness Cumbria LA14 4HF United Kingdom",
+      "latitude": 54.1300027,
+      "longitude": -3.214462,
+      "formatted_address": "LA14 4HF, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350678163
+    },
+    {
+      "name": "St Benedicts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20199",
+      "image_url": "https://images.englandrugby.com/club_images/20199.png",
+      "address": "Newlands Avenue Mirehouse Whitehaven Cumbria CA28 9SH United Kingdom",
+      "latitude": 54.5295053,
+      "longitude": -3.578969,
+      "formatted_address": "CA28 9SH, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 350528453
+    }
+  ],
+  "team_count": 8
+}

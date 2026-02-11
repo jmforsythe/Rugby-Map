@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC North 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13952&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "York Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26464",
+      "image_url": "https://images.englandrugby.com/club_images/26464.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    },
+    {
+      "name": "Hull Ionian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10640",
+      "image_url": "https://images.englandrugby.com/club_images/10640.png",
+      "address": "Brantingham Park Elloughton Road Elloughton Road Brantingham EAST RIDING OF YORKSHIRE HU15 1HX UNITED KINGDOM",
+      "latitude": 53.742916,
+      "longitude": -0.5682622,
+      "formatted_address": "HU15 1HX, Elloughton-cum-Brough, Brough, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350923915
+    },
+    {
+      "name": "Driffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6749",
+      "image_url": "https://images.englandrugby.com/club_images/6749.png",
+      "address": "The Clubhouse Kelleythorpe Driffield East Riding Of Yorkshire YO25 9DW United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351738920
+    },
+    {
+      "name": "Doncaster Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "West Park Leeds Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24891",
+      "image_url": "https://images.englandrugby.com/club_images/24891.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "Scarborough Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123470",
+      "image_url": "https://images.englandrugby.com/club_images/123470.png",
+      "address": "The J M Guthrie Clubhouse, Silver Royd, Scalby, Scarborough, North Yorkshire, YO13 0NL, United Kingdom",
+      "latitude": 54.30982,
+      "longitude": -0.44518,
+      "formatted_address": "YO13 0NL, Burniston, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351733322
+    },
+    {
+      "name": "Acklam Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=277",
+      "image_url": "https://images.englandrugby.com/club_images/277.png",
+      "address": "Acklam Rugby Club Talbot Park Lacy Road Middlesbrough Cleveland TS4 3PR United Kingdom",
+      "latitude": 54.5415584,
+      "longitude": -1.221159,
+      "formatted_address": "TS4 3PR, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 350869656
+    },
+    {
+      "name": "Morpeth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14140",
+      "image_url": "https://images.englandrugby.com/club_images/14140.png",
+      "address": "Grange House Field Mitford Road Morpeth Northumberland NE61 1RJ United Kingdom",
+      "latitude": 55.1696699,
+      "longitude": -1.7006437,
+      "formatted_address": "NE61 1RJ, Morpeth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350713146
+    }
+  ],
+  "team_count": 8
+}

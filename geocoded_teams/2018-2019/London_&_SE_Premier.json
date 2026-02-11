@@ -1,0 +1,147 @@
+{
+  "league_name": "London & SE Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14006&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Sutton & Epsom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21414",
+      "image_url": "https://images.englandrugby.com/club_images/21414.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Westcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24949",
+      "image_url": "https://images.englandrugby.com/club_images/24949.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Tring",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23148",
+      "image_url": "https://images.englandrugby.com/club_images/23148.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Hertford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10046",
+      "image_url": "https://images.englandrugby.com/club_images/10046.png",
+      "address": "Highfields, 62 Hoe Lane, Ware, Hertfordshire, SG12 9NZ, United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
+    },
+    {
+      "name": "Bedford Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1822",
+      "image_url": "https://images.englandrugby.com/club_images/1822.png",
+      "address": "Bedford Athletic Rufc, Putnoe Wood, Wentworth Drive, Wentworth Drive, Bedford, Bedfordshire, MK41 8QA, United Kingdom",
+      "latitude": 52.1600173,
+      "longitude": -0.437261,
+      "formatted_address": "MK41 8QA, England, United Kingdom",
+      "place_id": 350703599
+    },
+    {
+      "name": "Tunbridge Wells",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23285",
+      "image_url": "https://images.englandrugby.com/club_images/23285.png",
+      "address": "St. Marks Recreation Ground, Frant Road, Tunbridge Wells, Kent, TN2 5LS, United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350854535
+    },
+    {
+      "name": "Sidcup",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19314",
+      "image_url": "https://images.englandrugby.com/club_images/19314.png",
+      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
+      "latitude": 51.425832,
+      "longitude": 0.092888,
+      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351138781
+    },
+    {
+      "name": "Dorking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6609",
+      "image_url": "https://images.englandrugby.com/club_images/6609.png",
+      "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
+      "latitude": 51.23505,
+      "longitude": -0.28549,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827752
+    },
+    {
+      "name": "CS Stags 1863",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5987",
+      "image_url": "https://images.englandrugby.com/club_images/5987.png",
+      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "Guildford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9045",
+      "image_url": "https://images.englandrugby.com/club_images/9045.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
+    },
+    {
+      "name": "Chingford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4795",
+      "image_url": "https://images.englandrugby.com/club_images/4795.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Brentwood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3067",
+      "image_url": "https://images.englandrugby.com/club_images/3067.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
+      "name": "Shelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141",
+      "image_url": "https://images.englandrugby.com/club_images/19141.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    }
+  ],
+  "team_count": 14
+}

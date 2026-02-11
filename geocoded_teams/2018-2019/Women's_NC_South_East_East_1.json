@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC South East East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13957&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Canterbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground Merton Lane (north) Nackington Road Canterbury Kent CT4 7DZ United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350656514
+    },
+    {
+      "name": "Harwich Owls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9614",
+      "image_url": "https://images.englandrugby.com/club_images/9614.png",
+      "address": "Wick Lane Dovercourt Harwich CO12 3TA United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Tonbridge Juddian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22914",
+      "image_url": "https://images.englandrugby.com/club_images/22914.png",
+      "address": "Tonbridge Juddians Rfc The Clubhouse The Slade Tonbridge Kent TN9 1HR United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350406169
+    },
+    {
+      "name": "Romford & GP Ravens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17962",
+      "image_url": "https://images.englandrugby.com/club_images/17962.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM ",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Ashford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=880",
+      "image_url": "https://images.englandrugby.com/club_images/880.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM ",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "St Francis Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20376",
+      "image_url": "https://images.englandrugby.com/club_images/20376.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Worthing Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26130",
+      "image_url": "https://images.englandrugby.com/club_images/26130.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    }
+  ],
+  "team_count": 7
+}

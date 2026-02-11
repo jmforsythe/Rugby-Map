@@ -60,17 +60,33 @@ class RegionColors(TypedDict):
 
 
 def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
+    tier = extract_tier_men(filename, season)
+    if tier is None:
+        tier = extract_tier_women(filename, season)
+    if tier is None:
+        print("Warning: Could not extract tier from filename:", filename, "for season:", season)
+        return (999, "Unknown Tier")
+    print(filename, "-> Tier:", tier[0], "-", tier[1], "for season:", season)
+    return tier
+
+
+def extract_tier_men(filename: str, season: str) -> tuple[int, str]:
     season_start_year = int(season.split("-")[0])
-
-    # 2021-2022 season and earlier use different league naming
     if season_start_year <= 2021:
-        return extract_tier_2021(filename)
+        return extract_tier_men_pre_2021(filename, season)
     else:
-        # 2022-2023 onwards use current naming
-        return extract_tier_current(filename)
+        return extract_tier_men_current(filename, season)
 
 
-def extract_tier_current(filename: str) -> tuple[int, str]:
+def extract_tier_women(filename: str, season: str) -> tuple[int, str]:
+    season_start_year = int(season.split("-")[0])
+    if season_start_year <= 2018:
+        return extract_tier_women_pre_2018(filename, season)
+    else:
+        return extract_tier_women_current(filename, season)
+
+
+def extract_tier_men_current(filename: str, season: str) -> tuple[int, str]:
     """Extract tier from 2022-2023 onwards filename format."""
     if filename.startswith("Premiership"):
         return (1, "Premiership")
@@ -94,6 +110,15 @@ def extract_tier_current(filename: str) -> tuple[int, str]:
         return (10, "Counties 4")
     if filename.startswith("Counties_5"):
         return (11, "Counties 5")
+    if filename.startswith("Cumbria_Conference"):
+        if filename.endswith("1.json"):
+            return (107, "Counties 2")
+        if filename.endswith("2.json"):
+            return (108, "Counties 3")
+    return None
+
+
+def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | None:
     if filename.startswith("Women's_Premiership"):
         return (101, "Premiership Women's")
     if filename.startswith("Women's_Championship"):
@@ -107,15 +132,10 @@ def extract_tier_current(filename: str) -> tuple[int, str]:
         return (105, "National Challenge 2")
     if filename.startswith("Women's_NC_3"):
         return (106, "National Challenge 3")
-    if filename.startswith("Cumbria_Conference"):
-        if filename.endswith("1.json"):
-            return (107, "Counties 2")
-        if filename.endswith("2.json"):
-            return (108, "Counties 3")
-    return (999, "Unknown")
+    return None
 
 
-def extract_tier_2021(filename: str) -> tuple[int, str]:
+def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2021-2022 and earlier filename format."""
     # set "zeroth tier" of prefix, numbers will be used as offsets
     filename = (
@@ -125,6 +145,7 @@ def extract_tier_2021(filename: str) -> tuple[int, str]:
         .removeprefix("Harvey\u2019s_Brewery_")
         .removeprefix("Greene_King_IPA_")
         .removeprefix("Shepherd_Neame_")
+        .removeprefix("6X_")
     )
 
     zeroth_tier_map = {
@@ -163,44 +184,52 @@ def extract_tier_2021(filename: str) -> tuple[int, str]:
         return (4, "National League 2")
     for prefix, offset in zeroth_tier_map.items():
         if filename.startswith(prefix):
-            # Extract number after prefix, e.g. "North_1" -> 1
-            other_words = filename.removesuffix(".json")[len(prefix) :].removeprefix("_").split("_")
-            num_map = {
-                "1": 1,
-                "One": 1,
-                "2": 2,
-                "Two": 2,
-                "3": 3,
-                "Three": 3,
-                "4": 4,
-                "Four": 4,
-                "5": 5,
-                "Five": 5,
-            }
-            num = 0
-            for part in other_words:
-                if part in num_map:
-                    num = num_map[part]
-                    break
+            num = get_number_from_tier_name(filename, prefix)
+            if (
+                prefix == "Berks_Bucks_&_Oxon"
+                and season == "2018-2019"
+                and "Premier" not in filename
+            ):
+                num += 1
             tier = offset + num
             return (tier, f"Level {tier}")
+    return None
 
-    # Women's leagues
+
+def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] | None:
     if filename.startswith("Women's_Premiership"):
         return (101, "Premiership Women's")
     if filename.startswith("Women's_Championship"):
-        if "_1" in filename or filename.endswith("1.json"):
-            return (102, "Championship 1")
-        if "_2" in filename or filename.endswith("2.json"):
+        if "2" in filename:
             return (103, "Championship 2")
-    if filename.startswith("Women's_NC_1"):
-        return (104, "National Challenge 1")
-    if filename.startswith("Women's_NC_2"):
-        return (105, "National Challenge 2")
-    if filename.startswith("Women's_NC_3"):
-        return (106, "National Challenge 3")
-    print(f"Warning: Could not extract tier from filename '{filename}' using 2021 logic")
-    return (999, "Unknown")
+        else:
+            return (102, "Championship 1")
+    num = get_number_from_tier_name(filename, "")
+    if filename.startswith("Women") and num != 0:
+        return (103 + num, f"National Challenge {num}")
+    return None
+
+
+def get_number_from_tier_name(filename: str, prefix: str) -> int:
+    other_words = filename.removesuffix(".json")[len(prefix) :].removeprefix("_").split("_")
+    num_map = {
+        "1": 1,
+        "One": 1,
+        "2": 2,
+        "Two": 2,
+        "3": 3,
+        "Three": 3,
+        "4": 4,
+        "Four": 4,
+        "5": 5,
+        "Five": 5,
+    }
+    num = 0
+    for part in other_words:
+        if part in num_map:
+            num = num_map[part]
+            break
+    return num
 
 
 def load_teams_data(

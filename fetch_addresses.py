@@ -369,7 +369,7 @@ def main() -> None:
         "--workers", type=int, default=7, help="Max concurrent requests (default: 7)"
     )
     parser.add_argument(
-        "--delay", type=float, default=2.0, help="Seconds between requests (default: 2.0)"
+        "--delay", type=float, default=1, help="Seconds between requests (default: 1)"
     )
     parser.add_argument(
         "--retries", type=int, default=3, help="Max retries for failed requests (default: 3)"

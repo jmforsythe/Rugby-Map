@@ -1,0 +1,64 @@
+{
+  "league_name": "Women's South West South 2 (2)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=14004&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Bude Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3607",
+      "image_url": "https://images.englandrugby.com/club_images/3607.png",
+      "address": "Bencoolen Meadow, Bude, EX23 8QG, United Kingdom",
+      "latitude": 50.8242199,
+      "longitude": -4.54266,
+      "formatted_address": "EX23 8QG, Bude–Stratton, Cornwall, England, United Kingdom",
+      "place_id": 351256697
+    },
+    {
+      "name": "Devonport Services Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6408",
+      "image_url": "https://images.englandrugby.com/club_images/6408.png",
+      "address": "The Rectory Field 2nd Avenue Plymouth DEVON PL1 5QD UNITED KINGDOM",
+      "latitude": 50.37235,
+      "longitude": -4.16522,
+      "formatted_address": "PL1 5QD, Plymouth, England, United Kingdom",
+      "place_id": 351762380
+    },
+    {
+      "name": "Torpoint & Liskeard Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22963",
+      "image_url": "https://images.englandrugby.com/club_images/22963.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "St Austell Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20160",
+      "image_url": "https://images.englandrugby.com/club_images/20160.png",
+      "address": "St. Austell R.f.c. Tregorrick Park Tregorrick Lane St.austell Cornw PL26 7FH United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351318637
+    }
+  ],
+  "team_count": 6
+}

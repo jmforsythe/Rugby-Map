@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14029&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Worth Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26117",
+      "image_url": "https://images.englandrugby.com/club_images/26117.png",
+      "address": "Whiteley House, North Avenue, Whiteley Village, Walton-on-thames, Surrey , KT12 4EJ, United Kingdom",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669931
+    },
+    {
+      "name": "Old Caterhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510",
+      "image_url": "https://images.englandrugby.com/club_images/15510.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    },
+    {
+      "name": "Old Johnians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15785",
+      "image_url": "https://images.englandrugby.com/club_images/15785.png",
+      "address": "Wimbledon Rfc, Barham Road, London, Greater London, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "London Media",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12587",
+      "image_url": "https://images.englandrugby.com/club_images/12587.png",
+      "address": "Battersea Park, Albert Bridge Road Entrance , Battersea Park, London, Surrey , SW11 4NJ, United Kingdom",
+      "latitude": 51.481421,
+      "longitude": -0.1561104,
+      "formatted_address": "SW11 4NJ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350838388
+    },
+    {
+      "name": "Old Glynonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15711",
+      "image_url": "https://images.englandrugby.com/club_images/15711.png",
+      "address": "Old Glynonians Rfc, Priesthill Playing Field, Reigate Road, Epsom, KT17 3DZ, England",
+      "latitude": 51.33704,
+      "longitude": -0.24328,
+      "formatted_address": "KT17 3DZ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351423674
+    },
+    {
+      "name": "Old Paulines",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15903",
+      "image_url": "https://images.englandrugby.com/club_images/15903.png",
+      "address": "Old Pauline Football Club, St.nicholas Road, Off Speer Rd, Thames Ditton, Surrey, KT7 0PW, United Kingdom",
+      "latitude": 51.3912222,
+      "longitude": -0.3374399,
+      "formatted_address": "KT7 0PW, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351429900
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Merton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13763",
+      "image_url": "https://images.englandrugby.com/club_images/13763.png",
+      "address": "Morden Recreation Ground, 25 Faversham Road, Morden, Surrey , SM4 6RE, United Kingdom",
+      "latitude": 51.3912199,
+      "longitude": -0.19163,
+      "formatted_address": "SM4 6RE, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 351937994
+    },
+    {
+      "name": "Woking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25882",
+      "image_url": "https://images.englandrugby.com/club_images/25882.png",
+      "address": "Camphill Social Club, Woking Rfc, Camphill Road, West Byfleet, Surrey , KT14 6EF, United Kingdom",
+      "latitude": 51.3405739,
+      "longitude": -0.5004952,
+      "formatted_address": "KT14 6EF, Woking, Surrey, England, United Kingdom",
+      "place_id": 350670267
+    },
+    {
+      "name": "Horley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10408",
+      "image_url": "https://images.englandrugby.com/club_images/10408.png",
+      "address": "The New Defence Court Lodge Road Horley SURREY RH6 8RA ENGLAND",
+      "latitude": 51.1746,
+      "longitude": -0.17477,
+      "formatted_address": "RH6 8RA, Horley, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351829361
+    }
+  ],
+  "team_count": 10
+}

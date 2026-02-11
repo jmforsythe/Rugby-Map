@@ -1,0 +1,87 @@
+{
+  "league_name": "Surrey 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14072&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Old Suttonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16060",
+      "image_url": "https://images.englandrugby.com/club_images/16060.png",
+      "address": "Walch Memorial Ground 82-84 Northey Avenue Cheam Sutton Surrey SM2 7HJ United Kingdom",
+      "latitude": 51.3457099,
+      "longitude": -0.21934,
+      "formatted_address": "SM2 7HJ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485695
+    },
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.4372629,
+      "longitude": -0.5687512,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
+    },
+    {
+      "name": "Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5941",
+      "image_url": "https://images.englandrugby.com/club_images/5941.png",
+      "address": "135 Addington Road West Wickham Croydon KENT BR4 9BF UNITED KINGDOM",
+      "latitude": 51.363098,
+      "longitude": -0.018806,
+      "formatted_address": "BR4 9BF, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351012872
+    },
+    {
+      "name": "Raynes Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17495",
+      "image_url": "https://images.englandrugby.com/club_images/17495.png",
+      "address": "Raynes Park Sports Ground Taunton Avenue Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013170
+    },
+    {
+      "name": "Wandsworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24237",
+      "image_url": "https://images.englandrugby.com/club_images/24237.png",
+      "address": "Imber Court, Ember Lane, East Molesey, Surrey , KT8 0BT, United Kingdom",
+      "latitude": 51.3902693,
+      "longitude": -0.3525791,
+      "formatted_address": "KT8 0BT, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351430023
+    },
+    {
+      "name": "Reigate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17687",
+      "image_url": "https://images.englandrugby.com/club_images/17687.png",
+      "address": "Reigate R.F.C. Eric Hodgkins Memorial Grond Colley Lane Reigate SURREY RH2 9JL UNITED KINGDOM ",
+      "latitude": 51.24827,
+      "longitude": -0.22129,
+      "formatted_address": "RH2 9JL, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351826871
+    },
+    {
+      "name": "Horley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10408",
+      "image_url": "https://images.englandrugby.com/club_images/10408.png",
+      "address": "The New Defence Court Lodge Road Horley SURREY RH6 8RA ENGLAND",
+      "latitude": 51.1746,
+      "longitude": -0.17477,
+      "formatted_address": "RH6 8RA, Horley, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351829361
+    },
+    {
+      "name": "Haslemere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9632",
+      "image_url": "https://images.englandrugby.com/club_images/9632.png",
+      "address": "Woolmer Hill Sports Ground Woolmer Hill Haslemere SURREY GU27 1QA UNITED KINGDOM ",
+      "latitude": 51.0960991,
+      "longitude": -0.7479017,
+      "formatted_address": "Woolmer Hill Sports Ground, Woolmer Hill Road, Haslemere, Woolmer Hill, Waverley, Surrey, England, GU27 1QB, United Kingdom",
+      "place_id": 259557894
+    }
+  ],
+  "team_count": 8
+}

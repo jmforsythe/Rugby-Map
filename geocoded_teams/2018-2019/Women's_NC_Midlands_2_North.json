@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC Midlands 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13950&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Mellish Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13671",
+      "image_url": "https://images.englandrugby.com/club_images/13671.png",
+      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
+      "latitude": 53.0091092,
+      "longitude": -1.1009749,
+      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350719287
+    },
+    {
+      "name": "Lincoln Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12285",
+      "image_url": "https://images.englandrugby.com/club_images/12285.png",
+      "address": "Lincoln Rfc, Longdales Park, Lodge Lane, Nettleham, Lincoln, Lincolnshire , LN2 2RS, United Kingdom",
+      "latitude": 53.2629838,
+      "longitude": -0.4763172,
+      "formatted_address": "LN2 2RS, Nettleham CP, Nettleham, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688502
+    },
+    {
+      "name": "Sileby Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19362",
+      "image_url": "https://images.englandrugby.com/club_images/19362.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    },
+    {
+      "name": "Sleaford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19496",
+      "image_url": "https://images.englandrugby.com/club_images/19496.png",
+      "address": "The David Williams Pavilion Ruskington Road Sleaford LINCOLN NG34 8SP UNITED KINGDOM",
+      "latitude": 53.01434,
+      "longitude": -0.39223,
+      "formatted_address": "NG34 8SP, Sleaford, Quarrington, North Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351208937
+    },
+    {
+      "name": "Scunthorpe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18846",
+      "image_url": "https://images.englandrugby.com/club_images/18846.png",
+      "address": "Heslam Park Ashby Road Scunthorpe Lincolnshire DN16 2AG United Kingdom",
+      "latitude": 53.5768867,
+      "longitude": -0.6540008,
+      "formatted_address": "DN16 2AG, Lincolnshire, North Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350144145
+    },
+    {
+      "name": "Amber Valley Tigers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=564",
+      "image_url": "https://images.englandrugby.com/club_images/564.png",
+      "address": "Amber Valley Rugby Club, Pye Bridge, Lower Somercotes, Alfreton, DE55 4PD, United Kingdom",
+      "latitude": 53.0736151,
+      "longitude": -1.352606,
+      "formatted_address": "DE55 4PD, Somercotes CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351153942
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,144 @@
+{
+  "league_name": "North One West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=13908&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Carlisle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4206",
+      "image_url": "https://images.englandrugby.com/club_images/4206.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Blackburn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2477",
+      "image_url": "https://images.englandrugby.com/club_images/2477.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Birkenhead Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=96825",
+      "image_url": "https://images.englandrugby.com/club_images/96825.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Northwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15005",
+      "image_url": "https://images.englandrugby.com/club_images/15005.png",
+      "address": "Moss Farm Leisure Complex, Moss Farm, Winnington, Northwich, Cheshire, CW8 4BG, United Kingdom",
+      "latitude": 53.2571511,
+      "longitude": -2.5323746,
+      "formatted_address": "CW8 4BG, Northwich, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350118238
+    },
+    {
+      "name": "Broughton Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3497",
+      "image_url": "https://images.englandrugby.com/club_images/3497.png",
+      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    },
+    {
+      "name": "Douglas (I.O.M.)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6674",
+      "image_url": "https://images.englandrugby.com/club_images/6674.png",
+      "address": "The Clubhouse, Port-e-chee, Im2 2ra, Douglas, Isle Of Man, IM2 2RA, Isle Of Man",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Stockport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=117609",
+      "image_url": "https://images.englandrugby.com/club_images/117609.png",
+      "address": "Bridge Lane Memorial Ground Headlands Road Bramhall Stockport CHESHIRE SK7 3AN UNITED KINGDOM ",
+      "latitude": 53.37211,
+      "longitude": -2.15291,
+      "formatted_address": "SK7 3AN, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351924550
+    },
+    {
+      "name": "Firwood Waterloo",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8162",
+      "image_url": "https://images.englandrugby.com/club_images/8162.png",
+      "address": "The Memorial Ground, St Anthony's Road, Blundellsands, Merseyside, L23 8TW, England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Warrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24339",
+      "image_url": "https://images.englandrugby.com/club_images/24339.png",
+      "address": "South Warrington Sports Club Stockton Lane Grappenhall Warrington Cheshire WA4 3HQ United Kingdom",
+      "latitude": 53.3713965,
+      "longitude": -2.563598,
+      "formatted_address": "WA4 3HQ, Grappenhall and Thelwall, Warrington, England, United Kingdom",
+      "place_id": 350880607
+    },
+    {
+      "name": "Penrith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16686",
+      "image_url": "https://images.englandrugby.com/club_images/16686.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Burnage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3684",
+      "image_url": "https://images.englandrugby.com/club_images/3684.png",
+      "address": "Varley Park, Battersea Road, Stockport, Chesh, SK4 3EA, United Kingdom",
+      "latitude": 53.4083445,
+      "longitude": -2.2090526,
+      "formatted_address": "SK4 3EA, Heaton Mersey, Cheadle, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 350368827
+    },
+    {
+      "name": "Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13231",
+      "image_url": "https://images.englandrugby.com/club_images/13231.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Anselmians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=686",
+      "image_url": "https://images.englandrugby.com/club_images/686.png",
+      "address": "Malone Field, Eastham Village Road, Eastham, Wirral, Merseyside, CH62 0AN, United Kingdom",
+      "latitude": 53.31497,
+      "longitude": -2.96101,
+      "formatted_address": "CH62 0AN, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351064551
+    },
+    {
+      "name": "De La Salle (Salford)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6246",
+      "image_url": "https://images.englandrugby.com/club_images/6246.png",
+      "address": "Lancaster Road Salford LANCASHIRE M6 8AQ UNITED KINGDOM ",
+      "latitude": 53.5025866,
+      "longitude": -2.3235565,
+      "formatted_address": "East Lancs Road/Lancaster Road, East Lancashire Road, Swinton Park, Pendlebury, Salford, Greater Manchester, England, M27 5LZ, United Kingdom",
+      "place_id": 256515239
+    }
+  ],
+  "team_count": 14
+}

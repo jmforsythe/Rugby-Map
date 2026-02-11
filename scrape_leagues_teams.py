@@ -28,6 +28,7 @@ PREM_MAP = {
     "2021-2022": "35441",
     "2020-2021": "69325",
     "2019-2020": "69319",
+    "2018-2019": "69315",
 }
 
 CHAMP_MAP = {
@@ -38,6 +39,7 @@ CHAMP_MAP = {
     "2021-2022": "33636",
     "2020-2021": "31117",
     "2019-2020": "21751",
+    "2018-2019": "14205",
 }
 
 
@@ -72,6 +74,7 @@ WOMENS_PREM_MAP = {
     "2021-2022": "33312",
     "2020-2021": "31109",
     "2019-2020": "24448",
+    "2018-2019": "14816",
 }
 
 
@@ -99,7 +102,7 @@ def scrape_teams_from_league(
 ) -> list[Team]:
     print(f"Scraping teams from: {league_url}")
 
-    response = make_request(league_url, referer=referer)
+    response = make_request(league_url, referer=referer, delay_seconds=1)
 
     # Check for anti-bot 202 response
     if response.status_code == 202:
@@ -143,7 +146,7 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
     """Scrape league links from the related-leagues-overview div"""
     print(f"\nScraping leagues from: {page_url}")
 
-    response = make_request(page_url)
+    response = make_request(page_url, delay_seconds=0.5)
 
     # Check for anti-bot 202 response
     if response.status_code == 202:
@@ -231,9 +234,25 @@ def main() -> None:
         league_url = league["url"]
         parent_url = league["parent_url"]
 
-        banned_words = ["playoff", "play-off", "phase", "shield", "trophy", "plate", "salver"]
+        banned_words = [
+            "playoff",
+            "play off",
+            "play-off",
+            "phase",
+            "shield",
+            "trophy",
+            "plate",
+            "salver",
+            "merit",
+            "bowl",
+            "1a",
+            "1b",
+            "2a",
+            "2b",
+        ]
         if any(word in league_name.lower() for word in banned_words):
             print(f"Skipping {league_name} (playoff/phase league)")
+            skipped_leagues.append(league)
             continue
 
         # Create filename from league name

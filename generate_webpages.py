@@ -271,7 +271,7 @@ def detect_tier_files(season_dir: Path) -> dict[str, list[tuple]]:
         ("Counties 3", f"Counties_3{"/" if IS_PRODUCTION else ".html"}"),
         ("Counties 4", f"Counties_4{"/" if IS_PRODUCTION else ".html"}"),
         ("Counties 5", f"Counties_5{"/" if IS_PRODUCTION else ".html"}"),
-        *((f"Level {i}", f"Level_{i}{"/" if IS_PRODUCTION else ".html"}") for i in range(5, 12)),
+        *((f"Level {i}", f"Level_{i}{"/" if IS_PRODUCTION else ".html"}") for i in range(5, 16)),
     ]
 
     # Women's tiers in order

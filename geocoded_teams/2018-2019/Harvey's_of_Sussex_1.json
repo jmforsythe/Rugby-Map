@@ -1,0 +1,87 @@
+{
+  "league_name": "Harvey's of Sussex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14030&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Crawley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5807",
+      "image_url": "https://images.englandrugby.com/club_images/5807.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    },
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Eastbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7209",
+      "image_url": "https://images.englandrugby.com/club_images/7209.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "East Grinstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7134",
+      "image_url": "https://images.englandrugby.com/club_images/7134.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Seaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868",
+      "image_url": "https://images.englandrugby.com/club_images/18868.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Plumpton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16949",
+      "image_url": "https://images.englandrugby.com/club_images/16949.png",
+      "address": "Plumpton Racecourse Plumpton Lane Plumpton Green EAST SUSSEX BN7 3AL UNITED KINGDOM",
+      "latitude": 50.9249449,
+      "longitude": -0.0616538,
+      "formatted_address": "Plumpton Racecourse, Plumpton Lane, Plumpton, Plumpton Green, Lewes, East Sussex, England, BN7 3AB, United Kingdom",
+      "place_id": 260496724
+    },
+    {
+      "name": "Ditchling",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541",
+      "image_url": "https://images.englandrugby.com/club_images/6541.png",
+      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
+      "latitude": 50.92073,
+      "longitude": -0.12822,
+      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 351007600
+    }
+  ],
+  "team_count": 8
+}

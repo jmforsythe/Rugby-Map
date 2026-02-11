@@ -1,0 +1,74 @@
+{
+  "league_name": "Women's NC South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=13956&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Jersey Reds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club Rue Des Landes St Peter JE3 7BG Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Amesbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=625",
+      "image_url": "https://images.englandrugby.com/club_images/625.png",
+      "address": "Archers Gate Centenary Pavilion Archers Gate Amesbury Wilts SP4 7YT England",
+      "latitude": 51.16196,
+      "longitude": -1.76851,
+      "formatted_address": "SP4 7YT, Amesbury, Wiltshire, England, United Kingdom",
+      "place_id": 351966899
+    },
+    {
+      "name": "Basingstoke Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1569",
+      "image_url": "https://images.englandrugby.com/club_images/1569.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    },
+    {
+      "name": "Dorchester/Weymouth & P Roses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6608",
+      "image_url": "https://images.englandrugby.com/club_images/6608.png",
+      "address": "Dorchester Rfc Coburg Road Dorchester Dorset DT1 2HX England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 350743556
+    },
+    {
+      "name": "Swanage & Wareham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21498",
+      "image_url": "https://images.englandrugby.com/club_images/21498.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Oakmeadians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15300",
+      "image_url": "https://images.englandrugby.com/club_images/15300.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350047310
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,94 @@
+{
+  "league_name": "Shepherd Neame Kent 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14026&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Cliffe Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5260",
+      "image_url": "https://images.englandrugby.com/club_images/5260.png",
+      "address": "Cliffe Memorial Hall, Rochester, Kent, ME37UT, England",
+      "latitude": 51.4631358,
+      "longitude": 0.499096,
+      "formatted_address": "ME3 7UT, Cliffe and Cliffe Woods, Cliffe, Medway, England, United Kingdom",
+      "place_id": 350701459
+    },
+    {
+      "name": "Faversham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8022",
+      "image_url": "https://images.englandrugby.com/club_images/8022.png",
+      "address": "Faversham Rufc, The Lodge, Recreation Ground, Park Road, Faversham, Kent , ME13 8HA, United Kingdom",
+      "latitude": 51.31141,
+      "longitude": 0.89756,
+      "formatted_address": "ME13 8HA, Faversham, Ospringe, Swale, Kent, England, United Kingdom",
+      "place_id": 351566722
+    },
+    {
+      "name": "Lordswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12799",
+      "image_url": "https://images.englandrugby.com/club_images/12799.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Sittingbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19441",
+      "image_url": "https://images.englandrugby.com/club_images/19441.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
+    },
+    {
+      "name": "Brockleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3397",
+      "image_url": "https://images.englandrugby.com/club_images/3397.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM ",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812593
+    },
+    {
+      "name": "Bexley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2100",
+      "image_url": "https://images.englandrugby.com/club_images/2100.png",
+      "address": "Bexley R.F.C. Bexley Park Sports & Social Club Bexley Park, Calvert Drive Bexley Park, Calvert Drive Dartford KENT DA2 7GA UNITED KINGDOM",
+      "latitude": 51.433795,
+      "longitude": 0.1704004,
+      "formatted_address": "DA2 7GA, Dartford, Kent, England, United Kingdom",
+      "place_id": 350120269
+    },
+    {
+      "name": "Dartford Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6149",
+      "image_url": "https://images.englandrugby.com/club_images/6149.png",
+      "address": "Sophie Warren Chair Dvrfc, Dartford Valley Rfc, Dartford Valley Community Rugby Club, Cotton Lane, Dartford, Kent, DA2 6QZ, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Greenwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8954",
+      "image_url": "https://images.englandrugby.com/club_images/8954.png",
+      "address": "The Pavilion Old Mill Road Old Mill Road London SE18 1QJ UNITED KINGDOM ",
+      "latitude": 51.4820927,
+      "longitude": 0.0834451,
+      "formatted_address": "SE18 1QJ, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351895794
+    },
+    {
+      "name": "Askean",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974",
+      "image_url": "https://images.englandrugby.com/club_images/974.png",
+      "address": "Charlton Road, London, SE7 7EY, United Kingdom",
+      "latitude": 51.6368146,
+      "longitude": -0.0393038,
+      "formatted_address": "Charlton Road, Ponders End, London Borough of Enfield, Greater London, England, N9 8EX, United Kingdom",
+      "place_id": 257710562
+    }
+  ],
+  "team_count": 9
+}

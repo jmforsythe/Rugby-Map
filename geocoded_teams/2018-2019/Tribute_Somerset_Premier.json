@@ -1,0 +1,147 @@
+{
+  "league_name": "Tribute Somerset Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=13614&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Wiveliscombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25829",
+      "image_url": "https://images.englandrugby.com/club_images/25829.png",
+      "address": "Wrfc Clubhouse, Recreation Ground, West Road, Wiveliscombe, Taunton, Somerset, TA4 2TA, United Kingdom",
+      "latitude": 51.04077,
+      "longitude": -3.32061,
+      "formatted_address": "TA4 2TA, Wiveliscombe, Somerset, England, United Kingdom",
+      "place_id": 352035435
+    },
+    {
+      "name": "Burnham-on-Sea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3722",
+      "image_url": "https://images.englandrugby.com/club_images/3722.png",
+      "address": "Stoddens Road, Burnham-on-sea, Somerset, TA8 2BS, United Kingdom",
+      "latitude": 51.248198,
+      "longitude": -2.9846688,
+      "formatted_address": "TA8 2BS, Burnham-on-Sea and Highbridge, Burnham-on-Sea, Somerset, England, United Kingdom",
+      "place_id": 350850088
+    },
+    {
+      "name": "Imperial",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10856",
+      "image_url": "https://images.englandrugby.com/club_images/10856.png",
+      "address": "South Bristol Sports Centre Imperial RFC West Town Lane Knowle Bristol SOMERSET BS4 5BN UNITED KINGDOM ",
+      "latitude": 51.4318289,
+      "longitude": -2.5465856,
+      "formatted_address": "BS4 5BN, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517833
+    },
+    {
+      "name": "Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1064",
+      "image_url": "https://images.englandrugby.com/club_images/1064.png",
+      "address": "Avon Rfc, Hicks Field, London Road East, Batheaston, Bath, Somerset , BA1 7DA, United Kingdom",
+      "latitude": 51.39936,
+      "longitude": -2.33446,
+      "formatted_address": "BA1 7DA, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350930194
+    },
+    {
+      "name": "Yatton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26414",
+      "image_url": "https://images.englandrugby.com/club_images/26414.png",
+      "address": "Yatton RFC The Park North End Road Yatton SOMERSET BS49 4AR UNITED KINGDOM ",
+      "latitude": 51.3949799,
+      "longitude": -2.83571,
+      "formatted_address": "BS49 4AR, Yatton, North Somerset, England, United Kingdom",
+      "place_id": 351024156
+    },
+    {
+      "name": "Minehead Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13963",
+      "image_url": "https://images.englandrugby.com/club_images/13963.png",
+      "address": "The Tom Stewart Field Ellicombe Lane, Ellicombe Minehead SOMERSET TA24 6TR UNITED KINGDOM ",
+      "latitude": 51.1916454,
+      "longitude": -3.4590676,
+      "formatted_address": "TA24 6TR, Dunster, Somerset, England, United Kingdom",
+      "place_id": 350847089
+    },
+    {
+      "name": "Nailsea & Backwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14247",
+      "image_url": "https://images.englandrugby.com/club_images/14247.png",
+      "address": "Nailsea & Backwell Rfc, West End Park, West End Lane, Nailsea, Somerset, BS48 4BY, United Kingdom",
+      "latitude": 51.4266176,
+      "longitude": -2.783802,
+      "formatted_address": "BS48 4BY, Nailsea, North Somerset, England, United Kingdom",
+      "place_id": 350518448
+    },
+    {
+      "name": "Oldfield Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16139",
+      "image_url": "https://images.englandrugby.com/club_images/16139.png",
+      "address": "Shaft Road Combe Down Bath BA2 7HP ENGLAND",
+      "latitude": 51.3620111,
+      "longitude": -2.3363342,
+      "formatted_address": "Shaft Road, Combe Down, Bath, Bath and North East Somerset, West of England, England, BA2 7HR, United Kingdom",
+      "place_id": 261418614
+    },
+    {
+      "name": "Old Redcliffians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15932",
+      "image_url": "https://images.englandrugby.com/club_images/15932.png",
+      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
+      "latitude": 51.4227768,
+      "longitude": -2.5385264,
+      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517876
+    },
+    {
+      "name": "Weston-s-Mare II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25043",
+      "image_url": "https://images.englandrugby.com/club_images/25043.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "St Bernadettes Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20227",
+      "image_url": "https://images.englandrugby.com/club_images/20227.png",
+      "address": "St Bernadettes Old Boys Rfc, Fulford Road, Hartcliffe, Bristol, Avon , BS13 9PB, United Kingdom",
+      "latitude": 51.41041,
+      "longitude": -2.60456,
+      "formatted_address": "BS13 9PB, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351016343
+    },
+    {
+      "name": "Hornets II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10414",
+      "image_url": "https://images.englandrugby.com/club_images/10414.png",
+      "address": "Hutton Moor Road, Weston-super-mare, Somerset, BS22 8LY, United Kingdom",
+      "latitude": 51.3444168,
+      "longitude": -2.947101,
+      "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
+      "place_id": 261865175
+    },
+    {
+      "name": "Bristol Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3262",
+      "image_url": "https://images.englandrugby.com/club_images/3262.png",
+      "address": "Valhalla, Lanesboro, Broomhill Road, Brislington, Bristol, Bristol, BS4 5RG, United Kingdom",
+      "latitude": 51.4316607,
+      "longitude": -2.5335221,
+      "formatted_address": "BS4 5RG, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517908
+    },
+    {
+      "name": "Bristol Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3246",
+      "image_url": "https://images.englandrugby.com/club_images/3246.png",
+      "address": "Bristol Barbarians (formerly British Gas Bristol), Norton Lane, Whitchurch, Bristol, Bristol, BS14 0BT, United Kingdom",
+      "latitude": 51.396328,
+      "longitude": -2.5560784,
+      "formatted_address": "BS14 0BT, Whitchurch, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350506538
+    }
+  ],
+  "team_count": 14
+}

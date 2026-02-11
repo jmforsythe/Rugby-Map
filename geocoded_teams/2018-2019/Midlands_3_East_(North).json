@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 3 East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=13643&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Nottingham Casuals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15077",
+      "image_url": "https://images.englandrugby.com/club_images/15077.png",
+      "address": "The Rugby Pavilion, Weir Fields Recreation Ground, Canalside, Beeston, Nottingham, Nottinghamshire, NG9 1NG, United Kingdom",
+      "latitude": 52.9154134,
+      "longitude": -1.1982762,
+      "formatted_address": "NG9 1NG, Beeston Rylands, Beeston, Broxtowe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350723115
+    },
+    {
+      "name": "Ashfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=852",
+      "image_url": "https://images.englandrugby.com/club_images/852.png",
+      "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
+      "latitude": 53.1126952,
+      "longitude": -1.26137,
+      "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351649727
+    },
+    {
+      "name": "Spalding",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19862",
+      "image_url": "https://images.englandrugby.com/club_images/19862.png",
+      "address": "Spalding Rfc Centenary Park Spalding Lincolnshire PE12 6AF United Kingdom",
+      "latitude": 52.7635,
+      "longitude": -0.14693,
+      "formatted_address": "PE12 6AF, Spalding, South Holland, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351745778
+    },
+    {
+      "name": "Belper",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1921",
+      "image_url": "https://images.englandrugby.com/club_images/1921.png",
+      "address": "Belper Rufc, Belper Rugby Club, Derby Road, Belper, Derbyshire, DE56 1SG, United Kingdom",
+      "latitude": 53.019632,
+      "longitude": -1.4846401,
+      "formatted_address": "DE56 1SG, Belper CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350581569
+    },
+    {
+      "name": "Kesteven",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11309",
+      "image_url": "https://images.englandrugby.com/club_images/11309.png",
+      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
+      "latitude": 52.890697,
+      "longitude": -0.5950534,
+      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350718958
+    },
+    {
+      "name": "Buxton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3874",
+      "image_url": "https://images.englandrugby.com/club_images/3874.png",
+      "address": "Buxton Rugby Club Sunnyfields Burlow Road Harpur Hill Buxton Derbyshire SK17 9PX United Kingdom",
+      "latitude": 53.22978,
+      "longitude": -1.88322,
+      "formatted_address": "SK17 9PX, Hartington Upper Quarter, High Peak, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351919937
+    },
+    {
+      "name": "Nottingham Moderns",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15118",
+      "image_url": "https://images.englandrugby.com/club_images/15118.png",
+      "address": "Nottingham Moderns Rugby Club Main Road Willford Village Nottingham NOTTINGHAMSHIRE NG11 7AA UNITED KINGDOM ",
+      "latitude": 52.9339514,
+      "longitude": -1.1569207,
+      "formatted_address": "NG11 7AA, Wilford, City of Nottingham, East Midlands, England, United Kingdom",
+      "place_id": 350715286
+    },
+    {
+      "name": "Rolls Royce",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17945",
+      "image_url": "https://images.englandrugby.com/club_images/17945.png",
+      "address": "Leisure Association, Moor Lane, Allenton, Derby, Derbyshire, DE24 9HY, United Kingdom",
+      "latitude": 52.8908291,
+      "longitude": -1.4620551,
+      "formatted_address": "DE24 9HY, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350579047
+    },
+    {
+      "name": "Mansfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13297",
+      "image_url": "https://images.englandrugby.com/club_images/13297.png",
+      "address": "Clubhouse Grounds & Sports Centre, Eakring Road, Mansfield, Nottinghamshire, NG18 3EW, United Kingdom",
+      "latitude": 53.1486988,
+      "longitude": -1.1253882,
+      "formatted_address": "NG18 3EW, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350717341
+    },
+    {
+      "name": "Bakewell Mannerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1242",
+      "image_url": "https://images.englandrugby.com/club_images/1242.png",
+      "address": "Lady Manners School Shutts Lane Bakewell DERBYSHIRE DE45 1JA UNITED KINGDOM",
+      "latitude": 53.2063329,
+      "longitude": -1.6853508,
+      "formatted_address": "Lady Manners School, Shutts Lane, Bakewell CP, Derbyshire Dales, Derbyshire, East Midlands, England, DE45 1JA, United Kingdom",
+      "place_id": 257571578
+    },
+    {
+      "name": "Sleaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19492",
+      "image_url": "https://images.englandrugby.com/club_images/19492.png",
+      "address": "The David Williams Pavilion Ruskington Road Sleaford LINCOLN NG34 8SP UNITED KINGDOM ",
+      "latitude": 53.01434,
+      "longitude": -0.39223,
+      "formatted_address": "NG34 8SP, Sleaford, Quarrington, North Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351660243
+    },
+    {
+      "name": "Tupton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23314",
+      "image_url": "https://images.englandrugby.com/club_images/23314.png",
+      "address": "The Recreation Ground North Side Tupton Chesterfield DERBYSHIRE S42 6DW UNITED KINGDOM ",
+      "latitude": 53.19156,
+      "longitude": -1.41635,
+      "formatted_address": "S42 6DW, Tupton, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351849813
+    }
+  ],
+  "team_count": 12
+}

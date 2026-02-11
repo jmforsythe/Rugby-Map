@@ -1,0 +1,127 @@
+{
+  "league_name": "Hampshire Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14023&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Basingstoke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1565",
+      "image_url": "https://images.englandrugby.com/club_images/1565.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Sandown & Shanklin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708",
+      "image_url": "https://images.englandrugby.com/club_images/18708.png",
+      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
+      "latitude": 50.6561004,
+      "longitude": -1.1652962,
+      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
+      "place_id": 350777134
+    },
+    {
+      "name": "Bognor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2677",
+      "image_url": "https://images.englandrugby.com/club_images/2677.png",
+      "address": "Bognor R.f.c. Hampshire Avenue Bognor Regis West Sussex PO21 5JH United Kingdom",
+      "latitude": 50.79407,
+      "longitude": -0.68564,
+      "formatted_address": "PO21 5JH, Bognor Regis, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351787815
+    },
+    {
+      "name": "Fordingbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8240",
+      "image_url": "https://images.englandrugby.com/club_images/8240.png",
+      "address": "Recreation Ground Fordingbridge HAMPSHIRE SP6 1AN UNITED KINGDOM ",
+      "latitude": 50.92568,
+      "longitude": -1.78717,
+      "formatted_address": "SP6 1AN, Fordingbridge, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 351968133
+    },
+    {
+      "name": "New Milton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14355",
+      "image_url": "https://images.englandrugby.com/club_images/14355.png",
+      "address": "New Milton Rugby Club Normans Way Ashley New Milton HAMPSHIRE BH25 5FN UNITED KINGDOM ",
+      "latitude": 50.755932,
+      "longitude": -1.6410986,
+      "formatted_address": "BH25 5FN, New Milton, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350497455
+    },
+    {
+      "name": "Millbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878",
+      "image_url": "https://images.englandrugby.com/club_images/13878.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Alresford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=505",
+      "image_url": "https://images.englandrugby.com/club_images/505.png",
+      "address": "Alresford Recreation Centre, Arlebury Park, The Avenue, Alresford, Hampshire, SO24 9EP, United Kingdom",
+      "latitude": 51.0893299,
+      "longitude": -1.16977,
+      "formatted_address": "SO24 9EP, Arlebury Park, New Alresford, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955854
+    },
+    {
+      "name": "Fareham Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7929",
+      "image_url": "https://images.englandrugby.com/club_images/7929.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Eastleigh II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7251",
+      "image_url": "https://images.englandrugby.com/club_images/7251.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Portsmouth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17119",
+      "image_url": "https://images.englandrugby.com/club_images/17119.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Tottonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23028",
+      "image_url": "https://images.englandrugby.com/club_images/23028.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Gosport & Fareham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8811",
+      "image_url": "https://images.englandrugby.com/club_images/8811.png",
+      "address": "Gosport Park, Dolphin Crescent, Gosport, Hampshire, PO12 2HE, United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774642
+    }
+  ],
+  "team_count": 12
+}

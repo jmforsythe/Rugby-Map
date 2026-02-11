@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=14027&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Reeds Weybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17645",
+      "image_url": "https://images.englandrugby.com/club_images/17645.png",
+      "address": "North Avenue Whiteley Village Walton On Thames SURREY KT12 4EJ UNITED KINGDOM ",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350219256
+    },
+    {
+      "name": "Weybridge Vandals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25094",
+      "image_url": "https://images.englandrugby.com/club_images/25094.png",
+      "address": "Brownacres Walton Lane Walton on Thames SURREY KT12 1QP UNITED KINGDOM",
+      "latitude": 51.3851494,
+      "longitude": -0.436515,
+      "formatted_address": "KT12 1QP, Spelthorne, Surrey, England, United Kingdom",
+      "place_id": 351420526
+    },
+    {
+      "name": "Old Walcountians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16075",
+      "image_url": "https://images.englandrugby.com/club_images/16075.png",
+      "address": "Clockhouse Carshalton Road WOODMANSTERNE SURREY SM7 3HU UNITED KINGDOM",
+      "latitude": 51.3287532,
+      "longitude": -0.1686178,
+      "formatted_address": "Walcountians Sports Club, Carshalton Road, Little Woodcote, London Borough of Sutton, Reigate and Banstead, Surrey, England, SM7 3HU, United Kingdom",
+      "place_id": 258301321
+    },
+    {
+      "name": "Law Society",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11925",
+      "image_url": "https://images.englandrugby.com/club_images/11925.png",
+      "address": "Raynes Park Sports Ground, Taunton Avenue, West Wimbledon, SW20 0BH, United Kingdom",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Old Haileyburians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15747",
+      "image_url": "https://images.englandrugby.com/club_images/15747.png",
+      "address": "Arthur Road New Malden Surrey KT3 6LX United Kingdom",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671643
+    },
+    {
+      "name": "Chipstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4908",
+      "image_url": "https://images.englandrugby.com/club_images/4908.png",
+      "address": "Chipstead Rfc, The Meads, Chipstead, Surrey , CR5 3SB, United Kingdom",
+      "latitude": 51.2968646,
+      "longitude": -0.1682766,
+      "formatted_address": "CR5 3SB, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 350559676
+    },
+    {
+      "name": "Trinity",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23175",
+      "image_url": "https://images.englandrugby.com/club_images/23175.png",
+      "address": "The Clubhouse Lime Meadow Avenue Sanderstead South Croydon CR2 9AS England",
+      "latitude": 51.32993,
+      "longitude": -0.06961,
+      "formatted_address": "CR2 9AS, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 351095386
+    },
+    {
+      "name": "Old Freemens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15702",
+      "image_url": "https://images.englandrugby.com/club_images/15702.png",
+      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
+      "latitude": 51.3077453,
+      "longitude": -0.2864699,
+      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 350671240
+    },
+    {
+      "name": "Old Amplefordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15424",
+      "image_url": "https://images.englandrugby.com/club_images/15424.png",
+      "address": "Old Amplefordians Rfc, C/o Old Blues, Dornan Fields, Arthur Road, Whitley Village, Walton On Thames, KT3 6LX, England",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Old Wimbledonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16099",
+      "image_url": "https://images.englandrugby.com/club_images/16099.png",
+      "address": "143 Coombe Lane London SW20 0BJ UNITED KINGDOM",
+      "latitude": 51.4117552,
+      "longitude": -0.2409752,
+      "formatted_address": "Coombe Lane, Cottenham Park, Raynes Park, London Borough of Merton, Greater London, England, SW20 0PH, United Kingdom",
+      "place_id": 260103652
+    }
+  ],
+  "team_count": 10
+}

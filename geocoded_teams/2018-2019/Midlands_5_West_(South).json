@@ -1,0 +1,77 @@
+{
+  "league_name": "Midlands 5 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=13650&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Birmingham Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2318",
+      "image_url": "https://images.englandrugby.com/club_images/2318.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon  Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM ",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488076
+    },
+    {
+      "name": "Birmingham Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2314",
+      "image_url": "https://images.englandrugby.com/club_images/2314.png",
+      "address": "Land Rover Social Club Bilsmore Green Off Rowood Drive Solihull West Midlands B92 9LN United Kingdom",
+      "latitude": 52.4303347,
+      "longitude": -1.7754397,
+      "formatted_address": "B92 9LN, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488131
+    },
+    {
+      "name": "Rugby Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334",
+      "image_url": "https://images.englandrugby.com/club_images/18334.png",
+      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
+      "latitude": 52.35183,
+      "longitude": -1.28944,
+      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351116375
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Atherstone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1029",
+      "image_url": "https://images.englandrugby.com/club_images/1029.png",
+      "address": "Ratcliffe Road, Atherstone, Warks, CV9 1PJ, United Kingdom",
+      "latitude": 52.578647,
+      "longitude": -1.5426731,
+      "formatted_address": "Ratcliffe Road, Atherstone CP, Atherstone, North Warwickshire, Warwickshire, England, CV9 1EU, United Kingdom",
+      "place_id": 259019825
+    },
+    {
+      "name": "A. E. I. (Rugby)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=202",
+      "image_url": "https://images.englandrugby.com/club_images/202.png",
+      "address": "Aei (rugby) Rfc C/o Rugby Railway Club Hillmorton Road Rugby CV22 5AL England",
+      "latitude": 52.3664703,
+      "longitude": -1.2452136,
+      "formatted_address": "CV22 5AL, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564012
+    },
+    {
+      "name": "Trinity Guild",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23189",
+      "image_url": "https://images.englandrugby.com/club_images/23189.png",
+      "address": "Martin Wheeler Fields, Segro Park, Samaritan Way, Baginton, Coventry, Warwickshire, CV8 3EE, United Kingdom",
+      "latitude": 52.35863,
+      "longitude": -1.48417,
+      "formatted_address": "CV8 3EE, Segro Park, Baginton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126992
+    }
+  ],
+  "team_count": 7
+}

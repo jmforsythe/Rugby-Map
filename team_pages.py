@@ -7,7 +7,12 @@ from pathlib import Path
 from fetch_addresses import team_name_to_club_name
 from generate_webpages import get_common_css, get_footer_html
 from make_tier_maps import extract_tier
-from utils import GeocodedLeague, get_google_analytics_script, team_name_to_filepath
+from utils import (
+    GeocodedLeague,
+    TravelDistances,
+    get_google_analytics_script,
+    team_name_to_filepath,
+)
 
 IS_PRODUCTION = False
 
@@ -141,7 +146,12 @@ def find_club_teams(team_name: str, all_teams: dict[str, dict]) -> list[str]:
     return sorted(club_teams)
 
 
-def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dict]) -> str:
+def get_team_page_html(
+    team_name: str,
+    team_data: dict,
+    all_teams: dict[str, dict],
+    travel_distances_by_season: dict[str, TravelDistances],
+) -> str:
     """Generate HTML content for a team's individual page."""
 
     # Get club teams
@@ -303,6 +313,7 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
                     <th>Season</th>
                     <th>Tier: League</th>
                     <th>Position</th>
+                    <th>Travel Distance (Average/Total)</th>
                 </tr>
             </thead>
             <tbody>
@@ -320,11 +331,27 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
             else:
                 position_display = f'<span class="position">#{position}</span>'
 
+            # Get travel distances for this season
+            travel_info = "N/A"
+            if season in travel_distances_by_season:
+                season_data = travel_distances_by_season[season]
+                if "teams" in season_data and team_name in season_data["teams"]:
+                    team_distances = season_data["teams"][team_name]
+                    avg_dist = team_distances.get("avg_distance_km")
+                    total_dist = team_distances.get("total_distance_km")
+
+                    if avg_dist is not None and total_dist is not None:
+                        travel_info = f"{avg_dist:.1f} km / {total_dist:.0f} km"
+                    elif avg_dist is not None:
+                        travel_info = f"{avg_dist:.1f} km avg"
+                    elif total_dist is not None:
+                        travel_info = f"{total_dist:.0f} km total"
+
             html += f"""                <tr>
                     <td>{season}</td>
                     <td>{tier[0]%100}: {league}</td>
                     <td>{position_display}</td>
-                </tr>
+                    <td>{travel_info}</td>
 """
 
         html += """            </tbody>
@@ -342,6 +369,31 @@ def get_team_page_html(team_name: str, team_data: dict, all_teams: dict[str, dic
     return html
 
 
+def load_travel_distances() -> dict[str, TravelDistances]:
+    """Load travel distances from cache files for all seasons.
+
+    Returns:
+        Dictionary mapping season -> TravelDistances
+    """
+    distances_dir = Path("distance_cache_folder")
+    travel_distances_by_season = {}
+
+    if not distances_dir.exists():
+        return {}
+
+    for distance_file in distances_dir.glob("*.json"):
+        season = distance_file.stem  # e.g., "2018-2019"
+
+        try:
+            with open(distance_file, encoding="utf-8") as f:
+                data = json.load(f)
+                travel_distances_by_season[season] = data
+        except Exception as e:
+            print(f"  Warning: Could not load distances for {season}: {e}")
+
+    return travel_distances_by_season
+
+
 def generate_team_pages() -> None:
     """Generate individual HTML pages for all teams."""
     print("\nGenerating individual team pages...")
@@ -356,6 +408,11 @@ def generate_team_pages() -> None:
 
     print(f"  Found {len(all_teams)} unique teams")
 
+    # Load travel distances
+    print("  Loading travel distances...")
+    travel_distances_by_season = load_travel_distances()
+    print(f"  Loaded distances for {len(travel_distances_by_season)} seasons")
+
     # Create teams directory
     teams_dir = Path("tier_maps/teams")
     teams_dir.mkdir(parents=True, exist_ok=True)
@@ -364,7 +421,9 @@ def generate_team_pages() -> None:
     generated_count = 0
     for team_name, team_data in all_teams.items():
         try:
-            html_content = get_team_page_html(team_name, team_data, all_teams)
+            html_content = get_team_page_html(
+                team_name, team_data, all_teams, travel_distances_by_season
+            )
 
             # Create filename from team name
             filename = team_name_to_filepath(team_name)
@@ -618,6 +677,11 @@ def main():
         IS_PRODUCTION = True
 
     generate_team_pages()
+    generate_teams_index()
+
+
+if __name__ == "__main__":
+    main()
     generate_teams_index()
 
 

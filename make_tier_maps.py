@@ -66,7 +66,6 @@ def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
     if tier is None:
         print("Warning: Could not extract tier from filename:", filename, "for season:", season)
         return (999, "Unknown Tier")
-    print(filename, "-> Tier:", tier[0], "-", tier[1], "for season:", season)
     return tier
 
 

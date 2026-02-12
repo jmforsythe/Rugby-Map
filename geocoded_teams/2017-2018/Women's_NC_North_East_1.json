@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC North East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11134&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Harrogate Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9499",
+      "image_url": "https://images.englandrugby.com/club_images/9499.png",
+      "address": "Apollo Capital Stadium, Rudding Lane, Follifoot, Harrogate, HG3 1DQ, England",
+      "latitude": 53.97342,
+      "longitude": -1.50176,
+      "formatted_address": "HG3 1DQ, Follifoot, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352797
+    },
+    {
+      "name": "Ashfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=857",
+      "image_url": "https://images.englandrugby.com/club_images/857.png",
+      "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
+      "latitude": 53.1126952,
+      "longitude": -1.26137,
+      "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351649727
+    },
+    {
+      "name": "Derby Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6343",
+      "image_url": "https://images.englandrugby.com/club_images/6343.png",
+      "address": "Derby R.f.c. Haslams Lane Darley Abbey Derby Derbyshire DE22 1EB United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350126279
+    },
+    {
+      "name": "York RI Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26469",
+      "image_url": "https://images.englandrugby.com/club_images/26469.png",
+      "address": "York Ri Rufc New Lane York Yorkshire YO24 4NT United Kingdom",
+      "latitude": 53.9545115,
+      "longitude": -1.1106512,
+      "formatted_address": "YO24 4NT, York, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350448931
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Littleborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12376",
+      "image_url": "https://images.englandrugby.com/club_images/12376.png",
+      "address": "Club House, The Deep Lane, Off Rakewood Road, Rakewood, Littleborough, Lancashire, OL15 0AP, United Kingdom",
+      "latitude": 53.62433,
+      "longitude": -2.08514,
+      "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351710750
+    },
+    {
+      "name": "Doncaster Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    }
+  ],
+  "team_count": 7
+}

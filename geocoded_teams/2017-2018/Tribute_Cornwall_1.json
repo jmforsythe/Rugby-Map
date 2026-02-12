@@ -1,0 +1,94 @@
+{
+  "league_name": "Tribute Cornwall 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=10978&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Liskeard-Looe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347",
+      "image_url": "https://images.englandrugby.com/club_images/12347.png",
+      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
+      "latitude": 50.4605849,
+      "longitude": -4.4629552,
+      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
+      "place_id": 350772630
+    },
+    {
+      "name": "Bodmin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2662",
+      "image_url": "https://images.englandrugby.com/club_images/2662.png",
+      "address": "Bodmin R.F.C. Clifden Park Carmminow Cross BODMIN CORNWALL PL30 4AW UNITED KINGDOM ",
+      "latitude": 50.4584642,
+      "longitude": -4.6905979,
+      "formatted_address": "PL30 4AW, Bodmin, Cornwall, England, United Kingdom",
+      "place_id": 351772121
+    },
+    {
+      "name": "Newquay Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584",
+      "image_url": "https://images.englandrugby.com/club_images/14584.png",
+      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
+      "latitude": 50.41375,
+      "longitude": -5.06232,
+      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
+      "place_id": 352076356
+    },
+    {
+      "name": "Veor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23959",
+      "image_url": "https://images.englandrugby.com/club_images/23959.png",
+      "address": "Holman Sports Club 32 Pendarves Road Camborne Cornwall TR14 7QG United Kingdom",
+      "latitude": 50.2087467,
+      "longitude": -5.3047534,
+      "formatted_address": "TR14 7QG, Camborne, Cornwall, England, United Kingdom",
+      "place_id": 350866740
+    },
+    {
+      "name": "Roseland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18000",
+      "image_url": "https://images.englandrugby.com/club_images/18000.png",
+      "address": "Philleigh., Truro, Cornwall, TR2 5ND, United Kingdom",
+      "latitude": 50.21638,
+      "longitude": -4.99117,
+      "formatted_address": "TR2 5ND, Philleigh, Cornwall, England, United Kingdom",
+      "place_id": 352073158
+    },
+    {
+      "name": "Camborne S o M",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4006",
+      "image_url": "https://images.englandrugby.com/club_images/4006.png",
+      "address": "Camborne School of Mines Tremough Campus Penryn CORNWALL TR10 9EZ UNITED KINGDOM ",
+      "latitude": 50.16863,
+      "longitude": -5.1259,
+      "formatted_address": "TR10 9EZ, Mabe, Cornwall, England, United Kingdom",
+      "place_id": 352067944
+    },
+    {
+      "name": "Illogan Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10851",
+      "image_url": "https://images.englandrugby.com/club_images/10851.png",
+      "address": "Sports Field, Paynters Lane End, Redruth, Cornwall, TR16 4RR, United Kingdom",
+      "latitude": 50.2452489,
+      "longitude": -5.2674444,
+      "formatted_address": "TR16 4RR, Illogan, Cornwall, England, United Kingdom",
+      "place_id": 350867104
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "TBC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94438",
+      "image_url": "https://images.englandrugby.com/club_images/94438.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,77 @@
+{
+  "league_name": "Tribute Cornwall 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=10979&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Helston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9925",
+      "image_url": "https://images.englandrugby.com/club_images/9925.png",
+      "address": "King George V Playing Fields, Clodgey Lane, Helston, Cornwall, TR13 8PJ, United Kingdom",
+      "latitude": 50.1048847,
+      "longitude": -5.2657992,
+      "formatted_address": "TR13 8PJ, Helston, Cornwall, England, United Kingdom",
+      "place_id": 350866499
+    },
+    {
+      "name": "Lankelly-Fowey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11871",
+      "image_url": "https://images.englandrugby.com/club_images/11871.png",
+      "address": "Lankelly-Fowey RFC Lankelly Farm Lankelly Lane Fowey CORNWALL PL23 1HN UNITED KINGDOM ",
+      "latitude": 50.33597,
+      "longitude": -4.6531399,
+      "formatted_address": "PL23 1HN, Fowey, Cornwall, England, United Kingdom",
+      "place_id": 351768800
+    },
+    {
+      "name": "St Just",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20533",
+      "image_url": "https://images.englandrugby.com/club_images/20533.png",
+      "address": "St. Just Rfc, The Clubhouse, Tregeseal, St Just In Penwith, Cornw, TR19 7PF, United Kingdom",
+      "latitude": 50.12726,
+      "longitude": -5.67663,
+      "formatted_address": "TR19 7PF, St Just, Cornwall, England, United Kingdom",
+      "place_id": 352072719
+    },
+    {
+      "name": "Camelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4061",
+      "image_url": "https://images.englandrugby.com/club_images/4061.png",
+      "address": "Camelford Conservative Club 2 Market Place Camelford Cornw PL32 9PB England",
+      "latitude": 50.622912,
+      "longitude": -4.6786877,
+      "formatted_address": "PL32 9PB, Camelford, Cornwall, England, United Kingdom",
+      "place_id": 350773746
+    },
+    {
+      "name": "Stithians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20979",
+      "image_url": "https://images.englandrugby.com/club_images/20979.png",
+      "address": "Playing Field Stithians Stithians CORNWALL TR3 7DH UNITED KINGDOM",
+      "latitude": 50.1904953,
+      "longitude": -5.1787206,
+      "formatted_address": "TR3 7DH, Stithians, Cornwall, England, United Kingdom",
+      "place_id": 350867699
+    },
+    {
+      "name": "Perranporth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16772",
+      "image_url": "https://images.englandrugby.com/club_images/16772.png",
+      "address": "Perranporth   Rfc, The Droop, Budnic Hill, Ponsmere Valley, Perranporth, Cornwall, TR6 0DB, United Kingdom",
+      "latitude": 50.34538,
+      "longitude": -5.14316,
+      "formatted_address": "TR6 0DB, Perranzabuloe, Cornwall, England, United Kingdom",
+      "place_id": 352075861
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    }
+  ],
+  "team_count": 7
+}

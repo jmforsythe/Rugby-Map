@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11063&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "West Park Leeds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24890",
+      "image_url": "https://images.englandrugby.com/club_images/24890.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "Lichfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12241",
+      "image_url": "https://images.englandrugby.com/club_images/12241.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
+      "name": "Supermarine Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21370",
+      "image_url": "https://images.englandrugby.com/club_images/21370.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Novocastrians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15174",
+      "image_url": "https://images.englandrugby.com/club_images/15174.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Loughborough Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12838",
+      "image_url": "https://images.englandrugby.com/club_images/12838.png",
+      "address": "Loughborough Rfc The Clubhouse Derby Road Playing Fields Off Cotton Way Loughborough Leicestershire LE11 5FJ United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351019657
+    },
+    {
+      "name": "Sheffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19088",
+      "image_url": "https://images.englandrugby.com/club_images/19088.png",
+      "address": "Abbeydale Sports Club Abbeydale Road South Sheffield South Yorkshire S17 3LJ United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351391086
+    },
+    {
+      "name": "Eccles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284",
+      "image_url": "https://images.englandrugby.com/club_images/7284.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "West Bridgford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24736",
+      "image_url": "https://images.englandrugby.com/club_images/24736.png",
+      "address": "The Memorial Ground Stamford Road West Bridgford NOTTINGHAMSHIRE NG2 6GF UNITED KINGDOM",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652446
+    }
+  ],
+  "team_count": 8
+}

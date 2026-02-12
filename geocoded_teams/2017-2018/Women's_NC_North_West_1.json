@@ -1,0 +1,81 @@
+{
+  "league_name": "Women's NC North West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11133&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Didsbury Toc H Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450",
+      "image_url": "https://images.englandrugby.com/club_images/6450.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM ",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
+    },
+    {
+      "name": "Preston Grasshoppers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17189",
+      "image_url": "https://images.englandrugby.com/club_images/17189.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 255236508
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Chester Devas Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 257237409
+    },
+    {
+      "name": "Vagabond Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23886",
+      "image_url": "https://images.englandrugby.com/club_images/23886.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Garstang Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8486",
+      "image_url": "https://images.englandrugby.com/club_images/8486.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Altrincham Kersal Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=540",
+      "image_url": "https://images.englandrugby.com/club_images/540.png",
+      "address": "Stelfox Avenue Timperley Altrincham Cheshire WA15 6UL United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127681
+    }
+  ],
+  "team_count": 8
+}

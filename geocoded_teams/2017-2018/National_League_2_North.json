@@ -1,0 +1,167 @@
+{
+  "league_name": "National League 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=11228&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Sale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18558",
+      "image_url": "https://images.englandrugby.com/club_images/18558.png",
+      "address": "Corpacq Stadium Heywood Road Brooklands Sale Cheshire M33 3WB United Kingdom",
+      "latitude": 53.4173187,
+      "longitude": -2.3215055,
+      "formatted_address": "M33 3WB, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 350247419
+    },
+    {
+      "name": "Sedgley Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18924",
+      "image_url": "https://images.englandrugby.com/club_images/18924.png",
+      "address": "Sedgley Park RUFC Park Lane Whitefield Manchester M45 7DZ ENGLAND",
+      "latitude": 53.53986,
+      "longitude": -2.30427,
+      "formatted_address": "M45 7DZ, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 351558777
+    },
+    {
+      "name": "Stourbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21144",
+      "image_url": "https://images.englandrugby.com/club_images/21144.png",
+      "address": "Stourbridge Rugby Football Club Ltd, Stourton Park, Bridgnorth Road, Stourton , Stourbridge, West Midlands, DY7 6QZ, United Kingdom",
+      "latitude": 52.4595,
+      "longitude": -2.18182,
+      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351208627
+    },
+    {
+      "name": "Tynedale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390",
+      "image_url": "https://images.englandrugby.com/club_images/23390.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
+    },
+    {
+      "name": "Hinckley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10189",
+      "image_url": "https://images.englandrugby.com/club_images/10189.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM ",
+      "latitude": 52.5539703,
+      "longitude": -1.3493076,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 259020759
+    },
+    {
+      "name": "Huddersfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10581",
+      "image_url": "https://images.englandrugby.com/club_images/10581.png",
+      "address": "HRUFC Lockwood Park Brewery Drive Brewery Drive Huddersfield West Yorkshire HD4 6EN UNITED KINGDOM ",
+      "latitude": 53.6306,
+      "longitude": -1.79884,
+      "formatted_address": "HD4 6EN, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351347501
+    },
+    {
+      "name": "Chester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4680",
+      "image_url": "https://images.englandrugby.com/club_images/4680.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM ",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 256952260
+    },
+    {
+      "name": "Macclesfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064",
+      "image_url": "https://images.englandrugby.com/club_images/13064.png",
+      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
+      "latitude": 53.2725255,
+      "longitude": -2.1600659,
+      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
+      "place_id": 255105008
+    },
+    {
+      "name": "South Leicester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19603",
+      "image_url": "https://images.englandrugby.com/club_images/19603.png",
+      "address": "South Leicester R.f.c., Welford Road, Wigston, Leicester, Leicestershire , LE18 3TE, United Kingdom",
+      "latitude": 52.5710837,
+      "longitude": -1.1022775,
+      "formatted_address": "LE18 3TE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683059
+    },
+    {
+      "name": "Sheffield Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099",
+      "image_url": "https://images.englandrugby.com/club_images/19099.png",
+      "address": "Dore Moor Hathersage Road Sheffield SOUTH YORKSHIRE S17 3AB UNITED KINGDOM ",
+      "latitude": 53.3341659,
+      "longitude": -1.5500457,
+      "formatted_address": "Dore Moor Inn, Hathersage Road, Dore, Sheffield, South Yorkshire, England, S17 3AB, United Kingdom",
+      "place_id": 256014652
+    },
+    {
+      "name": "Otley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336",
+      "image_url": "https://images.englandrugby.com/club_images/16336.png",
+      "address": "Otley R.u.f.c., Cross Green, Otley, Wyorks, LS21 1HE, United Kingdom",
+      "latitude": 53.9065945,
+      "longitude": -1.6874135,
+      "formatted_address": "LS21 1HE, Otley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691070
+    },
+    {
+      "name": "Leicester Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12077",
+      "image_url": "https://images.englandrugby.com/club_images/12077.png",
+      "address": "Leicester Lions Rfc Ltd, Westleigh Park, Lutterworth Road, Blaby, Leicestershire, LE8 4DY, United Kingdom",
+      "latitude": 52.56378,
+      "longitude": -1.17023,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486432
+    },
+    {
+      "name": "Wharfedale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25147",
+      "image_url": "https://images.englandrugby.com/club_images/25147.png",
+      "address": "Wharfeside Avenue Threshfield Skipton NORTH YORKSHIRE BD23 5BS UNITED KINGDOM ",
+      "latitude": 54.0712748,
+      "longitude": -2.0123857,
+      "formatted_address": "BD23 5BS, Threshfield, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350494906
+    },
+    {
+      "name": "Luctonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12884",
+      "image_url": "https://images.englandrugby.com/club_images/12884.png",
+      "address": "Luctonians R.F.C. Mortimer Park Hereford Road,  Kingsland Leominster HEREFORDSHIRE HR6 9SB UNITED KINGDOM ",
+      "latitude": 52.25107,
+      "longitude": -2.82568,
+      "formatted_address": "HR6 9SB, Kingsland, Herefordshire, England, United Kingdom",
+      "place_id": 351370187
+    },
+    {
+      "name": "Blaydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565",
+      "image_url": "https://images.englandrugby.com/club_images/2565.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Sheffield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19073",
+      "image_url": "https://images.englandrugby.com/club_images/19073.png",
+      "address": "Abbeydale Sports Club, Abbeydale Road South, Sheffield, South Yorkshire, S17 3LJ, United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351842613
+    }
+  ],
+  "team_count": 16
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC South East East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11140&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Millwall Venus Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13911",
+      "image_url": "https://images.englandrugby.com/club_images/13911.png",
+      "address": "75 Manchester Road Isle Of Dogs London E14 3DN United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 258559684
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Seaford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18874",
+      "image_url": "https://images.englandrugby.com/club_images/18874.png",
+      "address": "The Clubhouse Salts Recreation Ground Richmond Road (off Dane Road) Seaford East Sussex BN25 1DR United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501879
+    },
+    {
+      "name": "New Ash Green Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14309",
+      "image_url": "https://images.englandrugby.com/club_images/14309.png",
+      "address": "The Pavilion Punchcroft Road New Ash Green, Longfield Kent DA3 8HS United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570829
+    },
+    {
+      "name": "Blackheath Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2506",
+      "image_url": "https://images.englandrugby.com/club_images/2506.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Lordswood Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12811",
+      "image_url": "https://images.englandrugby.com/club_images/12811.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Kingston Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11669",
+      "image_url": "https://images.englandrugby.com/club_images/11669.png",
+      "address": "Kingston Rugby Football Club Rear Of Clubhouse, King Edward Recreation Ground Hook Road Chessington Surrey KT9 1PL United Kingdom",
+      "latitude": 51.37138,
+      "longitude": -0.30599,
+      "formatted_address": "KT9 1PL, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351430498
+    },
+    {
+      "name": "Brockleians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3399",
+      "image_url": "https://images.englandrugby.com/club_images/3399.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351488000
+    }
+  ],
+  "team_count": 8
+}

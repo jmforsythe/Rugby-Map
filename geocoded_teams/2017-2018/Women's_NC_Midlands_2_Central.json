@@ -1,0 +1,84 @@
+{
+  "league_name": "Women's NC Midlands 2 Central",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11138&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Sutton Coldfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21458",
+      "image_url": "https://images.englandrugby.com/club_images/21458.png",
+      "address": "Sutton Coldfield R.F.C. The Roger Smoldon Recreation Ground 160 Walmley Road Sutton Coldfield WEST MIDLANDS B76 2QA UNITED KINGDOM ",
+      "latitude": 52.545986,
+      "longitude": -1.7982853,
+      "formatted_address": "B76 2QA, Sutton Coldfield, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350484308
+    },
+    {
+      "name": "Cannock Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4114",
+      "image_url": "https://images.englandrugby.com/club_images/4114.png",
+      "address": "The Morgan Ground Stafford Road Huntington Cannock STAFFORDSHIRE WS12 4NU ",
+      "latitude": 52.7131327,
+      "longitude": -2.0409029,
+      "formatted_address": "WS12 4NU, Huntington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350895011
+    },
+    {
+      "name": "Aston Old Edwardian Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1002",
+      "image_url": "https://images.englandrugby.com/club_images/1002.png",
+      "address": "Sunnybank Avenue Perry Common Birmingham West Midlands B44 0HP United Kingdom",
+      "latitude": 52.5380523,
+      "longitude": -1.8739717,
+      "formatted_address": "B44 0HP, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350477765
+    },
+    {
+      "name": "Dudley Kingswinford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6861",
+      "image_url": "https://images.englandrugby.com/club_images/6861.png",
+      "address": "Dudley Kingswinford Rfc, Heathbrook, Swindon Road,, Wall Heath, Kingswinford, West Midlands, DY6 0AW, United Kingdom",
+      "latitude": 52.50217,
+      "longitude": -2.19073,
+      "formatted_address": "DY6 0AW, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351207673
+    },
+    {
+      "name": "Wolverhampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25912",
+      "image_url": "https://images.englandrugby.com/club_images/25912.png",
+      "address": "Wolverhampton Rufc, Castlecroft, Castlecroft Road, Wolverhampton, West Midlands, WV3 8NA, England",
+      "latitude": 52.5767267,
+      "longitude": -2.1915032,
+      "formatted_address": "WV3 8NA, Lower Penn, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 352178955
+    },
+    {
+      "name": "Winnington Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25654",
+      "image_url": "https://images.englandrugby.com/club_images/25654.png",
+      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
+      "latitude": 53.25223,
+      "longitude": -2.54034,
+      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350683530
+    },
+    {
+      "name": "Longton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12772",
+      "image_url": "https://images.englandrugby.com/club_images/12772.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Birmingham Exiles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2321",
+      "image_url": "https://images.englandrugby.com/club_images/2321.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488092
+    }
+  ],
+  "team_count": 8
+}

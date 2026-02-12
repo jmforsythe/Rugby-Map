@@ -145,14 +145,16 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         .removeprefix("Greene_King_IPA_")
         .removeprefix("Shepherd_Neame_")
         .removeprefix("6X_")
+        .removeprefix("Snows_Group_")
     )
 
     zeroth_tier_map = {
+        "North_Lancs_Cumbria": 7,
         "North": 5,
         "Midlands": 5,
         "London": 5,
         "South_West": 5,
-        "Cumbria": 6,
+        "Cumbria": (6 if season >= "2018-2019" else 8),
         "Durham_Northumberland": 6,
         "Essex": 8,
         "Eastern_Counties": 8,
@@ -170,7 +172,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Southern_Counties": 7,
         "Western_Counties": 7,
         "Yorkshire": 6,
-        "Lancs_Cheshire": 7,
+        "Lancs_Cheshire": (7 if season >= "2018-2019" else 6),
+        "South_Lancs_Cheshire": 6,
     }
 
     if filename.startswith("Premiership"):
@@ -186,7 +189,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             num = get_number_from_tier_name(filename, prefix)
             if (
                 prefix == "Berks_Bucks_&_Oxon"
-                and season == "2018-2019"
+                and season <= "2018-2019"
                 and "Premier" not in filename
             ):
                 num += 1
@@ -1489,8 +1492,8 @@ def main() -> None:
         generate_all_tiers_men = True
         generate_all_tiers_women = True
     else:
-        generate_mens_individual = args.mens
-        generate_womens_individual = args.womens
+        generate_mens_individual = args.mens or args.tiers
+        generate_womens_individual = args.womens or args.tiers
         generate_all_tiers_men = args.all_tiers_mens or args.all_tiers
         generate_all_tiers_women = args.all_tiers_womens or args.all_tiers
 

@@ -44,6 +44,7 @@ jobs:
           python calculate_team_distances.py --season=2020-2021
           python calculate_team_distances.py --season=2019-2020
           python calculate_team_distances.py --season=2018-2019
+          python calculate_team_distances.py --season=2017-2018
 
           python make_tier_maps.py --no-debug --season=2025-2026 --production
           python make_tier_maps.py --no-debug --season=2024-2025 --production
@@ -53,6 +54,7 @@ jobs:
           python make_tier_maps.py --no-debug --season=2020-2021 --production
           python make_tier_maps.py --no-debug --season=2019-2020 --production
           python make_tier_maps.py --no-debug --season=2018-2019 --production
+          python make_tier_maps.py --no-debug --season=2017-2018 --production
 
           python team_pages.py --production
           python generate_webpages.py --production

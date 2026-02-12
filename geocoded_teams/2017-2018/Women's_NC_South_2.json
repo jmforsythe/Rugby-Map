@@ -1,0 +1,74 @@
+{
+  "league_name": "Women's NC South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11076&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Havant Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9703",
+      "image_url": "https://images.englandrugby.com/club_images/9703.png",
+      "address": "Hooks Lane Ground Fraser Road Bedhampton Havant Hampshire PO9 3EJ United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351345426
+    },
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Jersey Reds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club Rue Des Landes St Peter JE3 7BG Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Basingstoke Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1569",
+      "image_url": "https://images.englandrugby.com/club_images/1569.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    },
+    {
+      "name": "Dorchester/Weymouth & P Roses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6608",
+      "image_url": "https://images.englandrugby.com/club_images/6608.png",
+      "address": "Dorchester Rfc Coburg Road Dorchester Dorset DT1 2HX England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 350743556
+    },
+    {
+      "name": "Oakmeadians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15300",
+      "image_url": "https://images.englandrugby.com/club_images/15300.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350047310
+    },
+    {
+      "name": "Trojans Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26628",
+      "image_url": "https://images.englandrugby.com/club_images/26628.png",
+      "address": "Trojans Club Stoneham Park Stoneham Lane Eastleigh Southampton Hampshire SO50 9HT United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832263
+    }
+  ],
+  "team_count": 7
+}

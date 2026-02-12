@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 4 East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=11023&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Ashfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=852",
+      "image_url": "https://images.englandrugby.com/club_images/852.png",
+      "address": "Ashfield Rufc, Larwood Park,  Twickenham Road, Kirkby In Ashfield, Nottinghamshire, NG17 8SF, United Kingdom",
+      "latitude": 53.1126952,
+      "longitude": -1.26137,
+      "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351649727
+    },
+    {
+      "name": "Tupton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23314",
+      "image_url": "https://images.englandrugby.com/club_images/23314.png",
+      "address": "The Recreation Ground North Side Tupton Chesterfield DERBYSHIRE S42 6DW UNITED KINGDOM ",
+      "latitude": 53.19156,
+      "longitude": -1.41635,
+      "formatted_address": "S42 6DW, Tupton, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351849813
+    },
+    {
+      "name": "East Retford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191",
+      "image_url": "https://images.englandrugby.com/club_images/7191.png",
+      "address": "Ordsall Road, Retford, DN22 7PW, United Kingdom",
+      "latitude": 53.3139372,
+      "longitude": -0.9585027,
+      "formatted_address": "Ordsall Road, Thrumpton, Retford, Bassetlaw, Nottinghamshire, East Midlands, England, DN22 7PW, United Kingdom",
+      "place_id": 256350282
+    },
+    {
+      "name": "Chesterfield Panthers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4705",
+      "image_url": "https://images.englandrugby.com/club_images/4705.png",
+      "address": "2012 Dunston Road Chesterfield DERBYSHIRE S41 9PB UNITED KINGDOM ",
+      "latitude": 53.2602718,
+      "longitude": -1.4294863,
+      "formatted_address": "Dunston Road, Whittington Moor, Tapton, Chesterfield, Derbyshire, East Midlands, England, S41 8LX, United Kingdom",
+      "place_id": 256580663
+    },
+    {
+      "name": "Worksop",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26105",
+      "image_url": "https://images.englandrugby.com/club_images/26105.png",
+      "address": "Worksop Rufc, The Meadows, Stubbing Lane, Worksop, Nottinghamshire, S80 1NF, United Kingdom",
+      "latitude": 53.3068404,
+      "longitude": -1.135115,
+      "formatted_address": "S80 1NF, Worksop, Bassetlaw, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351866379
+    },
+    {
+      "name": "Mellish",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13667",
+      "image_url": "https://images.englandrugby.com/club_images/13667.png",
+      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
+      "latitude": 53.0091092,
+      "longitude": -1.1009749,
+      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350719287
+    },
+    {
+      "name": "Ollerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "image_url": "https://images.englandrugby.com/club_images/16182.png",
+      "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
+      "latitude": 53.20915,
+      "longitude": -0.98362,
+      "formatted_address": "NG22 9JU, Ollerton and Boughton CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351654770
+    },
+    {
+      "name": "Skegness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463",
+      "image_url": "https://images.englandrugby.com/club_images/19463.png",
+      "address": "Wainfleet Road Playing Fields Skegness PE25 2EL UNITED KINGDOM ",
+      "latitude": 53.1437068,
+      "longitude": 0.323573,
+      "formatted_address": "PE25 2EL, Skegness, East Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350761303
+    },
+    {
+      "name": "Boston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2741",
+      "image_url": "https://images.englandrugby.com/club_images/2741.png",
+      "address": "Boston R.F.C. Princess Royal Arena Great Fen Road Wyberton Boston LINCOLNSHIRE PE21 7PB UNITED KINGDOM ",
+      "latitude": 52.9754823,
+      "longitude": -0.0669964,
+      "formatted_address": "PE21 7PB, Wyberton CP, Wyberton, Boston, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350760887
+    }
+  ],
+  "team_count": 9
+}

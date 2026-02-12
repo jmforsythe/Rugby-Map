@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC South West South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=11078&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Withycombe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25789",
+      "image_url": "https://images.englandrugby.com/club_images/25789.png",
+      "address": "Raleigh Park 36, Hulham Road Exmouth DEVON EX8 3HS UNITED KINGDOM",
+      "latitude": 50.62962,
+      "longitude": -3.40649,
+      "formatted_address": "EX8 3HS, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350813482
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2160",
+      "image_url": "https://images.englandrugby.com/club_images/2160.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "St Austell Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20160",
+      "image_url": "https://images.englandrugby.com/club_images/20160.png",
+      "address": "St. Austell R.f.c. Tregorrick Park Tregorrick Lane St.austell Cornw PL26 7FH United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351318637
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Essex (Canterbury Jack) League 1 Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=11116&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Kings Cross Steelers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11557",
+      "image_url": "https://images.englandrugby.com/club_images/11557.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Ilford Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
+      "image_url": "https://images.englandrugby.com/club_images/10783.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Writtle Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26200",
+      "image_url": "https://images.englandrugby.com/club_images/26200.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    },
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Old Brentwoods",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15448",
+      "image_url": "https://images.englandrugby.com/club_images/15448.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "May & Baker",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13560",
+      "image_url": "https://images.englandrugby.com/club_images/13560.png",
+      "address": "May & Baker Club Dagenham Road Dagenham ESSEX RM10 7UP UNITED KINGDOM",
+      "latitude": 51.5515648,
+      "longitude": 0.161543,
+      "formatted_address": "RM10 7UP, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 350799576
+    }
+  ],
+  "team_count": 8
+}

@@ -29,6 +29,7 @@ PREM_MAP = {
     "2020-2021": "69325",
     "2019-2020": "69319",
     "2018-2019": "69315",
+    "2017-2018": "69311",
 }
 
 CHAMP_MAP = {
@@ -40,6 +41,7 @@ CHAMP_MAP = {
     "2020-2021": "31117",
     "2019-2020": "21751",
     "2018-2019": "14205",
+    "2017-2018": "11215",
 }
 
 
@@ -75,6 +77,7 @@ WOMENS_PREM_MAP = {
     "2020-2021": "31109",
     "2019-2020": "24448",
     "2018-2019": "14816",
+    "2017-2018": "11607",
 }
 
 
@@ -249,6 +252,7 @@ def main() -> None:
             "1b",
             "2a",
             "2b",
+            "cup",
         ]
         if any(word in league_name.lower() for word in banned_words):
             print(f"Skipping {league_name} (playoff/phase league)")
@@ -258,6 +262,12 @@ def main() -> None:
         # Create filename from league name
         filename = clean_filename(league_name) + ".json"
         output_path = output_dir / filename
+
+        banned_filenames = ["Yorkshire_Division_Four_Premier.json", "Pilot_League.json"]
+        if output_path.name in banned_filenames:
+            print(f"Skipping {league_name} (known bad filename)")
+            skipped_leagues.append(league)
+            continue
 
         # Skip if file already exists
         if output_path.exists():

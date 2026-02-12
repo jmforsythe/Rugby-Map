@@ -1,0 +1,147 @@
+{
+  "league_name": "North Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=11089&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Preston Grasshoppers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17180",
+      "image_url": "https://images.englandrugby.com/club_images/17180.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 256777271
+    },
+    {
+      "name": "Hull",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634",
+      "image_url": "https://images.englandrugby.com/club_images/10634.png",
+      "address": "Hull Sports Centre, Ferens Ground, Chanterlands Avenue, Hull, Yorkshire, HU5 4EF, United Kingdom",
+      "latitude": 53.7641862,
+      "longitude": -0.3760032,
+      "formatted_address": "HU5 4EF, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351378645
+    },
+    {
+      "name": "Harrogate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9493",
+      "image_url": "https://images.englandrugby.com/club_images/9493.png",
+      "address": "Apollo Capital Stadium, Rudding Lane, Follifoot, Harrogate, HG3 1DQ, England",
+      "latitude": 53.97342,
+      "longitude": -1.50176,
+      "formatted_address": "HG3 1DQ, Follifoot, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352797
+    },
+    {
+      "name": "Lymm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13010",
+      "image_url": "https://images.englandrugby.com/club_images/13010.png",
+      "address": "Beechwood, Crouchley Lane, Lymm, Cheshire, WA13 0AT, United Kingdom",
+      "latitude": 53.37437,
+      "longitude": -2.4758,
+      "formatted_address": "WA13 0AT, Lymm, Warrington, England, United Kingdom",
+      "place_id": 352125816
+    },
+    {
+      "name": "Rossendale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009",
+      "image_url": "https://images.englandrugby.com/club_images/18009.png",
+      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
+      "latitude": 53.7035387,
+      "longitude": -2.2757123,
+      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
+      "place_id": 350949552
+    },
+    {
+      "name": "Billingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2221",
+      "image_url": "https://images.englandrugby.com/club_images/2221.png",
+      "address": "Greenwood Road, Billingham, Ctydur, TS23 4BA, United Kingdom",
+      "latitude": 54.6029991,
+      "longitude": -1.2735995,
+      "formatted_address": "TS23 4BA, Billingham, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352085948
+    },
+    {
+      "name": "Ilkley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10834",
+      "image_url": "https://images.englandrugby.com/club_images/10834.png",
+      "address": "Stacks Field Denton Road Ilkley WEST YORKSHIRE LS29 0AF UNITED KINGDOM ",
+      "latitude": 53.93008,
+      "longitude": -1.82315,
+      "formatted_address": "LS29 0AF, Ilkley, Bradford, West Yorkshire, England, United Kingdom",
+      "place_id": 351527727
+    },
+    {
+      "name": "Kirkby Lonsdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11718",
+      "image_url": "https://images.englandrugby.com/club_images/11718.png",
+      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
+      "latitude": 54.2081674,
+      "longitude": -2.6025938,
+      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350680621
+    },
+    {
+      "name": "Wirral",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25707",
+      "image_url": "https://images.englandrugby.com/club_images/25707.png",
+      "address": "Memorial Ground Thornton Common Road Clatterbridge Bebington MERSEYSIDE CH63 0LT UNITED KINGDOM ",
+      "latitude": 53.3243906,
+      "longitude": -3.0198623,
+      "formatted_address": "CH63 0LT, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351065371
+    },
+    {
+      "name": "Kendal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11240",
+      "image_url": "https://images.englandrugby.com/club_images/11240.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Sandal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18658",
+      "image_url": "https://images.englandrugby.com/club_images/18658.png",
+      "address": "Sandal RUFC Milnthorpe Green Standbridge Lane, Sandal Wakefield WEST YORKSHIRE WF2 7DY UNITED KINGDOM ",
+      "latitude": 53.6493023,
+      "longitude": -1.4942685,
+      "formatted_address": "WF2 7DY, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350888776
+    },
+    {
+      "name": "Birkenhead Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=96825",
+      "image_url": "https://images.englandrugby.com/club_images/96825.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
+    },
+    {
+      "name": "Pocklington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17000",
+      "image_url": "https://images.englandrugby.com/club_images/17000.png",
+      "address": "Pocklington R.u.f.c., Feathers Field, Percy Road, Pocklington, East Yorkshire, YO42 2QB, United Kingdom",
+      "latitude": 53.929475,
+      "longitude": -0.7728368,
+      "formatted_address": "YO42 2QB, Pocklington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350450147
+    }
+  ],
+  "team_count": 14
+}

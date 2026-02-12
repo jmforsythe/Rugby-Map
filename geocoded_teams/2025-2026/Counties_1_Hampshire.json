@@ -129,7 +129,10 @@
       "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
       "postcode": "GY1 2UL",
       "maps_url": "https://www.google.com/maps/search/?api=1&query=Garenne%20Stand%0AFoote%27s%20Lane%0ASt%20Peter%20Port%0AGuernsey%0AHampshire%0AGY1%202UL%0AUnited%20Kingdom",
-      "error": "geocoding_failed"
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352872986
     },
     {
       "name": "Eastleigh",

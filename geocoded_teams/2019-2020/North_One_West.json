@@ -77,7 +77,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6674",
       "image_url": "https://images.englandrugby.com/club_images/6674.png",
       "address": "The Clubhouse, Port-e-chee, Im2 2ra, Douglas, Isle Of Man, IM2 2RA, Isle Of Man",
-      "error": "geocoding_failed"
+      "latitude": 54.1578379,
+      "longitude": -4.501375,
+      "formatted_address": "IM2 2RA, Douglas, Middle, Isle of Man",
+      "place_id": 352220987
     },
     {
       "name": "Vale of Lune",

@@ -109,7 +109,7 @@ def geocode_with_nominatim(
         "q": address,
         "format": "json",
         "limit": 1,
-        "countrycodes": "gb",  # Restrict to UK
+        "countrycodes": "gb,im,je,gg",  # UK + IoM + Jersey + Guernsey
         "addressdetails": 1,
     }
 

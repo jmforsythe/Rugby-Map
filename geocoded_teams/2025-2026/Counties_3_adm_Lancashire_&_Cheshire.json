@@ -127,14 +127,20 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23887&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23887.png",
       "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
-      "error": "geocoding_failed"
+      "latitude": 54.1753691,
+      "longitude": -4.5069266,
+      "formatted_address": "IM4 4RJ, Braddan, Middle, Isle of Man",
+      "place_id": 352221503
     },
     {
       "name": "Ramsey (IoM)",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17450&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17450.png",
       "address": "Ramsey Rufc, Mooragh Promenade, Ramsey, Isle Of Man, Isle Of Man, IM8 3AP, United Kingdom",
-      "error": "geocoding_failed"
+      "latitude": 54.329226,
+      "longitude": -4.3859085,
+      "formatted_address": "IM8 3AP, Ramsey, Garff, Isle of Man",
+      "place_id": 352222019
     }
   ],
   "team_count": 14

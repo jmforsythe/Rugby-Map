@@ -77,7 +77,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17450",
       "image_url": "https://images.englandrugby.com/club_images/17450.png",
       "address": "Ramsey Rufc, Mooragh Promenade, Ramsey, Isle Of Man, Isle Of Man, IM8 3AP, United Kingdom",
-      "error": "geocoding_failed"
+      "latitude": 54.329226,
+      "longitude": -4.3859085,
+      "formatted_address": "IM8 3AP, Ramsey, Garff, Isle of Man",
+      "place_id": 352222019
     }
   ],
   "team_count": 8

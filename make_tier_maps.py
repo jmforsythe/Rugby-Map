@@ -870,21 +870,41 @@ def build_base_map() -> folium.Map:
     countries_geojson_path = "boundaries/countries.geojson"
     if os.path.exists(countries_geojson_path):
         countries_data = json_load_cache(countries_geojson_path)
-        england_features = [
-            feat
-            for feat in countries_data["features"]
-            if feat["properties"].get("CTRY24NM") == "England"
-        ]
-        if england_features:
-            england_data = {"type": "FeatureCollection", "features": england_features}
+        countries_to_outline = ["England", "Isle of Man", "Jersey", "Guernsey"]
+        for country_name in countries_to_outline:
+            country_features = [
+                feat
+                for feat in countries_data["features"]
+                if feat["properties"].get("CTRY24NM") == country_name
+            ]
+            if country_features:
+                country_data = {"type": "FeatureCollection", "features": country_features}
+                folium.GeoJson(
+                    country_data,
+                    name=country_name,
+                    style_function=lambda x: {
+                        "fillColor": "lightgray",
+                        "color": "black",
+                        "weight": 2,
+                        "fillOpacity": 0.1,
+                    },
+                    control=False,
+                ).add_to(m)
+
+    # Add faint borders for each level
+    for level in ["ITL_1", "ITL_2", "ITL_3"]:
+        geojson_path = f"boundaries/{level}.geojson"
+        if os.path.exists(geojson_path):
+            data = json_load_cache(geojson_path)
             folium.GeoJson(
-                england_data,
-                name="England",
+                data,
+                name=f"{level} Borders",
                 style_function=lambda x: {
-                    "fillColor": "lightgray",
-                    "color": "black",
-                    "weight": 2,
-                    "fillOpacity": 0.1,
+                    "fillColor": "transparent",
+                    "color": "gray",
+                    "weight": 0.5,
+                    "fillOpacity": 0,
+                    "opacity": 0.4,
                 },
                 control=False,
             ).add_to(m)
@@ -1015,6 +1035,7 @@ def add_marker(
         <hr style="margin: 5px 0;">
         <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
         <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
+        <p style="margin: 2px 0;"><b>{team["itl1"]}</b> | {team["itl2"]} | <i>{team["itl3"]}</i></p>
         {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{"" if IS_PRODUCTION else "../"}/teams/{team_name_to_filepath(team['name'])}\" target=\"_blank\">View Info page</a></p>" if league_url else ""}

@@ -182,6 +182,7 @@ All data and outputs are now organized by season. To work with a different seaso
 ## License & Data Sources
 
 - **Boundary Data**: © Crown copyright and database rights, Office for National Statistics
+- **Boundary Data (Isle of Man and Channel Islands)**: Database of Global Administrative Areas (GADM)
 - **Team Data**: Scraped from England Rugby (RFU) website
 - **Geocoding**: OpenStreetMap contributors
 - **Map Tiles**: © OpenStreetMap contributors, © CartoDB

@@ -121,6 +121,31 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
         print(f"  ✗ Unexpected error: {e}")
 
 
+def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boundaries"):
+    print(f"Downloading {name} data")
+    response = requests.get(url)
+    features = response.json().get("features", [])
+    for feature in features:
+        feature["properties"]["ITL325NM"] = name
+        feature["properties"]["ITL225NM"] = name
+        feature["properties"]["ITL125NM"] = name
+        feature["properties"]["CTRY24NM"] = name
+        feature["properties"]["ITL325CD"] = feature["properties"]["GID_0"] + "00"
+        feature["properties"]["ITL225CD"] = feature["properties"]["GID_0"] + "0"
+        feature["properties"]["ITL125CD"] = feature["properties"]["GID_0"]
+        feature["properties"]["CTRY24CD"] = feature["properties"]["GID_0"]
+    for path in file_paths_to_add_to:
+        output_path = Path(output_dir) / path
+        print(f"  Injecting {name} data into {output_path}...")
+        with open(output_path, "r+", encoding="utf-8") as f:
+            data = json.load(f)
+            data["features"].extend(features)
+            f.seek(0)
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            f.truncate()
+        print(f"  ✓ Saved to {output_path}")
+
+
 def main():
     """Download all boundary files."""
     parser = argparse.ArgumentParser(
@@ -152,6 +177,22 @@ Detail levels:
     for filename, service_url in boundary_services.items():
         download_arcgis_layer(service_url, filename)
         print()
+
+    download_extras(
+        "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_IMN_0.json",
+        "Isle of Man",
+        list(boundary_services.keys()),
+    )
+    download_extras(
+        "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_JEY_0.json",
+        "Jersey",
+        list(boundary_services.keys()),
+    )
+    download_extras(
+        "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_GGY_0.json",
+        "Guernsey",
+        list(boundary_services.keys()),
+    )
 
     print("=" * 60)
     print("Complete!")

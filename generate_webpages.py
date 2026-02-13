@@ -130,7 +130,12 @@ def get_footer_html() -> str:
     """Return common footer HTML."""
     return """    <div class="footer">
         <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
-        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a> <a href="https://geoportal.statistics.gov.uk/">ONS</a> <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
+        <p>Data sources:
+            <a href="https://www.englandrugby.com/">England Rugby (RFU)</a>
+            <a href="https://geoportal.statistics.gov.uk/">ONS</a>
+            <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a>
+            <a href="https://gadm.org/">GADM</a>
+        </p>
     </div>"""
 
 

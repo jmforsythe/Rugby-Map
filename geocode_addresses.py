@@ -26,6 +26,10 @@ from utils import (
 _cache_lock = threading.RLock()
 _cache_dirty_lock = threading.Lock()
 
+# Rate limiting for Nominatim (1 request per second)
+_last_request_time = 0.0
+_rate_limit_lock = threading.Lock()
+
 # Cache dirty flags
 _address_cache_dirty = False
 
@@ -67,6 +71,25 @@ def save_cache() -> None:
     """Save address cache to file."""
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(geocode_cache, f, indent=2, ensure_ascii=False)
+
+
+def wait_for_rate_limit(min_interval_seconds: float = 1.0) -> None:
+    """Ensure at least min_interval_seconds has passed since the last API request.
+
+    This implements a global rate limiter across all threads to comply with
+    Nominatim's usage policy of max 1 request per second.
+    """
+    global _last_request_time
+
+    with _rate_limit_lock:
+        current_time = time.time()
+        time_since_last_request = current_time - _last_request_time
+
+        if time_since_last_request < min_interval_seconds:
+            sleep_time = min_interval_seconds - time_since_last_request
+            time.sleep(sleep_time)
+
+        _last_request_time = time.time()
 
 
 def extract_uk_postcode(address: str) -> str | None:
@@ -119,8 +142,8 @@ def geocode_with_nominatim(
 
     for attempt in range(max_retries + 1):
         try:
-            # Nominatim requires 1 second between requests
-            time.sleep(1.0)
+            # Nominatim requires 1 second between requests - use global rate limiter
+            wait_for_rate_limit(1.0)
 
             response = requests.get(base_url, params=params, headers=headers, timeout=10)
 
@@ -149,7 +172,7 @@ def geocode_with_nominatim(
                                 f"    ! No results for full address, trying postcode: {postcode}"
                             )
                             params["q"] = postcode
-                            time.sleep(1.0)
+                            wait_for_rate_limit(1.0)
                             response = requests.get(
                                 base_url, params=params, headers=headers, timeout=10
                             )

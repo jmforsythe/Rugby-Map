@@ -32,6 +32,9 @@ _cache_lock = threading.RLock()
 club_cache: dict[str, str] = {}
 CLUB_CACHE_FILE = "club_address_cache.json"
 
+# Track clubs without addresses
+clubs_without_addresses: list[tuple[str, str]] = []  # (club_name, team_url)
+
 
 def load_cache() -> None:
     """Load club address cache from file."""
@@ -68,95 +71,37 @@ def team_name_to_club_name(team_name: str) -> str:
     return team_name
 
 
-def get_maps_url_from_page(
-    team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
-) -> tuple[str | None, list[str]]:
-    """Scrape team page to get the Google Maps URL from club details button.
+def extract_maps_url_from_soup(soup: BeautifulSoup) -> str | None:
+    """Extract Google Maps URL from club details button.
+
+    Args:
+        soup: BeautifulSoup object of the parsed page
 
     Returns:
-        Tuple of (maps_url, log_lines)
+        Maps URL or None if not found
     """
-    log_lines: list[str] = []
-
-    for attempt in range(max_retries):
-        try:
-            if delay_seconds and delay_seconds > 0:
-                time.sleep(delay_seconds + random.uniform(0.0, 0.35))
-
-            response = get_session().get(team_url, headers=get_headers(), timeout=10)
-            if response.status_code == 202:
-                log_lines.append("    ✗ 202 code - bot detection")
-                raise AntiBotDetectedError("202 code", log_text="\n".join(log_lines))
-
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.content, "html.parser")
-            club_btn = soup.find(class_="c036-club-details-btn")
-
-            if club_btn and club_btn.get("href"):
-                maps_url = club_btn.get("href").replace("&amp;", "&")
-                return maps_url, log_lines
-
-            return None, log_lines
-
-        except AntiBotDetectedError:
-            raise
-        except Exception as e:
-            if attempt < max_retries - 1:
-                log_lines.append(f"    ! Attempt {attempt + 1} failed: {e} - retrying...")
-                time.sleep(1.0 * (attempt + 1))  # Exponential backoff
-            else:
-                log_lines.append(f"    ✗ All {max_retries} attempts failed: {e}")
-                return None, log_lines
-
-    return None, log_lines
+    club_btn = soup.find(class_="c036-club-details-btn")
+    if club_btn and club_btn.get("href"):
+        maps_url = club_btn.get("href").replace("&amp;", "&")
+        return maps_url
+    return None
 
 
-def get_address_text_from_page(
-    team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
-) -> tuple[str | None, list[str]]:
-    """Scrape team page to get address directly from c036-club-details-address element.
+def extract_address_from_soup(soup: BeautifulSoup) -> str | None:
+    """Extract address directly from page text using c036-club-details-address element.
+
+    Args:
+        soup: BeautifulSoup object of the parsed page
 
     Returns:
-        Tuple of (address_text, log_lines)
+        Address text or None if not found
     """
-    log_lines: list[str] = []
-
-    for attempt in range(max_retries):
-        try:
-            if delay_seconds and delay_seconds > 0:
-                time.sleep(delay_seconds + random.uniform(0.0, 0.35))
-
-            response = get_session().get(team_url, headers=get_headers(), timeout=10)
-            if response.status_code == 202:
-                log_lines.append("    ✗ 202 code - bot detection")
-                raise AntiBotDetectedError("202 code", log_text="\n".join(log_lines))
-
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.content, "html.parser")
-            address_elem = soup.find(class_="c036-club-details-address")
-
-            if address_elem:
-                # Get text and clean up whitespace/newlines
-                address_text = address_elem.get_text(strip=True)
-                # Replace multiple spaces/newlines with single space
-                address_text = " ".join(address_text.split())
-                return address_text, log_lines
-
-            return None, log_lines
-
-        except AntiBotDetectedError:
-            raise
-        except Exception as e:
-            if attempt < max_retries - 1:
-                log_lines.append(f"    ! Attempt {attempt + 1} failed: {e} - retrying...")
-                time.sleep(1.0 * (attempt + 1))  # Exponential backoff
-            else:
-                log_lines.append(f"    ✗ All {max_retries} attempts failed: {e}")
-                return None, log_lines
-
-    return None, log_lines
+    address_elem = soup.find(class_="c036-club-details-address")
+    if address_elem:
+        address_text = address_elem.get_text(strip=True)
+        address_text = " ".join(address_text.split())  # Clean whitespace
+        return address_text
+    return None
 
 
 def fetch_club_address(
@@ -175,49 +120,80 @@ def fetch_club_address(
     """
     log_lines: list[str] = [f"  Fetching: {club_name}", f"    URL: {team_url}"]
 
-    # Method 1: Try getting address directly from page text
-    try:
-        address_text, text_logs = get_address_text_from_page(
-            team_url, delay_seconds=delay_seconds, max_retries=max_retries
+    # Fetch the page once and try both extraction methods
+    for attempt in range(max_retries):
+        try:
+            if delay_seconds and delay_seconds > 0:
+                time.sleep(delay_seconds + random.uniform(0.0, 0.35))
+
+            response = get_session().get(team_url, headers=get_headers(), timeout=10)
+            if response.status_code == 202:
+                log_lines.append("    ✗ 202 code - bot detection")
+                raise AntiBotDetectedError("202 code", log_text="\n".join(log_lines))
+
+            response.raise_for_status()
+            soup = BeautifulSoup(response.content, "html.parser")
+
+            # Method 1: Try getting address directly from page text
+            address_text = extract_address_from_soup(soup)
+            if address_text:
+                log_lines.append(f"    Address: {address_text}")
+                log_lines.append("    ✓ Address extracted from page text")
+                return (address_text, "\n".join(log_lines))
+            else:
+                log_lines.append("    ! No address text found on page")
+
+            # Method 2: Try getting address from Google Maps URL
+            maps_url = extract_maps_url_from_soup(soup)
+            if maps_url:
+                address = extract_address_from_maps_url(maps_url)
+
+                if address:
+                    log_lines.append(f"    Address: {address}")
+                    log_lines.append("    ✓ Address extracted from Maps URL")
+                    return (address, "\n".join(log_lines))
+                else:
+                    log_lines.append("    ! Could not extract address from Maps URL")
+            else:
+                log_lines.append("    ! No Maps URL found")
+
+            # Both methods failed on this page fetch
+            break
+
+        except AntiBotDetectedError:
+            raise
+        except Exception as e:
+            if attempt < max_retries - 1:
+                log_lines.append(f"    ! Attempt {attempt + 1} failed: {e} - retrying...")
+                time.sleep(1.0 * (attempt + 1))  # Exponential backoff
+            else:
+                log_lines.append(f"    ✗ All {max_retries} attempts failed: {e}")
+
+    # If no methods worked, try modifying club name and retry once more
+    possible_modifiers = ["women's", "ladies"]
+    if any(mod.lower() in club_name.lower().split() for mod in possible_modifiers):
+        club_name_words = club_name.split()
+        modified_club_name = " ".join(
+            word for word in club_name_words if word.lower() not in possible_modifiers
         )
-        log_lines.extend(text_logs)
-    except AntiBotDetectedError as e:
-        if getattr(e, "log_text", None) is None:
-            e.log_text = "\n".join(log_lines)
-        raise
 
-    if address_text:
-        log_lines.append(f"    Address: {address_text}")
-        log_lines.append("    ✓ Address extracted from page text")
-        return (address_text, "\n".join(log_lines))
-    else:
-        log_lines.append("    ! No address text found on page")
+        with _cache_lock:
+            cached_address = club_cache.get(modified_club_name)
+        if cached_address is not None:
+            log_lines.append(
+                f"    ✓ Found cached address for modified club name: {modified_club_name}"
+            )
+            return cached_address, "\n".join(log_lines)
 
-    # Method 2: Try getting address from Google Maps URL
-    log_lines.append("    Trying Maps URL extraction...")
-    try:
-        maps_url, fetch_logs = get_maps_url_from_page(
-            team_url, delay_seconds=delay_seconds, max_retries=max_retries
+        log_lines.append(f"    ! Retrying with modified club name: {modified_club_name}")
+        modified_club_name_address = fetch_club_address(
+            modified_club_name, team_url, delay_seconds, max_retries
         )
-        log_lines.extend(fetch_logs)
-    except AntiBotDetectedError as e:
-        if getattr(e, "log_text", None) is None:
-            e.log_text = "\n".join(log_lines)
-        raise
+        print("foo:", modified_club_name_address)
+        if modified_club_name_address[0]:
+            log_lines.append(f"    ✓ Address found with modified club name: {modified_club_name}")
+            return modified_club_name_address
 
-    if maps_url:
-        address = extract_address_from_maps_url(maps_url)
-
-        if address:
-            log_lines.append(f"    Address: {address}")
-            log_lines.append("    ✓ Address extracted from Maps URL")
-            return (address, "\n".join(log_lines))
-        else:
-            log_lines.append("    ! Could not extract address from Maps URL")
-    else:
-        log_lines.append("    ! No Maps URL found")
-
-    # Both methods failed
     log_lines.append("    ✗ No address found using any method")
     return None, "\n".join(log_lines)
 
@@ -333,6 +309,12 @@ def process_league_file(
                 for idx, team in club_dependents.get(club_name, []):
                     team_results[idx] = create_team_address(fetched_address, team)
 
+                if fetched_address is None:
+                    # Track clubs without addresses
+                    dependents = club_dependents.get(club_name, [])
+                    if dependents:
+                        clubs_without_addresses.append((club_name, dependents[0][1]["url"]))
+
         finally:
             save_cache()
 
@@ -358,6 +340,9 @@ def process_league_file(
 
 def main() -> None:
     """Main function to process all league files."""
+    global clubs_without_addresses
+    clubs_without_addresses = []  # Reset at start of main
+
     parser = argparse.ArgumentParser(description="Fetch addresses from RFU team pages")
     parser.add_argument(
         "--season",
@@ -429,6 +414,18 @@ def main() -> None:
     print('Complete! Addresses saved to "team_addresses" directory')
     print(f"Club cache size: {len(club_cache)}")
     print(f"{"="*80}")
+
+    # Print clubs without addresses
+    if clubs_without_addresses:
+        print(f"\n{"="*80}")
+        print(f"CLUBS WITHOUT ADDRESSES ({len(clubs_without_addresses)})")
+        print(f"{"="*80}")
+        for club_name, team_url in clubs_without_addresses:
+            print(f"  {club_name}")
+            print(f"    URL: {team_url}&season={season}")
+        print(f"{"="*80}")
+    else:
+        print("\n✓ All clubs have addresses!")
 
 
 if __name__ == "__main__":

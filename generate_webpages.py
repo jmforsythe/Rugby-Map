@@ -123,6 +123,73 @@ def get_common_css() -> str:
         }
         .footer p {
             margin: 0.5em 0;
+        }
+        .faq {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-top: 2em;
+            text-align: left;
+        }
+        .faq h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .faq-item {
+            margin-bottom: 1em;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1em;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5em;
+            cursor: pointer;
+            padding: 0.5em;
+            background: #f5f7fa;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: #e8ecf0;
+        }
+        .faq-question::before {
+            content: '▶ ';
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .faq-question.active::before {
+            transform: rotate(90deg);
+        }
+        .faq-answer {
+            display: none;
+            color: #666;
+            padding: 0.5em 0.5em 0.5em 1.5em;
+            line-height: 1.6;
+        }
+        .faq-answer.active {
+            display: block;
+        }
+        .faq-answer a {
+            display: inline;
+            padding: 0;
+            background: none;
+            border: none;
+            color: #0066cc;
+            font-size: inherit;
+        }
+        .faq-answer a:hover {
+            background: none;
+            border: none;
+            text-decoration: underline;
+            transform: none;
+            box-shadow: none;
         }"""
 
 
@@ -249,6 +316,41 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         <ul>
         <li><a href="./teams/{ "" if IS_PRODUCTION else "index.html" }">Teams</a></li>
         </ul>
+"""
+
+    # Add FAQ section
+    html += """
+    <div class="faq">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Where is Scotland / Wales?</div>
+            <div class="faq-answer">These are planned for the future, however English leagues were much easier to get the data from due to the RFU website layout, especially as it includes address data for each team.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Where is Ireland?</div>
+            <div class="faq-answer">All-Ireland League (top 5 levels of domestic rugby) all cover the whole island, making league maps redundant. Lower leagues are organised on a provincial basis, so the maps for those would need to be collected / organised separately.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">How are league boundaries determined?</div>
+            <div class="faq-answer">Areas are shaded on a county / region basis, with counties that are shared between leagues split down the middle using Voronoi diagrams.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">I found an error. How can I report it?</div>
+            <div class="faq-answer">Please open an issue on our <a href="https://github.com/jmforsythe/Rugby-Map/issues" target="_blank">GitHub repository</a> with details about the error you found.</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('active');
+        }
+    </script>
 """
 
     html += f"""

@@ -1595,16 +1595,23 @@ def service_worker_registration(relative_path_to_shared: str = "../shared") -> f
     """
     return folium.Element(f"""
     <script>
-    // Register service worker for aggressive caching of external images (RFU logos)
+    // Register service worker IMMEDIATELY for aggressive caching of external images (RFU logos)
     if ('serviceWorker' in navigator) {{
-        window.addEventListener('load', function() {{
-            navigator.serviceWorker.register('{relative_path_to_shared}/service-worker.js')
-                .then(function(registration) {{
-                    console.log('ServiceWorker registration successful:', registration.scope);
-                }})
-                .catch(function(err) {{
-                    console.log('ServiceWorker registration failed:', err);
-                }});
+        navigator.serviceWorker.register('{relative_path_to_shared}/service-worker.js')
+            .then(function(registration) {{
+                console.log('✅ ServiceWorker registered:', registration.scope);
+                // Force waiting service worker to activate immediately
+                if (registration.waiting) {{
+                    registration.waiting.postMessage({{type: 'SKIP_WAITING'}});
+                }}
+            }})
+            .catch(function(err) {{
+                console.log('❌ ServiceWorker registration failed:', err);
+            }});
+
+        // Listen for controller change (when service worker activates)
+        navigator.serviceWorker.addEventListener('controllerchange', function() {{
+            console.log('🔄 ServiceWorker activated - images will be cached');
         }});
     }}
     </script>

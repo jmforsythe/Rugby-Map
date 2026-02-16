@@ -35,25 +35,31 @@ self.addEventListener("fetch", (event) => {
   // Cache RFU images aggressively (cache-first strategy)
   if (
     url.hostname === "rfu.widen.net" ||
-    event.request.destination === "image"
+    event.request.destination === "image" ||
+    url.hostname === "images.englandrugby.com"
   ) {
+    console.log("🖼️ Image request detected:", event.request.url);
     event.respondWith(
       caches.open(IMAGE_CACHE).then((cache) => {
         return cache.match(event.request).then((response) => {
           if (response) {
+            console.log("✅ Loaded from cache:", event.request.url);
             return response; // Return cached image
           }
 
           // Fetch and cache new images
+          console.log("📥 Fetching from network:", event.request.url);
           return fetch(event.request)
             .then((networkResponse) => {
               // Only cache successful responses
               if (networkResponse && networkResponse.status === 200) {
+                console.log("💾 Caching image:", event.request.url);
                 cache.put(event.request, networkResponse.clone());
               }
               return networkResponse;
             })
-            .catch(() => {
+            .catch((error) => {
+              console.log("⚠️ Failed to load image:", event.request.url, error);
               // Return fallback logo if both cache and network fail
               return caches.match(
                 "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg",

@@ -136,8 +136,11 @@
       "name": "Bradford & Bingley",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2918",
       "image_url": "https://images.englandrugby.com/club_images/2918.png",
-      "address": null,
-      "error": "no_address"
+      "address": "34 Wagon Ln, Bingley BD16 1LT, United Kingdom",
+      "latitude": 53.839958,
+      "longitude": -1.8242113,
+      "formatted_address": "Wagon Lane, Gilstead, Bingley, Cottingley, Bradford, West Yorkshire, England, BD16 1LT, United Kingdom",
+      "place_id": 257143198
     }
   ],
   "team_count": 14

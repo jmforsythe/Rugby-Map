@@ -47,7 +47,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21113",
       "image_url": "https://images.englandrugby.com/club_images/21113.png",
       "address": "22 Harvest Road Denmead Southampton Hamps PO7 6LO England",
-      "error": "geocoding_failed"
+      "latitude": 50.8993212,
+      "longitude": -1.0579516,
+      "formatted_address": "PO7 206D, Hambledon Road, Denmead, Winchester, Hampshire, England, PO7 6PG, United Kingdom",
+      "place_id": 260799792
     },
     {
       "name": "Winchester Knights",

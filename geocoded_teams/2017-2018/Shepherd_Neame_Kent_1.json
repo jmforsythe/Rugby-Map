@@ -76,8 +76,11 @@
       "name": "Royal Bank of Scotland",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18166",
       "image_url": "https://images.englandrugby.com/club_images/18166.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Royal Bank of Scotland Sports Gound, Beckenham, BR3 1NZ United Kingdom",
+      "latitude": 51.42024,
+      "longitude": -0.03078,
+      "formatted_address": "BR3 1NZ, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011779
     },
     {
       "name": "Old Gravesendians",

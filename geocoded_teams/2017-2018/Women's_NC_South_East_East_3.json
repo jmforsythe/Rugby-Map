@@ -66,8 +66,11 @@
       "name": "Basildon Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1547",
       "image_url": "https://images.englandrugby.com/club_images/1547.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
     }
   ],
   "team_count": 7

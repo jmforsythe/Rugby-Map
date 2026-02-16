@@ -46,8 +46,11 @@
       "name": "Alfred's Nomads",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=443",
       "image_url": "https://images.englandrugby.com/club_images/443.png",
-      "address": null,
-      "error": "no_address"
+      "address": "The Clubhouse, The Common, Frees Avenue, Marlborough, Wiltshire, SN8 1DL, United Kingdom",
+      "latitude": 51.42447,
+      "longitude": -1.73146,
+      "formatted_address": "SN8 1DL, Marlborough, Wiltshire, England, United Kingdom",
+      "place_id": 351950315
     },
     {
       "name": "Westbury",

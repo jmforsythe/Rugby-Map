@@ -17,7 +17,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7736&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/7736.png",
       "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
-      "error": "geocoding_failed"
+      "latitude": 52.0790553,
+      "longitude": -1.9411321,
+      "formatted_address": "Royal Mail, Davies Road, Fairfield, Evesham, Wychavon, Worcestershire, England, WR11 1XN, United Kingdom",
+      "place_id": 258632014
     },
     {
       "name": "Keresley",
@@ -53,8 +56,11 @@
       "name": "Kidderminster Carolians II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11412&season=2024-2025",
       "image_url": "https://images.englandrugby.com/club_images/11412.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Marlpool Lane Kidderminster Worcestershire DY11 5HP United Kingdom",
+      "latitude": 52.3970271,
+      "longitude": -2.2624525,
+      "formatted_address": "Marlpool Lane, Habberley, Kidderminster, Franche, Wyre Forest, Worcestershire, England, DY11 5HL, United Kingdom",
+      "place_id": 254122365
     },
     {
       "name": "Old Halesonians II",

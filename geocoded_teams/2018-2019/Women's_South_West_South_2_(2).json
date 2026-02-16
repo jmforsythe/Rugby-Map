@@ -29,7 +29,7 @@
       "address": "Bencoolen Meadow, Bude, EX23 8QG, United Kingdom",
       "latitude": 50.8242199,
       "longitude": -4.54266,
-      "formatted_address": "EX23 8QG, Bude–Stratton, Cornwall, England, United Kingdom",
+      "formatted_address": "EX23 8QG, Budeâ€“Stratton, Cornwall, England, United Kingdom",
       "place_id": 351256697
     },
     {
@@ -46,8 +46,11 @@
       "name": "Torpoint & Liskeard Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22963",
       "image_url": "https://images.englandrugby.com/club_images/22963.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Torpoint & Liskeard Rfc Defiance Field Antony Road A374 Torpoint Cornwall PL11 2NN United Kingdom",
+      "latitude": 50.37501,
+      "longitude": -4.20655,
+      "formatted_address": "PL11 2NN, Torpoint, Cornwall, England, United Kingdom",
+      "place_id": 351762725
     },
     {
       "name": "St Austell Ladies",

@@ -56,8 +56,11 @@
       "name": "Fylde",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8426",
       "image_url": "https://images.englandrugby.com/club_images/8426.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Woodlands Memorial Ground, Blackpool Rd, Lytham St Annes, Lytham Saint Annes FY8 4EL, United Kingdom",
+      "latitude": 53.746121,
+      "longitude": -2.9878254,
+      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
+      "place_id": 350625913
     },
     {
       "name": "Preston Grasshoppers",

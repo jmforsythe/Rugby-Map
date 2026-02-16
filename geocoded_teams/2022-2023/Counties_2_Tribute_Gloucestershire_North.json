@@ -9,7 +9,7 @@
       "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
       "latitude": 51.9109697,
       "longitude": -2.0808151,
-      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paulâ€™s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
       "place_id": 261574627
     },
     {
@@ -27,7 +27,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5554",
       "image_url": "https://images.englandrugby.com/club_images/5554.png",
       "address": "Coney Hill RFC Metz Way Barnwood Gloucester GLOUCESTERSHIRE GL4 7RT UNITED KINGDOM ",
-      "error": "geocoding_failed"
+      "latitude": 51.8332345,
+      "longitude": -2.2442477,
+      "formatted_address": "Royal Mail, Fox Elms Road, Fox Elms, Gloucester, Gloucestershire, England, GL4 0BQ, United Kingdom",
+      "place_id": 259613816
     },
     {
       "name": "Brockworth",

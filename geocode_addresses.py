@@ -37,6 +37,11 @@ _address_cache_dirty = False
 geocode_cache: dict[str, GeocodeResult] = {}
 CACHE_FILE = "geocode_cache.json"
 
+# Track teams that fail to geocode
+teams_without_geocodes: list[tuple[str, str, str, str]] = (
+    []
+)  # (team_name, team_url, address, error)
+
 
 def load_cache() -> None:
     """Load address cache from file."""
@@ -177,6 +182,21 @@ def geocode_with_nominatim(
                                 base_url, params=params, headers=headers, timeout=10
                             )
 
+                            response_json = response.json() if response.status_code == 200 else None
+                            if not response_json or len(response_json) == 0:
+                                # Try with just first half of postcode if full postcode fails
+                                postcode_parts = postcode.split()
+                                if len(postcode_parts) == 2:
+                                    postcode_half = postcode_parts[0]
+                                    log_lines.append(
+                                        f"    ! No results for full postcode, trying first half: {postcode_half}"
+                                    )
+                                    params["q"] = postcode_half
+                                    wait_for_rate_limit(1.0)
+                                    response = requests.get(
+                                        base_url, params=params, headers=headers, timeout=10
+                                    )
+
                             if response.status_code == 200:
                                 data = response.json()
                                 if len(data) > 0:
@@ -270,6 +290,7 @@ def process_address_file(
     address_file_path: Path, season: str, max_workers: int = 10, api_retries: int = 3
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
+    global teams_without_geocodes
     print(f"{"="*80}")
     print(f"Processing: {address_file_path.name}")
     print(f"{"="*80}")
@@ -324,6 +345,18 @@ def process_address_file(
     # Count successes
     success_count: int = len([t for t in geocoded_teams if "error" not in t])
 
+    # Track failed geocodes
+    for team in geocoded_teams:
+        if "error" in team:
+            teams_without_geocodes.append(
+                (
+                    team.get("name", "Unknown"),
+                    team.get("url", ""),
+                    team.get("address", ""),
+                    team.get("error", "unknown_error"),
+                )
+            )
+
     # Save results
     output_data: GeocodedLeague = {
         "league_name": league_name,
@@ -343,6 +376,8 @@ def process_address_file(
 
 def main() -> None:
     """Main function to process all address files."""
+    global teams_without_geocodes
+    teams_without_geocodes = []
     parser = argparse.ArgumentParser(
         description="Geocode team addresses using OpenStreetMap Nominatim API"
     )
@@ -410,6 +445,20 @@ def main() -> None:
     print('Complete! Geocoded data saved to "geocoded_teams" directory')
     print(f"Address cache size: {len(geocode_cache)}")
     print(f"{"="*80}")
+
+    if teams_without_geocodes:
+        print(f"\n{"="*80}")
+        print(f"TEAMS WITHOUT GEOCODES ({len(teams_without_geocodes)})")
+        print(f"{"="*80}")
+        for team_name, team_url, address, error in teams_without_geocodes:
+            print(f"  {team_name}")
+            print(f"    Address: {address}")
+            print(f"    Error: {error}")
+            if team_url:
+                print(f"    URL: {team_url}")
+        print(f"{"="*80}")
+    else:
+        print("\n✓ All teams geocoded!")
 
 
 if __name__ == "__main__":

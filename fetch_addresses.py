@@ -246,7 +246,7 @@ def process_league_file(
             team_name = team["name"]
             team_url = team["url"]
 
-            if team_name.startswith("To be arranged"):
+            if team_name.startswith("To be arranged") or team_name.startswith("TBC"):
                 continue
 
             club_name = team_name_to_club_name(team_name)

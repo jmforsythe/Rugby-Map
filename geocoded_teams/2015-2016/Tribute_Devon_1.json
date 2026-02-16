@@ -1,0 +1,97 @@
+{
+  "league_name": "Tribute Devon 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8962&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Tamar Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21625",
+      "image_url": "https://images.englandrugby.com/club_images/21625.png",
+      "address": "Parkway Sports Club Ernesettle Lane Ernesettle Plymouth DEVON PL5 2EY UNITED KINGDOM ",
+      "latitude": 50.412277,
+      "longitude": -4.1813968,
+      "formatted_address": "PL5 2EY, Plymouth, England, United Kingdom",
+      "place_id": 350774057
+    },
+    {
+      "name": "Topsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22933",
+      "image_url": "https://images.englandrugby.com/club_images/22933.png",
+      "address": "Topsham Rfc, Bonfire Field, Exeter Road, Exeter, Devon, EX3 0LY, United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620960
+    },
+    {
+      "name": "Exeter Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7761",
+      "image_url": "https://images.englandrugby.com/club_images/7761.png",
+      "address": "Bravelands, Oil Mill Lane, Clyst St Mary, Exeter, Devon, EX5 1AF, United Kingdom",
+      "latitude": 50.70773,
+      "longitude": -3.44062,
+      "formatted_address": "EX5 1AF, Clyst St. Mary, Clyst St Mary, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351262283
+    },
+    {
+      "name": "New Cross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14349",
+      "image_url": "https://images.englandrugby.com/club_images/14349.png",
+      "address": "Five Lanes Field, Strap Lane, Kingsteignton, Newton Abbot, Devon, TQ12 3PS, England",
+      "latitude": 50.5590133,
+      "longitude": -3.6026419,
+      "formatted_address": "TQ12 3PS, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858097
+    },
+    {
+      "name": "North Tawton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14794",
+      "image_url": "https://images.englandrugby.com/club_images/14794.png",
+      "address": "Ntrfc, Taw Meadow, Fore St, North Tawton, Devon, EX20 2ED, United Kingdom",
+      "latitude": 50.7999123,
+      "longitude": -3.9051935,
+      "formatted_address": "EX20 2ED, North Tawton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350619468
+    },
+    {
+      "name": "South Molton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19624",
+      "image_url": "https://images.englandrugby.com/club_images/19624.png",
+      "address": "Unicorn Park, Station Road, Pathfields, South Molton, Devon, EX363BS, United Kingdom",
+      "latitude": 51.02682,
+      "longitude": -3.83977,
+      "formatted_address": "EX36 3BS, Pathfields Industrial Estate, South Molton, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351260105
+    },
+    {
+      "name": "Totnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23001",
+      "image_url": "https://images.englandrugby.com/club_images/23001.png",
+      "address": "The Clubhouse, Borough Park, Totnes, Devon, TQ9 5JG, United Kingdom",
+      "latitude": 50.4343203,
+      "longitude": -3.6876159,
+      "formatted_address": "TQ9 5JG, Totnes, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350865250
+    },
+    {
+      "name": "Old Plymothian & Mannamedian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15907",
+      "image_url": "https://images.englandrugby.com/club_images/15907.png",
+      "address": "Opm Rfc, King George V  Playing Fields, 44 Haye Road, Plymouth, Devon, PL9 8HR, United Kingdom",
+      "latitude": 50.36295,
+      "longitude": -4.06506,
+      "formatted_address": "PL9 8HR, Plymouth, England, United Kingdom",
+      "place_id": 351776875
+    },
+    {
+      "name": "St Columba & Torpoint",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20290",
+      "image_url": "https://images.englandrugby.com/club_images/20290.png",
+      "address": "Defiance Field Antony Road A374 Torpoint Cornwall PL11 2NN United Kingdom",
+      "latitude": 50.37501,
+      "longitude": -4.20655,
+      "formatted_address": "PL11 2NN, Torpoint, Cornwall, England, United Kingdom",
+      "place_id": 351762744
+    }
+  ],
+  "team_count": 9
+}

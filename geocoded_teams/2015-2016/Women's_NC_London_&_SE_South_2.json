@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC London & SE South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9093&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Sutton & Epsom Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21420",
+      "image_url": "https://images.englandrugby.com/club_images/21420.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Portsmouth Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17137",
+      "image_url": "https://images.englandrugby.com/club_images/17137.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Blackheath Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2506",
+      "image_url": "https://images.englandrugby.com/club_images/2506.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "St Francis Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20376",
+      "image_url": "https://images.englandrugby.com/club_images/20376.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Brockleians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3399",
+      "image_url": "https://images.englandrugby.com/club_images/3399.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351488000
+    },
+    {
+      "name": "Old Caterhamians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15513",
+      "image_url": "https://images.englandrugby.com/club_images/15513.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    }
+  ],
+  "team_count": 7
+}

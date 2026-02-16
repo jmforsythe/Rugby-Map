@@ -1,0 +1,97 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9080&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Darlington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6104",
+      "image_url": "https://images.englandrugby.com/club_images/6104.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM ",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    },
+    {
+      "name": "Sheffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19088",
+      "image_url": "https://images.englandrugby.com/club_images/19088.png",
+      "address": "Abbeydale Sports Club Abbeydale Road South Sheffield South Yorkshire S17 3LJ United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351391086
+    },
+    {
+      "name": "Kendal Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11253",
+      "image_url": "https://images.englandrugby.com/club_images/11253.png",
+      "address": "Kendal R.u.f.c. Mint Bridge Shap Road Kendal Cumbria LA9 6NY United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350230488
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Sunderland Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21344",
+      "image_url": "https://images.englandrugby.com/club_images/21344.png",
+      "address": "Ashbrooke Sports Club Ashbrooke Road Sunderland SR2 7HH United Kingdom",
+      "latitude": 54.89405,
+      "longitude": -1.38595,
+      "formatted_address": "SR2 7HH, Sunderland, North East, England, United Kingdom",
+      "place_id": 351970438
+    },
+    {
+      "name": "Preston Grasshoppers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17189",
+      "image_url": "https://images.englandrugby.com/club_images/17189.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM",
+      "latitude": 53.7971627,
+      "longitude": -2.7207055,
+      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
+      "place_id": 255236508
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Manchester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club Grove Park Grove Lane Cheadle Hulme Cheshire SK8 7NB United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351474723
+    },
+    {
+      "name": "Altrincham Kersal Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=540",
+      "image_url": "https://images.englandrugby.com/club_images/540.png",
+      "address": "Stelfox Avenue Timperley Altrincham Cheshire WA15 6UL United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127681
+    }
+  ],
+  "team_count": 9
+}

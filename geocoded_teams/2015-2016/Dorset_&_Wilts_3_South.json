@@ -1,0 +1,107 @@
+{
+  "league_name": "Dorset & Wilts 3 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8986&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Dorset Dockers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6663",
+      "image_url": "https://images.englandrugby.com/club_images/6663.png",
+      "address": "The Rec Barrack Road Christchurch Dorset BH23 1PA United Kingdom",
+      "latitude": 50.73605,
+      "longitude": -1.78219,
+      "formatted_address": "BH23 1PA, Christchurch, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350977282
+    },
+    {
+      "name": "Lytchett Minster II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13047",
+      "image_url": "https://images.englandrugby.com/club_images/13047.png",
+      "address": "Lytchett Park Watery Lane Lytchett Minster DORSET BH16 6HZ UNITED KINGDOM ",
+      "latitude": 50.73507,
+      "longitude": -2.05663,
+      "formatted_address": "BH16 6HZ, Lytchett Minster and Upton, Upton, Dorset, England, United Kingdom",
+      "place_id": 350973602
+    },
+    {
+      "name": "Bournemouth IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2794",
+      "image_url": "https://images.englandrugby.com/club_images/2794.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Oakmeadians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15297",
+      "image_url": "https://images.englandrugby.com/club_images/15297.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM ",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350497630
+    },
+    {
+      "name": "Salisbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18609",
+      "image_url": "https://images.englandrugby.com/club_images/18609.png",
+      "address": "C/o Salisbury Rfc, Castle Rd, Salisbury, Wiltshire, SP1 3SA, United Kingdom",
+      "latitude": 51.0859327,
+      "longitude": -1.8010028,
+      "formatted_address": "SP1 3SA, Salisbury, Wiltshire, England, United Kingdom",
+      "place_id": 350833936
+    },
+    {
+      "name": "New Milton III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14371",
+      "image_url": "https://images.englandrugby.com/club_images/14371.png",
+      "address": "New Milton Rugby Club Normans Way Ashley New Milton HAMPSHIRE BH25 5FN UNITED KINGDOM ",
+      "latitude": 50.755932,
+      "longitude": -1.6410986,
+      "formatted_address": "BH25 5FN, New Milton, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350497455
+    },
+    {
+      "name": "Dinton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6515",
+      "image_url": "https://images.englandrugby.com/club_images/6515.png",
+      "address": "Avon Valley College Recreation Road Durrington Salisbury WILTSHIRE SP4 8HH ENGLAND",
+      "latitude": 51.2032132,
+      "longitude": -1.7690535,
+      "formatted_address": "SP4 8HH, Durrington, Wiltshire, England, United Kingdom",
+      "place_id": 350834179
+    },
+    {
+      "name": "Wimborne III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25552",
+      "image_url": "https://images.englandrugby.com/club_images/25552.png",
+      "address": "Wimborne RFC Leigh Park Gordon Road Gordon Road Wimborne DORSET BH21 2AP UNITED KINGDOM ",
+      "latitude": 50.79679,
+      "longitude": -1.97171,
+      "formatted_address": "BH21 2AP, Leigh Park, St Johns, Wimborne Minster, Dorset, England, United Kingdom",
+      "place_id": 350975510
+    },
+    {
+      "name": "Swanage & W III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21495",
+      "image_url": "https://images.englandrugby.com/club_images/21495.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Dorchester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6587",
+      "image_url": "https://images.englandrugby.com/club_images/6587.png",
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
+    }
+  ],
+  "team_count": 10
+}

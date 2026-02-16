@@ -1,0 +1,127 @@
+{
+  "league_name": "London 3 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=9058&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Old Cooperians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15564",
+      "image_url": "https://images.englandrugby.com/club_images/15564.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "Epping Upper Clapton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7624",
+      "image_url": "https://images.englandrugby.com/club_images/7624.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "West Norfolk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24847",
+      "image_url": "https://images.englandrugby.com/club_images/24847.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Harlow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9425",
+      "image_url": "https://images.englandrugby.com/club_images/9425.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Southwold",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19838",
+      "image_url": "https://images.englandrugby.com/club_images/19838.png",
+      "address": "William Godell Pavilion The Common Southwold Suffolk IP18 6TB United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Wanstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24241",
+      "image_url": "https://images.englandrugby.com/club_images/24241.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Stowmarket",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21185",
+      "image_url": "https://images.englandrugby.com/club_images/21185.png",
+      "address": "Stowmarket Rugby Club Chilton Fields Sports Club Chilton Way Stowmarket SUFFOLK IP14 1SZ UNITED KINGDOM",
+      "latitude": 52.1938224,
+      "longitude": 0.9758336,
+      "formatted_address": "IP14 1SZ, Stowmarket, Suffolk, England, United Kingdom",
+      "place_id": 350659207
+    },
+    {
+      "name": "May & Baker",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13560",
+      "image_url": "https://images.englandrugby.com/club_images/13560.png",
+      "address": "May & Baker Club Dagenham Road Dagenham ESSEX RM10 7UP UNITED KINGDOM",
+      "latitude": 51.5515648,
+      "longitude": 0.161543,
+      "formatted_address": "RM10 7UP, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 350799576
+    },
+    {
+      "name": "Lowestoft & Yarmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12865",
+      "image_url": "https://images.englandrugby.com/club_images/12865.png",
+      "address": "Lowestoft & Yarmouth R.f.c. Gunton Park Old Lane Corton Long Lane Lowestoft Suffolk NR32 5HE United Kingdom",
+      "latitude": 52.5073627,
+      "longitude": 1.7356903,
+      "formatted_address": "NR32 5HE, Corton, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351690474
+    },
+    {
+      "name": "Upminster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23759",
+      "image_url": "https://images.englandrugby.com/club_images/23759.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Beccles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1767",
+      "image_url": "https://images.englandrugby.com/club_images/1767.png",
+      "address": "Beef Meadow Common Lane Common Lane Beccles Suffolk NR34 9RH United Kingdom",
+      "latitude": 52.4569046,
+      "longitude": 1.5742136,
+      "formatted_address": "NR34 9RH, Beccles, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350746457
+    },
+    {
+      "name": "Old Brentwoods",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15448",
+      "image_url": "https://images.englandrugby.com/club_images/15448.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    }
+  ],
+  "team_count": 12
+}

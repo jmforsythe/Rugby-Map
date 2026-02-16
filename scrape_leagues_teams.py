@@ -31,6 +31,7 @@ PREM_MAP = {
     "2018-2019": "69315",
     "2017-2018": "69311",
     "2016-2017": "24",
+    "2015-2016": "69308",
 }
 
 CHAMP_MAP = {
@@ -44,6 +45,7 @@ CHAMP_MAP = {
     "2018-2019": "14205",
     "2017-2018": "11215",
     "2016-2017": "10222",
+    "2015-2016": "9209",
 }
 
 
@@ -80,17 +82,17 @@ WOMENS_PREM_MAP = {
     "2019-2020": "24448",
     "2018-2019": "14816",
     "2017-2018": "11607",
-    "2016-2017": "9951",
 }
 
 
 def get_womens_leagues(season: str) -> list[LeagueInfo]:
     """Get initial women's league list for the given season."""
-    competition = "1764" if season >= "2017-2018" else "1782"
+    if season < "2017-2018":
+        return []
     return [
         {
             "name": "Women's Premiership",
-            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition={competition}&division={WOMENS_PREM_MAP[season]}&season={season}",
+            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764&division={WOMENS_PREM_MAP[season]}&season={season}",
             "parent_url": "https://www.englandrugby.com/fixtures-and-results",
         }
     ]
@@ -267,7 +269,11 @@ def main() -> None:
         filename = clean_filename(league_name) + ".json"
         output_path = output_dir / filename
 
-        banned_filenames = ["Yorkshire_Division_Four_Premier.json", "Pilot_League.json"]
+        banned_filenames = [
+            "Yorkshire_Division_Four_Premier.json",
+            "Pilot_League.json",
+            "Tribute_Duchy_League.json",
+        ]
         if output_path.name in banned_filenames:
             print(f"Skipping {league_name} (known bad filename)")
             skipped_leagues.append(league)

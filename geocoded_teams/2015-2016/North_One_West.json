@@ -1,0 +1,147 @@
+{
+  "league_name": "North One West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=8992&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Kendal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11240",
+      "image_url": "https://images.englandrugby.com/club_images/11240.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Kirkby Lonsdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11718",
+      "image_url": "https://images.englandrugby.com/club_images/11718.png",
+      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
+      "latitude": 54.2081674,
+      "longitude": -2.6025938,
+      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350680621
+    },
+    {
+      "name": "Wilmslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25471",
+      "image_url": "https://images.englandrugby.com/club_images/25471.png",
+      "address": "Memorial Ground Kings Road Pownall Park Wilmslow Cheshire SK9 5PZ United Kingdom",
+      "latitude": 53.3344312,
+      "longitude": -2.2483284,
+      "formatted_address": "SK9 5PZ, Wilmslow, Cheshire East, England, United Kingdom",
+      "place_id": 350820137
+    },
+    {
+      "name": "Warrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24339",
+      "image_url": "https://images.englandrugby.com/club_images/24339.png",
+      "address": "South Warrington Sports Club Stockton Lane Grappenhall Warrington Cheshire WA4 3HQ United Kingdom",
+      "latitude": 53.3713965,
+      "longitude": -2.563598,
+      "formatted_address": "WA4 3HQ, Grappenhall and Thelwall, Warrington, England, United Kingdom",
+      "place_id": 350880607
+    },
+    {
+      "name": "Vale of Lune",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23900",
+      "image_url": "https://images.englandrugby.com/club_images/23900.png",
+      "address": "Vale Of Lune Rufc, Powderhouse Lane, Lancaster., Lancashire, LA1 2TT, United Kingdom",
+      "latitude": 54.0619369,
+      "longitude": -2.8191176,
+      "formatted_address": "LA1 2TT, England, United Kingdom",
+      "place_id": 350226941
+    },
+    {
+      "name": "Penrith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16686",
+      "image_url": "https://images.englandrugby.com/club_images/16686.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Rochdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17889",
+      "image_url": "https://images.englandrugby.com/club_images/17889.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Altrincham Kersal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=536",
+      "image_url": "https://images.englandrugby.com/club_images/536.png",
+      "address": "Stelfox Avenue, Timperley, Altrincham, Cheshire, WA15 6UL, United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351676138
+    },
+    {
+      "name": "Eccles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7278",
+      "image_url": "https://images.englandrugby.com/club_images/7278.png",
+      "address": "Gorton Street Peel Green Eccles, Manchester. Greater Manchester M30 7LZ United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Leigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12118",
+      "image_url": "https://images.englandrugby.com/club_images/12118.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Blackburn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2477",
+      "image_url": "https://images.englandrugby.com/club_images/2477.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Carlisle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4206",
+      "image_url": "https://images.englandrugby.com/club_images/4206.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Widnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25369",
+      "image_url": "https://images.englandrugby.com/club_images/25369.png",
+      "address": "Heath Road, Widnes. LANCASHIRE WA8 7NU UNITED KINGDOM ",
+      "latitude": 53.37337,
+      "longitude": -2.75437,
+      "formatted_address": "WA8 7NU, Widnes, Halton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351680370
+    },
+    {
+      "name": "Broughton Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3497",
+      "image_url": "https://images.englandrugby.com/club_images/3497.png",
+      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
+    }
+  ],
+  "team_count": 14
+}

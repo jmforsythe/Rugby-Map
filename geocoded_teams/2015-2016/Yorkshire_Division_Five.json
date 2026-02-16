@@ -1,0 +1,87 @@
+{
+  "league_name": "Yorkshire Division Five",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=9002&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Stanley Rodillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20909",
+      "image_url": "https://images.englandrugby.com/club_images/20909.png",
+      "address": "The Clubhouse Manley Park Lee Moor Road Stanley Wakefield West Yorkshire WF3 4EF United Kingdom",
+      "latitude": 53.7180155,
+      "longitude": -1.477567,
+      "formatted_address": "WF3 4EF, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350438818
+    },
+    {
+      "name": "Hornsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10436",
+      "image_url": "https://images.englandrugby.com/club_images/10436.png",
+      "address": "The Hollis Recreation Ground Westwood Avenue Hornsea HU18 1EE UNITED KINGDOM ",
+      "latitude": 53.9140795,
+      "longitude": -0.1791274,
+      "formatted_address": "HU18 1EE, Hornsea, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350652703
+    },
+    {
+      "name": "Wibsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25343",
+      "image_url": "https://images.englandrugby.com/club_images/25343.png",
+      "address": "143 High Street Wibsey Bradford WEST YORKSHIRE BD6 1JU UNITED KINGDOM",
+      "latitude": 53.7670068,
+      "longitude": -1.772818,
+      "formatted_address": "Wibsey Rugby Club, 143, High Street, Brownroyd Hill, Wibsey, Bradford, West Yorkshire, England, BD6 1JU, United Kingdom",
+      "place_id": 257060123
+    },
+    {
+      "name": "Garforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8478",
+      "image_url": "https://images.englandrugby.com/club_images/8478.png",
+      "address": "9a Westfield Lane Kippax Leeds West Yorkshire LS25 7LY United Kingdom",
+      "latitude": 53.7696529,
+      "longitude": -1.3771798,
+      "formatted_address": "Westfield Lane, Leeds, West Yorkshire, England, LS25 7JJ, United Kingdom",
+      "place_id": 256830481
+    },
+    {
+      "name": "Rossington Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18031",
+      "image_url": "https://images.englandrugby.com/club_images/18031.png",
+      "address": "Rossington Miners Welfare West End Lane Rossington Doncaster Syork DN11 0DU England",
+      "latitude": 53.4784257,
+      "longitude": -1.0717437,
+      "formatted_address": "DN11 0DU, Rossington, Doncaster, South Yorkshire, England, United Kingdom",
+      "place_id": 350594253
+    },
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    },
+    {
+      "name": "Thirsk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22640",
+      "image_url": "https://images.englandrugby.com/club_images/22640.png",
+      "address": "Thirsk Athletic Club Newsham Road Thirsk YO7 4DB UNITED KINGDOM ",
+      "latitude": 54.2394294,
+      "longitude": -1.3744136,
+      "formatted_address": "YO7 4DB, Thirsk, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 352196664
+    },
+    {
+      "name": "Hallamshire",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9233",
+      "image_url": "https://images.englandrugby.com/club_images/9233.png",
+      "address": "Hallamshire Rufc Clubhouse, 116 Northfield Road, Crookes, Sheffield, South Yorkshire, S10 1QS, England",
+      "latitude": 53.38918,
+      "longitude": -1.50586,
+      "formatted_address": "S10 1QS, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840096
+    }
+  ],
+  "team_count": 8
+}

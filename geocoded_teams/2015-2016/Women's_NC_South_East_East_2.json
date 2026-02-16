@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC South East East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9091&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Medway Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields Rochester KENT ME1 3AD UNITED KINGDOM",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351564006
+    },
+    {
+      "name": "Harwich Owls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9614",
+      "image_url": "https://images.englandrugby.com/club_images/9614.png",
+      "address": "Wick Lane Dovercourt Harwich CO12 3TA United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Peterborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16824",
+      "image_url": "https://images.englandrugby.com/club_images/16824.png",
+      "address": "Peterborough R.u.f.c. Second Drove Fengate Peterborough Cambridgeshire PE1 5XA United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759253
+    },
+    {
+      "name": "Bury Foxes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3830",
+      "image_url": "https://images.englandrugby.com/club_images/3830.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Lowestoft & Yarmouth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12868",
+      "image_url": "https://images.englandrugby.com/club_images/12868.png",
+      "address": "Lowestoft & Yarmouth R.f.c. Gunton Park Old Lane Corton Long Lane Lowestoft Suffolk NR32 5HE United Kingdom",
+      "latitude": 52.5073627,
+      "longitude": 1.7356903,
+      "formatted_address": "NR32 5HE, Corton, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351690474
+    }
+  ],
+  "team_count": 6
+}

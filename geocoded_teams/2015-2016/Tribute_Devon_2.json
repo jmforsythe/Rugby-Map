@@ -1,0 +1,87 @@
+{
+  "league_name": "Tribute Devon 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8963&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Ilfracombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10799",
+      "image_url": "https://images.englandrugby.com/club_images/10799.png",
+      "address": "Brimlands Chambercombe Park Road Ilfracombe Devon EX34 9QN United Kingdom",
+      "latitude": 51.2058604,
+      "longitude": -4.1056895,
+      "formatted_address": "EX34 9QN, Ilfracombe, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350621186
+    },
+    {
+      "name": "Torrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22992",
+      "image_url": "https://images.englandrugby.com/club_images/22992.png",
+      "address": "Torrington Rfc Donnacroft Playing Fields Hatchmoor Road Torrington Devon EX38 7HT United Kingdom",
+      "latitude": 50.95517,
+      "longitude": -4.12576,
+      "formatted_address": "EX38 7HT, Great Torrington, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350809808
+    },
+    {
+      "name": "Old Technicians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16065",
+      "image_url": "https://images.englandrugby.com/club_images/16065.png",
+      "address": "Old Technicians Rfc, Weston Mill Oak Villa Sports & Community Hub, 31 Ferndale Road, , Weston Mill, Plymouth, Devon, PL2 2EL, United Kingdom",
+      "latitude": 50.3960028,
+      "longitude": -4.1764842,
+      "formatted_address": "PL2 2EL, Plymouth, England, United Kingdom",
+      "place_id": 350773099
+    },
+    {
+      "name": "Buckfastleigh Ramblers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3532",
+      "image_url": "https://images.englandrugby.com/club_images/3532.png",
+      "address": "The Cricket Ground Buckfastleigh Devon TQ11 0BL United Kingdom",
+      "latitude": 50.48613,
+      "longitude": -3.78947,
+      "formatted_address": "TQ11 0BL, Buckfastleigh, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351614385
+    },
+    {
+      "name": "Dartmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6192",
+      "image_url": "https://images.englandrugby.com/club_images/6192.png",
+      "address": "Dartmouth Rugby Club, C/0 Dartmouth Rowing Club, Sandquay Road, Dartmouth, Devon, TQ6 9PH, United Kingdom",
+      "latitude": 50.3576021,
+      "longitude": -3.5780451,
+      "formatted_address": "TQ6 9PH, Dartmouth, Kingswear, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864083
+    },
+    {
+      "name": "Salcombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18545",
+      "image_url": "https://images.englandrugby.com/club_images/18545.png",
+      "address": "Twomeads Camperdown Road Salcombe DEVON TQ8 8AX UNITED KINGDOM ",
+      "latitude": 50.235997,
+      "longitude": -3.7753405,
+      "formatted_address": "TQ8 8AX, Salcombe, East Portlemouth, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864981
+    },
+    {
+      "name": "Plympton Victoria",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16974",
+      "image_url": "https://images.englandrugby.com/club_images/16974.png",
+      "address": "Plympton Victoria Rfc, Market Road, Plymouth, Devon, PL7 1QW, United Kingdom",
+      "latitude": 50.3884952,
+      "longitude": -4.0602709,
+      "formatted_address": "PL7 1QW, Plymouth, England, United Kingdom",
+      "place_id": 350774233
+    },
+    {
+      "name": "Devonport HSOB",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6390",
+      "image_url": "https://images.englandrugby.com/club_images/6390.png",
+      "address": "Stonehouse Creek Leisure & Social Club Kings Road Stonehouse Plymouth DEVON PL1 3SF UNITED KINGDOM",
+      "latitude": 50.37116,
+      "longitude": -4.16478,
+      "formatted_address": "PL1 3SF, Plymouth, England, United Kingdom",
+      "place_id": 351310593
+    }
+  ],
+  "team_count": 8
+}

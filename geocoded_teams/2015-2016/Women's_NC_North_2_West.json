@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC North 2 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9112&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
+    },
+    {
+      "name": "Southport Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19782",
+      "image_url": "https://images.englandrugby.com/club_images/19782.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    },
+    {
+      "name": "Didsbury Toc H Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450",
+      "image_url": "https://images.englandrugby.com/club_images/6450.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM ",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
+      "name": "Garstang Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8486",
+      "image_url": "https://images.englandrugby.com/club_images/8486.png",
+      "address": "Hudson Park, Garstang Sports & Social Club, High Street, Garstang, Preston, Lancashire, PR3 1EB, England",
+      "latitude": 53.9032376,
+      "longitude": -2.7728825,
+      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 351801066
+    },
+    {
+      "name": "Eccles Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7285",
+      "image_url": "https://images.englandrugby.com/club_images/7285.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Leigh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12124",
+      "image_url": "https://images.englandrugby.com/club_images/12124.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Workington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26097",
+      "image_url": "https://images.englandrugby.com/club_images/26097.png",
+      "address": "Ellis Sports Ground, Moss Bay Road, Workington, Cumbria, CA14 3XZ, United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    }
+  ],
+  "team_count": 7
+}

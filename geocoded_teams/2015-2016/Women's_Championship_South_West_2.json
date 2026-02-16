@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship South West 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9082&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Trojans Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23221",
+      "image_url": "https://images.englandrugby.com/club_images/23221.png",
+      "address": "Trojans Club Stoneham Park Stoneham Lane Eastleigh Southampton Hampshire SO50 9HT United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832263
+    },
+    {
+      "name": "Supermarine Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21370",
+      "image_url": "https://images.englandrugby.com/club_images/21370.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Bath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1593",
+      "image_url": "https://images.englandrugby.com/club_images/1593.png",
+      "address": "Lambridge Rugby Ground, Lambridge, Bath, Avon, BA2 4DS, England",
+      "latitude": 51.3826539,
+      "longitude": -2.3560958,
+      "formatted_address": "BA2 4DS, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350040740
+    },
+    {
+      "name": "Plymouth Albion Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16955",
+      "image_url": "https://images.englandrugby.com/club_images/16955.png",
+      "address": "Brickfields Stadium Damerel Close Devonport Plymouth Devon PL1 4NE England",
+      "latitude": 50.3708017,
+      "longitude": -4.1711966,
+      "formatted_address": "PL1 4NE, Plymouth, England, United Kingdom",
+      "place_id": 350772725
+    },
+    {
+      "name": "Teddington Antlers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21736",
+      "image_url": "https://images.englandrugby.com/club_images/21736.png",
+      "address": "Teddington Rfc Bushy Park Teddington Middlesex TW11 0EA United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    },
+    {
+      "name": "Wimbledon Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25520",
+      "image_url": "https://images.englandrugby.com/club_images/25520.png",
+      "address": "Wimbledon Rugby Football Club Limited Beverley Meads Barham Road Wimbledon Surrey SW20 0ET United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350390573
+    },
+    {
+      "name": "London Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12644",
+      "image_url": "https://images.englandrugby.com/club_images/12644.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18042",
+      "image_url": "https://images.englandrugby.com/club_images/18042.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    }
+  ],
+  "team_count": 8
+}

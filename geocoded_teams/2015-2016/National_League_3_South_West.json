@@ -1,0 +1,147 @@
+{
+  "league_name": "National League 3 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8952&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Exmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7823",
+      "image_url": "https://images.englandrugby.com/club_images/7823.png",
+      "address": "Exmouth R.F.C. Imperial Recreation Ground The Royal Avenue Exmouth DEVON EX8 1DG UNITED KINGDOM ",
+      "latitude": 50.6203688,
+      "longitude": -3.4178223,
+      "formatted_address": "EX8 1DG, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350623447
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Lydney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12992",
+      "image_url": "https://images.englandrugby.com/club_images/12992.png",
+      "address": "Lydney RFC Regentsholme Regent Street Lydney GLOUCESTERSHIRE GL15 5RN UNITED KINGDOM ",
+      "latitude": 51.72619,
+      "longitude": -2.5302699,
+      "formatted_address": "GL15 5RN, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309782
+    },
+    {
+      "name": "Brixham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3314",
+      "image_url": "https://images.englandrugby.com/club_images/3314.png",
+      "address": "Brixham Rugby Club , Astley Park, Rea Barn Road, Brixham, Devon, TQ5 9ED, United Kingdom",
+      "latitude": 50.3902975,
+      "longitude": -3.509536,
+      "formatted_address": "TQ5 9ED, Brixham, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350863502
+    },
+    {
+      "name": "Bournemouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2789",
+      "image_url": "https://images.englandrugby.com/club_images/2789.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Old Redcliffians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15929",
+      "image_url": "https://images.englandrugby.com/club_images/15929.png",
+      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
+      "latitude": 51.4227768,
+      "longitude": -2.5385264,
+      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517876
+    },
+    {
+      "name": "Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10412",
+      "image_url": "https://images.englandrugby.com/club_images/10412.png",
+      "address": "Hutton Moor Road, Weston-super-mare, Somerset, BS22 8LY, United Kingdom",
+      "latitude": 51.3444168,
+      "longitude": -2.947101,
+      "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
+      "place_id": 261865175
+    },
+    {
+      "name": "Ivybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11039",
+      "image_url": "https://images.englandrugby.com/club_images/11039.png",
+      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
+      "latitude": 50.3855432,
+      "longitude": -3.9018249,
+      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351768115
+    },
+    {
+      "name": "Cleve",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5216",
+      "image_url": "https://images.englandrugby.com/club_images/5216.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
+      "name": "Dings Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6469",
+      "image_url": "https://images.englandrugby.com/club_images/6469.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Newton Abbot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14607",
+      "image_url": "https://images.englandrugby.com/club_images/14607.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "Old Centralians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15531",
+      "image_url": "https://images.englandrugby.com/club_images/15531.png",
+      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
+      "latitude": 51.8444663,
+      "longitude": -2.2201721,
+      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350181524
+    },
+    {
+      "name": "Old Patesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15879",
+      "image_url": "https://images.englandrugby.com/club_images/15879.png",
+      "address": "Old Patesians R.F.C. Old Patesians Clubhouse Everest Road Cheltenham GLOUCESTERSHIRE GL53 9LG UNITED KINGDOM ",
+      "latitude": 51.8773802,
+      "longitude": -2.0692466,
+      "formatted_address": "GL53 9LG, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350636802
+    },
+    {
+      "name": "Chippenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4841",
+      "image_url": "https://images.englandrugby.com/club_images/4841.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM ",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351943386
+    }
+  ],
+  "team_count": 14
+}

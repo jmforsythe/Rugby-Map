@@ -1,0 +1,87 @@
+{
+  "league_name": "Gloucester 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8967&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Old Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15655",
+      "image_url": "https://images.englandrugby.com/club_images/15655.png",
+      "address": "Old Elizabethans Rfc, Severn Road, Hallen, Bristol, Bristol, BS10 7RZ, United Kingdom",
+      "latitude": 51.5183615,
+      "longitude": -2.6502756,
+      "formatted_address": "BS10 7RZ, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505596
+    },
+    {
+      "name": "Cheltenham Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4518",
+      "image_url": "https://images.englandrugby.com/club_images/4518.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Cainscross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3909",
+      "image_url": "https://images.englandrugby.com/club_images/3909.png",
+      "address": "Cainscross RFC Victory Park Cainscross Stroud GLOUCESTERSHIRE GL5 4JE UNITED KINGDOM",
+      "latitude": 51.7433802,
+      "longitude": -2.2441085,
+      "formatted_address": "GL5 4JE, Cainscross, Selsley, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637281
+    },
+    {
+      "name": "Wotton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26170",
+      "image_url": "https://images.englandrugby.com/club_images/26170.png",
+      "address": "33 Abingdon Road Fishponds Bristol Gloucestershire BS16 3NR United Kingdom",
+      "latitude": 51.4739391,
+      "longitude": -2.5312718,
+      "formatted_address": "BS16 3NR, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351017836
+    },
+    {
+      "name": "Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15030",
+      "image_url": "https://images.englandrugby.com/club_images/15030.png",
+      "address": "Norton Rfc Norton Parish Grounds Old Tewkesbury Road Norton Gloucester Gloucestershire GL2 9LJ",
+      "latitude": 51.914769,
+      "longitude": -2.2102215,
+      "formatted_address": "GL2 9LJ, Norton, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631547
+    },
+    {
+      "name": "Tetbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21838",
+      "image_url": "https://images.englandrugby.com/club_images/21838.png",
+      "address": "Tetbury Rfc The Recreation Ground Hampton Street Tetbury Gloucestershire GL8 8JN United Kingdom",
+      "latitude": 51.64012,
+      "longitude": -2.16269,
+      "formatted_address": "GL8 8JN, Tetbury, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351319362
+    },
+    {
+      "name": "Gloucester All Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8638",
+      "image_url": "https://images.englandrugby.com/club_images/8638.png",
+      "address": "The Clubhouse Castle Meads Way Oxleaze Gloucester GLOUCESTERSHIRE GL1 2RN UNITED KINGDOM",
+      "latitude": 51.8684801,
+      "longitude": -2.254154,
+      "formatted_address": "GL1 2RN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350629975
+    },
+    {
+      "name": "Hardwicke & Quedgeley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9369",
+      "image_url": "https://images.englandrugby.com/club_images/9369.png",
+      "address": "Kingsway Sports Pavilion Newhaven Road Kingsway Business Park Gloucester Gloucestershire GL2 2SN United Kingdom",
+      "latitude": 51.8203675,
+      "longitude": -2.2758346,
+      "formatted_address": "GL2 2SN, Kingsway Business Park, Quedgeley, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350180641
+    }
+  ],
+  "team_count": 8
+}

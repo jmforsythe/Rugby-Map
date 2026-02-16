@@ -1,0 +1,77 @@
+{
+  "league_name": "Midlands 5 West (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=9020&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Essington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700",
+      "image_url": "https://images.englandrugby.com/club_images/7700.png",
+      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
+      "latitude": 52.6245432,
+      "longitude": -2.0590734,
+      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350896523
+    },
+    {
+      "name": "St Leonards",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20543",
+      "image_url": "https://images.englandrugby.com/club_images/20543.png",
+      "address": "Prosperity Park, Weston Road, Stafford, Staffordshire, ST180BF, United Kingdom",
+      "latitude": 52.8111534,
+      "longitude": -2.0829403,
+      "formatted_address": "ST18 0BF, Hopton and Coton, Hopton, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836872
+    },
+    {
+      "name": "Greyhound",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8969",
+      "image_url": "https://images.englandrugby.com/club_images/8969.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd Grandstand Road Hereford Herefordshire HR4 9NG England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Tenbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21817",
+      "image_url": "https://images.englandrugby.com/club_images/21817.png",
+      "address": "Penlu  Worcester Road Tenbury Wells WORCESTERSHIRE WR15 8AP UNITED KINGDOM ",
+      "latitude": 52.3151303,
+      "longitude": -2.5901565,
+      "formatted_address": "WR15 8AP, Burford, Shropshire, England, United Kingdom",
+      "place_id": 350894078
+    },
+    {
+      "name": "Chaddesley Corbett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4358",
+      "image_url": "https://images.englandrugby.com/club_images/4358.png",
+      "address": "Chaddesley Corbett R.F.C. Chaddesley Corbett Sports Club Fox Lane Chaddesley Corbett WORCESTERSHIRE DY10 4RH UNITED KINGDOM ",
+      "latitude": 52.35476,
+      "longitude": -2.17042,
+      "formatted_address": "DY10 4RH, Chaddesley Corbett, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351202188
+    },
+    {
+      "name": "Warley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24269",
+      "image_url": "https://images.englandrugby.com/club_images/24269.png",
+      "address": "Warley Rugby Football Club, Tatbank Road, Oldbury, Wmid, B69 4NH, United Kingdom",
+      "latitude": 52.4958699,
+      "longitude": -2.00585,
+      "formatted_address": "B69 4NH, Sandwell, West Midlands, England, United Kingdom",
+      "place_id": 350923574
+    }
+  ],
+  "team_count": 7
+}

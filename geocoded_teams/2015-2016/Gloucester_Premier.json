@@ -1,0 +1,127 @@
+{
+  "league_name": "Gloucester Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8964&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Bristol Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3278",
+      "image_url": "https://images.englandrugby.com/club_images/3278.png",
+      "address": "Bakewell Memorial Ground Station Road Cribbs Causeway Bristol BRISTOL BS10 7TT ENGLAND ",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Cirencester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5065",
+      "image_url": "https://images.englandrugby.com/club_images/5065.png",
+      "address": "Cirencester Rfc, The Whiteway, Cirencester, Gloucestershire, GL7 2ER, United Kingdom",
+      "latitude": 51.72343,
+      "longitude": -1.9667,
+      "formatted_address": "GL7 2ER, Cirencester, Chesterton, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351318278
+    },
+    {
+      "name": "Berry Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2025",
+      "image_url": "https://images.englandrugby.com/club_images/2025.png",
+      "address": "Berry Hill Rfc Ltd, Lakers Rd, Berry Hill,  , Coleford, GL16 7QT, England",
+      "latitude": 51.8105582,
+      "longitude": -2.613527,
+      "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630751
+    },
+    {
+      "name": "Cheltenham Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4561",
+      "image_url": "https://images.englandrugby.com/club_images/4561.png",
+      "address": "Cheltenham Saracens RFC King George 5th Playing Fields off Brooklyn Road Hesters Way Cheltenham  GLOUCESTERSHIRE GL51 8DT UNITED KINGDOM ",
+      "latitude": 51.903093,
+      "longitude": -2.1102736,
+      "formatted_address": "GL51 8DT, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350634272
+    },
+    {
+      "name": "Chipping Sodbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4885",
+      "image_url": "https://images.englandrugby.com/club_images/4885.png",
+      "address": "Wickwar Road Chipping Sodbury BRISTOL BS37 6GA UNITED KINGDOM",
+      "latitude": 51.5431748,
+      "longitude": -2.3952242,
+      "formatted_address": "BS37 6GA, Sodbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516413
+    },
+    {
+      "name": "North Bristol",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14661",
+      "image_url": "https://images.englandrugby.com/club_images/14661.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350513558
+    },
+    {
+      "name": "St Mary's Old Boys (SW)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20595",
+      "image_url": "https://images.englandrugby.com/club_images/20595.png",
+      "address": "St Mary's Old Boys Rfc, Northwood Park, Trench Lane, Bradley Stoke, Winterbourne, Avon, BS36 1RY, United Kingdom",
+      "latitude": 51.5386109,
+      "longitude": -2.5309005,
+      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515798
+    },
+    {
+      "name": "Frampton Cotterell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8291",
+      "image_url": "https://images.englandrugby.com/club_images/8291.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Hucclecote",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10560",
+      "image_url": "https://images.englandrugby.com/club_images/10560.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Longlevens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12742",
+      "image_url": "https://images.englandrugby.com/club_images/12742.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
+    },
+    {
+      "name": "Tewkesbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21856",
+      "image_url": "https://images.englandrugby.com/club_images/21856.png",
+      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM ",
+      "latitude": 51.9892554,
+      "longitude": -2.1575383,
+      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631002
+    },
+    {
+      "name": "Bream",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3037",
+      "image_url": "https://images.englandrugby.com/club_images/3037.png",
+      "address": "Bream Rfc, High Street, Bream, Lydney, Gloucestershire, GL15 6JE, United Kingdom",
+      "latitude": 51.74929,
+      "longitude": -2.57751,
+      "formatted_address": "GL15 6JE, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309912
+    }
+  ],
+  "team_count": 12
+}

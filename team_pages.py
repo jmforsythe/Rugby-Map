@@ -682,8 +682,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    generate_teams_index()
-
-
-if __name__ == "__main__":
-    main()

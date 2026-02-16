@@ -36,25 +36,16 @@ jobs:
 
       - name: Generate maps
         run: |
-          python calculate_team_distances.py --season=2025-2026
-          python calculate_team_distances.py --season=2024-2025
-          python calculate_team_distances.py --season=2023-2024
-          python calculate_team_distances.py --season=2022-2023
-          python calculate_team_distances.py --season=2021-2022
-          python calculate_team_distances.py --season=2020-2021
-          python calculate_team_distances.py --season=2019-2020
-          python calculate_team_distances.py --season=2018-2019
-          python calculate_team_distances.py --season=2017-2018
+          # Get all season folders from geocoded_teams directory
+          SEASONS=$(ls -d geocoded_teams/*/ 2>/dev/null | xargs -n 1 basename | sort -r)
 
-          python make_tier_maps.py --no-debug --season=2025-2026 --production
-          python make_tier_maps.py --no-debug --season=2024-2025 --production
-          python make_tier_maps.py --no-debug --season=2023-2024 --production
-          python make_tier_maps.py --no-debug --season=2022-2023 --production
-          python make_tier_maps.py --no-debug --season=2021-2022 --production
-          python make_tier_maps.py --no-debug --season=2020-2021 --production
-          python make_tier_maps.py --no-debug --season=2019-2020 --production
-          python make_tier_maps.py --no-debug --season=2018-2019 --production
-          python make_tier_maps.py --no-debug --season=2017-2018 --production
+          for season in $SEASONS; do
+            python calculate_team_distances.py --season=$season
+          done
+
+          for season in $SEASONS; do
+            python make_tier_maps.py --no-debug --season=$season --production
+          done
 
           python team_pages.py --production
           python generate_webpages.py --production

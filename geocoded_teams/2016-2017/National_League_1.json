@@ -1,0 +1,167 @@
+{
+  "league_name": "National League 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=10055&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Hartpury University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9602",
+      "image_url": "https://images.englandrugby.com/club_images/9602.png",
+      "address": "Hartpury College Hartpury House Hartpury Gloucester GLOUCESTERSHIRE GL19 3BE UNITED KINGDOM",
+      "latitude": 51.9076884,
+      "longitude": -2.3091654,
+      "formatted_address": "GL19 3BE, Hartpury, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630894
+    },
+    {
+      "name": "Plymouth Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16953",
+      "image_url": "https://images.englandrugby.com/club_images/16953.png",
+      "address": "Brickfields Stadium, Damerel Close, Devonport, Plymouth, Devon, PL1 4NE, England",
+      "latitude": 50.3708017,
+      "longitude": -4.1711966,
+      "formatted_address": "PL1 4NE, Plymouth, England, United Kingdom",
+      "place_id": 350772725
+    },
+    {
+      "name": "Ampthill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=632",
+      "image_url": "https://images.englandrugby.com/club_images/632.png",
+      "address": "Dillingham Park Woburn Street Ampthill Bedfordshire MK45 2HX UNITED KINGDOM ",
+      "latitude": 52.0318695,
+      "longitude": -0.4991971,
+      "formatted_address": "MK45 2HX, Ampthill, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350704166
+    },
+    {
+      "name": "Coventry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
+      "image_url": "https://images.englandrugby.com/club_images/5722.png",
+      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
+      "latitude": 52.4061896,
+      "longitude": -1.5259715,
+      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350563719
+    },
+    {
+      "name": "Birmingham Moseley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2343",
+      "image_url": "https://images.englandrugby.com/club_images/2343.png",
+      "address": "Birmingham Moseley Rugby, Billesley Common, Yardley Wood Road, Birmingham, West Midlands, B13 0HN, United Kingdom",
+      "latitude": 52.4282264,
+      "longitude": -1.8710828,
+      "formatted_address": "B13 0HN, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350462368
+    },
+    {
+      "name": "Rosslyn Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18036",
+      "image_url": "https://images.englandrugby.com/club_images/18036.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM ",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839761
+    },
+    {
+      "name": "Blackheath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2494",
+      "image_url": "https://images.englandrugby.com/club_images/2494.png",
+      "address": "Kidbrooke Lane, London, SE9 6TE, England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 91315466
+    },
+    {
+      "name": "Esher",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650",
+      "image_url": "https://images.englandrugby.com/club_images/7650.png",
+      "address": "369 Esher Rfc, Molesey Road, Hersham, Surrey, KT12 3PF, United Kingdom",
+      "latitude": 51.3780876,
+      "longitude": -0.3898402,
+      "formatted_address": "KT12 3PF, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669902
+    },
+    {
+      "name": "Old Albanians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377",
+      "image_url": "https://images.englandrugby.com/club_images/15377.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Darlington Mowden Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6105",
+      "image_url": "https://images.englandrugby.com/club_images/6105.png",
+      "address": "Darlington Arena, Neasham Road, Darlington, County Durham, DL2 1DL, United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171185
+    },
+    {
+      "name": "Loughborough Students",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12833",
+      "image_url": "https://images.englandrugby.com/club_images/12833.png",
+      "address": "Sport Development Centre Loughborough University Loughborough University Loughborough LEICESTERSHIRE LE11 3TU UNITED KINGDOM ",
+      "latitude": 52.7584538,
+      "longitude": -1.2484043,
+      "formatted_address": "LE11 3TU, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350681681
+    },
+    {
+      "name": "Fylde",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8426",
+      "image_url": "https://images.englandrugby.com/club_images/8426.png",
+      "address": "Woodlands Memorial Ground, Blackpool Rd, Lytham St Annes, Lytham Saint Annes FY8 4EL, United Kingdom",
+      "latitude": 53.746121,
+      "longitude": -2.9878254,
+      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
+      "place_id": 350625913
+    },
+    {
+      "name": "Hull Ionians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10641",
+      "image_url": "https://images.englandrugby.com/club_images/10641.png",
+      "address": "Brantingham Park Elloughton Road Elloughton Road Brantingham EAST RIDING OF YORKSHIRE HU15 1HX UNITED KINGDOM ",
+      "latitude": 53.742916,
+      "longitude": -0.5682622,
+      "formatted_address": "HU15 1HX, Elloughton-cum-Brough, Brough, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351374888
+    },
+    {
+      "name": "Cambridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4023",
+      "image_url": "https://images.englandrugby.com/club_images/4023.png",
+      "address": "Ellgia Fields, Grantchester Road, Cambridge, Cambridgeshire, CB3 9ED, United Kingdom",
+      "latitude": 52.1958672,
+      "longitude": 0.1001034,
+      "formatted_address": "CB3 9ED, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350534981
+    },
+    {
+      "name": "Blaydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565",
+      "image_url": "https://images.englandrugby.com/club_images/2565.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Macclesfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064",
+      "image_url": "https://images.englandrugby.com/club_images/13064.png",
+      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
+      "latitude": 53.2725255,
+      "longitude": -2.1600659,
+      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
+      "place_id": 255105008
+    }
+  ],
+  "team_count": 16
+}

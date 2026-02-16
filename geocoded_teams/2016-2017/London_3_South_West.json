@@ -1,0 +1,127 @@
+{
+  "league_name": "London 3 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=9998&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Farnham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7986",
+      "image_url": "https://images.englandrugby.com/club_images/7986.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Eastleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7248",
+      "image_url": "https://images.englandrugby.com/club_images/7248.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Old Tiffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068",
+      "image_url": "https://images.englandrugby.com/club_images/16068.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
+    },
+    {
+      "name": "Old Cranleighans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15615",
+      "image_url": "https://images.englandrugby.com/club_images/15615.png",
+      "address": "Portsmouth Road, Thames Ditton, Surrey, KT7 0HB, United Kingdom",
+      "latitude": 51.381985,
+      "longitude": -0.3378078,
+      "formatted_address": "Portsmouth Road, Long Ditton, Thames Ditton, Elmbridge, Surrey, England, KT7 0EZ, United Kingdom",
+      "place_id": 259932709
+    },
+    {
+      "name": "Basingstoke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1565",
+      "image_url": "https://images.englandrugby.com/club_images/1565.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Trojans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23216",
+      "image_url": "https://images.englandrugby.com/club_images/23216.png",
+      "address": "Trojans Club, Stoneham Park  , Stoneham Lane, Eastleigh, Southampton, Hampshire, SO50 9HT, United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832256
+    },
+    {
+      "name": "Battersea Ironsides",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1641",
+      "image_url": "https://images.englandrugby.com/club_images/1641.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Teddington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21732",
+      "image_url": "https://images.englandrugby.com/club_images/21732.png",
+      "address": "Teddington Rfc , Bushy Park, Teddington, Middlesex, TW11 0EA, United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    },
+    {
+      "name": "Weybridge Vandals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25094",
+      "image_url": "https://images.englandrugby.com/club_images/25094.png",
+      "address": "Brownacres Walton Lane Walton on Thames SURREY KT12 1QP UNITED KINGDOM",
+      "latitude": 51.3851494,
+      "longitude": -0.436515,
+      "formatted_address": "KT12 1QP, Spelthorne, Surrey, England, United Kingdom",
+      "place_id": 351420526
+    },
+    {
+      "name": "United Services, Portsmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23499",
+      "image_url": "https://images.englandrugby.com/club_images/23499.png",
+      "address": "United Services Sports Club, Burnaby Road, Portsmouth, Hamps, PO1 2EJ, United Kingdom",
+      "latitude": 50.7965238,
+      "longitude": -1.0982525,
+      "formatted_address": "PO1 2EJ, Portsmouth, England, United Kingdom",
+      "place_id": 351777555
+    },
+    {
+      "name": "Millbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878",
+      "image_url": "https://images.englandrugby.com/club_images/13878.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Bognor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2677",
+      "image_url": "https://images.englandrugby.com/club_images/2677.png",
+      "address": "Bognor R.f.c. Hampshire Avenue Bognor Regis West Sussex PO21 5JH United Kingdom",
+      "latitude": 50.79407,
+      "longitude": -0.68564,
+      "formatted_address": "PO21 5JH, Bognor Regis, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351787815
+    }
+  ],
+  "team_count": 12
+}

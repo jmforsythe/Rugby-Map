@@ -1,0 +1,127 @@
+{
+  "league_name": "Premiership",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division=69311&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Wasps",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=52",
+      "image_url": "https://images.englandrugby.com/club_images/52.png",
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
+    },
+    {
+      "name": "Exeter Chiefs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=41",
+      "image_url": "https://images.englandrugby.com/club_images/41.png",
+      "address": "Sandy Park Stadium Sandy Park Way Exeter DEVON EX2 7NN UNITED KINGDOM ",
+      "latitude": 50.7095737,
+      "longitude": -3.4687913,
+      "formatted_address": "EX2 7NN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620368
+    },
+    {
+      "name": "Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18726",
+      "image_url": "https://images.englandrugby.com/club_images/18726.png",
+      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700900
+    },
+    {
+      "name": "Leicester Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=46",
+      "image_url": "https://images.englandrugby.com/club_images/46.png",
+      "address": "Mattioli Woods Welford Road, Leicester Tigers Rfc, Aylestone Road, Leicester, Leicestershire, LE2 7TR, United Kingdom",
+      "latitude": 52.6246099,
+      "longitude": -1.1329,
+      "formatted_address": "LE2 7TR, City of Leicester, England, United Kingdom",
+      "place_id": 351478144
+    },
+    {
+      "name": "Bath Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=42",
+      "image_url": "https://images.englandrugby.com/club_images/42.png",
+      "address": "Farleigh House, Farleigh, Hungerford, Nr Bath, Somerset, BA2 7RW, United Kingdom",
+      "latitude": 51.31225,
+      "longitude": -2.29111,
+      "formatted_address": "BA2 7RW, Norton St Philip, Norton St. Philip, Somerset, England, United Kingdom",
+      "place_id": 350936825
+    },
+    {
+      "name": "Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45",
+      "image_url": "https://images.englandrugby.com/club_images/45.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
+    },
+    {
+      "name": "Northampton Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=49",
+      "image_url": "https://images.englandrugby.com/club_images/49.png",
+      "address": "Clubs Office, Training & Playing Ground, Northampton Rfc, Franklin Gardens, Northampton, Northamptonshire, NN5 5BG, United Kingdom",
+      "latitude": 52.2406842,
+      "longitude": -0.9192619,
+      "formatted_address": "NN5 5BG, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727320
+    },
+    {
+      "name": "Newcastle Falcons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14481",
+      "image_url": "https://images.englandrugby.com/club_images/14481.png",
+      "address": "Kingston Park Stadium Brunton Road Kingston Park Newcastle Upon Tyne Tyne And Wear NE13 8AF United Kingdom",
+      "latitude": 55.01561,
+      "longitude": -1.67652,
+      "formatted_address": "NE13 8AF, Kingston Park, Newcastle upon Tyne, North East, England, United Kingdom",
+      "place_id": 351617507
+    },
+    {
+      "name": "Gloucester Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=44",
+      "image_url": "https://images.englandrugby.com/club_images/44.png",
+      "address": "Kingsholm Stadium, Kingsholm Stadium, Kingsholm Road, Gloucester, Gloucestershire, GL1 3AX, United Kingdom",
+      "latitude": 51.8708416,
+      "longitude": -2.2424709,
+      "formatted_address": "GL1 3AX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350630195
+    },
+    {
+      "name": "Sale Sharks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=50",
+      "image_url": "https://images.englandrugby.com/club_images/50.png",
+      "address": "Sale Sharks Training Ground, Carrington Lane, Carrington, Cheshire, M31 4AE, United Kingdom",
+      "latitude": 53.4322299,
+      "longitude": -2.36978,
+      "formatted_address": "M31 4AE, Carrington, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351550869
+    },
+    {
+      "name": "Worcester Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=53",
+      "image_url": "https://images.englandrugby.com/club_images/53.png",
+      "address": "Clubs Office, Training &amp; Playing Ground, Sixways Stadium, Warriors Way, Worcester, WR3 8ZE, United Kingdom",
+      "latitude": 52.21608,
+      "longitude": -2.16251,
+      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352162012
+    },
+    {
+      "name": "Bristol Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3251",
+      "image_url": "https://images.englandrugby.com/club_images/3251.png",
+      "address": "Bristol Bears Hpc, Beggar Bush Lane, Henbury, Bristol, Bristol, BS8 3TF, United Kingdom",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350521691
+    }
+  ],
+  "team_count": 12
+}

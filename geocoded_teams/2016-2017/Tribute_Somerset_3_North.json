@@ -1,0 +1,77 @@
+{
+  "league_name": "Tribute Somerset 3 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=9924&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Bristol Telephone Area",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3291",
+      "image_url": "https://images.englandrugby.com/club_images/3291.png",
+      "address": "The Club House, Btra Sports Ground, Stockwood Lane, Stockwood, Whitchurch, Bristol, BS14 8SJ, United Kingdom",
+      "latitude": 51.408268,
+      "longitude": -2.5440086,
+      "formatted_address": "BS14 8SJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506626
+    },
+    {
+      "name": "Barton Hill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1515",
+      "image_url": "https://images.englandrugby.com/club_images/1515.png",
+      "address": "Club House, Duncombe Lane, Bristol, BS15 1NS, England",
+      "latitude": 51.4691065,
+      "longitude": -2.5281799,
+      "formatted_address": "BS15 1NS, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506812
+    },
+    {
+      "name": "Imperial II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10863",
+      "image_url": "https://images.englandrugby.com/club_images/10863.png",
+      "address": "South Bristol Sports Centre Imperial RFC West Town Lane Knowle Bristol SOMERSET BS4 5BN UNITED KINGDOM ",
+      "latitude": 51.4318289,
+      "longitude": -2.5465856,
+      "formatted_address": "BS4 5BN, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517833
+    },
+    {
+      "name": "Nailsea & Backwell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14248",
+      "image_url": "https://images.englandrugby.com/club_images/14248.png",
+      "address": "Nailsea & Backwell Rfc, West End Park, West End Lane, Nailsea, Somerset, BS48 4BY, United Kingdom",
+      "latitude": 51.4266176,
+      "longitude": -2.783802,
+      "formatted_address": "BS48 4BY, Nailsea, North Somerset, England, United Kingdom",
+      "place_id": 350518448
+    },
+    {
+      "name": "Avon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1067",
+      "image_url": "https://images.englandrugby.com/club_images/1067.png",
+      "address": "Avon Rfc, Hicks Field, London Road East, Batheaston, Bath, Somerset , BA1 7DA, United Kingdom",
+      "latitude": 51.39936,
+      "longitude": -2.33446,
+      "formatted_address": "BA1 7DA, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350930194
+    },
+    {
+      "name": "Old Bristolians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15463",
+      "image_url": "https://images.englandrugby.com/club_images/15463.png",
+      "address": "Old Bristolians RFC Memorial Playing Field Longwood Lane, Failand Bristol BRISTOL BS8 3TQ UNITED KINGDOM ",
+      "latitude": 51.4430181,
+      "longitude": -2.6705286,
+      "formatted_address": "BS8 3TQ, Long Ashton, North Somerset, England, United Kingdom",
+      "place_id": 350521695
+    },
+    {
+      "name": "Oldfield Old Boys III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16141",
+      "image_url": "https://images.englandrugby.com/club_images/16141.png",
+      "address": "Shaft Road Combe Down Bath BA2 7HP ENGLAND",
+      "latitude": 51.3620111,
+      "longitude": -2.3363342,
+      "formatted_address": "Shaft Road, Combe Down, Bath, Bath and North East Somerset, West of England, England, BA2 7HR, United Kingdom",
+      "place_id": 261418614
+    }
+  ],
+  "team_count": 7
+}

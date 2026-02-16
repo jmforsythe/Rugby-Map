@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9960&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Barnsley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1461",
+      "image_url": "https://images.englandrugby.com/club_images/1461.png",
+      "address": "Barnsley Rugby Club Ltd, Shaw Lane, Barnsley, South Yorkshire, S70 6HZ, United Kingdom",
+      "latitude": 53.5502194,
+      "longitude": -1.4929965,
+      "formatted_address": "S70 6HZ, Barnsley, South Yorkshire, England, United Kingdom",
+      "place_id": 351861271
+    },
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
+    },
+    {
+      "name": "Chester Devas Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 257237409
+    },
+    {
+      "name": "Vagabond Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23886",
+      "image_url": "https://images.englandrugby.com/club_images/23886.png",
+      "address": "IOM Vagabonds Clubhouse Ballafletcher Sports Grounds Ballafletcher Braddan ISLE OF MAN IM4 4RJ UNITED KINGDOM ",
+      "latitude": 54.1753691,
+      "longitude": -4.5069266,
+      "formatted_address": "IM4 4RJ, Braddan, Middle, Isle of Man",
+      "place_id": 352221503
+    },
+    {
+      "name": "Doncaster Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 399475112
+    },
+    {
+      "name": "Altrincham Kersal Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=540",
+      "image_url": "https://images.englandrugby.com/club_images/540.png",
+      "address": "Stelfox Avenue Timperley Altrincham Cheshire WA15 6UL United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127681
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Ormskirk Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16254",
+      "image_url": "https://images.englandrugby.com/club_images/16254.png",
+      "address": "Green Lane Ormskirk LANCASHIRE L39 1ND UNITED KINGDOM",
+      "latitude": 53.5723631,
+      "longitude": -2.8872143,
+      "formatted_address": "Green Lane, Ormskirk, West Lancashire, Lancashire, England, L39 1ND, United Kingdom",
+      "place_id": 255393858
+    }
+  ],
+  "team_count": 8
+}

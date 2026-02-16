@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC Midlands 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9965&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Kenilworth Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11258",
+      "image_url": "https://images.englandrugby.com/club_images/11258.png",
+      "address": "The Jack Davies Memorial Ground, Glasshouse Lane, Kenilworth, Warwickshire , CV8 2AJ, United Kingdom",
+      "latitude": 52.3382842,
+      "longitude": -1.5597896,
+      "formatted_address": "CV8 2AJ, Kenilworth, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126681
+    },
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Dudley Kingswinford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6861",
+      "image_url": "https://images.englandrugby.com/club_images/6861.png",
+      "address": "Dudley Kingswinford Rfc, Heathbrook, Swindon Road,, Wall Heath, Kingswinford, West Midlands, DY6 0AW, United Kingdom",
+      "latitude": 52.50217,
+      "longitude": -2.19073,
+      "formatted_address": "DY6 0AW, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351207673
+    },
+    {
+      "name": "Aston Old Edwardian Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1002",
+      "image_url": "https://images.englandrugby.com/club_images/1002.png",
+      "address": "Sunnybank Avenue Perry Common Birmingham West Midlands B44 0HP United Kingdom",
+      "latitude": 52.5380523,
+      "longitude": -1.8739717,
+      "formatted_address": "B44 0HP, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350477765
+    },
+    {
+      "name": "Cannock Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4114",
+      "image_url": "https://images.englandrugby.com/club_images/4114.png",
+      "address": "The Morgan Ground Stafford Road Huntington Cannock STAFFORDSHIRE WS12 4NU ",
+      "latitude": 52.7131327,
+      "longitude": -2.0409029,
+      "formatted_address": "WS12 4NU, Huntington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350895011
+    },
+    {
+      "name": "Coventry Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5738",
+      "image_url": "https://images.englandrugby.com/club_images/5738.png",
+      "address": "82 Burbages Lane Exhall Coventry WARWICKSHIRE CV6 6AY UNITED KINGDOM ",
+      "latitude": 52.4530871,
+      "longitude": -1.5031248,
+      "formatted_address": "CV6 6AY, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351125430
+    },
+    {
+      "name": "Longton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12772",
+      "image_url": "https://images.englandrugby.com/club_images/12772.png",
+      "address": "Trentham Fields, Eastern Rise, Sir Stanley Matthews Way, Stoke On Trent, Staffordshire, ST4 8WG",
+      "latitude": 52.9795764,
+      "longitude": -2.171127,
+      "formatted_address": "ST4 8WG, Trentham Lakes North, Blurton, Fenton, Stoke-on-Trent, England, United Kingdom",
+      "place_id": 350837457
+    },
+    {
+      "name": "Winnington Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25654",
+      "image_url": "https://images.englandrugby.com/club_images/25654.png",
+      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
+      "latitude": 53.25223,
+      "longitude": -2.54034,
+      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350683530
+    }
+  ],
+  "team_count": 8
+}

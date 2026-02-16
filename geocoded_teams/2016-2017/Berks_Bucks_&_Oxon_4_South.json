@@ -1,0 +1,107 @@
+{
+  "league_name": "Berks/Bucks & Oxon 4 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=9932&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Reading Abbey IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17511",
+      "image_url": "https://images.englandrugby.com/club_images/17511.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Hungerford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10698",
+      "image_url": "https://images.englandrugby.com/club_images/10698.png",
+      "address": "Hungerford Rfc Clubhouse, Triangle Field, Priory Road, Hungerford, Berkshire, RG170AP, United Kingdom",
+      "latitude": 51.40557,
+      "longitude": -1.51367,
+      "formatted_address": "RG17 0AP, Hungerford, West Berkshire, England, United Kingdom",
+      "place_id": 351808741
+    },
+    {
+      "name": "Marlow III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13444",
+      "image_url": "https://images.englandrugby.com/club_images/13444.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Didcot II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6429",
+      "image_url": "https://images.englandrugby.com/club_images/6429.png",
+      "address": "Boundary Park, Greenwood Way, Harwell, Didcot, Oxfordshire, OX11 0AB, United Kingdom",
+      "latitude": 51.6080606,
+      "longitude": -1.2695259,
+      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
+      "place_id": 259301410
+    },
+    {
+      "name": "Slough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19518",
+      "image_url": "https://images.englandrugby.com/club_images/19518.png",
+      "address": "Farnham Common Sports Club, One Pin Lane, Farnham Common, Slough, Berkshire, SL2 3QY, United Kingdom",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820537
+    },
+    {
+      "name": "Thatcham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21923",
+      "image_url": "https://images.englandrugby.com/club_images/21923.png",
+      "address": "Henwick Worthy Sports Fields Henwick Lane Thatcham BERKSHIRE RG18 3BN UNITED KINGDOM ",
+      "latitude": 51.4079239,
+      "longitude": -1.2780853,
+      "formatted_address": "RG18 3BN, Thatcham, West Berkshire, England, United Kingdom",
+      "place_id": 350785551
+    },
+    {
+      "name": "Phoenix II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16888",
+      "image_url": "https://images.englandrugby.com/club_images/16888.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
+    },
+    {
+      "name": "High Wycombe III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10117",
+      "image_url": "https://images.englandrugby.com/club_images/10117.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    },
+    {
+      "name": "Tadley III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21609",
+      "image_url": "https://images.englandrugby.com/club_images/21609.png",
+      "address": "Frank Jose Park, Red Lane, Aldermaston, Berkshire, RG7 4PA, United Kingdom",
+      "latitude": 51.37191,
+      "longitude": -1.1217299,
+      "formatted_address": "RG7 4PA, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 351818569
+    },
+    {
+      "name": "Windsor IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25611",
+      "image_url": "https://images.englandrugby.com/club_images/25611.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM ",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932039
+    }
+  ],
+  "team_count": 10
+}

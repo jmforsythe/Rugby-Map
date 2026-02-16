@@ -1,0 +1,87 @@
+{
+  "league_name": "Tribute Cornwall 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=9911&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Hayle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9762",
+      "image_url": "https://images.englandrugby.com/club_images/9762.png",
+      "address": "Memorial Park, Marsh Lane, Hayle, Cornwall, TR27 4PS, United Kingdom",
+      "latitude": 50.19573,
+      "longitude": -5.39965,
+      "formatted_address": "TR27 4PS, Hayle, Cornwall, England, United Kingdom",
+      "place_id": 352074538
+    },
+    {
+      "name": "Newquay Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584",
+      "image_url": "https://images.englandrugby.com/club_images/14584.png",
+      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
+      "latitude": 50.41375,
+      "longitude": -5.06232,
+      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
+      "place_id": 352076356
+    },
+    {
+      "name": "Liskeard-Looe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347",
+      "image_url": "https://images.englandrugby.com/club_images/12347.png",
+      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
+      "latitude": 50.4605849,
+      "longitude": -4.4629552,
+      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
+      "place_id": 350772630
+    },
+    {
+      "name": "Veor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23959",
+      "image_url": "https://images.englandrugby.com/club_images/23959.png",
+      "address": "Holman Sports Club 32 Pendarves Road Camborne Cornwall TR14 7QG United Kingdom",
+      "latitude": 50.2087467,
+      "longitude": -5.3047534,
+      "formatted_address": "TR14 7QG, Camborne, Cornwall, England, United Kingdom",
+      "place_id": 350866740
+    },
+    {
+      "name": "Helston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9925",
+      "image_url": "https://images.englandrugby.com/club_images/9925.png",
+      "address": "King George V Playing Fields, Clodgey Lane, Helston, Cornwall, TR13 8PJ, United Kingdom",
+      "latitude": 50.1048847,
+      "longitude": -5.2657992,
+      "formatted_address": "TR13 8PJ, Helston, Cornwall, England, United Kingdom",
+      "place_id": 350866499
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "Roseland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18000",
+      "image_url": "https://images.englandrugby.com/club_images/18000.png",
+      "address": "Philleigh., Truro, Cornwall, TR2 5ND, United Kingdom",
+      "latitude": 50.21638,
+      "longitude": -4.99117,
+      "formatted_address": "TR2 5ND, Philleigh, Cornwall, England, United Kingdom",
+      "place_id": 352073158
+    },
+    {
+      "name": "Camborne S o M",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4006",
+      "image_url": "https://images.englandrugby.com/club_images/4006.png",
+      "address": "Camborne School of Mines Tremough Campus Penryn CORNWALL TR10 9EZ UNITED KINGDOM ",
+      "latitude": 50.16863,
+      "longitude": -5.1259,
+      "formatted_address": "TR10 9EZ, Mabe, Cornwall, England, United Kingdom",
+      "place_id": 352067944
+    }
+  ],
+  "team_count": 8
+}

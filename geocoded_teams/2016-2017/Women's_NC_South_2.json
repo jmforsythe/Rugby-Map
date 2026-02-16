@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=10024&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Ellingham & Ringwood Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7456",
+      "image_url": "https://images.englandrugby.com/club_images/7456.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Portsmouth Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17137",
+      "image_url": "https://images.englandrugby.com/club_images/17137.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Havant Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9703",
+      "image_url": "https://images.englandrugby.com/club_images/9703.png",
+      "address": "Hooks Lane Ground Fraser Road Bedhampton Havant Hampshire PO9 3EJ United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351345426
+    },
+    {
+      "name": "Seaford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18874",
+      "image_url": "https://images.englandrugby.com/club_images/18874.png",
+      "address": "The Clubhouse Salts Recreation Ground Richmond Road (off Dane Road) Seaford East Sussex BN25 1DR United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501879
+    },
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Dorchester/Weymouth & P Roses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6608",
+      "image_url": "https://images.englandrugby.com/club_images/6608.png",
+      "address": "Dorchester Rfc Coburg Road Dorchester Dorset DT1 2HX England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 350743556
+    }
+  ],
+  "team_count": 6
+}

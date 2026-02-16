@@ -1,0 +1,94 @@
+{
+  "league_name": "Midlands 5 East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=9877&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Skegness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463",
+      "image_url": "https://images.englandrugby.com/club_images/19463.png",
+      "address": "Wainfleet Road Playing Fields Skegness PE25 2EL UNITED KINGDOM ",
+      "latitude": 53.1437068,
+      "longitude": 0.323573,
+      "formatted_address": "PE25 2EL, Skegness, East Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350761303
+    },
+    {
+      "name": "Keyworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11394",
+      "image_url": "https://images.englandrugby.com/club_images/11394.png",
+      "address": "The Clubhouse Willoughby Road Widmerpool Nottingham Nottinghamshire NG12 5PU United Kingdom",
+      "latitude": 52.8438933,
+      "longitude": -1.0635972,
+      "formatted_address": "NG12 5PU, Widmerpool, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350715908
+    },
+    {
+      "name": "Cleethorpes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191",
+      "image_url": "https://images.englandrugby.com/club_images/5191.png",
+      "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 $AW, United Kingdom",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "North Hykeham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14720",
+      "image_url": "https://images.englandrugby.com/club_images/14720.png",
+      "address": "North Hykeham Rufc, Ruston Sport & Social Club, Newark Road, North Hykeham, Lincolnshire, LN6 8RN, United Kingdom",
+      "latitude": 53.1962467,
+      "longitude": -0.5749063,
+      "formatted_address": "LN6 8RN, Lincoln, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688779
+    },
+    {
+      "name": "Gainsborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8458",
+      "image_url": "https://images.englandrugby.com/club_images/8458.png",
+      "address": "Roses Sports Ground, North Warren Road, Gainsborough, Lincolnshire, DN212TU, United Kingdom",
+      "latitude": 53.4094709,
+      "longitude": -0.7885264,
+      "formatted_address": "DN21 2TU, Gainsborough CP, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351184703
+    },
+    {
+      "name": "Nottinghamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15149",
+      "image_url": "https://images.englandrugby.com/club_images/15149.png",
+      "address": "Adbolton Lane West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AS UNITED KINGDOM ",
+      "latitude": 52.9392721,
+      "longitude": -1.1076793,
+      "formatted_address": "NG2 5AS, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718234
+    },
+    {
+      "name": "Bingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2249",
+      "image_url": "https://images.englandrugby.com/club_images/2249.png",
+      "address": "The Town Pavilion, Brendon Grove, , Bingham, Nottinghamshire, NG13 8TN, United Kingdom",
+      "latitude": 52.9539284,
+      "longitude": -0.9703302,
+      "formatted_address": "NG13 8TN, Bingham, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350716079
+    },
+    {
+      "name": "Crusaders (Derbyshire)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5958",
+      "image_url": "https://images.englandrugby.com/club_images/5958.png",
+      "address": "Crusaders (derbyshire) Rufc 55 Clowne Road Chesterfield Derbyshire S44 6AG United Kingdom",
+      "latitude": 53.25944,
+      "longitude": -1.29266,
+      "formatted_address": "S44 6AG, Old Bolsover, Shuttlewood, Bolsover, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351851462
+    },
+    {
+      "name": "Mansfield Woodhouse",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13319",
+      "image_url": "https://images.englandrugby.com/club_images/13319.png",
+      "address": "The ex-service mens club Slant lane Mansfield Woodhouse NOTTINGHAMSHIRE NG19 8ES ENGLAND",
+      "latitude": 53.1664235,
+      "longitude": -1.1943435,
+      "formatted_address": "NG19 8ES, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351651568
+    }
+  ],
+  "team_count": 9
+}

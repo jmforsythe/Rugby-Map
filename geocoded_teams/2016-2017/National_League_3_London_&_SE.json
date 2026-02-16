@@ -1,0 +1,147 @@
+{
+  "league_name": "National League 3 London & SE",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=9988&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Tonbridge Juddians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22915",
+      "image_url": "https://images.englandrugby.com/club_images/22915.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Hertford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10046",
+      "image_url": "https://images.englandrugby.com/club_images/10046.png",
+      "address": "Highfields, 62 Hoe Lane, Ware, Hertfordshire, SG12 9NZ, United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
+    },
+    {
+      "name": "Westcombe Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24978",
+      "image_url": "https://images.englandrugby.com/club_images/24978.png",
+      "address": "Westcombe Park RFC Goddington Dene Goddington Lane Orpington KENT BR6 9SX UNITED KINGDOM ",
+      "latitude": 51.36372,
+      "longitude": 0.1147,
+      "formatted_address": "BR6 9SX, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351014717
+    },
+    {
+      "name": "Guernsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028",
+      "image_url": "https://images.englandrugby.com/club_images/9028.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352872986
+    },
+    {
+      "name": "Shelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141",
+      "image_url": "https://images.englandrugby.com/club_images/19141.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Westcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24949",
+      "image_url": "https://images.englandrugby.com/club_images/24949.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Dorking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6609",
+      "image_url": "https://images.englandrugby.com/club_images/6609.png",
+      "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
+      "latitude": 51.23505,
+      "longitude": -0.28549,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827752
+    },
+    {
+      "name": "Guildford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9045",
+      "image_url": "https://images.englandrugby.com/club_images/9045.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
+    },
+    {
+      "name": "Sutton & Epsom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21414",
+      "image_url": "https://images.englandrugby.com/club_images/21414.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Southend Saxons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19725",
+      "image_url": "https://images.englandrugby.com/club_images/19725.png",
+      "address": "Sumpters Way, Warners Bridge Park, Southend-on-sea, Essex, SS2 5RE, United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 351981743
+    },
+    {
+      "name": "Chichester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753",
+      "image_url": "https://images.englandrugby.com/club_images/4753.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Colchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5386",
+      "image_url": "https://images.englandrugby.com/club_images/5386.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Amersham & Chiltern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581",
+      "image_url": "https://images.englandrugby.com/club_images/581.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650548
+    }
+  ],
+  "team_count": 14
+}

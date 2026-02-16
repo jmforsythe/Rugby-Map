@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC South East North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9961&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Wymondham Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26303",
+      "image_url": "https://images.englandrugby.com/club_images/26303.png",
+      "address": "Wymondham Rfc Barnard Fields Bray Drive (off Reeve Way) Wymondham Norfolk NR18 0GQ United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350288069
+    },
+    {
+      "name": "Harwich Owls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9614",
+      "image_url": "https://images.englandrugby.com/club_images/9614.png",
+      "address": "Wick Lane Dovercourt Harwich CO12 3TA United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "East London Vixens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7167",
+      "image_url": "https://images.englandrugby.com/club_images/7167.png",
+      "address": "71 Holland Road, West Ham, London, E15 3BP, United Kingdom",
+      "latitude": 51.5292709,
+      "longitude": 0.010343,
+      "formatted_address": "Strength Ambassadors, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91270651
+    },
+    {
+      "name": "Tabard Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21584",
+      "image_url": "https://images.englandrugby.com/club_images/21584.png",
+      "address": "Tabard Rfc King George V Playing Fields Cobden Hill Radlett Herts WD7 7JN United Kingdom",
+      "latitude": 51.6762842,
+      "longitude": -0.3124198,
+      "formatted_address": "WD7 7JN, Aldenham, Letchmore Heath, Hertsmere, Hertfordshire, England, United Kingdom",
+      "place_id": 351690067
+    },
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Lakenham Hewett Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Harlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9431",
+      "image_url": "https://images.englandrugby.com/club_images/9431.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    }
+  ],
+  "team_count": 8
+}

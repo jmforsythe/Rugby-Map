@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 2 East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=9866&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Peterborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16819",
+      "image_url": "https://images.englandrugby.com/club_images/16819.png",
+      "address": "Peterborough R.u.f.c., Second Drove, Fengate, Peterborough, Cambridgeshire, PE1 5XA, United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759246
+    },
+    {
+      "name": "Oundle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16352",
+      "image_url": "https://images.englandrugby.com/club_images/16352.png",
+      "address": "Occupation Road, Oundle, Peterborough, Cambridgeshire, PE8 4RU, United Kingdom",
+      "latitude": 52.4895299,
+      "longitude": -0.4689737,
+      "formatted_address": "PE8 4RU, Oundle, North Northamptonshire, England, United Kingdom",
+      "place_id": 350770517
+    },
+    {
+      "name": "Olney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16184",
+      "image_url": "https://images.englandrugby.com/club_images/16184.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Oadby Wyggestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15254",
+      "image_url": "https://images.englandrugby.com/club_images/15254.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road,  Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM ",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Old Laurentians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15791",
+      "image_url": "https://images.englandrugby.com/club_images/15791.png",
+      "address": "Fenley Field, Lime Tree Avenue, Rugby, Warks, CV22 7QT, United Kingdom",
+      "latitude": 52.3548836,
+      "longitude": -1.2945437,
+      "formatted_address": "CV22 7QT, Dunchurch, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564075
+    },
+    {
+      "name": "Oakham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15263",
+      "image_url": "https://images.englandrugby.com/club_images/15263.png",
+      "address": "The Showground, Showground Way, Barleythorpe , Oakham, Rutland, LE15 7TW, United Kingdom",
+      "latitude": 52.6854971,
+      "longitude": -0.7343637,
+      "formatted_address": "LE15 7TW, Barleythorpe, Rutland, England, United Kingdom",
+      "place_id": 350682432
+    },
+    {
+      "name": "Belgrave",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1895",
+      "image_url": "https://images.englandrugby.com/club_images/1895.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Luton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12941",
+      "image_url": "https://images.englandrugby.com/club_images/12941.png",
+      "address": "Luton Rfc, Newlands, Newlands Road, Luton, Bedfordshire, LU1 4BQ, United Kingdom",
+      "latitude": 51.8620279,
+      "longitude": -0.4296233,
+      "formatted_address": "LU1 4BQ, Luton, England, United Kingdom",
+      "place_id": 350693235
+    },
+    {
+      "name": "Market Harborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13377",
+      "image_url": "https://images.englandrugby.com/club_images/13377.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM ",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    },
+    {
+      "name": "Stamford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20850",
+      "image_url": "https://images.englandrugby.com/club_images/20850.png",
+      "address": "Hambleton Road Stamford LINCOLNSHIRE PE9 2RZ UNITED KINGDOM ",
+      "latitude": 52.6509691,
+      "longitude": -0.5016942,
+      "formatted_address": "Hambleton Road, Stamford, South Kesteven, Lincolnshire, Greater Lincolnshire, England, PE9 2RY, United Kingdom",
+      "place_id": 258312992
+    },
+    {
+      "name": "Vipers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24033",
+      "image_url": "https://images.englandrugby.com/club_images/24033.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Rushden & Higham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18413",
+      "image_url": "https://images.englandrugby.com/club_images/18413.png",
+      "address": "Manor Park, Bedford Road, Rushden, Northamptonshire, NN10 0SA, United Kingdom",
+      "latitude": 52.2737067,
+      "longitude": -0.5856638,
+      "formatted_address": "NN10 0SA, Rushden, North Northamptonshire, England, United Kingdom",
+      "place_id": 350724556
+    }
+  ],
+  "team_count": 12
+}

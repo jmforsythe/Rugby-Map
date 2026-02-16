@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 from collections import defaultdict
 from pathlib import Path
@@ -861,16 +862,24 @@ def color_regions_by_league(
     }
 
 
-def build_base_map() -> folium.Map:
-    """Create a base England-centered map with light tiles and outline."""
-    m = folium.Map(location=[52.5, -1.5], zoom_start=7, tiles=None)
+def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
+    """Export simplified boundary data to a shared JSON file for client-side use.
 
-    folium.TileLayer(
-        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        control=False,
-    ).add_to(m)
+    Creates a single boundaries.json file containing all country and ITL region
+    geometries. This file is loaded once by the client and referenced by all maps,
+    avoiding redundant geometry data in each HTML file.
+    """
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    output_path = os.path.join(output_dir, "boundaries.json")
 
+    boundary_data = {
+        "countries": {},
+        "itl1": None,
+        "itl2": None,
+        "itl3": None,
+    }
+
+    # Export country boundaries
     countries_geojson_path = "boundaries/countries.geojson"
     if os.path.exists(countries_geojson_path):
         countries_data = json_load_cache(countries_geojson_path)
@@ -882,61 +891,366 @@ def build_base_map() -> folium.Map:
                 if feat["properties"].get("CTRY24NM") == country_name
             ]
             if country_features:
-                country_data = {"type": "FeatureCollection", "features": country_features}
-                folium.GeoJson(
-                    country_data,
-                    name=country_name,
-                    style_function=lambda x: {
-                        "fillColor": "lightgray",
-                        "color": "black",
-                        "weight": 2,
-                        "fillOpacity": 0.1,
-                    },
-                    control=False,
-                ).add_to(m)
+                # Simplify country outlines
+                simplified_features = []
+                for feat in country_features:
+                    geom = shape(feat["geometry"])
+                    simplified_geom = geom.simplify(0.001, preserve_topology=True)
+                    simplified_features.append(
+                        {
+                            "type": "Feature",
+                            "geometry": mapping(simplified_geom),
+                            "properties": feat.get("properties", {}),
+                        }
+                    )
 
-    # Add faint borders for each level
+                boundary_data["countries"][country_name] = {
+                    "type": "FeatureCollection",
+                    "features": simplified_features,
+                }
+
+    # Export ITL boundaries
     for level in ["ITL_1", "ITL_2", "ITL_3"]:
         geojson_path = f"boundaries/{level}.geojson"
         if os.path.exists(geojson_path):
             data = json_load_cache(geojson_path)
-            folium.GeoJson(
-                data,
-                name=f"{level} Borders",
-                style_function=lambda x: {
-                    "fillColor": "transparent",
-                    "color": "gray",
-                    "weight": 0.5,
-                    "fillOpacity": 0,
-                    "opacity": 0.4,
-                },
-                control=False,
-            ).add_to(m)
+            # Simplify geometries (0.02 degrees ≈ 2km tolerance)
+            simplified_features = []
+            for feature in data["features"]:
+                geom = shape(feature["geometry"])
+                simplified_geom = geom.simplify(0.001, preserve_topology=True)
+                simplified_features.append(
+                    {
+                        "type": "Feature",
+                        "geometry": mapping(simplified_geom),
+                        "properties": feature.get("properties", {}),
+                    }
+                )
+
+            boundary_data[level.lower()] = {
+                "type": "FeatureCollection",
+                "features": simplified_features,
+            }
+
+    # Save to JSON file
+    with open(output_path, "w") as f:
+        json.dump(boundary_data, f, separators=(",", ":"))  # Compact format
+
+    print(f"Exported shared boundary data to: {output_path}")
+
+
+def get_boundary_loader_script(
+    relative_path_to_shared: str = "../shared", use_inline: bool = False
+) -> str:
+    """Return JavaScript that loads and renders boundaries from shared file.
+
+    Args:
+        relative_path_to_shared: Relative path from the HTML file to the shared folder
+        use_inline: If True, embed boundary data inline instead of using fetch (for local dev)
+
+    Returns:
+        JavaScript code that loads boundaries.json and renders them on the map
+    """
+    if use_inline:
+        # Load the boundary data and embed it inline for local development
+        boundaries_path = "tier_maps/shared/boundaries.json"
+        boundary_data_json = "{}"
+        if os.path.exists(boundaries_path):
+            with open(boundaries_path) as f:
+                boundary_data_json = f.read()
+
+        return f"""
+    <script>
+    // Embedded boundary data for local development (avoids fetch/CORS issues)
+    (function() {{
+        // Wait for map to be initialized
+        function addBoundaries() {{
+            // Find the Leaflet map instance
+            var mapElement = document.querySelector('.folium-map');
+            if (!mapElement || !mapElement._leaflet_id) {{
+                setTimeout(addBoundaries, 100);
+                return;
+            }}
+            // Get the actual Leaflet map object from the element
+            var map = window[Object.keys(window).find(key => key.startsWith('map_') && window[key] instanceof L.Map)];
+            if (!map) {{
+                setTimeout(addBoundaries, 100);
+                return;
+            }}
+
+            const boundaryData = {boundary_data_json};
+
+            // Add country outlines
+            const countryStyle = {{
+                fillColor: 'lightgray',
+                color: 'black',
+                weight: 2,
+                fillOpacity: 0.1
+            }};
+
+            Object.entries(boundaryData.countries || {{}}).forEach(([name, data]) => {{
+                L.geoJson(data, {{
+                    style: countryStyle
+                }}).addTo(map);
+            }});
+
+            // Add ITL borders (faint background)
+            const borderStyle = {{
+                fillColor: 'transparent',
+                color: 'gray',
+                weight: 0.5,
+                fillOpacity: 0,
+                opacity: 0.4
+            }};
+
+            ['itl_1', 'itl_2', 'itl_3'].forEach(level => {{
+                if (boundaryData[level]) {{
+                    L.geoJson(boundaryData[level], {{
+                        style: borderStyle
+                    }}).addTo(map);
+                }}
+            }});
+        }}
+
+        if (document.readyState === 'loading') {{
+            document.addEventListener('DOMContentLoaded', addBoundaries);
+        }} else {{
+            addBoundaries();
+        }}
+    }})();
+    </script>
+    """
+    else:
+        # Use fetch for production
+        return f"""
+    <script>
+    // Load and render shared boundary data
+    (function() {{
+        function addBoundaries() {{
+            // Find the Leaflet map instance
+            var mapElement = document.querySelector('.folium-map');
+            if (!mapElement || !mapElement._leaflet_id) {{
+                setTimeout(addBoundaries, 100);
+                return;
+            }}
+            // Get the actual Leaflet map object from the element
+            var map = window[Object.keys(window).find(key => key.startsWith('map_') && window[key] instanceof L.Map)];
+            if (!map) {{
+                setTimeout(addBoundaries, 100);
+                return;
+            }}
+
+            fetch('{relative_path_to_shared}/boundaries.json')
+                .then(response => response.json())
+                .then(boundaryData => {{
+                    // Add country outlines
+                    const countryStyle = {{
+                        fillColor: 'lightgray',
+                        color: 'black',
+                        weight: 2,
+                        fillOpacity: 0.1
+                    }};
+
+                    Object.entries(boundaryData.countries).forEach(([name, data]) => {{
+                        L.geoJson(data, {{
+                            style: countryStyle
+                        }}).addTo(map);
+                    }});
+
+                    // Add ITL borders (faint background)
+                    const borderStyle = {{
+                        fillColor: 'transparent',
+                        color: 'gray',
+                        weight: 0.5,
+                        fillOpacity: 0,
+                        opacity: 0.4
+                    }};
+
+                    ['itl_1', 'itl_2', 'itl_3'].forEach(level => {{
+                        if (boundaryData[level]) {{
+                            L.geoJson(boundaryData[level], {{
+                                style: borderStyle
+                            }}).addTo(map);
+                        }}
+                    }});
+                }})
+                .catch(err => console.warn('Could not load shared boundaries:', err));
+        }}
+
+        if (document.readyState === 'loading') {{
+            document.addEventListener('DOMContentLoaded', addBoundaries);
+        }} else {{
+            addBoundaries();
+        }}
+    }})();
+    </script>
+    """
+
+
+def get_debug_boundary_loader_script(
+    relative_path_to_shared: str = "../shared", use_inline: bool = False
+) -> str:
+    """Return JavaScript that loads ITL debug boundaries from shared file.
+
+    Args:
+        relative_path_to_shared: Relative path from the HTML file to the shared folder
+        use_inline: If True, embed boundary data inline instead of using fetch (for local dev)
+
+    Returns:
+        JavaScript code that loads debug boundaries and adds them to layer control
+    """
+    if use_inline:
+        # Load the boundary data and embed it inline for local development
+        boundaries_path = "tier_maps/shared/boundaries.json"
+        boundary_data_json = "{}"
+        if os.path.exists(boundaries_path):
+            with open(boundaries_path) as f:
+                boundary_data_json = f.read()
+
+        return f"""
+    <script>
+    // Embedded debug boundary data for local development
+    (function() {{
+        function addDebugBoundaries() {{
+            // Find the Leaflet map instance
+            var mapElement = document.querySelector('.folium-map');
+            if (!mapElement || !mapElement._leaflet_id) {{
+                setTimeout(addDebugBoundaries, 100);
+                return;
+            }}
+            // Get the actual Leaflet map object from the element
+            var map = window[Object.keys(window).find(key => key.startsWith('map_') && window[key] instanceof L.Map)];
+            if (!map) {{
+                setTimeout(addDebugBoundaries, 100);
+                return;
+            }}
+
+            const boundaryData = {boundary_data_json};
+
+            const debugStyle = {{
+                fillColor: 'transparent',
+                color: 'red',
+                weight: 2,
+                fillOpacity: 0
+            }};
+
+            const debugLayers = {{
+                'Debug: ITL1 Boundaries': boundaryData.itl_1,
+                'Debug: ITL2 Boundaries': boundaryData.itl_2,
+                'Debug: ITL3 Boundaries': boundaryData.itl_3
+            }};
+
+            // Add debug layers to existing layer control
+            Object.entries(debugLayers).forEach(([name, data]) => {{
+                if (data) {{
+                    const layer = L.geoJson(data, {{
+                        style: debugStyle
+                    }});
+                    // Add to overlays in layer control
+                    if (window.layerControl) {{
+                        window.layerControl.addOverlay(layer, name);
+                    }}
+                }}
+            }});
+        }}
+
+        if (document.readyState === 'loading') {{
+            document.addEventListener('DOMContentLoaded', addDebugBoundaries);
+        }} else {{
+            addDebugBoundaries();
+        }}
+    }})();
+    </script>
+    """
+    else:
+        # Use fetch for production
+        return f"""
+    <script>
+    // Load and render debug ITL boundaries
+    (function() {{
+        function addDebugBoundaries() {{
+            // Find the Leaflet map instance
+            var mapElement = document.querySelector('.folium-map');
+            if (!mapElement || !mapElement._leaflet_id) {{
+                setTimeout(addDebugBoundaries, 100);
+                return;
+            }}
+            // Get the actual Leaflet map object from the element
+            var map = window[Object.keys(window).find(key => key.startsWith('map_') && window[key] instanceof L.Map)];
+            if (!map) {{
+                setTimeout(addDebugBoundaries, 100);
+                return;
+            }}
+
+            fetch('{relative_path_to_shared}/boundaries.json')
+                .then(response => response.json())
+                .then(boundaryData => {{
+                    const debugStyle = {{
+                        fillColor: 'transparent',
+                        color: 'red',
+                        weight: 2,
+                        fillOpacity: 0
+                    }};
+
+                    const debugLayers = {{
+                        'Debug: ITL1 Boundaries': boundaryData.itl_1,
+                        'Debug: ITL2 Boundaries': boundaryData.itl_2,
+                        'Debug: ITL3 Boundaries': boundaryData.itl_3
+                    }};
+
+                    // Add debug layers to existing layer control
+                    Object.entries(debugLayers).forEach(([name, data]) => {{
+                        if (data) {{
+                            const layer = L.geoJson(data, {{
+                                style: debugStyle
+                            }});
+                            // Add to overlays in layer control
+                            if (window.layerControl) {{
+                                window.layerControl.addOverlay(layer, name);
+                            }}
+                        }}
+                    }});
+                }})
+                .catch(err => console.warn('Could not load debug boundaries:', err));
+        }}
+
+        if (document.readyState === 'loading') {{
+            document.addEventListener('DOMContentLoaded', addDebugBoundaries);
+        }} else {{
+            addDebugBoundaries();
+        }}
+    }})();
+    </script>
+    """
+
+
+def build_base_map() -> folium.Map:
+    """Create a base England-centered map with light tiles.
+
+    Boundaries are loaded from shared/boundaries.json via client-side JavaScript
+    to avoid embedding redundant geometry data in each HTML file.
+    """
+    m = folium.Map(location=[52.5, -1.5], zoom_start=7, tiles=None)
+
+    folium.TileLayer(
+        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        control=False,
+    ).add_to(m)
+
+    # Boundaries will be loaded via JavaScript from shared/boundaries.json
+    # This avoids embedding the same geometry data in every HTML file
     return m
 
 
 def add_debug_boundaries(m: folium.Map, show_debug: bool) -> None:
-    """Optionally add ITL boundary debug layers to the map."""
-    if not show_debug:
-        return
-    for _, geojson_path, layer_name in [
-        ("itl1", "boundaries/ITL_1.geojson", "Debug: ITL1 Boundaries"),
-        ("itl2", "boundaries/ITL_2.geojson", "Debug: ITL2 Boundaries"),
-        ("itl3", "boundaries/ITL_3.geojson", "Debug: ITL3 Boundaries"),
-    ]:
-        if os.path.exists(geojson_path):
-            itl_data = json_load_cache(geojson_path)
-            debug_group = folium.FeatureGroup(name=layer_name, show=False)
-            folium.GeoJson(
-                itl_data,
-                style_function=lambda x: {
-                    "fillColor": "transparent",
-                    "color": "red",
-                    "weight": 2,
-                    "fillOpacity": 0,
-                },
-            ).add_to(debug_group)
-            m.add_child(debug_group)
+    """Optionally add ITL boundary debug layers to the map.
+
+    Debug boundaries are loaded from shared/boundaries.json via client-side JavaScript.
+    """
+    # Debug boundaries will be loaded via JavaScript if needed
+    # This is handled in the boundary loader script
+    pass
 
 
 def collect_league_geometries_for_tier(
@@ -1267,6 +1581,33 @@ def back_button_element() -> folium.Element:
     return folium.Element(js)
 
 
+def service_worker_registration(relative_path_to_shared: str = "../shared") -> folium.Element:
+    """Return script to register service worker for caching external images.
+
+    Args:
+        relative_path_to_shared: Relative path from the HTML file to the shared folder
+
+    Returns:
+        Script element that registers the service worker
+    """
+    return folium.Element(f"""
+    <script>
+    // Register service worker for aggressive caching of external images (RFU logos)
+    if ('serviceWorker' in navigator) {{
+        window.addEventListener('load', function() {{
+            navigator.serviceWorker.register('{relative_path_to_shared}/service-worker.js')
+                .then(function(registration) {{
+                    console.log('ServiceWorker registration successful:', registration.scope);
+                }})
+                .catch(function(err) {{
+                    console.log('ServiceWorker registration failed:', err);
+                }});
+        }});
+    }}
+    </script>
+    """)
+
+
 def add_layer_control(m: folium.Map) -> None:
     folium.LayerControl().add_to(m)
     # Add custom CSS for LayerControl
@@ -1307,6 +1648,10 @@ def create_tier_maps(
         m.get_root().header.add_child(folium.Element(get_google_analytics_script()))
         m.get_root().header.add_child(folium.Element(f"<title>{season} {tier}</title>"))
 
+        # Register service worker for caching external images (production only)
+        if IS_PRODUCTION:
+            m.get_root().header.add_child(service_worker_registration())
+
         # Group teams by league and assign colors
         leagues = {t["league"] for t in teams}
         league_colors = {
@@ -1344,6 +1689,16 @@ def create_tier_maps(
             )
 
         add_layer_control(m)
+
+        # Add boundary loader scripts (loads from shared/boundaries.json)
+        # Use inline data for local dev, fetch for production
+        m.get_root().html.add_child(
+            folium.Element(get_boundary_loader_script(use_inline=not IS_PRODUCTION))
+        )
+        if show_debug:
+            m.get_root().html.add_child(
+                folium.Element(get_debug_boundary_loader_script(use_inline=not IS_PRODUCTION))
+            )
 
         m.get_root().html.add_child(
             legend(f"{tier} - {len(teams)} teams", {tier: teams}, [tier], league_colors)
@@ -1386,6 +1741,10 @@ def create_all_tiers_map(
             f"<title>{season} All Tiers {"Men" if tier_order[0].find('Women')==-1 else "Women"}</title>"
         )
     )
+
+    # Register service worker for caching external images (production only)
+    if IS_PRODUCTION:
+        m.get_root().header.add_child(service_worker_registration())
 
     # Get all unique leagues across all tiers
     leagues_by_tier: dict[str, set[str]] = {
@@ -1446,6 +1805,16 @@ def create_all_tiers_map(
     add_debug_boundaries(m, show_debug)
 
     add_layer_control(m)
+
+    # Add boundary loader scripts (loads from shared/boundaries.json)
+    # Use inline data for local dev, fetch for production
+    m.get_root().html.add_child(
+        folium.Element(get_boundary_loader_script(use_inline=not IS_PRODUCTION))
+    )
+    if show_debug:
+        m.get_root().html.add_child(
+            folium.Element(get_debug_boundary_loader_script(use_inline=not IS_PRODUCTION))
+        )
 
     # Add legend for tiers and leagues
     m.get_root().html.add_child(
@@ -1582,6 +1951,10 @@ def main() -> None:
 
     # Output directory for this season
     output_dir = os.path.join("tier_maps", season)
+
+    # Export shared boundary data (used by all maps to avoid redundant geometry)
+    print("\nExporting shared boundary data...")
+    export_shared_boundaries(output_dir="tier_maps/shared")
 
     # Generate individual tier maps
     if generate_mens_individual and mens:

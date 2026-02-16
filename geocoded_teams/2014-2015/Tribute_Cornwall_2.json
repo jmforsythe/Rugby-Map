@@ -1,0 +1,77 @@
+{
+  "league_name": "Tribute Cornwall 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8154&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "Lanner",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11882",
+      "image_url": "https://images.englandrugby.com/club_images/11882.png",
+      "address": "Paynters Lane End Redruth Cornwall TR16 4RR",
+      "latitude": 50.2452489,
+      "longitude": -5.2674444,
+      "formatted_address": "TR16 4RR, Illogan, Cornwall, England, United Kingdom",
+      "place_id": 350867104
+    },
+    {
+      "name": "Camelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4061",
+      "image_url": "https://images.englandrugby.com/club_images/4061.png",
+      "address": "Camelford Conservative Club 2 Market Place Camelford Cornw PL32 9PB England",
+      "latitude": 50.622912,
+      "longitude": -4.6786877,
+      "formatted_address": "PL32 9PB, Camelford, Cornwall, England, United Kingdom",
+      "place_id": 350773746
+    },
+    {
+      "name": "St Just",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20533",
+      "image_url": "https://images.englandrugby.com/club_images/20533.png",
+      "address": "St. Just Rfc, The Clubhouse, Tregeseal, St Just In Penwith, Cornw, TR19 7PF, United Kingdom",
+      "latitude": 50.12726,
+      "longitude": -5.67663,
+      "formatted_address": "TR19 7PF, St Just, Cornwall, England, United Kingdom",
+      "place_id": 352072719
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    },
+    {
+      "name": "St Day",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20317",
+      "image_url": "https://images.englandrugby.com/club_images/20317.png",
+      "address": "The Playing Field, St. Day 28 Scorrier Street Redruth CORNWALL TR16 5LH UNITED KINGDOM",
+      "latitude": 50.2396261,
+      "longitude": -5.1844943,
+      "formatted_address": "TR16 5LH, St. Day, Cornwall, England, United Kingdom",
+      "place_id": 350416362
+    },
+    {
+      "name": "Lankelly-Fowey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11871",
+      "image_url": "https://images.englandrugby.com/club_images/11871.png",
+      "address": "Lankelly-Fowey RFC Lankelly Farm Lankelly Lane Fowey CORNWALL PL23 1HN UNITED KINGDOM ",
+      "latitude": 50.33597,
+      "longitude": -4.6531399,
+      "formatted_address": "PL23 1HN, Fowey, Cornwall, England, United Kingdom",
+      "place_id": 351768800
+    }
+  ],
+  "team_count": 7
+}

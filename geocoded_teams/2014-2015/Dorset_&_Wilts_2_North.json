@@ -1,0 +1,127 @@
+{
+  "league_name": "Dorset & Wilts 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8129&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Royal Wootton Bassett II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18231",
+      "image_url": "https://images.englandrugby.com/club_images/18231.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Colerne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5431",
+      "image_url": "https://images.englandrugby.com/club_images/5431.png",
+      "address": "Higgins Field, Bath Road, Colerne, Wilts                         , SN14 8AT, United Kingdom",
+      "latitude": 51.43836,
+      "longitude": -2.27937,
+      "formatted_address": "SN14 8AT, Colerne, Wiltshire, England, United Kingdom",
+      "place_id": 351943764
+    },
+    {
+      "name": "Avonvale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1107",
+      "image_url": "https://images.englandrugby.com/club_images/1107.png",
+      "address": "The Clubhouse, Bathford Playing FIelds Bathford Bath SOMERSET BA1 7SW UNITED KINGDOM ",
+      "latitude": 51.4012987,
+      "longitude": -2.3003884,
+      "formatted_address": "BA1 7SW, Bathford, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350490558
+    },
+    {
+      "name": "Melksham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13646",
+      "image_url": "https://images.englandrugby.com/club_images/13646.png",
+      "address": "Melksham Rugby Club, Oakfields, Eastern Way, Melksham, Wiltshire, SN12 7GU, United Kingdom",
+      "latitude": 51.3800088,
+      "longitude": -2.1060921,
+      "formatted_address": "SN12 7GU, Melksham Without, Wiltshire, England, United Kingdom",
+      "place_id": 350823284
+    },
+    {
+      "name": "Sutton Benger",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21448",
+      "image_url": "https://images.englandrugby.com/club_images/21448.png",
+      "address": "The Village Hall Chestnut Road Sutton Benger WILTSHIRE SN15 4SL UNITED KINGDOM ",
+      "latitude": 51.5069014,
+      "longitude": -2.0756975,
+      "formatted_address": "SN15 4SL, Sutton Benger, Wiltshire, England, United Kingdom",
+      "place_id": 350823882
+    },
+    {
+      "name": "Swindon College Old Boys II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21534",
+      "image_url": "https://images.englandrugby.com/club_images/21534.png",
+      "address": "Swindon College Old Boys Rfc, 4 Citrine Close , Swindon, Wiltshire, SN25 2SG, United Kingdom",
+      "latitude": 51.6093018,
+      "longitude": -1.802366,
+      "formatted_address": "SN25 2SG, St. Andrews, Blunsdon St Andrew, Swindon, England, United Kingdom",
+      "place_id": 351946715
+    },
+    {
+      "name": "Bradford-on-Avon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2954",
+      "image_url": "https://images.englandrugby.com/club_images/2954.png",
+      "address": "Broom Ground, Ashley Lane Winsley Bradford-on-Avon WILTSHIRE BA15 2HR UNITED KINGDOM ",
+      "latitude": 51.35071,
+      "longitude": -2.27882,
+      "formatted_address": "BA15 2HR, Winsley, Wiltshire, England, United Kingdom",
+      "place_id": 350935048
+    },
+    {
+      "name": "Trowbridge III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23242",
+      "image_url": "https://images.englandrugby.com/club_images/23242.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM ",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 261549299
+    },
+    {
+      "name": "Bath Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1614",
+      "image_url": "https://images.englandrugby.com/club_images/1614.png",
+      "address": "Sulis Sports Ground Claverton Down Bath BA2 7AU UNITED KINGDOM ",
+      "latitude": 51.36393,
+      "longitude": -2.3258899,
+      "formatted_address": "BA2 7AU, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350936651
+    },
+    {
+      "name": "Chippenham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4845",
+      "image_url": "https://images.englandrugby.com/club_images/4845.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM ",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351943386
+    },
+    {
+      "name": "Supermarine II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21368",
+      "image_url": "https://images.englandrugby.com/club_images/21368.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Corsham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5660",
+      "image_url": "https://images.englandrugby.com/club_images/5660.png",
+      "address": "Corsham Rfc, Lacock Road, Corsham, Wiltshire, SN13 9QG, United Kingdom",
+      "latitude": 51.431,
+      "longitude": -2.16898,
+      "formatted_address": "SN13 9QG, Corsham, Wiltshire, England, United Kingdom",
+      "place_id": 351942995
+    }
+  ],
+  "team_count": 12
+}

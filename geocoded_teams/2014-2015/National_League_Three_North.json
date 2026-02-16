@@ -1,0 +1,147 @@
+{
+  "league_name": "National League Three North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=8112&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Sale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18558",
+      "image_url": "https://images.englandrugby.com/club_images/18558.png",
+      "address": "Corpacq Stadium Heywood Road Brooklands Sale Cheshire M33 3WB United Kingdom",
+      "latitude": 53.4173187,
+      "longitude": -2.3215055,
+      "formatted_address": "M33 3WB, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 350247419
+    },
+    {
+      "name": "Sandal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18658",
+      "image_url": "https://images.englandrugby.com/club_images/18658.png",
+      "address": "Sandal RUFC Milnthorpe Green Standbridge Lane, Sandal Wakefield WEST YORKSHIRE WF2 7DY UNITED KINGDOM ",
+      "latitude": 53.6493023,
+      "longitude": -1.4942685,
+      "formatted_address": "WF2 7DY, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350888776
+    },
+    {
+      "name": "Sheffield Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099",
+      "image_url": "https://images.englandrugby.com/club_images/19099.png",
+      "address": "Dore Moor Hathersage Road Sheffield SOUTH YORKSHIRE S17 3AB UNITED KINGDOM ",
+      "latitude": 53.3341659,
+      "longitude": -1.5500457,
+      "formatted_address": "Dore Moor Inn, Hathersage Road, Dore, Sheffield, South Yorkshire, England, S17 3AB, United Kingdom",
+      "place_id": 256014652
+    },
+    {
+      "name": "Firwood Waterloo",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8162",
+      "image_url": "https://images.englandrugby.com/club_images/8162.png",
+      "address": "The Memorial Ground, St Anthony's Road, Blundellsands, Merseyside, L23 8TW, England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Rossendale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009",
+      "image_url": "https://images.englandrugby.com/club_images/18009.png",
+      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
+      "latitude": 53.7035387,
+      "longitude": -2.2757123,
+      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
+      "place_id": 350949552
+    },
+    {
+      "name": "Cleckheaton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=99485",
+      "image_url": "https://images.englandrugby.com/club_images/99485.png",
+      "address": "The Pavilion, Bradford Road, Moorend, Cleckheaton, West Yorkshire, BD19 3UD, United Kingdom",
+      "latitude": 53.73195,
+      "longitude": -1.72037,
+      "formatted_address": "BD19 3UD, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 350960025
+    },
+    {
+      "name": "Billingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2221",
+      "image_url": "https://images.englandrugby.com/club_images/2221.png",
+      "address": "Greenwood Road, Billingham, Ctydur, TS23 4BA, United Kingdom",
+      "latitude": 54.6029991,
+      "longitude": -1.2735995,
+      "formatted_address": "TS23 4BA, Billingham, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352085948
+    },
+    {
+      "name": "Huddersfield Laund Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10607",
+      "image_url": "https://images.englandrugby.com/club_images/10607.png",
+      "address": "Laund Hill Community Club Sports Complex, New Hey Road, Salendine Nook,  , Huddersfield, West Yorkshire, HD3 3XF, United Kingdom",
+      "latitude": 53.65746,
+      "longitude": -1.84767,
+      "formatted_address": "HD3 3XF, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351346848
+    },
+    {
+      "name": "Lymm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13010",
+      "image_url": "https://images.englandrugby.com/club_images/13010.png",
+      "address": "Beechwood, Crouchley Lane, Lymm, Cheshire, WA13 0AT, United Kingdom",
+      "latitude": 53.37437,
+      "longitude": -2.4758,
+      "formatted_address": "WA13 0AT, Lymm, Warrington, England, United Kingdom",
+      "place_id": 352125816
+    },
+    {
+      "name": "Wirral",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25707",
+      "image_url": "https://images.englandrugby.com/club_images/25707.png",
+      "address": "Memorial Ground Thornton Common Road Clatterbridge Bebington MERSEYSIDE CH63 0LT UNITED KINGDOM ",
+      "latitude": 53.3243906,
+      "longitude": -3.0198623,
+      "formatted_address": "CH63 0LT, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351065371
+    },
+    {
+      "name": "Burnage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3684",
+      "image_url": "https://images.englandrugby.com/club_images/3684.png",
+      "address": "Varley Park, Battersea Road, Stockport, Chesh, SK4 3EA, United Kingdom",
+      "latitude": 53.4083445,
+      "longitude": -2.2090526,
+      "formatted_address": "SK4 3EA, Heaton Mersey, Cheadle, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 350368827
+    },
+    {
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
+    },
+    {
+      "name": "South Shields Westoe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19654",
+      "image_url": "https://images.englandrugby.com/club_images/19654.png",
+      "address": "Wood Terrace Dean Road SOUTH SHIELDS TYNE AND WEAR NE33 4EA ENGLAND",
+      "latitude": 54.9861247,
+      "longitude": -1.4253023,
+      "formatted_address": "NE33 4EA, South Tyneside, North East, England, United Kingdom",
+      "place_id": 350711999
+    },
+    {
+      "name": "Beverley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2073",
+      "image_url": "https://images.englandrugby.com/club_images/2073.png",
+      "address": "Norwood Beverley HU17 9HT UNITED KINGDOM",
+      "latitude": 53.8490669,
+      "longitude": -0.4255272,
+      "formatted_address": "Norwood, Beverley, East Riding of Yorkshire, Hull and East Yorkshire, England, HU17 9HT, United Kingdom",
+      "place_id": 256319119
+    }
+  ],
+  "team_count": 14
+}

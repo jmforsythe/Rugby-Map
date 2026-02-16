@@ -1,0 +1,87 @@
+{
+  "league_name": "Gloucester 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8142&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Smiths Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19533",
+      "image_url": "https://images.englandrugby.com/club_images/19533.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paulâ€™s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Minchinhampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13941",
+      "image_url": "https://images.englandrugby.com/club_images/13941.png",
+      "address": "Minchinhampton Rfc, Hollybush Farm, Hampton Fields, Minchinhampton , Stroud, GL6 9BD, England",
+      "latitude": 51.70212,
+      "longitude": -2.16677,
+      "formatted_address": "GL6 9BD, Minchinhampton, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351317856
+    },
+    {
+      "name": "Cainscross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3909",
+      "image_url": "https://images.englandrugby.com/club_images/3909.png",
+      "address": "Cainscross RFC Victory Park Cainscross Stroud GLOUCESTERSHIRE GL5 4JE UNITED KINGDOM",
+      "latitude": 51.7433802,
+      "longitude": -2.2441085,
+      "formatted_address": "GL5 4JE, Cainscross, Selsley, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637281
+    },
+    {
+      "name": "Gloucester All Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8638",
+      "image_url": "https://images.englandrugby.com/club_images/8638.png",
+      "address": "The Clubhouse Castle Meads Way Oxleaze Gloucester GLOUCESTERSHIRE GL1 2RN UNITED KINGDOM",
+      "latitude": 51.8684801,
+      "longitude": -2.254154,
+      "formatted_address": "GL1 2RN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350629975
+    },
+    {
+      "name": "Cheltenham Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4518",
+      "image_url": "https://images.englandrugby.com/club_images/4518.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Tetbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21838",
+      "image_url": "https://images.englandrugby.com/club_images/21838.png",
+      "address": "Tetbury Rfc The Recreation Ground Hampton Street Tetbury Gloucestershire GL8 8JN United Kingdom",
+      "latitude": 51.64012,
+      "longitude": -2.16269,
+      "formatted_address": "GL8 8JN, Tetbury, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351319362
+    },
+    {
+      "name": "Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15030",
+      "image_url": "https://images.englandrugby.com/club_images/15030.png",
+      "address": "Norton Rfc Norton Parish Grounds Old Tewkesbury Road Norton Gloucester Gloucestershire GL2 9LJ",
+      "latitude": 51.914769,
+      "longitude": -2.2102215,
+      "formatted_address": "GL2 9LJ, Norton, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631547
+    },
+    {
+      "name": "Hardwicke & Quedgeley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9369",
+      "image_url": "https://images.englandrugby.com/club_images/9369.png",
+      "address": "Kingsway Sports Pavilion Newhaven Road Kingsway Business Park Gloucester Gloucestershire GL2 2SN United Kingdom",
+      "latitude": 51.8203675,
+      "longitude": -2.2758346,
+      "formatted_address": "GL2 2SN, Kingsway Business Park, Quedgeley, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350180641
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "Berks/Bucks & Oxon Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8131&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Swindon College Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21533",
+      "image_url": "https://images.englandrugby.com/club_images/21533.png",
+      "address": "Swindon College Old Boys Rfc, 4 Citrine Close , Swindon, Wiltshire, SN25 2SG, United Kingdom",
+      "latitude": 51.6093018,
+      "longitude": -1.802366,
+      "formatted_address": "SN25 2SG, St. Andrews, Blunsdon St Andrew, Swindon, England, United Kingdom",
+      "place_id": 351946715
+    },
+    {
+      "name": "Gosford All Blacks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8770",
+      "image_url": "https://images.englandrugby.com/club_images/8770.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Abingdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=244",
+      "image_url": "https://images.englandrugby.com/club_images/244.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    },
+    {
+      "name": "Hungerford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10697",
+      "image_url": "https://images.englandrugby.com/club_images/10697.png",
+      "address": "Hungerford Rfc Clubhouse, Triangle Field, Priory Road, Hungerford, Berkshire, RG170AP, United Kingdom",
+      "latitude": 51.40557,
+      "longitude": -1.51367,
+      "formatted_address": "RG17 0AP, Hungerford, West Berkshire, England, United Kingdom",
+      "place_id": 351808741
+    },
+    {
+      "name": "Chipping Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4868",
+      "image_url": "https://images.englandrugby.com/club_images/4868.png",
+      "address": "Chipping Norton Rugby Club, Greystones, Burford Road, Chipping Norton, Oxfordshire, OX7 5UY, United Kingdom",
+      "latitude": 51.930187,
+      "longitude": -1.5393698,
+      "formatted_address": "OX7 5UY, Chipping Norton, West Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350756240
+    },
+    {
+      "name": "Wheatley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25173",
+      "image_url": "https://images.englandrugby.com/club_images/25173.png",
+      "address": "Holton Playing Fields Holton Wheatley Oxford Oxfordshire OX33 1QL United Kingdom",
+      "latitude": 51.7535014,
+      "longitude": -1.1395664,
+      "formatted_address": "OX33 1QL, Holton, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350755427
+    },
+    {
+      "name": "Chesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4596",
+      "image_url": "https://images.englandrugby.com/club_images/4596.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Slough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19514",
+      "image_url": "https://images.englandrugby.com/club_images/19514.png",
+      "address": "Farnham Common Sports Club, One Pin Lane, Farnham Common, Slough, Berkshire, SL2 3QY, United Kingdom",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820537
+    },
+    {
+      "name": "Aylesbury Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1125",
+      "image_url": "https://images.englandrugby.com/club_images/1125.png",
+      "address": "Aylesbury Young Offender Institution Bierton Road Aylesbury Bucks HP20 1EH United Kingdom",
+      "latitude": 51.8226486,
+      "longitude": -0.801854,
+      "formatted_address": "HP20 1EH, Aylesbury, Buckinghamshire, England, United Kingdom",
+      "place_id": 350648570
+    },
+    {
+      "name": "Littlemore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12396",
+      "image_url": "https://images.englandrugby.com/club_images/12396.png",
+      "address": "Littlemore Rfc, Northfield Close, Littlemore, Oxford, Oxfordshire , OX4 4NH, United Kingdom",
+      "latitude": 51.72182,
+      "longitude": -1.2182599,
+      "formatted_address": "OX4 4NH, Littlemore, Oxford, Oxfordshire, England, United Kingdom",
+      "place_id": 351731275
+    },
+    {
+      "name": "Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16885",
+      "image_url": "https://images.englandrugby.com/club_images/16885.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
+    }
+  ],
+  "team_count": 12
+}

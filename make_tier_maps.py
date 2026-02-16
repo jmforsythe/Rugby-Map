@@ -177,7 +177,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Lancs_Cheshire": (7 if season >= "2018-2019" else 6),
         "South_Lancs_Cheshire": 6,
         "Lancashire_(North)": 8,
-        "Cheshire": 8,
+        "Cheshire:": 8,
         "Merseyside": 8,
     }
     if filename.startswith("Premiership"):

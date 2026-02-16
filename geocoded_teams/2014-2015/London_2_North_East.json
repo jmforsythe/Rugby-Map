@@ -1,0 +1,127 @@
+{
+  "league_name": "London 2 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=8183&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Chelmsford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4482",
+      "image_url": "https://images.englandrugby.com/club_images/4482.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Diss",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6516",
+      "image_url": "https://images.englandrugby.com/club_images/6516.png",
+      "address": "Diss R.F.C. Mackenders Bellrope Lane Roydon Diss NORFOLK IP22 5RG UNITED KINGDOM ",
+      "latitude": 52.3827516,
+      "longitude": 1.079028,
+      "formatted_address": "IP22 5RG, Roydon, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350661359
+    },
+    {
+      "name": "Norwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15036",
+      "image_url": "https://images.englandrugby.com/club_images/15036.png",
+      "address": "Norwich Rfc Ltd., Beeston Hyrne, Beeston Hyrne, Norwich, Norfolk, NR12 7BW, United Kingdom",
+      "latitude": 52.6727282,
+      "longitude": 1.3230308,
+      "formatted_address": "NR12 7BW, Sprowston, Broadland, Norfolk, England, United Kingdom",
+      "place_id": 350735750
+    },
+    {
+      "name": "Saffron Walden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18501",
+      "image_url": "https://images.englandrugby.com/club_images/18501.png",
+      "address": "Saffron Walden Rfc Springate Chickney Road Henham Essex CM22 6BQ United Kingdom",
+      "latitude": 51.93679,
+      "longitude": 0.26852,
+      "formatted_address": "CM22 6BQ, Chickney, Uttlesford, Essex, England, United Kingdom",
+      "place_id": 351078223
+    },
+    {
+      "name": "Campion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4078",
+      "image_url": "https://images.englandrugby.com/club_images/4078.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    },
+    {
+      "name": "Rochford Hundred",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17906",
+      "image_url": "https://images.englandrugby.com/club_images/17906.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "South Woodham Ferrers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19679",
+      "image_url": "https://images.englandrugby.com/club_images/19679.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    },
+    {
+      "name": "Holt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10307",
+      "image_url": "https://images.englandrugby.com/club_images/10307.png",
+      "address": "The Clubhouse Bridge Road High Kelling Holt NORFOLK NR25 6QT UNITED KINGDOM ",
+      "latitude": 52.9176794,
+      "longitude": 1.1189376,
+      "formatted_address": "NR25 6QT, High Kelling, North Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350742530
+    },
+    {
+      "name": "Enfield Ignatians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513",
+      "image_url": "https://images.englandrugby.com/club_images/7513.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "Basildon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1539",
+      "image_url": "https://images.englandrugby.com/club_images/1539.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Old Cooperians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15564",
+      "image_url": "https://images.englandrugby.com/club_images/15564.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "Braintree",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2974",
+      "image_url": "https://images.englandrugby.com/club_images/2974.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC South East South 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=8226&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Oakmeadians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15299",
+      "image_url": "https://images.englandrugby.com/club_images/15299.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350047310
+    },
+    {
+      "name": "Tonbridge Juddian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22914",
+      "image_url": "https://images.englandrugby.com/club_images/22914.png",
+      "address": "Tonbridge Juddians Rfc The Clubhouse The Slade Tonbridge Kent TN9 1HR United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350406169
+    },
+    {
+      "name": "Worthing Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26130",
+      "image_url": "https://images.englandrugby.com/club_images/26130.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Jersey United Banks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11118",
+      "image_url": "https://images.englandrugby.com/club_images/11118.png",
+      "address": "Jubrfc Springfield Road Jersey JE2 4LE",
+      "latitude": 49.1915,
+      "longitude": -2.1007,
+      "formatted_address": "Springfield, La Petite Rue du Val Plaisant, Vingtaine de Bas du Mont au Prêtre, St Helier, JE2 4LQ, Jersey",
+      "place_id": 166665709
+    },
+    {
+      "name": "Havant Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9703",
+      "image_url": "https://images.englandrugby.com/club_images/9703.png",
+      "address": "Hooks Lane Ground Fraser Road Bedhampton Havant Hampshire PO9 3EJ United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351345426
+    },
+    {
+      "name": "Lewes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12210",
+      "image_url": "https://images.englandrugby.com/club_images/12210.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    }
+  ],
+  "team_count": 6
+}

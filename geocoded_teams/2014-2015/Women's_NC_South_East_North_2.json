@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC South East North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=8224&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Bletchley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2606",
+      "image_url": "https://images.englandrugby.com/club_images/2606.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Peterborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16824",
+      "image_url": "https://images.englandrugby.com/club_images/16824.png",
+      "address": "Peterborough R.u.f.c. Second Drove Fengate Peterborough Cambridgeshire PE1 5XA United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759253
+    },
+    {
+      "name": "Bury Foxes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3830",
+      "image_url": "https://images.englandrugby.com/club_images/3830.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Fakenham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7902",
+      "image_url": "https://images.englandrugby.com/club_images/7902.png",
+      "address": "Old Wells Road Fakenham NORFOLK NR21 9RZ UNITED KINGDOM",
+      "latitude": 52.842282,
+      "longitude": 0.8407922,
+      "formatted_address": "Old Wells Road, Fakenham, North Norfolk, Norfolk, England, NR21 9RX, United Kingdom",
+      "place_id": 147113474
+    }
+  ],
+  "team_count": 4
+}

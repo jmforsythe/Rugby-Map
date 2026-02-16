@@ -9,8 +9,6 @@ distance_cache_folder/
 league_data/
 team_addresses/
 tier_maps/*
-!tier_maps/shared/
-tier_maps/shared/*
-!tier_maps/shared/service-worker.js
+!tier_maps/service-worker.js
 club_address_cache.json
 geocode_cache.json

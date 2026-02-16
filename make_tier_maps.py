@@ -1588,32 +1588,32 @@ def service_worker_registration(relative_path_to_shared: str = "../shared") -> f
     """Return script to register service worker for caching external images.
 
     Args:
-        relative_path_to_shared: Relative path from the HTML file to the shared folder
+        relative_path_to_shared: Relative path from the HTML file to the shared folder (not used for SW path)
 
     Returns:
         Script element that registers the service worker
     """
-    return folium.Element(f"""
+    return folium.Element("""
     <script>
     // Register service worker IMMEDIATELY for aggressive caching of external images (RFU logos)
-    if ('serviceWorker' in navigator) {{
-        navigator.serviceWorker.register('{relative_path_to_shared}/service-worker.js')
-            .then(function(registration) {{
-                console.log('✅ ServiceWorker registered:', registration.scope);
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+                console.log('✅ ServiceWorker registered with scope:', registration.scope);
                 // Force waiting service worker to activate immediately
-                if (registration.waiting) {{
-                    registration.waiting.postMessage({{type: 'SKIP_WAITING'}});
-                }}
-            }})
-            .catch(function(err) {{
+                if (registration.waiting) {
+                    registration.waiting.postMessage({type: 'SKIP_WAITING'});
+                }
+            })
+            .catch(function(err) {
                 console.log('❌ ServiceWorker registration failed:', err);
-            }});
+            });
 
         // Listen for controller change (when service worker activates)
-        navigator.serviceWorker.addEventListener('controllerchange', function() {{
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
             console.log('🔄 ServiceWorker activated - images will be cached');
-        }});
-    }}
+        });
+    }
     </script>
     """)
 
@@ -1769,7 +1769,9 @@ def create_all_tiers_map(
 
     # Register service worker for caching external images (production only)
     if IS_PRODUCTION:
-        m.get_root().header.add_child(service_worker_registration())
+        m.get_root().header.add_child(
+            service_worker_registration(relative_path_to_shared=relative_path_to_shared())
+        )
 
     # Get all unique leagues across all tiers
     leagues_by_tier: dict[str, set[str]] = {

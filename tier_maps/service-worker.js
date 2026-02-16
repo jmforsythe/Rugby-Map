@@ -6,7 +6,7 @@ const IMAGE_CACHE = "rugby-images-v1";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(["../shared/boundaries.json"]);
+      return cache.addAll(["shared/boundaries.json"]);
     }),
   );
   self.skipWaiting();

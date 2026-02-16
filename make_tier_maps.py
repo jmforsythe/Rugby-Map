@@ -1628,6 +1628,10 @@ def add_layer_control(m: folium.Map) -> None:
 IS_PRODUCTION = False
 
 
+def relative_path_to_shared() -> str:
+    return "/shared" if IS_PRODUCTION else "../shared"
+
+
 def create_tier_maps(
     teams_by_tier: dict[str, list[MapTeam]],
     tier_order: list[str],
@@ -1650,7 +1654,9 @@ def create_tier_maps(
 
         # Register service worker for caching external images (production only)
         if IS_PRODUCTION:
-            m.get_root().header.add_child(service_worker_registration())
+            m.get_root().header.add_child(
+                service_worker_registration(relative_path_to_shared=relative_path_to_shared())
+            )
 
         # Group teams by league and assign colors
         leagues = {t["league"] for t in teams}
@@ -1693,11 +1699,20 @@ def create_tier_maps(
         # Add boundary loader scripts (loads from shared/boundaries.json)
         # Use inline data for local dev, fetch for production
         m.get_root().html.add_child(
-            folium.Element(get_boundary_loader_script(use_inline=not IS_PRODUCTION))
+            folium.Element(
+                get_boundary_loader_script(
+                    relative_path_to_shared=relative_path_to_shared(), use_inline=not IS_PRODUCTION
+                )
+            )
         )
         if show_debug:
             m.get_root().html.add_child(
-                folium.Element(get_debug_boundary_loader_script(use_inline=not IS_PRODUCTION))
+                folium.Element(
+                    get_debug_boundary_loader_script(
+                        relative_path_to_shared=relative_path_to_shared(),
+                        use_inline=not IS_PRODUCTION,
+                    )
+                )
             )
 
         m.get_root().html.add_child(
@@ -1809,7 +1824,11 @@ def create_all_tiers_map(
     # Add boundary loader scripts (loads from shared/boundaries.json)
     # Use inline data for local dev, fetch for production
     m.get_root().html.add_child(
-        folium.Element(get_boundary_loader_script(use_inline=not IS_PRODUCTION))
+        folium.Element(
+            get_boundary_loader_script(
+                relative_path_to_shared=relative_path_to_shared(), use_inline=not IS_PRODUCTION
+            )
+        )
     )
     if show_debug:
         m.get_root().html.add_child(

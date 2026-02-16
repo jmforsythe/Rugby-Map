@@ -871,6 +871,9 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     """
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     output_path = os.path.join(output_dir, "boundaries.json")
+    if IS_PRODUCTION and os.path.exists(output_path):
+        print(f"Shared boundary file already exists at {output_path}, skipping export.")
+        return
 
     boundary_data = {
         "countries": {},

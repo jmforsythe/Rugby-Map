@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's NC South East North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7366&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Romford & GP Ravens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17962",
+      "image_url": "https://images.englandrugby.com/club_images/17962.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM ",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Deeping Devils Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6292",
+      "image_url": "https://images.englandrugby.com/club_images/6292.png",
+      "address": "Deepings Rugby Union Fc Spalding Road Market Deeping Lincolnshire PE6 8NJ United Kingdom",
+      "latitude": 52.6763991,
+      "longitude": -0.2955843,
+      "formatted_address": "PE6 8NJ, Deeping St. James, Frognall, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350769372
+    },
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4601",
+      "image_url": "https://images.englandrugby.com/club_images/4601.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Harlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9431",
+      "image_url": "https://images.englandrugby.com/club_images/9431.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Wellingborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24607",
+      "image_url": "https://images.englandrugby.com/club_images/24607.png",
+      "address": "Cut Throat Lane Great Doddington Wellingborough NORTHAMPTONSHIRE NN29 7TZ UNITED KINGDOM",
+      "latitude": 52.2746331,
+      "longitude": -0.7262549,
+      "formatted_address": "NN29 7TZ, Great Doddington, North Northamptonshire, England, United Kingdom",
+      "place_id": 350276081
+    },
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Wymondham Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26303",
+      "image_url": "https://images.englandrugby.com/club_images/26303.png",
+      "address": "Wymondham Rfc Barnard Fields Bray Drive (off Reeve Way) Wymondham Norfolk NR18 0GQ United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350288069
+    }
+  ],
+  "team_count": 8
+}

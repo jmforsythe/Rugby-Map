@@ -1,0 +1,57 @@
+{
+  "league_name": "Berks/Bucks & Oxon 4 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7265&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Gosford All Blacks II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8771",
+      "image_url": "https://images.englandrugby.com/club_images/8771.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Abingdon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=247",
+      "image_url": "https://images.englandrugby.com/club_images/247.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    },
+    {
+      "name": "Harwell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9608",
+      "image_url": "https://images.englandrugby.com/club_images/9608.png",
+      "address": "Harwell Rfc Main Sports Pavilion, Harwell Science And Innovation Campus, Didcot, Oxfordshire, OX11 0RL, United Kingdom",
+      "latitude": 51.5787591,
+      "longitude": -1.309943,
+      "formatted_address": "OX11 0RL, Agilent Technologies, Harwell, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350753241
+    },
+    {
+      "name": "Wheatley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25190",
+      "image_url": "https://images.englandrugby.com/club_images/25190.png",
+      "address": "Holton Playing Fields Holton Wheatley Oxford Oxfordshire OX33 1QL United Kingdom",
+      "latitude": 51.7535014,
+      "longitude": -1.1395664,
+      "formatted_address": "OX33 1QL, Holton, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350755427
+    },
+    {
+      "name": "Hungerford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10698",
+      "image_url": "https://images.englandrugby.com/club_images/10698.png",
+      "address": "Hungerford Rfc Clubhouse, Triangle Field, Priory Road, Hungerford, Berkshire, RG170AP, United Kingdom",
+      "latitude": 51.40557,
+      "longitude": -1.51367,
+      "formatted_address": "RG17 0AP, Hungerford, West Berkshire, England, United Kingdom",
+      "place_id": 351808741
+    }
+  ],
+  "team_count": 5
+}

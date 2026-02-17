@@ -1,0 +1,97 @@
+{
+  "league_name": "Essex (Spitfire) League 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=7318&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "May & Baker",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13560",
+      "image_url": "https://images.englandrugby.com/club_images/13560.png",
+      "address": "May & Baker Club Dagenham Road Dagenham ESSEX RM10 7UP UNITED KINGDOM",
+      "latitude": 51.5515648,
+      "longitude": 0.161543,
+      "formatted_address": "RM10 7UP, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 350799576
+    },
+    {
+      "name": "Millwall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906",
+      "image_url": "https://images.englandrugby.com/club_images/13906.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Pegasus Palmerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16666",
+      "image_url": "https://images.englandrugby.com/club_images/16666.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Burnham-on-Crouch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700",
+      "image_url": "https://images.englandrugby.com/club_images/3700.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Kings Cross Steelers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11557",
+      "image_url": "https://images.englandrugby.com/club_images/11557.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    },
+    {
+      "name": "Thames",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21878",
+      "image_url": "https://images.englandrugby.com/club_images/21878.png",
+      "address": "Garron Lane South Ockendon Essex RM15 5JQ United Kingdom",
+      "latitude": 51.5064592,
+      "longitude": 0.2726188,
+      "formatted_address": "Garron Lane, South Ockendon, Thurrock, Essex, England, RM15 5HS, United Kingdom",
+      "place_id": 90948359
+    },
+    {
+      "name": "Phantoms",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16883",
+      "image_url": "https://images.englandrugby.com/club_images/16883.png",
+      "address": "71 Holland Road West Ham London ESSEX E15 3BP ENGLAND",
+      "latitude": 51.5287941,
+      "longitude": 0.0086892,
+      "formatted_address": "E15 3BP, London Borough of Newham, Greater London, England, United Kingdom",
+      "place_id": 350604773
+    }
+  ],
+  "team_count": 9
+}

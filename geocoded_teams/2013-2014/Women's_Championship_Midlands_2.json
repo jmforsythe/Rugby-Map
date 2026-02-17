@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship Midlands 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7365&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Loughborough Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12838",
+      "image_url": "https://images.englandrugby.com/club_images/12838.png",
+      "address": "Loughborough Rfc The Clubhouse Derby Road Playing Fields Off Cotton Way Loughborough Leicestershire LE11 5FJ United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351019657
+    },
+    {
+      "name": "Worcester Warriors Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26085",
+      "image_url": "https://images.englandrugby.com/club_images/26085.png",
+      "address": "Clubs Office, Training &amp; Playing Ground Sixways Stadium Warriors Way Worcester WR3 8ZE United Kingdom",
+      "latitude": 52.21608,
+      "longitude": -2.16251,
+      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 351710432
+    },
+    {
+      "name": "Shelford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19149",
+      "image_url": "https://images.englandrugby.com/club_images/19149.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Lichfield Green Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12242",
+      "image_url": "https://images.englandrugby.com/club_images/12242.png",
+      "address": "Lichfield Rufc Cooke Fields Tamworth Road Lichfield Staffordshire WS14 9JE United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350444527
+    },
+    {
+      "name": "Birmingham Moseley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2345",
+      "image_url": "https://images.englandrugby.com/club_images/2345.png",
+      "address": "Birmingham Moseley Rugby Billesley Common Yardley Wood Road Birmingham West Midlands B13 0HN United Kingdom",
+      "latitude": 52.4282264,
+      "longitude": -1.8710828,
+      "formatted_address": "B13 0HN, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350012049
+    },
+    {
+      "name": "Lakenham Hewett Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Buckingham Swans Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3544",
+      "image_url": "https://images.englandrugby.com/club_images/3544.png",
+      "address": "The Floyd Field, Maids Moreton, Nr Buckingham, Buckinghamshire, MK18 1RF, United Kingdom",
+      "latitude": 52.0123836,
+      "longitude": -0.979128,
+      "formatted_address": "MK18 1RF, Maids Moreton, Buckinghamshire, England, United Kingdom",
+      "place_id": 350702984
+    },
+    {
+      "name": "Olney Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16188",
+      "image_url": "https://images.englandrugby.com/club_images/16188.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Essex (Canterbury Jack) League 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=7317&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Clacton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5113",
+      "image_url": "https://images.englandrugby.com/club_images/5113.png",
+      "address": "Not For Post, Rugby Clubhouse, Recreation Ground, Valley Road, Clacton-on-sea, CO15 6NA, United Kingdom",
+      "latitude": 51.8023489,
+      "longitude": 1.1643234,
+      "formatted_address": "CO15 6NA, Tendring, Essex, England, United Kingdom",
+      "place_id": 350555075
+    },
+    {
+      "name": "Dagenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6050",
+      "image_url": "https://images.englandrugby.com/club_images/6050.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Epping Upper Clapton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7624",
+      "image_url": "https://images.englandrugby.com/club_images/7624.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Maldon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154",
+      "image_url": "https://images.englandrugby.com/club_images/13154.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Ilford Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
+      "image_url": "https://images.englandrugby.com/club_images/10783.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Bancroft",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1295",
+      "image_url": "https://images.englandrugby.com/club_images/1295.png",
+      "address": "Bancroft Rfc The Club House Bradfords Close Buckhurst Way Buckhurst Hill Essex IG9 6JD United Kingdom",
+      "latitude": 51.61605,
+      "longitude": 0.04569,
+      "formatted_address": "IG9 6JD, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351389783
+    },
+    {
+      "name": "East London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7163",
+      "image_url": "https://images.englandrugby.com/club_images/7163.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Writtle Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26200",
+      "image_url": "https://images.englandrugby.com/club_images/26200.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Tribute Devon 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7263&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "South Molton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19624",
+      "image_url": "https://images.englandrugby.com/club_images/19624.png",
+      "address": "Unicorn Park, Station Road, Pathfields, South Molton, Devon, EX363BS, United Kingdom",
+      "latitude": 51.02682,
+      "longitude": -3.83977,
+      "formatted_address": "EX36 3BS, Pathfields Industrial Estate, South Molton, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351260105
+    },
+    {
+      "name": "Totnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23001",
+      "image_url": "https://images.englandrugby.com/club_images/23001.png",
+      "address": "The Clubhouse, Borough Park, Totnes, Devon, TQ9 5JG, United Kingdom",
+      "latitude": 50.4343203,
+      "longitude": -3.6876159,
+      "formatted_address": "TQ9 5JG, Totnes, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350865250
+    },
+    {
+      "name": "Topsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22933",
+      "image_url": "https://images.englandrugby.com/club_images/22933.png",
+      "address": "Topsham Rfc, Bonfire Field, Exeter Road, Exeter, Devon, EX3 0LY, United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620960
+    },
+    {
+      "name": "Exeter Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7761",
+      "image_url": "https://images.englandrugby.com/club_images/7761.png",
+      "address": "Bravelands, Oil Mill Lane, Clyst St Mary, Exeter, Devon, EX5 1AF, United Kingdom",
+      "latitude": 50.70773,
+      "longitude": -3.44062,
+      "formatted_address": "EX5 1AF, Clyst St. Mary, Clyst St Mary, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351262283
+    },
+    {
+      "name": "Old Technicians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16065",
+      "image_url": "https://images.englandrugby.com/club_images/16065.png",
+      "address": "Old Technicians Rfc, Weston Mill Oak Villa Sports & Community Hub, 31 Ferndale Road, , Weston Mill, Plymouth, Devon, PL2 2EL, United Kingdom",
+      "latitude": 50.3960028,
+      "longitude": -4.1764842,
+      "formatted_address": "PL2 2EL, Plymouth, England, United Kingdom",
+      "place_id": 350773099
+    },
+    {
+      "name": "Plymstock Albion Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16976",
+      "image_url": "https://images.englandrugby.com/club_images/16976.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "New Cross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14349",
+      "image_url": "https://images.englandrugby.com/club_images/14349.png",
+      "address": "Five Lanes Field, Strap Lane, Kingsteignton, Newton Abbot, Devon, TQ12 3PS, England",
+      "latitude": 50.5590133,
+      "longitude": -3.6026419,
+      "formatted_address": "TQ12 3PS, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858097
+    },
+    {
+      "name": "St Columba & Torpoint",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20290",
+      "image_url": "https://images.englandrugby.com/club_images/20290.png",
+      "address": "Defiance Field Antony Road A374 Torpoint Cornwall PL11 2NN United Kingdom",
+      "latitude": 50.37501,
+      "longitude": -4.20655,
+      "formatted_address": "PL11 2NN, Torpoint, Cornwall, England, United Kingdom",
+      "place_id": 351762744
+    },
+    {
+      "name": "Salcombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18545",
+      "image_url": "https://images.englandrugby.com/club_images/18545.png",
+      "address": "Twomeads Camperdown Road Salcombe DEVON TQ8 8AX UNITED KINGDOM ",
+      "latitude": 50.235997,
+      "longitude": -3.7753405,
+      "formatted_address": "TQ8 8AX, Salcombe, East Portlemouth, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864981
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,77 @@
+{
+  "league_name": "Dorset & Wilts 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7266&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Bournemouth IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2794",
+      "image_url": "https://images.englandrugby.com/club_images/2794.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Blandford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2553",
+      "image_url": "https://images.englandrugby.com/club_images/2553.png",
+      "address": "Club House, 53a East Street, Blandford Forum, Dorset, DT11 7DX, United Kingdom",
+      "latitude": 50.8558499,
+      "longitude": -2.16338,
+      "formatted_address": "DT11 7DX, Blandford Forum, Dorset, England, United Kingdom",
+      "place_id": 351195445
+    },
+    {
+      "name": "Ellingham & Ringwood III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7455",
+      "image_url": "https://images.englandrugby.com/club_images/7455.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Swanage & W IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21496",
+      "image_url": "https://images.englandrugby.com/club_images/21496.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Bridport II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3173",
+      "image_url": "https://images.englandrugby.com/club_images/3173.png",
+      "address": "Bridport R.f.c., Bridport Leisure Centre, Brewery Fields, Bridport, Dorset, DT6 5LN, United Kingdom",
+      "latitude": 50.7256701,
+      "longitude": -2.7634099,
+      "formatted_address": "DT6 5LN, Symondsbury, Dorset, England, United Kingdom",
+      "place_id": 350599647
+    },
+    {
+      "name": "Lytchett Minster II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13047",
+      "image_url": "https://images.englandrugby.com/club_images/13047.png",
+      "address": "Lytchett Park Watery Lane Lytchett Minster DORSET BH16 6HZ UNITED KINGDOM ",
+      "latitude": 50.73507,
+      "longitude": -2.05663,
+      "formatted_address": "BH16 6HZ, Lytchett Minster and Upton, Upton, Dorset, England, United Kingdom",
+      "place_id": 350973602
+    },
+    {
+      "name": "North Dorset IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14697",
+      "image_url": "https://images.englandrugby.com/club_images/14697.png",
+      "address": "North Dorset R.F.C. Slaughtergate Longbury Hill Lane Gillingham DORSET SP8 5SY UNITED KINGDOM ",
+      "latitude": 51.04585,
+      "longitude": -2.3043,
+      "formatted_address": "SP8 5SY, Gillingham, Dorset, England, United Kingdom",
+      "place_id": 351969660
+    }
+  ],
+  "team_count": 7
+}

@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division=69311&season=2017-2018#tables",
   "teams": [
     {
+      "name": "Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18726",
+      "image_url": "https://images.englandrugby.com/club_images/18726.png",
+      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700900
+    },
+    {
       "name": "Northampton Saints",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=49",
       "image_url": "https://images.englandrugby.com/club_images/49.png",
@@ -11,16 +21,6 @@
       "longitude": -0.9192619,
       "formatted_address": "NN5 5BG, Northampton, West Northamptonshire, England, United Kingdom",
       "place_id": 350727320
-    },
-    {
-      "name": "Bath Rugby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=42",
-      "image_url": "https://images.englandrugby.com/club_images/42.png",
-      "address": "Farleigh House, Farleigh, Hungerford, Nr Bath, Somerset, BA2 7RW, United Kingdom",
-      "latitude": 51.31225,
-      "longitude": -2.29111,
-      "formatted_address": "BA2 7RW, Norton St Philip, Norton St. Philip, Somerset, England, United Kingdom",
-      "place_id": 350936825
     },
     {
       "name": "Leicester Tigers",
@@ -33,34 +33,24 @@
       "place_id": 351478144
     },
     {
-      "name": "Saracens",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18726",
-      "image_url": "https://images.englandrugby.com/club_images/18726.png",
-      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
-      "latitude": 51.60387,
-      "longitude": -0.22636,
-      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
-      "place_id": 351700900
+      "name": "Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45",
+      "image_url": "https://images.englandrugby.com/club_images/45.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
     },
     {
-      "name": "Exeter Chiefs",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=41",
-      "image_url": "https://images.englandrugby.com/club_images/41.png",
-      "address": "Sandy Park Stadium Sandy Park Way Exeter DEVON EX2 7NN UNITED KINGDOM ",
-      "latitude": 50.7095737,
-      "longitude": -3.4687913,
-      "formatted_address": "EX2 7NN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350620368
-    },
-    {
-      "name": "Wasps",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=52",
-      "image_url": "https://images.englandrugby.com/club_images/52.png",
-      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
-      "latitude": 52.4486967,
-      "longitude": -1.4963109,
-      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
-      "place_id": 257716795
+      "name": "Bath Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=42",
+      "image_url": "https://images.englandrugby.com/club_images/42.png",
+      "address": "Farleigh House, Farleigh, Hungerford, Nr Bath, Somerset, BA2 7RW, United Kingdom",
+      "latitude": 51.31225,
+      "longitude": -2.29111,
+      "formatted_address": "BA2 7RW, Norton St Philip, Norton St. Philip, Somerset, England, United Kingdom",
+      "place_id": 350936825
     },
     {
       "name": "Sale Sharks",
@@ -73,14 +63,24 @@
       "place_id": 351550869
     },
     {
-      "name": "Harlequins",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45",
-      "image_url": "https://images.englandrugby.com/club_images/45.png",
-      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
-      "latitude": 51.4498118,
-      "longitude": -0.343649,
-      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350871712
+      "name": "Wasps",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=52",
+      "image_url": "https://images.englandrugby.com/club_images/52.png",
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
+    },
+    {
+      "name": "Exeter Chiefs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=41",
+      "image_url": "https://images.englandrugby.com/club_images/41.png",
+      "address": "Sandy Park Stadium Sandy Park Way Exeter DEVON EX2 7NN UNITED KINGDOM ",
+      "latitude": 50.7095737,
+      "longitude": -3.4687913,
+      "formatted_address": "EX2 7NN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620368
     },
     {
       "name": "Gloucester Rugby",
@@ -113,14 +113,14 @@
       "place_id": 351617507
     },
     {
-      "name": "London Welsh",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12635",
-      "image_url": "https://images.englandrugby.com/club_images/12635.png",
-      "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
-      "latitude": 51.4689273,
-      "longitude": -0.2958534,
-      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350872292
+      "name": "Worcester Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=53",
+      "image_url": "https://images.englandrugby.com/club_images/53.png",
+      "address": "Clubs Office, Training &amp; Playing Ground, Sixways Stadium, Warriors Way, Worcester, WR3 8ZE, United Kingdom",
+      "latitude": 52.21608,
+      "longitude": -2.16251,
+      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352162012
     }
   ],
   "team_count": 12

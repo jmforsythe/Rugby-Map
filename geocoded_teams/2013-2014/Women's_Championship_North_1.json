@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7362&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Firwood Waterloo Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8167",
+      "image_url": "https://images.englandrugby.com/club_images/8167.png",
+      "address": "The Memorial Ground St Anthony's Road Blundellsands Merseyside L23 8TW England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Camp Hill Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4067",
+      "image_url": "https://images.englandrugby.com/club_images/4067.png",
+      "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
+      "latitude": 52.4112632,
+      "longitude": -1.8343111,
+      "formatted_address": "B90 2EF, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486022
+    },
+    {
+      "name": "West Park Leeds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24890",
+      "image_url": "https://images.englandrugby.com/club_images/24890.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "West Bridgford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24736",
+      "image_url": "https://images.englandrugby.com/club_images/24736.png",
+      "address": "The Memorial Ground Stamford Road West Bridgford NOTTINGHAMSHIRE NG2 6GF UNITED KINGDOM",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652446
+    },
+    {
+      "name": "Novocastrians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15174",
+      "image_url": "https://images.englandrugby.com/club_images/15174.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Birkenhead Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2275",
+      "image_url": "https://images.englandrugby.com/club_images/2275.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Eccles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284",
+      "image_url": "https://images.englandrugby.com/club_images/7284.png",
+      "address": "Gorton Street, Peel Green, Eccles, Manchester., Greater Manchester, M30 7LZ, United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    }
+  ],
+  "team_count": 8
+}

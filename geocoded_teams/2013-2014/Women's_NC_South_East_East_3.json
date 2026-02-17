@@ -1,0 +1,37 @@
+{
+  "league_name": "Women's NC South East East 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7427&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Hammersmith & Fulham Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9262",
+      "image_url": "https://images.englandrugby.com/club_images/9262.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 351564189
+    },
+    {
+      "name": "Beccehamian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1749",
+      "image_url": "https://images.englandrugby.com/club_images/1749.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
+      "name": "Old Caterhamians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15513",
+      "image_url": "https://images.englandrugby.com/club_images/15513.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    }
+  ],
+  "team_count": 3
+}

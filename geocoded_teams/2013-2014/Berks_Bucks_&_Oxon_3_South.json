@@ -1,0 +1,77 @@
+{
+  "league_name": "Berks/Bucks & Oxon 3 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7247&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Thatcham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21922",
+      "image_url": "https://images.englandrugby.com/club_images/21922.png",
+      "address": "Henwick Worthy Sports Fields Henwick Lane Thatcham BERKSHIRE RG18 3BN UNITED KINGDOM ",
+      "latitude": 51.4079239,
+      "longitude": -1.2780853,
+      "formatted_address": "RG18 3BN, Thatcham, West Berkshire, England, United Kingdom",
+      "place_id": 350785551
+    },
+    {
+      "name": "Reading III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17535",
+      "image_url": "https://images.englandrugby.com/club_images/17535.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Tadley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21608",
+      "image_url": "https://images.englandrugby.com/club_images/21608.png",
+      "address": "Frank Jose Park, Red Lane, Aldermaston, Berkshire, RG7 4PA, United Kingdom",
+      "latitude": 51.37191,
+      "longitude": -1.1217299,
+      "formatted_address": "RG7 4PA, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 351818569
+    },
+    {
+      "name": "Maidenhead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13108",
+      "image_url": "https://images.englandrugby.com/club_images/13108.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Bracknell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2893",
+      "image_url": "https://images.englandrugby.com/club_images/2893.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    },
+    {
+      "name": "Grove III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9007",
+      "image_url": "https://images.englandrugby.com/club_images/9007.png",
+      "address": "Recreation Lane, Grove, Wantage, Oxfordshire, OX12 0AA, United Kingdom",
+      "latitude": 51.6031576,
+      "longitude": -1.4254415,
+      "formatted_address": "OX12 0AA, Westfield and Willows Park, Grove, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 351719707
+    },
+    {
+      "name": "Slough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19518",
+      "image_url": "https://images.englandrugby.com/club_images/19518.png",
+      "address": "Farnham Common Sports Club, One Pin Lane, Farnham Common, Slough, Berkshire, SL2 3QY, United Kingdom",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820537
+    }
+  ],
+  "team_count": 7
+}

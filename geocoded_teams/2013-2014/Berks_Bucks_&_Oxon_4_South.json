@@ -1,0 +1,67 @@
+{
+  "league_name": "Berks/Bucks & Oxon 4 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7270&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Reading IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17536",
+      "image_url": "https://images.englandrugby.com/club_images/17536.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Windsor IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25611",
+      "image_url": "https://images.englandrugby.com/club_images/25611.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM ",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932039
+    },
+    {
+      "name": "Phoenix II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16888",
+      "image_url": "https://images.englandrugby.com/club_images/16888.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
+    },
+    {
+      "name": "Tadley III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21609",
+      "image_url": "https://images.englandrugby.com/club_images/21609.png",
+      "address": "Frank Jose Park, Red Lane, Aldermaston, Berkshire, RG7 4PA, United Kingdom",
+      "latitude": 51.37191,
+      "longitude": -1.1217299,
+      "formatted_address": "RG7 4PA, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 351818569
+    },
+    {
+      "name": "Reading Abbey III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17510",
+      "image_url": "https://images.englandrugby.com/club_images/17510.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Newbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14435",
+      "image_url": "https://images.englandrugby.com/club_images/14435.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    }
+  ],
+  "team_count": 6
+}

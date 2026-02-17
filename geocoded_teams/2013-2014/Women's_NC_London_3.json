@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC London 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7379&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "East London Vixens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7167",
+      "image_url": "https://images.englandrugby.com/club_images/7167.png",
+      "address": "71 Holland Road, West Ham, London, E15 3BP, United Kingdom",
+      "latitude": 51.5292709,
+      "longitude": 0.010343,
+      "formatted_address": "Strength Ambassadors, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91270651
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Kilburn Cosmos Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11435",
+      "image_url": "https://images.englandrugby.com/club_images/11435.png",
+      "address": "Gladstone Park Jct Of Anson & Kendal Road London NW2 6BH United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351247867
+    },
+    {
+      "name": "Millwall Venus Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13911",
+      "image_url": "https://images.englandrugby.com/club_images/13911.png",
+      "address": "75 Manchester Road Isle Of Dogs London E14 3DN United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 258559684
+    }
+  ],
+  "team_count": 4
+}

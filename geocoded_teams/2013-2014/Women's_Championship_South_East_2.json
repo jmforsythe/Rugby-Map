@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Championship South East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7367&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Blackheath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2505",
+      "image_url": "https://images.englandrugby.com/club_images/2505.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Old Albanians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15382",
+      "image_url": "https://images.englandrugby.com/club_images/15382.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Hampstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9298",
+      "image_url": "https://images.englandrugby.com/club_images/9298.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Hammersmith & Fulham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9261",
+      "image_url": "https://images.englandrugby.com/club_images/9261.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 351564189
+    },
+    {
+      "name": "Beckenham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1790",
+      "image_url": "https://images.englandrugby.com/club_images/1790.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18042",
+      "image_url": "https://images.englandrugby.com/club_images/18042.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "New Ash Green Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14309",
+      "image_url": "https://images.englandrugby.com/club_images/14309.png",
+      "address": "The Pavilion Punchcroft Road New Ash Green, Longfield Kent DA3 8HS United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570829
+    },
+    {
+      "name": "Richmond Ladies III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17751",
+      "image_url": "https://images.englandrugby.com/club_images/17751.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421605
+    }
+  ],
+  "team_count": 8
+}

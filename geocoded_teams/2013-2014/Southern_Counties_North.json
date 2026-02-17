@@ -1,0 +1,127 @@
+{
+  "league_name": "Southern Counties North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=7231&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Bletchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2599",
+      "image_url": "https://images.englandrugby.com/club_images/2599.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Aylesbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1123",
+      "image_url": "https://images.englandrugby.com/club_images/1123.png",
+      "address": "Ostler's Field Brook End Weston Turville Aylesbury Buckinghamshire HP22 5RN United Kingdom",
+      "latitude": 51.79431,
+      "longitude": -0.74905,
+      "formatted_address": "HP22 5RN, Weston Turville, Buckinghamshire, England, United Kingdom",
+      "place_id": 351361908
+    },
+    {
+      "name": "Thatcham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21921",
+      "image_url": "https://images.englandrugby.com/club_images/21921.png",
+      "address": "Henwick Worthy Sports Fields Henwick Lane Thatcham BERKSHIRE RG18 3BN UNITED KINGDOM ",
+      "latitude": 51.4079239,
+      "longitude": -1.2780853,
+      "formatted_address": "RG18 3BN, Thatcham, West Berkshire, England, United Kingdom",
+      "place_id": 350785551
+    },
+    {
+      "name": "High Wycombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10112",
+      "image_url": "https://images.englandrugby.com/club_images/10112.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    },
+    {
+      "name": "Milton Keynes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13918",
+      "image_url": "https://images.englandrugby.com/club_images/13918.png",
+      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
+      "latitude": 52.0023636,
+      "longitude": -0.7803565,
+      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703816
+    },
+    {
+      "name": "Stow-on-the-Wold",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21208",
+      "image_url": "https://images.englandrugby.com/club_images/21208.png",
+      "address": "Stow-on-the-wold & District R.f.c., Oddington Road, Stow On The Wold, Gloucestershire, GL54 1JJ, United Kingdom",
+      "latitude": 51.9271979,
+      "longitude": -1.6888023,
+      "formatted_address": "GL54 1JJ, Oddington, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 350636942
+    },
+    {
+      "name": "Royal Wootton Bassett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18228",
+      "image_url": "https://images.englandrugby.com/club_images/18228.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Drifters",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6774",
+      "image_url": "https://images.englandrugby.com/club_images/6774.png",
+      "address": "Farnham Common Sports Club One Pin Lane Farnham Common BUCKINGHAMSHIRE SL2 3QY UNITED KINGDOM",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350369779
+    },
+    {
+      "name": "Alchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=385",
+      "image_url": "https://images.englandrugby.com/club_images/385.png",
+      "address": "Fritwell Playing Field Fewcott Road Fritwell Bicester OXFORDSHIRE OX27 7QA ENGLAND",
+      "latitude": 51.95891,
+      "longitude": -1.2319,
+      "formatted_address": "OX27 7QA, Fritwell, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351727836
+    },
+    {
+      "name": "Wallingford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24153",
+      "image_url": "https://images.englandrugby.com/club_images/24153.png",
+      "address": "Hithercroft Sports Park, Hithercroft Road, Wallingford, Oxfordshire, OX10 9RB, United Kingdom",
+      "latitude": 51.5994582,
+      "longitude": -1.1427787,
+      "formatted_address": "OX10 9RB, Wallingford, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350753211
+    },
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Swindon College Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21533",
+      "image_url": "https://images.englandrugby.com/club_images/21533.png",
+      "address": "Swindon College Old Boys Rfc, 4 Citrine Close , Swindon, Wiltshire, SN25 2SG, United Kingdom",
+      "latitude": 51.6093018,
+      "longitude": -1.802366,
+      "formatted_address": "SN25 2SG, St. Andrews, Blunsdon St Andrew, Swindon, England, United Kingdom",
+      "place_id": 351946715
+    }
+  ],
+  "team_count": 12
+}

@@ -147,11 +147,13 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         .removeprefix("Shepherd_Neame_")
         .removeprefix("6X_")
         .removeprefix("Snows_Group_")
+        .removeprefix("SSE_")
     )
 
     zeroth_tier_map = {
         "National_League": 2,
         "North_Lancs_Cumbria": 7,
+        "North_Lancashire": 7,
         "North": 5,
         "Midlands": 5,
         "London": 5,
@@ -178,7 +180,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Lancs_Cheshire": (7 if season >= "2018-2019" else 6),
         "South_Lancs_Cheshire": 6,
         "Lancashire_(North)": 8,
-        "Cheshire:": 8,
+        "Cheshire": 8,
         "Merseyside": 8,
     }
     if filename.startswith("Premiership"):

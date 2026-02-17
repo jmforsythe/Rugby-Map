@@ -1,0 +1,57 @@
+{
+  "league_name": "Women's NC South East South 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=7426&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Southampton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19708",
+      "image_url": "https://images.englandrugby.com/club_images/19708.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Ellingham & Ringwood Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7456",
+      "image_url": "https://images.englandrugby.com/club_images/7456.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Sutton & Epsom Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21420",
+      "image_url": "https://images.englandrugby.com/club_images/21420.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Chichester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4763",
+      "image_url": "https://images.englandrugby.com/club_images/4763.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "St Francis Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20376",
+      "image_url": "https://images.englandrugby.com/club_images/20376.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    }
+  ],
+  "team_count": 5
+}

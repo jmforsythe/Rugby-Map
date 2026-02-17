@@ -1,0 +1,167 @@
+{
+  "league_name": "SSE National League 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=7393&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Doncaster Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6559",
+      "image_url": "https://images.englandrugby.com/club_images/6559.png",
+      "address": "Doncaster RFC Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5327399,
+      "longitude": -1.0799,
+      "formatted_address": "DN2 5QB, Doncaster, South Yorkshire, England, United Kingdom",
+      "place_id": 351183408
+    },
+    {
+      "name": "Rosslyn Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18036",
+      "image_url": "https://images.englandrugby.com/club_images/18036.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM ",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839761
+    },
+    {
+      "name": "Fylde",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8426",
+      "image_url": "https://images.englandrugby.com/club_images/8426.png",
+      "address": "Woodlands Memorial Ground, Blackpool Rd, Lytham St Annes, Lytham Saint Annes FY8 4EL, United Kingdom",
+      "latitude": 53.746121,
+      "longitude": -2.9878254,
+      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
+      "place_id": 350625913
+    },
+    {
+      "name": "Coventry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
+      "image_url": "https://images.englandrugby.com/club_images/5722.png",
+      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
+      "latitude": 52.4061896,
+      "longitude": -1.5259715,
+      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350563719
+    },
+    {
+      "name": "Esher",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7650",
+      "image_url": "https://images.englandrugby.com/club_images/7650.png",
+      "address": "369 Esher Rfc, Molesey Road, Hersham, Surrey, KT12 3PF, United Kingdom",
+      "latitude": 51.3780876,
+      "longitude": -0.3898402,
+      "formatted_address": "KT12 3PF, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669902
+    },
+    {
+      "name": "Blaydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565",
+      "image_url": "https://images.englandrugby.com/club_images/2565.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Richmond",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17742",
+      "image_url": "https://images.englandrugby.com/club_images/17742.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Wharfedale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25147",
+      "image_url": "https://images.englandrugby.com/club_images/25147.png",
+      "address": "Wharfeside Avenue Threshfield Skipton NORTH YORKSHIRE BD23 5BS UNITED KINGDOM ",
+      "latitude": 54.0712748,
+      "longitude": -2.0123857,
+      "formatted_address": "BD23 5BS, Threshfield, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350494906
+    },
+    {
+      "name": "Old Albanians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15377",
+      "image_url": "https://images.englandrugby.com/club_images/15377.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Blackheath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2494",
+      "image_url": "https://images.englandrugby.com/club_images/2494.png",
+      "address": "Kidbrooke Lane, London, SE9 6TE, England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 91315466
+    },
+    {
+      "name": "Cinderford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5046",
+      "image_url": "https://images.englandrugby.com/club_images/5046.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Loughborough Students",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12833",
+      "image_url": "https://images.englandrugby.com/club_images/12833.png",
+      "address": "Sport Development Centre Loughborough University Loughborough University Loughborough LEICESTERSHIRE LE11 3TU UNITED KINGDOM ",
+      "latitude": 52.7584538,
+      "longitude": -1.2484043,
+      "formatted_address": "LE11 3TU, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350681681
+    },
+    {
+      "name": "Tynedale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390",
+      "image_url": "https://images.englandrugby.com/club_images/23390.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
+    },
+    {
+      "name": "Henley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984",
+      "image_url": "https://images.englandrugby.com/club_images/9984.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Worthing",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26122",
+      "image_url": "https://images.englandrugby.com/club_images/26122.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Hull Ionians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10641",
+      "image_url": "https://images.englandrugby.com/club_images/10641.png",
+      "address": "Brantingham Park Elloughton Road Elloughton Road Brantingham EAST RIDING OF YORKSHIRE HU15 1HX UNITED KINGDOM ",
+      "latitude": 53.742916,
+      "longitude": -0.5682622,
+      "formatted_address": "HU15 1HX, Elloughton-cum-Brough, Brough, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351374888
+    }
+  ],
+  "team_count": 16
+}

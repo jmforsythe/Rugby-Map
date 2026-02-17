@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 5 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=7289&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Rugby Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18289",
+      "image_url": "https://images.englandrugby.com/club_images/18289.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    },
+    {
+      "name": "Warwickian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24365",
+      "image_url": "https://images.englandrugby.com/club_images/24365.png",
+      "address": "Hampton Road Sports Ground Hampton Road Warwick WARWICKSHIRE CV34 6HX UNITED KINGDOM",
+      "latitude": 52.27603,
+      "longitude": -1.59643,
+      "formatted_address": "CV34 6HX, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351120154
+    },
+    {
+      "name": "Birmingham Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2318",
+      "image_url": "https://images.englandrugby.com/club_images/2318.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon  Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM ",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488076
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Wellesbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24596",
+      "image_url": "https://images.englandrugby.com/club_images/24596.png",
+      "address": "Home Guard Club Main Street Tiddington Stratford-upon-avon Warwickshire CV37 7AY England",
+      "latitude": 52.2009492,
+      "longitude": -1.6704934,
+      "formatted_address": "Home Guard Club, Main Street, Stratford-upon-Avon, Tiddington, Stratford-on-Avon, Warwickshire, England, CV37 7AY, United Kingdom",
+      "place_id": 258407640
+    },
+    {
+      "name": "Trinity Guild",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23189",
+      "image_url": "https://images.englandrugby.com/club_images/23189.png",
+      "address": "Martin Wheeler Fields, Segro Park, Samaritan Way, Baginton, Coventry, Warwickshire, CV8 3EE, United Kingdom",
+      "latitude": 52.35863,
+      "longitude": -1.48417,
+      "formatted_address": "CV8 3EE, Segro Park, Baginton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126992
+    },
+    {
+      "name": "Copsewood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5628",
+      "image_url": "https://images.englandrugby.com/club_images/5628.png",
+      "address": "The Pavilion Copsewood Sports & Social Club Allard Way Coventry WEST MIDLANDS CV3 1JP UNITED KINGDOM",
+      "latitude": 52.4000212,
+      "longitude": -1.4624777,
+      "formatted_address": "CV3 1JP, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350564444
+    },
+    {
+      "name": "Rugby Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334",
+      "image_url": "https://images.englandrugby.com/club_images/18334.png",
+      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
+      "latitude": 52.35183,
+      "longitude": -1.28944,
+      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351116375
+    },
+    {
+      "name": "Coventry Technical",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5730",
+      "image_url": "https://images.englandrugby.com/club_images/5730.png",
+      "address": "Mitchell Avenue Canley Canley Coventry WEST MIDLANDS CV4 8DW UNITED KINGDOM",
+      "latitude": 52.3940834,
+      "longitude": -1.5696642,
+      "formatted_address": "Mitchell Avenue, Canley, Coventry, West Midlands, England, CV4 8HB, United Kingdom",
+      "place_id": 259074314
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 3 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=6511&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Pershore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16795",
+      "image_url": "https://images.englandrugby.com/club_images/16795.png",
+      "address": "Piddle Park , Mill Lane, Wyre Piddle, Pershore, Worcestershire, WR10 2JF, United Kingdom",
+      "latitude": 52.12151,
+      "longitude": -2.06326,
+      "formatted_address": "WR10 2JF, Wyre Piddle, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352158321
+    },
+    {
+      "name": "Pinley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16908",
+      "image_url": "https://images.englandrugby.com/club_images/16908.png",
+      "address": "Wyken Croft Wyken Coventry WEST MIDLANDS CV2 3AA UNITED KINGDOM",
+      "latitude": 52.4194878,
+      "longitude": -1.4578022,
+      "formatted_address": "Wyken Croft, Wyken, Coventry, West Midlands, England, CV2 3AB, United Kingdom",
+      "place_id": 258791652
+    },
+    {
+      "name": "Kings Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11577",
+      "image_url": "https://images.englandrugby.com/club_images/11577.png",
+      "address": "Hopwood Park, Ash Lane, Hopwood, Birmingham, Worcestershire, B48 7BB, United Kingdom",
+      "latitude": 52.36938,
+      "longitude": -1.9455,
+      "formatted_address": "B48 7BB, Brookhouse Farm, Alvechurch CP, Hopwood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918073
+    },
+    {
+      "name": "Cheltenham North",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4540",
+      "image_url": "https://images.englandrugby.com/club_images/4540.png",
+      "address": "Cheltenham North Rfc Ltd, Stoke Orchard Road, Bishops Cleeve, Cheltenham, Gloucestershire, GL52 7DG, United Kingdom",
+      "latitude": 51.9465333,
+      "longitude": -2.0824434,
+      "formatted_address": "GL52 7DG, Bishop's Cleeve, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350635623
+    },
+    {
+      "name": "Evesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "image_url": "https://images.englandrugby.com/club_images/7735.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "latitude": 52.0790553,
+      "longitude": -1.9411321,
+      "formatted_address": "Royal Mail, Davies Road, Fairfield, Evesham, Wychavon, Worcestershire, England, WR11 1XN, United Kingdom",
+      "place_id": 258632014
+    },
+    {
+      "name": "Old Wheatleyans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16085",
+      "image_url": "https://images.englandrugby.com/club_images/16085.png",
+      "address": "Old Wheatleyans RFC Norman Place Road Coundon Coventry WEST MIDLANDS CV6 2BU UNITED KINGDOM ",
+      "latitude": 52.4282785,
+      "longitude": -1.5383605,
+      "formatted_address": "CV6 2BU, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351124870
+    },
+    {
+      "name": "Southam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19697",
+      "image_url": "https://images.englandrugby.com/club_images/19697.png",
+      "address": "The Rugby Field Kineton Road Southam WARWICKSHIRE CV47 2DG UNITED KINGDOM ",
+      "latitude": 52.24418,
+      "longitude": -1.40505,
+      "formatted_address": "CV47 2DG, Southam CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 351123624
+    },
+    {
+      "name": "Ledbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11963",
+      "image_url": "https://images.englandrugby.com/club_images/11963.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Woodrush",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26012",
+      "image_url": "https://images.englandrugby.com/club_images/26012.png",
+      "address": "Icknield Street Forhill Birmingham WEST MIDLANDS B38 0EL UNITED KINGDOM ",
+      "latitude": 52.38331,
+      "longitude": -1.92118,
+      "formatted_address": "B38 0EL, Wythall CP, Hollywood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350917211
+    },
+    {
+      "name": "Redditch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17592",
+      "image_url": "https://images.englandrugby.com/club_images/17592.png",
+      "address": "Redditch Cricket Hockey And Rugby Football Club, Bromsgrove Road, Redditch, Worcestershire, B97 4SP, United Kingdom",
+      "latitude": 52.305942,
+      "longitude": -1.9553051,
+      "formatted_address": "B97 4SP, Redditch, Worcestershire, England, United Kingdom",
+      "place_id": 350489490
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC South West South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6541&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "North Tawton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14796",
+      "image_url": "https://images.englandrugby.com/club_images/14796.png",
+      "address": "Ntrfc Taw Meadow Fore St North Tawton Devon EX20 2ED United Kingdom",
+      "latitude": 50.7999123,
+      "longitude": -3.9051935,
+      "formatted_address": "EX20 2ED, North Tawton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351294673
+    },
+    {
+      "name": "Penryn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16709",
+      "image_url": "https://images.englandrugby.com/club_images/16709.png",
+      "address": "Penryn Rfc, The Memorial Ground, Kernick Road, Kernick Road, Penryn, Cornwall, TR10 8NT, United Kingdom",
+      "latitude": 50.16642,
+      "longitude": -5.11452,
+      "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
+      "place_id": 352067811
+    },
+    {
+      "name": "Cullompton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6008",
+      "image_url": "https://images.englandrugby.com/club_images/6008.png",
+      "address": "Cullompton RFC Stafford Park Knowle Lane Cullompton DEVON EX15 1PZ UNITED KINGDOM ",
+      "latitude": 50.8566579,
+      "longitude": -3.4117713,
+      "formatted_address": "EX15 1PZ, Cullompton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350619042
+    },
+    {
+      "name": "Plymstock Albion Oaks Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16980",
+      "image_url": "https://images.englandrugby.com/club_images/16980.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2160",
+      "image_url": "https://images.englandrugby.com/club_images/2160.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "Dorchester/Weymouth & P Roses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6608",
+      "image_url": "https://images.englandrugby.com/club_images/6608.png",
+      "address": "Dorchester Rfc Coburg Road Dorchester Dorset DT1 2HX England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 350743556
+    }
+  ],
+  "team_count": 6
+}

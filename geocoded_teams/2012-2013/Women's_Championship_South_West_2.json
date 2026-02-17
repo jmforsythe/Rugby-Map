@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's Championship South West 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6544&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Bristol Bears Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3253",
+      "image_url": "https://images.englandrugby.com/club_images/3253.png",
+      "address": "Bristol Bears Hpc Beggar Bush Lane Henbury Bristol Bristol BS8 3TF United Kingdom",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350071273
+    },
+    {
+      "name": "Henley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9999",
+      "image_url": "https://images.englandrugby.com/club_images/9999.png",
+      "address": "Dry Leas Marlow Road Henley-on-thames Oxfordshire RG9 2JA United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351368417
+    },
+    {
+      "name": "London Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12643",
+      "image_url": "https://images.englandrugby.com/club_images/12643.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Plymouth Albion Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16955",
+      "image_url": "https://images.englandrugby.com/club_images/16955.png",
+      "address": "Brickfields Stadium Damerel Close Devonport Plymouth Devon PL1 4NE England",
+      "latitude": 50.3708017,
+      "longitude": -4.1711966,
+      "formatted_address": "PL1 4NE, Plymouth, England, United Kingdom",
+      "place_id": 350772725
+    },
+    {
+      "name": "Reading Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17537",
+      "image_url": "https://images.englandrugby.com/club_images/17537.png",
+      "address": "Holme Park Sonning Lane Reading Berkshire RG4 6ST England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350339871
+    },
+    {
+      "name": "Supermarine Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21370",
+      "image_url": "https://images.englandrugby.com/club_images/21370.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Chipping Sodbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4892",
+      "image_url": "https://images.englandrugby.com/club_images/4892.png",
+      "address": "Wickwar Road Chipping Sodbury BRISTOL BS37 6GA UNITED KINGDOM",
+      "latitude": 51.5431748,
+      "longitude": -2.3952242,
+      "formatted_address": "BS37 6GA, Sodbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516413
+    }
+  ],
+  "team_count": 7
+}

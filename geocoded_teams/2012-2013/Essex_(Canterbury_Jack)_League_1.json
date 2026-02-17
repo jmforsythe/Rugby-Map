@@ -1,0 +1,107 @@
+{
+  "league_name": "Essex (Canterbury Jack) League 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=6416&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Campion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4078",
+      "image_url": "https://images.englandrugby.com/club_images/4078.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    },
+    {
+      "name": "Old Cooperians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15564",
+      "image_url": "https://images.englandrugby.com/club_images/15564.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "Maldon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154",
+      "image_url": "https://images.englandrugby.com/club_images/13154.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Dagenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6050",
+      "image_url": "https://images.englandrugby.com/club_images/6050.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Clacton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5113",
+      "image_url": "https://images.englandrugby.com/club_images/5113.png",
+      "address": "Not For Post, Rugby Clubhouse, Recreation Ground, Valley Road, Clacton-on-sea, CO15 6NA, United Kingdom",
+      "latitude": 51.8023489,
+      "longitude": 1.1643234,
+      "formatted_address": "CO15 6NA, Tendring, Essex, England, United Kingdom",
+      "place_id": 350555075
+    },
+    {
+      "name": "Epping Upper Clapton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7624",
+      "image_url": "https://images.englandrugby.com/club_images/7624.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Bancroft",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1295",
+      "image_url": "https://images.englandrugby.com/club_images/1295.png",
+      "address": "Bancroft Rfc The Club House Bradfords Close Buckhurst Way Buckhurst Hill Essex IG9 6JD United Kingdom",
+      "latitude": 51.61605,
+      "longitude": 0.04569,
+      "formatted_address": "IG9 6JD, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351389783
+    },
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Millwall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906",
+      "image_url": "https://images.englandrugby.com/club_images/13906.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Burnham-on-Crouch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700",
+      "image_url": "https://images.englandrugby.com/club_images/3700.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    }
+  ],
+  "team_count": 10
+}

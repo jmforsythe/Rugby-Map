@@ -1,0 +1,147 @@
+{
+  "league_name": "London 1 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=6422&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "East Grinstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7134",
+      "image_url": "https://images.englandrugby.com/club_images/7134.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Basingstoke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1565",
+      "image_url": "https://images.englandrugby.com/club_images/1565.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Chichester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753",
+      "image_url": "https://images.englandrugby.com/club_images/4753.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Dover",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6688",
+      "image_url": "https://images.englandrugby.com/club_images/6688.png",
+      "address": "Dover Rugby Football Club Crabble Athletic Ground Crabble Road, River Dover Kent CT17 0JB United Kingdom",
+      "latitude": 51.1398353,
+      "longitude": 1.2871083,
+      "formatted_address": "CT17 0JB, River, Dover, Kent, England, United Kingdom",
+      "place_id": 350561191
+    },
+    {
+      "name": "Hove",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10503",
+      "image_url": "https://images.englandrugby.com/club_images/10503.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Sidcup",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19314",
+      "image_url": "https://images.englandrugby.com/club_images/19314.png",
+      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
+      "latitude": 51.425832,
+      "longitude": 0.092888,
+      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351138781
+    },
+    {
+      "name": "Cobham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5336",
+      "image_url": "https://images.englandrugby.com/club_images/5336.png",
+      "address": "Cobham Rugby Old Surbitonians Memorial Sports Ground Fairmile Lane Cobham KT11 2BU United Kingdom",
+      "latitude": 51.3401025,
+      "longitude": -0.3967178,
+      "formatted_address": "KT11 2BU, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669772
+    },
+    {
+      "name": "Havant",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9690",
+      "image_url": "https://images.englandrugby.com/club_images/9690.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Beckenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1785",
+      "image_url": "https://images.englandrugby.com/club_images/1785.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Gosport & Fareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8808",
+      "image_url": "https://images.englandrugby.com/club_images/8808.png",
+      "address": "Gosport Park, Dolphin Crescent, Gosport, Hampshire, PO12 2HE, United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774642
+    },
+    {
+      "name": "Trojans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23216",
+      "image_url": "https://images.englandrugby.com/club_images/23216.png",
+      "address": "Trojans Club, Stoneham Park  , Stoneham Lane, Eastleigh, Southampton, Hampshire, SO50 9HT, United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832256
+    },
+    {
+      "name": "Old Colfeians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15538",
+      "image_url": "https://images.englandrugby.com/club_images/15538.png",
+      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
+      "latitude": 51.4543889,
+      "longitude": 0.0189041,
+      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351892216
+    }
+  ],
+  "team_count": 14
+}

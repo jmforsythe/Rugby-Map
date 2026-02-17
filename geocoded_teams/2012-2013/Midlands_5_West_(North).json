@@ -1,0 +1,87 @@
+{
+  "league_name": "Midlands 5 West (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=6514&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "St Leonards",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20543",
+      "image_url": "https://images.englandrugby.com/club_images/20543.png",
+      "address": "Prosperity Park, Weston Road, Stafford, Staffordshire, ST180BF, United Kingdom",
+      "latitude": 52.8111534,
+      "longitude": -2.0829403,
+      "formatted_address": "ST18 0BF, Hopton and Coton, Hopton, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836872
+    },
+    {
+      "name": "Warley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24269",
+      "image_url": "https://images.englandrugby.com/club_images/24269.png",
+      "address": "Warley Rugby Football Club, Tatbank Road, Oldbury, Wmid, B69 4NH, United Kingdom",
+      "latitude": 52.4958699,
+      "longitude": -2.00585,
+      "formatted_address": "B69 4NH, Sandwell, West Midlands, England, United Kingdom",
+      "place_id": 350923574
+    },
+    {
+      "name": "Aldridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=415",
+      "image_url": "https://images.englandrugby.com/club_images/415.png",
+      "address": "Bourne Vale, Off Little Hardwick Road, Aldridge, West Midlands, WS9 0SH, United Kingdom",
+      "latitude": 52.5900026,
+      "longitude": -1.901233,
+      "formatted_address": "WS9 0SH, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896311
+    },
+    {
+      "name": "Rugeley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18356",
+      "image_url": "https://images.englandrugby.com/club_images/18356.png",
+      "address": "Rugeley Rfc, The Nelson Building, St Augustine's Field, Behind St Augustine's Church, Station Road, Rugeley, Staffordshire, WS15 2HG, England",
+      "latitude": 52.76498,
+      "longitude": -1.93388,
+      "formatted_address": "WS15 2HG, Rugeley, Cannock Chase, Staffordshire, England, United Kingdom",
+      "place_id": 352169321
+    },
+    {
+      "name": "Essington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700",
+      "image_url": "https://images.englandrugby.com/club_images/7700.png",
+      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
+      "latitude": 52.6245432,
+      "longitude": -2.0590734,
+      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350896523
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Birmingham Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2308",
+      "image_url": "https://images.englandrugby.com/club_images/2308.png",
+      "address": "The Pavilion UCE Sportsground Moor Lane Moor Lane Witton WEST MIDLANDS B6 7AA UNITED KINGDOM",
+      "latitude": 52.5299031,
+      "longitude": -1.8845344,
+      "formatted_address": "B6 7AA, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350481252
+    },
+    {
+      "name": "Whittington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25337",
+      "image_url": "https://images.englandrugby.com/club_images/25337.png",
+      "address": "Lichfield Sports Club Collins Hill Eastern Avenue Lichfield Staffordshire WS13 7SQ England",
+      "latitude": 52.6931574,
+      "longitude": -1.8486649,
+      "formatted_address": "WS13 7SQ, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 352168194
+    }
+  ],
+  "team_count": 8
+}

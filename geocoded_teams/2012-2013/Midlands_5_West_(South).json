@@ -1,0 +1,87 @@
+{
+  "league_name": "Midlands 5 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=6520&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Stoke Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074",
+      "image_url": "https://images.englandrugby.com/club_images/21074.png",
+      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
+      "latitude": 52.402107,
+      "longitude": -1.4568427,
+      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351117485
+    },
+    {
+      "name": "Greyhound",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8969",
+      "image_url": "https://images.englandrugby.com/club_images/8969.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd Grandstand Road Hereford Herefordshire HR4 9NG England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Rugby Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334",
+      "image_url": "https://images.englandrugby.com/club_images/18334.png",
+      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
+      "latitude": 52.35183,
+      "longitude": -1.28944,
+      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351116375
+    },
+    {
+      "name": "Birmingham Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2318",
+      "image_url": "https://images.englandrugby.com/club_images/2318.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon  Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM ",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488076
+    },
+    {
+      "name": "Trinity Guild",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23189",
+      "image_url": "https://images.englandrugby.com/club_images/23189.png",
+      "address": "Martin Wheeler Fields, Segro Park, Samaritan Way, Baginton, Coventry, Warwickshire, CV8 3EE, United Kingdom",
+      "latitude": 52.35863,
+      "longitude": -1.48417,
+      "formatted_address": "CV8 3EE, Segro Park, Baginton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126992
+    },
+    {
+      "name": "Copsewood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5628",
+      "image_url": "https://images.englandrugby.com/club_images/5628.png",
+      "address": "The Pavilion Copsewood Sports & Social Club Allard Way Coventry WEST MIDLANDS CV3 1JP UNITED KINGDOM",
+      "latitude": 52.4000212,
+      "longitude": -1.4624777,
+      "formatted_address": "CV3 1JP, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350564444
+    },
+    {
+      "name": "Wellesbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24596",
+      "image_url": "https://images.englandrugby.com/club_images/24596.png",
+      "address": "Home Guard Club Main Street Tiddington Stratford-upon-avon Warwickshire CV37 7AY England",
+      "latitude": 52.2009492,
+      "longitude": -1.6704934,
+      "formatted_address": "Home Guard Club, Main Street, Stratford-upon-Avon, Tiddington, Stratford-on-Avon, Warwickshire, England, CV37 7AY, United Kingdom",
+      "place_id": 258407640
+    },
+    {
+      "name": "Coventry Technical",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5730",
+      "image_url": "https://images.englandrugby.com/club_images/5730.png",
+      "address": "Mitchell Avenue Canley Canley Coventry WEST MIDLANDS CV4 8DW UNITED KINGDOM",
+      "latitude": 52.3940834,
+      "longitude": -1.5696642,
+      "formatted_address": "Mitchell Avenue, Canley, Coventry, West Midlands, England, CV4 8HB, United Kingdom",
+      "place_id": 259074314
+    }
+  ],
+  "team_count": 8
+}

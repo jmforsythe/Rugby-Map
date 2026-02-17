@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=6413&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Old Amplefordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15424",
+      "image_url": "https://images.englandrugby.com/club_images/15424.png",
+      "address": "Old Amplefordians Rfc, C/o Old Blues, Dornan Fields, Arthur Road, Whitley Village, Walton On Thames, KT3 6LX, England",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Old Caterhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510",
+      "image_url": "https://images.englandrugby.com/club_images/15510.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    },
+    {
+      "name": "Old Haileyburians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15747",
+      "image_url": "https://images.englandrugby.com/club_images/15747.png",
+      "address": "Arthur Road New Malden Surrey KT3 6LX United Kingdom",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671643
+    },
+    {
+      "name": "Mitcham & Carshalton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14023",
+      "image_url": "https://images.englandrugby.com/club_images/14023.png",
+      "address": "Dewsbury Cottage, Poulter Park, Peterborough Road, Carshalton, Surrey, SM5 1EE, United Kingdom",
+      "latitude": 51.39074,
+      "longitude": -0.17446,
+      "formatted_address": "SM5 1EE, London Borough of Sutton, Greater London, England, United Kingdom",
+      "place_id": 351938087
+    },
+    {
+      "name": "London Media",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12587",
+      "image_url": "https://images.englandrugby.com/club_images/12587.png",
+      "address": "Battersea Park, Albert Bridge Road Entrance , Battersea Park, London, Surrey , SW11 4NJ, United Kingdom",
+      "latitude": 51.481421,
+      "longitude": -0.1561104,
+      "formatted_address": "SW11 4NJ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350838388
+    },
+    {
+      "name": "Old Radleian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15928",
+      "image_url": "https://images.englandrugby.com/club_images/15928.png",
+      "address": "8 Mascotte Road London SURREY SW15 1NN UNITED KINGDOM",
+      "latitude": 51.4648498,
+      "longitude": -0.2168935,
+      "formatted_address": "SW15 1NN, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005234
+    },
+    {
+      "name": "Raynes Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17495",
+      "image_url": "https://images.englandrugby.com/club_images/17495.png",
+      "address": "Raynes Park Sports Ground Taunton Avenue Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013170
+    },
+    {
+      "name": "Reigate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17687",
+      "image_url": "https://images.englandrugby.com/club_images/17687.png",
+      "address": "Reigate R.F.C. Eric Hodgkins Memorial Grond Colley Lane Reigate SURREY RH2 9JL UNITED KINGDOM ",
+      "latitude": 51.24827,
+      "longitude": -0.22129,
+      "formatted_address": "RH2 9JL, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351826871
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC Midlands 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6534&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Loughborough Town Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12838",
+      "image_url": "https://images.englandrugby.com/club_images/12838.png",
+      "address": "Loughborough Rfc The Clubhouse Derby Road Playing Fields Off Cotton Way Loughborough Leicestershire LE11 5FJ United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351019657
+    },
+    {
+      "name": "Coalville Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5314",
+      "image_url": "https://images.englandrugby.com/club_images/5314.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Stoneygate Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21123",
+      "image_url": "https://images.englandrugby.com/club_images/21123.png",
+      "address": "Stoneygate Rugby Club The Vaults 4 Market Place Uppingham Rutland LE15 9QH United Kingdom",
+      "latitude": 52.5876476,
+      "longitude": -0.7221468,
+      "formatted_address": "LE15 9QH, Uppingham, Rutland, England, United Kingdom",
+      "place_id": 350682511
+    },
+    {
+      "name": "Old Leamingtonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15809",
+      "image_url": "https://images.englandrugby.com/club_images/15809.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Hucclecote Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10564",
+      "image_url": "https://images.englandrugby.com/club_images/10564.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Lutterworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12966",
+      "image_url": "https://images.englandrugby.com/club_images/12966.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    }
+  ],
+  "team_count": 6
+}

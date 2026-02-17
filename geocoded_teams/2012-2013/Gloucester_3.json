@@ -1,0 +1,77 @@
+{
+  "league_name": "Gloucester 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=6461&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Old Cryptians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15624",
+      "image_url": "https://images.englandrugby.com/club_images/15624.png",
+      "address": "Old Cryptians RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    },
+    {
+      "name": "Westbury-on-Severn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24945",
+      "image_url": "https://images.englandrugby.com/club_images/24945.png",
+      "address": "Parish Hall Rodley Road Westbury On Severn Gloucestershire GL14 1PF United Kingdom",
+      "latitude": 51.8213258,
+      "longitude": -2.4050579,
+      "formatted_address": "Parish Hall, Rodley Road, Hayden Farm, Westbury-on-Severn, Rodley, Forest of Dean, Gloucestershire, England, GL14 1RE, United Kingdom",
+      "place_id": 261125165
+    },
+    {
+      "name": "Tredworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23114",
+      "image_url": "https://images.englandrugby.com/club_images/23114.png",
+      "address": "Tredworth Rfc The Lannet King Edwards Avenue Gloucester Gloucestershire GL1 5DE United Kingdom",
+      "latitude": 51.8506636,
+      "longitude": -2.2452348,
+      "formatted_address": "GL1 5DE, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307882
+    },
+    {
+      "name": "Minchinhampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13941",
+      "image_url": "https://images.englandrugby.com/club_images/13941.png",
+      "address": "Minchinhampton Rfc, Hollybush Farm, Hampton Fields, Minchinhampton , Stroud, GL6 9BD, England",
+      "latitude": 51.70212,
+      "longitude": -2.16677,
+      "formatted_address": "GL6 9BD, Minchinhampton, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351317856
+    },
+    {
+      "name": "Smiths Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19533",
+      "image_url": "https://images.englandrugby.com/club_images/19533.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paulâ€™s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Old Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15655",
+      "image_url": "https://images.englandrugby.com/club_images/15655.png",
+      "address": "Old Elizabethans Rfc, Severn Road, Hallen, Bristol, Bristol, BS10 7RZ, United Kingdom",
+      "latitude": 51.5183615,
+      "longitude": -2.6502756,
+      "formatted_address": "BS10 7RZ, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505596
+    },
+    {
+      "name": "Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15030",
+      "image_url": "https://images.englandrugby.com/club_images/15030.png",
+      "address": "Norton Rfc Norton Parish Grounds Old Tewkesbury Road Norton Gloucester Gloucestershire GL2 9LJ",
+      "latitude": 51.914769,
+      "longitude": -2.2102215,
+      "formatted_address": "GL2 9LJ, Norton, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631547
+    }
+  ],
+  "team_count": 7
+}

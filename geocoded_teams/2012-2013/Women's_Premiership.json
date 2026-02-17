@@ -1,0 +1,87 @@
+{
+  "league_name": "Women's Premiership",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6531&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Worcester Warriors Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26084",
+      "image_url": "https://images.englandrugby.com/club_images/26084.png",
+      "address": "Clubs Office, Training &amp; Playing Ground Sixways Stadium Warriors Way Worcester WR3 8ZE United Kingdom",
+      "latitude": 52.21608,
+      "longitude": -2.16251,
+      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 351710432
+    },
+    {
+      "name": "Richmond FC Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17744",
+      "image_url": "https://images.englandrugby.com/club_images/17744.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421605
+    },
+    {
+      "name": "Lichfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12241",
+      "image_url": "https://images.englandrugby.com/club_images/12241.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
+      "name": "Bristol Bears Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3252",
+      "image_url": "https://images.englandrugby.com/club_images/3252.png",
+      "address": "Bristol Bears Hpc Beggar Bush Lane Henbury Bristol Bristol BS8 3TF United Kingdom",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350071273
+    },
+    {
+      "name": "Wasps FC Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24413",
+      "image_url": "https://images.englandrugby.com/club_images/24413.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "Saracens Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18764",
+      "image_url": "https://images.englandrugby.com/club_images/18764.png",
+      "address": "Saracens Ltd Stonex Stadium Greenlands Park Hendon London NW4 1RL United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351249540
+    },
+    {
+      "name": "DMP Durham Sharks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6114",
+      "image_url": "https://images.englandrugby.com/club_images/6114.png",
+      "address": "Darlington Arena Neasham Road Darlington County Durham DL2 1DL United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171191
+    },
+    {
+      "name": "Thurrock Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22773",
+      "image_url": "https://images.englandrugby.com/club_images/22773.png",
+      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    }
+  ],
+  "team_count": 8
+}

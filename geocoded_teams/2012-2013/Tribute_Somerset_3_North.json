@@ -1,0 +1,57 @@
+{
+  "league_name": "Tribute Somerset 3 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=6459&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Nailsea & Backwell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14248",
+      "image_url": "https://images.englandrugby.com/club_images/14248.png",
+      "address": "Nailsea & Backwell Rfc, West End Park, West End Lane, Nailsea, Somerset, BS48 4BY, United Kingdom",
+      "latitude": 51.4266176,
+      "longitude": -2.783802,
+      "formatted_address": "BS48 4BY, Nailsea, North Somerset, England, United Kingdom",
+      "place_id": 350518448
+    },
+    {
+      "name": "Bath Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1597",
+      "image_url": "https://images.englandrugby.com/club_images/1597.png",
+      "address": "Mill Lane Bathampton Bath SOMERSET BA2 6TR UNITED KINGDOM",
+      "latitude": 51.4015057,
+      "longitude": -2.3255142,
+      "formatted_address": "Mill Lane, Bailbrook, Bath, Bath and North East Somerset, West of England, England, BA1 7DE, United Kingdom",
+      "place_id": 261347957
+    },
+    {
+      "name": "Stothert & Pitt II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21141",
+      "image_url": "https://images.englandrugby.com/club_images/21141.png",
+      "address": "Stothert & Pitt RFC Adamsfield Bristol Road Corston Bath SOMERSET BA2 9DJ UNITED KINGDOM",
+      "latitude": 51.39125,
+      "longitude": -2.43791,
+      "formatted_address": "BA2 9DJ, Corston, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350486254
+    },
+    {
+      "name": "Oldfield Old Boys III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16141",
+      "image_url": "https://images.englandrugby.com/club_images/16141.png",
+      "address": "Shaft Road Combe Down Bath BA2 7HP ENGLAND",
+      "latitude": 51.3620111,
+      "longitude": -2.3363342,
+      "formatted_address": "Shaft Road, Combe Down, Bath, Bath and North East Somerset, West of England, England, BA2 7HR, United Kingdom",
+      "place_id": 261418614
+    },
+    {
+      "name": "Walcot III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24097",
+      "image_url": "https://images.englandrugby.com/club_images/24097.png",
+      "address": "Albert Field, Lansdown, Bath, Somerset, BA1 9BJ, United Kingdom",
+      "latitude": 51.4097448,
+      "longitude": -2.3815316,
+      "formatted_address": "BA1 9BJ, Charlcombe, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350490574
+    }
+  ],
+  "team_count": 5
+}

@@ -1,0 +1,137 @@
+{
+  "league_name": "Durham/Northumberland Division Two",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=6482&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Bishop Auckland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2355",
+      "image_url": "https://images.englandrugby.com/club_images/2355.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "Novocastrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15169",
+      "image_url": "https://images.englandrugby.com/club_images/15169.png",
+      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Redcar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17572",
+      "image_url": "https://images.englandrugby.com/club_images/17572.png",
+      "address": "McKinlay Park Green Lane Redcar CLEVELAND TS10 3RW UNITED KINGDOM ",
+      "latitude": 54.6031896,
+      "longitude": -1.0417975,
+      "formatted_address": "TS10 3RW, Redcar and Cleveland, Tees Valley, England, United Kingdom",
+      "place_id": 350868166
+    },
+    {
+      "name": "Ashington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=899",
+      "image_url": "https://images.englandrugby.com/club_images/899.png",
+      "address": "Recreation Ground Ellington Road Ashington NORTHUMBERLAND NE63 8TP UNITED KINGDOM ",
+      "latitude": 55.1859193,
+      "longitude": -1.5957141,
+      "formatted_address": "NE63 8TP, Portland, Ashington, Northumberland, North East, England, United Kingdom",
+      "place_id": 351639439
+    },
+    {
+      "name": "Seaton Carew",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18902",
+      "image_url": "https://images.englandrugby.com/club_images/18902.png",
+      "address": "Hornby Park, Elizabeth Way Seaton Carew Hartlepool County Durham TS25 2AZ United Kingdom",
+      "latitude": 54.655817,
+      "longitude": -1.1882955,
+      "formatted_address": "TS25 2AZ, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086867
+    },
+    {
+      "name": "North Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14784",
+      "image_url": "https://images.englandrugby.com/club_images/14784.png",
+      "address": "North Shields R.f.c., Preston Playing Fields, Preston Village, North Shields, Tyne And Wear, NE29 9ND, United Kingdom",
+      "latitude": 55.02074,
+      "longitude": -1.4564,
+      "formatted_address": "NE29 9ND, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351625772
+    },
+    {
+      "name": "Whitley Bay Rockcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25300",
+      "image_url": "https://images.englandrugby.com/club_images/25300.png",
+      "address": "Hillheads, Lovaine Avenue, Whitley Bay, Tyne And Wear, NE25 8RW, United Kingdom",
+      "latitude": 55.0375574,
+      "longitude": -1.4491323,
+      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
+      "place_id": 350711110
+    },
+    {
+      "name": "Hartlepool",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9552",
+      "image_url": "https://images.englandrugby.com/club_images/9552.png",
+      "address": "Mayfield Park Easington Road Hartlepool County Durham TS24 9BA United Kingdom",
+      "latitude": 54.70523,
+      "longitude": -1.23388,
+      "formatted_address": "TS24 9BA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086474
+    },
+    {
+      "name": "Wallsend",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24182",
+      "image_url": "https://images.englandrugby.com/club_images/24182.png",
+      "address": "St. Peters Field, St Peter's Road, Holycross, Wallsend, Tyne And Wear, NE28 7JN, United Kingdom",
+      "latitude": 55.00318,
+      "longitude": -1.51599,
+      "formatted_address": "NE28 7JN, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351624457
+    },
+    {
+      "name": "Prudhoe & Stocksfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17245",
+      "image_url": "https://images.englandrugby.com/club_images/17245.png",
+      "address": "Stocksfield Sportsfield &Cricket Club Main Road Stocksfield NORTHUMBERLAND NE43 7NN UNITED KINGDOM",
+      "latitude": 54.9489937,
+      "longitude": -1.9110313,
+      "formatted_address": "NE43 7NN, New Ridley, Broomley and Stocksfield, Stocksfield, Northumberland, North East, England, United Kingdom",
+      "place_id": 350712569
+    },
+    {
+      "name": "Barnard Castle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1377",
+      "image_url": "https://images.englandrugby.com/club_images/1377.png",
+      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM ",
+      "latitude": 54.5425415,
+      "longitude": -1.9196797,
+      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
+      "place_id": 350591888
+    },
+    {
+      "name": "Seaham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18888",
+      "image_url": "https://images.englandrugby.com/club_images/18888.png",
+      "address": "Seaham Rufc Sports Pavillion, 1 Stockton Road, Seaham, County Durham, SR7 0HZ, United Kingdom",
+      "latitude": 54.84341,
+      "longitude": -1.3666,
+      "formatted_address": "SR7 0HZ, Seaham, County Durham, North East, England, United Kingdom",
+      "place_id": 351974518
+    },
+    {
+      "name": "Winlaton Vulcans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25636",
+      "image_url": "https://images.englandrugby.com/club_images/25636.png",
+      "address": "Winlaton Rfc Axwell View Winlaton Blaydon-on-tyne Tyne And Wear NE21 6NF United Kingdom",
+      "latitude": 54.9525095,
+      "longitude": -1.7178689,
+      "formatted_address": "NE21 6NF, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351620448
+    }
+  ],
+  "team_count": 13
+}

@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's Championship North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6533&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "West Park Leeds Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24890",
+      "image_url": "https://images.englandrugby.com/club_images/24890.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 253497048
+    },
+    {
+      "name": "Sheffield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19088",
+      "image_url": "https://images.englandrugby.com/club_images/19088.png",
+      "address": "Abbeydale Sports Club Abbeydale Road South Sheffield South Yorkshire S17 3LJ United Kingdom",
+      "latitude": 53.32524,
+      "longitude": -1.5208299,
+      "formatted_address": "S17 3LJ, Abbeydale Park, Dore, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351391086
+    },
+    {
+      "name": "Altrincham Kersal Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=540",
+      "image_url": "https://images.englandrugby.com/club_images/540.png",
+      "address": "Stelfox Avenue Timperley Altrincham Cheshire WA15 6UL United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127681
+    },
+    {
+      "name": "Darlington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6104",
+      "image_url": "https://images.englandrugby.com/club_images/6104.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM ",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    },
+    {
+      "name": "Manchester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club Grove Park Grove Lane Cheadle Hulme Cheshire SK8 7NB United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351474723
+    },
+    {
+      "name": "Hull Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10664",
+      "image_url": "https://images.englandrugby.com/club_images/10664.png",
+      "address": "Hull Sports Centre Ferens Ground, Chanterlands Avenue Hull Yorkshire HU5 4EF United Kingdom",
+      "latitude": 53.7641862,
+      "longitude": -0.3760032,
+      "formatted_address": "HU5 4EF, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351378645
+    },
+    {
+      "name": "Chester Devas Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4683",
+      "image_url": "https://images.englandrugby.com/club_images/4683.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 257237409
+    }
+  ],
+  "team_count": 7
+}

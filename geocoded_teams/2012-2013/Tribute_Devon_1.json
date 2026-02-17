@@ -1,0 +1,97 @@
+{
+  "league_name": "Tribute Devon 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=6469&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Exeter University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7801",
+      "image_url": "https://images.englandrugby.com/club_images/7801.png",
+      "address": "Au, University Of Exeter, Sports Park, Stocker Road, EX4 4QN, United Kingdom",
+      "latitude": 50.7377482,
+      "longitude": -3.5372481,
+      "formatted_address": "EX4 4QN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350622100
+    },
+    {
+      "name": "Plymstock Albion Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16976",
+      "image_url": "https://images.englandrugby.com/club_images/16976.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "New Cross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14349",
+      "image_url": "https://images.englandrugby.com/club_images/14349.png",
+      "address": "Five Lanes Field, Strap Lane, Kingsteignton, Newton Abbot, Devon, TQ12 3PS, England",
+      "latitude": 50.5590133,
+      "longitude": -3.6026419,
+      "formatted_address": "TQ12 3PS, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858097
+    },
+    {
+      "name": "Totnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23001",
+      "image_url": "https://images.englandrugby.com/club_images/23001.png",
+      "address": "The Clubhouse, Borough Park, Totnes, Devon, TQ9 5JG, United Kingdom",
+      "latitude": 50.4343203,
+      "longitude": -3.6876159,
+      "formatted_address": "TQ9 5JG, Totnes, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350865250
+    },
+    {
+      "name": "South Molton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19624",
+      "image_url": "https://images.englandrugby.com/club_images/19624.png",
+      "address": "Unicorn Park, Station Road, Pathfields, South Molton, Devon, EX363BS, United Kingdom",
+      "latitude": 51.02682,
+      "longitude": -3.83977,
+      "formatted_address": "EX36 3BS, Pathfields Industrial Estate, South Molton, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351260105
+    },
+    {
+      "name": "Topsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22933",
+      "image_url": "https://images.englandrugby.com/club_images/22933.png",
+      "address": "Topsham Rfc, Bonfire Field, Exeter Road, Exeter, Devon, EX3 0LY, United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620960
+    },
+    {
+      "name": "Salcombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18545",
+      "image_url": "https://images.englandrugby.com/club_images/18545.png",
+      "address": "Twomeads Camperdown Road Salcombe DEVON TQ8 8AX UNITED KINGDOM ",
+      "latitude": 50.235997,
+      "longitude": -3.7753405,
+      "formatted_address": "TQ8 8AX, Salcombe, East Portlemouth, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864981
+    },
+    {
+      "name": "Torrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22992",
+      "image_url": "https://images.englandrugby.com/club_images/22992.png",
+      "address": "Torrington Rfc Donnacroft Playing Fields Hatchmoor Road Torrington Devon EX38 7HT United Kingdom",
+      "latitude": 50.95517,
+      "longitude": -4.12576,
+      "formatted_address": "EX38 7HT, Great Torrington, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350809808
+    },
+    {
+      "name": "Dartmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6192",
+      "image_url": "https://images.englandrugby.com/club_images/6192.png",
+      "address": "Dartmouth Rugby Club, C/0 Dartmouth Rowing Club, Sandquay Road, Dartmouth, Devon, TQ6 9PH, United Kingdom",
+      "latitude": 50.3576021,
+      "longitude": -3.5780451,
+      "formatted_address": "TQ6 9PH, Dartmouth, Kingswear, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864083
+    }
+  ],
+  "team_count": 9
+}

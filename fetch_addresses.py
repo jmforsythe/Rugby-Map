@@ -68,6 +68,9 @@ def team_name_to_club_name(team_name: str) -> str:
     last_word = team_name.split(" ")[-1]
     if last_word in ["II", "III", "IV"]:
         return " ".join(team_name.split(" ")[:-1])
+    last_two_words = " ".join(team_name.split(" ")[-2:])
+    if last_two_words in ["2nd XV", "3rd XV", "4th XV"]:
+        return " ".join(team_name.split(" ")[:-2])
     return team_name
 
 

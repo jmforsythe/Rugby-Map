@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC Midlands 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=6543&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Bridgnorth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3117",
+      "image_url": "https://images.englandrugby.com/club_images/3117.png",
+      "address": "Edgar Davies Ground Bandon Lane Bridgnorth Shropshire WV15 5AD United Kingdom",
+      "latitude": 52.5371312,
+      "longitude": -2.4145138,
+      "formatted_address": "WV15 5AD, Bridgnorth, Shropshire, England, United Kingdom",
+      "place_id": 350446110
+    },
+    {
+      "name": "Kidderminster Carolians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11415",
+      "image_url": "https://images.englandrugby.com/club_images/11415.png",
+      "address": "Marlpool Lane, Kidderminster, Worcestershire, DY11 5HP, United Kingdom",
+      "latitude": 52.3970271,
+      "longitude": -2.2624525,
+      "formatted_address": "Marlpool Lane, Habberley, Kidderminster, Franche, Wyre Forest, Worcestershire, England, DY11 5HL, United Kingdom",
+      "place_id": 255937643
+    },
+    {
+      "name": "Keresley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11297",
+      "image_url": "https://images.englandrugby.com/club_images/11297.png",
+      "address": "The John E. Radford Fields Burrow Hill Lane Corley Coventry CV7 8BE United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351801432
+    },
+    {
+      "name": "Five Ways Old Edwardians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8189",
+      "image_url": "https://images.englandrugby.com/club_images/8189.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Tewkesbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21860",
+      "image_url": "https://images.englandrugby.com/club_images/21860.png",
+      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM",
+      "latitude": 51.9892554,
+      "longitude": -2.1575383,
+      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350180340
+    },
+    {
+      "name": "Cheltenham Civil Service Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4520",
+      "image_url": "https://images.englandrugby.com/club_images/4520.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Dudley Kingswinford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6861",
+      "image_url": "https://images.englandrugby.com/club_images/6861.png",
+      "address": "Dudley Kingswinford Rfc, Heathbrook, Swindon Road,, Wall Heath, Kingswinford, West Midlands, DY6 0AW, United Kingdom",
+      "latitude": 52.50217,
+      "longitude": -2.19073,
+      "formatted_address": "DY6 0AW, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351207673
+    }
+  ],
+  "team_count": 7
+}

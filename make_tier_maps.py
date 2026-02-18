@@ -112,9 +112,9 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str]:
         return (11, "Counties 5")
     if filename.startswith("Cumbria_Conference"):
         if filename.endswith("1.json"):
-            return (107, "Counties 2")
+            return (8, "Counties 2")
         if filename.endswith("2.json"):
-            return (108, "Counties 3")
+            return (9, "Counties 3")
     return None
 
 

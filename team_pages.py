@@ -3,9 +3,10 @@ import json
 import re
 from collections import defaultdict
 from pathlib import Path
+from typing import TypedDict
 
 from fetch_addresses import team_name_to_club_name
-from generate_webpages import get_common_css, get_footer_html
+from generate_webpages import get_footer_html
 from make_tier_maps import extract_tier
 from utils import (
     GeocodedLeague,
@@ -17,7 +18,37 @@ from utils import (
 IS_PRODUCTION = False
 
 
-def collect_all_teams_data() -> dict[str, dict]:
+class LeagueHistoryEntry(TypedDict):
+    """Entry for a team's participation in a league for a season."""
+
+    season: str
+    league: str
+    league_url: str
+    position: int
+    tier: tuple[int, str]  # (tier_number, tier_name)
+
+
+class TeamData(TypedDict):
+    """Aggregated data for a team across all seasons."""
+
+    name: str | None
+    url: str | None
+    image_url: str | None
+    address: str | None
+    latitude: float | None
+    longitude: float | None
+    formatted_address: str | None
+    league_history: list[LeagueHistoryEntry]
+
+
+class TeamListEntry(TypedDict):
+    """Entry for team in the searchable index."""
+
+    file: str
+    name: str
+
+
+def collect_all_teams_data() -> dict[str, TeamData]:
     """
     Collect all team data from geocoded files across all seasons.
 
@@ -28,17 +59,17 @@ def collect_all_teams_data() -> dict[str, dict]:
         - URL to team page
     """
     geocoded_dir = Path("geocoded_teams")
-    teams_data = defaultdict(
-        lambda: {
-            "name": None,
-            "url": None,
-            "image_url": None,
-            "address": None,
-            "latitude": None,
-            "longitude": None,
-            "formatted_address": None,
-            "league_history": [],  # List of (season, league_name, position) tuples
-        }
+    teams_data: defaultdict[str, TeamData] = defaultdict(
+        lambda: TeamData(
+            name=None,
+            url=None,
+            image_url=None,
+            address=None,
+            latitude=None,
+            longitude=None,
+            formatted_address=None,
+            league_history=[],
+        )
     )
 
     if not geocoded_dir.exists():
@@ -79,20 +110,21 @@ def collect_all_teams_data() -> dict[str, dict]:
 
                 # Add league participation to history
                 teams_data[team_name]["league_history"].append(
-                    {
-                        "season": season,
-                        "league": league_name,
-                        "position": position,
-                        "tier": extract_tier(
+                    LeagueHistoryEntry(
+                        season=season,
+                        league=league_name,
+                        league_url=league_data["league_url"],
+                        position=position,
+                        tier=extract_tier(
                             league_name.replace(" ", "_").replace("/", "_") + ".json", season
                         ),
-                    }
+                    )
                 )
 
     return dict(teams_data)
 
 
-def find_club_teams(team_name: str, all_teams: dict[str, dict]) -> list[str]:
+def find_club_teams(team_name: str, all_teams: dict[str, TeamData]) -> list[str]:
     """
     Find other teams from the same club based on address matching.
 
@@ -118,7 +150,7 @@ def find_club_teams(team_name: str, all_teams: dict[str, dict]) -> list[str]:
         return []
 
     # Find other teams with the same address or coordinates
-    club_teams = []
+    club_teams: list[str] = []
     for other_team_name, other_data in all_teams.items():
         if other_team_name == team_name:
             continue
@@ -148,8 +180,8 @@ def find_club_teams(team_name: str, all_teams: dict[str, dict]) -> list[str]:
 
 def get_team_page_html(
     team_name: str,
-    team_data: dict,
-    all_teams: dict[str, dict],
+    team_data: TeamData,
+    all_teams: dict[str, TeamData],
     travel_distances_by_season: dict[str, TravelDistances],
 ) -> str:
     """Generate HTML content for a team's individual page."""
@@ -158,10 +190,12 @@ def get_team_page_html(
     club_teams = find_club_teams(team_name, all_teams)
 
     # Sort league history by season (most recent first)
-    league_history = sorted(team_data["league_history"], key=lambda x: x["season"], reverse=True)
+    league_history: list[LeagueHistoryEntry] = sorted(
+        team_data["league_history"], key=lambda x: x["season"], reverse=True
+    )
 
     # Group by season for display
-    seasons_by_year = defaultdict(list)
+    seasons_by_year: defaultdict[str, list[LeagueHistoryEntry]] = defaultdict(list)
     for entry in league_history:
         seasons_by_year[entry["season"]].append(entry)
 
@@ -171,8 +205,8 @@ def get_team_page_html(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{team_name} - English Rugby Union Team Info</title>
+    <link rel="stylesheet" href="../styles.css">
     <style>
-        {get_common_css()}
         .team-header {{
             text-align: center;
             margin-bottom: 2em;
@@ -182,21 +216,6 @@ def get_team_page_html(
             max-height: 150px;
             margin: 1em auto;
             display: block;
-        }}
-        .info-section {{
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            margin: 1.5em 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        .info-section h2 {{
-            color: #2c3e50;
-            font-size: 1.3em;
-            margin-top: 0;
-            margin-bottom: 1em;
-            border-bottom: 2px solid #0066cc;
-            padding-bottom: 0.5em;
         }}
         .info-row {{
             margin: 0.5em 0;
@@ -213,24 +232,10 @@ def get_team_page_html(
         .club-teams li {{
             margin: 0.5em 0;
         }}
-        .club-teams a {{
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            padding: 0.3em 0.8em;
-            background: #f5f7fa;
-            border-radius: 4px;
-            border: 1px solid #e0e0e0;
-            transition: all 0.2s;
-        }}
-        .club-teams a:hover {{
-            background: #0066cc;
-            color: white;
-            transform: translateY(-1px);
-        }}
         .league-history-table {{
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }}
         .league-history-table th {{
             background: #f5f7fa;
@@ -247,6 +252,16 @@ def get_team_page_html(
         .league-history-table tr:hover {{
             background: #f9f9f9;
         }}
+        .league-history-table .distance-cell {{
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+            color: #666;
+        }}
+        .league-history-table .league-link {{
+            display: inline-block;
+            padding: 0.4em 0.6em;
+            font-size: 0.95em;
+        }}
         .position {{
             font-weight: 600;
             color: #0066cc;
@@ -254,6 +269,41 @@ def get_team_page_html(
         .address {{
             color: #666;
             font-style: italic;
+        }}
+        .distance-header-full {{
+            display: inline;
+        }}
+        .distance-header-short {{
+            display: none;
+        }}
+
+        /* Responsive styles for smaller screens */
+        @media (max-width: 768px) {{
+            .league-history-table {{
+                min-width: 500px;
+                font-size: 0.9em;
+            }}
+            .league-history-table th,
+            .league-history-table td {{
+                padding: 0.6em 0.4em;
+            }}
+        }}
+
+        @media (max-width: 480px) {{
+            .league-history-table {{
+                min-width: 450px;
+                font-size: 0.85em;
+            }}
+            .league-history-table th,
+            .league-history-table td {{
+                padding: 0.5em 0.3em;
+            }}
+            .distance-header-full {{
+                display: none;
+            }}
+            .distance-header-short {{
+                display: inline;
+            }}
         }}
     </style>
     {get_google_analytics_script()}
@@ -297,7 +347,7 @@ def get_team_page_html(
         <ul class="club-teams">
 """
         for club_team in club_teams:
-            html += f'            <li><a href="{team_name_to_filepath(club_team)}">{club_team}</a></li>\n'
+            html += f'            <li><a href="{team_name_to_filepath(club_team)}" class="card-link card-inline">{club_team}</a></li>\n'
 
         html += """        </ul>
     </div>
@@ -307,23 +357,24 @@ def get_team_page_html(
     if league_history:
         html += """    <div class="info-section">
         <h2>League History</h2>
+        <div class="table-wrapper">
         <table class="league-history-table">
             <thead>
                 <tr>
                     <th>Season</th>
                     <th>Tier: League</th>
                     <th>Position</th>
-                    <th>Travel Distance (Average/Total)</th>
+                    <th><span class="distance-header-full">Travel Distance (Average/Total)</span><span class="distance-header-short">Travel (Avg/Total)</span></th>
                 </tr>
             </thead>
             <tbody>
 """
 
         for entry in league_history:
-            season = entry["season"]
-            league = entry["league"]
-            position = entry["position"]
-            tier = entry["tier"]
+            season: str = entry["season"]
+            league: str = entry["league"]
+            position: int = entry["position"]
+            tier: tuple[int, str] = entry["tier"]
 
             # Don't show position for current season (in progress)
             if season == "2025-2026":
@@ -347,15 +398,21 @@ def get_team_page_html(
                     elif total_dist is not None:
                         travel_info = f"{total_dist:.0f} km total"
 
+            league_link: str = (
+                f'<a href="{entry["league_url"]}" class="card-link league-link">{tier[0]%100}: {league}</a>'
+            )
+
             html += f"""                <tr>
                     <td>{season}</td>
-                    <td>{tier[0]%100}: {league}</td>
+                    <td>{league_link}</td>
                     <td>{position_display}</td>
-                    <td>{travel_info}</td>
+                    <td class="distance-cell">{travel_info}</td>
+                </tr>
 """
 
         html += """            </tbody>
         </table>
+        </div>
     </div>
 """
 
@@ -376,17 +433,17 @@ def load_travel_distances() -> dict[str, TravelDistances]:
         Dictionary mapping season -> TravelDistances
     """
     distances_dir = Path("distance_cache_folder")
-    travel_distances_by_season = {}
+    travel_distances_by_season: dict[str, TravelDistances] = {}
 
     if not distances_dir.exists():
         return {}
 
     for distance_file in distances_dir.glob("*.json"):
-        season = distance_file.stem  # e.g., "2018-2019"
+        season: str = distance_file.stem  # e.g., "2018-2019"
 
         try:
             with open(distance_file, encoding="utf-8") as f:
-                data = json.load(f)
+                data: TravelDistances = json.load(f)
                 travel_distances_by_season[season] = data
         except Exception as e:
             print(f"  Warning: Could not load distances for {season}: {e}")
@@ -454,14 +511,14 @@ def generate_teams_index() -> None:
         return
 
     # Extract team names from filenames (remove .html and convert underscores to spaces)
-    teams_list = []
+    teams_list: list[TeamListEntry] = []
     for file_path in team_files:
         if file_path.name == "index.html":
             continue
-        filename = file_path.name[:-5]  # Remove .html
+        filename: str = file_path.name[:-5]  # Remove .html
         # Convert filename back to display name (rough conversion)
-        display_name = filename.replace("_", " ")
-        teams_list.append({"file": file_path.name, "name": display_name})
+        display_name: str = filename.replace("_", " ")
+        teams_list.append(TeamListEntry(file=file_path.name, name=display_name))
 
     # Sort by club name (remove II/III/IV suffixes for sorting)
     teams_list.sort(key=lambda x: team_name_to_club_name(x["name"]).lower())
@@ -477,23 +534,8 @@ def generate_teams_index() -> None:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Teams - English Rugby Union</title>
+    <link rel="stylesheet" href="../styles.css">
     <style>
-        {get_common_css()}
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
-        }}
-        h1 {{
-            font-size: 2.2em;
-            margin-bottom: 0.3em;
-            color: #2c3e50;
-            text-align: center;
-        }}
         .search-box {{
             text-align: center;
             margin: 2em 0;
@@ -522,36 +564,8 @@ def generate_teams_index() -> None:
             gap: 1em;
             margin: 2em 0;
         }}
-        .team-card {{
-            background: white;
-            padding: 1em 1.5em;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-            transition: all 0.2s;
-        }}
-        .team-card:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-            border-color: #0066cc;
-        }}
         .team-card a {{
-            color: #2c3e50;
-            text-decoration: none;
             font-size: 1.05em;
-            display: block;
-            padding: 0;
-            background: none;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            transform: none;
-        }}
-        .team-card:hover a {{
-            color: #0066cc;
-            background: none;
-            border: none;
-            transform: none;
-            box-shadow: none;
         }}
         .no-results {{
             text-align: center;
@@ -560,34 +574,12 @@ def generate_teams_index() -> None:
             margin: 3em 0;
             display: none;
         }}
-        .footer {{
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #666;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }}
-        .footer a {{
-            color: #0066cc;
-            text-decoration: none;
-        }}
-        .footer a:hover {{
-            text-decoration: underline;
-        }}
-        .footer p {{
-            margin: 0.5em 0;
-        }}
     </style>
 
     {get_google_analytics_script()}
 
 </head>
-<body>
+<body class="wide-layout">
     <div class="back-link">
         <a href="../index.html">← Back to Season Maps</a>
     </div>
@@ -633,7 +625,7 @@ def generate_teams_index() -> None:
 
                 filteredTeams.forEach(team => {{
                     const card = document.createElement('div');
-                    card.className = 'team-card';
+                    card.className = 'card team-card';
                     card.innerHTML = `<a href="${{team.file}}">${{team.name}}</a>`;
                     teamsGrid.appendChild(card);
                 }});
@@ -666,7 +658,8 @@ def generate_teams_index() -> None:
     print(f"  ✓ Generated teams index with {len(teams_list)} teams at {index_path}")
 
 
-def main():
+def main() -> None:
+    """Main entry point for generating team pages."""
     parser = argparse.ArgumentParser(description="Generate index.html pages for rugby maps.")
     parser.add_argument(
         "--production", action="store_true", help="Change folder structure for production"

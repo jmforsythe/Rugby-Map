@@ -13,186 +13,6 @@ from utils import get_google_analytics_script
 IS_PRODUCTION = False
 
 
-def get_common_css() -> str:
-    """Return common CSS styles used across all pages."""
-    return """
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin-bottom: 0.3em;
-            color: #2c3e50;
-            text-align: center;
-        }
-        body > p {
-            text-align: center;
-            color: #666;
-            margin-bottom: 2em;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        li {
-            margin: 0.7em 0;
-        }
-        a {
-            display: block;
-            color: #2c3e50;
-            text-decoration: none;
-            font-size: 1.05em;
-            transition: all 0.2s;
-            padding: 0.8em 1.5em;
-            background: #f5f7fa;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-        }
-        a:hover {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-        }
-        .all-tiers a {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            font-weight: 600;
-        }
-        .all-tiers a:hover {
-            background: #0052a3;
-            border-color: #0052a3;
-        }
-        .separator {
-            margin: 2em 0;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        .back-link {
-            text-align: center;
-            margin: 2em 0;
-        }
-        .back-link a {
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 1em;
-            padding: 0.8em 1.5em;
-            background: white;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-            display: inline-block;
-            transition: all 0.2s;
-        }
-        .back-link a:hover {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
-        }
-        .footer {
-            margin-top: 3em;
-            padding-top: 2em;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #666;
-            text-align: center;
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .footer a {
-            color: #0066cc;
-            font-size: 1em;
-        }
-        .footer a:hover {
-            color: white;
-        }
-        .footer p {
-            margin: 0.5em 0;
-        }
-        .faq {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-top: 2em;
-            text-align: left;
-        }
-        .faq h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 1em;
-            text-align: center;
-        }
-        .faq-item {
-            margin-bottom: 1em;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 1em;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-question {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5em;
-            cursor: pointer;
-            padding: 0.5em;
-            background: #f5f7fa;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .faq-question:hover {
-            background: #e8ecf0;
-        }
-        .faq-question::before {
-            content: '▶ ';
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-        .faq-question.active::before {
-            transform: rotate(90deg);
-        }
-        .faq-answer {
-            display: none;
-            color: #666;
-            padding: 0.5em 0.5em 0.5em 1.5em;
-            line-height: 1.6;
-        }
-        .faq-answer.active {
-            display: block;
-        }
-        .faq-answer a {
-            display: inline;
-            padding: 0;
-            background: none;
-            border: none;
-            color: #0066cc;
-            font-size: inherit;
-        }
-        .faq-answer a:hover {
-            background: none;
-            border: none;
-            text-decoration: underline;
-            transform: none;
-            box-shadow: none;
-        }"""
-
-
 def get_footer_html() -> str:
     """Return common footer HTML."""
     return """    <div class="footer">
@@ -217,9 +37,7 @@ def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Rugby Union Team Maps - {season}</title>
-    <style>
-        {get_common_css()}
-    </style>
+    <link rel="stylesheet" href="../styles.css">
     {get_google_analytics_script()}
 </head>
 <body>
@@ -292,9 +110,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rugbyunionmap.uk" />
     <title>English Rugby Union Team Maps</title>
-    <style>
-        {get_common_css()}
-    </style>
+    <link rel="stylesheet" href="styles.css">
     {get_google_analytics_script()}
 </head>
 <body>

@@ -2,6 +2,9 @@
 Script to download boundary GeoJSON files from ONS Open Geography portal.
 Downloads ITL1, ITL2, ITL3, and Countries boundaries using pagination.
 
+Uses native ESRI JSON format for faster downloads (no server-side conversion),
+then converts to GeoJSON locally.
+
 Detail levels available:
 - BFE: Full Extent (most detailed, largest files)
 - BFC: Full Clipped (detailed, clipped to coastline)
@@ -18,8 +21,98 @@ from pathlib import Path
 import requests
 
 
+def ring_is_clockwise(ring):
+    """
+    Check if a ring is clockwise using the shoelace formula.
+    In ESRI JSON format, exterior rings are clockwise, holes are counter-clockwise.
+    In geographic coordinates, positive signed area = counter-clockwise, negative = clockwise.
+    But ESRI defines them based on screen coordinates where Y increases downward.
+    Returns True if exterior ring (ESRI clockwise), False if hole (ESRI counter-clockwise).
+    """
+    area = 0
+    for i in range(len(ring) - 1):
+        area += (ring[i + 1][0] - ring[i][0]) * (ring[i + 1][1] + ring[i][1])
+    # In ESRI, positive area = exterior, negative = hole (opposite of mathematical convention)
+    return area > 0
+
+
+def esri_to_geojson_geometry(esri_geom, geometry_type):
+    """
+    Convert ESRI JSON geometry to GeoJSON geometry.
+
+    Args:
+        esri_geom: ESRI geometry object
+        geometry_type: ESRI geometry type (e.g., 'esriGeometryPolygon')
+
+    Returns:
+        GeoJSON geometry object
+    """
+    if geometry_type == "esriGeometryPolygon":
+        rings = esri_geom.get("rings", [])
+        if not rings:
+            return {"type": "Polygon", "coordinates": []}
+
+        # Group rings into polygons based on ESRI winding order
+        # ESRI: Clockwise (area > 0) = exterior ring, Counter-clockwise (area < 0) = hole
+        # GeoJSON: Counter-clockwise = exterior, Clockwise = hole
+        # So we need to reverse all rings!
+        polygons = []
+        current_polygon = None
+
+        for ring in rings:
+            if ring_is_clockwise(ring):  # ESRI exterior ring (clockwise)
+                # Start new polygon
+                if current_polygon is not None:
+                    polygons.append(current_polygon)
+                # Reverse ring for GeoJSON (counter-clockwise)
+                current_polygon = [ring[::-1]]
+            else:  # ESRI hole (counter-clockwise)
+                if current_polygon is not None:
+                    # Reverse ring for GeoJSON (clockwise)
+                    current_polygon.append(ring[::-1])
+
+        if current_polygon is not None:
+            polygons.append(current_polygon)
+
+        if len(polygons) == 1:
+            return {"type": "Polygon", "coordinates": polygons[0]}
+        else:
+            return {"type": "MultiPolygon", "coordinates": polygons}
+
+    elif geometry_type == "esriGeometryPolyline":
+        paths = esri_geom.get("paths", [])
+        if len(paths) == 1:
+            return {"type": "LineString", "coordinates": paths[0]}
+        else:
+            return {"type": "MultiLineString", "coordinates": paths}
+
+    elif geometry_type == "esriGeometryPoint":
+        return {"type": "Point", "coordinates": [esri_geom.get("x"), esri_geom.get("y")]}
+    else:
+        # Fallback - return as-is
+        return esri_geom
+
+
+def esri_to_geojson_feature(esri_feature, geometry_type):
+    """
+    Convert ESRI JSON feature to GeoJSON feature.
+
+    Args:
+        esri_feature: ESRI feature object
+        geometry_type: ESRI geometry type
+
+    Returns:
+        GeoJSON feature object
+    """
+    return {
+        "type": "Feature",
+        "properties": esri_feature.get("attributes", {}),
+        "geometry": esri_to_geojson_geometry(esri_feature.get("geometry", {}), geometry_type),
+    }
+
+
 # ONS Open Geography portal ArcGIS REST API FeatureServer services
-def get_boundary_services(detail_level="BFC"):
+def get_boundary_services(detail_level="BGC"):
     """
     Get boundary service URLs for the specified detail level.
 
@@ -48,7 +141,8 @@ def get_boundary_services(detail_level="BFC"):
 
 def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_records=2000):
     """
-    Download a complete ArcGIS FeatureServer layer as GeoJSON using pagination.
+    Download a complete ArcGIS FeatureServer layer using native ESRI JSON format (faster)
+    and convert to GeoJSON locally.
 
     Args:
         service_url: Base URL to the FeatureServer layer (without /query)
@@ -76,12 +170,13 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
         # Collect all features using pagination
         all_features = []
         offset = 0
+        geometry_type = None
 
         while offset < total_count:
             query_params = {
                 "where": "1=1",
                 "outFields": "*",
-                "f": "geojson",
+                "f": "json",  # Native ESRI JSON format - much faster, no server conversion
                 "outSR": "4326",
                 "resultOffset": offset,
                 "resultRecordCount": max_records,
@@ -96,7 +191,13 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
             if not features:
                 break
 
-            all_features.extend(features)
+            # Get geometry type from first response
+            if geometry_type is None:
+                geometry_type = data.get("geometryType", "esriGeometryPolygon")
+
+            # Convert ESRI JSON features to GeoJSON features
+            geojson_features = [esri_to_geojson_feature(f, geometry_type) for f in features]
+            all_features.extend(geojson_features)
             offset += len(features)
 
             print(f"  Downloaded {offset}/{total_count} features", end="\r", flush=True)
@@ -111,14 +212,14 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(geojson, f, ensure_ascii=False, indent=2)
 
-        print(f"  ✓ Saved to {output_path}")
+        print(f"  [OK] Saved to {output_path}")
 
     except requests.RequestException as e:
-        print(f"  ✗ Error: {e}")
+        print(f"  [ERROR] {e}")
     except json.JSONDecodeError as e:
-        print(f"  ✗ Invalid JSON: {e}")
+        print(f"  [ERROR] Invalid JSON: {e}")
     except Exception as e:
-        print(f"  ✗ Unexpected error: {e}")
+        print(f"  [ERROR] Unexpected error: {e}")
 
 
 def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boundaries"):
@@ -143,7 +244,7 @@ def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boun
             f.seek(0)
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.truncate()
-        print(f"  ✓ Saved to {output_path}")
+        print(f"  [OK] Saved to {output_path}")
 
 
 def main():
@@ -154,8 +255,8 @@ def main():
         epilog="""
 Detail levels:
   BFE  Full Extent (most detailed, largest files)
-  BFC  Full Clipped (detailed, clipped to coastline) - default
-  BGC  Generalised Clipped (simplified, smaller files)
+  BFC  Full Clipped (detailed, clipped to coastline)
+  BGC  Generalised Clipped (simplified, smaller files) - default
   BSC  Super Generalised Clipped (very simplified)
   BUC  Ultra Generalised Clipped (least detailed, smallest files)
         """,

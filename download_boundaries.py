@@ -14,11 +14,20 @@ Detail levels available:
 """
 
 import argparse
+import enum
 import json
 import time
 from pathlib import Path
 
 import requests
+
+
+class DetailLevel(enum.Enum):
+    BFE = "BFE"  # Full Extent (most detailed, largest files)
+    BFC = "BFC"  # Full Clipped (detailed, clipped to coastline)
+    BGC = "BGC"  # Generalised Clipped (simplified, smaller files) - default
+    BSC = "BSC"  # Super Generalised Clipped (very simplified)
+    BUC = "BUC"  # Ultra Generalised Clipped (least detailed, smallest files)
 
 
 def ring_is_clockwise(ring):
@@ -111,41 +120,67 @@ def esri_to_geojson_feature(esri_feature, geometry_type):
     }
 
 
+def countries_url(detail_level: DetailLevel) -> str:
+    return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Countries_December_2024_Boundaries_UK_{detail_level.value}/FeatureServer/0"
+
+
+def itl1_url(detail_level: DetailLevel) -> str:
+    if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BUC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level.value}/FeatureServer/0"
+    if detail_level == DetailLevel.BSC:
+        return None  # ITL1 not available in BSC level
+
+
+def itl2_url(detail_level: DetailLevel) -> str:
+    if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BUC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level.value}/FeatureServer/0"
+    if detail_level == DetailLevel.BSC:
+        return None  # ITL2 not available in BSC level
+
+
+def itl3_url(detail_level: DetailLevel) -> str:
+    if detail_level in [DetailLevel.BFE]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL3_JAN_2025_UK_{detail_level.value}_V4/FeatureServer/0"
+    if detail_level in [DetailLevel.BFC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL3_JAN_2025_UK_{detail_level.value}_V2/FeatureServer/0"
+    if detail_level in [DetailLevel.BGC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL3_JAN_2025_UK_{detail_level.value}_V2/FeatureServer/1"
+    if detail_level in [DetailLevel.BUC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL3_JAN_2025_UK_{detail_level.value}_V2/FeatureServer/2"
+    if detail_level == DetailLevel.BSC:
+        return None  # ITL3 not available in BSC level
+
+
+def lads_url(detail_level: DetailLevel) -> str:
+    if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BSC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD_MAY_2025_UK_{detail_level.value}_V2/FeatureServer/0"
+    if detail_level == DetailLevel.BUC:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD_MAY_2025_UK_{detail_level.value}/FeatureServer/0"
+
+
+def wards_url(detail_level: DetailLevel) -> str:
+    if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BSC]:
+        return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_DEC_2025_UK_{detail_level.value}/FeatureServer/0"
+    if detail_level == DetailLevel.BUC:
+        return None  # Wards not available in BUC level
+
+
 # ONS Open Geography portal ArcGIS REST API FeatureServer services
-def get_boundary_services(detail_level="BGC"):
+def get_boundary_services(detail_level: DetailLevel) -> dict[str, str]:
     """
     Get boundary service URLs for the specified detail level.
 
     Args:
         detail_level: One of BFE, BFC, BGC, BSC, BUC
     """
-    # ITL3, LAD, and Ward use _V2 suffix and layer ID for generalised versions
-    # ITL1/2 use layer ID 0
-    # Countries service name varies by detail level
-    if detail_level in ["BGC", "BSC", "BUC"]:
-        itl3_service = f"ITL3_JAN_2025_UK_{detail_level}_V2"
-        itl3_layer = "1"
-        lad_service = f"LAD_MAY_2025_UK_{detail_level}_V2"
-        lad_layer = "0"
-        ward_service = f"WD_DEC_2025_UK_{detail_level}"
-        ward_layer = "0"
-        countries_service = f"Countries_December_2024_Boundaries_UK_{detail_level}"
-    else:
-        itl3_service = f"ITL3_JAN_2025_UK_{detail_level}"
-        itl3_layer = "0"
-        lad_service = f"LAD_MAY_2025_UK_{detail_level}"
-        lad_layer = "0"
-        ward_service = f"WD_DEC_2025_UK_{detail_level}"
-        ward_layer = "0"
-        countries_service = f"CTRY_DEC_2024_UK_{detail_level}"
 
     return {
-        "ITL_1.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level}/FeatureServer/0",
-        "ITL_2.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level}/FeatureServer/0",
-        "ITL_3.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{itl3_service}/FeatureServer/{itl3_layer}",
-        "local_authority_districts.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{lad_service}/FeatureServer/{lad_layer}",
-        "wards.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{ward_service}/FeatureServer/{ward_layer}",
-        "countries.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{countries_service}/FeatureServer/0",
+        "ITL_1.geojson": itl1_url(detail_level),
+        "ITL_2.geojson": itl2_url(detail_level),
+        "ITL_3.geojson": itl3_url(detail_level),
+        "local_authority_districts.geojson": lads_url(detail_level),
+        "wards.geojson": wards_url(detail_level),
+        "countries.geojson": countries_url(detail_level),
     }
 
 
@@ -226,10 +261,13 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
 
     except requests.RequestException as e:
         print(f"  [ERROR] {e}")
+        raise e
     except json.JSONDecodeError as e:
         print(f"  [ERROR] Invalid JSON: {e}")
+        raise e
     except Exception as e:
         print(f"  [ERROR] Unexpected error: {e}")
+        raise e
 
 
 def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boundaries"):
@@ -283,13 +321,22 @@ Detail levels:
     )
     args = parser.parse_args()
 
-    boundary_services = get_boundary_services(args.detail)
+    if args.detail == "BSC":
+        print("BSC is not available, exiting...")
+        return
+
+    detail = DetailLevel(args.detail)
+
+    boundary_services = get_boundary_services(detail)
 
     print("Downloading boundary files from ONS Open Geography portal")
-    print(f"Detail level: {args.detail}")
+    print(f"Detail level: {detail.value}")
     print("=" * 60)
 
     for filename, service_url in boundary_services.items():
+        if service_url is None:
+            print(f"Skipping {filename} (not available in {detail.value} level)")
+            continue
         download_arcgis_layer(service_url, filename)
         print()
 

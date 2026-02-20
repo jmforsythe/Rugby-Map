@@ -567,7 +567,12 @@ def load_itl_hierarchy() -> ITLHierarchy:
     itl1_data = json_load_cache("boundaries/ITL_1.geojson")
     itl0_data = json_load_cache("boundaries/countries.geojson")
     lad_data = json_load_cache("boundaries/local_authority_districts.geojson")
-    ward_data = json_load_cache("boundaries/wards.geojson")
+    wards_path = "boundaries/wards.geojson"
+    if os.path.exists(wards_path):
+        ward_data = json_load_cache(wards_path)
+    else:
+        print(f"Warning: {wards_path} not found, skipping ward-level hierarchy")
+        ward_data = {"features": []}
 
     # Parse ITL3 regions
     itl3_regions: dict[str, ITLRegionGeom] = {}

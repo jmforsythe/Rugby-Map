@@ -1838,11 +1838,14 @@ def legend(
             width: 12px !important;
             height: 12px !important;
         }}
+        .legend-content {{
+            max-height: 250px !important;
+        }}
     }}
     </style>
     <div class="map-legend" style="position: fixed;
                 bottom: 50px; right: 50px; width: 300px;
-                background-color: white; z-index:9999; font-size:14px;
+                background-color: white; z-index:999; font-size:14px;
                 border:2px solid grey; border-radius: 5px; padding: 10px">
     <h4 style="margin-top: 0;">{legend_title}
         <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>

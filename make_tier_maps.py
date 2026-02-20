@@ -9,7 +9,7 @@ import folium
 import numpy as np
 from folium.plugins import FeatureGroupSubGroup, MarkerCluster
 from scipy.spatial import Voronoi
-from shapely.geometry import Point, Polygon, mapping, shape
+from shapely.geometry import MultiPolygon, Point, Polygon, mapping, shape
 from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 from shapely.prepared import PreparedGeometry, prep
@@ -1635,12 +1635,24 @@ def add_territories_from_geometries(
     league_colors: dict[str, str],
 ) -> None:
     """Merge and add unioned geometries to the given feature group per league."""
+
+    def strip_interiors(geom: BaseGeometry) -> BaseGeometry:
+        if geom.is_empty:
+            return geom
+        if geom.geom_type == "Polygon":
+            return Polygon(geom.exterior)
+        if geom.geom_type == "MultiPolygon":
+            polygons = [Polygon(part.exterior) for part in geom.geoms if not part.is_empty]
+            return MultiPolygon(polygons) if polygons else geom
+        return geom
+
     for league, geometries in league_geometries.items():
         if geometries:
             simplified_geometries = [
                 geom.simplify(0.001, preserve_topology=True) for geom in geometries
             ]
             merged_geom = unary_union(simplified_geometries)
+            merged_geom = strip_interiors(merged_geom)
             color = league_colors[league]
 
             def style_function(feature, c=color):
@@ -1939,6 +1951,26 @@ def service_worker_registration(relative_path_to_shared: str = "../shared") -> f
 
 def add_layer_control(m: folium.Map) -> None:
     folium.LayerControl().add_to(m)
+    m.get_root().header.add_child(folium.Element("""
+    <script>
+    (function hookLayerControl() {
+        if (!window.L || !L.Control || !L.Control.Layers) {
+            setTimeout(hookLayerControl, 50);
+            return;
+        }
+        if (L.Control.Layers.prototype._layerControlHooked) {
+            return;
+        }
+        var originalAddTo = L.Control.Layers.prototype.addTo;
+        L.Control.Layers.prototype._layerControlHooked = true;
+        L.Control.Layers.prototype.addTo = function(map) {
+            var result = originalAddTo.call(this, map);
+            window.layerControl = this;
+            return result;
+        };
+    })();
+    </script>
+    """))
     # Add custom CSS for LayerControl
     m.get_root().header.add_child(folium.Element("""
     <style>

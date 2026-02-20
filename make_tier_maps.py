@@ -41,10 +41,16 @@ class ITLHierarchy(TypedDict):
     itl2_regions: dict[str, ITLRegionGeom]
     itl1_regions: dict[str, ITLRegionGeom]
     itl0_regions: dict[str, ITLRegionGeom]
+    lad_regions: dict[str, ITLRegionGeom]
+    ward_regions: dict[str, ITLRegionGeom]
     itl3_to_itl2: dict[str, str]
     itl2_to_itl1: dict[str, str]
+    lad_to_itl3: dict[str, str]
+    ward_to_lad: dict[str, str]
     itl1_to_itl2s: dict[str, list[str]]
     itl2_to_itl3s: dict[str, list[str]]
+    itl3_to_lads: dict[str, list[str]]
+    lad_to_wards: dict[str, list[str]]
 
 
 class RegionToTeams(TypedDict):
@@ -420,14 +426,148 @@ def create_bounded_voronoi(
     return result
 
 
+def create_lad_based_split(
+    teams: list[MapTeam],
+    itl3_region_name: str,
+    itl_hierarchy: ITLHierarchy,
+    league_colors: dict[str, str],
+) -> list[dict[str, Any]]:
+    """Split an ITL3 region by allocating LADs to the nearest team's league.
+
+    If a LAD has multiple leagues, further split by wards.
+    If a ward has multiple leagues, use Voronoi splitting within that ward.
+
+    Args:
+        teams: List of teams in the ITL3 region
+        itl3_region_name: Name of the ITL3 region to split
+        itl_hierarchy: ITL hierarchy with LAD and ward data
+        league_colors: Mapping of league names to colors
+
+    Returns:
+        List of dicts with "geometry", "color", and "league" for each league's areas
+    """
+    if len(teams) < 2:
+        return []
+
+    # Get LADs within this ITL3 region
+    lads_in_itl3 = itl_hierarchy["itl3_to_lads"].get(itl3_region_name, [])
+    if not lads_in_itl3:
+        return []
+
+    lad_regions = itl_hierarchy["lad_regions"]
+    ward_regions = itl_hierarchy["ward_regions"]
+    lad_to_wards = itl_hierarchy["lad_to_wards"]
+
+    result_geometries: list[dict[str, Any]] = []
+
+    # For each LAD, check if it needs splitting
+    for lad_name in lads_in_itl3:
+        lad = lad_regions[lad_name]
+        lad_geom = lad["geom"]
+
+        # Find teams in this LAD
+        teams_in_lad = [
+            t for t in teams if lad["prepared"].contains(Point(t["longitude"], t["latitude"]))
+        ]
+
+        if not teams_in_lad:
+            # No teams in this LAD, assign to nearest team
+            lad_centroid = lad["centroid"]
+            closest_team = min(
+                teams, key=lambda t: lad_centroid.distance(Point(t["longitude"], t["latitude"]))
+            )
+            result_geometries.append(
+                {
+                    "geom": lad_geom,
+                    "color": league_colors[closest_team["league"]],
+                    "league": closest_team["league"],
+                }
+            )
+            continue
+
+        leagues_in_lad = {t["league"] for t in teams_in_lad}
+
+        if len(leagues_in_lad) == 1:
+            # Single league owns this LAD
+            league = list(leagues_in_lad)[0]
+            result_geometries.append(
+                {"geom": lad_geom, "color": league_colors[league], "league": league}
+            )
+        else:
+            # Multiple leagues in this LAD - split by wards
+            wards_in_lad = lad_to_wards.get(lad_name, [])
+
+            if not wards_in_lad:
+                # No wards available, assign whole LAD to nearest team
+                lad_centroid = lad["centroid"]
+                closest_team = min(
+                    teams_in_lad,
+                    key=lambda t: lad_centroid.distance(Point(t["longitude"], t["latitude"])),
+                )
+                result_geometries.append(
+                    {
+                        "geom": lad_geom,
+                        "color": league_colors[closest_team["league"]],
+                        "league": closest_team["league"],
+                    }
+                )
+                continue
+
+            # Process each ward
+            for ward_name in wards_in_lad:
+                ward = ward_regions[ward_name]
+                ward_geom = ward["geom"]
+
+                # Find teams in this ward
+                teams_in_ward = [
+                    t
+                    for t in teams_in_lad
+                    if ward["prepared"].contains(Point(t["longitude"], t["latitude"]))
+                ]
+
+                if not teams_in_ward:
+                    # No teams in ward, assign to nearest team in LAD
+                    ward_centroid = ward["centroid"]
+                    closest_team = min(
+                        teams_in_lad,
+                        key=lambda t: ward_centroid.distance(Point(t["longitude"], t["latitude"])),
+                    )
+                    result_geometries.append(
+                        {
+                            "geom": ward_geom,
+                            "color": league_colors[closest_team["league"]],
+                            "league": closest_team["league"],
+                        }
+                    )
+                    continue
+
+                leagues_in_ward = {t["league"] for t in teams_in_ward}
+
+                if len(leagues_in_ward) == 1:
+                    # Single league owns this ward
+                    league = list(leagues_in_ward)[0]
+                    result_geometries.append(
+                        {"geom": ward_geom, "color": league_colors[league], "league": league}
+                    )
+                else:
+                    # Multiple leagues in this ward - use Voronoi splitting
+                    voronoi_cells = create_bounded_voronoi(teams_in_ward, ward_geom, league_colors)
+                    for cell in voronoi_cells:
+                        result_geometries.append(cell)
+
+    return result_geometries
+
+
 def load_itl_hierarchy() -> ITLHierarchy:
-    """Load ITL regions and compute hierarchy (ITL3 -> ITL2 -> ITL1)."""
+    """Load ITL regions and compute hierarchy (ITL3 -> ITL2 -> ITL1), LAD regions, and wards."""
 
     # Load all ITL regions
     itl3_data = json_load_cache("boundaries/ITL_3.geojson")
     itl2_data = json_load_cache("boundaries/ITL_2.geojson")
     itl1_data = json_load_cache("boundaries/ITL_1.geojson")
     itl0_data = json_load_cache("boundaries/countries.geojson")
+    lad_data = json_load_cache("boundaries/local_authority_districts.geojson")
+    ward_data = json_load_cache("boundaries/wards.geojson")
 
     # Parse ITL3 regions
     itl3_regions: dict[str, ITLRegionGeom] = {}
@@ -477,6 +617,30 @@ def load_itl_hierarchy() -> ITLHierarchy:
             "centroid": geom.centroid,
         }
 
+    # Parse LAD regions (local authority districts)
+    lad_regions: dict[str, ITLRegionGeom] = {}
+    for feat in lad_data["features"]:
+        geom = shape(feat["geometry"])
+        lad_regions[feat["properties"]["LAD25NM"]] = {
+            "name": feat["properties"]["LAD25NM"],
+            "code": feat["properties"].get("LAD25CD"),
+            "geom": geom,
+            "prepared": prep(geom),
+            "centroid": geom.centroid,
+        }
+
+    # Parse ward regions
+    ward_regions: dict[str, ITLRegionGeom] = {}
+    for feat in ward_data["features"]:
+        geom = shape(feat["geometry"])
+        ward_regions[feat["properties"]["WD25NM"]] = {
+            "name": feat["properties"]["WD25NM"],
+            "code": feat["properties"].get("WD25CD"),
+            "geom": geom,
+            "prepared": prep(geom),
+            "centroid": geom.centroid,
+        }
+
     # Build code-based lookups for hierarchy
     # ITL codes follow pattern: TL + ITL1_digit + ITL2_digit + ITL3_digit
     # ITL1: TLX (e.g., "TLC")
@@ -516,15 +680,121 @@ def load_itl_hierarchy() -> ITLHierarchy:
             itl2_to_itl3s[itl2_name] = []
         itl2_to_itl3s[itl2_name].append(itl3_name)
 
+    # Assign LADs to ITL3 regions efficiently using hierarchy
+    print("Assigning LADs to ITL regions...")
+    lad_to_itl3: dict[str, str] = {}
+    itl3_to_lads: dict[str, list[str]] = {}
+
+    for lad_name, lad in lad_regions.items():
+        lad_centroid = lad["centroid"]
+
+        # Step 1: Find which ITL1 region
+        found_itl1 = None
+        for itl1 in itl1_regions.values():
+            if itl1["prepared"].contains(lad_centroid):
+                found_itl1 = itl1["name"]
+                break
+
+        if not found_itl1:
+            continue
+
+        # Step 2: Check ITL2 regions within this ITL1
+        itl2_candidates = itl1_to_itl2s.get(found_itl1, [])
+        found_itl2 = None
+        for itl2_name in itl2_candidates:
+            itl2 = itl2_regions[itl2_name]
+            if itl2["prepared"].contains(lad_centroid):
+                found_itl2 = itl2_name
+                break
+
+        if not found_itl2:
+            continue
+
+        # Step 3: Check ITL3 regions within this ITL2
+        itl3_candidates = itl2_to_itl3s.get(found_itl2, [])
+        for itl3_name in itl3_candidates:
+            itl3 = itl3_regions[itl3_name]
+            if itl3["prepared"].contains(lad_centroid):
+                lad_to_itl3[lad_name] = itl3_name
+                if itl3_name not in itl3_to_lads:
+                    itl3_to_lads[itl3_name] = []
+                itl3_to_lads[itl3_name].append(lad_name)
+                break
+
+    print(f"  Assigned {len(lad_to_itl3)} of {len(lad_regions)} LADs to ITL3 regions")
+    print(f"  {len(itl3_to_lads)} ITL3 regions contain LADs")
+
+    # Assign wards to LADs efficiently using hierarchy
+    print("Assigning wards to LADs...")
+    ward_to_lad: dict[str, str] = {}
+    lad_to_wards: dict[str, list[str]] = {}
+
+    for ward_name, ward in ward_regions.items():
+        ward_centroid = ward["centroid"]
+
+        # Step 1: Find which ITL1 region
+        found_itl1 = None
+        for itl1 in itl1_regions.values():
+            if itl1["prepared"].contains(ward_centroid):
+                found_itl1 = itl1["name"]
+                break
+
+        if not found_itl1:
+            continue
+
+        # Step 2: Check ITL2 regions within this ITL1
+        itl2_candidates = itl1_to_itl2s.get(found_itl1, [])
+        found_itl2 = None
+        for itl2_name in itl2_candidates:
+            itl2 = itl2_regions[itl2_name]
+            if itl2["prepared"].contains(ward_centroid):
+                found_itl2 = itl2_name
+                break
+
+        if not found_itl2:
+            continue
+
+        # Step 3: Check ITL3 regions within this ITL2
+        itl3_candidates = itl2_to_itl3s.get(found_itl2, [])
+        found_itl3 = None
+        for itl3_name in itl3_candidates:
+            itl3 = itl3_regions[itl3_name]
+            if itl3["prepared"].contains(ward_centroid):
+                found_itl3 = itl3_name
+                break
+
+        if not found_itl3:
+            continue
+
+        # Step 4: Check LADs within this ITL3
+        lad_candidates = itl3_to_lads.get(found_itl3, [])
+        for lad_name in lad_candidates:
+            lad = lad_regions[lad_name]
+            if lad["prepared"].contains(ward_centroid):
+                ward_to_lad[ward_name] = lad_name
+                if lad_name not in lad_to_wards:
+                    lad_to_wards[lad_name] = []
+                lad_to_wards[lad_name].append(ward_name)
+                break
+
+    print(f"  Assigned {len(ward_to_lad)} of {len(ward_regions)} wards to LADs")
+    print(f"  {len(lad_to_wards)} LADs contain wards")
+
     return {
         "itl3_regions": itl3_regions,
         "itl2_regions": itl2_regions,
         "itl1_regions": itl1_regions,
         "itl0_regions": itl0_regions,
+        "lad_regions": lad_regions,
+        "ward_regions": ward_regions,
         "itl3_to_itl2": itl3_to_itl2,
         "itl2_to_itl1": itl2_to_itl1,
+        "lad_to_itl3": lad_to_itl3,
+        "ward_to_lad": ward_to_lad,
         "itl1_to_itl2s": itl1_to_itl2s,
         "itl2_to_itl3s": itl2_to_itl3s,
+        "itl3_to_lads": itl3_to_lads,
+        "lad_to_wards": lad_to_wards,
     }
 
 
@@ -833,7 +1103,7 @@ def color_regions_by_league(
             continue
         itl3_leagues[itl3_name] = league
 
-    # Identify ITL3 regions with 2+ leagues for Voronoi treatment
+    # Identify ITL3 regions with 2+ leagues for LAD-based splitting
     itl3_multi_league: list[str] = []
     for itl3_name, teams_in_region in itl3_to_teams.items():
         # Skip if already owned by one league
@@ -882,6 +1152,8 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
         "itl1": None,
         "itl2": None,
         "itl3": None,
+        "lad": None,
+        "wards": None,
     }
 
     # Export country boundaries
@@ -936,6 +1208,48 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
                 "type": "FeatureCollection",
                 "features": simplified_features,
             }
+
+    # Export LAD boundaries
+    lad_geojson_path = "boundaries/local_authority_districts.geojson"
+    if os.path.exists(lad_geojson_path):
+        data = json_load_cache(lad_geojson_path)
+        simplified_features = []
+        for feature in data["features"]:
+            geom = shape(feature["geometry"])
+            simplified_geom = geom.simplify(0.001, preserve_topology=True)
+            simplified_features.append(
+                {
+                    "type": "Feature",
+                    "geometry": mapping(simplified_geom),
+                    "properties": feature.get("properties", {}),
+                }
+            )
+
+        boundary_data["lad"] = {
+            "type": "FeatureCollection",
+            "features": simplified_features,
+        }
+
+    # Export ward boundaries
+    wards_geojson_path = "boundaries/wards.geojson"
+    if os.path.exists(wards_geojson_path):
+        data = json_load_cache(wards_geojson_path)
+        simplified_features = []
+        for feature in data["features"]:
+            geom = shape(feature["geometry"])
+            simplified_geom = geom.simplify(0.001, preserve_topology=True)
+            simplified_features.append(
+                {
+                    "type": "Feature",
+                    "geometry": mapping(simplified_geom),
+                    "properties": feature.get("properties", {}),
+                }
+            )
+
+        boundary_data["wards"] = {
+            "type": "FeatureCollection",
+            "features": simplified_features,
+        }
 
     # Save to JSON file
     with open(output_path, "w") as f:
@@ -1142,7 +1456,9 @@ def get_debug_boundary_loader_script(
             const debugLayers = {{
                 'Debug: ITL1 Boundaries': boundaryData.itl_1,
                 'Debug: ITL2 Boundaries': boundaryData.itl_2,
-                'Debug: ITL3 Boundaries': boundaryData.itl_3
+                'Debug: ITL3 Boundaries': boundaryData.itl_3,
+                'Debug: LAD Boundaries': boundaryData.lad,
+                'Debug: Ward Boundaries': boundaryData.wards
             }};
 
             // Add debug layers to existing layer control
@@ -1200,7 +1516,9 @@ def get_debug_boundary_loader_script(
                     const debugLayers = {{
                         'Debug: ITL1 Boundaries': boundaryData.itl_1,
                         'Debug: ITL2 Boundaries': boundaryData.itl_2,
-                        'Debug: ITL3 Boundaries': boundaryData.itl_3
+                        'Debug: ITL3 Boundaries': boundaryData.itl_3,
+                        'Debug: LAD Boundaries': boundaryData.lad,
+                        'Debug: Ward Boundaries': boundaryData.wards
                     }};
 
                     // Add debug layers to existing layer control
@@ -1266,7 +1584,7 @@ def collect_league_geometries_for_tier(
 ) -> dict[str, list[BaseGeometry]]:
     """Compute unionable geometries per league for a given tier.
 
-    Includes ITL0 (country), ITL1/2/3 regions and bounded Voronoi for multi-league ITL3s.
+    Includes ITL0 (country), ITL1/2/3 regions and LAD-based splitting for multi-league ITL3s.
     """
     region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
     multi_league_regions = region_colors.get("itl3_multi_league", [])
@@ -1286,13 +1604,12 @@ def collect_league_geometries_for_tier(
                 league = level_colors[region_name]
                 league_geometries.setdefault(league, []).append(region_geom["geom"])
 
-    # Voronoi for multi-league ITL3s
+    # LAD-based splitting for multi-league ITL3s
     if multi_league_regions:
         itl3_to_teams = region_to_teams["itl3"]
         itl2_to_teams = region_to_teams["itl2"]
         itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
         for region_name in multi_league_regions:
-            boundary_geom = itl_hierarchy["itl3_regions"][region_name]["geom"]
             teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
             if len(teams_in_region) >= 2:
                 parent_itl2 = itl3_to_itl2.get(region_name)
@@ -1300,12 +1617,12 @@ def collect_league_geometries_for_tier(
                 if parent_itl2:
                     itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
                     leagues_in_itl2 = {t["league"] for t in itl2_teams}
-                teams_for_voronoi = [t for t in teams if t["league"] in leagues_in_itl2]
-                if len(teams_for_voronoi) >= 2:
-                    voronoi_cells = create_bounded_voronoi(
-                        teams_for_voronoi, boundary_geom, league_colors
+                teams_for_split = [t for t in teams if t["league"] in leagues_in_itl2]
+                if len(teams_for_split) >= 2:
+                    lad_cells = create_lad_based_split(
+                        teams_for_split, region_name, itl_hierarchy, league_colors
                     )
-                    for cell in voronoi_cells:
+                    for cell in lad_cells:
                         league = cell["league"]
                         league_geometries.setdefault(league, []).append(cell["geom"])
 

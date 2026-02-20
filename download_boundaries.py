@@ -119,22 +119,32 @@ def get_boundary_services(detail_level="BGC"):
     Args:
         detail_level: One of BFE, BFC, BGC, BSC, BUC
     """
-    # ITL3 uses _V2 suffix and layer ID 1 for generalised versions
+    # ITL3, LAD, and Ward use _V2 suffix and layer ID for generalised versions
     # ITL1/2 use layer ID 0
     # Countries service name varies by detail level
     if detail_level in ["BGC", "BSC", "BUC"]:
         itl3_service = f"ITL3_JAN_2025_UK_{detail_level}_V2"
         itl3_layer = "1"
+        lad_service = f"LAD_MAY_2025_UK_{detail_level}_V2"
+        lad_layer = "0"
+        ward_service = f"WD_DEC_2025_UK_{detail_level}"
+        ward_layer = "0"
         countries_service = f"Countries_December_2024_Boundaries_UK_{detail_level}"
     else:
         itl3_service = f"ITL3_JAN_2025_UK_{detail_level}"
         itl3_layer = "0"
+        lad_service = f"LAD_MAY_2025_UK_{detail_level}"
+        lad_layer = "0"
+        ward_service = f"WD_DEC_2025_UK_{detail_level}"
+        ward_layer = "0"
         countries_service = f"CTRY_DEC_2024_UK_{detail_level}"
 
     return {
         "ITL_1.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level}/FeatureServer/0",
         "ITL_2.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level}/FeatureServer/0",
         "ITL_3.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{itl3_service}/FeatureServer/{itl3_layer}",
+        "local_authority_districts.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{lad_service}/FeatureServer/{lad_layer}",
+        "wards.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{ward_service}/FeatureServer/{ward_layer}",
         "countries.geojson": f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/{countries_service}/FeatureServer/0",
     }
 
@@ -231,10 +241,14 @@ def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boun
         feature["properties"]["ITL225NM"] = name
         feature["properties"]["ITL125NM"] = name
         feature["properties"]["CTRY24NM"] = name
+        feature["properties"]["LAD25NM"] = name
+        feature["properties"]["WD25NM"] = name
         feature["properties"]["ITL325CD"] = feature["properties"]["GID_0"] + "00"
         feature["properties"]["ITL225CD"] = feature["properties"]["GID_0"] + "0"
         feature["properties"]["ITL125CD"] = feature["properties"]["GID_0"]
         feature["properties"]["CTRY24CD"] = feature["properties"]["GID_0"]
+        feature["properties"]["LAD25CD"] = feature["properties"]["GID_0"]
+        feature["properties"]["WD25CD"] = feature["properties"]["GID_0"]
     for path in file_paths_to_add_to:
         output_path = Path(output_dir) / path
         print(f"  Injecting {name} data into {output_path}...")

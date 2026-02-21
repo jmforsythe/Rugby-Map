@@ -228,14 +228,14 @@ def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] |
 
 
 def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] | None:
-    if filename.startswith("RFUW"):
+    if filename.startswith("RFUW_"):
         filename = filename.replace("RFUW_", "Women's_")
     if filename.startswith("NC_"):
         filename = "Women's_" + filename
-        if filename.endswith("A.json"):
-            filename = filename.removesuffix("A.json") + "1.json"
-        elif filename.endswith("B.json"):
-            filename = filename.removesuffix("B.json") + "2.json"
+    if filename.endswith("A.json"):
+        filename = filename.removesuffix("A.json") + "1.json"
+    elif filename.endswith("B.json"):
+        filename = filename.removesuffix("B.json") + "2.json"
     return extract_tier_women_pre_2018(filename, "2012-2013")
 
 

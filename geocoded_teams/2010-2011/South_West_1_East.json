@@ -1,0 +1,147 @@
+{
+  "league_name": "South West 1 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=4867&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Amersham & Chiltern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581",
+      "image_url": "https://images.englandrugby.com/club_images/581.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650548
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "High Wycombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10112",
+      "image_url": "https://images.englandrugby.com/club_images/10112.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    },
+    {
+      "name": "Marlow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13440",
+      "image_url": "https://images.englandrugby.com/club_images/13440.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Witney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25806",
+      "image_url": "https://images.englandrugby.com/club_images/25806.png",
+      "address": "Hailey Road, Witney, Oxfordshire, OX29 9UH, United Kingdom",
+      "latitude": 51.7986155,
+      "longitude": -1.4843439,
+      "formatted_address": "Hailey Road, Madley Park, Witney, Poffley End, West Oxfordshire, Oxfordshire, England, OX28 1HQ, United Kingdom",
+      "place_id": 261044972
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Olney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16184",
+      "image_url": "https://images.englandrugby.com/club_images/16184.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Swanage & Wareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21497",
+      "image_url": "https://images.englandrugby.com/club_images/21497.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Buckingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3534",
+      "image_url": "https://images.englandrugby.com/club_images/3534.png",
+      "address": "The Floyd Field, Maids Moreton, Nr Buckingham, Buckinghamshire, MK18 1RF, United Kingdom",
+      "latitude": 52.0123836,
+      "longitude": -0.979128,
+      "formatted_address": "MK18 1RF, Maids Moreton, Buckinghamshire, England, United Kingdom",
+      "place_id": 350702984
+    },
+    {
+      "name": "Bletchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2599",
+      "image_url": "https://images.englandrugby.com/club_images/2599.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Wallingford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24153",
+      "image_url": "https://images.englandrugby.com/club_images/24153.png",
+      "address": "Hithercroft Sports Park, Hithercroft Road, Wallingford, Oxfordshire, OX10 9RB, United Kingdom",
+      "latitude": 51.5994582,
+      "longitude": -1.1427787,
+      "formatted_address": "OX10 9RB, Wallingford, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350753211
+    },
+    {
+      "name": "Oakmeadians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15295",
+      "image_url": "https://images.englandrugby.com/club_images/15295.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM ",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350497630
+    },
+    {
+      "name": "Wimborne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25549",
+      "image_url": "https://images.englandrugby.com/club_images/25549.png",
+      "address": "Wimborne RFC Leigh Park Gordon Road Gordon Road Wimborne DORSET BH21 2AP UNITED KINGDOM ",
+      "latitude": 50.79679,
+      "longitude": -1.97171,
+      "formatted_address": "BH21 2AP, Leigh Park, St Johns, Wimborne Minster, Dorset, England, United Kingdom",
+      "place_id": 350975510
+    }
+  ],
+  "team_count": 14
+}

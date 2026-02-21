@@ -1,0 +1,97 @@
+{
+  "league_name": "Surrey 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=4878&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Streatham-Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21255",
+      "image_url": "https://images.englandrugby.com/club_images/21255.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "Haslemere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9632",
+      "image_url": "https://images.englandrugby.com/club_images/9632.png",
+      "address": "Woolmer Hill Sports Ground Woolmer Hill Haslemere SURREY GU27 1QA UNITED KINGDOM ",
+      "latitude": 51.0960991,
+      "longitude": -0.7479017,
+      "formatted_address": "Woolmer Hill Sports Ground, Woolmer Hill Road, Haslemere, Woolmer Hill, Waverley, Surrey, England, GU27 1QB, United Kingdom",
+      "place_id": 259557894
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Woking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25882",
+      "image_url": "https://images.englandrugby.com/club_images/25882.png",
+      "address": "Camphill Social Club, Woking Rfc, Camphill Road, West Byfleet, Surrey , KT14 6EF, United Kingdom",
+      "latitude": 51.3405739,
+      "longitude": -0.5004952,
+      "formatted_address": "KT14 6EF, Woking, Surrey, England, United Kingdom",
+      "place_id": 350670267
+    },
+    {
+      "name": "Old Oundelians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15876",
+      "image_url": "https://images.englandrugby.com/club_images/15876.png",
+      "address": "Westend House Manor Road Cheddington LU7 0RP United Kingdom",
+      "latitude": 51.84747,
+      "longitude": -0.67059,
+      "formatted_address": "LU7 0RP, Cheddington, Buckinghamshire, England, United Kingdom",
+      "place_id": 352211074
+    },
+    {
+      "name": "Lightwater",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12265",
+      "image_url": "https://images.englandrugby.com/club_images/12265.png",
+      "address": "Lightwater Sports Centre The Avenue Lightwater Surrey GU18 5RG England",
+      "latitude": 51.3507236,
+      "longitude": -0.6828478,
+      "formatted_address": "GU18 5RG, Lightwater, Windlesham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350640369
+    },
+    {
+      "name": "Wandsworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24237",
+      "image_url": "https://images.englandrugby.com/club_images/24237.png",
+      "address": "Imber Court, Ember Lane, East Molesey, Surrey , KT8 0BT, United Kingdom",
+      "latitude": 51.3902693,
+      "longitude": -0.3525791,
+      "formatted_address": "KT8 0BT, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351430023
+    },
+    {
+      "name": "Reigate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17687",
+      "image_url": "https://images.englandrugby.com/club_images/17687.png",
+      "address": "Reigate R.F.C. Eric Hodgkins Memorial Grond Colley Lane Reigate SURREY RH2 9JL UNITED KINGDOM ",
+      "latitude": 51.24827,
+      "longitude": -0.22129,
+      "formatted_address": "RH2 9JL, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351826871
+    },
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.4372629,
+      "longitude": -0.5687512,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
+    }
+  ],
+  "team_count": 9
+}

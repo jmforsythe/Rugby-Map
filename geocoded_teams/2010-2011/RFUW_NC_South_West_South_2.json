@@ -1,0 +1,47 @@
+{
+  "league_name": "RFUW NC South West South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=4992&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "North Tawton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14796",
+      "image_url": "https://images.englandrugby.com/club_images/14796.png",
+      "address": "Ntrfc Taw Meadow Fore St North Tawton Devon EX20 2ED United Kingdom",
+      "latitude": 50.7999123,
+      "longitude": -3.9051935,
+      "formatted_address": "EX20 2ED, North Tawton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351294673
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2160",
+      "image_url": "https://images.englandrugby.com/club_images/2160.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "St Austell Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20160",
+      "image_url": "https://images.englandrugby.com/club_images/20160.png",
+      "address": "St. Austell R.f.c. Tregorrick Park Tregorrick Lane St.austell Cornw PL26 7FH United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351318637
+    }
+  ],
+  "team_count": 4
+}

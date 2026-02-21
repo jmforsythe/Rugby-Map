@@ -1,0 +1,107 @@
+{
+  "league_name": "Midlands 5 West (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=4912&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Tenbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21817",
+      "image_url": "https://images.englandrugby.com/club_images/21817.png",
+      "address": "Penlu  Worcester Road Tenbury Wells WORCESTERSHIRE WR15 8AP UNITED KINGDOM ",
+      "latitude": 52.3151303,
+      "longitude": -2.5901565,
+      "formatted_address": "WR15 8AP, Burford, Shropshire, England, United Kingdom",
+      "place_id": 350894078
+    },
+    {
+      "name": "Birmingham Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2314",
+      "image_url": "https://images.englandrugby.com/club_images/2314.png",
+      "address": "Land Rover Social Club Bilsmore Green Off Rowood Drive Solihull West Midlands B92 9LN United Kingdom",
+      "latitude": 52.4303347,
+      "longitude": -1.7754397,
+      "formatted_address": "B92 9LN, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488131
+    },
+    {
+      "name": "Bromyard",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3466",
+      "image_url": "https://images.englandrugby.com/club_images/3466.png",
+      "address": "Clive Richards Sports Ground Tenbury Road Bromyard HEREFORDSHIRE HR7 4LW UNITED KINGDOM",
+      "latitude": 52.19124,
+      "longitude": -2.5090843,
+      "formatted_address": "HR7 4LW, Bromyard and Winslow, Herefordshire, England, United Kingdom",
+      "place_id": 350651176
+    },
+    {
+      "name": "Aldridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=415",
+      "image_url": "https://images.englandrugby.com/club_images/415.png",
+      "address": "Bourne Vale, Off Little Hardwick Road, Aldridge, West Midlands, WS9 0SH, United Kingdom",
+      "latitude": 52.5900026,
+      "longitude": -1.901233,
+      "formatted_address": "WS9 0SH, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896311
+    },
+    {
+      "name": "Five Ways Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8184",
+      "image_url": "https://images.englandrugby.com/club_images/8184.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Whittington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25337",
+      "image_url": "https://images.englandrugby.com/club_images/25337.png",
+      "address": "Lichfield Sports Club Collins Hill Eastern Avenue Lichfield Staffordshire WS13 7SQ England",
+      "latitude": 52.6931574,
+      "longitude": -1.8486649,
+      "formatted_address": "WS13 7SQ, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 352168194
+    },
+    {
+      "name": "Hanford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9340",
+      "image_url": "https://images.englandrugby.com/club_images/9340.png",
+      "address": "North Stafford Sports Club Whisper Lane Butterton Newcastle Under Lyme Staffordshire ST5 4EB United Kingdom",
+      "latitude": 52.9681378,
+      "longitude": -2.2494186,
+      "formatted_address": "ST5 4EB, Whitmore, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
+      "place_id": 350837607
+    },
+    {
+      "name": "Old Griffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15738",
+      "image_url": "https://images.englandrugby.com/club_images/15738.png",
+      "address": "49 Victoria Road Chichester WEST SUSSEX PO19 7HY UNITED KINGDOM",
+      "latitude": 50.8382668,
+      "longitude": -0.7596968,
+      "formatted_address": "Victoria Road, St James's, Chichester, Westhampnett, Chichester, West Sussex, England, PO19 7HY, United Kingdom",
+      "place_id": 261655327
+    },
+    {
+      "name": "Penkridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25196",
+      "image_url": "https://images.englandrugby.com/club_images/25196.png",
+      "address": "The Monckton Recreation Centre Pinfold Lane Penkridge Stafford Staffordshire ST19 5QP England",
+      "latitude": 52.7230599,
+      "longitude": -2.12501,
+      "formatted_address": "ST19 5QP, Penkridge, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351993467
+    }
+  ],
+  "team_count": 10
+}

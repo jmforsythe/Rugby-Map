@@ -1,0 +1,47 @@
+{
+  "league_name": "RFUW NC South East East 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=4993&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Medway Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields Rochester KENT ME1 3AD UNITED KINGDOM",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351564006
+    },
+    {
+      "name": "Footscray Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8238",
+      "image_url": "https://images.englandrugby.com/club_images/8238.png",
+      "address": "239a Footscray Road New Eltham New Eltham London SE9 2EL UNITED KINGDOM",
+      "latitude": 51.4422161,
+      "longitude": 0.0665664,
+      "formatted_address": "SE9 2EL, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812268
+    },
+    {
+      "name": "Thames Toucanettes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21882",
+      "image_url": "https://images.englandrugby.com/club_images/21882.png",
+      "address": "Garron Lane South Ockendon Essex RM15 5JQ United Kingdom",
+      "latitude": 51.5064592,
+      "longitude": 0.2726188,
+      "formatted_address": "Garron Lane, South Ockendon, Thurrock, Essex, England, RM15 5HS, United Kingdom",
+      "place_id": 90948359
+    },
+    {
+      "name": "East Grinstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7139",
+      "image_url": "https://images.englandrugby.com/club_images/7139.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    }
+  ],
+  "team_count": 4
+}

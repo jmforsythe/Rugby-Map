@@ -1,0 +1,87 @@
+{
+  "league_name": "Midlands 5 East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=4916&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Long Eaton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12695",
+      "image_url": "https://images.englandrugby.com/club_images/12695.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
+    },
+    {
+      "name": "Horncastle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10410",
+      "image_url": "https://images.englandrugby.com/club_images/10410.png",
+      "address": "Astro Bar Coronation Walk Horncastle LINCOLNSHIRE LN9 6HP UNITED KINGDOM ",
+      "latitude": 53.2066541,
+      "longitude": -0.1192422,
+      "formatted_address": "LN9 6HP, Horncastle, East Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688965
+    },
+    {
+      "name": "Keyworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11394",
+      "image_url": "https://images.englandrugby.com/club_images/11394.png",
+      "address": "The Clubhouse Willoughby Road Widmerpool Nottingham Nottinghamshire NG12 5PU United Kingdom",
+      "latitude": 52.8438933,
+      "longitude": -1.0635972,
+      "formatted_address": "NG12 5PU, Widmerpool, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350715908
+    },
+    {
+      "name": "Ollerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "image_url": "https://images.englandrugby.com/club_images/16182.png",
+      "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
+      "latitude": 53.20915,
+      "longitude": -0.98362,
+      "formatted_address": "NG22 9JU, Ollerton and Boughton CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351654770
+    },
+    {
+      "name": "Castle Donington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4275",
+      "image_url": "https://images.englandrugby.com/club_images/4275.png",
+      "address": "Spital Park Pavillion, Spital Park, Castle Donington, Leicestershire, DE74 2QA, United Kingdom",
+      "latitude": 52.846112,
+      "longitude": -1.3453337,
+      "formatted_address": "DE74 2QA, Spital Rise, Castle Donington, Hemington, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351155558
+    },
+    {
+      "name": "Meden Vale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "image_url": "https://images.englandrugby.com/club_images/13583.png",
+      "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
+      "latitude": 53.2233769,
+      "longitude": -1.1306623,
+      "formatted_address": "NG20 9PS, Warsop, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351653546
+    },
+    {
+      "name": "Rolls Royce",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17945",
+      "image_url": "https://images.englandrugby.com/club_images/17945.png",
+      "address": "Leisure Association, Moor Lane, Allenton, Derby, Derbyshire, DE24 9HY, United Kingdom",
+      "latitude": 52.8908291,
+      "longitude": -1.4620551,
+      "formatted_address": "DE24 9HY, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350579047
+    },
+    {
+      "name": "University Of Derby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23580",
+      "image_url": "https://images.englandrugby.com/club_images/23580.png",
+      "address": "Union Of Students, University Of Derby Kedleston Road, Derby Derbyshire DE22 1GB United Kingdom",
+      "latitude": 52.9380221,
+      "longitude": -1.496769,
+      "formatted_address": "DE22 1GB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576822
+    }
+  ],
+  "team_count": 8
+}

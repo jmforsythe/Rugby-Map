@@ -1,0 +1,97 @@
+{
+  "league_name": "Berks/Bucks & Oxon 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=4853&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Bletchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2600",
+      "image_url": "https://images.englandrugby.com/club_images/2600.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Marlow III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13444",
+      "image_url": "https://images.englandrugby.com/club_images/13444.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Buckingham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3540",
+      "image_url": "https://images.englandrugby.com/club_images/3540.png",
+      "address": "The Floyd Field, Maids Moreton, Nr Buckingham, Buckinghamshire, MK18 1RF, United Kingdom",
+      "latitude": 52.0123836,
+      "longitude": -0.979128,
+      "formatted_address": "MK18 1RF, Maids Moreton, Buckinghamshire, England, United Kingdom",
+      "place_id": 350702984
+    },
+    {
+      "name": "Winslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25696",
+      "image_url": "https://images.englandrugby.com/club_images/25696.png",
+      "address": "39 The Nags Head Sheep Street Winslow MK18 3HL United Kingdom",
+      "latitude": 51.94122,
+      "longitude": -0.87896,
+      "formatted_address": "MK18 3HL, Winslow, Buckinghamshire, England, United Kingdom",
+      "place_id": 351582510
+    },
+    {
+      "name": "Chinnor IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4822",
+      "image_url": "https://images.englandrugby.com/club_images/4822.png",
+      "address": "Rectory Pavillion Kingsey Road Thame OXFORDSHIRE OX9 3JL UNITED KINGDOM ",
+      "latitude": 51.74809,
+      "longitude": -0.95875,
+      "formatted_address": "OX9 3JL, Thame, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351734126
+    },
+    {
+      "name": "Gosford All Blacks II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8771",
+      "image_url": "https://images.englandrugby.com/club_images/8771.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Aylesbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1131",
+      "image_url": "https://images.englandrugby.com/club_images/1131.png",
+      "address": "Ostler's Field Brook End Weston Turville Aylesbury Buckinghamshire HP22 5RN United Kingdom",
+      "latitude": 51.79431,
+      "longitude": -0.74905,
+      "formatted_address": "HP22 5RN, Weston Turville, Buckinghamshire, England, United Kingdom",
+      "place_id": 351361908
+    },
+    {
+      "name": "Bicester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2125",
+      "image_url": "https://images.englandrugby.com/club_images/2125.png",
+      "address": "Whitelands Farm Sports Ground, Whitelands Way, Bicester, Oxfordshire, OX26 1AJ, United Kingdom",
+      "latitude": 51.8891516,
+      "longitude": -1.1717612,
+      "formatted_address": "Whitelands Farm Sports Ground, Whitelands Way, Kingsmere, Bicester, Chesterton, Cherwell, Oxfordshire, England, OX26 1AZ, United Kingdom",
+      "place_id": 261044269
+    },
+    {
+      "name": "High Wycombe III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10117",
+      "image_url": "https://images.englandrugby.com/club_images/10117.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    }
+  ],
+  "team_count": 9
+}

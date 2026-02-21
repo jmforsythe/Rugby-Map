@@ -1,0 +1,67 @@
+{
+  "league_name": "RFUW NC South East North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5012&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Tabard Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21584",
+      "image_url": "https://images.englandrugby.com/club_images/21584.png",
+      "address": "Tabard Rfc King George V Playing Fields Cobden Hill Radlett Herts WD7 7JN United Kingdom",
+      "latitude": 51.6762842,
+      "longitude": -0.3124198,
+      "formatted_address": "WD7 7JN, Aldenham, Letchmore Heath, Hertsmere, Hertfordshire, England, United Kingdom",
+      "place_id": 351690067
+    },
+    {
+      "name": "Old Albanians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15383",
+      "image_url": "https://images.englandrugby.com/club_images/15383.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Harlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9431",
+      "image_url": "https://images.englandrugby.com/club_images/9431.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Southwold Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19853",
+      "image_url": "https://images.englandrugby.com/club_images/19853.png",
+      "address": "William Godell Pavilion, The Common, Southwold, Suffolk, IP18 6TB, United Kingdom",
+      "latitude": 52.3268546,
+      "longitude": 1.6674237,
+      "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350660373
+    },
+    {
+      "name": "Hitchin Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10221",
+      "image_url": "https://images.englandrugby.com/club_images/10221.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Wellingborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24607",
+      "image_url": "https://images.englandrugby.com/club_images/24607.png",
+      "address": "Cut Throat Lane Great Doddington Wellingborough NORTHAMPTONSHIRE NN29 7TZ UNITED KINGDOM",
+      "latitude": 52.2746331,
+      "longitude": -0.7262549,
+      "formatted_address": "NN29 7TZ, Great Doddington, North Northamptonshire, England, United Kingdom",
+      "place_id": 350276081
+    }
+  ],
+  "team_count": 6
+}

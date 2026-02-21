@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=4894&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "CL London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5112",
+      "image_url": "https://images.englandrugby.com/club_images/5112.png",
+      "address": "C/o 27 West Square London SE11 4SP England",
+      "latitude": 51.4952599,
+      "longitude": -0.1049947,
+      "formatted_address": "SE11 4SP, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 352566470
+    },
+    {
+      "name": "Old Tiffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068",
+      "image_url": "https://images.englandrugby.com/club_images/16068.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
+    },
+    {
+      "name": "Old Haileyburians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15747",
+      "image_url": "https://images.englandrugby.com/club_images/15747.png",
+      "address": "Arthur Road New Malden Surrey KT3 6LX United Kingdom",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671643
+    },
+    {
+      "name": "Farnham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7986",
+      "image_url": "https://images.englandrugby.com/club_images/7986.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Law Society",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11925",
+      "image_url": "https://images.englandrugby.com/club_images/11925.png",
+      "address": "Raynes Park Sports Ground, Taunton Avenue, West Wimbledon, SW20 0BH, United Kingdom",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Battersea Ironsides",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1641",
+      "image_url": "https://images.englandrugby.com/club_images/1641.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Old Cranleighans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15615",
+      "image_url": "https://images.englandrugby.com/club_images/15615.png",
+      "address": "Portsmouth Road, Thames Ditton, Surrey, KT7 0HB, United Kingdom",
+      "latitude": 51.381985,
+      "longitude": -0.3378078,
+      "formatted_address": "Portsmouth Road, Long Ditton, Thames Ditton, Elmbridge, Surrey, England, KT7 0EZ, United Kingdom",
+      "place_id": 259932709
+    },
+    {
+      "name": "Old Emanuel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15679",
+      "image_url": "https://images.englandrugby.com/club_images/15679.png",
+      "address": "Richard Challoner School , Sports Playing Fields, Manor Drive, London, Greater London, KT3 5PE, United Kingdom",
+      "latitude": 51.3854824,
+      "longitude": -0.2654359,
+      "formatted_address": "KT3 5PE, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350671595
+    },
+    {
+      "name": "Raynes Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17495",
+      "image_url": "https://images.englandrugby.com/club_images/17495.png",
+      "address": "Raynes Park Sports Ground Taunton Avenue Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013170
+    },
+    {
+      "name": "Old Caterhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510",
+      "image_url": "https://images.englandrugby.com/club_images/15510.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    }
+  ],
+  "team_count": 10
+}

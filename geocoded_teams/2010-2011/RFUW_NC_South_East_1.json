@@ -1,0 +1,87 @@
+{
+  "league_name": "RFUW NC South East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=4985&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Hampstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9298",
+      "image_url": "https://images.englandrugby.com/club_images/9298.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Romford & GP Ravens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17962",
+      "image_url": "https://images.englandrugby.com/club_images/17962.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM ",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Hammersmith & Fulham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9261",
+      "image_url": "https://images.englandrugby.com/club_images/9261.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 351564189
+    },
+    {
+      "name": "Ashford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=880",
+      "image_url": "https://images.englandrugby.com/club_images/880.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM ",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Teddington Antlers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21736",
+      "image_url": "https://images.englandrugby.com/club_images/21736.png",
+      "address": "Teddington Rfc Bushy Park Teddington Middlesex TW11 0EA United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    },
+    {
+      "name": "Ealing Trailfinders Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7080",
+      "image_url": "https://images.englandrugby.com/club_images/7080.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    },
+    {
+      "name": "Portsmouth Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17137",
+      "image_url": "https://images.englandrugby.com/club_images/17137.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    }
+  ],
+  "team_count": 8
+}

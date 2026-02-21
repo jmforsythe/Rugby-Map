@@ -1,0 +1,127 @@
+{
+  "league_name": "Gloucester Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=4847&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Whitehall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25258",
+      "image_url": "https://images.englandrugby.com/club_images/25258.png",
+      "address": "Whitehall RFC Speedwell Recreation Ground Foundry Lane, Speedwell Bristol BRISTOL BS5 7UE UNITED KINGDOM ",
+      "latitude": 51.4703526,
+      "longitude": -2.5375935,
+      "formatted_address": "BS5 7UE, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350519395
+    },
+    {
+      "name": "Old Richians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15969",
+      "image_url": "https://images.englandrugby.com/club_images/15969.png",
+      "address": "Old Richians RFC Sandyleaze Longlevens Gloucester GLOUCESTERSHIRE GL2 0PX UNITED KINGDOM ",
+      "latitude": 51.86988,
+      "longitude": -2.20765,
+      "formatted_address": "GL2 0PX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351311696
+    },
+    {
+      "name": "Widden Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25350",
+      "image_url": "https://images.englandrugby.com/club_images/25350.png",
+      "address": "Widden Old Boys RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    },
+    {
+      "name": "Tewkesbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21856",
+      "image_url": "https://images.englandrugby.com/club_images/21856.png",
+      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM ",
+      "latitude": 51.9892554,
+      "longitude": -2.1575383,
+      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631002
+    },
+    {
+      "name": "Old Bristolians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15461",
+      "image_url": "https://images.englandrugby.com/club_images/15461.png",
+      "address": "Old Bristolians RFC Memorial Playing Field Longwood Lane, Failand Bristol BRISTOL BS8 3TQ UNITED KINGDOM ",
+      "latitude": 51.4430181,
+      "longitude": -2.6705286,
+      "formatted_address": "BS8 3TQ, Long Ashton, North Somerset, England, United Kingdom",
+      "place_id": 350521695
+    },
+    {
+      "name": "Bristol Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3278",
+      "image_url": "https://images.englandrugby.com/club_images/3278.png",
+      "address": "Bakewell Memorial Ground Station Road Cribbs Causeway Bristol BRISTOL BS10 7TT ENGLAND ",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Southmead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19760",
+      "image_url": "https://images.englandrugby.com/club_images/19760.png",
+      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
+      "latitude": 51.499895,
+      "longitude": -2.6078965,
+      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350505286
+    },
+    {
+      "name": "Old Colstonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15560",
+      "image_url": "https://images.englandrugby.com/club_images/15560.png",
+      "address": "Colstons School, Bell Hill, Bristol, Avon, BS16 1BJ, United Kingdom",
+      "latitude": 51.4806811,
+      "longitude": -2.5561547,
+      "formatted_address": "BS16 1BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350507379
+    },
+    {
+      "name": "Frampton Cotterell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8291",
+      "image_url": "https://images.englandrugby.com/club_images/8291.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Ross-on-Wye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18068",
+      "image_url": "https://images.englandrugby.com/club_images/18068.png",
+      "address": "Ross-on-wye Rfc, The Abbotts, Greytree, Ross-on-wye, Herefordshire, HR9 7GQ, United Kingdom",
+      "latitude": 51.923072,
+      "longitude": -2.5907335,
+      "formatted_address": "HR9 7GQ, Ross-on-Wye, Herefordshire, England, United Kingdom",
+      "place_id": 351371468
+    },
+    {
+      "name": "Brockworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3400",
+      "image_url": "https://images.englandrugby.com/club_images/3400.png",
+      "address": "Brockworth Rfc, Mill Lane, Brockworth, Gloucester, GL3 4HQ, United Kingdom",
+      "latitude": 51.8437399,
+      "longitude": -2.15203,
+      "formatted_address": "GL3 4HQ, Brockworth, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 351313752
+    },
+    {
+      "name": "Gloucester Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8647",
+      "image_url": "https://images.englandrugby.com/club_images/8647.png",
+      "address": "Gloucester Old Boys Rfc, Myers Road, Off Horton Road, Gloucester, Gloucestershire, GL1 3QD, United Kingdom",
+      "latitude": 51.86375,
+      "longitude": -2.22705,
+      "formatted_address": "GL1 3QD, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307607
+    }
+  ],
+  "team_count": 12
+}

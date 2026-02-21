@@ -1,0 +1,127 @@
+{
+  "league_name": "Gloucester 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=5568&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Painswick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16551",
+      "image_url": "https://images.englandrugby.com/club_images/16551.png",
+      "address": "Broadham Fields Stroud Road Painswick GL6 6UT UNITED KINGDOM",
+      "latitude": 51.7848809,
+      "longitude": -2.1958847,
+      "formatted_address": "GL6 6UT, Painswick, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637719
+    },
+    {
+      "name": "Dursley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7024",
+      "image_url": "https://images.englandrugby.com/club_images/7024.png",
+      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
+      "latitude": 51.691656,
+      "longitude": -2.3834713,
+      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350629371
+    },
+    {
+      "name": "Newent",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14504",
+      "image_url": "https://images.englandrugby.com/club_images/14504.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Brockworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3400",
+      "image_url": "https://images.englandrugby.com/club_images/3400.png",
+      "address": "Brockworth Rfc, Mill Lane, Brockworth, Gloucester, GL3 4HQ, United Kingdom",
+      "latitude": 51.8437399,
+      "longitude": -2.15203,
+      "formatted_address": "GL3 4HQ, Brockworth, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 351313752
+    },
+    {
+      "name": "Hucclecote",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10560",
+      "image_url": "https://images.englandrugby.com/club_images/10560.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Cheltenham Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4561",
+      "image_url": "https://images.englandrugby.com/club_images/4561.png",
+      "address": "Cheltenham Saracens RFC King George 5th Playing Fields off Brooklyn Road Hesters Way Cheltenham  GLOUCESTERSHIRE GL51 8DT UNITED KINGDOM ",
+      "latitude": 51.903093,
+      "longitude": -2.1102736,
+      "formatted_address": "GL51 8DT, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350634272
+    },
+    {
+      "name": "Gloucester Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8647",
+      "image_url": "https://images.englandrugby.com/club_images/8647.png",
+      "address": "Gloucester Old Boys Rfc, Myers Road, Off Horton Road, Gloucester, Gloucestershire, GL1 3QD, United Kingdom",
+      "latitude": 51.86375,
+      "longitude": -2.22705,
+      "formatted_address": "GL1 3QD, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307607
+    },
+    {
+      "name": "Kingswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11689",
+      "image_url": "https://images.englandrugby.com/club_images/11689.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Ashley Down Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=919",
+      "image_url": "https://images.englandrugby.com/club_images/919.png",
+      "address": "Lockleaze Combination Ground Bonnington Walk Lockleaze Bristol BRISTOL BS7 9YU UNITED KINGDOM ",
+      "latitude": 51.4987321,
+      "longitude": -2.5656862,
+      "formatted_address": "BS7 9YU, Stoke Park and Cheswick, Harry Stoke, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350521213
+    },
+    {
+      "name": "Bream",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3037",
+      "image_url": "https://images.englandrugby.com/club_images/3037.png",
+      "address": "Bream Rfc, High Street, Bream, Lydney, Gloucestershire, GL15 6JE, United Kingdom",
+      "latitude": 51.74929,
+      "longitude": -2.57751,
+      "formatted_address": "GL15 6JE, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309912
+    },
+    {
+      "name": "Ross-on-Wye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18068",
+      "image_url": "https://images.englandrugby.com/club_images/18068.png",
+      "address": "Ross-on-wye Rfc, The Abbotts, Greytree, Ross-on-wye, Herefordshire, HR9 7GQ, United Kingdom",
+      "latitude": 51.923072,
+      "longitude": -2.5907335,
+      "formatted_address": "HR9 7GQ, Ross-on-Wye, Herefordshire, England, United Kingdom",
+      "place_id": 351371468
+    },
+    {
+      "name": "Spartans (Gloucester)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20050",
+      "image_url": "https://images.englandrugby.com/club_images/20050.png",
+      "address": "Spartans (Gloucester) RFC Sebert Street Kingsholm Gloucester GLOUCESTERSHIRE GL1 3BS UNITED KINGDOM ",
+      "latitude": 51.87242,
+      "longitude": -2.23916,
+      "formatted_address": "GL1 3BS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307495
+    }
+  ],
+  "team_count": 12
+}

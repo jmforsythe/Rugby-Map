@@ -1,0 +1,147 @@
+{
+  "league_name": "Yorkshire Division One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=5608&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Pocklington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17000",
+      "image_url": "https://images.englandrugby.com/club_images/17000.png",
+      "address": "Pocklington R.u.f.c., Feathers Field, Percy Road, Pocklington, East Yorkshire, YO42 2QB, United Kingdom",
+      "latitude": 53.929475,
+      "longitude": -0.7728368,
+      "formatted_address": "YO42 2QB, Pocklington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350450147
+    },
+    {
+      "name": "Keighley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11209",
+      "image_url": "https://images.englandrugby.com/club_images/11209.png",
+      "address": "Skipton Road, Utley, Keighley, BD20 6DT, United Kingdom",
+      "latitude": 53.8814057,
+      "longitude": -1.9189893,
+      "formatted_address": "Skipton Road, Low Utley, Keighley, Bradford, West Yorkshire, England, BD20 6EJ, United Kingdom",
+      "place_id": 257505985
+    },
+    {
+      "name": "Driffield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6745",
+      "image_url": "https://images.englandrugby.com/club_images/6745.png",
+      "address": "The Clubhouse, Kelleythorpe, Driffield, East Riding Of Yorkshire, YO25 9DW, United Kingdom",
+      "latitude": 53.9942793,
+      "longitude": -0.4560725,
+      "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352190496
+    },
+    {
+      "name": "Bridlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3154",
+      "image_url": "https://images.englandrugby.com/club_images/3154.png",
+      "address": "Dukes Park Queens Gate Bridlington EAST RIDING OF YORKSHIRE YO16 7LN UNITED KINGDOM ",
+      "latitude": 54.0903597,
+      "longitude": -0.1973737,
+      "formatted_address": "YO16 7LN, Bridlington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352186394
+    },
+    {
+      "name": "York",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26458",
+      "image_url": "https://images.englandrugby.com/club_images/26458.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    },
+    {
+      "name": "Pontefract",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17027",
+      "image_url": "https://images.englandrugby.com/club_images/17027.png",
+      "address": "Pontefract R.u.f.c., Moor Lane, Carleton, Pontefract, West Yorkshire, WF8 3RX, United Kingdom",
+      "latitude": 53.6740821,
+      "longitude": -1.2927013,
+      "formatted_address": "WF8 3RX, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350891085
+    },
+    {
+      "name": "Scarborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18780",
+      "image_url": "https://images.englandrugby.com/club_images/18780.png",
+      "address": "The J M Guthrie Clubhouse, Silver Royd, Scalby, Scarborough, North Yorkshire, YO13 0NL, United Kingdom",
+      "latitude": 54.30982,
+      "longitude": -0.44518,
+      "formatted_address": "YO13 0NL, Burniston, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351733322
+    },
+    {
+      "name": "Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9817",
+      "image_url": "https://images.englandrugby.com/club_images/9817.png",
+      "address": "Heath R.U.F.C. North Dean Stainland Road Greetland Halifax WEST YORKSHIRE HX4 8LS UNITED KINGDOM ",
+      "latitude": 53.6892238,
+      "longitude": -1.8522059,
+      "formatted_address": "HX4 8LS, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655754
+    },
+    {
+      "name": "Ilkley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10834",
+      "image_url": "https://images.englandrugby.com/club_images/10834.png",
+      "address": "Stacks Field Denton Road Ilkley WEST YORKSHIRE LS29 0AF UNITED KINGDOM ",
+      "latitude": 53.93008,
+      "longitude": -1.82315,
+      "formatted_address": "LS29 0AF, Ilkley, Bradford, West Yorkshire, England, United Kingdom",
+      "place_id": 351527727
+    },
+    {
+      "name": "Knottingley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11763",
+      "image_url": "https://images.englandrugby.com/club_images/11763.png",
+      "address": "Knottingley RUFC Howards Field, Marsh Lane Knottingley WF11 9DE UNITED KINGDOM ",
+      "latitude": 53.710701,
+      "longitude": -1.2335157,
+      "formatted_address": "WF11 9DE, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350887020
+    },
+    {
+      "name": "Huddersfield Laund Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10607",
+      "image_url": "https://images.englandrugby.com/club_images/10607.png",
+      "address": "Laund Hill Community Club Sports Complex, New Hey Road, Salendine Nook,  , Huddersfield, West Yorkshire, HD3 3XF, United Kingdom",
+      "latitude": 53.65746,
+      "longitude": -1.84767,
+      "formatted_address": "HD3 3XF, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351346848
+    },
+    {
+      "name": "North Ribblesdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14766",
+      "image_url": "https://images.englandrugby.com/club_images/14766.png",
+      "address": "Grove Park, Lower Greenfoot, Settle, North Yorkshire, BD24 9RB, United Kingdom",
+      "latitude": 54.0649015,
+      "longitude": -2.2763432,
+      "formatted_address": "BD24 9RB, Settle, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350514696
+    },
+    {
+      "name": "Dinnington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6492",
+      "image_url": "https://images.englandrugby.com/club_images/6492.png",
+      "address": "Dinnington Rufc, Lodge Lane , Dinnington, Sheffield, South Yorkshire, S25 2PB, United Kingdom",
+      "latitude": 53.3714398,
+      "longitude": -1.1920148,
+      "formatted_address": "Dinnington Rugby Union Football Club, Lodge Lane, Throapham, Dinnington St. John's, Dinnington, Sheffield, South Yorkshire, England, S25 2PB, United Kingdom",
+      "place_id": 257214196
+    },
+    {
+      "name": "Castleford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4305",
+      "image_url": "https://images.englandrugby.com/club_images/4305.png",
+      "address": "Willowbridge Lane, Whitwood, Whitwood, Castleford, West Yorkshire, WF10 5PD, United Kingdom",
+      "latitude": 53.7164491,
+      "longitude": -1.3806454,
+      "formatted_address": "Willowbridge Lane, Hightown, Cutsyke, Whitwood, Wakefield, West Yorkshire, England, WF10 5NL, United Kingdom",
+      "place_id": 257376410
+    }
+  ],
+  "team_count": 14
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "London 3 South East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=5780&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Crowborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5917",
+      "image_url": "https://images.englandrugby.com/club_images/5917.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Medway",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595",
+      "image_url": "https://images.englandrugby.com/club_images/13595.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Folkestone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8214",
+      "image_url": "https://images.englandrugby.com/club_images/8214.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Maidstone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13128",
+      "image_url": "https://images.englandrugby.com/club_images/13128.png",
+      "address": "The William Day Mem. Ground, The Mote, Willow Way, Maidstone, Kent, ME15 7RN, United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350700950
+    },
+    {
+      "name": "Ashford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=876",
+      "image_url": "https://images.englandrugby.com/club_images/876.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Bromley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3410",
+      "image_url": "https://images.englandrugby.com/club_images/3410.png",
+      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504060
+    },
+    {
+      "name": "Sheppey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19172",
+      "image_url": "https://images.englandrugby.com/club_images/19172.png",
+      "address": "Sheppey Rugby Football Club, The Clubhouse, Stupple Field, Lower Road,, Minster,, Sheerness, Kent, ME12 3RT, United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351566033
+    },
+    {
+      "name": "Park House",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16583",
+      "image_url": "https://images.englandrugby.com/club_images/16583.png",
+      "address": "Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504076
+    },
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Eastbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7209",
+      "image_url": "https://images.englandrugby.com/club_images/7209.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "Crawley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5807",
+      "image_url": "https://images.englandrugby.com/club_images/5807.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    }
+  ],
+  "team_count": 12
+}

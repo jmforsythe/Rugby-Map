@@ -212,6 +212,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
 
 
 def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] | None:
+    if season < "2012-2013":
+        return extract_tier_women_pre_2012(filename, season)
     if filename.startswith("Women's_Premiership"):
         return (101, "Premiership Women's")
     if filename.startswith("Women's_Championship"):
@@ -223,6 +225,18 @@ def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] |
     if filename.startswith("Women") and num != 0:
         return (103 + num, f"National Challenge {num}")
     return None
+
+
+def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] | None:
+    if filename.startswith("RFUW"):
+        filename = filename.replace("RFUW_", "Women's_")
+    if filename.startswith("NC_"):
+        filename = "Women's_" + filename
+        if filename.endswith("A.json"):
+            filename = filename.removesuffix("A.json") + "1.json"
+        elif filename.endswith("B.json"):
+            filename = filename.removesuffix("B.json") + "2.json"
+    return extract_tier_women_pre_2018(filename, "2012-2013")
 
 
 def get_number_from_tier_name(filename: str, prefix: str) -> int:

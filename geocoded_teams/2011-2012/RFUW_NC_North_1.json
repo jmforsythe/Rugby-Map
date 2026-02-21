@@ -1,0 +1,67 @@
+{
+  "league_name": "RFUW NC North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5664&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Northwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15010",
+      "image_url": "https://images.englandrugby.com/club_images/15010.png",
+      "address": "Moss Farm Leisure Complex Moss Farm, Winnington Northwich Cheshire CW8 4BG United Kingdom",
+      "latitude": 53.2571511,
+      "longitude": -2.5323746,
+      "formatted_address": "CW8 4BG, Northwich, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350568731
+    },
+    {
+      "name": "Halifax Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9217",
+      "image_url": "https://images.englandrugby.com/club_images/9217.png",
+      "address": "Halifax Rufc, Ovenden Park, Keighley Road, Halifax, West Yorkshire, HX2 8AR, England",
+      "latitude": 53.7449457,
+      "longitude": -1.8845003,
+      "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350655575
+    },
+    {
+      "name": "Manchester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13242",
+      "image_url": "https://images.englandrugby.com/club_images/13242.png",
+      "address": "Manchester Rugby Club Grove Park Grove Lane Cheadle Hulme Cheshire SK8 7NB United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351474723
+    },
+    {
+      "name": "Ormskirk Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16254",
+      "image_url": "https://images.englandrugby.com/club_images/16254.png",
+      "address": "Green Lane Ormskirk LANCASHIRE L39 1ND UNITED KINGDOM",
+      "latitude": 53.5723631,
+      "longitude": -2.8872143,
+      "formatted_address": "Green Lane, Ormskirk, West Lancashire, Lancashire, England, L39 1ND, United Kingdom",
+      "place_id": 255393858
+    },
+    {
+      "name": "Leigh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12124",
+      "image_url": "https://images.englandrugby.com/club_images/12124.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Liverpool Collegiate Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12418",
+      "image_url": "https://images.englandrugby.com/club_images/12418.png",
+      "address": "Liverpool Collegiate R.u.f.c. C/o Liverpool Cricket Club Aigburth Road Grassendale Liverpool Merseyside L19 3QF United Kingdom",
+      "latitude": 53.36363,
+      "longitude": -2.918,
+      "formatted_address": "L19 3QF, Liverpool City Region, England, United Kingdom",
+      "place_id": 350993734
+    }
+  ],
+  "team_count": 6
+}

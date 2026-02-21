@@ -1,0 +1,77 @@
+{
+  "league_name": "Gloucester 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=5587&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Bredon Star",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3051",
+      "image_url": "https://images.englandrugby.com/club_images/3051.png",
+      "address": "Bredon Playing Fields, Main Road,, Tewkesbury, Gloucestershire, GL20 7QN, United Kingdom",
+      "latitude": 52.030351,
+      "longitude": -2.1047039,
+      "formatted_address": "GL20 7QN, Bredon, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 350631131
+    },
+    {
+      "name": "Cainscross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3909",
+      "image_url": "https://images.englandrugby.com/club_images/3909.png",
+      "address": "Cainscross RFC Victory Park Cainscross Stroud GLOUCESTERSHIRE GL5 4JE UNITED KINGDOM",
+      "latitude": 51.7433802,
+      "longitude": -2.2441085,
+      "formatted_address": "GL5 4JE, Cainscross, Selsley, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637281
+    },
+    {
+      "name": "Greyhound",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8969",
+      "image_url": "https://images.englandrugby.com/club_images/8969.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd Grandstand Road Hereford Herefordshire HR4 9NG England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Minchinhampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13941",
+      "image_url": "https://images.englandrugby.com/club_images/13941.png",
+      "address": "Minchinhampton Rfc, Hollybush Farm, Hampton Fields, Minchinhampton , Stroud, GL6 9BD, England",
+      "latitude": 51.70212,
+      "longitude": -2.16677,
+      "formatted_address": "GL6 9BD, Minchinhampton, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351317856
+    },
+    {
+      "name": "Smiths Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19533",
+      "image_url": "https://images.englandrugby.com/club_images/19533.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Bristol Telephone Area",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3291",
+      "image_url": "https://images.englandrugby.com/club_images/3291.png",
+      "address": "The Club House, Btra Sports Ground, Stockwood Lane, Stockwood, Whitchurch, Bristol, BS14 8SJ, United Kingdom",
+      "latitude": 51.408268,
+      "longitude": -2.5440086,
+      "formatted_address": "BS14 8SJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506626
+    },
+    {
+      "name": "Gloucester Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8641",
+      "image_url": "https://images.englandrugby.com/club_images/8641.png",
+      "address": "Dowty Sports And Social Club Down Hatherley Lane Staverton Gloucester Gloucestershire GL2 9QD United Kingdom",
+      "latitude": 51.9017009,
+      "longitude": -2.1971228,
+      "formatted_address": "Royal Mail, Down Hatherley Lane, Down Hatherley, Tewkesbury, Gloucestershire, England, GL2 9QB, United Kingdom",
+      "place_id": 256737680
+    }
+  ],
+  "team_count": 7
+}

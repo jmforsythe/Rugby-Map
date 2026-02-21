@@ -1,0 +1,147 @@
+{
+  "league_name": "National League 3 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=5591&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Bournemouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2789",
+      "image_url": "https://images.englandrugby.com/club_images/2789.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Chinnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4817",
+      "image_url": "https://images.englandrugby.com/club_images/4817.png",
+      "address": "Rectory Pavillion Kingsey Road Thame OXFORDSHIRE OX9 3JL UNITED KINGDOM ",
+      "latitude": 51.74809,
+      "longitude": -0.95875,
+      "formatted_address": "OX9 3JL, Thame, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351734126
+    },
+    {
+      "name": "Rams",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17417",
+      "image_url": "https://images.englandrugby.com/club_images/17417.png",
+      "address": "Old Redingensians Sports Ground Old Bath Road, Sonning Reading BERKSHIRE RG4 6TQ UNITED KINGDOM ",
+      "latitude": 51.4683196,
+      "longitude": -0.901799,
+      "formatted_address": "RG4 6TQ, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790627
+    },
+    {
+      "name": "Exmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7823",
+      "image_url": "https://images.englandrugby.com/club_images/7823.png",
+      "address": "Exmouth R.F.C. Imperial Recreation Ground The Royal Avenue Exmouth DEVON EX8 1DG UNITED KINGDOM ",
+      "latitude": 50.6203688,
+      "longitude": -3.4178223,
+      "formatted_address": "EX8 1DG, Exmouth, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350623447
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Old Patesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15879",
+      "image_url": "https://images.englandrugby.com/club_images/15879.png",
+      "address": "Old Patesians R.F.C. Old Patesians Clubhouse Everest Road Cheltenham GLOUCESTERSHIRE GL53 9LG UNITED KINGDOM ",
+      "latitude": 51.8773802,
+      "longitude": -2.0692466,
+      "formatted_address": "GL53 9LG, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350636802
+    },
+    {
+      "name": "Newton Abbot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14607",
+      "image_url": "https://images.englandrugby.com/club_images/14607.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "Chippenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4841",
+      "image_url": "https://images.englandrugby.com/club_images/4841.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM ",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351943386
+    },
+    {
+      "name": "Weston-super-Mare",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25046",
+      "image_url": "https://images.englandrugby.com/club_images/25046.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "Oxford Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16431",
+      "image_url": "https://images.englandrugby.com/club_images/16431.png",
+      "address": "Oxford Road, Horspath, Oxford, Oxfordshire, OX4 2RR, United Kingdom",
+      "latitude": 51.7386944,
+      "longitude": -1.2036097,
+      "formatted_address": "Royal Mail, Horspath Road, Cowley, Oxford, Oxfordshire, England, OX4 2QR, United Kingdom",
+      "place_id": 259684761
+    },
+    {
+      "name": "Amersham & Chiltern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581",
+      "image_url": "https://images.englandrugby.com/club_images/581.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650548
+    },
+    {
+      "name": "Old Redcliffians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15929",
+      "image_url": "https://images.englandrugby.com/club_images/15929.png",
+      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
+      "latitude": 51.4227768,
+      "longitude": -2.5385264,
+      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517876
+    },
+    {
+      "name": "Newbury Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14433",
+      "image_url": "https://images.englandrugby.com/club_images/14433.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Bridgwater & Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3134",
+      "image_url": "https://images.englandrugby.com/club_images/3134.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    }
+  ],
+  "team_count": 14
+}

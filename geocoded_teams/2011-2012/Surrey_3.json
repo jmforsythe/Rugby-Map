@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=5759&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Streatham-Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21255",
+      "image_url": "https://images.englandrugby.com/club_images/21255.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "Old Tonbridgians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16070",
+      "image_url": "https://images.englandrugby.com/club_images/16070.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872396
+    },
+    {
+      "name": "London Media",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12587",
+      "image_url": "https://images.englandrugby.com/club_images/12587.png",
+      "address": "Battersea Park, Albert Bridge Road Entrance , Battersea Park, London, Surrey , SW11 4NJ, United Kingdom",
+      "latitude": 51.481421,
+      "longitude": -0.1561104,
+      "formatted_address": "SW11 4NJ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350838388
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    },
+    {
+      "name": "Old Amplefordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15424",
+      "image_url": "https://images.englandrugby.com/club_images/15424.png",
+      "address": "Old Amplefordians Rfc, C/o Old Blues, Dornan Fields, Arthur Road, Whitley Village, Walton On Thames, KT3 6LX, England",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Mitcham & Carshalton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14023",
+      "image_url": "https://images.englandrugby.com/club_images/14023.png",
+      "address": "Dewsbury Cottage, Poulter Park, Peterborough Road, Carshalton, Surrey, SM5 1EE, United Kingdom",
+      "latitude": 51.39074,
+      "longitude": -0.17446,
+      "formatted_address": "SM5 1EE, London Borough of Sutton, Greater London, England, United Kingdom",
+      "place_id": 351938087
+    },
+    {
+      "name": "Old Radleian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15928",
+      "image_url": "https://images.englandrugby.com/club_images/15928.png",
+      "address": "8 Mascotte Road London SURREY SW15 1NN UNITED KINGDOM",
+      "latitude": 51.4648498,
+      "longitude": -0.2168935,
+      "formatted_address": "SW15 1NN, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005234
+    },
+    {
+      "name": "Old Caterhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510",
+      "image_url": "https://images.englandrugby.com/club_images/15510.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    },
+    {
+      "name": "Raynes Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17495",
+      "image_url": "https://images.englandrugby.com/club_images/17495.png",
+      "address": "Raynes Park Sports Ground Taunton Avenue Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013170
+    },
+    {
+      "name": "Haslemere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9632",
+      "image_url": "https://images.englandrugby.com/club_images/9632.png",
+      "address": "Woolmer Hill Sports Ground Woolmer Hill Haslemere SURREY GU27 1QA UNITED KINGDOM ",
+      "latitude": 51.0960991,
+      "longitude": -0.7479017,
+      "formatted_address": "Woolmer Hill Sports Ground, Woolmer Hill Road, Haslemere, Woolmer Hill, Waverley, Surrey, England, GU27 1QB, United Kingdom",
+      "place_id": 259557894
+    }
+  ],
+  "team_count": 10
+}

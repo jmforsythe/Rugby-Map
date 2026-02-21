@@ -1,0 +1,57 @@
+{
+  "league_name": "Dorset & Wilts 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=5598&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Frome III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8358",
+      "image_url": "https://images.englandrugby.com/club_images/8358.png",
+      "address": "The Clubhouse, Gypsy Lane, Frome, Somerset, BA11 2NA, United Kingdom",
+      "latitude": 51.24412,
+      "longitude": -2.30404,
+      "formatted_address": "BA11 2NA, Berkley, Somerset, England, United Kingdom",
+      "place_id": 350930903
+    },
+    {
+      "name": "Wimborne III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25552",
+      "image_url": "https://images.englandrugby.com/club_images/25552.png",
+      "address": "Wimborne RFC Leigh Park Gordon Road Gordon Road Wimborne DORSET BH21 2AP UNITED KINGDOM ",
+      "latitude": 50.79679,
+      "longitude": -1.97171,
+      "formatted_address": "BH21 2AP, Leigh Park, St Johns, Wimborne Minster, Dorset, England, United Kingdom",
+      "place_id": 350975510
+    },
+    {
+      "name": "Bournemouth IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2794",
+      "image_url": "https://images.englandrugby.com/club_images/2794.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Ellingham & Ringwood III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7455",
+      "image_url": "https://images.englandrugby.com/club_images/7455.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Swanage & W IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21496",
+      "image_url": "https://images.englandrugby.com/club_images/21496.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    }
+  ],
+  "team_count": 5
+}

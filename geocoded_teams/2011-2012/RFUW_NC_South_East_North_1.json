@@ -1,0 +1,77 @@
+{
+  "league_name": "RFUW NC South East North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5661&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Hampstead Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9298",
+      "image_url": "https://images.englandrugby.com/club_images/9298.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Hammersmith & Fulham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9261",
+      "image_url": "https://images.englandrugby.com/club_images/9261.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 351564189
+    },
+    {
+      "name": "Romford & GP Ravens Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17962",
+      "image_url": "https://images.englandrugby.com/club_images/17962.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM ",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Harlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9431",
+      "image_url": "https://images.englandrugby.com/club_images/9431.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Old Albanians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15383",
+      "image_url": "https://images.englandrugby.com/club_images/15383.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Tabard Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21584",
+      "image_url": "https://images.englandrugby.com/club_images/21584.png",
+      "address": "Tabard Rfc King George V Playing Fields Cobden Hill Radlett Herts WD7 7JN United Kingdom",
+      "latitude": 51.6762842,
+      "longitude": -0.3124198,
+      "formatted_address": "WD7 7JN, Aldenham, Letchmore Heath, Hertsmere, Hertfordshire, England, United Kingdom",
+      "place_id": 351690067
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4601",
+      "image_url": "https://images.englandrugby.com/club_images/4601.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    }
+  ],
+  "team_count": 7
+}

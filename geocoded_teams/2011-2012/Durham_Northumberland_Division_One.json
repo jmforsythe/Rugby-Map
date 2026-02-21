@@ -1,0 +1,147 @@
+{
+  "league_name": "Durham/Northumberland Division One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=5605&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Darlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6102",
+      "image_url": "https://images.englandrugby.com/club_images/6102.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    },
+    {
+      "name": "Alnwick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=486",
+      "image_url": "https://images.englandrugby.com/club_images/486.png",
+      "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
+      "latitude": 55.40438,
+      "longitude": -1.70158,
+      "formatted_address": "NE66 1BE, Alnwick, Northumberland, North East, England, United Kingdom",
+      "place_id": 351640857
+    },
+    {
+      "name": "Stockton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21024",
+      "image_url": "https://images.englandrugby.com/club_images/21024.png",
+      "address": "The Grangefield Ground 52a Oxbridge Avenue Stockton-on-tees Ctydur TS18 4JF United Kingdom",
+      "latitude": 54.56503,
+      "longitude": -1.33826,
+      "formatted_address": "TS18 4JF, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352082792
+    },
+    {
+      "name": "Hartlepool Rovers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9567",
+      "image_url": "https://images.englandrugby.com/club_images/9567.png",
+      "address": "The Friarage, Low Warren, Westview Road, Hartlepool, Ctydur, TS24 0BP, United Kingdom",
+      "latitude": 54.7059315,
+      "longitude": -1.2107166,
+      "formatted_address": "TS24 0BP, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869168
+    },
+    {
+      "name": "Horden and Peterlee",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10386",
+      "image_url": "https://images.englandrugby.com/club_images/10386.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13586",
+      "image_url": "https://images.englandrugby.com/club_images/13586.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
+    },
+    {
+      "name": "Acklam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=271",
+      "image_url": "https://images.englandrugby.com/club_images/271.png",
+      "address": "Acklam Rugby Club Talbot Park Lacy Road Middlesbrough Cleveland TS4 3PR United Kingdom",
+      "latitude": 54.5415584,
+      "longitude": -1.221159,
+      "formatted_address": "TS4 3PR, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 350869656
+    },
+    {
+      "name": "Gosforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8790",
+      "image_url": "https://images.englandrugby.com/club_images/8790.png",
+      "address": "Broadway Playing Fields, Broadway West, Gosforth, Newcastle Upon Tyne, Tyne And Wear, NE3 2HY, United Kingdom",
+      "latitude": 55.01674,
+      "longitude": -1.62686,
+      "formatted_address": "NE3 2HY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351626037
+    },
+    {
+      "name": "Guisborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9113",
+      "image_url": "https://images.englandrugby.com/club_images/9113.png",
+      "address": "Guisborough Rugb Club, The Clubhouse, Belmangate, Guisborough, Nyork, TS14 7BB, England",
+      "latitude": 54.53108,
+      "longitude": -1.04798,
+      "formatted_address": "TS14 7BB, Guisborough, Redcar and Cleveland, Tees Valley, England, United Kingdom",
+      "place_id": 352080331
+    },
+    {
+      "name": "Sunderland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21339",
+      "image_url": "https://images.englandrugby.com/club_images/21339.png",
+      "address": "Ashbrooke Sports Club, Ashbrooke Road, Sunderland, SR2 7HH, United Kingdom",
+      "latitude": 54.89405,
+      "longitude": -1.38595,
+      "formatted_address": "SR2 7HH, Sunderland, North East, England, United Kingdom",
+      "place_id": 351970438
+    },
+    {
+      "name": "Ponteland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17046",
+      "image_url": "https://images.englandrugby.com/club_images/17046.png",
+      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
+    },
+    {
+      "name": "Ryton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18471",
+      "image_url": "https://images.englandrugby.com/club_images/18471.png",
+      "address": "Main Road Barmoor Ryton Tyne And Wear NE40 3AG United Kingdom",
+      "latitude": 54.9679607,
+      "longitude": -1.7747145,
+      "formatted_address": "NE40 3AG, Ryton, Gateshead, North East, England, United Kingdom",
+      "place_id": 350712431
+    },
+    {
+      "name": "Ashington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=899",
+      "image_url": "https://images.englandrugby.com/club_images/899.png",
+      "address": "Recreation Ground Ellington Road Ashington NORTHUMBERLAND NE63 8TP UNITED KINGDOM ",
+      "latitude": 55.1859193,
+      "longitude": -1.5957141,
+      "formatted_address": "NE63 8TP, Portland, Ashington, Northumberland, North East, England, United Kingdom",
+      "place_id": 351639439
+    },
+    {
+      "name": "Novocastrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15169",
+      "image_url": "https://images.englandrugby.com/club_images/15169.png",
+      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    }
+  ],
+  "team_count": 14
+}

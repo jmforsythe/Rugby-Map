@@ -1,0 +1,87 @@
+{
+  "league_name": "Berks/Bucks & Oxon 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=5579&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Newbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14435",
+      "image_url": "https://images.englandrugby.com/club_images/14435.png",
+      "address": "Newbury Rfc Ltd, Monks Lane, Newbury, Berkshire, RG14 7RW, United Kingdom",
+      "latitude": 51.3824224,
+      "longitude": -1.3353984,
+      "formatted_address": "RG14 7RW, Newbury, West Berkshire, England, United Kingdom",
+      "place_id": 351808599
+    },
+    {
+      "name": "Drifters II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6776",
+      "image_url": "https://images.englandrugby.com/club_images/6776.png",
+      "address": "Farnham Common Sports Club One Pin Lane Farnham Common BUCKINGHAMSHIRE SL2 3QY UNITED KINGDOM",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350369779
+    },
+    {
+      "name": "Banbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1271",
+      "image_url": "https://images.englandrugby.com/club_images/1271.png",
+      "address": "Bodicote Park, Oxford Road, Banbury, Oxfd, OX15 4AF, United Kingdom",
+      "latitude": 52.0354758,
+      "longitude": -1.3188274,
+      "formatted_address": "OX15 4AF, Bodicote, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 350754076
+    },
+    {
+      "name": "Chipping Norton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4869",
+      "image_url": "https://images.englandrugby.com/club_images/4869.png",
+      "address": "Chipping Norton Rugby Club, Greystones, Burford Road, Chipping Norton, Oxfordshire, OX7 5UY, United Kingdom",
+      "latitude": 51.930187,
+      "longitude": -1.5393698,
+      "formatted_address": "OX7 5UY, Chipping Norton, West Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350756240
+    },
+    {
+      "name": "Slough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19518",
+      "image_url": "https://images.englandrugby.com/club_images/19518.png",
+      "address": "Farnham Common Sports Club, One Pin Lane, Farnham Common, Slough, Berkshire, SL2 3QY, United Kingdom",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820537
+    },
+    {
+      "name": "Aylesbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1131",
+      "image_url": "https://images.englandrugby.com/club_images/1131.png",
+      "address": "Ostler's Field Brook End Weston Turville Aylesbury Buckinghamshire HP22 5RN United Kingdom",
+      "latitude": 51.79431,
+      "longitude": -0.74905,
+      "formatted_address": "HP22 5RN, Weston Turville, Buckinghamshire, England, United Kingdom",
+      "place_id": 351361908
+    },
+    {
+      "name": "Hungerford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10698",
+      "image_url": "https://images.englandrugby.com/club_images/10698.png",
+      "address": "Hungerford Rfc Clubhouse, Triangle Field, Priory Road, Hungerford, Berkshire, RG170AP, United Kingdom",
+      "latitude": 51.40557,
+      "longitude": -1.51367,
+      "formatted_address": "RG17 0AP, Hungerford, West Berkshire, England, United Kingdom",
+      "place_id": 351808741
+    },
+    {
+      "name": "Abingdon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=247",
+      "image_url": "https://images.englandrugby.com/club_images/247.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    }
+  ],
+  "team_count": 8
+}

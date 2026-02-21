@@ -1,0 +1,77 @@
+{
+  "league_name": "RFUW NC South East South 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5672&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Tonbridge Juddian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22914",
+      "image_url": "https://images.englandrugby.com/club_images/22914.png",
+      "address": "Tonbridge Juddians Rfc The Clubhouse The Slade Tonbridge Kent TN9 1HR United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350406169
+    },
+    {
+      "name": "Medway Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields Rochester KENT ME1 3AD UNITED KINGDOM",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351564006
+    },
+    {
+      "name": "Canterbury Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground Merton Lane (north) Nackington Road Canterbury Kent CT4 7DZ United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350656514
+    },
+    {
+      "name": "Lewes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12210",
+      "image_url": "https://images.englandrugby.com/club_images/12210.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    },
+    {
+      "name": "Worthing Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26130",
+      "image_url": "https://images.englandrugby.com/club_images/26130.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Beccehamian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1749",
+      "image_url": "https://images.englandrugby.com/club_images/1749.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    }
+  ],
+  "team_count": 7
+}

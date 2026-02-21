@@ -1,0 +1,67 @@
+{
+  "league_name": "RFUW Championship South East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5662&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Oakmeadians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15299",
+      "image_url": "https://images.englandrugby.com/club_images/15299.png",
+      "address": "The Pavillion Central Drive Meyrick Park Meyrick Park Bournemouth DORSET BH2 6LJ UNITED KINGDOM",
+      "latitude": 50.7293831,
+      "longitude": -1.8815923,
+      "formatted_address": "BH2 6LJ, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350047310
+    },
+    {
+      "name": "Blackheath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2505",
+      "image_url": "https://images.englandrugby.com/club_images/2505.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Richmond Ladies III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17751",
+      "image_url": "https://images.englandrugby.com/club_images/17751.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421605
+    },
+    {
+      "name": "Woodbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350939930
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18042",
+      "image_url": "https://images.englandrugby.com/club_images/18042.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Wimbledon Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25520",
+      "image_url": "https://images.englandrugby.com/club_images/25520.png",
+      "address": "Wimbledon Rugby Football Club Limited Beverley Meads Barham Road Wimbledon Surrey SW20 0ET United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350390573
+    }
+  ],
+  "team_count": 6
+}

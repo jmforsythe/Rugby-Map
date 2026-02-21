@@ -1,0 +1,57 @@
+{
+  "league_name": "RFUW NC London East 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5720&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "St Francis Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20376",
+      "image_url": "https://images.englandrugby.com/club_images/20376.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Thames Toucanettes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21882",
+      "image_url": "https://images.englandrugby.com/club_images/21882.png",
+      "address": "Garron Lane South Ockendon Essex RM15 5JQ United Kingdom",
+      "latitude": 51.5064592,
+      "longitude": 0.2726188,
+      "formatted_address": "Garron Lane, South Ockendon, Thurrock, Essex, England, RM15 5HS, United Kingdom",
+      "place_id": 90948359
+    },
+    {
+      "name": "Stanford Le Hope Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20887",
+      "image_url": "https://images.englandrugby.com/club_images/20887.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Footscray Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8238",
+      "image_url": "https://images.englandrugby.com/club_images/8238.png",
+      "address": "239a Footscray Road New Eltham New Eltham London SE9 2EL UNITED KINGDOM",
+      "latitude": 51.4422161,
+      "longitude": 0.0665664,
+      "formatted_address": "SE9 2EL, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812268
+    },
+    {
+      "name": "Folkestone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125334",
+      "image_url": "https://images.englandrugby.com/club_images/125334.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    }
+  ],
+  "team_count": 5
+}

@@ -1,0 +1,107 @@
+{
+  "league_name": "Shepherd Neame Kent 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=5761&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "King's College Hospital",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11534",
+      "image_url": "https://images.englandrugby.com/club_images/11534.png",
+      "address": "Dulwich Sports Ground, 108 Turney Road, London, KENT, SE21 7JH, UNITED KINGDOM, ",
+      "latitude": 51.4468916,
+      "longitude": -0.0944903,
+      "formatted_address": "SE21 7JH, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899123
+    },
+    {
+      "name": "Southwark Lancers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19804",
+      "image_url": "https://images.englandrugby.com/club_images/19804.png",
+      "address": "Chumleigh Gardens Chumleigh Street Southwark London KENT SE5 0RJ ",
+      "latitude": 51.4833895,
+      "longitude": -0.0839574,
+      "formatted_address": "Chumleigh Gardens, Chumleigh Street, Aylesbury Estate, Old Kent Road, London Borough of Southwark, Greater London, England, SE5 0AW, United Kingdom",
+      "place_id": 260374115
+    },
+    {
+      "name": "Brockleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3397",
+      "image_url": "https://images.englandrugby.com/club_images/3397.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM ",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812593
+    },
+    {
+      "name": "Lordswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12799",
+      "image_url": "https://images.englandrugby.com/club_images/12799.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Foots Cray",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8234",
+      "image_url": "https://images.englandrugby.com/club_images/8234.png",
+      "address": "239a Footscray Road New Eltham New Eltham London SE9 2EL UNITED KINGDOM",
+      "latitude": 51.4422161,
+      "longitude": 0.0665664,
+      "formatted_address": "SE9 2EL, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812268
+    },
+    {
+      "name": "Old Williamsonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16094",
+      "image_url": "https://images.englandrugby.com/club_images/16094.png",
+      "address": "The Pavillion, Sir Joseph Williamsons Mathematical School, Maidstone Road, Rochester, Kent, ME1 3EL, United Kingdom",
+      "latitude": 51.371843,
+      "longitude": 0.4965667,
+      "formatted_address": "ME1 3EL, Rochester, Medway, England, United Kingdom",
+      "place_id": 350700782
+    },
+    {
+      "name": "Askean",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974",
+      "image_url": "https://images.englandrugby.com/club_images/974.png",
+      "address": "Charlton Road, London, SE7 7EY, United Kingdom",
+      "latitude": 51.4796237,
+      "longitude": 0.0302015,
+      "formatted_address": "Royal Mail, Charlton Road, Blackheath Royal Standard, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 7EY, United Kingdom",
+      "place_id": 91477105
+    },
+    {
+      "name": "Orpington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16275",
+      "image_url": "https://images.englandrugby.com/club_images/16275.png",
+      "address": "Hoblingwell Wood, Recreation Ground Leesons Way, St. Paul's Cray Leesons Way, St. Paul's Cray Orpington KENT BR5 2QB UNITED KINGDOM",
+      "latitude": 51.4021756,
+      "longitude": 0.0963015,
+      "formatted_address": "BR5 2QB, St Paul's Cray, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351013338
+    },
+    {
+      "name": "Bexley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2100",
+      "image_url": "https://images.englandrugby.com/club_images/2100.png",
+      "address": "Bexley R.F.C. Bexley Park Sports & Social Club Bexley Park, Calvert Drive Bexley Park, Calvert Drive Dartford KENT DA2 7GA UNITED KINGDOM",
+      "latitude": 51.433795,
+      "longitude": 0.1704004,
+      "formatted_address": "DA2 7GA, Dartford, Kent, England, United Kingdom",
+      "place_id": 350120269
+    },
+    {
+      "name": "Erith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7640",
+      "image_url": "https://images.englandrugby.com/club_images/7640.png",
+      "address": "The Recreation Ground, Sussex Road Northumberland Heath Erith KENT DA8 1JB UNITED KINGDOM",
+      "latitude": 51.47454,
+      "longitude": 0.1545,
+      "formatted_address": "DA8 1JB, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351141873
+    }
+  ],
+  "team_count": 10
+}

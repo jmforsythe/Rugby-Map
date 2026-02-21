@@ -1459,14 +1459,25 @@ def add_territories_from_geometries(
 ) -> None:
     """Merge and add unioned geometries to the given feature group per league."""
 
-    def strip_interiors(geom: BaseGeometry) -> BaseGeometry:
+    # Remove tiny interior holes caused by geometry operations while preserving
+    # meaningful holes (e.g. enclaved areas owned by another league).
+    min_hole_area = 1e-4
+
+    def remove_small_holes(geom: BaseGeometry) -> BaseGeometry:
         if geom.is_empty:
             return geom
+
         if geom.geom_type == "Polygon":
-            return Polygon(geom.exterior)
+            holes = [ring for ring in geom.interiors if Polygon(ring).area >= min_hole_area]
+            return Polygon(geom.exterior, holes)
+
         if geom.geom_type == "MultiPolygon":
-            polygons = [Polygon(part.exterior) for part in geom.geoms if not part.is_empty]
-            return MultiPolygon(polygons) if polygons else geom
+            cleaned = []
+            for part in geom.geoms:
+                holes = [ring for ring in part.interiors if Polygon(ring).area >= min_hole_area]
+                cleaned.append(Polygon(part.exterior, holes))
+            return MultiPolygon(cleaned)
+
         return geom
 
     for league, geometries in league_geometries.items():
@@ -1475,7 +1486,7 @@ def add_territories_from_geometries(
                 geom.simplify(0.001, preserve_topology=True) for geom in geometries
             ]
             merged_geom = unary_union(simplified_geometries)
-            merged_geom = strip_interiors(merged_geom)
+            merged_geom = remove_small_holes(merged_geom)
             color = league_colors[league]
 
             def style_function(feature, c=color):

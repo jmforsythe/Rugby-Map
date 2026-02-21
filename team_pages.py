@@ -124,6 +124,20 @@ def collect_all_teams_data() -> dict[str, TeamData]:
     return dict(teams_data)
 
 
+def get_all_seasons() -> list[str]:
+    """Get all available seasons from geocoded team data directories."""
+    geocoded_dir = Path("geocoded_teams")
+    if not geocoded_dir.exists():
+        return []
+
+    seasons = [
+        season_dir.name
+        for season_dir in geocoded_dir.iterdir()
+        if season_dir.is_dir() and re.match(r"\d{4}-\d{4}", season_dir.name)
+    ]
+    return sorted(seasons, reverse=True)
+
+
 def find_club_teams(team_name: str, all_teams: dict[str, TeamData]) -> list[str]:
     """
     Find other teams from the same club based on address matching.
@@ -183,6 +197,7 @@ def get_team_page_html(
     team_data: TeamData,
     all_teams: dict[str, TeamData],
     travel_distances_by_season: dict[str, TravelDistances],
+    all_seasons: list[str],
 ) -> str:
     """Generate HTML content for a team's individual page."""
 
@@ -370,39 +385,54 @@ def get_team_page_html(
             <tbody>
 """
 
-        for entry in league_history:
-            season: str = entry["season"]
-            league: str = entry["league"]
-            position: int = entry["position"]
-            tier: tuple[int, str] = entry["tier"]
+        for season in all_seasons:
+            season_entries = seasons_by_year.get(season, [])
 
-            # Don't show position for current season (in progress)
-            if season == "2025-2026":
-                position_display = '<span style="color: #666; font-style: italic;">Current</span>'
-            else:
-                position_display = f'<span class="position">#{position}</span>'
+            # If team has no league for this season, render a blank row.
+            if not season_entries:
+                html += f"""                <tr>
+                    <td>{season}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="distance-cell">&nbsp;</td>
+                </tr>
+"""
+                continue
 
-            # Get travel distances for this season
-            travel_info = "N/A"
-            if season in travel_distances_by_season:
-                season_data = travel_distances_by_season[season]
-                if "teams" in season_data and team_name in season_data["teams"]:
-                    team_distances = season_data["teams"][team_name]
-                    avg_dist = team_distances.get("avg_distance_km")
-                    total_dist = team_distances.get("total_distance_km")
+            for entry in season_entries:
+                league: str = entry["league"]
+                position: int = entry["position"]
+                tier: tuple[int, str] = entry["tier"]
 
-                    if avg_dist is not None and total_dist is not None:
-                        travel_info = f"{avg_dist:.1f} km / {total_dist:.0f} km"
-                    elif avg_dist is not None:
-                        travel_info = f"{avg_dist:.1f} km avg"
-                    elif total_dist is not None:
-                        travel_info = f"{total_dist:.0f} km total"
+                # Don't show position for current season (in progress)
+                if season == "2025-2026":
+                    position_display = (
+                        '<span style="color: #666; font-style: italic;">Current</span>'
+                    )
+                else:
+                    position_display = f'<span class="position">#{position}</span>'
 
-            league_link: str = (
-                f'<a href="{entry["league_url"]}" class="card-link league-link">{tier[0]%100}: {league}</a>'
-            )
+                # Get travel distances for this season
+                travel_info = "N/A"
+                if season in travel_distances_by_season:
+                    season_data = travel_distances_by_season[season]
+                    if "teams" in season_data and team_name in season_data["teams"]:
+                        team_distances = season_data["teams"][team_name]
+                        avg_dist = team_distances.get("avg_distance_km")
+                        total_dist = team_distances.get("total_distance_km")
 
-            html += f"""                <tr>
+                        if avg_dist is not None and total_dist is not None:
+                            travel_info = f"{avg_dist:.1f} km / {total_dist:.0f} km"
+                        elif avg_dist is not None:
+                            travel_info = f"{avg_dist:.1f} km avg"
+                        elif total_dist is not None:
+                            travel_info = f"{total_dist:.0f} km total"
+
+                league_link: str = (
+                    f'<a href="{entry["league_url"]}" class="card-link league-link">{tier[0]%100}: {league}</a>'
+                )
+
+                html += f"""                <tr>
                     <td>{season}</td>
                     <td>{league_link}</td>
                     <td>{position_display}</td>
@@ -465,6 +495,9 @@ def generate_team_pages() -> None:
 
     print(f"  Found {len(all_teams)} unique teams")
 
+    # Get full season list so team history tables include blank rows for missing years
+    all_seasons = get_all_seasons()
+
     # Load travel distances
     print("  Loading travel distances...")
     travel_distances_by_season = load_travel_distances()
@@ -479,7 +512,7 @@ def generate_team_pages() -> None:
     for team_name, team_data in all_teams.items():
         try:
             html_content = get_team_page_html(
-                team_name, team_data, all_teams, travel_distances_by_season
+                team_name, team_data, all_teams, travel_distances_by_season, all_seasons
             )
 
             # Create filename from team name

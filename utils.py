@@ -105,9 +105,13 @@ class MapTeam(GeocodedTeam):
 
     league: str
     tier: str
+    tier_num: int
+    itl0: str | None
     itl1: str | None
     itl2: str | None
     itl3: str | None
+    lad: str | None
+    ward: str | None
 
 
 class TeamTravelDistances(TypedDict):

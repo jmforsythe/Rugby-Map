@@ -48,22 +48,19 @@ class ITLHierarchy(TypedDict):
     lad_to_itl3: dict[str, str]
     ward_to_lad: dict[str, str]
     itl1_to_itl2s: dict[str, list[str]]
+    itl0_to_itl1s: dict[str, list[str]]
     itl2_to_itl3s: dict[str, list[str]]
     itl3_to_lads: dict[str, list[str]]
     lad_to_wards: dict[str, list[str]]
 
 
 class RegionToTeams(TypedDict):
+    itl0: dict[str, list[MapTeam]]
     itl1: dict[str, list[MapTeam]]
     itl2: dict[str, list[MapTeam]]
     itl3: dict[str, list[MapTeam]]
-
-
-class RegionColors(TypedDict):
-    itl1: dict[str, str]
-    itl2: dict[str, str]
-    itl3: dict[str, str]
-    itl3_multi_league: list[str]  # List of ITL3 regions with 2+ leagues
+    lad: dict[str, list[MapTeam]]
+    ward: dict[str, list[MapTeam]]
 
 
 def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
@@ -314,9 +311,13 @@ def load_teams_data(
                         "league": league_name,
                         "league_url": league_url,  # type: ignore
                         "tier": tier_name,
+                        "tier_num": tier_num,
+                        "itl0": None,
                         "itl1": None,
                         "itl2": None,
                         "itl3": None,
+                        "lad": None,
+                        "ward": None,
                     }
                     teams_by_tier[tier_name].append(team_data)
 
@@ -365,7 +366,7 @@ def create_bounded_voronoi(
 
     Args:
         teams: List of teams in the region
-        boundary_geom: The ITL3 region geometry
+        boundary_geom: Geometry to split (any boundary level)
         league_colors: Mapping of league names to colors
 
     Returns:
@@ -441,140 +442,8 @@ def create_bounded_voronoi(
     return result
 
 
-def create_lad_based_split(
-    teams: list[MapTeam],
-    itl3_region_name: str,
-    itl_hierarchy: ITLHierarchy,
-    league_colors: dict[str, str],
-) -> list[dict[str, Any]]:
-    """Split an ITL3 region by allocating LADs to the nearest team's league.
-
-    If a LAD has multiple leagues, further split by wards.
-    If a ward has multiple leagues, use Voronoi splitting within that ward.
-
-    Args:
-        teams: List of teams in the ITL3 region
-        itl3_region_name: Name of the ITL3 region to split
-        itl_hierarchy: ITL hierarchy with LAD and ward data
-        league_colors: Mapping of league names to colors
-
-    Returns:
-        List of dicts with "geometry", "color", and "league" for each league's areas
-    """
-    if len(teams) < 2:
-        return []
-
-    # Get LADs within this ITL3 region
-    lads_in_itl3 = itl_hierarchy["itl3_to_lads"].get(itl3_region_name, [])
-    if not lads_in_itl3:
-        return []
-
-    lad_regions = itl_hierarchy["lad_regions"]
-    ward_regions = itl_hierarchy["ward_regions"]
-    lad_to_wards = itl_hierarchy["lad_to_wards"]
-
-    result_geometries: list[dict[str, Any]] = []
-
-    # For each LAD, check if it needs splitting
-    for lad_code in lads_in_itl3:
-        lad = lad_regions[lad_code]
-        lad_geom = lad["geom"]
-
-        # Find teams in this LAD
-        teams_in_lad = [
-            t for t in teams if lad["prepared"].contains(Point(t["longitude"], t["latitude"]))
-        ]
-
-        if not teams_in_lad:
-            # No teams in this LAD, assign to nearest team
-            lad_centroid = lad["centroid"]
-            closest_team = min(
-                teams, key=lambda t: lad_centroid.distance(Point(t["longitude"], t["latitude"]))
-            )
-            result_geometries.append(
-                {
-                    "geom": lad_geom,
-                    "color": league_colors[closest_team["league"]],
-                    "league": closest_team["league"],
-                }
-            )
-            continue
-
-        leagues_in_lad = {t["league"] for t in teams_in_lad}
-
-        if len(leagues_in_lad) == 1:
-            # Single league owns this LAD
-            league = list(leagues_in_lad)[0]
-            result_geometries.append(
-                {"geom": lad_geom, "color": league_colors[league], "league": league}
-            )
-        else:
-            # Multiple leagues in this LAD - split by wards
-            wards_in_lad = lad_to_wards.get(lad_code, [])
-
-            if not wards_in_lad:
-                # No wards available, assign whole LAD to nearest team
-                lad_centroid = lad["centroid"]
-                closest_team = min(
-                    teams_in_lad,
-                    key=lambda t: lad_centroid.distance(Point(t["longitude"], t["latitude"])),
-                )
-                result_geometries.append(
-                    {
-                        "geom": lad_geom,
-                        "color": league_colors[closest_team["league"]],
-                        "league": closest_team["league"],
-                    }
-                )
-                continue
-
-            # Process each ward
-            for ward_code in wards_in_lad:
-                ward = ward_regions[ward_code]
-                ward_geom = ward["geom"]
-
-                # Find teams in this ward
-                teams_in_ward = [
-                    t
-                    for t in teams_in_lad
-                    if ward["prepared"].contains(Point(t["longitude"], t["latitude"]))
-                ]
-
-                if not teams_in_ward:
-                    # No teams in ward, assign to nearest team in LAD
-                    ward_centroid = ward["centroid"]
-                    closest_team = min(
-                        teams_in_lad,
-                        key=lambda t: ward_centroid.distance(Point(t["longitude"], t["latitude"])),
-                    )
-                    result_geometries.append(
-                        {
-                            "geom": ward_geom,
-                            "color": league_colors[closest_team["league"]],
-                            "league": closest_team["league"],
-                        }
-                    )
-                    continue
-
-                leagues_in_ward = {t["league"] for t in teams_in_ward}
-
-                if len(leagues_in_ward) == 1:
-                    # Single league owns this ward
-                    league = list(leagues_in_ward)[0]
-                    result_geometries.append(
-                        {"geom": ward_geom, "color": league_colors[league], "league": league}
-                    )
-                else:
-                    # Multiple leagues in this ward - use Voronoi splitting
-                    voronoi_cells = create_bounded_voronoi(teams_in_ward, ward_geom, league_colors)
-                    for cell in voronoi_cells:
-                        result_geometries.append(cell)
-
-    return result_geometries
-
-
 def load_itl_hierarchy() -> ITLHierarchy:
-    """Load ITL regions and compute hierarchy (ITL3 -> ITL2 -> ITL1), LAD regions, and wards."""
+    """Load boundaries and compute hierarchy links (ITL0 -> ITL1 -> ITL2 -> ITL3 -> LAD -> Ward)."""
 
     # Load all ITL regions
     itl3_data = json_load_cache("boundaries/ITL_3.geojson")
@@ -702,6 +571,17 @@ def load_itl_hierarchy() -> ITLHierarchy:
             itl1_to_itl2s[itl1_name] = []
         itl1_to_itl2s[itl1_name].append(itl2_name)
 
+    # Build reverse hierarchy: ITL0 -> ITL1s using centroid containment
+    itl0_to_itl1s: dict[str, list[str]] = {}
+    for itl1_name, itl1 in itl1_regions.items():
+        itl1_centroid = itl1["centroid"]
+        for itl0_name, itl0 in itl0_regions.items():
+            if itl0["prepared"].contains(itl1_centroid):
+                if itl0_name not in itl0_to_itl1s:
+                    itl0_to_itl1s[itl0_name] = []
+                itl0_to_itl1s[itl0_name].append(itl1_name)
+                break
+
     # Build reverse hierarchy: ITL2 -> ITL3s
     itl2_to_itl3s: dict[str, list[str]] = {}
     for itl3_name, itl2_name in itl3_to_itl2.items():
@@ -782,6 +662,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         "lad_to_itl3": lad_to_itl3,
         "ward_to_lad": ward_to_lad,
         "itl1_to_itl2s": itl1_to_itl2s,
+        "itl0_to_itl1s": itl0_to_itl1s,
         "itl2_to_itl3s": itl2_to_itl3s,
         "itl3_to_lads": itl3_to_lads,
         "lad_to_wards": lad_to_wards,
@@ -791,29 +672,40 @@ def load_itl_hierarchy() -> ITLHierarchy:
 def assign_teams_to_itl_regions(
     teams_by_tier: dict[str, list[MapTeam]], itl_hierarchy: ITLHierarchy
 ) -> RegionToTeams:
-    """Assign each team to ITL regions using the hierarchy (ITL1 -> ITL2 -> ITL3 for efficiency).
+    """Assign each team to all supported boundary levels via hierarchical containment checks.
 
     Returns a dictionary with reverse mappings: {
+        "itl0": {"country_name": [team1, team2, ...], ...},
         "itl1": {"region_name": [team1, team2, ...], ...},
         "itl2": {"region_name": [team1, team2, ...], ...},
-        "itl3": {"region_name": [team1, team2, ...], ...}
+        "itl3": {"region_name": [team1, team2, ...], ...},
+        "lad": {"lad_code": [team1, team2, ...], ...},
+        "ward": {"ward_code": [team1, team2, ...], ...}
     }
     """
 
+    itl0_regions: dict[str, ITLRegionGeom] = itl_hierarchy["itl0_regions"]
     itl1_regions: dict[str, ITLRegionGeom] = itl_hierarchy["itl1_regions"]
     itl2_regions: dict[str, ITLRegionGeom] = itl_hierarchy["itl2_regions"]
     itl3_regions: dict[str, ITLRegionGeom] = itl_hierarchy["itl3_regions"]
+    lad_regions: dict[str, ITLRegionGeom] = itl_hierarchy["lad_regions"]
+    ward_regions: dict[str, ITLRegionGeom] = itl_hierarchy["ward_regions"]
     itl1_to_itl2s: dict[str, list[str]] = itl_hierarchy["itl1_to_itl2s"]
     itl2_to_itl3s: dict[str, list[str]] = itl_hierarchy["itl2_to_itl3s"]
+    itl3_to_lads: dict[str, list[str]] = itl_hierarchy["itl3_to_lads"]
+    lad_to_wards: dict[str, list[str]] = itl_hierarchy["lad_to_wards"]
 
     # Create lookup dictionaries for faster access
     itl2_by_name: dict[str, ITLRegionGeom] = itl2_regions
     itl3_by_name: dict[str, ITLRegionGeom] = itl3_regions
 
     # Create reverse mappings: region -> teams
+    itl0_to_teams: dict[str, list[MapTeam]] = {}
     itl1_to_teams: dict[str, list[MapTeam]] = {}
     itl2_to_teams: dict[str, list[MapTeam]] = {}
     itl3_to_teams: dict[str, list[MapTeam]] = {}
+    lad_to_teams: dict[str, list[MapTeam]] = {}
+    ward_to_teams: dict[str, list[MapTeam]] = {}
 
     total_assigned: int = 0
     total_teams: int = 0
@@ -823,9 +715,21 @@ def assign_teams_to_itl_regions(
             total_teams += 1
             point = Point(team["longitude"], team["latitude"])
 
+            team["itl0"] = None
             team["itl3"] = None
             team["itl2"] = None
             team["itl1"] = None
+            team["lad"] = None
+            team["ward"] = None
+
+            # Step 0: Find country (ITL0)
+            for itl0 in itl0_regions.values():
+                if itl0["prepared"].contains(point):
+                    team["itl0"] = itl0["name"]
+                    if itl0["name"] not in itl0_to_teams:
+                        itl0_to_teams[itl0["name"]] = []
+                    itl0_to_teams[itl0["name"]].append(team)
+                    break
 
             # Step 1: Find which ITL1 region (only 12 to check!)
             found_itl1 = None
@@ -861,9 +765,11 @@ def assign_teams_to_itl_regions(
 
             # Step 3: Only check ITL3 regions within this ITL2
             itl3_candidates = itl2_to_itl3s.get(found_itl2, [])
+            found_itl3 = None
             for itl3_name in itl3_candidates:
                 itl3 = itl3_by_name[itl3_name]
                 if itl3["prepared"].contains(point):
+                    found_itl3 = itl3_name
                     team["itl3"] = itl3_name
                     # Add to reverse mapping
                     if itl3_name not in itl3_to_teams:
@@ -872,255 +778,55 @@ def assign_teams_to_itl_regions(
                     total_assigned += 1
                     break
 
+            if not found_itl3:
+                continue
+
+            # Step 4: Assign LAD within this ITL3
+            lad_candidates = itl3_to_lads.get(found_itl3, [])
+            found_lad = None
+            for lad_code in lad_candidates:
+                lad = lad_regions.get(lad_code)
+                if lad and lad["prepared"].contains(point):
+                    found_lad = lad_code
+                    team["lad"] = lad_code
+                    if lad_code not in lad_to_teams:
+                        lad_to_teams[lad_code] = []
+                    lad_to_teams[lad_code].append(team)
+                    break
+
+            # Step 5: Assign ward within this LAD (only when ward data exists)
+            if found_lad and ward_regions:
+                ward_candidates = lad_to_wards.get(found_lad, [])
+                for ward_code in ward_candidates:
+                    ward = ward_regions.get(ward_code)
+                    if ward and ward["prepared"].contains(point):
+                        team["ward"] = ward_code
+                        if ward_code not in ward_to_teams:
+                            ward_to_teams[ward_code] = []
+                        ward_to_teams[ward_code].append(team)
+                        break
+
     print("\nITL Region Assignment:")
     print(f"  Assigned {total_assigned} of {total_teams} teams to ITL regions")
     print(f"  ITL1: {len(itl1_to_teams)} regions have teams")
     print(f"  ITL2: {len(itl2_to_teams)} regions have teams")
     print(f"  ITL3: {len(itl3_to_teams)} regions have teams")
+    print(f"  LAD: {len(lad_to_teams)} regions have teams")
+    if ward_regions:
+        print(f"  Wards: {len(ward_to_teams)} regions have teams")
 
     # Print example region -> teams mapping
     print("\nExample regions with team counts:")
     for region_name in sorted(itl1_to_teams.keys())[:3]:
         print(f"  ITL1 {region_name}: {len(itl1_to_teams[region_name])} teams")
 
-    return {"itl1": itl1_to_teams, "itl2": itl2_to_teams, "itl3": itl3_to_teams}
-
-
-class LeagueRegionColors(TypedDict):
-    itl1: dict[str, str]
-    itl2: dict[str, str]
-    itl3: dict[str, str]
-    itl3_multi_league: list[str]
-
-
-def color_regions_by_league(
-    teams: list[MapTeam], region_to_teams: RegionToTeams, itl_hierarchy: ITLHierarchy
-) -> LeagueRegionColors:
-    """Determine which regions should be colored based on league ownership.
-
-    Returns a dict with level-specific league mappings: {
-        "itl1": {"region_name": "league_name", ...},
-        "itl2": {"region_name": "league_name", ...},
-        "itl3": {"region_name": "league_name", ...},
-        "itl3_multi_league": ["region1", "region2", ...]
-    }
-
-    Bottom-up ownership strategy:
-    1. ITL3 owned by league: contains ≥1 team from that league, no teams from other leagues in tier
-    2. ITL2 owned by league: owns multiple ITL3s, no teams from other leagues in tier in the ITL2
-    3. ITL1 owned by league: owns multiple ITL2s, no teams from other leagues in tier in the ITL1
-
-    Special cases:
-    - Premiership / Championship / National League 1: All of England is shaded
-    - National League 2: Loosen ITL1/ITL2 requirements - any teams from one league, none from others
-    """
-    itl1_to_teams = region_to_teams["itl1"]
-    itl2_to_teams = region_to_teams["itl2"]
-    itl3_to_teams = region_to_teams["itl3"]
-    itl1_to_itl2s = itl_hierarchy["itl1_to_itl2s"]
-    itl2_to_itl3s = itl_hierarchy["itl2_to_itl3s"]
-    itl2_to_itl1 = itl_hierarchy["itl2_to_itl1"]
-
-    # Get all leagues in this tier
-    all_leagues = sorted({t["league"] for t in teams})
-
-    # Detect tier for special handling using tier names
-    tier_name = teams[0]["tier"] if teams else None
-    # Top tiers (0-2, 100) get national shading
-    do_national_shading = tier_name in [
-        "Premiership",
-        "Championship",
-        "National League 1",
-        "Premiership Women's",
-    ]
-    # National League 2 tier gets bigger shading
-    do_bigger_shading = tier_name in ["National League 2", "Championship 1", "Championship 2"]
-
-    # Special early return for top tiers: shade all of England
-    if do_national_shading and len(all_leagues) == 1:
-        return {
-            "itl0": {"England": all_leagues[0]},
-            "itl1": {},
-            "itl2": {},
-            "itl3": {},
-            "itl3_multi_league": [],
-        }
-
-    # Step 1: Determine ITL3 regions owned by each league
-    itl3_ownership: dict[str, str] = {}  # itl3_name -> league
-    for itl3_name, teams_in_region in itl3_to_teams.items():
-        tier_teams = [t for t in teams_in_region if t in teams]
-        if len(tier_teams) > 0:
-            leagues = {t["league"] for t in tier_teams}
-            if len(leagues) == 1:  # Only one league present
-                league = leagues.pop()
-                itl3_ownership[itl3_name] = league
-
-    # Step 2: Determine ITL2 regions owned by each league
-    itl2_ownership: dict[str, str] = {}  # itl2_name -> league
-    for itl2_name, teams_in_region in itl2_to_teams.items():
-        # Check if this ITL2 has teams from other leagues in this tier
-        tier_teams = [t for t in teams_in_region if t in teams]
-        if len(tier_teams) == 0:
-            continue
-
-        leagues_in_itl2 = {t["league"] for t in tier_teams}
-        if len(leagues_in_itl2) > 1:
-            # Multiple leagues in this ITL2, cannot be owned
-            continue
-
-        # For higher leagues, loosen requirements: any teams from one league is enough
-        if do_bigger_shading and len(leagues_in_itl2) == 1:
-            league = leagues_in_itl2.pop()
-            itl2_ownership[itl2_name] = league
-            continue
-
-        # Standard logic: Count owned ITL3s by league
-        itl3s_in_itl2 = itl2_to_itl3s.get(itl2_name, [])
-        league_itl3_counts: dict[str, int] = {}
-        for itl3_name in itl3s_in_itl2:
-            if itl3_name in itl3_ownership:
-                league = itl3_ownership[itl3_name]
-                league_itl3_counts[league] = league_itl3_counts.get(league, 0) + 1
-
-        # ITL2 is owned if one league owns multiple ITL3s or one league owns the only ITL3
-        for league, count in league_itl3_counts.items():
-            if count >= 2 or (count == 1 and len(itl3s_in_itl2) == 1):
-                itl2_ownership[itl2_name] = league
-                break
-
-    # Step 2.5: Enhanced ITL2 ownership - if an ITL3 is owned, no other leagues in the ITL2,
-    # and another ITL2 within that ITL1 is owned by the same league, then own that ITL2
-    for itl2_name, teams_in_region in itl2_to_teams.items():
-        # Skip if already owned
-        if itl2_name in itl2_ownership:
-            continue
-
-        tier_teams = [t for t in teams_in_region if t in teams]
-        if len(tier_teams) == 0:
-            continue
-
-        # Check: no other leagues in this ITL2 (only one league present)
-        leagues_in_itl2 = {t["league"] for t in tier_teams}
-        if len(leagues_in_itl2) != 1:
-            continue
-
-        league = next(iter(leagues_in_itl2))
-
-        # Check: at least one ITL3 in this ITL2 is owned by this league
-        itl3s_in_itl2 = itl2_to_itl3s.get(itl2_name, [])
-        has_owned_itl3 = any(
-            itl3_name in itl3_ownership and itl3_ownership[itl3_name] == league
-            for itl3_name in itl3s_in_itl2
-        )
-        if not has_owned_itl3:
-            continue
-
-        # Check: another ITL2 within the same ITL1 is owned by this league
-        parent_itl1 = itl2_to_itl1.get(itl2_name)
-        if parent_itl1:
-            itl2s_in_itl1 = itl1_to_itl2s.get(parent_itl1, [])
-            sibling_itl2_owned = any(
-                other_itl2_name != itl2_name
-                and other_itl2_name in itl2_ownership
-                and itl2_ownership[other_itl2_name] == league
-                for other_itl2_name in itl2s_in_itl1
-            )
-            if sibling_itl2_owned:
-                itl2_ownership[itl2_name] = league
-
-    # Step 3: Determine ITL1 regions owned by each league
-    itl1_ownership: dict[str, str] = {}  # itl1_name -> league
-
-    for itl1_name, teams_in_region in itl1_to_teams.items():
-        # Check if this ITL1 has teams from other leagues in this tier
-        tier_teams = [t for t in teams_in_region if t in teams]
-        if len(tier_teams) == 0:
-            continue
-
-        leagues_in_itl1 = {t["league"] for t in tier_teams}
-        if len(leagues_in_itl1) > 1:
-            # Multiple leagues in this ITL1, cannot be owned
-            continue
-
-        # For National League 2, loosen requirements: any teams from one league is enough
-        if do_bigger_shading and len(leagues_in_itl1) == 1:
-            league = leagues_in_itl1.pop()
-            itl1_ownership[itl1_name] = league
-            continue
-
-        # Standard logic: Count owned ITL2s by league
-        itl2s_in_itl1 = itl1_to_itl2s.get(itl1_name, [])
-        league_itl2_counts: dict[str, int] = {}
-        for itl2_name in itl2s_in_itl1:
-            if itl2_name in itl2_ownership:
-                league = itl2_ownership[itl2_name]
-                league_itl2_counts[league] = league_itl2_counts.get(league, 0) + 1
-
-        # ITL1 is owned if one league owns multiple ITL2s or one league owns the only ITL2
-        for league, count in league_itl2_counts.items():
-            if count >= 2 or (count == 1 and len(itl2s_in_itl1) == 1):
-                itl1_ownership[itl1_name] = league
-                break
-
-    # Return league ownership (not colors)
-    itl1_leagues: dict[str, str] = {}
-    itl2_leagues: dict[str, str] = {}
-    itl3_leagues: dict[str, str] = {}
-
-    # ITL1 region leagues
-    for itl1_name, league in itl1_ownership.items():
-        itl1_leagues[itl1_name] = league
-
-    # ITL2 region leagues (only if parent ITL1 is not owned)
-    itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
-    for itl2_name, league in itl2_ownership.items():
-        parent_itl1 = itl2_to_itl1.get(itl2_name)
-        # Skip if parent ITL1 is owned by any league
-        if parent_itl1 and parent_itl1 in itl1_ownership:
-            continue
-        itl2_leagues[itl2_name] = league
-
-    # ITL3 region leagues (only if parent ITL2 and grandparent ITL1 are not owned)
-    for itl3_name, league in itl3_ownership.items():
-        parent_itl2 = itl3_to_itl2.get(itl3_name)
-        # Skip if parent ITL2 is owned by any league
-        if parent_itl2 and parent_itl2 in itl2_ownership:
-            continue
-        # Also skip if grandparent ITL1 is owned
-        grandparent_itl1 = itl2_to_itl1.get(parent_itl2) if parent_itl2 else None
-        if grandparent_itl1 and grandparent_itl1 in itl1_ownership:
-            continue
-        itl3_leagues[itl3_name] = league
-
-    # Identify ITL3 regions with 2+ leagues for LAD-based splitting
-    itl3_multi_league: list[str] = []
-    for itl3_name, teams_in_region in itl3_to_teams.items():
-        # Skip if already owned by one league
-        if itl3_name in itl3_ownership:
-            continue
-
-        # Skip if parent is owned
-        parent_itl2 = itl3_to_itl2.get(itl3_name)
-        if parent_itl2 and parent_itl2 in itl2_ownership:
-            continue
-        grandparent_itl1 = itl2_to_itl1.get(parent_itl2) if parent_itl2 else None
-        if grandparent_itl1 and grandparent_itl1 in itl1_ownership:
-            continue
-
-        # Check if this region has teams from multiple leagues
-        tier_teams = [t for t in teams_in_region if t in teams]
-        if len(tier_teams) >= 2:
-            leagues = {t["league"] for t in tier_teams}
-            if len(leagues) >= 2:
-                itl3_multi_league.append(itl3_name)
-
     return {
-        "itl0": {},
-        "itl1": itl1_leagues,
-        "itl2": itl2_leagues,
-        "itl3": itl3_leagues,
-        "itl3_multi_league": itl3_multi_league,
+        "itl0": itl0_to_teams,
+        "itl1": itl1_to_teams,
+        "itl2": itl2_to_teams,
+        "itl3": itl3_to_teams,
+        "lad": lad_to_teams,
+        "ward": ward_to_teams,
     }
 
 
@@ -1574,38 +1280,174 @@ def collect_league_geometries_for_tier(
 ) -> dict[str, list[BaseGeometry]]:
     """Compute unionable geometries per league for a given tier.
 
-    Includes ITL0 (country), ITL1/2/3 regions and LAD-based splitting for multi-league ITL3s.
+    Uses hierarchical splitting from a tier-dependent start level.
+    If an area is single-league owned, it is shaded at that level.
+    If multi-league, recurse to children and fill empty children by nearest league in parent.
     """
-    region_colors = color_regions_by_league(teams, region_to_teams, itl_hierarchy)
-    multi_league_regions = region_colors.get("itl3_multi_league", [])
+    if not teams:
+        return {}
+
+    all_levels = ["itl0", "itl1", "itl2", "itl3", "lad", "ward"]
+    next_level: dict[str, str] = {
+        "itl0": "itl1",
+        "itl1": "itl2",
+        "itl2": "itl3",
+        "itl3": "lad",
+        "lad": "ward",
+    }
+    child_map_by_level: dict[str, dict[str, list[str]]] = {
+        "itl0": itl_hierarchy["itl0_to_itl1s"],
+        "itl1": itl_hierarchy["itl1_to_itl2s"],
+        "itl2": itl_hierarchy["itl2_to_itl3s"],
+        "itl3": itl_hierarchy["itl3_to_lads"],
+        "lad": itl_hierarchy["lad_to_wards"],
+    }
+    regions_by_level: dict[str, dict[str, ITLRegionGeom]] = {
+        "itl0": itl_hierarchy["itl0_regions"],
+        "itl1": itl_hierarchy["itl1_regions"],
+        "itl2": itl_hierarchy["itl2_regions"],
+        "itl3": itl_hierarchy["itl3_regions"],
+        "lad": itl_hierarchy["lad_regions"],
+        "ward": itl_hierarchy["ward_regions"],
+    }
+
+    team_ids = {id(t) for t in teams}
+    filtered_region_to_teams: dict[str, dict[str, list[MapTeam]]] = {}
+    for level in all_levels:
+        level_map = region_to_teams.get(level, {})
+        filtered_region_to_teams[level] = {
+            region_key: [team for team in level_teams if id(team) in team_ids]
+            for region_key, level_teams in level_map.items()
+        }
+
+    tier_num = teams[0].get("tier_num", 999)
+
+    # Saying tier x starts at ITLY means that:
+    # if an ITLY region contains any teams at all, every part of that region will be shaded
+    if tier_num <= 3 or tier_num == 101:
+        tier_entry_level = "itl0"
+    elif tier_num <= 4 or tier_num in [102, 103]:
+        tier_entry_level = "itl1"
+    else:
+        tier_entry_level = "itl2"
 
     league_geometries: dict[str, list[BaseGeometry]] = {}
 
-    # Regular ITL regions
-    for level in ["itl0", "itl1", "itl2", "itl3"]:
-        level_colors = region_colors.get(level, {})
-        if not level_colors:
-            continue
-        level_regions = itl_hierarchy[f"{level}_regions"]
-        for region_name, region_geom in level_regions.items():
-            if level == "itl3" and region_name in multi_league_regions:
-                continue
-            if region_name in level_colors:
-                league = level_colors[region_name]
-                league_geometries.setdefault(league, []).append(region_geom["geom"])
+    def closest_league_in_parent(parent_teams: list[MapTeam], centroid: Point) -> str | None:
+        if not parent_teams:
+            return None
+        closest_team = min(
+            parent_teams,
+            key=lambda team: centroid.distance(Point(team["longitude"], team["latitude"])),
+        )
+        return closest_team["league"]
 
-    # LAD-based splitting for multi-league ITL3s
-    if multi_league_regions:
-        itl3_to_teams = region_to_teams["itl3"]
-        for region_name in multi_league_regions:
-            teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
-            if len(teams_in_region) >= 2:
-                lad_cells = create_lad_based_split(
-                    teams_in_region, region_name, itl_hierarchy, league_colors
+    def split_region(
+        level: str, region_key: str, parent_teams: list[MapTeam]
+    ) -> list[dict[str, Any]]:
+        level_regions = regions_by_level[level]
+        region = level_regions.get(region_key)
+        if not region:
+            return []
+
+        teams_in_region = filtered_region_to_teams[level].get(region_key, [])
+        if not teams_in_region:
+            fallback_league = closest_league_in_parent(parent_teams, region["centroid"])
+            if not fallback_league:
+                return []
+            return [
+                {
+                    "geom": region["geom"],
+                    "league": fallback_league,
+                    "color": league_colors[fallback_league],
+                }
+            ]
+
+        leagues_here = {team["league"] for team in teams_in_region}
+        if len(leagues_here) == 1:
+            league = next(iter(leagues_here))
+            return [{"geom": region["geom"], "league": league, "color": league_colors[league]}]
+
+        child_level = next_level.get(level)
+        if not child_level:
+            voronoi_cells = create_bounded_voronoi(teams_in_region, region["geom"], league_colors)
+            if voronoi_cells:
+                return voronoi_cells
+            fallback_league = closest_league_in_parent(teams_in_region, region["centroid"])
+            if not fallback_league:
+                return []
+            return [
+                {
+                    "geom": region["geom"],
+                    "league": fallback_league,
+                    "color": league_colors[fallback_league],
+                }
+            ]
+
+        child_regions = regions_by_level[child_level]
+        child_keys = [
+            child_key
+            for child_key in child_map_by_level.get(level, {}).get(region_key, [])
+            if child_key in child_regions
+        ]
+
+        if not child_keys:
+            voronoi_cells = create_bounded_voronoi(teams_in_region, region["geom"], league_colors)
+            if voronoi_cells:
+                return voronoi_cells
+            fallback_league = closest_league_in_parent(teams_in_region, region["centroid"])
+            if not fallback_league:
+                return []
+            return [
+                {
+                    "geom": region["geom"],
+                    "league": fallback_league,
+                    "color": league_colors[fallback_league],
+                }
+            ]
+
+        result_cells: list[dict[str, Any]] = []
+        empty_children: list[str] = []
+
+        for child_key in child_keys:
+            teams_in_child = filtered_region_to_teams[child_level].get(child_key, [])
+            if not teams_in_child:
+                empty_children.append(child_key)
+                continue
+
+            child_leagues = {team["league"] for team in teams_in_child}
+            if len(child_leagues) == 1:
+                league = next(iter(child_leagues))
+                result_cells.append(
+                    {
+                        "geom": child_regions[child_key]["geom"],
+                        "league": league,
+                        "color": league_colors[league],
+                    }
                 )
-                for cell in lad_cells:
-                    league = cell["league"]
-                    league_geometries.setdefault(league, []).append(cell["geom"])
+            else:
+                result_cells.extend(split_region(child_level, child_key, teams_in_child))
+
+        for empty_child_key in empty_children:
+            empty_child = child_regions[empty_child_key]
+            fallback_league = closest_league_in_parent(teams_in_region, empty_child["centroid"])
+            if fallback_league:
+                result_cells.append(
+                    {
+                        "geom": empty_child["geom"],
+                        "league": fallback_league,
+                        "color": league_colors[fallback_league],
+                    }
+                )
+
+        return result_cells
+
+    start_region_to_teams = filtered_region_to_teams[tier_entry_level]
+    for region_key, teams_in_region in start_region_to_teams.items():
+        cells = split_region(tier_entry_level, region_key, teams_in_region)
+        for cell in cells:
+            league = cell["league"]
+            league_geometries.setdefault(league, []).append(cell["geom"])
 
     return league_geometries
 

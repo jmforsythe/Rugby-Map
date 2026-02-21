@@ -168,7 +168,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Durham_Northumberland": 6,
         "Essex": 8,
         "Eastern_Counties": 8,
-        "Hampshire": 9,
+        "Hampshire": (9 if season >= "2018-2019" else 8),
         "Sussex": 8,
         "Herts_Middlesex": 8,
         "Kent": 8,
@@ -177,6 +177,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Cornwall_Devon": 8,
         "Cornwall": 8,
         "Devon": 8,
+        "Dorset_&_Wilts": 8,
         "Dorset": 7,
         "Gloucester": 8,
         "Somerset": 8,
@@ -475,8 +476,8 @@ def create_lad_based_split(
     result_geometries: list[dict[str, Any]] = []
 
     # For each LAD, check if it needs splitting
-    for lad_name in lads_in_itl3:
-        lad = lad_regions[lad_name]
+    for lad_code in lads_in_itl3:
+        lad = lad_regions[lad_code]
         lad_geom = lad["geom"]
 
         # Find teams in this LAD
@@ -509,7 +510,7 @@ def create_lad_based_split(
             )
         else:
             # Multiple leagues in this LAD - split by wards
-            wards_in_lad = lad_to_wards.get(lad_name, [])
+            wards_in_lad = lad_to_wards.get(lad_code, [])
 
             if not wards_in_lad:
                 # No wards available, assign whole LAD to nearest team
@@ -528,8 +529,8 @@ def create_lad_based_split(
                 continue
 
             # Process each ward
-            for ward_name in wards_in_lad:
-                ward = ward_regions[ward_name]
+            for ward_code in wards_in_lad:
+                ward = ward_regions[ward_code]
                 ward_geom = ward["geom"]
 
                 # Find teams in this ward
@@ -636,28 +637,37 @@ def load_itl_hierarchy() -> ITLHierarchy:
             "centroid": geom.centroid,
         }
 
-    # Parse LAD regions (local authority districts)
+    # Parse LAD regions (local authority districts), indexed by LAD25CD
     lad_regions: dict[str, ITLRegionGeom] = {}
     for feat in lad_data["features"]:
+        properties = feat["properties"]
+        lad_code = properties.get("LAD25CD")
+        if not lad_code:
+            continue
         geom = shape(feat["geometry"])
-        lad_regions[feat["properties"]["LAD25NM"]] = {
-            "name": feat["properties"]["LAD25NM"],
-            "code": feat["properties"].get("LAD25CD"),
+        lad_regions[lad_code] = {
+            "name": properties["LAD25NM"],
+            "code": lad_code,
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
 
-    # Parse ward regions
+    # Parse ward regions, indexed by WD25CD
     ward_regions: dict[str, ITLRegionGeom] = {}
     for feat in ward_data["features"]:
+        properties = feat["properties"]
+        ward_code = properties.get("WD25CD")
+        if not ward_code:
+            continue
         geom = shape(feat["geometry"])
-        ward_regions[feat["properties"]["WD25NM"]] = {
-            "name": feat["properties"]["WD25NM"],
-            "code": feat["properties"].get("WD25CD"),
+        ward_regions[ward_code] = {
+            "name": properties["WD25NM"],
+            "code": ward_code,
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid,
+            "parent_lad": properties.get("LAD25CD"),
         }
 
     # Build code-based lookups for hierarchy
@@ -704,7 +714,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
     lad_to_itl3: dict[str, str] = {}
     itl3_to_lads: dict[str, list[str]] = {}
 
-    for lad_name, lad in lad_regions.items():
+    for lad_code, lad in lad_regions.items():
         lad_centroid = lad["centroid"]
 
         # Step 1: Find which ITL1 region
@@ -734,67 +744,28 @@ def load_itl_hierarchy() -> ITLHierarchy:
         for itl3_name in itl3_candidates:
             itl3 = itl3_regions[itl3_name]
             if itl3["prepared"].contains(lad_centroid):
-                lad_to_itl3[lad_name] = itl3_name
+                lad_to_itl3[lad_code] = itl3_name
                 if itl3_name not in itl3_to_lads:
                     itl3_to_lads[itl3_name] = []
-                itl3_to_lads[itl3_name].append(lad_name)
+                itl3_to_lads[itl3_name].append(lad_code)
                 break
 
     print(f"  Assigned {len(lad_to_itl3)} of {len(lad_regions)} LADs to ITL3 regions")
     print(f"  {len(itl3_to_lads)} ITL3 regions contain LADs")
 
-    # Assign wards to LADs efficiently using hierarchy
+    # Assign wards to LADs using parent lad
     print("Assigning wards to LADs...")
     ward_to_lad: dict[str, str] = {}
     lad_to_wards: dict[str, list[str]] = {}
 
-    for ward_name, ward in ward_regions.items():
-        ward_centroid = ward["centroid"]
-
-        # Step 1: Find which ITL1 region
-        found_itl1 = None
-        for itl1 in itl1_regions.values():
-            if itl1["prepared"].contains(ward_centroid):
-                found_itl1 = itl1["name"]
-                break
-
-        if not found_itl1:
-            continue
-
-        # Step 2: Check ITL2 regions within this ITL1
-        itl2_candidates = itl1_to_itl2s.get(found_itl1, [])
-        found_itl2 = None
-        for itl2_name in itl2_candidates:
-            itl2 = itl2_regions[itl2_name]
-            if itl2["prepared"].contains(ward_centroid):
-                found_itl2 = itl2_name
-                break
-
-        if not found_itl2:
-            continue
-
-        # Step 3: Check ITL3 regions within this ITL2
-        itl3_candidates = itl2_to_itl3s.get(found_itl2, [])
-        found_itl3 = None
-        for itl3_name in itl3_candidates:
-            itl3 = itl3_regions[itl3_name]
-            if itl3["prepared"].contains(ward_centroid):
-                found_itl3 = itl3_name
-                break
-
-        if not found_itl3:
-            continue
-
-        # Step 4: Check LADs within this ITL3
-        lad_candidates = itl3_to_lads.get(found_itl3, [])
-        for lad_name in lad_candidates:
-            lad = lad_regions[lad_name]
-            if lad["prepared"].contains(ward_centroid):
-                ward_to_lad[ward_name] = lad_name
-                if lad_name not in lad_to_wards:
-                    lad_to_wards[lad_name] = []
-                lad_to_wards[lad_name].append(ward_name)
-                break
+    for ward_code, ward in ward_regions.items():
+        parent_code = ward.get("parent_lad")
+        if parent_code and parent_code in lad_regions:
+            lad = lad_regions[parent_code]
+            ward_to_lad[ward_code] = parent_code
+            if parent_code not in lad_to_wards:
+                lad_to_wards[parent_code] = []
+            lad_to_wards[parent_code].append(ward_code)
 
     print(f"  Assigned {len(ward_to_lad)} of {len(ward_regions)} wards to LADs")
     print(f"  {len(lad_to_wards)} LADs contain wards")
@@ -1626,24 +1597,15 @@ def collect_league_geometries_for_tier(
     # LAD-based splitting for multi-league ITL3s
     if multi_league_regions:
         itl3_to_teams = region_to_teams["itl3"]
-        itl2_to_teams = region_to_teams["itl2"]
-        itl3_to_itl2 = itl_hierarchy["itl3_to_itl2"]
         for region_name in multi_league_regions:
             teams_in_region = [t for t in itl3_to_teams.get(region_name, []) if t in teams]
             if len(teams_in_region) >= 2:
-                parent_itl2 = itl3_to_itl2.get(region_name)
-                leagues_in_itl2 = set()
-                if parent_itl2:
-                    itl2_teams = [t for t in itl2_to_teams.get(parent_itl2, []) if t in teams]
-                    leagues_in_itl2 = {t["league"] for t in itl2_teams}
-                teams_for_split = [t for t in teams if t["league"] in leagues_in_itl2]
-                if len(teams_for_split) >= 2:
-                    lad_cells = create_lad_based_split(
-                        teams_for_split, region_name, itl_hierarchy, league_colors
-                    )
-                    for cell in lad_cells:
-                        league = cell["league"]
-                        league_geometries.setdefault(league, []).append(cell["geom"])
+                lad_cells = create_lad_based_split(
+                    teams_in_region, region_name, itl_hierarchy, league_colors
+                )
+                for cell in lad_cells:
+                    league = cell["league"]
+                    league_geometries.setdefault(league, []).append(cell["geom"])
 
     return league_geometries
 
@@ -2067,6 +2029,29 @@ def create_tier_maps(
 
         # Debug boundaries
         add_debug_boundaries(m, show_debug)
+
+        # Warn about co-located teams in individual tier maps (no clustering/spiderfy here)
+        teams_by_coordinate: dict[tuple[float, float], list[MapTeam]] = defaultdict(list)
+        for team in teams:
+            coord_key = (round(team["latitude"], 7), round(team["longitude"], 7))
+            teams_by_coordinate[coord_key].append(team)
+
+        co_located_groups = [
+            (coord_key, grouped_teams)
+            for coord_key, grouped_teams in teams_by_coordinate.items()
+            if len(grouped_teams) >= 2 and len({t["league"] for t in grouped_teams}) >= 2
+        ]
+        if co_located_groups:
+            print(
+                f"⚠ Warning: Found {len(co_located_groups)} co-located coordinate group(s) across different leagues in {tier}. "
+                "Markers may overlap in individual tier maps."
+            )
+            for (lat, lon), grouped_teams in sorted(co_located_groups):
+                team_labels = [f"{t['name']} ({t['league']})" for t in grouped_teams]
+                print(
+                    f"  - ({lat}, {lon}): {len(grouped_teams)} teams -> "
+                    + ", ".join(sorted(team_labels))
+                )
 
         # Markers
         for team in teams:

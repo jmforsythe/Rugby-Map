@@ -10,6 +10,7 @@ _Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season_
 ### Prerequisites
 
 - Python 3.12+
+- Make (optional, for pipeline commands)
 
 ### Installation
 
@@ -18,14 +19,26 @@ _Map showing the teams/leagues in Counties 1 (level 7) in the 2025-2026 season_
 2. Install Python dependencies:
 
 ```bash
-pip install folium shapely scipy numpy requests beautifulsoup4
+pip install -r requirements.txt
 ```
 
-3. (Optional) Install development tools for code formatting and linting:
+Or with Make:
 
 ```bash
-pip install black isort ruff mypy pre-commit
+make install
+```
+
+3. (Optional) Install development tools for code formatting, linting and testing:
+
+```bash
+pip install -r requirements-dev.txt
 pre-commit install
+```
+
+Or with Make:
+
+```bash
+make install-dev
 ```
 
 This enables automatic code formatting on save (in VS Code) and before commits.
@@ -59,6 +72,14 @@ python download_boundaries.py --detail BFC
 Pre-computed geographic data for each league is included in `geocoded_teams/` as getting the data from the RFU can be difficult.
 
 The project follows a multi-stage pipeline to collect and process team data. All commands support a `--season` parameter to specify which season to process (default: 2025-2026).
+
+You can run the full pipeline with Make:
+
+```bash
+make all SEASON=2025-2026
+```
+
+Or run each step individually:
 
 ### 1. Scrape League Data
 
@@ -129,17 +150,47 @@ Creates all interactive maps with Voronoi diagrams.
 - Team markers with RFU profile links and fallback logos
 - Checkbox controls for showing/hiding leagues or tiers
 
+## Testing
+
+Run the test suite:
+
+```bash
+python -m pytest tests/ -v
+```
+
+Or with Make:
+
+```bash
+make test
+```
+
+## Configuration
+
+- **GA_TRACKING_ID**: Set this environment variable to enable Google Analytics on generated pages. Leave unset to disable tracking.
+
 ## File Structure
 
 ```
 mapping/
 ├── README.md                      # This file
+├── Makefile                       # Pipeline orchestration
+├── requirements.txt               # Runtime dependencies
+├── requirements-dev.txt           # Dev dependencies (linting, testing)
 ├── utils.py                       # Shared type definitions and utilities
+├── tier_extraction.py             # Tier extraction logic
 ├── download_boundaries.py         # Download ONS boundary data
 ├── scrape_leagues_teams.py        # Scrape RFU for teams
 ├── fetch_addresses.py             # Fetch addresses from RFU
 ├── geocode_addresses.py           # Geocode with OpenStreetMap Nominatim
 ├── make_tier_maps.py              # Generate maps
+├── team_pages.py                  # Generate individual team pages
+├── generate_webpages.py           # Generate index pages
+├── calculate_team_distances.py    # Calculate travel distances
+├── tests/                         # Unit tests
+│   ├── test_tier_extraction.py
+│   ├── test_utils.py
+│   ├── test_calculate_distances.py
+│   └── test_team_pages.py
 ├── boundaries/                    # ONS boundary GeoJSON files (gitignored)
 │   ├── ITL_1.geojson
 │   ├── ITL_2.geojson
@@ -164,7 +215,7 @@ mapping/
 
 ## Multi-Season Support
 
-All data and outputs are now organized by season. To work with a different season:
+All data and outputs are organized by season. To work with a different season:
 
 1. Scrape data for the desired season:
 

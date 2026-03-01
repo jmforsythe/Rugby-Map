@@ -17,8 +17,10 @@ from shapely.prepared import PreparedGeometry, prep
 from utils import (
     MapTeam,
     TravelDistances,
+    get_config,
     get_google_analytics_script,
     json_load_cache,
+    set_config,
     team_name_to_filepath,
 )
 
@@ -837,7 +839,7 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     output_dir_path = Path(output_dir)
     output_dir_path.mkdir(parents=True, exist_ok=True)
     output_path = output_dir_path / "boundaries.json"
-    if IS_PRODUCTION and output_path.exists():
+    if get_config().is_production and output_path.exists():
         print(f"Shared boundary file already exists at {output_path}, skipping export.")
         return
 
@@ -1516,7 +1518,7 @@ def add_marker(
         <p style="margin: 2px 0;"><b>{itl1_esc}</b> | {itl2_esc} | <i>{itl3_esc}</i></p>
         {f"<p style=\"margin: 2px 0;\"><a href=\"{escape(team_url)}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{escape(league_url)}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
-        {f"<p style=\"margin: 2px 0;\"><a href=\"{"" if IS_PRODUCTION else "../"}/teams/{team_name_to_filepath(team['name'])}\" target=\"_blank\">View Info page</a></p>" if league_url else ""}
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{"" if get_config().is_production else "../"}/teams/{team_name_to_filepath(team['name'])}\" target=\"_blank\">View Info page</a></p>" if league_url else ""}
         {distance_html}
     </div>
     """
@@ -1728,7 +1730,7 @@ def back_button_element() -> folium.Element:
         zoomClone.innerHTML = '';
         var backBtn = document.createElement('a');
         backBtn.className = 'leaflet-control-zoom-back leaflet-bar-part';
-        backBtn.href = '{"../" if IS_PRODUCTION else "index.html"}';
+        backBtn.href = '{"../" if get_config().is_production else "index.html"}';
         backBtn.title = 'Back';
         backBtn.setAttribute('role', 'button');
         backBtn.setAttribute('aria-label', 'Back');
@@ -1817,11 +1819,8 @@ def add_layer_control(m: folium.Map) -> None:
     """))
 
 
-IS_PRODUCTION = False
-
-
 def relative_path_to_shared() -> str:
-    return "/shared" if IS_PRODUCTION else "../shared"
+    return "/shared" if get_config().is_production else "../shared"
 
 
 def create_tier_maps(
@@ -1845,7 +1844,7 @@ def create_tier_maps(
         m.get_root().header.add_child(folium.Element(f"<title>{season} {tier}</title>"))
 
         # Register service worker for caching external images (production only)
-        if IS_PRODUCTION:
+        if get_config().is_production:
             m.get_root().header.add_child(
                 service_worker_registration(relative_path_to_shared=relative_path_to_shared())
             )
@@ -1913,7 +1912,8 @@ def create_tier_maps(
         m.get_root().html.add_child(
             folium.Element(
                 get_boundary_loader_script(
-                    relative_path_to_shared=relative_path_to_shared(), use_inline=not IS_PRODUCTION
+                    relative_path_to_shared=relative_path_to_shared(),
+                    use_inline=not get_config().is_production,
                 )
             )
         )
@@ -1922,7 +1922,7 @@ def create_tier_maps(
                 folium.Element(
                     get_debug_boundary_loader_script(
                         relative_path_to_shared=relative_path_to_shared(),
-                        use_inline=not IS_PRODUCTION,
+                        use_inline=not get_config().is_production,
                     )
                 )
             )
@@ -1936,9 +1936,12 @@ def create_tier_maps(
         # Save map
         tier_name = tier.replace(" ", "_")
         output_dir_path = Path(output_dir)
-        if IS_PRODUCTION:
+        if get_config().is_production:
             (output_dir_path / tier_name).mkdir(parents=True, exist_ok=True)
-        output_file = output_dir_path / f"{tier_name}{"/index.html" if IS_PRODUCTION else ".html"}"
+        output_file = (
+            output_dir_path
+            / f"{tier_name}{"/index.html" if get_config().is_production else ".html"}"
+        )
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
@@ -1969,7 +1972,7 @@ def create_all_tiers_map(
     )
 
     # Register service worker for caching external images (production only)
-    if IS_PRODUCTION:
+    if get_config().is_production:
         m.get_root().header.add_child(
             service_worker_registration(relative_path_to_shared=relative_path_to_shared())
         )
@@ -2036,13 +2039,16 @@ def create_all_tiers_map(
     m.get_root().html.add_child(
         folium.Element(
             get_boundary_loader_script(
-                relative_path_to_shared=relative_path_to_shared(), use_inline=not IS_PRODUCTION
+                relative_path_to_shared=relative_path_to_shared(),
+                use_inline=not get_config().is_production,
             )
         )
     )
     if show_debug:
         m.get_root().html.add_child(
-            folium.Element(get_debug_boundary_loader_script(use_inline=not IS_PRODUCTION))
+            folium.Element(
+                get_debug_boundary_loader_script(use_inline=not get_config().is_production)
+            )
         )
 
     # Add legend for tiers and leagues
@@ -2054,9 +2060,11 @@ def create_all_tiers_map(
 
     # Save map
     output_dir_path = Path(output_dir)
-    if IS_PRODUCTION:
+    if get_config().is_production:
         (output_dir_path / output_name).mkdir(parents=True, exist_ok=True)
-    output_file = output_dir_path / f"{output_name}{"/index.html" if IS_PRODUCTION else ".html"}"
+    output_file = (
+        output_dir_path / f"{output_name}{"/index.html" if get_config().is_production else ".html"}"
+    )
     m.save(output_file)
     print(f"Saved All Tiers map with {num_teams} teams to: {output_file}")
 
@@ -2091,9 +2099,11 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    if args.production:
-        global IS_PRODUCTION
-        IS_PRODUCTION = True
+    set_config(
+        is_production=args.production,
+        season=args.season,
+        show_debug=not args.no_debug,
+    )
 
     season = args.season
     print(f"Generating maps for season: {season}")

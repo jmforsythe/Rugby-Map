@@ -12,11 +12,11 @@ from make_tier_maps import extract_tier
 from utils import (
     GeocodedLeague,
     TravelDistances,
+    get_config,
     get_google_analytics_script,
+    set_config,
     team_name_to_filepath,
 )
-
-IS_PRODUCTION = False
 
 
 class LeagueHistoryEntry(TypedDict):
@@ -305,7 +305,7 @@ def get_team_page_html(
 </head>
 <body>
     <div class="back-link">
-        <a href="./{ "" if IS_PRODUCTION else "index.html" }">← All Teams</a>
+        <a href="./{ "" if get_config().is_production else "index.html" }">← All Teams</a>
     </div>
 
     <div class="team-header">
@@ -684,9 +684,8 @@ def main() -> None:
         "--production", action="store_true", help="Change folder structure for production"
     )
     args = parser.parse_args()
-    global IS_PRODUCTION
     if args.production:
-        IS_PRODUCTION = True
+        set_config(is_production=True)
 
     generate_team_pages()
     generate_teams_index()

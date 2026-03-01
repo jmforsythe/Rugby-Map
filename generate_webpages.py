@@ -8,9 +8,7 @@ Creates:
 import argparse
 from pathlib import Path
 
-from utils import get_google_analytics_script
-
-IS_PRODUCTION = False
+from utils import get_config, get_google_analytics_script, set_config
 
 
 def get_footer_html() -> str:
@@ -42,7 +40,7 @@ def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
 </head>
 <body>
     <div class="back-link">
-        <a href="../{ "" if IS_PRODUCTION else "index.html" }">← All Seasons</a>
+        <a href="../{ "" if get_config().is_production else "index.html" }">← All Seasons</a>
     </div>
 
     <h1>English Rugby Union Team Maps</h1>
@@ -54,7 +52,7 @@ def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
         html += f"""
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers{"/" if IS_PRODUCTION else ".html"}">All Men's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers{"/" if get_config().is_production else ".html"}">All Men's Tiers</a></li>
     </ul>
 
     <ul>
@@ -76,7 +74,7 @@ def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
         html += f"""
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers_Women{"/" if IS_PRODUCTION else ".html"}">All Women's Tiers</a></li>
+        <li class="all-tiers"><a href="All_Tiers_Women{"/" if get_config().is_production else ".html"}">All Women's Tiers</a></li>
     </ul>
 
     <ul>
@@ -122,7 +120,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
 
     # Add season links (most recent first)
     for season in sorted(seasons, reverse=True):
-        html += f'        <li><a href="{season}/{ "" if IS_PRODUCTION else "index.html"}">Season {season}</a></li>\n'
+        html += f'        <li><a href="{season}/{ "" if get_config().is_production else "index.html"}">Season {season}</a></li>\n'
 
     html += """    </ul>"""
 
@@ -130,7 +128,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     html += f"""
         <div class="separator"></div>
         <ul>
-        <li><a href="./teams/{ "" if IS_PRODUCTION else "index.html" }">Teams</a></li>
+        <li><a href="./teams/{ "" if get_config().is_production else "index.html" }">Teams</a></li>
         </ul>
 """
 
@@ -183,28 +181,40 @@ def detect_tier_files(season_dir: Path) -> dict[str, list[tuple[str, str]]]:
 
     # Men's tiers in order
     mens_tier_order = [
-        ("Premiership", f"Premiership{"/" if IS_PRODUCTION else ".html"}"),
-        ("Championship", f"Championship{"/" if IS_PRODUCTION else ".html"}"),
-        ("National League 1", f"National_League_1{"/" if IS_PRODUCTION else ".html"}"),
-        ("National League 2", f"National_League_2{"/" if IS_PRODUCTION else ".html"}"),
-        ("Regional 1", f"Regional_1{"/" if IS_PRODUCTION else ".html"}"),
-        ("Regional 2", f"Regional_2{"/" if IS_PRODUCTION else ".html"}"),
-        ("Counties 1", f"Counties_1{"/" if IS_PRODUCTION else ".html"}"),
-        ("Counties 2", f"Counties_2{"/" if IS_PRODUCTION else ".html"}"),
-        ("Counties 3", f"Counties_3{"/" if IS_PRODUCTION else ".html"}"),
-        ("Counties 4", f"Counties_4{"/" if IS_PRODUCTION else ".html"}"),
-        ("Counties 5", f"Counties_5{"/" if IS_PRODUCTION else ".html"}"),
-        *((f"Level {i}", f"Level_{i}{"/" if IS_PRODUCTION else ".html"}") for i in range(5, 16)),
+        ("Premiership", f"Premiership{"/" if get_config().is_production else ".html"}"),
+        ("Championship", f"Championship{"/" if get_config().is_production else ".html"}"),
+        ("National League 1", f"National_League_1{"/" if get_config().is_production else ".html"}"),
+        ("National League 2", f"National_League_2{"/" if get_config().is_production else ".html"}"),
+        ("Regional 1", f"Regional_1{"/" if get_config().is_production else ".html"}"),
+        ("Regional 2", f"Regional_2{"/" if get_config().is_production else ".html"}"),
+        ("Counties 1", f"Counties_1{"/" if get_config().is_production else ".html"}"),
+        ("Counties 2", f"Counties_2{"/" if get_config().is_production else ".html"}"),
+        ("Counties 3", f"Counties_3{"/" if get_config().is_production else ".html"}"),
+        ("Counties 4", f"Counties_4{"/" if get_config().is_production else ".html"}"),
+        ("Counties 5", f"Counties_5{"/" if get_config().is_production else ".html"}"),
+        *(
+            (f"Level {i}", f"Level_{i}{"/" if get_config().is_production else ".html"}")
+            for i in range(5, 16)
+        ),
     ]
 
     # Women's tiers in order
     womens_tier_order = [
-        ("Premiership", f"Premiership_Women's{"/" if IS_PRODUCTION else ".html"}"),
-        ("Championship 1", f"Championship_1{"/" if IS_PRODUCTION else ".html"}"),
-        ("Championship 2", f"Championship_2{"/" if IS_PRODUCTION else ".html"}"),
-        ("National Challenge 1", f"National_Challenge_1{"/" if IS_PRODUCTION else ".html"}"),
-        ("National Challenge 2", f"National_Challenge_2{"/" if IS_PRODUCTION else ".html"}"),
-        ("National Challenge 3", f"National_Challenge_3{"/" if IS_PRODUCTION else ".html"}"),
+        ("Premiership", f"Premiership_Women's{"/" if get_config().is_production else ".html"}"),
+        ("Championship 1", f"Championship_1{"/" if get_config().is_production else ".html"}"),
+        ("Championship 2", f"Championship_2{"/" if get_config().is_production else ".html"}"),
+        (
+            "National Challenge 1",
+            f"National_Challenge_1{"/" if get_config().is_production else ".html"}",
+        ),
+        (
+            "National Challenge 2",
+            f"National_Challenge_2{"/" if get_config().is_production else ".html"}",
+        ),
+        (
+            "National Challenge 3",
+            f"National_Challenge_3{"/" if get_config().is_production else ".html"}",
+        ),
     ]
 
     mens_tiers = []
@@ -228,9 +238,8 @@ def main() -> None:
         "--production", action="store_true", help="Change folder structure for production"
     )
     args = parser.parse_args()
-    global IS_PRODUCTION
     if args.production:
-        IS_PRODUCTION = True
+        set_config(is_production=True)
 
     """Generate index.html files for all seasons and top-level."""
     tier_maps_dir = Path("tier_maps")

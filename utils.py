@@ -14,9 +14,37 @@ import os
 import re
 import threading
 import time
+from dataclasses import dataclass
 from typing import NotRequired, TypedDict
 
 import requests
+
+
+@dataclass
+class AppConfig:
+    """Shared configuration for the mapping pipeline."""
+
+    is_production: bool = False
+    season: str = "2025-2026"
+    show_debug: bool = True
+
+
+_config = AppConfig()
+
+
+def get_config() -> AppConfig:
+    """Return the global application config."""
+    return _config
+
+
+def set_config(
+    *, is_production: bool = False, season: str = "2025-2026", show_debug: bool = True
+) -> None:
+    """Set global application config values."""
+    _config.is_production = is_production
+    _config.season = season
+    _config.show_debug = show_debug
+
 
 # ============================================================================
 # Type Definitions

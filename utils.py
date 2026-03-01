@@ -10,6 +10,7 @@ Data flows through the following stages:
 
 import functools
 import json
+import os
 import re
 import threading
 import time
@@ -241,16 +242,22 @@ def json_load_cache(filename: str) -> dict:
 
 
 def get_google_analytics_script() -> str:
-    """Return Google Analytics script for embedding in HTML pages."""
-    return """
+    """Return Google Analytics script for embedding in HTML pages.
+
+    Uses the GA_TRACKING_ID environment variable. Returns an empty string if not set.
+    """
+    ga_id = os.environ.get("GA_TRACKING_ID", "")
+    if not ga_id:
+        return ""
+    return f"""
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-30KPY67PSR"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){{dataLayer.push(arguments);}}
     gtag('js', new Date());
 
-    gtag('config', 'G-30KPY67PSR');
+    gtag('config', '{ga_id}');
     </script>
 """
 

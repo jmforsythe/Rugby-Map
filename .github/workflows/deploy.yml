@@ -35,6 +35,8 @@ jobs:
           python download_boundaries.py --detail BGC
 
       - name: Generate maps
+        env:
+          GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
         run: |
           # Get all season folders from geocoded_teams directory
           SEASONS=$(ls -d geocoded_teams/*/ 2>/dev/null | xargs -n 1 basename | sort -r)

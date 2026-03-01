@@ -8,7 +8,7 @@ from typing import TypedDict
 
 from fetch_addresses import team_name_to_club_name
 from generate_webpages import get_footer_html
-from make_tier_maps import extract_tier
+from tier_extraction import extract_tier
 from utils import (
     GeocodedLeague,
     TravelDistances,

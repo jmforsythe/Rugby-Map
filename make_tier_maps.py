@@ -1262,16 +1262,6 @@ def build_base_map() -> folium.Map:
     return m
 
 
-def add_debug_boundaries(m: folium.Map, show_debug: bool) -> None:
-    """Optionally add ITL boundary debug layers to the map.
-
-    Debug boundaries are loaded from shared/boundaries.json via client-side JavaScript.
-    """
-    # Debug boundaries will be loaded via JavaScript if needed
-    # This is handled in the boundary loader script
-    pass
-
-
 def collect_league_geometries_for_tier(
     teams: list[MapTeam],
     region_to_teams: RegionToTeams,
@@ -1880,9 +1870,6 @@ def create_tier_maps(
                 group, {league: league_geometries.get(league, [])}, league_colors
             )
 
-        # Debug boundaries
-        add_debug_boundaries(m, show_debug)
-
         # Warn about co-located teams in individual tier maps (no clustering/spiderfy here)
         teams_by_coordinate: dict[tuple[float, float], list[MapTeam]] = defaultdict(list)
         for team in teams:
@@ -2038,9 +2025,6 @@ def create_all_tiers_map(
                 travel_distances=team_travel_distances,
             )
             num_teams += 1
-
-    # Add debug boundary layers for ITL regions
-    add_debug_boundaries(m, show_debug)
 
     add_layer_control(m)
 

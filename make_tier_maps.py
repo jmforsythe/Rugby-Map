@@ -73,7 +73,7 @@ def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
     return tier
 
 
-def extract_tier_men(filename: str, season: str) -> tuple[int, str]:
+def extract_tier_men(filename: str, season: str) -> tuple[int, str] | None:
     season_start_year = int(season.split("-")[0])
     if season_start_year <= 2021:
         return extract_tier_men_pre_2021(filename, season)
@@ -81,7 +81,7 @@ def extract_tier_men(filename: str, season: str) -> tuple[int, str]:
         return extract_tier_men_current(filename, season)
 
 
-def extract_tier_women(filename: str, season: str) -> tuple[int, str]:
+def extract_tier_women(filename: str, season: str) -> tuple[int, str] | None:
     season_start_year = int(season.split("-")[0])
     if season_start_year <= 2018:
         return extract_tier_women_pre_2018(filename, season)
@@ -89,30 +89,33 @@ def extract_tier_women(filename: str, season: str) -> tuple[int, str]:
         return extract_tier_women_current(filename, season)
 
 
-def extract_tier_men_current(filename: str, season: str) -> tuple[int, str]:
+MENS_TIERS_CURRENT: list[tuple[str, int, str]] = [
+    ("Premiership", 1, "Premiership"),
+    ("Championship", 2, "Championship"),
+    ("National_League_1", 3, "National League 1"),
+    ("National_League_2", 4, "National League 2"),
+    ("Regional_1", 5, "Regional 1"),
+    ("Regional_2", 6, "Regional 2"),
+    ("Counties_1", 7, "Counties 1"),
+    ("Counties_2", 8, "Counties 2"),
+    ("Counties_3", 9, "Counties 3"),
+    ("Counties_4", 10, "Counties 4"),
+    ("Counties_5", 11, "Counties 5"),
+]
+
+WOMENS_TIERS_CURRENT: list[tuple[str, int, str]] = [
+    ("Women's_Premiership", 101, "Premiership Women's"),
+    ("Women's_NC_1", 104, "National Challenge 1"),
+    ("Women's_NC_2", 105, "National Challenge 2"),
+    ("Women's_NC_3", 106, "National Challenge 3"),
+]
+
+
+def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2022-2023 onwards filename format."""
-    if filename.startswith("Premiership"):
-        return (1, "Premiership")
-    if filename.startswith("Championship"):
-        return (2, "Championship")
-    if filename.startswith("National_League_1"):
-        return (3, "National League 1")
-    if filename.startswith("National_League_2"):
-        return (4, "National League 2")
-    if filename.startswith("Regional_1"):
-        return (5, "Regional 1")
-    if filename.startswith("Regional_2"):
-        return (6, "Regional 2")
-    if filename.startswith("Counties_1"):
-        return (7, "Counties 1")
-    if filename.startswith("Counties_2"):
-        return (8, "Counties 2")
-    if filename.startswith("Counties_3"):
-        return (9, "Counties 3")
-    if filename.startswith("Counties_4"):
-        return (10, "Counties 4")
-    if filename.startswith("Counties_5"):
-        return (11, "Counties 5")
+    for prefix, tier_num, tier_name in MENS_TIERS_CURRENT:
+        if filename.startswith(prefix):
+            return (tier_num, tier_name)
     if filename.startswith("Cumbria_Conference"):
         if filename.endswith("1.json"):
             return (8, "Counties 2")
@@ -122,19 +125,15 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str]:
 
 
 def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | None:
-    if filename.startswith("Women's_Premiership"):
-        return (101, "Premiership Women's")
+    """Extract tier from 2019-2020 onwards filename format."""
+    for prefix, tier_num, tier_name in WOMENS_TIERS_CURRENT:
+        if filename.startswith(prefix):
+            return (tier_num, tier_name)
     if filename.startswith("Women's_Championship"):
         if filename.endswith("1.json"):
             return (102, "Championship 1")
         if filename.endswith("2.json"):
             return (103, "Championship 2")
-    if filename.startswith("Women's_NC_1"):
-        return (104, "National Challenge 1")
-    if filename.startswith("Women's_NC_2"):
-        return (105, "National Challenge 2")
-    if filename.startswith("Women's_NC_3"):
-        return (106, "National Challenge 3")
     return None
 
 

@@ -139,71 +139,50 @@ def get_all_seasons() -> list[str]:
     return sorted(seasons, reverse=True)
 
 
-def find_club_teams(team_name: str, all_teams: dict[str, TeamData]) -> list[str]:
-    """
-    Find other teams from the same club based on address matching.
+def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
+    """Pre-build an index of co-located teams for fast club lookups.
 
-    Compares addresses and coordinates to identify teams sharing the same physical location.
-
-    Args:
-        team_name: Name of the team to find club mates for
-        all_teams: Dictionary of all teams data
+    Groups teams by address and coordinates, then builds a mapping from
+    each team name to its co-located siblings.
 
     Returns:
-        List of team names from the same club (excluding the input team)
+        Dictionary mapping team name -> sorted list of other team names at same location
     """
-    team_data = all_teams.get(team_name)
-    if not team_data:
-        return []
+    address_groups: defaultdict[str, list[str]] = defaultdict(list)
+    coord_groups: defaultdict[tuple[float, float], list[str]] = defaultdict(list)
 
-    # Get this team's address
-    team_address = team_data.get("address")
-    team_lat = team_data.get("latitude")
-    team_lon = team_data.get("longitude")
+    for team_name, data in all_teams.items():
+        if data.get("address"):
+            address_groups[data["address"]].append(team_name)
+        if data.get("latitude") and data.get("longitude"):
+            coord_groups[(data["latitude"], data["longitude"])].append(team_name)
 
-    if not team_address and not (team_lat and team_lon):
-        return []
+    club_index: dict[str, list[str]] = {}
+    for team_name in all_teams:
+        siblings: set[str] = set()
+        data = all_teams[team_name]
+        if data.get("address") and data["address"] in address_groups:
+            siblings.update(address_groups[data["address"]])
+        if data.get("latitude") and data.get("longitude"):
+            key = (data["latitude"], data["longitude"])
+            if key in coord_groups:
+                siblings.update(coord_groups[key])
+        siblings.discard(team_name)
+        club_index[team_name] = sorted(siblings)
 
-    # Find other teams with the same address or coordinates
-    club_teams: list[str] = []
-    for other_team_name, other_data in all_teams.items():
-        if other_team_name == team_name:
-            continue
-
-        other_address = other_data.get("address")
-        other_lat = other_data.get("latitude")
-        other_lon = other_data.get("longitude")
-
-        # Match by address or match by coordinates (exact match)
-        if (
-            team_address
-            and other_address
-            and team_address == other_address
-            or (
-                team_lat
-                and team_lon
-                and other_lat
-                and other_lon
-                and team_lat == other_lat
-                and team_lon == other_lon
-            )
-        ):
-            club_teams.append(other_team_name)
-
-    return sorted(club_teams)
+    return club_index
 
 
 def get_team_page_html(
     team_name: str,
     team_data: TeamData,
-    all_teams: dict[str, TeamData],
+    club_index: dict[str, list[str]],
     travel_distances_by_season: dict[str, TravelDistances],
     all_seasons: list[str],
 ) -> str:
     """Generate HTML content for a team's individual page."""
 
-    # Get club teams
-    club_teams = find_club_teams(team_name, all_teams)
+    club_teams = club_index.get(team_name, [])
 
     # Sort league history by season (most recent first)
     league_history: list[LeagueHistoryEntry] = sorted(
@@ -506,6 +485,10 @@ def generate_team_pages() -> None:
     travel_distances_by_season = load_travel_distances()
     print(f"  Loaded distances for {len(travel_distances_by_season)} seasons")
 
+    # Pre-build club index for fast co-location lookups
+    print("  Building club index...")
+    club_index = build_club_index(all_teams)
+
     # Create teams directory
     teams_dir = Path("tier_maps/teams")
     teams_dir.mkdir(parents=True, exist_ok=True)
@@ -515,7 +498,7 @@ def generate_team_pages() -> None:
     for team_name, team_data in all_teams.items():
         try:
             html_content = get_team_page_html(
-                team_name, team_data, all_teams, travel_distances_by_season, all_seasons
+                team_name, team_data, club_index, travel_distances_by_season, all_seasons
             )
 
             # Create filename from team name

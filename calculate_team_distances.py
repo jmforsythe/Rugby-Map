@@ -66,7 +66,7 @@ def league_average_distance(league: GeocodedLeague) -> float:
     return total_avg_distance / len(valid_teams) if valid_teams else 0
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Calculate team and league travel distances")
     parser.add_argument(
         "--season",

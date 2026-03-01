@@ -105,6 +105,7 @@ class MapTeam(GeocodedTeam):
     """Team with ITL region assignments and tier information for mapping"""
 
     league: str
+    league_url: str
     tier: str
     tier_num: int
     itl0: str | None

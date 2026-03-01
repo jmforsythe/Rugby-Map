@@ -310,7 +310,7 @@ def load_teams_data(
                         "formatted_address": team.get("formatted_address"),
                         "place_id": team.get("place_id"),
                         "league": league_name,
-                        "league_url": league_url,  # type: ignore
+                        "league_url": league_url,
                         "tier": tier_name,
                         "tier_num": tier_num,
                         "itl0": None,

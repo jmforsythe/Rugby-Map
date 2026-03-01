@@ -30,7 +30,7 @@ class DetailLevel(enum.Enum):
     BUC = "BUC"  # Ultra Generalised Clipped (least detailed, smallest files)
 
 
-def ring_is_clockwise(ring):
+def ring_is_clockwise(ring: list[list[float]]) -> bool:
     """
     Check if a ring is clockwise using the shoelace formula.
     In ESRI JSON format, exterior rings are clockwise, holes are counter-clockwise.
@@ -45,7 +45,7 @@ def ring_is_clockwise(ring):
     return area > 0
 
 
-def esri_to_geojson_geometry(esri_geom, geometry_type):
+def esri_to_geojson_geometry(esri_geom: dict, geometry_type: str) -> dict:
     """
     Convert ESRI JSON geometry to GeoJSON geometry.
 
@@ -102,7 +102,7 @@ def esri_to_geojson_geometry(esri_geom, geometry_type):
         return esri_geom
 
 
-def esri_to_geojson_feature(esri_feature, geometry_type):
+def esri_to_geojson_feature(esri_feature: dict, geometry_type: str) -> dict:
     """
     Convert ESRI JSON feature to GeoJSON feature.
 
@@ -120,25 +120,25 @@ def esri_to_geojson_feature(esri_feature, geometry_type):
     }
 
 
-def countries_url(detail_level: DetailLevel) -> str:
+def countries_url(detail_level: DetailLevel) -> str | None:
     return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Countries_December_2024_Boundaries_UK_{detail_level.value}/FeatureServer/0"
 
 
-def itl1_url(detail_level: DetailLevel) -> str:
+def itl1_url(detail_level: DetailLevel) -> str | None:
     if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BUC]:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL1_JAN_2025_UK_{detail_level.value}/FeatureServer/0"
     if detail_level == DetailLevel.BSC:
         return None  # ITL1 not available in BSC level
 
 
-def itl2_url(detail_level: DetailLevel) -> str:
+def itl2_url(detail_level: DetailLevel) -> str | None:
     if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BUC]:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL2_JAN_2025_UK_{detail_level.value}/FeatureServer/0"
     if detail_level == DetailLevel.BSC:
         return None  # ITL2 not available in BSC level
 
 
-def itl3_url(detail_level: DetailLevel) -> str:
+def itl3_url(detail_level: DetailLevel) -> str | None:
     if detail_level in [DetailLevel.BFE]:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/ITL3_JAN_2025_UK_{detail_level.value}_V4/FeatureServer/0"
     if detail_level in [DetailLevel.BFC]:
@@ -151,14 +151,14 @@ def itl3_url(detail_level: DetailLevel) -> str:
         return None  # ITL3 not available in BSC level
 
 
-def lads_url(detail_level: DetailLevel) -> str:
+def lads_url(detail_level: DetailLevel) -> str | None:
     if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BSC]:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD_MAY_2025_UK_{detail_level.value}_V2/FeatureServer/0"
     if detail_level == DetailLevel.BUC:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD_MAY_2025_UK_{detail_level.value}/FeatureServer/0"
 
 
-def wards_url(detail_level: DetailLevel) -> str:
+def wards_url(detail_level: DetailLevel) -> str | None:
     if detail_level in [DetailLevel.BFE, DetailLevel.BFC, DetailLevel.BGC, DetailLevel.BSC]:
         return f"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/WD_DEC_2025_UK_{detail_level.value}/FeatureServer/0"
     if detail_level == DetailLevel.BUC:
@@ -166,7 +166,7 @@ def wards_url(detail_level: DetailLevel) -> str:
 
 
 # ONS Open Geography portal ArcGIS REST API FeatureServer services
-def get_boundary_services(detail_level: DetailLevel) -> dict[str, str]:
+def get_boundary_services(detail_level: DetailLevel) -> dict[str, str | None]:
     """
     Get boundary service URLs for the specified detail level.
 
@@ -184,7 +184,9 @@ def get_boundary_services(detail_level: DetailLevel) -> dict[str, str]:
     }
 
 
-def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_records=2000):
+def download_arcgis_layer(
+    service_url: str, filename: str, output_dir: str = "boundaries", max_records: int = 2000
+) -> None:
     """
     Download a complete ArcGIS FeatureServer layer using native ESRI JSON format (faster)
     and convert to GeoJSON locally.
@@ -270,7 +272,9 @@ def download_arcgis_layer(service_url, filename, output_dir="boundaries", max_re
         raise e
 
 
-def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boundaries"):
+def download_extras(
+    url: str, name: str, file_paths_to_add_to: list[str], output_dir: str = "boundaries"
+) -> None:
     print(f"Downloading {name} data")
     response = requests.get(url)
     features = response.json().get("features", [])
@@ -299,7 +303,7 @@ def download_extras(url, name, file_paths_to_add_to: list[str], output_dir="boun
         print(f"  [OK] Saved to {output_path}")
 
 
-def main():
+def main() -> None:
     """Download all boundary files."""
     parser = argparse.ArgumentParser(
         description="Download boundary GeoJSON files from ONS Open Geography portal",

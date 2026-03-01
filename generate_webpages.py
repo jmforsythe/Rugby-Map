@@ -178,7 +178,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     return html
 
 
-def detect_tier_files(season_dir: Path) -> dict[str, list[tuple]]:
+def detect_tier_files(season_dir: Path) -> dict[str, list[tuple[str, str]]]:
     """Detect available tier map files in a season directory."""
 
     # Men's tiers in order

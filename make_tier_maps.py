@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 from collections import defaultdict
 from html import escape
 from pathlib import Path
@@ -277,13 +276,11 @@ def load_teams_data(
     teams_by_tier: dict[str, list[MapTeam]] = {}
     tier_numbers: dict[str, int] = {}
 
-    # Support both season subdirectories and root directory
-    if os.path.isdir(geocoded_teams_dir):
-        files_to_process = []
-        for filename in os.listdir(geocoded_teams_dir):
-            filepath = os.path.join(geocoded_teams_dir, filename)
-            if filename.endswith(".json"):
-                files_to_process.append((filepath, filename))
+    geocoded_path = Path(geocoded_teams_dir)
+    if geocoded_path.is_dir():
+        files_to_process = [
+            (str(f), f.name) for f in geocoded_path.iterdir() if f.suffix == ".json"
+        ]
 
         for filepath, filename in files_to_process:
 
@@ -452,8 +449,8 @@ def load_itl_hierarchy() -> ITLHierarchy:
     itl1_data = json_load_cache("boundaries/ITL_1.geojson")
     itl0_data = json_load_cache("boundaries/countries.geojson")
     lad_data = json_load_cache("boundaries/local_authority_districts.geojson")
-    wards_path = "boundaries/wards.geojson"
-    if os.path.exists(wards_path):
+    wards_path = Path("boundaries/wards.geojson")
+    if wards_path.exists():
         ward_data = json_load_cache(wards_path)
     else:
         print(f"Warning: {wards_path} not found, skipping ward-level hierarchy")
@@ -838,9 +835,10 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     geometries. This file is loaded once by the client and referenced by all maps,
     avoiding redundant geometry data in each HTML file.
     """
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    output_path = os.path.join(output_dir, "boundaries.json")
-    if IS_PRODUCTION and os.path.exists(output_path):
+    output_dir_path = Path(output_dir)
+    output_dir_path.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir_path / "boundaries.json"
+    if IS_PRODUCTION and output_path.exists():
         print(f"Shared boundary file already exists at {output_path}, skipping export.")
         return
 
@@ -854,8 +852,8 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     }
 
     # Export country boundaries
-    countries_geojson_path = "boundaries/countries.geojson"
-    if os.path.exists(countries_geojson_path):
+    countries_geojson_path = Path("boundaries/countries.geojson")
+    if countries_geojson_path.exists():
         countries_data = json_load_cache(countries_geojson_path)
         countries_to_outline = ["England", "Isle of Man", "Jersey", "Guernsey"]
         for country_name in countries_to_outline:
@@ -885,8 +883,8 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
 
     # Export ITL boundaries
     for level in ["ITL_1", "ITL_2", "ITL_3"]:
-        geojson_path = f"boundaries/{level}.geojson"
-        if os.path.exists(geojson_path):
+        geojson_path = Path(f"boundaries/{level}.geojson")
+        if geojson_path.exists():
             data = json_load_cache(geojson_path)
             # Simplify geometries (0.02 degrees ≈ 2km tolerance)
             simplified_features = []
@@ -907,8 +905,8 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
             }
 
     # Export LAD boundaries
-    lad_geojson_path = "boundaries/local_authority_districts.geojson"
-    if os.path.exists(lad_geojson_path):
+    lad_geojson_path = Path("boundaries/local_authority_districts.geojson")
+    if lad_geojson_path.exists():
         data = json_load_cache(lad_geojson_path)
         simplified_features = []
         for feature in data["features"]:
@@ -928,8 +926,8 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
         }
 
     # Export ward boundaries
-    wards_geojson_path = "boundaries/wards.geojson"
-    if os.path.exists(wards_geojson_path):
+    wards_geojson_path = Path("boundaries/wards.geojson")
+    if wards_geojson_path.exists():
         data = json_load_cache(wards_geojson_path)
         simplified_features = []
         for feature in data["features"]:
@@ -969,11 +967,10 @@ def get_boundary_loader_script(
     """
     if use_inline:
         # Load the boundary data and embed it inline for local development
-        boundaries_path = "tier_maps/shared/boundaries.json"
+        boundaries_path = Path("tier_maps/shared/boundaries.json")
         boundary_data_json = "{}"
-        if os.path.exists(boundaries_path):
-            with open(boundaries_path) as f:
-                boundary_data_json = f.read()
+        if boundaries_path.exists():
+            boundary_data_json = boundaries_path.read_text()
 
         return f"""
     <script>
@@ -1117,11 +1114,10 @@ def get_debug_boundary_loader_script(
     """
     if use_inline:
         # Load the boundary data and embed it inline for local development
-        boundaries_path = "tier_maps/shared/boundaries.json"
+        boundaries_path = Path("tier_maps/shared/boundaries.json")
         boundary_data_json = "{}"
-        if os.path.exists(boundaries_path):
-            with open(boundaries_path) as f:
-                boundary_data_json = f.read()
+        if boundaries_path.exists():
+            boundary_data_json = boundaries_path.read_text()
 
         return f"""
     <script>
@@ -1940,11 +1936,10 @@ def create_tier_maps(
 
         # Save map
         tier_name = tier.replace(" ", "_")
+        output_dir_path = Path(output_dir)
         if IS_PRODUCTION:
-            (Path(output_dir) / tier_name).mkdir(parents=True, exist_ok=True)
-        output_file = os.path.join(
-            output_dir, f"{tier_name}{"/index.html" if IS_PRODUCTION else ".html"}"
-        )
+            (output_dir_path / tier_name).mkdir(parents=True, exist_ok=True)
+        output_file = output_dir_path / f"{tier_name}{"/index.html" if IS_PRODUCTION else ".html"}"
         m.save(output_file)
         print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
 
@@ -2059,11 +2054,10 @@ def create_all_tiers_map(
     m.get_root().html.add_child(back_button_element())
 
     # Save map
+    output_dir_path = Path(output_dir)
     if IS_PRODUCTION:
-        (Path(output_dir) / output_name).mkdir(parents=True, exist_ok=True)
-    output_file = os.path.join(
-        output_dir, f"{output_name}{"/index.html" if IS_PRODUCTION else ".html"}"
-    )
+        (output_dir_path / output_name).mkdir(parents=True, exist_ok=True)
+    output_file = output_dir_path / f"{output_name}{"/index.html" if IS_PRODUCTION else ".html"}"
     m.save(output_file)
     print(f"Saved All Tiers map with {num_teams} teams to: {output_file}")
 
@@ -2127,7 +2121,7 @@ def main() -> None:
         generate_all_tiers_women = args.all_tiers_womens or args.all_tiers
 
     print("Loading teams data...")
-    geocoded_dir = os.path.join("geocoded_teams", season)
+    geocoded_dir = str(Path("geocoded_teams") / season)
     teams_by_tier, tier_numbers = load_teams_data(geocoded_dir, season)
 
     # Sort tiers by tier number
@@ -2185,7 +2179,7 @@ def main() -> None:
         womens_tier_order = [t for t in womens_tier_order if t in args.tiers]
 
     # Output directory for this season
-    output_dir = os.path.join("tier_maps", season)
+    output_dir = str(Path("tier_maps") / season)
 
     # Export shared boundary data (used by all maps to avoid redundant geometry)
     print("\nExporting shared boundary data...")

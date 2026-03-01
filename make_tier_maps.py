@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 from collections import defaultdict
+from html import escape
 from pathlib import Path
 from typing import Any, TypedDict
 
@@ -1505,15 +1506,21 @@ def add_marker(
         {f"<p style=\"margin: 2px 0;\">Team Total Travel Distance: {team_distance_info["total_distance_km"]:.2f} km</p>"}
         {f"<p style=\"margin: 2px 0;\">League Average Travel Distance: {league_distance_info["avg_distance_km"]:.2f} km</p>"}
             """
+    team_name_esc = escape(team["name"])
+    league_esc = escape(team["league"])
+    address_esc = escape(team.get("address") or "")
+    itl1_esc = escape(team.get("itl1") or "")
+    itl2_esc = escape(team.get("itl2") or "")
+    itl3_esc = escape(team.get("itl3") or "")
     popup_html = f"""
     <div style="font-family: Arial; width: 220px;">
-        <h4 style="margin: 0; color: {color};">{team["name"]}</h4>
+        <h4 style="margin: 0; color: {color};">{team_name_esc}</h4>
         <hr style="margin: 5px 0;">
-        <p style="margin: 2px 0;"><b>League:</b> {team["league"]}</p>
-        <p style="margin: 2px 0;"><b>Address:</b> {team["address"]}</p>
-        <p style="margin: 2px 0;"><b>{team["itl1"]}</b> | {team["itl2"]} | <i>{team["itl3"]}</i></p>
-        {f"<p style=\"margin: 2px 0;\"><a href=\"{team_url}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
-        {f"<p style=\"margin: 2px 0;\"><a href=\"{league_url}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
+        <p style="margin: 2px 0;"><b>League:</b> {league_esc}</p>
+        <p style="margin: 2px 0;"><b>Address:</b> {address_esc}</p>
+        <p style="margin: 2px 0;"><b>{itl1_esc}</b> | {itl2_esc} | <i>{itl3_esc}</i></p>
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{escape(team_url)}\" target=\"_blank\">View Team Page</a></p>" if team_url else ""}
+        {f"<p style=\"margin: 2px 0;\"><a href=\"{escape(league_url)}\" target=\"_blank\">View League Page</a></p>" if league_url else ""}
         {f"<p style=\"margin: 2px 0;\"><a href=\"{"" if IS_PRODUCTION else "../"}/teams/{team_name_to_filepath(team['name'])}\" target=\"_blank\">View Info page</a></p>" if league_url else ""}
         {distance_html}
     </div>
@@ -1524,7 +1531,7 @@ def add_marker(
     if team.get("image_url"):
         icon_html = f"""
         <div style="text-align: center;">
-            <img src="{team["image_url"]}"
+            <img src="{escape(team["image_url"])}"
                     style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
                     onerror="this.onerror=null; this.src='https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';">
         </div>
@@ -1549,7 +1556,7 @@ def add_marker(
         location=[team["latitude"], team["longitude"]],
         popup=folium.Popup(popup_html, max_width=250),
         icon=icon,
-        tooltip=team["name"],
+        tooltip=team_name_esc,
     )
     # Add custom options for cluster icon selection and tooltip
     marker.options["tierOrder"] = team_tier_order
@@ -1671,7 +1678,7 @@ def legend(
                 bottom: 50px; right: 50px; width: 300px;
                 background-color: white; z-index:999; font-size:14px;
                 border:2px solid grey; border-radius: 5px; padding: 10px">
-    <h4 style="margin-top: 0;">{legend_title}
+    <h4 style="margin-top: 0;">{escape(legend_title)}
         <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">−</span>
     </h4>
     <div class="legend-content" style="overflow-y: auto; max-height: 500px;">
@@ -1681,7 +1688,9 @@ def legend(
         if tier not in teams_by_tier:
             continue
         teams = teams_by_tier[tier]
-        legend_html += f'<p style="margin: 10px 0 5px 0;"><b>{tier}</b> ({len(teams)} teams)</p>'
+        legend_html += (
+            f'<p style="margin: 10px 0 5px 0;"><b>{escape(tier)}</b> ({len(teams)} teams)</p>'
+        )
 
         # Group teams by league for this tier
         leagues_in_tier = sorted({t["league"] for t in teams})
@@ -1692,7 +1701,7 @@ def legend(
             <p style="margin: 2px 0 2px 15px;">
                 <i style="background:{color}; width: 16px; height: 16px;
                    display: inline-block; border-radius: 50%; border: 1px solid black;"></i>
-                {league} ({league_team_count})
+                {escape(league)} ({league_team_count})
             </p>
             """
 

@@ -2,6 +2,7 @@ import argparse
 import json
 import re
 from collections import defaultdict
+from html import escape
 from pathlib import Path
 from typing import TypedDict
 
@@ -219,7 +220,7 @@ def get_team_page_html(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{team_name} - English Rugby Union Team Info</title>
+    <title>{escape(team_name)} - English Rugby Union Team Info</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         .team-header {{
@@ -329,12 +330,14 @@ def get_team_page_html(
     </div>
 
     <div class="team-header">
-        <h1>{team_name}</h1>
+        <h1>{escape(team_name)}</h1>
 """
 
     # Add logo if available
     if team_data.get("image_url"):
-        html += f'        <img src="{team_data["image_url"]}" alt="{team_name} logo"'
+        html += (
+            f'        <img src="{escape(team_data["image_url"])}" alt="{escape(team_name)} logo"'
+        )
         html += ' onerror="this.onerror=null; this.src=\'https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg\'" class="team-logo">\n'
 
     html += """    </div>
@@ -347,10 +350,10 @@ def get_team_page_html(
 
     if team_data.get("formatted_address") or team_data.get("address"):
         address = team_data.get("formatted_address") or team_data.get("address")
-        html += f'        <div class="info-row"><span class="info-label">Address:</span> <span class="address">{address}</span></div>\n'
+        html += f'        <div class="info-row"><span class="info-label">Address:</span> <span class="address">{escape(address or "")}</span></div>\n'
 
     if team_data.get("url"):
-        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{team_data["url"]}" target="_blank">View on England Rugby</a></div>\n'
+        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(team_data["url"])}" target="_blank">View on England Rugby</a></div>\n'
 
     html += """    </div>
 """
@@ -362,7 +365,7 @@ def get_team_page_html(
         <ul class="club-teams">
 """
         for club_team in club_teams:
-            html += f'            <li><a href="{team_name_to_filepath(club_team)}" class="card-link card-inline">{club_team}</a></li>\n'
+            html += f'            <li><a href="{team_name_to_filepath(club_team)}" class="card-link card-inline">{escape(club_team)}</a></li>\n'
 
         html += """        </ul>
     </div>
@@ -429,7 +432,7 @@ def get_team_page_html(
                             travel_info = f"{total_dist:.0f} km total"
 
                 league_link: str = (
-                    f'<a href="{entry["league_url"]}" class="card-link league-link">{tier[0]%100}: {league}</a>'
+                    f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{tier[0]%100}: {escape(league)}</a>'
                 )
 
                 html += f"""                <tr>
@@ -556,9 +559,9 @@ def generate_teams_index() -> None:
     # Sort by club name (remove II/III/IV suffixes for sorting)
     teams_list.sort(key=lambda x: team_name_to_club_name(x["name"]).lower())
 
-    # Generate JavaScript array
+    # Generate JavaScript array (escape for safe embedding in JS strings)
     teams_js = ",\n            ".join(
-        f'{{file: "{t["file"]}", name: "{t["name"]}"}}' for t in teams_list
+        f'{{file: "{escape(t["file"])}", name: "{escape(t["name"])}"}}' for t in teams_list
     )
 
     html_content = f"""<!DOCTYPE html>

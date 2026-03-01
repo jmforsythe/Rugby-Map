@@ -192,7 +192,6 @@ def fetch_club_address(
         modified_club_name_address = fetch_club_address(
             modified_club_name, team_url, delay_seconds, max_retries
         )
-        print("foo:", modified_club_name_address)
         if modified_club_name_address[0]:
             log_lines.append(f"    ✓ Address found with modified club name: {modified_club_name}")
             return modified_club_name_address

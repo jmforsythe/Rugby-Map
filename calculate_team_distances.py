@@ -32,7 +32,7 @@ def distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return d
 
 
-distance_cache: dict[tuple[GeocodedTeam, GeocodedTeam], float] = {}
+distance_cache: dict[tuple[str, str], float] = {}
 
 
 def team_pair_distance(team1: GeocodedTeam, team2: GeocodedTeam) -> float:

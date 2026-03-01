@@ -405,7 +405,7 @@ def get_team_page_html(
                 tier: tuple[int, str] = entry["tier"]
 
                 # Don't show position for current season (in progress)
-                if season == "2025-2026":
+                if season == all_seasons[0]:
                     position_display = (
                         '<span style="color: #666; font-style: italic;">Current</span>'
                     )

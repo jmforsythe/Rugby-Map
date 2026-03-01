@@ -1,5 +1,6 @@
 import argparse
 import json
+import logging
 import re
 from collections import defaultdict
 from html import escape
@@ -15,8 +16,11 @@ from utils import (
     get_config,
     get_google_analytics_script,
     set_config,
+    setup_logging,
     team_name_to_filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class LeagueHistoryEntry(TypedDict):
@@ -458,35 +462,35 @@ def load_travel_distances() -> dict[str, TravelDistances]:
                 data: TravelDistances = json.load(f)
                 travel_distances_by_season[season] = data
         except Exception as e:
-            print(f"  Warning: Could not load distances for {season}: {e}")
+            logger.warning("Could not load distances for %s: %s", season, e)
 
     return travel_distances_by_season
 
 
 def generate_team_pages() -> None:
     """Generate individual HTML pages for all teams."""
-    print("\nGenerating individual team pages...")
+    logger.info("Generating individual team pages...")
 
     # Collect all team data
-    print("  Collecting team data from all seasons...")
+    logger.info("  Collecting team data from all seasons...")
     all_teams = collect_all_teams_data()
 
     if not all_teams:
-        print("  No team data found!")
+        logger.warning("  No team data found!")
         return
 
-    print(f"  Found {len(all_teams)} unique teams")
+    logger.info("  Found %d unique teams", len(all_teams))
 
     # Get full season list so team history tables include blank rows for missing years
     all_seasons = get_all_seasons()
 
     # Load travel distances
-    print("  Loading travel distances...")
+    logger.info("  Loading travel distances...")
     travel_distances_by_season = load_travel_distances()
-    print(f"  Loaded distances for {len(travel_distances_by_season)} seasons")
+    logger.info("  Loaded distances for %d seasons", len(travel_distances_by_season))
 
     # Pre-build club index for fast co-location lookups
-    print("  Building club index...")
+    logger.info("  Building club index...")
     club_index = build_club_index(all_teams)
 
     # Create teams directory
@@ -511,22 +515,22 @@ def generate_team_pages() -> None:
             generated_count += 1
 
         except Exception as e:
-            print(f"  ✗ Error generating page for {team_name}: {e}")
+            logger.error("Error generating page for %s: %s", team_name, e)
 
-    print(f"  ✓ Generated {generated_count} team pages in {teams_dir}")
+    logger.info("Generated %d team pages in %s", generated_count, teams_dir)
 
 
 def generate_teams_index() -> None:
     """Generate the teams/index.html page with searchable list of all teams."""
     teams_dir = Path("tier_maps/teams")
     if not teams_dir.exists():
-        print("  ✗ Teams directory doesn't exist")
+        logger.warning("Teams directory doesn't exist")
         return
 
     # Get all team HTML files
     team_files = sorted(teams_dir.glob("*.html"))
     if not team_files:
-        print("  ✗ No team HTML files found")
+        logger.warning("No team HTML files found")
         return
 
     # Extract team names from filenames (remove .html and convert underscores to spaces)
@@ -674,7 +678,7 @@ def generate_teams_index() -> None:
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    print(f"  ✓ Generated teams index with {len(teams_list)} teams at {index_path}")
+    logger.info("Generated teams index with %d teams at %s", len(teams_list), index_path)
 
 
 def main() -> None:
@@ -684,6 +688,7 @@ def main() -> None:
         "--production", action="store_true", help="Change folder structure for production"
     )
     args = parser.parse_args()
+    setup_logging()
     if args.production:
         set_config(is_production=True)
 

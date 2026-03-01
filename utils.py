@@ -10,6 +10,7 @@ Data flows through the following stages:
 
 import functools
 import json
+import logging
 import os
 import re
 import threading
@@ -18,6 +19,17 @@ from dataclasses import dataclass
 from typing import NotRequired, TypedDict
 
 import requests
+
+logger = logging.getLogger(__name__)
+
+
+def setup_logging(level: int = logging.INFO) -> None:
+    """Configure logging for the pipeline."""
+    logging.basicConfig(
+        level=level,
+        format="%(levelname)s: %(message)s",
+        handlers=[logging.StreamHandler()],
+    )
 
 
 @dataclass
@@ -258,9 +270,9 @@ def make_request(
 
 
 def print_block(text: str) -> None:
-    """Print multi-line text without interleaving across threads."""
+    """Log multi-line text without interleaving across threads."""
     with _print_lock:
-        print(text, flush=True)
+        logger.info(text)
 
 
 @functools.cache

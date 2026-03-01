@@ -4,6 +4,10 @@ Tier extraction logic for mapping league filenames to tier numbers and names.
 Supports both current (2022+) and historical filename formats for men's and women's leagues.
 """
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 MENS_TIERS_CURRENT: list[tuple[str, int, str]] = [
     ("Premiership", 1, "Premiership"),
     ("Championship", 2, "Championship"),
@@ -31,7 +35,7 @@ def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
     if tier is None:
         tier = extract_tier_women(filename, season)
     if tier is None:
-        print("Warning: Could not extract tier from filename:", filename, "for season:", season)
+        logger.warning("Could not extract tier from filename: %s for season: %s", filename, season)
         return (999, "Unknown Tier")
     return tier
 

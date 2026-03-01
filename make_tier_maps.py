@@ -1,5 +1,6 @@
 import argparse
 import json
+import logging
 from collections import defaultdict
 from html import escape
 from pathlib import Path
@@ -22,8 +23,11 @@ from utils import (
     get_google_analytics_script,
     json_load_cache,
     set_config,
+    setup_logging,
     team_name_to_filepath,
 )
+
+logger = logging.getLogger(__name__)
 
 
 # Type definitions for ITL region data with geometry
@@ -258,7 +262,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
     if wards_path.exists():
         ward_data = json_load_cache(wards_path)
     else:
-        print(f"Warning: {wards_path} not found, skipping ward-level hierarchy")
+        logger.warning("Wards file %s not found, skipping ward-level hierarchy", wards_path)
         ward_data = {"features": []}
 
     # Parse ITL3 regions
@@ -393,7 +397,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
         itl2_to_itl3s[itl2_name].append(itl3_name)
 
     # Assign LADs to ITL3 regions efficiently using hierarchy
-    print("Assigning LADs to ITL regions...")
+    logger.info("Assigning LADs to ITL regions...")
     lad_to_itl3: dict[str, str] = {}
     itl3_to_lads: dict[str, list[str]] = {}
 
@@ -433,11 +437,11 @@ def load_itl_hierarchy() -> ITLHierarchy:
                 itl3_to_lads[itl3_name].append(lad_code)
                 break
 
-    print(f"  Assigned {len(lad_to_itl3)} of {len(lad_regions)} LADs to ITL3 regions")
-    print(f"  {len(itl3_to_lads)} ITL3 regions contain LADs")
+    logger.info("  Assigned %d of %d LADs to ITL3 regions", len(lad_to_itl3), len(lad_regions))
+    logger.info("  %d ITL3 regions contain LADs", len(itl3_to_lads))
 
     # Assign wards to LADs using parent lad
-    print("Assigning wards to LADs...")
+    logger.info("Assigning wards to LADs...")
     ward_to_lad: dict[str, str] = {}
     lad_to_wards: dict[str, list[str]] = {}
 
@@ -450,8 +454,8 @@ def load_itl_hierarchy() -> ITLHierarchy:
                 lad_to_wards[parent_code] = []
             lad_to_wards[parent_code].append(ward_code)
 
-    print(f"  Assigned {len(ward_to_lad)} of {len(ward_regions)} wards to LADs")
-    print(f"  {len(lad_to_wards)} LADs contain wards")
+    logger.info("  Assigned %d of %d wards to LADs", len(ward_to_lad), len(ward_regions))
+    logger.info("  %d LADs contain wards", len(lad_to_wards))
 
     return {
         "itl3_regions": itl3_regions,
@@ -609,19 +613,18 @@ def assign_teams_to_itl_regions(
                         ward_to_teams[ward_code].append(team)
                         break
 
-    print("\nITL Region Assignment:")
-    print(f"  Assigned {total_assigned} of {total_teams} teams to ITL regions")
-    print(f"  ITL1: {len(itl1_to_teams)} regions have teams")
-    print(f"  ITL2: {len(itl2_to_teams)} regions have teams")
-    print(f"  ITL3: {len(itl3_to_teams)} regions have teams")
-    print(f"  LAD: {len(lad_to_teams)} regions have teams")
+    logger.info("ITL Region Assignment:")
+    logger.info("  Assigned %d of %d teams to ITL regions", total_assigned, total_teams)
+    logger.info("  ITL1: %d regions have teams", len(itl1_to_teams))
+    logger.info("  ITL2: %d regions have teams", len(itl2_to_teams))
+    logger.info("  ITL3: %d regions have teams", len(itl3_to_teams))
+    logger.info("  LAD: %d regions have teams", len(lad_to_teams))
     if ward_regions:
-        print(f"  Wards: {len(ward_to_teams)} regions have teams")
+        logger.info("  Wards: %d regions have teams", len(ward_to_teams))
 
-    # Print example region -> teams mapping
-    print("\nExample regions with team counts:")
+    logger.info("Example regions with team counts:")
     for region_name in sorted(itl1_to_teams.keys())[:3]:
-        print(f"  ITL1 {region_name}: {len(itl1_to_teams[region_name])} teams")
+        logger.info("  ITL1 %s: %d teams", region_name, len(itl1_to_teams[region_name]))
 
     return {
         "itl0": itl0_to_teams,
@@ -644,7 +647,7 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     output_dir_path.mkdir(parents=True, exist_ok=True)
     output_path = output_dir_path / "boundaries.json"
     if get_config().is_production and output_path.exists():
-        print(f"Shared boundary file already exists at {output_path}, skipping export.")
+        logger.info("Shared boundary file already exists at %s, skipping export.", output_path)
         return
 
     boundary_data = {
@@ -755,7 +758,7 @@ def export_shared_boundaries(output_dir: str = "tier_maps/shared") -> None:
     with open(output_path, "w") as f:
         json.dump(boundary_data, f, separators=(",", ":"))  # Compact format
 
-    print(f"Exported shared boundary data to: {output_path}")
+    logger.info("Exported shared boundary data to: %s", output_path)
 
 
 def get_boundary_loader_script(
@@ -1689,15 +1692,20 @@ def create_tier_maps(
             if len(grouped_teams) >= 2 and len({t["league"] for t in grouped_teams}) >= 2
         ]
         if co_located_groups:
-            print(
-                f"⚠ Warning: Found {len(co_located_groups)} co-located coordinate group(s) across different leagues in {tier}. "
-                "Markers may overlap in individual tier maps."
+            logger.warning(
+                "Found %d co-located coordinate group(s) across different leagues in %s. "
+                "Markers may overlap in individual tier maps.",
+                len(co_located_groups),
+                tier,
             )
             for (lat, lon), grouped_teams in sorted(co_located_groups):
                 team_labels = [f"{t['name']} ({t['league']})" for t in grouped_teams]
-                print(
-                    f"  - ({lat}, {lon}): {len(grouped_teams)} teams -> "
-                    + ", ".join(sorted(team_labels))
+                logger.warning(
+                    "  - (%s, %s): %d teams -> %s",
+                    lat,
+                    lon,
+                    len(grouped_teams),
+                    ", ".join(sorted(team_labels)),
                 )
 
         # Markers
@@ -1747,7 +1755,7 @@ def create_tier_maps(
             / f"{tier_name}{"/index.html" if get_config().is_production else ".html"}"
         )
         m.save(output_file)
-        print(f"Saved {tier} map with {len(teams)} teams to: {output_file}")
+        logger.info("Saved %s map with %d teams to: %s", tier, len(teams), output_file)
 
 
 def create_all_tiers_map(
@@ -1870,7 +1878,7 @@ def create_all_tiers_map(
         output_dir_path / f"{output_name}{"/index.html" if get_config().is_production else ".html"}"
     )
     m.save(output_file)
-    print(f"Saved All Tiers map with {num_teams} teams to: {output_file}")
+    logger.info("Saved All Tiers map with %d teams to: %s", num_teams, output_file)
 
 
 def main() -> None:
@@ -1909,8 +1917,10 @@ def main() -> None:
         show_debug=not args.no_debug,
     )
 
+    setup_logging()
+
     season = args.season
-    print(f"Generating maps for season: {season}")
+    logger.info("Generating maps for season: %s", season)
 
     show_debug = not args.no_debug
 
@@ -1933,7 +1943,7 @@ def main() -> None:
         generate_all_tiers_men = args.all_tiers_mens or args.all_tiers
         generate_all_tiers_women = args.all_tiers_womens or args.all_tiers
 
-    print("Loading teams data...")
+    logger.info("Loading teams data...")
     geocoded_dir = str(Path("geocoded_teams") / season)
     teams_by_tier, tier_numbers = load_teams_data(geocoded_dir, season)
 
@@ -1945,29 +1955,29 @@ def main() -> None:
     womens_tier_order = [t for t in sorted_tier_names if tier_numbers[t] >= 100]
 
     total_teams = sum(len(teams) for teams in teams_by_tier.values())
-    print(f"\nFound {total_teams} teams across {len(teams_by_tier)} tiers")
+    logger.info("Found %d teams across %d tiers", total_teams, len(teams_by_tier))
 
-    print("\nTeams by tier:")
+    logger.info("Teams by tier:")
     for tier in sorted_tier_names:
-        print(f"  {tier}: {len(teams_by_tier[tier])} teams")
+        logger.info("  %s: %d teams", tier, len(teams_by_tier[tier]))
 
-    print("\nLoading ITL hierarchy...")
+    logger.info("Loading ITL hierarchy...")
     itl_hierarchy = load_itl_hierarchy()
-    print(f"  Loaded {len(itl_hierarchy["itl3_regions"])} ITL3 regions")
-    print(f"  Loaded {len(itl_hierarchy["itl2_regions"])} ITL2 regions")
-    print(f"  Loaded {len(itl_hierarchy["itl1_regions"])} ITL1 regions")
+    logger.info("  Loaded %d ITL3 regions", len(itl_hierarchy["itl3_regions"]))
+    logger.info("  Loaded %d ITL2 regions", len(itl_hierarchy["itl2_regions"]))
+    logger.info("  Loaded %d ITL1 regions", len(itl_hierarchy["itl1_regions"]))
 
-    print("\nAssigning teams to ITL regions...")
+    logger.info("Assigning teams to ITL regions...")
     region_to_teams = assign_teams_to_itl_regions(teams_by_tier, itl_hierarchy)
 
-    print("\nLoading team travel distances...")
+    logger.info("Loading team travel distances...")
     travel_distance_path = Path("distance_cache_folder") / f"{args.season}.json"
     team_travel_distances: TravelDistances | None = None
     if travel_distance_path.exists():
         team_travel_distances = json_load_cache(travel_distance_path)
-        print(f"  Loaded travel distances for {len(team_travel_distances["teams"])} teams")
+        logger.info("  Loaded travel distances for %d teams", len(team_travel_distances["teams"]))
     else:
-        print("  No travel distance data found")
+        logger.info("  No travel distance data found")
 
     # Separate mens and womens teams
     mens = {
@@ -1995,12 +2005,12 @@ def main() -> None:
     output_dir = str(Path("tier_maps") / season)
 
     # Export shared boundary data (used by all maps to avoid redundant geometry)
-    print("\nExporting shared boundary data...")
+    logger.info("Exporting shared boundary data...")
     export_shared_boundaries(output_dir="tier_maps/shared")
 
     # Generate individual tier maps
     if generate_mens_individual and mens:
-        print("\nCreating men's tier maps...")
+        logger.info("Creating men's tier maps...")
         create_tier_maps(
             mens,
             mens_tier_order,
@@ -2013,7 +2023,7 @@ def main() -> None:
         )
 
     if generate_womens_individual and womens:
-        print("\nCreating women's tier maps...")
+        logger.info("Creating women's tier maps...")
         create_tier_maps(
             womens,
             womens_tier_order,
@@ -2027,7 +2037,7 @@ def main() -> None:
 
     # Generate all-tiers maps
     if generate_all_tiers_men:
-        print("\nCreating men's all tiers map...")
+        logger.info("Creating men's all tiers map...")
         full_mens = {
             tier_name: teams
             for tier_name, teams in teams_by_tier.items()
@@ -2046,7 +2056,7 @@ def main() -> None:
         )
 
     if generate_all_tiers_women:
-        print("\nCreating women's all tiers map...")
+        logger.info("Creating women's all tiers map...")
         full_womens = {
             tier_name: teams
             for tier_name, teams in teams_by_tier.items()
@@ -2064,8 +2074,8 @@ def main() -> None:
             team_travel_distances=team_travel_distances,
         )
 
-    print("\n✓ All maps created successfully!")
-    print(f'Check "{output_dir}" folder for maps')
+    logger.info("All maps created successfully!")
+    logger.info('Check "%s" folder for maps', output_dir)
 
 
 if __name__ == "__main__":

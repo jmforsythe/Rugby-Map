@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 import argparse
 import json
 import re
 import urllib.parse
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from utils import AntiBotDetectedError, League, LeagueInfo, Team, make_request
 
@@ -17,6 +19,7 @@ def get_meta_league_urls(season: str) -> list[str]:
         f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season={season}",  # London and SE
         f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&season={season}",  # Northern
         f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&season={season}",  # National Leagues
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=104&season={season}",  # Eastern Counties Greene King
     ]
 
 
@@ -118,6 +121,21 @@ def clean_filename(text: str) -> str:
     return text.strip("_")
 
 
+def _is_all_zero_row(row: Tag, team_cell: Tag) -> bool:
+    """Check whether every stat column in a table row is zero.
+
+    Teams with all zeros were never actually in this league (e.g. listed
+    due to an admin error on the source website).
+    """
+    stat_cells = [td for td in row.find_all("td") if td is not team_cell]
+    numeric_values: list[int] = []
+    for td in stat_cells:
+        text = td.get_text(strip=True).lstrip("-")
+        if text.isdigit():
+            numeric_values.append(int(text))
+    return len(numeric_values) > 0 and all(v == 0 for v in numeric_values)
+
+
 def scrape_teams_from_league(
     league_url: str, league_name: str, season: str, referer: str | None = None
 ) -> list[Team]:
@@ -137,6 +155,8 @@ def scrape_teams_from_league(
     # Find all table cells with class containing "coh-style-team-name"
     team_cells = soup.find_all("td", class_=lambda x: x and "coh-style-team-name" in x)
 
+    skipped_zero_teams: list[str] = []
+
     for cell in team_cells:
         # Find the href within the cell
         link = cell.find("a", href=True)
@@ -147,6 +167,11 @@ def scrape_teams_from_league(
             # Make absolute URL if needed
             if team_url.startswith("/"):
                 team_url = f"https://www.englandrugby.com{team_url}"
+
+            row = cell.find_parent("tr")
+            if row and _is_all_zero_row(row, cell):
+                skipped_zero_teams.append(team_name)
+                continue
 
             # Find image sibling
             img = cell.find("img")
@@ -159,6 +184,10 @@ def scrape_teams_from_league(
 
             teams.append({"name": team_name, "url": team_url, "image_url": team_image_url})
 
+    if skipped_zero_teams:
+        print(
+            f"  Skipped {len(skipped_zero_teams)} all-zero teams: {', '.join(skipped_zero_teams)}"
+        )
     print(f"  Found {len(teams)} teams in {league_name}")
     return teams
 

@@ -8,26 +8,32 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-MENS_TIERS_CURRENT: list[tuple[str, int, str]] = [
-    ("Premiership", 1, "Premiership"),
-    ("Championship", 2, "Championship"),
-    ("National_League_1", 3, "National League 1"),
-    ("National_League_2", 4, "National League 2"),
-    ("Regional_1", 5, "Regional 1"),
-    ("Regional_2", 6, "Regional 2"),
-    ("Counties_1", 7, "Counties 1"),
-    ("Counties_2", 8, "Counties 2"),
-    ("Counties_3", 9, "Counties 3"),
-    ("Counties_4", 10, "Counties 4"),
-    ("Counties_5", 11, "Counties 5"),
-]
+MENS_CURRENT_TIER_NAMES: dict[int, str] = {
+    1: "Premiership",
+    2: "Championship",
+}
 
-WOMENS_TIERS_CURRENT: list[tuple[str, int, str]] = [
-    ("Women's_Premiership", 101, "Premiership Women's"),
-    ("Women's_NC_1", 104, "National Challenge 1"),
-    ("Women's_NC_2", 105, "National Challenge 2"),
-    ("Women's_NC_3", 106, "National Challenge 3"),
-]
+WOMENS_CURRENT_TIER_NAMES: dict[int, str] = {
+    101: "Premiership Women's",
+}
+
+
+def _mens_current_tier_name(tier: int) -> str:
+    if tier in MENS_CURRENT_TIER_NAMES:
+        return MENS_CURRENT_TIER_NAMES[tier]
+    if 3 <= tier <= 4:
+        return f"National League {tier - 2}"
+    if 5 <= tier <= 6:
+        return f"Regional {tier - 4}"
+    return f"Counties {tier - 6}"
+
+
+def _womens_current_tier_name(tier: int) -> str:
+    if tier in WOMENS_CURRENT_TIER_NAMES:
+        return WOMENS_CURRENT_TIER_NAMES[tier]
+    if 102 <= tier <= 103:
+        return f"Championship {tier - 101}"
+    return f"National Challenge {tier - 103}"
 
 
 def extract_tier(filename: str, season: str = "2025-2026") -> tuple[int, str]:
@@ -58,27 +64,40 @@ def extract_tier_women(filename: str, season: str) -> tuple[int, str] | None:
 
 def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2022-2023 onwards filename format."""
-    for prefix, tier_num, tier_name in MENS_TIERS_CURRENT:
+    if filename.startswith("Premiership"):
+        return (1, "Premiership")
+    if filename.startswith("Championship"):
+        return (2, "Championship")
+
+    zeroth_tier_map = {
+        "National_League": 2,
+        "Regional": 4,
+        "Counties": 6,
+        "Cumbria_Conference": 7,
+        "Eastern_Counties_Greene_King_Division": 8,
+    }
+    for prefix, offset in zeroth_tier_map.items():
         if filename.startswith(prefix):
-            return (tier_num, tier_name)
-    if filename.startswith("Cumbria_Conference"):
-        if filename.endswith("1.json"):
-            return (8, "Counties 2")
-        if filename.endswith("2.json"):
-            return (9, "Counties 3")
+            num = get_number_from_tier_name(filename, prefix)
+            tier = offset + num
+            return (tier, _mens_current_tier_name(tier))
     return None
 
 
 def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2019-2020 onwards filename format."""
-    for prefix, tier_num, tier_name in WOMENS_TIERS_CURRENT:
+    if filename.startswith("Women's_Premiership"):
+        return (101, "Premiership Women's")
+
+    zeroth_tier_map = {
+        "Women's_Championship": 101,
+        "Women's_NC": 103,
+    }
+    for prefix, offset in zeroth_tier_map.items():
         if filename.startswith(prefix):
-            return (tier_num, tier_name)
-    if filename.startswith("Women's_Championship"):
-        if filename.endswith("1.json"):
-            return (102, "Championship 1")
-        if filename.endswith("2.json"):
-            return (103, "Championship 2")
+            num = get_number_from_tier_name(filename, prefix)
+            tier = offset + num
+            return (tier, _womens_current_tier_name(tier))
     return None
 
 

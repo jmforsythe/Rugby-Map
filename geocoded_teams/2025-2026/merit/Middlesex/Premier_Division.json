@@ -1,0 +1,87 @@
+{
+  "league_name": "Premier Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=68067&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "London Scottish Lions 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12612",
+      "image_url": "https://images.englandrugby.com/club_images/12612.png",
+      "address": "Richmond Athletic Ground, Kew Foot Road, Richmond, Surrey, TW9 2SS, United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872407
+    },
+    {
+      "name": "H.A.C II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9141",
+      "image_url": "https://images.englandrugby.com/club_images/9141.png",
+      "address": "Armoury House City Road London EC1Y 2AY United Kingdom",
+      "latitude": 51.5230113,
+      "longitude": -0.0885001,
+      "formatted_address": "Armoury House, City Road, Finsbury, London Borough of Islington, Greater London, England, EC1Y 1AA, United Kingdom",
+      "place_id": 416762358
+    },
+    {
+      "name": "Rosslyn Park 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18038",
+      "image_url": "https://images.englandrugby.com/club_images/18038.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM ",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839761
+    },
+    {
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Belsize Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1945",
+      "image_url": "https://images.englandrugby.com/club_images/1945.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Finchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
+      "image_url": "https://images.englandrugby.com/club_images/8091.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
+      "name": "New Zealand Kiwis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14381",
+      "image_url": "https://images.englandrugby.com/club_images/14381.png",
+      "address": "Wasps FC W3 9QA UNITED KINGDOM",
+      "latitude": 51.509811,
+      "longitude": -0.2800411,
+      "formatted_address": "Wasps Football Club, Twyford Crescent, London Borough of Ealing, Greater London, England, W3 9PP, United Kingdom",
+      "place_id": 407469674
+    },
+    {
+      "name": "Quintin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17356",
+      "image_url": "https://images.englandrugby.com/club_images/17356.png",
+      "address": "Chiswick Rfc Dukes Meadows Riverside Drive Chiswick W4 2SH United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    }
+  ],
+  "team_count": 8
+}

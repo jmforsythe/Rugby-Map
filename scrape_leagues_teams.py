@@ -10,17 +10,49 @@ from bs4 import BeautifulSoup, Tag
 
 from utils import AntiBotDetectedError, League, LeagueInfo, Team, make_request
 
+_PYRAMID_COMPETITIONS = [
+    1699,  # South West
+    1597,  # Midlands
+    261,  # London and SE
+    1623,  # Northern
+    1605,  # National Leagues
+]
+
+_MERIT_COMPETITIONS = [
+    183,  # 'IMPACT' Rugby North West Leagues
+    202,  # Hampshire Merit Tables
+    1600,  # Midlands Reserve Team Leagues
+    252,  # Leicestershire Competitions
+    1694,  # Group 1 Automotive Essex Merit League
+    180,  # Yorkshire League & Merit Tables
+    100,  # East Midlands Leagues
+    1770,  # GRFU District Leagues
+    77,  # Devon Merit Tables
+    206,  # Harvey's Brewery Sussex Leagues
+    104,  # Eastern Counties Greene King
+    1596,  # Middlesex Merit Tables
+    1681,  # Rural Kent Leagues
+    1636,  # Nottinghamshire RFU Security Plus Pennant
+    49,  # CANDY League
+    209,  # Hertfordshire & Middlesex Merit Tables
+]
+
+
+def _competition_urls(competition_ids: list[int], season: str) -> list[str]:
+    return [
+        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition={c}&season={season}"
+        for c in competition_ids
+    ]
+
 
 def get_meta_league_urls(season: str) -> list[str]:
-    """Get meta league URLs for the given season."""
-    return [
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&season={season}",  # South West
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&season={season}",  # Midlands
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season={season}",  # London and SE
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&season={season}",  # Northern
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&season={season}",  # National Leagues
-        f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=104&season={season}",  # Eastern Counties Greene King
-    ]
+    """Get pyramid meta league URLs for the given season."""
+    return _competition_urls(_PYRAMID_COMPETITIONS, season)
+
+
+def get_merit_meta_league_urls(season: str) -> list[str]:
+    """Get merit/district meta league URLs for the given season."""
+    return _competition_urls(_MERIT_COMPETITIONS, season)
 
 
 PREM_MAP = {
@@ -113,6 +145,52 @@ def get_womens_leagues(season: str) -> list[LeagueInfo]:
     ]
 
 
+def _meta_cache_path(season: str) -> Path:
+    return Path("league_data") / season / "_meta_leagues_cache.json"
+
+
+def load_meta_cache(season: str) -> dict[str, list[LeagueInfo]] | None:
+    """Load cached meta league results for a season, if available."""
+    path = _meta_cache_path(season)
+    if not path.exists():
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_meta_cache(season: str, cache: dict[str, list[LeagueInfo]]) -> None:
+    """Save meta league results to disk for a season."""
+    path = _meta_cache_path(season)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2, ensure_ascii=False)
+    print(f"  Meta league cache saved to {path}")
+
+
+def scrape_meta_leagues(
+    meta_urls: list[str], season: str
+) -> tuple[list[LeagueInfo], dict[str, list[LeagueInfo]]]:
+    """Scrape leagues from meta URLs, using and updating a disk cache.
+
+    Returns (leagues, updated_cache).
+    """
+    cache = load_meta_cache(season) or {}
+    leagues: list[LeagueInfo] = []
+
+    for meta_url in meta_urls:
+        if meta_url in cache:
+            cached = cache[meta_url]
+            print(f"\n  Using cached results for {meta_url} ({len(cached)} leagues)")
+            leagues.extend(cached)
+        else:
+            scraped = scrape_leagues_from_page(meta_url)
+            cache[meta_url] = scraped
+            leagues.extend(scraped)
+
+    save_meta_cache(season, cache)
+    return leagues, cache
+
+
 def clean_filename(text: str) -> str:
     """Convert text to a safe filename"""
     # Remove or replace invalid filename characters
@@ -153,7 +231,9 @@ def scrape_teams_from_league(
     teams = []
 
     # Find all table cells with class containing "coh-style-team-name"
-    team_cells = soup.find_all("td", class_=lambda x: x and "coh-style-team-name" in x)
+    team_cells = soup.find_all(
+        "td", class_=lambda x: isinstance(x, str) and "coh-style-team-name" in x
+    )
 
     skipped_zero_teams: list[str] = []
 
@@ -179,7 +259,7 @@ def scrape_teams_from_league(
             if img and img.get("src"):
                 team_image_url = img["src"]
                 # Make absolute URL if needed
-                if team_image_url.startswith("/"):
+                if team_image_url and team_image_url.startswith("/"):
                     team_image_url = f"https://www.englandrugby.com{team_image_url}"
 
             teams.append({"name": team_name, "url": team_url, "image_url": team_image_url})
@@ -208,7 +288,7 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
     # Find the div with id "related-leagues-overview"
     leagues_div = soup.find("div", id="related-leagues-overview")
 
-    if not leagues_div:
+    if not isinstance(leagues_div, Tag):
         print('  Warning: Could not find div with id "related-leagues-overview"')
         return []
 
@@ -232,101 +312,108 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
     return leagues
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Scrape RFU website for league and team data.")
-    parser.add_argument(
-        "--season",
-        type=str,
-        default="2025-2026",
-        help="Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
-    )
-    args = parser.parse_args()
-    season = args.season
+_BANNED_WORDS = [
+    "playoff",
+    "play off",
+    "play-off",
+    "phase",
+    "shield",
+    "trophy",
+    "plate",
+    "salver",
+    "bowl",
+    "1a",
+    "1b",
+    "2a",
+    "2b",
+    "cup",
+    "pool",
+]
 
-    print(f"Scraping data for season: {season}")
+_BANNED_FILENAMES = [
+    "Yorkshire_Division_Four_Premier.json",
+    "Pilot_League.json",
+    "Tribute_Duchy_League.json",
+]
 
-    # Create output directory for this season
-    output_dir = Path("league_data") / season
+
+_COMPETITION_NAMES: dict[str, str] = {
+    "183": "NOWIRUL",
+    "202": "Hampshire",
+    "1600": "Midlands_Reserve",
+    "252": "Leicestershire",
+    "1694": "Essex",
+    "180": "Yorkshire",
+    "100": "East_Midlands",
+    "1770": "GRFU_District",
+    "77": "Devon",
+    "206": "Sussex",
+    "104": "Eastern_Counties",
+    "1596": "Middlesex",
+    "1681": "Rural_Kent",
+    "1636": "Nottinghamshire",
+    "49": "CANDY",
+    "209": "Herts_Middlesex",
+}
+
+
+def _competition_prefix(parent_url: str) -> str | None:
+    """Extract a human-readable competition prefix from a parent URL's competition ID."""
+    parsed = urllib.parse.urlparse(parent_url)
+    params = urllib.parse.parse_qs(parsed.query)
+    comp_ids = params.get("competition", [])
+    if comp_ids and comp_ids[0] in _COMPETITION_NAMES:
+        return _COMPETITION_NAMES[comp_ids[0]]
+    return None
+
+
+def _scrape_league_list(
+    leagues: list[LeagueInfo],
+    output_dir: Path,
+    season: str,
+    *,
+    use_competition_subdirs: bool = False,
+) -> list[LeagueInfo]:
+    """Scrape teams for each league and save to output_dir. Returns skipped leagues.
+
+    When use_competition_subdirs is True, files are saved into subdirectories
+    named after the competition (e.g. merit/Hampshire/Counties_6_South.json).
+    """
     output_dir.mkdir(parents=True, exist_ok=True)
+    skipped: list[LeagueInfo] = []
 
-    # Get league URLs for this season
-    leagues = get_leagues(season)
-    meta_league_urls = get_meta_league_urls(season)
-
-    # Process each top-level URL
-    for meta_url in meta_league_urls:
-        # Scrape leagues from this page
-        try:
-            leagues.extend(scrape_leagues_from_page(meta_url))
-        except AntiBotDetectedError:
-            print(f"\n✗ Anti-bot detection triggered while scraping {meta_url}")
-            print("Please wait before running the script again.")
-            return
-
-    # Get women's leagues for this season
-    womens_leagues = get_womens_leagues(season)
-    womens_meta_league_urls = get_womens_meta_league_urls(season)
-
-    for meta_url in womens_meta_league_urls:
-        # Scrape leagues from this page
-        try:
-            womens_leagues.extend(scrape_leagues_from_page(meta_url))
-        except AntiBotDetectedError:
-            print(f"\n✗ Anti-bot detection triggered while scraping {meta_url}")
-            print("Please wait before running the script again.")
-            return
-
-    skipped_leagues: list[LeagueInfo] = []
-
-    # For each league, scrape teams and create JSON file
-    for league in leagues + womens_leagues:
+    for league in leagues:
         league_name = league["name"]
         league_url = league["url"]
         parent_url = league["parent_url"]
 
-        banned_words = [
-            "playoff",
-            "play off",
-            "play-off",
-            "phase",
-            "shield",
-            "trophy",
-            "plate",
-            "salver",
-            "merit",
-            "bowl",
-            "1a",
-            "1b",
-            "2a",
-            "2b",
-            "cup",
-        ]
-        if any(word in league_name.lower() for word in banned_words):
+        if any(word in league_name.lower().split() for word in _BANNED_WORDS):
             print(f"Skipping {league_name} (playoff/phase league)")
-            skipped_leagues.append(league)
+            skipped.append(league)
             continue
 
-        # Create filename from league name
         filename = clean_filename(league_name) + ".json"
-        output_path = output_dir / filename
+        if use_competition_subdirs:
+            comp_name = _competition_prefix(parent_url)
+            if comp_name:
+                league_output_dir = output_dir / comp_name
+                league_output_dir.mkdir(parents=True, exist_ok=True)
+                output_path = league_output_dir / filename
+            else:
+                output_path = output_dir / filename
+        else:
+            output_path = output_dir / filename
 
-        banned_filenames = [
-            "Yorkshire_Division_Four_Premier.json",
-            "Pilot_League.json",
-            "Tribute_Duchy_League.json",
-        ]
-        if output_path.name in banned_filenames:
+        if output_path.name in _BANNED_FILENAMES:
             print(f"Skipping {league_name} (known bad filename)")
-            skipped_leagues.append(league)
+            skipped.append(league)
             continue
 
-        # Skip if file already exists
         if output_path.exists():
             print(f"Skipping {league_name} (already exists)")
             continue
 
         parsed_url = urllib.parse.urlparse(league_url)
-        # Add season parameter if not present
         query_params = urllib.parse.parse_qs(parsed_url.query)
         if "season" not in query_params:
             query_params["season"] = [season]
@@ -343,15 +430,13 @@ def main() -> None:
         )
 
         try:
-            # Scrape teams from this league
             teams = scrape_teams_from_league(league_url, league_name, season, referer=parent_url)
 
             if len(teams) == 0:
                 print(f"  Skipping saving {league_name} (no teams found)")
-                skipped_leagues.append(league)
+                skipped.append(league)
                 continue
 
-            # Prepare data for JSON output
             league_data: League = {
                 "league_name": league_name,
                 "league_url": league_url,
@@ -359,7 +444,6 @@ def main() -> None:
                 "team_count": len(teams),
             }
 
-            # Write JSON file
             with open(output_path, "w", encoding="utf-8") as f:
                 json.dump(league_data, f, indent=2, ensure_ascii=False)
 
@@ -368,9 +452,64 @@ def main() -> None:
         except AntiBotDetectedError:
             print(f"\n✗ Anti-bot detection triggered while scraping {league_name}")
             print("Please wait before running the script again.")
-            return
+            raise
 
-    print(f'\nComplete! League data saved to "{output_dir}" directory')
+    return skipped
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Scrape RFU website for league and team data.")
+    parser.add_argument(
+        "--season",
+        type=str,
+        default="2025-2026",
+        help="Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
+    )
+    args = parser.parse_args()
+    season = args.season
+
+    print(f"Scraping data for season: {season}")
+
+    base_dir = Path("league_data") / season
+    merit_dir = base_dir / "merit"
+
+    # --- Pyramid leagues ---
+    leagues = get_leagues(season)
+    try:
+        meta_leagues, _ = scrape_meta_leagues(get_meta_league_urls(season), season)
+        leagues.extend(meta_leagues)
+    except AntiBotDetectedError as e:
+        print(f"\n✗ Anti-bot detection triggered while scraping meta leagues: {e}")
+        return
+
+    # --- Merit / district leagues ---
+    merit_leagues: list[LeagueInfo] = []
+    try:
+        merit_meta, _ = scrape_meta_leagues(get_merit_meta_league_urls(season), season)
+        merit_leagues.extend(merit_meta)
+    except AntiBotDetectedError as e:
+        print(f"\n✗ Anti-bot detection triggered while scraping merit meta leagues: {e}")
+        return
+
+    # --- Women's leagues ---
+    womens_leagues = get_womens_leagues(season)
+    try:
+        womens_meta, _ = scrape_meta_leagues(get_womens_meta_league_urls(season), season)
+        womens_leagues.extend(womens_meta)
+    except AntiBotDetectedError as e:
+        print(f"\n✗ Anti-bot detection triggered while scraping women's meta leagues: {e}")
+        return
+
+    skipped_leagues: list[LeagueInfo] = []
+    try:
+        skipped_leagues += _scrape_league_list(leagues + womens_leagues, base_dir, season)
+        skipped_leagues += _scrape_league_list(
+            merit_leagues, merit_dir, season, use_competition_subdirs=True
+        )
+    except AntiBotDetectedError:
+        return
+
+    print(f'\nComplete! League data saved to "{base_dir}" directory')
     for skipped in skipped_leagues:
         print(f"Skipped league {skipped["name"]}: {skipped["url"]}")
 

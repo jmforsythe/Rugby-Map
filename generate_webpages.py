@@ -24,7 +24,7 @@ def get_footer_html() -> str:
     </div>"""
 
 
-def get_season_index_html(season: str, tier_files: dict[str, list[str]]) -> str:
+def get_season_index_html(season: str, tier_files: dict[str, list[tuple[str, str]]]) -> str:
     """Generate HTML content for a season's index page."""
     mens_tiers = tier_files.get("mens", [])
     womens_tiers = tier_files.get("womens", [])
@@ -138,6 +138,11 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         <h2>FAQ</h2>
 
         <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">What about leagues outside the RFU?</div>
+            <div class="faq-answer">"Merit" leagues organised by the local county bodies are included, but the "levels" assigned to them are somewhat arbitrary.</div>
+        </div>
+
+        <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">Where is Scotland / Wales?</div>
             <div class="faq-answer">These are planned for the future, however English leagues were much easier to get the data from due to the RFU website layout, especially as it includes address data for each team.</div>
         </div>
@@ -149,7 +154,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
 
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">How are league boundaries determined?</div>
-            <div class="faq-answer">Areas are shaded on a county / region basis, with counties that are shared between leagues split down the middle using Voronoi diagrams.</div>
+            <div class="faq-answer">Areas are shaded on a county / region basis, with counties that are shared between leagues further split by wards / smaller statistical areas.</div>
         </div>
 
         <div class="faq-item">
@@ -187,14 +192,13 @@ def detect_tier_files(season_dir: Path) -> dict[str, list[tuple[str, str]]]:
         ("National League 2", f"National_League_2{"/" if get_config().is_production else ".html"}"),
         ("Regional 1", f"Regional_1{"/" if get_config().is_production else ".html"}"),
         ("Regional 2", f"Regional_2{"/" if get_config().is_production else ".html"}"),
-        ("Counties 1", f"Counties_1{"/" if get_config().is_production else ".html"}"),
-        ("Counties 2", f"Counties_2{"/" if get_config().is_production else ".html"}"),
-        ("Counties 3", f"Counties_3{"/" if get_config().is_production else ".html"}"),
-        ("Counties 4", f"Counties_4{"/" if get_config().is_production else ".html"}"),
-        ("Counties 5", f"Counties_5{"/" if get_config().is_production else ".html"}"),
+        *(
+            (f"Counties {i}", f"Counties_{i}{"/" if get_config().is_production else ".html"}")
+            for i in range(1, 6)
+        ),
         *(
             (f"Level {i}", f"Level_{i}{"/" if get_config().is_production else ".html"}")
-            for i in range(5, 16)
+            for i in range(5, 20)
         ),
     ]
 

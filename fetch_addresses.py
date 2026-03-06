@@ -13,7 +13,7 @@ import time
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from utils import (
     AddressLeague,
@@ -29,7 +29,7 @@ from utils import (
 _cache_lock = threading.RLock()
 
 # Cache for club -> address data
-club_cache: dict[str, str] = {}
+club_cache: dict[str, str | None] = {}
 CLUB_CACHE_FILE = "club_address_cache.json"
 
 # Track clubs without addresses
@@ -66,7 +66,7 @@ def extract_address_from_maps_url(maps_url: str) -> str | None:
 def team_name_to_club_name(team_name: str) -> str:
     """Convert team name to club name (remove II, III, IV suffixes)."""
     last_word = team_name.split(" ")[-1]
-    if last_word in ["II", "III", "IV"]:
+    if last_word in ["II", "III", "IV", "V"]:
         return " ".join(team_name.split(" ")[:-1])
     last_two_words = " ".join(team_name.split(" ")[-2:])
     if last_two_words in ["2nd XV", "3rd XV", "4th XV"]:
@@ -84,9 +84,10 @@ def extract_maps_url_from_soup(soup: BeautifulSoup) -> str | None:
         Maps URL or None if not found
     """
     club_btn = soup.find(class_="c036-club-details-btn")
-    if club_btn and club_btn.get("href"):
-        maps_url = club_btn.get("href").replace("&amp;", "&")
-        return maps_url
+    if isinstance(club_btn, Tag):
+        href = club_btn.get("href")
+        if isinstance(href, str):
+            return href.replace("&amp;", "&")
     return None
 
 
@@ -202,6 +203,7 @@ def fetch_club_address(
 
 def process_league_file(
     league_file_path: Path,
+    league_dir: Path,
     season: str,
     max_workers: int = 14,
     delay_seconds: float = 2.0,
@@ -212,8 +214,9 @@ def process_league_file(
     print(f"Processing: {league_file_path.name}")
     print(f"{"="*80}")
 
-    # Check if output file already exists
-    output_file = Path("team_addresses") / season / league_file_path.name
+    # Mirror subdirectory structure (e.g. merit/) from league_data to team_addresses
+    relative = league_file_path.relative_to(league_dir)
+    output_file = Path("team_addresses") / season / relative
     if output_file.exists():
         print("  Skipping - already processed")
         return
@@ -292,7 +295,7 @@ def process_league_file(
                 except AntiBotDetectedError as e:
                     for f in futures_to_club:
                         f.cancel()
-                    if getattr(e, "log_text", None):
+                    if e.log_text is not None:
                         print_block(e.log_text)
                     print(f"{"="*80}")
                     print("ANTI-BOT DETECTION TRIGGERED")
@@ -328,7 +331,6 @@ def process_league_file(
         "league_url": league_data["league_url"],
         "teams": teams_with_addresses,
         "team_count": len(teams_with_addresses),
-        "success_count": len([t for t in teams_with_addresses if "error" not in t]),
     }
 
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -336,8 +338,9 @@ def process_league_file(
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
+    success_count = len([t for t in teams_with_addresses if "error" not in t])
     print(f"✓ Saved to: {output_file}")
-    print(f"  Successfully fetched: {output_data["success_count"]}/{len(teams_with_addresses)}")
+    print(f"  Successfully fetched: {success_count}/{len(teams_with_addresses)}")
 
 
 def main() -> None:
@@ -374,20 +377,27 @@ def main() -> None:
         print(f"Error: league_data/{season} directory not found")
         return
 
-    league_files: list[Path] = sorted(league_dir.glob("*.json"))
+    league_files: list[Path] = sorted(
+        f for f in league_dir.rglob("*.json") if not f.name.startswith("_")
+    )
 
     if args.league:
         league_arg = Path(args.league)
         if league_arg.exists():
             league_files = [league_arg]
         else:
-            candidate = league_dir / args.league
-            if candidate.suffix != ".json":
-                candidate = candidate.with_suffix(".json")
-            if not candidate.exists():
+            # Search both root and subdirectories
+            candidates = list(league_dir.rglob(f"{args.league}*.json"))
+            if not candidates:
+                candidate = league_dir / args.league
+                if candidate.suffix != ".json":
+                    candidate = candidate.with_suffix(".json")
+                if candidate.exists():
+                    candidates = [candidate]
+            if not candidates:
                 print(f"Error: league file not found: {args.league}")
                 return
-            league_files = [candidate]
+            league_files = candidates
 
     print(f"Found {len(league_files)} league files to process")
 
@@ -395,6 +405,7 @@ def main() -> None:
         try:
             process_league_file(
                 league_file,
+                league_dir,
                 season,
                 max_workers=args.workers,
                 delay_seconds=args.delay,

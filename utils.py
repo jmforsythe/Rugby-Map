@@ -161,16 +161,16 @@ class TeamTravelDistances(TypedDict):
 
     name: str
     league: str
-    total_distance_km: float | None
-    avg_distance_km: float | None
+    total_distance_km: float
+    avg_distance_km: float
 
 
 class LeagueTravelDistances(TypedDict):
     """Travel distance statistics for a league"""
 
     league_name: str
-    league_url: str
-    avg_distance_km: float | None
+    avg_distance_km: float
+    team_count: int
 
 
 class TravelDistances(TypedDict):
@@ -178,7 +178,7 @@ class TravelDistances(TypedDict):
 
     teams: dict[str, TeamTravelDistances]
     leagues: dict[str, LeagueTravelDistances]
-    summary: dict[str, float | None]
+    summary: dict[str, float | int]
 
 
 # ============================================================================
@@ -306,7 +306,7 @@ def get_google_analytics_script() -> str:
 def sanitize_team_name(team_name: str) -> str:
     """Convert team name to URL-safe format."""
     # Replace special characters with url-safe equivalents
-    sanitized = team_name.replace(" ", "_").replace("/", "_").replace("&", "and")
+    sanitized = team_name.replace(" ", "_").replace("/", "_").replace("&", "and").replace("|", "_")
     # Replace spaces and multiple hyphens/underscores with single underscore
     sanitized = re.sub(r"[\s_-]+", "_", sanitized)
     return sanitized.strip("_")

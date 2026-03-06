@@ -1,0 +1,107 @@
+{
+  "league_name": "Harvey's Brewery Counties 3 Sussex",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=70706&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Hove II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10504",
+      "image_url": "https://images.englandrugby.com/club_images/10504.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Haywards Heath II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9777",
+      "image_url": "https://images.englandrugby.com/club_images/9777.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Crowborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5919",
+      "image_url": "https://images.englandrugby.com/club_images/5919.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Horsham Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
+      "image_url": "https://images.englandrugby.com/club_images/10451.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Worthing III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127674",
+      "image_url": "https://images.englandrugby.com/club_images/127674.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Hellingly",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9891",
+      "image_url": "https://images.englandrugby.com/club_images/9891.png",
+      "address": "Hellingly Rfc Hellingly Sports Club Horsebridge Recreational Ground Lower Horsebridge Nr. Hailsham East Sussex BN27 4DJ United Kingdom",
+      "latitude": 50.8813025,
+      "longitude": 0.2394541,
+      "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350502212
+    },
+    {
+      "name": "East Grinstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
+      "image_url": "https://images.englandrugby.com/club_images/7136.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Shoreham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19262",
+      "image_url": "https://images.englandrugby.com/club_images/19262.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    }
+  ],
+  "team_count": 10
+}

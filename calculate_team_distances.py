@@ -36,11 +36,14 @@ distance_cache: dict[tuple[str, str], float] = {}
 
 
 def team_pair_distance(team1: GeocodedTeam, team2: GeocodedTeam) -> float:
-    if (min(team1["name"], team2["name"]), max(team1["name"], team2["name"])) not in distance_cache:
-        distance_cache[(min(team1["name"], team2["name"]), max(team1["name"], team2["name"]))] = (
-            distance(team1["latitude"], team1["longitude"], team2["latitude"], team2["longitude"])
-        )
-    return distance_cache[(min(team1["name"], team2["name"]), max(team1["name"], team2["name"]))]
+    key = (min(team1["name"], team2["name"]), max(team1["name"], team2["name"]))
+    if key not in distance_cache:
+        lat1 = team1.get("latitude", 0.0)
+        lon1 = team1.get("longitude", 0.0)
+        lat2 = team2.get("latitude", 0.0)
+        lon2 = team2.get("longitude", 0.0)
+        distance_cache[key] = distance(lat1, lon1, lat2, lon2)
+    return distance_cache[key]
 
 
 def team_total_distance(team: GeocodedTeam, teams: list[GeocodedTeam]) -> float:
@@ -88,12 +91,19 @@ def main() -> None:
     league_stats: dict[str, LeagueTravelDistances] = {}
 
     # Process each league file
-    for json_file in sorted(geocoded_dir.glob("*.json")):
+    for json_file in sorted(geocoded_dir.rglob("*.json")):
         with open(json_file, encoding="utf-8") as f:
             league_data: GeocodedLeague = json.load(f)
 
-        league_stats[league_data["league_name"]] = {
-            "league_name": league_data["league_name"],
+        league_name = league_data["league_name"]
+        rel_parts = json_file.relative_to(geocoded_dir).parts
+        if len(rel_parts) >= 3 and rel_parts[0] == "merit":
+            comp_name = rel_parts[1].replace("_", " ")
+            if comp_name.lower() not in league_name.lower():
+                league_name = f"{comp_name} {league_name}"
+
+        league_stats[league_name] = {
+            "league_name": league_name,
             "avg_distance_km": league_average_distance(league_data),
             "team_count": len(league_data["teams"]),
         }
@@ -104,7 +114,7 @@ def main() -> None:
             avg_distance = team_average_distance(team, valid_teams)
             all_teams_data[team["name"]] = {
                 "name": team["name"],
-                "league": league_data["league_name"],
+                "league": league_name,
                 "avg_distance_km": round(avg_distance, 2),
                 "total_distance_km": round(team_total_distance(team, valid_teams), 2),
             }

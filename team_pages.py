@@ -88,7 +88,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
         season = season_dir.name
 
         # Process each league file in the season
-        for league_file in season_dir.glob("*.json"):
+        for league_file in season_dir.rglob("*.json"):
             with open(league_file, encoding="utf-8") as f:
                 league_data: GeocodedLeague = json.load(f)
 
@@ -104,14 +104,18 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 teams_data[team_name]["image_url"] = team.get("image_url")
 
                 # Update address/location if available
-                if team.get("address"):
-                    teams_data[team_name]["address"] = team["address"]
-                if team.get("latitude"):
-                    teams_data[team_name]["latitude"] = team["latitude"]
-                if team.get("longitude"):
-                    teams_data[team_name]["longitude"] = team["longitude"]
-                if team.get("formatted_address"):
-                    teams_data[team_name]["formatted_address"] = team["formatted_address"]
+                addr = team.get("address")
+                lat = team.get("latitude")
+                lon = team.get("longitude")
+                fmt_addr = team.get("formatted_address")
+                if addr:
+                    teams_data[team_name]["address"] = addr
+                if lat is not None:
+                    teams_data[team_name]["latitude"] = lat
+                if lon is not None:
+                    teams_data[team_name]["longitude"] = lon
+                if fmt_addr:
+                    teams_data[team_name]["formatted_address"] = fmt_addr
 
                 # Add league participation to history
                 teams_data[team_name]["league_history"].append(
@@ -156,19 +160,25 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     coord_groups: defaultdict[tuple[float, float], list[str]] = defaultdict(list)
 
     for team_name, data in all_teams.items():
-        if data.get("address"):
-            address_groups[data["address"]].append(team_name)
-        if data.get("latitude") and data.get("longitude"):
-            coord_groups[(data["latitude"], data["longitude"])].append(team_name)
+        addr = data.get("address")
+        lat = data.get("latitude")
+        lon = data.get("longitude")
+        if addr:
+            address_groups[addr].append(team_name)
+        if lat is not None and lon is not None:
+            coord_groups[(lat, lon)].append(team_name)
 
     club_index: dict[str, list[str]] = {}
     for team_name in all_teams:
         siblings: set[str] = set()
         data = all_teams[team_name]
-        if data.get("address") and data["address"] in address_groups:
-            siblings.update(address_groups[data["address"]])
-        if data.get("latitude") and data.get("longitude"):
-            key = (data["latitude"], data["longitude"])
+        addr = data.get("address")
+        lat = data.get("latitude")
+        lon = data.get("longitude")
+        if addr and addr in address_groups:
+            siblings.update(address_groups[addr])
+        if lat is not None and lon is not None:
+            key = (lat, lon)
             if key in coord_groups:
                 siblings.update(coord_groups[key])
         siblings.discard(team_name)
@@ -317,10 +327,9 @@ def get_team_page_html(
 """
 
     # Add logo if available
-    if team_data.get("image_url"):
-        html += (
-            f'        <img src="{escape(team_data["image_url"])}" alt="{escape(team_name)} logo"'
-        )
+    image_url = team_data.get("image_url")
+    if image_url:
+        html += f'        <img src="{escape(image_url)}" alt="{escape(team_name)} logo"'
         html += ' onerror="this.onerror=null; this.src=\'https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg\'" class="team-logo">\n'
 
     html += """    </div>
@@ -335,8 +344,9 @@ def get_team_page_html(
         address = team_data.get("formatted_address") or team_data.get("address")
         html += f'        <div class="info-row"><span class="info-label">Address:</span> <span class="address">{escape(address or "")}</span></div>\n'
 
-    if team_data.get("url"):
-        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(team_data["url"])}" target="_blank">View on England Rugby</a></div>\n'
+    team_url = team_data.get("url")
+    if team_url:
+        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(team_url)}" target="_blank">View on England Rugby</a></div>\n'
 
     html += """    </div>
 """

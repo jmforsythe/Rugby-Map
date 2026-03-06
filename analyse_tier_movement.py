@@ -69,7 +69,7 @@ def load_all_seasons() -> TeamHistory:
 
     for season in SEASONS:
         season_dir = GEOCODED_DIR / season
-        for filepath in sorted(season_dir.glob("*.json")):
+        for filepath in sorted(season_dir.rglob("*.json")):
             tier_num, tier_name = extract_tier(filepath.name, season)
             with open(filepath, encoding="utf-8") as f:
                 data = json.load(f)
@@ -113,7 +113,7 @@ def analyse(team_history: TeamHistory) -> None:
 
             if len(entries) > 1:
                 mens_entries = [e for e in entries if _is_mens(e)]
-                womens_entries = [e for e in entries if not _is_mens(e)]
+                womens_entries = [e for e in entries if not _is_mens(e) and e.tier_num != 999]
                 if len(mens_entries) > 1 or len(womens_entries) > 1:
                     duplicate_appearances.append(DuplicateAppearance(team, season, entries))
                 if mens_entries and womens_entries:

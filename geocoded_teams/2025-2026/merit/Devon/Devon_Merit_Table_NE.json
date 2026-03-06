@@ -1,0 +1,67 @@
+{
+  "league_name": "Devon Merit Table NE",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=77&division=71233&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Bideford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2155",
+      "image_url": "https://images.englandrugby.com/club_images/2155.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "Ilfracombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10799",
+      "image_url": "https://images.englandrugby.com/club_images/10799.png",
+      "address": "Brimlands Chambercombe Park Road Ilfracombe Devon EX34 9QN United Kingdom",
+      "latitude": 51.2058604,
+      "longitude": -4.1056895,
+      "formatted_address": "EX34 9QN, Ilfracombe, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350621186
+    },
+    {
+      "name": "Crediton 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5834",
+      "image_url": "https://images.englandrugby.com/club_images/5834.png",
+      "address": "Crediton R.f.c., Blagdon, Exhibition Road, Crediton, Devon, EX17 1BY, United Kingdom",
+      "latitude": 50.79388,
+      "longitude": -3.64396,
+      "formatted_address": "EX17 1BY, Crediton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351253152
+    },
+    {
+      "name": "South Molton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19625",
+      "image_url": "https://images.englandrugby.com/club_images/19625.png",
+      "address": "Unicorn Park, Station Road, Pathfields, South Molton, Devon, EX363BS, United Kingdom",
+      "latitude": 51.02682,
+      "longitude": -3.83977,
+      "formatted_address": "EX36 3BS, Pathfields Industrial Estate, South Molton, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351260105
+    },
+    {
+      "name": "Barnstaple RFC 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124701",
+      "image_url": "https://images.englandrugby.com/club_images/124701.png",
+      "address": "Pottington Road Barnstaple Devon EX31 1JH United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Torrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22992",
+      "image_url": "https://images.englandrugby.com/club_images/22992.png",
+      "address": "Torrington Rfc Donnacroft Playing Fields Hatchmoor Road Torrington Devon EX38 7HT United Kingdom",
+      "latitude": 50.95517,
+      "longitude": -4.12576,
+      "formatted_address": "EX38 7HT, Great Torrington, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350809808
+    }
+  ],
+  "team_count": 6
+}

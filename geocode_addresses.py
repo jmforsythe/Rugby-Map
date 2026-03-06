@@ -200,7 +200,7 @@ def geocode_with_nominatim(
                             if response.status_code == 200:
                                 data = response.json()
                                 if len(data) > 0:
-                                    result: GeocodeResult = {
+                                    result = {
                                         "latitude": float(data[0]["lat"]),
                                         "longitude": float(data[0]["lon"]),
                                         "formatted_address": data[0].get("display_name", address),
@@ -241,6 +241,9 @@ def geocode_with_nominatim(
 
             log_lines.append(f"    ✗ Geocoding error: {e}")
             return None, log_lines
+
+    log_lines.append("    ✗ All retries exhausted")
+    return None, log_lines
 
 
 def process_team(team: AddressTeam, api_retries: int = 3) -> tuple[GeocodedTeam, str]:
@@ -287,7 +290,11 @@ def process_team(team: AddressTeam, api_retries: int = 3) -> tuple[GeocodedTeam,
 
 
 def process_address_file(
-    address_file_path: Path, season: str, max_workers: int = 10, api_retries: int = 3
+    address_file_path: Path,
+    address_dir: Path,
+    season: str,
+    max_workers: int = 10,
+    api_retries: int = 3,
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
     global teams_without_geocodes
@@ -295,8 +302,9 @@ def process_address_file(
     print(f"Processing: {address_file_path.name}")
     print(f"{"="*80}")
 
-    # Check if output file already exists
-    output_file = Path("geocoded_teams") / season / address_file_path.name
+    # Mirror subdirectory structure (e.g. merit/) from team_addresses to geocoded_teams
+    relative = address_file_path.relative_to(address_dir)
+    output_file = Path("geocoded_teams") / season / relative
     if output_file.exists():
         print("  Skipping - already geocoded")
         return
@@ -407,27 +415,37 @@ def main() -> None:
         print("Run fetch_addresses.py first to get team addresses")
         return
 
-    address_files: list[Path] = sorted(address_dir.glob("*.json"))
+    address_files: list[Path] = sorted(
+        f for f in address_dir.rglob("*.json") if not f.name.startswith("_")
+    )
 
     if args.league:
         league_arg = Path(args.league)
         if league_arg.exists():
             address_files = [league_arg]
         else:
-            candidate = address_dir / args.league
-            if candidate.suffix != ".json":
-                candidate = candidate.with_suffix(".json")
-            if not candidate.exists():
+            candidates = list(address_dir.rglob(f"{args.league}*.json"))
+            if not candidates:
+                candidate = address_dir / args.league
+                if candidate.suffix != ".json":
+                    candidate = candidate.with_suffix(".json")
+                if candidate.exists():
+                    candidates = [candidate]
+            if not candidates:
                 print(f"Error: address file not found: {args.league}")
                 return
-            address_files = [candidate]
+            address_files = candidates
 
     print(f"Found {len(address_files)} address files to process")
 
     for address_file in address_files:
         try:
             process_address_file(
-                address_file, season, max_workers=args.workers, api_retries=args.api_retries
+                address_file,
+                address_dir,
+                season,
+                max_workers=args.workers,
+                api_retries=args.api_retries,
             )
         except KeyboardInterrupt:
             print("\n\n✗ Interrupted by user")

@@ -1,0 +1,77 @@
+{
+  "league_name": "Gloucester & District 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=66700&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Newent II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14508",
+      "image_url": "https://images.englandrugby.com/club_images/14508.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Gordon League II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8753",
+      "image_url": "https://images.englandrugby.com/club_images/8753.png",
+      "address": "Gordon League RFC Hempsted Lane Gloucester GLOUCESTERSHIRE GL2 5JN UNITED KINGDOM ",
+      "latitude": 51.8547791,
+      "longitude": -2.2634932,
+      "formatted_address": "GL2 5JN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631368
+    },
+    {
+      "name": "Stroud II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21277",
+      "image_url": "https://images.englandrugby.com/club_images/21277.png",
+      "address": "Stroud Rugby, Fromehall Park, Dudbridge Hill, Stroud, Gloucestershire, GL5 3HS, United Kingdom",
+      "latitude": 51.73949,
+      "longitude": -2.23306,
+      "formatted_address": "GL5 3HS, Rodborough, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351315264
+    },
+    {
+      "name": "Cheltenham Saras II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4572",
+      "image_url": "https://images.englandrugby.com/club_images/4572.png",
+      "address": "Cheltenham Saracens RFC King George 5th Playing Fields off Brooklyn Road Hesters Way Cheltenham GLOUCESTERSHIRE GL51 8DT UNITED KINGDOM",
+      "latitude": 51.903093,
+      "longitude": -2.1102736,
+      "formatted_address": "GL51 8DT, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350634272
+    },
+    {
+      "name": "Hucclecote II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10563",
+      "image_url": "https://images.englandrugby.com/club_images/10563.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Chosen Hill FP II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4990",
+      "image_url": "https://images.englandrugby.com/club_images/4990.png",
+      "address": "Chosen Hill F.P RFC Brookfield Road Churchdown GLOUCESTERSHIRE GL3 2PJ UNITED KINGDOM",
+      "latitude": 51.879713,
+      "longitude": -2.1593049,
+      "formatted_address": "GL3 2PJ, Churchdown, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631851
+    },
+    {
+      "name": "Cainscross",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3909",
+      "image_url": "https://images.englandrugby.com/club_images/3909.png",
+      "address": "Cainscross RFC Victory Park Cainscross Stroud GLOUCESTERSHIRE GL5 4JE UNITED KINGDOM",
+      "latitude": 51.7433802,
+      "longitude": -2.2441085,
+      "formatted_address": "GL5 4JE, Cainscross, Selsley, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637281
+    }
+  ],
+  "team_count": 7
+}

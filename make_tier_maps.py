@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 from html import escape
 from pathlib import Path
-from typing import Any, TypedDict
+from typing import Any, TypedDict, cast
 
 import folium
 import numpy as np
@@ -51,7 +51,7 @@ class ITLHierarchy(TypedDict):
     itl3_to_itl2: dict[str, str]
     itl2_to_itl1: dict[str, str]
     lad_to_itl3: dict[str, str]
-    ward_to_lad: dict[str, str]
+    ward_to_lad: dict[str, str | None]
     itl1_to_itl2s: dict[str, list[str]]
     itl0_to_itl1s: dict[str, list[str]]
     itl2_to_itl3s: dict[str, list[str]]
@@ -87,9 +87,7 @@ def load_teams_data(
 
     geocoded_path = Path(geocoded_teams_dir)
     if geocoded_path.is_dir():
-        files_to_process = [
-            (str(f), f.name) for f in geocoded_path.iterdir() if f.suffix == ".json"
-        ]
+        files_to_process = [(str(f), f.name) for f in geocoded_path.rglob("*.json")]
 
         for filepath, filename in files_to_process:
 
@@ -102,6 +100,12 @@ def load_teams_data(
                 tier_numbers[tier_name] = tier_num
 
             league_name = data.get("league_name", "Unknown League")
+            file_path = Path(filepath)
+            rel_parts = file_path.relative_to(geocoded_path).parts
+            if len(rel_parts) >= 3 and rel_parts[0] == "merit":
+                comp_name = rel_parts[1].replace("_", " ")
+                if comp_name.lower() not in league_name.lower():
+                    league_name = f"{comp_name} {league_name}"
             league_url = data.get("league_url", "")
 
             for team in data.get("teams", []):
@@ -183,7 +187,7 @@ def create_bounded_voronoi(
         return []
 
     # Get team positions
-    points = np.array([[t["latitude"], t["longitude"]] for t in teams])
+    points = np.array([[t.get("latitude", 0.0), t.get("longitude", 0.0)] for t in teams])
 
     # Get bounding box of the region
     minx, miny, maxx, maxy = boundary_geom.bounds
@@ -331,6 +335,7 @@ def load_itl_hierarchy() -> ITLHierarchy:
 
     # Parse ward regions, indexed by WD25CD
     ward_regions: dict[str, ITLRegionGeom] = {}
+    ward_to_lad: dict[str, str | None] = {}
     for feat in ward_data["features"]:
         properties = feat["properties"]
         ward_code = properties.get("WD25CD")
@@ -343,8 +348,8 @@ def load_itl_hierarchy() -> ITLHierarchy:
             "geom": geom,
             "prepared": prep(geom),
             "centroid": geom.centroid,
-            "parent_lad": properties.get("LAD25CD"),
         }
+        ward_to_lad[ward_code] = properties.get("LAD25CD")
 
     # Build code-based lookups for hierarchy
     # ITL codes follow pattern: TL + ITL1_digit + ITL2_digit + ITL3_digit
@@ -442,14 +447,11 @@ def load_itl_hierarchy() -> ITLHierarchy:
 
     # Assign wards to LADs using parent lad
     logger.info("Assigning wards to LADs...")
-    ward_to_lad: dict[str, str] = {}
     lad_to_wards: dict[str, list[str]] = {}
 
-    for ward_code, ward in ward_regions.items():
-        parent_code = ward.get("parent_lad")
+    for ward_code in ward_regions:
+        parent_code = ward_to_lad.get(ward_code)
         if parent_code and parent_code in lad_regions:
-            lad = lad_regions[parent_code]
-            ward_to_lad[ward_code] = parent_code
             if parent_code not in lad_to_wards:
                 lad_to_wards[parent_code] = []
             lad_to_wards[parent_code].append(ward_code)
@@ -520,7 +522,7 @@ def assign_teams_to_itl_regions(
     for _, teams in teams_by_tier.items():
         for team in teams:
             total_teams += 1
-            point = Point(team["longitude"], team["latitude"])
+            point = Point(team.get("longitude", 0.0), team.get("latitude", 0.0))
 
             team["itl0"] = None
             team["itl3"] = None
@@ -1125,7 +1127,6 @@ def collect_league_geometries_for_tier(
         tier_entry_level = "itl1"
     else:
         tier_entry_level = "itl2"
-
     league_geometries: dict[str, list[BaseGeometry]] = {}
 
     def closest_league_in_parent(parent_teams: list[MapTeam], centroid: Point) -> str | None:
@@ -1133,7 +1134,9 @@ def collect_league_geometries_for_tier(
             return None
         closest_team = min(
             parent_teams,
-            key=lambda team: centroid.distance(Point(team["longitude"], team["latitude"])),
+            key=lambda team: centroid.distance(
+                Point(team.get("longitude", 0.0), team.get("latitude", 0.0))
+            ),
         )
         return closest_team["league"]
 
@@ -1161,6 +1164,29 @@ def collect_league_geometries_for_tier(
         leagues_here = {team["league"] for team in teams_in_region}
         if len(leagues_here) == 1:
             league = next(iter(leagues_here))
+
+            child_level_check = next_level.get(level)
+            if child_level_check:
+                occupied_children = sum(
+                    1
+                    for ck in child_map_by_level.get(level, {}).get(region_key, [])
+                    if filtered_region_to_teams[child_level_check].get(ck)
+                )
+                if occupied_children <= 1:
+                    children_with_teams = [
+                        ck
+                        for ck in child_map_by_level.get(level, {}).get(region_key, [])
+                        if ck in regions_by_level.get(child_level_check, {})
+                        and filtered_region_to_teams[child_level_check].get(ck)
+                    ]
+                    if children_with_teams:
+                        result_cells_narrow: list[dict[str, Any]] = []
+                        for ck in children_with_teams:
+                            result_cells_narrow.extend(
+                                split_region(child_level_check, ck, teams_in_region)
+                            )
+                        return result_cells_narrow
+
             return [{"geom": region["geom"], "league": league, "color": league_colors[league]}]
 
         child_level = next_level.get(level)
@@ -1263,12 +1289,14 @@ def add_territories_from_geometries(
             return geom
 
         if geom.geom_type == "Polygon":
-            holes = [ring for ring in geom.interiors if Polygon(ring).area >= min_hole_area]
-            return Polygon(geom.exterior, holes)
+            poly = cast(Polygon, geom)
+            holes = [ring for ring in poly.interiors if Polygon(ring).area >= min_hole_area]
+            return Polygon(poly.exterior, holes)
 
         if geom.geom_type == "MultiPolygon":
+            multi = cast(MultiPolygon, geom)
             cleaned = []
-            for part in geom.geoms:
+            for part in multi.geoms:
                 holes = [ring for ring in part.interiors if Polygon(ring).area >= min_hole_area]
                 cleaned.append(Polygon(part.exterior, holes))
             return MultiPolygon(cleaned)
@@ -1291,7 +1319,7 @@ def add_territories_from_geometries(
 
 
 def add_marker(
-    marker_group: FeatureGroupSubGroup,
+    marker_group: FeatureGroupSubGroup | folium.FeatureGroup,
     team: MapTeam,
     color: str,
     team_tier_order: int | None = None,
@@ -1332,10 +1360,11 @@ def add_marker(
 
     # Create marker icon
     icon_size = 30
-    if team.get("image_url"):
+    image_url = team.get("image_url")
+    if image_url:
         icon_html = f"""
         <div style="text-align: center;">
-            <img src="{escape(team["image_url"])}"
+            <img src="{escape(image_url)}"
                     style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;"
                     onerror="this.onerror=null; this.src='https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg';">
         </div>
@@ -1357,15 +1386,14 @@ def add_marker(
 
     # Add marker to tier subgroup with custom options for clustering
     marker = folium.Marker(
-        location=[team["latitude"], team["longitude"]],
+        location=[team.get("latitude", 0.0), team.get("longitude", 0.0)],
         popup=folium.Popup(popup_html, max_width=250),
         icon=icon,
         tooltip=team_name_esc,
     )
-    # Add custom options for cluster icon selection and tooltip
-    marker.options["tierOrder"] = team_tier_order
-    marker.options["imageUrl"] = team_image_url
-    marker.options["teamName"] = team["name"]  # Used by cluster iconCreateFunction for tooltip
+    marker.options["tierOrder"] = team_tier_order  # type: ignore[index]
+    marker.options["imageUrl"] = team_image_url  # type: ignore[index]
+    marker.options["teamName"] = team["name"]  # type: ignore[index]
 
     marker.add_to(marker_group)
 
@@ -1591,7 +1619,8 @@ def service_worker_registration(relative_path_to_shared: str = "../shared") -> f
 
 def add_layer_control(m: folium.Map) -> None:
     folium.LayerControl().add_to(m)
-    m.get_root().header.add_child(folium.Element("""
+    header = m.get_root().header  # type: ignore[attr-defined]
+    header.add_child(folium.Element("""
     <script>
     (function hookLayerControl() {
         if (!window.L || !L.Control || !L.Control.Layers) {
@@ -1612,7 +1641,7 @@ def add_layer_control(m: folium.Map) -> None:
     </script>
     """))
     # Add custom CSS for LayerControl
-    m.get_root().header.add_child(folium.Element("""
+    header.add_child(folium.Element("""
     <style>
     .leaflet-control-layers-list {
         overflow-y: auto !important;
@@ -1647,12 +1676,15 @@ def create_tier_maps(
             continue
         teams = teams_by_tier[tier]
         m = build_base_map()
-        m.get_root().header.add_child(folium.Element(get_google_analytics_script()))
-        m.get_root().header.add_child(folium.Element(f"<title>{season} {tier}</title>"))
+        root = m.get_root()
+        header = root.header  # type: ignore[attr-defined]
+        html = root.html  # type: ignore[attr-defined]
+        header.add_child(folium.Element(get_google_analytics_script()))
+        header.add_child(folium.Element(f"<title>{season} {tier}</title>"))
 
         # Register service worker for caching external images (production only)
         if get_config().is_production:
-            m.get_root().header.add_child(
+            header.add_child(
                 service_worker_registration(relative_path_to_shared=relative_path_to_shared())
             )
 
@@ -1683,7 +1715,7 @@ def create_tier_maps(
         # Warn about co-located teams in individual tier maps (no clustering/spiderfy here)
         teams_by_coordinate: dict[tuple[float, float], list[MapTeam]] = defaultdict(list)
         for team in teams:
-            coord_key = (round(team["latitude"], 7), round(team["longitude"], 7))
+            coord_key = (round(team.get("latitude", 0.0), 7), round(team.get("longitude", 0.0), 7))
             teams_by_coordinate[coord_key].append(team)
 
         co_located_groups = [
@@ -1721,7 +1753,7 @@ def create_tier_maps(
 
         # Add boundary loader scripts (loads from shared/boundaries.json)
         # Use inline data for local dev, fetch for production
-        m.get_root().html.add_child(
+        html.add_child(
             folium.Element(
                 get_boundary_loader_script(
                     relative_path_to_shared=relative_path_to_shared(),
@@ -1730,7 +1762,7 @@ def create_tier_maps(
             )
         )
         if show_debug:
-            m.get_root().html.add_child(
+            html.add_child(
                 folium.Element(
                     get_debug_boundary_loader_script(
                         relative_path_to_shared=relative_path_to_shared(),
@@ -1739,11 +1771,9 @@ def create_tier_maps(
                 )
             )
 
-        m.get_root().html.add_child(
-            legend(f"{tier} - {len(teams)} teams", {tier: teams}, [tier], league_colors)
-        )
+        html.add_child(legend(f"{tier} - {len(teams)} teams", {tier: teams}, [tier], league_colors))
 
-        m.get_root().html.add_child(back_button_element())
+        html.add_child(back_button_element())
 
         # Save map
         tier_name = tier.replace(" ", "_")
@@ -1776,8 +1806,11 @@ def create_all_tiers_map(
 
     # Create base map centered on England
     m = build_base_map()
-    m.get_root().header.add_child(folium.Element(get_google_analytics_script()))
-    m.get_root().header.add_child(
+    root = m.get_root()
+    header = root.header  # type: ignore[attr-defined]
+    html = root.html  # type: ignore[attr-defined]
+    header.add_child(folium.Element(get_google_analytics_script()))
+    header.add_child(
         folium.Element(
             f"<title>{season} All Tiers {"Men" if tier_order[0].find('Women')==-1 else "Women"}</title>"
         )
@@ -1785,7 +1818,7 @@ def create_all_tiers_map(
 
     # Register service worker for caching external images (production only)
     if get_config().is_production:
-        m.get_root().header.add_child(
+        header.add_child(
             service_worker_registration(relative_path_to_shared=relative_path_to_shared())
         )
 
@@ -1848,7 +1881,7 @@ def create_all_tiers_map(
 
     # Add boundary loader scripts (loads from shared/boundaries.json)
     # Use inline data for local dev, fetch for production
-    m.get_root().html.add_child(
+    html.add_child(
         folium.Element(
             get_boundary_loader_script(
                 relative_path_to_shared=relative_path_to_shared(),
@@ -1857,18 +1890,18 @@ def create_all_tiers_map(
         )
     )
     if show_debug:
-        m.get_root().html.add_child(
+        html.add_child(
             folium.Element(
                 get_debug_boundary_loader_script(use_inline=not get_config().is_production)
             )
         )
 
     # Add legend for tiers and leagues
-    m.get_root().html.add_child(
+    html.add_child(
         legend(f"All Tiers - {num_teams} teams", teams_by_tier, sorted_tiers, league_colors)
     )
 
-    m.get_root().html.add_child(back_button_element())
+    html.add_child(back_button_element())
 
     # Save map
     output_dir_path = Path(output_dir)
@@ -1974,7 +2007,7 @@ def main() -> None:
     travel_distance_path = Path("distance_cache_folder") / f"{args.season}.json"
     team_travel_distances: TravelDistances | None = None
     if travel_distance_path.exists():
-        team_travel_distances = json_load_cache(travel_distance_path)
+        team_travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
         logger.info("  Loaded travel distances for %d teams", len(team_travel_distances["teams"]))
     else:
         logger.info("  No travel distance data found")

@@ -25,7 +25,9 @@ def _mens_current_tier_name(tier: int) -> str:
         return f"National League {tier - 2}"
     if 5 <= tier <= 6:
         return f"Regional {tier - 4}"
-    return f"Counties {tier - 6}"
+    if 7 <= tier <= 11:
+        return f"Counties {tier - 6}"
+    return f"Level {tier}"
 
 
 def _womens_current_tier_name(tier: int) -> str:
@@ -62,25 +64,63 @@ def extract_tier_women(filename: str, season: str) -> tuple[int, str] | None:
         return extract_tier_women_current(filename, season)
 
 
+_SPONSOR_PREFIXES = [
+    "Harvey's_Brewery_",
+    "Harvey's_Wharf_IPA_",
+    "Harvey's_Olympia_",
+    "Harvey's_of_",
+    "Harvey\u2019s_Brewery_",
+    "Group_1_Automotive_",
+    "Tribute_",
+    "Wadworth_",
+    "Greene_King_IPA_",
+    "Shepherd_Neame_",
+    "6X_",
+    "Snows_Group_",
+    "SSE_",
+]
+
+
+def _strip_sponsor_prefix(filename: str) -> str:
+    """Remove known sponsor prefixes from league filenames."""
+    for prefix in _SPONSOR_PREFIXES:
+        if filename.startswith(prefix):
+            filename = filename.removeprefix(prefix)
+    return filename
+
+
 def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2022-2023 onwards filename format."""
-    if filename.startswith("Premiership"):
+    if filename == "Premiership.json":
         return (1, "Premiership")
-    if filename.startswith("Championship"):
+    if filename == "Championship.json":
         return (2, "Championship")
+
+    cleaned = _strip_sponsor_prefix(filename)
 
     zeroth_tier_map = {
         "National_League": 2,
         "Regional": 4,
         "Counties": 6,
-        "Cumbria_Conference": 7,
-        "Eastern_Counties_Greene_King_Division": 8,
+        "Bristol_&_District": 10,
+        "CANDY": 9,
+        "Devon_Merit": 10,
+        "Division": 10,
+        "East_Midlands": 9 if "B" in filename.removesuffix(".json").split("_") else 8,
+        "Eastern_Counties": 8,
+        "Gloucester_&_District": 10,
+        "Kent": 10,
+        "Leicestershire_Merit": 9,
+        "NOWIRUL": 9,
+        "Premier_Division": 10,
+        "Table": 10,
     }
     for prefix, offset in zeroth_tier_map.items():
-        if filename.startswith(prefix):
-            num = get_number_from_tier_name(filename, prefix)
+        if cleaned.startswith(prefix):
+            num = get_number_from_tier_name(cleaned, prefix)
             tier = offset + num
             return (tier, _mens_current_tier_name(tier))
+
     return None
 
 
@@ -103,17 +143,7 @@ def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | 
 
 def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2021-2022 and earlier filename format."""
-    filename = (
-        filename.removeprefix("Tribute_")
-        .removeprefix("Wadworth_")
-        .removeprefix("Harvey's_of_")
-        .removeprefix("Harvey\u2019s_Brewery_")
-        .removeprefix("Greene_King_IPA_")
-        .removeprefix("Shepherd_Neame_")
-        .removeprefix("6X_")
-        .removeprefix("Snows_Group_")
-        .removeprefix("SSE_")
-    )
+    filename = _strip_sponsor_prefix(filename)
 
     zeroth_tier_map = {
         "National_League": 2,
@@ -204,14 +234,25 @@ def get_number_from_tier_name(filename: str, prefix: str) -> int:
     num_map = {
         "1": 1,
         "One": 1,
+        "A": 1,
         "2": 2,
         "Two": 2,
+        "B": 2,
         "3": 3,
         "Three": 3,
+        "C": 3,
         "4": 4,
         "Four": 4,
         "5": 5,
         "Five": 5,
+        "6": 6,
+        "Six": 6,
+        "7": 7,
+        "Seven": 7,
+        "8": 8,
+        "Eight": 8,
+        "9": 9,
+        "Nine": 9,
     }
     num = 0
     for part in other_words:

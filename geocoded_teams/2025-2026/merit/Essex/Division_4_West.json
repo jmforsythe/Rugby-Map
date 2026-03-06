@@ -1,0 +1,77 @@
+{
+  "league_name": "Division 4 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=67260&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Epping Upper Clapton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7625",
+      "image_url": "https://images.englandrugby.com/club_images/7625.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Romford & Gidea Park RFC 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128565",
+      "image_url": "https://images.englandrugby.com/club_images/128565.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "East London III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7165",
+      "image_url": "https://images.englandrugby.com/club_images/7165.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Kings Cross Steelers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11558",
+      "image_url": "https://images.englandrugby.com/club_images/11558.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Dagenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6052",
+      "image_url": "https://images.englandrugby.com/club_images/6052.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Thurrock III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22771",
+      "image_url": "https://images.englandrugby.com/club_images/22771.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    }
+  ],
+  "team_count": 7
+}

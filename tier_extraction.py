@@ -105,14 +105,14 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "Bristol_&_District": 10,
         "CANDY": 9,
         "Devon_Merit": 10,
-        "Division": 10,
+        "Division": 9,
         "East_Midlands": 9 if "B" in filename.removesuffix(".json").split("_") else 8,
         "Eastern_Counties": 8,
         "Gloucester_&_District": 10,
         "Kent": 10,
         "Leicestershire_Merit": 9,
         "NOWIRUL": 9,
-        "Premier_Division": 10,
+        "Premier_Division": 9,
         "Table": 10,
     }
     for prefix, offset in zeroth_tier_map.items():

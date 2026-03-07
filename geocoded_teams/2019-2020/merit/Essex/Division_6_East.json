@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 6 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=23202&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Runwell Wyverns",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18403",
+      "image_url": "https://images.englandrugby.com/club_images/18403.png",
+      "address": "Runwell Hospital Sports and Social Club Runwel Chase Wickford ESSEX SS11 7QA UNITED KINGDOM",
+      "latitude": 51.6321,
+      "longitude": 0.54572,
+      "formatted_address": "SS11 7QA, Runwell, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351977553
+    },
+    {
+      "name": "Southend V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19738",
+      "image_url": "https://images.englandrugby.com/club_images/19738.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Billericay II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2202",
+      "image_url": "https://images.englandrugby.com/club_images/2202.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Basildon III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1546",
+      "image_url": "https://images.englandrugby.com/club_images/1546.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Benfleet Vikings",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1957",
+      "image_url": "https://images.englandrugby.com/club_images/1957.png",
+      "address": "The Pavillion Brook Rd Benfleet Essex SS7 5JF England",
+      "latitude": 51.54975,
+      "longitude": 0.55796,
+      "formatted_address": "SS7 5JF, Castle Point, Essex, England, United Kingdom",
+      "place_id": 351985117
+    },
+    {
+      "name": "Rochford Hundred IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17910",
+      "image_url": "https://images.englandrugby.com/club_images/17910.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "Writtle Wanderers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26201",
+      "image_url": "https://images.englandrugby.com/club_images/26201.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    },
+    {
+      "name": "Witham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25767",
+      "image_url": "https://images.englandrugby.com/club_images/25767.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    }
+  ],
+  "team_count": 8
+}

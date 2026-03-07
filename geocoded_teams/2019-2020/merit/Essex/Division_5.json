@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=23201&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Rochford Hundred III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17909",
+      "image_url": "https://images.englandrugby.com/club_images/17909.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "Thurrock III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22771",
+      "image_url": "https://images.englandrugby.com/club_images/22771.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Canvey Island II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4151",
+      "image_url": "https://images.englandrugby.com/club_images/4151.png",
+      "address": "Tewkes Creek, Dovervelt Road, Canvey Island, Essex, SS8 8EJ, United Kingdom",
+      "latitude": 51.52916,
+      "longitude": 0.59358,
+      "formatted_address": "SS8 8EJ, Canvey Island, Castle Point, Essex, England, United Kingdom",
+      "place_id": 351985750
+    },
+    {
+      "name": "Ongar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16209",
+      "image_url": "https://images.englandrugby.com/club_images/16209.png",
+      "address": "Ongar Rfc Love Lane High Street Ongar CM5 9BL United Kingdom",
+      "latitude": 51.70815,
+      "longitude": 0.24586,
+      "formatted_address": "CM5 9BL, Ongar, Chipping Ongar, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351081502
+    },
+    {
+      "name": "Ilford Wanderers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10785",
+      "image_url": "https://images.englandrugby.com/club_images/10785.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Mavericks II - 2XV M",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13555",
+      "image_url": "https://images.englandrugby.com/club_images/13555.png",
+      "address": "The Pavilion The Drive Warley Brentwood ESSEX CM13 3AR England",
+      "latitude": 51.60508,
+      "longitude": 0.29744,
+      "formatted_address": "CM13 3AR, Brentwood, Essex, England, United Kingdom",
+      "place_id": 351074808
+    },
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Upminster III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23762",
+      "image_url": "https://images.englandrugby.com/club_images/23762.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Old Brentwoods II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15449",
+      "image_url": "https://images.englandrugby.com/club_images/15449.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    }
+  ],
+  "team_count": 9
+}

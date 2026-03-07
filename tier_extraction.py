@@ -82,6 +82,11 @@ _SPONSOR_PREFIXES = [
     "Ellis_Mediation_",
     "Fill_Your_Boots_",
     "Webb_Ellis_",
+    "Banana_Bread_Beer_",
+    "Bombardier_",
+    "Directors_",
+    "Estrella_Damm_",
+    "Youngs_London_Stout_",
 ]
 
 
@@ -109,6 +114,7 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "Bristol_&_District": 10,
         "CANDY": 9,
         "Devon_Merit": 10,
+        "District_Premier": 10,
         "Division": 9,
         "East_Midlands": 9 if "B" in filename.removesuffix(".json").split("_") else 8,
         "Eastern_Counties": 8,
@@ -192,6 +198,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Bristol_&_District": 10,
         "CANDY": 9,
         "Devon_Merit": 10,
+        "District_Premier": 10,
         "Divsion": 9,
         "Division": 9,
         "East_Midlands": 8,

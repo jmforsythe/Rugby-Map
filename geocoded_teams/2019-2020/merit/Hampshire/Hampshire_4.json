@@ -1,0 +1,107 @@
+{
+  "league_name": "Hampshire 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=28674&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Ventnor 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23954",
+      "image_url": "https://images.englandrugby.com/club_images/23954.png",
+      "address": "ventnor rugby club Watcombe Bottom Whitwell Road Ventnor ISLE OF WIGHT PO38 1LP UNITED KINGDOM",
+      "latitude": 50.5925029,
+      "longitude": -1.2323758,
+      "formatted_address": "PO38 1LP, Ventnor, Isle of Wight, England, United Kingdom",
+      "place_id": 350777582
+    },
+    {
+      "name": "Farnborough 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7966",
+      "image_url": "https://images.englandrugby.com/club_images/7966.png",
+      "address": "Farnborough Rfc Rugby Club Tile Barn Close Cove Farnborough Hampshire GU14 8LS United Kingdom",
+      "latitude": 51.30062,
+      "longitude": -0.7640348,
+      "formatted_address": "GU14 8LS, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 350639981
+    },
+    {
+      "name": "Wessex Wyverns RFC 1st XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24732",
+      "image_url": "https://images.englandrugby.com/club_images/24732.png",
+      "address": "C/o Piers De Hondt (club Secretary) Southampton Rfc Test Lane Lower Brownhill Road Southampton Hamps SO16 9BP England",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "United Services 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23487",
+      "image_url": "https://images.englandrugby.com/club_images/23487.png",
+      "address": "United Services Sports Club Burnaby Road Portsmouth Hamps PO1 2EJ United Kingdom",
+      "latitude": 50.7965238,
+      "longitude": -1.0982525,
+      "formatted_address": "PO1 2EJ, Portsmouth, England, United Kingdom",
+      "place_id": 351777555
+    },
+    {
+      "name": "Gosport & Fareham Pirates",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8813",
+      "image_url": "https://images.englandrugby.com/club_images/8813.png",
+      "address": "Gosport Park Dolphin Crescent Gosport Hampshire PO12 2HE United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774635
+    },
+    {
+      "name": "Basingstoke Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1589",
+      "image_url": "https://images.englandrugby.com/club_images/1589.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    },
+    {
+      "name": "Fawley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8027",
+      "image_url": "https://images.englandrugby.com/club_images/8027.png",
+      "address": "Fawley Rfc, Newlands Road, Fawley, Southampton, Hampshire, SO45 1GA, United Kingdom",
+      "latitude": 50.8250519,
+      "longitude": -1.3732454,
+      "formatted_address": "SO45 1GA, Fawley, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350832056
+    },
+    {
+      "name": "Romsey 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17977",
+      "image_url": "https://images.englandrugby.com/club_images/17977.png",
+      "address": "Ganger Farm Sports Pavilion, Ganger Farm Way, Romsey, Hampshire, SO51 0EE, United Kingdom",
+      "latitude": 51.0083812,
+      "longitude": -1.4653368,
+      "formatted_address": "SO51 0EE, Romsey, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832300
+    },
+    {
+      "name": "Chineham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4792",
+      "image_url": "https://images.englandrugby.com/club_images/4792.png",
+      "address": "Basingstoke Sports & Social Club May's Bounty Cricket Ground Fairfields Road Basingstoke HAMPSHIRE RG21 3DR UNITED KINGDOM ",
+      "latitude": 51.2590062,
+      "longitude": -1.0908625,
+      "formatted_address": "RG21 3DR, Basingstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350786447
+    },
+    {
+      "name": "Southampton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19706",
+      "image_url": "https://images.englandrugby.com/club_images/19706.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827847
+    }
+  ],
+  "team_count": 10
+}

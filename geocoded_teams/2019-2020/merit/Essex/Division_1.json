@@ -1,0 +1,107 @@
+{
+  "league_name": "Division 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=23197&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Hertford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10047",
+      "image_url": "https://images.englandrugby.com/club_images/10047.png",
+      "address": "Highfields, 62 Hoe Lane, Ware, Hertfordshire, SG12 9NZ, United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
+    },
+    {
+      "name": "Eton Manor II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7710",
+      "image_url": "https://images.englandrugby.com/club_images/7710.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "Westcliff II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24955",
+      "image_url": "https://images.englandrugby.com/club_images/24955.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Southend II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19721",
+      "image_url": "https://images.englandrugby.com/club_images/19721.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Shelford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19150",
+      "image_url": "https://images.englandrugby.com/club_images/19150.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Chingford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4797",
+      "image_url": "https://images.englandrugby.com/club_images/4797.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Colchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5389",
+      "image_url": "https://images.englandrugby.com/club_images/5389.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Brentwood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3073",
+      "image_url": "https://images.englandrugby.com/club_images/3073.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
+      "name": "Rochford Hundred II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17908",
+      "image_url": "https://images.englandrugby.com/club_images/17908.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "Thurrock II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22770",
+      "image_url": "https://images.englandrugby.com/club_images/22770.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    }
+  ],
+  "team_count": 10
+}

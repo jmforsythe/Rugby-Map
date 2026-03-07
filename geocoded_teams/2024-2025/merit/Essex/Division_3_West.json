@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 3 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=59500&season=2024-2025#tables",
+  "teams": [
+    {
+      "name": "East London II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7164",
+      "image_url": "https://images.englandrugby.com/club_images/7164.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Bancroft",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1295",
+      "image_url": "https://images.englandrugby.com/club_images/1295.png",
+      "address": "Bancroft Rfc The Club House Bradfords Close Buckhurst Way Buckhurst Hill Essex IG9 6JD United Kingdom",
+      "latitude": 51.61605,
+      "longitude": 0.04569,
+      "formatted_address": "IG9 6JD, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351389783
+    },
+    {
+      "name": "Ilford Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
+      "image_url": "https://images.englandrugby.com/club_images/10783.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Campion II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4079",
+      "image_url": "https://images.englandrugby.com/club_images/4079.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    },
+    {
+      "name": "Woodford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25973",
+      "image_url": "https://images.englandrugby.com/club_images/25973.png",
+      "address": "Highhams High Road Woodford Green ESSEX IG8 9LB UNITED KINGDOM ",
+      "latitude": 51.6064675,
+      "longitude": 0.0153218,
+      "formatted_address": "IG8 9LB, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350657409
+    },
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Dagenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6052",
+      "image_url": "https://images.englandrugby.com/club_images/6052.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Kings Cross Steelers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11558",
+      "image_url": "https://images.englandrugby.com/club_images/11558.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    }
+  ],
+  "team_count": 8
+}

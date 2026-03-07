@@ -1,0 +1,107 @@
+{
+  "league_name": "Harvey's Brewery Counties 3 Sussex",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=57767&season=2024-2025#tables",
+  "teams": [
+    {
+      "name": "Eastbourne II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7213",
+      "image_url": "https://images.englandrugby.com/club_images/7213.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "Royals RFC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94051",
+      "image_url": "https://images.englandrugby.com/club_images/94051.png",
+      "address": "Pavilion, Grainville Playing Fields, Jersey, St Saviour, JE2 7LJ, Jersey",
+      "latitude": 49.1969,
+      "longitude": -2.0879,
+      "formatted_address": "St. Saviour's Hill, Five Oaks, Vingtaine de dessous l'Église, St Saviour, JE2 7TA, Jersey",
+      "place_id": 259613817
+    },
+    {
+      "name": "Barns Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
+      "image_url": "https://images.englandrugby.com/club_images/1452.png",
+      "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
+      "latitude": 51.033237,
+      "longitude": -0.3956182,
+      "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350794178
+    },
+    {
+      "name": "East Grinstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
+      "image_url": "https://images.englandrugby.com/club_images/7136.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Horsham Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
+      "image_url": "https://images.englandrugby.com/club_images/10451.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Haywards Heath II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9777",
+      "image_url": "https://images.englandrugby.com/club_images/9777.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Shoreham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19262",
+      "image_url": "https://images.englandrugby.com/club_images/19262.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    },
+    {
+      "name": "Newick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14523",
+      "image_url": "https://images.englandrugby.com/club_images/14523.png",
+      "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
+      "latitude": 50.9714056,
+      "longitude": 0.0210742,
+      "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350503623
+    }
+  ],
+  "team_count": 10
+}

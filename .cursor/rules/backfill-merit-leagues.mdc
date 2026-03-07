@@ -1,0 +1,159 @@
+---
+description: Repeatable workflow for adding merit leagues to a season
+alwaysApply: false
+---
+
+# Add Merit Leagues to a Season
+
+Repeatable workflow. The user provides a season (e.g. `2024-2025`) and the agent runs
+through each step, pausing for review where indicated.
+
+## Per-Season Workflow
+
+### Step 1: Scrape
+
+```bash
+make scrape SEASON=<season>
+```
+
+The scraper skips files that already exist. Merit leagues are saved to
+`league_data/<season>/merit/<Competition>/` via `use_competition_subdirs=True`.
+
+If anti-bot (202 response) is triggered, stop and retry later. The meta league cache
+(`_meta_leagues_cache.json`) preserves progress.
+
+### Step 2: Fetch addresses and geocode
+
+```bash
+make addresses SEASON=<season>
+make geocode SEASON=<season>
+```
+
+These also skip existing files -- only newly scraped leagues are processed.
+
+### Step 3: Run `analyse_tier_movement.py` and review output
+
+```bash
+python analyse_tier_movement.py
+```
+
+Check the output for problems introduced by the new season's merit data:
+
+1. **UNKNOWN TIER ASSIGNMENTS (tier 999)** -- merit filenames that `tier_extraction.py`
+   doesn't recognise. Fix by adding entries to the `zeroth_tier_map` in
+   `extract_tier_men_current` (for 2022+) or `extract_tier_men_pre_2021` (for <=2021).
+
+2. **DUPLICATE APPEARANCES** -- a team appearing in both a pyramid league and a merit
+   league in the same season. This is usually fine (reserve/merit leagues are separate),
+   but flag anything suspicious.
+
+3. **LARGE TIER JUMPS** -- a team jumping >=3 tiers between consecutive seasons may
+   indicate a bad tier assignment on a merit league.
+
+### Step 4: Fix bad leagues (if needed)
+
+If a scraped league is junk (playoffs, cups, etc. that slipped through the filter):
+
+1. Add the offending word to `_BANNED_WORDS` or filename to `_BANNED_FILENAMES` in
+   `scrape_leagues_teams.py`.
+2. Delete the bad league file from all three directories:
+   - `league_data/<season>/merit/<Competition>/<file>.json`
+   - `team_addresses/<season>/merit/<Competition>/<file>.json`
+   - `geocoded_teams/<season>/merit/<Competition>/<file>.json`
+
+### Step 5: Fix tier assignments (if needed)
+
+If `analyse_tier_movement.py` reports unknown tiers or suspicious jumps for merit leagues:
+
+- For **2022+ seasons**: add/adjust entries in `extract_tier_men_current`'s `zeroth_tier_map`
+  in `tier_extraction.py`.
+- For **<=2021 seasons**: add/adjust entries in `extract_tier_men_pre_2021`'s `zeroth_tier_map`.
+
+Merit tier mappings to be aware of (from `extract_tier_men_current`):
+
+| Prefix               | Base tier | Notes                                    |
+|----------------------|-----------|------------------------------------------|
+| `Bristol_&_District` | 10        |                                          |
+| `CANDY`              | 9         |                                          |
+| `Devon_Merit`        | 10        |                                          |
+| `Division`           | 9         | Essex, Middlesex merit divisions         |
+| `East_Midlands`      | 9 (or 8)  | 8 unless "B" in filename                 |
+| `Eastern_Counties`   | 8         |                                          |
+| `Gloucester_&_District` | 10     |                                          |
+| `Hampshire_Premiership` | 11     | Below Counties 4 Hampshire (tier 10)     |
+| `Kent`               | 10        |                                          |
+| `Leicestershire_Merit` | 9       |                                          |
+| `Merit_Championship` | 11        | Herts/Middlesex top merit                |
+| `Merit_North`        | 11        | Herts/Middlesex lower merit              |
+| `Merit_South`        | 11        | Herts/Middlesex lower merit              |
+| `NOWIRUL`            | 9         |                                          |
+| `Premier_Division`   | 9         |                                          |
+| `Table`              | 10        |                                          |
+
+These may need to be replicated in `extract_tier_men_pre_2021` if processing <=2021 seasons.
+
+### Step 6: Generate distances and maps
+
+```bash
+make distances SEASON=<season>
+make maps SEASON=<season>
+```
+
+### Step 7: Review map warnings and iterate
+
+Check the `WARNING` lines from `make_tier_maps.py` output. Co-located coordinate groups
+across different leagues on the **same tier** indicate tier mapping problems:
+
+- **Same club, different XVs at same tier** (e.g. Winchester III at tier 10 in pyramid,
+  Winchester Knights at tier 10 in merit): the merit league's base tier is too high.
+  Bump it down so the lower squad sits at a lower level.
+- **Duplicate teams from crossover/conference leagues**: delete the crossover league file
+  from all three directories (`league_data/`, `team_addresses/`, `geocoded_teams/`).
+- **Same team in two regional splits** (e.g. Sussex East + Sussex West): usually a data
+  issue on the RFU site; delete the duplicate file.
+
+After fixing, re-run `make maps SEASON=<season>` and check warnings again. Repeat until
+warnings are acceptable (some same-club overlaps at genuinely the same level are fine).
+
+### Step 8: Rebuild webpages (after all seasons done)
+
+```bash
+make pages
+make webpages
+```
+
+## Season Checklist
+
+| Season      | Scraped | Validated | Maps |
+|-------------|---------|-----------|------|
+| 2024-2025   | [x]     | [x]       | [x]  |
+| 2023-2024   | [ ]     | [ ]       | [ ]  |
+| 2022-2023   | [ ]     | [ ]       | [ ]  |
+| 2021-2022   | [ ]     | [ ]       | [ ]  |
+| 2019-2020   | [ ]     | [ ]       | [ ]  |
+| 2018-2019   | [ ]     | [ ]       | [ ]  |
+| 2017-2018   | [ ]     | [ ]       | [ ]  |
+| 2016-2017   | [ ]     | [ ]       | [ ]  |
+| 2015-2016   | [ ]     | [ ]       | [ ]  |
+| 2014-2015   | [ ]     | [ ]       | [ ]  |
+| 2013-2014   | [ ]     | [ ]       | [ ]  |
+| 2012-2013   | [ ]     | [ ]       | [ ]  |
+| 2011-2012   | [ ]     | [ ]       | [ ]  |
+| 2010-2011   | [ ]     | [ ]       | [ ]  |
+
+Note: 2020-2021 (COVID) had only Prem/Champ/Women's Prem -- skip.
+
+## Known Risks
+
+- **Anti-bot**: RFU returns 202 when it detects scraping. Space sessions out. The meta
+  league cache preserves progress so retries only hit uncached URLs.
+- **Competition availability**: Some competition IDs didn't exist in older seasons. The
+  scraper returns zero leagues for those -- harmless.
+- **Filename variation**: League names change across seasons (sponsor changes, renamed
+  divisions). Tier extraction may need new entries for old naming patterns.
+
+## Reference: Eastern Counties split
+
+Eastern Counties has two filename patterns -- do NOT mix them up:
+- `Greene_King_IPA_Eastern_Counties_*` = **pyramid** leagues, live in main season dir
+- `Eastern_Counties_Greene_King_Division_*` = **merit** leagues, live in `merit/Eastern_Counties/`

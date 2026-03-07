@@ -328,6 +328,9 @@ _BANNED_WORDS = [
     "2b",
     "cup",
     "pool",
+    "vets",
+    "veterans",
+    "vase",
 ]
 
 _BANNED_FILENAMES = [

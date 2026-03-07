@@ -1,0 +1,131 @@
+{
+  "league_name": "Division 4 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=11241&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Leyland Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12230",
+      "image_url": "https://images.englandrugby.com/club_images/12230.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Orrell 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16279",
+      "image_url": "https://images.englandrugby.com/club_images/16279.png",
+      "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
+      "latitude": 53.54627,
+      "longitude": -2.72694,
+      "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 352156955
+    },
+    {
+      "name": "Blackburn 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2479",
+      "image_url": "https://images.englandrugby.com/club_images/2479.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Fylde Vandals (4th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8446",
+      "image_url": "https://images.englandrugby.com/club_images/8446.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Thornton Cleveleys 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22753",
+      "image_url": "https://images.englandrugby.com/club_images/22753.png",
+      "address": "Thornton Sports Centre Victoria Road East Thornton Cleveleys. FY5 3SX United Kingdom",
+      "latitude": 53.8741166,
+      "longitude": -3.0170559,
+      "formatted_address": "YMCA Thornton Sports Centre, Victoria Road East, Norcross, Thornton, Wyre, Lancashire, England, FY5 3SX, United Kingdom",
+      "place_id": 255937534
+    },
+    {
+      "name": "Leigh 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12121",
+      "image_url": "https://images.englandrugby.com/club_images/12121.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Rochdale 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17891",
+      "image_url": "https://images.englandrugby.com/club_images/17891.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Hawcoat Park 'A' Team (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9736",
+      "image_url": "https://images.englandrugby.com/club_images/9736.png",
+      "address": "Hawcoat Park Sports & Social Club Hawcoat Lane Barrow In Furness Cumbria LA14 4HF United Kingdom",
+      "latitude": 54.1300027,
+      "longitude": -3.214462,
+      "formatted_address": "LA14 4HF, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350678163
+    },
+    {
+      "name": "Clitheroe 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5289",
+      "image_url": "https://images.englandrugby.com/club_images/5289.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    },
+    {
+      "name": "Vale of Lune 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23903",
+      "image_url": "https://images.englandrugby.com/club_images/23903.png",
+      "address": "Vale Of Lune Rufc, Powderhouse Lane, Lancaster., Lancashire, LA1 2TT, United Kingdom",
+      "latitude": 54.0619369,
+      "longitude": -2.8191176,
+      "formatted_address": "LA1 2TT, England, United Kingdom",
+      "place_id": 350226941
+    },
+    {
+      "name": "Sedgley Park 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18927",
+      "image_url": "https://images.englandrugby.com/club_images/18927.png",
+      "address": "Sedgley Park RUFC Park Lane Whitefield Manchester M45 7DZ ENGLAND",
+      "latitude": 53.53986,
+      "longitude": -2.30427,
+      "formatted_address": "M45 7DZ, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 351558777
+    },
+    {
+      "name": "Bury 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3810",
+      "image_url": "https://images.englandrugby.com/club_images/3810.png",
+      "address": "Radcliffe Road Bury LANCASHIRE BL9 9JX UNITED KINGDOM ",
+      "latitude": 53.58371,
+      "longitude": -2.30082,
+      "formatted_address": "BL9 9JX, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 350991687
+    },
+    {
+      "name": "Tyldesley 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23371",
+      "image_url": "https://images.englandrugby.com/club_images/23371.png",
+      "address": "St. George's Park, Astley Street, Astley Street, Tyldesley., Lancs, M29 8HG, United Kingdom",
+      "latitude": 53.5133491,
+      "longitude": -2.4671813,
+      "formatted_address": "M29 8HG, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 351549693
+    }
+  ],
+  "team_count": 13
+}

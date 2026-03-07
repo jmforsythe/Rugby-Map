@@ -1,0 +1,57 @@
+{
+  "league_name": "Estrella Damm",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=11171&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Northampton Casuals 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14873",
+      "image_url": "https://images.englandrugby.com/club_images/14873.png",
+      "address": "Rush Mills House, Old Bedford Road, Rush Mills, Northampton, Northamptonshire, NN4 7AA, United Kingdom",
+      "latitude": 52.2278993,
+      "longitude": -0.8637056,
+      "formatted_address": "NN4 7AA, Brackmills Industrial Estate, Brackmills, Hardingstone, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727046
+    },
+    {
+      "name": "Old Northamptonians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15845",
+      "image_url": "https://images.englandrugby.com/club_images/15845.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "Peterborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16821",
+      "image_url": "https://images.englandrugby.com/club_images/16821.png",
+      "address": "Peterborough R.u.f.c., Second Drove, Fengate, Peterborough, Cambridgeshire, PE1 5XA, United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759246
+    },
+    {
+      "name": "Northampton BBOB 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14859",
+      "image_url": "https://images.englandrugby.com/club_images/14859.png",
+      "address": "St. Andrews mill St. Andrews Road Northampton NORTHAMPTONSHIRE NN1 2PQ UNITED KINGDOM",
+      "latitude": 52.2453999,
+      "longitude": -0.90376,
+      "formatted_address": "NN1 2PQ, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 351212226
+    },
+    {
+      "name": "Kettering 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11348",
+      "image_url": "https://images.englandrugby.com/club_images/11348.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    }
+  ],
+  "team_count": 5
+}

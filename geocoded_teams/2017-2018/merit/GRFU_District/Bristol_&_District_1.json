@@ -1,0 +1,77 @@
+{
+  "league_name": "Bristol & District 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=11506&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Cleve II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5219",
+      "image_url": "https://images.englandrugby.com/club_images/5219.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
+      "name": "Frampton Cotterell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8292",
+      "image_url": "https://images.englandrugby.com/club_images/8292.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Thornbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22689",
+      "image_url": "https://images.englandrugby.com/club_images/22689.png",
+      "address": "Cooper's Farm Rockhampton Road Newton Thornbury BS35 1LG UNITED KINGDOM",
+      "latitude": 51.6296946,
+      "longitude": -2.5100507,
+      "formatted_address": "BS35 1LG, Rockhampton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350064512
+    },
+    {
+      "name": "Bristol Saracens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3279",
+      "image_url": "https://images.englandrugby.com/club_images/3279.png",
+      "address": "Bakewell Memorial Ground Station Road Cribbs Causeway Bristol BRISTOL BS10 7TT ENGLAND ",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Dings Crusaders III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6472",
+      "image_url": "https://images.englandrugby.com/club_images/6472.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Cotham Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5679",
+      "image_url": "https://images.englandrugby.com/club_images/5679.png",
+      "address": "Cotham Park RFC Upper Farm, Beggar Bush Lane Failand, Bristol SOMERSET BS8 3TF UNITED KINGDOM ",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350521707
+    },
+    {
+      "name": "St Bernadettes OB II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20225",
+      "image_url": "https://images.englandrugby.com/club_images/20225.png",
+      "address": "St Bernadettes Old Boys Rfc Fulford Road Hartcliffe Bristol Avon BS13 9PB United Kingdom",
+      "latitude": 51.41041,
+      "longitude": -2.60456,
+      "formatted_address": "BS13 9PB, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351016350
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,107 @@
+{
+  "league_name": "Sussex 2 'Armada Ale'",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=11648&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Plumpton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16949",
+      "image_url": "https://images.englandrugby.com/club_images/16949.png",
+      "address": "Plumpton Racecourse Plumpton Lane Plumpton Green EAST SUSSEX BN7 3AL UNITED KINGDOM",
+      "latitude": 50.9249449,
+      "longitude": -0.0616538,
+      "formatted_address": "Plumpton Racecourse, Plumpton Lane, Plumpton, Plumpton Green, Lewes, East Sussex, England, BN7 3AB, United Kingdom",
+      "place_id": 260496724
+    },
+    {
+      "name": "St Jacques",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20452",
+      "image_url": "https://images.englandrugby.com/club_images/20452.png",
+      "address": "Garenne Stand Footes Lane Guernsey Channel Islands GY1 2UL United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352198328
+    },
+    {
+      "name": "St Francis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20374",
+      "image_url": "https://images.englandrugby.com/club_images/20374.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Worthing Azurians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26123",
+      "image_url": "https://images.englandrugby.com/club_images/26123.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351175070
+    },
+    {
+      "name": "Newick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14523",
+      "image_url": "https://images.englandrugby.com/club_images/14523.png",
+      "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
+      "latitude": 50.9714056,
+      "longitude": 0.0210742,
+      "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350503623
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    },
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    },
+    {
+      "name": "Brighton & Sussex Medics",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3207",
+      "image_url": "https://images.englandrugby.com/club_images/3207.png",
+      "address": "C/0 CB administrator Sussex Rugby University of Brighton Sports Centre Falmer Campus Brighton BN1 9PH",
+      "latitude": 50.8600421,
+      "longitude": -0.0862726,
+      "formatted_address": "BN1 9PH, Brighton and Hove, England, United Kingdom",
+      "place_id": 350500798
+    }
+  ],
+  "team_count": 10
+}

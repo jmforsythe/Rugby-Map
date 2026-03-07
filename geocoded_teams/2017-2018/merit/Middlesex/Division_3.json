@@ -1,0 +1,84 @@
+{
+  "league_name": "Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=11252&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "London Cornish 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12511",
+      "image_url": "https://images.englandrugby.com/club_images/12511.png",
+      "address": "Richardson-Evans Memorial Playing Fields Roehampton Vale London SW15 3PQ UNITED KINGDOM",
+      "latitude": 51.4364034,
+      "longitude": -0.2530265,
+      "formatted_address": "SW15 3PQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839495
+    },
+    {
+      "name": "Hammersmith & Fulham V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9274",
+      "image_url": "https://images.englandrugby.com/club_images/9274.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London Welsh Druids",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12641",
+      "image_url": "https://images.englandrugby.com/club_images/12641.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Twickenham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
+      "image_url": "https://images.englandrugby.com/club_images/23337.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "London Scottish Extra B's (Amateurs 4th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12606",
+      "image_url": "https://images.englandrugby.com/club_images/12606.png",
+      "address": "Richmond Athletic Ground Kew Foot Road Richmond Surrey TW9 2SS United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872400
+    },
+    {
+      "name": "Hampstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9293",
+      "image_url": "https://images.englandrugby.com/club_images/9293.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Belsize Park IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1946",
+      "image_url": "https://images.englandrugby.com/club_images/1946.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Wasps Cubans (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24399",
+      "image_url": "https://images.englandrugby.com/club_images/24399.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 6",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=11255&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Whitton Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25338",
+      "image_url": "https://images.englandrugby.com/club_images/25338.png",
+      "address": "Whitton Park Sports Association 190 Wills Crescent Hounslow TW3 2JD United Kingdom",
+      "latitude": 51.4551602,
+      "longitude": -0.3667651,
+      "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871759
+    },
+    {
+      "name": "London Welsh Occies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12647",
+      "image_url": "https://images.englandrugby.com/club_images/12647.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Twickenham 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23338",
+      "image_url": "https://images.englandrugby.com/club_images/23338.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Uxbridge 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23881",
+      "image_url": "https://images.englandrugby.com/club_images/23881.png",
+      "address": "Uxbridge Cricket Club Park Road Uxbridge MIDDLESEX UB8 1NR UNITED KINGDOM",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352107282
+    },
+    {
+      "name": "Chiswick 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4933",
+      "image_url": "https://images.englandrugby.com/club_images/4933.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Hackney 4thXV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9157",
+      "image_url": "https://images.englandrugby.com/club_images/9157.png",
+      "address": "Spring Hill Sports Ground Spring Hill Upper Clapton Hackney E5 9BL United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350156923
+    },
+    {
+      "name": "Grasshoppers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8855",
+      "image_url": "https://images.englandrugby.com/club_images/8855.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Bank of England III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1316",
+      "image_url": "https://images.englandrugby.com/club_images/1316.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "CSSC Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5990",
+      "image_url": "https://images.englandrugby.com/club_images/5990.png",
+      "address": "C/O Middlesex CB PK1 Twyford Abbey Sports Ground Twyford Abbey Road London W3 9QA",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    }
+  ],
+  "team_count": 9
+}

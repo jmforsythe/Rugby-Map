@@ -1,0 +1,77 @@
+{
+  "league_name": "Bristol & District 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=13143&season=2017-2018#tables",
+  "teams": [
+    {
+      "name": "Avonmouth OB III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1087",
+      "image_url": "https://images.englandrugby.com/club_images/1087.png",
+      "address": "Barracks Lane Avonmouth Bristol BS11 9NG United Kingdom",
+      "latitude": 51.4966619,
+      "longitude": -2.682831,
+      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
+      "place_id": 259045915
+    },
+    {
+      "name": "Wotton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26170",
+      "image_url": "https://images.englandrugby.com/club_images/26170.png",
+      "address": "33 Abingdon Road Fishponds Bristol Gloucestershire BS16 3NR United Kingdom",
+      "latitude": 51.4739391,
+      "longitude": -2.5312718,
+      "formatted_address": "BS16 3NR, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351017836
+    },
+    {
+      "name": "Kingswood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11693",
+      "image_url": "https://images.englandrugby.com/club_images/11693.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Whitehall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25260",
+      "image_url": "https://images.englandrugby.com/club_images/25260.png",
+      "address": "Whitehall RFC Speedwell Recreation Ground Foundry Lane, Speedwell Bristol BRISTOL BS5 7UE UNITED KINGDOM ",
+      "latitude": 51.4703526,
+      "longitude": -2.5375935,
+      "formatted_address": "BS5 7UE, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350519395
+    },
+    {
+      "name": "Frampton Cotterell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8293",
+      "image_url": "https://images.englandrugby.com/club_images/8293.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Southmead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19763",
+      "image_url": "https://images.englandrugby.com/club_images/19763.png",
+      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
+      "latitude": 51.499895,
+      "longitude": -2.6078965,
+      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350505286
+    },
+    {
+      "name": "Bristol Aeroplane Co. II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3245",
+      "image_url": "https://images.englandrugby.com/club_images/3245.png",
+      "address": "Bawa Sports Field, 589, Southmead Road, Filton, Avon, BS34 7RG, United Kingdom",
+      "latitude": 51.5065637,
+      "longitude": -2.588037,
+      "formatted_address": "BS34 7RG, Filton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350514570
+    }
+  ],
+  "team_count": 7
+}

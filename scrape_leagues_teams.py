@@ -333,6 +333,7 @@ _BANNED_WORDS = [
     "vets",
     "veterans",
     "vase",
+    "colts",
 ]
 
 _BANNED_FILENAMES = [
@@ -343,6 +344,7 @@ _BANNED_FILENAMES = [
     "MRL3_Play_Off_9-13.json",
     "National_League_Play_Offs.json",
     "Social_Rugby_Group.json",
+    "Solent_1_Play_Off.json",
 ]
 
 

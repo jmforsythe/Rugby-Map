@@ -316,7 +316,7 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
 
 _BANNED_WORDS = [
     "playoff",
-    "play off",
+    "play",
     "play-off",
     "phase",
     "shield",
@@ -334,6 +334,8 @@ _BANNED_WORDS = [
     "veterans",
     "vase",
     "colts",
+    "play-offs",
+    "scrapped",
 ]
 
 _BANNED_FILENAMES = [
@@ -345,6 +347,9 @@ _BANNED_FILENAMES = [
     "National_League_Play_Offs.json",
     "Social_Rugby_Group.json",
     "Solent_1_Play_Off.json",
+    "London_and_SE_Division_Play-Offs.json",
+    "Area_2_Merit_League.json",
+    "Bombardier___Eagle_2017.json",
 ]
 
 

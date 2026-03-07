@@ -1,0 +1,107 @@
+{
+  "league_name": "Merit Table 6",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=10571&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "St Albans 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20103",
+      "image_url": "https://images.englandrugby.com/club_images/20103.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Finsbury Park 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8120",
+      "image_url": "https://images.englandrugby.com/club_images/8120.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.58897,
+      "longitude": -0.0852099,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
+    },
+    {
+      "name": "Berkhamsted",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1988",
+      "image_url": "https://images.englandrugby.com/club_images/1988.png",
+      "address": "Bhhhc Lockhart Field Cow Roast Berkhamsted HP23 5RF England",
+      "latitude": 51.7840027,
+      "longitude": -0.616017,
+      "formatted_address": "HP23 5RF, Wigginton, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 351362659
+    },
+    {
+      "name": "Old Albanians 5th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15380",
+      "image_url": "https://images.englandrugby.com/club_images/15380.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Hemel Hempstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9963",
+      "image_url": "https://images.englandrugby.com/club_images/9963.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    },
+    {
+      "name": "Fullerians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8386",
+      "image_url": "https://images.englandrugby.com/club_images/8386.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Cheshunt 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4638",
+      "image_url": "https://images.englandrugby.com/club_images/4638.png",
+      "address": "Rosedale Sports Club, Andrews Lane, Andrews Lane, Cheshunt, Hertfordshire, EN7 6TB, United Kingdom",
+      "latitude": 51.71103,
+      "longitude": -0.06665,
+      "formatted_address": "EN7 6TB, Broxbourne, Hertfordshire, England, United Kingdom",
+      "place_id": 351246567
+    },
+    {
+      "name": "Harpenden 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9450",
+      "image_url": "https://images.englandrugby.com/club_images/9450.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Old Ashmoleans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15425",
+      "image_url": "https://images.englandrugby.com/club_images/15425.png",
+      "address": "Bourneside Sports Ground The Bourne Southgate London N14 6QY UNITED KINGDOM",
+      "latitude": 51.6318927,
+      "longitude": -0.1223557,
+      "formatted_address": "N14 6QY, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604773
+    },
+    {
+      "name": "Old Merchant Taylors' Lambs (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15826",
+      "image_url": "https://images.englandrugby.com/club_images/15826.png",
+      "address": "War Memorial Sports Ground Merchant Taylors' School Sandy Lodge Northwood MIDDLESEX HA6 2HT UNITED KINGDOM",
+      "latitude": 51.6332225,
+      "longitude": -0.4255552,
+      "formatted_address": "HA6 2HT, Batchworth, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 350645376
+    }
+  ],
+  "team_count": 10
+}

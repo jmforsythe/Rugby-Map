@@ -1,0 +1,84 @@
+{
+  "league_name": "Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=10259&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Old Hamptonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15777",
+      "image_url": "https://images.englandrugby.com/club_images/15777.png",
+      "address": "Old Hamptonians R.F.C. Dean Road Hampton Hampton Hampton MIDDLESEX TW12 1AQ UNITED KINGDOM ",
+      "latitude": 51.4310684,
+      "longitude": -0.371552,
+      "formatted_address": "TW12 1AQ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350870809
+    },
+    {
+      "name": "Pinner & Grammarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16926",
+      "image_url": "https://images.englandrugby.com/club_images/16926.png",
+      "address": "Shaftesbury Playing Fields Grimsdyke Road Grimsdyke Road Hatch End Middlesex HA4 4PW United Kingdom",
+      "latitude": 51.55952,
+      "longitude": -0.4167818,
+      "formatted_address": "HA4 192, Clyfford Road, London Borough of Hillingdon, Greater London, England, HA4 6PX, United Kingdom",
+      "place_id": 259660855
+    },
+    {
+      "name": "London Scottish Extra B's (Amateurs 4th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12606",
+      "image_url": "https://images.englandrugby.com/club_images/12606.png",
+      "address": "Richmond Athletic Ground Kew Foot Road Richmond Surrey TW9 2SS United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872400
+    },
+    {
+      "name": "Hampstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9293",
+      "image_url": "https://images.englandrugby.com/club_images/9293.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Twickenham 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23338",
+      "image_url": "https://images.englandrugby.com/club_images/23338.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Wasps Cubans (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24399",
+      "image_url": "https://images.englandrugby.com/club_images/24399.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Staines II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20833",
+      "image_url": "https://images.englandrugby.com/club_images/20833.png",
+      "address": "Staines Rugby Football Club Ltd, The Reeves, Snakey Lane, Hanworth, Middlesex, TW13 7NB, United Kingdom",
+      "latitude": 51.432,
+      "longitude": -0.41309,
+      "formatted_address": "TW13 7NB, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352095030
+    },
+    {
+      "name": "Actonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=315",
+      "image_url": "https://images.englandrugby.com/club_images/315.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    }
+  ],
+  "team_count": 8
+}

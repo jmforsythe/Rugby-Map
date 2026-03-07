@@ -1,0 +1,77 @@
+{
+  "league_name": "Waggledance",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=10079&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Daventry 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6226",
+      "image_url": "https://images.englandrugby.com/club_images/6226.png",
+      "address": "Daventry Rugby Club, Stefen Hill, Daventry, Northamptonshire, NN11 4ST, United Kingdom",
+      "latitude": 52.2485808,
+      "longitude": -1.1586295,
+      "formatted_address": "NN11 4ST, Daventry, West Northamptonshire, England, United Kingdom",
+      "place_id": 350724819
+    },
+    {
+      "name": "Northampton Casuals 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14874",
+      "image_url": "https://images.englandrugby.com/club_images/14874.png",
+      "address": "Rush Mills House, Old Bedford Road, Rush Mills, Northampton, Northamptonshire, NN4 7AA, United Kingdom",
+      "latitude": 52.2278993,
+      "longitude": -0.8637056,
+      "formatted_address": "NN4 7AA, Brackmills Industrial Estate, Brackmills, Hardingstone, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727046
+    },
+    {
+      "name": "Northampton Old Scouts 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14909",
+      "image_url": "https://images.englandrugby.com/club_images/14909.png",
+      "address": "Rushmere Road Northampton NORTHAMPTONSHIRE NN1 5RY UNITED KINGDOM ",
+      "latitude": 52.2357568,
+      "longitude": -0.8616714,
+      "formatted_address": "Rushmere Road, Abington, Northampton, West Northamptonshire, England, NN1 5RY, United Kingdom",
+      "place_id": 258808095
+    },
+    {
+      "name": "Northampton BBOB 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14860",
+      "image_url": "https://images.englandrugby.com/club_images/14860.png",
+      "address": "St. Andrews mill St. Andrews Road Northampton NORTHAMPTONSHIRE NN1 2PQ UNITED KINGDOM",
+      "latitude": 52.2453999,
+      "longitude": -0.90376,
+      "formatted_address": "NN1 2PQ, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 351212226
+    },
+    {
+      "name": "Long Buckby Development (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12677",
+      "image_url": "https://images.englandrugby.com/club_images/12677.png",
+      "address": "Long Buckby Rugby Football Club Station Road Long Buckby Northampton Northamptonshire NN6 7QA United Kingdom",
+      "latitude": 52.298379,
+      "longitude": -1.0842189,
+      "formatted_address": "NN6 7QA, Long Buckby, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727792
+    },
+    {
+      "name": "Brackley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2873",
+      "image_url": "https://images.englandrugby.com/club_images/2873.png",
+      "address": "Brackley Rufc Clubhouse, Nightingale Close, Brackley, Northamptonshire, NN13 6PN, United Kingdom",
+      "latitude": 52.043582,
+      "longitude": -1.1560595,
+      "formatted_address": "NN13 6PN, Brackley, West Northamptonshire, England, United Kingdom",
+      "place_id": 350725197
+    },
+    {
+      "name": "Northampton Mens Own 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14894",
+      "image_url": "https://images.englandrugby.com/club_images/14894.png",
+      "address": "Northampton Mens Own Rfc Stoke Road Ashton. Northamptonshire NN7 2JN United Kingdom",
+      "latitude": 52.1420588,
+      "longitude": -0.8862526,
+      "formatted_address": "NN7 2JN, Ashton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350728118
+    }
+  ],
+  "team_count": 7
+}

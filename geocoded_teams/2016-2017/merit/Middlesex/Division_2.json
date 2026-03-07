@@ -1,0 +1,107 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=10261&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Millfield Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13885",
+      "image_url": "https://images.englandrugby.com/club_images/13885.png",
+      "address": "Millfield Old Boys Rfc 11 Barnard Mews Ware SW11 1QU England",
+      "latitude": 51.461304,
+      "longitude": -0.1667357,
+      "formatted_address": "SW11 1QU, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352003539
+    },
+    {
+      "name": "Rosslyn Park 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18038",
+      "image_url": "https://images.englandrugby.com/club_images/18038.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM ",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839761
+    },
+    {
+      "name": "H.A.C III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9142",
+      "image_url": "https://images.englandrugby.com/club_images/9142.png",
+      "address": "Armoury House City Road London EC1Y 2AY United Kingdom",
+      "latitude": 51.5230113,
+      "longitude": -0.0885001,
+      "formatted_address": "Armoury House, City Road, Finsbury, London Borough of Islington, Greater London, England, EC1Y 1AA, United Kingdom",
+      "place_id": 416762358
+    },
+    {
+      "name": "Belsize Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1945",
+      "image_url": "https://images.englandrugby.com/club_images/1945.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Ealing Men's 2nds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7082",
+      "image_url": "https://images.englandrugby.com/club_images/7082.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    },
+    {
+      "name": "Kilburn Cosmos II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11434",
+      "image_url": "https://images.englandrugby.com/club_images/11434.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Grasshoppers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
+      "image_url": "https://images.englandrugby.com/club_images/8854.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Old Streetonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16055",
+      "image_url": "https://images.englandrugby.com/club_images/16055.png",
+      "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
+      "latitude": 51.5527479,
+      "longitude": -0.0255018,
+      "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
+      "place_id": 259818900
+    },
+    {
+      "name": "London Cornish 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12511",
+      "image_url": "https://images.englandrugby.com/club_images/12511.png",
+      "address": "Richardson-Evans Memorial Playing Fields Roehampton Vale London SW15 3PQ UNITED KINGDOM",
+      "latitude": 51.4364034,
+      "longitude": -0.2530265,
+      "formatted_address": "SW15 3PQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839495
+    }
+  ],
+  "team_count": 10
+}

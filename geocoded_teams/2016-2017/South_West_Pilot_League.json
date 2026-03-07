@@ -1,0 +1,97 @@
+{
+  "league_name": "South West Pilot League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=9944&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Taunton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21676",
+      "image_url": "https://images.englandrugby.com/club_images/21676.png",
+      "address": "Summerfield Stadium, Hyde Lane, Taunton, Somerset, TA2 8BU, United Kingdom",
+      "latitude": 51.0266633,
+      "longitude": -3.0567696,
+      "formatted_address": "TA2 8BU, West Monkton, Somerset, England, United Kingdom",
+      "place_id": 350847657
+    },
+    {
+      "name": "Bournemouth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2792",
+      "image_url": "https://images.englandrugby.com/club_images/2792.png",
+      "address": "Chapel Gate, East Parley , Christchurch, Dorset, BH23 6BL, United Kingdom",
+      "latitude": 50.78235,
+      "longitude": -1.85917,
+      "formatted_address": "BH23 6BL, Hurn, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350978295
+    },
+    {
+      "name": "Cinderford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5048",
+      "image_url": "https://images.englandrugby.com/club_images/5048.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Clifton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5266",
+      "image_url": "https://images.englandrugby.com/club_images/5266.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Drybrook II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6836",
+      "image_url": "https://images.englandrugby.com/club_images/6836.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Dings Crusaders II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6471",
+      "image_url": "https://images.englandrugby.com/club_images/6471.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Cleve II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5219",
+      "image_url": "https://images.englandrugby.com/club_images/5219.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
+      "name": "Old Centralians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15533",
+      "image_url": "https://images.englandrugby.com/club_images/15533.png",
+      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
+      "latitude": 51.8444663,
+      "longitude": -2.2201721,
+      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350181524
+    },
+    {
+      "name": "Old Patesians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15882",
+      "image_url": "https://images.englandrugby.com/club_images/15882.png",
+      "address": "Old Patesians R.F.C. Old Patesians Clubhouse Everest Road Cheltenham GLOUCESTERSHIRE GL53 9LG UNITED KINGDOM ",
+      "latitude": 51.8773802,
+      "longitude": -2.0692466,
+      "formatted_address": "GL53 9LG, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350636802
+    }
+  ],
+  "team_count": 9
+}

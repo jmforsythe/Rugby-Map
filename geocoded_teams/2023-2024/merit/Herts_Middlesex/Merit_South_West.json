@@ -1,0 +1,97 @@
+{
+  "league_name": "Merit South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=51342&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Cuffley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5994",
+      "image_url": "https://images.englandrugby.com/club_images/5994.png",
+      "address": "Botany Bay Cricket Club, East Lodge Lane, Enfield, Middlesex, EN2 8AS, United Kingdom",
+      "latitude": 51.6772957,
+      "longitude": -0.1229335,
+      "formatted_address": "EN2 8AS, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616438
+    },
+    {
+      "name": "St Albans 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20103",
+      "image_url": "https://images.englandrugby.com/club_images/20103.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Fullerians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8385",
+      "image_url": "https://images.englandrugby.com/club_images/8385.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Hemel Hempstead 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9962",
+      "image_url": "https://images.englandrugby.com/club_images/9962.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    },
+    {
+      "name": "Verulamians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23977",
+      "image_url": "https://images.englandrugby.com/club_images/23977.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    },
+    {
+      "name": "Harpenden 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9450",
+      "image_url": "https://images.englandrugby.com/club_images/9450.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Old Albanians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124612",
+      "image_url": "https://images.englandrugby.com/club_images/124612.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "The Mount",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22404",
+      "image_url": "https://images.englandrugby.com/club_images/22404.png",
+      "address": "HMP The Mount Molyneux Avenue Bovingdon HP3 0NZ UNITED KINGDOM",
+      "latitude": 51.72472,
+      "longitude": -0.54135,
+      "formatted_address": "HP3 0NZ, Bovingdon, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350912363
+    },
+    {
+      "name": "Dunstablians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6931",
+      "image_url": "https://images.englandrugby.com/club_images/6931.png",
+      "address": "Bidwell Park Bedford Road Houghton Regis Dunstable Beds LU5 6JW United Kingdom",
+      "latitude": 51.9135834,
+      "longitude": -0.5292911,
+      "formatted_address": "LU5 6JW, Houghton Regis, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350693896
+    }
+  ],
+  "team_count": 9
+}

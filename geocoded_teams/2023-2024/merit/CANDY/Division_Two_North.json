@@ -1,0 +1,87 @@
+{
+  "league_name": "Division Two North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=49&division=50444&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Sunderland 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21340",
+      "image_url": "https://images.englandrugby.com/club_images/21340.png",
+      "address": "Ashbrooke Sports Club, Ashbrooke Road, Sunderland, SR2 7HH, United Kingdom",
+      "latitude": 54.89405,
+      "longitude": -1.38595,
+      "formatted_address": "SR2 7HH, Sunderland, North East, England, United Kingdom",
+      "place_id": 351970438
+    },
+    {
+      "name": "Alnwick Lions (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=490",
+      "image_url": "https://images.englandrugby.com/club_images/490.png",
+      "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
+      "latitude": 55.40438,
+      "longitude": -1.70158,
+      "formatted_address": "NE66 1BE, Alnwick, Northumberland, North East, England, United Kingdom",
+      "place_id": 351640857
+    },
+    {
+      "name": "Gateshead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8512",
+      "image_url": "https://images.englandrugby.com/club_images/8512.png",
+      "address": "Hedley Lawson Park Eastwood Gardens Low Fell Gateshead TYNE AND WEAR NE9 5UB UNITED KINGDOM",
+      "latitude": 54.9418259,
+      "longitude": -1.5943812,
+      "formatted_address": "NE9 5UB, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350714283
+    },
+    {
+      "name": "Novocastrians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15171",
+      "image_url": "https://images.englandrugby.com/club_images/15171.png",
+      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Whitley Bay Rockcliff Vikings",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25319",
+      "image_url": "https://images.englandrugby.com/club_images/25319.png",
+      "address": "Hillheads Lovaine Avenue Whitley Bay Tyne And Wear NE25 8RW United Kingdom",
+      "latitude": 55.0375574,
+      "longitude": -1.4491323,
+      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
+      "place_id": 350711129
+    },
+    {
+      "name": "Berwick Upon Tweed Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2065",
+      "image_url": "https://images.englandrugby.com/club_images/2065.png",
+      "address": "The Clubhouse 11 Derwentwater Terrace Scremerston Berwick Upon Tweed NORTHUMBERLAND TD15 2QY UNITED KINGDOM",
+      "latitude": 55.7392512,
+      "longitude": -1.9923902,
+      "formatted_address": "TD15 2QY, Ancroft, Northumberland, North East, England, United Kingdom",
+      "place_id": 350399720
+    },
+    {
+      "name": "Morpeth Edwardians (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14139",
+      "image_url": "https://images.englandrugby.com/club_images/14139.png",
+      "address": "Grange House Field Mitford Road Morpeth Northumberland NE61 1RJ United Kingdom",
+      "latitude": 55.1696699,
+      "longitude": -1.7006437,
+      "formatted_address": "NE61 1RJ, Morpeth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350713146
+    },
+    {
+      "name": "South Shields Westoe 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19655",
+      "image_url": "https://images.englandrugby.com/club_images/19655.png",
+      "address": "Wood Terrace Dean Road SOUTH SHIELDS TYNE AND WEAR NE33 4EA ENGLAND",
+      "latitude": 54.9861247,
+      "longitude": -1.4253023,
+      "formatted_address": "NE33 4EA, South Tyneside, North East, England, United Kingdom",
+      "place_id": 350711999
+    }
+  ],
+  "team_count": 8
+}

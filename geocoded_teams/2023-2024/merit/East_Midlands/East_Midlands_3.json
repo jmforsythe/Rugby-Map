@@ -1,0 +1,107 @@
+{
+  "league_name": "East Midlands 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=55139&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Milton Keynes 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13919",
+      "image_url": "https://images.englandrugby.com/club_images/13919.png",
+      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
+      "latitude": 52.0023636,
+      "longitude": -0.7803565,
+      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703816
+    },
+    {
+      "name": "Olney 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16186",
+      "image_url": "https://images.englandrugby.com/club_images/16186.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Northampton Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14889",
+      "image_url": "https://images.englandrugby.com/club_images/14889.png",
+      "address": "C/o Northampton Old Scouts Rfc Rushmere Road Northampton NN1 5RY United Kingdom",
+      "latitude": 52.2351754,
+      "longitude": -0.8621156,
+      "formatted_address": "NN1 5RY, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726028
+    },
+    {
+      "name": "Kempston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11234",
+      "image_url": "https://images.englandrugby.com/club_images/11234.png",
+      "address": "Kempston Hammers Sports And Social Club 134 High Street Kempston Bedford Bedfordshire MK42 7BN United Kingdom",
+      "latitude": 52.1150515,
+      "longitude": -0.5088921,
+      "formatted_address": "MK42 7BN, Kempston, Bedford, England, United Kingdom",
+      "place_id": 350703702
+    },
+    {
+      "name": "Northampton Casuals 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14874",
+      "image_url": "https://images.englandrugby.com/club_images/14874.png",
+      "address": "Rush Mills House, Old Bedford Road, Rush Mills, Northampton, Northamptonshire, NN4 7AA, United Kingdom",
+      "latitude": 52.2278993,
+      "longitude": -0.8637056,
+      "formatted_address": "NN4 7AA, Brackmills Industrial Estate, Brackmills, Hardingstone, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727046
+    },
+    {
+      "name": "Bletchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2600",
+      "image_url": "https://images.englandrugby.com/club_images/2600.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Old Northamptonians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15846",
+      "image_url": "https://images.englandrugby.com/club_images/15846.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "Wellingborough O.G.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24611",
+      "image_url": "https://images.englandrugby.com/club_images/24611.png",
+      "address": "W. O.G's HQ 46 Oxford Street Wellingborough NORTHAMPTONSHIRE NN8 4JH UNITED KINGDOM",
+      "latitude": 52.3009065,
+      "longitude": -0.697596,
+      "formatted_address": "NN8 4JH, Wellingborough, North Northamptonshire, England, United Kingdom",
+      "place_id": 350728964
+    },
+    {
+      "name": "Kettering 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11348",
+      "image_url": "https://images.englandrugby.com/club_images/11348.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Northampton Outlaws 1st XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14924",
+      "image_url": "https://images.englandrugby.com/club_images/14924.png",
+      "address": "156 St. James Park Road Northampton Northamptonshire NN5 5EN United Kingdom",
+      "latitude": 52.2408167,
+      "longitude": -0.9121904,
+      "formatted_address": "NN5 5EN, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727360
+    }
+  ],
+  "team_count": 10
+}

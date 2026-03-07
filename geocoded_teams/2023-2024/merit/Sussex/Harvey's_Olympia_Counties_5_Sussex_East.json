@@ -1,0 +1,57 @@
+{
+  "league_name": "Harvey's Olympia Counties 5 Sussex East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=50222&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "St Leonards Cinque Ports",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20545",
+      "image_url": "https://images.englandrugby.com/club_images/20545.png",
+      "address": "Hon. Sec. Kate Williams 59 Burry Road St. Leonards-on-Sea EAST SUSSEX TN37 6QZ UNITED KINGDOM",
+      "latitude": 50.8705369,
+      "longitude": 0.559441,
+      "formatted_address": "TN37 6QZ, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352736558
+    },
+    {
+      "name": "Hastings & Bexhill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9654",
+      "image_url": "https://images.englandrugby.com/club_images/9654.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Seaford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18873",
+      "image_url": "https://images.englandrugby.com/club_images/18873.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Eastbourne III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127371",
+      "image_url": "https://images.englandrugby.com/club_images/127371.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "Crowborough III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5920",
+      "image_url": "https://images.englandrugby.com/club_images/5920.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    }
+  ],
+  "team_count": 5
+}

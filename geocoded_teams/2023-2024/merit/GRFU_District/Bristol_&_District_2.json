@@ -1,0 +1,67 @@
+{
+  "league_name": "Bristol & District 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=48608&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Southmead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19763",
+      "image_url": "https://images.englandrugby.com/club_images/19763.png",
+      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
+      "latitude": 51.499895,
+      "longitude": -2.6078965,
+      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350505286
+    },
+    {
+      "name": "Wotton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26170",
+      "image_url": "https://images.englandrugby.com/club_images/26170.png",
+      "address": "33 Abingdon Road Fishponds Bristol Gloucestershire BS16 3NR United Kingdom",
+      "latitude": 51.4739391,
+      "longitude": -2.5312718,
+      "formatted_address": "BS16 3NR, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351017836
+    },
+    {
+      "name": "Yate II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124607",
+      "image_url": "https://images.englandrugby.com/club_images/124607.png",
+      "address": "Yate Outdoor Sports Complex, Broad Lane, Yate, BS37 7LB, England",
+      "latitude": 51.5522403,
+      "longitude": -2.4258913,
+      "formatted_address": "BS37 7LB, Yate, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516592
+    },
+    {
+      "name": "Kingswood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11693",
+      "image_url": "https://images.englandrugby.com/club_images/11693.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Cotham Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5679",
+      "image_url": "https://images.englandrugby.com/club_images/5679.png",
+      "address": "Cotham Park RFC Upper Farm, Beggar Bush Lane Failand, Bristol SOMERSET BS8 3TF UNITED KINGDOM ",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350521707
+    },
+    {
+      "name": "Frampton Cotterell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8293",
+      "image_url": "https://images.englandrugby.com/club_images/8293.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    }
+  ],
+  "team_count": 6
+}

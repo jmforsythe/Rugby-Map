@@ -1,0 +1,77 @@
+{
+  "league_name": "Leicestershire Merit D",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=49823&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Belgrave 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1896",
+      "image_url": "https://images.englandrugby.com/club_images/1896.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Coalville 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5310",
+      "image_url": "https://images.englandrugby.com/club_images/5310.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Loughborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12820",
+      "image_url": "https://images.englandrugby.com/club_images/12820.png",
+      "address": "Loughborough Rfc, The Clubhouse, Derby Road Playing Fields, Off Cotton Way, Loughborough, Leicestershire, LE11 5FJ, United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351470770
+    },
+    {
+      "name": "Aylestone Athletic II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1177",
+      "image_url": "https://images.englandrugby.com/club_images/1177.png",
+      "address": "The Old Horse, 198 London Rd, (victoria Park), Leicester, Leicestershire, LE1 6UB, United Kingdom",
+      "latitude": 52.6290256,
+      "longitude": -1.1226493,
+      "formatted_address": "LE1 36, London Road Cycle Path, Highfields, Leicester, City of Leicester, England, LE1 7GE, United Kingdom",
+      "place_id": 257480617
+    },
+    {
+      "name": "Birstall 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2350",
+      "image_url": "https://images.englandrugby.com/club_images/2350.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
+      "name": "Melton Mowbray 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13695",
+      "image_url": "https://images.englandrugby.com/club_images/13695.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    },
+    {
+      "name": "Oakham Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15283",
+      "image_url": "https://images.englandrugby.com/club_images/15283.png",
+      "address": "The Showground Showground Way Barleythorpe Oakham Rutland LE15 7TW United Kingdom",
+      "latitude": 52.6854971,
+      "longitude": -0.7343637,
+      "formatted_address": "LE15 7TW, Barleythorpe, Rutland, England, United Kingdom",
+      "place_id": 350682432
+    }
+  ],
+  "team_count": 7
+}

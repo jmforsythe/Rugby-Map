@@ -1,0 +1,87 @@
+{
+  "league_name": "Merit South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=53863&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Epping Upper Clapton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7625",
+      "image_url": "https://images.englandrugby.com/club_images/7625.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Hatfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9679",
+      "image_url": "https://images.englandrugby.com/club_images/9679.png",
+      "address": "The Mallard, 89 Great North Road , Hatfield, Hertfordshire, AL95LP, United Kingdom",
+      "latitude": 51.7709355,
+      "longitude": -0.2168167,
+      "formatted_address": "AL9 5LP, Hatfield, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350460654
+    },
+    {
+      "name": "Pinner & Grammarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16926",
+      "image_url": "https://images.englandrugby.com/club_images/16926.png",
+      "address": "Shaftesbury Playing Fields Grimsdyke Road Grimsdyke Road Hatch End Middlesex HA4 4PW United Kingdom",
+      "latitude": 51.55952,
+      "longitude": -0.4167818,
+      "formatted_address": "HA4 192, Clyfford Road, London Borough of Hillingdon, Greater London, England, HA4 6PX, United Kingdom",
+      "place_id": 259660855
+    },
+    {
+      "name": "Saracens Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18734",
+      "image_url": "https://images.englandrugby.com/club_images/18734.png",
+      "address": "Bramley Road Sports Ground Green Road Southgate London N14 4AB United Kingdom",
+      "latitude": 51.6423,
+      "longitude": -0.14298,
+      "formatted_address": "N14 4AB, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604318
+    },
+    {
+      "name": "Southgate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19753",
+      "image_url": "https://images.englandrugby.com/club_images/19753.png",
+      "address": "Southgate RFC Walker Cricket Ground Waterfall Road Southgate London MIDDLESEX N14 7JZ UNITED KINGDOM",
+      "latitude": 51.6254518,
+      "longitude": -0.1304877,
+      "formatted_address": "N14 7JZ, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604854
+    },
+    {
+      "name": "Enfield Ignatians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7514",
+      "image_url": "https://images.englandrugby.com/club_images/7514.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "Watford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24440",
+      "image_url": "https://images.englandrugby.com/club_images/24440.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
+      "name": "Hendon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9975",
+      "image_url": "https://images.englandrugby.com/club_images/9975.png",
+      "address": "Greenlands Lane Copthall Playing Fields Hendon NW4 1RL United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700919
+    }
+  ],
+  "team_count": 8
+}

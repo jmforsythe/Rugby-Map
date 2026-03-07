@@ -1,0 +1,94 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=49925&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Finchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
+      "image_url": "https://images.englandrugby.com/club_images/8091.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
+      "name": "London Japanese",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124784",
+      "image_url": "https://images.englandrugby.com/club_images/124784.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Quintin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17356",
+      "image_url": "https://images.englandrugby.com/club_images/17356.png",
+      "address": "Chiswick Rfc Dukes Meadows Riverside Drive Chiswick W4 2SH United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "Belsize Park IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1946",
+      "image_url": "https://images.englandrugby.com/club_images/1946.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Ruislip 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18367",
+      "image_url": "https://images.englandrugby.com/club_images/18367.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Whitton Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25338",
+      "image_url": "https://images.englandrugby.com/club_images/25338.png",
+      "address": "Whitton Park Sports Association 190 Wills Crescent Hounslow TW3 2JD United Kingdom",
+      "latitude": 51.4551602,
+      "longitude": -0.3667651,
+      "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871759
+    },
+    {
+      "name": "Hanwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9346",
+      "image_url": "https://images.englandrugby.com/club_images/9346.png",
+      "address": "Twyford Ave Sports Ground Sports Ground Twyford Avenue London W3 9QA United Kingdom",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119428
+    },
+    {
+      "name": "Hampstead 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9292",
+      "image_url": "https://images.englandrugby.com/club_images/9292.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Old Isleworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15781",
+      "image_url": "https://images.englandrugby.com/club_images/15781.png",
+      "address": "The Memorial Ground 22a Wood Lane Isleworth Middlesex TW7 5ED United Kingdom",
+      "latitude": 51.477437,
+      "longitude": -0.3341276,
+      "formatted_address": "TW7 5ED, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352100703
+    }
+  ],
+  "team_count": 9
+}

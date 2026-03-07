@@ -1,0 +1,77 @@
+{
+  "league_name": "Division 6",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=9376&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Whitton Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25338",
+      "image_url": "https://images.englandrugby.com/club_images/25338.png",
+      "address": "Whitton Park Sports Association 190 Wills Crescent Hounslow TW3 2JD United Kingdom",
+      "latitude": 51.4551602,
+      "longitude": -0.3667651,
+      "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871759
+    },
+    {
+      "name": "Quintin II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17357",
+      "image_url": "https://images.englandrugby.com/club_images/17357.png",
+      "address": "Chiswick Rfc Dukes Meadows Riverside Drive Chiswick W4 2SH United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "Hillingdon Abbots 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10175",
+      "image_url": "https://images.englandrugby.com/club_images/10175.png",
+      "address": "Abbotstonians R.F.C. Old Pole Hill Open Spaces Gainsborough Road Hayes MIDDLESEX UB4 8PS UNITED KINGDOM",
+      "latitude": 51.53802,
+      "longitude": -0.43524,
+      "formatted_address": "UB4 8PS, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104763
+    },
+    {
+      "name": "Sodam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19542",
+      "image_url": "https://images.englandrugby.com/club_images/19542.png",
+      "address": "London Post Office Sports Club Greenford Road Sudbury Hill Harrow MIDDLESEX HA1 3QL UNITED KINGDOM",
+      "latitude": 51.5586841,
+      "longitude": -0.3348143,
+      "formatted_address": "HA1 3QL, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 350644841
+    },
+    {
+      "name": "Kilburn Cosmos 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11433",
+      "image_url": "https://images.englandrugby.com/club_images/11433.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Ickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10764",
+      "image_url": "https://images.englandrugby.com/club_images/10764.png",
+      "address": "Uxbridge Sports Club Park Road Gatting Way Uxbridge Middlesex UB8 1NR United Kingdom",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352781955
+    },
+    {
+      "name": "CSSC Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5990",
+      "image_url": "https://images.englandrugby.com/club_images/5990.png",
+      "address": "C/O Middlesex CB PK1 Twyford Abbey Sports Ground Twyford Abbey Road London W3 9QA",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    }
+  ],
+  "team_count": 7
+}

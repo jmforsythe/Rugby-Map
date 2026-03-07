@@ -1,0 +1,87 @@
+{
+  "league_name": "Solent League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=9137&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Havant II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9701",
+      "image_url": "https://images.englandrugby.com/club_images/9701.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Tottonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23028",
+      "image_url": "https://images.englandrugby.com/club_images/23028.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Gosport & Fareham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8811",
+      "image_url": "https://images.englandrugby.com/club_images/8811.png",
+      "address": "Gosport Park, Dolphin Crescent, Gosport, Hampshire, PO12 2HE, United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774642
+    },
+    {
+      "name": "Winchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25576",
+      "image_url": "https://images.englandrugby.com/club_images/25576.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
+      "name": "Portsmouth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17119",
+      "image_url": "https://images.englandrugby.com/club_images/17119.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Andover II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=660",
+      "image_url": "https://images.englandrugby.com/club_images/660.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "St Jacques",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20452",
+      "image_url": "https://images.englandrugby.com/club_images/20452.png",
+      "address": "Garenne Stand Footes Lane Guernsey Channel Islands GY1 2UL United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352198328
+    },
+    {
+      "name": "Basingstoke II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1568",
+      "image_url": "https://images.englandrugby.com/club_images/1568.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    }
+  ],
+  "team_count": 8
+}

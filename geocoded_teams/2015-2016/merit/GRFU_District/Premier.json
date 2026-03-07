@@ -1,0 +1,77 @@
+{
+  "league_name": "Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=9337&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Drybrook II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6836",
+      "image_url": "https://images.englandrugby.com/club_images/6836.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Cinderford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5048",
+      "image_url": "https://images.englandrugby.com/club_images/5048.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Old Centralians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15533",
+      "image_url": "https://images.englandrugby.com/club_images/15533.png",
+      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
+      "latitude": 51.8444663,
+      "longitude": -2.2201721,
+      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350181524
+    },
+    {
+      "name": "United Bristol Hospitals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23483",
+      "image_url": "https://images.englandrugby.com/club_images/23483.png",
+      "address": "United Bristol Hospitals Rfc Coombe Dingle Sports Complex Coombe Lane Bristol Avon BS9 2BJ United Kingdom",
+      "latitude": 51.4884672,
+      "longitude": -2.6321576,
+      "formatted_address": "BS9 2BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350522186
+    },
+    {
+      "name": "Newent II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14508",
+      "image_url": "https://images.englandrugby.com/club_images/14508.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Dings Crusaders II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6471",
+      "image_url": "https://images.englandrugby.com/club_images/6471.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Lydney II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12993",
+      "image_url": "https://images.englandrugby.com/club_images/12993.png",
+      "address": "Lydney RFC Regentsholme Regent Street Lydney GLOUCESTERSHIRE GL15 5RN UNITED KINGDOM ",
+      "latitude": 51.72619,
+      "longitude": -2.5302699,
+      "formatted_address": "GL15 5RN, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309782
+    }
+  ],
+  "team_count": 7
+}

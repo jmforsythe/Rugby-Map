@@ -1,0 +1,107 @@
+{
+  "league_name": "Youngs Bitter",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=9148&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Winslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25696",
+      "image_url": "https://images.englandrugby.com/club_images/25696.png",
+      "address": "39 The Nags Head Sheep Street Winslow MK18 3HL United Kingdom",
+      "latitude": 51.94122,
+      "longitude": -0.87896,
+      "formatted_address": "MK18 3HL, Winslow, Buckinghamshire, England, United Kingdom",
+      "place_id": 351582510
+    },
+    {
+      "name": "Northampton Mens Own 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14893",
+      "image_url": "https://images.englandrugby.com/club_images/14893.png",
+      "address": "Northampton Mens Own Rfc Stoke Road Ashton. Northamptonshire NN7 2JN United Kingdom",
+      "latitude": 52.1420588,
+      "longitude": -0.8862526,
+      "formatted_address": "NN7 2JN, Ashton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350728118
+    },
+    {
+      "name": "Oundle 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16353",
+      "image_url": "https://images.englandrugby.com/club_images/16353.png",
+      "address": "Occupation Road, Oundle, Peterborough, Cambridgeshire, PE8 4RU, United Kingdom",
+      "latitude": 52.4895299,
+      "longitude": -0.4689737,
+      "formatted_address": "PE8 4RU, Oundle, North Northamptonshire, England, United Kingdom",
+      "place_id": 350770517
+    },
+    {
+      "name": "Bedford Swifts 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1851",
+      "image_url": "https://images.englandrugby.com/club_images/1851.png",
+      "address": "Bedford Athletics Stadium (01234 -351115) Barkers Lane/Newham Avenue Bedford BEDFORDSHIRE MK41 9SB UNITED KINGDOM",
+      "latitude": 52.1338564,
+      "longitude": -0.4413315,
+      "formatted_address": "MK41 9SB, England, United Kingdom",
+      "place_id": 350703648
+    },
+    {
+      "name": "Northampton Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14889",
+      "image_url": "https://images.englandrugby.com/club_images/14889.png",
+      "address": "C/o Northampton Old Scouts Rfc Rushmere Road Northampton NN1 5RY United Kingdom",
+      "latitude": 52.2351754,
+      "longitude": -0.8621156,
+      "formatted_address": "NN1 5RY, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726028
+    },
+    {
+      "name": "Sharnbrook & Colworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19067",
+      "image_url": "https://images.englandrugby.com/club_images/19067.png",
+      "address": "Sports And Social Club Cowper's Lane Sharnbrook Beds MK44 1LB United Kingdom",
+      "latitude": 52.22772,
+      "longitude": -0.57279,
+      "formatted_address": "MK44 1LB, Odell, Bedford, England, United Kingdom",
+      "place_id": 351588543
+    },
+    {
+      "name": "Northampton BBOB 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14860",
+      "image_url": "https://images.englandrugby.com/club_images/14860.png",
+      "address": "St. Andrews mill St. Andrews Road Northampton NORTHAMPTONSHIRE NN1 2PQ UNITED KINGDOM",
+      "latitude": 52.2453999,
+      "longitude": -0.90376,
+      "formatted_address": "NN1 2PQ, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 351212226
+    },
+    {
+      "name": "Long Buckby Development (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12677",
+      "image_url": "https://images.englandrugby.com/club_images/12677.png",
+      "address": "Long Buckby Rugby Football Club Station Road Long Buckby Northampton Northamptonshire NN6 7QA United Kingdom",
+      "latitude": 52.298379,
+      "longitude": -1.0842189,
+      "formatted_address": "NN6 7QA, Long Buckby, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727792
+    },
+    {
+      "name": "Stamford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20854",
+      "image_url": "https://images.englandrugby.com/club_images/20854.png",
+      "address": "Hambleton Road Stamford LINCOLNSHIRE PE9 2RZ UNITED KINGDOM ",
+      "latitude": 52.6509691,
+      "longitude": -0.5016942,
+      "formatted_address": "Hambleton Road, Stamford, South Kesteven, Lincolnshire, Greater Lincolnshire, England, PE9 2RY, United Kingdom",
+      "place_id": 258312992
+    },
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    }
+  ],
+  "team_count": 10
+}

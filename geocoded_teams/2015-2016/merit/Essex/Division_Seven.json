@@ -1,0 +1,97 @@
+{
+  "league_name": "Division Seven",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=9604&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Eton Manor IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7712",
+      "image_url": "https://images.englandrugby.com/club_images/7712.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "East London III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7165",
+      "image_url": "https://images.englandrugby.com/club_images/7165.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Brentwood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3073",
+      "image_url": "https://images.englandrugby.com/club_images/3073.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
+      "name": "Epping Upper Clapton III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7626",
+      "image_url": "https://images.englandrugby.com/club_images/7626.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Old Brentwoods III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15450",
+      "image_url": "https://images.englandrugby.com/club_images/15450.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Stanford Le Hope II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20885",
+      "image_url": "https://images.englandrugby.com/club_images/20885.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Ilford Wanderers IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10787",
+      "image_url": "https://images.englandrugby.com/club_images/10787.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Canvey Island II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4151",
+      "image_url": "https://images.englandrugby.com/club_images/4151.png",
+      "address": "Tewkes Creek, Dovervelt Road, Canvey Island, Essex, SS8 8EJ, United Kingdom",
+      "latitude": 51.52916,
+      "longitude": 0.59358,
+      "formatted_address": "SS8 8EJ, Canvey Island, Castle Point, Essex, England, United Kingdom",
+      "place_id": 351985750
+    },
+    {
+      "name": "Burnham-on-Crouch II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3701",
+      "image_url": "https://images.englandrugby.com/club_images/3701.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    }
+  ],
+  "team_count": 9
+}

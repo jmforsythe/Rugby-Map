@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=9372&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "H.A.C II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9141",
+      "image_url": "https://images.englandrugby.com/club_images/9141.png",
+      "address": "Armoury House City Road London EC1Y 2AY United Kingdom",
+      "latitude": 51.5230113,
+      "longitude": -0.0885001,
+      "formatted_address": "Armoury House, City Road, Finsbury, London Borough of Islington, Greater London, England, EC1Y 1AA, United Kingdom",
+      "place_id": 416762358
+    },
+    {
+      "name": "Hammersmith & Fulham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9259",
+      "image_url": "https://images.englandrugby.com/club_images/9259.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Rosslyn Park Bs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18040",
+      "image_url": "https://images.englandrugby.com/club_images/18040.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "CS Stags 1863 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5988",
+      "image_url": "https://images.englandrugby.com/club_images/5988.png",
+      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "London Cornish 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12510",
+      "image_url": "https://images.englandrugby.com/club_images/12510.png",
+      "address": "Richardson-Evans Memorial Playing Fields Roehampton Vale London SW15 3PQ UNITED KINGDOM",
+      "latitude": 51.4364034,
+      "longitude": -0.2530265,
+      "formatted_address": "SW15 3PQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839495
+    },
+    {
+      "name": "Old Priorians Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
+      "image_url": "https://images.englandrugby.com/club_images/15924.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350872989
+    },
+    {
+      "name": "Ruislip 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18367",
+      "image_url": "https://images.englandrugby.com/club_images/18367.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Grasshoppers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
+      "image_url": "https://images.englandrugby.com/club_images/8854.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    }
+  ],
+  "team_count": 9
+}

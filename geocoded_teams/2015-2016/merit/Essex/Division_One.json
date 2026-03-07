@@ -1,0 +1,97 @@
+{
+  "league_name": "Division One",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=9599&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Southend II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19721",
+      "image_url": "https://images.englandrugby.com/club_images/19721.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Eton Manor II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7710",
+      "image_url": "https://images.englandrugby.com/club_images/7710.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "Westcliff II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24955",
+      "image_url": "https://images.englandrugby.com/club_images/24955.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Chingford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4797",
+      "image_url": "https://images.englandrugby.com/club_images/4797.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Brentwood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3073",
+      "image_url": "https://images.englandrugby.com/club_images/3073.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
+      "name": "Woodford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25972",
+      "image_url": "https://images.englandrugby.com/club_images/25972.png",
+      "address": "Highhams High Road Woodford Green ESSEX IG8 9LB UNITED KINGDOM ",
+      "latitude": 51.6064675,
+      "longitude": 0.0153218,
+      "formatted_address": "IG8 9LB, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350657409
+    },
+    {
+      "name": "Romford & Gidea Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17959",
+      "image_url": "https://images.englandrugby.com/club_images/17959.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Chelmsford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4484",
+      "image_url": "https://images.englandrugby.com/club_images/4484.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Upminster II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23761",
+      "image_url": "https://images.englandrugby.com/club_images/23761.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    }
+  ],
+  "team_count": 9
+}

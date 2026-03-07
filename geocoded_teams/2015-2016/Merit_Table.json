@@ -1,0 +1,67 @@
+{
+  "league_name": "Merit Table",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=9139&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Hitchin Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10221",
+      "image_url": "https://images.englandrugby.com/club_images/10221.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Risborough Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17866",
+      "image_url": "https://images.englandrugby.com/club_images/17866.png",
+      "address": "8 Westmead Princes Risborough Buckinghamshire HP27 9HR United Kingdom",
+      "latitude": 51.7308006,
+      "longitude": -0.8327417,
+      "formatted_address": "Westmead, Monks Risborough, Princes Risborough, Buckinghamshire, England, HP27 9HS, United Kingdom",
+      "place_id": 258756831
+    },
+    {
+      "name": "Grove Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9008",
+      "image_url": "https://images.englandrugby.com/club_images/9008.png",
+      "address": "Recreation Lane, Grove, Wantage, Oxfordshire, OX12 0AA, United Kingdom",
+      "latitude": 51.6031576,
+      "longitude": -1.4254415,
+      "formatted_address": "OX12 0AA, Westfield and Willows Park, Grove, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 351719707
+    },
+    {
+      "name": "High Wycombe Belles Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10114",
+      "image_url": "https://images.englandrugby.com/club_images/10114.png",
+      "address": "Kingsmead Road High Wycombe Buckinghamshire HP11 1JB England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 258102284
+    },
+    {
+      "name": "Marlow Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13445",
+      "image_url": "https://images.englandrugby.com/club_images/13445.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Welwyn Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123555",
+      "image_url": "https://images.englandrugby.com/club_images/123555.png",
+      "address": "Handside Playing Fields Hobbs Way, Colgrove Welwyn Garden City HERTFORDSHIRE AL8 6HX UNITED KINGDOM ",
+      "latitude": 51.7944448,
+      "longitude": -0.2146882,
+      "formatted_address": "AL8 6HX, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350915715
+    }
+  ],
+  "team_count": 6
+}

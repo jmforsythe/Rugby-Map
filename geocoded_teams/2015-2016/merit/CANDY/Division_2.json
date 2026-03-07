@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=49&division=9722&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Gateshead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8512",
+      "image_url": "https://images.englandrugby.com/club_images/8512.png",
+      "address": "Hedley Lawson Park Eastwood Gardens Low Fell Gateshead TYNE AND WEAR NE9 5UB UNITED KINGDOM",
+      "latitude": 54.9418259,
+      "longitude": -1.5943812,
+      "formatted_address": "NE9 5UB, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350714283
+    },
+    {
+      "name": "West Hartlepool (Stags)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24771",
+      "image_url": "https://images.englandrugby.com/club_images/24771.png",
+      "address": "Brinkburn Catcote Road Hartlepool COUNTY DURHAM TS25 4HA",
+      "latitude": 54.6747341,
+      "longitude": -1.2376463,
+      "formatted_address": "TS25 4HA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869362
+    },
+    {
+      "name": "Ryton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18472",
+      "image_url": "https://images.englandrugby.com/club_images/18472.png",
+      "address": "Main Road Barmoor Ryton Tyne And Wear NE40 3AG United Kingdom",
+      "latitude": 54.9679607,
+      "longitude": -1.7747145,
+      "formatted_address": "NE40 3AG, Ryton, Gateshead, North East, England, United Kingdom",
+      "place_id": 350712431
+    },
+    {
+      "name": "Horden and Peterlee 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10387",
+      "image_url": "https://images.englandrugby.com/club_images/10387.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Tynedale Centurions (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23391",
+      "image_url": "https://images.englandrugby.com/club_images/23391.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
+    },
+    {
+      "name": "Medicals 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13587",
+      "image_url": "https://images.englandrugby.com/club_images/13587.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
+    },
+    {
+      "name": "Bishop Auckland 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2356",
+      "image_url": "https://images.englandrugby.com/club_images/2356.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "South Shields Westoe 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19655",
+      "image_url": "https://images.englandrugby.com/club_images/19655.png",
+      "address": "Wood Terrace Dean Road SOUTH SHIELDS TYNE AND WEAR NE33 4EA ENGLAND",
+      "latitude": 54.9861247,
+      "longitude": -1.4253023,
+      "formatted_address": "NE33 4EA, South Tyneside, North East, England, United Kingdom",
+      "place_id": 350711999
+    },
+    {
+      "name": "Durham City 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6951",
+      "image_url": "https://images.englandrugby.com/club_images/6951.png",
+      "address": "Durham City RFC, Hollow Drift, Green Lane, Durham, COUNTY DURHAM, DH1 3JU, UNITED KINGDOM, ",
+      "latitude": 54.7736961,
+      "longitude": -1.5613055,
+      "formatted_address": "DH1 3JU, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586188
+    }
+  ],
+  "team_count": 9
+}

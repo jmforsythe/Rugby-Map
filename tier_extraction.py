@@ -87,6 +87,11 @@ _SPONSOR_PREFIXES = [
     "Directors_",
     "Estrella_Damm_",
     "Youngs_London_Stout_",
+    "Youngs_London_Gold_",
+    "Sale_Sharks_",
+    "County_Courier_Services_",
+    "Howell_&_Co_",
+    "INDEPENDENT_E-NRG_",
 ]
 
 
@@ -211,8 +216,16 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Merit_South": 12,
         "Merit": 10,
         "Midlands_Reserve_League": 10,
+        "NC_Lancashire": 8,
+        "NC_Midlands": 8,
         "NOWIRUL": 9,
+        "Cotton_Traders_Premier": 9,
+        "Cotton_Traders_Championship": 10,
+        "Cotton_Traders_Conference": 10,
+        "Five_Grain": 8,
+        "Late_Red": 8,
         "Premier_Division": 9,
+        "Premier": 8,
         "Security_Plus_Pennant": 10,
         "Table": 10,
     }

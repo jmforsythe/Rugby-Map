@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 6 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=14060&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Ilford Wanderers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10785",
+      "image_url": "https://images.englandrugby.com/club_images/10785.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Basildon III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1546",
+      "image_url": "https://images.englandrugby.com/club_images/1546.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Dagenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6052",
+      "image_url": "https://images.englandrugby.com/club_images/6052.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Millwall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13909",
+      "image_url": "https://images.englandrugby.com/club_images/13909.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Thurrock IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22772",
+      "image_url": "https://images.englandrugby.com/club_images/22772.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Loughton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12860",
+      "image_url": "https://images.englandrugby.com/club_images/12860.png",
+      "address": "Hornbeam Sports & Social Club Squirrels Lane Hornbeam Road Essex IG9 6JT United Kingdom",
+      "latitude": 51.6216737,
+      "longitude": 0.0489574,
+      "formatted_address": "IG9 6JT, Buckhurst Hill, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351389787
+    },
+    {
+      "name": "Kings Cross Steelers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11559",
+      "image_url": "https://images.englandrugby.com/club_images/11559.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Ravens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17478",
+      "image_url": "https://images.englandrugby.com/club_images/17478.png",
+      "address": "Dagenham Rd, Dagenham, Romford Rm7 0qx M&b Social Club Dagenham Rd, Dagenham, Romford Rm7 0qx Dagenham Essex RM7 0QX United Kingdom",
+      "latitude": 51.54813,
+      "longitude": 0.17,
+      "formatted_address": "RM7 0QX, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351838188
+    }
+  ],
+  "team_count": 8
+}

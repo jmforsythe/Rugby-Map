@@ -1,0 +1,67 @@
+{
+  "league_name": "Sussex 4 EAST Albion Ale'",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=15903&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Eastbourne III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127371",
+      "image_url": "https://images.englandrugby.com/club_images/127371.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "Uckfield II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23449",
+      "image_url": "https://images.englandrugby.com/club_images/23449.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Crowborough III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5920",
+      "image_url": "https://images.englandrugby.com/club_images/5920.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Mid Sussex Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13786",
+      "image_url": "https://images.englandrugby.com/club_images/13786.png",
+      "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
+      "latitude": 50.9714056,
+      "longitude": 0.0210742,
+      "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350503623
+    },
+    {
+      "name": "East Grinstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7137",
+      "image_url": "https://images.englandrugby.com/club_images/7137.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Seaford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18873",
+      "image_url": "https://images.englandrugby.com/club_images/18873.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    }
+  ],
+  "team_count": 6
+}

@@ -341,6 +341,8 @@ _BANNED_FILENAMES = [
     "Tribute_Duchy_League.json",
     "MRL3_Play_Off_1-8.json",
     "MRL3_Play_Off_9-13.json",
+    "National_League_Play_Offs.json",
+    "Social_Rugby_Group.json",
 ]
 
 

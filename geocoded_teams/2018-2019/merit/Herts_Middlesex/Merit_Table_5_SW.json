@@ -1,0 +1,97 @@
+{
+  "league_name": "Merit Table 5 SW",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=14364&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Southgate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19753",
+      "image_url": "https://images.englandrugby.com/club_images/19753.png",
+      "address": "Southgate RFC Walker Cricket Ground Waterfall Road Southgate London MIDDLESEX N14 7JZ UNITED KINGDOM",
+      "latitude": 51.6254518,
+      "longitude": -0.1304877,
+      "formatted_address": "N14 7JZ, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604854
+    },
+    {
+      "name": "Beaconsfield Bandits",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1702",
+      "image_url": "https://images.englandrugby.com/club_images/1702.png",
+      "address": "Oak Lodge Windsor End Beaconsfield Buckinghamshire HP9 2SQ United Kingdom",
+      "latitude": 51.5974241,
+      "longitude": -0.6346292,
+      "formatted_address": "Oak Lodge, Windsor End, Beaconsfield Old Town, Beaconsfield, Beaconsfield and Chepping Wye Community Board, Buckinghamshire, England, HP9 2SQ, United Kingdom",
+      "place_id": 259564461
+    },
+    {
+      "name": "Pinner & Grammarians Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16929",
+      "image_url": "https://images.englandrugby.com/club_images/16929.png",
+      "address": "Shaftesbury Playing Fields Grimsdyke Road Grimsdyke Road Hatch End Middlesex HA4 4PW United Kingdom",
+      "latitude": 51.55952,
+      "longitude": -0.4167818,
+      "formatted_address": "HA4 192, Clyfford Road, London Borough of Hillingdon, Greater London, England, HA4 6PX, United Kingdom",
+      "place_id": 259660855
+    },
+    {
+      "name": "Mill Hill 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13870",
+      "image_url": "https://images.englandrugby.com/club_images/13870.png",
+      "address": "Mill Hill RFC Copthall Playing Fields Page Street Mill Hill MIDDLESEX NW7 2ED UNITED KINGDOM",
+      "latitude": 51.60637,
+      "longitude": -0.2324,
+      "formatted_address": "NW7 2ED, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351703547
+    },
+    {
+      "name": "Old Millhillians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15829",
+      "image_url": "https://images.englandrugby.com/club_images/15829.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    },
+    {
+      "name": "Amersham & Chiltern Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=621",
+      "image_url": "https://images.englandrugby.com/club_images/621.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350199875
+    },
+    {
+      "name": "Tring 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23151",
+      "image_url": "https://images.englandrugby.com/club_images/23151.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Fullerians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8386",
+      "image_url": "https://images.englandrugby.com/club_images/8386.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Hemel Hempstead 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9964",
+      "image_url": "https://images.englandrugby.com/club_images/9964.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    }
+  ],
+  "team_count": 9
+}

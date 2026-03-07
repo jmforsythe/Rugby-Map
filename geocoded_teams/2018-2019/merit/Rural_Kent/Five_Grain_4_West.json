@@ -1,0 +1,127 @@
+{
+  "league_name": "Five Grain 4 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1681&division=14836&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Tonbridge Juddians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22917",
+      "image_url": "https://images.englandrugby.com/club_images/22917.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Canterbury 4XV Deacons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4126",
+      "image_url": "https://images.englandrugby.com/club_images/4126.png",
+      "address": "The Marine Travel Ground Merton Lane (north) Nackington Road Canterbury Kent CT4 7DZ United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350656514
+    },
+    {
+      "name": "Gillingham Anchorians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8575",
+      "image_url": "https://images.englandrugby.com/club_images/8575.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "Sheppey 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19173",
+      "image_url": "https://images.englandrugby.com/club_images/19173.png",
+      "address": "Sheppey Rugby Football Club, The Clubhouse, Stupple Field, Lower Road,, Minster,, Sheerness, Kent, ME12 3RT, United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351566033
+    },
+    {
+      "name": "Old Gravesendians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15731",
+      "image_url": "https://images.englandrugby.com/club_images/15731.png",
+      "address": "Old Gravesendians R.F.C. Fleetway Sports Ground Bronte View, Parrock Road Gravesend KENT DA12 1PX UNITED KINGDOM ",
+      "latitude": 51.4358035,
+      "longitude": 0.3789148,
+      "formatted_address": "DA12 1PX, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569639
+    },
+    {
+      "name": "Aylesford Bulls 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1153",
+      "image_url": "https://images.englandrugby.com/club_images/1153.png",
+      "address": "The Jack Williams Ground, Hall Road, Hall Road, Aylesford, Kent, ME20 7DS, United Kingdom",
+      "latitude": 51.29934,
+      "longitude": 0.47961,
+      "formatted_address": "ME20 7DS, Aylesford, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 351573177
+    },
+    {
+      "name": "Vigo 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24008",
+      "image_url": "https://images.englandrugby.com/club_images/24008.png",
+      "address": "Swanswood Field Vigo Village, Harvel Road Vigo KENT DA13 0UA UNITED KINGDOM ",
+      "latitude": 51.3348783,
+      "longitude": 0.3683709,
+      "formatted_address": "DA13 0UA, Luddesdown, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569797
+    },
+    {
+      "name": "Gravesend 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8883",
+      "image_url": "https://images.englandrugby.com/club_images/8883.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    },
+    {
+      "name": "New Ash Green 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14307",
+      "image_url": "https://images.englandrugby.com/club_images/14307.png",
+      "address": "The Pavilion, Punchcroft Road, New Ash Green, Longfield, Kent, DA3 8HS, United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570813
+    },
+    {
+      "name": "Cliffe Crusaders RFC Development",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5261",
+      "image_url": "https://images.englandrugby.com/club_images/5261.png",
+      "address": "Cliffe Memorial Hall Rochester Kent ME37UT England",
+      "latitude": 51.4631358,
+      "longitude": 0.499096,
+      "formatted_address": "ME3 7UT, Cliffe and Cliffe Woods, Cliffe, Medway, England, United Kingdom",
+      "place_id": 351376765
+    },
+    {
+      "name": "Tonbridge Juddians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22918",
+      "image_url": "https://images.englandrugby.com/club_images/22918.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Tunbridge Wells 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23288",
+      "image_url": "https://images.englandrugby.com/club_images/23288.png",
+      "address": "St. Marks Recreation Ground, Frant Road, Tunbridge Wells, Kent, TN2 5LS, United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350854535
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=14763&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "New Zealand Kiwis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14381",
+      "image_url": "https://images.englandrugby.com/club_images/14381.png",
+      "address": "Wasps FC W3 9QA UNITED KINGDOM",
+      "latitude": 51.509811,
+      "longitude": -0.2800411,
+      "formatted_address": "Wasps Football Club, Twyford Crescent, London Borough of Ealing, Greater London, England, W3 9PP, United Kingdom",
+      "place_id": 407469674
+    },
+    {
+      "name": "London Scottish Lions 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12612",
+      "image_url": "https://images.englandrugby.com/club_images/12612.png",
+      "address": "Richmond Athletic Ground, Kew Foot Road, Richmond, Surrey, TW9 2SS, United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872407
+    },
+    {
+      "name": "Hampstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9293",
+      "image_url": "https://images.englandrugby.com/club_images/9293.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Old Streetonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16055",
+      "image_url": "https://images.englandrugby.com/club_images/16055.png",
+      "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
+      "latitude": 51.5527479,
+      "longitude": -0.0255018,
+      "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
+      "place_id": 259818900
+    },
+    {
+      "name": "Feltham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8061",
+      "image_url": "https://images.englandrugby.com/club_images/8061.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.43562,
+      "longitude": -0.39278,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    },
+    {
+      "name": "Twickenham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
+      "image_url": "https://images.englandrugby.com/club_images/23337.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Old Priorians Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
+      "image_url": "https://images.englandrugby.com/club_images/15924.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350872989
+    },
+    {
+      "name": "Ickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10764",
+      "image_url": "https://images.englandrugby.com/club_images/10764.png",
+      "address": "Uxbridge Sports Club Park Road Gatting Way Uxbridge Middlesex UB8 1NR United Kingdom",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352781955
+    }
+  ],
+  "team_count": 9
+}

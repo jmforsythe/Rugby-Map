@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=14159&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Twickenham 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23338",
+      "image_url": "https://images.englandrugby.com/club_images/23338.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Grasshoppers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8855",
+      "image_url": "https://images.englandrugby.com/club_images/8855.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Chiswick 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4933",
+      "image_url": "https://images.englandrugby.com/club_images/4933.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "CSSC Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5990",
+      "image_url": "https://images.englandrugby.com/club_images/5990.png",
+      "address": "C/O Middlesex CB PK1 Twyford Abbey Sports Ground Twyford Abbey Road London W3 9QA",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    },
+    {
+      "name": "Hillingdon Abbots",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10174",
+      "image_url": "https://images.englandrugby.com/club_images/10174.png",
+      "address": "Abbotstonians R.F.C. Old Pole Hill Open Spaces Gainsborough Road Hayes MIDDLESEX UB4 8PS UNITED KINGDOM",
+      "latitude": 51.53802,
+      "longitude": -0.43524,
+      "formatted_address": "UB4 8PS, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104763
+    },
+    {
+      "name": "Northolt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14975",
+      "image_url": "https://images.englandrugby.com/club_images/14975.png",
+      "address": "Cayton Sports & Social Club Cayton Green Park Cayton Road Cayton Road Greenford MIDDLESEX UB6 8BJ UNITED KINGDOM",
+      "latitude": 51.5365369,
+      "longitude": -0.3387648,
+      "formatted_address": "UB6 8BJ, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422177
+    },
+    {
+      "name": "Uxbridge 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23881",
+      "image_url": "https://images.englandrugby.com/club_images/23881.png",
+      "address": "Uxbridge Cricket Club Park Road Uxbridge MIDDLESEX UB8 1NR UNITED KINGDOM",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352107282
+    },
+    {
+      "name": "U.C.S. 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23419",
+      "image_url": "https://images.englandrugby.com/club_images/23419.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    }
+  ],
+  "team_count": 8
+}

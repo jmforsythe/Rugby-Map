@@ -1,0 +1,97 @@
+{
+  "league_name": "Cotton Traders Championship League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=14267&season=2018-2019#tables",
+  "teams": [
+    {
+      "name": "Rossendale 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18010",
+      "image_url": "https://images.englandrugby.com/club_images/18010.png",
+      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
+      "latitude": 53.7035387,
+      "longitude": -2.2757123,
+      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
+      "place_id": 350949552
+    },
+    {
+      "name": "Blackburn 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2478",
+      "image_url": "https://images.englandrugby.com/club_images/2478.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Firwood Waterloo 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8163",
+      "image_url": "https://images.englandrugby.com/club_images/8163.png",
+      "address": "The Memorial Ground, St Anthony's Road, Blundellsands, Merseyside, L23 8TW, England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Wilmslow 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25472",
+      "image_url": "https://images.englandrugby.com/club_images/25472.png",
+      "address": "Memorial Ground Kings Road Pownall Park Wilmslow Cheshire SK9 5PZ United Kingdom",
+      "latitude": 53.3344312,
+      "longitude": -2.2483284,
+      "formatted_address": "SK9 5PZ, Wilmslow, Cheshire East, England, United Kingdom",
+      "place_id": 350820137
+    },
+    {
+      "name": "Kendal 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11241",
+      "image_url": "https://images.englandrugby.com/club_images/11241.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Wirral 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25710",
+      "image_url": "https://images.englandrugby.com/club_images/25710.png",
+      "address": "Memorial Ground Thornton Common Road Clatterbridge Bebington MERSEYSIDE CH63 0LT UNITED KINGDOM ",
+      "latitude": 53.3243906,
+      "longitude": -3.0198623,
+      "formatted_address": "CH63 0LT, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351065371
+    },
+    {
+      "name": "Rochdale 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17890",
+      "image_url": "https://images.englandrugby.com/club_images/17890.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
+    },
+    {
+      "name": "Stockport 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20985",
+      "image_url": "https://images.englandrugby.com/club_images/20985.png",
+      "address": "Bridge Lane Memorial Ground Headlands Road Bramhall Stockport CHESHIRE SK7 3AN UNITED KINGDOM ",
+      "latitude": 53.37211,
+      "longitude": -2.15291,
+      "formatted_address": "SK7 3AN, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351924550
+    },
+    {
+      "name": "Macclesfield 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13066",
+      "image_url": "https://images.englandrugby.com/club_images/13066.png",
+      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
+      "latitude": 53.2725255,
+      "longitude": -2.1600659,
+      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
+      "place_id": 255105008
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Bristol & District 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=44350&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "North Bristol II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14665",
+      "image_url": "https://images.englandrugby.com/club_images/14665.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350513558
+    },
+    {
+      "name": "Broad Plain II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3341",
+      "image_url": "https://images.englandrugby.com/club_images/3341.png",
+      "address": "St Johns park St Johns lane Bedminster Bristol BRISTOL BS3 5AZ UNITED KINGDOM",
+      "latitude": 51.43547,
+      "longitude": -2.595076,
+      "formatted_address": "BS3 5AZ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350515558
+    },
+    {
+      "name": "Frampton Cotterell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8293",
+      "image_url": "https://images.englandrugby.com/club_images/8293.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "Kingswood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11693",
+      "image_url": "https://images.englandrugby.com/club_images/11693.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Yate II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124607",
+      "image_url": "https://images.englandrugby.com/club_images/124607.png",
+      "address": "Yate Outdoor Sports Complex, Broad Lane, Yate, BS37 7LB, England",
+      "latitude": 51.5522403,
+      "longitude": -2.4258913,
+      "formatted_address": "BS37 7LB, Yate, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516592
+    },
+    {
+      "name": "Cotham Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5679",
+      "image_url": "https://images.englandrugby.com/club_images/5679.png",
+      "address": "Cotham Park RFC Upper Farm, Beggar Bush Lane Failand, Bristol SOMERSET BS8 3TF UNITED KINGDOM ",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350521707
+    },
+    {
+      "name": "Whitehall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25260",
+      "image_url": "https://images.englandrugby.com/club_images/25260.png",
+      "address": "Whitehall RFC Speedwell Recreation Ground Foundry Lane, Speedwell Bristol BRISTOL BS5 7UE UNITED KINGDOM ",
+      "latitude": 51.4703526,
+      "longitude": -2.5375935,
+      "formatted_address": "BS5 7UE, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350519395
+    },
+    {
+      "name": "Aretians RFC Rangers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125748",
+      "image_url": "https://images.englandrugby.com/club_images/125748.png",
+      "address": "Aretians R.f.c. Station Road Little Stoke Bristol Bristol BS34 6HW United Kingdom",
+      "latitude": 51.529744,
+      "longitude": -2.5642251,
+      "formatted_address": "BS34 6HW, Stoke Gifford, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350514366
+    }
+  ],
+  "team_count": 8
+}

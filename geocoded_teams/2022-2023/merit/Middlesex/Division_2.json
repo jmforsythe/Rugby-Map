@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=40030&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Wasps 2nds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24392",
+      "image_url": "https://images.englandrugby.com/club_images/24392.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "Twickenham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
+      "image_url": "https://images.englandrugby.com/club_images/23337.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Hanwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9346",
+      "image_url": "https://images.englandrugby.com/club_images/9346.png",
+      "address": "Twyford Ave Sports Ground Sports Ground Twyford Avenue London W3 9QA United Kingdom",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119428
+    },
+    {
+      "name": "Old Isleworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15781",
+      "image_url": "https://images.englandrugby.com/club_images/15781.png",
+      "address": "The Memorial Ground 22a Wood Lane Isleworth Middlesex TW7 5ED United Kingdom",
+      "latitude": 51.477437,
+      "longitude": -0.3341276,
+      "formatted_address": "TW7 5ED, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352100703
+    },
+    {
+      "name": "Whitton Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25338",
+      "image_url": "https://images.englandrugby.com/club_images/25338.png",
+      "address": "Whitton Park Sports Association 190 Wills Crescent Hounslow TW3 2JD United Kingdom",
+      "latitude": 51.4551602,
+      "longitude": -0.3667651,
+      "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871759
+    },
+    {
+      "name": "Ruislip 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18367",
+      "image_url": "https://images.englandrugby.com/club_images/18367.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Finchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
+      "image_url": "https://images.englandrugby.com/club_images/8091.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
+      "name": "Finsbury Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8119",
+      "image_url": "https://images.englandrugby.com/club_images/8119.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.58897,
+      "longitude": -0.0852099,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
+    },
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    }
+  ],
+  "team_count": 9
+}

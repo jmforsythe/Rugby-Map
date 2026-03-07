@@ -116,6 +116,7 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "Merit_North": 12,
         "Merit_Premier": 10,
         "Merit_South": 12,
+        "Merit": 10,
         "Midlands_Reserve_League": 10,
         "NOWIRUL": 9,
         "Premier_Division": 9,

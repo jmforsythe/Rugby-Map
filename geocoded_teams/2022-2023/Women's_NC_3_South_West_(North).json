@@ -1,0 +1,47 @@
+{
+  "league_name": "Women's NC 3 South West (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39238&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Thornbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22691",
+      "image_url": "https://images.englandrugby.com/club_images/22691.png",
+      "address": "Cooper's Farm Rockhampton Road Newton Thornbury BS35 1LG UNITED KINGDOM",
+      "latitude": 51.6296946,
+      "longitude": -2.5100507,
+      "formatted_address": "BS35 1LG, Rockhampton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350064512
+    },
+    {
+      "name": "Chippenham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4846",
+      "image_url": "https://images.englandrugby.com/club_images/4846.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351491860
+    },
+    {
+      "name": "Hardwicke & Quedgeley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9375",
+      "image_url": "https://images.englandrugby.com/club_images/9375.png",
+      "address": "Kingsway Sports Pavilion Newhaven Road Kingsway Business Park Gloucester Gloucestershire GL2 2SN United Kingdom",
+      "latitude": 51.8203675,
+      "longitude": -2.2758346,
+      "formatted_address": "GL2 2SN, Kingsway Business Park, Quedgeley, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350180641
+    },
+    {
+      "name": "Ashley Down OB Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=921",
+      "image_url": "https://images.englandrugby.com/club_images/921.png",
+      "address": "Lockleaze Combination Ground Bonnington Walk Lockleaze Bristol BRISTOL BS7 9YU UNITED KINGDOM",
+      "latitude": 51.4987321,
+      "longitude": -2.5656862,
+      "formatted_address": "BS7 9YU, Stoke Park and Cheswick, Harry Stoke, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350521213
+    }
+  ],
+  "team_count": 4
+}

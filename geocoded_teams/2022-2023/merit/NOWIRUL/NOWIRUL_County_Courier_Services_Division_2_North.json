@@ -1,0 +1,104 @@
+{
+  "league_name": "NOWIRUL County Courier Services Division 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=39427&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Fylde Saracens (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8438",
+      "image_url": "https://images.englandrugby.com/club_images/8438.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Preston Grasshoppers 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17182",
+      "image_url": "https://images.englandrugby.com/club_images/17182.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
+      "latitude": 53.7967514,
+      "longitude": -2.7356618,
+      "formatted_address": "Preston Grasshoppers R.F.C., Lightfoot Green Lane, Fulwood, Broughton, Preston, Lancashire, England, PR4 0AP, United Kingdom",
+      "place_id": 256147200
+    },
+    {
+      "name": "Eccles 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7280",
+      "image_url": "https://images.englandrugby.com/club_images/7280.png",
+      "address": "Gorton Street Peel Green Eccles, Manchester. Greater Manchester M30 7LZ United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
+    },
+    {
+      "name": "Aldwinians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=427",
+      "image_url": "https://images.englandrugby.com/club_images/427.png",
+      "address": "Audenshaw Park, Droylsden Road, Audenshaw, GREATER MANCHESTER M34 5SN UNITED KINGDOM",
+      "latitude": 53.4768912,
+      "longitude": -2.1387899,
+      "formatted_address": "M34 5SN, Tameside, Greater Manchester, England, United Kingdom",
+      "place_id": 350698316
+    },
+    {
+      "name": "Chorley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4972",
+      "image_url": "https://images.englandrugby.com/club_images/4972.png",
+      "address": "Chorley Rufc Chorley Panthers Chisnall Lane, Copull Copull Chorley Lancashire PR7 5EA United Kingdom",
+      "latitude": 53.6122806,
+      "longitude": -2.6765285,
+      "formatted_address": "PR7 5EA, Coppull, Chorley, Lancashire, England, United Kingdom",
+      "place_id": 350783077
+    },
+    {
+      "name": "Southport 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19779",
+      "image_url": "https://images.englandrugby.com/club_images/19779.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    },
+    {
+      "name": "Ormskirk 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16248",
+      "image_url": "https://images.englandrugby.com/club_images/16248.png",
+      "address": "Green Lane Ormskirk LANCASHIRE L39 1ND UNITED KINGDOM ",
+      "latitude": 53.5723631,
+      "longitude": -2.8872143,
+      "formatted_address": "Green Lane, Ormskirk, West Lancashire, Lancashire, England, L39 1ND, United Kingdom",
+      "place_id": 254521203
+    },
+    {
+      "name": "Blackburn 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2479",
+      "image_url": "https://images.englandrugby.com/club_images/2479.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Leigh 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12120",
+      "image_url": "https://images.englandrugby.com/club_images/12120.png",
+      "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
+      "latitude": 53.4810869,
+      "longitude": -2.5216359,
+      "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 350892601
+    },
+    {
+      "name": "Kirkby Lonsdale RUFC Development XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26582",
+      "image_url": "https://images.englandrugby.com/club_images/26582.png",
+      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
+      "latitude": 54.2081674,
+      "longitude": -2.6025938,
+      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350680621
+    }
+  ],
+  "team_count": 10
+}

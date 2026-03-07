@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=42872&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Billericay II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2202",
+      "image_url": "https://images.englandrugby.com/club_images/2202.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Campion II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4079",
+      "image_url": "https://images.englandrugby.com/club_images/4079.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    },
+    {
+      "name": "Westcliff III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24956",
+      "image_url": "https://images.englandrugby.com/club_images/24956.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Ilford Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
+      "image_url": "https://images.englandrugby.com/club_images/10783.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Harlow III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9429",
+      "image_url": "https://images.englandrugby.com/club_images/9429.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
+      "name": "Southend IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19723",
+      "image_url": "https://images.englandrugby.com/club_images/19723.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Ravens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17478",
+      "image_url": "https://images.englandrugby.com/club_images/17478.png",
+      "address": "Dagenham Rd, Dagenham, Romford Rm7 0qx M&b Social Club Dagenham Rd, Dagenham, Romford Rm7 0qx Dagenham Essex RM7 0QX United Kingdom",
+      "latitude": 51.54813,
+      "longitude": 0.17,
+      "formatted_address": "RM7 0QX, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351838188
+    },
+    {
+      "name": "Thurrock III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22771",
+      "image_url": "https://images.englandrugby.com/club_images/22771.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    }
+  ],
+  "team_count": 8
+}

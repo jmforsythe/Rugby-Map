@@ -1,0 +1,104 @@
+{
+  "league_name": "Division 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=39373&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Belsize Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1945",
+      "image_url": "https://images.englandrugby.com/club_images/1945.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "London Sussex",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124746",
+      "image_url": "https://images.englandrugby.com/club_images/124746.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Hammersmith & Fulham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9259",
+      "image_url": "https://images.englandrugby.com/club_images/9259.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London Scottish Lions 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12612",
+      "image_url": "https://images.englandrugby.com/club_images/12612.png",
+      "address": "Richmond Athletic Ground, Kew Foot Road, Richmond, Surrey, TW9 2SS, United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872407
+    },
+    {
+      "name": "Ealing Trailfinders 1871 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26638",
+      "image_url": "https://images.englandrugby.com/club_images/26638.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    },
+    {
+      "name": "Grasshoppers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
+      "image_url": "https://images.englandrugby.com/club_images/8854.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Hackney 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
+      "image_url": "https://images.englandrugby.com/club_images/9155.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
+    },
+    {
+      "name": "Old Priorians Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
+      "image_url": "https://images.englandrugby.com/club_images/15924.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350872989
+    },
+    {
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Hampstead 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9292",
+      "image_url": "https://images.englandrugby.com/club_images/9292.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    }
+  ],
+  "team_count": 10
+}

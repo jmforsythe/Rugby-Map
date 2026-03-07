@@ -1,0 +1,57 @@
+{
+  "league_name": "Division 6 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=42874&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Basildon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1545",
+      "image_url": "https://images.englandrugby.com/club_images/1545.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "East London III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7165",
+      "image_url": "https://images.englandrugby.com/club_images/7165.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Pegasus Palmerians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16667",
+      "image_url": "https://images.englandrugby.com/club_images/16667.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Kings Cross Steelers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11559",
+      "image_url": "https://images.englandrugby.com/club_images/11559.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    }
+  ],
+  "team_count": 5
+}

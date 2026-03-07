@@ -1,0 +1,77 @@
+{
+  "league_name": "Leicestershire Merit A",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=40786&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Syston III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21565",
+      "image_url": "https://images.englandrugby.com/club_images/21565.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    },
+    {
+      "name": "Sutton Bonington Students",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21450",
+      "image_url": "https://images.englandrugby.com/club_images/21450.png",
+      "address": "Sutton Bonington Sports Centre College Road Sutton Bonington LEICESTERSHIRE LE12 5RD ENGLAND",
+      "latitude": 52.8306393,
+      "longitude": -1.2514917,
+      "formatted_address": "LE12 5RD, Sutton Bonington, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350231187
+    },
+    {
+      "name": "Hinckley RFC U23M",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94252",
+      "image_url": "https://images.englandrugby.com/club_images/94252.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM",
+      "latitude": 52.5540071,
+      "longitude": -1.3491549,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 258421327
+    },
+    {
+      "name": "Kettering 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11347",
+      "image_url": "https://images.englandrugby.com/club_images/11347.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Lutterworth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12965",
+      "image_url": "https://images.englandrugby.com/club_images/12965.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    },
+    {
+      "name": "Vipers 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24034",
+      "image_url": "https://images.englandrugby.com/club_images/24034.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Market Harborough 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13378",
+      "image_url": "https://images.englandrugby.com/club_images/13378.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM ",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    }
+  ],
+  "team_count": 7
+}

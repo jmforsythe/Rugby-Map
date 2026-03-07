@@ -1,0 +1,57 @@
+{
+  "league_name": "Division 6 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=42873&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Chelmsford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4485",
+      "image_url": "https://images.englandrugby.com/club_images/4485.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Maldon III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13156",
+      "image_url": "https://images.englandrugby.com/club_images/13156.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Writtle Wanderers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26201",
+      "image_url": "https://images.englandrugby.com/club_images/26201.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    },
+    {
+      "name": "Witham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25767",
+      "image_url": "https://images.englandrugby.com/club_images/25767.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    },
+    {
+      "name": "Ongar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16209",
+      "image_url": "https://images.englandrugby.com/club_images/16209.png",
+      "address": "Ongar Rfc Love Lane High Street Ongar CM5 9BL United Kingdom",
+      "latitude": 51.70815,
+      "longitude": 0.24586,
+      "formatted_address": "CM5 9BL, Ongar, Chipping Ongar, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351081502
+    }
+  ],
+  "team_count": 5
+}

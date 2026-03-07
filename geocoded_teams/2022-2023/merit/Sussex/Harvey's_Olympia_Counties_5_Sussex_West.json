@@ -1,0 +1,67 @@
+{
+  "league_name": "Harvey's Olympia Counties 5 Sussex West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=40871&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    },
+    {
+      "name": "Littlehampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12394",
+      "image_url": "https://images.englandrugby.com/club_images/12394.png",
+      "address": "The New Inn 5 Norfolk Road Littlehampton West Sussex BN17 5PL United Kingdom",
+      "latitude": 50.8044852,
+      "longitude": -0.5318871,
+      "formatted_address": "The New Inn, 5, Norfolk Road, Littlehampton, Arun, West Sussex, England, BN17 5PL, United Kingdom",
+      "place_id": 262085815
+    },
+    {
+      "name": "Shoreham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19262",
+      "image_url": "https://images.englandrugby.com/club_images/19262.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Pulborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17257",
+      "image_url": "https://images.englandrugby.com/club_images/17257.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Brighton & Sussex Medics",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3207",
+      "image_url": "https://images.englandrugby.com/club_images/3207.png",
+      "address": "C/0 CB administrator Sussex Rugby University of Brighton Sports Centre Falmer Campus Brighton BN1 9PH",
+      "latitude": 50.8600421,
+      "longitude": -0.0862726,
+      "formatted_address": "BN1 9PH, Brighton and Hove, England, United Kingdom",
+      "place_id": 350500798
+    }
+  ],
+  "team_count": 6
+}

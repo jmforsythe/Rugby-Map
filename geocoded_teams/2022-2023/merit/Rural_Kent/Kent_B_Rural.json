@@ -1,0 +1,77 @@
+{
+  "league_name": "Kent B Rural",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1681&division=41983&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    },
+    {
+      "name": "East Peckham and Paddock Wood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7187",
+      "image_url": "https://images.englandrugby.com/club_images/7187.png",
+      "address": "Green Lane Playing Field Green Lane Paddock Wood Tonbridge Kent TN12 6BF United Kingdom",
+      "latitude": 51.17476,
+      "longitude": 0.39503,
+      "formatted_address": "TN12 6BF, Paddock Wood, Whetsted, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 352049792
+    },
+    {
+      "name": "Folkestone 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8215",
+      "image_url": "https://images.englandrugby.com/club_images/8215.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Vigo 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24007",
+      "image_url": "https://images.englandrugby.com/club_images/24007.png",
+      "address": "Swanswood Field Vigo Village, Harvel Road Vigo KENT DA13 0UA UNITED KINGDOM ",
+      "latitude": 51.3348783,
+      "longitude": 0.3683709,
+      "formatted_address": "DA13 0UA, Luddesdown, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569797
+    },
+    {
+      "name": "Canterbury 4XV Deacons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4126",
+      "image_url": "https://images.englandrugby.com/club_images/4126.png",
+      "address": "The Marine Travel Ground Merton Lane (north) Nackington Road Canterbury Kent CT4 7DZ United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350656514
+    },
+    {
+      "name": "Ashford Barbarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=879",
+      "image_url": "https://images.englandrugby.com/club_images/879.png",
+      "address": "Sandyacres Sports & Social Centre Sandyhurst Lane Ashford Kent TN25 4NT England",
+      "latitude": 51.17179,
+      "longitude": 0.85638,
+      "formatted_address": "TN25 4NT, Westwell, Ashford, Kent, England, United Kingdom",
+      "place_id": 352731324
+    },
+    {
+      "name": "Leigh (Kent)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12119",
+      "image_url": "https://images.englandrugby.com/club_images/12119.png",
+      "address": "The Field Of Dreams Chiddingstone Causeway Tonbridge Kent TN11 8JH England",
+      "latitude": 51.19802,
+      "longitude": 0.18042,
+      "formatted_address": "TN11 8JH, Leigh, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352049141
+    }
+  ],
+  "team_count": 7
+}

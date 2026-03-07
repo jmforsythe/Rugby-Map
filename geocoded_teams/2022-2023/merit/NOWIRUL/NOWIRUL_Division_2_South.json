@@ -1,0 +1,127 @@
+{
+  "league_name": "NOWIRUL Division 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=39428&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Manchester 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13232",
+      "image_url": "https://images.englandrugby.com/club_images/13232.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Leek 2nds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12018",
+      "image_url": "https://images.englandrugby.com/club_images/12018.png",
+      "address": "Chestnut Walk St Edwards Park Cheddleton Leek Staffordshire ST13 7BJ United Kingdom",
+      "latitude": 53.07764,
+      "longitude": -2.04422,
+      "formatted_address": "ST13 7BJ, Saint Edward's Park, Cheddleton, Staffordshire Moorlands, Staffordshire, England, United Kingdom",
+      "place_id": 351989425
+    },
+    {
+      "name": "Didsbury Toc H 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6447",
+      "image_url": "https://images.englandrugby.com/club_images/6447.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
+      "name": "Congleton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5565",
+      "image_url": "https://images.englandrugby.com/club_images/5565.png",
+      "address": "78 The Woodman Park Street Congleton CHESHIRE CW12 1EG UNITED KINGDOM ",
+      "latitude": 53.1639541,
+      "longitude": -2.2071438,
+      "formatted_address": "CW12 1EG, Congleton, Cheshire East, England, United Kingdom",
+      "place_id": 350567347
+    },
+    {
+      "name": "Sandbach 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18679",
+      "image_url": "https://images.englandrugby.com/club_images/18679.png",
+      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
+      "latitude": 53.1560892,
+      "longitude": -2.3670478,
+      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
+      "place_id": 255894806
+    },
+    {
+      "name": "Holmes Chapel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10293",
+      "image_url": "https://images.englandrugby.com/club_images/10293.png",
+      "address": "Holmes Chapel Community Centre Station Road Holmes Chapel Cheshire CW4 8AA United Kingdom",
+      "latitude": 53.1983465,
+      "longitude": -2.3502281,
+      "formatted_address": "CW4 8AA, Holmes Chapel, Cheshire East, England, United Kingdom",
+      "place_id": 350567853
+    },
+    {
+      "name": "Crewe & Nantwich 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5860",
+      "image_url": "https://images.englandrugby.com/club_images/5860.png",
+      "address": "Crewe Vagrants Sports Club Newcastle Road Willaston Cheshire CW5 7EP United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568108
+    },
+    {
+      "name": "Chester 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4682",
+      "image_url": "https://images.englandrugby.com/club_images/4682.png",
+      "address": "Hare Lane Littleton Chester CHESHIRE CH3 7DB UNITED KINGDOM ",
+      "latitude": 53.1974062,
+      "longitude": -2.8428487,
+      "formatted_address": "Hare Lane, Pipers Ash, Guilden Sutton, Littleton, Cheshire West and Chester, England, CH3 7DB, United Kingdom",
+      "place_id": 256952260
+    },
+    {
+      "name": "Knutsford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11768",
+      "image_url": "https://images.englandrugby.com/club_images/11768.png",
+      "address": "Campus Westfield Drive Knutsford Cheshire WA16 0BL United Kingdom",
+      "latitude": 53.30153,
+      "longitude": -2.38364,
+      "formatted_address": "WA16 0BL, Knutsford, Cheshire East, England, United Kingdom",
+      "place_id": 352128426
+    },
+    {
+      "name": "Bowdon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2850",
+      "image_url": "https://images.englandrugby.com/club_images/2850.png",
+      "address": "Clay Lane Timperley Altrincham CHESHIRE WA15 7AF UNITED KINGDOM ",
+      "latitude": 53.38779,
+      "longitude": -2.31441,
+      "formatted_address": "WA15 7AF, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127702
+    },
+    {
+      "name": "Wilmslow 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25472",
+      "image_url": "https://images.englandrugby.com/club_images/25472.png",
+      "address": "Memorial Ground Kings Road Pownall Park Wilmslow Cheshire SK9 5PZ United Kingdom",
+      "latitude": 53.3344312,
+      "longitude": -2.2483284,
+      "formatted_address": "SK9 5PZ, Wilmslow, Cheshire East, England, United Kingdom",
+      "place_id": 350820137
+    },
+    {
+      "name": "Altrincham Kersal Cougars (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=538",
+      "image_url": "https://images.englandrugby.com/club_images/538.png",
+      "address": "Stelfox Avenue Timperley Altrincham Cheshire WA15 6UL United Kingdom",
+      "latitude": 53.40032,
+      "longitude": -2.31284,
+      "formatted_address": "WA15 6UL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 352127681
+    }
+  ],
+  "team_count": 12
+}

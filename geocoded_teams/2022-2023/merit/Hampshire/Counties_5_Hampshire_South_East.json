@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 5 Hampshire South East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=40960&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Trojans II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23220",
+      "image_url": "https://images.englandrugby.com/club_images/23220.png",
+      "address": "Trojans Club, Stoneham Park  , Stoneham Lane, Eastleigh, Southampton, Hampshire, SO50 9HT, United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832256
+    },
+    {
+      "name": "Chichester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4761",
+      "image_url": "https://images.englandrugby.com/club_images/4761.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Locksheath Pumas 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12486",
+      "image_url": "https://images.englandrugby.com/club_images/12486.png",
+      "address": "The Sir Joseph Paxton 272 Hunts Pond Road Fareham Hampshire PO14 4PF United Kingdom",
+      "latitude": 50.8554981,
+      "longitude": -1.2565358,
+      "formatted_address": "PO14 4PF, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 350774961
+    },
+    {
+      "name": "Isle of Wight 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11010",
+      "image_url": "https://images.englandrugby.com/club_images/11010.png",
+      "address": "The Clubhouse Wootton Recreation Ground Footways Wootton Bridge Isle Of Wight PO33 4NQ United Kingdom",
+      "latitude": 50.728543,
+      "longitude": -1.2374689,
+      "formatted_address": "PO33 4NQ, Wootton Bridge, Isle of Wight, England, United Kingdom",
+      "place_id": 350776812
+    },
+    {
+      "name": "Eastleigh 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7249",
+      "image_url": "https://images.englandrugby.com/club_images/7249.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Fareham Heathens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7931",
+      "image_url": "https://images.englandrugby.com/club_images/7931.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Portsmouth 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17113",
+      "image_url": "https://images.englandrugby.com/club_images/17113.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Petersfield II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16851",
+      "image_url": "https://images.englandrugby.com/club_images/16851.png",
+      "address": "The Clubhouse Penns Place Petersfield HAMPSHIRE GU31 4EP UNITED KINGDOM ",
+      "latitude": 51.0061423,
+      "longitude": -0.9084236,
+      "formatted_address": "GU31 4EP, Petersfield, Sheet, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642411
+    }
+  ],
+  "team_count": 8
+}

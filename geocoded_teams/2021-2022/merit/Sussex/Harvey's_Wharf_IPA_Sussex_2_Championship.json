@@ -1,0 +1,64 @@
+{
+  "league_name": "Harvey's Wharf IPA Sussex 2 Championship",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=36759&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Royals RFC 1st XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94051",
+      "image_url": "https://images.englandrugby.com/club_images/94051.png",
+      "address": "Pavilion Grainville Playing Fields Jersey St Saviour JE2 7LJ Jersey",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hove III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10505",
+      "image_url": "https://images.englandrugby.com/club_images/10505.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Hastings & Bexhill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9654",
+      "image_url": "https://images.englandrugby.com/club_images/9654.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Ditchling",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541",
+      "image_url": "https://images.englandrugby.com/club_images/6541.png",
+      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
+      "latitude": 50.92073,
+      "longitude": -0.12822,
+      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 351007600
+    },
+    {
+      "name": "Pulborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17257",
+      "image_url": "https://images.englandrugby.com/club_images/17257.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Worthing Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26129",
+      "image_url": "https://images.englandrugby.com/club_images/26129.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351175070
+    }
+  ],
+  "team_count": 6
+}

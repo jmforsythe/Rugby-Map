@@ -1,0 +1,77 @@
+{
+  "league_name": "CANDY Division Two South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=49&division=36178&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Middlesbrough Wasps",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13811",
+      "image_url": "https://images.englandrugby.com/club_images/13811.png",
+      "address": "Acklam Park Green Lane, Acklam Middlesbrough NORTH YORKSHIRE TS5 7SL UNITED KINGDOM",
+      "latitude": 54.55121,
+      "longitude": -1.2515,
+      "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 352765479
+    },
+    {
+      "name": "Consett and District 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5594",
+      "image_url": "https://images.englandrugby.com/club_images/5594.png",
+      "address": "The Demi Albert Road Consett COUNTY DURHAM DH8 5QU UNITED KINGDOM",
+      "latitude": 54.8522459,
+      "longitude": -1.8347675,
+      "formatted_address": "The Demi, 45, Albert Road, Blackhill, Templetown, Consett, County Durham, North East, England, DH8 5QU, United Kingdom",
+      "place_id": 252541782
+    },
+    {
+      "name": "Durham City 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6951",
+      "image_url": "https://images.englandrugby.com/club_images/6951.png",
+      "address": "Durham City RFC, Hollow Drift, Green Lane, Durham, COUNTY DURHAM, DH1 3JU, UNITED KINGDOM, ",
+      "latitude": 54.7736961,
+      "longitude": -1.5613055,
+      "formatted_address": "DH1 3JU, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586188
+    },
+    {
+      "name": "Hartlepool Rovers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9568",
+      "image_url": "https://images.englandrugby.com/club_images/9568.png",
+      "address": "The Friarage, Low Warren, Westview Road, Hartlepool, Ctydur, TS24 0BP, United Kingdom",
+      "latitude": 54.7059315,
+      "longitude": -1.2107166,
+      "formatted_address": "TS24 0BP, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869168
+    },
+    {
+      "name": "West Hartlepool (Stags)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24771",
+      "image_url": "https://images.englandrugby.com/club_images/24771.png",
+      "address": "Brinkburn Catcote Road Hartlepool COUNTY DURHAM TS25 4HA",
+      "latitude": 54.6747341,
+      "longitude": -1.2376463,
+      "formatted_address": "TS25 4HA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869362
+    },
+    {
+      "name": "Horden and Peterlee 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10387",
+      "image_url": "https://images.englandrugby.com/club_images/10387.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Acklam Talbots",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94057",
+      "image_url": "https://images.englandrugby.com/club_images/94057.png",
+      "address": "Acklam Rugby Club Talbot Park Lacy Road Middlesbrough Cleveland TS4 3PR United Kingdom",
+      "latitude": 54.5415584,
+      "longitude": -1.221159,
+      "formatted_address": "TS4 3PR, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 350869656
+    }
+  ],
+  "team_count": 7
+}

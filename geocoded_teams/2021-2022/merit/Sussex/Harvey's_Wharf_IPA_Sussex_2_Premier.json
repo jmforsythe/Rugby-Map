@@ -1,0 +1,67 @@
+{
+  "league_name": "Harvey's Wharf IPA Sussex 2 Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=36765&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Barns Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
+      "image_url": "https://images.englandrugby.com/club_images/1452.png",
+      "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
+      "latitude": 51.033237,
+      "longitude": -0.3956182,
+      "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350794178
+    },
+    {
+      "name": "Worthing Azurians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26123",
+      "image_url": "https://images.englandrugby.com/club_images/26123.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351175070
+    },
+    {
+      "name": "Steyning",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20968",
+      "image_url": "https://images.englandrugby.com/club_images/20968.png",
+      "address": "Steyning Rfc 9 Priory Field Upper Beeding West Sussex BN44 3HU United Kingdom",
+      "latitude": 50.88554,
+      "longitude": -0.30617,
+      "formatted_address": "BN44 3HU, Upper Beeding, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351007097
+    },
+    {
+      "name": "Heathfield & Waldron II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9828",
+      "image_url": "https://images.englandrugby.com/club_images/9828.png",
+      "address": "The Hardy Roberts Recreation Ground Cross-in-hand Heathfield East Sussex TN21 0TA England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    }
+  ],
+  "team_count": 6
+}

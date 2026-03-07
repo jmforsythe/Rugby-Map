@@ -1,0 +1,67 @@
+{
+  "league_name": "Harvey's Olympia Sussex 3 Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=37770&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Horsham III (Casuals)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
+      "image_url": "https://images.englandrugby.com/club_images/10451.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "East Grinstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
+      "image_url": "https://images.englandrugby.com/club_images/7136.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    },
+    {
+      "name": "Crawley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5810",
+      "image_url": "https://images.englandrugby.com/club_images/5810.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    },
+    {
+      "name": "Crowborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5919",
+      "image_url": "https://images.englandrugby.com/club_images/5919.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    }
+  ],
+  "team_count": 6
+}

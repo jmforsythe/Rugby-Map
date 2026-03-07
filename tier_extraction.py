@@ -78,6 +78,10 @@ _SPONSOR_PREFIXES = [
     "6X_",
     "Snows_Group_",
     "SSE_",
+    "Alban_Wise_Insurance_",
+    "Ellis_Mediation_",
+    "Fill_Your_Boots_",
+    "Webb_Ellis_",
 ]
 
 
@@ -185,6 +189,25 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Lancashire_(North)": 8,
         "Cheshire": 8,
         "Merseyside": 8,
+        "Bristol_&_District": 10,
+        "CANDY": 9,
+        "Devon_Merit": 10,
+        "Divsion": 9,
+        "Division": 9,
+        "East_Midlands": 8,
+        "Gloucester_&_District": 10,
+        "Hampshire_Premiership": 11,
+        "Leicestershire_Merit": 9,
+        "Merit_Championship": 11,
+        "Merit_North": 12,
+        "Merit_Premier": 10,
+        "Merit_South": 12,
+        "Merit": 10,
+        "Midlands_Reserve_League": 10,
+        "NOWIRUL": 9,
+        "Premier_Division": 9,
+        "Security_Plus_Pennant": 10,
+        "Table": 10,
     }
     if filename.startswith("Premiership"):
         return (1, "Premiership")

@@ -1,0 +1,84 @@
+{
+  "league_name": "Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=37120&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Old Priorians Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
+      "image_url": "https://images.englandrugby.com/club_images/15924.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350872989
+    },
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London Sussex",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124746",
+      "image_url": "https://images.englandrugby.com/club_images/124746.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Twickenham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
+      "image_url": "https://images.englandrugby.com/club_images/23337.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Wasps 2nds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24392",
+      "image_url": "https://images.englandrugby.com/club_images/24392.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "Ruislip 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18367",
+      "image_url": "https://images.englandrugby.com/club_images/18367.png",
+      "address": "West End Road Ruislip Middlesex HA4 6DR United Kingdom",
+      "latitude": 51.5685272,
+      "longitude": -0.4228747,
+      "formatted_address": "HA4 6DR, West End Road allotments, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 351339831
+    },
+    {
+      "name": "Belsize Park IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1946",
+      "image_url": "https://images.englandrugby.com/club_images/1946.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Feltham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8061",
+      "image_url": "https://images.englandrugby.com/club_images/8061.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.43562,
+      "longitude": -0.39278,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    }
+  ],
+  "team_count": 8
+}

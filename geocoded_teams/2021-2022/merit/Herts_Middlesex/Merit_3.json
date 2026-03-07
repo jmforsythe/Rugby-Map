@@ -1,0 +1,107 @@
+{
+  "league_name": "Merit 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=37052&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Tring III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23150",
+      "image_url": "https://images.englandrugby.com/club_images/23150.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Stevenage Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20924",
+      "image_url": "https://images.englandrugby.com/club_images/20924.png",
+      "address": "The Clubhouse, North Road, Stevenage, Hertfordshire, SG1 4BB, England",
+      "latitude": 51.9258,
+      "longitude": -0.21076,
+      "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
+      "place_id": 351906609
+    },
+    {
+      "name": "Hitchin 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10217",
+      "image_url": "https://images.englandrugby.com/club_images/10217.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Hendon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9975",
+      "image_url": "https://images.englandrugby.com/club_images/9975.png",
+      "address": "Greenlands Lane Copthall Playing Fields Hendon NW4 1RL United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700919
+    },
+    {
+      "name": "Hertford 4th (Exiles) XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10049",
+      "image_url": "https://images.englandrugby.com/club_images/10049.png",
+      "address": "Highfields 62 Hoe Lane Ware Hertfordshire SG12 9NZ United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
+    },
+    {
+      "name": "St Albans 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20103",
+      "image_url": "https://images.englandrugby.com/club_images/20103.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Harpenden 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9450",
+      "image_url": "https://images.englandrugby.com/club_images/9450.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Epping Upper Clapton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7625",
+      "image_url": "https://images.englandrugby.com/club_images/7625.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Hemel Hempstead 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9962",
+      "image_url": "https://images.englandrugby.com/club_images/9962.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    },
+    {
+      "name": "Welwyn 2nd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24682",
+      "image_url": "https://images.englandrugby.com/club_images/24682.png",
+      "address": "Handside Playing Fields Hobbs Way, Colgrove Welwyn Garden City HERTFORDSHIRE AL8 6HX UNITED KINGDOM",
+      "latitude": 51.7944448,
+      "longitude": -0.2146882,
+      "formatted_address": "AL8 6HX, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350915708
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "Hampshire 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=38098&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Lymington Mariners",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13007",
+      "image_url": "https://images.englandrugby.com/club_images/13007.png",
+      "address": "Woodside Park, Woodside Gardens, Rookes Lane, Lymington, Hampshire, SO41 8FP, United Kingdom",
+      "latitude": 50.7503853,
+      "longitude": -1.5472209,
+      "formatted_address": "SO41 8FP, Lymington, Lymington and Pennington, Lymington, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831892
+    },
+    {
+      "name": "Hook and Odiham 1st XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10374",
+      "image_url": "https://images.englandrugby.com/club_images/10374.png",
+      "address": "Hook And Odiham Rfc Papermill Avenue Hook Hampshire RG27 9QU United Kingdom",
+      "latitude": 51.2889,
+      "longitude": -0.94851,
+      "formatted_address": "RG27 9QU, Green Hart Park, Hook, Hart, Hampshire, England, United Kingdom",
+      "place_id": 351814128
+    },
+    {
+      "name": "Winchester Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25577",
+      "image_url": "https://images.englandrugby.com/club_images/25577.png",
+      "address": "Winchester Rfc Ltd North Walls Park (off Nuns Walk) Winchester Hampshire SO23 7EF United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955222
+    },
+    {
+      "name": "Andover 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=658",
+      "image_url": "https://images.englandrugby.com/club_images/658.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "Tottonians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23045",
+      "image_url": "https://images.englandrugby.com/club_images/23045.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Alresford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=506",
+      "image_url": "https://images.englandrugby.com/club_images/506.png",
+      "address": "Alresford Recreation Centre, Arlebury Park, The Avenue, Alresford, Hampshire, SO24 9EP, United Kingdom",
+      "latitude": 51.0893299,
+      "longitude": -1.16977,
+      "formatted_address": "SO24 9EP, Arlebury Park, New Alresford, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955854
+    },
+    {
+      "name": "Overton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16405",
+      "image_url": "https://images.englandrugby.com/club_images/16405.png",
+      "address": "The Old Cricket Ground, Oddball Lane, Watch Lane, Laverstoke, Nr. Overton., RG28 7NU, United Kingdom",
+      "latitude": 51.24338,
+      "longitude": -1.2949108,
+      "formatted_address": "RG28 7NU, Laverstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350788034
+    },
+    {
+      "name": "Basingstoke II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1568",
+      "image_url": "https://images.englandrugby.com/club_images/1568.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Millbrook 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124635",
+      "image_url": "https://images.englandrugby.com/club_images/124635.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Trojans II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23220",
+      "image_url": "https://images.englandrugby.com/club_images/23220.png",
+      "address": "Trojans Club, Stoneham Park  , Stoneham Lane, Eastleigh, Southampton, Hampshire, SO50 9HT, United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832256
+    },
+    {
+      "name": "Isle of Wight 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11010",
+      "image_url": "https://images.englandrugby.com/club_images/11010.png",
+      "address": "The Clubhouse Wootton Recreation Ground Footways Wootton Bridge Isle Of Wight PO33 4NQ United Kingdom",
+      "latitude": 50.728543,
+      "longitude": -1.2374689,
+      "formatted_address": "PO33 4NQ, Wootton Bridge, Isle of Wight, England, United Kingdom",
+      "place_id": 350776812
+    },
+    {
+      "name": "Locksheath Pumas 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12486",
+      "image_url": "https://images.englandrugby.com/club_images/12486.png",
+      "address": "The Sir Joseph Paxton 272 Hunts Pond Road Fareham Hampshire PO14 4PF United Kingdom",
+      "latitude": 50.8554981,
+      "longitude": -1.2565358,
+      "formatted_address": "PO14 4PF, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 350774961
+    }
+  ],
+  "team_count": 12
+}

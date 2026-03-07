@@ -1,0 +1,67 @@
+{
+  "league_name": "Harvey's Wharf IPA Sussex 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=35566&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Heathfield & Waldron II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9828",
+      "image_url": "https://images.englandrugby.com/club_images/9828.png",
+      "address": "The Hardy Roberts Recreation Ground Cross-in-hand Heathfield East Sussex TN21 0TA England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Hove III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10505",
+      "image_url": "https://images.englandrugby.com/club_images/10505.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Ditchling",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541",
+      "image_url": "https://images.englandrugby.com/club_images/6541.png",
+      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
+      "latitude": 50.92073,
+      "longitude": -0.12822,
+      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 351007600
+    },
+    {
+      "name": "Crowborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5919",
+      "image_url": "https://images.englandrugby.com/club_images/5919.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    }
+  ],
+  "team_count": 6
+}

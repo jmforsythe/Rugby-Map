@@ -1,0 +1,77 @@
+{
+  "league_name": "Harvey's Olympia Sussex 3 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=206&division=32342&season=2021-2022#tables",
+  "teams": [
+    {
+      "name": "Worthing Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26129",
+      "image_url": "https://images.englandrugby.com/club_images/26129.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 351175070
+    },
+    {
+      "name": "Horsham III (Casuals)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
+      "image_url": "https://images.englandrugby.com/club_images/10451.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Littlehampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12394",
+      "image_url": "https://images.englandrugby.com/club_images/12394.png",
+      "address": "The New Inn 5 Norfolk Road Littlehampton West Sussex BN17 5PL United Kingdom",
+      "latitude": 50.8044852,
+      "longitude": -0.5318871,
+      "formatted_address": "The New Inn, 5, Norfolk Road, Littlehampton, Arun, West Sussex, England, BN17 5PL, United Kingdom",
+      "place_id": 262085815
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    },
+    {
+      "name": "St Francis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20374",
+      "image_url": "https://images.englandrugby.com/club_images/20374.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Sussex Police",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21405",
+      "image_url": "https://images.englandrugby.com/club_images/21405.png",
+      "address": "Brighton Rfc Waterhall Playing Fields Patcham Brighton East Sussex BN1 8YR United Kingdom",
+      "latitude": 50.8649558,
+      "longitude": -0.1766999,
+      "formatted_address": "BN1 8YR, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992784
+    },
+    {
+      "name": "Brighton III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3219",
+      "image_url": "https://images.englandrugby.com/club_images/3219.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
+    }
+  ],
+  "team_count": 7
+}

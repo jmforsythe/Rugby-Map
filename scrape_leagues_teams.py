@@ -26,6 +26,8 @@ _MERIT_COMPETITIONS = [
     1694,  # Group 1 Automotive Essex Merit League
     180,  # Yorkshire League & Merit Tables
     100,  # East Midlands Leagues
+    # 1729,  # Surrey County Leagues — excluded: teams are mostly 2nd XVs that
+    #        # overlap with pyramid clubs, producing co-location noise on maps
     1770,  # GRFU District Leagues
     77,  # Devon Merit Tables
     206,  # Harvey's Brewery Sussex Leagues
@@ -357,6 +359,7 @@ _COMPETITION_NAMES: dict[str, str] = {
     "1636": "Nottinghamshire",
     "49": "CANDY",
     "209": "Herts_Middlesex",
+    # "1729": "Surrey",
 }
 
 

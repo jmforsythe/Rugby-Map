@@ -95,6 +95,7 @@ _SPONSOR_PREFIXES = [
     "Waterfall_",
     "Freshnet_",
     "Raging_Bull_",
+    "UBS_",
     "Howell&_Co_",
 ]
 
@@ -224,9 +225,14 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "NC_Lancashire": 8,
         "NC_Midlands": 8,
         "NOWIRUL": 9,
+        "Bateman_BMW_Premier": 9,
+        "Bateman_BMW_Conference": 10,
         "Cotton_Traders_Premier": 9,
         "Cotton_Traders_Championship": 10,
         "Cotton_Traders_Conference": 10,
+        "Group": 10,
+        "Leicestershire_Premiership": 9,
+        "LRU": 9,
         "Cinque": 8,
         "Dragon_Fire": 8,
         "Five_Grain": 8,

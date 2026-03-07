@@ -1,0 +1,107 @@
+{
+  "league_name": "Division Three",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=8621&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "East London II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7164",
+      "image_url": "https://images.englandrugby.com/club_images/7164.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Basildon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1545",
+      "image_url": "https://images.englandrugby.com/club_images/1545.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Wanstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24244",
+      "image_url": "https://images.englandrugby.com/club_images/24244.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Old Cooperians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15567",
+      "image_url": "https://images.englandrugby.com/club_images/15567.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "Millwall II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13908",
+      "image_url": "https://images.englandrugby.com/club_images/13908.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Chelmsford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4485",
+      "image_url": "https://images.englandrugby.com/club_images/4485.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Upminster III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23762",
+      "image_url": "https://images.englandrugby.com/club_images/23762.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Maldon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13155",
+      "image_url": "https://images.englandrugby.com/club_images/13155.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Chingford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4798",
+      "image_url": "https://images.englandrugby.com/club_images/4798.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Billericay II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2202",
+      "image_url": "https://images.englandrugby.com/club_images/2202.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    }
+  ],
+  "team_count": 10
+}

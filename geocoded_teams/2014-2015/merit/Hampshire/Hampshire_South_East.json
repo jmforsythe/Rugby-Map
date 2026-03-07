@@ -1,0 +1,104 @@
+{
+  "league_name": "Hampshire South East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=8063&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Havant III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9702",
+      "image_url": "https://images.englandrugby.com/club_images/9702.png",
+      "address": "Hooks Lane Ground, Fraser Road, Bedhampton, Havant, Hampshire, PO9 3EJ, United Kingdom",
+      "latitude": 50.85684,
+      "longitude": -0.99329,
+      "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
+      "place_id": 351796887
+    },
+    {
+      "name": "Ryde",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18456",
+      "image_url": "https://images.englandrugby.com/club_images/18456.png",
+      "address": "The Falcon Swanmore Road, Ryde Isle of Wight PO33 2TG UNITED KINGDOM",
+      "latitude": 50.7234224,
+      "longitude": -1.1659274,
+      "formatted_address": "The Falcon, 17, Swanmore Road, Weeks, Binstead, Ryde, Isle of Wight, England, PO33 2TG, United Kingdom",
+      "place_id": 262379144
+    },
+    {
+      "name": "Fareham Heathens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7931",
+      "image_url": "https://images.englandrugby.com/club_images/7931.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Portsmouth 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17113",
+      "image_url": "https://images.englandrugby.com/club_images/17113.png",
+      "address": "Portsmouth Rugby Club Norway Road Hilsea Portsmouth HAMPSHIRE PO3 5EP UNITED KINGDOM ",
+      "latitude": 50.8283599,
+      "longitude": -1.0626027,
+      "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
+      "place_id": 351788884
+    },
+    {
+      "name": "Stoneham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21113",
+      "image_url": "https://images.englandrugby.com/club_images/21113.png",
+      "address": "22 Harvest Road Denmead Southampton Hamps PO7 6LO England",
+      "latitude": 50.8993212,
+      "longitude": -1.0579516,
+      "formatted_address": "PO7 206D, Hambledon Road, Denmead, Winchester, Hampshire, England, PO7 6PG, United Kingdom",
+      "place_id": 260799792
+    },
+    {
+      "name": "Gosport & Fareham Pirates",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8813",
+      "image_url": "https://images.englandrugby.com/club_images/8813.png",
+      "address": "Gosport Park Dolphin Crescent Gosport Hampshire PO12 2HE United Kingdom",
+      "latitude": 50.7881222,
+      "longitude": -1.1352757,
+      "formatted_address": "PO12 2HE, Gosport, Hampshire, England, United Kingdom",
+      "place_id": 350774635
+    },
+    {
+      "name": "Petersfield 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16849",
+      "image_url": "https://images.englandrugby.com/club_images/16849.png",
+      "address": "The Clubhouse Penns Place Petersfield HAMPSHIRE GU31 4EP UNITED KINGDOM ",
+      "latitude": 51.0061423,
+      "longitude": -0.9084236,
+      "formatted_address": "GU31 4EP, Petersfield, Sheet, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642411
+    },
+    {
+      "name": "Market House Pirates",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13397",
+      "image_url": "https://images.englandrugby.com/club_images/13397.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "United Services 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23487",
+      "image_url": "https://images.englandrugby.com/club_images/23487.png",
+      "address": "United Services Sports Club Burnaby Road Portsmouth Hamps PO1 2EJ United Kingdom",
+      "latitude": 50.7965238,
+      "longitude": -1.0982525,
+      "formatted_address": "PO1 2EJ, Portsmouth, England, United Kingdom",
+      "place_id": 351777555
+    },
+    {
+      "name": "Nomads 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14649",
+      "image_url": "https://images.englandrugby.com/club_images/14649.png",
+      "address": "Cockleshell Community Sports Ground, Cockleshell Gardens, Southsea, Hampshire, PO4 9SA, United Kingdom",
+      "latitude": 50.7877795,
+      "longitude": -1.049611,
+      "formatted_address": "PO4 9SA, Portsmouth, England, United Kingdom",
+      "place_id": 351793037
+    }
+  ],
+  "team_count": 10
+}

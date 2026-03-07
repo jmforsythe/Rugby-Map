@@ -1,0 +1,67 @@
+{
+  "league_name": "LRU Division 4 (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=8238&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Birstall 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2350",
+      "image_url": "https://images.englandrugby.com/club_images/2350.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
+      "name": "Syston IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21566",
+      "image_url": "https://images.englandrugby.com/club_images/21566.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    },
+    {
+      "name": "Belgrave 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1897",
+      "image_url": "https://images.englandrugby.com/club_images/1897.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Anstey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=708",
+      "image_url": "https://images.englandrugby.com/club_images/708.png",
+      "address": "Changing Rooms Only Anstey Martin High School Link Rd Anstey Leicestershire LE7 7EB United Kingdom",
+      "latitude": 52.6795685,
+      "longitude": -1.1909759,
+      "formatted_address": "LE7 7EB, Anstey, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350684573
+    },
+    {
+      "name": "Sileby Town 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19361",
+      "image_url": "https://images.englandrugby.com/club_images/19361.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    },
+    {
+      "name": "Melton Mowbray 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13696",
+      "image_url": "https://images.englandrugby.com/club_images/13696.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    }
+  ],
+  "team_count": 6
+}

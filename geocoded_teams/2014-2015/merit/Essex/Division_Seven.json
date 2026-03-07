@@ -1,0 +1,107 @@
+{
+  "league_name": "Division Seven",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=8623&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Mavericks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13554",
+      "image_url": "https://images.englandrugby.com/club_images/13554.png",
+      "address": "The Pavilion The Drive Warley Brentwood ESSEX CM13 3AR England",
+      "latitude": 51.60508,
+      "longitude": 0.29744,
+      "formatted_address": "CM13 3AR, Brentwood, Essex, England, United Kingdom",
+      "place_id": 351074808
+    },
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Southend V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19738",
+      "image_url": "https://images.englandrugby.com/club_images/19738.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Old Brentwoods III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15450",
+      "image_url": "https://images.englandrugby.com/club_images/15450.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Ilford Wanderers IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10787",
+      "image_url": "https://images.englandrugby.com/club_images/10787.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Stanford Le Hope II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20885",
+      "image_url": "https://images.englandrugby.com/club_images/20885.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Pegasus Palmerians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16667",
+      "image_url": "https://images.englandrugby.com/club_images/16667.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Upminster IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23764",
+      "image_url": "https://images.englandrugby.com/club_images/23764.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Old Cooperians 3rd",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15565",
+      "image_url": "https://images.englandrugby.com/club_images/15565.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "South Woodham Ferrers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19682",
+      "image_url": "https://images.englandrugby.com/club_images/19682.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    }
+  ],
+  "team_count": 10
+}

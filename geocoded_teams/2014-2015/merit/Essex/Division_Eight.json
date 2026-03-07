@@ -1,0 +1,97 @@
+{
+  "league_name": "Division Eight",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=8672&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Eton Manor IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7712",
+      "image_url": "https://images.englandrugby.com/club_images/7712.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "Burnham-on-Crouch II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3701",
+      "image_url": "https://images.englandrugby.com/club_images/3701.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Billericay III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2203",
+      "image_url": "https://images.englandrugby.com/club_images/2203.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Maldon III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13156",
+      "image_url": "https://images.englandrugby.com/club_images/13156.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Runwell Wyverns II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18404",
+      "image_url": "https://images.englandrugby.com/club_images/18404.png",
+      "address": "Runwell Hospital Sports and Social Club Runwel Chase Wickford ESSEX SS11 7QA UNITED KINGDOM",
+      "latitude": 51.6321,
+      "longitude": 0.54572,
+      "formatted_address": "SS11 7QA, Runwell, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351977553
+    },
+    {
+      "name": "Kings Cross Steelers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11558",
+      "image_url": "https://images.englandrugby.com/club_images/11558.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Millwall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13909",
+      "image_url": "https://images.englandrugby.com/club_images/13909.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "East London IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7166",
+      "image_url": "https://images.englandrugby.com/club_images/7166.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Upper Clapton Colts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23802",
+      "image_url": "https://images.englandrugby.com/club_images/23802.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    }
+  ],
+  "team_count": 9
+}

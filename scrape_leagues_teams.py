@@ -336,6 +336,7 @@ _BANNED_WORDS = [
     "colts",
     "play-offs",
     "scrapped",
+    "u18",
 ]
 
 _BANNED_FILENAMES = [
@@ -350,6 +351,9 @@ _BANNED_FILENAMES = [
     "London_and_SE_Division_Play-Offs.json",
     "Area_2_Merit_League.json",
     "Bombardier___Eagle_2017.json",
+    "Bristol_&_District_3-4.json",
+    "Gloucester_&_District_3-4.json",
+    "Leicestershire_U18_League.json",
 ]
 
 

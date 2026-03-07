@@ -1,0 +1,87 @@
+{
+  "league_name": "Division 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=8560&season=2014-2015#tables",
+  "teams": [
+    {
+      "name": "Bank of England III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1316",
+      "image_url": "https://images.englandrugby.com/club_images/1316.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Belsize Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1945",
+      "image_url": "https://images.englandrugby.com/club_images/1945.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Grasshoppers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8855",
+      "image_url": "https://images.englandrugby.com/club_images/8855.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Hampstead 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9294",
+      "image_url": "https://images.englandrugby.com/club_images/9294.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Haringey Badgers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9380",
+      "image_url": "https://images.englandrugby.com/club_images/9380.png",
+      "address": "Haringey Rhinos Rugby Club New River Sport And Fitness White Hart Lane Wood Green Middlesex N22 5QW United Kingdom",
+      "latitude": 51.6041816,
+      "longitude": -0.1013207,
+      "formatted_address": "N22 5QW, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 350257433
+    },
+    {
+      "name": "Kilburn Cosmos II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11434",
+      "image_url": "https://images.englandrugby.com/club_images/11434.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Old Isleworthians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15782",
+      "image_url": "https://images.englandrugby.com/club_images/15782.png",
+      "address": "The Memorial Ground 22a Wood Lane Isleworth Middlesex TW7 5ED United Kingdom",
+      "latitude": 51.477437,
+      "longitude": -0.3341276,
+      "formatted_address": "TW7 5ED, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352100703
+    },
+    {
+      "name": "Thamesians 2nd XV (Spartans)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21891",
+      "image_url": "https://images.englandrugby.com/club_images/21891.png",
+      "address": "The Pavilion The Green Twickenham Green Twickenham Middlesex TW2 5AG United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350420812
+    }
+  ],
+  "team_count": 8
+}

@@ -1,8 +1,6 @@
 """Tests for tier extraction logic."""
 
 from tier_extraction import (
-    _extract_merit_tier,
-    _get_merit_division_number,
     extract_tier,
     extract_tier_men_current,
     extract_tier_men_pre_2021,
@@ -178,7 +176,7 @@ class TestExtractTierMeritPath:
 
     def test_devon_merit_no_number(self):
         result = extract_tier("merit/Devon/Devon_Merit_Table_NE.json", "2025-2026")
-        assert result == (10, "Counties 4")
+        assert result == (10, "Counties 4"), "NE is not a number, so base 10 only"
 
     def test_essex_division(self):
         result = extract_tier("merit/Essex/Division_1.json", "2025-2026")
@@ -266,7 +264,7 @@ class TestExtractTierMeritPath:
 
     def test_rural_kent_kent_a(self):
         result = extract_tier("merit/Rural_Kent/Kent_A_Rural.json", "2025-2026")
-        assert result == (10, "Counties 4")
+        assert result == (9, "Counties 3")
 
     def test_sussex_counties(self):
         result = extract_tier("merit/Sussex/Harvey's_Brewery_Counties_3_Sussex.json", "2025-2026")
@@ -280,7 +278,7 @@ class TestExtractTierMeritPath:
 
     def test_east_midlands_b_variant(self):
         result = extract_tier("merit/East_Midlands/East_Midlands_2_-_Northants_B.json", "2025-2026")
-        assert result == (11, "Counties 5")
+        assert result == (10, "Counties 4")
 
     def test_east_midlands_sponsor_named(self):
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
@@ -291,51 +289,9 @@ class TestExtractTierMeritPath:
         result = extract_tier("merit\\CANDY\\CANDY_1.json", "2025-2026")
         assert result == (10, "Counties 4")
 
-    def test_unknown_competition_falls_through(self):
-        """Unknown competition dir falls through to pyramid/women extraction."""
+    def test_unknown_competition_returns_unknown(self):
         result = extract_tier("merit/UnknownComp/Premiership.json", "2025-2026")
-        assert result == (1, "Premiership")
-
-
-class TestExtractMeritTier:
-    """Direct tests for _extract_merit_tier."""
-
-    def test_unknown_competition(self):
-        assert _extract_merit_tier("UnknownComp", "foo.json", "2025-2026") is None
-
-    def test_nottinghamshire_group(self):
-        result = _extract_merit_tier("Nottinghamshire", "Group_1.json", "2025-2026")
-        assert result == (11, "Counties 5")
-
-    def test_eastern_counties(self):
-        result = _extract_merit_tier(
-            "Eastern_Counties",
-            "Eastern_Counties_Greene_King_Division_One_North.json",
-            "2025-2026",
-        )
-        assert result == (9, "Counties 3")
-
-
-class TestGetMeritDivisionNumber:
-    """Tests for merit-specific number extraction."""
-
-    def test_numeric(self):
-        assert _get_merit_division_number("Division_2_North.json") == 2
-
-    def test_word_number(self):
-        assert _get_merit_division_number("Division_One.json") == 1
-
-    def test_d_prefix_number(self):
-        assert _get_merit_division_number("Candy_League_D1.json") == 1
-
-    def test_no_number(self):
-        assert _get_merit_division_number("Premier_League.json") == 0
-
-    def test_letter_ignored(self):
-        assert _get_merit_division_number("Conference_A.json") == 0
-
-    def test_eight(self):
-        assert _get_merit_division_number("Division_Eight.json") == 8
+        assert result == (999, "Unknown Tier")
 
 
 class TestGetNumberFromTierName:

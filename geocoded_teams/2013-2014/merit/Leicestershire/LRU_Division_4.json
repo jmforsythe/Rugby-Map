@@ -1,0 +1,77 @@
+{
+  "league_name": "LRU Division 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=7722&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Shepshed",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19181",
+      "image_url": "https://images.englandrugby.com/club_images/19181.png",
+      "address": "Shepshed Rfc Forest Street Shepshed Loughborough Leicestershire LE12 9DB United Kingdom",
+      "latitude": 52.7746156,
+      "longitude": -1.2816437,
+      "formatted_address": "LE12 9DB, Shepshed, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350681988
+    },
+    {
+      "name": "Aylestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1197",
+      "image_url": "https://images.englandrugby.com/club_images/1197.png",
+      "address": "Knighton Lane East Leicester Leicester LEICESTERSHIRE LE2 6FU UNITED KINGDOM",
+      "latitude": 52.6071817,
+      "longitude": -1.1246579,
+      "formatted_address": "LE2 6FU, City of Leicester, England, United Kingdom",
+      "place_id": 350683440
+    },
+    {
+      "name": "Vipers 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24035",
+      "image_url": "https://images.englandrugby.com/club_images/24035.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Birstall 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2350",
+      "image_url": "https://images.englandrugby.com/club_images/2350.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
+      "name": "Oadby Wyggestonian 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15238",
+      "image_url": "https://images.englandrugby.com/club_images/15238.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road, Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Old Newtonians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15836",
+      "image_url": "https://images.englandrugby.com/club_images/15836.png",
+      "address": "Hinckley Road (a47) Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6191866,
+      "longitude": -1.2307556,
+      "formatted_address": "Hinckley Road, Leicester Forest East, Blaby, Leicestershire, England, LE3 3NN, United Kingdom",
+      "place_id": 257535498
+    },
+    {
+      "name": "Aylestone Athletic II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1177",
+      "image_url": "https://images.englandrugby.com/club_images/1177.png",
+      "address": "The Old Horse, 198 London Rd, (victoria Park), Leicester, Leicestershire, LE1 6UB, United Kingdom",
+      "latitude": 52.6290256,
+      "longitude": -1.1226493,
+      "formatted_address": "LE1 36, London Road Cycle Path, Highfields, Leicester, City of Leicester, England, LE1 7GE, United Kingdom",
+      "place_id": 257480617
+    }
+  ],
+  "team_count": 7
+}

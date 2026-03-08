@@ -1,0 +1,47 @@
+{
+  "league_name": "Leicestershire Invitation Merit League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=7723&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Market Harborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13379",
+      "image_url": "https://images.englandrugby.com/club_images/13379.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM ",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    },
+    {
+      "name": "Belgrave 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1897",
+      "image_url": "https://images.englandrugby.com/club_images/1897.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Melton Mowbray 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13696",
+      "image_url": "https://images.englandrugby.com/club_images/13696.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    },
+    {
+      "name": "Syston IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21566",
+      "image_url": "https://images.englandrugby.com/club_images/21566.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    }
+  ],
+  "team_count": 4
+}

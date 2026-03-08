@@ -1,0 +1,104 @@
+{
+  "league_name": "North 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=7601&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Tetbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21838",
+      "image_url": "https://images.englandrugby.com/club_images/21838.png",
+      "address": "Tetbury Rfc The Recreation Ground Hampton Street Tetbury Gloucestershire GL8 8JN United Kingdom",
+      "latitude": 51.64012,
+      "longitude": -2.16269,
+      "formatted_address": "GL8 8JN, Tetbury, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351319362
+    },
+    {
+      "name": "Bream II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3038",
+      "image_url": "https://images.englandrugby.com/club_images/3038.png",
+      "address": "Bream Rfc, High Street, Bream, Lydney, Gloucestershire, GL15 6JE, United Kingdom",
+      "latitude": 51.74929,
+      "longitude": -2.57751,
+      "formatted_address": "GL15 6JE, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309912
+    },
+    {
+      "name": "Longlevens III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12745",
+      "image_url": "https://images.englandrugby.com/club_images/12745.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
+    },
+    {
+      "name": "Fairford RFC Fairford RFC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7872",
+      "image_url": "https://images.englandrugby.com/club_images/7872.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Matson III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13535",
+      "image_url": "https://images.englandrugby.com/club_images/13535.png",
+      "address": "Matson Rfc, Redwell Road, Matson Rugby Club House, Matson, Gloucestershire, GL4 6JG, United Kingdom",
+      "latitude": 51.83322,
+      "longitude": -2.21803,
+      "formatted_address": "GL4 6JG, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351314722
+    },
+    {
+      "name": "Cheltenham Civil Service 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4519",
+      "image_url": "https://images.englandrugby.com/club_images/4519.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Gloucester All Blues 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8639",
+      "image_url": "https://images.englandrugby.com/club_images/8639.png",
+      "address": "The Clubhouse Castle Meads Way Oxleaze Gloucester GLOUCESTERSHIRE GL1 2RN UNITED KINGDOM",
+      "latitude": 51.8684801,
+      "longitude": -2.254154,
+      "formatted_address": "GL1 2RN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350629975
+    },
+    {
+      "name": "Smiths Rugby II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19535",
+      "image_url": "https://images.englandrugby.com/club_images/19535.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Old Richians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15970",
+      "image_url": "https://images.englandrugby.com/club_images/15970.png",
+      "address": "Old Richians RFC Sandyleaze Longlevens Gloucester GLOUCESTERSHIRE GL2 0PX UNITED KINGDOM ",
+      "latitude": 51.86988,
+      "longitude": -2.20765,
+      "formatted_address": "GL2 0PX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351311696
+    },
+    {
+      "name": "Chosen Hill FP III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4976",
+      "image_url": "https://images.englandrugby.com/club_images/4976.png",
+      "address": "Chosen Hill F.P RFC Brookfield Road Churchdown GLOUCESTERSHIRE GL3 2PJ UNITED KINGDOM",
+      "latitude": 51.879713,
+      "longitude": -2.1593049,
+      "formatted_address": "GL3 2PJ, Churchdown, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631851
+    }
+  ],
+  "team_count": 10
+}

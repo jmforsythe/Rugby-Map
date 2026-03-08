@@ -1,0 +1,97 @@
+{
+  "league_name": "Division Seven",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=7798&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "London Lithuanians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12586",
+      "image_url": "https://images.englandrugby.com/club_images/12586.png",
+      "address": "The Leys Park Pavilion Ballards Road Dagenham Essex RM10 9AB",
+      "latitude": 51.5313417,
+      "longitude": 0.1554667,
+      "formatted_address": "RM10 9AB, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351831312
+    },
+    {
+      "name": "Dagenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6052",
+      "image_url": "https://images.englandrugby.com/club_images/6052.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "South Woodham Ferrers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19682",
+      "image_url": "https://images.englandrugby.com/club_images/19682.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    },
+    {
+      "name": "Ilford Wanderers IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10787",
+      "image_url": "https://images.englandrugby.com/club_images/10787.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Old Brentwoods III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15450",
+      "image_url": "https://images.englandrugby.com/club_images/15450.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Pegasus Palmerians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16667",
+      "image_url": "https://images.englandrugby.com/club_images/16667.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Burnham-on-Crouch II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3701",
+      "image_url": "https://images.englandrugby.com/club_images/3701.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Millwall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13909",
+      "image_url": "https://images.englandrugby.com/club_images/13909.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    }
+  ],
+  "team_count": 9
+}

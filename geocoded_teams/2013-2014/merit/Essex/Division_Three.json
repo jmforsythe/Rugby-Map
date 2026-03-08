@@ -1,0 +1,97 @@
+{
+  "league_name": "Division Three",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=7787&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Woodford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25973",
+      "image_url": "https://images.englandrugby.com/club_images/25973.png",
+      "address": "Highhams High Road Woodford Green ESSEX IG8 9LB UNITED KINGDOM ",
+      "latitude": 51.6064675,
+      "longitude": 0.0153218,
+      "formatted_address": "IG8 9LB, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350657409
+    },
+    {
+      "name": "Old Brentwoods II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15449",
+      "image_url": "https://images.englandrugby.com/club_images/15449.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "East London II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7164",
+      "image_url": "https://images.englandrugby.com/club_images/7164.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Chelmsford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4485",
+      "image_url": "https://images.englandrugby.com/club_images/4485.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Braintree III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2978",
+      "image_url": "https://images.englandrugby.com/club_images/2978.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Chingford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4798",
+      "image_url": "https://images.englandrugby.com/club_images/4798.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Romford & Gidea Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17960",
+      "image_url": "https://images.englandrugby.com/club_images/17960.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Southend V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19738",
+      "image_url": "https://images.englandrugby.com/club_images/19738.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Thurrock III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22771",
+      "image_url": "https://images.englandrugby.com/club_images/22771.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    }
+  ],
+  "team_count": 9
+}

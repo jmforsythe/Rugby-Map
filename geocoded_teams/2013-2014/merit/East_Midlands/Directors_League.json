@@ -1,0 +1,97 @@
+{
+  "league_name": "Directors League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=7587&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Olney 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16185",
+      "image_url": "https://images.englandrugby.com/club_images/16185.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Stockwood Park 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21049",
+      "image_url": "https://images.englandrugby.com/club_images/21049.png",
+      "address": "Stockwood Park London Road Luton BEDFORDSHIRE LU1 3RN UNITED KINGDOM ",
+      "latitude": 51.86615,
+      "longitude": -0.4184,
+      "formatted_address": "LU1 3RN, Luton, England, United Kingdom",
+      "place_id": 351532253
+    },
+    {
+      "name": "Stewarts & Lloyds 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20950",
+      "image_url": "https://images.englandrugby.com/club_images/20950.png",
+      "address": "Stewarts & Lloyds R.f.c. The Clubhouse Occupation Road Corby Northamptonshire NN17 1EH United Kingdom",
+      "latitude": 52.4988589,
+      "longitude": -0.6914631,
+      "formatted_address": "NN17 1EH, North Northamptonshire, England, United Kingdom",
+      "place_id": 350726271
+    },
+    {
+      "name": "Daventry 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6225",
+      "image_url": "https://images.englandrugby.com/club_images/6225.png",
+      "address": "Daventry Rugby Club, Stefen Hill, Daventry, Northamptonshire, NN11 4ST, United Kingdom",
+      "latitude": 52.2485808,
+      "longitude": -1.1586295,
+      "formatted_address": "NN11 4ST, Daventry, West Northamptonshire, England, United Kingdom",
+      "place_id": 350724819
+    },
+    {
+      "name": "Kettering 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11348",
+      "image_url": "https://images.englandrugby.com/club_images/11348.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Rushden & Higham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18414",
+      "image_url": "https://images.englandrugby.com/club_images/18414.png",
+      "address": "Manor Park, Bedford Road, Rushden, Northamptonshire, NN10 0SA, United Kingdom",
+      "latitude": 52.2737067,
+      "longitude": -0.5856638,
+      "formatted_address": "NN10 0SA, Rushden, North Northamptonshire, England, United Kingdom",
+      "place_id": 350724556
+    },
+    {
+      "name": "St Neots II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20639",
+      "image_url": "https://images.englandrugby.com/club_images/20639.png",
+      "address": "The Clubhouse, The Common, New Street, St Neots, Cambridgeshire, PE19 1RU, United Kingdom",
+      "latitude": 52.2359806,
+      "longitude": -0.2661029,
+      "formatted_address": "PE19 1RU, St. Neots, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759693
+    },
+    {
+      "name": "Towcestrians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23058",
+      "image_url": "https://images.englandrugby.com/club_images/23058.png",
+      "address": "Greens Norton Road Towcester Northamptonshire NN12 8AW United Kingdom",
+      "latitude": 52.1431842,
+      "longitude": -1.0200695,
+      "formatted_address": "Greens Norton Church of England Primary School, Calvert Road, Littleworth, Towcester, West Northamptonshire, England, NN12 8DD, United Kingdom",
+      "place_id": 259097787
+    },
+    {
+      "name": "Wellingborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24606",
+      "image_url": "https://images.englandrugby.com/club_images/24606.png",
+      "address": "Cut Throat Lane Great Doddington Wellingborough NORTHAMPTONSHIRE NN29 7TZ UNITED KINGDOM ",
+      "latitude": 52.2746331,
+      "longitude": -0.7262549,
+      "formatted_address": "NN29 7TZ, Great Doddington, North Northamptonshire, England, United Kingdom",
+      "place_id": 350726804
+    }
+  ],
+  "team_count": 9
+}

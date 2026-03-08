@@ -1,0 +1,97 @@
+{
+  "league_name": "Merit Table 7",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=7861&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Chesham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4597",
+      "image_url": "https://images.englandrugby.com/club_images/4597.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Southgate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19753",
+      "image_url": "https://images.englandrugby.com/club_images/19753.png",
+      "address": "Southgate RFC Walker Cricket Ground Waterfall Road Southgate London MIDDLESEX N14 7JZ UNITED KINGDOM",
+      "latitude": 51.6254518,
+      "longitude": -0.1304877,
+      "formatted_address": "N14 7JZ, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604854
+    },
+    {
+      "name": "Biggleswade 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2182",
+      "image_url": "https://images.englandrugby.com/club_images/2182.png",
+      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
+      "latitude": 52.0699871,
+      "longitude": -0.2705866,
+      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
+      "place_id": 258315732
+    },
+    {
+      "name": "Amersham & Chiltern Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=621",
+      "image_url": "https://images.englandrugby.com/club_images/621.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350199875
+    },
+    {
+      "name": "Datchworth 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6198",
+      "image_url": "https://images.englandrugby.com/club_images/6198.png",
+      "address": "Datchworth Green Datchworth Datchworth Datchworth Hertfordshire SG3 6TL UNITED KINGDOM ",
+      "latitude": 51.8495634,
+      "longitude": -0.1627916,
+      "formatted_address": "Datchworth Green, Painter's Green, Datchworth, Datchworth Green, East Hertfordshire, Hertfordshire, England, SG3 6TL, United Kingdom",
+      "place_id": 257359028
+    },
+    {
+      "name": "Hampstead 5th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9295",
+      "image_url": "https://images.englandrugby.com/club_images/9295.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Barnet Elizabethans 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1429",
+      "image_url": "https://images.englandrugby.com/club_images/1429.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Hertford 5th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10050",
+      "image_url": "https://images.englandrugby.com/club_images/10050.png",
+      "address": "Highfields 62 Hoe Lane Ware Hertfordshire SG12 9NZ United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
+    },
+    {
+      "name": "St Albans 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127965",
+      "image_url": "https://images.englandrugby.com/club_images/127965.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    }
+  ],
+  "team_count": 9
+}

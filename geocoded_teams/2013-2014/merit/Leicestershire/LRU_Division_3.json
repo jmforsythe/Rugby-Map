@@ -1,0 +1,87 @@
+{
+  "league_name": "LRU Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=7721&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Stoneygate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21116",
+      "image_url": "https://images.englandrugby.com/club_images/21116.png",
+      "address": "Stoneygate Rugby Club The Vaults 4 Market Place Uppingham Rutland LE15 9QH United Kingdom",
+      "latitude": 52.5876476,
+      "longitude": -0.7221468,
+      "formatted_address": "LE15 9QH, Uppingham, Rutland, England, United Kingdom",
+      "place_id": 350682511
+    },
+    {
+      "name": "Coalville 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5311",
+      "image_url": "https://images.englandrugby.com/club_images/5311.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Leicester Lions Vets XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12095",
+      "image_url": "https://images.englandrugby.com/club_images/12095.png",
+      "address": "Leicester Lions Rfc Ltd Westleigh Park Lutterworth Road Blaby Leicestershire LE8 4DY United Kingdom",
+      "latitude": 52.5638114,
+      "longitude": -1.1702989,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351035309
+    },
+    {
+      "name": "Market Harborough Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13396",
+      "image_url": "https://images.englandrugby.com/club_images/13396.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    },
+    {
+      "name": "Lutterworth Development XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12962",
+      "image_url": "https://images.englandrugby.com/club_images/12962.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 352150176
+    },
+    {
+      "name": "Anstey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=708",
+      "image_url": "https://images.englandrugby.com/club_images/708.png",
+      "address": "Changing Rooms Only Anstey Martin High School Link Rd Anstey Leicestershire LE7 7EB United Kingdom",
+      "latitude": 52.6795685,
+      "longitude": -1.1909759,
+      "formatted_address": "LE7 7EB, Anstey, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350684573
+    },
+    {
+      "name": "Burbage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3653",
+      "image_url": "https://images.englandrugby.com/club_images/3653.png",
+      "address": "Britannia Fields Britannia Road Burbage Leicestershire LE10 2HF United Kingdom",
+      "latitude": 52.5248071,
+      "longitude": -1.3509742,
+      "formatted_address": "LE10 2HF, Burbage, Stretton Baskerville, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351018404
+    },
+    {
+      "name": "Loughborough 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12821",
+      "image_url": "https://images.englandrugby.com/club_images/12821.png",
+      "address": "Loughborough Rfc, The Clubhouse, Derby Road Playing Fields, Off Cotton Way, Loughborough, Leicestershire, LE11 5FJ, United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351470770
+    }
+  ],
+  "team_count": 8
+}

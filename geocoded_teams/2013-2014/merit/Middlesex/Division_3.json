@@ -1,0 +1,77 @@
+{
+  "league_name": "Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=7926&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Feltham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8064",
+      "image_url": "https://images.englandrugby.com/club_images/8064.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.43562,
+      "longitude": -0.39278,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    },
+    {
+      "name": "H.A.C III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9142",
+      "image_url": "https://images.englandrugby.com/club_images/9142.png",
+      "address": "Armoury House City Road London EC1Y 2AY United Kingdom",
+      "latitude": 51.5230113,
+      "longitude": -0.0885001,
+      "formatted_address": "Armoury House, City Road, Finsbury, London Borough of Islington, Greater London, England, EC1Y 1AA, United Kingdom",
+      "place_id": 416762358
+    },
+    {
+      "name": "Actonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=315",
+      "image_url": "https://images.englandrugby.com/club_images/315.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Twickenham 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23338",
+      "image_url": "https://images.englandrugby.com/club_images/23338.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Old Streetonians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16056",
+      "image_url": "https://images.englandrugby.com/club_images/16056.png",
+      "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
+      "latitude": 51.5527479,
+      "longitude": -0.0255018,
+      "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
+      "place_id": 259818900
+    },
+    {
+      "name": "Haringey Badgers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9380",
+      "image_url": "https://images.englandrugby.com/club_images/9380.png",
+      "address": "Haringey Rhinos Rugby Club New River Sport And Fitness White Hart Lane Wood Green Middlesex N22 5QW United Kingdom",
+      "latitude": 51.6041816,
+      "longitude": -0.1013207,
+      "formatted_address": "N22 5QW, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 350257433
+    },
+    {
+      "name": "Grasshoppers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8855",
+      "image_url": "https://images.englandrugby.com/club_images/8855.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    }
+  ],
+  "team_count": 7
+}

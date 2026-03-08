@@ -1,0 +1,87 @@
+{
+  "league_name": "Estrella Damm",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=7592&season=2013-2014#tables",
+  "teams": [
+    {
+      "name": "Brackley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2873",
+      "image_url": "https://images.englandrugby.com/club_images/2873.png",
+      "address": "Brackley Rufc Clubhouse, Nightingale Close, Brackley, Northamptonshire, NN13 6PN, United Kingdom",
+      "latitude": 52.043582,
+      "longitude": -1.1560595,
+      "formatted_address": "NN13 6PN, Brackley, West Northamptonshire, England, United Kingdom",
+      "place_id": 350725197
+    },
+    {
+      "name": "Bedford Swifts 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1851",
+      "image_url": "https://images.englandrugby.com/club_images/1851.png",
+      "address": "Bedford Athletics Stadium (01234 -351115) Barkers Lane/Newham Avenue Bedford BEDFORDSHIRE MK41 9SB UNITED KINGDOM",
+      "latitude": 52.1338564,
+      "longitude": -0.4413315,
+      "formatted_address": "MK41 9SB, England, United Kingdom",
+      "place_id": 350703648
+    },
+    {
+      "name": "Kettering 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11349",
+      "image_url": "https://images.englandrugby.com/club_images/11349.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Cranfield University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5781",
+      "image_url": "https://images.englandrugby.com/club_images/5781.png",
+      "address": "Sports Hall 19 Cranfield University Collage Road Wharley End MK43 0AL United Kingdom",
+      "latitude": 52.0728582,
+      "longitude": -0.6283807,
+      "formatted_address": "MK43 0AL, Cranfield, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350703843
+    },
+    {
+      "name": "Dunstablians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6932",
+      "image_url": "https://images.englandrugby.com/club_images/6932.png",
+      "address": "Bidwell Park Bedford Road Houghton Regis Dunstable Beds LU5 6JW United Kingdom",
+      "latitude": 51.9135834,
+      "longitude": -0.5292911,
+      "formatted_address": "LU5 6JW, Houghton Regis, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350693896
+    },
+    {
+      "name": "Northampton Casuals 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14874",
+      "image_url": "https://images.englandrugby.com/club_images/14874.png",
+      "address": "Rush Mills House, Old Bedford Road, Rush Mills, Northampton, Northamptonshire, NN4 7AA, United Kingdom",
+      "latitude": 52.2278993,
+      "longitude": -0.8637056,
+      "formatted_address": "NN4 7AA, Brackmills Industrial Estate, Brackmills, Hardingstone, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727046
+    },
+    {
+      "name": "Oundle 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16353",
+      "image_url": "https://images.englandrugby.com/club_images/16353.png",
+      "address": "Occupation Road, Oundle, Peterborough, Cambridgeshire, PE8 4RU, United Kingdom",
+      "latitude": 52.4895299,
+      "longitude": -0.4689737,
+      "formatted_address": "PE8 4RU, Oundle, North Northamptonshire, England, United Kingdom",
+      "place_id": 350770517
+    },
+    {
+      "name": "Queens 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17340",
+      "image_url": "https://images.englandrugby.com/club_images/17340.png",
+      "address": "Putnoe Wood Wentworth Drive Bedford BEDFORDSHIRE MK41 8QA UNITED KINGDOM",
+      "latitude": 52.1600173,
+      "longitude": -0.437261,
+      "formatted_address": "MK41 8QA, England, United Kingdom",
+      "place_id": 350703618
+    }
+  ],
+  "team_count": 8
+}

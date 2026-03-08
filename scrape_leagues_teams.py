@@ -337,7 +337,60 @@ _BANNED_WORDS = [
     "play-offs",
     "scrapped",
     "u18",
+    "waterfall",
+    "archived",
 ]
+
+_BANNED_DIVISION_IDS = {
+    # NOWIRUL Conference A/B/C — umbrella sub-splits of Premier/Championship League
+    5486,
+    5487,  # 2010-2011 Bateman BMW Conference A, B
+    6330,
+    6331,  # 2011-2012 Bateman BMW Conference A, B
+    7444,
+    7445,  # 2013-2014 Bateman BMW Conference A, B
+    8275,
+    8276,  # 2014-2015 Bateman BMW Conference A, B
+    9099,
+    9100,  # 2015-2016 Cotton Traders Conference A, B
+    14291,
+    14292,
+    14293,  # 2018-2019 Cotton Traders Conference A, B, C
+    28796,
+    28797,
+    28561,  # 2019-2020 NOWIRUL Cotton Traders Conference A, B, C
+    # Cornwall 1/2 — sub-splits of Cornwall League (upper/lower half)
+    9911,
+    9912,  # 2016-2017 Tribute Cornwall 1, 2
+    10978,
+    10979,  # 2017-2018 Tribute Cornwall 1, 2
+    # EC Div Three North Merit Table / Youngs Bitter — duplicate merit tables
+    18964,  # 2018-2019 EC Div Three North Merit Table
+    11170,  # 2017-2018 Youngs Bitter
+    # Lancs/Cheshire — umbrella and performance splits
+    10980,  # 2017-2018 Division Three (umbrella of North/South)
+    28774,
+    28775,  # 2019-2020 One Premier, Two Premier
+    # CANDY Conference/Division — sub-splits of UBS Candy League
+    7443,
+    7449,  # 2013-2014 Conference 1, 2
+    9102,  # 2015-2016 Division 1
+    # LRU Conference — umbrella of LRU Division teams
+    4945,  # 2010-2011 LRU Conference
+    5695,  # 2011-2012 LRU Conference
+    # Yorkshire Four Premier — performance split of Four NW/SE
+    33338,  # 2021-2022 Yorkshire Four Premier
+    # Women's NC South West A/B — performance splits of geographic North/South
+    5526,
+    5527,  # 2010-2011 RFUW NC South West A, B
+    6370,
+    6371,  # 2011-2012 NC South West A, B
+    # Sussex 2/3 Premier/Championship — second-half performance splits
+    31529,
+    31528,  # 2021-2022 Sussex 2 Premier, Championship
+    31533,
+    31532,  # 2021-2022 Sussex 3 Premier, Championship
+}
 
 _BANNED_FILENAMES = [
     "Yorkshire_Division_Four_Premier.json",
@@ -410,6 +463,14 @@ def _scrape_league_list(
 
         if any(word in league_name.lower().split() for word in _BANNED_WORDS):
             print(f"Skipping {league_name} (playoff/phase league)")
+            skipped.append(league)
+            continue
+
+        parsed_league = urllib.parse.urlparse(league_url)
+        league_params = urllib.parse.parse_qs(parsed_league.query)
+        division_ids = league_params.get("division", [])
+        if division_ids and int(division_ids[0]) in _BANNED_DIVISION_IDS:
+            print(f"Skipping {league_name} (banned division ID {division_ids[0]})")
             skipped.append(league)
             continue
 

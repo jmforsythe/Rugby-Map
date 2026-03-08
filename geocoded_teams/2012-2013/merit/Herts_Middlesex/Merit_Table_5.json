@@ -1,0 +1,97 @@
+{
+  "league_name": "Merit Table 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=7083&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "South Oxhey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19646",
+      "image_url": "https://images.englandrugby.com/club_images/19646.png",
+      "address": "C/O The Dick Whittington pub Prestwick road Watford WD19 6LH",
+      "latitude": 51.62126,
+      "longitude": -0.3865199,
+      "formatted_address": "WD19 6LH, Watford Rural, South Oxhey, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 352136907
+    },
+    {
+      "name": "Hemel Hempstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9963",
+      "image_url": "https://images.englandrugby.com/club_images/9963.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    },
+    {
+      "name": "Harrow 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9525",
+      "image_url": "https://images.englandrugby.com/club_images/9525.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.62756,
+      "longitude": -0.31634,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Cheshunt 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4638",
+      "image_url": "https://images.englandrugby.com/club_images/4638.png",
+      "address": "Rosedale Sports Club, Andrews Lane, Andrews Lane, Cheshunt, Hertfordshire, EN7 6TB, United Kingdom",
+      "latitude": 51.71103,
+      "longitude": -0.06665,
+      "formatted_address": "EN7 6TB, Broxbourne, Hertfordshire, England, United Kingdom",
+      "place_id": 351246567
+    },
+    {
+      "name": "Old Merchant Taylors' Lambs (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15826",
+      "image_url": "https://images.englandrugby.com/club_images/15826.png",
+      "address": "War Memorial Sports Ground Merchant Taylors' School Sandy Lodge Northwood MIDDLESEX HA6 2HT UNITED KINGDOM",
+      "latitude": 51.6332225,
+      "longitude": -0.4255552,
+      "formatted_address": "HA6 2HT, Batchworth, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 350645376
+    },
+    {
+      "name": "Black Horse",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2474",
+      "image_url": "https://images.englandrugby.com/club_images/2474.png",
+      "address": "The Black Horse West Street Hertford Hertfordshire SG13 8EZ United Kingdom",
+      "latitude": 51.793616,
+      "longitude": -0.0826124,
+      "formatted_address": "The Black Horse, West Street, Horn's Mill, Hertford, East Hertfordshire, Hertfordshire, England, SG13 8EY, United Kingdom",
+      "place_id": 416602487
+    },
+    {
+      "name": "Old Albanians 5th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15380",
+      "image_url": "https://images.englandrugby.com/club_images/15380.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Tring 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23151",
+      "image_url": "https://images.englandrugby.com/club_images/23151.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Bishop's Stortford Abbotts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2423",
+      "image_url": "https://images.englandrugby.com/club_images/2423.png",
+      "address": "Silver Leys Hadham Road Bishops Stortford Hertfordshire CM23 2QE United Kingdom",
+      "latitude": 51.8761437,
+      "longitude": 0.1444547,
+      "formatted_address": "CM23 2QE, Bishop's Stortford, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350549497
+    }
+  ],
+  "team_count": 9
+}

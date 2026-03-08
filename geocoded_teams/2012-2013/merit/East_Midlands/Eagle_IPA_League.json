@@ -1,0 +1,97 @@
+{
+  "league_name": "Eagle IPA League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=6730&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Towcestrians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23057",
+      "image_url": "https://images.englandrugby.com/club_images/23057.png",
+      "address": "Greens Norton Road Towcester Northamptonshire NN12 8AW United Kingdom",
+      "latitude": 52.1431842,
+      "longitude": -1.0200695,
+      "formatted_address": "Greens Norton Church of England Primary School, Calvert Road, Littleworth, Towcester, West Northamptonshire, England, NN12 8DD, United Kingdom",
+      "place_id": 259097787
+    },
+    {
+      "name": "Leighton Buzzard 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12142",
+      "image_url": "https://images.englandrugby.com/club_images/12142.png",
+      "address": "Leighton Buzzard Rfc, Wright's Meadow, Leighton Road, Stanbridge, Leighton Buzzard, Bedfordshire, LU7 9HR, United Kingdom",
+      "latitude": 51.9090925,
+      "longitude": -0.6169415,
+      "formatted_address": "LU7 9HR, Stanbridge, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350694207
+    },
+    {
+      "name": "Spalding 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19863",
+      "image_url": "https://images.englandrugby.com/club_images/19863.png",
+      "address": "Spalding Rfc Centenary Park Spalding Lincolnshire PE12 6AF United Kingdom",
+      "latitude": 52.7635,
+      "longitude": -0.14693,
+      "formatted_address": "PE12 6AF, Spalding, South Holland, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351745778
+    },
+    {
+      "name": "Dunstablians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6931",
+      "image_url": "https://images.englandrugby.com/club_images/6931.png",
+      "address": "Bidwell Park Bedford Road Houghton Regis Dunstable Beds LU5 6JW United Kingdom",
+      "latitude": 51.9135834,
+      "longitude": -0.5292911,
+      "formatted_address": "LU5 6JW, Houghton Regis, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350693896
+    },
+    {
+      "name": "Milton Keynes 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13919",
+      "image_url": "https://images.englandrugby.com/club_images/13919.png",
+      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
+      "latitude": 52.0023636,
+      "longitude": -0.7803565,
+      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703816
+    },
+    {
+      "name": "Old Northamptonians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15845",
+      "image_url": "https://images.englandrugby.com/club_images/15845.png",
+      "address": "Old Northamptonians R.F.C. The Sports Field Billing Road Northampton NORTHAMPTONSHIRE NN1 5RX UNITED KINGDOM ",
+      "latitude": 52.2405926,
+      "longitude": -0.8657634,
+      "formatted_address": "NN1 5RX, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726027
+    },
+    {
+      "name": "Wellingborough 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24605",
+      "image_url": "https://images.englandrugby.com/club_images/24605.png",
+      "address": "Cut Throat Lane Great Doddington Wellingborough NORTHAMPTONSHIRE NN29 7TZ UNITED KINGDOM ",
+      "latitude": 52.2746331,
+      "longitude": -0.7262549,
+      "formatted_address": "NN29 7TZ, Great Doddington, North Northamptonshire, England, United Kingdom",
+      "place_id": 350726804
+    },
+    {
+      "name": "Kettering 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11348",
+      "image_url": "https://images.englandrugby.com/club_images/11348.png",
+      "address": "The Clubhouse, Waverley Road, Kettering, Northamptonshire, NN15 6NT, England",
+      "latitude": 52.3919075,
+      "longitude": -0.7144659,
+      "formatted_address": "NN15 6NT, Kettering, North Northamptonshire, England, United Kingdom",
+      "place_id": 350725929
+    },
+    {
+      "name": "Peterborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16821",
+      "image_url": "https://images.englandrugby.com/club_images/16821.png",
+      "address": "Peterborough R.u.f.c., Second Drove, Fengate, Peterborough, Cambridgeshire, PE1 5XA, United Kingdom",
+      "latitude": 52.5689685,
+      "longitude": -0.2193408,
+      "formatted_address": "PE1 5XA, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759246
+    }
+  ],
+  "team_count": 9
+}

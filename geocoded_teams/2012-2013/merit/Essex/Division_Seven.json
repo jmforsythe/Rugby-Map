@@ -1,0 +1,97 @@
+{
+  "league_name": "Division Seven",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=6527&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Braintree IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2979",
+      "image_url": "https://images.englandrugby.com/club_images/2979.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Halstead Templars",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9242",
+      "image_url": "https://images.englandrugby.com/club_images/9242.png",
+      "address": "Courtaulds Sports Ground Colchester Road Halstead Essex CO9 2ET United Kingdom",
+      "latitude": 51.9424599,
+      "longitude": 0.64797,
+      "formatted_address": "CO9 2ET, Halstead, Braintree, Essex, England, United Kingdom",
+      "place_id": 351091938
+    },
+    {
+      "name": "Ilford Wanderers IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10787",
+      "image_url": "https://images.englandrugby.com/club_images/10787.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "South Woodham Ferrers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19682",
+      "image_url": "https://images.englandrugby.com/club_images/19682.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    },
+    {
+      "name": "Pegasus Palmerians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16667",
+      "image_url": "https://images.englandrugby.com/club_images/16667.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Burnham-on-Crouch II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3701",
+      "image_url": "https://images.englandrugby.com/club_images/3701.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Millwall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13909",
+      "image_url": "https://images.englandrugby.com/club_images/13909.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "East London IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7166",
+      "image_url": "https://images.englandrugby.com/club_images/7166.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Stanford Le Hope III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20886",
+      "image_url": "https://images.englandrugby.com/club_images/20886.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    }
+  ],
+  "team_count": 9
+}

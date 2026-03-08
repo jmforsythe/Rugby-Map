@@ -1,0 +1,77 @@
+{
+  "league_name": "LRU Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=6625&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Sileby Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19360",
+      "image_url": "https://images.englandrugby.com/club_images/19360.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    },
+    {
+      "name": "Leicester Forest III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12048",
+      "image_url": "https://images.englandrugby.com/club_images/12048.png",
+      "address": "Leicester Forest R.f.c. Hinckley Road Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6188547,
+      "longitude": -1.2355742,
+      "formatted_address": "LE3 3PJ, Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350683795
+    },
+    {
+      "name": "Coalville 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5311",
+      "image_url": "https://images.englandrugby.com/club_images/5311.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Burbage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3653",
+      "image_url": "https://images.englandrugby.com/club_images/3653.png",
+      "address": "Britannia Fields Britannia Road Burbage Leicestershire LE10 2HF United Kingdom",
+      "latitude": 52.5248071,
+      "longitude": -1.3509742,
+      "formatted_address": "LE10 2HF, Burbage, Stretton Baskerville, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351018404
+    },
+    {
+      "name": "Loughborough 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12821",
+      "image_url": "https://images.englandrugby.com/club_images/12821.png",
+      "address": "Loughborough Rfc, The Clubhouse, Derby Road Playing Fields, Off Cotton Way, Loughborough, Leicestershire, LE11 5FJ, United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351470770
+    },
+    {
+      "name": "Leicester Lions Vets XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12095",
+      "image_url": "https://images.englandrugby.com/club_images/12095.png",
+      "address": "Leicester Lions Rfc Ltd Westleigh Park Lutterworth Road Blaby Leicestershire LE8 4DY United Kingdom",
+      "latitude": 52.5638114,
+      "longitude": -1.1702989,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351035309
+    },
+    {
+      "name": "Aylestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1197",
+      "image_url": "https://images.englandrugby.com/club_images/1197.png",
+      "address": "Knighton Lane East Leicester Leicester LEICESTERSHIRE LE2 6FU UNITED KINGDOM",
+      "latitude": 52.6071817,
+      "longitude": -1.1246579,
+      "formatted_address": "LE2 6FU, City of Leicester, England, United Kingdom",
+      "place_id": 350683440
+    }
+  ],
+  "team_count": 7
+}

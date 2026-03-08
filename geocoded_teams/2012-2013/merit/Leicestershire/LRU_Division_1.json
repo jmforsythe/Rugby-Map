@@ -1,0 +1,97 @@
+{
+  "league_name": "LRU Division 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=6623&season=2012-2013#tables",
+  "teams": [
+    {
+      "name": "Syston III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21565",
+      "image_url": "https://images.englandrugby.com/club_images/21565.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    },
+    {
+      "name": "Oadby Wyggestonian 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15237",
+      "image_url": "https://images.englandrugby.com/club_images/15237.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road, Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Leicester Forest II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12047",
+      "image_url": "https://images.englandrugby.com/club_images/12047.png",
+      "address": "Leicester Forest R.f.c. Hinckley Road Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6188547,
+      "longitude": -1.2355742,
+      "formatted_address": "LE3 3PJ, Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350683795
+    },
+    {
+      "name": "Melton Mowbray 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13694",
+      "image_url": "https://images.englandrugby.com/club_images/13694.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    },
+    {
+      "name": "Belgrave 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1896",
+      "image_url": "https://images.englandrugby.com/club_images/1896.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Hinckley 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10191",
+      "image_url": "https://images.englandrugby.com/club_images/10191.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM ",
+      "latitude": 52.5539703,
+      "longitude": -1.3493076,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 259020759
+    },
+    {
+      "name": "Loughborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12820",
+      "image_url": "https://images.englandrugby.com/club_images/12820.png",
+      "address": "Loughborough Rfc, The Clubhouse, Derby Road Playing Fields, Off Cotton Way, Loughborough, Leicestershire, LE11 5FJ, United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351470770
+    },
+    {
+      "name": "Vipers 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24034",
+      "image_url": "https://images.englandrugby.com/club_images/24034.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Aylestone St James 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1184",
+      "image_url": "https://images.englandrugby.com/club_images/1184.png",
+      "address": "Aylestone St. James R.F.C. The Clubhouse Covert Lane, Scraptoft Covert Lane, Scraptoft Leicester LEICESTERSHIRE LE7 9SP UNITED KINGDOM",
+      "latitude": 52.6455046,
+      "longitude": -1.0340881,
+      "formatted_address": "LE7 9SP, Scraptoft, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350684616
+    }
+  ],
+  "team_count": 9
+}

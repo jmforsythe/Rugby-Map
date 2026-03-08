@@ -1,0 +1,87 @@
+{
+  "league_name": "Division Four",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=5951&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Maldon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13155",
+      "image_url": "https://images.englandrugby.com/club_images/13155.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Romford & Gidea Park III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17960",
+      "image_url": "https://images.englandrugby.com/club_images/17960.png",
+      "address": "Crowlands Crow Lane Romford ESSEX RM7 0EP UNITED KINGDOM",
+      "latitude": 51.56882,
+      "longitude": 0.1638,
+      "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838100
+    },
+    {
+      "name": "Billericay II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2202",
+      "image_url": "https://images.englandrugby.com/club_images/2202.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Passmores Myrmidons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16621",
+      "image_url": "https://images.englandrugby.com/club_images/16621.png",
+      "address": "Passmores School And Technology Colle Tendring Road Harlow Essex CM18 6RW England",
+      "latitude": 51.7580064,
+      "longitude": 0.1132801,
+      "formatted_address": "Royal Mail, Tilegate Road, Bush Fair, Latton Bush, Harlow, Essex, England, CM18 6NZ, United Kingdom",
+      "place_id": 90846787
+    },
+    {
+      "name": "Old Brentwoods II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15449",
+      "image_url": "https://images.englandrugby.com/club_images/15449.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Wanstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24244",
+      "image_url": "https://images.englandrugby.com/club_images/24244.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Epping Upper Clapton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7625",
+      "image_url": "https://images.englandrugby.com/club_images/7625.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Millwall III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13909",
+      "image_url": "https://images.englandrugby.com/club_images/13909.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    }
+  ],
+  "team_count": 8
+}

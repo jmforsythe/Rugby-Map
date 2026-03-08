@@ -1,0 +1,77 @@
+{
+  "league_name": "Waggledance League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=100&division=5735&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    },
+    {
+      "name": "Queens 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17340",
+      "image_url": "https://images.englandrugby.com/club_images/17340.png",
+      "address": "Putnoe Wood Wentworth Drive Bedford BEDFORDSHIRE MK41 8QA UNITED KINGDOM",
+      "latitude": 52.1600173,
+      "longitude": -0.437261,
+      "formatted_address": "MK41 8QA, England, United Kingdom",
+      "place_id": 350703618
+    },
+    {
+      "name": "Cranfield University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5781",
+      "image_url": "https://images.englandrugby.com/club_images/5781.png",
+      "address": "Sports Hall 19 Cranfield University Collage Road Wharley End MK43 0AL United Kingdom",
+      "latitude": 52.0728582,
+      "longitude": -0.6283807,
+      "formatted_address": "MK43 0AL, Cranfield, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350703843
+    },
+    {
+      "name": "Rushden Development",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18431",
+      "image_url": "https://images.englandrugby.com/club_images/18431.png",
+      "address": "Manor Park Bedford Road Rushden Northamptonshire NN10 0SA United Kingdom",
+      "latitude": 52.2737067,
+      "longitude": -0.5856638,
+      "formatted_address": "NN10 0SA, Rushden, North Northamptonshire, England, United Kingdom",
+      "place_id": 350724575
+    },
+    {
+      "name": "RAF Molesworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17393",
+      "image_url": "https://images.englandrugby.com/club_images/17393.png",
+      "address": "RAF Molesworth RFC RAF Molesworth Huntingdon CAMBRIDGESHIRE PE28 0QB",
+      "latitude": 52.38126,
+      "longitude": -0.40958,
+      "formatted_address": "PE28 0QB, Brington and Molesworth, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 351752132
+    },
+    {
+      "name": "Stockwood Park 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21050",
+      "image_url": "https://images.englandrugby.com/club_images/21050.png",
+      "address": "Stockwood Park London Road Luton BEDFORDSHIRE LU1 3RN UNITED KINGDOM ",
+      "latitude": 51.86615,
+      "longitude": -0.4184,
+      "formatted_address": "LU1 3RN, Luton, England, United Kingdom",
+      "place_id": 351532253
+    },
+    {
+      "name": "Thorney 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22735",
+      "image_url": "https://images.englandrugby.com/club_images/22735.png",
+      "address": "Clubhouse Thorney Ex Servicemens Club Station Road Thorney CAMBRIDGESHIRE PE6 0QE UNITED KINGDOM ",
+      "latitude": 52.6233663,
+      "longitude": -0.1071903,
+      "formatted_address": "PE6 0QE, Thorney, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350769247
+    }
+  ],
+  "team_count": 7
+}

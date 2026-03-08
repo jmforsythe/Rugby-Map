@@ -1,0 +1,87 @@
+{
+  "league_name": "Dragon Fire 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1681&division=6159&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Faversham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8022",
+      "image_url": "https://images.englandrugby.com/club_images/8022.png",
+      "address": "Faversham Rufc, The Lodge, Recreation Ground, Park Road, Faversham, Kent , ME13 8HA, United Kingdom",
+      "latitude": 51.31141,
+      "longitude": 0.89756,
+      "formatted_address": "ME13 8HA, Faversham, Ospringe, Swale, Kent, England, United Kingdom",
+      "place_id": 351566722
+    },
+    {
+      "name": "Gillingham Anchorians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8575",
+      "image_url": "https://images.englandrugby.com/club_images/8575.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "Folkestone 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8216",
+      "image_url": "https://images.englandrugby.com/club_images/8216.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Leigh (Kent)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12119",
+      "image_url": "https://images.englandrugby.com/club_images/12119.png",
+      "address": "The Field Of Dreams Chiddingstone Causeway Tonbridge Kent TN11 8JH England",
+      "latitude": 51.19802,
+      "longitude": 0.18042,
+      "formatted_address": "TN11 8JH, Leigh, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352049141
+    },
+    {
+      "name": "Tunbridge Wells 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23288",
+      "image_url": "https://images.englandrugby.com/club_images/23288.png",
+      "address": "St. Marks Recreation Ground, Frant Road, Tunbridge Wells, Kent, TN2 5LS, United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350854535
+    },
+    {
+      "name": "Medway 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13598",
+      "image_url": "https://images.englandrugby.com/club_images/13598.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Sittingbourne 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19442",
+      "image_url": "https://images.englandrugby.com/club_images/19442.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
+    },
+    {
+      "name": "Gravesend 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8883",
+      "image_url": "https://images.englandrugby.com/club_images/8883.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    }
+  ],
+  "team_count": 8
+}

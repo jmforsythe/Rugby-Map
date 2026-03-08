@@ -1,0 +1,101 @@
+{
+  "league_name": "Leicestershire U17 League",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=5819&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Lutterworth U17s",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12977",
+      "image_url": "https://images.englandrugby.com/club_images/12977.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Oadby Wyggestonian U17",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15247",
+      "image_url": "https://images.englandrugby.com/club_images/15247.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road, Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Loughborough U17 A",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12848",
+      "image_url": "https://images.englandrugby.com/club_images/12848.png",
+      "address": "Loughborough Rfc The Clubhouse Derby Road Playing Fields Off Cotton Way Loughborough Leicestershire LE11 5FJ United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351019657
+    },
+    {
+      "name": "Market Harborough U17s",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13390",
+      "image_url": "https://images.englandrugby.com/club_images/13390.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Vipers U17 School Year 12",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24046",
+      "image_url": "https://images.englandrugby.com/club_images/24046.png",
+      "address": "Blaby Bypass Whetstone Leicester LE8 6DA United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486668
+    },
+    {
+      "name": "Market Bosworth U17",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13364",
+      "image_url": "https://images.englandrugby.com/club_images/13364.png",
+      "address": "Market Bosworth R.f.c. Cadeby Lane Cadeby Market Bosworth Nuneaton Warwickshire CV13 0BA United Kingdom",
+      "latitude": 52.62421,
+      "longitude": -1.38332,
+      "formatted_address": "CV13 0BA, Cadeby, Market Bosworth, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351113537
+    },
+    {
+      "name": "Syston U17s",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21574",
+      "image_url": "https://images.englandrugby.com/club_images/21574.png",
+      "address": "Syston Rfc Barkby Road Quenilborough Leicester Leicestershire LE7 3FE United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485399
+    },
+    {
+      "name": "Leicester Forest U17s",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12067",
+      "image_url": "https://images.englandrugby.com/club_images/12067.png",
+      "address": "Leicester Forest R.f.c. Hinckley Road Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6188547,
+      "longitude": -1.2355742,
+      "formatted_address": "LE3 3PJ, Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350683795
+    },
+    {
+      "name": "Aylestone St James U17",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1194",
+      "image_url": "https://images.englandrugby.com/club_images/1194.png",
+      "address": "Aylestone St. James R.F.C. The Clubhouse Covert Lane, Scraptoft Covert Lane, Scraptoft Leicester LEICESTERSHIRE LE7 9SP UNITED KINGDOM",
+      "latitude": 52.6455046,
+      "longitude": -1.0340881,
+      "formatted_address": "LE7 9SP, Scraptoft, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350684616
+    },
+    {
+      "name": "South Leicester U17s",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19615",
+      "image_url": "https://images.englandrugby.com/club_images/19615.png",
+      "address": "South Leicester R.f.c. Welford Road Wigston Leicester Leicestershire LE18 3TE United Kingdom",
+      "latitude": 52.5710837,
+      "longitude": -1.1022775,
+      "formatted_address": "LE18 3TE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 351358302
+    }
+  ],
+  "team_count": 10
+}

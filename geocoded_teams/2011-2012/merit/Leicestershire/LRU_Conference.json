@@ -1,0 +1,97 @@
+{
+  "league_name": "LRU Conference",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=5818&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Stoneygate 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21119",
+      "image_url": "https://images.englandrugby.com/club_images/21119.png",
+      "address": "Stoneygate Rugby Club The Vaults 4 Market Place Uppingham Rutland LE15 9QH United Kingdom",
+      "latitude": 52.5876476,
+      "longitude": -0.7221468,
+      "formatted_address": "LE15 9QH, Uppingham, Rutland, England, United Kingdom",
+      "place_id": 350682511
+    },
+    {
+      "name": "Old Newtonians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15836",
+      "image_url": "https://images.englandrugby.com/club_images/15836.png",
+      "address": "Hinckley Road (a47) Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6191866,
+      "longitude": -1.2307556,
+      "formatted_address": "Hinckley Road, Leicester Forest East, Blaby, Leicestershire, England, LE3 3NN, United Kingdom",
+      "place_id": 257535498
+    },
+    {
+      "name": "Market Harborough Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13396",
+      "image_url": "https://images.englandrugby.com/club_images/13396.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    },
+    {
+      "name": "Melton Mowbray 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13696",
+      "image_url": "https://images.englandrugby.com/club_images/13696.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    },
+    {
+      "name": "Birstall 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2350",
+      "image_url": "https://images.englandrugby.com/club_images/2350.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
+      "name": "Oadby Wyggestonian 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15238",
+      "image_url": "https://images.englandrugby.com/club_images/15238.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road, Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Syston IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21566",
+      "image_url": "https://images.englandrugby.com/club_images/21566.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    },
+    {
+      "name": "Aylestionians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1175",
+      "image_url": "https://images.englandrugby.com/club_images/1175.png",
+      "address": "Knighton Lane East Leicester Leicester LEICESTERSHIRE LE2 6FU UNITED KINGDOM",
+      "latitude": 52.6071817,
+      "longitude": -1.1246579,
+      "formatted_address": "LE2 6FU, City of Leicester, England, United Kingdom",
+      "place_id": 350683440
+    },
+    {
+      "name": "Aylestone Athletic III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1178",
+      "image_url": "https://images.englandrugby.com/club_images/1178.png",
+      "address": "The Old Horse, 198 London Rd, (victoria Park), Leicester, Leicestershire, LE1 6UB, United Kingdom",
+      "latitude": 52.6290256,
+      "longitude": -1.1226493,
+      "formatted_address": "LE1 36, London Road Cycle Path, Highfields, Leicester, City of Leicester, England, LE1 7GE, United Kingdom",
+      "place_id": 257480617
+    }
+  ],
+  "team_count": 9
+}

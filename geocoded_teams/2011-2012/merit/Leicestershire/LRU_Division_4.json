@@ -1,0 +1,67 @@
+{
+  "league_name": "LRU Division 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=5817&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Sileby Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19360",
+      "image_url": "https://images.englandrugby.com/club_images/19360.png",
+      "address": "Sileby Town Rfc, Platts Trust Recreation Ground, Platts Lane, Cossington, Leicestershire, LE7 4UX, United Kingdom",
+      "latitude": 52.7137,
+      "longitude": -1.10322,
+      "formatted_address": "LE7 4UX, Cossington, Syston, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485566
+    },
+    {
+      "name": "Leicester Lions Vets XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12095",
+      "image_url": "https://images.englandrugby.com/club_images/12095.png",
+      "address": "Leicester Lions Rfc Ltd Westleigh Park Lutterworth Road Blaby Leicestershire LE8 4DY United Kingdom",
+      "latitude": 52.5638114,
+      "longitude": -1.1702989,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351035309
+    },
+    {
+      "name": "Leicester Forest III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12048",
+      "image_url": "https://images.englandrugby.com/club_images/12048.png",
+      "address": "Leicester Forest R.f.c. Hinckley Road Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6188547,
+      "longitude": -1.2355742,
+      "formatted_address": "LE3 3PJ, Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350683795
+    },
+    {
+      "name": "Vipers 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24035",
+      "image_url": "https://images.englandrugby.com/club_images/24035.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Aylestone Athletic II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1177",
+      "image_url": "https://images.englandrugby.com/club_images/1177.png",
+      "address": "The Old Horse, 198 London Rd, (victoria Park), Leicester, Leicestershire, LE1 6UB, United Kingdom",
+      "latitude": 52.6290256,
+      "longitude": -1.1226493,
+      "formatted_address": "LE1 36, London Road Cycle Path, Highfields, Leicester, City of Leicester, England, LE1 7GE, United Kingdom",
+      "place_id": 257480617
+    },
+    {
+      "name": "Aylestone St James 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1185",
+      "image_url": "https://images.englandrugby.com/club_images/1185.png",
+      "address": "Aylestone St. James R.F.C. The Clubhouse Covert Lane, Scraptoft Covert Lane, Scraptoft Leicester LEICESTERSHIRE LE7 9SP UNITED KINGDOM",
+      "latitude": 52.6455046,
+      "longitude": -1.0340881,
+      "formatted_address": "LE7 9SP, Scraptoft, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350684616
+    }
+  ],
+  "team_count": 6
+}

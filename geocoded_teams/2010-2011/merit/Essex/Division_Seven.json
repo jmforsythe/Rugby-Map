@@ -1,0 +1,77 @@
+{
+  "league_name": "Division Seven",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=5114&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "East London III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7165",
+      "image_url": "https://images.englandrugby.com/club_images/7165.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Stanford Le Hope II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20885",
+      "image_url": "https://images.englandrugby.com/club_images/20885.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Woodford IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25974",
+      "image_url": "https://images.englandrugby.com/club_images/25974.png",
+      "address": "Highhams High Road Woodford Green ESSEX IG8 9LB UNITED KINGDOM ",
+      "latitude": 51.6064675,
+      "longitude": 0.0153218,
+      "formatted_address": "IG8 9LB, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350657409
+    },
+    {
+      "name": "Old Brentwoods III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15450",
+      "image_url": "https://images.englandrugby.com/club_images/15450.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Millwall IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13910",
+      "image_url": "https://images.englandrugby.com/club_images/13910.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Pegasus Palmerians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16667",
+      "image_url": "https://images.englandrugby.com/club_images/16667.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Ravens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17478",
+      "image_url": "https://images.englandrugby.com/club_images/17478.png",
+      "address": "Dagenham Rd, Dagenham, Romford Rm7 0qx M&b Social Club Dagenham Rd, Dagenham, Romford Rm7 0qx Dagenham Essex RM7 0QX United Kingdom",
+      "latitude": 51.54813,
+      "longitude": 0.17,
+      "formatted_address": "RM7 0QX, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351838188
+    }
+  ],
+  "team_count": 7
+}

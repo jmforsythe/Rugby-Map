@@ -1,0 +1,67 @@
+{
+  "league_name": "Third Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=5547&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London Scottish Extra B's (Amateurs 4th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12606",
+      "image_url": "https://images.englandrugby.com/club_images/12606.png",
+      "address": "Richmond Athletic Ground Kew Foot Road Richmond Surrey TW9 2SS United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872400
+    },
+    {
+      "name": "Old Streetonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16055",
+      "image_url": "https://images.englandrugby.com/club_images/16055.png",
+      "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
+      "latitude": 51.5527479,
+      "longitude": -0.0255018,
+      "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
+      "place_id": 259818900
+    },
+    {
+      "name": "Belsize Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1944",
+      "image_url": "https://images.englandrugby.com/club_images/1944.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Grasshoppers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8855",
+      "image_url": "https://images.englandrugby.com/club_images/8855.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Harlequin Amateurs II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9394",
+      "image_url": "https://images.englandrugby.com/club_images/9394.png",
+      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
+      "latitude": 51.4120846,
+      "longitude": -0.3172338,
+      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350670305
+    }
+  ],
+  "team_count": 6
+}

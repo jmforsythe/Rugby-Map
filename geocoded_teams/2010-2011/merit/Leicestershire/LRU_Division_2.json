@@ -1,0 +1,77 @@
+{
+  "league_name": "LRU Division 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=5057&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Belgrave 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1896",
+      "image_url": "https://images.englandrugby.com/club_images/1896.png",
+      "address": "Belgrave Pastures Thurcaston Road Abbey Lane LEICESTERSHIRE LE4 2QG UNITED KINGDOM ",
+      "latitude": 52.66481,
+      "longitude": -1.13313,
+      "formatted_address": "LE4 2QG, Redhill Nook Travellers Site, Mowmacre Hill, Leicester, City of Leicester, England, United Kingdom",
+      "place_id": 351480553
+    },
+    {
+      "name": "Oakham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15263",
+      "image_url": "https://images.englandrugby.com/club_images/15263.png",
+      "address": "The Showground, Showground Way, Barleythorpe , Oakham, Rutland, LE15 7TW, United Kingdom",
+      "latitude": 52.6854971,
+      "longitude": -0.7343637,
+      "formatted_address": "LE15 7TW, Barleythorpe, Rutland, England, United Kingdom",
+      "place_id": 350682432
+    },
+    {
+      "name": "Loughborough 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12820",
+      "image_url": "https://images.englandrugby.com/club_images/12820.png",
+      "address": "Loughborough Rfc, The Clubhouse, Derby Road Playing Fields, Off Cotton Way, Loughborough, Leicestershire, LE11 5FJ, United Kingdom",
+      "latitude": 52.78516,
+      "longitude": -1.23085,
+      "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351470770
+    },
+    {
+      "name": "Market Bosworth 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13351",
+      "image_url": "https://images.englandrugby.com/club_images/13351.png",
+      "address": "Market Bosworth R.f.c. Cadeby Lane Cadeby Market Bosworth Nuneaton Warwickshire CV13 0BA United Kingdom",
+      "latitude": 52.62421,
+      "longitude": -1.38332,
+      "formatted_address": "CV13 0BA, Cadeby, Market Bosworth, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351113537
+    },
+    {
+      "name": "Aylestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1197",
+      "image_url": "https://images.englandrugby.com/club_images/1197.png",
+      "address": "Knighton Lane East Leicester Leicester LEICESTERSHIRE LE2 6FU UNITED KINGDOM",
+      "latitude": 52.6071817,
+      "longitude": -1.1246579,
+      "formatted_address": "LE2 6FU, City of Leicester, England, United Kingdom",
+      "place_id": 350683440
+    },
+    {
+      "name": "Birstall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2349",
+      "image_url": "https://images.englandrugby.com/club_images/2349.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
+      "name": "Burbage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3653",
+      "image_url": "https://images.englandrugby.com/club_images/3653.png",
+      "address": "Britannia Fields Britannia Road Burbage Leicestershire LE10 2HF United Kingdom",
+      "latitude": 52.5248071,
+      "longitude": -1.3509742,
+      "formatted_address": "LE10 2HF, Burbage, Stretton Baskerville, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351018404
+    }
+  ],
+  "team_count": 7
+}

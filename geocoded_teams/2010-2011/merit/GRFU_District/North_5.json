@@ -1,0 +1,67 @@
+{
+  "league_name": "North 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=5098&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Cheltenham Saras II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4572",
+      "image_url": "https://images.englandrugby.com/club_images/4572.png",
+      "address": "Cheltenham Saracens RFC King George 5th Playing Fields off Brooklyn Road Hesters Way Cheltenham GLOUCESTERSHIRE GL51 8DT UNITED KINGDOM",
+      "latitude": 51.903093,
+      "longitude": -2.1102736,
+      "formatted_address": "GL51 8DT, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350634272
+    },
+    {
+      "name": "Minchinhampton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13942",
+      "image_url": "https://images.englandrugby.com/club_images/13942.png",
+      "address": "Minchinhampton Rfc, Hollybush Farm, Hampton Fields, Minchinhampton , Stroud, GL6 9BD, England",
+      "latitude": 51.70212,
+      "longitude": -2.16677,
+      "formatted_address": "GL6 9BD, Minchinhampton, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351317856
+    },
+    {
+      "name": "Cheltenham Civil Service 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4519",
+      "image_url": "https://images.englandrugby.com/club_images/4519.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Dowty",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6725",
+      "image_url": "https://images.englandrugby.com/club_images/6725.png",
+      "address": "Dowty Rfc C/o Longlevens Rfc Longlevens Gloucester GL2 9EU United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631526
+    },
+    {
+      "name": "Old Cryptians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15626",
+      "image_url": "https://images.englandrugby.com/club_images/15626.png",
+      "address": "Old Cryptians RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    },
+    {
+      "name": "Spartans (Gloucester) III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20052",
+      "image_url": "https://images.englandrugby.com/club_images/20052.png",
+      "address": "Spartans (Gloucester) RFC Sebert Street Kingsholm Gloucester GLOUCESTERSHIRE GL1 3BS UNITED KINGDOM ",
+      "latitude": 51.87242,
+      "longitude": -2.23916,
+      "formatted_address": "GL1 3BS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307495
+    }
+  ],
+  "team_count": 6
+}

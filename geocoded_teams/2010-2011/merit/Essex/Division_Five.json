@@ -1,0 +1,87 @@
+{
+  "league_name": "Division Five",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=5113&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Epping Upper Clapton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7625",
+      "image_url": "https://images.englandrugby.com/club_images/7625.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Wanstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24244",
+      "image_url": "https://images.englandrugby.com/club_images/24244.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Thurrock IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22772",
+      "image_url": "https://images.englandrugby.com/club_images/22772.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Southend V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19738",
+      "image_url": "https://images.englandrugby.com/club_images/19738.png",
+      "address": "Sumpters Way Warners Bridge Park Southend-on-sea Essex SS2 5RE United Kingdom",
+      "latitude": 51.5642,
+      "longitude": 0.70702,
+      "formatted_address": "SS2 5RE, Southend-on-Sea, Essex, England, United Kingdom",
+      "place_id": 352656429
+    },
+    {
+      "name": "Ilford Wanderers III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10786",
+      "image_url": "https://images.englandrugby.com/club_images/10786.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "Witham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25767",
+      "image_url": "https://images.englandrugby.com/club_images/25767.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    },
+    {
+      "name": "Dagenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6052",
+      "image_url": "https://images.englandrugby.com/club_images/6052.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Rochford Hundred IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17910",
+      "image_url": "https://images.englandrugby.com/club_images/17910.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    }
+  ],
+  "team_count": 8
+}

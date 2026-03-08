@@ -1,0 +1,87 @@
+{
+  "league_name": "South 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=5104&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Bristol Aeroplane Co. II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3245",
+      "image_url": "https://images.englandrugby.com/club_images/3245.png",
+      "address": "Bawa Sports Field, 589, Southmead Road, Filton, Avon, BS34 7RG, United Kingdom",
+      "latitude": 51.5065637,
+      "longitude": -2.588037,
+      "formatted_address": "BS34 7RG, Filton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350514570
+    },
+    {
+      "name": "St Brendan's OB II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20261",
+      "image_url": "https://images.englandrugby.com/club_images/20261.png",
+      "address": "c/o Coombe Dingle Sports Complex Coombe Lane Stoke Bishop BS9 2BJ UNITED KINGDOM",
+      "latitude": 51.4884672,
+      "longitude": -2.6321576,
+      "formatted_address": "BS9 2BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350522202
+    },
+    {
+      "name": "Cleve 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5217",
+      "image_url": "https://images.englandrugby.com/club_images/5217.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
+      "name": "Broad Plain 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3340",
+      "image_url": "https://images.englandrugby.com/club_images/3340.png",
+      "address": "St Johns park St Johns lane Bedminster Bristol BRISTOL BS3 5AZ UNITED KINGDOM",
+      "latitude": 51.43547,
+      "longitude": -2.595076,
+      "formatted_address": "BS3 5AZ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350515558
+    },
+    {
+      "name": "Frampton Cotterell III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8293",
+      "image_url": "https://images.englandrugby.com/club_images/8293.png",
+      "address": "Frampton Cotterell RFC Crossbow House Frampton Cotterell Bristol AVON BS36 2DA UNITED KINGDOM ",
+      "latitude": 51.5345019,
+      "longitude": -2.4934977,
+      "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515842
+    },
+    {
+      "name": "North Bristol 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14662",
+      "image_url": "https://images.englandrugby.com/club_images/14662.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350513558
+    },
+    {
+      "name": "Kingswood 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11690",
+      "image_url": "https://images.englandrugby.com/club_images/11690.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
+    },
+    {
+      "name": "Southmead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19761",
+      "image_url": "https://images.englandrugby.com/club_images/19761.png",
+      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
+      "latitude": 51.499895,
+      "longitude": -2.6078965,
+      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350505286
+    }
+  ],
+  "team_count": 8
+}

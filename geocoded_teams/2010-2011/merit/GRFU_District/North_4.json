@@ -1,0 +1,87 @@
+{
+  "league_name": "North 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=5097&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Chosen Hill FP III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4976",
+      "image_url": "https://images.englandrugby.com/club_images/4976.png",
+      "address": "Chosen Hill F.P RFC Brookfield Road Churchdown GLOUCESTERSHIRE GL3 2PJ UNITED KINGDOM",
+      "latitude": 51.879713,
+      "longitude": -2.1593049,
+      "formatted_address": "GL3 2PJ, Churchdown, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631851
+    },
+    {
+      "name": "Longlevens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12744",
+      "image_url": "https://images.englandrugby.com/club_images/12744.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
+    },
+    {
+      "name": "Cheltenham Civil Service II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4534",
+      "image_url": "https://images.englandrugby.com/club_images/4534.png",
+      "address": "Cheltenham Civil Service Rfc Civil Service Sports Ground Tewkesbury Road Uckington Cheltenham Gloucestershire GL51 9SL United Kingdom",
+      "latitude": 51.9188977,
+      "longitude": -2.1114237,
+      "formatted_address": "GL51 9SL, Uckington, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350183919
+    },
+    {
+      "name": "Dursley Nomads 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7028",
+      "image_url": "https://images.englandrugby.com/club_images/7028.png",
+      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
+      "latitude": 51.691656,
+      "longitude": -2.3834713,
+      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350629371
+    },
+    {
+      "name": "Tewkesbury 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21857",
+      "image_url": "https://images.englandrugby.com/club_images/21857.png",
+      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM ",
+      "latitude": 51.9892554,
+      "longitude": -2.1575383,
+      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631002
+    },
+    {
+      "name": "Stow-on-the-Wold II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21218",
+      "image_url": "https://images.englandrugby.com/club_images/21218.png",
+      "address": "Stow-on-the-wold & District R.f.c., Oddington Road, Stow On The Wold, Gloucestershire, GL54 1JJ, United Kingdom",
+      "latitude": 51.9271979,
+      "longitude": -1.6888023,
+      "formatted_address": "GL54 1JJ, Oddington, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 350636942
+    },
+    {
+      "name": "Widden Old Boys 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25351",
+      "image_url": "https://images.englandrugby.com/club_images/25351.png",
+      "address": "Widden Old Boys RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    },
+    {
+      "name": "Smiths Rugby II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19535",
+      "image_url": "https://images.englandrugby.com/club_images/19535.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    }
+  ],
+  "team_count": 8
+}

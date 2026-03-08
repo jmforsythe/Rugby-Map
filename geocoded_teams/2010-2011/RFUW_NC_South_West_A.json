@@ -1,0 +1,47 @@
+{
+  "league_name": "RFUW NC South West A",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5526&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "North Tawton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14796",
+      "image_url": "https://images.englandrugby.com/club_images/14796.png",
+      "address": "Ntrfc Taw Meadow Fore St North Tawton Devon EX20 2ED United Kingdom",
+      "latitude": 50.7999123,
+      "longitude": -3.9051935,
+      "formatted_address": "EX20 2ED, North Tawton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351294673
+    },
+    {
+      "name": "Newton Abbot Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14613",
+      "image_url": "https://images.englandrugby.com/club_images/14613.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
+    },
+    {
+      "name": "Cullompton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6008",
+      "image_url": "https://images.englandrugby.com/club_images/6008.png",
+      "address": "Cullompton RFC Stafford Park Knowle Lane Cullompton DEVON EX15 1PZ UNITED KINGDOM ",
+      "latitude": 50.8566579,
+      "longitude": -3.4117713,
+      "formatted_address": "EX15 1PZ, Cullompton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350619042
+    },
+    {
+      "name": "Trowbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124598",
+      "image_url": "https://images.englandrugby.com/club_images/124598.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 260663007
+    }
+  ],
+  "team_count": 4
+}

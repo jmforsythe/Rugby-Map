@@ -1,0 +1,87 @@
+{
+  "league_name": "Division Nine",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1694&division=5186&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Wanstead III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24245",
+      "image_url": "https://images.englandrugby.com/club_images/24245.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Stanford Le Hope III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20886",
+      "image_url": "https://images.englandrugby.com/club_images/20886.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Billericay III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2203",
+      "image_url": "https://images.englandrugby.com/club_images/2203.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Ilford Wanderers V",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10798",
+      "image_url": "https://images.englandrugby.com/club_images/10798.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
+    },
+    {
+      "name": "East London IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7166",
+      "image_url": "https://images.englandrugby.com/club_images/7166.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "Kings Cross Steelers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11558",
+      "image_url": "https://images.englandrugby.com/club_images/11558.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    },
+    {
+      "name": "Runwell Wyverns II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18404",
+      "image_url": "https://images.englandrugby.com/club_images/18404.png",
+      "address": "Runwell Hospital Sports and Social Club Runwel Chase Wickford ESSEX SS11 7QA UNITED KINGDOM",
+      "latitude": 51.6321,
+      "longitude": 0.54572,
+      "formatted_address": "SS11 7QA, Runwell, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351977553
+    },
+    {
+      "name": "Brentwood IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3075",
+      "image_url": "https://images.englandrugby.com/club_images/3075.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "North 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=5096&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Berry Hill 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2026",
+      "image_url": "https://images.englandrugby.com/club_images/2026.png",
+      "address": "Berry Hill Rfc Ltd, Lakers Rd, Berry Hill,  , Coleford, GL16 7QT, England",
+      "latitude": 51.8105582,
+      "longitude": -2.613527,
+      "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630751
+    },
+    {
+      "name": "Gloucester Old Boys II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8648",
+      "image_url": "https://images.englandrugby.com/club_images/8648.png",
+      "address": "Gloucester Old Boys Rfc, Myers Road, Off Horton Road, Gloucester, Gloucestershire, GL1 3QD, United Kingdom",
+      "latitude": 51.86375,
+      "longitude": -2.22705,
+      "formatted_address": "GL1 3QD, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307607
+    },
+    {
+      "name": "Cinderford IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5047",
+      "image_url": "https://images.englandrugby.com/club_images/5047.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Cirencester 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5066",
+      "image_url": "https://images.englandrugby.com/club_images/5066.png",
+      "address": "Cirencester Rfc, The Whiteway, Cirencester, Gloucestershire, GL7 2ER, United Kingdom",
+      "latitude": 51.72343,
+      "longitude": -1.9667,
+      "formatted_address": "GL7 2ER, Cirencester, Chesterton, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351318278
+    },
+    {
+      "name": "Hucclecote II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10563",
+      "image_url": "https://images.englandrugby.com/club_images/10563.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Drybrook III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6837",
+      "image_url": "https://images.englandrugby.com/club_images/6837.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Spartans (Gloucester) II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20051",
+      "image_url": "https://images.englandrugby.com/club_images/20051.png",
+      "address": "Spartans (Gloucester) RFC Sebert Street Kingsholm Gloucester GLOUCESTERSHIRE GL1 3BS UNITED KINGDOM ",
+      "latitude": 51.87242,
+      "longitude": -2.23916,
+      "formatted_address": "GL1 3BS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307495
+    },
+    {
+      "name": "Bream II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3038",
+      "image_url": "https://images.englandrugby.com/club_images/3038.png",
+      "address": "Bream Rfc, High Street, Bream, Lydney, Gloucestershire, GL15 6JE, United Kingdom",
+      "latitude": 51.74929,
+      "longitude": -2.57751,
+      "formatted_address": "GL15 6JE, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 351309912
+    },
+    {
+      "name": "Westbury-on-Severn 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24946",
+      "image_url": "https://images.englandrugby.com/club_images/24946.png",
+      "address": "Parish Hall Rodley Road Westbury On Severn Gloucestershire GL14 1PF United Kingdom",
+      "latitude": 51.8213258,
+      "longitude": -2.4050579,
+      "formatted_address": "Parish Hall, Rodley Road, Hayden Farm, Westbury-on-Severn, Rodley, Forest of Dean, Gloucestershire, England, GL14 1RE, United Kingdom",
+      "place_id": 261125165
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,67 @@
+{
+  "league_name": "LRU Division 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=5056&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Syston III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21565",
+      "image_url": "https://images.englandrugby.com/club_images/21565.png",
+      "address": "Syston Rfc, Barkby Road, Quenilborough, Leicester, Leicestershire, LE7 3FE, United Kingdom",
+      "latitude": 52.70359,
+      "longitude": -1.051,
+      "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351485394
+    },
+    {
+      "name": "Anstey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=708",
+      "image_url": "https://images.englandrugby.com/club_images/708.png",
+      "address": "Changing Rooms Only Anstey Martin High School Link Rd Anstey Leicestershire LE7 7EB United Kingdom",
+      "latitude": 52.6795685,
+      "longitude": -1.1909759,
+      "formatted_address": "LE7 7EB, Anstey, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 350684573
+    },
+    {
+      "name": "Market Bosworth 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13350",
+      "image_url": "https://images.englandrugby.com/club_images/13350.png",
+      "address": "Market Bosworth R.f.c. Cadeby Lane Cadeby Market Bosworth Nuneaton Warwickshire CV13 0BA United Kingdom",
+      "latitude": 52.62421,
+      "longitude": -1.38332,
+      "formatted_address": "CV13 0BA, Cadeby, Market Bosworth, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351113537
+    },
+    {
+      "name": "Hinckley 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10191",
+      "image_url": "https://images.englandrugby.com/club_images/10191.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM ",
+      "latitude": 52.5539703,
+      "longitude": -1.3493076,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 259020759
+    },
+    {
+      "name": "Coalville Social",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5316",
+      "image_url": "https://images.englandrugby.com/club_images/5316.png",
+      "address": "The Coalville Premier - Memorial Ground Hall Lane Whitwick Coalville Leicestershire LE67 5PF United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484677
+    },
+    {
+      "name": "Cosby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5671",
+      "image_url": "https://images.englandrugby.com/club_images/5671.png",
+      "address": "Victory Park Park Road Park Road Cosby Leicestershire LE9 1RN United Kingdom",
+      "latitude": 52.5515867,
+      "longitude": -1.194849,
+      "formatted_address": "LE9 1RN, Cosby, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350684772
+    }
+  ],
+  "team_count": 6
+}

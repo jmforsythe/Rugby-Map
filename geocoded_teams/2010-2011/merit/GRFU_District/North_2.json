@@ -1,0 +1,107 @@
+{
+  "league_name": "North 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1770&division=5095&season=2010-2011#tables",
+  "teams": [
+    {
+      "name": "Berry Hill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2029",
+      "image_url": "https://images.englandrugby.com/club_images/2029.png",
+      "address": "Berry Hill Rfc Ltd, Lakers Rd, Berry Hill,  , Coleford, GL16 7QT, England",
+      "latitude": 51.8105582,
+      "longitude": -2.613527,
+      "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630751
+    },
+    {
+      "name": "Cirencester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5072",
+      "image_url": "https://images.englandrugby.com/club_images/5072.png",
+      "address": "Cirencester Rfc, The Whiteway, Cirencester, Gloucestershire, GL7 2ER, United Kingdom",
+      "latitude": 51.72343,
+      "longitude": -1.9667,
+      "formatted_address": "GL7 2ER, Cirencester, Chesterton, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351318278
+    },
+    {
+      "name": "Dursley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7026",
+      "image_url": "https://images.englandrugby.com/club_images/7026.png",
+      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
+      "latitude": 51.691656,
+      "longitude": -2.3834713,
+      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350629371
+    },
+    {
+      "name": "Gordon League II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8753",
+      "image_url": "https://images.englandrugby.com/club_images/8753.png",
+      "address": "Gordon League RFC Hempsted Lane Gloucester GLOUCESTERSHIRE GL2 5JN UNITED KINGDOM ",
+      "latitude": 51.8547791,
+      "longitude": -2.2634932,
+      "formatted_address": "GL2 5JN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631368
+    },
+    {
+      "name": "Old Centralians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15533",
+      "image_url": "https://images.englandrugby.com/club_images/15533.png",
+      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
+      "latitude": 51.8444663,
+      "longitude": -2.2201721,
+      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350181524
+    },
+    {
+      "name": "Old Richians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15970",
+      "image_url": "https://images.englandrugby.com/club_images/15970.png",
+      "address": "Old Richians RFC Sandyleaze Longlevens Gloucester GLOUCESTERSHIRE GL2 0PX UNITED KINGDOM ",
+      "latitude": 51.86988,
+      "longitude": -2.20765,
+      "formatted_address": "GL2 0PX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351311696
+    },
+    {
+      "name": "Painswick United (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16568",
+      "image_url": "https://images.englandrugby.com/club_images/16568.png",
+      "address": "Broadham Fields Stroud Road Painswick GL6 6UT UNITED KINGDOM",
+      "latitude": 51.7848809,
+      "longitude": -2.1958847,
+      "formatted_address": "GL6 6UT, Painswick, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637719
+    },
+    {
+      "name": "Brockworth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3404",
+      "image_url": "https://images.englandrugby.com/club_images/3404.png",
+      "address": "Brockworth Rfc, Mill Lane, Brockworth, Gloucester, GL3 4HQ, United Kingdom",
+      "latitude": 51.8437399,
+      "longitude": -2.15203,
+      "formatted_address": "GL3 4HQ, Brockworth, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 351313752
+    },
+    {
+      "name": "Stroud II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21277",
+      "image_url": "https://images.englandrugby.com/club_images/21277.png",
+      "address": "Stroud Rugby, Fromehall Park, Dudbridge Hill, Stroud, Gloucestershire, GL5 3HS, United Kingdom",
+      "latitude": 51.73949,
+      "longitude": -2.23306,
+      "formatted_address": "GL5 3HS, Rodborough, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351315264
+    },
+    {
+      "name": "Old Cryptians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15625",
+      "image_url": "https://images.englandrugby.com/club_images/15625.png",
+      "address": "Old Cryptians RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    }
+  ],
+  "team_count": 10
+}

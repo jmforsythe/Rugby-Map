@@ -87,13 +87,15 @@ def load_teams_data(
 
     geocoded_path = Path(geocoded_teams_dir)
     if geocoded_path.is_dir():
-        files_to_process = [(str(f), f.name) for f in geocoded_path.rglob("*.json")]
+        files_to_process = [
+            (str(f), f.relative_to(geocoded_path).as_posix()) for f in geocoded_path.rglob("*.json")
+        ]
 
-        for filepath, filename in files_to_process:
+        for filepath, rel_path in files_to_process:
 
             data = json_load_cache(filepath)
 
-            tier_num, tier_name = extract_tier(filename, season)
+            tier_num, tier_name = extract_tier(rel_path, season)
 
             if tier_name not in teams_by_tier:
                 teams_by_tier[tier_name] = []

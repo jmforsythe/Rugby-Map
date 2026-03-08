@@ -70,7 +70,7 @@ def load_all_seasons() -> TeamHistory:
     for season in SEASONS:
         season_dir = GEOCODED_DIR / season
         for filepath in sorted(season_dir.rglob("*.json")):
-            tier_num, tier_name = extract_tier(filepath.name, season)
+            tier_num, tier_name = extract_tier(filepath.relative_to(season_dir).as_posix(), season)
             with open(filepath, encoding="utf-8") as f:
                 data = json.load(f)
             league_name = data.get("league_name", filepath.stem)

@@ -263,7 +263,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     for itl3_name, itl2_name in itl3_to_itl2.items():
         itl2_to_itl3s.setdefault(itl2_name, []).append(itl3_name)
 
-    logger.info("Assigning LADs to ITL regions...")
+    logger.debug("Assigning LADs to ITL regions...")
     lad_to_itl3: dict[str, str] = {}
     itl3_to_lads: dict[str, list[str]] = {}
     for lad_code, lad in lad_regions.items():
@@ -288,18 +288,18 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
                 itl3_to_lads.setdefault(itl3_name, []).append(lad_code)
                 break
 
-    logger.info("  Assigned %d of %d LADs to ITL3 regions", len(lad_to_itl3), len(lad_regions))
-    logger.info("  %d ITL3 regions contain LADs", len(itl3_to_lads))
+    logger.debug("  Assigned %d of %d LADs to ITL3 regions", len(lad_to_itl3), len(lad_regions))
+    logger.debug("  %d ITL3 regions contain LADs", len(itl3_to_lads))
 
-    logger.info("Assigning wards to LADs...")
+    logger.debug("Assigning wards to LADs...")
     lad_to_wards: dict[str, list[str]] = {}
     for ward_code in ward_regions:
         parent = ward_to_lad.get(ward_code)
         if parent and parent in lad_regions:
             lad_to_wards.setdefault(parent, []).append(ward_code)
 
-    logger.info("  Assigned %d of %d wards to LADs", len(ward_to_lad), len(ward_regions))
-    logger.info("  %d LADs contain wards", len(lad_to_wards))
+    logger.debug("  Assigned %d of %d wards to LADs", len(ward_to_lad), len(ward_regions))
+    logger.debug("  %d LADs contain wards", len(lad_to_wards))
 
     return {
         "itl3_regions": itl3_regions,
@@ -335,7 +335,7 @@ def export_shared_boundaries(
     output_dir_path.mkdir(parents=True, exist_ok=True)
     output_path = output_dir_path / "boundaries.json"
     if skip_if_exists and output_path.exists():
-        logger.info("Shared boundary file already exists at %s, skipping export.", output_path)
+        logger.debug("Shared boundary file already exists at %s, skipping export.", output_path)
         return
 
     boundary_data: dict[str, Any] = {
@@ -424,7 +424,7 @@ def export_shared_boundaries(
     with open(output_path, "w") as fout:
         json.dump(boundary_data, fout, separators=(",", ":"))
 
-    logger.info("Exported shared boundary data to: %s", output_path)
+    logger.debug("Exported shared boundary data to: %s", output_path)
 
 
 # ---------------------------------------------------------------------------
@@ -559,17 +559,17 @@ def _assign_items_to_itl_regions(
                         ward_to_items.setdefault(ward_code, []).append(item)
                         break
 
-    logger.info("ITL Region Assignment:")
-    logger.info("  Assigned %d of %d items to ITL regions", total_assigned, total_items)
-    logger.info("  ITL1: %d regions have items", len(itl1_to_items))
-    logger.info("  ITL2: %d regions have items", len(itl2_to_items))
-    logger.info("  ITL3: %d regions have items", len(itl3_to_items))
-    logger.info("  LAD: %d regions have items", len(lad_to_items))
+    logger.debug("ITL Region Assignment:")
+    logger.debug("  Assigned %d of %d items to ITL regions", total_assigned, total_items)
+    logger.debug("  ITL1: %d regions have items", len(itl1_to_items))
+    logger.debug("  ITL2: %d regions have items", len(itl2_to_items))
+    logger.debug("  ITL3: %d regions have items", len(itl3_to_items))
+    logger.debug("  LAD: %d regions have items", len(lad_to_items))
     if ward_regions:
-        logger.info("  Wards: %d regions have items", len(ward_to_items))
+        logger.debug("  Wards: %d regions have items", len(ward_to_items))
 
     for region_name in sorted(itl1_to_items.keys())[:3]:
-        logger.info("  ITL1 %s: %d items", region_name, len(itl1_to_items[region_name]))
+        logger.debug("  ITL1 %s: %d items", region_name, len(itl1_to_items[region_name]))
 
     return {
         "itl0": itl0_to_items,
@@ -850,6 +850,11 @@ def _add_marker(
     name_esc = escape(item["name"])
     popup_content = (
         item.get("popup_html") or f'<div style="font-family: Arial;"><b>{name_esc}</b></div>'
+    )
+    popup_content = popup_content.replace(
+        '<h4 style="margin: 0;">',
+        f'<h4 style="margin: 0; color: {color};">',
+        1,
     )
 
     icon_size = 30

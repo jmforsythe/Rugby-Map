@@ -118,15 +118,14 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                     teams_data[team_name]["formatted_address"] = fmt_addr
 
                 # Add league participation to history
+                rel_path = league_file.relative_to(season_dir).as_posix()
                 teams_data[team_name]["league_history"].append(
                     LeagueHistoryEntry(
                         season=season,
                         league=league_name,
                         league_url=league_data["league_url"],
                         position=position,
-                        tier=extract_tier(
-                            league_name.replace(" ", "_").replace("/", "_") + ".json", season
-                        ),
+                        tier=extract_tier(rel_path, season),
                     )
                 )
 

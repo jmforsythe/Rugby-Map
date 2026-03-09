@@ -8,7 +8,7 @@ back button). Delegates generic map rendering to map_builder.
 
 import argparse
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from html import escape
 from pathlib import Path
 from typing import cast
@@ -129,9 +129,8 @@ def _render_popup_html(
         if league_url
         else ""
     )
-    info_prefix = "" if get_config().is_production else "../"
     info_link = (
-        f'<p style="margin: 2px 0;"><a href="{info_prefix}/teams/{team_name_to_filepath(team_name)}" target="_blank">View Info page</a></p>'
+        f'<p style="margin: 2px 0;"><a href="__INFO_PREFIX__teams/{team_name_to_filepath(team_name)}" target="_blank">View Info page</a></p>'
         if league_url
         else ""
     )
@@ -207,6 +206,7 @@ class LoadedItems:
 
     pyramid: list[MarkerItem] = field(default_factory=list)
     merit: dict[str, list[MarkerItem]] = field(default_factory=dict)
+    merit_offsets: dict[str, int] = field(default_factory=dict)
 
 
 def _load_marker_items(
@@ -269,6 +269,28 @@ def _load_marker_items(
             else:
                 result.pyramid.append(item)
 
+    # Convert merit items to competition-local tier numbering (starting from 1).
+    # The offset (min absolute tier - 1) maps local back to pyramid: absolute = local + offset.
+    for comp_key, items in result.merit.items():
+        if not items:
+            continue
+        min_tier = min(it.tier_num for it in items)
+        offset = min_tier - 1
+        result.merit_offsets[comp_key] = offset
+        result.merit[comp_key] = [
+            replace(
+                it,
+                tier=f"Level {it.tier_num - offset}",
+                tier_num=it.tier_num - offset,
+                extra={
+                    **(it.extra or {}),
+                    "pyramid_tier_num": it.tier_num,
+                    "pyramid_tier_name": it.tier,
+                },
+            )
+            for it in items
+        ]
+
     return result
 
 
@@ -277,9 +299,22 @@ def _load_marker_items(
 # ---------------------------------------------------------------------------
 
 
+def _resolve_info_links(items: list[MarkerItem], subdirectory_depth: int = 0) -> list[MarkerItem]:
+    """Replace the ``__INFO_PREFIX__`` placeholder in popup HTML with a path
+    that is correct for the output file's depth relative to the season folder."""
+    if get_config().is_production:
+        prefix = "/"
+    else:
+        prefix = "../" * (1 + subdirectory_depth)
+    return [
+        replace(it, popup_html=(it.popup_html or "").replace("__INFO_PREFIX__", prefix))
+        for it in items
+    ]
+
+
 def _rotated_palette(tier_num: int) -> list[str]:
     """Rotate the palette so tier N starts from the Nth color."""
-    n = (len(COLOR_PALETTE) - tier_num - 1) % len(COLOR_PALETTE)
+    n = (len(COLOR_PALETTE) + tier_num - 1) % len(COLOR_PALETTE)
     return COLOR_PALETTE[n:] + COLOR_PALETTE[:n]
 
 
@@ -289,12 +324,17 @@ def _build_config(
     show_debug: bool,
     palette: list[str] | None = None,
     subdirectory_depth: int = 0,
+    tier_entry_level: dict[int, str] | None = None,
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
     *subdirectory_depth* is how many extra directory levels deep the output is
     relative to the season folder (0 for top-level maps, 2 for
     ``merit/<Competition>/``).
+
+    *tier_entry_level* overrides the default pyramid tier-to-ITL mapping.
+    Pass ``{}`` for merit maps to avoid local tier numbers colliding with
+    pyramid-specific entries.
     """
     is_prod = get_config().is_production
 
@@ -314,7 +354,7 @@ def _build_config(
         center=(52.5, -1.5),
         zoom=7,
         show_debug=show_debug,
-        tier_entry_level=TIER_ENTRY_LEVELS,
+        tier_entry_level=tier_entry_level if tier_entry_level is not None else TIER_ENTRY_LEVELS,
         default_tier_entry_level="itl2",
         use_inline_boundaries=not is_prod,
         shared_boundaries_path=shared_path,
@@ -413,17 +453,17 @@ def main() -> None:
     gen_merit = not any_flag or args.merit
 
     # Load travel distances
-    logger.info("Loading team travel distances...")
+    logger.debug("Loading team travel distances...")
     travel_distance_path = Path("distance_cache_folder") / f"{season}.json"
     travel_distances: TravelDistances | None = None
     if travel_distance_path.exists():
         travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
-        logger.info("  Loaded travel distances for %d teams", len(travel_distances["teams"]))
+        logger.debug("  Loaded travel distances for %d teams", len(travel_distances["teams"]))
     else:
-        logger.info("  No travel distance data found")
+        logger.debug("  No travel distance data found")
 
     # Build MarkerItem objects from geocoded files
-    logger.info("Loading marker items from geocoded files...")
+    logger.debug("Loading marker items from geocoded files...")
     geocoded_dir = str(Path("geocoded_teams") / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances)
 
@@ -439,36 +479,35 @@ def main() -> None:
     mens_by_tier, mens_tier_order = _group_by_tier(mens_pyramid)
     womens_by_tier, womens_tier_order = _group_by_tier(womens_pyramid)
 
-    # Flatten all merit items for combined maps (men's only)
-    all_merit = [it for comp_items in loaded.merit.values() for it in comp_items]
-    mens_merit = [it for it in all_merit if it.tier_num < 100]
+    # Build pyramid-adjusted copies of merit items for the combined All_Leagues map.
+    # Merit items use local tier numbers; restore the absolute pyramid values.
+    adjusted_merit = [
+        replace(
+            it,
+            tier_num=cast(int, (it.extra or {}).get("pyramid_tier_num", it.tier_num)),
+            tier=cast(str, (it.extra or {}).get("pyramid_tier_name", it.tier)),
+        )
+        for comp_items in loaded.merit.values()
+        for it in comp_items
+    ]
 
-    total_items = len(loaded.pyramid) + len(all_merit)
+    total_items = len(loaded.pyramid) + len(adjusted_merit)
     logger.info(
-        "Found %d items (%d pyramid, %d merit across %d competitions, "
-        "%d men's pyramid tiers, %d women's pyramid tiers)",
+        "Loaded %d items (%d pyramid, %d merit across %d competitions)",
         total_items,
         len(loaded.pyramid),
-        len(all_merit),
+        len(adjusted_merit),
         len(loaded.merit),
-        len(mens_by_tier),
-        len(womens_by_tier),
     )
 
     # Load shared data
-    logger.info("Loading ITL hierarchy...")
+    logger.debug("Loading ITL hierarchy...")
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
-    logger.info(
-        "  Loaded %d ITL3, %d ITL2, %d ITL1 regions",
-        len(itl_hierarchy["itl3_regions"]),
-        len(itl_hierarchy["itl2_regions"]),
-        len(itl_hierarchy["itl1_regions"]),
-    )
 
     output_dir = Path("tier_maps") / season
     is_prod = get_config().is_production
 
-    logger.info("Exporting shared boundary data...")
+    logger.debug("Exporting shared boundary data...")
     export_shared_boundaries(
         BOUNDARY_PATHS,
         output_dir="tier_maps/shared",
@@ -476,13 +515,20 @@ def main() -> None:
         skip_if_exists=is_prod,
     )
 
+    # Resolve info-page links for top-level maps (depth 0).
+    # Merit maps at depth 2 are resolved separately below.
+    mens_pyramid_r = _resolve_info_links(mens_pyramid)
+    womens_pyramid_r = _resolve_info_links(womens_pyramid)
+    adjusted_merit_r = _resolve_info_links(adjusted_merit)
+
     # ------------------------------------------------------------------
     # Individual pyramid tier maps
     # ------------------------------------------------------------------
     if gen_mens_individual and mens_by_tier:
         logger.info("Creating men's pyramid tier maps...")
-        for tier_name in mens_tier_order:
-            tier_items = mens_by_tier[tier_name]
+        mens_by_tier_r, mens_tier_order_r = _group_by_tier(mens_pyramid_r)
+        for tier_name in mens_tier_order_r:
+            tier_items = mens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
             out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
             config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
@@ -490,8 +536,9 @@ def main() -> None:
 
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")
-        for tier_name in womens_tier_order:
-            tier_items = womens_by_tier[tier_name]
+        womens_by_tier_r, womens_tier_order_r = _group_by_tier(womens_pyramid_r)
+        for tier_name in womens_tier_order_r:
+            tier_items = womens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
             out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
             config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
@@ -500,23 +547,23 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Pyramid-only all-tiers maps
     # ------------------------------------------------------------------
-    if gen_all_tiers_men and mens_pyramid:
+    if gen_all_tiers_men and mens_pyramid_r:
         logger.info("Creating men's pyramid all-tiers map...")
         out = _output_path(output_dir, "All_Tiers", is_prod)
         config = _build_config("All Tiers Men", season, show_debug)
-        generate_multi_group_map(mens_pyramid, out, itl_hierarchy, config)
+        generate_multi_group_map(mens_pyramid_r, out, itl_hierarchy, config)
 
-    if gen_all_tiers_women and womens_pyramid:
+    if gen_all_tiers_women and womens_pyramid_r:
         logger.info("Creating women's pyramid all-tiers map...")
         out = _output_path(output_dir, "All_Tiers_Women", is_prod)
         config = _build_config("All Tiers Women", season, show_debug)
-        generate_multi_group_map(womens_pyramid, out, itl_hierarchy, config)
+        generate_multi_group_map(womens_pyramid_r, out, itl_hierarchy, config)
 
     # ------------------------------------------------------------------
     # All-leagues maps (pyramid + merit combined)
     # ------------------------------------------------------------------
     if gen_all_leagues:
-        mens_all = mens_pyramid + mens_merit
+        mens_all = mens_pyramid_r + adjusted_merit_r
         if mens_all:
             logger.info("Creating men's all-leagues map (pyramid + merit)...")
             out = _output_path(output_dir, "All_Leagues", is_prod)
@@ -535,38 +582,48 @@ def main() -> None:
             if not comp_items:
                 continue
 
+            offset = loaded.merit_offsets[comp_key]
             comp_display = comp_key.replace("_", " ")
             comp_dir = merit_dir / comp_key
-            logger.info("  Competition: %s (%d items)", comp_display, len(comp_items))
+            logger.debug(
+                "  Competition: %s (%d items, offset %d)",
+                comp_display,
+                len(comp_items),
+                offset,
+            )
 
-            # Combined map for the competition
+            # Resolve info links for merit depth (2 extra directories)
+            comp_items_r = _resolve_info_links(comp_items, subdirectory_depth=2)
+
+            # Combined map for the competition (local tier numbering)
             out = _output_path(comp_dir, "All_Tiers", is_prod)
             config = _build_config(
                 f"{comp_display} All Tiers",
                 season,
                 show_debug,
                 subdirectory_depth=2,
+                tier_entry_level={},
             )
-            generate_multi_group_map(comp_items, out, itl_hierarchy, config)
+            generate_multi_group_map(comp_items_r, out, itl_hierarchy, config)
 
             # Per-tier maps within the competition
-            comp_by_tier, comp_tier_order = _group_by_tier(comp_items)
+            comp_by_tier, comp_tier_order = _group_by_tier(comp_items_r)
             for tier_name in comp_tier_order:
                 tier_items = comp_by_tier[tier_name]
-                tier_num = tier_items[0].tier_num
+                local_tier = tier_items[0].tier_num
                 file_name = tier_name.replace(" ", "_")
                 out = _output_path(comp_dir, file_name, is_prod)
                 config = _build_config(
                     f"{comp_display} {tier_name}",
                     season,
                     show_debug,
-                    _rotated_palette(tier_num),
+                    _rotated_palette(local_tier + offset),
                     subdirectory_depth=2,
+                    tier_entry_level={},
                 )
                 generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
-    logger.info("All maps created successfully!")
-    logger.info('Check "%s" folder for maps', output_dir)
+    logger.info("All maps created successfully in %s", output_dir)
 
 
 if __name__ == "__main__":

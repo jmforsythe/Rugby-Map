@@ -357,6 +357,154 @@ body.wide-layout {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Pyramid section — uses the base ul/li styles */
+.pyramid-section {
+  margin: 0 0 1.5em;
+}
+
+/* Merit section */
+.merit-section {
+  margin: 1.5em 0;
+}
+
+.merit-section h3 {
+  color: #5a6a7a;
+  font-size: 1.1em;
+  margin-bottom: 0.8em;
+}
+
+.all-leagues-btn {
+  display: block;
+  text-align: center;
+  background: #2c3e50;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.6em 1.2em;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-bottom: 1em;
+  font-size: 0.95em;
+  transition: background 0.2s;
+}
+
+.all-leagues-btn:hover {
+  background: #1a252f;
+  transform: none;
+  box-shadow: none;
+}
+
+.merit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.7em;
+}
+
+.merit-card {
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.merit-card[open] {
+  border-color: #0066cc;
+}
+
+.merit-card summary {
+  padding: 0.7em 1em;
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  font-size: 0.95em;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.merit-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.merit-card summary::after {
+  content: "+";
+  font-size: 1.2em;
+  color: #999;
+  transition: transform 0.2s;
+}
+
+.merit-card[open] summary::after {
+  content: "-";
+}
+
+.merit-card summary:hover {
+  background: #f5f7fa;
+}
+
+.merit-card-body {
+  padding: 0 1em 0.8em;
+}
+
+.merit-all-tiers {
+  display: block;
+  text-align: center;
+  background: #e8f4fd;
+  color: #0066cc !important;
+  font-weight: 600;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85em;
+  margin-bottom: 0.5em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.merit-all-tiers:hover {
+  background: #0066cc;
+  color: white !important;
+  transform: none;
+  box-shadow: none;
+}
+
+.merit-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.merit-card li {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.merit-card li:last-child {
+  border-bottom: none;
+}
+
+.merit-card li:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #f0f0f0;
+  background: #f8fbff;
+}
+
+.merit-card li a {
+  display: block;
+  padding: 0.35em 0.5em;
+  color: #0066cc;
+  font-size: 0.85em;
+}
+
+.merit-card li:hover a {
+  color: #004fa3;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   body,

@@ -8,6 +8,7 @@ back button). Delegates generic map rendering to map_builder.
 
 import argparse
 import logging
+from dataclasses import dataclass, field
 from html import escape
 from pathlib import Path
 from typing import cast
@@ -152,8 +153,11 @@ def _render_popup_html(
 # ---------------------------------------------------------------------------
 
 
-def _back_button_html() -> str:
-    href = "../" if get_config().is_production else "index.html"
+def _back_button_html(subdirectory_depth: int = 0) -> str:
+    if get_config().is_production:
+        href = "../" * (1 + subdirectory_depth)
+    else:
+        href = "../" * subdirectory_depth + "index.html"
     return f"""
     <script>
     function addBackButtonToLeafletZoom() {{
@@ -197,17 +201,28 @@ def _service_worker_html() -> str:
 # ---------------------------------------------------------------------------
 
 
+@dataclass
+class LoadedItems:
+    """Separated pyramid and merit items loaded from geocoded files."""
+
+    pyramid: list[MarkerItem] = field(default_factory=list)
+    merit: dict[str, list[MarkerItem]] = field(default_factory=dict)
+
+
 def _load_marker_items(
     geocoded_teams_dir: str,
     season: str,
     travel_distances: TravelDistances | None,
-) -> list[MarkerItem]:
-    """Scan geocoded JSON files and build MarkerItem objects."""
+) -> LoadedItems:
+    """Scan geocoded JSON files and build MarkerItem objects.
+
+    Returns pyramid items in one list and merit items grouped by competition.
+    """
     geocoded_path = Path(geocoded_teams_dir)
     if not geocoded_path.is_dir():
-        return []
+        return LoadedItems()
 
-    items: list[MarkerItem] = []
+    result = LoadedItems()
     for filepath in geocoded_path.rglob("*.json"):
         rel_path = filepath.relative_to(geocoded_path).as_posix()
         tier_num, tier_name = extract_tier(rel_path, season)
@@ -215,9 +230,11 @@ def _load_marker_items(
         data = json_load_cache(str(filepath))
 
         league_name = data.get("league_name", "Unknown League")
-        rel_parts = filepath.relative_to(geocoded_path).parts
-        if len(rel_parts) >= 3 and rel_parts[0] == "merit":
-            comp_name = rel_parts[1].replace("_", " ")
+        rel_parts = list(filepath.relative_to(geocoded_path).parts)
+        is_merit = len(rel_parts) >= 3 and rel_parts[0] == "merit"
+        comp_key = rel_parts[1] if is_merit else ""
+        if is_merit:
+            comp_name = comp_key.replace("_", " ")
             if comp_name.lower() not in league_name.lower():
                 league_name = f"{comp_name} {league_name}"
 
@@ -236,20 +253,23 @@ def _load_marker_items(
                 team_name, league_name, league_url, team_url, address, travel_distances
             )
 
-            items.append(
-                MarkerItem(
-                    name=team_name,
-                    latitude=team["latitude"],
-                    longitude=team["longitude"],
-                    group=league_name,
-                    tier=tier_name,
-                    tier_num=tier_num,
-                    icon_url=icon_url,
-                    popup_html=popup,
-                )
+            item = MarkerItem(
+                name=team_name,
+                latitude=team["latitude"],
+                longitude=team["longitude"],
+                group=league_name,
+                tier=tier_name,
+                tier_num=tier_num,
+                icon_url=icon_url,
+                popup_html=popup,
             )
 
-    return items
+            if is_merit:
+                result.merit.setdefault(comp_key, []).append(item)
+            else:
+                result.pyramid.append(item)
+
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -268,19 +288,26 @@ def _build_config(
     season: str,
     show_debug: bool,
     palette: list[str] | None = None,
+    subdirectory_depth: int = 0,
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
-    If *palette* is not given, the base COLOR_PALETTE is used.
+    *subdirectory_depth* is how many extra directory levels deep the output is
+    relative to the season folder (0 for top-level maps, 2 for
+    ``merit/<Competition>/``).
     """
-    """Build a MapConfig with rugby-specific settings."""
     is_prod = get_config().is_production
 
     header_elements = [get_google_analytics_script()]
     if is_prod:
         header_elements.append(_service_worker_html())
 
-    body_elements = [_back_button_html()]
+    body_elements = [_back_button_html(subdirectory_depth)]
+
+    if is_prod:
+        shared_path = "/shared"
+    else:
+        shared_path = "../" * (1 + subdirectory_depth) + "shared"
 
     return MapConfig(
         title=f"{season} {title}",
@@ -290,11 +317,33 @@ def _build_config(
         tier_entry_level=TIER_ENTRY_LEVELS,
         default_tier_entry_level="itl2",
         use_inline_boundaries=not is_prod,
-        shared_boundaries_path="/shared" if is_prod else "../shared",
+        shared_boundaries_path=shared_path,
         color_palette=palette or COLOR_PALETTE,
         header_elements=header_elements,
         body_elements=body_elements,
     )
+
+
+# ---------------------------------------------------------------------------
+# Helpers for grouping items by tier
+# ---------------------------------------------------------------------------
+
+
+def _group_by_tier(
+    items: list[MarkerItem],
+) -> tuple[dict[str, list[MarkerItem]], list[str]]:
+    """Group items by tier name and return (by_tier dict, tier names sorted by tier_num)."""
+    by_tier: dict[str, list[MarkerItem]] = {}
+    for it in items:
+        by_tier.setdefault(it.tier, []).append(it)
+    order = sorted(by_tier.keys(), key=lambda t: by_tier[t][0].tier_num)
+    return by_tier, order
+
+
+def _output_path(output_dir: Path, name: str, is_prod: bool) -> Path:
+    if is_prod:
+        return output_dir / name / "index.html"
+    return output_dir / f"{name}.html"
 
 
 # ---------------------------------------------------------------------------
@@ -320,13 +369,19 @@ def main() -> None:
     parser.add_argument(
         "--womens", action="store_true", help="Generate women's tier maps (individual)"
     )
-    parser.add_argument("--all-tiers", action="store_true", help="Generate all-tiers combined maps")
     parser.add_argument(
-        "--all-tiers-mens", action="store_true", help="Generate men's all-tiers map only"
+        "--all-tiers", action="store_true", help="Generate pyramid-only all-tiers combined maps"
     )
     parser.add_argument(
-        "--all-tiers-womens", action="store_true", help="Generate women's all-tiers map only"
+        "--all-tiers-mens", action="store_true", help="Generate men's pyramid all-tiers map"
     )
+    parser.add_argument(
+        "--all-tiers-womens", action="store_true", help="Generate women's pyramid all-tiers map"
+    )
+    parser.add_argument(
+        "--all-leagues", action="store_true", help="Generate all-leagues maps (pyramid + merit)"
+    )
+    parser.add_argument("--merit", action="store_true", help="Generate per-competition merit maps")
     parser.add_argument(
         "--production", action="store_true", help="Change folder structure for production"
     )
@@ -346,12 +401,16 @@ def main() -> None:
         or args.all_tiers
         or args.all_tiers_mens
         or args.all_tiers_womens
+        or args.all_leagues
+        or args.merit
         or args.tiers
     )
     gen_mens_individual = not any_flag or args.mens or args.tiers
     gen_womens_individual = not any_flag or args.womens or args.tiers
     gen_all_tiers_men = not any_flag or args.all_tiers_mens or args.all_tiers
     gen_all_tiers_women = not any_flag or args.all_tiers_womens or args.all_tiers
+    gen_all_leagues = not any_flag or args.all_leagues
+    gen_merit = not any_flag or args.merit
 
     # Load travel distances
     logger.info("Loading team travel distances...")
@@ -366,29 +425,32 @@ def main() -> None:
     # Build MarkerItem objects from geocoded files
     logger.info("Loading marker items from geocoded files...")
     geocoded_dir = str(Path("geocoded_teams") / season)
-    all_items = _load_marker_items(geocoded_dir, season, travel_distances)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances)
 
-    mens_items = [it for it in all_items if it.tier_num < 100]
-    womens_items = [it for it in all_items if it.tier_num >= 100]
+    # Split pyramid items by gender
+    mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]
+    womens_pyramid = [it for it in loaded.pyramid if it.tier_num >= 100]
 
     if args.tiers:
-        mens_items = [it for it in mens_items if it.tier in args.tiers]
-        womens_items = [it for it in womens_items if it.tier in args.tiers]
+        mens_pyramid = [it for it in mens_pyramid if it.tier in args.tiers]
+        womens_pyramid = [it for it in womens_pyramid if it.tier in args.tiers]
 
-    # Group by tier for individual maps
-    mens_by_tier: dict[str, list[MarkerItem]] = {}
-    for it in mens_items:
-        mens_by_tier.setdefault(it.tier, []).append(it)
-    mens_tier_order = sorted(mens_by_tier.keys(), key=lambda t: mens_by_tier[t][0].tier_num)
+    # Group pyramid items by tier
+    mens_by_tier, mens_tier_order = _group_by_tier(mens_pyramid)
+    womens_by_tier, womens_tier_order = _group_by_tier(womens_pyramid)
 
-    womens_by_tier: dict[str, list[MarkerItem]] = {}
-    for it in womens_items:
-        womens_by_tier.setdefault(it.tier, []).append(it)
-    womens_tier_order = sorted(womens_by_tier.keys(), key=lambda t: womens_by_tier[t][0].tier_num)
+    # Flatten all merit items for combined maps (men's only)
+    all_merit = [it for comp_items in loaded.merit.values() for it in comp_items]
+    mens_merit = [it for it in all_merit if it.tier_num < 100]
 
+    total_items = len(loaded.pyramid) + len(all_merit)
     logger.info(
-        "Found %d items (%d men's tiers, %d women's tiers)",
-        len(all_items),
+        "Found %d items (%d pyramid, %d merit across %d competitions, "
+        "%d men's pyramid tiers, %d women's pyramid tiers)",
+        total_items,
+        len(loaded.pyramid),
+        len(all_merit),
+        len(loaded.merit),
         len(mens_by_tier),
         len(womens_by_tier),
     )
@@ -411,52 +473,97 @@ def main() -> None:
         BOUNDARY_PATHS,
         output_dir="tier_maps/shared",
         country_names=COUNTRY_OUTLINES,
-        skip_if_exists=get_config().is_production,
+        skip_if_exists=is_prod,
     )
 
-    # Generate individual tier maps
+    # ------------------------------------------------------------------
+    # Individual pyramid tier maps
+    # ------------------------------------------------------------------
     if gen_mens_individual and mens_by_tier:
-        logger.info("Creating men's tier maps...")
+        logger.info("Creating men's pyramid tier maps...")
         for tier_name in mens_tier_order:
             tier_items = mens_by_tier[tier_name]
             tier_num = tier_items[0].tier_num
-            file_name = tier_name.replace(" ", "_")
-            out = (
-                output_dir / file_name / "index.html"
-                if is_prod
-                else output_dir / f"{file_name}.html"
-            )
+            out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
             config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
             generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
     if gen_womens_individual and womens_by_tier:
-        logger.info("Creating women's tier maps...")
+        logger.info("Creating women's pyramid tier maps...")
         for tier_name in womens_tier_order:
             tier_items = womens_by_tier[tier_name]
             tier_num = tier_items[0].tier_num
-            file_name = tier_name.replace(" ", "_")
-            out = (
-                output_dir / file_name / "index.html"
-                if is_prod
-                else output_dir / f"{file_name}.html"
-            )
+            out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
             config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
             generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
-    # Generate all-tiers maps (default palette -- module handles per-tier offset internally)
-    if gen_all_tiers_men and mens_items:
-        logger.info("Creating men's all tiers map...")
-        out_name = "All_Tiers"
-        out = output_dir / out_name / "index.html" if is_prod else output_dir / f"{out_name}.html"
+    # ------------------------------------------------------------------
+    # Pyramid-only all-tiers maps
+    # ------------------------------------------------------------------
+    if gen_all_tiers_men and mens_pyramid:
+        logger.info("Creating men's pyramid all-tiers map...")
+        out = _output_path(output_dir, "All_Tiers", is_prod)
         config = _build_config("All Tiers Men", season, show_debug)
-        generate_multi_group_map(mens_items, out, itl_hierarchy, config)
+        generate_multi_group_map(mens_pyramid, out, itl_hierarchy, config)
 
-    if gen_all_tiers_women and womens_items:
-        logger.info("Creating women's all tiers map...")
-        out_name = "All_Tiers_Women"
-        out = output_dir / out_name / "index.html" if is_prod else output_dir / f"{out_name}.html"
+    if gen_all_tiers_women and womens_pyramid:
+        logger.info("Creating women's pyramid all-tiers map...")
+        out = _output_path(output_dir, "All_Tiers_Women", is_prod)
         config = _build_config("All Tiers Women", season, show_debug)
-        generate_multi_group_map(womens_items, out, itl_hierarchy, config)
+        generate_multi_group_map(womens_pyramid, out, itl_hierarchy, config)
+
+    # ------------------------------------------------------------------
+    # All-leagues maps (pyramid + merit combined)
+    # ------------------------------------------------------------------
+    if gen_all_leagues:
+        mens_all = mens_pyramid + mens_merit
+        if mens_all:
+            logger.info("Creating men's all-leagues map (pyramid + merit)...")
+            out = _output_path(output_dir, "All_Leagues", is_prod)
+            config = _build_config("All Leagues Men", season, show_debug)
+            generate_multi_group_map(mens_all, out, itl_hierarchy, config)
+
+    # ------------------------------------------------------------------
+    # Per-competition merit maps
+    # ------------------------------------------------------------------
+    if gen_merit and loaded.merit:
+        logger.info("Creating merit competition maps...")
+        merit_dir = output_dir / "merit"
+
+        for comp_key in sorted(loaded.merit):
+            comp_items = loaded.merit[comp_key]
+            if not comp_items:
+                continue
+
+            comp_display = comp_key.replace("_", " ")
+            comp_dir = merit_dir / comp_key
+            logger.info("  Competition: %s (%d items)", comp_display, len(comp_items))
+
+            # Combined map for the competition
+            out = _output_path(comp_dir, "All_Tiers", is_prod)
+            config = _build_config(
+                f"{comp_display} All Tiers",
+                season,
+                show_debug,
+                subdirectory_depth=2,
+            )
+            generate_multi_group_map(comp_items, out, itl_hierarchy, config)
+
+            # Per-tier maps within the competition
+            comp_by_tier, comp_tier_order = _group_by_tier(comp_items)
+            for tier_name in comp_tier_order:
+                tier_items = comp_by_tier[tier_name]
+                tier_num = tier_items[0].tier_num
+                file_name = tier_name.replace(" ", "_")
+                out = _output_path(comp_dir, file_name, is_prod)
+                config = _build_config(
+                    f"{comp_display} {tier_name}",
+                    season,
+                    show_debug,
+                    _rotated_palette(tier_num),
+                    subdirectory_depth=2,
+                )
+                generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
     logger.info("All maps created successfully!")
     logger.info('Check "%s" folder for maps', output_dir)

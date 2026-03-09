@@ -24,10 +24,70 @@ def get_footer_html() -> str:
     </div>"""
 
 
-def get_season_index_html(season: str, tier_files: dict[str, list[tuple[str, str]]]) -> str:
+def _link(name: str) -> str:
+    """Return the href for a map file (directory/ in production, file.html otherwise)."""
+    return f"{name}/" if get_config().is_production else f"{name}.html"
+
+
+def _build_pyramid_section(
+    pyramid_tiers: list[tuple[str, str]],
+    all_tiers_href: str,
+) -> str:
+    """Build the pyramid tier list with a prominent 'All Tiers' button."""
+    html = '    <div class="pyramid-section">\n'
+    html += "    <ul>\n"
+    html += f'        <li class="all-tiers"><a href="{all_tiers_href}">All Pyramid Tiers</a></li>\n'
+    html += "    </ul>\n"
+    html += "    <ul>\n"
+
+    for tier_name, tier_href in pyramid_tiers:
+        html += f'        <li><a href="{tier_href}">{tier_name}</a></li>\n'
+
+    html += "    </ul>\n    </div>\n"
+    return html
+
+
+def _build_merit_section(
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]],
+    all_leagues_href: str | None,
+) -> str:
+    """Build the merit competitions section as collapsible cards."""
+    if not merit_competitions:
+        return ""
+
+    html = '    <div class="merit-section">\n'
+    html += "    <h3>Merit Competitions</h3>\n"
+
+    if all_leagues_href:
+        html += (
+            f'    <a class="all-leagues-btn" href="{all_leagues_href}">'
+            "All Leagues (Pyramid + Merit Combined)</a>\n"
+        )
+
+    html += '    <div class="merit-grid">\n'
+
+    for comp_display, comp_all_href, comp_tiers in merit_competitions:
+        html += '    <details class="merit-card">\n'
+        html += f"    <summary>{comp_display}</summary>\n"
+        html += '    <div class="merit-card-body">\n'
+        html += f'    <a class="merit-all-tiers" href="{comp_all_href}">All Tiers</a>\n'
+        html += "    <ul>\n"
+        for tier_name, tier_href in comp_tiers:
+            html += f'        <li><a href="{tier_href}">{tier_name}</a></li>\n'
+        html += "    </ul>\n"
+        html += "    </div>\n"
+        html += "    </details>\n"
+
+    html += "    </div>\n    </div>\n"
+    return html
+
+
+def get_season_index_html(season: str, tier_files: dict) -> str:
     """Generate HTML content for a season's index page."""
-    mens_tiers = tier_files.get("mens", [])
-    womens_tiers = tier_files.get("womens", [])
+    mens_tiers: list[tuple[str, str]] = tier_files.get("mens", [])
+    womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
+    has_all_leagues = tier_files.get("has_all_leagues", False)
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = tier_files.get("merit", [])
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -47,46 +107,36 @@ def get_season_index_html(season: str, tier_files: dict[str, list[tuple[str, str
     <p>Season: {season}</p>
 """
 
-    # Men's tiers section
-    if mens_tiers:
-        html += f"""
-    <div>
-    <ul>
-        <li class="all-tiers"><a href="All_Tiers{"/" if get_config().is_production else ".html"}">All Men's Tiers</a></li>
-    </ul>
-
-    <ul>
-"""
-        for tier_name, tier_file in mens_tiers:
-            html += f'        <li><a href="{tier_file}">{tier_name}</a></li>\n'
-
-        html += """    </ul>
-    </div>
-"""
-
-    # Women's tiers section
-    if womens_tiers:
+    # Men's sections
+    if mens_tiers or merit_competitions:
+        html += "\n    <h2>Men's</h2>\n"
         if mens_tiers:
-            html += """
-    <div class="separator"></div>
-"""
+            html += _build_pyramid_section(
+                mens_tiers,
+                all_tiers_href=_link("All_Tiers"),
+            )
+        if merit_competitions:
+            html += _build_merit_section(
+                merit_competitions,
+                all_leagues_href=_link("All_Leagues") if has_all_leagues else None,
+            )
 
+    # Women's section (pyramid only, no merit)
+    if womens_tiers:
         html += f"""
+    <h2>Women's</h2>
     <div>
     <ul>
-        <li class="all-tiers"><a href="All_Tiers_Women{"/" if get_config().is_production else ".html"}">All Women's Tiers</a></li>
+        <li class="all-tiers"><a href="{_link("All_Tiers_Women")}">All Women's Tiers</a></li>
     </ul>
-
     <ul>
 """
         for tier_name, tier_file in womens_tiers:
             html += f'        <li><a href="{tier_file}">{tier_name}</a></li>\n'
-
         html += """    </ul>
     </div>
 """
 
-    # Footer
     html += f"""
 {get_footer_html()}
 </body>
@@ -181,59 +231,74 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     return html
 
 
-def detect_tier_files(season_dir: Path) -> dict[str, list[tuple[str, str]]]:
+def _detect_existing(
+    season_dir: Path,
+    candidates: list[tuple[str, str]],
+) -> list[tuple[str, str]]:
+    """Return only the (display_name, href) pairs whose files actually exist."""
+    found = []
+    for display, name in candidates:
+        href = _link(name)
+        if (season_dir / href).exists():
+            found.append((display, href))
+    return found
+
+
+def detect_tier_files(season_dir: Path) -> dict:
     """Detect available tier map files in a season directory."""
 
-    # Men's tiers in order
-    mens_tier_order = [
-        ("Premiership", f"Premiership{"/" if get_config().is_production else ".html"}"),
-        ("Championship", f"Championship{"/" if get_config().is_production else ".html"}"),
-        ("National League 1", f"National_League_1{"/" if get_config().is_production else ".html"}"),
-        ("National League 2", f"National_League_2{"/" if get_config().is_production else ".html"}"),
-        ("Regional 1", f"Regional_1{"/" if get_config().is_production else ".html"}"),
-        ("Regional 2", f"Regional_2{"/" if get_config().is_production else ".html"}"),
-        *(
-            (f"Counties {i}", f"Counties_{i}{"/" if get_config().is_production else ".html"}")
-            for i in range(1, 6)
-        ),
-        *(
-            (f"Level {i}", f"Level_{i}{"/" if get_config().is_production else ".html"}")
-            for i in range(5, 20)
-        ),
+    mens_candidates = [
+        ("Premiership", "Premiership"),
+        ("Championship", "Championship"),
+        ("National League 1", "National_League_1"),
+        ("National League 2", "National_League_2"),
+        ("Regional 1", "Regional_1"),
+        ("Regional 2", "Regional_2"),
+        *((f"Counties {i}", f"Counties_{i}") for i in range(1, 6)),
+        *((f"Level {i}", f"Level_{i}") for i in range(5, 20)),
     ]
 
-    # Women's tiers in order
-    womens_tier_order = [
-        ("Premiership", f"Premiership_Women's{"/" if get_config().is_production else ".html"}"),
-        ("Championship 1", f"Championship_1{"/" if get_config().is_production else ".html"}"),
-        ("Championship 2", f"Championship_2{"/" if get_config().is_production else ".html"}"),
-        (
-            "National Challenge 1",
-            f"National_Challenge_1{"/" if get_config().is_production else ".html"}",
-        ),
-        (
-            "National Challenge 2",
-            f"National_Challenge_2{"/" if get_config().is_production else ".html"}",
-        ),
-        (
-            "National Challenge 3",
-            f"National_Challenge_3{"/" if get_config().is_production else ".html"}",
-        ),
+    womens_candidates = [
+        ("Premiership", "Premiership_Women's"),
+        ("Championship 1", "Championship_1"),
+        ("Championship 2", "Championship_2"),
+        ("National Challenge 1", "National_Challenge_1"),
+        ("National Challenge 2", "National_Challenge_2"),
+        ("National Challenge 3", "National_Challenge_3"),
     ]
 
-    mens_tiers = []
-    womens_tiers = []
+    mens_tiers = _detect_existing(season_dir, mens_candidates)
+    womens_tiers = _detect_existing(season_dir, womens_candidates)
 
-    # Check which files exist
-    for tier_name, tier_file in mens_tier_order:
-        if (season_dir / tier_file).exists():
-            mens_tiers.append((tier_name, tier_file))
+    has_all_leagues = (season_dir / _link("All_Leagues")).exists()
 
-    for tier_name, tier_file in womens_tier_order:
-        if (season_dir / tier_file).exists():
-            womens_tiers.append((tier_name, tier_file))
+    # Detect merit competitions
+    merit_dir = season_dir / "merit"
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = []
+    if merit_dir.is_dir():
+        for comp_dir in sorted(merit_dir.iterdir()):
+            if not comp_dir.is_dir():
+                continue
+            all_tiers_href = f"merit/{comp_dir.name}/{_link('All_Tiers')}"
+            if not (season_dir / all_tiers_href).exists():
+                continue
 
-    return {"mens": mens_tiers, "womens": womens_tiers}
+            comp_display = comp_dir.name.replace("_", " ")
+            tier_candidates = [
+                *((f"Counties {i}", f"Counties_{i}") for i in range(1, 6)),
+                *((f"Level {i}", f"Level_{i}") for i in range(5, 20)),
+            ]
+            comp_tiers_raw = _detect_existing(comp_dir, tier_candidates)
+            prefix = f"merit/{comp_dir.name}/"
+            comp_tiers = [(name, prefix + href) for name, href in comp_tiers_raw]
+            merit_competitions.append((comp_display, all_tiers_href, comp_tiers))
+
+    return {
+        "mens": mens_tiers,
+        "womens": womens_tiers,
+        "has_all_leagues": has_all_leagues,
+        "merit": merit_competitions,
+    }
 
 
 def main() -> None:
@@ -277,8 +342,9 @@ def main() -> None:
 
         mens_count = len(tier_files.get("mens", []))
         womens_count = len(tier_files.get("womens", []))
+        merit_count = len(tier_files.get("merit", []))
 
-        if mens_count == 0 and womens_count == 0:
+        if mens_count == 0 and womens_count == 0 and merit_count == 0:
             print(f"  Skipping {season} - no tier maps found")
             continue
 
@@ -288,7 +354,11 @@ def main() -> None:
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(html_content)
 
-        print(f"  ✓ Created {index_path} ({mens_count} men's tiers, {womens_count} women's tiers)")
+        print(
+            f"  Created {index_path} "
+            f"({mens_count} men's tiers, {womens_count} women's tiers, "
+            f"{merit_count} merit competitions)"
+        )
 
     # Generate top-level index.html
     top_level_html = get_top_level_index_html(seasons)
@@ -297,7 +367,7 @@ def main() -> None:
     with open(top_level_path, "w", encoding="utf-8") as f:
         f.write(top_level_html)
 
-    print(f"\n✓ Created {top_level_path}")
+    print(f"\nCreated {top_level_path}")
     print("\nAll index pages generated successfully!")
 
 

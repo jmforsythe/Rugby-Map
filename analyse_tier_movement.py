@@ -15,6 +15,7 @@ from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import NamedTuple, TypeVar
 
+from fetch_addresses import team_name_to_club_name
 from tier_extraction import extract_tier
 from utils import setup_logging
 
@@ -53,6 +54,14 @@ class DuplicateAppearance(NamedTuple):
     team: str
     season: str
     entries: list[LeagueEntry]
+
+
+class SameTierClubTeams(NamedTuple):
+    club: str
+    season: str
+    tier_num: int
+    tier_name: str
+    team_leagues: list[tuple[str, str]]
 
 
 TeamHistory = dict[str, dict[str, list[LeagueEntry]]]
@@ -151,6 +160,27 @@ def analyse(team_history: TeamHistory) -> None:
                 prev_league_name = best.league
                 prev_is_mens = _is_mens(best)
 
+    # Detect multiple teams from the same club at the same tier
+    # Key: (season, club_name, tier_num) -> (tier_name, [(team_name, league_name)])
+    club_tier_map: dict[tuple[str, str, int], tuple[str, list[tuple[str, str]]]] = {}
+    for team_name, seasons_data in team_history.items():
+        club = team_name_to_club_name(team_name)
+        for season, entries in seasons_data.items():
+            for entry in entries:
+                key = (season, club, entry.tier_num)
+                if key not in club_tier_map:
+                    club_tier_map[key] = (entry.tier_name, [])
+                club_tier_map[key][1].append((team_name, entry.league))
+
+    same_tier_club_teams: list[SameTierClubTeams] = [
+        SameTierClubTeams(club, season, tier_num, tier_name, sorted(team_leagues))
+        for (season, club, tier_num), (tier_name, team_leagues) in club_tier_map.items()
+        if len(team_leagues) >= 2
+        and tier_num != 999
+        and len({league for _, league in team_leagues}) > 1
+    ]
+    same_tier_club_teams.sort(key=lambda r: (r.club, r.season, r.tier_num))
+
     print_section(
         "UNKNOWN TIER ASSIGNMENTS (tier 999)",
         unknown_tiers,
@@ -194,6 +224,18 @@ def analyse(team_history: TeamHistory) -> None:
             "To League",
         ],
         row_fn=lambda r: r,
+    )
+
+    print_section(
+        "SAME CLUB WITH MULTIPLE TEAMS AT SAME TIER",
+        same_tier_club_teams,
+        headers=["Club", "Season", "Tier", "Teams & Leagues"],
+        row_fn=lambda r: (
+            r.club,
+            r.season,
+            r.tier_num,
+            "; ".join(f"{name} ({league})" for name, league in r.team_leagues),
+        ),
     )
 
     print_tier_movement_summary(team_history)

@@ -38,6 +38,57 @@ def _womens_current_tier_name(tier: int) -> str:
     return f"National Challenge {tier - 103}"
 
 
+_NAMED_MERIT_LEAGUES: dict[str, int] = {
+    # East Midlands hierarchy: Bombardier (9) > Eagle IPA/Youngs Bitter/
+    # Estrella Damm/Youngs London Gold (11) > Directors/Courage/rest (12)
+    "merit/East_Midlands/Bombardier": 9,
+    "merit/East_Midlands/Eagle_IPA": 11,
+    "merit/East_Midlands/Youngs_Bitter": 11,
+    "merit/East_Midlands/Youngs_London_Gold": 11,
+    "merit/East_Midlands/Estrella_Damm_Merit": 12,
+    "merit/East_Midlands/Estrella": 11,
+    "merit/East_Midlands/Directors": 12,
+    "merit/East_Midlands/Courage": 12,
+    "merit/East_Midlands/Youngs_London_Stout": 12,
+    "merit/East_Midlands/Youngs": 12,
+    "merit/East_Midlands/Waggledance": 12,
+    "merit/East_Midlands/Red_Stripe": 12,
+    "merit/East_Midlands/Winter_Warmer": 12,
+    "merit/East_Midlands/Banana_Bread": 12,
+    "merit/East_Midlands/Dogs_Head": 12,
+    # East Midlands Northants: A higher than B
+    "merit/East_Midlands/East_Midlands_2_-_Northants_A": 11,
+    "merit/East_Midlands/East_Midlands_2_-_Northants_B": 12,
+    # NOWIRUL hierarchy: Premier (9) > Championship/Conference A (10) >
+    # Conference B (11); generic Divisions use zeroth_tier_map offset 10
+    "merit/NOWIRUL/Cotton_Traders_Premier": 9,
+    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Premier": 9,
+    "merit/NOWIRUL/Cotton_Traders_Championship": 10,
+    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Championship": 10,
+    "merit/NOWIRUL/Cotton_Traders_Conference_A": 10,
+    "merit/NOWIRUL/Cotton_Traders_Conference_B": 11,
+    # Hampshire: Senior Merit sits above geographic divisions
+    "merit/Hampshire/Hampshire_Senior": 10,
+    # Leicestershire: Invitation Merit below Premiership
+    "merit/Leicestershire/Leicestershire_Invitation": 10,
+}
+
+
+def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None:
+    """Match merit paths with sponsor-named leagues before sponsor stripping.
+
+    East Midlands merit leagues use sponsor names (Bombardier, Eagle IPA, etc.)
+    as league identifiers. Sponsor stripping destroys this identity, so we match
+    the original path first to assign distinct tiers within the hierarchy.
+    """
+    for prefix, tier in _NAMED_MERIT_LEAGUES.items():
+        if path.startswith(prefix):
+            season_start = int(season.split("-")[0])
+            name = _mens_current_tier_name(tier) if season_start >= 2022 else f"Level {tier}"
+            return (tier, name)
+    return None
+
+
 def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int, str]:
     """Extract tier from a league path or filename.
 
@@ -47,6 +98,11 @@ def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int,
     ``"merit/<competition>"`` entries in each era's zeroth_tier_map.
     """
     normalized = path_or_filename.replace("\\", "/")
+
+    result = _match_named_merit_leagues(normalized, season)
+    if result is not None:
+        return result
+
     parts = normalized.split("/")
     parts[-1] = _strip_sponsor_prefix(parts[-1])
     cleaned = "/".join(parts)
@@ -140,7 +196,7 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "Regional": 4,
         "Cumbria_Conference": 7,
         "Counties": 6,
-        "merit/East_Midlands/East_Midlands": 8,
+        "merit/East_Midlands/East_Midlands": 9,
         "merit/Hampshire/Counties": 6,
         "merit/Herts_Middlesex/Merit_Championship": 11,
         "merit/Herts_Middlesex/Merit_North": 12,
@@ -149,17 +205,18 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/CANDY": 9,
         "merit/Devon": 10,
         "merit/East_Midlands": 10,
-        "merit/Eastern_Counties": 8,
+        "merit/Eastern_Counties": 9,
         "merit/Essex": 9,
         "merit/GRFU_District": 10,
-        "merit/Hampshire": 10,
+        "merit/Hampshire/Solent": 10,
+        "merit/Hampshire": 11,
         "merit/Herts_Middlesex": 10,
         "merit/Leicestershire": 9,
-        "merit/Middlesex": 9,
-        "merit/Midlands_Reserve": 10,
-        "merit/NOWIRUL": 9,
+        "merit/Middlesex": 10,
+        "merit/Midlands_Reserve": 9,
+        "merit/NOWIRUL": 10,
         "merit/Nottinghamshire": 10,
-        "merit/Rural_Kent": 8,
+        "merit/Rural_Kent": 10,
         "merit/Sussex": 8,
     }
     for prefix, offset in zeroth_tier_map.items():
@@ -199,6 +256,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "North": 5,
         "Midlands": 5,
         "London": 5,
+        "South_West_Pilot": 6,
         "South_West": 5,
         "Cumbria": (6 if season >= "2018-2019" else 8),
         "Durham_Northumberland": 6,
@@ -227,7 +285,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Merseyside": 8,
         "NC_Lancashire": 8,
         "NC_Midlands": 8,
-        "merit/East_Midlands/East_Midlands": 8,
+        "merit/East_Midlands/East_Midlands": 9,
         "merit/Hampshire/Counties": 6,
         "merit/Herts_Middlesex/Merit_Championship": 11,
         "merit/Herts_Middlesex/Merit_North": 12,
@@ -236,17 +294,18 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "merit/CANDY": 9,
         "merit/Devon": 10,
         "merit/East_Midlands": 10,
-        "merit/Eastern_Counties": 8,
+        "merit/Eastern_Counties": 9,
         "merit/Essex": 9,
         "merit/GRFU_District": 10,
-        "merit/Hampshire": 10,
+        "merit/Hampshire/Solent": 10,
+        "merit/Hampshire": 11,
         "merit/Herts_Middlesex": 10,
         "merit/Leicestershire": 9,
-        "merit/Middlesex": 9,
-        "merit/Midlands_Reserve": 10,
-        "merit/NOWIRUL": 9,
+        "merit/Middlesex": 10,
+        "merit/Midlands_Reserve": 9,
+        "merit/NOWIRUL": 10,
         "merit/Nottinghamshire": 10,
-        "merit/Rural_Kent": 8,
+        "merit/Rural_Kent": 10,
         "merit/Sussex": 8,
     }
     if filename.startswith("Premiership"):
@@ -300,25 +359,36 @@ def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] |
 
 
 def get_number_from_tier_name(filename: str, prefix: str) -> int:
-    other_words = filename.removesuffix(".json")[len(prefix) :].removeprefix("_").split("_")
+    other_words = filename.removesuffix(".json")[len(prefix) :].lstrip("/_").split("_")
     num_map = {
+        "Prem": 0,
+        "Premier": 0,
         "1": 1,
         "One": 1,
+        "First": 1,
         "A": 1,
+        "Championship": 1,
         "2": 2,
         "Two": 2,
+        "Second": 2,
         "B": 2,
         "3": 3,
         "Three": 3,
+        "Third": 3,
         "C": 3,
         "4": 4,
         "Four": 4,
+        "Fourth": 4,
+        "D": 4,
         "5": 5,
         "Five": 5,
+        "Fifth": 5,
         "6": 6,
         "Six": 6,
+        "Sixth": 6,
         "7": 7,
         "Seven": 7,
+        "Seventh": 7,
         "8": 8,
         "Eight": 8,
         "9": 9,
@@ -328,6 +398,20 @@ def get_number_from_tier_name(filename: str, prefix: str) -> int:
         "D3": 3,
         "D4": 4,
         "D5": 5,
+        "1N": 1,
+        "1S": 1,
+        "2N": 2,
+        "2S": 2,
+        "2NE": 2,
+        "2SW": 2,
+        "3N": 3,
+        "3S": 3,
+        "3NE": 3,
+        "3SW": 3,
+        "4N": 4,
+        "4S": 4,
+        "4NE": 4,
+        "4SW": 4,
     }
     num = 0
     for part in other_words:

@@ -1696,12 +1696,15 @@ def create_tier_maps(
             league: league_color(tier_num + j) for j, league in enumerate(sorted(leagues))
         }
 
-        # Feature groups
+        # Feature groups - use MarkerCluster so co-located teams spiderfy on click
+        parent_cluster = add_marker_cluster(m)
         shading_groups: dict[str, folium.FeatureGroup] = {}
-        marker_groups: dict[str, folium.FeatureGroup] = {}
+        marker_groups: dict[str, FeatureGroupSubGroup] = {}
         for league in sorted(leagues):
             shading_groups[league] = folium.FeatureGroup(name=f"{league} - Territory", show=True)
-            marker_groups[league] = folium.FeatureGroup(name=f"{league} - Teams", show=True)
+            marker_groups[league] = FeatureGroupSubGroup(
+                parent_cluster, name=f"{league} - Teams", show=True
+            )
             m.add_child(shading_groups[league])
             m.add_child(marker_groups[league])
 
@@ -1714,35 +1717,7 @@ def create_tier_maps(
                 group, {league: league_geometries.get(league, [])}, league_colors
             )
 
-        # Warn about co-located teams in individual tier maps (no clustering/spiderfy here)
-        teams_by_coordinate: dict[tuple[float, float], list[MapTeam]] = defaultdict(list)
-        for team in teams:
-            coord_key = (round(team.get("latitude", 0.0), 7), round(team.get("longitude", 0.0), 7))
-            teams_by_coordinate[coord_key].append(team)
-
-        co_located_groups = [
-            (coord_key, grouped_teams)
-            for coord_key, grouped_teams in teams_by_coordinate.items()
-            if len(grouped_teams) >= 2 and len({t["league"] for t in grouped_teams}) >= 2
-        ]
-        if co_located_groups:
-            logger.warning(
-                "Found %d co-located coordinate group(s) across different leagues in %s. "
-                "Markers may overlap in individual tier maps.",
-                len(co_located_groups),
-                tier,
-            )
-            for (lat, lon), grouped_teams in sorted(co_located_groups):
-                team_labels = [f"{t['name']} ({t['league']})" for t in grouped_teams]
-                logger.warning(
-                    "  - (%s, %s): %d teams -> %s",
-                    lat,
-                    lon,
-                    len(grouped_teams),
-                    ", ".join(sorted(team_labels)),
-                )
-
-        # Markers
+        # Markers - clustering handles co-located teams via spiderfy
         for team in teams:
             add_marker(
                 marker_groups[team["league"]],

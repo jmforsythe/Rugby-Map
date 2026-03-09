@@ -202,7 +202,7 @@ class TestExtractTierMeritPath:
 
     def test_hampshire_merit(self):
         result = extract_tier("merit/Hampshire/Hampshire_Merit_One.json", "2013-2014")
-        assert result == (11, "Level 11")
+        assert result == (12, "Level 12")
 
     def test_hampshire_counties(self):
         result = extract_tier("merit/Hampshire/Counties_5_Hampshire.json", "2025-2026")
@@ -226,45 +226,45 @@ class TestExtractTierMeritPath:
 
     def test_middlesex_premier_division(self):
         result = extract_tier("merit/Middlesex/Premier_Division.json", "2025-2026")
-        assert result == (9, "Counties 3")
+        assert result == (10, "Counties 4")
 
     def test_middlesex_division(self):
         result = extract_tier("merit/Middlesex/Division_1.json", "2025-2026")
-        assert result == (10, "Counties 4")
+        assert result == (11, "Counties 5")
 
     def test_midlands_reserve(self):
         result = extract_tier(
             "merit/Midlands_Reserve/Midlands_West_Reserve_League_Div_1.json", "2013-2014"
         )
-        assert result == (11, "Level 11")
+        assert result == (10, "Level 10")
 
     def test_nowirul_premier_current(self):
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2025-2026")
-        assert result == (9, "Counties 3")
+        assert result == (10, "Counties 4")
 
     def test_nowirul_division_current(self):
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BAINES_PLUMBING_DIVISION_1.json", "2025-2026")
-        assert result == (10, "Counties 4")
+        assert result == (11, "Counties 5")
 
     def test_nowirul_old_conference(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Conference_A.json", "2013-2014")
-        assert result == (10, "Level 10")
+        assert result == (11, "Level 11")
 
     def test_nowirul_old_premier(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Premier_League.json", "2013-2014")
-        assert result == (9, "Level 9")
+        assert result == (10, "Level 10")
 
     def test_nowirul_raging_bull_division(self):
         result = extract_tier("merit/NOWIRUL/Raging_Bull_Division_2_North.json", "2013-2014")
-        assert result == (11, "Level 11")
+        assert result == (12, "Level 12")
 
     def test_rural_kent_dragon_fire(self):
         result = extract_tier("merit/Rural_Kent/Dragon_Fire_4_East.json", "2013-2014")
-        assert result == (12, "Level 12")
+        assert result == (14, "Level 14")
 
     def test_rural_kent_kent_a(self):
         result = extract_tier("merit/Rural_Kent/Kent_A_Rural.json", "2025-2026")
-        assert result == (9, "Counties 3")
+        assert result == (11, "Counties 5")
 
     def test_sussex_counties(self):
         result = extract_tier("merit/Sussex/Harvey's_Brewery_Counties_3_Sussex.json", "2025-2026")
@@ -274,15 +274,15 @@ class TestExtractTierMeritPath:
         result = extract_tier(
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
-        assert result == (10, "Counties 4")
+        assert result == (11, "Counties 5")
 
     def test_east_midlands_b_variant(self):
         result = extract_tier("merit/East_Midlands/East_Midlands_2_-_Northants_B.json", "2025-2026")
-        assert result == (10, "Counties 4")
+        assert result == (12, "Level 12")
 
     def test_east_midlands_sponsor_named(self):
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
-        assert result == (10, "Level 10")
+        assert result == (9, "Level 9")
 
     def test_backslash_path(self):
         """Windows-style backslash paths are normalised."""
@@ -305,3 +305,67 @@ class TestGetNumberFromTierName:
 
     def test_no_number(self):
         assert get_number_from_tier_name("North_Premier.json", "North") == 0
+
+    def test_ordinal_first(self):
+        assert get_number_from_tier_name("First_Division.json", "") == 1
+
+    def test_ordinal_third(self):
+        assert get_number_from_tier_name("Third_Division.json", "") == 3
+
+    def test_ordinal_seventh(self):
+        assert get_number_from_tier_name("Seventh_Division.json", "") == 7
+
+    def test_letter_d(self):
+        assert get_number_from_tier_name("Leicestershire_Merit_D.json", "Leicestershire_Merit") == 4
+
+
+class TestNamedMeritLeagues:
+    """Tests for pre-strip named merit league matching."""
+
+    def test_bombardier_top_tier(self):
+        result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
+        assert result == (9, "Level 9")
+
+    def test_eagle_ipa_second_tier(self):
+        result = extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2014-2015")
+        assert result == (11, "Level 11")
+
+    def test_directors_third_tier(self):
+        result = extract_tier("merit/East_Midlands/Directors_League.json", "2014-2015")
+        assert result == (12, "Level 12")
+
+    def test_estrella_second_tier(self):
+        result = extract_tier("merit/East_Midlands/Estrella_Damm.json", "2014-2015")
+        assert result == (11, "Level 11")
+
+    def test_youngs_bitter_second_tier(self):
+        result = extract_tier("merit/East_Midlands/Youngs_Bitter.json", "2014-2015")
+        assert result == (11, "Level 11")
+
+    def test_bombardier_merit_table(self):
+        result = extract_tier("merit/East_Midlands/Bombardier_Merit_Table.json", "2019-2020")
+        assert result == (9, "Level 9")
+
+    def test_directors_merit_table(self):
+        result = extract_tier("merit/East_Midlands/Directors_Merit_Table.json", "2019-2020")
+        assert result == (12, "Level 12")
+
+    def test_banana_bread_lowest(self):
+        result = extract_tier("merit/East_Midlands/Banana_Bread_Beer_Merit_Table.json", "2019-2020")
+        assert result == (12, "Level 12")
+
+    def test_numbered_format_unaffected(self):
+        """Post-2022 numbered format should not be caught by named league matching."""
+        result = extract_tier(
+            "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
+        )
+        assert result == (11, "Counties 5")
+
+    def test_middlesex_ordinal_divisions(self):
+        """Ordinal-named divisions should now get distinct tiers."""
+        first = extract_tier("merit/Middlesex/First_Division.json", "2012-2013")
+        third = extract_tier("merit/Middlesex/Third_Division.json", "2012-2013")
+        seventh = extract_tier("merit/Middlesex/Seventh_Division.json", "2012-2013")
+        assert first == (11, "Level 11")
+        assert third == (13, "Level 13")
+        assert seventh == (17, "Level 17")

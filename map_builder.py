@@ -1191,7 +1191,7 @@ def generate_single_group_map(
         _add_territories(fg, {grp: geoms.get(grp, [])}, group_colors)
 
     for it in all_placed:
-        _add_marker(marker_groups[it["group"]], it, group_colors[it["group"]])
+        _add_marker(marker_groups[it["group"]], it, group_colors[it["group"]], tier_order=0)
 
     _add_layer_control(m)
 

@@ -21,7 +21,7 @@ from map_builder import (
     generate_single_group_map,
     load_itl_hierarchy,
 )
-from tier_extraction import extract_tier
+from tier_extraction import extract_tier, get_competition_offset, mens_current_tier_name
 from utils import (
     TravelDistances,
     get_config,
@@ -206,7 +206,6 @@ class LoadedItems:
 
     pyramid: list[MarkerItem] = field(default_factory=list)
     merit: dict[str, list[MarkerItem]] = field(default_factory=dict)
-    merit_offsets: dict[str, int] = field(default_factory=dict)
 
 
 def _load_marker_items(
@@ -268,28 +267,6 @@ def _load_marker_items(
                 result.merit.setdefault(comp_key, []).append(item)
             else:
                 result.pyramid.append(item)
-
-    # Convert merit items to competition-local tier numbering (starting from 1).
-    # The offset (min absolute tier - 1) maps local back to pyramid: absolute = local + offset.
-    for comp_key, items in result.merit.items():
-        if not items:
-            continue
-        min_tier = min(it.tier_num for it in items)
-        offset = min_tier - 1
-        result.merit_offsets[comp_key] = offset
-        result.merit[comp_key] = [
-            replace(
-                it,
-                tier=f"Level {it.tier_num - offset}",
-                tier_num=it.tier_num - offset,
-                extra={
-                    **(it.extra or {}),
-                    "pyramid_tier_num": it.tier_num,
-                    "pyramid_tier_name": it.tier,
-                },
-            )
-            for it in items
-        ]
 
     return result
 
@@ -480,16 +457,15 @@ def main() -> None:
     womens_by_tier, womens_tier_order = _group_by_tier(womens_pyramid)
 
     # Build pyramid-adjusted copies of merit items for the combined All_Leagues map.
-    # Merit items use local tier numbers; restore the absolute pyramid values.
-    adjusted_merit = [
-        replace(
-            it,
-            tier_num=cast(int, (it.extra or {}).get("pyramid_tier_num", it.tier_num)),
-            tier=cast(str, (it.extra or {}).get("pyramid_tier_name", it.tier)),
-        )
-        for comp_items in loaded.merit.values()
-        for it in comp_items
-    ]
+    # Merit items use local tier numbers; add the competition offset to get absolute.
+    adjusted_merit: list[MarkerItem] = []
+    for comp_key, comp_items in loaded.merit.items():
+        offset = get_competition_offset(comp_key, season)
+        for it in comp_items:
+            abs_tier = it.tier_num + offset
+            adjusted_merit.append(
+                replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier))
+            )
 
     total_items = len(loaded.pyramid) + len(adjusted_merit)
     logger.info(
@@ -582,7 +558,7 @@ def main() -> None:
             if not comp_items:
                 continue
 
-            offset = loaded.merit_offsets[comp_key]
+            offset = get_competition_offset(comp_key, season)
             comp_display = comp_key.replace("_", " ")
             comp_dir = merit_dir / comp_key
             logger.debug(

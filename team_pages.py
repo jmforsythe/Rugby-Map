@@ -424,7 +424,7 @@ def get_team_page_html(
                             travel_info = f"{total_dist:.0f} km total"
 
                 league_link: str = (
-                    f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{tier[0]%100}: {escape(league)}</a>'
+                    f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{escape(tier[1])}: {escape(league)}</a>'
                 )
 
                 html += f"""                <tr>

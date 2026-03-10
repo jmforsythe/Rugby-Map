@@ -285,7 +285,8 @@ def detect_tier_files(season_dir: Path) -> dict:
 
             comp_display = comp_dir.name.replace("_", " ")
             tier_candidates = [
-                *((f"Level {i}", f"Level_{i}") for i in range(1, 20)),
+                (f"{comp_display} Premier", f"{comp_dir.name}_Premier"),
+                *((f"{comp_display} {i}", f"{comp_dir.name}_{i}") for i in range(1, 20)),
             ]
             comp_tiers_raw = _detect_existing(comp_dir, tier_candidates)
             prefix = f"merit/{comp_dir.name}/"

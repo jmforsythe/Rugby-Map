@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import NamedTuple, TypeVar
 
 from fetch_addresses import team_name_to_club_name
-from tier_extraction import extract_tier
+from tier_extraction import extract_tier, get_competition_offset
 from utils import setup_logging
 
 logger = logging.getLogger(__name__)
@@ -79,7 +79,15 @@ def load_all_seasons() -> TeamHistory:
     for season in SEASONS:
         season_dir = GEOCODED_DIR / season
         for filepath in sorted(season_dir.rglob("*.json")):
-            tier_num, tier_name = extract_tier(filepath.relative_to(season_dir).as_posix(), season)
+            rel = filepath.relative_to(season_dir).as_posix()
+            tier_num, tier_name = extract_tier(rel, season)
+
+            # Merit tiers are local to their competition; convert to absolute
+            # pyramid position so cross-competition comparisons are meaningful.
+            parts = rel.split("/")
+            if len(parts) >= 3 and parts[0] == "merit":
+                tier_num += get_competition_offset(parts[1], season)
+
             with open(filepath, encoding="utf-8") as f:
                 data = json.load(f)
             league_name = data.get("league_name", filepath.stem)

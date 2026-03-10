@@ -1,0 +1,67 @@
+{
+  "league_name": "Kent 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3257&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Old Williamsonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16094",
+      "image_url": "https://images.englandrugby.com/club_images/16094.png",
+      "address": "The Pavillion, Sir Joseph Williamsons Mathematical School, Maidstone Road, Rochester, Kent, ME1 3EL, United Kingdom",
+      "latitude": 51.371843,
+      "longitude": 0.4965667,
+      "formatted_address": "ME1 3EL, Rochester, Medway, England, United Kingdom",
+      "place_id": 350700782
+    },
+    {
+      "name": "Orpington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16275",
+      "image_url": "https://images.englandrugby.com/club_images/16275.png",
+      "address": "Hoblingwell Wood, Recreation Ground Leesons Way, St. Paul's Cray Leesons Way, St. Paul's Cray Orpington KENT BR5 2QB UNITED KINGDOM",
+      "latitude": 51.4021756,
+      "longitude": 0.0963015,
+      "formatted_address": "BR5 2QB, St Paul's Cray, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351013338
+    },
+    {
+      "name": "New Ash Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14306",
+      "image_url": "https://images.englandrugby.com/club_images/14306.png",
+      "address": "The Pavilion, Punchcroft Road, New Ash Green, Longfield, Kent, DA3 8HS, United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570813
+    },
+    {
+      "name": "Shooters Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19252",
+      "image_url": "https://images.englandrugby.com/club_images/19252.png",
+      "address": "Mayday Gardens Kidbrooke London SE3 8NP UNITED KINGDOM",
+      "latitude": 51.4678128,
+      "longitude": 0.044753,
+      "formatted_address": "Mayday Gardens, Well Hall, Royal Borough of Greenwich, Greater London, England, SE3 8NP, United Kingdom",
+      "place_id": 91165579
+    },
+    {
+      "name": "King's College Hospital",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11534",
+      "image_url": "https://images.englandrugby.com/club_images/11534.png",
+      "address": "Dulwich Sports Ground, 108 Turney Road, London, KENT, SE21 7JH, UNITED KINGDOM, ",
+      "latitude": 51.4468916,
+      "longitude": -0.0944903,
+      "formatted_address": "SE21 7JH, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899123
+    },
+    {
+      "name": "Snowdown C.W.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19538",
+      "image_url": "https://images.englandrugby.com/club_images/19538.png",
+      "address": "The Sports Ground Spinney Lane, Aylesham, Canterbury. KENT CT3 3AF UNITED KINGDOM",
+      "latitude": 51.22383,
+      "longitude": 1.20548,
+      "formatted_address": "CT3 3AF, Aylesham, Dover, Kent, England, United Kingdom",
+      "place_id": 351106775
+    }
+  ],
+  "team_count": 6
+}

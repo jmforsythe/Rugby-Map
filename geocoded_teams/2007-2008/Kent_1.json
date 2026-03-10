@@ -1,0 +1,107 @@
+{
+  "league_name": "Kent 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3241&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Park House",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16583",
+      "image_url": "https://images.englandrugby.com/club_images/16583.png",
+      "address": "Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504076
+    },
+    {
+      "name": "Old Gravesendians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15730",
+      "image_url": "https://images.englandrugby.com/club_images/15730.png",
+      "address": "Old Gravesendians R.F.C. Fleetway Sports Ground Bronte View, Parrock Road Gravesend KENT DA12 1PX UNITED KINGDOM ",
+      "latitude": 51.4358035,
+      "longitude": 0.3789148,
+      "formatted_address": "DA12 1PX, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569639
+    },
+    {
+      "name": "Old Olavians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15867",
+      "image_url": "https://images.englandrugby.com/club_images/15867.png",
+      "address": "Old Olavians RFC St. Olave's School Goddington Lane Orpington KENT BR6 9SH UNITED KINGDOM",
+      "latitude": 51.3677887,
+      "longitude": 0.1040428,
+      "formatted_address": "BR6 9SH, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504627
+    },
+    {
+      "name": "Dartfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6166",
+      "image_url": "https://images.englandrugby.com/club_images/6166.png",
+      "address": "War Memorial Club House Bourne Road Bexley KENT DA5 1LW UNITED KINGDOM ",
+      "latitude": 51.4429686,
+      "longitude": 0.1516309,
+      "formatted_address": "DA5 1LW, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 350570907
+    },
+    {
+      "name": "Gillingham Anchorians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8574",
+      "image_url": "https://images.englandrugby.com/club_images/8574.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "Sittingbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19441",
+      "image_url": "https://images.englandrugby.com/club_images/19441.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
+    },
+    {
+      "name": "Guys' Kings' & St Thomas' Hospital",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9137",
+      "image_url": "https://images.englandrugby.com/club_images/9137.png",
+      "address": "Honor Oak Park Sports Ground Honor Oak Park Sports Ground Brockley Rise, Honor Oak Park Se23 1nw London SE23 1NW United Kingdom",
+      "latitude": 51.45149,
+      "longitude": -0.03866,
+      "formatted_address": "SE23 1NW, London Borough of Lewisham, Greater London, England, United Kingdom",
+      "place_id": 351448229
+    },
+    {
+      "name": "Ashford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=876",
+      "image_url": "https://images.englandrugby.com/club_images/876.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Erith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7640",
+      "image_url": "https://images.englandrugby.com/club_images/7640.png",
+      "address": "The Recreation Ground, Sussex Road Northumberland Heath Erith KENT DA8 1JB UNITED KINGDOM",
+      "latitude": 51.47454,
+      "longitude": 0.1545,
+      "formatted_address": "DA8 1JB, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351141873
+    },
+    {
+      "name": "Askean",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974",
+      "image_url": "https://images.englandrugby.com/club_images/974.png",
+      "address": "Charlton Road, London, SE7 7EY, United Kingdom",
+      "latitude": 51.4796237,
+      "longitude": 0.0302015,
+      "formatted_address": "Royal Mail, Charlton Road, Blackheath Royal Standard, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 7EY, United Kingdom",
+      "place_id": 91477105
+    }
+  ],
+  "team_count": 10
+}

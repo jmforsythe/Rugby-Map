@@ -1,0 +1,67 @@
+{
+  "league_name": "RFUW Championship North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=3475&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "DMP Durham Sharks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6114",
+      "image_url": "https://images.englandrugby.com/club_images/6114.png",
+      "address": "Darlington Arena Neasham Road Darlington County Durham DL2 1DL United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171191
+    },
+    {
+      "name": "Vale of Lune Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23904",
+      "image_url": "https://images.englandrugby.com/club_images/23904.png",
+      "address": "Vale Of Lune Rufc Powderhouse Lane Lancaster. Lancashire LA1 2TT United Kingdom",
+      "latitude": 54.0619369,
+      "longitude": -2.8191176,
+      "formatted_address": "LA1 2TT, England, United Kingdom",
+      "place_id": 350677617
+    },
+    {
+      "name": "Camp Hill Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4067",
+      "image_url": "https://images.englandrugby.com/club_images/4067.png",
+      "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
+      "latitude": 52.4112632,
+      "longitude": -1.8343111,
+      "formatted_address": "B90 2EF, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486022
+    },
+    {
+      "name": "Waterloo Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24436",
+      "image_url": "https://images.englandrugby.com/club_images/24436.png",
+      "address": "The Memorial Ground St Anthony's Road Blundellsands Merseyside L23 8TW England",
+      "latitude": 53.49253,
+      "longitude": -3.04513,
+      "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350996273
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Lakenham Hewett Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11802",
+      "image_url": "https://images.englandrugby.com/club_images/11802.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    }
+  ],
+  "team_count": 6
+}

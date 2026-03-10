@@ -1,0 +1,107 @@
+{
+  "league_name": "London 4 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3252&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Sudbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21299",
+      "image_url": "https://images.englandrugby.com/club_images/21299.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "South Woodham Ferrers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19679",
+      "image_url": "https://images.englandrugby.com/club_images/19679.png",
+      "address": "Saltcoats Playing Fields South Woodham Ferrers Chelmsford Essex CM3 5WA United Kingdom",
+      "latitude": 51.648656,
+      "longitude": 0.625467,
+      "formatted_address": "South Woodham Ferrers Rugby Football Club, Ferrers Rd, South Woodham Ferrers, Chelmsford CM3 5WA, Reino Unido, Ferrers Road, South Woodham Ferrers, Chelmsford, Essex, England, CM3 5JU, United Kingdom",
+      "place_id": 91268153
+    },
+    {
+      "name": "Upminster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23759",
+      "image_url": "https://images.englandrugby.com/club_images/23759.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Basildon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1539",
+      "image_url": "https://images.englandrugby.com/club_images/1539.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Beccles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1767",
+      "image_url": "https://images.englandrugby.com/club_images/1767.png",
+      "address": "Beef Meadow Common Lane Common Lane Beccles Suffolk NR34 9RH United Kingdom",
+      "latitude": 52.4569046,
+      "longitude": 1.5742136,
+      "formatted_address": "NR34 9RH, Beccles, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350746457
+    },
+    {
+      "name": "Canvey Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4150",
+      "image_url": "https://images.englandrugby.com/club_images/4150.png",
+      "address": "Tewkes Creek, Dovervelt Road, Canvey Island, Essex, SS8 8EJ, United Kingdom",
+      "latitude": 51.52916,
+      "longitude": 0.59358,
+      "formatted_address": "SS8 8EJ, Canvey Island, Castle Point, Essex, England, United Kingdom",
+      "place_id": 351985750
+    },
+    {
+      "name": "Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5957",
+      "image_url": "https://images.englandrugby.com/club_images/5957.png",
+      "address": "Little Melton Road Hethersett Norwich Norfolk NR9 3NP United Kingdom",
+      "latitude": 52.6119295,
+      "longitude": 1.1804873,
+      "formatted_address": "NR9 3NP, Little Melton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350748653
+    },
+    {
+      "name": "Campion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4078",
+      "image_url": "https://images.englandrugby.com/club_images/4078.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    }
+  ],
+  "team_count": 10
+}

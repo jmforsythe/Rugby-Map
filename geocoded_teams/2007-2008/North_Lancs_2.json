@@ -1,0 +1,87 @@
+{
+  "league_name": "North Lancs 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=3332&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Furness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8419",
+      "image_url": "https://images.englandrugby.com/club_images/8419.png",
+      "address": "Furness R.U.F.C. The Strawberry Grounds Croslands Park Road Barrow-in-Furness CUMBRIA LA13 9LA UNITED KINGDOM",
+      "latitude": 54.12984,
+      "longitude": -3.20967,
+      "formatted_address": "LA13 9LA, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351460684
+    },
+    {
+      "name": "Bury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3809",
+      "image_url": "https://images.englandrugby.com/club_images/3809.png",
+      "address": "Radcliffe Road Bury LANCASHIRE BL9 9JX UNITED KINGDOM ",
+      "latitude": 53.58371,
+      "longitude": -2.30082,
+      "formatted_address": "BL9 9JX, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 350991687
+    },
+    {
+      "name": "Colne & Nelson",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5460",
+      "image_url": "https://images.englandrugby.com/club_images/5460.png",
+      "address": "The Club House, Holt House, Harrison Drive, Colne                              , Lancashire, BB8 9SF, United Kingdom",
+      "latitude": 53.86244,
+      "longitude": -2.17995,
+      "formatted_address": "BB8 9SF, Colne, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350953683
+    },
+    {
+      "name": "Carnforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4233",
+      "image_url": "https://images.englandrugby.com/club_images/4233.png",
+      "address": "Carnforth High School, Kellett Road, Carnforth, LANCASHIRE LA5 9LS UNITED KINGDOM",
+      "latitude": 54.1260759,
+      "longitude": -2.7610042,
+      "formatted_address": "LA5 9LS, Carnforth, Lancaster, Lancashire, England, United Kingdom",
+      "place_id": 350680406
+    },
+    {
+      "name": "Thornton Cleveleys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22752",
+      "image_url": "https://images.englandrugby.com/club_images/22752.png",
+      "address": "Thornton Sports Centre Victoria Road East Thornton Cleveleys. FY5 3SX United Kingdom",
+      "latitude": 53.8741166,
+      "longitude": -3.0170559,
+      "formatted_address": "YMCA Thornton Sports Centre, Victoria Road East, Norcross, Thornton, Wyre, Lancashire, England, FY5 3SX, United Kingdom",
+      "place_id": 255937534
+    },
+    {
+      "name": "North Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14729",
+      "image_url": "https://images.englandrugby.com/club_images/14729.png",
+      "address": "Tudor Lodge Victoria Avenue East Moston Manchester Lancashire M40 5SH United Kingdom",
+      "latitude": 53.52584,
+      "longitude": -2.17848,
+      "formatted_address": "M40 5SH, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351104965
+    },
+    {
+      "name": "Chorley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4972",
+      "image_url": "https://images.englandrugby.com/club_images/4972.png",
+      "address": "Chorley Rufc Chorley Panthers Chisnall Lane, Copull Copull Chorley Lancashire PR7 5EA United Kingdom",
+      "latitude": 53.6122806,
+      "longitude": -2.6765285,
+      "formatted_address": "PR7 5EA, Coppull, Chorley, Lancashire, England, United Kingdom",
+      "place_id": 350783077
+    },
+    {
+      "name": "Clitheroe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5288",
+      "image_url": "https://images.englandrugby.com/club_images/5288.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    }
+  ],
+  "team_count": 8
+}

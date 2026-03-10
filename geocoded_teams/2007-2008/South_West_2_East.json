@@ -1,0 +1,127 @@
+{
+  "league_name": "South West 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=3295&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Chippenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4841",
+      "image_url": "https://images.englandrugby.com/club_images/4841.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM ",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351943386
+    },
+    {
+      "name": "Salisbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18607",
+      "image_url": "https://images.englandrugby.com/club_images/18607.png",
+      "address": "C/o Salisbury Rfc, Castle Rd, Salisbury, Wiltshire, SP1 3SA, United Kingdom",
+      "latitude": 51.0859327,
+      "longitude": -1.8010028,
+      "formatted_address": "SP1 3SA, Salisbury, Wiltshire, England, United Kingdom",
+      "place_id": 350833936
+    },
+    {
+      "name": "Swanage & Wareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21497",
+      "image_url": "https://images.englandrugby.com/club_images/21497.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Cheltenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4514",
+      "image_url": "https://images.englandrugby.com/club_images/4514.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 261137594
+    },
+    {
+      "name": "Walcot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24095",
+      "image_url": "https://images.englandrugby.com/club_images/24095.png",
+      "address": "Albert Field, Lansdown, Bath, Somerset, BA1 9BJ, United Kingdom",
+      "latitude": 51.4097448,
+      "longitude": -2.3815316,
+      "formatted_address": "BA1 9BJ, Charlcombe, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350490574
+    },
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "High Wycombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10112",
+      "image_url": "https://images.englandrugby.com/club_images/10112.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    },
+    {
+      "name": "Bletchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2599",
+      "image_url": "https://images.englandrugby.com/club_images/2599.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Henley Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10003",
+      "image_url": "https://images.englandrugby.com/club_images/10003.png",
+      "address": "Dry Leas Marlow Road Henley-on-Thames RG9 2JA UNITED KINGDOM",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 352494689
+    },
+    {
+      "name": "Marlow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13440",
+      "image_url": "https://images.englandrugby.com/club_images/13440.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    },
+    {
+      "name": "Windsor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25603",
+      "image_url": "https://images.englandrugby.com/club_images/25603.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM ",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932039
+    },
+    {
+      "name": "Tadley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21606",
+      "image_url": "https://images.englandrugby.com/club_images/21606.png",
+      "address": "Frank Jose Park, Red Lane, Aldermaston, Berkshire, RG7 4PA, United Kingdom",
+      "latitude": 51.37191,
+      "longitude": -1.1217299,
+      "formatted_address": "RG7 4PA, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 351818569
+    }
+  ],
+  "team_count": 12
+}

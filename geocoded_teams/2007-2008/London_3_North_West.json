@@ -1,0 +1,127 @@
+{
+  "league_name": "London 3 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3234&season=2007-2008#tables",
+  "teams": [
+    {
+      "name": "Stevenage Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20924",
+      "image_url": "https://images.englandrugby.com/club_images/20924.png",
+      "address": "The Clubhouse, North Road, Stevenage, Hertfordshire, SG1 4BB, England",
+      "latitude": 51.9258,
+      "longitude": -0.21076,
+      "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
+      "place_id": 351906609
+    },
+    {
+      "name": "Imperial Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10864",
+      "image_url": "https://images.englandrugby.com/club_images/10864.png",
+      "address": "Imperial College Sports Grounds Sipson Lane Harlington Hayes London Middlesex UB3 5EH United Kingdom",
+      "latitude": 51.48794,
+      "longitude": -0.43704,
+      "formatted_address": "UB3 5EH, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104267
+    },
+    {
+      "name": "Hammersmith & Fulham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9257",
+      "image_url": "https://images.englandrugby.com/club_images/9257.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London New Zealand",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12594",
+      "image_url": "https://images.englandrugby.com/club_images/12594.png",
+      "address": "Twyford Ave Sports Ground Twyford Ave Acton London W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    },
+    {
+      "name": "Enfield Ignatians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513",
+      "image_url": "https://images.englandrugby.com/club_images/7513.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "St Albans 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20103",
+      "image_url": "https://images.englandrugby.com/club_images/20103.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Twickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23336",
+      "image_url": "https://images.englandrugby.com/club_images/23336.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Harpenden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9448",
+      "image_url": "https://images.englandrugby.com/club_images/9448.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Hampstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9291",
+      "image_url": "https://images.englandrugby.com/club_images/9291.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "U.C.S.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23417",
+      "image_url": "https://images.englandrugby.com/club_images/23417.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    },
+    {
+      "name": "Datchworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6196",
+      "image_url": "https://images.englandrugby.com/club_images/6196.png",
+      "address": "Datchworth Green Datchworth Datchworth Datchworth Hertfordshire SG3 6TL UNITED KINGDOM ",
+      "latitude": 51.8495634,
+      "longitude": -0.1627916,
+      "formatted_address": "Datchworth Green, Painter's Green, Datchworth, Datchworth Green, East Hertfordshire, Hertfordshire, England, SG3 6TL, United Kingdom",
+      "place_id": 257359028
+    },
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    }
+  ],
+  "team_count": 12
+}

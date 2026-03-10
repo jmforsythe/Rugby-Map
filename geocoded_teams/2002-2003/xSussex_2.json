@@ -1,0 +1,77 @@
+{
+  "league_name": "xSussex 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1490&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "St Francis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20374",
+      "image_url": "https://images.englandrugby.com/club_images/20374.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    },
+    {
+      "name": "Newick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14523",
+      "image_url": "https://images.englandrugby.com/club_images/14523.png",
+      "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
+      "latitude": 50.9714056,
+      "longitude": 0.0210742,
+      "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350503623
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    },
+    {
+      "name": "Sussex Police",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21405",
+      "image_url": "https://images.englandrugby.com/club_images/21405.png",
+      "address": "Brighton Rfc Waterhall Playing Fields Patcham Brighton East Sussex BN1 8YR United Kingdom",
+      "latitude": 50.8649558,
+      "longitude": -0.1766999,
+      "formatted_address": "BN1 8YR, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992784
+    },
+    {
+      "name": "Barns Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
+      "image_url": "https://images.englandrugby.com/club_images/1452.png",
+      "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
+      "latitude": 51.033237,
+      "longitude": -0.3956182,
+      "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350794178
+    }
+  ],
+  "team_count": 7
+}

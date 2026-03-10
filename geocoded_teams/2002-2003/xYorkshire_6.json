@@ -1,0 +1,71 @@
+{
+  "league_name": "xYorkshire 6",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1594&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Burley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679",
+      "image_url": "https://images.englandrugby.com/club_images/3679.png",
+      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
+      "latitude": 53.8233843,
+      "longitude": -1.6141636,
+      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350692295
+    },
+    {
+      "name": "Rawmarsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17488",
+      "image_url": "https://images.englandrugby.com/club_images/17488.png",
+      "address": "RLS Barbers Ave. Rawmarsh Rotherham SOUTH YORKSHIRE S62 6AE UNITED KINGDOM",
+      "latitude": 53.4568694,
+      "longitude": -1.3382294,
+      "formatted_address": "S62 6AE, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351479126
+    },
+    {
+      "name": "Marist",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13338",
+      "image_url": "https://images.englandrugby.com/club_images/13338.png",
+      "address": "Cranbrook Avenue Cottingham Road Cottingham Road Hull YORKSHIRE HU6 7TT UNITED KINGDOM",
+      "latitude": 53.7752875,
+      "longitude": -0.3646006,
+      "formatted_address": "HU6 7TT, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351328948
+    },
+    {
+      "name": "Garforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8478",
+      "image_url": "https://images.englandrugby.com/club_images/8478.png",
+      "address": "9a Westfield Lane Kippax Leeds West Yorkshire LS25 7LY United Kingdom",
+      "latitude": 53.7696529,
+      "longitude": -1.3771798,
+      "formatted_address": "Westfield Lane, Leeds, West Yorkshire, England, LS25 7JJ, United Kingdom",
+      "place_id": 256830481
+    },
+    {
+      "name": "Thirsk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22640",
+      "image_url": "https://images.englandrugby.com/club_images/22640.png",
+      "address": "Thirsk Athletic Club Newsham Road Thirsk YO7 4DB UNITED KINGDOM ",
+      "latitude": 54.2394294,
+      "longitude": -1.3744136,
+      "formatted_address": "YO7 4DB, Thirsk, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 352196664
+    },
+    {
+      "name": "Wickersley Exel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25347",
+      "image_url": "https://images.englandrugby.com/club_images/25347.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Walkington Rovers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24140",
+      "image_url": "https://images.englandrugby.com/club_images/24140.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 7
+}

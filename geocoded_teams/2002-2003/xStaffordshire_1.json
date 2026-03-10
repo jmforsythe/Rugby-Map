@@ -1,0 +1,67 @@
+{
+  "league_name": "xStaffordshire 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1529&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Handsworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9324",
+      "image_url": "https://images.englandrugby.com/club_images/9324.png",
+      "address": "Handsworth RUFC Charles Lewis Memorial Ground 450 Birmingham Road Walsall WEST MIDLANDS WS5 3JP ENGLAND ",
+      "latitude": 52.5655038,
+      "longitude": -1.9488862,
+      "formatted_address": "WS5 3JP, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896088
+    },
+    {
+      "name": "Linley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12321",
+      "image_url": "https://images.englandrugby.com/club_images/12321.png",
+      "address": "Kidsgrove Athletic Fc , 15 Hollinwood Road, Kidsgrove, Stoke-on-trent, Staffordshire, ST7 1DQ, United Kingdom",
+      "latitude": 53.0814499,
+      "longitude": -2.25294,
+      "formatted_address": "ST7 1DQ, Kidsgrove, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
+      "place_id": 352001069
+    },
+    {
+      "name": "Rugeley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18356",
+      "image_url": "https://images.englandrugby.com/club_images/18356.png",
+      "address": "Rugeley Rfc, The Nelson Building, St Augustine's Field, Behind St Augustine's Church, Station Road, Rugeley, Staffordshire, WS15 2HG, England",
+      "latitude": 52.76498,
+      "longitude": -1.93388,
+      "formatted_address": "WS15 2HG, Rugeley, Cannock Chase, Staffordshire, England, United Kingdom",
+      "place_id": 352169321
+    },
+    {
+      "name": "Stone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21102",
+      "image_url": "https://images.englandrugby.com/club_images/21102.png",
+      "address": "Stone Hockey And Rugby Club , Enson Lane, Stone, Staffordshire, ST15 0BJ, United Kingdom",
+      "latitude": 52.88415,
+      "longitude": -2.12831,
+      "formatted_address": "ST15 0BJ, Stone Rural, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 351990503
+    },
+    {
+      "name": "St Leonards",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20543",
+      "image_url": "https://images.englandrugby.com/club_images/20543.png",
+      "address": "Prosperity Park, Weston Road, Stafford, Staffordshire, ST180BF, United Kingdom",
+      "latitude": 52.8111534,
+      "longitude": -2.0829403,
+      "formatted_address": "ST18 0BF, Hopton and Coton, Hopton, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836872
+    },
+    {
+      "name": "Penkridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25196",
+      "image_url": "https://images.englandrugby.com/club_images/25196.png",
+      "address": "The Monckton Recreation Centre Pinfold Lane Penkridge Stafford Staffordshire ST19 5QP England",
+      "latitude": 52.7230599,
+      "longitude": -2.12501,
+      "formatted_address": "ST19 5QP, Penkridge, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351993467
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "xEast Counties 3 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1482&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Great Yarmouth-Broadland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8927",
+      "image_url": "https://images.englandrugby.com/club_images/8927.png",
+      "address": "Cobholm Playing Field Cobholm Great Yarmouth NR31 0AY England",
+      "latitude": 52.6081936,
+      "longitude": 1.7118246,
+      "formatted_address": "NR31 0AY, Great Yarmouth, Norfolk, England, United Kingdom",
+      "place_id": 351688799
+    },
+    {
+      "name": "Harwich & Dovercourt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9612",
+      "image_url": "https://images.englandrugby.com/club_images/9612.png",
+      "address": "Wick Lane, Dovercourt, Harwich, CO12 3TA, United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    },
+    {
+      "name": "Swaffham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21482",
+      "image_url": "https://images.englandrugby.com/club_images/21482.png",
+      "address": "Swaffham Rufc North Pickenham Road Swaffham Norfolk PE37 7QX United Kingdom",
+      "latitude": 52.6445011,
+      "longitude": 0.6956385,
+      "formatted_address": "PE37 7QX, Swaffham, Breckland, Norfolk, England, United Kingdom",
+      "place_id": 350768212
+    },
+    {
+      "name": "Sawston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18766",
+      "image_url": "https://images.englandrugby.com/club_images/18766.png",
+      "address": "Sawston Village College New Road Sawston Cambridge Cambs CB22 3BP United Kingdom",
+      "latitude": 52.1267553,
+      "longitude": 0.1616418,
+      "formatted_address": "Sawston Village College, New Road, Sawston, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 3BP, United Kingdom",
+      "place_id": 147410269
+    },
+    {
+      "name": "Felixstowe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8040",
+      "image_url": "https://images.englandrugby.com/club_images/8040.png",
+      "address": "Felixstowe RFC Coronation Sports Ground Mill Lane Mill Lane Felixstowe SUFFOLK IP11 2LN UNITED KINGDOM",
+      "latitude": 51.9618638,
+      "longitude": 1.331994,
+      "formatted_address": "IP11 2LN, Felixstowe, Walton, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350657922
+    },
+    {
+      "name": "March Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13322",
+      "image_url": "https://images.englandrugby.com/club_images/13322.png",
+      "address": "March Bears Rufc Sports Pavillion Elm Road March Cambridgeshire PE15 8PS United Kingdom",
+      "latitude": 52.5686337,
+      "longitude": 0.0930346,
+      "formatted_address": "PE15 8PS, March, Fenland, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350758826
+    },
+    {
+      "name": "Witham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25764",
+      "image_url": "https://images.englandrugby.com/club_images/25764.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    }
+  ],
+  "team_count": 8
+}

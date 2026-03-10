@@ -1,0 +1,94 @@
+{
+  "league_name": "xNorth Midlands 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1532&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Old Griffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15738",
+      "image_url": "https://images.englandrugby.com/club_images/15738.png",
+      "address": "49 Victoria Road Chichester WEST SUSSEX PO19 7HY UNITED KINGDOM",
+      "latitude": 50.8382668,
+      "longitude": -0.7596968,
+      "formatted_address": "Victoria Road, St James's, Chichester, Westhampnett, Chichester, West Sussex, England, PO19 7HY, United Kingdom",
+      "place_id": 261655327
+    },
+    {
+      "name": "Bishops Castle & Onny Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2412",
+      "image_url": "https://images.englandrugby.com/club_images/2412.png",
+      "address": "0, Love Lane, Bishops Castle, Shropshire, SY9 5BX, United Kingdom",
+      "latitude": 52.4888806,
+      "longitude": -2.9938455,
+      "formatted_address": "Love Lane, Bishop's Castle, Shropshire, England, SY9 5DH, United Kingdom",
+      "place_id": 254217798
+    },
+    {
+      "name": "Birmingham Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2314",
+      "image_url": "https://images.englandrugby.com/club_images/2314.png",
+      "address": "Land Rover Social Club Bilsmore Green Off Rowood Drive Solihull West Midlands B92 9LN United Kingdom",
+      "latitude": 52.4303347,
+      "longitude": -1.7754397,
+      "formatted_address": "B92 9LN, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488131
+    },
+    {
+      "name": "Bredon Star",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3051",
+      "image_url": "https://images.englandrugby.com/club_images/3051.png",
+      "address": "Bredon Playing Fields, Main Road,, Tewkesbury, Gloucestershire, GL20 7QN, United Kingdom",
+      "latitude": 52.030351,
+      "longitude": -2.1047039,
+      "formatted_address": "GL20 7QN, Bredon, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 350631131
+    },
+    {
+      "name": "Tenbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21817",
+      "image_url": "https://images.englandrugby.com/club_images/21817.png",
+      "address": "Penlu  Worcester Road Tenbury Wells WORCESTERSHIRE WR15 8AP UNITED KINGDOM ",
+      "latitude": 52.3151303,
+      "longitude": -2.5901565,
+      "formatted_address": "WR15 8AP, Burford, Shropshire, England, United Kingdom",
+      "place_id": 350894078
+    },
+    {
+      "name": "Aldridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=415",
+      "image_url": "https://images.englandrugby.com/club_images/415.png",
+      "address": "Bourne Vale, Off Little Hardwick Road, Aldridge, West Midlands, WS9 0SH, United Kingdom",
+      "latitude": 52.5900026,
+      "longitude": -1.901233,
+      "formatted_address": "WS9 0SH, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896311
+    },
+    {
+      "name": "Clee Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5190",
+      "image_url": "https://images.englandrugby.com/club_images/5190.png",
+      "address": "Tenbury Road Clee Hill Ludlow SHROPSHIRE SY8 3NJ UNITED KINGDOM ",
+      "latitude": 52.3646,
+      "longitude": -2.59257,
+      "formatted_address": "SY8 3NJ, Nash, Shropshire, England, United Kingdom",
+      "place_id": 352026682
+    },
+    {
+      "name": "Birchfield First XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2261",
+      "image_url": "https://images.englandrugby.com/club_images/2261.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Warley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24269",
+      "image_url": "https://images.englandrugby.com/club_images/24269.png",
+      "address": "Warley Rugby Football Club, Tatbank Road, Oldbury, Wmid, B69 4NH, United Kingdom",
+      "latitude": 52.4958699,
+      "longitude": -2.00585,
+      "formatted_address": "B69 4NH, Sandwell, West Midlands, England, United Kingdom",
+      "place_id": 350923574
+    }
+  ],
+  "team_count": 9
+}

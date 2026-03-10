@@ -1,0 +1,127 @@
+{
+  "league_name": "London 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1468&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Bishop's Stortford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2422",
+      "image_url": "https://images.englandrugby.com/club_images/2422.png",
+      "address": "Silver Leys, Hadham Road, Bishops Stortford, Hertfordshire, CM23 2QE, United Kingdom",
+      "latitude": 51.8761437,
+      "longitude": 0.1444547,
+      "formatted_address": "CM23 2QE, Bishop's Stortford, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350549497
+    },
+    {
+      "name": "Old Albanians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15378",
+      "image_url": "https://images.englandrugby.com/club_images/15378.png",
+      "address": "Old Albanian Rfc, The Woollam Playing Fields, 160 Harpenden Road, St Albans, Hertfordshire, AL3 6BB, United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Bank Lane",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1314",
+      "image_url": "https://images.englandrugby.com/club_images/1314.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Cambridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4023",
+      "image_url": "https://images.englandrugby.com/club_images/4023.png",
+      "address": "Ellgia Fields, Grantchester Road, Cambridge, Cambridgeshire, CB3 9ED, United Kingdom",
+      "latitude": 52.1958672,
+      "longitude": 0.1001034,
+      "formatted_address": "CB3 9ED, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350534981
+    },
+    {
+      "name": "Twickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23336",
+      "image_url": "https://images.englandrugby.com/club_images/23336.png",
+      "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
+      "latitude": 51.4227324,
+      "longitude": -0.3870802,
+      "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350420094
+    },
+    {
+      "name": "Letchworth Garden City",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12182",
+      "image_url": "https://images.englandrugby.com/club_images/12182.png",
+      "address": "Letchworth R.u.f.c., Legends Lane, Baldock Road, Letchworth Garden City, Herts, SG6 2EN, United Kingdom",
+      "latitude": 51.97622,
+      "longitude": -0.2059699,
+      "formatted_address": "SG6 2EN, Letchworth, Hertfordshire, England, United Kingdom",
+      "place_id": 351911889
+    },
+    {
+      "name": "Diss",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6516",
+      "image_url": "https://images.englandrugby.com/club_images/6516.png",
+      "address": "Diss R.F.C. Mackenders Bellrope Lane Roydon Diss NORFOLK IP22 5RG UNITED KINGDOM ",
+      "latitude": 52.3827516,
+      "longitude": 1.079028,
+      "formatted_address": "IP22 5RG, Roydon, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350661359
+    },
+    {
+      "name": "Woodford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25970",
+      "image_url": "https://images.englandrugby.com/club_images/25970.png",
+      "address": "Highhams High Road Woodford Green ESSEX IG8 9LB UNITED KINGDOM ",
+      "latitude": 51.6064675,
+      "longitude": 0.0153218,
+      "formatted_address": "IG8 9LB, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350657409
+    },
+    {
+      "name": "Thurrock",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22768",
+      "image_url": "https://images.englandrugby.com/club_images/22768.png",
+      "address": "Oakfield Long Lane Grays Essex RM16 2QH United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Shelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141",
+      "image_url": "https://images.englandrugby.com/club_images/19141.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Ipswich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10940",
+      "image_url": "https://images.englandrugby.com/club_images/10940.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Sudbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21299",
+      "image_url": "https://images.englandrugby.com/club_images/21299.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    }
+  ],
+  "team_count": 12
+}

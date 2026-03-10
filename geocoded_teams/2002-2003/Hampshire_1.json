@@ -1,0 +1,107 @@
+{
+  "league_name": "Hampshire 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1492&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Romsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17976",
+      "image_url": "https://images.englandrugby.com/club_images/17976.png",
+      "address": "Ganger Farm Sports Pavilion, Ganger Farm Way, Romsey, Hampshire, SO51 0EE, United Kingdom",
+      "latitude": 51.0083812,
+      "longitude": -1.4653368,
+      "formatted_address": "SO51 0EE, Romsey, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832300
+    },
+    {
+      "name": "Farnborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7965",
+      "image_url": "https://images.englandrugby.com/club_images/7965.png",
+      "address": "Farnborough Rfc Rugby Club Tile Barn Close Cove Farnborough Hampshire GU14 8LS United Kingdom",
+      "latitude": 51.30062,
+      "longitude": -0.7640348,
+      "formatted_address": "GU14 8LS, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 350639981
+    },
+    {
+      "name": "Guernsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028",
+      "image_url": "https://images.englandrugby.com/club_images/9028.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352872986
+    },
+    {
+      "name": "New Milton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14355",
+      "image_url": "https://images.englandrugby.com/club_images/14355.png",
+      "address": "New Milton Rugby Club Normans Way Ashley New Milton HAMPSHIRE BH25 5FN UNITED KINGDOM ",
+      "latitude": 50.755932,
+      "longitude": -1.6410986,
+      "formatted_address": "BH25 5FN, New Milton, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350497455
+    },
+    {
+      "name": "Fareham Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7929",
+      "image_url": "https://images.englandrugby.com/club_images/7929.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Sandown & Shanklin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708",
+      "image_url": "https://images.englandrugby.com/club_images/18708.png",
+      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
+      "latitude": 50.6561004,
+      "longitude": -1.1652962,
+      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
+      "place_id": 350777134
+    },
+    {
+      "name": "Millbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878",
+      "image_url": "https://images.englandrugby.com/club_images/13878.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Eastleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7248",
+      "image_url": "https://images.englandrugby.com/club_images/7248.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Nomads",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14648",
+      "image_url": "https://images.englandrugby.com/club_images/14648.png",
+      "address": "Cockleshell Community Sports Ground, Cockleshell Gardens, Southsea, Hampshire, PO4 9SA, United Kingdom",
+      "latitude": 50.7877795,
+      "longitude": -1.049611,
+      "formatted_address": "PO4 9SA, Portsmouth, England, United Kingdom",
+      "place_id": 351793037
+    },
+    {
+      "name": "Hamble",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9249",
+      "image_url": "https://images.englandrugby.com/club_images/9249.png",
+      "address": "Hamble School Satchell Lane, Hamble Southampton SO31 4HQ UNITED KINGDOM",
+      "latitude": 50.8735946,
+      "longitude": -1.3259605,
+      "formatted_address": "The Hamble School, Satchell Lane, Hamble-le-Rice, Butlocks Heath, Southampton, Hampshire, England, SO31 4NE, United Kingdom",
+      "place_id": 262513535
+    }
+  ],
+  "team_count": 10
+}

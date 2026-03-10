@@ -1,0 +1,107 @@
+{
+  "league_name": "Midlands 3 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1546&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Nuneaton Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15197",
+      "image_url": "https://images.englandrugby.com/club_images/15197.png",
+      "address": "Nuneaton Old Edwardians RFC Weddington Road Nuneaton WARWICKSHIRE CV10 0AL UNITED KINGDOM",
+      "latitude": 52.53083,
+      "longitude": -1.46376,
+      "formatted_address": "CV10 0AL, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351111151
+    },
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    },
+    {
+      "name": "Ledbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11963",
+      "image_url": "https://images.englandrugby.com/club_images/11963.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Silhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19363",
+      "image_url": "https://images.englandrugby.com/club_images/19363.png",
+      "address": "Warwick Road Copt Heath, Knowle Solihull WEST MIDLANDS B93 9LW UNITED KINGDOM ",
+      "latitude": 52.4007409,
+      "longitude": -1.7467371,
+      "formatted_address": "B93 9LW, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488627
+    },
+    {
+      "name": "Pershore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16795",
+      "image_url": "https://images.englandrugby.com/club_images/16795.png",
+      "address": "Piddle Park , Mill Lane, Wyre Piddle, Pershore, Worcestershire, WR10 2JF, United Kingdom",
+      "latitude": 52.12151,
+      "longitude": -2.06326,
+      "formatted_address": "WR10 2JF, Wyre Piddle, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352158321
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Southam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19697",
+      "image_url": "https://images.englandrugby.com/club_images/19697.png",
+      "address": "The Rugby Field Kineton Road Southam WARWICKSHIRE CV47 2DG UNITED KINGDOM ",
+      "latitude": 52.24418,
+      "longitude": -1.40505,
+      "formatted_address": "CV47 2DG, Southam CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 351123624
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Birmingham Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2318",
+      "image_url": "https://images.englandrugby.com/club_images/2318.png",
+      "address": "Birmingham Exiles RFC Old Damson Lane Elmdon  Solihull WEST MIDLANDS B92 9ED UNITED KINGDOM ",
+      "latitude": 52.4432092,
+      "longitude": -1.7498292,
+      "formatted_address": "B92 9ED, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488076
+    },
+    {
+      "name": "Evesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "image_url": "https://images.englandrugby.com/club_images/7735.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "latitude": 52.0790553,
+      "longitude": -1.9411321,
+      "formatted_address": "Royal Mail, Davies Road, Fairfield, Evesham, Wychavon, Worcestershire, England, WR11 1XN, United Kingdom",
+      "place_id": 258632014
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "South West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1601&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Dings Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6469",
+      "image_url": "https://images.englandrugby.com/club_images/6469.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Cinderford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5046",
+      "image_url": "https://images.englandrugby.com/club_images/5046.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Cheltenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4514",
+      "image_url": "https://images.englandrugby.com/club_images/4514.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 261137594
+    },
+    {
+      "name": "Clifton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5262",
+      "image_url": "https://images.englandrugby.com/club_images/5262.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Truro",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23260",
+      "image_url": "https://images.englandrugby.com/club_images/23260.png",
+      "address": "Truro R.f.c., St. Clements Hill, Truro, Cornw, TR1 1NY, United Kingdom",
+      "latitude": 50.2644421,
+      "longitude": -5.0330982,
+      "formatted_address": "TR1 1NY, Truro, Cornwall, England, United Kingdom",
+      "place_id": 350866161
+    },
+    {
+      "name": "Chinnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4817",
+      "image_url": "https://images.englandrugby.com/club_images/4817.png",
+      "address": "Rectory Pavillion Kingsey Road Thame OXFORDSHIRE OX9 3JL UNITED KINGDOM ",
+      "latitude": 51.74809,
+      "longitude": -0.95875,
+      "formatted_address": "OX9 3JL, Thame, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351734126
+    },
+    {
+      "name": "Keynsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11376",
+      "image_url": "https://images.englandrugby.com/club_images/11376.png",
+      "address": "Keynsham RFC Crown Fields Bristol Road Keynsham Bristol BRISTOL BS31 2BE UNITED KINGDOM ",
+      "latitude": 51.4189561,
+      "longitude": -2.5057328,
+      "formatted_address": "BS31 2BE, Keynsham, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350513226
+    },
+    {
+      "name": "Bridgwater & Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3134",
+      "image_url": "https://images.englandrugby.com/club_images/3134.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    },
+    {
+      "name": "Berry Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2025",
+      "image_url": "https://images.englandrugby.com/club_images/2025.png",
+      "address": "Berry Hill Rfc Ltd, Lakers Rd, Berry Hill,  , Coleford, GL16 7QT, England",
+      "latitude": 51.8105582,
+      "longitude": -2.613527,
+      "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630751
+    },
+    {
+      "name": "Marlow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13440",
+      "image_url": "https://images.englandrugby.com/club_images/13440.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
+    }
+  ],
+  "team_count": 12
+}

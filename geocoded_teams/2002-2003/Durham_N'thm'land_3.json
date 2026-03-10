@@ -1,0 +1,117 @@
+{
+  "league_name": "Durham/N'thm'land 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1587&season=2002-2003#tables",
+  "teams": [
+    {
+      "name": "Ponteland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17046",
+      "image_url": "https://images.englandrugby.com/club_images/17046.png",
+      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
+    },
+    {
+      "name": "Yarm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26377",
+      "image_url": "https://images.englandrugby.com/club_images/26377.png",
+      "address": "Yarm Rugby Club Wass Way Durham Lane Industrial Park Stockton-on-tees Cleveland TS16 0RG United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081237
+    },
+    {
+      "name": "Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13586",
+      "image_url": "https://images.englandrugby.com/club_images/13586.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
+    },
+    {
+      "name": "Whitley Bay Rockcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25300",
+      "image_url": "https://images.englandrugby.com/club_images/25300.png",
+      "address": "Hillheads, Lovaine Avenue, Whitley Bay, Tyne And Wear, NE25 8RW, United Kingdom",
+      "latitude": 55.0375574,
+      "longitude": -1.4491323,
+      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
+      "place_id": 350711110
+    },
+    {
+      "name": "Seghill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18967",
+      "image_url": "https://images.englandrugby.com/club_images/18967.png",
+      "address": "Seghill R.f.c. Welfare Park Seghill Cramlington Northumberland NE23 7EZ United Kingdom",
+      "latitude": 55.0651899,
+      "longitude": -1.5534856,
+      "formatted_address": "NE23 7EZ, Seghill, Seaton Valley, Seghill, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710787
+    },
+    {
+      "name": "Bishop Auckland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2355",
+      "image_url": "https://images.englandrugby.com/club_images/2355.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "South Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19649",
+      "image_url": "https://images.englandrugby.com/club_images/19649.png",
+      "address": "Brinkburn Harton Lane South Shields Tyne And Wear NE34 0PJ United Kingdom",
+      "latitude": 54.9736278,
+      "longitude": -1.4264188,
+      "formatted_address": "Brinkburn CIO, Harton Lane, Cauldwell, South Shields, South Tyneside, Tyne and Wear, North East, England, NE34 0PJ, United Kingdom",
+      "place_id": 254518611
+    },
+    {
+      "name": "Chester-Le-Street",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4725",
+      "image_url": "https://images.englandrugby.com/club_images/4725.png",
+      "address": "Donald Owen Clark Centre Riverside Park Chester-le-Street COUNTY DURHAM DH3 4NT UNITED KINGDOM",
+      "latitude": 54.8567526,
+      "longitude": -1.5596726,
+      "formatted_address": "DH3 4NT, Little Lumley, Woodstone Village, County Durham, North East, England, United Kingdom",
+      "place_id": 350588141
+    },
+    {
+      "name": "Richmondshire",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17794",
+      "image_url": "https://images.englandrugby.com/club_images/17794.png",
+      "address": "The Clubhouse, Theakston Lane, Richmond, North Yorkshire, DL10 4LL, United Kingdom",
+      "latitude": 54.3994665,
+      "longitude": -1.726758,
+      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350591529
+    },
+    {
+      "name": "West Hartlepool Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24772",
+      "image_url": "https://images.englandrugby.com/club_images/24772.png",
+      "address": "Hartlepool 6th Form College Catcote Road Hartlepool COUNTY DURHAM TS25 4HG UNITED KINGDOM",
+      "latitude": 54.6707509,
+      "longitude": -1.2360989,
+      "formatted_address": "TS25 4HG, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869363
+    },
+    {
+      "name": "Jarrovians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11078",
+      "image_url": "https://images.englandrugby.com/club_images/11078.png",
+      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
+      "latitude": 54.9606054,
+      "longitude": -1.4955724,
+      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
+      "place_id": 253817836
+    }
+  ],
+  "team_count": 11
+}

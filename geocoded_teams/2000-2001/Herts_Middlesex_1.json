@@ -1,0 +1,107 @@
+{
+  "league_name": "Herts/Middlesex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=805&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Richmond",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17742",
+      "image_url": "https://images.englandrugby.com/club_images/17742.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "London Scottish",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12602",
+      "image_url": "https://images.englandrugby.com/club_images/12602.png",
+      "address": "Richmond Athletic Ground, Kew Foot Road, Richmond, Surrey, TW9 2SS, United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872407
+    },
+    {
+      "name": "Harrow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9524",
+      "image_url": "https://images.englandrugby.com/club_images/9524.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.62756,
+      "longitude": -0.31634,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Feltham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8061",
+      "image_url": "https://images.englandrugby.com/club_images/8061.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.43562,
+      "longitude": -0.39278,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    },
+    {
+      "name": "Old Hamptonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15777",
+      "image_url": "https://images.englandrugby.com/club_images/15777.png",
+      "address": "Old Hamptonians R.F.C. Dean Road Hampton Hampton Hampton MIDDLESEX TW12 1AQ UNITED KINGDOM ",
+      "latitude": 51.4310684,
+      "longitude": -0.371552,
+      "formatted_address": "TW12 1AQ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350870809
+    },
+    {
+      "name": "Enfield Ignatians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513",
+      "image_url": "https://images.englandrugby.com/club_images/7513.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "Stevenage Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20924",
+      "image_url": "https://images.englandrugby.com/club_images/20924.png",
+      "address": "The Clubhouse, North Road, Stevenage, Hertfordshire, SG1 4BB, England",
+      "latitude": 51.9258,
+      "longitude": -0.21076,
+      "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
+      "place_id": 351906609
+    },
+    {
+      "name": "Harlequin Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9393",
+      "image_url": "https://images.englandrugby.com/club_images/9393.png",
+      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
+      "latitude": 51.4120846,
+      "longitude": -0.3172338,
+      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350670305
+    },
+    {
+      "name": "Mill Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13869",
+      "image_url": "https://images.englandrugby.com/club_images/13869.png",
+      "address": "Mill Hill RFC Copthall Playing Fields Page Street Mill Hill MIDDLESEX NW7 2ED UNITED KINGDOM",
+      "latitude": 51.60637,
+      "longitude": -0.2324,
+      "formatted_address": "NW7 2ED, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351703547
+    },
+    {
+      "name": "Uxbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23880",
+      "image_url": "https://images.englandrugby.com/club_images/23880.png",
+      "address": "Uxbridge Cricket Club Park Road Uxbridge MIDDLESEX UB8 1NR UNITED KINGDOM",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352107282
+    }
+  ],
+  "team_count": 10
+}

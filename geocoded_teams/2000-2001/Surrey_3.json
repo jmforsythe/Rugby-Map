@@ -1,0 +1,94 @@
+{
+  "league_name": "Surrey 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=828&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Old Amplefordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15424",
+      "image_url": "https://images.englandrugby.com/club_images/15424.png",
+      "address": "Old Amplefordians Rfc, C/o Old Blues, Dornan Fields, Arthur Road, Whitley Village, Walton On Thames, KT3 6LX, England",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Old Abingdonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15361",
+      "image_url": "https://images.englandrugby.com/club_images/15361.png",
+      "address": "The One O'Clock Centre Bollingbrook Grove Wandsworth Common SW18 3HX UNITED KINGDOM",
+      "latitude": 51.44879,
+      "longitude": -0.17502,
+      "formatted_address": "SW18 3HX, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352008411
+    },
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.4372629,
+      "longitude": -0.5687512,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
+    },
+    {
+      "name": "Reigate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17687",
+      "image_url": "https://images.englandrugby.com/club_images/17687.png",
+      "address": "Reigate R.F.C. Eric Hodgkins Memorial Grond Colley Lane Reigate SURREY RH2 9JL UNITED KINGDOM ",
+      "latitude": 51.24827,
+      "longitude": -0.22129,
+      "formatted_address": "RH2 9JL, Reigate and Banstead, Surrey, England, United Kingdom",
+      "place_id": 351826871
+    },
+    {
+      "name": "London Cornish",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12508",
+      "image_url": "https://images.englandrugby.com/club_images/12508.png",
+      "address": "Richardson-Evans Memorial Playing Fields Roehampton Vale London SW15 3PQ UNITED KINGDOM",
+      "latitude": 51.4364034,
+      "longitude": -0.2530265,
+      "formatted_address": "SW15 3PQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839495
+    },
+    {
+      "name": "Bec Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1741",
+      "image_url": "https://images.englandrugby.com/club_images/1741.png",
+      "address": "Ashcroft Technology Academy School Sports Pitches, Openview, Sw18 3ny, Earlsfield, SW18 3PD, United Kingdom",
+      "latitude": 51.4423161,
+      "longitude": -0.1868965,
+      "formatted_address": "SW18 3NY, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350840280
+    },
+    {
+      "name": "Old Suttonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16060",
+      "image_url": "https://images.englandrugby.com/club_images/16060.png",
+      "address": "Walch Memorial Ground 82-84 Northey Avenue Cheam Sutton Surrey SM2 7HJ United Kingdom",
+      "latitude": 51.3457099,
+      "longitude": -0.21934,
+      "formatted_address": "SM2 7HJ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485695
+    },
+    {
+      "name": "Old Croydonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15623",
+      "image_url": "https://images.englandrugby.com/club_images/15623.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    }
+  ],
+  "team_count": 9
+}

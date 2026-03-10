@@ -1,0 +1,97 @@
+{
+  "league_name": "Cornwall 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=943&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Saltash",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18628",
+      "image_url": "https://images.englandrugby.com/club_images/18628.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
+    },
+    {
+      "name": "Wadebridge Camels",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24066",
+      "image_url": "https://images.englandrugby.com/club_images/24066.png",
+      "address": "Molesworth Field, Egloshayle, Wadebridge, Cornw, PL27 6AQ, United Kingdom",
+      "latitude": 50.51303,
+      "longitude": -4.82221,
+      "formatted_address": "PL27 6AQ, Wadebridge, Cornwall, England, United Kingdom",
+      "place_id": 351770635
+    },
+    {
+      "name": "Bodmin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2662",
+      "image_url": "https://images.englandrugby.com/club_images/2662.png",
+      "address": "Bodmin R.F.C. Clifden Park Carmminow Cross BODMIN CORNWALL PL30 4AW UNITED KINGDOM ",
+      "latitude": 50.4584642,
+      "longitude": -4.6905979,
+      "formatted_address": "PL30 4AW, Bodmin, Cornwall, England, United Kingdom",
+      "place_id": 351772121
+    },
+    {
+      "name": "Falmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7910",
+      "image_url": "https://images.englandrugby.com/club_images/7910.png",
+      "address": "Falmouth Rfc, The Recreation Ground, Dracaena Avenue, Falmouth, Cornwall, TR11 2FB, United Kingdom",
+      "latitude": 50.1519,
+      "longitude": -5.07943,
+      "formatted_address": "TR11 2FB, Falmouth, Cornwall, England, United Kingdom",
+      "place_id": 352068067
+    },
+    {
+      "name": "Liskeard-Looe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347",
+      "image_url": "https://images.englandrugby.com/club_images/12347.png",
+      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
+      "latitude": 50.4605849,
+      "longitude": -4.4629552,
+      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
+      "place_id": 350772630
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    },
+    {
+      "name": "Helston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9925",
+      "image_url": "https://images.englandrugby.com/club_images/9925.png",
+      "address": "King George V Playing Fields, Clodgey Lane, Helston, Cornwall, TR13 8PJ, United Kingdom",
+      "latitude": 50.1048847,
+      "longitude": -5.2657992,
+      "formatted_address": "TR13 8PJ, Helston, Cornwall, England, United Kingdom",
+      "place_id": 350866499
+    },
+    {
+      "name": "St Day",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20317",
+      "image_url": "https://images.englandrugby.com/club_images/20317.png",
+      "address": "The Playing Field, St. Day 28 Scorrier Street Redruth CORNWALL TR16 5LH UNITED KINGDOM",
+      "latitude": 50.2396261,
+      "longitude": -5.1844943,
+      "formatted_address": "TR16 5LH, St. Day, Cornwall, England, United Kingdom",
+      "place_id": 350416362
+    }
+  ],
+  "team_count": 9
+}

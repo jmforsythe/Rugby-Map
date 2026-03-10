@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 3 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=877&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Stratford Upon Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21232",
+      "image_url": "https://images.englandrugby.com/club_images/21232.png",
+      "address": "Pearcecroft, Loxley Road, Stratford Upon Avon, CV37 7DP, United Kingdom",
+      "latitude": 52.1916445,
+      "longitude": -1.6935516,
+      "formatted_address": "CV37 7DP, Stratford-upon-Avon, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350565903
+    },
+    {
+      "name": "Leamington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942",
+      "image_url": "https://images.englandrugby.com/club_images/11942.png",
+      "address": "Leamington R.u.f.c. 'moorefields' Blackdown Kenilworth Road Leamington Spa Warwickshire CV32 6RG United Kingdom",
+      "latitude": 52.3103,
+      "longitude": -1.53883,
+      "formatted_address": "CV32 6RG, Old Milverton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119215
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    },
+    {
+      "name": "Nuneaton Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15197",
+      "image_url": "https://images.englandrugby.com/club_images/15197.png",
+      "address": "Nuneaton Old Edwardians RFC Weddington Road Nuneaton WARWICKSHIRE CV10 0AL UNITED KINGDOM",
+      "latitude": 52.53083,
+      "longitude": -1.46376,
+      "formatted_address": "CV10 0AL, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351111151
+    },
+    {
+      "name": "Bedworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1865",
+      "image_url": "https://images.englandrugby.com/club_images/1865.png",
+      "address": "Nicholas Chamberlaine School, Bulkington Road, Bedworth, Warwickshire, CV12 9EB, United Kingdom",
+      "latitude": 52.47873,
+      "longitude": -1.46135,
+      "formatted_address": "CV12 9EB, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351113366
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Kings Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11577",
+      "image_url": "https://images.englandrugby.com/club_images/11577.png",
+      "address": "Hopwood Park, Ash Lane, Hopwood, Birmingham, Worcestershire, B48 7BB, United Kingdom",
+      "latitude": 52.36938,
+      "longitude": -1.9455,
+      "formatted_address": "B48 7BB, Brookhouse Farm, Alvechurch CP, Hopwood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918073
+    },
+    {
+      "name": "Evesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "image_url": "https://images.englandrugby.com/club_images/7735.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "latitude": 52.0790553,
+      "longitude": -1.9411321,
+      "formatted_address": "Royal Mail, Davies Road, Fairfield, Evesham, Wychavon, Worcestershire, England, WR11 1XN, United Kingdom",
+      "place_id": 258632014
+    }
+  ],
+  "team_count": 9
+}

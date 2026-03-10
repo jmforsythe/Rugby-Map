@@ -1,0 +1,107 @@
+{
+  "league_name": "Eastern Counties 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=811&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Eton Manor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7708",
+      "image_url": "https://images.englandrugby.com/club_images/7708.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "Upminster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23759",
+      "image_url": "https://images.englandrugby.com/club_images/23759.png",
+      "address": "Hall Lane Playing Fields Hall Lane Upminster ESSEX RM14 3HL UNITED KINGDOM",
+      "latitude": 51.5570772,
+      "longitude": 0.2605793,
+      "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799898
+    },
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Maldon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154",
+      "image_url": "https://images.englandrugby.com/club_images/13154.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15653",
+      "image_url": "https://images.englandrugby.com/club_images/15653.png",
+      "address": "Westlands Playing Fields London Road Romford ESSEX RM7 9NX UNITED KINGDOM",
+      "latitude": 51.5716722,
+      "longitude": 0.151813,
+      "formatted_address": "RM7 9NX, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838597
+    },
+    {
+      "name": "Colchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5386",
+      "image_url": "https://images.englandrugby.com/club_images/5386.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Cantabrigian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4117",
+      "image_url": "https://images.englandrugby.com/club_images/4117.png",
+      "address": "Cantabrigian Rufc, 23 Sedley Taylor Road, Cambridge, Cambridgeshire, CB2 8PW, United Kingdom",
+      "latitude": 52.1819189,
+      "longitude": 0.1334156,
+      "formatted_address": "CB2 8PW, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350534450
+    },
+    {
+      "name": "Wanstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24241",
+      "image_url": "https://images.englandrugby.com/club_images/24241.png",
+      "address": "Centenary Fields, Roding Lane North, Woodford Green, Essex, IG88JY, United Kingdom",
+      "latitude": 51.5967459,
+      "longitude": 0.0518956,
+      "formatted_address": "IG8 8JY, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657328
+    },
+    {
+      "name": "Bancroft",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1295",
+      "image_url": "https://images.englandrugby.com/club_images/1295.png",
+      "address": "Bancroft Rfc The Club House Bradfords Close Buckhurst Way Buckhurst Hill Essex IG9 6JD United Kingdom",
+      "latitude": 51.61605,
+      "longitude": 0.04569,
+      "formatted_address": "IG9 6JD, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351389783
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "North Lancs 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=910&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Fylde Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8437",
+      "image_url": "https://images.englandrugby.com/club_images/8437.png",
+      "address": "Woodlands Memorial Ground Blackpool Road Ansdell Lytham St Annes LANCASHIRE FY8 4EL UNITED KINGDOM",
+      "latitude": 53.746121,
+      "longitude": -2.9878254,
+      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
+      "place_id": 350625896
+    },
+    {
+      "name": "Thornton Cleveleys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22752",
+      "image_url": "https://images.englandrugby.com/club_images/22752.png",
+      "address": "Thornton Sports Centre Victoria Road East Thornton Cleveleys. FY5 3SX United Kingdom",
+      "latitude": 53.8741166,
+      "longitude": -3.0170559,
+      "formatted_address": "YMCA Thornton Sports Centre, Victoria Road East, Norcross, Thornton, Wyre, Lancashire, England, FY5 3SX, United Kingdom",
+      "place_id": 255937534
+    },
+    {
+      "name": "Littleborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12373",
+      "image_url": "https://images.englandrugby.com/club_images/12373.png",
+      "address": "Club House, The Deep Lane, Off Rakewood Road, Rakewood, Littleborough, Lancashire, OL15 0AP, United Kingdom",
+      "latitude": 53.62433,
+      "longitude": -2.08514,
+      "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351710750
+    },
+    {
+      "name": "Colne & Nelson",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5460",
+      "image_url": "https://images.englandrugby.com/club_images/5460.png",
+      "address": "The Club House, Holt House, Harrison Drive, Colne                              , Lancashire, BB8 9SF, United Kingdom",
+      "latitude": 53.86244,
+      "longitude": -2.17995,
+      "formatted_address": "BB8 9SF, Colne, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350953683
+    },
+    {
+      "name": "North Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14729",
+      "image_url": "https://images.englandrugby.com/club_images/14729.png",
+      "address": "Tudor Lodge Victoria Avenue East Moston Manchester Lancashire M40 5SH United Kingdom",
+      "latitude": 53.52584,
+      "longitude": -2.17848,
+      "formatted_address": "M40 5SH, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351104965
+    },
+    {
+      "name": "Chorley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4972",
+      "image_url": "https://images.englandrugby.com/club_images/4972.png",
+      "address": "Chorley Rufc Chorley Panthers Chisnall Lane, Copull Copull Chorley Lancashire PR7 5EA United Kingdom",
+      "latitude": 53.6122806,
+      "longitude": -2.6765285,
+      "formatted_address": "PR7 5EA, Coppull, Chorley, Lancashire, England, United Kingdom",
+      "place_id": 350783077
+    },
+    {
+      "name": "Carnforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4233",
+      "image_url": "https://images.englandrugby.com/club_images/4233.png",
+      "address": "Carnforth High School, Kellett Road, Carnforth, LANCASHIRE LA5 9LS UNITED KINGDOM",
+      "latitude": 54.1260759,
+      "longitude": -2.7610042,
+      "formatted_address": "LA5 9LS, Carnforth, Lancaster, Lancashire, England, United Kingdom",
+      "place_id": 350680406
+    },
+    {
+      "name": "Lostock",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12815",
+      "image_url": "https://images.englandrugby.com/club_images/12815.png",
+      "address": "Lostock Sports Club Chew Moor Lane Bolton Lancashire BL5 3JU United Kingdom",
+      "latitude": 53.5576248,
+      "longitude": -2.5092194,
+      "formatted_address": "BL5 3JU, Westhoughton, Bolton, Greater Manchester, England, United Kingdom",
+      "place_id": 350988142
+    },
+    {
+      "name": "Clitheroe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5288",
+      "image_url": "https://images.englandrugby.com/club_images/5288.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    }
+  ],
+  "team_count": 9
+}

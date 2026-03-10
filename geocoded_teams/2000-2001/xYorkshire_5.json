@@ -1,0 +1,94 @@
+{
+  "league_name": "xYorkshire 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=924&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Doncaster Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6561",
+      "image_url": "https://images.englandrugby.com/club_images/6561.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 351183408
+    },
+    {
+      "name": "Aireborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=333",
+      "image_url": "https://images.englandrugby.com/club_images/333.png",
+      "address": "Nunroyd Sports Pavillion, Aireborough Rugby Club, Nunroyd Park, Yeadon, Leeds, West Yorkshire, LS19 7HR, United Kingdom",
+      "latitude": 53.8697086,
+      "longitude": -1.6978023,
+      "formatted_address": "LS19 7HR, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350690847
+    },
+    {
+      "name": "Marist",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13338",
+      "image_url": "https://images.englandrugby.com/club_images/13338.png",
+      "address": "Cranbrook Avenue Cottingham Road Cottingham Road Hull YORKSHIRE HU6 7TT UNITED KINGDOM",
+      "latitude": 53.7752875,
+      "longitude": -0.3646006,
+      "formatted_address": "HU6 7TT, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351328948
+    },
+    {
+      "name": "Ossett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16303",
+      "image_url": "https://images.englandrugby.com/club_images/16303.png",
+      "address": "Ossett Rufc, Ossett Cricket & Athletic Club, Queens Terrace, Ossett, West Yorkshire, WF5 8JT, United Kingdom",
+      "latitude": 53.6755805,
+      "longitude": -1.5818007,
+      "formatted_address": "WF5 8JT, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350890210
+    },
+    {
+      "name": "Sheffield Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089",
+      "image_url": "https://images.englandrugby.com/club_images/19089.png",
+      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
+      "latitude": 53.3796125,
+      "longitude": -1.5026038,
+      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840574
+    },
+    {
+      "name": "Hornsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10436",
+      "image_url": "https://images.englandrugby.com/club_images/10436.png",
+      "address": "The Hollis Recreation Ground Westwood Avenue Hornsea HU18 1EE UNITED KINGDOM ",
+      "latitude": 53.9140795,
+      "longitude": -0.1791274,
+      "formatted_address": "HU18 1EE, Hornsea, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350652703
+    },
+    {
+      "name": "Adwick Le Street",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=325",
+      "image_url": "https://images.englandrugby.com/club_images/325.png",
+      "address": "The Bullcroft Memorial Hall Chestnut Avenue Carcroft Doncaster SOUTH YORKSHIRE DN68AP UNITED KINGDOM",
+      "latitude": 53.58554,
+      "longitude": -1.18758,
+      "formatted_address": "DN6 8AP, Doncaster, South Yorkshire, England, United Kingdom",
+      "place_id": 351191989
+    },
+    {
+      "name": "Rotherham Clifton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18084",
+      "image_url": "https://images.englandrugby.com/club_images/18084.png",
+      "address": "Rotherham Town CC New Pavillion Clifton Lane Sports Ground Broom Road Rotherham SOUTH YORKSHIRE S60 2SN UNITED KINGDOM",
+      "latitude": 53.42531,
+      "longitude": -1.34322,
+      "formatted_address": "S60 2SN, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351854454
+    },
+    {
+      "name": "Wickersley Exel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25347",
+      "image_url": "https://images.englandrugby.com/club_images/25347.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 9
+}

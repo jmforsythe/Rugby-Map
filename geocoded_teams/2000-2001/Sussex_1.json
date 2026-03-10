@@ -1,0 +1,104 @@
+{
+  "league_name": "Sussex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=820&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Hastings & Bexhill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9653",
+      "image_url": "https://images.englandrugby.com/club_images/9653.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Crowborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5917",
+      "image_url": "https://images.englandrugby.com/club_images/5917.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Chichester IHE",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4760",
+      "image_url": "https://images.englandrugby.com/club_images/4760.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Hellingly",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9891",
+      "image_url": "https://images.englandrugby.com/club_images/9891.png",
+      "address": "Hellingly Rfc Hellingly Sports Club Horsebridge Recreational Ground Lower Horsebridge Nr. Hailsham East Sussex BN27 4DJ United Kingdom",
+      "latitude": 50.8813025,
+      "longitude": 0.2394541,
+      "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350502212
+    },
+    {
+      "name": "Pulborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17255",
+      "image_url": "https://images.englandrugby.com/club_images/17255.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Seaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868",
+      "image_url": "https://images.englandrugby.com/club_images/18868.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Newick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14523",
+      "image_url": "https://images.englandrugby.com/club_images/14523.png",
+      "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
+      "latitude": 50.9714056,
+      "longitude": 0.0210742,
+      "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350503623
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    }
+  ],
+  "team_count": 10
+}

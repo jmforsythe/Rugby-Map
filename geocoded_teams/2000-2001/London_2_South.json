@@ -1,0 +1,124 @@
+{
+  "league_name": "London 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=800&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Canterbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4123",
+      "image_url": "https://images.englandrugby.com/club_images/4123.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Wimbledon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512",
+      "image_url": "https://images.englandrugby.com/club_images/25512.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Maidstone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13128",
+      "image_url": "https://images.englandrugby.com/club_images/13128.png",
+      "address": "The William Day Mem. Ground, The Mote, Willow Way, Maidstone, Kent, ME15 7RN, United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350700950
+    },
+    {
+      "name": "Effingham & Leatherhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7373",
+      "image_url": "https://images.englandrugby.com/club_images/7373.png",
+      "address": "Effingham & Leatherhead R.F.C. King George V Hall King George V Playing Fields Browns Lane Effingham SURREY KT24 5ND UNITED KINGDOM ",
+      "latitude": 51.2703433,
+      "longitude": -0.3954898,
+      "formatted_address": "KT24 5ND, Effingham, Guildford, Surrey, England, United Kingdom",
+      "place_id": 350671350
+    },
+    {
+      "name": "Trinity",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23175",
+      "image_url": "https://images.englandrugby.com/club_images/23175.png",
+      "address": "The Clubhouse Lime Meadow Avenue Sanderstead South Croydon CR2 9AS England",
+      "latitude": 51.32993,
+      "longitude": -0.06961,
+      "formatted_address": "CR2 9AS, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 351095386
+    },
+    {
+      "name": "Beckenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1785",
+      "image_url": "https://images.englandrugby.com/club_images/1785.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Gravesend",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8880",
+      "image_url": "https://images.englandrugby.com/club_images/8880.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    },
+    {
+      "name": "Sevenoaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19006",
+      "image_url": "https://images.englandrugby.com/club_images/19006.png",
+      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
+      "latitude": 51.27407,
+      "longitude": 0.19735,
+      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352051169
+    },
+    {
+      "name": "Old Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15742",
+      "image_url": "https://images.englandrugby.com/club_images/15742.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Alton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=510",
+      "image_url": "https://images.englandrugby.com/club_images/510.png",
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
+    },
+    {
+      "name": "Tonbridge Juddians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22915",
+      "image_url": "https://images.englandrugby.com/club_images/22915.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    }
+  ],
+  "team_count": 12
+}

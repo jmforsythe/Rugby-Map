@@ -1,0 +1,61 @@
+{
+  "league_name": "Sussex 2 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=840&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "St Francis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20374",
+      "image_url": "https://images.englandrugby.com/club_images/20374.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    },
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Arun",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=780",
+      "image_url": "https://images.englandrugby.com/club_images/780.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "B.A. Wingspan",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1207",
+      "image_url": "https://images.englandrugby.com/club_images/1207.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Barns Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
+      "image_url": "https://images.englandrugby.com/club_images/1452.png",
+      "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
+      "latitude": 51.033237,
+      "longitude": -0.3956182,
+      "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350794178
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    }
+  ],
+  "team_count": 6
+}

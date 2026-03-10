@@ -1,0 +1,127 @@
+{
+  "league_name": "South West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=932&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Old Patesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15879",
+      "image_url": "https://images.englandrugby.com/club_images/15879.png",
+      "address": "Old Patesians R.F.C. Old Patesians Clubhouse Everest Road Cheltenham GLOUCESTERSHIRE GL53 9LG UNITED KINGDOM ",
+      "latitude": 51.8773802,
+      "longitude": -2.0692466,
+      "formatted_address": "GL53 9LG, Cheltenham, Gloucestershire, England, United Kingdom",
+      "place_id": 350636802
+    },
+    {
+      "name": "Cinderford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5046",
+      "image_url": "https://images.englandrugby.com/club_images/5046.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Bridgwater & Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3134",
+      "image_url": "https://images.englandrugby.com/club_images/3134.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    },
+    {
+      "name": "Dorchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6585",
+      "image_url": "https://images.englandrugby.com/club_images/6585.png",
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
+    },
+    {
+      "name": "Swanage & Wareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21497",
+      "image_url": "https://images.englandrugby.com/club_images/21497.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Keynsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11376",
+      "image_url": "https://images.englandrugby.com/club_images/11376.png",
+      "address": "Keynsham RFC Crown Fields Bristol Road Keynsham Bristol BRISTOL BS31 2BE UNITED KINGDOM ",
+      "latitude": 51.4189561,
+      "longitude": -2.5057328,
+      "formatted_address": "BS31 2BE, Keynsham, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350513226
+    },
+    {
+      "name": "Berry Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2025",
+      "image_url": "https://images.englandrugby.com/club_images/2025.png",
+      "address": "Berry Hill Rfc Ltd, Lakers Rd, Berry Hill,  , Coleford, GL16 7QT, England",
+      "latitude": 51.8105582,
+      "longitude": -2.613527,
+      "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630751
+    },
+    {
+      "name": "Truro",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23260",
+      "image_url": "https://images.englandrugby.com/club_images/23260.png",
+      "address": "Truro R.f.c., St. Clements Hill, Truro, Cornw, TR1 1NY, United Kingdom",
+      "latitude": 50.2644421,
+      "longitude": -5.0330982,
+      "formatted_address": "TR1 1NY, Truro, Cornwall, England, United Kingdom",
+      "place_id": 350866161
+    },
+    {
+      "name": "Torquay Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22968",
+      "image_url": "https://images.englandrugby.com/club_images/22968.png",
+      "address": "Torquay Athletic Rfc, The Seafront, Rathmore Road, Torquay, Devon, TQ2 6NX, United Kingdom",
+      "latitude": 50.4617471,
+      "longitude": -3.5419425,
+      "formatted_address": "TQ2 6NX, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350861233
+    },
+    {
+      "name": "Gloucester Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8647",
+      "image_url": "https://images.englandrugby.com/club_images/8647.png",
+      "address": "Gloucester Old Boys Rfc, Myers Road, Off Horton Road, Gloucester, Gloucestershire, GL1 3QD, United Kingdom",
+      "latitude": 51.86375,
+      "longitude": -2.22705,
+      "formatted_address": "GL1 3QD, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307607
+    }
+  ],
+  "team_count": 12
+}

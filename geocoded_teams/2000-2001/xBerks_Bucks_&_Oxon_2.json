@@ -1,0 +1,87 @@
+{
+  "league_name": "xBerks/Bucks & Oxon 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=961&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Wheatley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25173",
+      "image_url": "https://images.englandrugby.com/club_images/25173.png",
+      "address": "Holton Playing Fields Holton Wheatley Oxford Oxfordshire OX33 1QL United Kingdom",
+      "latitude": 51.7535014,
+      "longitude": -1.1395664,
+      "formatted_address": "OX33 1QL, Holton, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350755427
+    },
+    {
+      "name": "Henley Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10003",
+      "image_url": "https://images.englandrugby.com/club_images/10003.png",
+      "address": "Dry Leas Marlow Road Henley-on-Thames RG9 2JA UNITED KINGDOM",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 352494689
+    },
+    {
+      "name": "Aldermaston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=394",
+      "image_url": "https://images.englandrugby.com/club_images/394.png",
+      "address": "Aldermaston Rugby Football Club, Recreational Society, Awe Aldermaston, Reading, Berkshire, RG7 4PR, England",
+      "latitude": 51.3651889,
+      "longitude": -1.1494415,
+      "formatted_address": "RG7 4PR, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 350792560
+    },
+    {
+      "name": "Abingdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=244",
+      "image_url": "https://images.englandrugby.com/club_images/244.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    },
+    {
+      "name": "Harwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9607",
+      "image_url": "https://images.englandrugby.com/club_images/9607.png",
+      "address": "Harwell Rfc Main Sports Pavilion, Harwell Science And Innovation Campus, Didcot, Oxfordshire, OX11 0RL, United Kingdom",
+      "latitude": 51.5787591,
+      "longitude": -1.309943,
+      "formatted_address": "OX11 0RL, Agilent Technologies, Harwell, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350753241
+    },
+    {
+      "name": "Gosford All Blacks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8770",
+      "image_url": "https://images.englandrugby.com/club_images/8770.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Winslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25696",
+      "image_url": "https://images.englandrugby.com/club_images/25696.png",
+      "address": "39 The Nags Head Sheep Street Winslow MK18 3HL United Kingdom",
+      "latitude": 51.94122,
+      "longitude": -0.87896,
+      "formatted_address": "MK18 3HL, Winslow, Buckinghamshire, England, United Kingdom",
+      "place_id": 351582510
+    },
+    {
+      "name": "Didcot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6428",
+      "image_url": "https://images.englandrugby.com/club_images/6428.png",
+      "address": "Boundary Park, Greenwood Way, Harwell, Didcot, Oxfordshire, OX11 0AB, United Kingdom",
+      "latitude": 51.6080606,
+      "longitude": -1.2695259,
+      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
+      "place_id": 259301410
+    }
+  ],
+  "team_count": 8
+}

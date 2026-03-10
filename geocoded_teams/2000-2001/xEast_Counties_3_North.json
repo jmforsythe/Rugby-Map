@@ -1,0 +1,94 @@
+{
+  "league_name": "xEast Counties 3 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=813&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Stowmarket",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21185",
+      "image_url": "https://images.englandrugby.com/club_images/21185.png",
+      "address": "Stowmarket Rugby Club Chilton Fields Sports Club Chilton Way Stowmarket SUFFOLK IP14 1SZ UNITED KINGDOM",
+      "latitude": 52.1938224,
+      "longitude": 0.9758336,
+      "formatted_address": "IP14 1SZ, Stowmarket, Suffolk, England, United Kingdom",
+      "place_id": 350659207
+    },
+    {
+      "name": "Haverhill & District",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9724",
+      "image_url": "https://images.englandrugby.com/club_images/9724.png",
+      "address": "Haverhill Rugby Club Castle Playing Fields School Lane Haverhill Suffolk CB9 9DE United Kingdom",
+      "latitude": 52.0813377,
+      "longitude": 0.4200035,
+      "formatted_address": "CB9 9DE, Haverhill, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350539455
+    },
+    {
+      "name": "Sawston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18766",
+      "image_url": "https://images.englandrugby.com/club_images/18766.png",
+      "address": "Sawston Village College New Road Sawston Cambridge Cambs CB22 3BP United Kingdom",
+      "latitude": 52.1267553,
+      "longitude": 0.1616418,
+      "formatted_address": "Sawston Village College, New Road, Sawston, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 3BP, United Kingdom",
+      "place_id": 147410269
+    },
+    {
+      "name": "Great Yarmouth-Broadland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8927",
+      "image_url": "https://images.englandrugby.com/club_images/8927.png",
+      "address": "Cobholm Playing Field Cobholm Great Yarmouth NR31 0AY England",
+      "latitude": 52.6081936,
+      "longitude": 1.7118246,
+      "formatted_address": "NR31 0AY, Great Yarmouth, Norfolk, England, United Kingdom",
+      "place_id": 351688799
+    },
+    {
+      "name": "Witham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25764",
+      "image_url": "https://images.englandrugby.com/club_images/25764.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    },
+    {
+      "name": "Swaffham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21482",
+      "image_url": "https://images.englandrugby.com/club_images/21482.png",
+      "address": "Swaffham Rufc North Pickenham Road Swaffham Norfolk PE37 7QX United Kingdom",
+      "latitude": 52.6445011,
+      "longitude": 0.6956385,
+      "formatted_address": "PE37 7QX, Swaffham, Breckland, Norfolk, England, United Kingdom",
+      "place_id": 350768212
+    },
+    {
+      "name": "American Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=580",
+      "image_url": "https://images.englandrugby.com/club_images/580.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Mistley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14007",
+      "image_url": "https://images.englandrugby.com/club_images/14007.png",
+      "address": "Furze Hill Playing Fields, Shrublands Road, Manningtree, Essex, CO11 1HS, United Kingdom",
+      "latitude": 51.9405743,
+      "longitude": 1.0851074,
+      "formatted_address": "CO11 1HS, Mistley, Mistley Heath, Tendring, Essex, England, United Kingdom",
+      "place_id": 350551914
+    },
+    {
+      "name": "March Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13322",
+      "image_url": "https://images.englandrugby.com/club_images/13322.png",
+      "address": "March Bears Rufc Sports Pavillion Elm Road March Cambridgeshire PE15 8PS United Kingdom",
+      "latitude": 52.5686337,
+      "longitude": 0.0930346,
+      "formatted_address": "PE15 8PS, March, Fenland, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350758826
+    }
+  ],
+  "team_count": 9
+}

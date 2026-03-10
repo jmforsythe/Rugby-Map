@@ -1,0 +1,64 @@
+{
+  "league_name": "xHerts/Middlesex 4 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=809&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Osterley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16308",
+      "image_url": "https://images.englandrugby.com/club_images/16308.png",
+      "address": "C/O Hononary Secretary Rowlands Avenue Hatch end Pinner MIDDLESEX HA5 4AW UNITED KINGDOM",
+      "latitude": 51.61471,
+      "longitude": -0.36302,
+      "formatted_address": "HA5 4AW, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351341207
+    },
+    {
+      "name": "Belsize Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1941",
+      "image_url": "https://images.englandrugby.com/club_images/1941.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "British Airways",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3303",
+      "image_url": "https://images.englandrugby.com/club_images/3303.png",
+      "address": "Concorde Centre Crane Lodge Road High Street Cranford MIDDLESEX TW5 9RQ UNITED KINGDOM",
+      "latitude": 51.48217,
+      "longitude": -0.41127,
+      "formatted_address": "TW5 9RQ, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352100347
+    },
+    {
+      "name": "Orleans F.P.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16230",
+      "image_url": "https://images.englandrugby.com/club_images/16230.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Hayes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9754",
+      "image_url": "https://images.englandrugby.com/club_images/9754.png",
+      "address": "Grosvenor Playing Fields Kingshill Avenue Hayes MIDDLESEX UB4 8BZ UNITED KINGDOM",
+      "latitude": 51.5321483,
+      "longitude": -0.4204051,
+      "formatted_address": "UB4 8BZ, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104611
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    }
+  ],
+  "team_count": 6
+}

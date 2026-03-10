@@ -1,0 +1,64 @@
+{
+  "league_name": "xDevon 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=942&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Dartmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6192",
+      "image_url": "https://images.englandrugby.com/club_images/6192.png",
+      "address": "Dartmouth Rugby Club, C/0 Dartmouth Rowing Club, Sandquay Road, Dartmouth, Devon, TQ6 9PH, United Kingdom",
+      "latitude": 50.3576021,
+      "longitude": -3.5780451,
+      "formatted_address": "TQ6 9PH, Dartmouth, Kingswear, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864083
+    },
+    {
+      "name": "Plympton Victoria",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16974",
+      "image_url": "https://images.englandrugby.com/club_images/16974.png",
+      "address": "Plympton Victoria Rfc, Market Road, Plymouth, Devon, PL7 1QW, United Kingdom",
+      "latitude": 50.3884952,
+      "longitude": -4.0602709,
+      "formatted_address": "PL7 1QW, Plymouth, England, United Kingdom",
+      "place_id": 350774233
+    },
+    {
+      "name": "University of Plymouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23675",
+      "image_url": "https://images.englandrugby.com/club_images/23675.png",
+      "address": "University Of Plymouth Rfc Upsu Su Drake Circus Plymouth Devon PL4 8AA United Kingdom",
+      "latitude": 50.3751448,
+      "longitude": -4.1393517,
+      "formatted_address": "PL4 8AA, Plymouth, England, United Kingdom",
+      "place_id": 350774011
+    },
+    {
+      "name": "Salcombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18545",
+      "image_url": "https://images.englandrugby.com/club_images/18545.png",
+      "address": "Twomeads Camperdown Road Salcombe DEVON TQ8 8AX UNITED KINGDOM ",
+      "latitude": 50.235997,
+      "longitude": -3.7753405,
+      "formatted_address": "TQ8 8AX, Salcombe, East Portlemouth, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864981
+    },
+    {
+      "name": "St Columba & Torpoint",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20290",
+      "image_url": "https://images.englandrugby.com/club_images/20290.png",
+      "address": "Defiance Field Antony Road A374 Torpoint Cornwall PL11 2NN United Kingdom",
+      "latitude": 50.37501,
+      "longitude": -4.20655,
+      "formatted_address": "PL11 2NN, Torpoint, Cornwall, England, United Kingdom",
+      "place_id": 351762744
+    },
+    {
+      "name": "Bovey Tracey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2841",
+      "image_url": "https://images.englandrugby.com/club_images/2841.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,61 @@
+{
+  "league_name": "xSouth Lancs/Cheshire 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=928&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Oswestry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16310",
+      "image_url": "https://images.englandrugby.com/club_images/16310.png",
+      "address": "Granville Park, Garrison Avenue, Oswestry, Shropshire, SY11 4AD, United Kingdom",
+      "latitude": 52.8733455,
+      "longitude": -3.0323944,
+      "formatted_address": "Oswestry RFC, Garrison Avenue, Park Hall, Oswestry, Shropshire, England, SY11 4AD, United Kingdom",
+      "place_id": 256220952
+    },
+    {
+      "name": "Mossley Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14201",
+      "image_url": "https://images.englandrugby.com/club_images/14201.png",
+      "address": "Mossley Hill Road Liverpool MERSEYSIDE L18 8BX UNITED KINGDOM",
+      "latitude": 53.3736046,
+      "longitude": -2.9214784,
+      "formatted_address": "L18 8BX, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674852
+    },
+    {
+      "name": "Holmes Chapel",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10293",
+      "image_url": "https://images.englandrugby.com/club_images/10293.png",
+      "address": "Holmes Chapel Community Centre Station Road Holmes Chapel Cheshire CW4 8AA United Kingdom",
+      "latitude": 53.1983465,
+      "longitude": -2.3502281,
+      "formatted_address": "CW4 8AA, Holmes Chapel, Cheshire East, England, United Kingdom",
+      "place_id": 350567853
+    },
+    {
+      "name": "Prescot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17169",
+      "image_url": "https://images.englandrugby.com/club_images/17169.png",
+      "address": "Rainhill High School, Warrington Road, Rainhill. L35 6NY UNITED KINGDOM",
+      "latitude": 53.411555,
+      "longitude": -2.7524885,
+      "formatted_address": "Rainhill High School, Warrington Road, Holt, Rainhill, St Helens, Liverpool City Region, England, L35 6NY, United Kingdom",
+      "place_id": 255966126
+    },
+    {
+      "name": "Waterloo Vikings",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24437",
+      "image_url": "https://images.englandrugby.com/club_images/24437.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Lucas Merseyside",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12881",
+      "image_url": "https://images.englandrugby.com/club_images/12881.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 6
+}

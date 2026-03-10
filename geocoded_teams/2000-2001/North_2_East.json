@@ -1,0 +1,117 @@
+{
+  "league_name": "North 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=901&season=2000-2001#tables",
+  "teams": [
+    {
+      "name": "Darlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6102",
+      "image_url": "https://images.englandrugby.com/club_images/6102.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    },
+    {
+      "name": "Goole",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8707",
+      "image_url": "https://images.englandrugby.com/club_images/8707.png",
+      "address": "Westfield Lane, Hook, Goole, Yorks, DN14 5PW, United Kingdom",
+      "latitude": 53.7188212,
+      "longitude": -0.8645061,
+      "formatted_address": "DN14 5PW, Hook, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 350594466
+    },
+    {
+      "name": "Huddersfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10581",
+      "image_url": "https://images.englandrugby.com/club_images/10581.png",
+      "address": "HRUFC Lockwood Park Brewery Drive Brewery Drive Huddersfield West Yorkshire HD4 6EN UNITED KINGDOM ",
+      "latitude": 53.6306,
+      "longitude": -1.79884,
+      "formatted_address": "HD4 6EN, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 351347501
+    },
+    {
+      "name": "Redcar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17572",
+      "image_url": "https://images.englandrugby.com/club_images/17572.png",
+      "address": "McKinlay Park Green Lane Redcar CLEVELAND TS10 3RW UNITED KINGDOM ",
+      "latitude": 54.6031896,
+      "longitude": -1.0417975,
+      "formatted_address": "TS10 3RW, Redcar and Cleveland, Tees Valley, England, United Kingdom",
+      "place_id": 350868166
+    },
+    {
+      "name": "Bridlington 2nd XV (Mariners)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3155",
+      "image_url": "https://images.englandrugby.com/club_images/3155.png",
+      "address": "Dukes Park Queens Gate Bridlington EAST RIDING OF YORKSHIRE YO16 7LN UNITED KINGDOM",
+      "latitude": 54.0903597,
+      "longitude": -0.1973737,
+      "formatted_address": "YO16 7LN, Bridlington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352186394
+    },
+    {
+      "name": "Old Crossleyans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15619",
+      "image_url": "https://images.englandrugby.com/club_images/15619.png",
+      "address": "Standeven House Broomfield Avenue, Savile Park Halifax WEST YORKSHIRE HX3 0JE UNITED KINGDOM ",
+      "latitude": 53.70547,
+      "longitude": -1.87241,
+      "formatted_address": "HX3 0JE, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 350931053
+    },
+    {
+      "name": "Alnwick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=486",
+      "image_url": "https://images.englandrugby.com/club_images/486.png",
+      "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
+      "latitude": 55.40438,
+      "longitude": -1.70158,
+      "formatted_address": "NE66 1BE, Alnwick, Northumberland, North East, England, United Kingdom",
+      "place_id": 351640857
+    },
+    {
+      "name": "Beverley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2073",
+      "image_url": "https://images.englandrugby.com/club_images/2073.png",
+      "address": "Norwood Beverley HU17 9HT UNITED KINGDOM",
+      "latitude": 53.8490669,
+      "longitude": -0.4255272,
+      "formatted_address": "Norwood, Beverley, East Riding of Yorkshire, Hull and East Yorkshire, England, HU17 9HT, United Kingdom",
+      "place_id": 256319119
+    },
+    {
+      "name": "Morpeth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14137",
+      "image_url": "https://images.englandrugby.com/club_images/14137.png",
+      "address": "Grange House Field, Mitford Road, Morpeth, Northumberland , NE61 1RJ, United Kingdom",
+      "latitude": 55.1696699,
+      "longitude": -1.7006437,
+      "formatted_address": "NE61 1RJ, Morpeth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350713146
+    },
+    {
+      "name": "West Park Leeds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24886",
+      "image_url": "https://images.englandrugby.com/club_images/24886.png",
+      "address": "The Sycamores Bramhope Leeds WEST YORKSHIRE LS16 9JR UNITED KINGDOM ",
+      "latitude": 53.8768894,
+      "longitude": -1.6077611,
+      "formatted_address": "The Sycamores, Leeds, West Yorkshire, England, LS16 9DP, United Kingdom",
+      "place_id": 257819656
+    },
+    {
+      "name": "York",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26458",
+      "image_url": "https://images.englandrugby.com/club_images/26458.png",
+      "address": "Clifton Park, Shipton Road, York, North Yorkshire, YO30 6RE, United Kingdom",
+      "latitude": 53.9744206,
+      "longitude": -1.105654,
+      "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
+      "place_id": 257745369
+    }
+  ],
+  "team_count": 11
+}

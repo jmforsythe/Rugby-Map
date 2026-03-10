@@ -250,10 +250,8 @@ def detect_tier_files(season_dir: Path) -> dict:
     mens_candidates = [
         ("Premiership", "Premiership"),
         ("Championship", "Championship"),
-        ("National League 1", "National_League_1"),
-        ("National League 2", "National_League_2"),
-        ("Regional 1", "Regional_1"),
-        ("Regional 2", "Regional_2"),
+        *((f"National League {i}", f"National_League_{i}") for i in range(1, 4)),
+        *((f"Regional {i}", f"Regional_{i}") for i in range(1, 3)),
         *((f"Counties {i}", f"Counties_{i}") for i in range(1, 6)),
         *((f"Level {i}", f"Level_{i}") for i in range(5, 20)),
     ]

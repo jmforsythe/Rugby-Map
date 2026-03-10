@@ -212,7 +212,7 @@ def get_session() -> requests.Session:
 def get_headers(referer: str | None = None) -> dict[str, str]:
     """Get standard headers with optional referer for RFU website requests."""
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
         "Accept-Encoding": "gzip, deflate, br",
@@ -229,6 +229,38 @@ def get_headers(referer: str | None = None) -> dict[str, str]:
     return headers
 
 
+def _curl_fallback(url: str, referer: str | None, timeout: int) -> requests.Response:
+    """Use curl as a fallback when requests gets a Cloudflare 202 challenge."""
+    import subprocess
+
+    cmd = [
+        "curl",
+        "-s",
+        "-w",
+        "\n%{http_code}",
+        "-H",
+        f"User-Agent: {get_headers()['User-Agent']}",
+        "-H",
+        "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "--max-time",
+        str(timeout),
+    ]
+    if referer:
+        cmd += ["-H", f"Referer: {referer}"]
+    cmd.append(url)
+
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 10)
+    lines = result.stdout.rsplit("\n", 1)
+    body = lines[0] if len(lines) > 1 else result.stdout
+    status = int(lines[-1]) if len(lines) > 1 and lines[-1].strip().isdigit() else 0
+
+    resp = requests.Response()
+    resp.status_code = status
+    resp._content = body.encode("utf-8")
+    resp.encoding = "utf-8"
+    return resp
+
+
 def make_request(
     url: str,
     referer: str | None = None,
@@ -238,6 +270,9 @@ def make_request(
 ) -> requests.Response:
     """
     Make an HTTP GET request with retry logic and exponential backoff.
+
+    Falls back to curl when the requests library receives a Cloudflare 202
+    challenge (TLS fingerprint mismatch).
 
     Args:
         url: URL to request
@@ -255,16 +290,18 @@ def make_request(
     for attempt in range(max_retries):
         try:
             if delay_seconds > 0:
-                time.sleep(delay_seconds + attempt * 2)  # Increase delay with each attempt
+                time.sleep(delay_seconds + attempt * 2)
 
             response = get_session().get(url, headers=get_headers(referer), timeout=timeout)
+            if response.status_code == 202:
+                response = _curl_fallback(url, referer, timeout)
             response.raise_for_status()
             return response
 
         except requests.exceptions.RequestException:
             if attempt == max_retries - 1:
                 raise
-            time.sleep(5 * (attempt + 1))  # Exponential backoff on error
+            time.sleep(5 * (attempt + 1))
 
     raise RuntimeError(f"Failed to fetch {url} after {max_retries} attempts")
 

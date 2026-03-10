@@ -132,8 +132,15 @@ def fetch_club_address(
 
             response = get_session().get(team_url, headers=get_headers(), timeout=10)
             if response.status_code == 202:
-                log_lines.append("    ✗ 202 code - bot detection")
-                raise AntiBotDetectedError("202 code", log_text="\n".join(log_lines))
+                from utils import _curl_fallback
+
+                response = _curl_fallback(team_url, None, 10)
+            if response.status_code == 202:
+                log_lines.append("    ! 202 response (no data available) - skipping")
+                break
+            if response.status_code == 403:
+                log_lines.append("    ✗ 403 blocked - bot detection")
+                raise AntiBotDetectedError("403 code", log_text="\n".join(log_lines))
 
             response.raise_for_status()
             soup = BeautifulSoup(response.content, "html.parser")

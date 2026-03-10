@@ -1,0 +1,87 @@
+{
+  "league_name": "Herts/Middlesex 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=4242&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Ickenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10764",
+      "image_url": "https://images.englandrugby.com/club_images/10764.png",
+      "address": "Uxbridge Sports Club Park Road Gatting Way Uxbridge Middlesex UB8 1NR United Kingdom",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352781955
+    },
+    {
+      "name": "London French",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12521",
+      "image_url": "https://images.englandrugby.com/club_images/12521.png",
+      "address": "Barn Elms Playing Fields, Queen Elizabeth Walk, Rocks Lane, London, SW13 9WT, United Kingdom",
+      "latitude": 51.4769355,
+      "longitude": -0.2348877,
+      "formatted_address": "SW13 9WT, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838989
+    },
+    {
+      "name": "Pinner & Grammarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16926",
+      "image_url": "https://images.englandrugby.com/club_images/16926.png",
+      "address": "Shaftesbury Playing Fields Grimsdyke Road Grimsdyke Road Hatch End Middlesex HA4 4PW United Kingdom",
+      "latitude": 51.55952,
+      "longitude": -0.4167818,
+      "formatted_address": "HA4 192, Clyfford Road, London Borough of Hillingdon, Greater London, England, HA4 6PX, United Kingdom",
+      "place_id": 259660855
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    },
+    {
+      "name": "Old Tottonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16071",
+      "image_url": "https://images.englandrugby.com/club_images/16071.png",
+      "address": "Churchfields Harrow Drive off Great Cambridge Road MIDDLESEX N9 9EQ UNITED KINGDOM",
+      "latitude": 51.63299,
+      "longitude": -0.06834,
+      "formatted_address": "N9 9EQ, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 352289782
+    },
+    {
+      "name": "Hatfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9679",
+      "image_url": "https://images.englandrugby.com/club_images/9679.png",
+      "address": "The Mallard, 89 Great North Road , Hatfield, Hertfordshire, AL95LP, United Kingdom",
+      "latitude": 51.7709355,
+      "longitude": -0.2168167,
+      "formatted_address": "AL9 5LP, Hatfield, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350460654
+    },
+    {
+      "name": "Watford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439",
+      "image_url": "https://images.englandrugby.com/club_images/24439.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
+      "name": "Cuffley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5994",
+      "image_url": "https://images.englandrugby.com/club_images/5994.png",
+      "address": "Botany Bay Cricket Club, East Lodge Lane, Enfield, Middlesex, EN2 8AS, United Kingdom",
+      "latitude": 51.6772957,
+      "longitude": -0.1229335,
+      "formatted_address": "EN2 8AS, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616438
+    }
+  ],
+  "team_count": 8
+}

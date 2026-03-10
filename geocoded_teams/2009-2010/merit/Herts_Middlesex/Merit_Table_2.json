@@ -1,0 +1,97 @@
+{
+  "league_name": "Merit Table 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=4552&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "U.C.S. 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23418",
+      "image_url": "https://images.englandrugby.com/club_images/23418.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    },
+    {
+      "name": "Hampstead 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9293",
+      "image_url": "https://images.englandrugby.com/club_images/9293.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Tring III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23150",
+      "image_url": "https://images.englandrugby.com/club_images/23150.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Hemel Hempstead 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9962",
+      "image_url": "https://images.englandrugby.com/club_images/9962.png",
+      "address": "Chaulden Lane Hemel Hempstead Herts HP1 2BS United Kingdom",
+      "latitude": 51.7470542,
+      "longitude": -0.5006633,
+      "formatted_address": "Chaulden Lane, Chaulden, Bourne End, Dacorum, Hertfordshire, England, HP1 2BS, United Kingdom",
+      "place_id": 258916641
+    },
+    {
+      "name": "Harpenden 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9450",
+      "image_url": "https://images.englandrugby.com/club_images/9450.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Enfield Ignatians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7515",
+      "image_url": "https://images.englandrugby.com/club_images/7515.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "Barnet Elizabethans 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1428",
+      "image_url": "https://images.englandrugby.com/club_images/1428.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Welwyn 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24683",
+      "image_url": "https://images.englandrugby.com/club_images/24683.png",
+      "address": "Handside Playing Fields Hobbs Way, Colgrove Welwyn Garden City HERTFORDSHIRE AL8 6HX UNITED KINGDOM",
+      "latitude": 51.7944448,
+      "longitude": -0.2146882,
+      "formatted_address": "AL8 6HX, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
+      "place_id": 350915708
+    },
+    {
+      "name": "Fullerians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8385",
+      "image_url": "https://images.englandrugby.com/club_images/8385.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    }
+  ],
+  "team_count": 9
+}

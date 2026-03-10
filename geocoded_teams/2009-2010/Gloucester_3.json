@@ -1,0 +1,87 @@
+{
+  "league_name": "Gloucester 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=4161&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Newent",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14504",
+      "image_url": "https://images.englandrugby.com/club_images/14504.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Smiths Rugby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19533",
+      "image_url": "https://images.englandrugby.com/club_images/19533.png",
+      "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
+      "latitude": 51.9109697,
+      "longitude": -2.0808151,
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "place_id": 261574627
+    },
+    {
+      "name": "Gloucester Civil Service",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8641",
+      "image_url": "https://images.englandrugby.com/club_images/8641.png",
+      "address": "Dowty Sports And Social Club Down Hatherley Lane Staverton Gloucester Gloucestershire GL2 9QD United Kingdom",
+      "latitude": 51.9017009,
+      "longitude": -2.1971228,
+      "formatted_address": "Royal Mail, Down Hatherley Lane, Down Hatherley, Tewkesbury, Gloucestershire, England, GL2 9QB, United Kingdom",
+      "place_id": 256737680
+    },
+    {
+      "name": "Bristol Telephone Area",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3291",
+      "image_url": "https://images.englandrugby.com/club_images/3291.png",
+      "address": "The Club House, Btra Sports Ground, Stockwood Lane, Stockwood, Whitchurch, Bristol, BS14 8SJ, United Kingdom",
+      "latitude": 51.408268,
+      "longitude": -2.5440086,
+      "formatted_address": "BS14 8SJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506626
+    },
+    {
+      "name": "Minchinhampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13941",
+      "image_url": "https://images.englandrugby.com/club_images/13941.png",
+      "address": "Minchinhampton Rfc, Hollybush Farm, Hampton Fields, Minchinhampton , Stroud, GL6 9BD, England",
+      "latitude": 51.70212,
+      "longitude": -2.16677,
+      "formatted_address": "GL6 9BD, Minchinhampton, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351317856
+    },
+    {
+      "name": "Gloucester All Blues",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8638",
+      "image_url": "https://images.englandrugby.com/club_images/8638.png",
+      "address": "The Clubhouse Castle Meads Way Oxleaze Gloucester GLOUCESTERSHIRE GL1 2RN UNITED KINGDOM",
+      "latitude": 51.8684801,
+      "longitude": -2.254154,
+      "formatted_address": "GL1 2RN, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350629975
+    },
+    {
+      "name": "Wotton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26170",
+      "image_url": "https://images.englandrugby.com/club_images/26170.png",
+      "address": "33 Abingdon Road Fishponds Bristol Gloucestershire BS16 3NR United Kingdom",
+      "latitude": 51.4739391,
+      "longitude": -2.5312718,
+      "formatted_address": "BS16 3NR, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351017836
+    },
+    {
+      "name": "Dowty",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6725",
+      "image_url": "https://images.englandrugby.com/club_images/6725.png",
+      "address": "Dowty Rfc C/o Longlevens Rfc Longlevens Gloucester GL2 9EU United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631526
+    }
+  ],
+  "team_count": 8
+}

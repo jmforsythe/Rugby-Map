@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey JONAP Conference 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=4542&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Teddington 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21733",
+      "image_url": "https://images.englandrugby.com/club_images/21733.png",
+      "address": "Teddington Rfc , Bushy Park, Teddington, Middlesex, TW11 0EA, United Kingdom",
+      "latitude": 51.4219437,
+      "longitude": -0.3454989,
+      "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351642203
+    },
+    {
+      "name": "Weybridge Vandals 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25095",
+      "image_url": "https://images.englandrugby.com/club_images/25095.png",
+      "address": "Brownacres Walton Lane Walton on Thames SURREY KT12 1QP UNITED KINGDOM",
+      "latitude": 51.3851494,
+      "longitude": -0.436515,
+      "formatted_address": "KT12 1QP, Spelthorne, Surrey, England, United Kingdom",
+      "place_id": 351420526
+    },
+    {
+      "name": "Farnham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7987",
+      "image_url": "https://images.englandrugby.com/club_images/7987.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Old Blues 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15441",
+      "image_url": "https://images.englandrugby.com/club_images/15441.png",
+      "address": "Dornan Fields Arthur Road Motspur Park, nr New Malden SURREY KT3 6LX UNITED KINGDOM ",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Raynes Park 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17496",
+      "image_url": "https://images.englandrugby.com/club_images/17496.png",
+      "address": "Raynes Park Sports Ground Taunton Avenue Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013170
+    },
+    {
+      "name": "Camberley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3973",
+      "image_url": "https://images.englandrugby.com/club_images/3973.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
+    },
+    {
+      "name": "Old Walcountians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16076",
+      "image_url": "https://images.englandrugby.com/club_images/16076.png",
+      "address": "Clockhouse Carshalton Road WOODMANSTERNE SURREY SM7 3HU UNITED KINGDOM",
+      "latitude": 51.3287532,
+      "longitude": -0.1686178,
+      "formatted_address": "Walcountians Sports Club, Carshalton Road, Little Woodcote, London Borough of Sutton, Reigate and Banstead, Surrey, England, SM7 3HU, United Kingdom",
+      "place_id": 258301321
+    },
+    {
+      "name": "Law Society 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11926",
+      "image_url": "https://images.englandrugby.com/club_images/11926.png",
+      "address": "Raynes Park Sports Ground, Taunton Avenue, West Wimbledon, SW20 0BH, United Kingdom",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Merton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13764",
+      "image_url": "https://images.englandrugby.com/club_images/13764.png",
+      "address": "Morden Recreation Ground, 25 Faversham Road, Morden, Surrey , SM4 6RE, United Kingdom",
+      "latitude": 51.3912199,
+      "longitude": -0.19163,
+      "formatted_address": "SM4 6RE, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 351937994
+    },
+    {
+      "name": "Croydon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5942",
+      "image_url": "https://images.englandrugby.com/club_images/5942.png",
+      "address": "135 Addington Road West Wickham Croydon KENT BR4 9BF UNITED KINGDOM",
+      "latitude": 51.363098,
+      "longitude": -0.018806,
+      "formatted_address": "BR4 9BF, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351012872
+    }
+  ],
+  "team_count": 10
+}

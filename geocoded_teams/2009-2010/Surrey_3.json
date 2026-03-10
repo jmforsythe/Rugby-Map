@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=4236&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "CL London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5112",
+      "image_url": "https://images.englandrugby.com/club_images/5112.png",
+      "address": "C/o 27 West Square London SE11 4SP England",
+      "latitude": 51.4952599,
+      "longitude": -0.1049947,
+      "formatted_address": "SE11 4SP, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 352566470
+    },
+    {
+      "name": "Old Tiffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068",
+      "image_url": "https://images.englandrugby.com/club_images/16068.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
+    },
+    {
+      "name": "Mitcham & Carshalton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14023",
+      "image_url": "https://images.englandrugby.com/club_images/14023.png",
+      "address": "Dewsbury Cottage, Poulter Park, Peterborough Road, Carshalton, Surrey, SM5 1EE, United Kingdom",
+      "latitude": 51.39074,
+      "longitude": -0.17446,
+      "formatted_address": "SM5 1EE, London Borough of Sutton, Greater London, England, United Kingdom",
+      "place_id": 351938087
+    },
+    {
+      "name": "Old Radleian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15928",
+      "image_url": "https://images.englandrugby.com/club_images/15928.png",
+      "address": "8 Mascotte Road London SURREY SW15 1NN UNITED KINGDOM",
+      "latitude": 51.4648498,
+      "longitude": -0.2168935,
+      "formatted_address": "SW15 1NN, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005234
+    },
+    {
+      "name": "Worth Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26117",
+      "image_url": "https://images.englandrugby.com/club_images/26117.png",
+      "address": "Whiteley House, North Avenue, Whiteley Village, Walton-on-thames, Surrey , KT12 4EJ, United Kingdom",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669931
+    },
+    {
+      "name": "Merton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13763",
+      "image_url": "https://images.englandrugby.com/club_images/13763.png",
+      "address": "Morden Recreation Ground, 25 Faversham Road, Morden, Surrey , SM4 6RE, United Kingdom",
+      "latitude": 51.3912199,
+      "longitude": -0.19163,
+      "formatted_address": "SM4 6RE, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 351937994
+    },
+    {
+      "name": "Old Amplefordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15424",
+      "image_url": "https://images.englandrugby.com/club_images/15424.png",
+      "address": "Old Amplefordians Rfc, C/o Old Blues, Dornan Fields, Arthur Road, Whitley Village, Walton On Thames, KT3 6LX, England",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    },
+    {
+      "name": "Streatham-Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21255",
+      "image_url": "https://images.englandrugby.com/club_images/21255.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "Old Oundelians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15876",
+      "image_url": "https://images.englandrugby.com/club_images/15876.png",
+      "address": "Westend House Manor Road Cheddington LU7 0RP United Kingdom",
+      "latitude": 51.84747,
+      "longitude": -0.67059,
+      "formatted_address": "LU7 0RP, Cheddington, Buckinghamshire, England, United Kingdom",
+      "place_id": 352211074
+    },
+    {
+      "name": "Haslemere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9632",
+      "image_url": "https://images.englandrugby.com/club_images/9632.png",
+      "address": "Woolmer Hill Sports Ground Woolmer Hill Haslemere SURREY GU27 1QA UNITED KINGDOM ",
+      "latitude": 51.0960991,
+      "longitude": -0.7479017,
+      "formatted_address": "Woolmer Hill Sports Ground, Woolmer Hill Road, Haslemere, Woolmer Hill, Waverley, Surrey, England, GU27 1QB, United Kingdom",
+      "place_id": 259557894
+    }
+  ],
+  "team_count": 10
+}

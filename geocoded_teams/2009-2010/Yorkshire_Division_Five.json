@@ -1,0 +1,67 @@
+{
+  "league_name": "Yorkshire Division Five",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=4188&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Mosborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164",
+      "image_url": "https://images.englandrugby.com/club_images/14164.png",
+      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
+      "latitude": 53.3265437,
+      "longitude": -1.3605033,
+      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 350801206
+    },
+    {
+      "name": "Marist",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13338",
+      "image_url": "https://images.englandrugby.com/club_images/13338.png",
+      "address": "Cranbrook Avenue Cottingham Road Cottingham Road Hull YORKSHIRE HU6 7TT UNITED KINGDOM",
+      "latitude": 53.7752875,
+      "longitude": -0.3646006,
+      "formatted_address": "HU6 7TT, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351328948
+    },
+    {
+      "name": "Stanley Rodillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20909",
+      "image_url": "https://images.englandrugby.com/club_images/20909.png",
+      "address": "The Clubhouse Manley Park Lee Moor Road Stanley Wakefield West Yorkshire WF3 4EF United Kingdom",
+      "latitude": 53.7180155,
+      "longitude": -1.477567,
+      "formatted_address": "WF3 4EF, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350438818
+    },
+    {
+      "name": "Stocksbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21011",
+      "image_url": "https://images.englandrugby.com/club_images/21011.png",
+      "address": "Stocksbridge Rugby Club, 634 Manchester Road, Stocksbridge, Sheffield, Yorks                         , S36 1DY, United Kingdom",
+      "latitude": 53.4837885,
+      "longitude": -1.5989857,
+      "formatted_address": "S36 1DY, Stocksbridge, Deepcar, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351847660
+    },
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    },
+    {
+      "name": "Wibsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25343",
+      "image_url": "https://images.englandrugby.com/club_images/25343.png",
+      "address": "143 High Street Wibsey Bradford WEST YORKSHIRE BD6 1JU UNITED KINGDOM",
+      "latitude": 53.7670068,
+      "longitude": -1.772818,
+      "formatted_address": "Wibsey Rugby Club, 143, High Street, Brownroyd Hill, Wibsey, Bradford, West Yorkshire, England, BD6 1JU, United Kingdom",
+      "place_id": 257060123
+    }
+  ],
+  "team_count": 6
+}

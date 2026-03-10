@@ -1,0 +1,97 @@
+{
+  "league_name": "Division B",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1681&division=4402&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Old Tonbridgians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16070",
+      "image_url": "https://images.englandrugby.com/club_images/16070.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872396
+    },
+    {
+      "name": "Leigh (Kent)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12119",
+      "image_url": "https://images.englandrugby.com/club_images/12119.png",
+      "address": "The Field Of Dreams Chiddingstone Causeway Tonbridge Kent TN11 8JH England",
+      "latitude": 51.19802,
+      "longitude": 0.18042,
+      "formatted_address": "TN11 8JH, Leigh, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352049141
+    },
+    {
+      "name": "Medway 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13598",
+      "image_url": "https://images.englandrugby.com/club_images/13598.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Tunbridge Wells 3XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23287",
+      "image_url": "https://images.englandrugby.com/club_images/23287.png",
+      "address": "St. Marks Recreation Ground Frant Road Tunbridge Wells Kent TN2 5LS United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350403765
+    },
+    {
+      "name": "Edenbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7323",
+      "image_url": "https://images.englandrugby.com/club_images/7323.png",
+      "address": "The Clubhouse, Lingfield Road Recreation Ground, Edenbridge, Kent , TN8 5DY, United Kingdom",
+      "latitude": 51.19465,
+      "longitude": 0.05849,
+      "formatted_address": "TN8 5DY, Edenbridge, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352064827
+    },
+    {
+      "name": "Footscray RUFC Footscray 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8235",
+      "image_url": "https://images.englandrugby.com/club_images/8235.png",
+      "address": "239a Footscray Road New Eltham New Eltham London SE9 2EL UNITED KINGDOM",
+      "latitude": 51.4422161,
+      "longitude": 0.0665664,
+      "formatted_address": "SE9 2EL, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812268
+    },
+    {
+      "name": "New Ash Green RFC 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14307",
+      "image_url": "https://images.englandrugby.com/club_images/14307.png",
+      "address": "The Pavilion Punchcroft Road New Ash Green, Longfield Kent DA3 8HS United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570829
+    },
+    {
+      "name": "Gravesend 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8883",
+      "image_url": "https://images.englandrugby.com/club_images/8883.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    },
+    {
+      "name": "Cranbrook 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5762",
+      "image_url": "https://images.englandrugby.com/club_images/5762.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    }
+  ],
+  "team_count": 9
+}

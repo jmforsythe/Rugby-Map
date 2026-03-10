@@ -1,0 +1,87 @@
+{
+  "league_name": "Midlands 5 East (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=4208&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Tupton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23314",
+      "image_url": "https://images.englandrugby.com/club_images/23314.png",
+      "address": "The Recreation Ground North Side Tupton Chesterfield DERBYSHIRE S42 6DW UNITED KINGDOM ",
+      "latitude": 53.19156,
+      "longitude": -1.41635,
+      "formatted_address": "S42 6DW, Tupton, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351849813
+    },
+    {
+      "name": "Nottingham Corsairs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15095",
+      "image_url": "https://images.englandrugby.com/club_images/15095.png",
+      "address": "The Bay 1 Holme Road West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AA UNITED KINGDOM",
+      "latitude": 52.9399328,
+      "longitude": -1.1261495,
+      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718231
+    },
+    {
+      "name": "Keyworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11394",
+      "image_url": "https://images.englandrugby.com/club_images/11394.png",
+      "address": "The Clubhouse Willoughby Road Widmerpool Nottingham Nottinghamshire NG12 5PU United Kingdom",
+      "latitude": 52.8438933,
+      "longitude": -1.0635972,
+      "formatted_address": "NG12 5PU, Widmerpool, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350715908
+    },
+    {
+      "name": "Long Eaton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12695",
+      "image_url": "https://images.englandrugby.com/club_images/12695.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
+    },
+    {
+      "name": "University Of Derby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23580",
+      "image_url": "https://images.englandrugby.com/club_images/23580.png",
+      "address": "Union Of Students, University Of Derby Kedleston Road, Derby Derbyshire DE22 1GB United Kingdom",
+      "latitude": 52.9380221,
+      "longitude": -1.496769,
+      "formatted_address": "DE22 1GB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576822
+    },
+    {
+      "name": "Ollerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "image_url": "https://images.englandrugby.com/club_images/16182.png",
+      "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
+      "latitude": 53.20915,
+      "longitude": -0.98362,
+      "formatted_address": "NG22 9JU, Ollerton and Boughton CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351654770
+    },
+    {
+      "name": "Meden Vale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "image_url": "https://images.englandrugby.com/club_images/13583.png",
+      "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
+      "latitude": 53.2233769,
+      "longitude": -1.1306623,
+      "formatted_address": "NG20 9PS, Warsop, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351653546
+    },
+    {
+      "name": "North Hykeham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14720",
+      "image_url": "https://images.englandrugby.com/club_images/14720.png",
+      "address": "North Hykeham Rufc, Ruston Sport & Social Club, Newark Road, North Hykeham, Lincolnshire, LN6 8RN, United Kingdom",
+      "latitude": 53.1962467,
+      "longitude": -0.5749063,
+      "formatted_address": "LN6 8RN, Lincoln, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350688779
+    }
+  ],
+  "team_count": 8
+}

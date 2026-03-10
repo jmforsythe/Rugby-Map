@@ -1,0 +1,87 @@
+{
+  "league_name": "Second Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=4696&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Hammersmith & Fulham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9259",
+      "image_url": "https://images.englandrugby.com/club_images/9259.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Imperial College",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10857",
+      "image_url": "https://images.englandrugby.com/club_images/10857.png",
+      "address": "Imperial College RFC East Wing Basement Beit Quadrangle Prince Consort Road SW7 2BB UNITED KINGDOM",
+      "latitude": 51.5001476,
+      "longitude": -0.178095,
+      "formatted_address": "SW7 2BB, City of Westminster, Greater London, England, United Kingdom",
+      "place_id": 352016580
+    },
+    {
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Rosslyn Park 6th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18039",
+      "image_url": "https://images.englandrugby.com/club_images/18039.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Old Priorians Saints",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
+      "image_url": "https://images.englandrugby.com/club_images/15924.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350872989
+    },
+    {
+      "name": "Bank Lane II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1315",
+      "image_url": "https://images.englandrugby.com/club_images/1315.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Grasshoppers II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
+      "image_url": "https://images.englandrugby.com/club_images/8854.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Imperial Medicals II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10865",
+      "image_url": "https://images.englandrugby.com/club_images/10865.png",
+      "address": "Imperial College Sports Grounds Sipson Lane Harlington Hayes London Middlesex UB3 5EH United Kingdom",
+      "latitude": 51.48794,
+      "longitude": -0.43704,
+      "formatted_address": "UB3 5EH, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104267
+    }
+  ],
+  "team_count": 8
+}

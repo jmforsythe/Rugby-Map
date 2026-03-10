@@ -1,0 +1,87 @@
+{
+  "league_name": "Merit Table 7",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=209&division=4566&season=2009-2010#tables",
+  "teams": [
+    {
+      "name": "Hackney 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
+      "image_url": "https://images.englandrugby.com/club_images/9155.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
+    },
+    {
+      "name": "Verulamians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23978",
+      "image_url": "https://images.englandrugby.com/club_images/23978.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    },
+    {
+      "name": "Amersham & Chiltern Vets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=621",
+      "image_url": "https://images.englandrugby.com/club_images/621.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350199875
+    },
+    {
+      "name": "Old Millhillians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15829",
+      "image_url": "https://images.englandrugby.com/club_images/15829.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    },
+    {
+      "name": "Chesham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4597",
+      "image_url": "https://images.englandrugby.com/club_images/4597.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Fullerians 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8386",
+      "image_url": "https://images.englandrugby.com/club_images/8386.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Harpenden 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9452",
+      "image_url": "https://images.englandrugby.com/club_images/9452.png",
+      "address": "Redbourn Lane, Harpenden, AL5 2BA, United Kingdom",
+      "latitude": 51.8023432,
+      "longitude": -0.3588696,
+      "formatted_address": "Redbourn Lane, Harpenden Rural, Hatching Green, St Albans, Hertfordshire, England, AL5 2JT, United Kingdom",
+      "place_id": 258737501
+    },
+    {
+      "name": "Old Grammarians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15714",
+      "image_url": "https://images.englandrugby.com/club_images/15714.png",
+      "address": "180  Green Dragon Lane Winchmore Hill London N21 1EP UNITED KINGDOM ",
+      "latitude": 51.6407704,
+      "longitude": -0.1005107,
+      "formatted_address": "Green Dragon Lane, Grange Park, Winchmore Hill, London Borough of Enfield, Greater London, England, N21 1HL, United Kingdom",
+      "place_id": 259698343
+    }
+  ],
+  "team_count": 8
+}

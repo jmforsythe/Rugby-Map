@@ -114,8 +114,12 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Championship": 0,
     "merit/NOWIRUL/Cotton_Traders_Conference_A": 0,
     "merit/NOWIRUL/Cotton_Traders_Conference_B": 1,
-    # Hampshire (offset 11): Senior Merit (-1)
+    # Hampshire (offset 11): Senior Merit (-1); Hampshire 2/3/4 sit directly
+    # below pyramid Hampshire 1 (abs 10), not at offset+number.
     "merit/Hampshire/Hampshire_Senior": -1,
+    "merit/Hampshire/Hampshire_2": 0,
+    "merit/Hampshire/Hampshire_3": 1,
+    "merit/Hampshire/Hampshire_4": 2,
     # Leicestershire (offset 9): Invitation Merit (1)
     "merit/Leicestershire/Leicestershire_Invitation": 1,
     # Surrey (offset 10): Premier (0) > Championship (1) > Alliance (2) >
@@ -132,6 +136,13 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Surrey/Surrey_Combination_2": 5,
     "merit/Surrey/Surrey_Combination_3": 6,
     "merit/Surrey/Surrey_Foundation": 6,
+    "merit/Surrey/Surrey_JONAP_Premier": 0,
+    "merit/Surrey/Surrey_JONAP_Alliance": 2,
+    "merit/Surrey/Surrey_JONAP_Conference": 3,
+    "merit/Surrey/Surrey_JONAP_Combination_1": 4,
+    "merit/Surrey/Surrey_JONAP_Combination_2": 5,
+    "merit/Surrey/Surrey_JONAP_Combination_3": 6,
+    "merit/Surrey/Surrey_JONAP_Foundation": 6,
     "merit/Surrey/London_Counties": 0,
     "merit/Surrey/London_1_South": 0,
 }
@@ -245,6 +256,7 @@ _SPONSOR_PREFIXES = [
     "Howell&_Co_",
     "High_Bridge_Jewellers_",
     "Euromanx_",
+    "Five_Grain_",
 ]
 
 
@@ -334,6 +346,10 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "North_Lancs_Cumbria": 7,
         "North_Lancashire": 7,
         "North": 5,
+        "Midlands_East_(South)_A": 11,
+        "Midlands_East_(South)_B": 11,
+        "Midlands_East_(North)_A": 11,
+        "Midlands_East_(North)_B": 11,
         "Midlands": 5,
         "London": 5,
         "South_West_Pilot": 6,
@@ -409,10 +425,10 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             num = get_number_from_tier_name(filename, prefix)
             if (
                 prefix == "Berks_Bucks_&_Oxon"
-                and season <= "2018-2019"
+                and season < "2005-2006"
                 and "Premier" not in filename
             ):
-                num += 1
+                num -= 1
             tier = offset + num
             if prefix == "National_League":
                 return (tier, f"National League {num}")
@@ -506,6 +522,21 @@ def get_number_from_tier_name(filename: str, prefix: str) -> int:
         "4S": 4,
         "4NE": 4,
         "4SW": 4,
+        "5A": 5,
+        "5B": 5,
+        "5C": 5,
+        "5N": 5,
+        "5S": 5,
+        "5NE": 5,
+        "5SW": 5,
+        "6N": 6,
+        "6S": 6,
+        "6NE": 6,
+        "6SW": 6,
+        "7N": 7,
+        "7S": 7,
+        "7NE": 7,
+        "7SW": 7,
     }
     num = 0
     for part in other_words:

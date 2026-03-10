@@ -1,0 +1,107 @@
+{
+  "league_name": "Midlands 4 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1212&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Ledbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11963",
+      "image_url": "https://images.englandrugby.com/club_images/11963.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Southam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19697",
+      "image_url": "https://images.englandrugby.com/club_images/19697.png",
+      "address": "The Rugby Field Kineton Road Southam WARWICKSHIRE CV47 2DG UNITED KINGDOM ",
+      "latitude": 52.24418,
+      "longitude": -1.40505,
+      "formatted_address": "CV47 2DG, Southam CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 351123624
+    },
+    {
+      "name": "Droitwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6793",
+      "image_url": "https://images.englandrugby.com/club_images/6793.png",
+      "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
+      "latitude": 52.26735,
+      "longitude": -2.13631,
+      "formatted_address": "WR9 8PR, Droitwich Spa, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352164792
+    },
+    {
+      "name": "Berkswell & Balsall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2008",
+      "image_url": "https://images.englandrugby.com/club_images/2008.png",
+      "address": "Honiley Road, Meer End, Kenilworth, Warwickshire, CV8 1NQ, United Kingdom",
+      "latitude": 52.3623405,
+      "longitude": -1.6657484,
+      "formatted_address": "CV8 1NQ, Jaguar Land Rover Fen End, Beausale, Haseley, Honiley and Wroxall, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 350567035
+    },
+    {
+      "name": "Earlsdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7088",
+      "image_url": "https://images.englandrugby.com/club_images/7088.png",
+      "address": "R. F. Brown Pavillion Mitchell Avenue Canley Canley Coventry West Midlands CV4 8DY United Kingdom",
+      "latitude": 52.3898274,
+      "longitude": -1.5710019,
+      "formatted_address": "CV4 8DY, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350566232
+    },
+    {
+      "name": "Coventry Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5736",
+      "image_url": "https://images.englandrugby.com/club_images/5736.png",
+      "address": "82 Burbages Lane Exhall Coventry WARWICKSHIRE CV6 6AY UNITED KINGDOM ",
+      "latitude": 52.4530871,
+      "longitude": -1.5031248,
+      "formatted_address": "CV6 6AY, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351125430
+    },
+    {
+      "name": "Kings Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11577",
+      "image_url": "https://images.englandrugby.com/club_images/11577.png",
+      "address": "Hopwood Park, Ash Lane, Hopwood, Birmingham, Worcestershire, B48 7BB, United Kingdom",
+      "latitude": 52.36938,
+      "longitude": -1.9455,
+      "formatted_address": "B48 7BB, Brookhouse Farm, Alvechurch CP, Hopwood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918073
+    },
+    {
+      "name": "Stourport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21175",
+      "image_url": "https://images.englandrugby.com/club_images/21175.png",
+      "address": "Walshes Meadow Harold Davies Drive Stourport-On-Severn WORCESTERSHIRE DY13 0AA UNITED KINGDOM ",
+      "latitude": 52.3345537,
+      "longitude": -2.2847594,
+      "formatted_address": "DY13 0AA, Stourport-on-Severn, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351203494
+    },
+    {
+      "name": "Dunlop",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6913",
+      "image_url": "https://images.englandrugby.com/club_images/6913.png",
+      "address": "Dunlop Sports and Social Club Burnaby Road, Radford Coventry WEST MIDLANDS CV6 4AX UNITED KINGDOM",
+      "latitude": 52.4346895,
+      "longitude": -1.513908,
+      "formatted_address": "CV6 4AX, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351125116
+    },
+    {
+      "name": "Woodrush",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26012",
+      "image_url": "https://images.englandrugby.com/club_images/26012.png",
+      "address": "Icknield Street Forhill Birmingham WEST MIDLANDS B38 0EL UNITED KINGDOM ",
+      "latitude": 52.38331,
+      "longitude": -1.92118,
+      "formatted_address": "B38 0EL, Wythall CP, Hollywood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350917211
+    }
+  ],
+  "team_count": 10
+}

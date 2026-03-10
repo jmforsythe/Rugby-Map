@@ -1,0 +1,107 @@
+{
+  "league_name": "London 3 South East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1138&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Worthing",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26122",
+      "image_url": "https://images.englandrugby.com/club_images/26122.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    },
+    {
+      "name": "Sidcup",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19314",
+      "image_url": "https://images.englandrugby.com/club_images/19314.png",
+      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
+      "latitude": 51.425832,
+      "longitude": 0.092888,
+      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351138781
+    },
+    {
+      "name": "East Grinstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7134",
+      "image_url": "https://images.englandrugby.com/club_images/7134.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Charlton Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4416",
+      "image_url": "https://images.englandrugby.com/club_images/4416.png",
+      "address": "60a Broad Walk Kidbrooke London SE3 8NB UNITED KINGDOM",
+      "latitude": 51.4653964,
+      "longitude": 0.0338301,
+      "formatted_address": "SE3 8NB, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351902521
+    },
+    {
+      "name": "Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3206",
+      "image_url": "https://images.englandrugby.com/club_images/3206.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
+    },
+    {
+      "name": "Dartfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6166",
+      "image_url": "https://images.englandrugby.com/club_images/6166.png",
+      "address": "War Memorial Club House Bourne Road Bexley KENT DA5 1LW UNITED KINGDOM ",
+      "latitude": 51.4429686,
+      "longitude": 0.1516309,
+      "formatted_address": "DA5 1LW, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 350570907
+    },
+    {
+      "name": "Tonbridge Juddians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22915",
+      "image_url": "https://images.englandrugby.com/club_images/22915.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
+    },
+    {
+      "name": "Lewes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12206",
+      "image_url": "https://images.englandrugby.com/club_images/12206.png",
+      "address": "The Club House, Stanley Turner Ground, Kingston Road, Lewes, BN7 3NB, United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409471522
+    },
+    {
+      "name": "Old Dunstonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15643",
+      "image_url": "https://images.englandrugby.com/club_images/15643.png",
+      "address": "St. Dunstan's Lane Langley Park Beckenham KENT BR3 3SS UNITED KINGDOM",
+      "latitude": 51.3899255,
+      "longitude": -0.0156311,
+      "formatted_address": "BR3 3SS, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504206
+    },
+    {
+      "name": "Crawley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5807",
+      "image_url": "https://images.englandrugby.com/club_images/5807.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    }
+  ],
+  "team_count": 10
+}

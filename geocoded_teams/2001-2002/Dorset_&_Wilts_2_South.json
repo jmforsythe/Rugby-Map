@@ -1,0 +1,67 @@
+{
+  "league_name": "Dorset & Wilts 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1298&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Sherborne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19189",
+      "image_url": "https://images.englandrugby.com/club_images/19189.png",
+      "address": "Sherborne Rfc, The Terrace Playing Fields, Gainsborough Park, Sherborne, Dorset, DT9 5NS, United Kingdom",
+      "latitude": 50.93938,
+      "longitude": -2.5072,
+      "formatted_address": "DT9 5NS, Castleton, Dorset, England, United Kingdom",
+      "place_id": 351200437
+    },
+    {
+      "name": "Weymouth & Portland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25111",
+      "image_url": "https://images.englandrugby.com/club_images/25111.png",
+      "address": "Weymouth & Portland RFC Ltd Monmouth Avenue Weymouth DORSET DT3 5HZ UNITED KINGDOM ",
+      "latitude": 50.63253,
+      "longitude": -2.45336,
+      "formatted_address": "DT3 5HZ, Weymouth, Dorset, England, United Kingdom",
+      "place_id": 351197295
+    },
+    {
+      "name": "Wincanton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25570",
+      "image_url": "https://images.englandrugby.com/club_images/25570.png",
+      "address": "Wincanton Rfc, Maddocks Pavilion, Wincanton Sports Ground, Moor Lane, Wincanton, Somerset, BA9 9RB, United Kingdom",
+      "latitude": 51.0511399,
+      "longitude": -2.40098,
+      "formatted_address": "BA9 9RB, Wincanton, Somerset, England, United Kingdom",
+      "place_id": 350942836
+    },
+    {
+      "name": "Puddletown",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17249",
+      "image_url": "https://images.englandrugby.com/club_images/17249.png",
+      "address": "The Clubhouse Enterprise Park Piddlehinton Dorchester DORSET DT2 7UA UNITED KINGDOM ",
+      "latitude": 50.7683,
+      "longitude": -2.3941,
+      "formatted_address": "DT2 7UA, Piddlehinton Enterprise Park, Piddlehinton, Dorset, England, United Kingdom",
+      "place_id": 351196466
+    },
+    {
+      "name": "Warminster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24316",
+      "image_url": "https://images.englandrugby.com/club_images/24316.png",
+      "address": "Folly Lane Sports Ground, Folly Lane, Warminster, Wiltshire, BA12 7RG, United Kingdom",
+      "latitude": 51.19765,
+      "longitude": -2.20581,
+      "formatted_address": "BA12 7RG, Warminster, Wiltshire, England, United Kingdom",
+      "place_id": 350932292
+    },
+    {
+      "name": "Poole",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17076",
+      "image_url": "https://images.englandrugby.com/club_images/17076.png",
+      "address": "Hamworthy Recreation Ground, Turlin Moor, Blandford Road, Hamworthy, Poole, Dorset, BH16 5BW, United Kingdom",
+      "latitude": 50.73017,
+      "longitude": -2.02195,
+      "formatted_address": "BH16 5BW, Poole, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350973420
+    }
+  ],
+  "team_count": 6
+}

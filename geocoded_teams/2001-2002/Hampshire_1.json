@@ -1,0 +1,107 @@
+{
+  "league_name": "Hampshire 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1157&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Petersfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16848",
+      "image_url": "https://images.englandrugby.com/club_images/16848.png",
+      "address": "The Clubhouse Penns Place Petersfield HAMPSHIRE GU31 4EP UNITED KINGDOM ",
+      "latitude": 51.0061423,
+      "longitude": -0.9084236,
+      "formatted_address": "GU31 4EP, Petersfield, Sheet, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642411
+    },
+    {
+      "name": "Southampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19705",
+      "image_url": "https://images.englandrugby.com/club_images/19705.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827847
+    },
+    {
+      "name": "Guernsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9028",
+      "image_url": "https://images.englandrugby.com/club_images/9028.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352872986
+    },
+    {
+      "name": "Romsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17976",
+      "image_url": "https://images.englandrugby.com/club_images/17976.png",
+      "address": "Ganger Farm Sports Pavilion, Ganger Farm Way, Romsey, Hampshire, SO51 0EE, United Kingdom",
+      "latitude": 51.0083812,
+      "longitude": -1.4653368,
+      "formatted_address": "SO51 0EE, Romsey, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832300
+    },
+    {
+      "name": "Millbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878",
+      "image_url": "https://images.englandrugby.com/club_images/13878.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827854
+    },
+    {
+      "name": "Sandown & Shanklin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708",
+      "image_url": "https://images.englandrugby.com/club_images/18708.png",
+      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
+      "latitude": 50.6561004,
+      "longitude": -1.1652962,
+      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
+      "place_id": 350777134
+    },
+    {
+      "name": "Fareham Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7929",
+      "image_url": "https://images.englandrugby.com/club_images/7929.png",
+      "address": "Cams Alders Recreation Ground Palmerston Business Park Palmerston Drive Fareham HAMPSHIRE PO14 1BJ UNITED KINGDOM ",
+      "latitude": 50.8447158,
+      "longitude": -1.1920971,
+      "formatted_address": "PO14 1BJ, Fareham, Hampshire, England, United Kingdom",
+      "place_id": 351780740
+    },
+    {
+      "name": "Hamble",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9249",
+      "image_url": "https://images.englandrugby.com/club_images/9249.png",
+      "address": "Hamble School Satchell Lane, Hamble Southampton SO31 4HQ UNITED KINGDOM",
+      "latitude": 50.8735946,
+      "longitude": -1.3259605,
+      "formatted_address": "The Hamble School, Satchell Lane, Hamble-le-Rice, Butlocks Heath, Southampton, Hampshire, England, SO31 4NE, United Kingdom",
+      "place_id": 262513535
+    },
+    {
+      "name": "Nomads",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14648",
+      "image_url": "https://images.englandrugby.com/club_images/14648.png",
+      "address": "Cockleshell Community Sports Ground, Cockleshell Gardens, Southsea, Hampshire, PO4 9SA, United Kingdom",
+      "latitude": 50.7877795,
+      "longitude": -1.049611,
+      "formatted_address": "PO4 9SA, Portsmouth, England, United Kingdom",
+      "place_id": 351793037
+    },
+    {
+      "name": "Fawley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8026",
+      "image_url": "https://images.englandrugby.com/club_images/8026.png",
+      "address": "Fawley Rfc, Newlands Road, Fawley, Southampton, Hampshire, SO45 1GA, United Kingdom",
+      "latitude": 50.8250519,
+      "longitude": -1.3732454,
+      "formatted_address": "SO45 1GA, Fawley, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350832056
+    }
+  ],
+  "team_count": 10
+}

@@ -1,0 +1,107 @@
+{
+  "league_name": "Hampshire 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1158&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "New Milton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14355",
+      "image_url": "https://images.englandrugby.com/club_images/14355.png",
+      "address": "New Milton Rugby Club Normans Way Ashley New Milton HAMPSHIRE BH25 5FN UNITED KINGDOM ",
+      "latitude": 50.755932,
+      "longitude": -1.6410986,
+      "formatted_address": "BH25 5FN, New Milton, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350497455
+    },
+    {
+      "name": "Eastleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7248",
+      "image_url": "https://images.englandrugby.com/club_images/7248.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
+    },
+    {
+      "name": "Isle Of Wight",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11009",
+      "image_url": "https://images.englandrugby.com/club_images/11009.png",
+      "address": "The Clubhouse, Wootton Recreation Ground, Footways, Wootton Bridge, Isle Of Wight , PO33 4NQ, United Kingdom",
+      "latitude": 50.7277705,
+      "longitude": -1.239036,
+      "formatted_address": "PO33 4NQ, Wootton Bridge, Isle of Wight, England, United Kingdom",
+      "place_id": 350776812
+    },
+    {
+      "name": "Ventnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23953",
+      "image_url": "https://images.englandrugby.com/club_images/23953.png",
+      "address": "ventnor rugby club Watcombe Bottom Whitwell Road Ventnor ISLE OF WIGHT PO38 1LP UNITED KINGDOM",
+      "latitude": 50.5925029,
+      "longitude": -1.2323758,
+      "formatted_address": "PO38 1LP, Ventnor, Isle of Wight, England, United Kingdom",
+      "place_id": 350777582
+    },
+    {
+      "name": "East Dorset Dockers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7118",
+      "image_url": "https://images.englandrugby.com/club_images/7118.png",
+      "address": "Iford Lane Playing Fields Iford Lane Bournemouth DORSET BH6 5NF UNITED KINGDOM ",
+      "latitude": 50.7336601,
+      "longitude": -1.7940885,
+      "formatted_address": "BH6 5NF, Bournemouth, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350497770
+    },
+    {
+      "name": "Fordingbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8240",
+      "image_url": "https://images.englandrugby.com/club_images/8240.png",
+      "address": "Recreation Ground Fordingbridge HAMPSHIRE SP6 1AN UNITED KINGDOM ",
+      "latitude": 50.92568,
+      "longitude": -1.78717,
+      "formatted_address": "SP6 1AN, Fordingbridge, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 351968133
+    },
+    {
+      "name": "Aldershot & Fleet",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=401",
+      "image_url": "https://images.englandrugby.com/club_images/401.png",
+      "address": "Aldershot & Fleet Rugby Club, Aldershot Park, Heronwood Road, Aldershot, Hampshire, GU12 4AL, United Kingdom",
+      "latitude": 51.2362253,
+      "longitude": -0.742555,
+      "formatted_address": "GU12 4AL, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 351320808
+    },
+    {
+      "name": "Lytchett Minster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13046",
+      "image_url": "https://images.englandrugby.com/club_images/13046.png",
+      "address": "Lytchett Park Watery Lane Lytchett Minster DORSET BH16 6HZ UNITED KINGDOM ",
+      "latitude": 50.73507,
+      "longitude": -2.05663,
+      "formatted_address": "BH16 6HZ, Lytchett Minster and Upton, Upton, Dorset, England, United Kingdom",
+      "place_id": 350973602
+    },
+    {
+      "name": "Kingsclere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11636",
+      "image_url": "https://images.englandrugby.com/club_images/11636.png",
+      "address": "Fieldgate Centre Field Gate Drive Kingsclere Newbury Hampshire RG20 5SQ United Kingdom",
+      "latitude": 51.3252785,
+      "longitude": -1.2540245,
+      "formatted_address": "RG20 5SQ, Kingsclere, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350786223
+    },
+    {
+      "name": "Overton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16399",
+      "image_url": "https://images.englandrugby.com/club_images/16399.png",
+      "address": "The Old Cricket Ground, Oddball Lane, Watch Lane, Laverstoke, Nr. Overton., RG28 7NU, United Kingdom",
+      "latitude": 51.24338,
+      "longitude": -1.2949108,
+      "formatted_address": "RG28 7NU, Laverstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350788034
+    }
+  ],
+  "team_count": 10
+}

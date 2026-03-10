@@ -1,0 +1,107 @@
+{
+  "league_name": "Cornwall/Devon",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1273&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Paignton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16526",
+      "image_url": "https://images.englandrugby.com/club_images/16526.png",
+      "address": "The Club House, Queens Park, Queens Road, Paignton, Devon, TQ4 6AT, United Kingdom",
+      "latitude": 50.4335657,
+      "longitude": -3.5626724,
+      "formatted_address": "TQ4 6AT, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350862697
+    },
+    {
+      "name": "St Ives (SW)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20429",
+      "image_url": "https://images.englandrugby.com/club_images/20429.png",
+      "address": "Alexandra Road, St. Ives, Cornw, TR26 1ER, United Kingdom",
+      "latitude": 50.21043,
+      "longitude": -5.49292,
+      "formatted_address": "TR26 1ER, St. Ives, Cornwall, England, United Kingdom",
+      "place_id": 352073872
+    },
+    {
+      "name": "Wellington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24630",
+      "image_url": "https://images.englandrugby.com/club_images/24630.png",
+      "address": "The Athletic Ground Corams Lane Wellington SOMERSET TA21 8LL UNITED KINGDOM ",
+      "latitude": 50.9802859,
+      "longitude": -3.2392788,
+      "formatted_address": "TA21 8LL, Wellington, Somerset, England, United Kingdom",
+      "place_id": 350846581
+    },
+    {
+      "name": "Devonport Services",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6405",
+      "image_url": "https://images.englandrugby.com/club_images/6405.png",
+      "address": "The Rectory Field 2nd Avenue Plymouth DEVON PL1 5QD UNITED KINGDOM",
+      "latitude": 50.37235,
+      "longitude": -4.16522,
+      "formatted_address": "PL1 5QD, Plymouth, England, United Kingdom",
+      "place_id": 351762380
+    },
+    {
+      "name": "Exeter Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7761",
+      "image_url": "https://images.englandrugby.com/club_images/7761.png",
+      "address": "Bravelands, Oil Mill Lane, Clyst St Mary, Exeter, Devon, EX5 1AF, United Kingdom",
+      "latitude": 50.70773,
+      "longitude": -3.44062,
+      "formatted_address": "EX5 1AF, Clyst St. Mary, Clyst St Mary, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351262283
+    },
+    {
+      "name": "Wadebridge Camels",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24066",
+      "image_url": "https://images.englandrugby.com/club_images/24066.png",
+      "address": "Molesworth Field, Egloshayle, Wadebridge, Cornw, PL27 6AQ, United Kingdom",
+      "latitude": 50.51303,
+      "longitude": -4.82221,
+      "formatted_address": "PL27 6AQ, Wadebridge, Cornwall, England, United Kingdom",
+      "place_id": 351770635
+    },
+    {
+      "name": "Newquay Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584",
+      "image_url": "https://images.englandrugby.com/club_images/14584.png",
+      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
+      "latitude": 50.41375,
+      "longitude": -5.06232,
+      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
+      "place_id": 352076356
+    },
+    {
+      "name": "Old Plymothian & Mannamedian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15907",
+      "image_url": "https://images.englandrugby.com/club_images/15907.png",
+      "address": "Opm Rfc, King George V  Playing Fields, 44 Haye Road, Plymouth, Devon, PL9 8HR, United Kingdom",
+      "latitude": 50.36295,
+      "longitude": -4.06506,
+      "formatted_address": "PL9 8HR, Plymouth, England, United Kingdom",
+      "place_id": 351776875
+    },
+    {
+      "name": "Torrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22992",
+      "image_url": "https://images.englandrugby.com/club_images/22992.png",
+      "address": "Torrington Rfc Donnacroft Playing Fields Hatchmoor Road Torrington Devon EX38 7HT United Kingdom",
+      "latitude": 50.95517,
+      "longitude": -4.12576,
+      "formatted_address": "EX38 7HT, Great Torrington, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350809808
+    },
+    {
+      "name": "Saltash",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18628",
+      "image_url": "https://images.englandrugby.com/club_images/18628.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
+    }
+  ],
+  "team_count": 10
+}

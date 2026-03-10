@@ -1,0 +1,97 @@
+{
+  "league_name": "xHerts/Middlesex 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1140&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Haringey Rhinos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9385",
+      "image_url": "https://images.englandrugby.com/club_images/9385.png",
+      "address": "Haringey Rhinos Rugby Club New River Sport And Fitness White Hart Lane Wood Green Middlesex N22 5QW United Kingdom",
+      "latitude": 51.6041816,
+      "longitude": -0.1013207,
+      "formatted_address": "N22 5QW, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 350257433
+    },
+    {
+      "name": "Hitchin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10216",
+      "image_url": "https://images.englandrugby.com/club_images/10216.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Hammersmith & Fulham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9257",
+      "image_url": "https://images.englandrugby.com/club_images/9257.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "H.A.C.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9143",
+      "image_url": "https://images.englandrugby.com/club_images/9143.png",
+      "address": "Armoury House, City Road, London, EC1Y 2AY, United Kingdom",
+      "latitude": 51.5230113,
+      "longitude": -0.0885001,
+      "formatted_address": "Armoury House, City Road, Finsbury, London Borough of Islington, Greater London, England, EC1Y 1AA, United Kingdom",
+      "place_id": 416762358
+    },
+    {
+      "name": "Datchworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6196",
+      "image_url": "https://images.englandrugby.com/club_images/6196.png",
+      "address": "Datchworth Green Datchworth Datchworth Datchworth Hertfordshire SG3 6TL UNITED KINGDOM ",
+      "latitude": 51.8495634,
+      "longitude": -0.1627916,
+      "formatted_address": "Datchworth Green, Painter's Green, Datchworth, Datchworth Green, East Hertfordshire, Hertfordshire, England, SG3 6TL, United Kingdom",
+      "place_id": 257359028
+    },
+    {
+      "name": "Old Millhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15828",
+      "image_url": "https://images.englandrugby.com/club_images/15828.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Old Grammarians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15712",
+      "image_url": "https://images.englandrugby.com/club_images/15712.png",
+      "address": "180  Green Dragon Lane Winchmore Hill London N21 1EP UNITED KINGDOM ",
+      "latitude": 51.6407704,
+      "longitude": -0.1005107,
+      "formatted_address": "Green Dragon Lane, Grange Park, Winchmore Hill, London Borough of Enfield, Greater London, England, N21 1HL, United Kingdom",
+      "place_id": 259698343
+    }
+  ],
+  "team_count": 9
+}

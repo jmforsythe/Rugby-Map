@@ -1,0 +1,107 @@
+{
+  "league_name": "Kent 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1150&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Bromley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3410",
+      "image_url": "https://images.englandrugby.com/club_images/3410.png",
+      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504060
+    },
+    {
+      "name": "Whitstable",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25320",
+      "image_url": "https://images.englandrugby.com/club_images/25320.png",
+      "address": "The ClubHouse Reeves Way Chestfield Whitstable KENT CT5 3QS UNITED KINGDOM ",
+      "latitude": 51.3579132,
+      "longitude": 1.0622394,
+      "formatted_address": "CT5 3QS, Chestfield, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350562610
+    },
+    {
+      "name": "Ashford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=876",
+      "image_url": "https://images.englandrugby.com/club_images/876.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Lordswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12799",
+      "image_url": "https://images.englandrugby.com/club_images/12799.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Gillingham Anchorians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8574",
+      "image_url": "https://images.englandrugby.com/club_images/8574.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "New Ash Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14306",
+      "image_url": "https://images.englandrugby.com/club_images/14306.png",
+      "address": "The Pavilion, Punchcroft Road, New Ash Green, Longfield, Kent, DA3 8HS, United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570813
+    },
+    {
+      "name": "Erith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7640",
+      "image_url": "https://images.englandrugby.com/club_images/7640.png",
+      "address": "The Recreation Ground, Sussex Road Northumberland Heath Erith KENT DA8 1JB UNITED KINGDOM",
+      "latitude": 51.47454,
+      "longitude": 0.1545,
+      "formatted_address": "DA8 1JB, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351141873
+    },
+    {
+      "name": "Park House",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16583",
+      "image_url": "https://images.englandrugby.com/club_images/16583.png",
+      "address": "Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504076
+    },
+    {
+      "name": "Medway",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595",
+      "image_url": "https://images.englandrugby.com/club_images/13595.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Brockleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3397",
+      "image_url": "https://images.englandrugby.com/club_images/3397.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM ",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812593
+    }
+  ],
+  "team_count": 10
+}

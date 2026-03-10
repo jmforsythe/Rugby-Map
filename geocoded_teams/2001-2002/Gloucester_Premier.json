@@ -1,0 +1,107 @@
+{
+  "league_name": "Gloucester Premier",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1294&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Spartans (Gloucester)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20050",
+      "image_url": "https://images.englandrugby.com/club_images/20050.png",
+      "address": "Spartans (Gloucester) RFC Sebert Street Kingsholm Gloucester GLOUCESTERSHIRE GL1 3BS UNITED KINGDOM ",
+      "latitude": 51.87242,
+      "longitude": -2.23916,
+      "formatted_address": "GL1 3BS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307495
+    },
+    {
+      "name": "Drybrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6835",
+      "image_url": "https://images.englandrugby.com/club_images/6835.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
+    },
+    {
+      "name": "Barton Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1513",
+      "image_url": "https://images.englandrugby.com/club_images/1513.png",
+      "address": "Club House, Duncombe Lane, Bristol, BS15 1NS, England",
+      "latitude": 51.4691065,
+      "longitude": -2.5281799,
+      "formatted_address": "BS15 1NS, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350506812
+    },
+    {
+      "name": "Cirencester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5065",
+      "image_url": "https://images.englandrugby.com/club_images/5065.png",
+      "address": "Cirencester Rfc, The Whiteway, Cirencester, Gloucestershire, GL7 2ER, United Kingdom",
+      "latitude": 51.72343,
+      "longitude": -1.9667,
+      "formatted_address": "GL7 2ER, Cirencester, Chesterton, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 351318278
+    },
+    {
+      "name": "Avonmouth Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1088",
+      "image_url": "https://images.englandrugby.com/club_images/1088.png",
+      "address": "Barracks Lane, Avonmouth, Bristol, BS11 9NG, United Kingdom",
+      "latitude": 51.4966619,
+      "longitude": -2.682831,
+      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
+      "place_id": 259517279
+    },
+    {
+      "name": "Chosen Hill Former Pupils",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4975",
+      "image_url": "https://images.englandrugby.com/club_images/4975.png",
+      "address": "Chosen Hill F.P RFC Brookfield Road Churchdown GLOUCESTERSHIRE GL3 2PJ UNITED KINGDOM",
+      "latitude": 51.879713,
+      "longitude": -2.1593049,
+      "formatted_address": "GL3 2PJ, Churchdown, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631851
+    },
+    {
+      "name": "Longlevens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12742",
+      "image_url": "https://images.englandrugby.com/club_images/12742.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
+    },
+    {
+      "name": "Hucclecote",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10560",
+      "image_url": "https://images.englandrugby.com/club_images/10560.png",
+      "address": "Hucclecote Rfc, The Old School Field, Charlies Way, Churchdown Lane, Gloucester, Gloucestershire, GL3 3QH, United Kingdom",
+      "latitude": 51.85546,
+      "longitude": -2.18178,
+      "formatted_address": "GL3 3QH, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351313623
+    },
+    {
+      "name": "Bristol Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3278",
+      "image_url": "https://images.englandrugby.com/club_images/3278.png",
+      "address": "Bakewell Memorial Ground Station Road Cribbs Causeway Bristol BRISTOL BS10 7TT ENGLAND ",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Chipping Sodbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4885",
+      "image_url": "https://images.englandrugby.com/club_images/4885.png",
+      "address": "Wickwar Road Chipping Sodbury BRISTOL BS37 6GA UNITED KINGDOM",
+      "latitude": 51.5431748,
+      "longitude": -2.3952242,
+      "formatted_address": "BS37 6GA, Sodbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350516413
+    }
+  ],
+  "team_count": 10
+}

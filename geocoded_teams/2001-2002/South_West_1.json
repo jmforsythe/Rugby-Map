@@ -1,0 +1,127 @@
+{
+  "league_name": "South West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1266&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Weston-super-Mare",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25046",
+      "image_url": "https://images.englandrugby.com/club_images/25046.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "Dings Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6469",
+      "image_url": "https://images.englandrugby.com/club_images/6469.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
+    },
+    {
+      "name": "Barnstaple",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1479",
+      "image_url": "https://images.englandrugby.com/club_images/1479.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Cheltenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4514",
+      "image_url": "https://images.englandrugby.com/club_images/4514.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 261137594
+    },
+    {
+      "name": "Bridgwater & Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3134",
+      "image_url": "https://images.englandrugby.com/club_images/3134.png",
+      "address": "College Way Bath Road Bridgwater SOMERSET TA6 4TZ UNITED KINGDOM ",
+      "latitude": 51.1305323,
+      "longitude": -2.9871063,
+      "formatted_address": "Bridgwater and Taunton College, College Way, Sydenham, Bridgwater, Somerset, England, TA6 4PZ, United Kingdom",
+      "place_id": 261251481
+    },
+    {
+      "name": "Chinnor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4817",
+      "image_url": "https://images.englandrugby.com/club_images/4817.png",
+      "address": "Rectory Pavillion Kingsey Road Thame OXFORDSHIRE OX9 3JL UNITED KINGDOM ",
+      "latitude": 51.74809,
+      "longitude": -0.95875,
+      "formatted_address": "OX9 3JL, Thame, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351734126
+    },
+    {
+      "name": "Keynsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11376",
+      "image_url": "https://images.englandrugby.com/club_images/11376.png",
+      "address": "Keynsham RFC Crown Fields Bristol Road Keynsham Bristol BRISTOL BS31 2BE UNITED KINGDOM ",
+      "latitude": 51.4189561,
+      "longitude": -2.5057328,
+      "formatted_address": "BS31 2BE, Keynsham, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350513226
+    },
+    {
+      "name": "Stroud",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21275",
+      "image_url": "https://images.englandrugby.com/club_images/21275.png",
+      "address": "Stroud Rugby, Fromehall Park, Dudbridge Hill, Stroud, Gloucestershire, GL5 3HS, United Kingdom",
+      "latitude": 51.73949,
+      "longitude": -2.23306,
+      "formatted_address": "GL5 3HS, Rodborough, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 351315264
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Swanage & Wareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21497",
+      "image_url": "https://images.englandrugby.com/club_images/21497.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Dorchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6585",
+      "image_url": "https://images.englandrugby.com/club_images/6585.png",
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
+    }
+  ],
+  "team_count": 12
+}

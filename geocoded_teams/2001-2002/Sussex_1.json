@@ -1,0 +1,104 @@
+{
+  "league_name": "Sussex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1154&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Chichester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753",
+      "image_url": "https://images.englandrugby.com/club_images/4753.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
+    },
+    {
+      "name": "Heathfield & Waldron",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9826",
+      "image_url": "https://images.englandrugby.com/club_images/9826.png",
+      "address": "The Hardy Roberts Recreation Ground Cross-in-hand Heathfield East Sussex TN21 0TA England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Hastings & Bexhill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9653",
+      "image_url": "https://images.englandrugby.com/club_images/9653.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Crowborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5917",
+      "image_url": "https://images.englandrugby.com/club_images/5917.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Chichester IHE",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4760",
+      "image_url": "https://images.englandrugby.com/club_images/4760.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Hellingly",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9891",
+      "image_url": "https://images.englandrugby.com/club_images/9891.png",
+      "address": "Hellingly Rfc Hellingly Sports Club Horsebridge Recreational Ground Lower Horsebridge Nr. Hailsham East Sussex BN27 4DJ United Kingdom",
+      "latitude": 50.8813025,
+      "longitude": 0.2394541,
+      "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350502212
+    },
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    },
+    {
+      "name": "Sussex Police",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21405",
+      "image_url": "https://images.englandrugby.com/club_images/21405.png",
+      "address": "Brighton Rfc Waterhall Playing Fields Patcham Brighton East Sussex BN1 8YR United Kingdom",
+      "latitude": 50.8649558,
+      "longitude": -0.1766999,
+      "formatted_address": "BN1 8YR, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992784
+    },
+    {
+      "name": "St Francis",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20374",
+      "image_url": "https://images.englandrugby.com/club_images/20374.png",
+      "address": "Emerald Sports & Social Club Southgate Playing Fields Southgate Avenue Crawley West Sussex RH10 6HG United Kingdom",
+      "latitude": 51.1137885,
+      "longitude": -0.1822143,
+      "formatted_address": "RH10 6HG, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 350793441
+    }
+  ],
+  "team_count": 10
+}

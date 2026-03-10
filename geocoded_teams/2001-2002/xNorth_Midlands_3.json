@@ -1,0 +1,78 @@
+{
+  "league_name": "xNorth Midlands 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1207&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Bredon Star",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3051",
+      "image_url": "https://images.englandrugby.com/club_images/3051.png",
+      "address": "Bredon Playing Fields, Main Road,, Tewkesbury, Gloucestershire, GL20 7QN, United Kingdom",
+      "latitude": 52.030351,
+      "longitude": -2.1047039,
+      "formatted_address": "GL20 7QN, Bredon, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 350631131
+    },
+    {
+      "name": "Birchfield First XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2261",
+      "image_url": "https://images.englandrugby.com/club_images/2261.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Essington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700",
+      "image_url": "https://images.englandrugby.com/club_images/7700.png",
+      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
+      "latitude": 52.6245432,
+      "longitude": -2.0590734,
+      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350896523
+    },
+    {
+      "name": "Chaddesley Corbett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4358",
+      "image_url": "https://images.englandrugby.com/club_images/4358.png",
+      "address": "Chaddesley Corbett R.F.C. Chaddesley Corbett Sports Club Fox Lane Chaddesley Corbett WORCESTERSHIRE DY10 4RH UNITED KINGDOM ",
+      "latitude": 52.35476,
+      "longitude": -2.17042,
+      "formatted_address": "DY10 4RH, Chaddesley Corbett, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351202188
+    },
+    {
+      "name": "Greyhound",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8969",
+      "image_url": "https://images.englandrugby.com/club_images/8969.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd Grandstand Road Hereford Herefordshire HR4 9NG England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Kynoch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11787",
+      "image_url": "https://images.englandrugby.com/club_images/11787.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Erdington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7636",
+      "image_url": "https://images.englandrugby.com/club_images/7636.png",
+      "address": "Spring Lane Playing Fields Kingsbury Road Erdington Birmingham West Midlands B24 9NF England",
+      "latitude": 52.517874,
+      "longitude": -1.8268189,
+      "formatted_address": "B24 9NF, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350468364
+    },
+    {
+      "name": "Bewdley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2094",
+      "image_url": "https://images.englandrugby.com/club_images/2094.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,147 @@
+{
+  "league_name": "National League Three North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1605&division=1443&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Doncaster Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6559",
+      "image_url": "https://images.englandrugby.com/club_images/6559.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 351183408
+    },
+    {
+      "name": "Dudley Kingswinford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6857",
+      "image_url": "https://images.englandrugby.com/club_images/6857.png",
+      "address": "Dudley Kingswinford Rfc, Heathbrook, Swindon Road,, Wall Heath, Kingswinford, West Midlands, DY6 0AW, United Kingdom",
+      "latitude": 52.50217,
+      "longitude": -2.19073,
+      "formatted_address": "DY6 0AW, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351207673
+    },
+    {
+      "name": "Liverpool St Helens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12441",
+      "image_url": "https://images.englandrugby.com/club_images/12441.png",
+      "address": "Moss Lane Windle St. Helens MERSEYSIDE WA11 7PL UNITED KINGDOM",
+      "latitude": 53.47099,
+      "longitude": -2.77798,
+      "formatted_address": "WA11 7PL, Windle, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 352124822
+    },
+    {
+      "name": "New Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14326",
+      "image_url": "https://images.englandrugby.com/club_images/14326.png",
+      "address": "Reeds Lane Leasowe Moreton Wirral Merseyside CH46 3RH United Kingdom",
+      "latitude": 53.41533,
+      "longitude": -3.10597,
+      "formatted_address": "CH46 3RH, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062213
+    },
+    {
+      "name": "Tynedale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390",
+      "image_url": "https://images.englandrugby.com/club_images/23390.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
+    },
+    {
+      "name": "Darlington Mowden Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6105",
+      "image_url": "https://images.englandrugby.com/club_images/6105.png",
+      "address": "Darlington Arena, Neasham Road, Darlington, County Durham, DL2 1DL, United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171185
+    },
+    {
+      "name": "Blaydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565",
+      "image_url": "https://images.englandrugby.com/club_images/2565.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Nuneaton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15194",
+      "image_url": "https://images.englandrugby.com/club_images/15194.png",
+      "address": "Nuneaton Rfc, Liberty Way, Attleborough Fields Industrial Estate, Nuneaton, Warwickshire, CV11 6RR, United Kingdom",
+      "latitude": 52.52023,
+      "longitude": -1.4431099,
+      "formatted_address": "CV11 6RR, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351112730
+    },
+    {
+      "name": "Scunthorpe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18838",
+      "image_url": "https://images.englandrugby.com/club_images/18838.png",
+      "address": "Heslam Park, Ashby Road, Scunthorpe, Lincolnshire, DN16 2AG, United Kingdom",
+      "latitude": 53.5768867,
+      "longitude": -0.6540008,
+      "formatted_address": "DN16 2AG, Lincolnshire, North Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350594710
+    },
+    {
+      "name": "Bedford Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1822",
+      "image_url": "https://images.englandrugby.com/club_images/1822.png",
+      "address": "Bedford Athletic Rufc, Putnoe Wood, Wentworth Drive, Wentworth Drive, Bedford, Bedfordshire, MK41 8QA, United Kingdom",
+      "latitude": 52.1600173,
+      "longitude": -0.437261,
+      "formatted_address": "MK41 8QA, England, United Kingdom",
+      "place_id": 350703599
+    },
+    {
+      "name": "Whitchurch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25225",
+      "image_url": "https://images.englandrugby.com/club_images/25225.png",
+      "address": "The Clubhouse Edgeley Park Heath Road Whitchurch SHROPSHIRE SY13 1EU UNITED KINGDOM ",
+      "latitude": 52.96355,
+      "longitude": -2.67675,
+      "formatted_address": "SY13 1EU, Whitchurch Urban, Whitchurch, Shropshire, England, United Kingdom",
+      "place_id": 352021177
+    },
+    {
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
+    },
+    {
+      "name": "Sandal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18658",
+      "image_url": "https://images.englandrugby.com/club_images/18658.png",
+      "address": "Sandal RUFC Milnthorpe Green Standbridge Lane, Sandal Wakefield WEST YORKSHIRE WF2 7DY UNITED KINGDOM ",
+      "latitude": 53.6493023,
+      "longitude": -1.4942685,
+      "formatted_address": "WF2 7DY, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350888776
+    },
+    {
+      "name": "West Hartlepool",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24767",
+      "image_url": "https://images.englandrugby.com/club_images/24767.png",
+      "address": "Brinkburn Catcote Road Hartlepool COUNTY DURHAM TS25 4HA",
+      "latitude": 54.6747341,
+      "longitude": -1.2376463,
+      "formatted_address": "TS25 4HA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869362
+    }
+  ],
+  "team_count": 14
+}

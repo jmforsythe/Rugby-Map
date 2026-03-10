@@ -1,0 +1,87 @@
+{
+  "league_name": "xEast Midlands 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1203&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Biddenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2145",
+      "image_url": "https://images.englandrugby.com/club_images/2145.png",
+      "address": "22 Days Lane Biddenham Bedford BEDFORDSHIRE MK40 4AE UNITED KINGDOM",
+      "latitude": 52.14082,
+      "longitude": -0.50192,
+      "formatted_address": "MK40 4AE, Biddenham, Bedford, England, United Kingdom",
+      "place_id": 351585129
+    },
+    {
+      "name": "Bedford Swifts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1850",
+      "image_url": "https://images.englandrugby.com/club_images/1850.png",
+      "address": "Bedford Athletics Stadium (01234 -351115) Barkers Lane/Newham Avenue Bedford BEDFORDSHIRE MK41 9SB UNITED KINGDOM",
+      "latitude": 52.1338564,
+      "longitude": -0.4413315,
+      "formatted_address": "MK41 9SB, England, United Kingdom",
+      "place_id": 350703648
+    },
+    {
+      "name": "St Neots",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20638",
+      "image_url": "https://images.englandrugby.com/club_images/20638.png",
+      "address": "The Clubhouse, The Common, New Street, St Neots, Cambridgeshire, PE19 1RU, United Kingdom",
+      "latitude": 52.2359806,
+      "longitude": -0.2661029,
+      "formatted_address": "PE19 1RU, St. Neots, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350759693
+    },
+    {
+      "name": "Corby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5636",
+      "image_url": "https://images.englandrugby.com/club_images/5636.png",
+      "address": "Northern Park Rockingham Road Corby Northamptonshire NN17 2AE United Kingdom",
+      "latitude": 52.5075417,
+      "longitude": -0.7090648,
+      "formatted_address": "NN17 2AE, North Northamptonshire, England, United Kingdom",
+      "place_id": 350726296
+    },
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    },
+    {
+      "name": "Northampton Heathens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14889",
+      "image_url": "https://images.englandrugby.com/club_images/14889.png",
+      "address": "C/o Northampton Old Scouts Rfc Rushmere Road Northampton NN1 5RY United Kingdom",
+      "latitude": 52.2351754,
+      "longitude": -0.8621156,
+      "formatted_address": "NN1 5RY, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 350726028
+    },
+    {
+      "name": "Oundle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16352",
+      "image_url": "https://images.englandrugby.com/club_images/16352.png",
+      "address": "Occupation Road, Oundle, Peterborough, Cambridgeshire, PE8 4RU, United Kingdom",
+      "latitude": 52.4895299,
+      "longitude": -0.4689737,
+      "formatted_address": "PE8 4RU, Oundle, North Northamptonshire, England, United Kingdom",
+      "place_id": 350770517
+    },
+    {
+      "name": "Thorney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22734",
+      "image_url": "https://images.englandrugby.com/club_images/22734.png",
+      "address": "Clubhouse Thorney Ex Servicemens Club Station Road Thorney CAMBRIDGESHIRE PE6 0QE UNITED KINGDOM ",
+      "latitude": 52.6233663,
+      "longitude": -0.1071903,
+      "formatted_address": "PE6 0QE, Thorney, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350769247
+    }
+  ],
+  "team_count": 8
+}

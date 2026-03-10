@@ -1,0 +1,77 @@
+{
+  "league_name": "Durham/N'thm'land 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1253&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "South Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19649",
+      "image_url": "https://images.englandrugby.com/club_images/19649.png",
+      "address": "Brinkburn Harton Lane South Shields Tyne And Wear NE34 0PJ United Kingdom",
+      "latitude": 54.9736278,
+      "longitude": -1.4264188,
+      "formatted_address": "Brinkburn CIO, Harton Lane, Cauldwell, South Shields, South Tyneside, Tyne and Wear, North East, England, NE34 0PJ, United Kingdom",
+      "place_id": 254518611
+    },
+    {
+      "name": "Richmondshire",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17794",
+      "image_url": "https://images.englandrugby.com/club_images/17794.png",
+      "address": "The Clubhouse, Theakston Lane, Richmond, North Yorkshire, DL10 4LL, United Kingdom",
+      "latitude": 54.3994665,
+      "longitude": -1.726758,
+      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350591529
+    },
+    {
+      "name": "Hartlepool B.B.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9555",
+      "image_url": "https://images.englandrugby.com/club_images/9555.png",
+      "address": "Hartlepool B.b.o.b. Old Friarage Moor Terrace, Headland Hartlepool County Durham TS24 0PQ United Kingdom",
+      "latitude": 54.6975427,
+      "longitude": -1.1798585,
+      "formatted_address": "TS24 0PQ, Headland, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 351544634
+    },
+    {
+      "name": "Seaham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18888",
+      "image_url": "https://images.englandrugby.com/club_images/18888.png",
+      "address": "Seaham Rufc Sports Pavillion, 1 Stockton Road, Seaham, County Durham, SR7 0HZ, United Kingdom",
+      "latitude": 54.84341,
+      "longitude": -1.3666,
+      "formatted_address": "SR7 0HZ, Seaham, County Durham, North East, England, United Kingdom",
+      "place_id": 351974518
+    },
+    {
+      "name": "Hartlepool Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9553",
+      "image_url": "https://images.englandrugby.com/club_images/9553.png",
+      "address": "Oakesway Estate Hartlepool TS24 0RE UNITED KINGDOM",
+      "latitude": 54.7016167,
+      "longitude": -1.2167343,
+      "formatted_address": "Oakesway, Oakesway Industrial Estate, Throston, Hartlepool, Tees Valley, England, TS24 0RE, United Kingdom",
+      "place_id": 254526177
+    },
+    {
+      "name": "Shildon Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19223",
+      "image_url": "https://images.englandrugby.com/club_images/19223.png",
+      "address": "Sunnydale Leisure Centre Middridge Lane Shildon DL4 2EP UNITED KINGDOM",
+      "latitude": 54.634064,
+      "longitude": -1.6370764,
+      "formatted_address": "DL4 2EP, Shildon, County Durham, North East, England, United Kingdom",
+      "place_id": 350593572
+    },
+    {
+      "name": "Durham Constabulary",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6998",
+      "image_url": "https://images.englandrugby.com/club_images/6998.png",
+      "address": "Durham Constabulary Police HQ Aykley Heads Durham COUNTY DURHAM DH1 5TT UNITED KINGDOM",
+      "latitude": 54.7879141,
+      "longitude": -1.5816618,
+      "formatted_address": "DH1 5TT, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586706
+    }
+  ],
+  "team_count": 7
+}

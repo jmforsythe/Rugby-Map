@@ -1,0 +1,71 @@
+{
+  "league_name": "Sussex 2 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1174&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Pulborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17255",
+      "image_url": "https://images.englandrugby.com/club_images/17255.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Holbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10282",
+      "image_url": "https://images.englandrugby.com/club_images/10282.png",
+      "address": "The Holbrook Club North Heath Lane Horsham WEST SUSSEX RH12 5PJ UNITED KINGDOM",
+      "latitude": 51.0802904,
+      "longitude": -0.3153715,
+      "formatted_address": "The Holbrook Club, North Heath Lane, North Heath, North Horsham, Horsham, West Sussex, England, RH12 5PJ, United Kingdom",
+      "place_id": 258940242
+    },
+    {
+      "name": "Midhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13824",
+      "image_url": "https://images.englandrugby.com/club_images/13824.png",
+      "address": "The Pavilion Cowdray Ruins Midhurst WEST SUSSEX GU29 9AL UNITED KINGDOM",
+      "latitude": 50.9871356,
+      "longitude": -0.7325193,
+      "formatted_address": "GU29 9AL, Easebourne, Chichester, West Sussex, England, United Kingdom",
+      "place_id": 350642284
+    },
+    {
+      "name": "Barns Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
+      "image_url": "https://images.englandrugby.com/club_images/1452.png",
+      "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
+      "latitude": 51.033237,
+      "longitude": -0.3956182,
+      "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350794178
+    },
+    {
+      "name": "B.A. Wingspan",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1207",
+      "image_url": "https://images.englandrugby.com/club_images/1207.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Arun",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=780",
+      "image_url": "https://images.englandrugby.com/club_images/780.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 7
+}

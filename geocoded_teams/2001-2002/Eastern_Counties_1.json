@@ -1,0 +1,107 @@
+{
+  "league_name": "Eastern Counties 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1145&season=2001-2002#tables",
+  "teams": [
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Beccles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1767",
+      "image_url": "https://images.englandrugby.com/club_images/1767.png",
+      "address": "Beef Meadow Common Lane Common Lane Beccles Suffolk NR34 9RH United Kingdom",
+      "latitude": 52.4569046,
+      "longitude": 1.5742136,
+      "formatted_address": "NR34 9RH, Beccles, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350746457
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Epping Upper Clapton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7624",
+      "image_url": "https://images.englandrugby.com/club_images/7624.png",
+      "address": "Epping Upper Clapton Rfc The Clubhouse Upland Road Thornwood Common Nr Epping Essex CM16 6NL United Kingdom",
+      "latitude": 51.7256572,
+      "longitude": 0.1230902,
+      "formatted_address": "CM16 6NL, North Weald Bassett, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 350547386
+    },
+    {
+      "name": "Maldon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154",
+      "image_url": "https://images.englandrugby.com/club_images/13154.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
+      "name": "Holt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10307",
+      "image_url": "https://images.englandrugby.com/club_images/10307.png",
+      "address": "The Clubhouse Bridge Road High Kelling Holt NORFOLK NR25 6QT UNITED KINGDOM ",
+      "latitude": 52.9176794,
+      "longitude": 1.1189376,
+      "formatted_address": "NR25 6QT, High Kelling, North Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350742530
+    },
+    {
+      "name": "Ely",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7485",
+      "image_url": "https://images.englandrugby.com/club_images/7485.png",
+      "address": "The Playing Fields Downham Road Ely Cambridgeshire CB6 2SH United Kingdom",
+      "latitude": 52.4099901,
+      "longitude": 0.2498483,
+      "formatted_address": "CB6 2SH, Ely, East Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350536736
+    },
+    {
+      "name": "Billericay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2201",
+      "image_url": "https://images.englandrugby.com/club_images/2201.png",
+      "address": "Willowbrook Sports & Social Club Stock Road Billericay Essex CM4 9PQ United Kingdom",
+      "latitude": 51.6486193,
+      "longitude": 0.4363638,
+      "formatted_address": "CM4 9PQ, Stock, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351081198
+    },
+    {
+      "name": "Newmarket",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14535",
+      "image_url": "https://images.englandrugby.com/club_images/14535.png",
+      "address": "Scaltback Pavillion Elizabeth Avenue Newmarket Suffolk CB8 0DJ United Kingdom",
+      "latitude": 52.2529094,
+      "longitude": 0.391064,
+      "formatted_address": "CB8 0DJ, Newmarket, Suffolk, England, United Kingdom",
+      "place_id": 350537828
+    },
+    {
+      "name": "Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15653",
+      "image_url": "https://images.englandrugby.com/club_images/15653.png",
+      "address": "Westlands Playing Fields London Road Romford ESSEX RM7 9NX UNITED KINGDOM",
+      "latitude": 51.5716722,
+      "longitude": 0.151813,
+      "formatted_address": "RM7 9NX, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838597
+    }
+  ],
+  "team_count": 10
+}

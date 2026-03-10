@@ -1,0 +1,97 @@
+{
+  "league_name": "xEast Midlands 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1921&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Biggleswade",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2180",
+      "image_url": "https://images.englandrugby.com/club_images/2180.png",
+      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
+      "latitude": 52.0699871,
+      "longitude": -0.2705866,
+      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
+      "place_id": 258315732
+    },
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    },
+    {
+      "name": "Northampton BBOB",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14858",
+      "image_url": "https://images.englandrugby.com/club_images/14858.png",
+      "address": "St. Andrews mill St. Andrews Road Northampton NORTHAMPTONSHIRE NN1 2PQ UNITED KINGDOM",
+      "latitude": 52.2453999,
+      "longitude": -0.90376,
+      "formatted_address": "NN1 2PQ, Northampton, West Northamptonshire, England, United Kingdom",
+      "place_id": 351212226
+    },
+    {
+      "name": "Bugbrooke",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3627",
+      "image_url": "https://images.englandrugby.com/club_images/3627.png",
+      "address": "Bugbrooke Rugby Union Football Club Camp Close Bugbrooke Northamptonshire NN7 3RW United Kingdom",
+      "latitude": 52.2071724,
+      "longitude": -1.0042639,
+      "formatted_address": "NN7 3RW, Bugbrooke, West Northamptonshire, England, United Kingdom",
+      "place_id": 350728227
+    },
+    {
+      "name": "Wellingborough O.G.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24611",
+      "image_url": "https://images.englandrugby.com/club_images/24611.png",
+      "address": "W. O.G's HQ 46 Oxford Street Wellingborough NORTHAMPTONSHIRE NN8 4JH UNITED KINGDOM",
+      "latitude": 52.3009065,
+      "longitude": -0.697596,
+      "formatted_address": "NN8 4JH, Wellingborough, North Northamptonshire, England, United Kingdom",
+      "place_id": 350728964
+    },
+    {
+      "name": "Bedford Swifts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1850",
+      "image_url": "https://images.englandrugby.com/club_images/1850.png",
+      "address": "Bedford Athletics Stadium (01234 -351115) Barkers Lane/Newham Avenue Bedford BEDFORDSHIRE MK41 9SB UNITED KINGDOM",
+      "latitude": 52.1338564,
+      "longitude": -0.4413315,
+      "formatted_address": "MK41 9SB, England, United Kingdom",
+      "place_id": 350703648
+    },
+    {
+      "name": "Brackley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2872",
+      "image_url": "https://images.englandrugby.com/club_images/2872.png",
+      "address": "Brackley Rufc Clubhouse, Nightingale Close, Brackley, Northamptonshire, NN13 6PN, United Kingdom",
+      "latitude": 52.043582,
+      "longitude": -1.1560595,
+      "formatted_address": "NN13 6PN, Brackley, West Northamptonshire, England, United Kingdom",
+      "place_id": 350725197
+    },
+    {
+      "name": "St Ives (Midlands)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20424",
+      "image_url": "https://images.englandrugby.com/club_images/20424.png",
+      "address": "St Ives (Midlands) Somersham Road St. Ives CAMBRIDGESHIRE PE27 3LY UNITED KINGDOM ",
+      "latitude": 52.3474607,
+      "longitude": -0.0603848,
+      "formatted_address": "PE27 3LY, St. Ives, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350762164
+    },
+    {
+      "name": "Peterborough Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16825",
+      "image_url": "https://images.englandrugby.com/club_images/16825.png",
+      "address": "Peterborough Lions Rufc, Sostice Park, Flaxlands, Bretton Woods, Peterborough, Cambridgeshire, PE3 8DF, United Kingdom",
+      "latitude": 52.5912022,
+      "longitude": -0.2837504,
+      "formatted_address": "PE3 8DF, Bretton Centre, Bretton, Peterborough, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350768902
+    }
+  ],
+  "team_count": 9
+}

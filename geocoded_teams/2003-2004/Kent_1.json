@@ -1,0 +1,107 @@
+{
+  "league_name": "Kent 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1870&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Lordswood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12799",
+      "image_url": "https://images.englandrugby.com/club_images/12799.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Old Elthamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15658",
+      "image_url": "https://images.englandrugby.com/club_images/15658.png",
+      "address": "Queen Mary Sports Ground (east Ground), Perry Street, Chislehurst, BR7 6HB, England",
+      "latitude": 51.4174891,
+      "longitude": 0.0849123,
+      "formatted_address": "Queen Mary Sports Ground, Chislehurst, London Borough of Bromley, Greater London, England, BR7 6HA, United Kingdom",
+      "place_id": 91423653
+    },
+    {
+      "name": "Guys' Kings' & St Thomas' Hospital",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9137",
+      "image_url": "https://images.englandrugby.com/club_images/9137.png",
+      "address": "Honor Oak Park Sports Ground Honor Oak Park Sports Ground Brockley Rise, Honor Oak Park Se23 1nw London SE23 1NW United Kingdom",
+      "latitude": 51.45149,
+      "longitude": -0.03866,
+      "formatted_address": "SE23 1NW, London Borough of Lewisham, Greater London, England, United Kingdom",
+      "place_id": 351448229
+    },
+    {
+      "name": "Beccehamian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1747",
+      "image_url": "https://images.englandrugby.com/club_images/1747.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
+      "name": "Sheppey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19172",
+      "image_url": "https://images.englandrugby.com/club_images/19172.png",
+      "address": "Sheppey Rugby Football Club, The Clubhouse, Stupple Field, Lower Road,, Minster,, Sheerness, Kent, ME12 3RT, United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351566033
+    },
+    {
+      "name": "Gillingham Anchorians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8574",
+      "image_url": "https://images.englandrugby.com/club_images/8574.png",
+      "address": "Anchorians Clubhouse Darland Avenue Gillingham KENT ME7 3AN UNITED KINGDOM",
+      "latitude": 51.3694592,
+      "longitude": 0.561956,
+      "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
+      "place_id": 350702104
+    },
+    {
+      "name": "Cranbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5760",
+      "image_url": "https://images.englandrugby.com/club_images/5760.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    },
+    {
+      "name": "Whitstable",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25320",
+      "image_url": "https://images.englandrugby.com/club_images/25320.png",
+      "address": "The ClubHouse Reeves Way Chestfield Whitstable KENT CT5 3QS UNITED KINGDOM ",
+      "latitude": 51.3579132,
+      "longitude": 1.0622394,
+      "formatted_address": "CT5 3QS, Chestfield, Canterbury, Kent, England, United Kingdom",
+      "place_id": 350562610
+    },
+    {
+      "name": "Sittingbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19441",
+      "image_url": "https://images.englandrugby.com/club_images/19441.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
+    },
+    {
+      "name": "Askean",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974",
+      "image_url": "https://images.englandrugby.com/club_images/974.png",
+      "address": "Charlton Road, London, SE7 7EY, United Kingdom",
+      "latitude": 51.4796237,
+      "longitude": 0.0302015,
+      "formatted_address": "Royal Mail, Charlton Road, Blackheath Royal Standard, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 7EY, United Kingdom",
+      "place_id": 91477105
+    }
+  ],
+  "team_count": 10
+}

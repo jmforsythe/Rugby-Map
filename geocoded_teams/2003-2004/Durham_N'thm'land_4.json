@@ -1,0 +1,67 @@
+{
+  "league_name": "Durham/N'thm'land 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1973&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Newton Aycliffe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14628",
+      "image_url": "https://images.englandrugby.com/club_images/14628.png",
+      "address": "Moore Lane, Newton Aycliffe, Ctydur, DL5 5AG, United Kingdom",
+      "latitude": 54.616304,
+      "longitude": -1.5586247,
+      "formatted_address": "DL5 5AG, Newton Aycliffe, Great Aycliffe, County Durham, North East, England, United Kingdom",
+      "place_id": 350593662
+    },
+    {
+      "name": "Jarrovians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11078",
+      "image_url": "https://images.englandrugby.com/club_images/11078.png",
+      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
+      "latitude": 54.9606054,
+      "longitude": -1.4955724,
+      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
+      "place_id": 253817836
+    },
+    {
+      "name": "Hartlepool B.B.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9555",
+      "image_url": "https://images.englandrugby.com/club_images/9555.png",
+      "address": "Hartlepool B.b.o.b. Old Friarage Moor Terrace, Headland Hartlepool County Durham TS24 0PQ United Kingdom",
+      "latitude": 54.6975427,
+      "longitude": -1.1798585,
+      "formatted_address": "TS24 0PQ, Headland, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 351544634
+    },
+    {
+      "name": "Wensleydale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24711",
+      "image_url": "https://images.englandrugby.com/club_images/24711.png",
+      "address": "Wensleydale RUFC, Cawkill Park Wensley Road Leyburn NORTH YORKSHIRE DL8 5ED UNITED KINGDOM ",
+      "latitude": 54.30745,
+      "longitude": -1.84467,
+      "formatted_address": "DL8 5ED, Leyburn, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351175744
+    },
+    {
+      "name": "Shildon Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19223",
+      "image_url": "https://images.englandrugby.com/club_images/19223.png",
+      "address": "Sunnydale Leisure Centre Middridge Lane Shildon DL4 2EP UNITED KINGDOM",
+      "latitude": 54.634064,
+      "longitude": -1.6370764,
+      "formatted_address": "DL4 2EP, Shildon, County Durham, North East, England, United Kingdom",
+      "place_id": 350593572
+    },
+    {
+      "name": "Durham Constabulary",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6998",
+      "image_url": "https://images.englandrugby.com/club_images/6998.png",
+      "address": "Durham Constabulary Police HQ Aykley Heads Durham COUNTY DURHAM DH1 5TT UNITED KINGDOM",
+      "latitude": 54.7879141,
+      "longitude": -1.5816618,
+      "formatted_address": "DH1 5TT, City of Durham, Durham, County Durham, North East, England, United Kingdom",
+      "place_id": 350586706
+    }
+  ],
+  "team_count": 6
+}

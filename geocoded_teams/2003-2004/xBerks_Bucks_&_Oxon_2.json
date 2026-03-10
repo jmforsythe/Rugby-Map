@@ -1,0 +1,97 @@
+{
+  "league_name": "xBerks/Bucks & Oxon 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=2015&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Drifters",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6774",
+      "image_url": "https://images.englandrugby.com/club_images/6774.png",
+      "address": "Farnham Common Sports Club One Pin Lane Farnham Common BUCKINGHAMSHIRE SL2 3QY UNITED KINGDOM",
+      "latitude": 51.5632678,
+      "longitude": -0.6124828,
+      "formatted_address": "SL2 3QY, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350369779
+    },
+    {
+      "name": "Harwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9607",
+      "image_url": "https://images.englandrugby.com/club_images/9607.png",
+      "address": "Harwell Rfc Main Sports Pavilion, Harwell Science And Innovation Campus, Didcot, Oxfordshire, OX11 0RL, United Kingdom",
+      "latitude": 51.5787591,
+      "longitude": -1.309943,
+      "formatted_address": "OX11 0RL, Agilent Technologies, Harwell, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350753241
+    },
+    {
+      "name": "Gosford All Blacks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8770",
+      "image_url": "https://images.englandrugby.com/club_images/8770.png",
+      "address": "Stratfield Brake Sports Ground Frieze Way KIDLINGTON OXFORDSHIRE OX5 1UP UNITED KINGDOM ",
+      "latitude": 51.80633,
+      "longitude": -1.28183,
+      "formatted_address": "OX5 1UP, Kidlington, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 351732521
+    },
+    {
+      "name": "Farnham Royal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7991",
+      "image_url": "https://images.englandrugby.com/club_images/7991.png",
+      "address": "Farnham Park Playing Fields, Beaconsfield Road, Farnham Royal, Slough, Berkshire , SL2 3BP, England",
+      "latitude": 51.5399014,
+      "longitude": -0.6162762,
+      "formatted_address": "SL2 3BP, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820497
+    },
+    {
+      "name": "Littlemore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12396",
+      "image_url": "https://images.englandrugby.com/club_images/12396.png",
+      "address": "Littlemore Rfc, Northfield Close, Littlemore, Oxford, Oxfordshire , OX4 4NH, United Kingdom",
+      "latitude": 51.72182,
+      "longitude": -1.2182599,
+      "formatted_address": "OX4 4NH, Littlemore, Oxford, Oxfordshire, England, United Kingdom",
+      "place_id": 351731275
+    },
+    {
+      "name": "Wheatley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25173",
+      "image_url": "https://images.englandrugby.com/club_images/25173.png",
+      "address": "Holton Playing Fields Holton Wheatley Oxford Oxfordshire OX33 1QL United Kingdom",
+      "latitude": 51.7535014,
+      "longitude": -1.1395664,
+      "formatted_address": "OX33 1QL, Holton, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350755427
+    },
+    {
+      "name": "Abingdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=244",
+      "image_url": "https://images.englandrugby.com/club_images/244.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    },
+    {
+      "name": "Berkshire Shire Hall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2003",
+      "image_url": "https://images.englandrugby.com/club_images/2003.png",
+      "address": "Berkshire Shire Hall Rfc, Berkshire Sports And Social Club, Sonning Lane, Sonning, Reading, Berkshire, RG4 6ST, United Kingdom",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Winslow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25696",
+      "image_url": "https://images.englandrugby.com/club_images/25696.png",
+      "address": "39 The Nags Head Sheep Street Winslow MK18 3HL United Kingdom",
+      "latitude": 51.94122,
+      "longitude": -0.87896,
+      "formatted_address": "MK18 3HL, Winslow, Buckinghamshire, England, United Kingdom",
+      "place_id": 351582510
+    }
+  ],
+  "team_count": 9
+}

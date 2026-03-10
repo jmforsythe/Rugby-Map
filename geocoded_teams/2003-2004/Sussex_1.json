@@ -1,0 +1,97 @@
+{
+  "league_name": "Sussex 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1874&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Hove",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10503",
+      "image_url": "https://images.englandrugby.com/club_images/10503.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Hastings & Bexhill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9653",
+      "image_url": "https://images.englandrugby.com/club_images/9653.png",
+      "address": "Hastings &amp; Bexhill Rfc, Ark William Parker Lower School Site, Park Avenue, Hastings, East Sussex, TN34 2PN, United Kingdom",
+      "latitude": 50.8735343,
+      "longitude": 0.5711358,
+      "formatted_address": "TN34 2PN, Hastings, East Sussex, England, United Kingdom",
+      "place_id": 352061033
+    },
+    {
+      "name": "Heathfield & Waldron",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9826",
+      "image_url": "https://images.englandrugby.com/club_images/9826.png",
+      "address": "The Hardy Roberts Recreation Ground Cross-in-hand Heathfield East Sussex TN21 0TA England",
+      "latitude": 50.9733715,
+      "longitude": 0.214363,
+      "formatted_address": "TN21 0TA, Heathfield and Waldron, Heathfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852336
+    },
+    {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Seaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868",
+      "image_url": "https://images.englandrugby.com/club_images/18868.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Crowborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5917",
+      "image_url": "https://images.englandrugby.com/club_images/5917.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
+    },
+    {
+      "name": "Pulborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17255",
+      "image_url": "https://images.englandrugby.com/club_images/17255.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,57 @@
+{
+  "league_name": "xStaffordshire 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1926&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Eccleshall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7304",
+      "image_url": "https://images.englandrugby.com/club_images/7304.png",
+      "address": "Tacklers Baden Hall Eccleshall Stafford STAFFORDSHIRE ST21 6LG UNITED KINGDOM ",
+      "latitude": 52.88256,
+      "longitude": -2.2345,
+      "formatted_address": "ST21 6LG, Eccleshall, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 351994734
+    },
+    {
+      "name": "Market Drayton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13371",
+      "image_url": "https://images.englandrugby.com/club_images/13371.png",
+      "address": "NO CORRESPONDENCE TO THIS ADDRESS PLEASE Greenfields Sports Ground, Greenfields Lane Market Drayton SHROPSHIRE TF9 3SL UNITED KINGDOM ",
+      "latitude": 52.9097895,
+      "longitude": -2.4960118,
+      "formatted_address": "TF9 3SL, Market Drayton, Shropshire, England, United Kingdom",
+      "place_id": 350851486
+    },
+    {
+      "name": "Barton-Under-Needwood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1523",
+      "image_url": "https://images.englandrugby.com/club_images/1523.png",
+      "address": "Holland Sports & Social Club, Potters Way, Off Efflinch Lane, Barton-under-needwood, Staffordshire, DE13 8ET, England",
+      "latitude": 52.7620812,
+      "longitude": -1.7197804,
+      "formatted_address": "DE13 8ET, Barton-under-Needwood, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351150834
+    },
+    {
+      "name": "Hanford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9340",
+      "image_url": "https://images.englandrugby.com/club_images/9340.png",
+      "address": "North Stafford Sports Club Whisper Lane Butterton Newcastle Under Lyme Staffordshire ST5 4EB United Kingdom",
+      "latitude": 52.9681378,
+      "longitude": -2.2494186,
+      "formatted_address": "ST5 4EB, Whitmore, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
+      "place_id": 350837607
+    },
+    {
+      "name": "Gnosall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8687",
+      "image_url": "https://images.englandrugby.com/club_images/8687.png",
+      "address": "Gnosall R.U.F.C. Gnosall Sports & Social Club Brookhouse Road Stafford Staffordshire ST20 0BN UNITED KINGDOM",
+      "latitude": 52.780907,
+      "longitude": -2.267292,
+      "formatted_address": "ST20 0BN, Gnosall, Gnosall Heath, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836973
+    }
+  ],
+  "team_count": 5
+}

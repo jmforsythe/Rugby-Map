@@ -1,0 +1,87 @@
+{
+  "league_name": "Cornwall 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=1997&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Liskeard-Looe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347",
+      "image_url": "https://images.englandrugby.com/club_images/12347.png",
+      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
+      "latitude": 50.4605849,
+      "longitude": -4.4629552,
+      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
+      "place_id": 350772630
+    },
+    {
+      "name": "Perranporth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16772",
+      "image_url": "https://images.englandrugby.com/club_images/16772.png",
+      "address": "Perranporth   Rfc, The Droop, Budnic Hill, Ponsmere Valley, Perranporth, Cornwall, TR6 0DB, United Kingdom",
+      "latitude": 50.34538,
+      "longitude": -5.14316,
+      "formatted_address": "TR6 0DB, Perranzabuloe, Cornwall, England, United Kingdom",
+      "place_id": 352075861
+    },
+    {
+      "name": "St Austell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20157",
+      "image_url": "https://images.englandrugby.com/club_images/20157.png",
+      "address": "St. Austell R.f.c., Tregorrick Park, Tregorrick Lane, St.austell, Cornw, PL26 7FH, United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351770069
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    },
+    {
+      "name": "Saltash",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18628",
+      "image_url": "https://images.englandrugby.com/club_images/18628.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
+    },
+    {
+      "name": "Illogan Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10851",
+      "image_url": "https://images.englandrugby.com/club_images/10851.png",
+      "address": "Sports Field, Paynters Lane End, Redruth, Cornwall, TR16 4RR, United Kingdom",
+      "latitude": 50.2452489,
+      "longitude": -5.2674444,
+      "formatted_address": "TR16 4RR, Illogan, Cornwall, England, United Kingdom",
+      "place_id": 350867104
+    },
+    {
+      "name": "Bodmin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2662",
+      "image_url": "https://images.englandrugby.com/club_images/2662.png",
+      "address": "Bodmin R.F.C. Clifden Park Carmminow Cross BODMIN CORNWALL PL30 4AW UNITED KINGDOM ",
+      "latitude": 50.4584642,
+      "longitude": -4.6905979,
+      "formatted_address": "PL30 4AW, Bodmin, Cornwall, England, United Kingdom",
+      "place_id": 351772121
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    }
+  ],
+  "team_count": 8
+}

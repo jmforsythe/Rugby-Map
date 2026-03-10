@@ -1,0 +1,107 @@
+{
+  "league_name": "London 4 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1887&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Campion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4078",
+      "image_url": "https://images.englandrugby.com/club_images/4078.png",
+      "address": "Cottons Park Cottons Approach Romford ESSEX RM7 7AA UNITED KINGDOM",
+      "latitude": 51.57785,
+      "longitude": 0.17422,
+      "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 351838315
+    },
+    {
+      "name": "Chelmsford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4482",
+      "image_url": "https://images.englandrugby.com/club_images/4482.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
+    },
+    {
+      "name": "Colchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5386",
+      "image_url": "https://images.englandrugby.com/club_images/5386.png",
+      "address": "Cuckoo Farm Way, Colchester, CO4 5YX, United Kingdom",
+      "latitude": 51.9256509,
+      "longitude": 0.900332,
+      "formatted_address": "Cuckoo Farm Way, Mile End, Colchester, Essex, England, CO4 5YX, United Kingdom",
+      "place_id": 91239389
+    },
+    {
+      "name": "Wymondham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26280",
+      "image_url": "https://images.englandrugby.com/club_images/26280.png",
+      "address": "Wymondham Rfc, Barnard Fields, Bray Drive (off Reeve Way), Wymondham, Norfolk, NR18 0GQ, United Kingdom",
+      "latitude": 52.5888604,
+      "longitude": 1.1409355,
+      "formatted_address": "NR18 0GQ, Wymondham, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350738793
+    },
+    {
+      "name": "Basildon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1539",
+      "image_url": "https://images.englandrugby.com/club_images/1539.png",
+      "address": "Gardiner's Close, Basildon, Essex , SS14 3AW, United Kingdom",
+      "latitude": 51.58607,
+      "longitude": 0.47679,
+      "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
+      "place_id": 351979157
+    },
+    {
+      "name": "Rochford Hundred",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17906",
+      "image_url": "https://images.englandrugby.com/club_images/17906.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
+    },
+    {
+      "name": "West Norfolk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24847",
+      "image_url": "https://images.englandrugby.com/club_images/24847.png",
+      "address": "Gatehouse Lane North Wootton King's Lynn NORFOLK PE30 3RJ UNITED KINGDOM",
+      "latitude": 52.7931897,
+      "longitude": 0.4370715,
+      "formatted_address": "Gatehouse Lane, North Wootton, King's Lynn and West Norfolk, Norfolk, England, PE30 3RD, United Kingdom",
+      "place_id": 146612925
+    },
+    {
+      "name": "Mersea Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13747",
+      "image_url": "https://images.englandrugby.com/club_images/13747.png",
+      "address": "The Glebe Playing Field, Colchester Road, West Mersea, Colchester, Essex, CO5 8RS, United Kingdom",
+      "latitude": 51.78399,
+      "longitude": 0.92132,
+      "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
+      "place_id": 351089900
+    },
+    {
+      "name": "Beccles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1767",
+      "image_url": "https://images.englandrugby.com/club_images/1767.png",
+      "address": "Beef Meadow Common Lane Common Lane Beccles Suffolk NR34 9RH United Kingdom",
+      "latitude": 52.4569046,
+      "longitude": 1.5742136,
+      "formatted_address": "NR34 9RH, Beccles, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350746457
+    },
+    {
+      "name": "Ely",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7485",
+      "image_url": "https://images.englandrugby.com/club_images/7485.png",
+      "address": "The Playing Fields Downham Road Ely Cambridgeshire CB6 2SH United Kingdom",
+      "latitude": 52.4099901,
+      "longitude": 0.2498483,
+      "formatted_address": "CB6 2SH, Ely, East Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350536736
+    }
+  ],
+  "team_count": 10
+}

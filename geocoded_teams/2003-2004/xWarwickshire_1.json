@@ -1,0 +1,87 @@
+{
+  "league_name": "xWarwickshire 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=1913&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Manor Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13292",
+      "image_url": "https://images.englandrugby.com/club_images/13292.png",
+      "address": "Griff &amp; Coton Sports Club Heath End Road, Stockingford Heath End Road, Stockingford Nuneaton WARWICKSHIRE CV10 7HQ UNITED KINGDOM",
+      "latitude": 52.51308,
+      "longitude": -1.48682,
+      "formatted_address": "CV10 7HQ, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351111535
+    },
+    {
+      "name": "Coventry Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5736",
+      "image_url": "https://images.englandrugby.com/club_images/5736.png",
+      "address": "82 Burbages Lane Exhall Coventry WARWICKSHIRE CV6 6AY UNITED KINGDOM ",
+      "latitude": 52.4530871,
+      "longitude": -1.5031248,
+      "formatted_address": "CV6 6AY, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351125430
+    },
+    {
+      "name": "Rugby St Andrews",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18314",
+      "image_url": "https://images.englandrugby.com/club_images/18314.png",
+      "address": "Rugby St Andrews Rfc, Hillmorton Grounds, John Tomalin Way, Ashlawn Road, Rugby, Warwickshire, CV22 5QQ, United Kingdom",
+      "latitude": 52.35526,
+      "longitude": -1.24136,
+      "formatted_address": "CV22 5QQ, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351115901
+    },
+    {
+      "name": "Coventry Technical",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5730",
+      "image_url": "https://images.englandrugby.com/club_images/5730.png",
+      "address": "Mitchell Avenue Canley Canley Coventry WEST MIDLANDS CV4 8DW UNITED KINGDOM",
+      "latitude": 52.3940834,
+      "longitude": -1.5696642,
+      "formatted_address": "Mitchell Avenue, Canley, Coventry, West Midlands, England, CV4 8HB, United Kingdom",
+      "place_id": 259074314
+    },
+    {
+      "name": "Spartans (Midlands)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20058",
+      "image_url": "https://images.englandrugby.com/club_images/20058.png",
+      "address": "Coppice Lane Middleton Nr. Tamworth WARWICKSHIRE B78 2BS UNITED KINGDOM",
+      "latitude": 52.58681,
+      "longitude": -1.77417,
+      "formatted_address": "B78 2BS, Middleton CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 350926380
+    },
+    {
+      "name": "Alcester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=368",
+      "image_url": "https://images.englandrugby.com/club_images/368.png",
+      "address": "Birmingham Road Kings Coughton Alcester WARWICKSHIRE B49 5QF UNITED KINGDOM ",
+      "latitude": 52.2295076,
+      "longitude": -1.8797491,
+      "formatted_address": "B49 5QF, Alcester, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350479269
+    },
+    {
+      "name": "Pinley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16908",
+      "image_url": "https://images.englandrugby.com/club_images/16908.png",
+      "address": "Wyken Croft Wyken Coventry WEST MIDLANDS CV2 3AA UNITED KINGDOM",
+      "latitude": 52.4194878,
+      "longitude": -1.4578022,
+      "formatted_address": "Wyken Croft, Wyken, Coventry, West Midlands, England, CV2 3AB, United Kingdom",
+      "place_id": 258791652
+    },
+    {
+      "name": "Stoke Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074",
+      "image_url": "https://images.englandrugby.com/club_images/21074.png",
+      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
+      "latitude": 52.402107,
+      "longitude": -1.4568427,
+      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351117485
+    }
+  ],
+  "team_count": 8
+}

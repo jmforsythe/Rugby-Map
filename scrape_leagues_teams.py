@@ -74,6 +74,15 @@ PREM_MAP = {
     "2011-2012": "",
     "2010-2011": "",
     "2009-2010": "",
+    "2008-2009": "",
+    "2007-2008": "",
+    "2006-2007": "",
+    "2005-2006": "",
+    "2004-2005": "",
+    "2003-2004": "",
+    "2002-2003": "",
+    "2001-2002": "",
+    "2000-2001": "",
 }
 
 CHAMP_MAP = {
@@ -94,6 +103,15 @@ CHAMP_MAP = {
     "2011-2012": "5782",
     "2010-2011": "4971",
     "2009-2010": "4252",
+    "2008-2009": "",
+    "2007-2008": "",
+    "2006-2007": "",
+    "2005-2006": "",
+    "2004-2005": "",
+    "2003-2004": "",
+    "2002-2003": "",
+    "2001-2002": "",
+    "2000-2001": "",
 }
 
 
@@ -222,10 +240,9 @@ def scrape_teams_from_league(
 
     response = make_request(league_url, referer=referer, delay_seconds=1)
 
-    # Check for anti-bot 202 response
     if response.status_code == 202:
-        print(f"    \u2717 202 code - bot detection triggered for {league_name}")
-        raise AntiBotDetectedError(f"202 response for {league_name}")
+        print(f"    ! 202 response (no data) for {league_name} - saving empty league")
+        return []
 
     soup = BeautifulSoup(response.content, "html.parser")
 
@@ -279,10 +296,9 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
 
     response = make_request(page_url, delay_seconds=0.5)
 
-    # Check for anti-bot 202 response
     if response.status_code == 202:
-        print("  ✗ 202 code - bot detection triggered")
-        raise AntiBotDetectedError(f"202 response for {page_url}")
+        print("  ! 202 response (no data) - returning empty league list")
+        return []
 
     soup = BeautifulSoup(response.content, "html.parser")
 

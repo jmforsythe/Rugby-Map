@@ -1,0 +1,107 @@
+{
+  "league_name": "London 3 North East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=1856&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Shelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141",
+      "image_url": "https://images.englandrugby.com/club_images/19141.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Hadleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9184",
+      "image_url": "https://images.englandrugby.com/club_images/9184.png",
+      "address": "Hadleigh Rugby Football Club Layham Road Sports Ground Hadleigh, Ipswich Suffolk IP7 5NE United Kingdom",
+      "latitude": 52.0401144,
+      "longitude": 0.9522395,
+      "formatted_address": "IP7 5NE, Hadleigh, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350666494
+    },
+    {
+      "name": "Bury St Edmunds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3824",
+      "image_url": "https://images.englandrugby.com/club_images/3824.png",
+      "address": "The Haberden Southgate Green Southgate Green Bury St Edmunds SUFFOLK IP33 2BL UNITED KINGDOM ",
+      "latitude": 52.23618,
+      "longitude": 0.72461,
+      "formatted_address": "IP33 2BL, Bury St Edmunds, West Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351399748
+    },
+    {
+      "name": "Brentwood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3067",
+      "image_url": "https://images.englandrugby.com/club_images/3067.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
+      "name": "Saffron Walden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18501",
+      "image_url": "https://images.englandrugby.com/club_images/18501.png",
+      "address": "Saffron Walden Rfc Springate Chickney Road Henham Essex CM22 6BQ United Kingdom",
+      "latitude": 51.93679,
+      "longitude": 0.26852,
+      "formatted_address": "CM22 6BQ, Chickney, Uttlesford, Essex, England, United Kingdom",
+      "place_id": 351078223
+    },
+    {
+      "name": "Ipswich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10940",
+      "image_url": "https://images.englandrugby.com/club_images/10940.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Sudbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21299",
+      "image_url": "https://images.englandrugby.com/club_images/21299.png",
+      "address": "Whittome Field, Spicer Way, Great Conard, Sudbury, Suffolk, CO10 0GB, United Kingdom",
+      "latitude": 52.0214264,
+      "longitude": 0.7507049,
+      "formatted_address": "CO10 0GB, Great Cornard, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 350551251
+    },
+    {
+      "name": "Braintree",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2974",
+      "image_url": "https://images.englandrugby.com/club_images/2974.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Chingford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4795",
+      "image_url": "https://images.englandrugby.com/club_images/4795.png",
+      "address": "Lea Valley Playing Fields Waltham Way Chingford London E4 8AQ UNITED KINGDOM",
+      "latitude": 51.6248654,
+      "longitude": -0.0227561,
+      "formatted_address": "E4 8AQ, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 351217133
+    },
+    {
+      "name": "Eton Manor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7708",
+      "image_url": "https://images.englandrugby.com/club_images/7708.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    }
+  ],
+  "team_count": 10
+}

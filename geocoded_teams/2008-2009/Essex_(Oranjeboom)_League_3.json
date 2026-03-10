@@ -1,0 +1,77 @@
+{
+  "league_name": "Essex (Oranjeboom) League 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3600&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Pegasus Palmerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16666",
+      "image_url": "https://images.englandrugby.com/club_images/16666.png",
+      "address": "Palmers College Chadwell Road Grays Essex RM17 5TD United Kingdom",
+      "latitude": 51.484143,
+      "longitude": 0.3514895,
+      "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
+      "place_id": 90192772
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    },
+    {
+      "name": "Ongar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16209",
+      "image_url": "https://images.englandrugby.com/club_images/16209.png",
+      "address": "Ongar Rfc Love Lane High Street Ongar CM5 9BL United Kingdom",
+      "latitude": 51.70815,
+      "longitude": 0.24586,
+      "formatted_address": "CM5 9BL, Ongar, Chipping Ongar, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351081502
+    },
+    {
+      "name": "Phantoms",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16883",
+      "image_url": "https://images.englandrugby.com/club_images/16883.png",
+      "address": "71 Holland Road West Ham London ESSEX E15 3BP ENGLAND",
+      "latitude": 51.5287941,
+      "longitude": 0.0086892,
+      "formatted_address": "E15 3BP, London Borough of Newham, Greater London, England, United Kingdom",
+      "place_id": 350604773
+    },
+    {
+      "name": "Ravens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17478",
+      "image_url": "https://images.englandrugby.com/club_images/17478.png",
+      "address": "Dagenham Rd, Dagenham, Romford Rm7 0qx M&b Social Club Dagenham Rd, Dagenham, Romford Rm7 0qx Dagenham Essex RM7 0QX United Kingdom",
+      "latitude": 51.54813,
+      "longitude": 0.17,
+      "formatted_address": "RM7 0QX, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351838188
+    },
+    {
+      "name": "Witham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25764",
+      "image_url": "https://images.englandrugby.com/club_images/25764.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
+    }
+  ],
+  "team_count": 7
+}

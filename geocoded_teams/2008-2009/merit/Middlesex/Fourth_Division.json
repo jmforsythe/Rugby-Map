@@ -1,0 +1,77 @@
+{
+  "league_name": "Fourth Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=4054&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Old Hamptonians 2nds",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15778",
+      "image_url": "https://images.englandrugby.com/club_images/15778.png",
+      "address": "Old Hamptonians R.F.C. Dean Road Hampton Hampton Hampton MIDDLESEX TW12 1AQ UNITED KINGDOM",
+      "latitude": 51.4310684,
+      "longitude": -0.371552,
+      "formatted_address": "TW12 1AQ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350420019
+    },
+    {
+      "name": "Ealing Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7079",
+      "image_url": "https://images.englandrugby.com/club_images/7079.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.5245627,
+      "longitude": -0.3265066,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    },
+    {
+      "name": "Tynedale Centurions (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23391",
+      "image_url": "https://images.englandrugby.com/club_images/23391.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
+    },
+    {
+      "name": "Haringey Badgers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9380",
+      "image_url": "https://images.englandrugby.com/club_images/9380.png",
+      "address": "Haringey Rhinos Rugby Club New River Sport And Fitness White Hart Lane Wood Green Middlesex N22 5QW United Kingdom",
+      "latitude": 51.6041816,
+      "longitude": -0.1013207,
+      "formatted_address": "N22 5QW, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 350257433
+    },
+    {
+      "name": "Hampstead 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9294",
+      "image_url": "https://images.englandrugby.com/club_images/9294.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Thamesians 2nd XV (Spartans)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21891",
+      "image_url": "https://images.englandrugby.com/club_images/21891.png",
+      "address": "The Pavilion The Green Twickenham Green Twickenham Middlesex TW2 5AG United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350420812
+    },
+    {
+      "name": "London French 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12522",
+      "image_url": "https://images.englandrugby.com/club_images/12522.png",
+      "address": "Barn Elms Playing Fields, Queen Elizabeth Walk, Rocks Lane, London, SW13 9WT, United Kingdom",
+      "latitude": 51.4769355,
+      "longitude": -0.2348877,
+      "formatted_address": "SW13 9WT, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838989
+    }
+  ],
+  "team_count": 7
+}

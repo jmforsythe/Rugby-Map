@@ -1,0 +1,87 @@
+{
+  "league_name": "Essex (Spitfire) League 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3599&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Millwall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906",
+      "image_url": "https://images.englandrugby.com/club_images/13906.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Old Cooperians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15564",
+      "image_url": "https://images.englandrugby.com/club_images/15564.png",
+      "address": "Coopers Company & Coborn School St Mary's Lane Upminster Essex RM14 3HS United Kingdom",
+      "latitude": 51.5560813,
+      "longitude": 0.2620233,
+      "formatted_address": "RM14 3HS, London Borough of Havering, Greater London, England, United Kingdom",
+      "place_id": 350799899
+    },
+    {
+      "name": "East London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7163",
+      "image_url": "https://images.englandrugby.com/club_images/7163.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
+      "name": "May & Baker",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13560",
+      "image_url": "https://images.englandrugby.com/club_images/13560.png",
+      "address": "May & Baker Club Dagenham Road Dagenham ESSEX RM10 7UP UNITED KINGDOM",
+      "latitude": 51.5515648,
+      "longitude": 0.161543,
+      "formatted_address": "RM10 7UP, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 350799576
+    },
+    {
+      "name": "Loughton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12860",
+      "image_url": "https://images.englandrugby.com/club_images/12860.png",
+      "address": "Hornbeam Sports & Social Club Squirrels Lane Hornbeam Road Essex IG9 6JT United Kingdom",
+      "latitude": 51.6216737,
+      "longitude": 0.0489574,
+      "formatted_address": "IG9 6JT, Buckhurst Hill, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351389787
+    },
+    {
+      "name": "Runwell Wyverns",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18403",
+      "image_url": "https://images.englandrugby.com/club_images/18403.png",
+      "address": "Runwell Hospital Sports and Social Club Runwel Chase Wickford ESSEX SS11 7QA UNITED KINGDOM",
+      "latitude": 51.6321,
+      "longitude": 0.54572,
+      "formatted_address": "SS11 7QA, Runwell, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 351977553
+    },
+    {
+      "name": "Burnham-on-Crouch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700",
+      "image_url": "https://images.englandrugby.com/club_images/3700.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Kings Cross Steelers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11557",
+      "image_url": "https://images.englandrugby.com/club_images/11557.png",
+      "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 91487227
+    }
+  ],
+  "team_count": 8
+}

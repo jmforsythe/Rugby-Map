@@ -1,0 +1,137 @@
+{
+  "league_name": "Durham/N'thm'land 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=3642&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Team Northumbria",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21727",
+      "image_url": "https://images.englandrugby.com/club_images/21727.png",
+      "address": "Team Northumbria Sport Northumbria 6 North Street East Newcastle upon Tyne NE1 8ST ENGLAND",
+      "latitude": 54.9769004,
+      "longitude": -1.6078121,
+      "formatted_address": "NE1 8ST, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350259526
+    },
+    {
+      "name": "Hartlepool",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9552",
+      "image_url": "https://images.englandrugby.com/club_images/9552.png",
+      "address": "Mayfield Park Easington Road Hartlepool County Durham TS24 9BA United Kingdom",
+      "latitude": 54.70523,
+      "longitude": -1.23388,
+      "formatted_address": "TS24 9BA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086474
+    },
+    {
+      "name": "Redcar",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17572",
+      "image_url": "https://images.englandrugby.com/club_images/17572.png",
+      "address": "McKinlay Park Green Lane Redcar CLEVELAND TS10 3RW UNITED KINGDOM ",
+      "latitude": 54.6031896,
+      "longitude": -1.0417975,
+      "formatted_address": "TS10 3RW, Redcar and Cleveland, Tees Valley, England, United Kingdom",
+      "place_id": 350868166
+    },
+    {
+      "name": "Barnard Castle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1377",
+      "image_url": "https://images.englandrugby.com/club_images/1377.png",
+      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM ",
+      "latitude": 54.5425415,
+      "longitude": -1.9196797,
+      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
+      "place_id": 350591888
+    },
+    {
+      "name": "Novocastrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15169",
+      "image_url": "https://images.englandrugby.com/club_images/15169.png",
+      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Ponteland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17046",
+      "image_url": "https://images.englandrugby.com/club_images/17046.png",
+      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
+    },
+    {
+      "name": "Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13586",
+      "image_url": "https://images.englandrugby.com/club_images/13586.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
+    },
+    {
+      "name": "Winlaton Vulcans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25636",
+      "image_url": "https://images.englandrugby.com/club_images/25636.png",
+      "address": "Winlaton Rfc Axwell View Winlaton Blaydon-on-tyne Tyne And Wear NE21 6NF United Kingdom",
+      "latitude": 54.9525095,
+      "longitude": -1.7178689,
+      "formatted_address": "NE21 6NF, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351620448
+    },
+    {
+      "name": "Whitley Bay Rockcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25300",
+      "image_url": "https://images.englandrugby.com/club_images/25300.png",
+      "address": "Hillheads, Lovaine Avenue, Whitley Bay, Tyne And Wear, NE25 8RW, United Kingdom",
+      "latitude": 55.0375574,
+      "longitude": -1.4491323,
+      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
+      "place_id": 350711110
+    },
+    {
+      "name": "North Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14784",
+      "image_url": "https://images.englandrugby.com/club_images/14784.png",
+      "address": "North Shields R.f.c., Preston Playing Fields, Preston Village, North Shields, Tyne And Wear, NE29 9ND, United Kingdom",
+      "latitude": 55.02074,
+      "longitude": -1.4564,
+      "formatted_address": "NE29 9ND, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351625772
+    },
+    {
+      "name": "Acklam",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=271",
+      "image_url": "https://images.englandrugby.com/club_images/271.png",
+      "address": "Acklam Rugby Club Talbot Park Lacy Road Middlesbrough Cleveland TS4 3PR United Kingdom",
+      "latitude": 54.5415584,
+      "longitude": -1.221159,
+      "formatted_address": "TS4 3PR, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 350869656
+    },
+    {
+      "name": "Houghton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10480",
+      "image_url": "https://images.englandrugby.com/club_images/10480.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "West Hartlepool T.D.S.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24779",
+      "image_url": "https://images.englandrugby.com/club_images/24779.png",
+      "address": "Wiltshire Way Hartlepool TS26 0TB UNITED KINGDOM",
+      "latitude": 54.69609,
+      "longitude": -1.2385856,
+      "formatted_address": "Wiltshire Way, Throston Grange, Hartlepool, Tees Valley, England, TS26 0TJ, United Kingdom",
+      "place_id": 252303047
+    }
+  ],
+  "team_count": 13
+}

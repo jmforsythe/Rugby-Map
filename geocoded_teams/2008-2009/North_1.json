@@ -1,0 +1,127 @@
+{
+  "league_name": "North 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=3631&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "South Shields Westoe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19654",
+      "image_url": "https://images.englandrugby.com/club_images/19654.png",
+      "address": "Wood Terrace Dean Road SOUTH SHIELDS TYNE AND WEAR NE33 4EA ENGLAND",
+      "latitude": 54.9861247,
+      "longitude": -1.4253023,
+      "formatted_address": "NE33 4EA, South Tyneside, North East, England, United Kingdom",
+      "place_id": 350711999
+    },
+    {
+      "name": "Hull",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634",
+      "image_url": "https://images.englandrugby.com/club_images/10634.png",
+      "address": "Hull Sports Centre, Ferens Ground, Chanterlands Avenue, Hull, Yorkshire, HU5 4EF, United Kingdom",
+      "latitude": 53.7641862,
+      "longitude": -0.3760032,
+      "formatted_address": "HU5 4EF, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351378645
+    },
+    {
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
+    },
+    {
+      "name": "Sheffield Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099",
+      "image_url": "https://images.englandrugby.com/club_images/19099.png",
+      "address": "Dore Moor Hathersage Road Sheffield SOUTH YORKSHIRE S17 3AB UNITED KINGDOM ",
+      "latitude": 53.3341659,
+      "longitude": -1.5500457,
+      "formatted_address": "Dore Moor Inn, Hathersage Road, Dore, Sheffield, South Yorkshire, England, S17 3AB, United Kingdom",
+      "place_id": 256014652
+    },
+    {
+      "name": "Birkenhead Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=96825",
+      "image_url": "https://images.englandrugby.com/club_images/96825.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
+    },
+    {
+      "name": "Middlesbrough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13793",
+      "image_url": "https://images.englandrugby.com/club_images/13793.png",
+      "address": "Acklam Park Green Lane, Acklam Middlesbrough NORTH YORKSHIRE TS5 7SL UNITED KINGDOM ",
+      "latitude": 54.55121,
+      "longitude": -1.2515,
+      "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 352090787
+    },
+    {
+      "name": "West Hartlepool",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24767",
+      "image_url": "https://images.englandrugby.com/club_images/24767.png",
+      "address": "Brinkburn Catcote Road Hartlepool COUNTY DURHAM TS25 4HA",
+      "latitude": 54.6747341,
+      "longitude": -1.2376463,
+      "formatted_address": "TS25 4HA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869362
+    },
+    {
+      "name": "Stockport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=117609",
+      "image_url": "https://images.englandrugby.com/club_images/117609.png",
+      "address": "Bridge Lane Memorial Ground Headlands Road Bramhall Stockport CHESHIRE SK7 3AN UNITED KINGDOM ",
+      "latitude": 53.37211,
+      "longitude": -2.15291,
+      "formatted_address": "SK7 3AN, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351924550
+    },
+    {
+      "name": "Beverley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2073",
+      "image_url": "https://images.englandrugby.com/club_images/2073.png",
+      "address": "Norwood Beverley HU17 9HT UNITED KINGDOM",
+      "latitude": 53.8490669,
+      "longitude": -0.4255272,
+      "formatted_address": "Norwood, Beverley, East Riding of Yorkshire, Hull and East Yorkshire, England, HU17 9HT, United Kingdom",
+      "place_id": 256319119
+    },
+    {
+      "name": "Cleckheaton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=99485",
+      "image_url": "https://images.englandrugby.com/club_images/99485.png",
+      "address": "The Pavilion, Bradford Road, Moorend, Cleckheaton, West Yorkshire, BD19 3UD, United Kingdom",
+      "latitude": 53.73195,
+      "longitude": -1.72037,
+      "formatted_address": "BD19 3UD, Kirklees, West Yorkshire, England, United Kingdom",
+      "place_id": 350960025
+    },
+    {
+      "name": "West Park (St Helens)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24865",
+      "image_url": "https://images.englandrugby.com/club_images/24865.png",
+      "address": "West Park RFC Red Rocks Prescot Road St. Helens MERSEYSIDE WA10 3AG UNITED KINGDOM ",
+      "latitude": 53.4430615,
+      "longitude": -2.7721359,
+      "formatted_address": "WA10 3AG, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 350426615
+    },
+    {
+      "name": "Darlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6102",
+      "image_url": "https://images.englandrugby.com/club_images/6102.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    }
+  ],
+  "team_count": 12
+}

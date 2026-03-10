@@ -1,0 +1,84 @@
+{
+  "league_name": "First Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=4051&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "London Welsh Occies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12646",
+      "image_url": "https://images.englandrugby.com/club_images/12646.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Rosslyn Park 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18038",
+      "image_url": "https://images.englandrugby.com/club_images/18038.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM ",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839761
+    },
+    {
+      "name": "London New Zealand II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12595",
+      "image_url": "https://images.englandrugby.com/club_images/12595.png",
+      "address": "Twyford Ave Sports Ground Twyford Ave Acton London W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    },
+    {
+      "name": "Hammersmith & Fulham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9258",
+      "image_url": "https://images.englandrugby.com/club_images/9258.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "London Scottish Claymores (Amateurs 2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12604",
+      "image_url": "https://images.englandrugby.com/club_images/12604.png",
+      "address": "Richmond Athletic Ground Kew Foot Road Richmond Surrey TW9 2SS United Kingdom",
+      "latitude": 51.465607,
+      "longitude": -0.3017003,
+      "formatted_address": "TW9 2SS, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872400
+    },
+    {
+      "name": "CS Stags 1863 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5988",
+      "image_url": "https://images.englandrugby.com/club_images/5988.png",
+      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
+    },
+    {
+      "name": "Imperial Medicals II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10865",
+      "image_url": "https://images.englandrugby.com/club_images/10865.png",
+      "address": "Imperial College Sports Grounds Sipson Lane Harlington Hayes London Middlesex UB3 5EH United Kingdom",
+      "latitude": 51.48794,
+      "longitude": -0.43704,
+      "formatted_address": "UB3 5EH, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352104267
+    },
+    {
+      "name": "Wasps Cubans (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24399",
+      "image_url": "https://images.englandrugby.com/club_images/24399.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 8
+}

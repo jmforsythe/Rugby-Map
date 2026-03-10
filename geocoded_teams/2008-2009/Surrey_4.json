@@ -1,0 +1,117 @@
+{
+  "league_name": "Surrey 4",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=3592&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "CL London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5112",
+      "image_url": "https://images.englandrugby.com/club_images/5112.png",
+      "address": "C/o 27 West Square London SE11 4SP England",
+      "latitude": 51.4952599,
+      "longitude": -0.1049947,
+      "formatted_address": "SE11 4SP, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 352566470
+    },
+    {
+      "name": "Old Radleian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15928",
+      "image_url": "https://images.englandrugby.com/club_images/15928.png",
+      "address": "8 Mascotte Road London SURREY SW15 1NN UNITED KINGDOM",
+      "latitude": 51.4648498,
+      "longitude": -0.2168935,
+      "formatted_address": "SW15 1NN, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005234
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    },
+    {
+      "name": "Old Glynonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15711",
+      "image_url": "https://images.englandrugby.com/club_images/15711.png",
+      "address": "Old Glynonians Rfc, Priesthill Playing Field, Reigate Road, Epsom, KT17 3DZ, England",
+      "latitude": 51.33704,
+      "longitude": -0.24328,
+      "formatted_address": "KT17 3DZ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351423674
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Woking",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25882",
+      "image_url": "https://images.englandrugby.com/club_images/25882.png",
+      "address": "Camphill Social Club, Woking Rfc, Camphill Road, West Byfleet, Surrey , KT14 6EF, United Kingdom",
+      "latitude": 51.3405739,
+      "longitude": -0.5004952,
+      "formatted_address": "KT14 6EF, Woking, Surrey, England, United Kingdom",
+      "place_id": 350670267
+    },
+    {
+      "name": "Wandsworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24237",
+      "image_url": "https://images.englandrugby.com/club_images/24237.png",
+      "address": "Imber Court, Ember Lane, East Molesey, Surrey , KT8 0BT, United Kingdom",
+      "latitude": 51.3902693,
+      "longitude": -0.3525791,
+      "formatted_address": "KT8 0BT, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351430023
+    },
+    {
+      "name": "Lightwater",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12265",
+      "image_url": "https://images.englandrugby.com/club_images/12265.png",
+      "address": "Lightwater Sports Centre The Avenue Lightwater Surrey GU18 5RG England",
+      "latitude": 51.3507236,
+      "longitude": -0.6828478,
+      "formatted_address": "GU18 5RG, Lightwater, Windlesham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350640369
+    },
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.4372629,
+      "longitude": -0.5687512,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
+    },
+    {
+      "name": "Pelhamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16670",
+      "image_url": "https://images.englandrugby.com/club_images/16670.png",
+      "address": "Raynes Park Sports Ground Taunton Ave Raynes Park SW20 0BH UNITED KINGDOM",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Reeds Weybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17645",
+      "image_url": "https://images.englandrugby.com/club_images/17645.png",
+      "address": "North Avenue Whiteley Village Walton On Thames SURREY KT12 4EJ UNITED KINGDOM ",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350219256
+    }
+  ],
+  "team_count": 11
+}

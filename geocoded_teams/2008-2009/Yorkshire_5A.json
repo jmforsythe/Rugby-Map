@@ -1,0 +1,87 @@
+{
+  "league_name": "Yorkshire 5A",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=3651&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Sheffield Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089",
+      "image_url": "https://images.englandrugby.com/club_images/19089.png",
+      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
+      "latitude": 53.3796125,
+      "longitude": -1.5026038,
+      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840574
+    },
+    {
+      "name": "Hemsworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9968",
+      "image_url": "https://images.englandrugby.com/club_images/9968.png",
+      "address": "Moxon Fields Lowfield Road, Hemsworth Pontefract WEST YORKSHIRE WF9 4JT UNITED KINGDOM ",
+      "latitude": 53.6141561,
+      "longitude": -1.3399592,
+      "formatted_address": "WF9 4JT, Hemsworth, Kinsley, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350891298
+    },
+    {
+      "name": "Ossett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16303",
+      "image_url": "https://images.englandrugby.com/club_images/16303.png",
+      "address": "Ossett Rufc, Ossett Cricket & Athletic Club, Queens Terrace, Ossett, West Yorkshire, WF5 8JT, United Kingdom",
+      "latitude": 53.6755805,
+      "longitude": -1.5818007,
+      "formatted_address": "WF5 8JT, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350890210
+    },
+    {
+      "name": "Harrogate Pythons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9502",
+      "image_url": "https://images.englandrugby.com/club_images/9502.png",
+      "address": "Harrogate Pythons Rfc, Station View, Starbeck, Harrogate, North Yorkshire, HG2 7JA, United Kingdom",
+      "latitude": 53.99858,
+      "longitude": -1.50237,
+      "formatted_address": "HG2 7JA, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352344
+    },
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    },
+    {
+      "name": "Mosborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164",
+      "image_url": "https://images.englandrugby.com/club_images/14164.png",
+      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
+      "latitude": 53.3265437,
+      "longitude": -1.3605033,
+      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 350801206
+    },
+    {
+      "name": "Stocksbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21011",
+      "image_url": "https://images.englandrugby.com/club_images/21011.png",
+      "address": "Stocksbridge Rugby Club, 634 Manchester Road, Stocksbridge, Sheffield, Yorks                         , S36 1DY, United Kingdom",
+      "latitude": 53.4837885,
+      "longitude": -1.5989857,
+      "formatted_address": "S36 1DY, Stocksbridge, Deepcar, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351847660
+    },
+    {
+      "name": "Sheffield Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19093",
+      "image_url": "https://images.englandrugby.com/club_images/19093.png",
+      "address": "Parsons Cross Park Pavillion Buchanan Road Sheffield South Yorkshire S5 8AL United Kingdom",
+      "latitude": 53.4232423,
+      "longitude": -1.4718951,
+      "formatted_address": "S5 8AL, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351401289
+    }
+  ],
+  "team_count": 8
+}

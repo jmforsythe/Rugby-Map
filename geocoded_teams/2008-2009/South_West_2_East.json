@@ -1,0 +1,127 @@
+{
+  "league_name": "South West 2 East",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=3532&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Cheltenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4514",
+      "image_url": "https://images.englandrugby.com/club_images/4514.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 261137594
+    },
+    {
+      "name": "Swanage & Wareham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21497",
+      "image_url": "https://images.englandrugby.com/club_images/21497.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Salisbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18607",
+      "image_url": "https://images.englandrugby.com/club_images/18607.png",
+      "address": "C/o Salisbury Rfc, Castle Rd, Salisbury, Wiltshire, SP1 3SA, United Kingdom",
+      "latitude": 51.0859327,
+      "longitude": -1.8010028,
+      "formatted_address": "SP1 3SA, Salisbury, Wiltshire, England, United Kingdom",
+      "place_id": 350833936
+    },
+    {
+      "name": "Wallingford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24153",
+      "image_url": "https://images.englandrugby.com/club_images/24153.png",
+      "address": "Hithercroft Sports Park, Hithercroft Road, Wallingford, Oxfordshire, OX10 9RB, United Kingdom",
+      "latitude": 51.5994582,
+      "longitude": -1.1427787,
+      "formatted_address": "OX10 9RB, Wallingford, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350753211
+    },
+    {
+      "name": "High Wycombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10112",
+      "image_url": "https://images.englandrugby.com/club_images/10112.png",
+      "address": "Kingsmead Road, High Wycombe, Buckinghamshire, HP11 1JB, England",
+      "latitude": 51.6136626,
+      "longitude": -0.7135584,
+      "formatted_address": "Kingsmead Road, High Wycombe Community Board, Flackwell Heath, Buckinghamshire, England, HP11 1JB, United Kingdom",
+      "place_id": 259570350
+    },
+    {
+      "name": "Trowbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23240",
+      "image_url": "https://images.englandrugby.com/club_images/23240.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM ",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 261549299
+    },
+    {
+      "name": "Olney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16184",
+      "image_url": "https://images.englandrugby.com/club_images/16184.png",
+      "address": "The Recreation Ground, East Street, Olney, Buckinghamshire, MK46 4DH, United Kingdom",
+      "latitude": 52.1560018,
+      "longitude": -0.6976983,
+      "formatted_address": "MK46 4DH, Olney, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350704260
+    },
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Bletchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2599",
+      "image_url": "https://images.englandrugby.com/club_images/2599.png",
+      "address": "The Clubhouse Manor Fields Fenny Stratford Bletchley Milton Keynes MK2 2HX UNITED KINGDOM",
+      "latitude": 51.9950166,
+      "longitude": -0.7123833,
+      "formatted_address": "MK2 2HX, Bletchley and Fenny Stratford, Fenny Stratford, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703167
+    },
+    {
+      "name": "Henley Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10003",
+      "image_url": "https://images.englandrugby.com/club_images/10003.png",
+      "address": "Dry Leas Marlow Road Henley-on-Thames RG9 2JA UNITED KINGDOM",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 352494689
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,77 @@
+{
+  "league_name": "Third Division",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=4053&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Rosslyn Park Nomads",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18044",
+      "image_url": "https://images.englandrugby.com/club_images/18044.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
+    },
+    {
+      "name": "Hammersmith & Fulham IV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9260",
+      "image_url": "https://images.englandrugby.com/club_images/9260.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Actonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=315",
+      "image_url": "https://images.englandrugby.com/club_images/315.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Harlequin Amateurs III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9395",
+      "image_url": "https://images.englandrugby.com/club_images/9395.png",
+      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
+      "latitude": 51.4120846,
+      "longitude": -0.3172338,
+      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350670305
+    },
+    {
+      "name": "Kilburn Cosmos II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11434",
+      "image_url": "https://images.englandrugby.com/club_images/11434.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Belsize Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1944",
+      "image_url": "https://images.englandrugby.com/club_images/1944.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Berks/Bucks & Oxon 2 South",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=3552&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Reading II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17534",
+      "image_url": "https://images.englandrugby.com/club_images/17534.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "Rams III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17420",
+      "image_url": "https://images.englandrugby.com/club_images/17420.png",
+      "address": "Old Redingensians Sports Ground Old Bath Road, Sonning Reading BERKSHIRE RG4 6TQ UNITED KINGDOM ",
+      "latitude": 51.4683196,
+      "longitude": -0.901799,
+      "formatted_address": "RG4 6TQ, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790627
+    },
+    {
+      "name": "Farnham Royal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7991",
+      "image_url": "https://images.englandrugby.com/club_images/7991.png",
+      "address": "Farnham Park Playing Fields, Beaconsfield Road, Farnham Royal, Slough, Berkshire , SL2 3BP, England",
+      "latitude": 51.5399014,
+      "longitude": -0.6162762,
+      "formatted_address": "SL2 3BP, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820497
+    },
+    {
+      "name": "Windsor III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25610",
+      "image_url": "https://images.englandrugby.com/club_images/25610.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM ",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932039
+    },
+    {
+      "name": "Phoenix II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16888",
+      "image_url": "https://images.englandrugby.com/club_images/16888.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
+    },
+    {
+      "name": "Abingdon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=247",
+      "image_url": "https://images.englandrugby.com/club_images/247.png",
+      "address": "Southern Sports Park Lambrick Way Abingdon OXFORDSHIRE OX14 5TJ UNITED KINGDOM ",
+      "latitude": 51.657752,
+      "longitude": -1.2904323,
+      "formatted_address": "OX14 5TJ, Abingdon on Thames, Abingdon, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350754001
+    },
+    {
+      "name": "Harwell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9608",
+      "image_url": "https://images.englandrugby.com/club_images/9608.png",
+      "address": "Harwell Rfc Main Sports Pavilion, Harwell Science And Innovation Campus, Didcot, Oxfordshire, OX11 0RL, United Kingdom",
+      "latitude": 51.5787591,
+      "longitude": -1.309943,
+      "formatted_address": "OX11 0RL, Agilent Technologies, Harwell, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 350753241
+    },
+    {
+      "name": "Grove III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9007",
+      "image_url": "https://images.englandrugby.com/club_images/9007.png",
+      "address": "Recreation Lane, Grove, Wantage, Oxfordshire, OX12 0AA, United Kingdom",
+      "latitude": 51.6031576,
+      "longitude": -1.4254415,
+      "formatted_address": "OX12 0AA, Westfield and Willows Park, Grove, Vale of White Horse, Oxfordshire, England, United Kingdom",
+      "place_id": 351719707
+    }
+  ],
+  "team_count": 8
+}

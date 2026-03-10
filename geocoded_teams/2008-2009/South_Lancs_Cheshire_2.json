@@ -1,0 +1,127 @@
+{
+  "league_name": "South Lancs/Cheshire 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=3638&season=2008-2009#tables",
+  "teams": [
+    {
+      "name": "Anselmians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=686",
+      "image_url": "https://images.englandrugby.com/club_images/686.png",
+      "address": "Malone Field, Eastham Village Road, Eastham, Wirral, Merseyside, CH62 0AN, United Kingdom",
+      "latitude": 53.31497,
+      "longitude": -2.96101,
+      "formatted_address": "CH62 0AN, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351064551
+    },
+    {
+      "name": "Warrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24339",
+      "image_url": "https://images.englandrugby.com/club_images/24339.png",
+      "address": "South Warrington Sports Club Stockton Lane Grappenhall Warrington Cheshire WA4 3HQ United Kingdom",
+      "latitude": 53.3713965,
+      "longitude": -2.563598,
+      "formatted_address": "WA4 3HQ, Grappenhall and Thelwall, Warrington, England, United Kingdom",
+      "place_id": 350880607
+    },
+    {
+      "name": "Oswestry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16310",
+      "image_url": "https://images.englandrugby.com/club_images/16310.png",
+      "address": "Granville Park, Garrison Avenue, Oswestry, Shropshire, SY11 4AD, United Kingdom",
+      "latitude": 52.8733455,
+      "longitude": -3.0323944,
+      "formatted_address": "Oswestry RFC, Garrison Avenue, Park Hall, Oswestry, Shropshire, England, SY11 4AD, United Kingdom",
+      "place_id": 256220952
+    },
+    {
+      "name": "Sefton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18947",
+      "image_url": "https://images.englandrugby.com/club_images/18947.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
+    },
+    {
+      "name": "Ruskin Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18436",
+      "image_url": "https://images.englandrugby.com/club_images/18436.png",
+      "address": "Ruskin Drive Sportsground Ruskin Drive, St. Helens. WA10 6RP UNITED KINGDOM",
+      "latitude": 53.4592563,
+      "longitude": -2.7588376,
+      "formatted_address": "WA10 6RP, St Helens, Liverpool City Region, England, United Kingdom",
+      "place_id": 350877472
+    },
+    {
+      "name": "Douglas (I.O.M.)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6674",
+      "image_url": "https://images.englandrugby.com/club_images/6674.png",
+      "address": "The Clubhouse, Port-e-chee, Im2 2ra, Douglas, Isle Of Man, IM2 2RA, Isle Of Man",
+      "latitude": 54.1578379,
+      "longitude": -4.501375,
+      "formatted_address": "IM2 2RA, Douglas, Middle, Isle of Man",
+      "place_id": 352220987
+    },
+    {
+      "name": "Trentham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23125",
+      "image_url": "https://images.englandrugby.com/club_images/23125.png",
+      "address": "New Inn Lane Trentham Stoke On Trent STAFFORDSHIRE ST4 8BE",
+      "latitude": 52.9684313,
+      "longitude": -2.1884007,
+      "formatted_address": "ST4 8BE, Stoke-on-Trent, England, United Kingdom",
+      "place_id": 351997401
+    },
+    {
+      "name": "Ashton-on-Mersey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=947",
+      "image_url": "https://images.englandrugby.com/club_images/947.png",
+      "address": "Banky Lane (off Carrington Lane) Ashton on Mersey Sale CHESHIRE M33 5SL UNITED KINGDOM",
+      "latitude": 53.4333932,
+      "longitude": -2.3555828,
+      "formatted_address": "M33 5SL, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 350698158
+    },
+    {
+      "name": "Wallasey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24143",
+      "image_url": "https://images.englandrugby.com/club_images/24143.png",
+      "address": "Wallasey Rugby Club Cross Lane Wallasey Merseyside CH458RH United Kingdom",
+      "latitude": 53.41896,
+      "longitude": -3.07493,
+      "formatted_address": "CH45 8RH, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351061964
+    },
+    {
+      "name": "Southport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19778",
+      "image_url": "https://images.englandrugby.com/club_images/19778.png",
+      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
+      "latitude": 53.6191699,
+      "longitude": -3.0229499,
+      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
+      "place_id": 351804936
+    },
+    {
+      "name": "Orrell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16278",
+      "image_url": "https://images.englandrugby.com/club_images/16278.png",
+      "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
+      "latitude": 53.54627,
+      "longitude": -2.72694,
+      "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 352156955
+    },
+    {
+      "name": "Crewe & Nantwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5859",
+      "image_url": "https://images.englandrugby.com/club_images/5859.png",
+      "address": "Crewe Vagrants Sports Club Newcastle Road Willaston Cheshire CW5 7EP United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568108
+    }
+  ],
+  "team_count": 12
+}

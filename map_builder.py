@@ -60,6 +60,7 @@ class MapConfig:
     default_tier_entry_level: str = "itl2"
     use_inline_boundaries: bool = True
     shared_boundaries_path: str = "../shared"
+    fallback_icon_url: str | None = None
     header_elements: list[str] = field(default_factory=list)
     body_elements: list[str] = field(default_factory=list)
 
@@ -846,6 +847,7 @@ def _add_marker(
     item: _PlacedItem,
     color: str,
     tier_order: int | None = None,
+    fallback_icon_url: str | None = None,
 ) -> None:
     name_esc = escape(item["name"])
     popup_content = (
@@ -860,11 +862,15 @@ def _add_marker(
     icon_size = 30
     icon_url = item.get("icon_url")
     if icon_url:
+        if fallback_icon_url:
+            onerror = f"this.onerror=null; this.src='{escape(fallback_icon_url)}'"
+        else:
+            onerror = "this.style.display='none'"
         icon_html = (
             f'<div style="text-align: center;">'
             f'<img src="{escape(icon_url)}" '
             f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;" '
-            f"onerror=\"this.style.display='none'\">"
+            f'onerror="{onerror}">'
             f"</div>"
         )
     else:
@@ -890,44 +896,49 @@ def _add_marker(
     marker.add_to(marker_group)
 
 
-def _add_marker_cluster(m: folium.Map) -> MarkerCluster:
-    icon_create_function = """
-    function(cluster) {
+def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> MarkerCluster:
+    if fallback_icon_url:
+        escaped_fallback = escape(fallback_icon_url)
+        onerror_js = f"this.onerror=null; this.src=\\'{escaped_fallback}\\'"
+    else:
+        onerror_js = "this.style.display=\\'none\\'"
+    icon_create_function = f"""
+    function(cluster) {{
         var markers = cluster.getAllChildMarkers();
         var bestMarker = null;
         var bestTier = Infinity;
         var names = [];
-        for (var i = 0; i < markers.length; i++) {
+        for (var i = 0; i < markers.length; i++) {{
             var mk = markers[i];
-            if (mk.options.tierOrder !== undefined && mk.options.tierOrder !== null && mk.options.tierOrder < bestTier) {
+            if (mk.options.tierOrder !== undefined && mk.options.tierOrder !== null && mk.options.tierOrder < bestTier) {{
                 bestTier = mk.options.tierOrder;
                 bestMarker = mk;
-            }
-            if (mk.options.itemName) { names.push(mk.options.itemName); }
-        }
+            }}
+            if (mk.options.itemName) {{ names.push(mk.options.itemName); }}
+        }}
         names.sort();
         var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
         var count = cluster.getChildCount();
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' items';
-        if (imageUrl) {
-            return L.divIcon({
+        if (imageUrl) {{
+            return L.divIcon({{
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                      '<img src="' + imageUrl + '" style="width:30px;height:30px;border-radius:50%;" onerror="this.style.display=\\'none\\'">' +
+                      '<img src="' + imageUrl + '" style="width:30px;height:30px;border-radius:50%;" onerror="{onerror_js}">' +
                       '<span style="position:absolute;bottom:-5px;right:-5px;background:#333;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center;">' + count + '</span></div>',
                 className: 'marker-cluster-custom',
                 iconSize: L.point(30, 30),
                 iconAnchor: L.point(15, 15)
-            });
-        } else {
-            return L.divIcon({
+            }});
+        }} else {{
+            return L.divIcon({{
                 html: '<div style="text-align:center;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
                       '<div style="width:30px;height:30px;border-radius:50%;background:#666;color:white;font-size:12px;line-height:30px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3);">' + count + '</div></div>',
                 className: 'marker-cluster-custom',
                 iconSize: L.point(30, 30),
                 iconAnchor: L.point(15, 15)
-            });
-        }
-    }
+            }});
+        }}
+    }}
     """
     parent_cluster = MarkerCluster(
         control=False,
@@ -1173,7 +1184,7 @@ def generate_single_group_map(
     group_names = sorted({it["group"] for it in all_placed})
     group_colors = {grp: _pick_color(config.color_palette, j) for j, grp in enumerate(group_names)}
 
-    parent_cluster = _add_marker_cluster(m)
+    parent_cluster = _add_marker_cluster(m, fallback_icon_url=config.fallback_icon_url)
     shading_groups: dict[str, folium.FeatureGroup] = {}
     marker_groups: dict[str, FeatureGroupSubGroup] = {}
     for grp in group_names:
@@ -1191,7 +1202,13 @@ def generate_single_group_map(
         _add_territories(fg, {grp: geoms.get(grp, [])}, group_colors)
 
     for it in all_placed:
-        _add_marker(marker_groups[it["group"]], it, group_colors[it["group"]], tier_order=0)
+        _add_marker(
+            marker_groups[it["group"]],
+            it,
+            group_colors[it["group"]],
+            tier_order=0,
+            fallback_icon_url=config.fallback_icon_url,
+        )
 
     _add_layer_control(m)
 
@@ -1252,7 +1269,7 @@ def generate_multi_group_map(
     marker_groups: dict[str, FeatureGroupSubGroup] = {}
     sorted_tiers = [t for t in sorted_tier_names if t in items_by_tier]
 
-    parent_cluster = _add_marker_cluster(m)
+    parent_cluster = _add_marker_cluster(m, fallback_icon_url=config.fallback_icon_url)
     for tier in sorted_tiers:
         territory_groups[tier] = folium.FeatureGroup(name=f"{tier} - Territory", show=False)
         marker_groups[tier] = FeatureGroupSubGroup(
@@ -1272,7 +1289,11 @@ def generate_multi_group_map(
     for tier in reversed(sorted_tiers):
         for it in items_by_tier[tier]:
             _add_marker(
-                marker_groups[tier], it, group_colors[it["group"]], tier_order_map.get(tier, 999)
+                marker_groups[tier],
+                it,
+                group_colors[it["group"]],
+                tier_order_map.get(tier, 999),
+                fallback_icon_url=config.fallback_icon_url,
             )
             num_items += 1
 

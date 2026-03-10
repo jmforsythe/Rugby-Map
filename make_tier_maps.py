@@ -335,6 +335,7 @@ def _build_config(
         default_tier_entry_level="itl2",
         use_inline_boundaries=not is_prod,
         shared_boundaries_path=shared_path,
+        fallback_icon_url=RFU_FALLBACK_ICON,
         color_palette=palette or COLOR_PALETTE,
         header_elements=header_elements,
         body_elements=body_elements,
@@ -464,7 +465,7 @@ def main() -> None:
         for it in comp_items:
             abs_tier = it.tier_num + offset
             adjusted_merit.append(
-                replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier))
+                replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier, season))
             )
 
     total_items = len(loaded.pyramid) + len(adjusted_merit)

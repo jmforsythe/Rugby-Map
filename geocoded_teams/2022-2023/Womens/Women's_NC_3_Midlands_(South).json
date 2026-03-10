@@ -1,0 +1,57 @@
+{
+  "league_name": "Women's NC 3 Midlands (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39227&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Shelford Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123167",
+      "image_url": "https://images.englandrugby.com/club_images/123167.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
+    },
+    {
+      "name": "Braintree Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123157",
+      "image_url": "https://images.englandrugby.com/club_images/123157.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
+    },
+    {
+      "name": "Letchworth GC Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124236",
+      "image_url": "https://images.englandrugby.com/club_images/124236.png",
+      "address": "Letchworth R.u.f.c. Legends Lane Baldock Road Letchworth Garden City Herts SG6 2EN United Kingdom",
+      "latitude": 51.97622,
+      "longitude": -0.2059699,
+      "formatted_address": "SG6 2EN, Letchworth, Hertfordshire, England, United Kingdom",
+      "place_id": 351460350
+    },
+    {
+      "name": "Cambridge Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125433",
+      "image_url": "https://images.englandrugby.com/club_images/125433.png",
+      "address": "Ellgia Fields, Grantchester Road, Cambridge, Cambridgeshire, CB3 9ED, United Kingdom",
+      "latitude": 52.1958672,
+      "longitude": 0.1001034,
+      "formatted_address": "CB3 9ED, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350534981
+    },
+    {
+      "name": "Ampthill & District Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26687",
+      "image_url": "https://images.englandrugby.com/club_images/26687.png",
+      "address": "Dillingham Park Woburn Street Ampthill Bedfordshire MK45 2HX UNITED KINGDOM",
+      "latitude": 52.0318695,
+      "longitude": -0.4991971,
+      "formatted_address": "MK45 2HX, Ampthill, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350253433
+    }
+  ],
+  "team_count": 5
+}

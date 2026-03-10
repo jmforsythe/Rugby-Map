@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 2 North (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39215&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Horden & Peterlee Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10389",
+      "image_url": "https://images.englandrugby.com/club_images/10389.png",
+      "address": "Peterlee & Horden Rfc Eden Lane Peterlee Peterlee Ctydur SR8 5ND United Kingdom",
+      "latitude": 54.7653592,
+      "longitude": -1.3280634,
+      "formatted_address": "SR8 5ND, Peterlee, County Durham, North East, England, United Kingdom",
+      "place_id": 350835330
+    },
+    {
+      "name": "Keswick Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125607",
+      "image_url": "https://images.englandrugby.com/club_images/125607.png",
+      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
+      "latitude": 54.6006588,
+      "longitude": -3.1439604,
+      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
+      "place_id": 350527467
+    },
+    {
+      "name": "Ryton Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123699",
+      "image_url": "https://images.englandrugby.com/club_images/123699.png",
+      "address": "Main Road, Barmoor, Ryton, Tyne And Wear, NE40 3AG, United Kingdom",
+      "latitude": 54.9679607,
+      "longitude": -1.7747145,
+      "formatted_address": "NE40 3AG, Ryton, Gateshead, North East, England, United Kingdom",
+      "place_id": 350712431
+    },
+    {
+      "name": "Workington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26097",
+      "image_url": "https://images.englandrugby.com/club_images/26097.png",
+      "address": "Ellis Sports Ground, Moss Bay Road, Workington, Cumbria, CA14 3XZ, United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    },
+    {
+      "name": "Penrith Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124547",
+      "image_url": "https://images.englandrugby.com/club_images/124547.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Upper Eden Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123275",
+      "image_url": "https://images.englandrugby.com/club_images/123275.png",
+      "address": "Pennine Park, Westgarth Rd, Kirkby Stephen, Cumbria, CA17 4TF, United Kingdom",
+      "latitude": 54.4707847,
+      "longitude": -2.355303,
+      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350528061
+    }
+  ],
+  "team_count": 6
+}

@@ -121,12 +121,12 @@ def get_leagues(season: str) -> list[LeagueInfo]:
         {
             "name": "Premiership",
             "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division={PREM_MAP[season]}&season={season}",
-            "parent_url": "https://www.englandrugby.com/fixtures-and-results",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=5",
         },
         {
             "name": "Championship",
             "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division={CHAMP_MAP[season]}&season={season}",
-            "parent_url": "https://www.englandrugby.com/fixtures-and-results",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=173",
         },
     ]
 
@@ -159,7 +159,7 @@ def get_womens_leagues(season: str) -> list[LeagueInfo]:
         {
             "name": "Women's Premiership",
             "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764&division={WOMENS_PREM_MAP[season]}&season={season}",
-            "parent_url": "https://www.englandrugby.com/fixtures-and-results",
+            "parent_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1764",
         }
     ]
 
@@ -487,6 +487,18 @@ _BANNED_FILENAMES = [
 
 
 _COMPETITION_NAMES: dict[str, str] = {
+    # Pyramid
+    "5": "Premiership",
+    "173": "Championship",
+    "1605": "National_Leagues",
+    "1699": "South_West",
+    "1597": "Midlands",
+    "261": "London_and_SE",
+    "1623": "Northern",
+    # Women's
+    "1764": "Womens_Premiership",
+    "1782": "Womens",
+    # Merit / district
     "183": "NOWIRUL",
     "202": "Hampshire",
     "1600": "Midlands_Reserve",
@@ -527,7 +539,7 @@ def _scrape_league_list(
     """Scrape teams for each league and save to output_dir. Returns skipped leagues.
 
     When use_competition_subdirs is True, files are saved into subdirectories
-    named after the competition (e.g. merit/Hampshire/Counties_6_South.json).
+    named after the competition (e.g. Hampshire/Counties_6_South.json).
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     skipped: list[LeagueInfo] = []
@@ -661,7 +673,9 @@ def main() -> None:
 
     skipped_leagues: list[LeagueInfo] = []
     try:
-        skipped_leagues += _scrape_league_list(leagues + womens_leagues, base_dir, season)
+        skipped_leagues += _scrape_league_list(
+            leagues + womens_leagues, base_dir, season, use_competition_subdirs=True
+        )
         skipped_leagues += _scrape_league_list(
             merit_leagues, merit_dir, season, use_competition_subdirs=True
         )

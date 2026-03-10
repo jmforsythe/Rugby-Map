@@ -1,0 +1,57 @@
+{
+  "league_name": "Women's NC 1 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39204&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Kendal Wasps Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11253",
+      "image_url": "https://images.englandrugby.com/club_images/11253.png",
+      "address": "Kendal R.u.f.c. Mint Bridge Shap Road Kendal Cumbria LA9 6NY United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350230488
+    },
+    {
+      "name": "Blaydon Redkites Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123854",
+      "image_url": "https://images.englandrugby.com/club_images/123854.png",
+      "address": "Crow Trees Ground Hexham Road Newcastle Upon Tyne Tyne And Wear NE16 3BN United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350710013
+    },
+    {
+      "name": "Carlisle Cougars Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4210",
+      "image_url": "https://images.englandrugby.com/club_images/4210.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM ",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "Novocastrians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15175",
+      "image_url": "https://images.englandrugby.com/club_images/15175.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
+      "name": "Darlington Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6104",
+      "image_url": "https://images.englandrugby.com/club_images/6104.png",
+      "address": "Blackwell Meadows Grange Road Darlington COUNTY DURHAM DL1 5NR UNITED KINGDOM ",
+      "latitude": 54.5098711,
+      "longitude": -1.5645631,
+      "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 350592976
+    }
+  ],
+  "team_count": 5
+}

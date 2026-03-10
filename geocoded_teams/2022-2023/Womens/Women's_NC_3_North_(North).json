@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 North (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39231&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Stockton Rockets Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124307",
+      "image_url": "https://images.englandrugby.com/club_images/124307.png",
+      "address": "The Grangefield Ground, 52a Oxbridge Avenue, Stockton-on-tees, Ctydur, TS18 4JF, United Kingdom",
+      "latitude": 54.56503,
+      "longitude": -1.33826,
+      "formatted_address": "TS18 4JF, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352082792
+    },
+    {
+      "name": "Houghton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124529",
+      "image_url": "https://images.englandrugby.com/club_images/124529.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "Percy Park Panthers Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124477",
+      "image_url": "https://images.englandrugby.com/club_images/124477.png",
+      "address": "The Club House, Preston Avenue, North Shields, Tyne  Wear, NE30 2BE, United Kingdom",
+      "latitude": 55.01683,
+      "longitude": -1.44498,
+      "formatted_address": "NE30 2BE, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351626964
+    },
+    {
+      "name": "Ponteland Tigers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124285",
+      "image_url": "https://images.englandrugby.com/club_images/124285.png",
+      "address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, NE20 9EG, United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
+    },
+    {
+      "name": "Blaydon Redkites Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125277",
+      "image_url": "https://images.englandrugby.com/club_images/125277.png",
+      "address": "Crow Trees Ground Hexham Road Newcastle Upon Tyne Tyne And Wear NE16 3BN United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350710013
+    },
+    {
+      "name": "Hartlepool Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9560",
+      "image_url": "https://images.englandrugby.com/club_images/9560.png",
+      "address": "Mayfield Park, Easington Road, Hartlepool, County Durham, TS24 9BA, United Kingdom",
+      "latitude": 54.70523,
+      "longitude": -1.23388,
+      "formatted_address": "TS24 9BA, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086474
+    }
+  ],
+  "team_count": 6
+}

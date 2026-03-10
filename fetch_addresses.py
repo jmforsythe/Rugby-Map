@@ -221,7 +221,7 @@ def process_league_file(
     print(f"Processing: {league_file_path.name}")
     print(f"{"="*80}")
 
-    # Mirror subdirectory structure (e.g. merit/) from league_data to team_addresses
+    # Mirror subdirectory structure from league_data to team_addresses
     relative = league_file_path.relative_to(league_dir)
     output_file = Path("team_addresses") / season / relative
     if output_file.exists():

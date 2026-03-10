@@ -1,0 +1,67 @@
+{
+  "league_name": "Counties 3 Tribute Dorset & Wilts Central",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=47087&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Bradford-on-Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2953&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/2953.png",
+      "address": "Broom Ground, Ashley Lane Winsley Bradford-on-Avon WILTSHIRE BA15 2HR UNITED KINGDOM ",
+      "latitude": 51.35071,
+      "longitude": -2.27882,
+      "formatted_address": "BA15 2HR, Winsley, Wiltshire, England, United Kingdom",
+      "place_id": 350935048
+    },
+    {
+      "name": "Colerne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5431&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5431.png",
+      "address": "Higgins Field, Bath Road, Colerne, Wilts                         , SN14 8AT, United Kingdom",
+      "latitude": 51.43836,
+      "longitude": -2.27937,
+      "formatted_address": "SN14 8AT, Colerne, Wiltshire, England, United Kingdom",
+      "place_id": 351943764
+    },
+    {
+      "name": "Melksham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13646&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/13646.png",
+      "address": "Melksham Rugby Club, Oakfields, Eastern Way, Melksham, Wiltshire, SN12 7GU, United Kingdom",
+      "latitude": 51.3800088,
+      "longitude": -2.1060921,
+      "formatted_address": "SN12 7GU, Melksham Without, Wiltshire, England, United Kingdom",
+      "place_id": 350823284
+    },
+    {
+      "name": "Combe Down II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5487&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/5487.png",
+      "address": "Holly's Corner, Bramble Way, North Road, Combe Down, Somerset, BA2 5DE, United Kingdom",
+      "latitude": 51.362253,
+      "longitude": -2.3516399,
+      "formatted_address": "BA2 5DE, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350491125
+    },
+    {
+      "name": "Trowbridge III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23242&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/23242.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM ",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 261549299
+    },
+    {
+      "name": "Bath Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1614&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1614.png",
+      "address": "Sulis Sports Ground Claverton Down Bath BA2 7AU UNITED KINGDOM ",
+      "latitude": 51.36393,
+      "longitude": -2.3258899,
+      "formatted_address": "BA2 7AU, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350936651
+    }
+  ],
+  "team_count": 6
+}

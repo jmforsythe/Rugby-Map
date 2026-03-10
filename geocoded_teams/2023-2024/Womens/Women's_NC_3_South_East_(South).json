@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47359&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Uckfield Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124935&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124935.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM ",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350401990
+    },
+    {
+      "name": "Tunbridge Wells Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124654&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/124654.png",
+      "address": "St. Marks Recreation Ground Frant Road Tunbridge Wells Kent TN2 5LS United Kingdom",
+      "latitude": 51.1149425,
+      "longitude": 0.2600371,
+      "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 350403765
+    },
+    {
+      "name": "Sheppey Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125726&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/125726.png",
+      "address": "Sheppey Rugby Football Club The Clubhouse Stupple Field Lower Road, Minster, Sheerness Kent ME12 3RT United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351114830
+    },
+    {
+      "name": "Maidstone Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127249&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/127249.png",
+      "address": "The William Day Mem. Ground The Mote, Willow Way Maidstone Kent ME15 7RN United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350250249
+    },
+    {
+      "name": "New Ash Green Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14309&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/14309.png",
+      "address": "The Pavilion Punchcroft Road New Ash Green, Longfield Kent DA3 8HS United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570829
+    },
+    {
+      "name": "Folkestone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125334&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/125334.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    }
+  ],
+  "team_count": 6
+}

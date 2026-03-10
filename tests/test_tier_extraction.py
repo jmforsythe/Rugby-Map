@@ -206,6 +206,42 @@ class TestExtractTier:
         assert extract_tier("Premiership.json", "2018-2019") == (1, "Premiership")
 
 
+class TestExtractTierWithCompetitionDir:
+    """Tests for paths that include a competition directory prefix.
+
+    Non-merit files are stored under ``{competition}/filename.json``.
+    ``extract_tier`` strips the directory prefix before matching.
+    """
+
+    def test_pyramid_premiership(self):
+        result = extract_tier("Premiership/Premiership.json", "2025-2026")
+        assert result == (1, "Premiership")
+
+    def test_pyramid_championship(self):
+        result = extract_tier("Championship/Championship.json", "2025-2026")
+        assert result == (2, "Championship")
+
+    def test_pyramid_national_league(self):
+        result = extract_tier("National_Leagues/National_League_1_North.json", "2025-2026")
+        assert result == (3, "National League 1")
+
+    def test_pyramid_counties(self):
+        result = extract_tier("London_and_SE/Counties_3_Sussex.json", "2025-2026")
+        assert result == (9, "Counties 3")
+
+    def test_pyramid_pre_2021(self):
+        result = extract_tier("Northern/North_1.json", "2018-2019")
+        assert result == (6, "Level 6")
+
+    def test_womens_premiership(self):
+        result = extract_tier("Womens_Premiership/Women's_Premiership.json", "2025-2026")
+        assert result == (101, "Premiership Women's")
+
+    def test_womens_nc(self):
+        result = extract_tier("Womens/Women's_NC_1_North.json", "2025-2026")
+        assert result == (104, "National Challenge 1")
+
+
 class TestExtractTierMeritPath:
     """Tests for merit path routing via extract_tier.
 

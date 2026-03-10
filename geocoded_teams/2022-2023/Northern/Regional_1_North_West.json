@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 1 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39145&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Lymm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13010",
+      "image_url": "https://images.englandrugby.com/club_images/13010.png",
+      "address": "Beechwood, Crouchley Lane, Lymm, Cheshire, WA13 0AT, United Kingdom",
+      "latitude": 53.37437,
+      "longitude": -2.4758,
+      "formatted_address": "WA13 0AT, Lymm, Warrington, England, United Kingdom",
+      "place_id": 352125816
+    },
+    {
+      "name": "Blackburn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2477",
+      "image_url": "https://images.englandrugby.com/club_images/2477.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Rossendale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009",
+      "image_url": "https://images.englandrugby.com/club_images/18009.png",
+      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
+      "latitude": 53.7035387,
+      "longitude": -2.2757123,
+      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
+      "place_id": 350949552
+    },
+    {
+      "name": "Sandbach",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18677",
+      "image_url": "https://images.englandrugby.com/club_images/18677.png",
+      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
+      "latitude": 53.1560892,
+      "longitude": -2.3670478,
+      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
+      "place_id": 255894806
+    },
+    {
+      "name": "Macclesfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064",
+      "image_url": "https://images.englandrugby.com/club_images/13064.png",
+      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
+      "latitude": 53.2725255,
+      "longitude": -2.1600659,
+      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
+      "place_id": 255105008
+    },
+    {
+      "name": "Stockport",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=117609",
+      "image_url": "https://images.englandrugby.com/club_images/117609.png",
+      "address": "Bridge Lane Memorial Ground Headlands Road Bramhall Stockport CHESHIRE SK7 3AN UNITED KINGDOM ",
+      "latitude": 53.37211,
+      "longitude": -2.15291,
+      "formatted_address": "SK7 3AN, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351924550
+    },
+    {
+      "name": "Wirral",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25707",
+      "image_url": "https://images.englandrugby.com/club_images/25707.png",
+      "address": "Memorial Ground Thornton Common Road Clatterbridge Bebington MERSEYSIDE CH63 0LT UNITED KINGDOM ",
+      "latitude": 53.3243906,
+      "longitude": -3.0198623,
+      "formatted_address": "CH63 0LT, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351065371
+    },
+    {
+      "name": "Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13231",
+      "image_url": "https://images.englandrugby.com/club_images/13231.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Northwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15005",
+      "image_url": "https://images.englandrugby.com/club_images/15005.png",
+      "address": "Moss Farm Leisure Complex, Moss Farm, Winnington, Northwich, Cheshire, CW8 4BG, United Kingdom",
+      "latitude": 53.2571511,
+      "longitude": -2.5323746,
+      "formatted_address": "CW8 4BG, Northwich, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350118238
+    },
+    {
+      "name": "Kendal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11240",
+      "image_url": "https://images.englandrugby.com/club_images/11240.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Burnage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3684",
+      "image_url": "https://images.englandrugby.com/club_images/3684.png",
+      "address": "Varley Park, Battersea Road, Stockport, Chesh, SK4 3EA, United Kingdom",
+      "latitude": 53.4083445,
+      "longitude": -2.2090526,
+      "formatted_address": "SK4 3EA, Heaton Mersey, Cheadle, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 350368827
+    },
+    {
+      "name": "Kirkby Lonsdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11718",
+      "image_url": "https://images.englandrugby.com/club_images/11718.png",
+      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
+      "latitude": 54.2081674,
+      "longitude": -2.6025938,
+      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350680621
+    }
+  ],
+  "team_count": 12
+}

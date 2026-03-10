@@ -1,0 +1,127 @@
+{
+  "league_name": "Counties 3 Midlands West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=47036&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Harbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9352&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/9352.png",
+      "address": "Harbury Rfc, Waterloo Fields, Middle Road, Harbury, Leamington Spa, Warwickshire, CV33 9JN, United Kingdom",
+      "latitude": 52.24043,
+      "longitude": -1.4768699,
+      "formatted_address": "CV33 9JN, Harbury, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 351119581
+    },
+    {
+      "name": "Stoke Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21074.png",
+      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
+      "latitude": 52.402107,
+      "longitude": -1.4568427,
+      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351117485
+    },
+    {
+      "name": "Pershore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16795&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16795.png",
+      "address": "Piddle Park , Mill Lane, Wyre Piddle, Pershore, Worcestershire, WR10 2JF, United Kingdom",
+      "latitude": 52.12151,
+      "longitude": -2.06326,
+      "formatted_address": "WR10 2JF, Wyre Piddle, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352158321
+    },
+    {
+      "name": "Hereford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10012&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/10012.png",
+      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
+      "latitude": 52.0522599,
+      "longitude": -2.72805,
+      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 351368605
+    },
+    {
+      "name": "Old Yardleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16112&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16112.png",
+      "address": "Tilehouse Lane Solihull WEST MIDLANDS B90 1PW UNITED KINGDOM ",
+      "latitude": 52.3892736,
+      "longitude": -1.8505894,
+      "formatted_address": "Tilehouse Lane, Tidbury Green, Solihull Lodge, Solihull, West Midlands, England, B90 1PW, United Kingdom",
+      "place_id": 258173048
+    },
+    {
+      "name": "Bedworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1865&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1865.png",
+      "address": "Nicholas Chamberlaine School, Bulkington Road, Bedworth, Warwickshire, CV12 9EB, United Kingdom",
+      "latitude": 52.47873,
+      "longitude": -1.46135,
+      "formatted_address": "CV12 9EB, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351113366
+    },
+    {
+      "name": "Pinley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16908&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/16908.png",
+      "address": "Wyken Croft Wyken Coventry WEST MIDLANDS CV2 3AA UNITED KINGDOM",
+      "latitude": 52.4194878,
+      "longitude": -1.4578022,
+      "formatted_address": "Wyken Croft, Wyken, Coventry, West Midlands, England, CV2 3AB, United Kingdom",
+      "place_id": 258791652
+    },
+    {
+      "name": "Worcester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26046&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/26046.png",
+      "address": "Worcester Rugby Football Club, Westons Fields, Offerton Lane, Hindlip, Worcester, Worcestershire, WR3 8TR, United Kingdom",
+      "latitude": 52.21841,
+      "longitude": -2.16082,
+      "formatted_address": "WR3 8TR, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352161983
+    },
+    {
+      "name": "Tamworth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21630&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/21630.png",
+      "address": "Wigginton Lodge, Wigginton Park, Tamworth, B79 8ED, England",
+      "latitude": 52.6443607,
+      "longitude": -1.7067476,
+      "formatted_address": "B79 8ED, Tamworth, Staffordshire, England, United Kingdom",
+      "place_id": 350484902
+    },
+    {
+      "name": "Kings Norton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11577&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11577.png",
+      "address": "Hopwood Park, Ash Lane, Hopwood, Birmingham, Worcestershire, B48 7BB, United Kingdom",
+      "latitude": 52.36938,
+      "longitude": -1.9455,
+      "formatted_address": "B48 7BB, Brookhouse Farm, Alvechurch CP, Hopwood, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918073
+    },
+    {
+      "name": "Kenilworth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11255&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/11255.png",
+      "address": "The Jack Davies Memorial Ground, Glasshouse Lane, Kenilworth, Warwickshire , CV8 2AJ, United Kingdom",
+      "latitude": 52.3382842,
+      "longitude": -1.5597896,
+      "formatted_address": "CV8 2AJ, Kenilworth, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126681
+    },
+    {
+      "name": "Old Leamingtonians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15806&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15806.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 2 Middx",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=66547&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Hackney",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9154&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9154.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
+    },
+    {
+      "name": "Barnet Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1427&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1427.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Harrow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9524&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9524.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.62756,
+      "longitude": -0.31634,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Finsbury Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8119&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/8119.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.58897,
+      "longitude": -0.0852099,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
+    },
+    {
+      "name": "Enfield Ignatians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7513.png",
+      "address": "King George V Playing Fields, Donkey Lane , Donkey Lane Carterhatch Lane, Enfield, Mdsex, EN1 3PL, United Kingdom",
+      "latitude": 51.6588793,
+      "longitude": -0.0641678,
+      "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616232
+    },
+    {
+      "name": "Old Millhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15828&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15828.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    }
+  ],
+  "team_count": 8
+}

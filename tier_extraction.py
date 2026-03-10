@@ -164,9 +164,9 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
 def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int, str]:
     """Extract tier from a league path or filename.
 
-    Accepts either a bare filename (``"Premiership.json"``) or a relative path
-    that includes the merit competition directory
-    (``"merit/CANDY/Conference_1.json"``).  Merit paths are matched by
+    Accepts a bare filename (``"Premiership.json"``), a path with a
+    competition directory (``"London_and_SE/London_1.json"``), or a merit
+    path (``"merit/CANDY/Conference_1.json"``).  Merit paths are matched by
     ``"merit/<competition>"`` entries in each era's zeroth_tier_map.
 
     For merit paths, the returned tier number is **local** to the competition
@@ -174,6 +174,11 @@ def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int,
     """
     normalized = path_or_filename.replace("\\", "/")
     is_merit = normalized.startswith("merit/")
+
+    # Strip competition directory prefix for non-merit paths so tier
+    # matching sees just the filename (e.g. "South_West/Devon_1.json" -> "Devon_1.json")
+    if not is_merit and "/" in normalized:
+        normalized = normalized.split("/")[-1]
 
     result = _match_named_merit_leagues(normalized, season)
     if result is not None:

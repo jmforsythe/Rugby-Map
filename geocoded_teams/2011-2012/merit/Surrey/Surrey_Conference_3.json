@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey Conference 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=5996&season=2011-2012#tables",
+  "teams": [
+    {
+      "name": "Old Tiffinians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16069",
+      "image_url": "https://images.englandrugby.com/club_images/16069.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
+    },
+    {
+      "name": "Law Society 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11926",
+      "image_url": "https://images.englandrugby.com/club_images/11926.png",
+      "address": "Raynes Park Sports Ground, Taunton Avenue, West Wimbledon, SW20 0BH, United Kingdom",
+      "latitude": 51.4085671,
+      "longitude": -0.2368776,
+      "formatted_address": "SW20 0BH, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352013151
+    },
+    {
+      "name": "Old Cranleighan 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15595",
+      "image_url": "https://images.englandrugby.com/club_images/15595.png",
+      "address": "Portsmouth Road Thames Ditton Surrey KT7 0HB United Kingdom",
+      "latitude": 51.381985,
+      "longitude": -0.3378078,
+      "formatted_address": "Portsmouth Road, Long Ditton, Thames Ditton, Elmbridge, Surrey, England, KT7 0EZ, United Kingdom",
+      "place_id": 259932709
+    },
+    {
+      "name": "Guildfordians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9084",
+      "image_url": "https://images.englandrugby.com/club_images/9084.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Streatham-Croydon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21256",
+      "image_url": "https://images.englandrugby.com/club_images/21256.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "London Media 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12588",
+      "image_url": "https://images.englandrugby.com/club_images/12588.png",
+      "address": "Battersea Park, Albert Bridge Road Entrance , Battersea Park, London, Surrey , SW11 4NJ, United Kingdom",
+      "latitude": 51.481421,
+      "longitude": -0.1561104,
+      "formatted_address": "SW11 4NJ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350838388
+    },
+    {
+      "name": "Economicals 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7317",
+      "image_url": "https://images.englandrugby.com/club_images/7317.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
+    },
+    {
+      "name": "Merton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13764",
+      "image_url": "https://images.englandrugby.com/club_images/13764.png",
+      "address": "Morden Recreation Ground, 25 Faversham Road, Morden, Surrey , SM4 6RE, United Kingdom",
+      "latitude": 51.3912199,
+      "longitude": -0.19163,
+      "formatted_address": "SM4 6RE, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 351937994
+    },
+    {
+      "name": "Kingston 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11664",
+      "image_url": "https://images.englandrugby.com/club_images/11664.png",
+      "address": "Kingston Rugby Football Club, Rear Of Clubhouse, King Edward Recreation Ground, Hook Road, Chessington, Surrey, KT9 1PL, United Kingdom",
+      "latitude": 51.37138,
+      "longitude": -0.30599,
+      "formatted_address": "KT9 1PL, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351430498
+    },
+    {
+      "name": "Croydon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5942",
+      "image_url": "https://images.englandrugby.com/club_images/5942.png",
+      "address": "135 Addington Road West Wickham Croydon KENT BR4 9BF UNITED KINGDOM",
+      "latitude": 51.363098,
+      "longitude": -0.018806,
+      "formatted_address": "BR4 9BF, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351012872
+    }
+  ],
+  "team_count": 10
+}

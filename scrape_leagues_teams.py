@@ -26,8 +26,7 @@ _MERIT_COMPETITIONS = [
     1694,  # Group 1 Automotive Essex Merit League
     180,  # Yorkshire League & Merit Tables
     100,  # East Midlands Leagues
-    # 1729,  # Surrey County Leagues — excluded: teams are mostly 2nd XVs that
-    #        # overlap with pyramid clubs, producing co-location noise on maps
+    1729,  # Surrey County Leagues
     1770,  # GRFU District Leagues
     77,  # Devon Merit Tables
     206,  # Harvey's Brewery Sussex Leagues
@@ -339,6 +338,13 @@ _BANNED_WORDS = [
     "u18",
     "waterfall",
     "archived",
+    "friendlies",
+    "crossover",
+    "jug",
+    "reserve",
+    "combined",
+    "gold",
+    "silver",
 ]
 
 _BANNED_DIVISION_IDS = {
@@ -369,8 +375,9 @@ _BANNED_DIVISION_IDS = {
     11170,  # 2017-2018 Youngs Bitter
     # Lancs/Cheshire — umbrella and performance splits
     10980,  # 2017-2018 Division Three (umbrella of North/South)
+    # EC Salver — Eastern Counties performance splits
     28774,
-    28775,  # 2019-2020 One Premier, Two Premier
+    28775,  # 2019-2020 Eastern Counties Salver splits
     # CANDY Conference/Division — sub-splits of UBS Candy League
     7443,
     7449,  # 2013-2014 Conference 1, 2
@@ -385,11 +392,64 @@ _BANNED_DIVISION_IDS = {
     5527,  # 2010-2011 RFUW NC South West A, B
     6370,
     6371,  # 2011-2012 NC South West A, B
+    9139,  # 2015-2016 Women's Merit Table
     # Sussex 2/3 Premier/Championship — second-half performance splits
     31529,
     31528,  # 2021-2022 Sussex 2 Premier, Championship
     31533,
     31532,  # 2021-2022 Sussex 3 Premier, Championship
+    36759,
+    36765,  # 2021-2022 Sussex 2 Championship, Premier (new IDs)
+    36927,
+    37770,  # 2021-2022 Sussex 3 Championship, Premier (new IDs)
+    53453,  # 2023-2024 Sussex Combined
+    57770,  # 2024-2025 Sussex Conference
+    73164,  # 2025-2026 Sussex Conference
+    # LRU Conference — additional season IDs
+    5060,  # 2010-2011 LRU Conference (alt ID)
+    5818,  # 2011-2012 LRU Conference (alt ID)
+    # CANDY Conference/Division — additional season IDs
+    8033,
+    8034,  # 2013-2014 Conference 1, 2 (alt IDs)
+    9721,  # 2015-2016 Division 1 (alt ID)
+    # Eagle IPA / Youngs Bitter — East Midlands duplicate merit tables
+    10808,  # 2016-2017 Eagle IPA 2
+    # GRFU District — Bristol & Gloucester lower-level district leagues
+    11499,
+    11500,
+    11501,
+    11502,  # 2017-2018 Gloucester & District A, B, C, D
+    11503,
+    11504,
+    11505,  # 2017-2018 Bristol & District A, B, C
+    # Waterfall Solent — Hampshire sub-splits (word-banned but pre-existing files)
+    11911,
+    11912,
+    11915,  # 2017-2018 Waterfall Solent 2, 3, 4
+    # Lancs/Cheshire — additional season IDs
+    13342,  # 2017-2018 Division Three (alt ID)
+    28923,  # 2019-2020 Lancs/Cheshire One Premier
+    28997,  # 2019-2020 Lancs/Cheshire Two Premier
+    37515,  # 2021-2022 Yorkshire Four Premier (alt ID)
+    # Cumbria Conference — umbrella splits
+    44763,
+    44764,  # 2022-2023 Cumbria Conference 1, 2
+    # Counties phase / performance splits — additional season IDs
+    44004,  # 2022-2023 Middlesex Division 4 Conference
+    47823,
+    49525,  # 2023-2024 Hampshire Counties 4A, 4B
+    # Lancashire & Cheshire Conference — 2025-2026 splits
+    73691,
+    73692,  # 2025-2026 Major Conference, Minor Conference
+    # Hampshire Premiership — sub-splits of Hampshire merit
+    71148,
+    71149,
+    71150,  # 2025-2026 Premiership North, South West, South East
+    # Herts Middlesex Table — generic-named merit tables
+    68220,
+    68221,  # 2025-2026 Table 1, 2
+    69496,
+    73475,  # 2025-2026 Table 3, 3C
 }
 
 _BANNED_FILENAMES = [
@@ -427,7 +487,7 @@ _COMPETITION_NAMES: dict[str, str] = {
     "1636": "Nottinghamshire",
     "49": "CANDY",
     "209": "Herts_Middlesex",
-    # "1729": "Surrey",
+    "1729": "Surrey",
 }
 
 
@@ -461,7 +521,8 @@ def _scrape_league_list(
         league_url = league["url"]
         parent_url = league["parent_url"]
 
-        if any(word in league_name.lower().split() for word in _BANNED_WORDS):
+        name_words = [w.strip("()") for w in league_name.lower().split()]
+        if any(word in name_words for word in _BANNED_WORDS):
             print(f"Skipping {league_name} (playoff/phase league)")
             skipped.append(league)
             continue

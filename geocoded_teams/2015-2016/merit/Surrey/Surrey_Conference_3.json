@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey Conference 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=9330&season=2015-2016#tables",
+  "teams": [
+    {
+      "name": "Streatham-Croydon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21256",
+      "image_url": "https://images.englandrugby.com/club_images/21256.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "Lightwater",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12265",
+      "image_url": "https://images.englandrugby.com/club_images/12265.png",
+      "address": "Lightwater Sports Centre The Avenue Lightwater Surrey GU18 5RG England",
+      "latitude": 51.3507236,
+      "longitude": -0.6828478,
+      "formatted_address": "GU18 5RG, Lightwater, Windlesham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350640369
+    },
+    {
+      "name": "Guildfordians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9084",
+      "image_url": "https://images.englandrugby.com/club_images/9084.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Racal-Decca",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17369",
+      "image_url": "https://images.englandrugby.com/club_images/17369.png",
+      "address": "Deckers Sports and Social Club Kingston Road Tolworth SURREY KT5 9NT UNITED KINGDOM",
+      "latitude": 51.3772325,
+      "longitude": -0.2772793,
+      "formatted_address": "KT5 9NT, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350978041
+    },
+    {
+      "name": "Cranleigh 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5786",
+      "image_url": "https://images.englandrugby.com/club_images/5786.png",
+      "address": "Cranleigh Rfc, Clubhouse, Wildwood Lane, Cranleigh, Surrey , GU6 8JR, United Kingdom",
+      "latitude": 51.11491,
+      "longitude": -0.50442,
+      "formatted_address": "GU6 8JR, Alfold, Alfold Crossways, Waverley, Surrey, England, United Kingdom",
+      "place_id": 351333911
+    },
+    {
+      "name": "Mitcham & Carshalton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14024",
+      "image_url": "https://images.englandrugby.com/club_images/14024.png",
+      "address": "Dewsbury Cottage, Poulter Park, Peterborough Road, Carshalton, Surrey, SM5 1EE, United Kingdom",
+      "latitude": 51.39074,
+      "longitude": -0.17446,
+      "formatted_address": "SM5 1EE, London Borough of Sutton, Greater London, England, United Kingdom",
+      "place_id": 351938087
+    },
+    {
+      "name": "Woking 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25883",
+      "image_url": "https://images.englandrugby.com/club_images/25883.png",
+      "address": "Camphill Social Club, Woking Rfc, Camphill Road, West Byfleet, Surrey , KT14 6EF, United Kingdom",
+      "latitude": 51.3405739,
+      "longitude": -0.5004952,
+      "formatted_address": "KT14 6EF, Woking, Surrey, England, United Kingdom",
+      "place_id": 350670267
+    },
+    {
+      "name": "Old Freemens 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15703",
+      "image_url": "https://images.englandrugby.com/club_images/15703.png",
+      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
+      "latitude": 51.3077453,
+      "longitude": -0.2864699,
+      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 350671240
+    },
+    {
+      "name": "Purley John Fisher 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17282",
+      "image_url": "https://images.englandrugby.com/club_images/17282.png",
+      "address": "Parsons Pightle Coulsdon Road Old Coulsdon SURREY CR5 1EE UNITED KINGDOM ",
+      "latitude": 51.2990344,
+      "longitude": -0.1170159,
+      "formatted_address": "CR5 1EE, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559178
+    },
+    {
+      "name": "Croydon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5942",
+      "image_url": "https://images.englandrugby.com/club_images/5942.png",
+      "address": "135 Addington Road West Wickham Croydon KENT BR4 9BF UNITED KINGDOM",
+      "latitude": 51.363098,
+      "longitude": -0.018806,
+      "formatted_address": "BR4 9BF, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351012872
+    }
+  ],
+  "team_count": 10
+}

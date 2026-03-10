@@ -35,6 +35,7 @@ COMPETITION_OFFSETS: dict[str, int] = {
     "NOWIRUL": 10,
     "Nottinghamshire": 10,
     "Rural_Kent": 10,
+    "Surrey": 10,
     "Sussex": 8,
 }
 
@@ -108,6 +109,22 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Hampshire/Hampshire_Senior": -1,
     # Leicestershire (offset 9): Invitation Merit (1)
     "merit/Leicestershire/Leicestershire_Invitation": 1,
+    # Surrey (offset 10): Premier (0) > Championship (1) > Alliance (2) >
+    # Conference (3) > Combination 1 (4) > Combination 2 (5) >
+    # Combination 3 / Foundation (6)
+    "merit/Surrey/Surrey_Premier": 0,
+    "merit/Surrey/Surrey_Chamionship": 1,
+    "merit/Surrey/Surrey_Championship": 1,
+    "merit/Surrey/Surrey_Alliance": 2,
+    "merit/Surrey/Surrey_East_Conference": 3,
+    "merit/Surrey/Surrey_West_Conference": 3,
+    "merit/Surrey/Surrey_Conference": 3,
+    "merit/Surrey/Surrey_Combination_1": 4,
+    "merit/Surrey/Surrey_Combination_2": 5,
+    "merit/Surrey/Surrey_Combination_3": 6,
+    "merit/Surrey/Surrey_Foundation": 6,
+    "merit/Surrey/London_Counties": 0,
+    "merit/Surrey/London_1_South": 0,
 }
 
 
@@ -264,6 +281,7 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/NOWIRUL": 0,
         "merit/Nottinghamshire": 0,
         "merit/Rural_Kent": 0,
+        "merit/Surrey": 0,
         "merit/Sussex": 0,
     }
     for prefix, offset in zeroth_tier_map.items():
@@ -354,6 +372,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "merit/NOWIRUL": 0,
         "merit/Nottinghamshire": 0,
         "merit/Rural_Kent": 0,
+        "merit/Surrey": 0,
         "merit/Sussex": 0,
     }
     if filename.startswith("Premiership"):

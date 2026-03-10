@@ -1,0 +1,87 @@
+{
+  "league_name": "Surrey Conference League 2023-2024",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=54659&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Farnham 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7988",
+      "image_url": "https://images.englandrugby.com/club_images/7988.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Feltham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8061",
+      "image_url": "https://images.englandrugby.com/club_images/8061.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.43562,
+      "longitude": -0.39278,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    },
+    {
+      "name": "Barnes 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1402",
+      "image_url": "https://images.englandrugby.com/club_images/1402.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
+    },
+    {
+      "name": "Old Caterhamians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15511",
+      "image_url": "https://images.englandrugby.com/club_images/15511.png",
+      "address": "Old Caterhamians Rfc All Mail To: Hon Secretary Park Avenue Caterham Surrey CR3 6AH United Kingdom",
+      "latitude": 51.2799114,
+      "longitude": -0.0935571,
+      "formatted_address": "CR3 6AH, Caterham-on-the-Hill, Caterham on the Hill, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 350558949
+    },
+    {
+      "name": "Lightwater",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12265",
+      "image_url": "https://images.englandrugby.com/club_images/12265.png",
+      "address": "Lightwater Sports Centre The Avenue Lightwater Surrey GU18 5RG England",
+      "latitude": 51.3507236,
+      "longitude": -0.6828478,
+      "formatted_address": "GU18 5RG, Lightwater, Windlesham, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350640369
+    },
+    {
+      "name": "Old Rutlishians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16007",
+      "image_url": "https://images.englandrugby.com/club_images/16007.png",
+      "address": "The Clubhouse Poplar Road Wimbledon London SW19 3JS England",
+      "latitude": 51.40792,
+      "longitude": -0.1999199,
+      "formatted_address": "SW19 3JS, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 352009331
+    },
+    {
+      "name": "Kingston 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11664",
+      "image_url": "https://images.englandrugby.com/club_images/11664.png",
+      "address": "Kingston Rugby Football Club, Rear Of Clubhouse, King Edward Recreation Ground, Hook Road, Chessington, Surrey, KT9 1PL, United Kingdom",
+      "latitude": 51.37138,
+      "longitude": -0.30599,
+      "formatted_address": "KT9 1PL, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 351430498
+    },
+    {
+      "name": "Old Blues 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15441",
+      "image_url": "https://images.englandrugby.com/club_images/15441.png",
+      "address": "Dornan Fields Arthur Road Motspur Park, nr New Malden SURREY KT3 6LX UNITED KINGDOM ",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671625
+    }
+  ],
+  "team_count": 8
+}

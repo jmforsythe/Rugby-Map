@@ -1,0 +1,107 @@
+{
+  "league_name": "Surrey Premiership",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=28137&season=2019-2020#tables",
+  "teams": [
+    {
+      "name": "Battersea Ironsides 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1642",
+      "image_url": "https://images.englandrugby.com/club_images/1642.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "Farnham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7987",
+      "image_url": "https://images.englandrugby.com/club_images/7987.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Richmond Jutes (5th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26615",
+      "image_url": "https://images.englandrugby.com/club_images/26615.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421605
+    },
+    {
+      "name": "Dorking A XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6610",
+      "image_url": "https://images.englandrugby.com/club_images/6610.png",
+      "address": "The Pavilion The Big Field Brockham Betchworth Surrey RH3 7LZ United Kingdom",
+      "latitude": 51.23505,
+      "longitude": -0.28549,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827771
+    },
+    {
+      "name": "Horsham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10450",
+      "image_url": "https://images.englandrugby.com/club_images/10450.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Brighton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3218",
+      "image_url": "https://images.englandrugby.com/club_images/3218.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
+    },
+    {
+      "name": "Rosslyn Park Hatters (5th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18041",
+      "image_url": "https://images.englandrugby.com/club_images/18041.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Camberley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3973",
+      "image_url": "https://images.englandrugby.com/club_images/3973.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
+    },
+    {
+      "name": "Cobham 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5337",
+      "image_url": "https://images.englandrugby.com/club_images/5337.png",
+      "address": "Cobham Rugby Old Surbitonians Memorial Sports Ground Fairmile Lane Cobham KT11 2BU United Kingdom",
+      "latitude": 51.3401025,
+      "longitude": -0.3967178,
+      "formatted_address": "KT11 2BU, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669772
+    },
+    {
+      "name": "Guildford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9047",
+      "image_url": "https://images.englandrugby.com/club_images/9047.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
+    }
+  ],
+  "team_count": 10
+}

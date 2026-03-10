@@ -1,0 +1,67 @@
+{
+  "league_name": "Surrey Combination 2 South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=10313&season=2016-2017#tables",
+  "teams": [
+    {
+      "name": "Guildfordians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9084",
+      "image_url": "https://images.englandrugby.com/club_images/9084.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Racal-Decca",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17369",
+      "image_url": "https://images.englandrugby.com/club_images/17369.png",
+      "address": "Deckers Sports and Social Club Kingston Road Tolworth SURREY KT5 9NT UNITED KINGDOM",
+      "latitude": 51.3772325,
+      "longitude": -0.2772793,
+      "formatted_address": "KT5 9NT, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350978041
+    },
+    {
+      "name": "Woking 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25883",
+      "image_url": "https://images.englandrugby.com/club_images/25883.png",
+      "address": "Camphill Social Club, Woking Rfc, Camphill Road, West Byfleet, Surrey , KT14 6EF, United Kingdom",
+      "latitude": 51.3405739,
+      "longitude": -0.5004952,
+      "formatted_address": "KT14 6EF, Woking, Surrey, England, United Kingdom",
+      "place_id": 350670267
+    },
+    {
+      "name": "Reeds Weybridge 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17647",
+      "image_url": "https://images.englandrugby.com/club_images/17647.png",
+      "address": "North Avenue Whiteley Village Walton On Thames SURREY KT12 4EJ UNITED KINGDOM ",
+      "latitude": 51.3530947,
+      "longitude": -0.4290221,
+      "formatted_address": "KT12 4EJ, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350219256
+    },
+    {
+      "name": "Old Freemens 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15703",
+      "image_url": "https://images.englandrugby.com/club_images/15703.png",
+      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
+      "latitude": 51.3077453,
+      "longitude": -0.2864699,
+      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 350671240
+    },
+    {
+      "name": "Haslemere 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9633",
+      "image_url": "https://images.englandrugby.com/club_images/9633.png",
+      "address": "Woolmer Hill Sports Ground Woolmer Hill Haslemere SURREY GU27 1QA UNITED KINGDOM ",
+      "latitude": 51.0960991,
+      "longitude": -0.7479017,
+      "formatted_address": "Woolmer Hill Sports Ground, Woolmer Hill Road, Haslemere, Woolmer Hill, Waverley, Surrey, England, GU27 1QB, United Kingdom",
+      "place_id": 259557894
+    }
+  ],
+  "team_count": 6
+}

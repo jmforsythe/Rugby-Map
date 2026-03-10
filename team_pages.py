@@ -31,6 +31,7 @@ class LeagueHistoryEntry(TypedDict):
     league_url: str
     position: int
     tier: tuple[int, str]  # (tier_number, tier_name)
+    tier_display: str  # e.g. "Level 7" or "East Midlands Level 10"
 
 
 class TeamData(TypedDict):
@@ -119,13 +120,22 @@ def collect_all_teams_data() -> dict[str, TeamData]:
 
                 # Add league participation to history
                 rel_path = league_file.relative_to(season_dir).as_posix()
+                tier = extract_tier(rel_path, season)
+                is_merit = rel_path.startswith("merit/")
+                if is_merit:
+                    comp_key = rel_path.split("/")[1]
+                    comp_display = comp_key.replace("_", " ")
+                    tier_display = f"{comp_display} {tier[0]}"
+                else:
+                    tier_display = f"{tier[0]}"
                 teams_data[team_name]["league_history"].append(
                     LeagueHistoryEntry(
                         season=season,
                         league=league_name,
                         league_url=league_data["league_url"],
                         position=position,
-                        tier=extract_tier(rel_path, season),
+                        tier=tier,
+                        tier_display=tier_display,
                     )
                 )
 
@@ -397,7 +407,6 @@ def get_team_page_html(
             for entry in season_entries:
                 league: str = entry["league"]
                 position: int = entry["position"]
-                tier: tuple[int, str] = entry["tier"]
 
                 # Don't show position for current season (in progress)
                 if season == all_seasons[0]:
@@ -423,8 +432,9 @@ def get_team_page_html(
                         elif total_dist is not None:
                             travel_info = f"{total_dist:.0f} km total"
 
+                tier_display: str = entry["tier_display"]
                 league_link: str = (
-                    f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{escape(tier[1])}: {escape(league)}</a>'
+                    f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{escape(tier_display)}: {escape(league)}</a>'
                 )
 
                 html += f"""                <tr>

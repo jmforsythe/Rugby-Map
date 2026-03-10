@@ -48,10 +48,19 @@ def get_competition_offset(comp_name: str, season: str = "") -> int:
     return COMPETITION_OFFSETS.get(comp_name, 0)
 
 
-def mens_current_tier_name(tier: int) -> str:
-    """Return the display name for an absolute men's pyramid tier number."""
-    if tier in MENS_CURRENT_TIER_NAMES:
-        return MENS_CURRENT_TIER_NAMES[tier]
+def mens_current_tier_name(tier: int, season: str = "") -> str:
+    """Return the display name for an absolute men's pyramid tier number.
+
+    Before 2009-2010 the Championship (tier 2) did not exist; tiers 2-5 were
+    National League 1 through 4.
+    """
+    pre_2009 = bool(season) and season < "2009-2010"
+    if tier == 1:
+        return "Premiership"
+    if pre_2009 and 2 <= tier <= 5:
+        return f"National League {tier - 1}"
+    if tier == 2:
+        return "Championship"
     if 3 <= tier <= 4:
         return f"National League {tier - 2}"
     if 5 <= tier <= 6:
@@ -234,6 +243,8 @@ _SPONSOR_PREFIXES = [
     "Raging_Bull_",
     "UBS_",
     "Howell&_Co_",
+    "High_Bridge_Jewellers_",
+    "Euromanx_",
 ]
 
 
@@ -313,9 +324,13 @@ def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | 
 def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2021-2022 and earlier filename format."""
     filename = _strip_sponsor_prefix(filename)
+    if filename.startswith("x") and len(filename) > 1 and filename[1].isupper():
+        filename = filename[1:]
 
     zeroth_tier_map = {
-        "National_League": 2,
+        "National_League": (1 if season < "2009-2010" else 2),
+        "North_Midlands": 8,
+        "North_Mids": 8,
         "North_Lancs_Cumbria": 7,
         "North_Lancashire": 7,
         "North": 5,
@@ -325,6 +340,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "South_West": 5,
         "Cumbria": (6 if season >= "2018-2019" else 8),
         "Durham_Northumberland": 6,
+        "Durham_N'thm'land": 6,
         "Essex": 8,
         "Eastern_Counties": 8,
         "Hampshire": (9 if season >= "2018-2019" else 8),
@@ -350,6 +366,15 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Merseyside": 8,
         "NC_Lancashire": 8,
         "NC_Midlands": 8,
+        "Staffordshire": 8,
+        "Warwickshire": 8,
+        "NLD_Leics": 8,
+        "NLD_N_Leics": 8,
+        "Derbys_N_Leics": 8,
+        "East_Mids_S_Leics": 8,
+        "East_Midlands": 8,
+        "Notts_Lincs": 8,
+        "East_Counties": 8,
         # Merit entries: values are local offsets (absolute - COMPETITION_OFFSETS)
         "merit/East_Midlands/East_Midlands": 0,
         "merit/Hampshire/Counties": -5,
@@ -379,10 +404,6 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         return (1, "Premiership")
     if filename.startswith("Championship"):
         return (2, "Championship")
-    if filename.startswith("National_League_1"):
-        return (3, "National League 1")
-    if filename.startswith("National_League_2"):
-        return (4, "National League 2")
     for prefix, offset in zeroth_tier_map.items():
         if filename.startswith(prefix):
             num = get_number_from_tier_name(filename, prefix)
@@ -393,6 +414,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             ):
                 num += 1
             tier = offset + num
+            if prefix == "National_League":
+                return (tier, f"National League {num}")
             return (tier, f"Level {tier}")
     return None
 
@@ -416,6 +439,10 @@ def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] |
 def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] | None:
     if filename.startswith("RFUW_"):
         filename = filename.replace("RFUW_", "Women's_")
+    if filename.startswith("wPrem"):
+        filename = "Women's_Premiership.json"
+    elif filename.startswith("w") and not filename.startswith("Women"):
+        filename = "Women's_NC_" + filename[1:]
     if filename.startswith("NC_"):
         filename = "Women's_" + filename
     if filename.endswith("A.json"):

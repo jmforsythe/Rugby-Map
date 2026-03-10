@@ -1,0 +1,97 @@
+{
+  "league_name": "London 4 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2288&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Tring",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23148",
+      "image_url": "https://images.englandrugby.com/club_images/23148.png",
+      "address": "Tring Rufc Pendley Sports Centre Cow Lane Tring Hertfordshire HP23 5NS England",
+      "latitude": 51.7972392,
+      "longitude": -0.6429681,
+      "formatted_address": "HP23 5NS, Tring, Dacorum, Hertfordshire, England, United Kingdom",
+      "place_id": 350911659
+    },
+    {
+      "name": "Stevenage Town",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20924",
+      "image_url": "https://images.englandrugby.com/club_images/20924.png",
+      "address": "The Clubhouse, North Road, Stevenage, Hertfordshire, SG1 4BB, England",
+      "latitude": 51.9258,
+      "longitude": -0.21076,
+      "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
+      "place_id": 351906609
+    },
+    {
+      "name": "London New Zealand",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12594",
+      "image_url": "https://images.englandrugby.com/club_images/12594.png",
+      "address": "Twyford Ave Sports Ground Twyford Ave Acton London W3 9QA UNITED KINGDOM",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352794118
+    },
+    {
+      "name": "Harrow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9524",
+      "image_url": "https://images.englandrugby.com/club_images/9524.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.62756,
+      "longitude": -0.31634,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Grasshoppers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8853",
+      "image_url": "https://images.englandrugby.com/club_images/8853.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Datchworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6196",
+      "image_url": "https://images.englandrugby.com/club_images/6196.png",
+      "address": "Datchworth Green Datchworth Datchworth Datchworth Hertfordshire SG3 6TL UNITED KINGDOM ",
+      "latitude": 51.8495634,
+      "longitude": -0.1627916,
+      "formatted_address": "Datchworth Green, Painter's Green, Datchworth, Datchworth Green, East Hertfordshire, Hertfordshire, England, SG3 6TL, United Kingdom",
+      "place_id": 257359028
+    },
+    {
+      "name": "Old Hamptonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15777",
+      "image_url": "https://images.englandrugby.com/club_images/15777.png",
+      "address": "Old Hamptonians R.F.C. Dean Road Hampton Hampton Hampton MIDDLESEX TW12 1AQ UNITED KINGDOM ",
+      "latitude": 51.4310684,
+      "longitude": -0.371552,
+      "formatted_address": "TW12 1AQ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350870809
+    },
+    {
+      "name": "West London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24823",
+      "image_url": "https://images.englandrugby.com/club_images/24823.png",
+      "address": "London Marathon Playing Fields Birkbeck Avenue Greenford Middlesex UB6 8LS United Kingdom",
+      "latitude": 51.54131,
+      "longitude": -0.34867,
+      "formatted_address": "UB6 8LS, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352106300
+    },
+    {
+      "name": "Finchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8090",
+      "image_url": "https://images.englandrugby.com/club_images/8090.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    }
+  ],
+  "team_count": 9
+}

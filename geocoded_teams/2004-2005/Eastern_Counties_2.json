@@ -1,0 +1,97 @@
+{
+  "league_name": "Eastern Counties 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2266&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Newmarket",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14535",
+      "image_url": "https://images.englandrugby.com/club_images/14535.png",
+      "address": "Scaltback Pavillion Elizabeth Avenue Newmarket Suffolk CB8 0DJ United Kingdom",
+      "latitude": 52.2529094,
+      "longitude": 0.391064,
+      "formatted_address": "CB8 0DJ, Newmarket, Suffolk, England, United Kingdom",
+      "place_id": 350537828
+    },
+    {
+      "name": "Fakenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7889",
+      "image_url": "https://images.englandrugby.com/club_images/7889.png",
+      "address": "Old Wells Road Fakenham NORFOLK NR21 9RZ UNITED KINGDOM ",
+      "latitude": 52.842282,
+      "longitude": 0.8407922,
+      "formatted_address": "Old Wells Road, Fakenham, North Norfolk, Norfolk, England, NR21 9RX, United Kingdom",
+      "place_id": 147526933
+    },
+    {
+      "name": "Great Yarmouth-Broadland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8927",
+      "image_url": "https://images.englandrugby.com/club_images/8927.png",
+      "address": "Cobholm Playing Field Cobholm Great Yarmouth NR31 0AY England",
+      "latitude": 52.6081936,
+      "longitude": 1.7118246,
+      "formatted_address": "NR31 0AY, Great Yarmouth, Norfolk, England, United Kingdom",
+      "place_id": 351688799
+    },
+    {
+      "name": "Swaffham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21482",
+      "image_url": "https://images.englandrugby.com/club_images/21482.png",
+      "address": "Swaffham Rufc North Pickenham Road Swaffham Norfolk PE37 7QX United Kingdom",
+      "latitude": 52.6445011,
+      "longitude": 0.6956385,
+      "formatted_address": "PE37 7QX, Swaffham, Breckland, Norfolk, England, United Kingdom",
+      "place_id": 350768212
+    },
+    {
+      "name": "Lakenham Hewett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11801",
+      "image_url": "https://images.englandrugby.com/club_images/11801.png",
+      "address": "Hilltop Sports Ground, Main Road Swardeston Norwich Norfolk NR14 8DU United Kingdom",
+      "latitude": 52.5819089,
+      "longitude": 1.2552127,
+      "formatted_address": "NR14 8DU, Swardeston, Mulbarton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350287352
+    },
+    {
+      "name": "Harwich & Dovercourt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9612",
+      "image_url": "https://images.englandrugby.com/club_images/9612.png",
+      "address": "Wick Lane, Dovercourt, Harwich, CO12 3TA, United Kingdom",
+      "latitude": 51.9276549,
+      "longitude": 1.2671402,
+      "formatted_address": "Wick Lane, Upper Dovercourt, Harwich, Dovercourt, Tendring, Essex, England, CO12 3TA, United Kingdom",
+      "place_id": 91283632
+    },
+    {
+      "name": "Norwich Union",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15064",
+      "image_url": "https://images.englandrugby.com/club_images/15064.png",
+      "address": "Norwich Union Rfc Sprowston Cricket Ground Barkers Lane Sprowston Norwich Norfolk NR7 8QZ United Kingdom",
+      "latitude": 52.6617914,
+      "longitude": 1.3222361,
+      "formatted_address": "NR7 8QZ, Sprowston, Broadland, Norfolk, England, United Kingdom",
+      "place_id": 351242043
+    },
+    {
+      "name": "Brightlingsea",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3191",
+      "image_url": "https://images.englandrugby.com/club_images/3191.png",
+      "address": "Colne Community School Church Road Brightlingsea ESSEX CO7 0QL UNITED KINGDOM",
+      "latitude": 51.8210439,
+      "longitude": 1.0220061,
+      "formatted_address": "Colne Community School, Church Road, Brightlingsea, Tendring, Essex, England, CO7 0QL, United Kingdom",
+      "place_id": 91431478
+    },
+    {
+      "name": "Sawston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18766",
+      "image_url": "https://images.englandrugby.com/club_images/18766.png",
+      "address": "Sawston Village College New Road Sawston Cambridge Cambs CB22 3BP United Kingdom",
+      "latitude": 52.1267553,
+      "longitude": 0.1616418,
+      "formatted_address": "Sawston Village College, New Road, Sawston, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 3BP, United Kingdom",
+      "place_id": 147410269
+    }
+  ],
+  "team_count": 9
+}

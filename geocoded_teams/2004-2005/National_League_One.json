@@ -1,0 +1,147 @@
+{
+  "league_name": "National League One",
+  "league_url": "https://en.wikipedia.org/wiki/2004%E2%80%9305_National_Division_One",
+  "teams": [
+    {
+      "name": "Bristol Bears",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3251",
+      "image_url": "https://images.englandrugby.com/club_images/3251.png",
+      "address": "Bristol Bears Hpc, Beggar Bush Lane, Henbury, Bristol, Bristol, BS8 3TF, United Kingdom",
+      "latitude": 51.4487851,
+      "longitude": -2.6611347,
+      "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
+      "place_id": 350521691
+    },
+    {
+      "name": "Exeter",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7769",
+      "image_url": "https://images.englandrugby.com/club_images/7769.png",
+      "address": "Sandy Park Stadium Sandy Park Way Exeter DEVON EX2 7NN UNITED KINGDOM",
+      "latitude": 50.7095737,
+      "longitude": -3.4687913,
+      "formatted_address": "EX2 7NN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350169709
+    },
+    {
+      "name": "Plymouth Albion",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16953",
+      "image_url": "https://images.englandrugby.com/club_images/16953.png",
+      "address": "Brickfields Stadium, Damerel Close, Devonport, Plymouth, Devon, PL1 4NE, England",
+      "latitude": 50.3708017,
+      "longitude": -4.1711966,
+      "formatted_address": "PL1 4NE, Plymouth, England, United Kingdom",
+      "place_id": 350772725
+    },
+    {
+      "name": "Penzance/Newlyn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5644",
+      "image_url": "https://images.englandrugby.com/club_images/5644.png",
+      "address": "c/o Penzance/Newlyn RFC Westholme Lodge Alexandra Road Penzance CORNWALL TR18 4LY UNITED KINGDOM",
+      "latitude": 50.1127876,
+      "longitude": -5.5413017,
+      "formatted_address": "TR18 4LY, Penzance, Cornwall, England, United Kingdom",
+      "place_id": 350867266
+    },
+    {
+      "name": "Otley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336",
+      "image_url": "https://images.englandrugby.com/club_images/16336.png",
+      "address": "Otley R.u.f.c., Cross Green, Otley, Wyorks, LS21 1HE, United Kingdom",
+      "latitude": 53.9065945,
+      "longitude": -1.6874135,
+      "formatted_address": "LS21 1HE, Otley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691070
+    },
+    {
+      "name": "Coventry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
+      "image_url": "https://images.englandrugby.com/club_images/5722.png",
+      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
+      "latitude": 52.4061896,
+      "longitude": -1.5259715,
+      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350563719
+    },
+    {
+      "name": "Bedford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1827",
+      "image_url": "https://images.englandrugby.com/club_images/1827.png",
+      "address": "Bedford Blues Rfc Goldington Road Bedford Bedfordshire MK40 3NF United Kingdom",
+      "latitude": 52.1405326,
+      "longitude": -0.4595905,
+      "formatted_address": "MK40 3NF, Bedford, England, United Kingdom",
+      "place_id": 350703414
+    },
+    {
+      "name": "Rotherham Titans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18095",
+      "image_url": "https://images.englandrugby.com/club_images/18095.png",
+      "address": "Rotherham Titans, Stafforce Stadium, Clifton Lane , Rotherham, South Yorkshire, S60 2SN, United Kingdom",
+      "latitude": 53.42531,
+      "longitude": -1.34322,
+      "formatted_address": "S60 2SN, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351854435
+    },
+    {
+      "name": "Birmingham & Solihull",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2297",
+      "image_url": "https://images.englandrugby.com/club_images/2297.png",
+      "address": "Forshaw Heath Lane, Portway, Birmingham, West Midlands , B94 5LH, United Kingdom",
+      "latitude": 52.35507,
+      "longitude": -1.87849,
+      "formatted_address": "B94 5LH, Tanworth in Arden CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350927523
+    },
+    {
+      "name": "Sedgley Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18924",
+      "image_url": "https://images.englandrugby.com/club_images/18924.png",
+      "address": "Sedgley Park RUFC Park Lane Whitefield Manchester M45 7DZ ENGLAND",
+      "latitude": 53.53986,
+      "longitude": -2.30427,
+      "formatted_address": "M45 7DZ, Bury, Greater Manchester, England, United Kingdom",
+      "place_id": 351558777
+    },
+    {
+      "name": "Nottingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15075",
+      "image_url": "https://images.englandrugby.com/club_images/15075.png",
+      "address": "Nottingham Rugby, Nottingham Rugby Ltd., The Bay, 1 Holme Road, West Bridgford, Nottingham, Nottinghamshire, NG2 5AA, United Kingdom",
+      "latitude": 52.9399328,
+      "longitude": -1.1261495,
+      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718250
+    },
+    {
+      "name": "London Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12636",
+      "image_url": "https://images.englandrugby.com/club_images/12636.png",
+      "address": "Old Deer Park, 187 Kew Road, Richmond, Surrey, TW9 2AZ, England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872292
+    },
+    {
+      "name": "Henley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984",
+      "image_url": "https://images.englandrugby.com/club_images/9984.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Orrell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16278",
+      "image_url": "https://images.englandrugby.com/club_images/16278.png",
+      "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
+      "latitude": 53.54627,
+      "longitude": -2.72694,
+      "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 352156955
+    }
+  ],
+  "team_count": 14
+}

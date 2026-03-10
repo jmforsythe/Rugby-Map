@@ -1,0 +1,127 @@
+{
+  "league_name": "Devon 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=2394&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "South Molton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19624",
+      "image_url": "https://images.englandrugby.com/club_images/19624.png",
+      "address": "Unicorn Park, Station Road, Pathfields, South Molton, Devon, EX363BS, United Kingdom",
+      "latitude": 51.02682,
+      "longitude": -3.83977,
+      "formatted_address": "EX36 3BS, Pathfields Industrial Estate, South Molton, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351260105
+    },
+    {
+      "name": "Honiton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10355",
+      "image_url": "https://images.englandrugby.com/club_images/10355.png",
+      "address": "Honiton Rfc, Allhallows Playing Fields, Northcote Lane, Honiton, Devon, EX14 1NH, United Kingdom",
+      "latitude": 50.8006699,
+      "longitude": -3.19196,
+      "formatted_address": "EX14 1NH, Honiton, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351250412
+    },
+    {
+      "name": "Buckfastleigh Ramblers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3532",
+      "image_url": "https://images.englandrugby.com/club_images/3532.png",
+      "address": "The Cricket Ground Buckfastleigh Devon TQ11 0BL United Kingdom",
+      "latitude": 50.48613,
+      "longitude": -3.78947,
+      "formatted_address": "TQ11 0BL, Buckfastleigh, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351614385
+    },
+    {
+      "name": "Cullompton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6003",
+      "image_url": "https://images.englandrugby.com/club_images/6003.png",
+      "address": "Cullompton RFC Stafford Park Knowle Lane Cullompton DEVON EX15 1PZ UNITED KINGDOM ",
+      "latitude": 50.8566579,
+      "longitude": -3.4117713,
+      "formatted_address": "EX15 1PZ, Cullompton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350619042
+    },
+    {
+      "name": "Teignmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21773",
+      "image_url": "https://images.englandrugby.com/club_images/21773.png",
+      "address": "Bitton Sports Ground, Bitton Park Road, Teignmouth, Devon, TQ14 9DQ, United Kingdom",
+      "latitude": 50.5476295,
+      "longitude": -3.5073944,
+      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350409625
+    },
+    {
+      "name": "Plymstock Albion Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16976",
+      "image_url": "https://images.englandrugby.com/club_images/16976.png",
+      "address": "Horsham Fields Wembury Road Plymouth Devon PL9 0DF United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774375
+    },
+    {
+      "name": "Devonport HSOB",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6390",
+      "image_url": "https://images.englandrugby.com/club_images/6390.png",
+      "address": "Stonehouse Creek Leisure & Social Club Kings Road Stonehouse Plymouth DEVON PL1 3SF UNITED KINGDOM",
+      "latitude": 50.37116,
+      "longitude": -4.16478,
+      "formatted_address": "PL1 3SF, Plymouth, England, United Kingdom",
+      "place_id": 351310593
+    },
+    {
+      "name": "Torrington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22992",
+      "image_url": "https://images.englandrugby.com/club_images/22992.png",
+      "address": "Torrington Rfc Donnacroft Playing Fields Hatchmoor Road Torrington Devon EX38 7HT United Kingdom",
+      "latitude": 50.95517,
+      "longitude": -4.12576,
+      "formatted_address": "EX38 7HT, Great Torrington, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350809808
+    },
+    {
+      "name": "Dartmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6192",
+      "image_url": "https://images.englandrugby.com/club_images/6192.png",
+      "address": "Dartmouth Rugby Club, C/0 Dartmouth Rowing Club, Sandquay Road, Dartmouth, Devon, TQ6 9PH, United Kingdom",
+      "latitude": 50.3576021,
+      "longitude": -3.5780451,
+      "formatted_address": "TQ6 9PH, Dartmouth, Kingswear, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864083
+    },
+    {
+      "name": "Ilfracombe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10799",
+      "image_url": "https://images.englandrugby.com/club_images/10799.png",
+      "address": "Brimlands Chambercombe Park Road Ilfracombe Devon EX34 9QN United Kingdom",
+      "latitude": 51.2058604,
+      "longitude": -4.1056895,
+      "formatted_address": "EX34 9QN, Ilfracombe, North Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350621186
+    },
+    {
+      "name": "Tamar Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21625",
+      "image_url": "https://images.englandrugby.com/club_images/21625.png",
+      "address": "Parkway Sports Club Ernesettle Lane Ernesettle Plymouth DEVON PL5 2EY UNITED KINGDOM ",
+      "latitude": 50.412277,
+      "longitude": -4.1813968,
+      "formatted_address": "PL5 2EY, Plymouth, England, United Kingdom",
+      "place_id": 350774057
+    },
+    {
+      "name": "Topsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22933",
+      "image_url": "https://images.englandrugby.com/club_images/22933.png",
+      "address": "Topsham Rfc, Bonfire Field, Exeter Road, Exeter, Devon, EX3 0LY, United Kingdom",
+      "latitude": 50.69027,
+      "longitude": -3.47251,
+      "formatted_address": "EX3 0LY, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350620960
+    }
+  ],
+  "team_count": 12
+}

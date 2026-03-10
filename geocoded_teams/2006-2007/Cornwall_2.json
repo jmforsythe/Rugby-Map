@@ -1,0 +1,87 @@
+{
+  "league_name": "Cornwall 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=3059&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Roseland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18000",
+      "image_url": "https://images.englandrugby.com/club_images/18000.png",
+      "address": "Philleigh., Truro, Cornwall, TR2 5ND, United Kingdom",
+      "latitude": 50.21638,
+      "longitude": -4.99117,
+      "formatted_address": "TR2 5ND, Philleigh, Cornwall, England, United Kingdom",
+      "place_id": 352073158
+    },
+    {
+      "name": "St Just",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20533",
+      "image_url": "https://images.englandrugby.com/club_images/20533.png",
+      "address": "St. Just Rfc, The Clubhouse, Tregeseal, St Just In Penwith, Cornw, TR19 7PF, United Kingdom",
+      "latitude": 50.12726,
+      "longitude": -5.67663,
+      "formatted_address": "TR19 7PF, St Just, Cornwall, England, United Kingdom",
+      "place_id": 352072719
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    },
+    {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
+      "name": "St Day",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20317",
+      "image_url": "https://images.englandrugby.com/club_images/20317.png",
+      "address": "The Playing Field, St. Day 28 Scorrier Street Redruth CORNWALL TR16 5LH UNITED KINGDOM",
+      "latitude": 50.2396261,
+      "longitude": -5.1844943,
+      "formatted_address": "TR16 5LH, St. Day, Cornwall, England, United Kingdom",
+      "place_id": 350416362
+    },
+    {
+      "name": "Lankelly-Fowey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11871",
+      "image_url": "https://images.englandrugby.com/club_images/11871.png",
+      "address": "Lankelly-Fowey RFC Lankelly Farm Lankelly Lane Fowey CORNWALL PL23 1HN UNITED KINGDOM ",
+      "latitude": 50.33597,
+      "longitude": -4.6531399,
+      "formatted_address": "PL23 1HN, Fowey, Cornwall, England, United Kingdom",
+      "place_id": 351768800
+    },
+    {
+      "name": "Callington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3952",
+      "image_url": "https://images.englandrugby.com/club_images/3952.png",
+      "address": "Duchy College Stoke Climsland Callington Cornwall PL17 8PB United Kingdom",
+      "latitude": 50.5462286,
+      "longitude": -4.3242046,
+      "formatted_address": "PL17 8PB, Stokeclimsland, Stoke Climsland, Cornwall, England, United Kingdom",
+      "place_id": 350772813
+    },
+    {
+      "name": "Veor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23959",
+      "image_url": "https://images.englandrugby.com/club_images/23959.png",
+      "address": "Holman Sports Club 32 Pendarves Road Camborne Cornwall TR14 7QG United Kingdom",
+      "latitude": 50.2087467,
+      "longitude": -5.3047534,
+      "formatted_address": "TR14 7QG, Camborne, Cornwall, England, United Kingdom",
+      "place_id": 350866740
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,107 @@
+{
+  "league_name": "London 4 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2989&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Hammersmith & Fulham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9257",
+      "image_url": "https://images.englandrugby.com/club_images/9257.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "U.C.S.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23417",
+      "image_url": "https://images.englandrugby.com/club_images/23417.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    },
+    {
+      "name": "Barnet Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1427",
+      "image_url": "https://images.englandrugby.com/club_images/1427.png",
+      "address": "Byng Road Playing Fields, Byng Road, Barnet, Hertfordshire, EN5 4NS, United Kingdom",
+      "latitude": 51.6579357,
+      "longitude": -0.2133334,
+      "formatted_address": "EN5 4NS, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 350617567
+    },
+    {
+      "name": "Finchley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8090",
+      "image_url": "https://images.englandrugby.com/club_images/8090.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
+      "name": "Harrow",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9524",
+      "image_url": "https://images.englandrugby.com/club_images/9524.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.62756,
+      "longitude": -0.31634,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Grasshoppers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8853",
+      "image_url": "https://images.englandrugby.com/club_images/8853.png",
+      "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
+      "latitude": 51.4865187,
+      "longitude": -0.3373001,
+      "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 350421136
+    },
+    {
+      "name": "Old Hamptonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15777",
+      "image_url": "https://images.englandrugby.com/club_images/15777.png",
+      "address": "Old Hamptonians R.F.C. Dean Road Hampton Hampton Hampton MIDDLESEX TW12 1AQ UNITED KINGDOM ",
+      "latitude": 51.4310684,
+      "longitude": -0.371552,
+      "formatted_address": "TW12 1AQ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350870809
+    },
+    {
+      "name": "Fullerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8383",
+      "image_url": "https://images.englandrugby.com/club_images/8383.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Hitchin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10216",
+      "image_url": "https://images.englandrugby.com/club_images/10216.png",
+      "address": "Hitchin Rugby Club, King George V Playing Fields, Old Hale Way, Hitchin, Hertfordshire, SG5 1XL, United Kingdom",
+      "latitude": 51.960199,
+      "longitude": -0.279053,
+      "formatted_address": "SG5 1XL, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 350815550
+    },
+    {
+      "name": "Verulamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23976",
+      "image_url": "https://images.englandrugby.com/club_images/23976.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    }
+  ],
+  "team_count": 10
+}

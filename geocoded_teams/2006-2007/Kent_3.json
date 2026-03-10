@@ -1,0 +1,67 @@
+{
+  "league_name": "Kent 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2995&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Medway",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595",
+      "image_url": "https://images.englandrugby.com/club_images/13595.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Bexley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2100",
+      "image_url": "https://images.englandrugby.com/club_images/2100.png",
+      "address": "Bexley R.F.C. Bexley Park Sports & Social Club Bexley Park, Calvert Drive Bexley Park, Calvert Drive Dartford KENT DA2 7GA UNITED KINGDOM",
+      "latitude": 51.433795,
+      "longitude": 0.1704004,
+      "formatted_address": "DA2 7GA, Dartford, Kent, England, United Kingdom",
+      "place_id": 350120269
+    },
+    {
+      "name": "Old Williamsonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16094",
+      "image_url": "https://images.englandrugby.com/club_images/16094.png",
+      "address": "The Pavillion, Sir Joseph Williamsons Mathematical School, Maidstone Road, Rochester, Kent, ME1 3EL, United Kingdom",
+      "latitude": 51.371843,
+      "longitude": 0.4965667,
+      "formatted_address": "ME1 3EL, Rochester, Medway, England, United Kingdom",
+      "place_id": 350700782
+    },
+    {
+      "name": "Snowdown C.W.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19538",
+      "image_url": "https://images.englandrugby.com/club_images/19538.png",
+      "address": "The Sports Ground Spinney Lane, Aylesham, Canterbury. KENT CT3 3AF UNITED KINGDOM",
+      "latitude": 51.22383,
+      "longitude": 1.20548,
+      "formatted_address": "CT3 3AF, Aylesham, Dover, Kent, England, United Kingdom",
+      "place_id": 351106775
+    },
+    {
+      "name": "King's College Hospital",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11534",
+      "image_url": "https://images.englandrugby.com/club_images/11534.png",
+      "address": "Dulwich Sports Ground, 108 Turney Road, London, KENT, SE21 7JH, UNITED KINGDOM, ",
+      "latitude": 51.4468916,
+      "longitude": -0.0944903,
+      "formatted_address": "SE21 7JH, London Borough of Southwark, Greater London, England, United Kingdom",
+      "place_id": 351899123
+    },
+    {
+      "name": "Greenwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8954",
+      "image_url": "https://images.englandrugby.com/club_images/8954.png",
+      "address": "The Pavilion Old Mill Road Old Mill Road London SE18 1QJ UNITED KINGDOM ",
+      "latitude": 51.4820927,
+      "longitude": 0.0834451,
+      "formatted_address": "SE18 1QJ, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351895794
+    }
+  ],
+  "team_count": 6
+}

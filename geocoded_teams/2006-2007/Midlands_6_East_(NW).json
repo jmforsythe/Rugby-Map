@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 6 East (NW)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=3024&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Melbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13620",
+      "image_url": "https://images.englandrugby.com/club_images/13620.png",
+      "address": "Melbourne R.f.c., Cockshutt Lane, Melbourne, Derby, DE73 8DJ, United Kingdom",
+      "latitude": 52.819844,
+      "longitude": -1.4397292,
+      "formatted_address": "DE73 8DJ, Melbourne CP, King's Newton, South Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351155401
+    },
+    {
+      "name": "Rolls Royce",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17945",
+      "image_url": "https://images.englandrugby.com/club_images/17945.png",
+      "address": "Leisure Association, Moor Lane, Allenton, Derby, Derbyshire, DE24 9HY, United Kingdom",
+      "latitude": 52.8908291,
+      "longitude": -1.4620551,
+      "formatted_address": "DE24 9HY, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350579047
+    },
+    {
+      "name": "Belper",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1921",
+      "image_url": "https://images.englandrugby.com/club_images/1921.png",
+      "address": "Belper Rufc, Belper Rugby Club, Derby Road, Belper, Derbyshire, DE56 1SG, United Kingdom",
+      "latitude": 53.019632,
+      "longitude": -1.4846401,
+      "formatted_address": "DE56 1SG, Belper CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350581569
+    },
+    {
+      "name": "Uttoxeter",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23866",
+      "image_url": "https://images.englandrugby.com/club_images/23866.png",
+      "address": "Uttoxeter RUFC Oldfields Sports &amp; Social Club Springfield Road Uttoxeter STAFFORDSHIRE ST14 7JX ",
+      "latitude": 52.9006187,
+      "longitude": -1.8728705,
+      "formatted_address": "ST14 7JX, Uttoxeter, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350836476
+    },
+    {
+      "name": "Buxton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3874",
+      "image_url": "https://images.englandrugby.com/club_images/3874.png",
+      "address": "Buxton Rugby Club Sunnyfields Burlow Road Harpur Hill Buxton Derbyshire SK17 9PX United Kingdom",
+      "latitude": 53.22978,
+      "longitude": -1.88322,
+      "formatted_address": "SK17 9PX, Hartington Upper Quarter, High Peak, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351919937
+    },
+    {
+      "name": "Leesbrook",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12040",
+      "image_url": "https://images.englandrugby.com/club_images/12040.png",
+      "address": "Asterdale Sports Centre, Borrowash Road, Derby, Derbyshire, DE21 7PH, United Kingdom",
+      "latitude": 52.9115023,
+      "longitude": -1.391151,
+      "formatted_address": "DE21 7PH, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576702
+    },
+    {
+      "name": "Tupton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23314",
+      "image_url": "https://images.englandrugby.com/club_images/23314.png",
+      "address": "The Recreation Ground North Side Tupton Chesterfield DERBYSHIRE S42 6DW UNITED KINGDOM ",
+      "latitude": 53.19156,
+      "longitude": -1.41635,
+      "formatted_address": "S42 6DW, Tupton, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 351849813
+    },
+    {
+      "name": "Chesterfield Panthers 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4706",
+      "image_url": "https://images.englandrugby.com/club_images/4706.png",
+      "address": "2012 Dunston Road Chesterfield DERBYSHIRE S41 9PB UNITED KINGDOM ",
+      "latitude": 53.2602718,
+      "longitude": -1.4294863,
+      "formatted_address": "Dunston Road, Whittington Moor, Tapton, Chesterfield, Derbyshire, East Midlands, England, S41 8LX, United Kingdom",
+      "place_id": 256580663
+    },
+    {
+      "name": "Meden Vale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "image_url": "https://images.englandrugby.com/club_images/13583.png",
+      "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
+      "latitude": 53.2233769,
+      "longitude": -1.1306623,
+      "formatted_address": "NG20 9PS, Warsop, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351653546
+    }
+  ],
+  "team_count": 9
+}

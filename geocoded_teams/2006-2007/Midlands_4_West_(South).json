@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 4 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=3015&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Droitwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6793",
+      "image_url": "https://images.englandrugby.com/club_images/6793.png",
+      "address": "The Glyn Micthell Memorial Ground Hanbury Road Droitwich WORCESTERSHIRE WR9 8PR UNITED KINGDOM",
+      "latitude": 52.26735,
+      "longitude": -2.13631,
+      "formatted_address": "WR9 8PR, Droitwich Spa, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352164792
+    },
+    {
+      "name": "Berkswell & Balsall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2008",
+      "image_url": "https://images.englandrugby.com/club_images/2008.png",
+      "address": "Honiley Road, Meer End, Kenilworth, Warwickshire, CV8 1NQ, United Kingdom",
+      "latitude": 52.3623405,
+      "longitude": -1.6657484,
+      "formatted_address": "CV8 1NQ, Jaguar Land Rover Fen End, Beausale, Haseley, Honiley and Wroxall, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 350567035
+    },
+    {
+      "name": "Old Halesonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15751",
+      "image_url": "https://images.englandrugby.com/club_images/15751.png",
+      "address": "Old Halesonians Rfc, Wassell Grove Lane, Hagley, Stourbridge, West Midlands, DY9 9JP, England",
+      "latitude": 52.4328583,
+      "longitude": -2.1106772,
+      "formatted_address": "DY9 9JP, Hagley, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 351210321
+    },
+    {
+      "name": "Dunlop",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6913",
+      "image_url": "https://images.englandrugby.com/club_images/6913.png",
+      "address": "Dunlop Sports and Social Club Burnaby Road, Radford Coventry WEST MIDLANDS CV6 4AX UNITED KINGDOM",
+      "latitude": 52.4346895,
+      "longitude": -1.513908,
+      "formatted_address": "CV6 4AX, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351125116
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
+    },
+    {
+      "name": "Worcester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26044",
+      "image_url": "https://images.englandrugby.com/club_images/26044.png",
+      "address": "Worcester Rugby Football Club, Westons Fields, Offerton Lane, Hindlip, Worcester, Worcestershire, WR3 8TR, United Kingdom",
+      "latitude": 52.21841,
+      "longitude": -2.16082,
+      "formatted_address": "WR3 8TR, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352161983
+    },
+    {
+      "name": "Spartans (Midlands)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20058",
+      "image_url": "https://images.englandrugby.com/club_images/20058.png",
+      "address": "Coppice Lane Middleton Nr. Tamworth WARWICKSHIRE B78 2BS UNITED KINGDOM",
+      "latitude": 52.58681,
+      "longitude": -1.77417,
+      "formatted_address": "B78 2BS, Middleton CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 350926380
+    },
+    {
+      "name": "Evesham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7735",
+      "image_url": "https://images.englandrugby.com/club_images/7735.png",
+      "address": "Evesham Sports Club Blind Lane Off Albert Road Evesham Worcestershire WR11 4DT United Kingdom",
+      "latitude": 52.0790553,
+      "longitude": -1.9411321,
+      "formatted_address": "Royal Mail, Davies Road, Fairfield, Evesham, Wychavon, Worcestershire, England, WR11 1XN, United Kingdom",
+      "place_id": 258632014
+    },
+    {
+      "name": "Shipston on Stour",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19229",
+      "image_url": "https://images.englandrugby.com/club_images/19229.png",
+      "address": "Mayo Road Shipston on Stour WARWICKSHIRE CV36 4BH UNITED KINGDOM ",
+      "latitude": 52.0678607,
+      "longitude": -1.6248161,
+      "formatted_address": "Mayo Road, Shipston on Stour, Shipston-on-Stour, Stratford-on-Avon, Warwickshire, England, CV36 4BH, United Kingdom",
+      "place_id": 258406940
+    },
+    {
+      "name": "Copsewood",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5628",
+      "image_url": "https://images.englandrugby.com/club_images/5628.png",
+      "address": "The Pavilion Copsewood Sports & Social Club Allard Way Coventry WEST MIDLANDS CV3 1JP UNITED KINGDOM",
+      "latitude": 52.4000212,
+      "longitude": -1.4624777,
+      "formatted_address": "CV3 1JP, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350564444
+    },
+    {
+      "name": "Cleobury Mortimer",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5213",
+      "image_url": "https://images.englandrugby.com/club_images/5213.png",
+      "address": "Cleobury Mortimer Sports & Social Club Love Lane, Cleobury Mortimer Kidderminster WORCESTERSHIRE DY14 8PE UNITED KINGDOM ",
+      "latitude": 52.380803,
+      "longitude": -2.4844986,
+      "formatted_address": "DY14 8PE, Cleobury Mortimer, Shropshire, England, United Kingdom",
+      "place_id": 350600304
+    },
+    {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    }
+  ],
+  "team_count": 12
+}

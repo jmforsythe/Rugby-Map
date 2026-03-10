@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 3 West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=3014&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Hereford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10011",
+      "image_url": "https://images.englandrugby.com/club_images/10011.png",
+      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
+      "latitude": 52.0522599,
+      "longitude": -2.72805,
+      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 351368605
+    },
+    {
+      "name": "Stratford Upon Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21232",
+      "image_url": "https://images.englandrugby.com/club_images/21232.png",
+      "address": "Pearcecroft, Loxley Road, Stratford Upon Avon, CV37 7DP, United Kingdom",
+      "latitude": 52.1916445,
+      "longitude": -1.6935516,
+      "formatted_address": "CV37 7DP, Stratford-upon-Avon, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350565903
+    },
+    {
+      "name": "Old Laurentians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15791",
+      "image_url": "https://images.englandrugby.com/club_images/15791.png",
+      "address": "Fenley Field, Lime Tree Avenue, Rugby, Warks, CV22 7QT, United Kingdom",
+      "latitude": 52.3548836,
+      "longitude": -1.2945437,
+      "formatted_address": "CV22 7QT, Dunchurch, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564075
+    },
+    {
+      "name": "Nuneaton Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15197",
+      "image_url": "https://images.englandrugby.com/club_images/15197.png",
+      "address": "Nuneaton Old Edwardians RFC Weddington Road Nuneaton WARWICKSHIRE CV10 0AL UNITED KINGDOM",
+      "latitude": 52.53083,
+      "longitude": -1.46376,
+      "formatted_address": "CV10 0AL, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351111151
+    },
+    {
+      "name": "Pershore",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16795",
+      "image_url": "https://images.englandrugby.com/club_images/16795.png",
+      "address": "Piddle Park , Mill Lane, Wyre Piddle, Pershore, Worcestershire, WR10 2JF, United Kingdom",
+      "latitude": 52.12151,
+      "longitude": -2.06326,
+      "formatted_address": "WR10 2JF, Wyre Piddle, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352158321
+    },
+    {
+      "name": "Earlsdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7088",
+      "image_url": "https://images.englandrugby.com/club_images/7088.png",
+      "address": "R. F. Brown Pavillion Mitchell Avenue Canley Canley Coventry West Midlands CV4 8DY United Kingdom",
+      "latitude": 52.3898274,
+      "longitude": -1.5710019,
+      "formatted_address": "CV4 8DY, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350566232
+    },
+    {
+      "name": "Silhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19363",
+      "image_url": "https://images.englandrugby.com/club_images/19363.png",
+      "address": "Warwick Road Copt Heath, Knowle Solihull WEST MIDLANDS B93 9LW UNITED KINGDOM ",
+      "latitude": 52.4007409,
+      "longitude": -1.7467371,
+      "formatted_address": "B93 9LW, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488627
+    },
+    {
+      "name": "Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7361",
+      "image_url": "https://images.englandrugby.com/club_images/7361.png",
+      "address": "The Memorial Ground, Streetsbrook Road, Solihull, West Midlands, B90 3PE, United Kingdom",
+      "latitude": 52.4213495,
+      "longitude": -1.821653,
+      "formatted_address": "B90 3PE, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486320
+    },
+    {
+      "name": "Leamington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942",
+      "image_url": "https://images.englandrugby.com/club_images/11942.png",
+      "address": "Leamington R.u.f.c. 'moorefields' Blackdown Kenilworth Road Leamington Spa Warwickshire CV32 6RG United Kingdom",
+      "latitude": 52.3103,
+      "longitude": -1.53883,
+      "formatted_address": "CV32 6RG, Old Milverton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119215
+    },
+    {
+      "name": "Bedworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1865",
+      "image_url": "https://images.englandrugby.com/club_images/1865.png",
+      "address": "Nicholas Chamberlaine School, Bulkington Road, Bedworth, Warwickshire, CV12 9EB, United Kingdom",
+      "latitude": 52.47873,
+      "longitude": -1.46135,
+      "formatted_address": "CV12 9EB, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351113366
+    },
+    {
+      "name": "Ledbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11963",
+      "image_url": "https://images.englandrugby.com/club_images/11963.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "South West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=3048&season=2006-2007#tables",
+  "teams": [
+    {
+      "name": "Mounts Bay",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14228",
+      "image_url": "https://images.englandrugby.com/club_images/14228.png",
+      "address": "Elm Cottage, Kenneggy Downs Rosudgeon Penzance CORNWALL TR20 9AT UNITED KINGDOM",
+      "latitude": 50.11331,
+      "longitude": -5.40594,
+      "formatted_address": "TR20 9AT, Breage, Cornwall, England, United Kingdom",
+      "place_id": 351622014
+    },
+    {
+      "name": "Cleve",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5216",
+      "image_url": "https://images.englandrugby.com/club_images/5216.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
+    },
+    {
+      "name": "Weston-super-Mare",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25046",
+      "image_url": "https://images.englandrugby.com/club_images/25046.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "Reading",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17506",
+      "image_url": "https://images.englandrugby.com/club_images/17506.png",
+      "address": "Holme Park, Sonning Lane, Reading, Berkshire, RG4 6ST, England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350790611
+    },
+    {
+      "name": "St Ives (SW)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20429",
+      "image_url": "https://images.englandrugby.com/club_images/20429.png",
+      "address": "Alexandra Road, St. Ives, Cornw, TR26 1ER, United Kingdom",
+      "latitude": 50.21043,
+      "longitude": -5.49292,
+      "formatted_address": "TR26 1ER, St. Ives, Cornwall, England, United Kingdom",
+      "place_id": 352073872
+    },
+    {
+      "name": "Bracknell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2889",
+      "image_url": "https://images.englandrugby.com/club_images/2889.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
+    },
+    {
+      "name": "Oxford Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16431",
+      "image_url": "https://images.englandrugby.com/club_images/16431.png",
+      "address": "Oxford Road, Horspath, Oxford, Oxfordshire, OX4 2RR, United Kingdom",
+      "latitude": 51.7386944,
+      "longitude": -1.2036097,
+      "formatted_address": "Royal Mail, Horspath Road, Cowley, Oxford, Oxfordshire, England, OX4 2QR, United Kingdom",
+      "place_id": 259684761
+    },
+    {
+      "name": "Reading Abbey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17507",
+      "image_url": "https://images.englandrugby.com/club_images/17507.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    }
+  ],
+  "team_count": 9
+}

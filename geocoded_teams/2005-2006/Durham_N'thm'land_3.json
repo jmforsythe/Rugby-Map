@@ -1,0 +1,107 @@
+{
+  "league_name": "Durham/N'thm'land 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=2728&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Blyth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2631",
+      "image_url": "https://images.englandrugby.com/club_images/2631.png",
+      "address": "Blyth R.F.C. Plessey Road Blyth NORTHUMBERLAND NE24 3LE UNITED KINGDOM ",
+      "latitude": 55.1159891,
+      "longitude": -1.5131331,
+      "formatted_address": "NE24 3LE, Blyth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710916
+    },
+    {
+      "name": "Yarm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26377",
+      "image_url": "https://images.englandrugby.com/club_images/26377.png",
+      "address": "Yarm Rugby Club Wass Way Durham Lane Industrial Park Stockton-on-tees Cleveland TS16 0RG United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081237
+    },
+    {
+      "name": "Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13586",
+      "image_url": "https://images.englandrugby.com/club_images/13586.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
+    },
+    {
+      "name": "Bishop Auckland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2355",
+      "image_url": "https://images.englandrugby.com/club_images/2355.png",
+      "address": "Bishop Auckland R.U.F.C. West Mills Playing Fields Bridge Road Bishop Auckland COUNTY DURHAM DL14 7PA UNITED KINGDOM",
+      "latitude": 54.6629822,
+      "longitude": -1.6895799,
+      "formatted_address": "DL14 7PA, Bishop Auckland, County Durham, North East, England, United Kingdom",
+      "place_id": 350592623
+    },
+    {
+      "name": "Barnard Castle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1377",
+      "image_url": "https://images.englandrugby.com/club_images/1377.png",
+      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM ",
+      "latitude": 54.5425415,
+      "longitude": -1.9196797,
+      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
+      "place_id": 350591888
+    },
+    {
+      "name": "Seghill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18967",
+      "image_url": "https://images.englandrugby.com/club_images/18967.png",
+      "address": "Seghill R.f.c. Welfare Park Seghill Cramlington Northumberland NE23 7EZ United Kingdom",
+      "latitude": 55.0651899,
+      "longitude": -1.5534856,
+      "formatted_address": "NE23 7EZ, Seghill, Seaton Valley, Seghill, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710787
+    },
+    {
+      "name": "Richmondshire",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17794",
+      "image_url": "https://images.englandrugby.com/club_images/17794.png",
+      "address": "The Clubhouse, Theakston Lane, Richmond, North Yorkshire, DL10 4LL, United Kingdom",
+      "latitude": 54.3994665,
+      "longitude": -1.726758,
+      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350591529
+    },
+    {
+      "name": "Chester-Le-Street",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4725",
+      "image_url": "https://images.englandrugby.com/club_images/4725.png",
+      "address": "Donald Owen Clark Centre Riverside Park Chester-le-Street COUNTY DURHAM DH3 4NT UNITED KINGDOM",
+      "latitude": 54.8567526,
+      "longitude": -1.5596726,
+      "formatted_address": "DH3 4NT, Little Lumley, Woodstone Village, County Durham, North East, England, United Kingdom",
+      "place_id": 350588141
+    },
+    {
+      "name": "Hartlepool B.B.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9555",
+      "image_url": "https://images.englandrugby.com/club_images/9555.png",
+      "address": "Hartlepool B.b.o.b. Old Friarage Moor Terrace, Headland Hartlepool County Durham TS24 0PQ United Kingdom",
+      "latitude": 54.6975427,
+      "longitude": -1.1798585,
+      "formatted_address": "TS24 0PQ, Headland, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 351544634
+    },
+    {
+      "name": "Hartlepool Athletic",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9553",
+      "image_url": "https://images.englandrugby.com/club_images/9553.png",
+      "address": "Oakesway Estate Hartlepool TS24 0RE UNITED KINGDOM",
+      "latitude": 54.7016167,
+      "longitude": -1.2167343,
+      "formatted_address": "Oakesway, Oakesway Industrial Estate, Throston, Hartlepool, Tees Valley, England, TS24 0RE, United Kingdom",
+      "place_id": 254526177
+    }
+  ],
+  "team_count": 10
+}

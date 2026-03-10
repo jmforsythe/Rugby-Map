@@ -1,0 +1,127 @@
+{
+  "league_name": "North Lancs/Cumbria",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=2718&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Carlisle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4206",
+      "image_url": "https://images.englandrugby.com/club_images/4206.png",
+      "address": "The Rugby Club Warwick Road Carlisle CUMBRIA CA1 1LW UNITED KINGDOM",
+      "latitude": 54.8951498,
+      "longitude": -2.9180998,
+      "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 351025025
+    },
+    {
+      "name": "St Benedicts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20199",
+      "image_url": "https://images.englandrugby.com/club_images/20199.png",
+      "address": "Newlands Avenue Mirehouse Whitehaven Cumbria CA28 9SH United Kingdom",
+      "latitude": 54.5295053,
+      "longitude": -3.578969,
+      "formatted_address": "CA28 9SH, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 350528453
+    },
+    {
+      "name": "Burnage",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3684",
+      "image_url": "https://images.englandrugby.com/club_images/3684.png",
+      "address": "Varley Park, Battersea Road, Stockport, Chesh, SK4 3EA, United Kingdom",
+      "latitude": 53.4083445,
+      "longitude": -2.2090526,
+      "formatted_address": "SK4 3EA, Heaton Mersey, Cheadle, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 350368827
+    },
+    {
+      "name": "De La Salle (Salford)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6246",
+      "image_url": "https://images.englandrugby.com/club_images/6246.png",
+      "address": "Lancaster Road Salford LANCASHIRE M6 8AQ UNITED KINGDOM ",
+      "latitude": 53.5025866,
+      "longitude": -2.3235565,
+      "formatted_address": "East Lancs Road/Lancaster Road, East Lancashire Road, Swinton Park, Pendlebury, Salford, Greater Manchester, England, M27 5LZ, United Kingdom",
+      "place_id": 255334345
+    },
+    {
+      "name": "Oldham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16153",
+      "image_url": "https://images.englandrugby.com/club_images/16153.png",
+      "address": "Manor Park, Byrth Road, Bardsley, Oldham, Lancashire, OL8 2TJ, United Kingdom",
+      "latitude": 53.5128708,
+      "longitude": -2.1088621,
+      "formatted_address": "OL8 2TJ, Oldham, Greater Manchester, England, United Kingdom",
+      "place_id": 350752536
+    },
+    {
+      "name": "Upper Eden",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23815",
+      "image_url": "https://images.englandrugby.com/club_images/23815.png",
+      "address": "Pennine Park Westgarth Rd Kirkby Stephen Cumbria CA17 4TF United Kingdom",
+      "latitude": 54.4707847,
+      "longitude": -2.355303,
+      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351202780
+    },
+    {
+      "name": "Blackburn",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2477",
+      "image_url": "https://images.englandrugby.com/club_images/2477.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
+    },
+    {
+      "name": "Trafford MV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23101",
+      "image_url": "https://images.englandrugby.com/club_images/23101.png",
+      "address": "Finny Bank Road Macpherson Park Sale Cheshire M33 6LR United Kingdom",
+      "latitude": 53.43238,
+      "longitude": -2.3294,
+      "formatted_address": "M33 6LR, Trafford, Greater Manchester, England, United Kingdom",
+      "place_id": 351552940
+    },
+    {
+      "name": "Wigton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25403",
+      "image_url": "https://images.englandrugby.com/club_images/25403.png",
+      "address": "Wigton Rugby Club, Lowmoor Road, Wigton, Cumbria, CA7 9QT, United Kingdom",
+      "latitude": 54.8208816,
+      "longitude": -3.1464255,
+      "formatted_address": "CA7 9QT, Woodside, Cumberland, England, United Kingdom",
+      "place_id": 351034905
+    },
+    {
+      "name": "Heaton Moor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9861",
+      "image_url": "https://images.englandrugby.com/club_images/9861.png",
+      "address": "Heatons Sports Club Green Lane Heaton Moor Stockport CHESHIRE SK4 2NF UNITED KINGDOM ",
+      "latitude": 53.4157756,
+      "longitude": -2.1833252,
+      "formatted_address": "SK4 2NF, The Four Heatons, Heaton Moor, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 350819571
+    },
+    {
+      "name": "Workington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26096",
+      "image_url": "https://images.englandrugby.com/club_images/26096.png",
+      "address": "Ellis Sports Ground Moss Bay Road Workington Cumbria CA14 3XZ United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    },
+    {
+      "name": "Netherhall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14294",
+      "image_url": "https://images.englandrugby.com/club_images/14294.png",
+      "address": "Netherhall Rugby Football Club Netherhall Park Netherhall Road Maryport Cumbria CA156NT England",
+      "latitude": 54.7182377,
+      "longitude": -3.4848935,
+      "formatted_address": "CA15 6NT, Maryport, Cumberland, England, United Kingdom",
+      "place_id": 350527891
+    }
+  ],
+  "team_count": 12
+}

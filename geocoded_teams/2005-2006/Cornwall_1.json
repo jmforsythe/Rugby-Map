@@ -1,0 +1,87 @@
+{
+  "league_name": "Cornwall 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=2753&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Perranporth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16772",
+      "image_url": "https://images.englandrugby.com/club_images/16772.png",
+      "address": "Perranporth   Rfc, The Droop, Budnic Hill, Ponsmere Valley, Perranporth, Cornwall, TR6 0DB, United Kingdom",
+      "latitude": 50.34538,
+      "longitude": -5.14316,
+      "formatted_address": "TR6 0DB, Perranzabuloe, Cornwall, England, United Kingdom",
+      "place_id": 352075861
+    },
+    {
+      "name": "Newquay Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584",
+      "image_url": "https://images.englandrugby.com/club_images/14584.png",
+      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
+      "latitude": 50.41375,
+      "longitude": -5.06232,
+      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
+      "place_id": 352076356
+    },
+    {
+      "name": "Saltash",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18628",
+      "image_url": "https://images.englandrugby.com/club_images/18628.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
+    },
+    {
+      "name": "Stithians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20979",
+      "image_url": "https://images.englandrugby.com/club_images/20979.png",
+      "address": "Playing Field Stithians Stithians CORNWALL TR3 7DH UNITED KINGDOM",
+      "latitude": 50.1904953,
+      "longitude": -5.1787206,
+      "formatted_address": "TR3 7DH, Stithians, Cornwall, England, United Kingdom",
+      "place_id": 350867699
+    },
+    {
+      "name": "Bodmin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2662",
+      "image_url": "https://images.englandrugby.com/club_images/2662.png",
+      "address": "Bodmin R.F.C. Clifden Park Carmminow Cross BODMIN CORNWALL PL30 4AW UNITED KINGDOM ",
+      "latitude": 50.4584642,
+      "longitude": -4.6905979,
+      "formatted_address": "PL30 4AW, Bodmin, Cornwall, England, United Kingdom",
+      "place_id": 351772121
+    },
+    {
+      "name": "Illogan Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10851",
+      "image_url": "https://images.englandrugby.com/club_images/10851.png",
+      "address": "Sports Field, Paynters Lane End, Redruth, Cornwall, TR16 4RR, United Kingdom",
+      "latitude": 50.2452489,
+      "longitude": -5.2674444,
+      "formatted_address": "TR16 4RR, Illogan, Cornwall, England, United Kingdom",
+      "place_id": 350867104
+    },
+    {
+      "name": "St Just",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20533",
+      "image_url": "https://images.englandrugby.com/club_images/20533.png",
+      "address": "St. Just Rfc, The Clubhouse, Tregeseal, St Just In Penwith, Cornw, TR19 7PF, United Kingdom",
+      "latitude": 50.12726,
+      "longitude": -5.67663,
+      "formatted_address": "TR19 7PF, St Just, Cornwall, England, United Kingdom",
+      "place_id": 352072719
+    },
+    {
+      "name": "Redruth Albany",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17622",
+      "image_url": "https://images.englandrugby.com/club_images/17622.png",
+      "address": "Redruth Albany Rfc Station Hill Redruth Cornwall TR15 2PP United Kingdom",
+      "latitude": 50.2323499,
+      "longitude": -5.22835,
+      "formatted_address": "TR15 2PP, Redruth, Cornwall, England, United Kingdom",
+      "place_id": 352070742
+    }
+  ],
+  "team_count": 8
+}

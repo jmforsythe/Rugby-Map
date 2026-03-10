@@ -1,0 +1,97 @@
+{
+  "league_name": "Essex 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2656&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Writtle Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26200",
+      "image_url": "https://images.englandrugby.com/club_images/26200.png",
+      "address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex , CM1 3HP, United Kingdom",
+      "latitude": 51.7245106,
+      "longitude": 0.4326902,
+      "formatted_address": "Writtle Sports & Social Club, Paradise Road, Writtle, Chelmsford, Essex, England, CM1 3HP, United Kingdom",
+      "place_id": 91057666
+    },
+    {
+      "name": "Dagenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6050",
+      "image_url": "https://images.englandrugby.com/club_images/6050.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
+    },
+    {
+      "name": "Clacton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5113",
+      "image_url": "https://images.englandrugby.com/club_images/5113.png",
+      "address": "Not For Post, Rugby Clubhouse, Recreation Ground, Valley Road, Clacton-on-sea, CO15 6NA, United Kingdom",
+      "latitude": 51.8023489,
+      "longitude": 1.1643234,
+      "formatted_address": "CO15 6NA, Tendring, Essex, England, United Kingdom",
+      "place_id": 350555075
+    },
+    {
+      "name": "Old Brentwoods",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15448",
+      "image_url": "https://images.englandrugby.com/club_images/15448.png",
+      "address": "Old Brentwoods RFC Old Brentwoods Club Ashwells Road Pilgrims Hatch Brentwood ESSEX CM15 9SE UNITED KINGDOM ",
+      "latitude": 51.6488325,
+      "longitude": 0.2661042,
+      "formatted_address": "CM15 9SE, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350547148
+    },
+    {
+      "name": "Millwall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906",
+      "image_url": "https://images.englandrugby.com/club_images/13906.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
+      "name": "Burnham-on-Crouch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700",
+      "image_url": "https://images.englandrugby.com/club_images/3700.png",
+      "address": "Burnham-on-crouch R.u.f.c., Millfields, Station Road, Burnham On Crouch, Essex , CM0 8HS, United Kingdom",
+      "latitude": 51.6284672,
+      "longitude": 0.8114623,
+      "formatted_address": "CM0 8HS, Burnham-on-Crouch, Maldon, Essex, England, United Kingdom",
+      "place_id": 350546512
+    },
+    {
+      "name": "Loughton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12860",
+      "image_url": "https://images.englandrugby.com/club_images/12860.png",
+      "address": "Hornbeam Sports & Social Club Squirrels Lane Hornbeam Road Essex IG9 6JT United Kingdom",
+      "latitude": 51.6216737,
+      "longitude": 0.0489574,
+      "formatted_address": "IG9 6JT, Buckhurst Hill, Epping Forest, Essex, England, United Kingdom",
+      "place_id": 351389787
+    },
+    {
+      "name": "May & Baker",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13560",
+      "image_url": "https://images.englandrugby.com/club_images/13560.png",
+      "address": "May & Baker Club Dagenham Road Dagenham ESSEX RM10 7UP UNITED KINGDOM",
+      "latitude": 51.5515648,
+      "longitude": 0.161543,
+      "formatted_address": "RM10 7UP, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 350799576
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 5 West (North)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=2700&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Old Griffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15738",
+      "image_url": "https://images.englandrugby.com/club_images/15738.png",
+      "address": "49 Victoria Road Chichester WEST SUSSEX PO19 7HY UNITED KINGDOM",
+      "latitude": 50.8382668,
+      "longitude": -0.7596968,
+      "formatted_address": "Victoria Road, St James's, Chichester, Westhampnett, Chichester, West Sussex, England, PO19 7HY, United Kingdom",
+      "place_id": 261655327
+    },
+    {
+      "name": "Moseley Oak",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14182",
+      "image_url": "https://images.englandrugby.com/club_images/14182.png",
+      "address": "Moseley Rugby Club, Billesley Common, Yardley Wood Road, Billesley, Birmingham, B13 0HN, England",
+      "latitude": 52.4282264,
+      "longitude": -1.8710828,
+      "formatted_address": "B13 0HN, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350462368
+    },
+    {
+      "name": "Cannock",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4111",
+      "image_url": "https://images.englandrugby.com/club_images/4111.png",
+      "address": "The Morgan Ground Stafford Road Huntington Cannock STAFFORDSHIRE WS12 4NU ",
+      "latitude": 52.7131327,
+      "longitude": -2.0409029,
+      "formatted_address": "WS12 4NU, Huntington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350895011
+    },
+    {
+      "name": "Bloxwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2624",
+      "image_url": "https://images.englandrugby.com/club_images/2624.png",
+      "address": "King George V Playing Fields, Stafford Road, Bloxwich, Walsall, West Midlands, WS3 3NJ, England",
+      "latitude": 52.6220922,
+      "longitude": -2.0047693,
+      "formatted_address": "WS3 3NJ, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350895877
+    },
+    {
+      "name": "Yardley & District",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26365",
+      "image_url": "https://images.englandrugby.com/club_images/26365.png",
+      "address": "1 Cole Hall Lane Stechford Stechford Birmingham WEST MIDLANDS B34 6HE UNITED KINGDOM",
+      "latitude": 52.4933523,
+      "longitude": -1.7881551,
+      "formatted_address": "Cole Hall Lane, Stechford, Kitts Green, Birmingham, West Midlands, England, B34 6EX, United Kingdom",
+      "place_id": 258760065
+    },
+    {
+      "name": "Five Ways Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8184",
+      "image_url": "https://images.englandrugby.com/club_images/8184.png",
+      "address": "Masshouse Ash Lane Hopwood, Alvechurch Birmingham West Midlands B48 7BD United Kingdom",
+      "latitude": 52.3675387,
+      "longitude": -1.949436,
+      "formatted_address": "B48 7BD, Alvechurch CP, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350479215
+    },
+    {
+      "name": "Bournville",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2817",
+      "image_url": "https://images.englandrugby.com/club_images/2817.png",
+      "address": "Avery Fields Sports & Events, 79 Sandon Road, Edgbaston, Birmingham, West Midlands, B17 8DT, United Kingdom",
+      "latitude": 52.4748818,
+      "longitude": -1.9633017,
+      "formatted_address": "B17 8DT, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350464923
+    },
+    {
+      "name": "Warley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24269",
+      "image_url": "https://images.englandrugby.com/club_images/24269.png",
+      "address": "Warley Rugby Football Club, Tatbank Road, Oldbury, Wmid, B69 4NH, United Kingdom",
+      "latitude": 52.4958699,
+      "longitude": -2.00585,
+      "formatted_address": "B69 4NH, Sandwell, West Midlands, England, United Kingdom",
+      "place_id": 350923574
+    },
+    {
+      "name": "Essington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700",
+      "image_url": "https://images.englandrugby.com/club_images/7700.png",
+      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
+      "latitude": 52.6245432,
+      "longitude": -2.0590734,
+      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350896523
+    }
+  ],
+  "team_count": 9
+}

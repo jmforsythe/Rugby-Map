@@ -1,0 +1,107 @@
+{
+  "league_name": "Dorset & Wilts 2 North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=2773&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Frome II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8357",
+      "image_url": "https://images.englandrugby.com/club_images/8357.png",
+      "address": "The Clubhouse, Gypsy Lane, Frome, Somerset, BA11 2NA, United Kingdom",
+      "latitude": 51.24412,
+      "longitude": -2.30404,
+      "formatted_address": "BA11 2NA, Berkley, Somerset, England, United Kingdom",
+      "place_id": 350930903
+    },
+    {
+      "name": "Chippenham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4845",
+      "image_url": "https://images.englandrugby.com/club_images/4845.png",
+      "address": "Allington Field Sheldon Corner Frogwell Chippenham WILTSHIRE SN14 0YZ UNITED KINGDOM ",
+      "latitude": 51.46607,
+      "longitude": -2.15041,
+      "formatted_address": "SN14 0YZ, Chippenham Without, Wiltshire, England, United Kingdom",
+      "place_id": 351943386
+    },
+    {
+      "name": "Marlborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13418",
+      "image_url": "https://images.englandrugby.com/club_images/13418.png",
+      "address": "The Clubhouse, The Common, Frees Avenue, Marlborough, Wiltshire, SN8 1DL, United Kingdom",
+      "latitude": 51.42447,
+      "longitude": -1.73146,
+      "formatted_address": "SN8 1DL, Marlborough, Wiltshire, England, United Kingdom",
+      "place_id": 351950315
+    },
+    {
+      "name": "Hungerford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10697",
+      "image_url": "https://images.englandrugby.com/club_images/10697.png",
+      "address": "Hungerford Rfc Clubhouse, Triangle Field, Priory Road, Hungerford, Berkshire, RG170AP, United Kingdom",
+      "latitude": 51.40557,
+      "longitude": -1.51367,
+      "formatted_address": "RG17 0AP, Hungerford, West Berkshire, England, United Kingdom",
+      "place_id": 351808741
+    },
+    {
+      "name": "Trowbridge II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23241",
+      "image_url": "https://images.englandrugby.com/club_images/23241.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM ",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 261549299
+    },
+    {
+      "name": "Warminster",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24316",
+      "image_url": "https://images.englandrugby.com/club_images/24316.png",
+      "address": "Folly Lane Sports Ground, Folly Lane, Warminster, Wiltshire, BA12 7RG, United Kingdom",
+      "latitude": 51.19765,
+      "longitude": -2.20581,
+      "formatted_address": "BA12 7RG, Warminster, Wiltshire, England, United Kingdom",
+      "place_id": 350932292
+    },
+    {
+      "name": "Devizes II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6359",
+      "image_url": "https://images.englandrugby.com/club_images/6359.png",
+      "address": "Devizes Sports Club, London Road, Devizes, Wiltshire, SN10 2DL, United Kingdom",
+      "latitude": 51.3554878,
+      "longitude": -1.9863511,
+      "formatted_address": "Devizes Sports Club, London Road, Devizes, Wiltshire, England, SN10 2DL, United Kingdom",
+      "place_id": 261154926
+    },
+    {
+      "name": "Swindon III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21537",
+      "image_url": "https://images.englandrugby.com/club_images/21537.png",
+      "address": "New Pavilion, Greenbridge Rd, Swindon Sn3 3la, Greenbridge Road, Swindon, Wiltshire, SN3 3LA, United Kingdom",
+      "latitude": 51.5670111,
+      "longitude": -1.7474216,
+      "formatted_address": "SN3 3LA, Swindon, Stratton St. Margaret, Swindon, England, United Kingdom",
+      "place_id": 350824558
+    },
+    {
+      "name": "Royal Wootton Bassett III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18232",
+      "image_url": "https://images.englandrugby.com/club_images/18232.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Aldbourne/Hungerford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=389",
+      "image_url": "https://images.englandrugby.com/club_images/389.png",
+      "address": "The Crown Hotel The Square Aldbourne Wiltshire SN8 2DU United Kingdom",
+      "latitude": 51.4789639,
+      "longitude": -1.6206466,
+      "formatted_address": "SN8 2DU, Aldbourne, Wiltshire, England, United Kingdom",
+      "place_id": 350825780
+    }
+  ],
+  "team_count": 10
+}

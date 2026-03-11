@@ -57,14 +57,27 @@ COMPETITION_NAMES: dict[str, str] = {
 }
 
 
-def _extract_competition_id(league_url: str) -> str | None:
-    """Return the ``competition`` query-param value from a league URL, or *None*."""
+_LEAGUE_NAME_COMP_IDS: dict[str, str] = {
+    "Premiership": "5",
+    "Championship": "173",
+    "National League One": "173",
+}
+
+
+def _extract_competition_id(league_url: str, league_name: str = "") -> str | None:
+    """Return the ``competition`` query-param value from a league URL, or *None*.
+
+    Falls back to matching *league_name* for early seasons whose files store
+    Wikipedia URLs instead of England Rugby URLs.
+    """
     try:
         qs = parse_qs(urlparse(league_url).query)
         ids = qs.get("competition", [])
-        return ids[0] if ids else None
+        if ids:
+            return ids[0]
     except Exception:
-        return None
+        pass
+    return _LEAGUE_NAME_COMP_IDS.get(league_name)
 
 
 LeagueRecord = tuple[str, int, str]  # (label, abs_tier, comp_display)
@@ -97,7 +110,7 @@ def load_league_data() -> dict[str, dict[str, list[LeagueRecord]]]:
                 data = json.load(f)
             league_name = data.get("league_name", filepath.stem)
             team_count = len(data.get("teams", []))
-            comp_id = _extract_competition_id(data.get("league_url", "")) or "?"
+            comp_id = _extract_competition_id(data.get("league_url", ""), league_name) or "?"
 
             label = f"{league_name} ({team_count} teams)"
             comp_map[comp_id].append((label, abs_tier, comp_display))

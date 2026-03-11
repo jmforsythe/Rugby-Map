@@ -120,16 +120,16 @@ class TestExtractTierMenPre2021:
         assert extract_tier_men_pre_2021("Division_1.json", "2018-2019") is None
 
     def test_yorkshire_5a(self):
-        """Yorkshire 5A/5B/5C must parse as tier 11 (offset 6 + 5)."""
-        assert extract_tier_men_pre_2021("Yorkshire_5A.json", "2007-2008") == (11, "Level 11")
-        assert extract_tier_men_pre_2021("Yorkshire_5B.json", "2007-2008") == (11, "Level 11")
-        assert extract_tier_men_pre_2021("Yorkshire_5C.json", "2008-2009") == (11, "Level 11")
+        """Yorkshire 5A/5B/5C must parse as tier 10 pre-championship (offset 6 + 5 - 1)."""
+        assert extract_tier_men_pre_2021("Yorkshire_5A.json", "2007-2008") == (10, "Level 10")
+        assert extract_tier_men_pre_2021("Yorkshire_5B.json", "2007-2008") == (10, "Level 10")
+        assert extract_tier_men_pre_2021("Yorkshire_5C.json", "2008-2009") == (10, "Level 10")
 
     def test_yorkshire_5_named_variants(self):
-        """Named Yorkshire 5 variants should also give tier 11."""
+        """Named Yorkshire 5 variants: tier 10 pre-championship, 11 post."""
         assert extract_tier_men_pre_2021("Yorkshire_5_North_West.json", "2006-2007") == (
-            11,
-            "Level 11",
+            10,
+            "Level 10",
         )
         assert extract_tier_men_pre_2021("Yorkshire_Division_Five.json", "2009-2010") == (
             11,
@@ -137,25 +137,25 @@ class TestExtractTierMenPre2021:
         )
 
     def test_bbo_pre_premier_era(self):
-        """BB&O 1 is the top county league before 2005 (no Premier existed)."""
+        """BB&O 1 is the top county league before 2005 (no Premier existed), shifted for pre-championship."""
         assert extract_tier_men_pre_2021("xBerks_Bucks_&_Oxon_1.json", "2000-2001") == (
-            8,
-            "Level 8",
+            7,
+            "Level 7",
         )
         assert extract_tier_men_pre_2021("xBerks_Bucks_&_Oxon_2.json", "2000-2001") == (
-            9,
-            "Level 9",
+            8,
+            "Level 8",
         )
 
     def test_bbo_with_premier(self):
-        """Once Premier exists (2005+), BB&O 1 drops to tier 9."""
+        """Once Premier exists (2005+), BB&O Premier is tier 7 pre-championship, BB&O 1 is tier 8."""
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_Premier.json", "2005-2006") == (
-            8,
-            "Level 8",
+            7,
+            "Level 7",
         )
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_1_North.json", "2005-2006") == (
-            9,
-            "Level 9",
+            8,
+            "Level 8",
         )
 
     def test_midlands_east_geographic_split(self):

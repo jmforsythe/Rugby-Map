@@ -51,13 +51,13 @@ def get_competition_offset(comp_name: str, season: str = "") -> int:
 def mens_current_tier_name(tier: int, season: str = "") -> str:
     """Return the display name for an absolute men's pyramid tier number.
 
-    Before 2009-2010 the Championship (tier 2) did not exist; tiers 2-5 were
-    National League 1 through 4.
+    Before 2008-2009 the Championship (tier 2) did not exist; tiers 2-4 were
+    National League 1 through 3.
     """
-    pre_2009 = bool(season) and season < "2009-2010"
+    pre_champ = bool(season) and season < "2009-2010"
     if tier == 1:
         return "Premiership"
-    if pre_2009 and 2 <= tier <= 5:
+    if pre_champ and 2 <= tier <= 4:
         return f"National League {tier - 1}"
     if tier == 2:
         return "Championship"
@@ -83,6 +83,13 @@ def _womens_current_tier_name(tier: int) -> str:
     if 102 <= tier <= 103:
         return f"Championship {tier - 101}"
     return f"National Challenge {tier - 103}"
+
+
+_WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
+    "NC_Midlands_Merit.json": (104, "National Challenge 1"),
+    "NC_Lancashire_Merit.json": (104, "National Challenge 1"),
+    "Eastern_Counties_Women's_Merit_Table.json": (104, "National Challenge 1"),
+}
 
 
 _NAMED_MERIT_LEAGUES: dict[str, int] = {
@@ -145,6 +152,11 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Surrey/Surrey_JONAP_Foundation": 6,
     "merit/Surrey/London_Counties": 0,
     "merit/Surrey/London_1_South": 0,
+    # Herts & Middlesex (offset 10): numbered North/South divisions sit directly
+    # below Championship (local 1), one tier above the unnumbered variants.
+    "merit/Herts_Middlesex/Merit_North_1": 2,
+    "merit/Herts_Middlesex/Merit_North_2": 3,
+    "merit/Herts_Middlesex/Merit_South_1": 2,
 }
 
 
@@ -173,6 +185,12 @@ def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int,
     (1-based) and the name is competition-qualified (e.g. ``"Essex 2"``).
     """
     normalized = path_or_filename.replace("\\", "/")
+    filename = normalized.split("/")[-1]
+
+    override = _WOMENS_FILENAME_OVERRIDES.get(filename)
+    if override is not None:
+        return override
+
     is_merit = normalized.startswith("merit/")
 
     result = _match_named_merit_leagues(normalized, season)
@@ -339,8 +357,10 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
     if filename.startswith("x") and len(filename) > 1 and filename[1].isupper():
         filename = filename[1:]
 
+    pre_champ = season < "2009-2010"
+
     zeroth_tier_map = {
-        "National_League": (1 if season < "2009-2010" else 2),
+        "National_League": (1 if pre_champ else 2),
         "North_Midlands": 8,
         "North_Mids": 8,
         "North_Lancs_Cumbria": 7,
@@ -430,6 +450,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             ):
                 num -= 1
             tier = offset + num
+            if pre_champ and prefix != "National_League" and not prefix.startswith("merit/"):
+                tier -= 1
             if prefix == "National_League":
                 return (tier, f"National League {num}")
             return (tier, f"Level {tier}")

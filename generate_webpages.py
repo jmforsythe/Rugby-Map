@@ -32,18 +32,62 @@ def _link(name: str) -> str:
 def _build_pyramid_section(
     pyramid_tiers: list[tuple[str, str]],
     all_tiers_href: str,
+    all_leagues_href: str | None = None,
+    tier_plus_merit: dict[str, str] | None = None,
+    merit_only_tiers: list[tuple[str, str]] | None = None,
 ) -> str:
-    """Build the pyramid tier list with a prominent 'All Tiers' button."""
+    """Build the pyramid tier list, optionally with a +merit column."""
+    has_merit_col = all_leagues_href is not None or bool(merit_only_tiers)
+    plus_merit = tier_plus_merit or {}
+    extra_merit = merit_only_tiers or []
+
     html = '    <div class="pyramid-section">\n'
-    html += "    <ul>\n"
-    html += f'        <li class="all-tiers"><a href="{all_tiers_href}">All Pyramid Tiers</a></li>\n'
-    html += "    </ul>\n"
-    html += "    <ul>\n"
+    html += '    <table class="tier-table">\n'
 
+    if has_merit_col:
+        html += "    <thead><tr>"
+        html += '<th class="tier-table__head">Pyramid</th>'
+        html += '<th class="tier-table__head">+ Merit</th>'
+        html += "</tr></thead>\n"
+
+    html += "    <tbody>\n"
+
+    # "All" row
+    merit_cell = ""
+    if has_merit_col and all_leagues_href:
+        merit_cell = f'<a href="{all_leagues_href}">All Leagues</a>'
+    html += "    <tr>\n"
+    html += f'        <td><a class="tier-link tier-link--primary" href="{all_tiers_href}">All Tiers</a></td>\n'
+    if has_merit_col:
+        if merit_cell:
+            html += f'        <td><a class="tier-link tier-link--primary" href="{all_leagues_href}">All Leagues</a></td>\n'
+        else:
+            html += "        <td></td>\n"
+    html += "    </tr>\n"
+
+    # Per-tier rows
     for tier_name, tier_href in pyramid_tiers:
-        html += f'        <li><a href="{tier_href}">{tier_name}</a></li>\n'
+        html += "    <tr>\n"
+        html += f'        <td><a class="tier-link" href="{tier_href}">{tier_name}</a></td>\n'
+        if has_merit_col:
+            merit_href = plus_merit.get(tier_name)
+            if merit_href:
+                html += f'        <td><a class="tier-link" href="{merit_href}">{tier_name} + Merit</a></td>\n'
+            else:
+                html += "        <td></td>\n"
+        html += "    </tr>\n"
 
-    html += "    </ul>\n    </div>\n"
+    # Merit-only rows (tiers below the pyramid)
+    for tier_name, tier_href in extra_merit:
+        html += "    <tr>\n"
+        html += "        <td></td>\n"
+        html += (
+            f'        <td><a class="tier-link" href="{tier_href}">{tier_name} (Merit)</a></td>\n'
+        )
+        html += "    </tr>\n"
+
+    html += "    </tbody>\n"
+    html += "    </table>\n    </div>\n"
     return html
 
 
@@ -111,14 +155,19 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     if mens_tiers or merit_competitions:
         html += "\n    <h2>Men's</h2>\n"
         if mens_tiers:
+            tier_plus_merit: dict[str, str] = tier_files.get("tier_plus_merit", {})
+            merit_only: list[tuple[str, str]] = tier_files.get("merit_only_tiers", [])
             html += _build_pyramid_section(
                 mens_tiers,
                 all_tiers_href=_link("All_Tiers"),
+                all_leagues_href=_link("All_Leagues") if has_all_leagues else None,
+                tier_plus_merit=tier_plus_merit,
+                merit_only_tiers=merit_only,
             )
         if merit_competitions:
             html += _build_merit_section(
                 merit_competitions,
-                all_leagues_href=_link("All_Leagues") if has_all_leagues else None,
+                all_leagues_href=None,
             )
 
     # Women's section (pyramid only, no merit)
@@ -147,6 +196,15 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
 
 def get_top_level_index_html(seasons: list[str]) -> str:
     """Generate HTML content for the top-level index page."""
+    sorted_seasons = sorted(seasons, reverse=True)
+    latest = sorted_seasons[0] if sorted_seasons else ""
+    is_prod = get_config().is_production
+
+    def _season_href(s: str) -> str:
+        return f"{s}/" if is_prod else f"{s}/index.html"
+
+    teams_href = "./teams/" if is_prod else "./teams/index.html"
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,24 +223,28 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     <h1>English Rugby Union Team Maps</h1>
     <p>Interactive maps showing the geographic distribution of teams across England.</p>
 
-    <ul>
+    <div class="hero-links">
+        <a class="hero-card hero-card--primary" href="{_season_href(latest)}">
+            <span class="hero-card__label">Current Season</span>
+            <span class="hero-card__title">{latest}</span>
+        </a>
+        <a class="hero-card" href="{teams_href}">
+            <span class="hero-card__label">Browse</span>
+            <span class="hero-card__title">All Teams</span>
+        </a>
+    </div>
 """
 
-    # Add season links (most recent first)
-    for season in sorted(seasons, reverse=True):
-        html += f'        <li><a href="{season}/{ "" if get_config().is_production else "index.html"}">Season {season}</a></li>\n'
+    # Past seasons grid
+    past = sorted_seasons[1:]
+    if past:
+        html += '    <h2 class="past-heading">Past Seasons</h2>\n'
+        html += '    <div class="season-grid">\n'
+        for s in past:
+            html += f'        <a class="season-card" href="{_season_href(s)}">' f"{s}</a>\n"
+        html += "    </div>\n"
 
-    html += """    </ul>"""
-
-    # Add link to all teams page
-    html += f"""
-        <div class="separator"></div>
-        <ul>
-        <li><a href="./teams/{ "" if get_config().is_production else "index.html" }">Teams</a></li>
-        </ul>
-"""
-
-    # Add FAQ section
+    # FAQ section
     html += """
     <div class="faq">
         <h2>FAQ</h2>
@@ -270,6 +332,18 @@ def detect_tier_files(season_dir: Path) -> dict:
 
     has_all_leagues = (season_dir / _link("All_Leagues")).exists()
 
+    # Detect per-tier pyramid+merit variants (e.g. Counties_1_All_Leagues)
+    tier_plus_merit: dict[str, str] = {}
+    for display, name in mens_candidates:
+        combined_name = f"{name}_All_Leagues"
+        href = _link(combined_name)
+        if (season_dir / href).exists():
+            tier_plus_merit[display] = href
+
+    # Detect merit-only tiers below the pyramid (e.g. Level_12_All_Leagues)
+    merit_only_candidates = [(f"Level {i}", f"Level_{i}_All_Leagues") for i in range(5, 25)]
+    merit_only_tiers = _detect_existing(season_dir, merit_only_candidates)
+
     # Detect merit competitions
     merit_dir = season_dir / "merit"
     merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = []
@@ -296,6 +370,8 @@ def detect_tier_files(season_dir: Path) -> dict:
         "womens": womens_tiers,
         "has_all_leagues": has_all_leagues,
         "merit": merit_competitions,
+        "tier_plus_merit": tier_plus_merit,
+        "merit_only_tiers": merit_only_tiers,
     }
 
 

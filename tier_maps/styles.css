@@ -505,6 +505,162 @@ body.wide-layout {
   color: #004fa3;
 }
 
+/* Hero links (current season + teams) */
+.hero-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em 1em;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.hero-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.2);
+  border-color: #0066cc;
+}
+
+.hero-card--primary {
+  background: #0066cc;
+  border-color: #0066cc;
+}
+
+.hero-card--primary:hover {
+  background: #0052a3;
+  border-color: #0052a3;
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.35);
+}
+
+.hero-card__label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 0.3em;
+}
+
+.hero-card--primary .hero-card__label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-card__title {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.hero-card--primary .hero-card__title {
+  color: white;
+}
+
+.past-heading {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.6em;
+}
+
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.6em;
+}
+
+.season-card {
+  display: block;
+  text-align: center;
+  padding: 0.7em 0.5em;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.season-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+/* Tier table (pyramid / +merit columns) */
+.tier-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.4em;
+  background: white;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tier-table__head {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  padding: 0 0.5em 0.3em;
+  text-align: left;
+}
+
+.tier-link {
+  display: block;
+  padding: 0.6em 1em;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.tier-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+.tier-link--primary {
+  background: #0066cc;
+  border-color: #0066cc;
+  color: white;
+  font-weight: 600;
+}
+
+.tier-link--primary:hover {
+  background: #0052a3;
+  border-color: #0052a3;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.35);
+}
+
+.tier-table td {
+  padding: 0 0.3em;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   body,
@@ -516,5 +672,18 @@ body.wide-layout {
   .info-section {
     padding: 1em;
     margin: 1em 0;
+  }
+
+  .hero-links {
+    grid-template-columns: 1fr;
+  }
+
+
+  .hero-card__title {
+    font-size: 1.2em;
+  }
+
+  .season-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }

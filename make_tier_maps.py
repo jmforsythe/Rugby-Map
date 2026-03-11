@@ -498,8 +498,14 @@ def main() -> None:
     womens_pyramid_r = _resolve_info_links(womens_pyramid)
     adjusted_merit_r = _resolve_info_links(adjusted_merit)
 
+    # Group adjusted merit items by their absolute tier number for per-tier
+    # combined maps (pyramid tier + merit at same level).
+    merit_by_tier_num: dict[int, list[MarkerItem]] = {}
+    for it in adjusted_merit_r:
+        merit_by_tier_num.setdefault(it.tier_num, []).append(it)
+
     # ------------------------------------------------------------------
-    # Individual pyramid tier maps
+    # Individual pyramid tier maps (+ optional pyramid+merit variants)
     # ------------------------------------------------------------------
     if gen_mens_individual and mens_by_tier:
         logger.info("Creating men's pyramid tier maps...")
@@ -510,6 +516,31 @@ def main() -> None:
             out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
             config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
             generate_single_group_map(tier_items, out, itl_hierarchy, config)
+
+            # Pyramid + merit at same level
+            merit_at_level = merit_by_tier_num.get(tier_num, [])
+            if merit_at_level:
+                combined = tier_items + merit_at_level
+                file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+                out = _output_path(output_dir, file_name, is_prod)
+                config = _build_config(
+                    f"{tier_name} + Merit", season, show_debug, _rotated_palette(tier_num)
+                )
+                generate_single_group_map(combined, out, itl_hierarchy, config)
+
+        # Merit-only tiers below the pyramid
+        pyramid_tier_nums = {it[0].tier_num for it in mens_by_tier_r.values()}
+        for tier_num in sorted(merit_by_tier_num):
+            if tier_num in pyramid_tier_nums:
+                continue
+            merit_items = merit_by_tier_num[tier_num]
+            tier_name = mens_current_tier_name(tier_num, season)
+            file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+            out = _output_path(output_dir, file_name, is_prod)
+            config = _build_config(
+                f"{tier_name} (Merit)", season, show_debug, _rotated_palette(tier_num)
+            )
+            generate_single_group_map(merit_items, out, itl_hierarchy, config)
 
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")

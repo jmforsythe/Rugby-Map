@@ -295,6 +295,8 @@ def make_request(
             response = get_session().get(url, headers=get_headers(referer), timeout=timeout)
             if response.status_code == 202:
                 response = _curl_fallback(url, referer, timeout)
+            if response.status_code in (202, 403):
+                raise AntiBotDetectedError(f"{response.status_code} code")
             response.raise_for_status()
             return response
 

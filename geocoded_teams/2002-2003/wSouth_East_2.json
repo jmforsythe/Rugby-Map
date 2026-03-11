@@ -3,53 +3,71 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=1803&season=2002-2003#tables",
   "teams": [
     {
-      "name": "wMedway Ladies",
+      "name": "Medway Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25857",
       "image_url": "https://images.englandrugby.com/club_images/25857.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Medway RFC Priestfields Rochester KENT ME1 3AD UNITED KINGDOM",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351564006
     },
     {
-      "name": "wFolkeston Ladies",
+      "name": "Folkeston Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25134",
       "image_url": "https://images.englandrugby.com/club_images/25134.png",
       "address": null,
       "error": "no_address"
     },
     {
-      "name": "wTrojans Ladies",
+      "name": "Trojans Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26248",
       "image_url": "https://images.englandrugby.com/club_images/26248.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Trojans Club Stoneham Park Stoneham Lane Eastleigh Southampton Hampshire SO50 9HT United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832263
     },
     {
-      "name": "wCamberley Ladies",
+      "name": "Camberley Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24540",
       "image_url": "https://images.englandrugby.com/club_images/24540.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350872144
     },
     {
-      "name": "wLondon Welsh Ladies",
+      "name": "London Welsh Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25848",
       "image_url": "https://images.englandrugby.com/club_images/25848.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
     },
     {
-      "name": "wThurrock Ladies",
+      "name": "Thurrock Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26245",
       "image_url": "https://images.englandrugby.com/club_images/26245.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
     },
     {
-      "name": "wBancroft Ladies",
+      "name": "Bancroft Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24490",
       "image_url": "https://images.englandrugby.com/club_images/24490.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Bancroft Rfc The Club House Bradfords Close Buckhurst Way Buckhurst Hill Essex IG9 6JD United Kingdom",
+      "latitude": 51.61605,
+      "longitude": 0.04569,
+      "formatted_address": "IG9 6JD, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351389783
     }
   ],
   "team_count": 7

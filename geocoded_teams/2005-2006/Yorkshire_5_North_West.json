@@ -1,0 +1,87 @@
+{
+  "league_name": "Yorkshire 5 North West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=2740&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    },
+    {
+      "name": "Wetherby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25068",
+      "image_url": "https://images.englandrugby.com/club_images/25068.png",
+      "address": "Wetherby R.u.f.c., Grange Park Sports Club, Grange Park, Wetherby, West Yorkshire, LS22 5NB, United Kingdom",
+      "latitude": 53.9195614,
+      "longitude": -1.3811227,
+      "formatted_address": "LS22 5NB, Wetherby, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350691213
+    },
+    {
+      "name": "Old Rishworthian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16003",
+      "image_url": "https://images.englandrugby.com/club_images/16003.png",
+      "address": "Old Rishworthian Rufc, Copley, Halifax, West Yorkshire, HX3 0UG, England",
+      "latitude": 53.7009104,
+      "longitude": -1.8751072,
+      "formatted_address": "HX3 0UG, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 351382172
+    },
+    {
+      "name": "Garforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8478",
+      "image_url": "https://images.englandrugby.com/club_images/8478.png",
+      "address": "9a Westfield Lane Kippax Leeds West Yorkshire LS25 7LY United Kingdom",
+      "latitude": 53.7696529,
+      "longitude": -1.3771798,
+      "formatted_address": "Westfield Lane, Leeds, West Yorkshire, England, LS25 7JJ, United Kingdom",
+      "place_id": 256830481
+    },
+    {
+      "name": "Burley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679",
+      "image_url": "https://images.englandrugby.com/club_images/3679.png",
+      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
+      "latitude": 53.8233843,
+      "longitude": -1.6141636,
+      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350692295
+    },
+    {
+      "name": "Wibsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25343",
+      "image_url": "https://images.englandrugby.com/club_images/25343.png",
+      "address": "143 High Street Wibsey Bradford WEST YORKSHIRE BD6 1JU UNITED KINGDOM",
+      "latitude": 53.7670068,
+      "longitude": -1.772818,
+      "formatted_address": "Wibsey Rugby Club, 143, High Street, Brownroyd Hill, Wibsey, Bradford, West Yorkshire, England, BD6 1JU, United Kingdom",
+      "place_id": 257060123
+    },
+    {
+      "name": "Thirsk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22640",
+      "image_url": "https://images.englandrugby.com/club_images/22640.png",
+      "address": "Thirsk Athletic Club Newsham Road Thirsk YO7 4DB UNITED KINGDOM ",
+      "latitude": 54.2394294,
+      "longitude": -1.3744136,
+      "formatted_address": "YO7 4DB, Thirsk, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 352196664
+    },
+    {
+      "name": "Harrogate Pythons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9502",
+      "image_url": "https://images.englandrugby.com/club_images/9502.png",
+      "address": "Harrogate Pythons Rfc, Station View, Starbeck, Harrogate, North Yorkshire, HG2 7JA, United Kingdom",
+      "latitude": 53.99858,
+      "longitude": -1.50237,
+      "formatted_address": "HG2 7JA, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352344
+    }
+  ],
+  "team_count": 8
+}

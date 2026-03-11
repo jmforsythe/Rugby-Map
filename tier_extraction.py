@@ -453,6 +453,8 @@ def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] |
 
 
 def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] | None:
+    if filename.startswith("x") and len(filename) > 1:
+        filename = filename[1:]
     if filename.startswith("RFUW_"):
         filename = filename.replace("RFUW_", "Women's_")
     if filename.startswith("wPrem"):

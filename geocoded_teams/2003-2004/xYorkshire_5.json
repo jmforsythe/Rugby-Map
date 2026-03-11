@@ -1,0 +1,94 @@
+{
+  "league_name": "xYorkshire 5",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1978&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Sheffield Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19093",
+      "image_url": "https://images.englandrugby.com/club_images/19093.png",
+      "address": "Parsons Cross Park Pavillion Buchanan Road Sheffield South Yorkshire S5 8AL United Kingdom",
+      "latitude": 53.4232423,
+      "longitude": -1.4718951,
+      "formatted_address": "S5 8AL, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351401289
+    },
+    {
+      "name": "Burley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679",
+      "image_url": "https://images.englandrugby.com/club_images/3679.png",
+      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
+      "latitude": 53.8233843,
+      "longitude": -1.6141636,
+      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350692295
+    },
+    {
+      "name": "Mosborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164",
+      "image_url": "https://images.englandrugby.com/club_images/14164.png",
+      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
+      "latitude": 53.3265437,
+      "longitude": -1.3605033,
+      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 350801206
+    },
+    {
+      "name": "Knaresborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11757",
+      "image_url": "https://images.englandrugby.com/club_images/11757.png",
+      "address": "Knaresborough RUFC Hay-a-Park Lane Knaresborough NORTH YORKSHIRE HG5 0FE UNITED KINGDOM ",
+      "latitude": 54.0134465,
+      "longitude": -1.4479195,
+      "formatted_address": "HG5 0FE, Knaresborough, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647305
+    },
+    {
+      "name": "Wharfedale Rams",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25151",
+      "image_url": "https://images.englandrugby.com/club_images/25151.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Sheffield Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089",
+      "image_url": "https://images.englandrugby.com/club_images/19089.png",
+      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
+      "latitude": 53.3796125,
+      "longitude": -1.5026038,
+      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840574
+    },
+    {
+      "name": "Old Rishworthian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16003",
+      "image_url": "https://images.englandrugby.com/club_images/16003.png",
+      "address": "Old Rishworthian Rufc, Copley, Halifax, West Yorkshire, HX3 0UG, England",
+      "latitude": 53.7009104,
+      "longitude": -1.8751072,
+      "formatted_address": "HX3 0UG, Calderdale, West Yorkshire, England, United Kingdom",
+      "place_id": 351382172
+    },
+    {
+      "name": "Aireborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=333",
+      "image_url": "https://images.englandrugby.com/club_images/333.png",
+      "address": "Nunroyd Sports Pavillion, Aireborough Rugby Club, Nunroyd Park, Yeadon, Leeds, West Yorkshire, LS19 7HR, United Kingdom",
+      "latitude": 53.8697086,
+      "longitude": -1.6978023,
+      "formatted_address": "LS19 7HR, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350690847
+    },
+    {
+      "name": "Adwick Le Street",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=325",
+      "image_url": "https://images.englandrugby.com/club_images/325.png",
+      "address": "The Bullcroft Memorial Hall Chestnut Avenue Carcroft Doncaster SOUTH YORKSHIRE DN68AP UNITED KINGDOM",
+      "latitude": 53.58554,
+      "longitude": -1.18758,
+      "formatted_address": "DN6 8AP, Doncaster, South Yorkshire, England, United Kingdom",
+      "place_id": 351191989
+    }
+  ],
+  "team_count": 9
+}

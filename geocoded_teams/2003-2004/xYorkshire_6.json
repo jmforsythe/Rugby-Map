@@ -1,0 +1,67 @@
+{
+  "league_name": "xYorkshire 6",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=1979&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Wibsey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25343",
+      "image_url": "https://images.englandrugby.com/club_images/25343.png",
+      "address": "143 High Street Wibsey Bradford WEST YORKSHIRE BD6 1JU UNITED KINGDOM",
+      "latitude": 53.7670068,
+      "longitude": -1.772818,
+      "formatted_address": "Wibsey Rugby Club, 143, High Street, Brownroyd Hill, Wibsey, Bradford, West Yorkshire, England, BD6 1JU, United Kingdom",
+      "place_id": 257060123
+    },
+    {
+      "name": "Ossett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16303",
+      "image_url": "https://images.englandrugby.com/club_images/16303.png",
+      "address": "Ossett Rufc, Ossett Cricket & Athletic Club, Queens Terrace, Ossett, West Yorkshire, WF5 8JT, United Kingdom",
+      "latitude": 53.6755805,
+      "longitude": -1.5818007,
+      "formatted_address": "WF5 8JT, Wakefield, West Yorkshire, England, United Kingdom",
+      "place_id": 350890210
+    },
+    {
+      "name": "Garforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8478",
+      "image_url": "https://images.englandrugby.com/club_images/8478.png",
+      "address": "9a Westfield Lane Kippax Leeds West Yorkshire LS25 7LY United Kingdom",
+      "latitude": 53.7696529,
+      "longitude": -1.3771798,
+      "formatted_address": "Westfield Lane, Leeds, West Yorkshire, England, LS25 7JJ, United Kingdom",
+      "place_id": 256830481
+    },
+    {
+      "name": "Rawmarsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17488",
+      "image_url": "https://images.englandrugby.com/club_images/17488.png",
+      "address": "RLS Barbers Ave. Rawmarsh Rotherham SOUTH YORKSHIRE S62 6AE UNITED KINGDOM",
+      "latitude": 53.4568694,
+      "longitude": -1.3382294,
+      "formatted_address": "S62 6AE, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351479126
+    },
+    {
+      "name": "Thirsk",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22640",
+      "image_url": "https://images.englandrugby.com/club_images/22640.png",
+      "address": "Thirsk Athletic Club Newsham Road Thirsk YO7 4DB UNITED KINGDOM ",
+      "latitude": 54.2394294,
+      "longitude": -1.3744136,
+      "formatted_address": "YO7 4DB, Thirsk, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 352196664
+    },
+    {
+      "name": "Marist",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13338",
+      "image_url": "https://images.englandrugby.com/club_images/13338.png",
+      "address": "Cranbrook Avenue Cottingham Road Cottingham Road Hull YORKSHIRE HU6 7TT UNITED KINGDOM",
+      "latitude": 53.7752875,
+      "longitude": -0.3646006,
+      "formatted_address": "HU6 7TT, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351328948
+    }
+  ],
+  "team_count": 6
+}

@@ -1,0 +1,94 @@
+{
+  "league_name": "North Lancs 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=2364&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Old Bedians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15430",
+      "image_url": "https://images.englandrugby.com/club_images/15430.png",
+      "address": "Old Bedians Sports Centre Millgate Lane DIDSBURY Manchester GREATER MANCHESTER M20 5QX UNITED KINGDOM",
+      "latitude": 53.40308,
+      "longitude": -2.23785,
+      "formatted_address": "M20 5QX, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541956
+    },
+    {
+      "name": "Colne & Nelson",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5460",
+      "image_url": "https://images.englandrugby.com/club_images/5460.png",
+      "address": "The Club House, Holt House, Harrison Drive, Colne                              , Lancashire, BB8 9SF, United Kingdom",
+      "latitude": 53.86244,
+      "longitude": -2.17995,
+      "formatted_address": "BB8 9SF, Colne, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350953683
+    },
+    {
+      "name": "Chorley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4972",
+      "image_url": "https://images.englandrugby.com/club_images/4972.png",
+      "address": "Chorley Rufc Chorley Panthers Chisnall Lane, Copull Copull Chorley Lancashire PR7 5EA United Kingdom",
+      "latitude": 53.6122806,
+      "longitude": -2.6765285,
+      "formatted_address": "PR7 5EA, Coppull, Chorley, Lancashire, England, United Kingdom",
+      "place_id": 350783077
+    },
+    {
+      "name": "Garstang",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8484",
+      "image_url": "https://images.englandrugby.com/club_images/8484.png",
+      "address": "Hudson Park, Garstang Sports & Social Club, High Street, Garstang, Preston, Lancashire, PR3 1EB, England",
+      "latitude": 53.9032376,
+      "longitude": -2.7728825,
+      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 351801066
+    },
+    {
+      "name": "Clitheroe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5288",
+      "image_url": "https://images.englandrugby.com/club_images/5288.png",
+      "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
+      "latitude": 53.8647663,
+      "longitude": -2.3921332,
+      "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 350951945
+    },
+    {
+      "name": "Fylde Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8437",
+      "image_url": "https://images.englandrugby.com/club_images/8437.png",
+      "address": "Woodlands Memorial Ground Blackpool Road Ansdell Lytham St Annes LANCASHIRE FY8 4EL UNITED KINGDOM",
+      "latitude": 53.746121,
+      "longitude": -2.9878254,
+      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
+      "place_id": 350625896
+    },
+    {
+      "name": "Carnforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4233",
+      "image_url": "https://images.englandrugby.com/club_images/4233.png",
+      "address": "Carnforth High School, Kellett Road, Carnforth, LANCASHIRE LA5 9LS UNITED KINGDOM",
+      "latitude": 54.1260759,
+      "longitude": -2.7610042,
+      "formatted_address": "LA5 9LS, Carnforth, Lancaster, Lancashire, England, United Kingdom",
+      "place_id": 350680406
+    },
+    {
+      "name": "Old Salians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16034",
+      "image_url": "https://images.englandrugby.com/club_images/16034.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Broughton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3495",
+      "image_url": "https://images.englandrugby.com/club_images/3495.png",
+      "address": "Yew Street Salford Lancashire M7 2HL United Kingdom",
+      "latitude": 53.502714,
+      "longitude": -2.26627,
+      "formatted_address": "M7 2HL, Salford, Greater Manchester, England, United Kingdom",
+      "place_id": 350249258
+    }
+  ],
+  "team_count": 9
+}

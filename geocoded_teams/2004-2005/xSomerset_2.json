@@ -1,0 +1,77 @@
+{
+  "league_name": "xSomerset 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=2404&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Old Sulians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16058",
+      "image_url": "https://images.englandrugby.com/club_images/16058.png",
+      "address": "Lansdown Road, Bath, Somerset, BA1 9BH, United Kingdom",
+      "latitude": 51.4067969,
+      "longitude": -2.3784787,
+      "formatted_address": "Lansdown Road, Ensleigh, Bath, Bath and North East Somerset, West of England, England, BA1 9BH, United Kingdom",
+      "place_id": 395232057
+    },
+    {
+      "name": "Martock",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13499",
+      "image_url": "https://images.englandrugby.com/club_images/13499.png",
+      "address": "Pinnacle Accountancy Service 2nd Floor, Commerce House North Street Martock SOMERSET TA12 6DH UNITED KINGDOM",
+      "latitude": 50.9708607,
+      "longitude": -2.7662194,
+      "formatted_address": "TA12 6DH, Martock, Somerset, England, United Kingdom",
+      "place_id": 350845026
+    },
+    {
+      "name": "Bath Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1597",
+      "image_url": "https://images.englandrugby.com/club_images/1597.png",
+      "address": "Mill Lane Bathampton Bath SOMERSET BA2 6TR UNITED KINGDOM",
+      "latitude": 51.4015058,
+      "longitude": -2.3255141,
+      "formatted_address": "Mill Lane, Bailbrook, Bath, Bath and North East Somerset, West of England, England, BA1 7DE, United Kingdom",
+      "place_id": 261347957
+    },
+    {
+      "name": "Castle Cary",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4259",
+      "image_url": "https://images.englandrugby.com/club_images/4259.png",
+      "address": "Brookhouse Field, Nr. Alhampton, Ditcheat, Castle Cary, Somerset, BA7 7PF, United Kingdom",
+      "latitude": 51.1033,
+      "longitude": -2.5242,
+      "formatted_address": "BA7 7PF, Ditcheat, Somerset, England, United Kingdom",
+      "place_id": 350942302
+    },
+    {
+      "name": "Bath Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1614",
+      "image_url": "https://images.englandrugby.com/club_images/1614.png",
+      "address": "Sulis Sports Ground Claverton Down Bath BA2 7AU UNITED KINGDOM ",
+      "latitude": 51.36393,
+      "longitude": -2.3258899,
+      "formatted_address": "BA2 7AU, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350936651
+    },
+    {
+      "name": "Morganians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14114",
+      "image_url": "https://images.englandrugby.com/club_images/14114.png",
+      "address": "The Clubhouse, Chedzoy Lane, Bridgwater, Somerset, TA7 8QW, United Kingdom",
+      "latitude": 51.1415,
+      "longitude": -2.96917,
+      "formatted_address": "TA7 8QW, Bridgwater Without, Somerset, England, United Kingdom",
+      "place_id": 352036822
+    },
+    {
+      "name": "Somerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19564",
+      "image_url": "https://images.englandrugby.com/club_images/19564.png",
+      "address": "Somerton Sports Club, Eirian Williams Memorial Pitch, Gassons Lane, Somerton, Somerset, TA11 6HS, United Kingdom",
+      "latitude": 51.0536319,
+      "longitude": -2.7436255,
+      "formatted_address": "TA11 6HS, Somerton, Somerset, England, United Kingdom",
+      "place_id": 350844757
+    }
+  ],
+  "team_count": 7
+}

@@ -1,0 +1,84 @@
+{
+  "league_name": "wSouth West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2574&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Plymouth A Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26176",
+      "image_url": "https://images.englandrugby.com/club_images/26176.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Avon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24487",
+      "image_url": "https://images.englandrugby.com/club_images/24487.png",
+      "address": "Avon Rfc, Hicks Field, London Road East, Batheaston, Bath, Somerset , BA1 7DA, United Kingdom",
+      "latitude": 51.39936,
+      "longitude": -2.33446,
+      "formatted_address": "BA1 7DA, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350930194
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24547",
+      "image_url": "https://images.englandrugby.com/club_images/24547.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Supermarine Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26232",
+      "image_url": "https://images.englandrugby.com/club_images/26232.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Trojans Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26248",
+      "image_url": "https://images.englandrugby.com/club_images/26248.png",
+      "address": "Trojans Club Stoneham Park Stoneham Lane Eastleigh Southampton Hampshire SO50 9HT United Kingdom",
+      "latitude": 50.9522646,
+      "longitude": -1.3766234,
+      "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 350832263
+    },
+    {
+      "name": "Taunton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26238",
+      "image_url": "https://images.englandrugby.com/club_images/26238.png",
+      "address": "Summerfield Stadium, Hyde Lane, Taunton, Somerset, TA2 8BU, United Kingdom",
+      "latitude": 51.0266633,
+      "longitude": -3.0567696,
+      "formatted_address": "TA2 8BU, West Monkton, Somerset, England, United Kingdom",
+      "place_id": 350847657
+    },
+    {
+      "name": "Redruth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26183",
+      "image_url": "https://images.englandrugby.com/club_images/26183.png",
+      "address": "Cardrew Lane Redruth TR15 1SY UNITED KINGDOM",
+      "latitude": 50.2384118,
+      "longitude": -5.2288534,
+      "formatted_address": "Cardrew Lane, Redruth, Cornwall, England, TR15 1LU, United Kingdom",
+      "place_id": 262938649
+    },
+    {
+      "name": "Reading Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26179",
+      "image_url": "https://images.englandrugby.com/club_images/26179.png",
+      "address": "Holme Park Sonning Lane Reading Berkshire RG4 6ST England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350339871
+    }
+  ],
+  "team_count": 8
+}

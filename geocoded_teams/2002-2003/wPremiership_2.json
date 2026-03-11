@@ -3,53 +3,71 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=1797&season=2002-2003#tables",
   "teams": [
     {
-      "name": "wWasps II",
+      "name": "Wasps II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26254",
       "image_url": "https://images.englandrugby.com/club_images/26254.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
     },
     {
-      "name": "wRipon Ladies",
+      "name": "Ripon Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26194",
       "image_url": "https://images.englandrugby.com/club_images/26194.png",
-      "address": null,
-      "error": "no_address"
+      "address": "The Clubhouse Mallorie Park Ripon NORTH YORKSHIRE HG4 2QD UNITED KINGDOM ",
+      "latitude": 54.1344505,
+      "longitude": -1.5328343,
+      "formatted_address": "HG4 2QD, Ripon, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647229
     },
     {
-      "name": "wRichmond II",
+      "name": "Richmond II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26189",
       "image_url": "https://images.englandrugby.com/club_images/26189.png",
-      "address": null,
-      "error": "no_address"
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
     },
     {
-      "name": "wNotts Casuals Ladies",
+      "name": "Notts Casuals Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25876",
       "image_url": "https://images.englandrugby.com/club_images/25876.png",
       "address": null,
       "error": "no_address"
     },
     {
-      "name": "wSaracens II",
+      "name": "Saracens II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26218",
       "image_url": "https://images.englandrugby.com/club_images/26218.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700900
     },
     {
-      "name": "wAlton Ladies",
+      "name": "Alton Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24229",
       "image_url": "https://images.englandrugby.com/club_images/24229.png",
-      "address": null,
-      "error": "no_address"
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
     },
     {
-      "name": "wBlackheath Ladies",
+      "name": "Blackheath Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24502",
       "image_url": "https://images.englandrugby.com/club_images/24502.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
     }
   ],
   "team_count": 7

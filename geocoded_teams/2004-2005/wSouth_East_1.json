@@ -1,0 +1,77 @@
+{
+  "league_name": "wSouth East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2572&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Old Albanians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25889",
+      "image_url": "https://images.englandrugby.com/club_images/25889.png",
+      "address": "Old Albanian Rfc The Woollam Playing Fields 160 Harpenden Road St Albans Hertfordshire AL3 6BB United Kingdom",
+      "latitude": 51.7778629,
+      "longitude": -0.3346192,
+      "formatted_address": "AL3 6BB, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350459302
+    },
+    {
+      "name": "Blackheath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24502",
+      "image_url": "https://images.englandrugby.com/club_images/24502.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Hove Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25340",
+      "image_url": "https://images.englandrugby.com/club_images/25340.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Folkestone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25135",
+      "image_url": "https://images.englandrugby.com/club_images/25135.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Ipswich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25706",
+      "image_url": "https://images.englandrugby.com/club_images/25706.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Harlequins Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25167",
+      "image_url": "https://images.englandrugby.com/club_images/25167.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
+    },
+    {
+      "name": "Wimbledon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26262",
+      "image_url": "https://images.englandrugby.com/club_images/26262.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    }
+  ],
+  "team_count": 7
+}

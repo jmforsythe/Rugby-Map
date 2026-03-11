@@ -1,0 +1,94 @@
+{
+  "league_name": "wSouth East 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2896&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Blackheath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24502",
+      "image_url": "https://images.englandrugby.com/club_images/24502.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    },
+    {
+      "name": "Lakenham Hewitt Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25837",
+      "image_url": "https://images.englandrugby.com/club_images/25837.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Hove Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25340",
+      "image_url": "https://images.englandrugby.com/club_images/25340.png",
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
+    },
+    {
+      "name": "Camberley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24540",
+      "image_url": "https://images.englandrugby.com/club_images/24540.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350872144
+    },
+    {
+      "name": "Harlequins Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25167",
+      "image_url": "https://images.englandrugby.com/club_images/25167.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24547",
+      "image_url": "https://images.englandrugby.com/club_images/24547.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Wasps II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26254",
+      "image_url": "https://images.englandrugby.com/club_images/26254.png",
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
+    },
+    {
+      "name": "Ipswich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25706",
+      "image_url": "https://images.englandrugby.com/club_images/25706.png",
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
+    },
+    {
+      "name": "Folkestone Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25135",
+      "image_url": "https://images.englandrugby.com/club_images/25135.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    }
+  ],
+  "team_count": 9
+}

@@ -1,0 +1,127 @@
+{
+  "league_name": "Midlands 2 West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=2328&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Burton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3782",
+      "image_url": "https://images.englandrugby.com/club_images/3782.png",
+      "address": "Burton Rfc Ltd, Battlestead Croft, Branston Road, Tatenhill, Burton Upon Trent, Staffordshire, DE13 9SB, England",
+      "latitude": 52.7964095,
+      "longitude": -1.6817842,
+      "formatted_address": "DE13 9SB, Branston, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350575056
+    },
+    {
+      "name": "Malvern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13208",
+      "image_url": "https://images.englandrugby.com/club_images/13208.png",
+      "address": "Malvern Rfc, Spring Lane, Malvern Link, Worcestershire , WR14 1AJ, United Kingdom",
+      "latitude": 52.1269617,
+      "longitude": -2.3075001,
+      "formatted_address": "WR14 1AJ, Malvern, Malvern Hills, Worcestershire, England, United Kingdom",
+      "place_id": 350893965
+    },
+    {
+      "name": "Hinckley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10189",
+      "image_url": "https://images.englandrugby.com/club_images/10189.png",
+      "address": "Leicester Road Hinckley LEICESTERSHIRE LE10 3DR UNITED KINGDOM ",
+      "latitude": 52.5539703,
+      "longitude": -1.3493076,
+      "formatted_address": "Leicester Road, Hinckley, Hinckley and Bosworth, Leicestershire, England, LE10 3DR, United Kingdom",
+      "place_id": 259020759
+    },
+    {
+      "name": "Stoke on Trent",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21077",
+      "image_url": "https://images.englandrugby.com/club_images/21077.png",
+      "address": "Stoke On Trent Rufc, Hartwell Lane, Barlaston, Stone, Staffordshire, ST15 8TL, England",
+      "latitude": 52.9466819,
+      "longitude": -2.132226,
+      "formatted_address": "Stoke-on-Trent RUFC, Hartwell Lane, Hartwell, Barlaston, Meir Heath, Stafford, Staffordshire, England, ST15 8TL, United Kingdom",
+      "place_id": 256067182
+    },
+    {
+      "name": "Kenilworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11254",
+      "image_url": "https://images.englandrugby.com/club_images/11254.png",
+      "address": "The Jack Davies Memorial Ground, Glasshouse Lane, Kenilworth, Warwickshire , CV8 2AJ, United Kingdom",
+      "latitude": 52.3382842,
+      "longitude": -1.5597896,
+      "formatted_address": "CV8 2AJ, Kenilworth, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351126681
+    },
+    {
+      "name": "Newbold on Avon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14411",
+      "image_url": "https://images.englandrugby.com/club_images/14411.png",
+      "address": "Newbold On Avon R.f.c., The Clubhouse, Parkfield Road, Newbold On Avon, Rugby, Warwickshire, CV21 1EZ, United Kingdom",
+      "latitude": 52.38824,
+      "longitude": -1.28349,
+      "formatted_address": "CV21 1EZ, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351114958
+    },
+    {
+      "name": "Leamington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942",
+      "image_url": "https://images.englandrugby.com/club_images/11942.png",
+      "address": "Leamington R.u.f.c. 'moorefields' Blackdown Kenilworth Road Leamington Spa Warwickshire CV32 6RG United Kingdom",
+      "latitude": 52.3103,
+      "longitude": -1.53883,
+      "formatted_address": "CV32 6RG, Old Milverton, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119215
+    },
+    {
+      "name": "Stafford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20777",
+      "image_url": "https://images.englandrugby.com/club_images/20777.png",
+      "address": "Stafford Rugby Club, The County Ground, Blackberry Lane, Stafford, Staffordshire, ST16 2TT, United Kingdom",
+      "latitude": 52.8118304,
+      "longitude": -2.1324176,
+      "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836744
+    },
+    {
+      "name": "Old Laurentians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15791",
+      "image_url": "https://images.englandrugby.com/club_images/15791.png",
+      "address": "Fenley Field, Lime Tree Avenue, Rugby, Warks, CV22 7QT, United Kingdom",
+      "latitude": 52.3548836,
+      "longitude": -1.2945437,
+      "formatted_address": "CV22 7QT, Dunchurch, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564075
+    },
+    {
+      "name": "Aston Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1003",
+      "image_url": "https://images.englandrugby.com/club_images/1003.png",
+      "address": "Sunnybank Avenue Perry Common Birmingham West Midlands B44 0HP United Kingdom",
+      "latitude": 52.5380523,
+      "longitude": -1.8739717,
+      "formatted_address": "B44 0HP, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350477765
+    },
+    {
+      "name": "Old Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15578",
+      "image_url": "https://images.englandrugby.com/club_images/15578.png",
+      "address": "Tile Hill Lane, Coventry, West Midlands, CV4 9DE, United Kingdom",
+      "latitude": 52.4038659,
+      "longitude": -1.5559576,
+      "formatted_address": "Tile Hill Lane, Whoberley, Coventry, West Midlands, England, CV4 9GB, United Kingdom",
+      "place_id": 258765848
+    },
+    {
+      "name": "Nuneaton Old Edwardians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15197",
+      "image_url": "https://images.englandrugby.com/club_images/15197.png",
+      "address": "Nuneaton Old Edwardians RFC Weddington Road Nuneaton WARWICKSHIRE CV10 0AL UNITED KINGDOM",
+      "latitude": 52.53083,
+      "longitude": -1.46376,
+      "formatted_address": "CV10 0AL, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351111151
+    }
+  ],
+  "team_count": 12
+}

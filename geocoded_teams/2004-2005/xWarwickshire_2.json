@@ -1,0 +1,97 @@
+{
+  "league_name": "xWarwickshire 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=2315&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Stoke Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074",
+      "image_url": "https://images.englandrugby.com/club_images/21074.png",
+      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
+      "latitude": 52.402107,
+      "longitude": -1.4568427,
+      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351117485
+    },
+    {
+      "name": "Pinley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16908",
+      "image_url": "https://images.englandrugby.com/club_images/16908.png",
+      "address": "Wyken Croft Wyken Coventry WEST MIDLANDS CV2 3AA UNITED KINGDOM",
+      "latitude": 52.4194878,
+      "longitude": -1.4578022,
+      "formatted_address": "Wyken Croft, Wyken, Coventry, West Midlands, England, CV2 3AB, United Kingdom",
+      "place_id": 258791652
+    },
+    {
+      "name": "Claverdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5141",
+      "image_url": "https://images.englandrugby.com/club_images/5141.png",
+      "address": "Arthur Neale Pavillion, Ossetts Hole Lane, Yarningale Common, Claverdon, Warwickshire, CV35 8HN, United Kingdom",
+      "latitude": 52.28886,
+      "longitude": -1.72964,
+      "formatted_address": "CV35 8HN, Claverdon CP, Claverdon, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 351120909
+    },
+    {
+      "name": "Rugby Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334",
+      "image_url": "https://images.englandrugby.com/club_images/18334.png",
+      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
+      "latitude": 52.35183,
+      "longitude": -1.28944,
+      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351116375
+    },
+    {
+      "name": "Warwickian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24365",
+      "image_url": "https://images.englandrugby.com/club_images/24365.png",
+      "address": "Hampton Road Sports Ground Hampton Road Warwick WARWICKSHIRE CV34 6HX UNITED KINGDOM",
+      "latitude": 52.27603,
+      "longitude": -1.59643,
+      "formatted_address": "CV34 6HX, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351120154
+    },
+    {
+      "name": "Atherstone",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1029",
+      "image_url": "https://images.englandrugby.com/club_images/1029.png",
+      "address": "Ratcliffe Road, Atherstone, Warks, CV9 1PJ, United Kingdom",
+      "latitude": 52.578647,
+      "longitude": -1.5426731,
+      "formatted_address": "Ratcliffe Road, Atherstone CP, Atherstone, North Warwickshire, Warwickshire, England, CV9 1EU, United Kingdom",
+      "place_id": 259019825
+    },
+    {
+      "name": "Coventrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5716",
+      "image_url": "https://images.englandrugby.com/club_images/5716.png",
+      "address": "The Black Pad, Off Yelverton Road, Holbrooks, Coventry, West Midlands, CV6 4AF, United Kingdom",
+      "latitude": 52.43128,
+      "longitude": -1.50655,
+      "formatted_address": "CV6 4AF, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351125107
+    },
+    {
+      "name": "Coventry Saracens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5727",
+      "image_url": "https://images.englandrugby.com/club_images/5727.png",
+      "address": "Bredon Avenue Binley Coventry West Midlands CV32FD United Kingdom",
+      "latitude": 52.3996185,
+      "longitude": -1.4463176,
+      "formatted_address": "Bredon Avenue, Binley, Coventry, West Midlands, England, CV3 2FD, United Kingdom",
+      "place_id": 258875488
+    },
+    {
+      "name": "Standard",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20880",
+      "image_url": "https://images.englandrugby.com/club_images/20880.png",
+      "address": "Standard Triumph Recreation Club Standard Triumph Recreation Club Herald Avenue Coventry WEST MIDLANDS CV4 9DG UNITED KINGDOM",
+      "latitude": 52.4041838,
+      "longitude": -1.549355,
+      "formatted_address": "CV4 9DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350566273
+    }
+  ],
+  "team_count": 9
+}

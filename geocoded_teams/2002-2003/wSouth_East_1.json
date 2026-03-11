@@ -3,49 +3,67 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=1802&season=2002-2003#tables",
   "teams": [
     {
-      "name": "wRosslyn Park Ladies",
+      "name": "Rosslyn Park Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26209",
       "image_url": "https://images.englandrugby.com/club_images/26209.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
     },
     {
-      "name": "wHove Ladies",
+      "name": "Hove Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25340",
       "image_url": "https://images.englandrugby.com/club_images/25340.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
+      "latitude": 50.8390486,
+      "longitude": -0.1652114,
+      "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
+      "place_id": 351005677
     },
     {
-      "name": "wSt Albans Ladies",
+      "name": "St Albans Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26227",
       "image_url": "https://images.englandrugby.com/club_images/26227.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
     },
     {
-      "name": "wWorthing Ladies",
+      "name": "Worthing Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26269",
       "image_url": "https://images.englandrugby.com/club_images/26269.png",
-      "address": null,
-      "error": "no_address"
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
     },
     {
-      "name": "wIpswich Ladies",
+      "name": "Ipswich Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25706",
       "image_url": "https://images.englandrugby.com/club_images/25706.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Ipswich Rugby Football Club Humber Doucy Lane Ipswich IP4 3PZ United Kingdom",
+      "latitude": 52.0738871,
+      "longitude": 1.1925517,
+      "formatted_address": "IP4 3PZ, Rushmere St Andrew, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 350665376
     },
     {
-      "name": "wWimbledon Ladies",
+      "name": "Wimbledon Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26262",
       "image_url": "https://images.englandrugby.com/club_images/26262.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
     },
     {
-      "name": "wTeddington A Ladies",
+      "name": "Teddington A Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26240",
       "image_url": "https://images.englandrugby.com/club_images/26240.png",
       "address": null,

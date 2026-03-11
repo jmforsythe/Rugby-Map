@@ -1,0 +1,77 @@
+{
+  "league_name": "wPremiership 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2567&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Vale of Lune Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26252",
+      "image_url": "https://images.englandrugby.com/club_images/26252.png",
+      "address": "Vale Of Lune Rufc Powderhouse Lane Lancaster. Lancashire LA1 2TT United Kingdom",
+      "latitude": 54.0619369,
+      "longitude": -2.8191176,
+      "formatted_address": "LA1 2TT, England, United Kingdom",
+      "place_id": 350677617
+    },
+    {
+      "name": "Saracens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26218",
+      "image_url": "https://images.englandrugby.com/club_images/26218.png",
+      "address": "Saracens Ltd, Stonex Stadium, Greenlands Park, Hendon, London, NW4 1RL, United Kingdom",
+      "latitude": 51.60387,
+      "longitude": -0.22636,
+      "formatted_address": "NW4 1RL, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351700900
+    },
+    {
+      "name": "Richmond II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26189",
+      "image_url": "https://images.englandrugby.com/club_images/26189.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Wasps II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26254",
+      "image_url": "https://images.englandrugby.com/club_images/26254.png",
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
+    },
+    {
+      "name": "Blaydon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24504",
+      "image_url": "https://images.englandrugby.com/club_images/24504.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26209",
+      "image_url": "https://images.englandrugby.com/club_images/26209.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Alton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24229",
+      "image_url": "https://images.englandrugby.com/club_images/24229.png",
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
+    }
+  ],
+  "team_count": 7
+}

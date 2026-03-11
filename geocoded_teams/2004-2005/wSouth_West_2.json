@@ -1,0 +1,71 @@
+{
+  "league_name": "wSouth West 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2575&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Paignton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26173",
+      "image_url": "https://images.englandrugby.com/club_images/26173.png",
+      "address": "The Club House, Queens Park, Queens Road, Paignton, Devon, TQ4 6AT, United Kingdom",
+      "latitude": 50.4335657,
+      "longitude": -3.5626724,
+      "formatted_address": "TQ4 6AT, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350862697
+    },
+    {
+      "name": "Clifton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24551",
+      "image_url": "https://images.englandrugby.com/club_images/24551.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "WCullompton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24556",
+      "image_url": "https://images.englandrugby.com/club_images/24556.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24499",
+      "image_url": "https://images.englandrugby.com/club_images/24499.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "Truro Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26249",
+      "image_url": "https://images.englandrugby.com/club_images/26249.png",
+      "address": "Truro R.f.c., St. Clements Hill, Truro, Cornw, TR1 1NY, United Kingdom",
+      "latitude": 50.2644421,
+      "longitude": -5.0330982,
+      "formatted_address": "TR1 1NY, Truro, Cornwall, England, United Kingdom",
+      "place_id": 350866161
+    },
+    {
+      "name": "Weston-s-Mare Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26260",
+      "image_url": "https://images.englandrugby.com/club_images/26260.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "TNT Combination Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26246",
+      "image_url": "https://images.englandrugby.com/club_images/26246.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 7
+}

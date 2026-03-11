@@ -1,0 +1,68 @@
+{
+  "league_name": "wSouth West 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2899&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Bideford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24499",
+      "image_url": "https://images.englandrugby.com/club_images/24499.png",
+      "address": "Bideford R.f.c., King George's Field, Riverside, Bank End, Bideford, Devon, EX39 2QS, United Kingdom",
+      "latitude": 51.02686,
+      "longitude": -4.20399,
+      "formatted_address": "EX39 2QS, Bideford, Northam, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351261347
+    },
+    {
+      "name": "WCullompton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24556",
+      "image_url": "https://images.englandrugby.com/club_images/24556.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Old Redcliffians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25893",
+      "image_url": "https://images.englandrugby.com/club_images/25893.png",
+      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
+      "latitude": 51.4227768,
+      "longitude": -2.5385264,
+      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517876
+    },
+    {
+      "name": "Wiveliscombe Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26265",
+      "image_url": "https://images.englandrugby.com/club_images/26265.png",
+      "address": "Wrfc Clubhouse, Recreation Ground, West Road, Wiveliscombe, Taunton, Somerset, TA4 2TA, United Kingdom",
+      "latitude": 51.04077,
+      "longitude": -3.32061,
+      "formatted_address": "TA4 2TA, Wiveliscombe, Somerset, England, United Kingdom",
+      "place_id": 352035435
+    },
+    {
+      "name": "TNT Combination Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26246",
+      "image_url": "https://images.englandrugby.com/club_images/26246.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Dorchester Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24562",
+      "image_url": "https://images.englandrugby.com/club_images/24562.png",
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
+    },
+    {
+      "name": "Ivel Barbarians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25828",
+      "image_url": "https://images.englandrugby.com/club_images/25828.png",
+      "address": null,
+      "error": "no_address"
+    }
+  ],
+  "team_count": 7
+}

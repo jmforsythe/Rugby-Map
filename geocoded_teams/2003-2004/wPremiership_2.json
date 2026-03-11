@@ -1,0 +1,84 @@
+{
+  "league_name": "wPremiership 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2182&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Wasps II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26254",
+      "image_url": "https://images.englandrugby.com/club_images/26254.png",
+      "address": "Coventry Building Society Arena Judds Lane Coventry West Midlands CV6 6GE United Kingdom",
+      "latitude": 52.4486967,
+      "longitude": -1.4963109,
+      "formatted_address": "DoubleTree by Hilton Coventry Building Society Arena, Judds Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 257716795
+    },
+    {
+      "name": "Richmond II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26189",
+      "image_url": "https://images.englandrugby.com/club_images/26189.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Blaydon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24504",
+      "image_url": "https://images.englandrugby.com/club_images/24504.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
+      "name": "Notts Casuals Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25876",
+      "image_url": "https://images.englandrugby.com/club_images/25876.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Rosslyn Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26209",
+      "image_url": "https://images.englandrugby.com/club_images/26209.png",
+      "address": "Priory Lane Roehampton London SURREY SW15 5JH UNITED KINGDOM",
+      "latitude": 51.4641748,
+      "longitude": -0.2472565,
+      "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350388997
+    },
+    {
+      "name": "Alton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24229",
+      "image_url": "https://images.englandrugby.com/club_images/24229.png",
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
+    },
+    {
+      "name": "Supermarine Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26232",
+      "image_url": "https://images.englandrugby.com/club_images/26232.png",
+      "address": "Supermarine Road South Marston nr Swindon WILTSHIRE SN3 4BZ UNITED KINGDOM ",
+      "latitude": 51.6058887,
+      "longitude": -1.7312148,
+      "formatted_address": "SN3 4BZ, Highworth, Swindon, England, United Kingdom",
+      "place_id": 350824578
+    },
+    {
+      "name": "Blackheath Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24502",
+      "image_url": "https://images.englandrugby.com/club_images/24502.png",
+      "address": "Kidbrooke Lane London SE9 6TE England",
+      "latitude": 51.4581253,
+      "longitude": 0.0478235,
+      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
+      "place_id": 90803498
+    }
+  ],
+  "team_count": 8
+}

@@ -1,0 +1,84 @@
+{
+  "league_name": "wSouth East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2897&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "London Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25848",
+      "image_url": "https://images.englandrugby.com/club_images/25848.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Richmond III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26190",
+      "image_url": "https://images.englandrugby.com/club_images/26190.png",
+      "address": "The Athletic Ground Twickenham Road Richmond SURREY TW9 2SF UNITED KINGDOM ",
+      "latitude": 51.4662189,
+      "longitude": -0.3028891,
+      "formatted_address": "TW9 2SF, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350872403
+    },
+    {
+      "name": "Oakmedians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25880",
+      "image_url": "https://images.englandrugby.com/club_images/25880.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Reading Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26179",
+      "image_url": "https://images.englandrugby.com/club_images/26179.png",
+      "address": "Holme Park Sonning Lane Reading Berkshire RG4 6ST England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350339871
+    },
+    {
+      "name": "Thurrock Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26245",
+      "image_url": "https://images.englandrugby.com/club_images/26245.png",
+      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Wimbledon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26262",
+      "image_url": "https://images.englandrugby.com/club_images/26262.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
+    },
+    {
+      "name": "Petersfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26175",
+      "image_url": "https://images.englandrugby.com/club_images/26175.png",
+      "address": "The Clubhouse Penns Place Petersfield HAMPSHIRE GU31 4EP UNITED KINGDOM ",
+      "latitude": 51.0061423,
+      "longitude": -0.9084236,
+      "formatted_address": "GU31 4EP, Petersfield, Sheet, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642411
+    },
+    {
+      "name": "Lewes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25844",
+      "image_url": "https://images.englandrugby.com/club_images/25844.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    }
+  ],
+  "team_count": 8
+}

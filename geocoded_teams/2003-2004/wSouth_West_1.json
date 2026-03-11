@@ -1,0 +1,81 @@
+{
+  "league_name": "wSouth West 1",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2189&season=2003-2004#tables",
+  "teams": [
+    {
+      "name": "Plymouth A Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26176",
+      "image_url": "https://images.englandrugby.com/club_images/26176.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Harlequins Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25167",
+      "image_url": "https://images.englandrugby.com/club_images/25167.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24547",
+      "image_url": "https://images.englandrugby.com/club_images/24547.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
+    },
+    {
+      "name": "Weston-s-Mare Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26260",
+      "image_url": "https://images.englandrugby.com/club_images/26260.png",
+      "address": "Recreation Ground, Sunnyside Road North, Weston Super Mare, Somerset, BS23 3PA, United Kingdom",
+      "latitude": 51.3428096,
+      "longitude": -2.9715586,
+      "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
+      "place_id": 261559201
+    },
+    {
+      "name": "Avon Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24487",
+      "image_url": "https://images.englandrugby.com/club_images/24487.png",
+      "address": "Avon Rfc, Hicks Field, London Road East, Batheaston, Bath, Somerset , BA1 7DA, United Kingdom",
+      "latitude": 51.39936,
+      "longitude": -2.33446,
+      "formatted_address": "BA1 7DA, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350930194
+    },
+    {
+      "name": "Reading Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26179",
+      "image_url": "https://images.englandrugby.com/club_images/26179.png",
+      "address": "Holme Park Sonning Lane Reading Berkshire RG4 6ST England",
+      "latitude": 51.4672728,
+      "longitude": -0.9137326,
+      "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
+      "place_id": 350339871
+    },
+    {
+      "name": "BG Combination Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24498",
+      "image_url": "https://images.englandrugby.com/club_images/24498.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Clifton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24551",
+      "image_url": "https://images.englandrugby.com/club_images/24551.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    }
+  ],
+  "team_count": 8
+}

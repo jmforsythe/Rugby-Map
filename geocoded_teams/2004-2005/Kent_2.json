@@ -1,0 +1,107 @@
+{
+  "league_name": "Kent 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=2295&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Brockleians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3397",
+      "image_url": "https://images.englandrugby.com/club_images/3397.png",
+      "address": "Brockleians RFC Eltham Palace Road Eltham London SE9 5LX UNITED KINGDOM ",
+      "latitude": 51.4492291,
+      "longitude": 0.0367391,
+      "formatted_address": "SE9 5LX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 350812593
+    },
+    {
+      "name": "New Ash Green",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14306",
+      "image_url": "https://images.englandrugby.com/club_images/14306.png",
+      "address": "The Pavilion, Punchcroft Road, New Ash Green, Longfield, Kent, DA3 8HS, United Kingdom",
+      "latitude": 51.3626381,
+      "longitude": 0.3002983,
+      "formatted_address": "DA3 8HS, Ash-cum-Ridley, Ash, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 350570813
+    },
+    {
+      "name": "Medway",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595",
+      "image_url": "https://images.englandrugby.com/club_images/13595.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Bexley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2100",
+      "image_url": "https://images.englandrugby.com/club_images/2100.png",
+      "address": "Bexley R.F.C. Bexley Park Sports & Social Club Bexley Park, Calvert Drive Bexley Park, Calvert Drive Dartford KENT DA2 7GA UNITED KINGDOM",
+      "latitude": 51.433795,
+      "longitude": 0.1704004,
+      "formatted_address": "DA2 7GA, Dartford, Kent, England, United Kingdom",
+      "place_id": 350120269
+    },
+    {
+      "name": "Old Gravesendians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15730",
+      "image_url": "https://images.englandrugby.com/club_images/15730.png",
+      "address": "Old Gravesendians R.F.C. Fleetway Sports Ground Bronte View, Parrock Road Gravesend KENT DA12 1PX UNITED KINGDOM ",
+      "latitude": 51.4358035,
+      "longitude": 0.3789148,
+      "formatted_address": "DA12 1PX, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569639
+    },
+    {
+      "name": "Vigo",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24006",
+      "image_url": "https://images.englandrugby.com/club_images/24006.png",
+      "address": "Swanswood Field Vigo Village, Harvel Road Vigo KENT DA13 0UA UNITED KINGDOM ",
+      "latitude": 51.3348783,
+      "longitude": 0.3683709,
+      "formatted_address": "DA13 0UA, Luddesdown, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569797
+    },
+    {
+      "name": "Shooters Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19252",
+      "image_url": "https://images.englandrugby.com/club_images/19252.png",
+      "address": "Mayday Gardens Kidbrooke London SE3 8NP UNITED KINGDOM",
+      "latitude": 51.4678128,
+      "longitude": 0.044753,
+      "formatted_address": "Mayday Gardens, Well Hall, Royal Borough of Greenwich, Greater London, England, SE3 8NP, United Kingdom",
+      "place_id": 91165579
+    },
+    {
+      "name": "Old Olavians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15867",
+      "image_url": "https://images.englandrugby.com/club_images/15867.png",
+      "address": "Old Olavians RFC St. Olave's School Goddington Lane Orpington KENT BR6 9SH UNITED KINGDOM",
+      "latitude": 51.3677887,
+      "longitude": 0.1040428,
+      "formatted_address": "BR6 9SH, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504627
+    },
+    {
+      "name": "Erith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7640",
+      "image_url": "https://images.englandrugby.com/club_images/7640.png",
+      "address": "The Recreation Ground, Sussex Road Northumberland Heath Erith KENT DA8 1JB UNITED KINGDOM",
+      "latitude": 51.47454,
+      "longitude": 0.1545,
+      "formatted_address": "DA8 1JB, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351141873
+    },
+    {
+      "name": "Dartford Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6149",
+      "image_url": "https://images.englandrugby.com/club_images/6149.png",
+      "address": "Sophie Warren Chair Dvrfc, Dartford Valley Rfc, Dartford Valley Community Rugby Club, Cotton Lane, Dartford, Kent, DA2 6QZ, United Kingdom",
+      "latitude": 51.4437131,
+      "longitude": 0.2504757,
+      "formatted_address": "DA2 20, Hillhouse Road, Stone, Dartford, Kent, England, DA2 6EX, United Kingdom",
+      "place_id": 90762197
+    }
+  ],
+  "team_count": 10
+}

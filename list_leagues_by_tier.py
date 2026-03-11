@@ -11,6 +11,7 @@ import json
 import logging
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 from tier_extraction import extract_tier, get_competition_offset, mens_current_tier_name
 from utils import setup_logging
@@ -22,14 +23,60 @@ SEASONS = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in
 
 PYRAMID_KEY = "(pyramid)"
 
+COMPETITION_NAMES: dict[str, str] = {
+    # Pyramid
+    "1699": "South West",
+    "1597": "Midlands",
+    "261": "London and SE",
+    "1623": "Northern",
+    "1605": "National Leagues",
+    # Top-level
+    "5": "Premiership",
+    "173": "Championship",
+    # Women's
+    "1782": "Women's",
+    "1764": "Women's Premiership",
+    # Merit
+    "183": "IMPACT Rugby North West Leagues",
+    "202": "Hampshire Merit Tables",
+    "1600": "Midlands Reserve Team Leagues",
+    "252": "Leicestershire Competitions",
+    "1694": "Group 1 Automotive Essex Merit League",
+    "180": "Yorkshire League & Merit Tables",
+    "100": "East Midlands Leagues",
+    "1729": "Surrey County Leagues",
+    "1770": "GRFU District Leagues",
+    "77": "Devon Merit Tables",
+    "206": "Harvey's Brewery Sussex Leagues",
+    "104": "Eastern Counties Greene King",
+    "1596": "Middlesex Merit Tables",
+    "1681": "Rural Kent Leagues",
+    "1636": "Nottinghamshire RFU Security Plus Pennant",
+    "49": "CANDY League",
+    "209": "Hertfordshire & Middlesex Merit Tables",
+}
 
-def load_league_tiers() -> dict[str, dict[int, dict[str, list[str]]]]:
-    """Build {season: {abs_tier: {competition: [league_names]}}}."""
-    result: dict[str, dict[int, dict[str, list[str]]]] = {}
+
+def _extract_competition_id(league_url: str) -> str | None:
+    """Return the ``competition`` query-param value from a league URL, or *None*."""
+    try:
+        qs = parse_qs(urlparse(league_url).query)
+        ids = qs.get("competition", [])
+        return ids[0] if ids else None
+    except Exception:
+        return None
+
+
+LeagueRecord = tuple[str, int, str]  # (label, abs_tier, comp_display)
+
+
+def load_league_data() -> dict[str, dict[str, list[LeagueRecord]]]:
+    """Build ``{season: {comp_id: [(label, abs_tier, comp_display), …]}}``."""
+    result: dict[str, dict[str, list[LeagueRecord]]] = {}
 
     for season in SEASONS:
         season_dir = GEOCODED_DIR / season
-        tier_map: dict[int, dict[str, list[str]]] = defaultdict(lambda: defaultdict(list))
+        comp_map: dict[str, list[LeagueRecord]] = defaultdict(list)
 
         for filepath in sorted(season_dir.rglob("*.json")):
             rel = filepath.relative_to(season_dir).as_posix()
@@ -50,18 +97,19 @@ def load_league_tiers() -> dict[str, dict[int, dict[str, list[str]]]]:
                 data = json.load(f)
             league_name = data.get("league_name", filepath.stem)
             team_count = len(data.get("teams", []))
+            comp_id = _extract_competition_id(data.get("league_url", "")) or "?"
 
             label = f"{league_name} ({team_count} teams)"
-            tier_map[abs_tier][comp_display].append(label)
+            comp_map[comp_id].append((label, abs_tier, comp_display))
 
-        result[season] = dict(tier_map)
+        result[season] = dict(comp_map)
 
     return result
 
 
 def print_season(
     season: str,
-    tier_map: dict[int, dict[str, list[str]]],
+    comp_map: dict[str, list[LeagueRecord]],
     tier_filter: int | None = None,
     comp_filter: str | None = None,
 ) -> None:
@@ -69,41 +117,49 @@ def print_season(
     print(f"  {season}")
     print(f"{'=' * 80}")
 
-    for abs_tier in sorted(tier_map):
-        if tier_filter is not None and abs_tier != tier_filter:
-            continue
-        comps = tier_map[abs_tier]
-        tier_display = (
-            mens_current_tier_name(abs_tier, season) if abs_tier < 100 else f"W{abs_tier}"
-        )
+    for comp_id in sorted(comp_map, key=lambda c: (c == "?", c)):
+        records = comp_map[comp_id]
 
-        pyramid_leagues = comps.get(PYRAMID_KEY, [])
-        merit_comps = {k: v for k, v in comps.items() if k != PYRAMID_KEY}
-
+        if tier_filter is not None:
+            records = [r for r in records if r[1] == tier_filter]
         if comp_filter:
             cf = comp_filter.lower()
-            if cf != "pyramid":
-                merit_comps = {k: v for k, v in merit_comps.items() if cf in k.lower()}
-                pyramid_leagues = []
+            comp_name_lower = COMPETITION_NAMES.get(comp_id, "").lower()
+            if cf == "pyramid":
+                records = [r for r in records if r[2] == PYRAMID_KEY]
+            elif cf == comp_id or cf in comp_name_lower:
+                pass  # whole competition matches — keep all records
             else:
-                merit_comps = {}
+                records = [r for r in records if r[2] != PYRAMID_KEY and cf in r[2].lower()]
 
-        if not pyramid_leagues and not merit_comps:
+        if not records:
             continue
 
-        total = sum(len(v) for v in comps.values())
-        print(f"\n  Tier {abs_tier:>3} ({tier_display}) - {total} league(s)")
+        comp_name = COMPETITION_NAMES.get(comp_id, comp_id)
+        print(f"\n  competition={comp_id} - {comp_name} ({len(records)} league(s))")
         print(f"  {'-' * 60}")
 
-        if pyramid_leagues:
-            for league in sorted(pyramid_leagues):
-                print(f"    {league}")
+        tiers: dict[int, list[tuple[str, str]]] = defaultdict(list)
+        for label, abs_tier, comp_display in records:
+            tiers[abs_tier].append((label, comp_display))
 
-        for comp_name in sorted(merit_comps):
-            leagues = merit_comps[comp_name]
-            print(f"    [{comp_name}]")
-            for league in sorted(leagues):
+        for abs_tier in sorted(tiers):
+            tier_display = (
+                mens_current_tier_name(abs_tier, season) if abs_tier < 100 else f"W{abs_tier}"
+            )
+            entries = tiers[abs_tier]
+            print(f"    Tier {abs_tier:>3} ({tier_display})")
+
+            pyramid = sorted(name for name, comp in entries if comp == PYRAMID_KEY)
+            merit = sorted(
+                ((name, comp) for name, comp in entries if comp != PYRAMID_KEY),
+                key=lambda x: (x[1], x[0]),
+            )
+
+            for league in pyramid:
                 print(f"      {league}")
+            for league, comp_name in merit:
+                print(f"      [{comp_name}] {league}")
 
 
 def main() -> None:
@@ -132,7 +188,7 @@ def main() -> None:
     seasons_to_show = [args.season] if args.season else SEASONS
 
     logger.info("Loading league tier data for %d season(s)...", len(seasons_to_show))
-    all_data = load_league_tiers()
+    all_data = load_league_data()
 
     for season in seasons_to_show:
         if season not in all_data:

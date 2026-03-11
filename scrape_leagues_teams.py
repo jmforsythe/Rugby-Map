@@ -239,11 +239,6 @@ def scrape_teams_from_league(
     print(f"Scraping teams from: {league_url}")
 
     response = make_request(league_url, referer=referer, delay_seconds=1)
-
-    if response.status_code == 202:
-        print(f"    ! 202 response (no data) for {league_name} - saving empty league")
-        return []
-
     soup = BeautifulSoup(response.content, "html.parser")
 
     teams = []
@@ -260,6 +255,8 @@ def scrape_teams_from_league(
         link = cell.find("a", href=True)
         if link:
             team_name = link.get_text(strip=True)
+            if re.match(r"^w[A-Z]", team_name):
+                team_name = team_name[1:]
             team_url = link["href"]
 
             # Make absolute URL if needed
@@ -295,11 +292,6 @@ def scrape_leagues_from_page(page_url: str) -> list[LeagueInfo]:
     print(f"\nScraping leagues from: {page_url}")
 
     response = make_request(page_url, delay_seconds=0.5)
-
-    if response.status_code == 202:
-        print("  ! 202 response (no data) - returning empty league list")
-        return []
-
     soup = BeautifulSoup(response.content, "html.parser")
 
     # Find the div with id "related-leagues-overview"

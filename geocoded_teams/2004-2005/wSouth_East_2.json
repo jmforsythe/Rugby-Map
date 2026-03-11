@@ -1,0 +1,81 @@
+{
+  "league_name": "wSouth East 2",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=2573&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Camberley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24540",
+      "image_url": "https://images.englandrugby.com/club_images/24540.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 350872144
+    },
+    {
+      "name": "London Welsh Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25848",
+      "image_url": "https://images.englandrugby.com/club_images/25848.png",
+      "address": "Old Deer Park 187 Kew Road Richmond Surrey TW9 2AZ England",
+      "latitude": 51.4689273,
+      "longitude": -0.2958534,
+      "formatted_address": "TW9 2AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350421501
+    },
+    {
+      "name": "Oakmedians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25880",
+      "image_url": "https://images.englandrugby.com/club_images/25880.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Thurrock Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26245",
+      "image_url": "https://images.englandrugby.com/club_images/26245.png",
+      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
+    },
+    {
+      "name": "Lewes Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25844",
+      "image_url": "https://images.englandrugby.com/club_images/25844.png",
+      "address": "The Club House Stanley Turner Ground Kingston Road Lewes BN7 3NB United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409638681
+    },
+    {
+      "name": "Petersfield Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26175",
+      "image_url": "https://images.englandrugby.com/club_images/26175.png",
+      "address": "The Clubhouse Penns Place Petersfield HAMPSHIRE GU31 4EP UNITED KINGDOM ",
+      "latitude": 51.0061423,
+      "longitude": -0.9084236,
+      "formatted_address": "GU31 4EP, Petersfield, Sheet, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642411
+    },
+    {
+      "name": "Aylesford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24488",
+      "image_url": "https://images.englandrugby.com/club_images/24488.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Worthing Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26269",
+      "image_url": "https://images.englandrugby.com/club_images/26269.png",
+      "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM ",
+      "latitude": 50.8234684,
+      "longitude": -0.4737397,
+      "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
+      "place_id": 350500398
+    }
+  ],
+  "team_count": 8
+}

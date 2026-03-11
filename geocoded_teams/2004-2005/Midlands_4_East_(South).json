@@ -1,0 +1,97 @@
+{
+  "league_name": "Midlands 4 East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=2311&season=2004-2005#tables",
+  "teams": [
+    {
+      "name": "Leicester Forest",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12046",
+      "image_url": "https://images.englandrugby.com/club_images/12046.png",
+      "address": "Leicester Forest R.f.c. Hinckley Road Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6188547,
+      "longitude": -1.2355742,
+      "formatted_address": "LE3 3PJ, Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 350683795
+    },
+    {
+      "name": "Northampton Casuals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14872",
+      "image_url": "https://images.englandrugby.com/club_images/14872.png",
+      "address": "Rush Mills House, Old Bedford Road, Rush Mills, Northampton, Northamptonshire, NN4 7AA, United Kingdom",
+      "latitude": 52.2278993,
+      "longitude": -0.8637056,
+      "formatted_address": "NN4 7AA, Brackmills Industrial Estate, Brackmills, Hardingstone, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727046
+    },
+    {
+      "name": "Vipers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24033",
+      "image_url": "https://images.englandrugby.com/club_images/24033.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
+      "name": "Old Newtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15835",
+      "image_url": "https://images.englandrugby.com/club_images/15835.png",
+      "address": "Hinckley Road (a47) Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6191866,
+      "longitude": -1.2307556,
+      "formatted_address": "Hinckley Road, Leicester Forest East, Blaby, Leicestershire, England, LE3 3NN, United Kingdom",
+      "place_id": 257535498
+    },
+    {
+      "name": "Biggleswade",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2180",
+      "image_url": "https://images.englandrugby.com/club_images/2180.png",
+      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
+      "latitude": 52.0699871,
+      "longitude": -0.2705866,
+      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
+      "place_id": 258315732
+    },
+    {
+      "name": "Oadby Wyggestonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15254",
+      "image_url": "https://images.englandrugby.com/club_images/15254.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road,  Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM ",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Vauxhall Motors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23938",
+      "image_url": "https://images.englandrugby.com/club_images/23938.png",
+      "address": "Vauxhall Recreation Club 20 Gypsy Lane Luton BEDFORDSHIRE LU1 3JH UNITED KINGDOM",
+      "latitude": 51.8730441,
+      "longitude": -0.3984074,
+      "formatted_address": "LU1 3JH, Luton Retail Park, Park Town, Luton, England, United Kingdom",
+      "place_id": 350693175
+    },
+    {
+      "name": "Long Buckby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12676",
+      "image_url": "https://images.englandrugby.com/club_images/12676.png",
+      "address": "Long Buckby Rugby Football Club Station Road Long Buckby Northampton Northamptonshire NN6 7QA United Kingdom",
+      "latitude": 52.298379,
+      "longitude": -1.0842189,
+      "formatted_address": "NN6 7QA, Long Buckby, West Northamptonshire, England, United Kingdom",
+      "place_id": 350727792
+    },
+    {
+      "name": "Market Harborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13377",
+      "image_url": "https://images.englandrugby.com/club_images/13377.png",
+      "address": "Market Harborough R.U.F.C. Northampton Road Market Harborough LEICESTERSHIRE LE16 9HF UNITED KINGDOM ",
+      "latitude": 52.4696469,
+      "longitude": -0.916304,
+      "formatted_address": "LE16 9HF, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 350682768
+    }
+  ],
+  "team_count": 9
+}

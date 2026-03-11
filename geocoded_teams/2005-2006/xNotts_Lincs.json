@@ -1,0 +1,94 @@
+{
+  "league_name": "xNotts/Lincs",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=2696&season=2005-2006#tables",
+  "teams": [
+    {
+      "name": "Nottinghamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15149",
+      "image_url": "https://images.englandrugby.com/club_images/15149.png",
+      "address": "Adbolton Lane West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AS UNITED KINGDOM ",
+      "latitude": 52.9392721,
+      "longitude": -1.1076793,
+      "formatted_address": "NG2 5AS, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718234
+    },
+    {
+      "name": "Cleethorpes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191",
+      "image_url": "https://images.englandrugby.com/club_images/5191.png",
+      "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 4AW, United Kingdom",
+      "latitude": 53.5354253,
+      "longitude": -0.0463993,
+      "formatted_address": "DN36 4AW, Humberston, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350146980
+    },
+    {
+      "name": "Nottingham Corsairs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15095",
+      "image_url": "https://images.englandrugby.com/club_images/15095.png",
+      "address": "The Bay 1 Holme Road West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AA UNITED KINGDOM",
+      "latitude": 52.9399328,
+      "longitude": -1.1261495,
+      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718231
+    },
+    {
+      "name": "Skegness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19463",
+      "image_url": "https://images.englandrugby.com/club_images/19463.png",
+      "address": "Wainfleet Road Playing Fields Skegness PE25 2EL UNITED KINGDOM ",
+      "latitude": 53.1437068,
+      "longitude": 0.323573,
+      "formatted_address": "PE25 2EL, Skegness, East Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350761303
+    },
+    {
+      "name": "Ollerton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16182",
+      "image_url": "https://images.englandrugby.com/club_images/16182.png",
+      "address": "Boughton Sports Field, Church Lane, Boughton, Newark, Nottinghamshire, NG22 9JU, United Kingdom",
+      "latitude": 53.20915,
+      "longitude": -0.98362,
+      "formatted_address": "NG22 9JU, Ollerton and Boughton CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351654770
+    },
+    {
+      "name": "Meden Vale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583",
+      "image_url": "https://images.englandrugby.com/club_images/13583.png",
+      "address": "Welbeck Colliery Welfare Elkesley Road, Meden Vale Mansfield NG20 9PS UNITED KINGDOM ",
+      "latitude": 53.2233769,
+      "longitude": -1.1306623,
+      "formatted_address": "NG20 9PS, Warsop, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351653546
+    },
+    {
+      "name": "Bourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2776",
+      "image_url": "https://images.englandrugby.com/club_images/2776.png",
+      "address": "Bourne R.U.F.C. Milking Nook Drive Spalding Road Bourne LINCOLNSHIRE PE10 0AX UNITED KINGDOM",
+      "latitude": 52.7702954,
+      "longitude": -0.3375346,
+      "formatted_address": "PE10 0AX, Bourne, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350757206
+    },
+    {
+      "name": "Stamford College",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20851",
+      "image_url": "https://images.englandrugby.com/club_images/20851.png",
+      "address": null,
+      "error": "no_address"
+    },
+    {
+      "name": "Gainsborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8458",
+      "image_url": "https://images.englandrugby.com/club_images/8458.png",
+      "address": "Roses Sports Ground, North Warren Road, Gainsborough, Lincolnshire, DN212TU, United Kingdom",
+      "latitude": 53.4094709,
+      "longitude": -0.7885264,
+      "formatted_address": "DN21 2TU, Gainsborough CP, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351184703
+    }
+  ],
+  "team_count": 9
+}

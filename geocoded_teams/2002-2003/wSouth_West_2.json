@@ -3,18 +3,21 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=1805&season=2002-2003#tables",
   "teams": [
     {
-      "name": "wBG Combination Ladies",
+      "name": "BG Combination Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24498",
       "image_url": "https://images.englandrugby.com/club_images/24498.png",
       "address": null,
       "error": "no_address"
     },
     {
-      "name": "wBrixham Ladies",
+      "name": "Brixham Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24510",
       "image_url": "https://images.englandrugby.com/club_images/24510.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Brixham Rugby Club , Astley Park, Rea Barn Road, Brixham, Devon, TQ5 9ED, United Kingdom",
+      "latitude": 50.3902975,
+      "longitude": -3.509536,
+      "formatted_address": "TQ5 9ED, Brixham, Torbay, Devon and Torbay, England, United Kingdom",
+      "place_id": 350863502
     },
     {
       "name": "WCullompton",
@@ -24,25 +27,34 @@
       "error": "no_address"
     },
     {
-      "name": "wRedruth Ladies",
+      "name": "Redruth Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26183",
       "image_url": "https://images.englandrugby.com/club_images/26183.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Cardrew Lane Redruth TR15 1SY UNITED KINGDOM",
+      "latitude": 50.2384118,
+      "longitude": -5.2288534,
+      "formatted_address": "Cardrew Lane, Redruth, Cornwall, England, TR15 1LU, United Kingdom",
+      "place_id": 262938649
     },
     {
-      "name": "wNorth Dorset Ladies",
+      "name": "North Dorset Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25871",
       "image_url": "https://images.englandrugby.com/club_images/25871.png",
-      "address": null,
-      "error": "no_address"
+      "address": "North Dorset R.F.C. Slaughtergate Longbury Hill Lane Gillingham DORSET SP8 5SY UNITED KINGDOM ",
+      "latitude": 51.04585,
+      "longitude": -2.3043,
+      "formatted_address": "SP8 5SY, Gillingham, Dorset, England, United Kingdom",
+      "place_id": 351969660
     },
     {
-      "name": "wDorchester Ladies",
+      "name": "Dorchester Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24562",
       "image_url": "https://images.englandrugby.com/club_images/24562.png",
-      "address": null,
-      "error": "no_address"
+      "address": "Dorchester Rfc, Coburg Road, Dorchester, Dorset, DT1 2HX, England",
+      "latitude": 50.70926,
+      "longitude": -2.45643,
+      "formatted_address": "DT1 2HX, Dorchester, Dorset, England, United Kingdom",
+      "place_id": 351194406
     }
   ],
   "team_count": 6

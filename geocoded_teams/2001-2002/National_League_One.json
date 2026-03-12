@@ -1,6 +1,6 @@
 {
-  "league_name": "Championship",
-  "league_url": "https://en.wikipedia.org/wiki/2002%E2%80%9303_National_Division_One",
+  "league_name": "National League One",
+  "league_url": "https://en.wikipedia.org/wiki/2001%E2%80%9302_National_Division_One",
   "teams": [
     {
       "name": "Rotherham Titans",
@@ -33,14 +33,14 @@
       "place_id": 350169709
     },
     {
-      "name": "Orrell",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16278",
-      "image_url": "https://images.englandrugby.com/club_images/16278.png",
-      "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
-      "latitude": 53.54627,
-      "longitude": -2.72694,
-      "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
-      "place_id": 352156955
+      "name": "Coventry",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
+      "image_url": "https://images.englandrugby.com/club_images/5722.png",
+      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
+      "latitude": 52.4061896,
+      "longitude": -1.5259715,
+      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350563719
     },
     {
       "name": "London Welsh",
@@ -53,16 +53,6 @@
       "place_id": 350872292
     },
     {
-      "name": "Coventry",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722",
-      "image_url": "https://images.englandrugby.com/club_images/5722.png",
-      "address": "Coventry Rugby Club Butts Park Arena The Butts Coventry WEST MIDLANDS CV1 3GE UNITED KINGDOM ",
-      "latitude": 52.4061896,
-      "longitude": -1.5259715,
-      "formatted_address": "CV1 3GE, Coventry, West Midlands, England, United Kingdom",
-      "place_id": 350563719
-    },
-    {
       "name": "Bedford",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1827",
       "image_url": "https://images.englandrugby.com/club_images/1827.png",
@@ -71,36 +61,6 @@
       "longitude": -0.4595905,
       "formatted_address": "MK40 3NF, Bedford, England, United Kingdom",
       "place_id": 350703414
-    },
-    {
-      "name": "Birmingham & Solihull",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2297",
-      "image_url": "https://images.englandrugby.com/club_images/2297.png",
-      "address": "Forshaw Heath Lane, Portway, Birmingham, West Midlands , B94 5LH, United Kingdom",
-      "latitude": 52.35507,
-      "longitude": -1.87849,
-      "formatted_address": "B94 5LH, Tanworth in Arden CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
-      "place_id": 350927523
-    },
-    {
-      "name": "Plymouth Albion",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16953",
-      "image_url": "https://images.englandrugby.com/club_images/16953.png",
-      "address": "Brickfields Stadium, Damerel Close, Devonport, Plymouth, Devon, PL1 4NE, England",
-      "latitude": 50.3708017,
-      "longitude": -4.1711966,
-      "formatted_address": "PL1 4NE, Plymouth, England, United Kingdom",
-      "place_id": 350772725
-    },
-    {
-      "name": "Wakefield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=0",
-      "image_url": "https://images.englandrugby.com/club_images/0.png",
-      "address": "College Grove, Eastmoor Road, Wakefield, West Yorkshire, WF1 3RR, United Kingdom",
-      "latitude": 53.6907398,
-      "longitude": -1.4950135,
-      "formatted_address": "College Grove Nursery, 9, Eastmoor Road, City Fields, Newton Hill, Wakefield, West Yorkshire, England, WF1 3RZ, United Kingdom",
-      "place_id": 256793110
     },
     {
       "name": "Otley",
@@ -113,14 +73,34 @@
       "place_id": 350691070
     },
     {
-      "name": "Manchester",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13231",
-      "image_url": "https://images.englandrugby.com/club_images/13231.png",
-      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
-      "latitude": 53.3583,
-      "longitude": -2.19124,
-      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
-      "place_id": 351926265
+      "name": "Birmingham & Solihull",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2297",
+      "image_url": "https://images.englandrugby.com/club_images/2297.png",
+      "address": "Forshaw Heath Lane, Portway, Birmingham, West Midlands , B94 5LH, United Kingdom",
+      "latitude": 52.35507,
+      "longitude": -1.87849,
+      "formatted_address": "B94 5LH, Tanworth in Arden CP, Stratford-on-Avon, Warwickshire, England, United Kingdom",
+      "place_id": 350927523
+    },
+    {
+      "name": "Wakefield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=0",
+      "image_url": "https://images.englandrugby.com/club_images/0.png",
+      "address": "College Grove, Eastmoor Road, Wakefield, West Yorkshire, WF1 3RR, United Kingdom",
+      "latitude": 53.6907398,
+      "longitude": -1.4950135,
+      "formatted_address": "College Grove Nursery, 9, Eastmoor Road, City Fields, Newton Hill, Wakefield, West Yorkshire, England, WF1 3RZ, United Kingdom",
+      "place_id": 256793110
+    },
+    {
+      "name": "Rugby Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18103",
+      "image_url": "https://images.englandrugby.com/club_images/18103.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
     },
     {
       "name": "Moseley",
@@ -133,14 +113,34 @@
       "place_id": 350012049
     },
     {
-      "name": "Rugby Lions",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18103",
-      "image_url": "https://images.englandrugby.com/club_images/18103.png",
-      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
-      "latitude": 52.3699991,
-      "longitude": -1.2743525,
-      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
-      "place_id": 350564059
+      "name": "Manchester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13231",
+      "image_url": "https://images.englandrugby.com/club_images/13231.png",
+      "address": "Manchester Rugby Club, Grove Park, Grove Lane, Cheadle Hulme, Cheshire, SK8 7NB, United Kingdom",
+      "latitude": 53.3583,
+      "longitude": -2.19124,
+      "formatted_address": "SK8 7NB, Stockport, Greater Manchester, England, United Kingdom",
+      "place_id": 351926265
+    },
+    {
+      "name": "Henley Hawks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9984",
+      "image_url": "https://images.englandrugby.com/club_images/9984.png",
+      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
+      "latitude": 51.5423199,
+      "longitude": -0.90493,
+      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 351819932
+    },
+    {
+      "name": "Bracknell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2889",
+      "image_url": "https://images.englandrugby.com/club_images/2889.png",
+      "address": "Bracknell Rfc, Lily Hill Park, Lily Hill Drive, Bracknell, Berkshire, RG12 2UG, United Kingdom",
+      "latitude": 51.41367,
+      "longitude": -0.72993,
+      "formatted_address": "RG12 2UG, Bracknell, Bracknell Forest, England, United Kingdom",
+      "place_id": 351806964
     }
   ],
   "team_count": 14

@@ -21,22 +21,22 @@ WOMENS_CURRENT_TIER_NAMES: dict[int, str] = {
 }
 
 COMPETITION_OFFSETS: dict[str, int] = {
-    "CANDY": 9,
-    "Devon": 10,
-    "East_Midlands": 9,
-    "Eastern_Counties": 9,
-    "Essex": 9,
-    "GRFU_District": 10,
-    "Hampshire": 11,
-    "Herts_Middlesex": 10,
-    "Leicestershire": 9,
-    "Middlesex": 10,
-    "Midlands_Reserve": 9,
-    "NOWIRUL": 10,
-    "Nottinghamshire": 10,
-    "Rural_Kent": 10,
-    "Surrey": 10,
-    "Sussex": 8,
+    "CANDY": 8,
+    "Devon": 9,
+    "East_Midlands": 8,
+    "Eastern_Counties": 8,
+    "Essex": 8,
+    "GRFU_District": 9,
+    "Hampshire": 5,
+    "Herts_Middlesex": 9,
+    "Leicestershire": 8,
+    "Middlesex": 9,
+    "Midlands_Reserve": 8,
+    "NOWIRUL": 8,
+    "Nottinghamshire": 9,
+    "Rural_Kent": 9,
+    "Surrey": 9,
+    "Sussex": 5,
 }
 
 
@@ -72,8 +72,6 @@ def mens_current_tier_name(tier: int, season: str = "") -> str:
 
 def _merit_tier_name(comp_display: str, local_tier: int) -> str:
     """Return a display name for a merit competition tier."""
-    if local_tier <= 0:
-        return f"{comp_display} Premier"
     return f"{comp_display} {local_tier}"
 
 
@@ -94,69 +92,72 @@ _WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
 
 _NAMED_MERIT_LEAGUES: dict[str, int] = {
     # Values are **local** tiers (absolute minus competition offset).
-    # East Midlands (offset 9): Bombardier (0) > Eagle IPA/etc (2) > Directors/rest (3)
-    "merit/East_Midlands/Bombardier": 0,
-    "merit/East_Midlands/Eagle_IPA": 2,
-    "merit/East_Midlands/Youngs_Bitter": 2,
-    "merit/East_Midlands/Youngs_London_Gold": 2,
-    "merit/East_Midlands/Estrella_Damm_Merit": 3,
-    "merit/East_Midlands/Estrella": 2,
-    "merit/East_Midlands/Directors": 3,
-    "merit/East_Midlands/Courage": 3,
-    "merit/East_Midlands/Youngs_London_Stout": 3,
-    "merit/East_Midlands/Youngs": 3,
-    "merit/East_Midlands/Waggledance": 3,
-    "merit/East_Midlands/Red_Stripe": 3,
-    "merit/East_Midlands/Winter_Warmer": 3,
-    "merit/East_Midlands/Banana_Bread": 3,
-    "merit/East_Midlands/Dogs_Head": 3,
+    # East Midlands (offset 8): Bombardier (1) > Eagle IPA/etc (3) > Directors/rest (4)
+    "merit/East_Midlands/Bombardier": 1,
+    "merit/East_Midlands/Eagle_IPA": 3,
+    "merit/East_Midlands/Youngs_Bitter": 3,
+    "merit/East_Midlands/Youngs_London_Gold": 3,
+    "merit/East_Midlands/Estrella_Damm_Merit": 4,
+    "merit/East_Midlands/Estrella": 3,
+    "merit/East_Midlands/Directors": 4,
+    "merit/East_Midlands/Courage": 4,
+    "merit/East_Midlands/Youngs_London_Stout": 4,
+    "merit/East_Midlands/Youngs": 4,
+    "merit/East_Midlands/Waggledance": 4,
+    "merit/East_Midlands/Red_Stripe": 4,
+    "merit/East_Midlands/Winter_Warmer": 4,
+    "merit/East_Midlands/Banana_Bread": 4,
+    "merit/East_Midlands/Dogs_Head": 4,
     # East Midlands Northants A & B: both geographic splits of EM Division 2
-    "merit/East_Midlands/East_Midlands_2_-_Northants_A": 2,
-    "merit/East_Midlands/East_Midlands_2_-_Northants_B": 2,
-    # NOWIRUL (offset 10): Premier (-1) > Championship/Conference A (0) >
-    # Conference B (1); generic Divisions use zeroth_tier_map offset 0
-    "merit/NOWIRUL/Cotton_Traders_Premier": -1,
-    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Premier": -1,
-    "merit/NOWIRUL/Cotton_Traders_Championship": 0,
-    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Championship": 0,
-    "merit/NOWIRUL/Cotton_Traders_Conference_A": 0,
-    "merit/NOWIRUL/Cotton_Traders_Conference_B": 1,
-    # Hampshire (offset 11): Senior Merit (-1); Hampshire 2/3/4 sit directly
+    "merit/East_Midlands/East_Midlands_2_-_Northants_A": 3,
+    "merit/East_Midlands/East_Midlands_2_-_Northants_B": 3,
+    # NOWIRUL (offset 8): Premier (1) > Championship/Conference A (2) >
+    # Conference B (3); generic Divisions use zeroth_tier_map offset 2
+    "merit/NOWIRUL/Cotton_Traders_Premier": 1,
+    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Premier": 1,
+    "merit/NOWIRUL/NOWIRUL_COTTON_TRADERS_PREMIER": 1,
+    "merit/NOWIRUL/Bateman_BMW_Premier": 1,
+    "merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER": 1,
+    "merit/NOWIRUL/Cotton_Traders_Championship": 2,
+    "merit/NOWIRUL/NOWIRUL_Cotton_Traders_Championship": 2,
+    "merit/NOWIRUL/Cotton_Traders_Conference_A": 2,
+    "merit/NOWIRUL/Cotton_Traders_Conference_B": 3,
+    # Hampshire (offset 5): Senior Merit (5); Hampshire 2/3/4 sit directly
     # below pyramid Hampshire 1 (abs 10), not at offset+number.
-    "merit/Hampshire/Hampshire_Senior": -1,
-    "merit/Hampshire/Hampshire_2": 0,
-    "merit/Hampshire/Hampshire_3": 1,
-    "merit/Hampshire/Hampshire_4": 2,
-    # Leicestershire (offset 9): Invitation Merit (1)
-    "merit/Leicestershire/Leicestershire_Invitation": 1,
-    # Surrey (offset 10): Premier (0) > Championship (1) > Alliance (2) >
-    # Conference (3) > Combination 1 (4) > Combination 2 (5) >
-    # Combination 3 / Foundation (6)
-    "merit/Surrey/Surrey_Premier": 0,
-    "merit/Surrey/Surrey_Chamionship": 1,
-    "merit/Surrey/Surrey_Championship": 1,
-    "merit/Surrey/Surrey_Alliance": 2,
-    "merit/Surrey/Surrey_East_Conference": 3,
-    "merit/Surrey/Surrey_West_Conference": 3,
-    "merit/Surrey/Surrey_Conference": 3,
-    "merit/Surrey/Surrey_Combination_1": 4,
-    "merit/Surrey/Surrey_Combination_2": 5,
-    "merit/Surrey/Surrey_Combination_3": 6,
-    "merit/Surrey/Surrey_Foundation": 6,
-    "merit/Surrey/Surrey_JONAP_Premier": 0,
-    "merit/Surrey/Surrey_JONAP_Alliance": 2,
-    "merit/Surrey/Surrey_JONAP_Conference": 3,
-    "merit/Surrey/Surrey_JONAP_Combination_1": 4,
-    "merit/Surrey/Surrey_JONAP_Combination_2": 5,
-    "merit/Surrey/Surrey_JONAP_Combination_3": 6,
-    "merit/Surrey/Surrey_JONAP_Foundation": 6,
-    "merit/Surrey/London_Counties": 0,
-    "merit/Surrey/London_1_South": 0,
-    # Herts & Middlesex (offset 10): numbered North/South divisions sit directly
-    # below Championship (local 1), one tier above the unnumbered variants.
-    "merit/Herts_Middlesex/Merit_North_1": 2,
-    "merit/Herts_Middlesex/Merit_North_2": 3,
-    "merit/Herts_Middlesex/Merit_South_1": 2,
+    "merit/Hampshire/Hampshire_Senior": 5,
+    "merit/Hampshire/Hampshire_2": 6,
+    "merit/Hampshire/Hampshire_3": 7,
+    "merit/Hampshire/Hampshire_4": 8,
+    # Leicestershire (offset 8): Invitation Merit (2)
+    "merit/Leicestershire/Leicestershire_Invitation": 2,
+    # Surrey (offset 9): Premier (1) > Championship (2) > Alliance (3) >
+    # Conference (4) > Combination 1 (5) > Combination 2 (6) >
+    # Combination 3 / Foundation (7)
+    "merit/Surrey/Surrey_Premier": 1,
+    "merit/Surrey/Surrey_Chamionship": 2,
+    "merit/Surrey/Surrey_Championship": 2,
+    "merit/Surrey/Surrey_Alliance": 3,
+    "merit/Surrey/Surrey_East_Conference": 4,
+    "merit/Surrey/Surrey_West_Conference": 4,
+    "merit/Surrey/Surrey_Conference": 4,
+    "merit/Surrey/Surrey_Combination_1": 5,
+    "merit/Surrey/Surrey_Combination_2": 6,
+    "merit/Surrey/Surrey_Combination_3": 7,
+    "merit/Surrey/Surrey_Foundation": 7,
+    "merit/Surrey/Surrey_JONAP_Premier": 1,
+    "merit/Surrey/Surrey_JONAP_Alliance": 3,
+    "merit/Surrey/Surrey_JONAP_Conference": 4,
+    "merit/Surrey/Surrey_JONAP_Combination_1": 5,
+    "merit/Surrey/Surrey_JONAP_Combination_2": 6,
+    "merit/Surrey/Surrey_JONAP_Combination_3": 7,
+    "merit/Surrey/Surrey_JONAP_Foundation": 7,
+    "merit/Surrey/London_Counties": 1,
+    "merit/Surrey/London_1_South": 1,
+    # Herts & Middlesex (offset 9): numbered North/South divisions sit directly
+    # below Championship (local 2), one tier above the unnumbered variants.
+    "merit/Herts_Middlesex/Merit_North_1": 3,
+    "merit/Herts_Middlesex/Merit_North_2": 4,
+    "merit/Herts_Middlesex/Merit_South_1": 3,
 }
 
 
@@ -301,29 +302,30 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "Cumbria_Conference": 7,
         "Counties": 6,
         # Merit entries: values are local offsets (absolute - COMPETITION_OFFSETS)
-        "merit/East_Midlands/East_Midlands": 0,
-        "merit/Hampshire/Counties": -5,
-        "merit/Herts_Middlesex/Merit_Championship": 1,
-        "merit/Herts_Middlesex/Merit_North": 2,
-        "merit/Herts_Middlesex/Merit_South": 2,
-        "merit/Sussex/Counties": -2,
-        "merit/CANDY": 0,
-        "merit/Devon": 0,
-        "merit/East_Midlands": 1,
-        "merit/Eastern_Counties": 0,
-        "merit/Essex": 0,
-        "merit/GRFU_District": 0,
-        "merit/Hampshire/Solent": -1,
-        "merit/Hampshire": 0,
-        "merit/Herts_Middlesex": 0,
-        "merit/Leicestershire": 0,
-        "merit/Middlesex": 0,
-        "merit/Midlands_Reserve": 0,
-        "merit/NOWIRUL": 0,
-        "merit/Nottinghamshire": 0,
-        "merit/Rural_Kent": 0,
-        "merit/Surrey": 0,
-        "merit/Sussex": 0,
+        "merit/East_Midlands/East_Midlands": 1,
+        "merit/Hampshire/Counties": 1,
+        "merit/Herts_Middlesex/Merit_Championship": 2,
+        "merit/Herts_Middlesex/Merit_North": 3,
+        "merit/Herts_Middlesex/Merit_South": 3,
+        "merit/Sussex/Counties": 1,
+        "merit/CANDY": 1,
+        "merit/Devon": 1,
+        "merit/East_Midlands": 2,
+        "merit/Eastern_Counties": 1,
+        "merit/Essex": 1,
+        "merit/GRFU_District": 1,
+        "merit/Hampshire/Solent": 5,
+        "merit/Hampshire": 6,
+        "merit/Herts_Middlesex": 1,
+        "merit/Leicestershire": 1,
+        "merit/Middlesex": 1,
+        "merit/Midlands_Reserve": 1,
+        "merit/NOWIRUL/Premier": 1,
+        "merit/NOWIRUL": 2,
+        "merit/Nottinghamshire": 1,
+        "merit/Rural_Kent": 1,
+        "merit/Surrey": 1,
+        "merit/Sussex": 3,
     }
     for prefix, offset in zeroth_tier_map.items():
         if cleaned.startswith(prefix):
@@ -365,6 +367,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "North_Mids": 8,
         "North_Lancs_Cumbria": 7,
         "North_Lancashire": 7,
+        "North_Lancs": 7,
         "North": 5,
         "Midlands_East_(South)_A": 11,
         "Midlands_East_(South)_B": 11,
@@ -388,7 +391,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Cornwall_Devon": 8,
         "Cornwall": 8,
         "Devon": 8,
-        "Dorset_&_Wilts": 8,
+        "Dorset_&_Wilts": 7,
         "Dorset": 7,
         "Gloucester": 8,
         "Somerset": 8,
@@ -412,29 +415,30 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Notts_Lincs": 8,
         "East_Counties": 8,
         # Merit entries: values are local offsets (absolute - COMPETITION_OFFSETS)
-        "merit/East_Midlands/East_Midlands": 0,
-        "merit/Hampshire/Counties": -5,
-        "merit/Herts_Middlesex/Merit_Championship": 1,
-        "merit/Herts_Middlesex/Merit_North": 2,
-        "merit/Herts_Middlesex/Merit_South": 2,
-        "merit/Sussex/Counties": -2,
-        "merit/CANDY": 0,
-        "merit/Devon": 0,
-        "merit/East_Midlands": 1,
-        "merit/Eastern_Counties": 0,
-        "merit/Essex": 0,
-        "merit/GRFU_District": 0,
-        "merit/Hampshire/Solent": -1,
-        "merit/Hampshire": 0,
-        "merit/Herts_Middlesex": 0,
-        "merit/Leicestershire": 0,
-        "merit/Middlesex": 0,
-        "merit/Midlands_Reserve": 0,
-        "merit/NOWIRUL": 0,
-        "merit/Nottinghamshire": 0,
-        "merit/Rural_Kent": 0,
-        "merit/Surrey": 0,
-        "merit/Sussex": 0,
+        "merit/East_Midlands/East_Midlands": 1,
+        "merit/Hampshire/Counties": 1,
+        "merit/Herts_Middlesex/Merit_Championship": 2,
+        "merit/Herts_Middlesex/Merit_North": 3,
+        "merit/Herts_Middlesex/Merit_South": 3,
+        "merit/Sussex/Counties": 1,
+        "merit/CANDY": 1,
+        "merit/Devon": 1,
+        "merit/East_Midlands": 2,
+        "merit/Eastern_Counties": 1,
+        "merit/Essex": 1,
+        "merit/GRFU_District": 1,
+        "merit/Hampshire/Solent": 5,
+        "merit/Hampshire": 6,
+        "merit/Herts_Middlesex": 1,
+        "merit/Leicestershire": 1,
+        "merit/Middlesex": 1,
+        "merit/Midlands_Reserve": 1,
+        "merit/NOWIRUL/Premier": 1,
+        "merit/NOWIRUL": 2,
+        "merit/Nottinghamshire": 1,
+        "merit/Rural_Kent": 1,
+        "merit/Surrey": 1,
+        "merit/Sussex": 3,
     }
     if filename.startswith("Premiership"):
         return (1, "Premiership")
@@ -450,7 +454,14 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             ):
                 num -= 1
             tier = offset + num
-            if pre_champ and prefix != "National_League" and not prefix.startswith("merit/"):
+            main_pyramid_prefixes = {
+                "North",
+                "Midlands",
+                "London",
+                "South_West",
+                "South_West_Pilot",
+            }
+            if pre_champ and prefix in main_pyramid_prefixes:
                 tier -= 1
             if prefix == "National_League":
                 return (tier, f"National League {num}")

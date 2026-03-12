@@ -58,6 +58,8 @@ class MapConfig:
     show_debug: bool = True
     tier_entry_level: dict[int, str] = field(default_factory=dict)
     default_tier_entry_level: str = "itl2"
+    tier_floor_level: dict[int, str] = field(default_factory=dict)
+    default_tier_floor_level: str = "itl3"
     use_inline_boundaries: bool = True
     shared_boundaries_path: str = "../shared"
     fallback_icon_url: str | None = None
@@ -681,6 +683,14 @@ def _collect_group_geometries(
     else:
         entry_level = config.default_tier_entry_level
 
+    if config.tier_floor_level and tier_num in config.tier_floor_level:
+        floor_level = config.tier_floor_level[tier_num]
+    else:
+        floor_level = config.default_tier_floor_level
+
+    level_index = {lv: i for i, lv in enumerate(all_levels)}
+    floor_idx = level_index[floor_level]
+
     group_geometries: dict[str, list[BaseGeometry]] = {}
 
     def closest_group(parent_items: list[_PlacedItem], centroid: Point) -> str | None:
@@ -710,7 +720,7 @@ def _collect_group_geometries(
         if len(groups_here) == 1:
             grp = next(iter(groups_here))
             child_level_check = next_level.get(level)
-            if child_level_check:
+            if child_level_check and level_index[child_level_check] <= floor_idx:
                 occupied = sum(
                     1
                     for ck in child_map_by_level.get(level, {}).get(region_key, [])

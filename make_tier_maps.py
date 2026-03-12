@@ -67,12 +67,30 @@ COLOR_PALETTE = [
     "#ffcfd2",
 ]
 
+# If a region at this level contains items in multiple child regions, everything in this region will
+# be shaded.
 TIER_ENTRY_LEVELS: dict[int, str] = {
     1: "itl0",
     2: "itl0",
     3: "itl0",
     4: "itl1",
+    5: "itl1",
+    6: "itl1",
     101: "itl0",
+    102: "itl1",
+    103: "itl1",
+}
+
+# When we only have one item in a region, we narrow in. This dict defines which level this stops at.
+TIER_FLOOR_LEVELS: dict[int, str] = {
+    1: "itl1",
+    2: "itl1",
+    3: "itl1",
+    4: "itl1",
+    5: "itl1",
+    6: "itl2",
+    7: "itl2",
+    101: "itl1",
     102: "itl1",
     103: "itl1",
 }
@@ -302,6 +320,7 @@ def _build_config(
     palette: list[str] | None = None,
     subdirectory_depth: int = 0,
     tier_entry_level: dict[int, str] | None = None,
+    tier_floor_level: dict[int, str] | None = None,
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
@@ -310,6 +329,7 @@ def _build_config(
     ``merit/<Competition>/``).
 
     *tier_entry_level* overrides the default pyramid tier-to-ITL mapping.
+    *tier_floor_level* overrides the default pyramid tier-to-floor mapping.
     Pass ``{}`` for merit maps to avoid local tier numbers colliding with
     pyramid-specific entries.
     """
@@ -333,6 +353,8 @@ def _build_config(
         show_debug=show_debug,
         tier_entry_level=tier_entry_level if tier_entry_level is not None else TIER_ENTRY_LEVELS,
         default_tier_entry_level="itl2",
+        tier_floor_level=tier_floor_level if tier_floor_level is not None else TIER_FLOOR_LEVELS,
+        default_tier_floor_level="itl3",
         use_inline_boundaries=not is_prod,
         shared_boundaries_path=shared_path,
         fallback_icon_url=RFU_FALLBACK_ICON,
@@ -611,6 +633,7 @@ def main() -> None:
                 show_debug,
                 subdirectory_depth=2,
                 tier_entry_level={},
+                tier_floor_level={},
             )
             generate_multi_group_map(comp_items_r, out, itl_hierarchy, config)
 
@@ -628,6 +651,7 @@ def main() -> None:
                     _rotated_palette(local_tier + offset),
                     subdirectory_depth=2,
                     tier_entry_level={},
+                    tier_floor_level={},
                 )
                 generate_single_group_map(tier_items, out, itl_hierarchy, config)
 

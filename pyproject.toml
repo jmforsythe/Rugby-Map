@@ -57,6 +57,7 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Allow unused imports in __init__.py
+"football/*.py" = ["E402"]  # sys.path.insert before imports
 
 [tool.mypy]
 python_version = "3.12"

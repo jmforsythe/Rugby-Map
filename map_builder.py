@@ -61,6 +61,7 @@ class MapConfig:
     tier_floor_level: dict[int, str] = field(default_factory=dict)
     default_tier_floor_level: str = "itl3"
     use_inline_boundaries: bool = True
+    inline_boundaries_file: str = "tier_maps/shared/boundaries.json"
     shared_boundaries_path: str = "../shared"
     fallback_icon_url: str | None = None
     header_elements: list[str] = field(default_factory=list)
@@ -1052,7 +1053,7 @@ def _add_layer_control(m: folium.Map) -> None:
 
 def _get_boundary_loader_script(config: MapConfig) -> str:
     if config.use_inline_boundaries:
-        boundaries_path = Path("tier_maps/shared/boundaries.json")
+        boundaries_path = Path(config.inline_boundaries_file)
         bd_json = "{}"
         if boundaries_path.exists():
             bd_json = boundaries_path.read_text()
@@ -1101,7 +1102,7 @@ def _get_boundary_loader_script(config: MapConfig) -> str:
 
 def _get_debug_boundary_loader_script(config: MapConfig) -> str:
     if config.use_inline_boundaries:
-        boundaries_path = Path("tier_maps/shared/boundaries.json")
+        boundaries_path = Path(config.inline_boundaries_file)
         bd_json = "{}"
         if boundaries_path.exists():
             bd_json = boundaries_path.read_text()

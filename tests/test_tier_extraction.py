@@ -264,7 +264,7 @@ class TestExtractTierMeritPath:
 
     def test_hampshire_counties(self):
         result = extract_tier("merit/Hampshire/Counties_5_Hampshire.json", "2025-2026")
-        assert result == (6, "Hampshire 6")
+        assert result == (5, "Hampshire 5")
 
     def test_herts_middlesex_merit_table(self):
         result = extract_tier("merit/Herts_Middlesex/Merit_Table_1.json", "2013-2014")
@@ -302,11 +302,11 @@ class TestExtractTierMeritPath:
 
     def test_nowirul_division_current(self):
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BAINES_PLUMBING_DIVISION_1.json", "2025-2026")
-        assert result == (3, "NOWIRUL 3")
+        assert result == (2, "NOWIRUL 2")
 
     def test_nowirul_old_conference(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Conference_A.json", "2013-2014")
-        assert result == (3, "NOWIRUL 3")
+        assert result == (2, "NOWIRUL 2")
 
     def test_nowirul_old_premier(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Premier_League.json", "2013-2014")
@@ -314,7 +314,7 @@ class TestExtractTierMeritPath:
 
     def test_nowirul_raging_bull_division(self):
         result = extract_tier("merit/NOWIRUL/Raging_Bull_Division_2_North.json", "2013-2014")
-        assert result == (4, "NOWIRUL 4")
+        assert result == (3, "NOWIRUL 3")
 
     def test_rural_kent_dragon_fire(self):
         result = extract_tier("merit/Rural_Kent/Dragon_Fire_4_East.json", "2013-2014")
@@ -326,7 +326,7 @@ class TestExtractTierMeritPath:
 
     def test_sussex_counties(self):
         result = extract_tier("merit/Sussex/Harvey's_Brewery_Counties_3_Sussex.json", "2025-2026")
-        assert result == (4, "Sussex 4")
+        assert result == (3, "Sussex 3")
 
     def test_east_midlands_numbered(self):
         result = extract_tier(
@@ -336,7 +336,7 @@ class TestExtractTierMeritPath:
 
     def test_east_midlands_b_variant(self):
         result = extract_tier("merit/East_Midlands/East_Midlands_2_-_Northants_B.json", "2025-2026")
-        assert result == (2, "East Midlands 2")
+        assert result == (3, "East Midlands 3")
 
     def test_east_midlands_sponsor_named(self):
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")

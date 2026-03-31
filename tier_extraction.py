@@ -39,12 +39,100 @@ COMPETITION_OFFSETS: dict[str, int] = {
     "Sussex": 5,
 }
 
+# Season-specific overrides: (start_season, end_season, offset).
+# Empty end_season means open-ended (all subsequent seasons).
+# Checked before COMPETITION_OFFSETS when a season is provided.
+_SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
+    "CANDY": [
+        ("2022-2023", "", 9),
+    ],
+    "Devon": [
+        ("2009-2010", "2009-2010", 8),
+        ("2012-2013", "2013-2014", 10),
+        ("2017-2018", "2017-2018", 10),
+    ],
+    "East_Midlands": [
+        ("2009-2010", "2009-2010", 11),
+    ],
+    "Essex": [
+        ("2008-2009", "2008-2009", 11),
+        ("2010-2011", "2013-2014", 10),
+        ("2014-2015", "2022-2023", 9),
+    ],
+    "GRFU_District": [
+        ("2010-2011", "2011-2012", 11),
+        ("2012-2013", "2015-2016", 12),
+        ("2016-2017", "2019-2020", 11),
+        ("2021-2022", "", 10),
+    ],
+    "Hampshire": [
+        ("2008-2009", "2008-2009", 7),
+        ("2009-2010", "2016-2017", 6),
+        ("2022-2023", "2022-2023", 6),
+        ("2025-2026", "2025-2026", 6),
+    ],
+    "Herts_Middlesex": [
+        ("2008-2009", "2009-2010", 12),
+        ("2010-2011", "2010-2011", 10),
+        ("2011-2012", "2013-2014", 11),
+        ("2017-2018", "2019-2020", 10),
+        ("2021-2022", "2021-2022", 10),
+        ("2023-2024", "2023-2024", 10),
+    ],
+    "Leicestershire": [
+        ("2009-2010", "2009-2010", 11),
+        ("2023-2024", "2023-2024", 7),
+        ("2025-2026", "2025-2026", 9),
+    ],
+    "Middlesex": [
+        ("2025-2026", "2025-2026", 8),
+    ],
+    "NOWIRUL": [
+        ("2010-2011", "2014-2015", 9),
+        ("2017-2018", "2017-2018", 9),
+        ("2018-2019", "2018-2019", 10),
+        ("2019-2020", "2019-2020", 9),
+        ("2021-2022", "2021-2022", 7),
+        ("2022-2023", "2023-2024", 10),
+        ("2024-2025", "2025-2026", 9),
+    ],
+    "Nottinghamshire": [
+        ("2009-2010", "2009-2010", 11),
+    ],
+    "Rural_Kent": [
+        ("2008-2009", "2010-2011", 10),
+        ("2011-2012", "2012-2013", 8),
+        ("2013-2014", "2018-2019", 11),
+        ("2019-2020", "2019-2020", 8),
+        ("2021-2022", "2021-2022", 8),
+        ("2022-2023", "2022-2023", 10),
+        ("2023-2024", "", 11),
+    ],
+    "Surrey": [
+        ("2009-2010", "2012-2013", 12),
+        ("2015-2016", "2018-2019", 11),
+        ("2019-2020", "2019-2020", 12),
+        ("2021-2022", "2021-2022", 12),
+        ("2022-2023", "", 11),
+    ],
+    "Sussex": [
+        ("2022-2023", "", 6),
+    ],
+}
+
 
 def get_competition_offset(comp_name: str, season: str = "") -> int:
     """Return the pyramid tier offset for a merit competition.
 
     Adding this offset to a local tier number gives the absolute pyramid position.
+    Checks season-specific overrides before falling back to the default.
     """
+    if season:
+        ranges = _SEASON_OFFSETS.get(comp_name)
+        if ranges:
+            for start, end, offset in ranges:
+                if season >= start and (not end or season <= end):
+                    return offset
     return COMPETITION_OFFSETS.get(comp_name, 0)
 
 

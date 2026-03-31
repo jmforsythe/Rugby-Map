@@ -159,6 +159,7 @@ def _render_popup_html(
         f'<hr style="margin: 5px 0;">'
         f'<p style="margin: 2px 0;"><b>League:</b> {league_esc}</p>'
         f'<p style="margin: 2px 0;"><b>Address:</b> {address_esc}</p>'
+        f"__ITL_REGIONS__"
         f"{team_link}{league_link}{info_link}"
         f"{distance_html}"
         f"</div>"

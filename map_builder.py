@@ -870,6 +870,19 @@ def _add_marker(
         1,
     )
 
+    itl1 = item.get("itl1") or ""
+    itl2 = item.get("itl2") or ""
+    itl3 = item.get("itl3") or ""
+    if itl1:
+        region_html = (
+            f'<p style="margin: 2px 0;">'
+            f"<b>{escape(itl1)}</b> | {escape(itl2)} | <i>{escape(itl3)}</i>"
+            f"</p>"
+        )
+    else:
+        region_html = ""
+    popup_content = popup_content.replace("__ITL_REGIONS__", region_html)
+
     icon_size = 30
     icon_url = item.get("icon_url")
     if icon_url:

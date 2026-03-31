@@ -44,6 +44,7 @@ class MarkerItem:
     tier_num: int
     icon_url: str | None = None
     popup_html: str | None = None
+    category: str | None = None
     extra: dict[str, Any] | None = None
 
 
@@ -84,6 +85,7 @@ class _PlacedItem(TypedDict):
     tier_num: int
     icon_url: str | None
     popup_html: str | None
+    category: str | None
     itl0: str | None
     itl1: str | None
     itl2: str | None
@@ -453,6 +455,7 @@ def _items_to_placed(
             "tier_num": item.tier_num,
             "icon_url": item.icon_url,
             "popup_html": item.popup_html,
+            "category": item.category,
             "itl0": None,
             "itl1": None,
             "itl2": None,
@@ -1013,16 +1016,36 @@ def _legend(
             continue
         tier_items = items_by_tier[tier]
         html += f'<p style="margin:10px 0 5px 0;"><b>{escape(tier)}</b> ({len(tier_items)})</p>'
-        groups_in_tier = sorted({it["group"] for it in tier_items})
-        for grp in groups_in_tier:
-            color = group_colors[grp]
-            count = sum(1 for it in tier_items if it["group"] == grp)
-            html += (
-                f'<p style="margin:2px 0 2px 15px;">'
-                f'<i style="background:{color}; width:16px; height:16px; '
-                f'display:inline-block; border-radius:50%; border:1px solid black;"></i> '
-                f"{escape(grp)} ({count})</p>"
-            )
+
+        by_category: dict[str | None, list[_PlacedItem]] = {}
+        for it in tier_items:
+            by_category.setdefault(it.get("category"), []).append(it)
+        show_sub = len(by_category) > 1
+
+        def _cat_key(c: str | None) -> tuple[int, str]:
+            if c is None:
+                return (2, "")
+            if c.lower() == "pyramid":
+                return (0, "")
+            return (1, c)
+
+        for cat in sorted(by_category, key=_cat_key):
+            cat_items = by_category[cat]
+            if show_sub:
+                label = escape(cat) if cat else "Other"
+                html += (
+                    f'<p style="margin:6px 0 2px 8px;">' f"<i>{label}</i> ({len(cat_items)})</p>"
+                )
+            indent = "23px" if show_sub else "15px"
+            for grp in sorted({it["group"] for it in cat_items}):
+                color = group_colors[grp]
+                count = sum(1 for it in cat_items if it["group"] == grp)
+                html += (
+                    f'<p style="margin:2px 0 2px {indent};">'
+                    f'<i style="background:{color}; width:16px; height:16px; '
+                    f'display:inline-block; border-radius:50%; border:1px solid black;"></i> '
+                    f"{escape(grp)} ({count})</p>"
+                )
 
     html += """</div></div>
     <script>

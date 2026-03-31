@@ -289,6 +289,7 @@ def _load_marker_items(
                 team_name, league_name, league_url, team_url, address, travel_distances
             )
 
+            category = comp_key.replace("_", " ") if is_merit else "Pyramid"
             item = MarkerItem(
                 name=team_name,
                 latitude=team["latitude"],
@@ -298,6 +299,7 @@ def _load_marker_items(
                 tier_num=tier_num,
                 icon_url=icon_url,
                 popup_html=popup,
+                category=category,
             )
 
             if is_merit:

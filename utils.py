@@ -342,6 +342,22 @@ def get_google_analytics_script() -> str:
 """
 
 
+def get_favicon_html(depth: int = 0) -> str:
+    """Return <link> tags for favicon and manifest.
+
+    Args:
+        depth: directory depth relative to tier_maps/ root (0 = top-level, 1 = season, etc.)
+    """
+    if get_config().is_production:
+        prefix = "/"
+    else:
+        prefix = "../" * depth if depth > 0 else ""
+    return (
+        f'    <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml">\n'
+        f'    <link rel="manifest" href="{prefix}manifest.json">'
+    )
+
+
 def sanitize_team_name(team_name: str) -> str:
     """Convert team name to URL-safe format."""
     # Replace special characters with url-safe equivalents

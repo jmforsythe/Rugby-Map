@@ -25,6 +25,7 @@ from tier_extraction import extract_tier, get_competition_offset, mens_current_t
 from utils import (
     TravelDistances,
     get_config,
+    get_favicon_html,
     get_google_analytics_script,
     json_load_cache,
     set_config,
@@ -356,7 +357,8 @@ def _build_config(
     """
     is_prod = get_config().is_production
 
-    header_elements = [get_google_analytics_script()]
+    favicon_depth = 1 + subdirectory_depth
+    header_elements = [get_favicon_html(depth=favicon_depth), get_google_analytics_script()]
     if is_prod:
         header_elements.append(_service_worker_html())
 

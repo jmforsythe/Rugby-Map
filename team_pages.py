@@ -14,6 +14,7 @@ from utils import (
     GeocodedLeague,
     TravelDistances,
     get_config,
+    get_favicon_html,
     get_google_analytics_script,
     set_config,
     setup_logging,
@@ -224,6 +225,7 @@ def get_team_page_html(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{escape(team_name)} - English Rugby Union Team Info</title>
     <link rel="stylesheet" href="../styles.css">
+    {get_favicon_html(depth=1)}
     <style>
         .team-header {{
             text-align: center;
@@ -577,6 +579,7 @@ def generate_teams_index() -> None:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Teams - English Rugby Union</title>
     <link rel="stylesheet" href="../styles.css">
+    {get_favicon_html(depth=1)}
     <style>
         .search-box {{
             text-align: center;

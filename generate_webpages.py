@@ -8,7 +8,7 @@ Creates:
 import argparse
 from pathlib import Path
 
-from utils import get_config, get_google_analytics_script, set_config
+from utils import get_config, get_favicon_html, get_google_analytics_script, set_config
 
 
 def get_footer_html() -> str:
@@ -140,6 +140,7 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Rugby Union Team Maps - {season}</title>
     <link rel="stylesheet" href="../styles.css">
+    {get_favicon_html(depth=1)}
     {get_google_analytics_script()}
 </head>
 <body>
@@ -217,6 +218,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     <meta property="og:url" content="https://rugbyunionmap.uk" />
     <title>English Rugby Union Team Maps</title>
     <link rel="stylesheet" href="styles.css">
+    {get_favicon_html(depth=0)}
     {get_google_analytics_script()}
 </head>
 <body>

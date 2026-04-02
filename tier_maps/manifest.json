@@ -1,0 +1,16 @@
+{
+  "name": "English Rugby Union Team Maps",
+  "short_name": "Rugby Maps",
+  "description": "Interactive maps showing the geographic distribution of English rugby union teams and leagues.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f9f9",
+  "theme_color": "#2c3e50",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -11,6 +11,8 @@ team_addresses/
 tier_maps/*
 !tier_maps/service-worker.js
 !tier_maps/styles.css
+!tier_maps/favicon.svg
+!tier_maps/manifest.json
 club_address_cache.json
 geocode_cache.json
 

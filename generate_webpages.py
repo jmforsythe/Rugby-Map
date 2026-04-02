@@ -138,6 +138,10 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive maps of English rugby union teams for the {season} season.">
+    <meta property="og:title" content="English Rugby Union Team Maps - {season}" />
+    <meta property="og:description" content="Interactive maps of English rugby union teams for the {season} season." />
+    <meta property="og:type" content="website" />
     <title>English Rugby Union Team Maps - {season}</title>
     <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}
@@ -211,6 +215,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive maps showing the geographic distribution of English rugby union teams and leagues across 25 seasons.">
     <meta property="og:title" content="English Rugby Union Team Maps" />
     <meta property="og:description" content="Interactive maps showing the geographic distribution of English rugby union teams and leagues." />
     <meta property="og:image" content="https://raw.githubusercontent.com/jmforsythe/Rugby-Map/main/example.png" />

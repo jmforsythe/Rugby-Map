@@ -218,11 +218,18 @@ def get_team_page_html(
     for entry in league_history:
         seasons_by_year[entry["season"]].append(entry)
 
+    num_seasons = len({e["season"] for e in league_history})
+    meta_desc = f"{escape(team_name)} - league history, location, and travel distances across {num_seasons} seasons of English rugby union."
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{meta_desc}">
+    <meta property="og:title" content="{escape(team_name)} - English Rugby Union" />
+    <meta property="og:description" content="{meta_desc}" />
+    <meta property="og:type" content="website" />
     <title>{escape(team_name)} - English Rugby Union Team Info</title>
     <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}

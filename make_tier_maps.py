@@ -358,7 +358,12 @@ def _build_config(
     is_prod = get_config().is_production
 
     favicon_depth = 1 + subdirectory_depth
-    header_elements = [get_favicon_html(depth=favicon_depth), get_google_analytics_script()]
+    meta_desc = f"{season} {title} - interactive map showing team locations and league boundaries."
+    header_elements = [
+        get_favicon_html(depth=favicon_depth),
+        f'<meta name="description" content="{escape(meta_desc)}">',
+        get_google_analytics_script(),
+    ]
     if is_prod:
         header_elements.append(_service_worker_html())
 

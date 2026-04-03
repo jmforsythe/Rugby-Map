@@ -191,30 +191,94 @@ def _render_popup_html(
 # ---------------------------------------------------------------------------
 
 
-def _back_button_html(subdirectory_depth: int = 0) -> str:
+def _header_bar_html(
+    title: str,
+    subdirectory_depth: int = 0,
+    sibling_tiers: list[tuple[str, str]] | None = None,
+    current_tier: str | None = None,
+) -> str:
+    """Build a floating header bar with back link, title, and optional tier dropdown."""
     if get_config().is_production:
-        href = "../" * (1 + subdirectory_depth)
+        back_href = "../" * (1 + subdirectory_depth)
     else:
-        href = "../" * subdirectory_depth + "index.html"
+        back_href = "../" * subdirectory_depth + "index.html"
+
+    dropdown_html = ""
+    if sibling_tiers and len(sibling_tiers) > 1:
+        options = []
+        for tier_display, tier_href in sibling_tiers:
+            selected = " selected" if tier_display == current_tier else ""
+            options.append(
+                f'<option value="{escape(tier_href)}"{selected}>{escape(tier_display)}</option>'
+            )
+        options_str = "".join(options)
+        dropdown_html = (
+            f'<select class="map-header__select" '
+            f'onchange="if(this.value)window.location.href=this.value">'
+            f"{options_str}</select>"
+        )
+
+    title_esc = escape(title)
     return f"""
-    <script>
-    function addBackButtonToLeafletZoom() {{
-        var zoom = document.querySelector('.leaflet-control-zoom');
-        if (!zoom) return;
-        var zoomClone = zoom.cloneNode(true);
-        zoomClone.innerHTML = '';
-        var backBtn = document.createElement('a');
-        backBtn.className = 'leaflet-control-zoom-back leaflet-bar-part';
-        backBtn.href = '{href}';
-        backBtn.title = 'Back';
-        backBtn.setAttribute('role', 'button');
-        backBtn.setAttribute('aria-label', 'Back');
-        backBtn.innerHTML = '&larr;';
-        zoomClone.appendChild(backBtn);
-        zoom.parentNode.insertBefore(zoomClone, zoom);
+    <div class="map-header" id="mapHeader">
+        <a class="map-header__back" href="{back_href}" title="Back to season index">&larr;</a>
+        <span class="map-header__title">{title_esc}</span>
+        {dropdown_html}
+    </div>
+    <style>
+    .map-header {{
+        position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+        display: flex; align-items: center; gap: 0.6em;
+        padding: 6px 12px;
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+        border-bottom: 1px solid #e0e0e0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px;
+        transition: opacity 0.3s, transform 0.3s;
     }}
-    if (window.addEventListener) {{ window.addEventListener('DOMContentLoaded', addBackButtonToLeafletZoom); }}
-    else {{ window.attachEvent('onload', addBackButtonToLeafletZoom); }}
+    .map-header__back {{
+        text-decoration: none; color: #0066cc; font-size: 1.3em; line-height: 1;
+        padding: 2px 8px; border-radius: 4px;
+    }}
+    .map-header__back:hover {{ background: rgba(0,102,204,0.1); }}
+    .map-header__title {{
+        font-weight: 600; color: #2c3e50; white-space: nowrap;
+        overflow: hidden; text-overflow: ellipsis; flex: 1;
+    }}
+    .map-header__select {{
+        padding: 3px 8px; border: 1px solid #ccc; border-radius: 4px;
+        font-size: 13px; background: white; color: #333;
+        max-width: 200px; cursor: pointer;
+    }}
+    .map-header.hidden {{ opacity: 0; transform: translateY(-100%); pointer-events: none; }}
+    @media (prefers-color-scheme: dark) {{
+        .map-header {{ background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a; }}
+        .map-header__back {{ color: #4da6ff; }}
+        .map-header__back:hover {{ background: rgba(77,166,255,0.15); }}
+        .map-header__title {{ color: #e0e8f0; }}
+        .map-header__select {{ background: #1e2a45; color: #e0e0e0; border-color: #2a2a4a; }}
+    }}
+    @media (max-width: 480px) {{
+        .map-header__title {{ font-size: 12px; }}
+        .map-header__select {{ max-width: 120px; font-size: 11px; }}
+    }}
+    </style>
+    <script>
+    (function() {{
+        var hdr = document.getElementById('mapHeader');
+        if (!hdr) return;
+        var timer;
+        function showHeader() {{
+            hdr.classList.remove('hidden');
+            clearTimeout(timer);
+            timer = setTimeout(function(){{ hdr.classList.add('hidden'); }}, 3000);
+        }}
+        document.addEventListener('mousemove', function(e){{
+            if (e.clientY < 60) showHeader();
+        }});
+        document.addEventListener('touchstart', showHeader);
+        showHeader();
+    }})();
     </script>
     """
 
@@ -344,6 +408,8 @@ def _build_config(
     subdirectory_depth: int = 0,
     tier_entry_level: dict[int, str] | None = None,
     tier_floor_level: dict[int, str] | None = None,
+    sibling_tiers: list[tuple[str, str]] | None = None,
+    current_tier: str | None = None,
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
@@ -355,6 +421,9 @@ def _build_config(
     *tier_floor_level* overrides the default pyramid tier-to-floor mapping.
     Pass ``{}`` for merit maps to avoid local tier numbers colliding with
     pyramid-specific entries.
+
+    *sibling_tiers* is a list of (display_name, href) tuples for the tier
+    dropdown in the header bar.
     """
     is_prod = get_config().is_production
 
@@ -368,7 +437,14 @@ def _build_config(
     if is_prod:
         header_elements.append(_service_worker_html())
 
-    body_elements = [_back_button_html(subdirectory_depth)]
+    body_elements = [
+        _header_bar_html(
+            f"{season} {title}",
+            subdirectory_depth,
+            sibling_tiers=sibling_tiers,
+            current_tier=current_tier,
+        )
+    ]
 
     if is_prod:
         shared_path = "/shared"
@@ -407,6 +483,20 @@ def _group_by_tier(
         by_tier.setdefault(it.tier, []).append(it)
     order = sorted(by_tier.keys(), key=lambda t: by_tier[t][0].tier_num)
     return by_tier, order
+
+
+def _tier_sibling_links(
+    tier_order: list[str],
+    is_prod: bool,
+    prefix: str = "",
+) -> list[tuple[str, str]]:
+    """Build (display_name, href) pairs for all tiers in a group."""
+    links: list[tuple[str, str]] = []
+    for tier_name in tier_order:
+        file_name = tier_name.replace(" ", "_")
+        href = f"{prefix}{file_name}/" if is_prod else f"{prefix}{file_name}.html"
+        links.append((tier_name, href))
+    return links
 
 
 def _output_path(output_dir: Path, name: str, is_prod: bool) -> Path:
@@ -561,11 +651,19 @@ def main() -> None:
     if gen_mens_individual and mens_by_tier:
         logger.info("Creating men's pyramid tier maps...")
         mens_by_tier_r, mens_tier_order_r = _group_by_tier(mens_pyramid_r)
+        mens_siblings = _tier_sibling_links(mens_tier_order_r, is_prod)
         for tier_name in mens_tier_order_r:
             tier_items = mens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
             out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
-            config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
+            config = _build_config(
+                tier_name,
+                season,
+                show_debug,
+                _rotated_palette(tier_num),
+                sibling_tiers=mens_siblings,
+                current_tier=tier_name,
+            )
             generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
             # Pyramid + merit at same level
@@ -596,11 +694,19 @@ def main() -> None:
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")
         womens_by_tier_r, womens_tier_order_r = _group_by_tier(womens_pyramid_r)
+        womens_siblings = _tier_sibling_links(womens_tier_order_r, is_prod)
         for tier_name in womens_tier_order_r:
             tier_items = womens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
             out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
-            config = _build_config(tier_name, season, show_debug, _rotated_palette(tier_num))
+            config = _build_config(
+                tier_name,
+                season,
+                show_debug,
+                _rotated_palette(tier_num),
+                sibling_tiers=womens_siblings,
+                current_tier=tier_name,
+            )
             generate_single_group_map(tier_items, out, itl_hierarchy, config)
 
     # ------------------------------------------------------------------
@@ -668,6 +774,7 @@ def main() -> None:
 
             # Per-tier maps within the competition
             comp_by_tier, comp_tier_order = _group_by_tier(comp_items_r)
+            comp_siblings = _tier_sibling_links(comp_tier_order, is_prod)
             for tier_name in comp_tier_order:
                 tier_items = comp_by_tier[tier_name]
                 local_tier = tier_items[0].tier_num
@@ -681,6 +788,8 @@ def main() -> None:
                     subdirectory_depth=2,
                     tier_entry_level={},
                     tier_floor_level={},
+                    sibling_tiers=comp_siblings,
+                    current_tier=tier_name,
                 )
                 generate_single_group_map(tier_items, out, itl_hierarchy, config)
 

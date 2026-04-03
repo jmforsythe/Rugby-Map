@@ -20,6 +20,26 @@ import time
 from pathlib import Path
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+_SESSION: requests.Session | None = None
+
+
+def _get_session() -> requests.Session:
+    """Return a shared session with automatic retries on transient failures."""
+    global _SESSION  # noqa: PLW0603
+    if _SESSION is None:
+        _SESSION = requests.Session()
+        retries = Retry(
+            total=5,
+            backoff_factor=2,
+            status_forcelist=[429, 500, 502, 503, 504],
+            allowed_methods=["GET"],
+        )
+        _SESSION.mount("https://", HTTPAdapter(max_retries=retries))
+        _SESSION.mount("http://", HTTPAdapter(max_retries=retries))
+    return _SESSION
 
 
 class DetailLevel(enum.Enum):
@@ -208,7 +228,8 @@ def download_arcgis_layer(
         # First, get the total count
         count_params = {"where": "1=1", "returnCountOnly": "true", "f": "json"}
 
-        count_response = requests.get(query_url, params=count_params, timeout=30)
+        session = _get_session()
+        count_response = session.get(query_url, params=count_params, timeout=60)
         count_response.raise_for_status()
         total_count = count_response.json().get("count", 0)
 
@@ -229,7 +250,7 @@ def download_arcgis_layer(
                 "resultRecordCount": max_records,
             }
 
-            response = requests.get(query_url, params=query_params, timeout=60)
+            response = session.get(query_url, params=query_params, timeout=120)
             response.raise_for_status()
 
             data = response.json()
@@ -276,7 +297,7 @@ def download_extras(
     url: str, name: str, file_paths_to_add_to: list[str], output_dir: str = "boundaries"
 ) -> None:
     print(f"Downloading {name} data")
-    response = requests.get(url)
+    response = _get_session().get(url, timeout=60)
     features = response.json().get("features", [])
     for feature in features:
         feature["properties"]["ITL325NM"] = name

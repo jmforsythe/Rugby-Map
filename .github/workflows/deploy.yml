@@ -51,6 +51,7 @@ jobs:
 
           python team_pages.py --production
           python generate_webpages.py --production
+          python generate_seo.py
 
           # Football maps (not linked from index pages)
           python football/make_map.py --production

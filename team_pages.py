@@ -9,7 +9,7 @@ from typing import TypedDict
 
 from fetch_addresses import team_name_to_club_name
 from generate_webpages import get_footer_html
-from tier_extraction import extract_tier
+from tier_extraction import extract_tier, mens_current_tier_name
 from utils import (
     GeocodedLeague,
     TravelDistances,
@@ -24,6 +24,31 @@ from utils import (
 logger = logging.getLogger(__name__)
 
 
+def _map_url_for_entry(entry: "LeagueHistoryEntry") -> str | None:
+    """Return a relative URL to the map page for a league history entry, or None."""
+    season = entry["season"]
+    tier_num = entry["tier"][0]
+    is_prod = get_config().is_production
+
+    if entry["is_merit"]:
+        comp = entry["competition_key"]
+        if is_prod:
+            return f"/{season}/merit/{comp}/All_Tiers/"
+        return f"../../{season}/merit/{comp}/All_Tiers.html"
+
+    if tier_num >= 100:
+        # Women's tiers
+        from tier_extraction import _womens_current_tier_name
+
+        name = _womens_current_tier_name(tier_num).replace(" ", "_")
+    else:
+        name = mens_current_tier_name(tier_num, season).replace(" ", "_")
+
+    if is_prod:
+        return f"/{season}/{name}/"
+    return f"../../{season}/{name}.html"
+
+
 class LeagueHistoryEntry(TypedDict):
     """Entry for a team's participation in a league for a season."""
 
@@ -33,6 +58,8 @@ class LeagueHistoryEntry(TypedDict):
     position: int
     tier: tuple[int, str]  # (tier_number, tier_name)
     tier_display: str  # e.g. "Level 7" or "East Midlands Level 10"
+    is_merit: bool
+    competition_key: str  # e.g. "CANDY", "" for pyramid
 
 
 class TeamData(TypedDict):
@@ -123,6 +150,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 rel_path = league_file.relative_to(season_dir).as_posix()
                 tier = extract_tier(rel_path, season)
                 is_merit = rel_path.startswith("merit/")
+                comp_key = ""
                 if is_merit:
                     comp_key = rel_path.split("/")[1]
                     comp_display = comp_key.replace("_", " ")
@@ -137,6 +165,8 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                         position=position,
                         tier=tier,
                         tier_display=tier_display,
+                        is_merit=is_merit,
+                        competition_key=comp_key,
                     )
                 )
 
@@ -280,7 +310,6 @@ def get_team_page_html(
             background: var(--bg-card-alt);
         }}
         .league-history-table .distance-cell {{
-            text-align: right;
             font-variant-numeric: tabular-nums;
             color: var(--text-muted);
         }}
@@ -288,6 +317,12 @@ def get_team_page_html(
             display: inline-block;
             padding: 0.4em 0.6em;
             font-size: 0.95em;
+        }}
+        .league-history-table .map-cell {{
+            width: 2em;
+            text-align: center;
+            padding-left: 0;
+            padding-right: 0;
         }}
         .position {{
             font-weight: 600;
@@ -394,6 +429,7 @@ def get_team_page_html(
                     <th>Tier: League</th>
                     <th>Position</th>
                     <th><span class="distance-header-full">Travel Distance (Average/Total)</span><span class="distance-header-short">Travel (Avg/Total)</span></th>
+                    <th class="map-cell"></th>
                 </tr>
             </thead>
             <tbody>
@@ -409,6 +445,7 @@ def get_team_page_html(
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td class="distance-cell">&nbsp;</td>
+                    <td class="map-cell"></td>
                 </tr>
 """
                 continue
@@ -444,11 +481,19 @@ def get_team_page_html(
                     f'<a href="{escape(entry["league_url"])}" class="card-link league-link">{escape(tier_display)}: {escape(league)}</a>'
                 )
 
+                map_url = _map_url_for_entry(entry)
+                map_cell = (
+                    f'<a href="{escape(map_url)}" title="View on map">&#x1f5fa;</a>'
+                    if map_url
+                    else ""
+                )
+
                 html += f"""                <tr>
                     <td>{season}</td>
                     <td>{league_link}</td>
                     <td>{position_display}</td>
                     <td class="distance-cell">{travel_info}</td>
+                    <td class="map-cell">{map_cell}</td>
                 </tr>
 """
 

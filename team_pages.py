@@ -80,6 +80,7 @@ class TeamListEntry(TypedDict):
 
     file: str
     name: str
+    image_url: str
 
 
 def collect_all_teams_data() -> dict[str, TeamData]:
@@ -538,8 +539,8 @@ def load_travel_distances() -> dict[str, TravelDistances]:
     return travel_distances_by_season
 
 
-def generate_team_pages() -> None:
-    """Generate individual HTML pages for all teams."""
+def generate_team_pages() -> dict[str, TeamData]:
+    """Generate individual HTML pages for all teams. Returns collected team data."""
     logger.info("Generating individual team pages...")
 
     # Collect all team data
@@ -548,7 +549,7 @@ def generate_team_pages() -> None:
 
     if not all_teams:
         logger.warning("  No team data found!")
-        return
+        return {}
 
     logger.info("  Found %d unique teams", len(all_teams))
 
@@ -589,9 +590,13 @@ def generate_team_pages() -> None:
             logger.error("Error generating page for %s: %s", team_name, e)
 
     logger.info("Generated %d team pages in %s", generated_count, teams_dir)
+    return all_teams
 
 
-def generate_teams_index() -> None:
+RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+
+
+def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
     """Generate the teams/index.html page with searchable list of all teams."""
     teams_dir = Path("tier_maps/teams")
     if not teams_dir.exists():
@@ -610,16 +615,20 @@ def generate_teams_index() -> None:
         if file_path.name == "index.html":
             continue
         filename: str = file_path.name[:-5]  # Remove .html
-        # Convert filename back to display name (rough conversion)
         display_name: str = filename.replace("_", " ")
-        teams_list.append(TeamListEntry(file=file_path.name, name=display_name))
+        image_url = RFU_FALLBACK_ICON
+        if all_teams and display_name in all_teams:
+            image_url = all_teams[display_name].get("image_url") or RFU_FALLBACK_ICON
+        teams_list.append(
+            TeamListEntry(file=file_path.name, name=display_name, image_url=image_url)
+        )
 
     # Sort by club name (remove II/III/IV suffixes for sorting)
     teams_list.sort(key=lambda x: team_name_to_club_name(x["name"]).lower())
 
-    # Generate JavaScript array (escape for safe embedding in JS strings)
     teams_js = ",\n            ".join(
-        f'{{file: "{escape(t["file"])}", name: "{escape(t["name"])}"}}' for t in teams_list
+        f'{{file: "{escape(t["file"])}", name: "{escape(t["name"])}", img: "{escape(t["image_url"])}"}}'
+        for t in teams_list
     )
 
     html_content = f"""<!DOCTYPE html>
@@ -663,6 +672,16 @@ def generate_teams_index() -> None:
         }}
         .team-card a {{
             font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+        }}
+        .team-card__logo {{
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
         }}
         .no-results {{
             text-align: center;
@@ -723,7 +742,8 @@ def generate_teams_index() -> None:
                 filteredTeams.forEach(team => {{
                     const card = document.createElement('div');
                     card.className = 'card team-card';
-                    card.innerHTML = `<a href="${{team.file}}">${{team.name}}</a>`;
+                    const fallback = '{RFU_FALLBACK_ICON}';
+                    card.innerHTML = `<a href="${{team.file}}"><img src="${{team.img}}" class="team-card__logo" loading="lazy" onerror="this.onerror=null;this.src='${{fallback}}'">${{team.name}}</a>`;
                     teamsGrid.appendChild(card);
                 }});
             }}
@@ -766,8 +786,8 @@ def main() -> None:
     if args.production:
         set_config(is_production=True)
 
-    generate_team_pages()
-    generate_teams_index()
+    all_teams = generate_team_pages()
+    generate_teams_index(all_teams)
 
 
 if __name__ == "__main__":

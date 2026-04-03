@@ -192,94 +192,83 @@ def _render_popup_html(
 
 
 def _header_bar_html(
+    season: str,
     title: str,
     subdirectory_depth: int = 0,
     sibling_tiers: list[tuple[str, str]] | None = None,
     current_tier: str | None = None,
 ) -> str:
-    """Build a floating header bar with back link, title, and optional tier dropdown."""
-    if get_config().is_production:
-        back_href = "../" * (1 + subdirectory_depth)
-    else:
-        back_href = "../" * subdirectory_depth + "index.html"
+    """Build a fixed breadcrumb header: Home › season › map title (or dropdown)."""
+    is_prod = get_config().is_production
 
-    dropdown_html = ""
+    if is_prod:
+        home_href = "../" * (2 + subdirectory_depth)
+        season_href = "../" * (1 + subdirectory_depth)
+    else:
+        home_href = "../" * (1 + subdirectory_depth) + "index.html"
+        season_href = "../" * subdirectory_depth + "index.html"
+
     if sibling_tiers and len(sibling_tiers) > 1:
         options = []
         for tier_display, tier_href in sibling_tiers:
             selected = " selected" if tier_display == current_tier else ""
             options.append(
-                f'<option value="{escape(tier_href)}"{selected}>{escape(tier_display)}</option>'
+                f'<option value="{escape(tier_href)}"{selected}>' f"{escape(tier_display)}</option>"
             )
-        options_str = "".join(options)
-        dropdown_html = (
+        title_html = (
             f'<select class="map-header__select" '
             f'onchange="if(this.value)window.location.href=this.value">'
-            f"{options_str}</select>"
+            f"{''.join(options)}</select>"
         )
+    else:
+        title_html = f'<span class="map-header__title">{escape(title)}</span>'
 
-    title_esc = escape(title)
+    season_esc = escape(season)
     return f"""
     <div class="map-header" id="mapHeader">
-        <a class="map-header__back" href="{back_href}" title="Back to season index">&larr;</a>
-        <span class="map-header__title">{title_esc}</span>
-        {dropdown_html}
+        <a class="map-header__crumb" href="{home_href}">Home</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        <a class="map-header__crumb" href="{season_href}">{season_esc}</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        {title_html}
     </div>
     <style>
     .map-header {{
         position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-        display: flex; align-items: center; gap: 0.6em;
+        display: flex; align-items: center; gap: 0.4em;
         padding: 6px 12px;
         background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
         border-bottom: 1px solid #e0e0e0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
-        transition: opacity 0.3s, transform 0.3s;
     }}
-    .map-header__back {{
-        text-decoration: none; color: #0066cc; font-size: 1.3em; line-height: 1;
-        padding: 2px 8px; border-radius: 4px;
+    .map-header__crumb {{
+        text-decoration: none; color: #0066cc; white-space: nowrap;
     }}
-    .map-header__back:hover {{ background: rgba(0,102,204,0.1); }}
+    .map-header__crumb:hover {{ text-decoration: underline; }}
+    .map-header__sep {{ color: #999; font-size: 0.9em; }}
     .map-header__title {{
         font-weight: 600; color: #2c3e50; white-space: nowrap;
-        overflow: hidden; text-overflow: ellipsis; flex: 1;
+        overflow: hidden; text-overflow: ellipsis;
     }}
     .map-header__select {{
         padding: 3px 8px; border: 1px solid #ccc; border-radius: 4px;
         font-size: 13px; background: white; color: #333;
-        max-width: 200px; cursor: pointer;
+        max-width: 260px; cursor: pointer;
     }}
-    .map-header.hidden {{ opacity: 0; transform: translateY(-100%); pointer-events: none; }}
+    .leaflet-top {{ top: 34px !important; }}
     @media (prefers-color-scheme: dark) {{
         .map-header {{ background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a; }}
-        .map-header__back {{ color: #4da6ff; }}
-        .map-header__back:hover {{ background: rgba(77,166,255,0.15); }}
+        .map-header__crumb {{ color: #4da6ff; }}
+        .map-header__sep {{ color: #666; }}
         .map-header__title {{ color: #e0e8f0; }}
         .map-header__select {{ background: #1e2a45; color: #e0e0e0; border-color: #2a2a4a; }}
     }}
     @media (max-width: 480px) {{
-        .map-header__title {{ font-size: 12px; }}
-        .map-header__select {{ max-width: 120px; font-size: 11px; }}
+        .map-header {{ font-size: 12px; }}
+        .map-header__select {{ max-width: 140px; font-size: 11px; }}
     }}
     </style>
-    <script>
-    (function() {{
-        var hdr = document.getElementById('mapHeader');
-        if (!hdr) return;
-        var timer;
-        function showHeader() {{
-            hdr.classList.remove('hidden');
-            clearTimeout(timer);
-            timer = setTimeout(function(){{ hdr.classList.add('hidden'); }}, 3000);
-        }}
-        document.addEventListener('mousemove', function(e){{
-            if (e.clientY < 60) showHeader();
-        }});
-        document.addEventListener('touchstart', showHeader);
-        showHeader();
-    }})();
-    </script>
     """
 
 
@@ -439,7 +428,8 @@ def _build_config(
 
     body_elements = [
         _header_bar_html(
-            f"{season} {title}",
+            season,
+            title,
             subdirectory_depth,
             sibling_tiers=sibling_tiers,
             current_tier=current_tier,

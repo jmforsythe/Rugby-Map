@@ -1106,6 +1106,14 @@ def _legend(
         if (c.classList.contains("collapsed")) { c.classList.remove("collapsed"); t.textContent = "\u2212"; }
         else { c.classList.add("collapsed"); t.textContent = "+"; }
     }
+    (function() {
+        if (window.innerWidth <= 768) {
+            var c = document.querySelector(".legend-content");
+            var t = document.querySelector(".legend-toggle");
+            if (c) { c.classList.add("collapsed"); }
+            if (t) { t.textContent = "+"; }
+        }
+    })();
     </script>
     """
     return folium.Element(html)

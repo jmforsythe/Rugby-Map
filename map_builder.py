@@ -855,7 +855,39 @@ POPUP_CSS = """
 .rugby-popup .popup-label { font-weight: bold; }
 .rugby-popup .popup-regions { margin: 2px 0; }
 .rugby-popup a { color: #0066cc; }
+@media (prefers-color-scheme: dark) {
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #16213e; color: #e0e0e0; }
+  .rugby-popup a { color: #4da6ff; }
+  .leaflet-control-layers { background: #16213e; color: #e0e0e0; }
+  .leaflet-control-layers-separator { border-top-color: #2a2a4a; }
+  .leaflet-bar a { background: #16213e; color: #e0e0e0; border-color: #2a2a4a; }
+  .leaflet-bar a:hover { background: #1e2a45; }
+}
 </style>
+"""
+
+_DARK_MODE_JS = """
+<script>
+(function() {
+    function applyDarkTiles() {
+        var el = document.querySelector('.folium-map');
+        if (!el || !el._leaflet_id) { setTimeout(applyDarkTiles, 100); return; }
+        var map = window[Object.keys(window).find(function(k) {
+            return k.startsWith('map_') && window[k] instanceof L.Map;
+        })];
+        if (!map) { setTimeout(applyDarkTiles, 100); return; }
+        if (!window.matchMedia('(prefers-color-scheme: dark)').matches) return;
+        map.eachLayer(function(layer) {
+            if (layer._url && layer._url.indexOf('light_all') !== -1) {
+                layer.setUrl(layer._url.replace('light_all', 'dark_all'));
+            }
+        });
+    }
+    if (document.readyState === 'loading')
+        document.addEventListener('DOMContentLoaded', applyDarkTiles);
+    else applyDarkTiles();
+})();
+</script>
 """
 
 
@@ -866,7 +898,9 @@ def _build_base_map(config: MapConfig) -> folium.Map:
         attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         control=False,
     ).add_to(m)
-    m.get_root().header.add_child(folium.Element(POPUP_CSS))  # type: ignore[attr-defined]
+    header = m.get_root().header  # type: ignore[attr-defined]
+    header.add_child(folium.Element(POPUP_CSS))
+    header.add_child(folium.Element(_DARK_MODE_JS))
     return m
 
 
@@ -1012,6 +1046,11 @@ def _legend(
         .map-legend h4 {{ font-size:13px !important; }}
         .map-legend i {{ width:12px !important; height:12px !important; }}
         .legend-content {{ max-height:250px !important; }}
+    }}
+    @media (prefers-color-scheme: dark) {{
+        .map-legend {{ background-color:#16213e !important; color:#e0e0e0 !important; border-color:#444 !important; }}
+        .map-legend h4 {{ color:#e0e8f0; }}
+        .map-legend b {{ color:#e0e8f0; }}
     }}
     </style>
     <div class="map-legend" style="position:fixed; bottom:50px; right:50px; width:300px;

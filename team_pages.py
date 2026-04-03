@@ -250,7 +250,7 @@ def get_team_page_html(
         }}
         .info-label {{
             font-weight: 600;
-            color: #555;
+            color: var(--text-muted);
         }}
         .club-teams {{
             list-style: none;
@@ -265,24 +265,24 @@ def get_team_page_html(
             min-width: 600px;
         }}
         .league-history-table th {{
-            background: #f5f7fa;
+            background: var(--bg-card-alt);
             padding: 0.8em;
             text-align: left;
             font-weight: 600;
-            color: #2c3e50;
-            border-bottom: 2px solid #0066cc;
+            color: var(--text-heading);
+            border-bottom: 2px solid var(--accent);
         }}
         .league-history-table td {{
             padding: 0.8em;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border);
         }}
         .league-history-table tr:hover {{
-            background: #f9f9f9;
+            background: var(--bg-card-alt);
         }}
         .league-history-table .distance-cell {{
             text-align: right;
             font-variant-numeric: tabular-nums;
-            color: #666;
+            color: var(--text-muted);
         }}
         .league-history-table .league-link {{
             display: inline-block;
@@ -291,10 +291,10 @@ def get_team_page_html(
         }}
         .position {{
             font-weight: 600;
-            color: #0066cc;
+            color: var(--accent);
         }}
         .address {{
-            color: #666;
+            color: var(--text-muted);
             font-style: italic;
         }}
         .distance-header-full {{
@@ -419,9 +419,7 @@ def get_team_page_html(
 
                 # Don't show position for current season (in progress)
                 if season == all_seasons[0]:
-                    position_display = (
-                        '<span style="color: #666; font-style: italic;">Current</span>'
-                    )
+                    position_display = '<span class="address">Current</span>'
                 else:
                     position_display = f'<span class="position">#{position}</span>'
 
@@ -597,17 +595,19 @@ def generate_teams_index() -> None:
             max-width: 500px;
             padding: 12px 20px;
             font-size: 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid var(--border);
             border-radius: 25px;
             outline: none;
             transition: border-color 0.2s;
+            background: var(--bg-card);
+            color: var(--text);
         }}
         #searchInput:focus {{
-            border-color: #0066cc;
+            border-color: var(--accent);
         }}
         .team-count {{
             text-align: center;
-            color: #666;
+            color: var(--text-muted);
             margin: 1em 0 2em 0;
         }}
         .teams-grid {{
@@ -621,7 +621,7 @@ def generate_teams_index() -> None:
         }}
         .no-results {{
             text-align: center;
-            color: #666;
+            color: var(--text-muted);
             font-size: 1.2em;
             margin: 3em 0;
             display: none;

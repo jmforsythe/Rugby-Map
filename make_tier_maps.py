@@ -484,7 +484,7 @@ def _tier_sibling_links(
     links: list[tuple[str, str]] = []
     for tier_name in tier_order:
         file_name = tier_name.replace(" ", "_")
-        href = f"{prefix}{file_name}/" if is_prod else f"{prefix}{file_name}.html"
+        href = f"{prefix}../{file_name}/" if is_prod else f"{prefix}{file_name}.html"
         links.append((tier_name, href))
     return links
 

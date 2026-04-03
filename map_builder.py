@@ -846,6 +846,19 @@ def _add_territories(
 # ---------------------------------------------------------------------------
 
 
+POPUP_CSS = """
+<style>
+.rugby-popup { font-family: Arial, sans-serif; width: 220px; }
+.rugby-popup h4 { margin: 0; }
+.rugby-popup hr { margin: 5px 0; }
+.rugby-popup p { margin: 2px 0; }
+.rugby-popup .popup-label { font-weight: bold; }
+.rugby-popup .popup-regions { margin: 2px 0; }
+.rugby-popup a { color: #0066cc; }
+</style>
+"""
+
+
 def _build_base_map(config: MapConfig) -> folium.Map:
     m = folium.Map(location=list(config.center), zoom_start=config.zoom, tiles=None)
     folium.TileLayer(
@@ -853,6 +866,7 @@ def _build_base_map(config: MapConfig) -> folium.Map:
         attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         control=False,
     ).add_to(m)
+    m.get_root().header.add_child(folium.Element(POPUP_CSS))  # type: ignore[attr-defined]
     return m
 
 
@@ -864,12 +878,10 @@ def _add_marker(
     fallback_icon_url: str | None = None,
 ) -> None:
     name_esc = escape(item["name"])
-    popup_content = (
-        item.get("popup_html") or f'<div style="font-family: Arial;"><b>{name_esc}</b></div>'
-    )
+    popup_content = item.get("popup_html") or f'<div class="rugby-popup"><b>{name_esc}</b></div>'
     popup_content = popup_content.replace(
-        '<h4 style="margin: 0;">',
-        f'<h4 style="margin: 0; color: {color};">',
+        '<h4 class="popup-title">',
+        f'<h4 class="popup-title" style="color: {color};">',
         1,
     )
 
@@ -878,7 +890,7 @@ def _add_marker(
     itl3 = item.get("itl3") or ""
     if itl1:
         region_html = (
-            f'<p style="margin: 2px 0;">'
+            f'<p class="popup-regions">'
             f"<b>{escape(itl1)}</b> | {escape(itl2)} | <i>{escape(itl3)}</i>"
             f"</p>"
         )

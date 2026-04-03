@@ -150,34 +150,35 @@ def _render_popup_html(
         league_dist = travel_distances["leagues"].get(league_name)
         if team_dist and league_dist:
             distance_html = (
-                f'<hr style="margin: 5px 0;"><p style="margin: 2px 0;"><b>Travel Distances:</b></p>'
-                f'<p style="margin: 2px 0;">Team Average: {team_dist["avg_distance_km"]:.2f} km</p>'
-                f'<p style="margin: 2px 0;">Team Total: {team_dist["total_distance_km"]:.2f} km</p>'
-                f'<p style="margin: 2px 0;">League Average: {league_dist["avg_distance_km"]:.2f} km</p>'
+                f"<hr>"
+                f'<p><span class="popup-label">Travel Distances:</span></p>'
+                f"<p>Team Average: {team_dist['avg_distance_km']:.2f} km</p>"
+                f"<p>Team Total: {team_dist['total_distance_km']:.2f} km</p>"
+                f"<p>League Average: {league_dist['avg_distance_km']:.2f} km</p>"
             )
 
     team_link = (
-        f'<p style="margin: 2px 0;"><a href="{escape(team_url)}" target="_blank">View Team Page</a></p>'
+        f'<p><a href="{escape(team_url)}" target="_blank">View Team Page</a></p>'
         if team_url
         else ""
     )
     league_link = (
-        f'<p style="margin: 2px 0;"><a href="{escape(league_url)}" target="_blank">View League Page</a></p>'
+        f'<p><a href="{escape(league_url)}" target="_blank">View League Page</a></p>'
         if league_url
         else ""
     )
     info_link = (
-        f'<p style="margin: 2px 0;"><a href="__INFO_PREFIX__teams/{team_name_to_filepath(team_name)}" target="_blank">View Info page</a></p>'
+        f'<p><a href="__INFO_PREFIX__teams/{team_name_to_filepath(team_name)}" target="_blank">View Info page</a></p>'
         if league_url
         else ""
     )
 
     return (
-        f'<div style="font-family: Arial; width: 220px;">'
-        f'<h4 style="margin: 0;">{name_esc}</h4>'
-        f'<hr style="margin: 5px 0;">'
-        f'<p style="margin: 2px 0;"><b>League:</b> {league_esc}</p>'
-        f'<p style="margin: 2px 0;"><b>Address:</b> {address_esc}</p>'
+        f'<div class="rugby-popup">'
+        f'<h4 class="popup-title">{name_esc}</h4>'
+        f"<hr>"
+        f'<p><span class="popup-label">League:</span> {league_esc}</p>'
+        f'<p><span class="popup-label">Address:</span> {address_esc}</p>'
         f"__ITL_REGIONS__"
         f"{team_link}{league_link}{info_link}"
         f"{distance_html}"

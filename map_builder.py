@@ -848,20 +848,81 @@ def _add_territories(
 
 POPUP_CSS = """
 <style>
-.rugby-popup { font-family: Arial, sans-serif; width: 220px; }
-.rugby-popup h4 { margin: 0; }
-.rugby-popup hr { margin: 5px 0; }
-.rugby-popup p { margin: 2px 0; }
-.rugby-popup .popup-label { font-weight: bold; }
-.rugby-popup .popup-regions { margin: 2px 0; }
-.rugby-popup a { color: #0066cc; }
-@media (prefers-color-scheme: dark) {
-  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #16213e; color: #e0e0e0; }
-  .rugby-popup a { color: #4da6ff; }
-  .leaflet-control-layers { background: #16213e; color: #e0e0e0; }
-  .leaflet-control-layers-separator { border-top-color: #2a2a4a; }
-  .leaflet-bar a { background: #16213e; color: #e0e0e0; border-color: #2a2a4a; }
-  .leaflet-bar a:hover { background: #1e2a45; }
+/* Scope under .folium-map so rules win over Leaflet defaults (load order). */
+.folium-map .leaflet-popup-content {
+  margin: 6px 10px !important;
+  line-height: 1.3;
+}
+.folium-map .leaflet-popup-content-wrapper,
+.folium-map .leaflet-popup-tip {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+}
+.folium-map .leaflet-popup-close-button {
+  color: #555;
+}
+.folium-map .rugby-popup {
+  font-family: Arial, sans-serif;
+  width: 220px;
+  font-size: 13px;
+}
+.folium-map .rugby-popup h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.folium-map:not(.rugby-map-dark) .rugby-popup .popup-title {
+  text-shadow: 0 0 1px #fff, 0 0 3px #fff;
+}
+.folium-map .rugby-popup hr {
+  margin: 6px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+.folium-map .rugby-popup p {
+  margin: 0 0 3px 0;
+}
+.folium-map .rugby-popup p:last-child {
+  margin-bottom: 0;
+}
+.folium-map .rugby-popup .popup-label {
+  font-weight: bold;
+}
+.folium-map .rugby-popup .popup-regions {
+  margin: 0 0 3px 0;
+}
+.folium-map .rugby-popup a {
+  color: #0066cc;
+}
+.folium-map.rugby-map-dark .leaflet-popup-content-wrapper,
+.folium-map.rugby-map-dark .leaflet-popup-tip {
+  background: #16213e;
+  color: #e0e0e0;
+}
+.folium-map.rugby-map-dark .leaflet-popup-close-button {
+  color: #c0c0c0;
+}
+.folium-map.rugby-map-dark .rugby-popup hr {
+  border-top-color: #3d4f73;
+}
+.folium-map.rugby-map-dark .rugby-popup a {
+  color: #7eb8ff;
+}
+.folium-map.rugby-map-dark .leaflet-control-layers {
+  background: #16213e;
+  color: #e0e0e0;
+}
+.folium-map.rugby-map-dark .leaflet-control-layers-separator {
+  border-top-color: #2a2a4a;
+}
+.folium-map.rugby-map-dark .leaflet-bar a {
+  background: #16213e;
+  color: #e0e0e0;
+  border-color: #2a2a4a;
+}
+.folium-map.rugby-map-dark .leaflet-bar a:hover {
+  background: #1e2a45;
 }
 </style>
 """
@@ -869,23 +930,42 @@ POPUP_CSS = """
 _DARK_MODE_JS = """
 <script>
 (function() {
-    function applyDarkTiles() {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function findMap() {
         var el = document.querySelector('.folium-map');
-        if (!el || !el._leaflet_id) { setTimeout(applyDarkTiles, 100); return; }
+        if (!el || !el._leaflet_id) return null;
         var map = window[Object.keys(window).find(function(k) {
             return k.startsWith('map_') && window[k] instanceof L.Map;
         })];
-        if (!map) { setTimeout(applyDarkTiles, 100); return; }
-        if (!window.matchMedia('(prefers-color-scheme: dark)').matches) return;
+        return map || null;
+    }
+    function setMapDarkClass(dark) {
+        var el = document.querySelector('.folium-map');
+        if (el) el.classList.toggle('rugby-map-dark', dark);
+    }
+    function applyBasemapTheme() {
+        var map = findMap();
+        if (!map) {
+            setTimeout(applyBasemapTheme, 100);
+            return;
+        }
+        var dark = mq.matches;
+        setMapDarkClass(dark);
         map.eachLayer(function(layer) {
-            if (layer._url && layer._url.indexOf('light_all') !== -1) {
+            if (!layer._url) return;
+            if (dark && layer._url.indexOf('light_all') !== -1) {
                 layer.setUrl(layer._url.replace('light_all', 'dark_all'));
+            } else if (!dark && layer._url.indexOf('dark_all') !== -1) {
+                layer.setUrl(layer._url.replace('dark_all', 'light_all'));
             }
         });
     }
-    if (document.readyState === 'loading')
-        document.addEventListener('DOMContentLoaded', applyDarkTiles);
-    else applyDarkTiles();
+    mq.addEventListener('change', applyBasemapTheme);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyBasemapTheme);
+    } else {
+        applyBasemapTheme();
+    }
 })();
 </script>
 """

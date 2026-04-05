@@ -27,6 +27,7 @@ from core import (
     FixtureLeague,
     GeocodedLeague,
     GeocodedTeam,
+    get_config,
     get_favicon_html,
     get_google_analytics_script,
     setup_logging,
@@ -263,6 +264,52 @@ def build_match_day_map(
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
 
+    is_prod = get_config().is_production
+    home_href = "../../" if is_prod else "../../index.html"
+    season_href = "../" if is_prod else "../index.html"
+    season_esc = escape(season)
+    nav_html = f"""
+    <div class="map-header" id="mapHeader">
+        <a class="map-header__crumb" href="{home_href}">Home</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        <a class="map-header__crumb" href="{season_href}">{season_esc}</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        <span class="map-header__title">Match Day</span>
+    </div>
+    <style>
+    .map-header {{
+        position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+        display: flex; align-items: center; gap: 0.4em;
+        padding: 6px 12px;
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+        border-bottom: 1px solid #e0e0e0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px;
+    }}
+    .map-header__crumb {{
+        text-decoration: none; color: #0066cc; white-space: nowrap;
+    }}
+    .map-header__crumb:hover {{ text-decoration: underline; }}
+    .map-header__sep {{ color: #999; font-size: 0.9em; }}
+    .map-header__title {{
+        font-weight: 600; color: #2c3e50; white-space: nowrap;
+        overflow: hidden; text-overflow: ellipsis;
+    }}
+    .leaflet-top {{ top: 34px !important; }}
+    @media (prefers-color-scheme: dark) {{
+        .map-header {{ background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a; }}
+        .map-header__crumb {{ color: #4da6ff; }}
+        .map-header__sep {{ color: #666; }}
+        .map-header__title {{ color: #e0e8f0; }}
+    }}
+    @media (max-width: 480px) {{
+        .map-header {{ font-size: 12px; }}
+    }}
+    </style>
+    """
+    html_el = m.get_root().html
+    html_el.add_child(folium.Element(nav_html))
+
     icon_size = 30
     crest = icon_size
     total_w = crest * 2 + 2
@@ -404,7 +451,7 @@ def build_match_day_map(
     control_html = f"""
     <style>
     .matchday-control {{
-        position:fixed; top:10px; left:50%; transform:translateX(-50%); z-index:9999;
+        position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
         background:white; padding:8px 16px; border-radius:8px;
         border:2px solid grey; font-family:sans-serif; text-align:center;
         box-shadow:0 2px 8px rgba(0,0,0,0.2);
@@ -489,24 +536,71 @@ def build_match_day_map(
     html_el = m.get_root().html
     html_el.add_child(folium.Element(control_html))
 
-    boundary_script = """
+    is_prod = get_config().is_production
+    shared_path = "/shared" if is_prod else "../../shared"
+    boundaries_file = str(DIST_DIR / "shared" / "boundaries.json")
+
+    boundary_preamble = """
+        var _countryLayers = [], _itlLayers = [];
+        var _lightCountry = { fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 };
+        var _darkCountry  = { fillColor:'darkgray', color:'#ccc', weight:2, fillOpacity:0.1 };
+        var _lightITL     = { fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 };
+        var _darkITL      = { fillColor:'transparent', color:'lightgray', weight:0.5, fillOpacity:0, opacity:0.4 };
+        window.updateBoundaryStyles = function(dark) {
+            var cs = dark ? _darkCountry : _lightCountry;
+            var bs = dark ? _darkITL : _lightITL;
+            _countryLayers.forEach(function(ly) { ly.setStyle(cs); });
+            _itlLayers.forEach(function(ly) { ly.setStyle(bs); });
+        };
+    """
+
+    boundary_load_body = """
+            var dark = el.classList.contains('rugby-map-dark');
+            var cs = dark ? _darkCountry : _lightCountry;
+            Object.entries(bd.countries || {}).forEach(([n, d]) => { var ly = L.geoJson(d, {style:cs}); ly.addTo(map); _countryLayers.push(ly); });
+            var bs = dark ? _darkITL : _lightITL;
+            ['itl_1','itl_2','itl_3'].forEach(lv => { if (bd[lv]) { var ly = L.geoJson(bd[lv], {style:bs}); ly.addTo(map); _itlLayers.push(ly); } });
+    """
+
+    if is_prod:
+        boundary_script = f"""
     <script>
-    (function() {
-        function addBoundaries() {
+    (function() {{
+        {boundary_preamble}
+        function addBoundaries() {{
             var el = document.querySelector('.folium-map');
-            if (!el || !el._leaflet_id) { setTimeout(addBoundaries, 100); return; }
+            if (!el || !el._leaflet_id) {{ setTimeout(addBoundaries, 100); return; }}
             var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
-            if (!map) { setTimeout(addBoundaries, 100); return; }
-            fetch('../../shared/boundaries.json').then(r => r.json()).then(bd => {
-                const cs = { fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 };
-                Object.entries(bd.countries || {}).forEach(([n, d]) => { L.geoJson(d, {style:cs}).addTo(map); });
-                const bs = { fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 };
-                ['itl_1','itl_2','itl_3'].forEach(lv => { if (bd[lv]) L.geoJson(bd[lv], {style:bs}).addTo(map); });
-            }).catch(e => console.warn('Could not load boundaries:', e));
-        }
+            if (!map) {{ setTimeout(addBoundaries, 100); return; }}
+            fetch('{shared_path}/boundaries.json').then(r => r.json()).then(bd => {{
+                {boundary_load_body}
+            }}).catch(e => console.warn('Could not load boundaries:', e));
+        }}
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
         else addBoundaries();
-    })();
+    }})();
+    </script>
+    """
+    else:
+        bd_json = "{}"
+        bp = Path(boundaries_file)
+        if bp.exists():
+            bd_json = bp.read_text()
+        boundary_script = f"""
+    <script>
+    (function() {{
+        {boundary_preamble}
+        function addBoundaries() {{
+            var el = document.querySelector('.folium-map');
+            if (!el || !el._leaflet_id) {{ setTimeout(addBoundaries, 100); return; }}
+            var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
+            if (!map) {{ setTimeout(addBoundaries, 100); return; }}
+            var bd = {bd_json};
+                {boundary_load_body}
+        }}
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
+        else addBoundaries();
+    }})();
     </script>
     """
     html_el.add_child(folium.Element(boundary_script))

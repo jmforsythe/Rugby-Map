@@ -959,6 +959,7 @@ DARK_MODE_JS = """
                 layer.setUrl(layer._url.replace('dark_all', 'light_all'));
             }
         });
+        if (window.updateBoundaryStyles) window.updateBoundaryStyles(dark);
     }
     mq.addEventListener('change', applyBasemapTheme);
     if (document.readyState === 'loading') {
@@ -1235,16 +1236,28 @@ def _get_boundary_loader_script(config: MapConfig) -> str:
         return f"""
     <script>
     (function() {{
+        var _countryLayers = [], _itlLayers = [];
+        var _lightCountry = {{ fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 }};
+        var _darkCountry  = {{ fillColor:'darkgray', color:'#ccc', weight:2, fillOpacity:0.1 }};
+        var _lightITL     = {{ fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 }};
+        var _darkITL      = {{ fillColor:'transparent', color:'lightgray', weight:0.5, fillOpacity:0, opacity:0.4 }};
+        window.updateBoundaryStyles = function(dark) {{
+            var cs = dark ? _darkCountry : _lightCountry;
+            var bs = dark ? _darkITL : _lightITL;
+            _countryLayers.forEach(function(ly) {{ ly.setStyle(cs); }});
+            _itlLayers.forEach(function(ly) {{ ly.setStyle(bs); }});
+        }};
         function addBoundaries() {{
             var el = document.querySelector('.folium-map');
             if (!el || !el._leaflet_id) {{ setTimeout(addBoundaries, 100); return; }}
             var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
             if (!map) {{ setTimeout(addBoundaries, 100); return; }}
+            var dark = el.classList.contains('rugby-map-dark');
             const bd = {bd_json};
-            const cs = {{ fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 }};
-            Object.entries(bd.countries || {{}}).forEach(([n, d]) => {{ L.geoJson(d, {{style:cs}}).addTo(map); }});
-            const bs = {{ fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 }};
-            ['itl_1','itl_2','itl_3'].forEach(lv => {{ if (bd[lv]) L.geoJson(bd[lv], {{style:bs}}).addTo(map); }});
+            var cs = dark ? _darkCountry : _lightCountry;
+            Object.entries(bd.countries || {{}}).forEach(([n, d]) => {{ var ly = L.geoJson(d, {{style:cs}}); ly.addTo(map); _countryLayers.push(ly); }});
+            var bs = dark ? _darkITL : _lightITL;
+            ['itl_1','itl_2','itl_3'].forEach(lv => {{ if (bd[lv]) {{ var ly = L.geoJson(bd[lv], {{style:bs}}); ly.addTo(map); _itlLayers.push(ly); }} }});
         }}
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
         else addBoundaries();
@@ -1256,16 +1269,28 @@ def _get_boundary_loader_script(config: MapConfig) -> str:
         return f"""
     <script>
     (function() {{
+        var _countryLayers = [], _itlLayers = [];
+        var _lightCountry = {{ fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 }};
+        var _darkCountry  = {{ fillColor:'darkgray', color:'#ccc', weight:2, fillOpacity:0.1 }};
+        var _lightITL     = {{ fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 }};
+        var _darkITL      = {{ fillColor:'transparent', color:'lightgray', weight:0.5, fillOpacity:0, opacity:0.4 }};
+        window.updateBoundaryStyles = function(dark) {{
+            var cs = dark ? _darkCountry : _lightCountry;
+            var bs = dark ? _darkITL : _lightITL;
+            _countryLayers.forEach(function(ly) {{ ly.setStyle(cs); }});
+            _itlLayers.forEach(function(ly) {{ ly.setStyle(bs); }});
+        }};
         function addBoundaries() {{
             var el = document.querySelector('.folium-map');
             if (!el || !el._leaflet_id) {{ setTimeout(addBoundaries, 100); return; }}
             var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
             if (!map) {{ setTimeout(addBoundaries, 100); return; }}
+            var dark = el.classList.contains('rugby-map-dark');
             fetch('{sp}/boundaries.json').then(r => r.json()).then(bd => {{
-                const cs = {{ fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 }};
-                Object.entries(bd.countries).forEach(([n, d]) => {{ L.geoJson(d, {{style:cs}}).addTo(map); }});
-                const bs = {{ fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 }};
-                ['itl_1','itl_2','itl_3'].forEach(lv => {{ if (bd[lv]) L.geoJson(bd[lv], {{style:bs}}).addTo(map); }});
+                var cs = dark ? _darkCountry : _lightCountry;
+                Object.entries(bd.countries).forEach(([n, d]) => {{ var ly = L.geoJson(d, {{style:cs}}); ly.addTo(map); _countryLayers.push(ly); }});
+                var bs = dark ? _darkITL : _lightITL;
+                ['itl_1','itl_2','itl_3'].forEach(lv => {{ if (bd[lv]) {{ var ly = L.geoJson(bd[lv], {{style:bs}}); ly.addTo(map); _itlLayers.push(ly); }} }});
             }}).catch(e => console.warn('Could not load shared boundaries:', e));
         }}
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);

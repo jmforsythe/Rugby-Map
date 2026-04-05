@@ -1,6 +1,6 @@
 SEASON ?= 2025-2026
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances maps pages webpages all test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances maps pages webpages all scrape-fixtures match-day test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -17,6 +17,8 @@ help:
 	@echo "  pages        Generate team pages"
 	@echo "  webpages     Generate index pages"
 	@echo "  all          Run the full pipeline (scrape -> maps)"
+	@echo "  scrape-fixtures  Scrape fixtures from RFU (local only)"
+	@echo "  match-day    Generate match-day map with date dropdown"
 	@echo "  test         Run unit tests"
 	@echo "  lint         Run linters"
 	@echo "  clean        Remove generated output files"
@@ -52,6 +54,12 @@ webpages:
 	python generate_webpages.py
 
 all: scrape addresses geocode distances maps pages webpages
+
+scrape-fixtures:
+	python scrape_fixtures.py --season $(SEASON)
+
+match-day:
+	python make_match_day_map.py --season $(SEASON)
 
 test:
 	python -m pytest tests/ -v

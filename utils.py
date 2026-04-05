@@ -6,6 +6,10 @@ Data flows through the following stages:
 2. fetch_addresses.py -> team_addresses/*.json (TeamAddressData)
 3. geocode_addresses.py -> geocoded_teams/*.json (GeocodedLeague)
 4. make_tier_maps.py -> tier_maps/*.html
+
+Fixture pipeline (parallel to main pipeline):
+- scrape_fixtures.py -> fixture_data/*.json (FixtureLeague)
+- make_match_day_map.py -> tier_maps/match_day/*.html
 """
 
 import functools
@@ -136,6 +140,27 @@ class GeocodedLeague(TypedDict):
     league_url: str
     teams: list[GeocodedTeam]
     team_count: int
+
+
+# Fixture scraping (scrape_fixtures.py)
+
+
+class Fixture(TypedDict):
+    """A single scheduled match between two teams."""
+
+    date: str  # ISO format "YYYY-MM-DD"
+    time: str  # "HH:MM"
+    home_team_id: int
+    away_team_id: int
+    match_url: str  # match-centre-community URL
+
+
+class FixtureLeague(TypedDict):
+    """All fixtures for one league/division."""
+
+    league_name: str
+    league_url: str
+    fixtures: list[Fixture]
 
 
 # Stage 4: Map generation (make_tier_maps.py)

@@ -32,6 +32,7 @@ from core import (
     setup_logging,
 )
 from core.config import DIST_DIR
+from core.map_builder import DARK_MODE_JS, POPUP_CSS
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier
 
@@ -125,6 +126,23 @@ def load_all_fixtures(season: str) -> dict[str, list[tuple[Fixture, str, str]]]:
 # ---------------------------------------------------------------------------
 
 
+def _format_centre_display(fixture: Fixture) -> str:
+    """Return the HTML for the centre element between crests in the popup.
+
+    Shows the scoreline for completed results, or kick-off time for fixtures.
+    """
+    home_score = fixture.get("home_score")
+    away_score = fixture.get("away_score")
+    if home_score is not None and away_score is not None:
+        return (
+            f'<div style="font-size:20px;font-weight:bold;letter-spacing:2px">'
+            f"{home_score} - {away_score}</div>"
+            f'<div style="font-size:10px;color:#888;text-transform:uppercase">Full time</div>'
+        )
+    time_text = fixture.get("time") or "TBC"
+    return f'<div style="font-size:18px;font-weight:bold">{escape(time_text)}</div>'
+
+
 def _render_popup(
     fixture: Fixture,
     league_name: str,
@@ -137,6 +155,7 @@ def _render_popup(
     away_name = away_team.get("name", "Away") if away_team else "Away"
     away_img = (away_team.get("image_url") if away_team else None) or RFU_FALLBACK_ICON
     address = home_team.get("formatted_address", home_team.get("address", ""))
+    centre_html = _format_centre_display(fixture)
 
     return (
         '<div style="min-width:240px;font-family:sans-serif">'
@@ -146,7 +165,7 @@ def _render_popup(
         f"         onerror=\"this.src='{RFU_FALLBACK_ICON}'\">"
         f'    <div style="font-weight:bold;font-size:13px">{escape(home_name)}</div>'
         f"  </div>"
-        f'  <div style="font-size:18px;font-weight:bold">{escape(fixture["time"] or "")}</div>'
+        f'  <div style="text-align:center">{centre_html}</div>'
         f'  <div style="text-align:center">'
         f'    <img src="{escape(away_img)}" style="height:40px" '
         f"         onerror=\"this.src='{RFU_FALLBACK_ICON}'\">"
@@ -167,6 +186,16 @@ def _render_popup(
 # ---------------------------------------------------------------------------
 # Map generation
 # ---------------------------------------------------------------------------
+
+
+def _count_label(total: int, results: int) -> str:
+    """Human-readable summary like '12 results', '5 fixtures', or '3 results, 2 fixtures'."""
+    fixtures = total - results
+    if results == 0:
+        return f"{fixtures} fixture{'s' if fixtures != 1 else ''}"
+    if fixtures == 0:
+        return f"{results} result{'s' if results != 1 else ''}"
+    return f"{results} result{'s' if results != 1 else ''}, {fixtures} fixture{'s' if fixtures != 1 else ''}"
 
 
 def _date_display(iso_date: str) -> str:
@@ -215,17 +244,30 @@ def build_match_day_map(
         logger.warning("No fixtures to map")
         return
 
+    generated_at = datetime.now()
+
     m = folium.Map(
         location=[52.5, -1.5],
         zoom_start=7,
-        tiles="cartodbpositron",
+        tiles=None,
     )
+    folium.TileLayer(
+        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        attr=(
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+            'contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        ),
+        control=False,
+    ).add_to(m)
+    header = m.get_root().header
+    header.add_child(folium.Element(POPUP_CSS))
+    header.add_child(folium.Element(DARK_MODE_JS))
 
     icon_size = 30
     crest = icon_size
     total_w = crest * 2 + 2
 
-    date_layers: list[tuple[str, str, int]] = []  # (date_iso, js_var_name, count)
+    date_layers: list[tuple[str, str, int, int]] = []  # (date_iso, js_var, count, results)
 
     for date_iso in sorted_dates:
         matches = fixtures_by_date[date_iso]
@@ -233,9 +275,14 @@ def build_match_day_map(
         if not resolved:
             continue
 
-        is_first = len(date_layers) == 0
-        fg = folium.FeatureGroup(name=f"date_{date_iso}", show=is_first, overlay=True)
-        date_layers.append((date_iso, fg.get_name(), len(resolved)))
+        result_count = sum(
+            1
+            for f, *_ in resolved
+            if f.get("home_score") is not None and f.get("away_score") is not None
+        )
+
+        fg = folium.FeatureGroup(name=f"date_{date_iso}", show=False, overlay=True)
+        date_layers.append((date_iso, fg.get_name(), len(resolved), result_count))
 
         cluster = MarkerCluster(
             control=False,
@@ -310,10 +357,17 @@ def build_match_day_map(
                 icon_anchor=(total_w // 2, crest // 2),
             )
 
+            home_score = fixture.get("home_score")
+            away_score = fixture.get("away_score")
+            if home_score is not None and away_score is not None:
+                tooltip_detail = f"{home_score}-{away_score}"
+            else:
+                tooltip_detail = fixture["time"] or "TBC"
+
             marker = folium.Marker(
                 location=[lat, lng],
                 popup=folium.Popup(popup_html, max_width=320),
-                tooltip=f"{home_name} vs {away_name} ({fixture['time'] or 'TBC'})",
+                tooltip=f"{home_name} vs {away_name} ({tooltip_detail})",
                 icon=icon,
             )
             marker.options["imageUrl"] = home_icon_url  # type: ignore[index]
@@ -327,23 +381,25 @@ def build_match_day_map(
         return
 
     dropdown_options = "\n".join(
-        f'<option value="{js_var}" {"selected" if i == 0 else ""}>'
-        f"{_date_short(date_iso)} ({count})</option>"
-        for i, (date_iso, js_var, count) in enumerate(date_layers)
+        f'<option value="{js_var}">'
+        f"{_date_short(date_iso)} ({_count_label(count, results)})</option>"
+        for date_iso, js_var, count, results in date_layers
     )
 
     date_info_json = json.dumps(
         {
-            js_var: {"display": _date_display(date_iso), "count": count}
-            for date_iso, js_var, count in date_layers
+            js_var: {
+                "date": date_iso,
+                "display": _date_display(date_iso),
+                "label": _count_label(count, results),
+            }
+            for date_iso, js_var, count, results in date_layers
         }
     )
 
-    all_layer_vars_json = json.dumps([js_var for _, js_var, _ in date_layers])
+    all_layer_vars_json = json.dumps([js_var for _, js_var, *_ in date_layers])
 
-    first_date = date_layers[0]
-    first_display = _date_display(first_date[0])
-    first_count = first_date[2]
+    updated_display = f"{generated_at.day} {generated_at.strftime('%b %Y')}"
 
     control_html = f"""
     <style>
@@ -358,22 +414,16 @@ def build_match_day_map(
         cursor:pointer;
     }}
     .matchday-subtitle {{ margin:4px 0 0 0; color:#666; font-size:13px; }}
-    .legend-toggle {{ cursor:pointer; user-select:none; display:inline-block; float:right; font-weight:bold; font-size:18px; }}
-    .legend-content.collapsed {{ display:none; }}
+    .matchday-updated {{ margin:2px 0 0 0; color:#999; font-size:11px; }}
     @media only screen and (max-width: 768px) {{
         .matchday-control {{ width:90%; padding:6px 10px; }}
         .matchday-control select {{ font-size:13px; }}
-        .map-legend {{ bottom:10px !important; right:10px !important; width:200px !important; max-height:300px !important; font-size:11px !important; padding:8px !important; }}
-        .map-legend h4 {{ font-size:13px !important; }}
-        .map-legend i {{ width:12px !important; height:12px !important; }}
-        .legend-content {{ max-height:250px !important; }}
     }}
     @media (prefers-color-scheme: dark) {{
         .matchday-control {{ background-color:#16213e !important; color:#e0e0e0 !important; border-color:#444 !important; }}
         .matchday-control select {{ background:#1a1a2e; color:#e0e0e0; border-color:#444; }}
         .matchday-subtitle {{ color:#aaa !important; }}
-        .map-legend {{ background-color:#16213e !important; color:#e0e0e0 !important; border-color:#444 !important; }}
-        .map-legend h4 {{ color:#e0e8f0; }}
+        .matchday-updated {{ color:#777 !important; }}
     }}
     </style>
 
@@ -381,17 +431,8 @@ def build_match_day_map(
         <select id="matchday-select" onchange="switchMatchDay(this.value)">
             {dropdown_options}
         </select>
-        <p class="matchday-subtitle" id="matchday-info">{escape(first_display)} &mdash; {first_count} matches</p>
-    </div>
-
-    <div class="map-legend" id="matchday-legend" style="position:fixed; bottom:50px; right:50px; width:300px;
-                background-color:white; z-index:999; font-size:14px;
-                border:2px solid grey; border-radius:5px; padding:10px">
-        <h4 style="margin-top:0;" id="legend-title">{escape(first_display)} - {first_count}
-            <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">\u2212</span>
-        </h4>
-        <div class="legend-content" id="legend-content" style="overflow-y:auto; max-height:500px;">
-        </div>
+        <p class="matchday-subtitle" id="matchday-info"></p>
+        <p class="matchday-updated">Data updated: {updated_display}</p>
     </div>
 
     <script>
@@ -407,6 +448,11 @@ def build_match_day_map(
     }}
 
     function switchMatchDay(selectedVar) {{
+        var info = dateInfo[selectedVar];
+        if (info) {{
+            document.getElementById('matchday-info').innerHTML = info.display + ' &mdash; ' + info.label;
+        }}
+
         var map = getMap();
         if (!map) return;
 
@@ -419,47 +465,60 @@ def build_match_day_map(
                 if (map.hasLayer(layerObj)) map.removeLayer(layerObj);
             }}
         }}
-
-        var info = dateInfo[selectedVar];
-        if (info) {{
-            document.getElementById('matchday-info').innerHTML = info.display + ' &mdash; ' + info.count + ' matches';
-            document.getElementById('legend-title').innerHTML = info.display + ' - ' + info.count +
-                ' <span class="legend-toggle" onclick="toggleLegend()" title="Toggle legend">\\u2212</span>';
-        }}
     }}
 
-    function toggleLegend() {{
-        var c = document.getElementById("legend-content");
-        var toggles = document.querySelectorAll(".legend-toggle");
-        if (c.classList.contains("collapsed")) {{
-            c.classList.remove("collapsed");
-            toggles.forEach(function(t) {{ t.textContent = "\\u2212"; }});
-        }} else {{
-            c.classList.add("collapsed");
-            toggles.forEach(function(t) {{ t.textContent = "+"; }});
+    window.addEventListener('load', function() {{
+        var today = new Date().toISOString().slice(0, 10);
+        var defaultVar = allLayers[allLayers.length - 1];
+        for (var i = 0; i < allLayers.length; i++) {{
+            var info = dateInfo[allLayers[i]];
+            if (info && info.date >= today) {{
+                var d = new Date(info.date + 'T00:00:00');
+                if (d.getDay() === 6) {{
+                    defaultVar = allLayers[i];
+                    break;
+                }}
+            }}
         }}
-    }}
-
-    (function() {{
-        if (window.innerWidth <= 768) {{
-            var c = document.getElementById("legend-content");
-            var toggles = document.querySelectorAll(".legend-toggle");
-            if (c) c.classList.add("collapsed");
-            toggles.forEach(function(t) {{ t.textContent = "+"; }});
-        }}
-    }})();
+        var sel = document.getElementById('matchday-select');
+        if (sel) {{ sel.value = defaultVar; }}
+        switchMatchDay(defaultVar);
+    }});
     </script>
     """
-    m.get_root().html.add_child(folium.Element(control_html))
+    html_el = m.get_root().html
+    html_el.add_child(folium.Element(control_html))
+
+    boundary_script = """
+    <script>
+    (function() {
+        function addBoundaries() {
+            var el = document.querySelector('.folium-map');
+            if (!el || !el._leaflet_id) { setTimeout(addBoundaries, 100); return; }
+            var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
+            if (!map) { setTimeout(addBoundaries, 100); return; }
+            fetch('../../shared/boundaries.json').then(r => r.json()).then(bd => {
+                const cs = { fillColor:'lightgray', color:'black', weight:2, fillOpacity:0.1 };
+                Object.entries(bd.countries || {}).forEach(([n, d]) => { L.geoJson(d, {style:cs}).addTo(map); });
+                const bs = { fillColor:'transparent', color:'gray', weight:0.5, fillOpacity:0, opacity:0.4 };
+                ['itl_1','itl_2','itl_3'].forEach(lv => { if (bd[lv]) L.geoJson(bd[lv], {style:bs}).addTo(map); });
+            }).catch(e => console.warn('Could not load boundaries:', e));
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
+        else addBoundaries();
+    })();
+    </script>
+    """
+    html_el.add_child(folium.Element(boundary_script))
 
     ga = get_google_analytics_script()
     favicon = get_favicon_html(depth=2)
     extra_head = f"{ga}\n{favicon}" if ga else favicon
-    m.get_root().header.add_child(folium.Element(extra_head))
+    header.add_child(folium.Element(extra_head))
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
-    total_placed = sum(c for _, _, c in date_layers)
+    total_placed = sum(c for _, _, c, _ in date_layers)
     logger.info(
         "Map saved to %s (%d matches across %d dates)",
         output_path,
@@ -483,17 +542,20 @@ def main() -> None:
         default="2025-2026",
         help="Season (default: 2025-2026)",
     )
-    _default_match_day_out = DIST_DIR / "match_day" / "index.html"
     parser.add_argument(
         "--output",
         type=str,
-        default=str(_default_match_day_out),
-        help=f"Output file (default: {_default_match_day_out.as_posix()})",
+        default=None,
+        help="Output file (default: dist/<season>/match_day/index.html)",
     )
     args = parser.parse_args()
 
     setup_logging()
     season: str = args.season
+
+    output_path = (
+        Path(args.output) if args.output else DIST_DIR / season / "match_day" / "index.html"
+    )
 
     team_index = build_team_index(season)
     fixtures_by_date = load_all_fixtures(season)
@@ -502,7 +564,7 @@ def main() -> None:
         logger.warning("No fixtures found for season %s", season)
         return
 
-    build_match_day_map(fixtures_by_date, team_index, season, Path(args.output))
+    build_match_day_map(fixtures_by_date, team_index, season, output_path)
 
 
 if __name__ == "__main__":

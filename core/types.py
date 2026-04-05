@@ -85,13 +85,15 @@ class GeocodedLeague(TypedDict):
 
 
 class Fixture(TypedDict):
-    """A single scheduled match between two teams."""
+    """A single scheduled match or completed result between two teams."""
 
     date: str  # ISO format "YYYY-MM-DD"
-    time: str  # "HH:MM"
+    time: str  # "HH:MM" for fixtures, empty for results
     home_team_id: int
     away_team_id: int
     match_url: str  # match-centre-community URL
+    home_score: NotRequired[int | None]
+    away_score: NotRequired[int | None]
 
 
 class FixtureLeague(TypedDict):

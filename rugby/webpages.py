@@ -132,7 +132,16 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     mens_tiers: list[tuple[str, str]] = tier_files.get("mens", [])
     womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
     has_all_leagues = tier_files.get("has_all_leagues", False)
+    has_match_day = tier_files.get("has_match_day", False)
     merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = tier_files.get("merit", [])
+
+    match_day_link = ""
+    if has_match_day:
+        match_day_href = "match_day/" if get_config().is_production else "match_day/index.html"
+        match_day_link = (
+            f'    <div class="back-link">'
+            f'<a href="{match_day_href}">Fixtures &amp; Results →</a></div>\n'
+        )
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -155,7 +164,8 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
 
     <h1>English Rugby Union Team Maps</h1>
     <p>Season: {season}</p>
-"""
+
+{match_day_link}"""
 
     # Men's sections
     if mens_tiers or merit_competitions:
@@ -210,6 +220,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         return f"{s}/" if is_prod else f"{s}/index.html"
 
     teams_href = "./teams/" if is_prod else "./teams/index.html"
+    match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -235,6 +246,10 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         <a class="hero-card hero-card--primary" href="{_season_href(latest)}">
             <span class="hero-card__label">Current Season</span>
             <span class="hero-card__title">{latest}</span>
+        </a>
+        <a class="hero-card" href="{match_day_href}">
+            <span class="hero-card__label">This Week</span>
+            <span class="hero-card__title">Match Day</span>
         </a>
         <a class="hero-card" href="{teams_href}">
             <span class="hero-card__label">Browse</span>
@@ -373,6 +388,10 @@ def detect_tier_files(season_dir: Path) -> dict:
             comp_tiers = [(name, prefix + href) for name, href in comp_tiers_raw]
             merit_competitions.append((comp_display, all_tiers_href, comp_tiers))
 
+    has_match_day = (season_dir / "match_day" / "index.html").exists() or (
+        season_dir / "match_day.html"
+    ).exists()
+
     return {
         "mens": mens_tiers,
         "womens": womens_tiers,
@@ -380,6 +399,7 @@ def detect_tier_files(season_dir: Path) -> dict:
         "merit": merit_competitions,
         "tier_plus_merit": tier_plus_merit,
         "merit_only_tiers": merit_only_tiers,
+        "has_match_day": has_match_day,
     }
 
 

@@ -127,8 +127,36 @@ def scrape_fixtures_from_league(league_url: str, league_name: str) -> list[Fixtu
     return fixtures
 
 
+def _parse_score_links(score_div: Tag) -> tuple[int | None, int | None, str]:
+    """Extract home/away scores and match URL from a result card's fnr-scores div.
+
+    Score links use ``coh-style-numeric-right`` / ``coh-style-numeric-score``
+    classes (order varies between elite and community pages), but document
+    order is always home first, away second.
+    """
+    score_links = score_div.find_all(
+        "a",
+        class_=lambda c: isinstance(c, str)
+        and ("coh-style-numeric-right" in c or "coh-style-numeric-score" in c),
+    )
+    if len(score_links) < 2:
+        return None, None, ""
+
+    home_text = score_links[0].get_text(strip=True)
+    away_text = score_links[1].get_text(strip=True)
+    match_href = score_links[0].get("href", "")
+
+    try:
+        home_score = int(home_text)
+        away_score = int(away_text)
+    except ValueError:
+        return None, None, _abs_url(match_href) if match_href else ""
+
+    return home_score, away_score, _abs_url(match_href) if match_href else ""
+
+
 def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
-    """Parse a single fixture card div into a Fixture dict."""
+    """Parse a single fixture or result card div into a Fixture dict."""
     home_div = card.find("div", class_="coh-style-hometeam")
     away_div = card.find("div", class_="coh-style-away-team")
     score_div = card.find("div", class_="fnr-scores")
@@ -137,19 +165,24 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
         return None
 
     time_link = score_div.find("a", class_="coh-style-comp-time")
+    home_score, away_score, score_match_url = _parse_score_links(score_div)
     vs_div = score_div.find("div", class_="coh-style-comp-versace") if not time_link else None
-    if not time_link and not vs_div:
+
+    is_fixture = time_link is not None or vs_div is not None
+    is_result = home_score is not None and away_score is not None
+    if not is_fixture and not is_result:
         return None
 
     kick_off = time_link.get_text(strip=True) if time_link else ""
     match_href = time_link.get("href", "") if time_link else ""
     if not match_href:
+        match_href = ""
         card_body = card.parent
         if card_body:
             info_link = card_body.find("a", class_="c065-match-link")
             if info_link:
                 match_href = info_link.get("href", "")
-    match_url = _abs_url(match_href) if match_href else ""
+    match_url = _abs_url(match_href) if match_href else score_match_url
 
     home_link = home_div.find("a", href=True)
     away_link = away_div.find("a", href=True)
@@ -172,13 +205,17 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
         logger.warning("Could not parse team IDs for %s vs %s", home_name, away_name)
         return None
 
-    return {
+    fixture: Fixture = {
         "date": date,
         "time": kick_off,
         "home_team_id": home_id,
         "away_team_id": away_id,
         "match_url": match_url,
     }
+    if is_result:
+        fixture["home_score"] = home_score
+        fixture["away_score"] = away_score
+    return fixture
 
 
 def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
@@ -212,6 +249,11 @@ def main() -> None:
         default="2025-2026",
         help="Season to scrape (e.g. 2025-2026). Default: 2025-2026",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-scrape leagues even if fixture files already exist.",
+    )
     args = parser.parse_args()
     season: str = args.season
 
@@ -227,12 +269,10 @@ def main() -> None:
 
     for league_name, league_url, relative_path in leagues:
         output_path = output_dir / relative_path
-        if output_path.exists():
+        if output_path.exists() and not args.force:
             logger.info("Skipping %s (already exists)", league_name)
             skipped += 1
             continue
-
-        output_path.parent.mkdir(parents=True, exist_ok=True)
 
         try:
             fixtures = scrape_fixtures_from_league(league_url, league_name)
@@ -244,14 +284,22 @@ def main() -> None:
             logger.exception("Failed to scrape fixtures for %s", league_name)
             continue
 
+        fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
+
         fixture_league: FixtureLeague = {
             "league_name": league_name,
             "league_url": league_url,
             "fixtures": fixtures,
         }
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(fixture_league, f, indent=2, ensure_ascii=False)
+        new_content = json.dumps(fixture_league, indent=2, ensure_ascii=False) + "\n"
+        if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
+            logger.info("  Unchanged: %s", league_name)
+            skipped += 1
+            continue
+
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(new_content, encoding="utf-8")
 
         scraped += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)

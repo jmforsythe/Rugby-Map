@@ -53,6 +53,13 @@ jobs:
           python -m rugby.webpages --production
           python -m rugby.seo
 
+          # Match-day maps (uses committed fixture_data, one per season)
+          for season in $SEASONS; do
+            if [ -d "data/rugby/fixture_data/$season" ]; then
+              python -m rugby.match_day --season=$season
+            fi
+          done
+
           # Football maps (not linked from index pages)
           python -m football.maps --production
 

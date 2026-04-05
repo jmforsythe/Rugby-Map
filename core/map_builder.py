@@ -927,7 +927,7 @@ POPUP_CSS = """
 </style>
 """
 
-_DARK_MODE_JS = """
+DARK_MODE_JS = """
 <script>
 (function() {
     var mq = window.matchMedia('(prefers-color-scheme: dark)');
@@ -980,7 +980,7 @@ def _build_base_map(config: MapConfig) -> folium.Map:
     ).add_to(m)
     header = m.get_root().header  # type: ignore[attr-defined]
     header.add_child(folium.Element(POPUP_CSS))
-    header.add_child(folium.Element(_DARK_MODE_JS))
+    header.add_child(folium.Element(DARK_MODE_JS))
     return m
 
 

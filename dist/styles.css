@@ -555,10 +555,10 @@ body.wide-layout {
   color: var(--merit-link-hover);
 }
 
-/* Hero links (current season + teams) */
+/* Hero links (current season, match day, teams) */
 .hero-links {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   margin-bottom: 2em;
 }

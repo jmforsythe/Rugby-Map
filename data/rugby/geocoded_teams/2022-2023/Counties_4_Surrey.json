@@ -1,0 +1,97 @@
+{
+  "league_name": "Counties 4 Surrey",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39121&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Bec Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1741",
+      "image_url": "https://images.englandrugby.com/club_images/1741.png",
+      "address": "Ashcroft Technology Academy School Sports Pitches, Openview, Sw18 3ny, Earlsfield, SW18 3PD, United Kingdom",
+      "latitude": 51.4423161,
+      "longitude": -0.1868965,
+      "formatted_address": "SW18 3NY, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350840280
+    },
+    {
+      "name": "Old Georgians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15708",
+      "image_url": "https://images.englandrugby.com/club_images/15708.png",
+      "address": "Old Georgians Clubhouse - St Georges College, Weybridge Road, Addlestone, Surrey , KT15 2QS, United Kingdom",
+      "latitude": 51.3778622,
+      "longitude": -0.4789792,
+      "formatted_address": "KT15 2QS, Runnymede, Surrey, England, United Kingdom",
+      "place_id": 350670367
+    },
+    {
+      "name": "Old Paulines",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15903",
+      "image_url": "https://images.englandrugby.com/club_images/15903.png",
+      "address": "Old Pauline Football Club, St.nicholas Road, Off Speer Rd, Thames Ditton, Surrey, KT7 0PW, United Kingdom",
+      "latitude": 51.3912222,
+      "longitude": -0.3374399,
+      "formatted_address": "KT7 0PW, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351429900
+    },
+    {
+      "name": "Harlequin Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9393",
+      "image_url": "https://images.englandrugby.com/club_images/9393.png",
+      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
+      "latitude": 51.4120846,
+      "longitude": -0.3172338,
+      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350670305
+    },
+    {
+      "name": "Old Glynonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15711",
+      "image_url": "https://images.englandrugby.com/club_images/15711.png",
+      "address": "Old Glynonians Rfc, Priesthill Playing Field, Reigate Road, Epsom, KT17 3DZ, England",
+      "latitude": 51.33704,
+      "longitude": -0.24328,
+      "formatted_address": "KT17 3DZ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351423674
+    },
+    {
+      "name": "Streatham-Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21255",
+      "image_url": "https://images.englandrugby.com/club_images/21255.png",
+      "address": ", 159 Brigstock Road Thornton Heath SURREY CR7 7JP UNITED KINGDOM ",
+      "latitude": 51.3938788,
+      "longitude": -0.1118993,
+      "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
+      "place_id": 350559741
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.2472294,
+      "longitude": -0.5562019,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Croydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5941",
+      "image_url": "https://images.englandrugby.com/club_images/5941.png",
+      "address": "135 Addington Road West Wickham Croydon KENT BR4 9BF UNITED KINGDOM",
+      "latitude": 51.363098,
+      "longitude": -0.018806,
+      "formatted_address": "BR4 9BF, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351012872
+    },
+    {
+      "name": "Old Suttonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16060",
+      "image_url": "https://images.englandrugby.com/club_images/16060.png",
+      "address": "Walch Memorial Ground 82-84 Northey Avenue Cheam Sutton Surrey SM2 7HJ United Kingdom",
+      "latitude": 51.3457099,
+      "longitude": -0.21934,
+      "formatted_address": "SM2 7HJ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485695
+    }
+  ],
+  "team_count": 9
+}

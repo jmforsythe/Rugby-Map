@@ -1,0 +1,97 @@
+{
+  "league_name": "Counties 3 Durham & Northumberland",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=39155&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Houghton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10480",
+      "image_url": "https://images.englandrugby.com/club_images/10480.png",
+      "address": "Dairy Lane Houghton Le Spring TYNE AND WEAR DH4 5BH UNITED KINGDOM ",
+      "latitude": 54.8413153,
+      "longitude": -1.4754934,
+      "formatted_address": "Dairy Lane, Dairy Lane Estate, Houghton-le-Spring, Sunderland, Tyne and Wear, North East, England, DH4 5BQ, United Kingdom",
+      "place_id": 253943292
+    },
+    {
+      "name": "DMP Elizabethans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123465",
+      "image_url": "https://images.englandrugby.com/club_images/123465.png",
+      "address": "Darlington Arena Neasham Road Darlington County Durham DL2 1DL United Kingdom",
+      "latitude": 54.50806,
+      "longitude": -1.53495,
+      "formatted_address": "DL2 1DL, Darlington, Tees Valley, England, United Kingdom",
+      "place_id": 351171191
+    },
+    {
+      "name": "Gosforth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8790",
+      "image_url": "https://images.englandrugby.com/club_images/8790.png",
+      "address": "Broadway Playing Fields, Broadway West, Gosforth, Newcastle Upon Tyne, Tyne And Wear, NE3 2HY, United Kingdom",
+      "latitude": 55.01674,
+      "longitude": -1.62686,
+      "formatted_address": "NE3 2HY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351626037
+    },
+    {
+      "name": "Seaton Carew",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18902",
+      "image_url": "https://images.englandrugby.com/club_images/18902.png",
+      "address": "Hornby Park, Elizabeth Way Seaton Carew Hartlepool County Durham TS25 2AZ United Kingdom",
+      "latitude": 54.655817,
+      "longitude": -1.1882955,
+      "formatted_address": "TS25 2AZ, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 352086867
+    },
+    {
+      "name": "Yarm",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26377",
+      "image_url": "https://images.englandrugby.com/club_images/26377.png",
+      "address": "Yarm Rugby Club Wass Way Durham Lane Industrial Park Stockton-on-tees Cleveland TS16 0RG United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081237
+    },
+    {
+      "name": "Blyth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2631",
+      "image_url": "https://images.englandrugby.com/club_images/2631.png",
+      "address": "Blyth R.F.C. Plessey Road Blyth NORTHUMBERLAND NE24 3LE UNITED KINGDOM ",
+      "latitude": 55.1159891,
+      "longitude": -1.5131331,
+      "formatted_address": "NE24 3LE, Blyth, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710916
+    },
+    {
+      "name": "Prudhoe & Stocksfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17245",
+      "image_url": "https://images.englandrugby.com/club_images/17245.png",
+      "address": "Stocksfield Sportsfield &Cricket Club Main Road Stocksfield NORTHUMBERLAND NE43 7NN UNITED KINGDOM",
+      "latitude": 54.9489937,
+      "longitude": -1.9110313,
+      "formatted_address": "NE43 7NN, New Ridley, Broomley and Stocksfield, Stocksfield, Northumberland, North East, England, United Kingdom",
+      "place_id": 350712569
+    },
+    {
+      "name": "Jarrovians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11078",
+      "image_url": "https://images.englandrugby.com/club_images/11078.png",
+      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
+      "latitude": 54.9606054,
+      "longitude": -1.4955724,
+      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
+      "place_id": 253817836
+    },
+    {
+      "name": "Seghill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18967",
+      "image_url": "https://images.englandrugby.com/club_images/18967.png",
+      "address": "Seghill R.f.c. Welfare Park Seghill Cramlington Northumberland NE23 7EZ United Kingdom",
+      "latitude": 55.0651899,
+      "longitude": -1.5534856,
+      "formatted_address": "NE23 7EZ, Seghill, Seaton Valley, Seghill, Northumberland, North East, England, United Kingdom",
+      "place_id": 350710787
+    }
+  ],
+  "team_count": 9
+}

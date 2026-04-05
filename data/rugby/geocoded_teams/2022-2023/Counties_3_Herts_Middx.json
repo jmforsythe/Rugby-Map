@@ -1,0 +1,117 @@
+{
+  "league_name": "Counties 3 Herts/Middx",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39117&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Brunel University",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3523",
+      "image_url": "https://images.englandrugby.com/club_images/3523.png",
+      "address": "Union of Brunel Students Brunel University Brunel University Uxbridge MIDDLESEX UB8 3PH UNITED KINGDOM ",
+      "latitude": 51.532881,
+      "longitude": -0.4743382,
+      "formatted_address": "UB8 3PH, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 350422360
+    },
+    {
+      "name": "Old Millhillians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15828",
+      "image_url": "https://images.englandrugby.com/club_images/15828.png",
+      "address": "Headstone Lane, Harrow, Middlesex, HA2 6NF, United Kingdom",
+      "latitude": 51.60421,
+      "longitude": -0.3652599,
+      "formatted_address": "HA2 6NF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351337899
+    },
+    {
+      "name": "Bank Lane",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1314",
+      "image_url": "https://images.englandrugby.com/club_images/1314.png",
+      "address": "All England Sports Ground Bank Lane (off Priory Lane) Roehampton Middlesex SW15 5JQ United Kingdom",
+      "latitude": 51.4605981,
+      "longitude": -0.2527713,
+      "formatted_address": "SW15 5JQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 352005622
+    },
+    {
+      "name": "Verulamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23976",
+      "image_url": "https://images.englandrugby.com/club_images/23976.png",
+      "address": "Cotlandswick, North Orbital Road, London Colney, St. Albans, Hertfordshire, AL2 1DW, United Kingdom",
+      "latitude": 51.72847,
+      "longitude": -0.30725,
+      "formatted_address": "AL2 1DW, London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350912383
+    },
+    {
+      "name": "U.C.S.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23417",
+      "image_url": "https://images.englandrugby.com/club_images/23417.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
+    },
+    {
+      "name": "Thamesians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21890",
+      "image_url": "https://images.englandrugby.com/club_images/21890.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
+    },
+    {
+      "name": "Watford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439",
+      "image_url": "https://images.englandrugby.com/club_images/24439.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
+      "name": "Actonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=314",
+      "image_url": "https://images.englandrugby.com/club_images/314.png",
+      "address": "Old Actonians Sports Club, Gunnersbury Drive, London, W5 4LL, United Kingdom",
+      "latitude": 51.5014883,
+      "longitude": -0.2876106,
+      "formatted_address": "W5 4LL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350876492
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
+    },
+    {
+      "name": "Uxbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23880",
+      "image_url": "https://images.englandrugby.com/club_images/23880.png",
+      "address": "Uxbridge Cricket Club Park Road Uxbridge MIDDLESEX UB8 1NR UNITED KINGDOM",
+      "latitude": 51.5512742,
+      "longitude": -0.4712537,
+      "formatted_address": "UB8 1NR, London Borough of Hillingdon, Greater London, England, United Kingdom",
+      "place_id": 352107282
+    },
+    {
+      "name": "Chess Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4663",
+      "image_url": "https://images.englandrugby.com/club_images/4663.png",
+      "address": "Croxley Guild Of Sport, The Green, Rickmansworth, Hertfordshire, WD3 3HT, United Kingdom",
+      "latitude": 51.6494884,
+      "longitude": -0.4543582,
+      "formatted_address": "WD3 3HT, Croxley Green, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 352139344
+    }
+  ],
+  "team_count": 11
+}

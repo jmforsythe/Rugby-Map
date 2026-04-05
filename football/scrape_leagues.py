@@ -13,22 +13,19 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
-from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from utils import make_request
+from core import make_request
+from football import DATA_DIR
 
 _BASE_URL = "https://www.bslfl.co.uk"
 _LEAGUE_TABLES_URL = f"{_BASE_URL}/league-tables"
 _FULLTIME_BASE = "https://fulltime.thefa.com"
 
-_SCRIPT_DIR = Path(__file__).parent
-_ADDRESS_CACHE_FILE = _SCRIPT_DIR / "club_addresses.json"
+_ADDRESS_CACHE_FILE = DATA_DIR / "club_addresses.json"
 
 _RESERVE_SUFFIXES = re.compile(
     r"\s*(?:Reserves|2nd\s*Team|2ND|Development)\s*$",
@@ -162,7 +159,7 @@ def process_season(season: str) -> None:
     lookup = _build_club_lookup(clubs)
 
     divisions = scrape_division_links()
-    output_base = _SCRIPT_DIR / "team_addresses" / season / "BSLFL"
+    output_base = DATA_DIR / "team_addresses" / season / "BSLFL"
     output_base.mkdir(parents=True, exist_ok=True)
 
     unmatched: list[tuple[str, str]] = []

@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 5 Kent",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=46999&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Canterbury III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4125&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/4125.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Bromley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3411&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3411.png",
+      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504060
+    },
+    {
+      "name": "Old Colfeians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15539&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/15539.png",
+      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
+      "latitude": 51.4543889,
+      "longitude": 0.0189041,
+      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351892216
+    },
+    {
+      "name": "Sevenoaks III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19008&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19008.png",
+      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
+      "latitude": 51.27407,
+      "longitude": 0.19735,
+      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352051169
+    },
+    {
+      "name": "Askean",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/974.png",
+      "address": "Charlton Road, London, SE7 7EY, United Kingdom",
+      "latitude": 51.6368146,
+      "longitude": -0.0393038,
+      "formatted_address": "Charlton Road, Ponders End, London Borough of Enfield, Greater London, England, N9 8EX, United Kingdom",
+      "place_id": 257710562
+    },
+    {
+      "name": "Ashford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=877&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/877.png",
+      "address": "Kinneys Field Canterbury Road, Bybrook Ashford KENT TN24 9QB UNITED KINGDOM",
+      "latitude": 51.1583456,
+      "longitude": 0.8831687,
+      "formatted_address": "TN24 9QB, Kennington, Ashford, Kent, England, United Kingdom",
+      "place_id": 350854003
+    },
+    {
+      "name": "Beccehamians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1764&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/1764.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
+      "name": "Greenwich",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8954&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/8954.png",
+      "address": "The Pavilion Old Mill Road Old Mill Road London SE18 1QJ UNITED KINGDOM ",
+      "latitude": 51.4820927,
+      "longitude": 0.0834451,
+      "formatted_address": "SE18 1QJ, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351895794
+    }
+  ],
+  "team_count": 8
+}

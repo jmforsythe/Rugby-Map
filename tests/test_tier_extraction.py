@@ -5,7 +5,7 @@ competition-qualified display names (e.g. "CANDY 1", "Essex Premier").
 Use ``get_competition_offset`` to convert to absolute pyramid positions.
 """
 
-from tier_extraction import (
+from rugby.tiers import (
     extract_tier,
     extract_tier_men_current,
     extract_tier_men_pre_2021,

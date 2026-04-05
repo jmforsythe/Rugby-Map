@@ -1,6 +1,6 @@
 """Tests for team pages logic."""
 
-from team_pages import build_club_index
+from rugby.team_pages import build_club_index
 
 
 class TestBuildClubIndex:

@@ -1,3 +1,8 @@
+[project]
+name = "rugby-mapping"
+version = "0.1.0"
+requires-python = ">=3.12"
+
 [tool.black]
 line-length = 100
 target-version = ['py312']
@@ -57,7 +62,6 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Allow unused imports in __init__.py
-"football/*.py" = ["E402"]  # sys.path.insert before imports
 
 [tool.mypy]
 python_version = "3.12"

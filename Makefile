@@ -30,36 +30,36 @@ install-dev:
 	pip install -r requirements-dev.txt
 
 boundaries:
-	python download_boundaries.py
+	python -m core.boundaries
 
 scrape:
-	python scrape_leagues_teams.py --season $(SEASON)
+	python -m rugby.scrape --season $(SEASON)
 
 addresses:
-	python fetch_addresses.py --season $(SEASON)
+	python -m rugby.addresses --season $(SEASON)
 
 geocode:
-	python geocode_addresses.py --season $(SEASON)
+	python -m rugby.geocode --season $(SEASON)
 
 distances:
-	python calculate_team_distances.py --season $(SEASON)
+	python -m rugby.distances --season $(SEASON)
 
 maps:
-	python make_tier_maps.py --season $(SEASON)
+	python -m rugby.maps --season $(SEASON)
 
 pages:
-	python team_pages.py
+	python -m rugby.team_pages
 
 webpages:
-	python generate_webpages.py
+	python -m rugby.webpages
 
 all: scrape addresses geocode distances maps pages webpages
 
 scrape-fixtures:
-	python scrape_fixtures.py --season $(SEASON)
+	python -m rugby.fixtures --season $(SEASON)
 
 match-day:
-	python make_match_day_map.py --season $(SEASON)
+	python -m rugby.match_day --season $(SEASON)
 
 test:
 	python -m pytest tests/ -v
@@ -70,4 +70,4 @@ lint:
 	isort --check .
 
 clean:
-	rm -rf tier_maps/
+	rm -rf dist/

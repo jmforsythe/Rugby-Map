@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 2 South East (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39217&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Eton Manor Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94054",
+      "image_url": "https://images.englandrugby.com/club_images/94054.png",
+      "address": "The New Wilderness, Nutter Lane, Wanstead, London, E11 2JA, United Kingdom",
+      "latitude": 51.57942,
+      "longitude": 0.03484,
+      "formatted_address": "E11 2JA, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 351212127
+    },
+    {
+      "name": "Hampstead Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9299",
+      "image_url": "https://images.englandrugby.com/club_images/9299.png",
+      "address": "Hampstead Rfc 23 Parliament Hill Running Track Parliament Hill Golders Green London Middlesex NW3 2JP United Kingdom",
+      "latitude": 51.5558491,
+      "longitude": -0.1572017,
+      "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351699934
+    },
+    {
+      "name": "Belsize Park Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1947",
+      "image_url": "https://images.englandrugby.com/club_images/1947.png",
+      "address": "Coram's Fields 93 Guilford Street London WC1N 1DN United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Millwall Venus Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13911",
+      "image_url": "https://images.englandrugby.com/club_images/13911.png",
+      "address": "75 Manchester Road Isle Of Dogs London E14 3DN United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 258559684
+    },
+    {
+      "name": "Beccehamian Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1749",
+      "image_url": "https://images.englandrugby.com/club_images/1749.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
+      "name": "Beckenham Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1791",
+      "image_url": "https://images.englandrugby.com/club_images/1791.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Kilburn Cosmos Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11435",
+      "image_url": "https://images.englandrugby.com/club_images/11435.png",
+      "address": "Gladstone Park Jct Of Anson & Kendal Road London NW2 6BH United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351247867
+    }
+  ],
+  "team_count": 7
+}

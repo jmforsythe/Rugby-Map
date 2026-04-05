@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 4 Tribute Gloucestershire North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=39166&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Longlevens II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12744",
+      "image_url": "https://images.englandrugby.com/club_images/12744.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
+    },
+    {
+      "name": "Painswick",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16551",
+      "image_url": "https://images.englandrugby.com/club_images/16551.png",
+      "address": "Broadham Fields Stroud Road Painswick GL6 6UT UNITED KINGDOM",
+      "latitude": 51.7848809,
+      "longitude": -2.1958847,
+      "formatted_address": "GL6 6UT, Painswick, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350637719
+    },
+    {
+      "name": "Cinderford III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5048",
+      "image_url": "https://images.englandrugby.com/club_images/5048.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "Greyhound",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8969",
+      "image_url": "https://images.englandrugby.com/club_images/8969.png",
+      "address": "Greyhound Rfc @ Hcsc Ltd Grandstand Road Hereford Herefordshire HR4 9NG England",
+      "latitude": 52.0674413,
+      "longitude": -2.730765,
+      "formatted_address": "HR4 9NG, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 350200366
+    },
+    {
+      "name": "Cheltenham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4535",
+      "image_url": "https://images.englandrugby.com/club_images/4535.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 259583358
+    },
+    {
+      "name": "Newent II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14508",
+      "image_url": "https://images.englandrugby.com/club_images/14508.png",
+      "address": "Newent Rfc, Recreation Ground, Watery Lane, Newent, Gloucestershire, GL18 1PX, United Kingdom",
+      "latitude": 51.9270467,
+      "longitude": -2.4110679,
+      "formatted_address": "GL18 1PX, Newent, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630854
+    },
+    {
+      "name": "Ledbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11964",
+      "image_url": "https://images.englandrugby.com/club_images/11964.png",
+      "address": "New Clubhouse Ross Road Playing Fields Ross Road Ledbury HEREFORDSHIRE HR8 2LP UNITED KINGDOM",
+      "latitude": 52.0268018,
+      "longitude": -2.4399345,
+      "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
+      "place_id": 350651243
+    },
+    {
+      "name": "Old Cryptians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15625",
+      "image_url": "https://images.englandrugby.com/club_images/15625.png",
+      "address": "Old Cryptians RFC Memorial Ground Tuffley Avenue Tuffley Avenue Gloucester GLOUCESTERSHIRE GL1 5NS UNITED KINGDOM ",
+      "latitude": 51.8440829,
+      "longitude": -2.2467233,
+      "formatted_address": "GL1 5NS, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351307970
+    }
+  ],
+  "team_count": 8
+}

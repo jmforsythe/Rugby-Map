@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 2 Midlands (Central)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=47329&season=2023-2024#tables",
+  "teams": [
+    {
+      "name": "Lichfield Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12242&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/12242.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
+      "name": "Rugby Lionesses Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18288&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/18288.png",
+      "address": "The Rugby Football Club, Webb Ellis Road, Rugby, CV22 7AU, United Kingdom",
+      "latitude": 52.3699991,
+      "longitude": -1.2743525,
+      "formatted_address": "CV22 7AU, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 350564059
+    },
+    {
+      "name": "Silhillians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19366&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/19366.png",
+      "address": "Warwick Road Copt Heath, Knowle Solihull WEST MIDLANDS B93 9LW UNITED KINGDOM ",
+      "latitude": 52.4007409,
+      "longitude": -1.7467371,
+      "formatted_address": "B93 9LW, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350488627
+    },
+    {
+      "name": "Tamworth Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123893&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/123893.png",
+      "address": "Wigginton Lodge, Wigginton Park, Tamworth, B79 8ED, England",
+      "latitude": 52.6443607,
+      "longitude": -1.7067476,
+      "formatted_address": "B79 8ED, Tamworth, Staffordshire, England, United Kingdom",
+      "place_id": 350484902
+    },
+    {
+      "name": "Oadby Wyggestonian Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125672&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/125672.png",
+      "address": "Oadby Wyggestonian R.F.C. Oval Park Wigston Road,  Oadby LEICESTERSHIRE LE2 5JE UNITED KINGDOM ",
+      "latitude": 52.594619,
+      "longitude": -1.0936455,
+      "formatted_address": "LE2 5JE, Oadby and Wigston, Leicestershire, England, United Kingdom",
+      "place_id": 350683392
+    },
+    {
+      "name": "Burton Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3790&season=2023-2024",
+      "image_url": "https://images.englandrugby.com/club_images/3790.png",
+      "address": "Burton Rfc Ltd, Battlestead Croft, Branston Road, Tatenhill, Burton Upon Trent, Staffordshire, DE13 9SB, England",
+      "latitude": 52.7964095,
+      "longitude": -1.6817842,
+      "formatted_address": "DE13 9SB, Branston, East Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350575056
+    }
+  ],
+  "team_count": 6
+}

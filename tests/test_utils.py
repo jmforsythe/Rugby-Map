@@ -1,6 +1,6 @@
 """Tests for utility functions."""
 
-from utils import team_name_to_filepath
+from core import team_name_to_filepath
 
 
 class TestTeamNameToFilepath:

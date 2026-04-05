@@ -32,29 +32,29 @@ jobs:
 
       - name: Download boundary data
         run: |
-          python download_boundaries.py --detail BGC
+          python -m core.boundaries --detail BGC
 
       - name: Generate maps
         env:
           GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
         run: |
           # Get all season folders from geocoded_teams directory
-          SEASONS=$(ls -d geocoded_teams/*/ 2>/dev/null | xargs -n 1 basename | sort -r)
+          SEASONS=$(ls -d data/rugby/geocoded_teams/*/ 2>/dev/null | xargs -n 1 basename | sort -r)
 
           for season in $SEASONS; do
-            python calculate_team_distances.py --season=$season
+            python -m rugby.distances --season=$season
           done
 
           for season in $SEASONS; do
-            python make_tier_maps.py --no-debug --season=$season --production
+            python -m rugby.maps --no-debug --season=$season --production
           done
 
-          python team_pages.py --production
-          python generate_webpages.py --production
-          python generate_seo.py
+          python -m rugby.team_pages --production
+          python -m rugby.webpages --production
+          python -m rugby.seo
 
           # Football maps (not linked from index pages)
-          python football/make_map.py --production
+          python -m football.maps --production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -62,7 +62,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "tier_maps"
+          path: "dist"
 
   deploy:
     environment:

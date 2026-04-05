@@ -2,7 +2,7 @@
 
 import math
 
-from calculate_team_distances import distance
+from rugby.distances import distance
 
 
 class TestHaversineDistance:

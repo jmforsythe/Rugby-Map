@@ -14,21 +14,17 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import sys
-from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from utils import make_request
+from core import make_request
+from football import DATA_DIR
 
 _BASE_URL = "https://www.bslfl.co.uk"
 _CLUBS_URL = f"{_BASE_URL}/clubs"
 
-_SCRIPT_DIR = Path(__file__).parent
-_CLUB_CACHE_FILE = _SCRIPT_DIR / "club_directory_cache.json"
-_ADDRESS_CACHE_FILE = _SCRIPT_DIR / "club_address_cache.json"
+_CLUB_CACHE_FILE = DATA_DIR / "club_directory_cache.json"
+_ADDRESS_CACHE_FILE = DATA_DIR / "club_address_cache.json"
 
 _NAV_LINK_TEXTS = {
     "home",

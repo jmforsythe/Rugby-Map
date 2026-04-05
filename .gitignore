@@ -4,19 +4,27 @@
 __pycache__/
 ignore_folder/
 
-boundaries/
-distance_cache_folder/
-league_data/
-team_addresses/
-tier_maps/*
-!tier_maps/service-worker.js
-!tier_maps/styles.css
-!tier_maps/favicon.svg
-!tier_maps/manifest.json
-club_address_cache.json
-geocode_cache.json
+# Build output
+dist/*
+!dist/service-worker.js
+!dist/styles.css
+!dist/favicon.svg
+!dist/manifest.json
+
+# Data directories
+data/boundaries/
+data/caches/
+data/rugby/league_data/
+data/rugby/team_addresses/
+data/rugby/distance_cache/
+data/football/*
+data/scotland/*
 
 .cursor/*
 
 scotland/*
+!scotland/__init__.py
+!scotland/*.py
 football/*
+!football/__init__.py
+!football/*.py

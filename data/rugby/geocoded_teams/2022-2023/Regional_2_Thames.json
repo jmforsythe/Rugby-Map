@@ -1,0 +1,127 @@
+{
+  "league_name": "Regional 2 Thames",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39103&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Hammersmith & Fulham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9257",
+      "image_url": "https://images.englandrugby.com/club_images/9257.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
+    },
+    {
+      "name": "Amersham & Chiltern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581",
+      "image_url": "https://images.englandrugby.com/club_images/581.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650548
+    },
+    {
+      "name": "Cobham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5336",
+      "image_url": "https://images.englandrugby.com/club_images/5336.png",
+      "address": "Cobham Rugby Old Surbitonians Memorial Sports Ground Fairmile Lane Cobham KT11 2BU United Kingdom",
+      "latitude": 51.3401025,
+      "longitude": -0.3967178,
+      "formatted_address": "KT11 2BU, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350669772
+    },
+    {
+      "name": "Old Priorians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15922",
+      "image_url": "https://images.englandrugby.com/club_images/15922.png",
+      "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND ",
+      "latitude": 51.532942,
+      "longitude": -0.3287333,
+      "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422197
+    },
+    {
+      "name": "London Irish Wild Geese",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12579",
+      "image_url": "https://images.englandrugby.com/club_images/12579.png",
+      "address": "Hazelwood Drive, Green Street, Sunbury-on-thames, Middlesex, TW16 6QU, United Kingdom",
+      "latitude": 51.40733,
+      "longitude": -0.4202,
+      "formatted_address": "TW16 6QU, Sunbury-on-Thames, Surrey, England, United Kingdom",
+      "place_id": 351644829
+    },
+    {
+      "name": "London Cornish",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12508",
+      "image_url": "https://images.englandrugby.com/club_images/12508.png",
+      "address": "Richardson-Evans Memorial Playing Fields Roehampton Vale London SW15 3PQ UNITED KINGDOM",
+      "latitude": 51.4364034,
+      "longitude": -0.2530265,
+      "formatted_address": "SW15 3PQ, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 350839495
+    },
+    {
+      "name": "Aylesbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1123",
+      "image_url": "https://images.englandrugby.com/club_images/1123.png",
+      "address": "Ostler's Field Brook End Weston Turville Aylesbury Buckinghamshire HP22 5RN United Kingdom",
+      "latitude": 51.79431,
+      "longitude": -0.74905,
+      "formatted_address": "HP22 5RN, Weston Turville, Buckinghamshire, England, United Kingdom",
+      "place_id": 351361908
+    },
+    {
+      "name": "Fullerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8383",
+      "image_url": "https://images.englandrugby.com/club_images/8383.png",
+      "address": "Fullerians Rfc, Coningesby Drive, Watford, Hertfordshire, WD17 3PB, United Kingdom",
+      "latitude": 51.6688493,
+      "longitude": -0.4251706,
+      "formatted_address": "WD17 3PB, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 352135686
+    },
+    {
+      "name": "Belsize Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1941",
+      "image_url": "https://images.englandrugby.com/club_images/1941.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Old Haberdashers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15743",
+      "image_url": "https://images.englandrugby.com/club_images/15743.png",
+      "address": "Old Haberdashers Sports Ground Croxdale Road Theobald Street Borehamwood WD6 4PY United Kingdom",
+      "latitude": 51.6605027,
+      "longitude": -0.2831607,
+      "formatted_address": "WD6 4PY, Elstree and Borehamwood, Borehamwood, Hertsmere, Hertfordshire, England, United Kingdom",
+      "place_id": 352141214
+    },
+    {
+      "name": "Beaconsfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1701",
+      "image_url": "https://images.englandrugby.com/club_images/1701.png",
+      "address": "Oak Lodge, Windsor End, Beaconsfield, Buckinghamshire, HP9 2SQ, United Kingdom",
+      "latitude": 51.5974241,
+      "longitude": -0.6346292,
+      "formatted_address": "Oak Lodge, Windsor End, Beaconsfield Old Town, Beaconsfield, Beaconsfield and Chepping Wye Community Board, Buckinghamshire, England, HP9 2SQ, United Kingdom",
+      "place_id": 259564461
+    },
+    {
+      "name": "Windsor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25603",
+      "image_url": "https://images.englandrugby.com/club_images/25603.png",
+      "address": "Home Park Datchet Road Windsor BERKSHIRE SL4 6HX UNITED KINGDOM ",
+      "latitude": 51.48978,
+      "longitude": -0.60346,
+      "formatted_address": "SL4 6HX, Windsor, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 351932039
+    }
+  ],
+  "team_count": 12
+}

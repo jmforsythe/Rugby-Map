@@ -1,0 +1,57 @@
+{
+  "league_name": "Women's NC 3 South West (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=39239&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "North Dorset Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14698",
+      "image_url": "https://images.englandrugby.com/club_images/14698.png",
+      "address": "North Dorset R.F.C. Slaughtergate Longbury Hill Lane Gillingham DORSET SP8 5SY UNITED KINGDOM ",
+      "latitude": 51.04585,
+      "longitude": -2.3043,
+      "formatted_address": "SP8 5SY, Gillingham, Dorset, England, United Kingdom",
+      "place_id": 351969660
+    },
+    {
+      "name": "Swanage & Wareham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21498",
+      "image_url": "https://images.englandrugby.com/club_images/21498.png",
+      "address": "Swanage & Wareham R.F.C. Bestwall Wareham DORSET BH20 4HY UNITED KINGDOM ",
+      "latitude": 50.6870467,
+      "longitude": -2.1024113,
+      "formatted_address": "BH20 4HY, Wareham Town, Wareham, Dorset, England, United Kingdom",
+      "place_id": 350974927
+    },
+    {
+      "name": "Cheddar Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4465",
+      "image_url": "https://images.englandrugby.com/club_images/4465.png",
+      "address": "Cheddar Valley Rugby Club Sharpham Road Cheddar Somerset BS27 3DR United Kingdom",
+      "latitude": 51.2783991,
+      "longitude": -2.7933316,
+      "formatted_address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, England, BS27 3DR, United Kingdom",
+      "place_id": 261542605
+    },
+    {
+      "name": "Trowbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124598",
+      "image_url": "https://images.englandrugby.com/club_images/124598.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM",
+      "latitude": 51.3255277,
+      "longitude": -2.1780799,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 260663007
+    },
+    {
+      "name": "Christchurch Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124712",
+      "image_url": "https://images.englandrugby.com/club_images/124712.png",
+      "address": "East Christchurch Sports & Social Club Grange Road Christchurch Dorset BH23 4JD United Kingdom",
+      "latitude": 50.7395,
+      "longitude": -1.73794,
+      "formatted_address": "BH23 4JD, Highcliffe and Walkford, Highcliffe-on-Sea, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350977892
+    }
+  ],
+  "team_count": 5
+}

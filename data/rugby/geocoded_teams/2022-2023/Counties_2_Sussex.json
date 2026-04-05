@@ -1,0 +1,107 @@
+{
+  "league_name": "Counties 2 Sussex",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=39123&season=2022-2023#tables",
+  "teams": [
+    {
+      "name": "Eastbourne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7209",
+      "image_url": "https://images.englandrugby.com/club_images/7209.png",
+      "address": "Eastbourne R.f.c., Park Avenue, Hampden Park, Eastbourne, East Sussex, BN22 9QN, United Kingdom",
+      "latitude": 50.79167,
+      "longitude": 0.26695,
+      "formatted_address": "BN22 9QN, Eastbourne, East Sussex, England, United Kingdom",
+      "place_id": 351001620
+    },
+    {
+      "name": "East Grinstead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7134",
+      "image_url": "https://images.englandrugby.com/club_images/7134.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "Pulborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17255",
+      "image_url": "https://images.englandrugby.com/club_images/17255.png",
+      "address": "Freelands Pulborough Road Cootham, Pulborough WEST SUSSEX RH20 4HP UNITED KINGDOM ",
+      "latitude": 50.9240461,
+      "longitude": -0.4736388,
+      "formatted_address": "RH20 4HP, Storrington and Sullington, Storrington, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 350799028
+    },
+    {
+      "name": "Uckfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
+      "image_url": "https://images.englandrugby.com/club_images/23445.png",
+      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
+      "latitude": 50.9786097,
+      "longitude": 0.1106363,
+      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
+      "place_id": 350852767
+    },
+    {
+      "name": "Shoreham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19257",
+      "image_url": "https://images.englandrugby.com/club_images/19257.png",
+      "address": "9 Buckingham Park, Upper Shoreham Road, Shoreham By Sea, Wsuss, BN43 6BA, United Kingdom",
+      "latitude": 50.8403059,
+      "longitude": -0.2685126,
+      "formatted_address": "BN43 6BA, Adur, West Sussex, England, United Kingdom",
+      "place_id": 350502771
+    },
+    {
+      "name": "Burgess Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3659",
+      "image_url": "https://images.englandrugby.com/club_images/3659.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
+    },
+    {
+      "name": "Seaford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868",
+      "image_url": "https://images.englandrugby.com/club_images/18868.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.7728411,
+      "longitude": 0.0940214,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    },
+    {
+      "name": "Crawley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5807",
+      "image_url": "https://images.englandrugby.com/club_images/5807.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    },
+    {
+      "name": "Lewes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12206",
+      "image_url": "https://images.englandrugby.com/club_images/12206.png",
+      "address": "The Club House, Stanley Turner Ground, Kingston Road, Lewes, BN7 3NB, United Kingdom",
+      "latitude": 50.8641657,
+      "longitude": -0.0050339,
+      "formatted_address": "BN7 3NB, Lewes, East Sussex, England, BN7 3NB, United Kingdom",
+      "place_id": 409471522
+    }
+  ],
+  "team_count": 10
+}

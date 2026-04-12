@@ -94,6 +94,7 @@ class Fixture(TypedDict):
     match_url: str  # match-centre-community URL
     home_score: NotRequired[int | None]
     away_score: NotRequired[int | None]
+    status: NotRequired[str]  # non-numeric outcome: "HWO", "AWO", etc.
 
 
 class FixtureLeague(TypedDict):

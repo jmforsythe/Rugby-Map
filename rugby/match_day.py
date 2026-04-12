@@ -127,11 +127,26 @@ def load_all_fixtures(season: str) -> dict[str, list[tuple[Fixture, str, str]]]:
 # ---------------------------------------------------------------------------
 
 
+_STATUS_LABELS: dict[str, str] = {
+    "HWO": "Home walkover",
+    "AWO": "Away walkover",
+}
+
+
 def _format_centre_display(fixture: Fixture) -> str:
     """Return the HTML for the centre element between crests in the popup.
 
-    Shows the scoreline for completed results, or kick-off time for fixtures.
+    Shows the scoreline for completed results, status for walkovers, or
+    kick-off time for upcoming fixtures.
     """
+    status = fixture.get("status")
+    if status:
+        label = _STATUS_LABELS.get(status, status)
+        return (
+            f'<div style="font-size:16px;font-weight:bold;letter-spacing:1px">'
+            f"{escape(status)}</div>"
+            f'<div style="font-size:10px;color:#888;text-transform:uppercase">{escape(label)}</div>'
+        )
     home_score = fixture.get("home_score")
     away_score = fixture.get("away_score")
     if home_score is not None and away_score is not None:
@@ -140,7 +155,7 @@ def _format_centre_display(fixture: Fixture) -> str:
             f"{home_score} - {away_score}</div>"
             f'<div style="font-size:10px;color:#888;text-transform:uppercase">Full time</div>'
         )
-    time_text = fixture.get("time") or "TBC"
+    time_text = fixture.get("time") or "    "
     return f'<div style="font-size:18px;font-weight:bold">{escape(time_text)}</div>'
 
 
@@ -245,7 +260,15 @@ def build_match_day_map(
         logger.warning("No fixtures to map")
         return
 
-    generated_at = datetime.now()
+    ts_path = DATA_DIR / "fixture_data" / season / "last_updated.txt"
+    if ts_path.exists():
+        try:
+            generated_at = datetime.fromisoformat(ts_path.read_text(encoding="utf-8").strip())
+        except ValueError:
+            logger.warning("Could not parse timestamp from %s, using now()", ts_path)
+            generated_at = datetime.now()
+    else:
+        generated_at = datetime.now()
 
     m = folium.Map(
         location=[52.5, -1.5],
@@ -325,7 +348,8 @@ def build_match_day_map(
         result_count = sum(
             1
             for f, *_ in resolved
-            if f.get("home_score") is not None and f.get("away_score") is not None
+            if (f.get("home_score") is not None and f.get("away_score") is not None)
+            or f.get("status")
         )
 
         fg = folium.FeatureGroup(name=f"date_{date_iso}", show=False, overlay=True)
@@ -406,10 +430,13 @@ def build_match_day_map(
 
             home_score = fixture.get("home_score")
             away_score = fixture.get("away_score")
-            if home_score is not None and away_score is not None:
+            status = fixture.get("status")
+            if status:
+                tooltip_detail = status
+            elif home_score is not None and away_score is not None:
                 tooltip_detail = f"{home_score}-{away_score}"
             else:
-                tooltip_detail = fixture["time"] or "TBC"
+                tooltip_detail = fixture["time"] or ""
 
             marker = folium.Marker(
                 location=[lat, lng],

@@ -127,12 +127,21 @@ def scrape_fixtures_from_league(league_url: str, league_name: str) -> list[Fixtu
     return fixtures
 
 
-def _parse_score_links(score_div: Tag) -> tuple[int | None, int | None, str]:
-    """Extract home/away scores and match URL from a result card's fnr-scores div.
+_WALKOVER_PATTERNS: dict[str, str] = {
+    "HWO": "HWO",
+    "AWO": "AWO",
+    "H/W": "HWO",
+    "A/W": "AWO",
+}
 
-    Score links use ``coh-style-numeric-right`` / ``coh-style-numeric-score``
-    classes (order varies between elite and community pages), but document
-    order is always home first, away second.
+
+def _parse_score_links(
+    score_div: Tag,
+) -> tuple[int | None, int | None, str, str]:
+    """Extract home/away scores, match URL, and status from a result card.
+
+    Returns ``(home_score, away_score, match_url, status)`` where *status*
+    is non-empty for walkover/special outcomes (e.g. ``"HWO"``, ``"AWO"``).
     """
     score_links = score_div.find_all(
         "a",
@@ -140,19 +149,27 @@ def _parse_score_links(score_div: Tag) -> tuple[int | None, int | None, str]:
         and ("coh-style-numeric-right" in c or "coh-style-numeric-score" in c),
     )
     if len(score_links) < 2:
-        return None, None, ""
+        return None, None, "", ""
 
     home_text = score_links[0].get_text(strip=True)
     away_text = score_links[1].get_text(strip=True)
     match_href = score_links[0].get("href", "")
+    match_url = _abs_url(match_href) if match_href else ""
+
+    combined = f"{home_text}/{away_text}".upper()
+    for pattern, status in _WALKOVER_PATTERNS.items():
+        if pattern in home_text.upper() or pattern in away_text.upper() or pattern in combined:
+            return None, None, match_url, status
 
     try:
         home_score = int(home_text)
         away_score = int(away_text)
     except ValueError:
-        return None, None, _abs_url(match_href) if match_href else ""
+        raw = f"{home_text} - {away_text}"
+        logger.debug("Non-numeric score text: %r", raw)
+        return None, None, match_url, raw
 
-    return home_score, away_score, _abs_url(match_href) if match_href else ""
+    return home_score, away_score, match_url, ""
 
 
 def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
@@ -165,12 +182,13 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
         return None
 
     time_link = score_div.find("a", class_="coh-style-comp-time")
-    home_score, away_score, score_match_url = _parse_score_links(score_div)
+    home_score, away_score, score_match_url, status = _parse_score_links(score_div)
     vs_div = score_div.find("div", class_="coh-style-comp-versace") if not time_link else None
 
     is_fixture = time_link is not None or vs_div is not None
     is_result = home_score is not None and away_score is not None
-    if not is_fixture and not is_result:
+    has_status = bool(status)
+    if not is_fixture and not is_result and not has_status:
         return None
 
     kick_off = time_link.get_text(strip=True) if time_link else ""
@@ -215,6 +233,8 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     if is_result:
         fixture["home_score"] = home_score
         fixture["away_score"] = away_score
+    if has_status:
+        fixture["status"] = status
     return fixture
 
 
@@ -241,6 +261,14 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
     return leagues
 
 
+def _write_timestamp(output_dir: Path) -> None:
+    """Write an ISO timestamp to ``last_updated.txt`` inside *output_dir*."""
+    ts_path = output_dir / "last_updated.txt"
+    ts_path.parent.mkdir(parents=True, exist_ok=True)
+    ts_path.write_text(datetime.now().isoformat(), encoding="utf-8")
+    logger.info("Wrote timestamp to %s", ts_path)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Scrape RFU fixtures for a season.")
     parser.add_argument(
@@ -264,6 +292,10 @@ def main() -> None:
     logger.info("Found %d leagues in geocoded_teams/%s/", len(leagues), season)
 
     output_dir = DATA_DIR / "fixture_data" / season
+    error_log_path = output_dir / "scrape_errors.log"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    errors: list[str] = []
+
     scraped = 0
     skipped = 0
 
@@ -282,7 +314,18 @@ def main() -> None:
             raise
         except Exception:
             logger.exception("Failed to scrape fixtures for %s", league_name)
+            errors.append(f"SCRAPE_ERROR | {league_name} | {league_url}")
             continue
+
+        status_fixtures = [f for f in fixtures if f.get("status")]
+        for sf in status_fixtures:
+            logger.info(
+                "  Status match: %s (%s vs %s on %s)",
+                sf.get("status"),
+                sf["home_team_id"],
+                sf["away_team_id"],
+                sf["date"],
+            )
 
         fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
 
@@ -303,6 +346,16 @@ def main() -> None:
 
         scraped += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
+
+    if errors:
+        error_log_path.write_text(
+            "\n".join([f"# Scrape run {datetime.now().isoformat()}", *errors, ""]),
+            encoding="utf-8",
+        )
+        logger.warning("Wrote %d errors to %s", len(errors), error_log_path)
+
+    if args.force:
+        _write_timestamp(output_dir)
 
     logger.info(
         "Complete! Scraped %d leagues, skipped %d. Output in %s",

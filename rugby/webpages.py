@@ -221,6 +221,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
 
     teams_href = "./teams/" if is_prod else "./teams/index.html"
     match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
+    custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -254,6 +255,10 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         <a class="hero-card" href="{teams_href}">
             <span class="hero-card__label">Browse</span>
             <span class="hero-card__title">All Teams</span>
+        </a>
+        <a class="hero-card" href="{custom_map_href}">
+            <span class="hero-card__label">Build</span>
+            <span class="hero-card__title">Custom Map</span>
         </a>
     </div>
 """

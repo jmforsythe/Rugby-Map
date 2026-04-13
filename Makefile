@@ -1,6 +1,6 @@
 SEASON ?= 2025-2026
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances maps pages webpages all scrape-fixtures match-day test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances maps pages webpages custom-map-data all scrape-fixtures match-day test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -19,6 +19,7 @@ help:
 	@echo "  all          Run the full pipeline (scrape -> maps)"
 	@echo "  scrape-fixtures  Scrape fixtures from RFU (local only)"
 	@echo "  match-day    Generate match-day map with date dropdown"
+	@echo "  custom-map-data  Export team catalogue for custom map builder"
 	@echo "  test         Run unit tests"
 	@echo "  lint         Run linters"
 	@echo "  clean        Remove generated output files"
@@ -53,7 +54,10 @@ pages:
 webpages:
 	python -m rugby.webpages
 
-all: scrape addresses geocode distances maps pages webpages
+custom-map-data:
+	python -m rugby.custom_map
+
+all: scrape addresses geocode distances maps pages webpages custom-map-data
 
 scrape-fixtures:
 	python -m rugby.fixtures --season $(SEASON)

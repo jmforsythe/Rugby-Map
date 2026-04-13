@@ -704,8 +704,8 @@
         <div id="map"></div>
         <div class="territory-panel" id="territoryPanel">
           <div class="territory-panel-header" id="territoryPanelHeader">
-            <input type="checkbox" id="voronoiCheck" checked />
-            <label for="voronoiCheck">Territories</label>
+            <input type="checkbox" id="territoryCheck" checked />
+            <label for="territoryCheck">Territories</label>
             <span class="territory-panel-toggle">&#9654;</span>
           </div>
           <div class="territory-panel-body">
@@ -716,6 +716,7 @@
                 <option value="itl2" selected>Sub-region</option>
                 <option value="itl3">County</option>
                 <option value="lad">District</option>
+                <option value="ward">Ward</option>
               </select>
             </div>
             <div class="tp-row">
@@ -723,8 +724,9 @@
               <select id="floorLevel" title="Smallest region size used to split contested areas — the finest brush">
                 <option value="itl1">Region</option>
                 <option value="itl2">Sub-region</option>
-                <option value="itl3" selected>County</option>
+                <option value="itl3">County</option>
                 <option value="lad">District</option>
+                <option value="ward" selected>Ward</option>
               </select>
             </div>
             <div class="tp-row">
@@ -833,12 +835,10 @@
 
       const FALLBACK_ICON =
         "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";
-      const ENGLAND_BBOX = [-6.5, 49.8, 2.1, 56.0];
-
       let allTeams = [];
       let leagues = [];
       let nextLeagueId = 1;
-      let map, markersGroup, territoryLayer;
+      let map, boundaryOutlineLayer, territoryLayer, markersGroup;
       let territoriesVisible = true;
       let boundariesReady = false;
       let cachedAllPlaced = [];
@@ -892,9 +892,53 @@
             maxZoom: 19,
           },
         ).addTo(map);
-        markersGroup = L.layerGroup().addTo(map);
+        boundaryOutlineLayer = L.layerGroup().addTo(map);
         territoryLayer = L.layerGroup().addTo(map);
+        markersGroup = L.layerGroup().addTo(map);
       }
+
+      // ── Boundary outlines (always visible, like regular maps) ──
+      function addBoundaryOutlines() {
+        if (!boundariesReady || typeof BOUNDARIES === "undefined") return;
+        boundaryOutlineLayer.clearLayers();
+        const bd = BOUNDARIES;
+        const isDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+
+        const itl1Style = {
+          fillColor: isDark ? "darkgray" : "lightgray",
+          color: isDark ? "#ccc" : "black",
+          weight: 2,
+          fillOpacity: 0.1,
+        };
+        for (const name of Object.keys(bd.itl1 || {})) {
+          L.geoJSON(bd.itl1[name].geom, { style: itl1Style }).addTo(
+            boundaryOutlineLayer,
+          );
+        }
+
+        const itlStyle = {
+          fillColor: "transparent",
+          color: isDark ? "lightgray" : "gray",
+          weight: 0.5,
+          fillOpacity: 0,
+          opacity: 0.4,
+        };
+        for (const level of ["itl2", "itl3"]) {
+          for (const name of Object.keys(bd[level] || {})) {
+            L.geoJSON(bd[level][name].geom, { style: itlStyle }).addTo(
+              boundaryOutlineLayer,
+            );
+          }
+        }
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", function () {
+          addBoundaryOutlines();
+        });
 
       // ── Rendering ──────────────────────────────────────────────
       function renderMarkers() {
@@ -1005,22 +1049,17 @@
       }
 
       function restyleTerritories() {
+        const update = {
+          fillOpacity: territoryFillOpacity,
+          weight: territoryBorderWeight,
+          opacity: territoryFillOpacity,
+        };
         territoryLayer.eachLayer(function (layer) {
           if (layer.setStyle) {
-            layer.setStyle({
-              fillOpacity: territoryFillOpacity,
-              weight: territoryBorderWeight,
-              opacity: territoryFillOpacity,
-            });
+            layer.setStyle(update);
           } else if (layer.eachLayer) {
             layer.eachLayer(function (sub) {
-              if (sub.setStyle) {
-                sub.setStyle({
-                  fillOpacity: territoryFillOpacity,
-                  weight: territoryBorderWeight,
-                  opacity: territoryFillOpacity,
-                });
-              }
+              if (sub.setStyle) sub.setStyle(update);
             });
           }
         });
@@ -1029,17 +1068,93 @@
       // ── ITL Region Territory Algorithm ─────────────────────────
       // Port of _collect_group_geometries from core/map_builder.py
 
-      const LEVELS = ["itl1", "itl2", "itl3", "lad"];
-      const LEVEL_IDX = { itl1: 0, itl2: 1, itl3: 2, lad: 3 };
-      const NEXT_LEVEL = { itl1: "itl2", itl2: "itl3", itl3: "lad" };
-      const TEAM_REGION_KEY = { itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl" };
-      const CHILD_MAP_KEY = { itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads" };
+      const LEVELS = ["itl1", "itl2", "itl3", "lad", "ward"];
+      const LEVEL_IDX = { itl1: 0, itl2: 1, itl3: 2, lad: 3, ward: 4 };
+      const NEXT_LEVEL = { itl1: "itl2", itl2: "itl3", itl3: "lad", lad: "ward" };
+      const TEAM_REGION_KEY = { itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl", ward: "rw" };
+      const CHILD_MAP_KEY = { itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads", lad: "lad_to_wards" };
 
       let ENTRY_LEVEL = "itl2";
-      let FLOOR_LEVEL = "itl3";
+      let FLOOR_LEVEL = "ward";
       let FLOOR_IDX = LEVEL_IDX[FLOOR_LEVEL];
       let territoryFillOpacity = 0.6;
       let territoryBorderWeight = 1;
+
+      function createBoundedVoronoi(items, boundaryGeom) {
+        if (items.length < 2) return [];
+        var points = turf.featureCollection(
+          items.map(function (it) {
+            return turf.point([it.team.lng, it.team.lat]);
+          }),
+        );
+        var bbox = turf.bbox(
+          boundaryGeom.type === "Feature"
+            ? boundaryGeom
+            : turf.feature(boundaryGeom),
+        );
+        var pad = Math.max(bbox[2] - bbox[0], bbox[3] - bbox[1]);
+        var paddedBox = [
+          bbox[0] - pad,
+          bbox[1] - pad,
+          bbox[2] + pad,
+          bbox[3] + pad,
+        ];
+        var voronoiPolys;
+        try {
+          voronoiPolys = turf.voronoi(points, { bbox: paddedBox });
+        } catch (_) {
+          return [];
+        }
+        if (
+          !voronoiPolys ||
+          !voronoiPolys.features ||
+          voronoiPolys.features.length !== items.length
+        )
+          return [];
+
+        var boundaryFeat =
+          boundaryGeom.type === "Feature"
+            ? boundaryGeom
+            : turf.feature(boundaryGeom);
+        var cellsByColor = {};
+        for (var i = 0; i < items.length; i++) {
+          var cell = voronoiPolys.features[i];
+          if (!cell || !cell.geometry) continue;
+          var clipped;
+          try {
+            clipped = turf.intersect(
+              turf.featureCollection([cell, boundaryFeat]),
+            );
+          } catch (_) {
+            continue;
+          }
+          if (!clipped || !clipped.geometry) continue;
+          var color = items[i].league.color;
+          if (!cellsByColor[color]) cellsByColor[color] = [];
+          cellsByColor[color].push(clipped);
+        }
+
+        var result = [];
+        for (var color in cellsByColor) {
+          var cells = cellsByColor[color];
+          if (cells.length === 1) {
+            result.push({ geom: cells[0].geometry, color: color });
+          } else {
+            try {
+              var merged = turf.union(turf.featureCollection(cells));
+              if (merged)
+                result.push({ geom: merged.geometry, color: color });
+              else
+                for (var j = 0; j < cells.length; j++)
+                  result.push({ geom: cells[j].geometry, color: color });
+            } catch (_) {
+              for (var j = 0; j < cells.length; j++)
+                result.push({ geom: cells[j].geometry, color: color });
+            }
+          }
+        }
+        return result;
+      }
 
       function closestGroup(items, centroid) {
         if (!items.length) return null;
@@ -1058,7 +1173,7 @@
       }
 
       function buildRegionIndex(allPlaced) {
-        const idx = { itl1: {}, itl2: {}, itl3: {}, lad: {} };
+        const idx = { itl1: {}, itl2: {}, itl3: {}, lad: {}, ward: {} };
         for (const p of allPlaced) {
           for (const level of LEVELS) {
             const key = p.team[TEAM_REGION_KEY[level]];
@@ -1112,13 +1227,23 @@
 
         const childLevel = NEXT_LEVEL[level];
         if (!childLevel) {
-          return voronoiFallback(itemsHere, regionData.geom);
+          const vcells = createBoundedVoronoi(itemsHere, regionData.geom);
+          if (vcells.length) return vcells;
+          const fb = closestGroup(itemsHere, regionData.centroid);
+          if (!fb) return [];
+          const [color] = fb.split("|");
+          return [{ geom: regionData.geom, color }];
         }
 
         const childMapName = CHILD_MAP_KEY[level];
         const childKeys = (bd[childMapName] || {})[regionKey] || [];
         if (!childKeys.length) {
-          return voronoiFallback(itemsHere, regionData.geom);
+          const vcells = createBoundedVoronoi(itemsHere, regionData.geom);
+          if (vcells.length) return vcells;
+          const fb = closestGroup(itemsHere, regionData.centroid);
+          if (!fb) return [];
+          const [color] = fb.split("|");
+          return [{ geom: regionData.geom, color }];
         }
 
         const result = [];
@@ -1155,61 +1280,100 @@
         return result;
       }
 
-      function voronoiFallback(items, boundaryGeom) {
-        if (items.length < 2) {
-          return [{ geom: boundaryGeom, color: items[0].league.color }];
-        }
-        try {
-          const points = turf.featureCollection(
-            items.map((p) => {
-              const feat = turf.point([p.team.lng, p.team.lat]);
-              feat.properties._color = p.league.color;
-              return feat;
-            }),
-          );
-          const boundary =
-            typeof boundaryGeom.coordinates !== "undefined"
-              ? turf.feature(boundaryGeom)
-              : boundaryGeom;
-          const bbox = turf.bbox(boundary);
-          const voronoi = turf.voronoi(points, { bbox });
-          if (!voronoi)
-            return [{ geom: boundaryGeom, color: items[0].league.color }];
+      function removeSmallHoles(geojsonGeom) {
+        // Mirrors Python's remove_small_holes (min_hole_area = 1e-4 in degrees²)
+        var MIN_HOLE_DEG2 = 1e-4;
+        if (!geojsonGeom) return geojsonGeom;
 
-          const result = [];
-          for (let i = 0; i < voronoi.features.length; i++) {
-            const f = voronoi.features[i];
-            if (!f) continue;
-            try {
-              const clipped = turf.intersect(
-                turf.featureCollection([f, boundary]),
-              );
-              if (clipped) {
-                result.push({
-                  geom: clipped.geometry,
-                  color: items[i].league.color,
-                });
-              }
-            } catch (_) {
-              result.push({ geom: f.geometry, color: items[i].league.color });
+        function filterHoles(polyCoords) {
+          if (polyCoords.length <= 1) return polyCoords;
+          var filtered = [polyCoords[0]];
+          for (var i = 1; i < polyCoords.length; i++) {
+            var ring = polyCoords[i];
+            // Shoelace formula for area in degrees² (same unit as Python's Shapely check)
+            var area = 0;
+            for (var j = 0; j < ring.length - 1; j++) {
+              area += (ring[j + 1][0] - ring[j][0]) * (ring[j + 1][1] + ring[j][1]);
+            }
+            if (Math.abs(area / 2) >= MIN_HOLE_DEG2) {
+              filtered.push(ring);
             }
           }
-          return result;
-        } catch (_) {
-          return [{ geom: boundaryGeom, color: items[0].league.color }];
+          return filtered;
         }
+
+        if (geojsonGeom.type === "Polygon") {
+          return { type: "Polygon", coordinates: filterHoles(geojsonGeom.coordinates) };
+        }
+        if (geojsonGeom.type === "MultiPolygon") {
+          return {
+            type: "MultiPolygon",
+            coordinates: geojsonGeom.coordinates.map(filterHoles),
+          };
+        }
+        return geojsonGeom;
+      }
+
+      function simplifyForUnion(feat) {
+        // Mirrors Python: g.simplify(0.001, preserve_topology=True) before unary_union
+        try {
+          return turf.simplify(feat, { tolerance: 0.001, highQuality: true });
+        } catch (_) {
+          return feat;
+        }
+      }
+
+      function mergeCellsByColor(cells) {
+        const byColor = {};
+        for (const cell of cells) {
+          if (!byColor[cell.color]) byColor[cell.color] = [];
+          byColor[cell.color].push(cell.geom);
+        }
+        const merged = [];
+        for (const [color, geoms] of Object.entries(byColor)) {
+          if (geoms.length === 1) {
+            merged.push({ geom: removeSmallHoles(geoms[0]), color });
+            continue;
+          }
+          try {
+            var features = geoms.map(function (g) {
+              var f = g.type === "Feature" ? g : turf.feature(g);
+              return simplifyForUnion(f);
+            });
+            const fc = turf.featureCollection(features);
+            const union = turf.union(fc);
+            if (union) {
+              merged.push({ geom: removeSmallHoles(union.geometry), color });
+            } else {
+              for (const g of geoms) merged.push({ geom: g, color });
+            }
+          } catch (_) {
+            for (const g of geoms) merged.push({ geom: g, color });
+          }
+        }
+        return merged;
+      }
+
+      function addTerritoryCell(geom, color) {
+        L.geoJSON(geom, {
+          style: {
+            fillColor: color,
+            fillOpacity: territoryFillOpacity,
+            color: color,
+            weight: territoryBorderWeight,
+            opacity: territoryFillOpacity,
+          },
+        }).addTo(territoryLayer);
       }
 
       function renderTerritories(allPlaced) {
         territoryLayer.clearLayers();
         if (!territoriesVisible || allPlaced.length < 1) return;
 
-        if (!boundariesReady || typeof BOUNDARIES === "undefined") {
-          renderVoronoiFallbackGlobal(allPlaced);
-          return;
-        }
+        if (!boundariesReady || typeof BOUNDARIES === "undefined") return;
 
         const regionIdx = buildRegionIndex(allPlaced);
+        const allCells = [];
 
         const entryRegions = regionIdx[ENTRY_LEVEL];
         for (const regionKey of Object.keys(entryRegions)) {
@@ -1219,46 +1383,11 @@
             entryRegions[regionKey],
             regionIdx,
           );
-          for (const cell of cells) {
-            L.geoJSON(cell.geom, {
-              style: {
-                fillColor: cell.color,
-                fillOpacity: territoryFillOpacity,
-                color: cell.color,
-                weight: territoryBorderWeight,
-                opacity: territoryFillOpacity,
-              },
-            }).addTo(territoryLayer);
-          }
+          allCells.push(...cells);
         }
-      }
 
-      function renderVoronoiFallbackGlobal(allPlaced) {
-        if (allPlaced.length < 2) return;
-        try {
-          const points = turf.featureCollection(
-            allPlaced.map((p) =>
-              turf.point([p.team.lng, p.team.lat], { _color: p.league.color }),
-            ),
-          );
-          const voronoi = turf.voronoi(points, { bbox: ENGLAND_BBOX });
-          if (!voronoi) return;
-          for (let i = 0; i < voronoi.features.length; i++) {
-            const f = voronoi.features[i];
-            if (!f) continue;
-            const color = allPlaced[i].league.color;
-            L.geoJSON(f, {
-              style: {
-                fillColor: color,
-                fillOpacity: territoryFillOpacity,
-                color: color,
-                weight: territoryBorderWeight,
-                opacity: territoryFillOpacity,
-              },
-            }).addTo(territoryLayer);
-          }
-        } catch (_) {
-          /* turf.voronoi can throw on degenerate inputs */
+        for (const cell of mergeCellsByColor(allCells)) {
+          addTerritoryCell(cell.geom, cell.color);
         }
       }
 
@@ -2011,7 +2140,7 @@
           });
         });
       document
-        .getElementById("voronoiCheck")
+        .getElementById("territoryCheck")
         .addEventListener("change", function (e) {
           e.stopPropagation();
           territoriesVisible = this.checked;
@@ -2020,7 +2149,7 @@
       document
         .getElementById("territoryPanelHeader")
         .addEventListener("click", function (e) {
-          if (e.target.id === "voronoiCheck" || e.target.tagName === "LABEL")
+          if (e.target.id === "territoryCheck" || e.target.tagName === "LABEL")
             return;
           document
             .getElementById("territoryPanel")
@@ -2070,6 +2199,7 @@
       }
       function onBoundariesLoaded() {
         boundariesReady = true;
+        addBoundaryOutlines();
         if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
       }
     </script>

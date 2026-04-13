@@ -27,14 +27,17 @@ GEOCODED_DIR = DATA_DIR / "geocoded_teams"
 DISTANCE_CACHE_DIR = DATA_DIR / "distance_cache"
 OUTPUT_DIR = DIST_DIR / "custom-map"
 
-SIMPLIFY_TOLERANCE = 0.005
+SIMPLIFY_TOLERANCE = 0.001
 
 BOUNDARY_PATHS = {
     "itl1": BOUNDARIES_DIR / "ITL_1.geojson",
     "itl2": BOUNDARIES_DIR / "ITL_2.geojson",
     "itl3": BOUNDARIES_DIR / "ITL_3.geojson",
     "lad": BOUNDARIES_DIR / "local_authority_districts.geojson",
+    "wards": BOUNDARIES_DIR / "wards.geojson",
 }
+
+WARD_SIMPLIFY_TOLERANCE = 0.001
 
 # ITL code prefixes for England + Crown Dependencies
 _ENGLAND_ITL_PREFIXES = frozenset(
@@ -43,7 +46,7 @@ _ENGLAND_ITL_PREFIXES = frozenset(
 
 
 # ---------------------------------------------------------------------------
-# Boundary loading (lightweight, no wards)
+# Boundary loading
 # ---------------------------------------------------------------------------
 
 
@@ -94,13 +97,37 @@ def _load_lad_regions(path: Path) -> dict[str, dict]:
     return regions
 
 
+def _load_ward_regions(path: Path) -> tuple[dict[str, dict], dict[str, str | None]]:
+    """Load ward regions keyed by ward code, plus ward→LAD parent mapping."""
+    data = _load_geojson(path)
+    regions: dict[str, dict] = {}
+    ward_to_lad: dict[str, str | None] = {}
+    for feat in data["features"]:
+        props = feat["properties"]
+        code = props.get("WD25CD", "")
+        name = props.get("WD25NM", "")
+        if not code:
+            continue
+        geom = shape(feat["geometry"])
+        regions[code] = {
+            "name": name,
+            "code": code,
+            "geom": geom,
+            "prepared": prep(geom),
+            "centroid": geom.centroid,
+        }
+        ward_to_lad[code] = props.get("LAD25CD")
+    return regions, ward_to_lad
+
+
 def _build_hierarchy(
     itl1_regions: dict[str, dict],
     itl2_regions: dict[str, dict],
     itl3_regions: dict[str, dict],
     lad_regions: dict[str, dict],
-) -> tuple[dict[str, list[str]], dict[str, list[str]], dict[str, list[str]]]:
-    """Build downward hierarchy maps: itl1→itl2s, itl2→itl3s, itl3→lads."""
+    ward_to_lad: dict[str, str | None] | None = None,
+) -> tuple[dict[str, list[str]], dict[str, list[str]], dict[str, list[str]], dict[str, list[str]]]:
+    """Build downward hierarchy maps: itl1→itl2s, itl2→itl3s, itl3→lads, lad→wards."""
     itl1_by_code = {r["code"]: r["name"] for r in itl1_regions.values() if r["code"]}
     itl2_by_code = {r["code"]: r["name"] for r in itl2_regions.values() if r["code"]}
 
@@ -148,7 +175,13 @@ def _build_hierarchy(
                 itl3_to_lads.setdefault(itl3_name, []).append(lad_code)
                 break
 
-    return itl2_to_itl3s, itl3_to_lads, itl1_to_itl2s
+    lad_to_wards: dict[str, list[str]] = {}
+    if ward_to_lad:
+        for ward_code, parent_lad in ward_to_lad.items():
+            if parent_lad and parent_lad in lad_regions:
+                lad_to_wards.setdefault(parent_lad, []).append(ward_code)
+
+    return itl2_to_itl3s, itl3_to_lads, itl1_to_itl2s, lad_to_wards
 
 
 def _assign_team_regions(
@@ -158,11 +191,13 @@ def _assign_team_regions(
     itl2_regions: dict[str, dict],
     itl3_regions: dict[str, dict],
     lad_regions: dict[str, dict],
+    ward_regions: dict[str, dict],
     itl1_to_itl2s: dict[str, list[str]],
     itl2_to_itl3s: dict[str, list[str]],
     itl3_to_lads: dict[str, list[str]],
-) -> tuple[str | None, str | None, str | None, str | None]:
-    """Point-in-polygon assignment: returns (itl1_name, itl2_name, itl3_name, lad_code)."""
+    lad_to_wards: dict[str, list[str]],
+) -> tuple[str | None, str | None, str | None, str | None, str | None]:
+    """Point-in-polygon assignment: returns (itl1_name, itl2_name, itl3_name, lad_code, ward_code)."""
     point = Point(lng, lat)
 
     found_itl1 = None
@@ -171,7 +206,7 @@ def _assign_team_regions(
             found_itl1 = itl1["name"]
             break
     if not found_itl1:
-        return None, None, None, None
+        return None, None, None, None, None
 
     found_itl2 = None
     for itl2_name in itl1_to_itl2s.get(found_itl1, []):
@@ -179,7 +214,7 @@ def _assign_team_regions(
             found_itl2 = itl2_name
             break
     if not found_itl2:
-        return found_itl1, None, None, None
+        return found_itl1, None, None, None, None
 
     found_itl3 = None
     for itl3_name in itl2_to_itl3s.get(found_itl2, []):
@@ -187,7 +222,7 @@ def _assign_team_regions(
             found_itl3 = itl3_name
             break
     if not found_itl3:
-        return found_itl1, found_itl2, None, None
+        return found_itl1, found_itl2, None, None, None
 
     found_lad = None
     for lad_code in itl3_to_lads.get(found_itl3, []):
@@ -195,8 +230,17 @@ def _assign_team_regions(
         if lad and lad["prepared"].contains(point):
             found_lad = lad_code
             break
+    if not found_lad:
+        return found_itl1, found_itl2, found_itl3, None, None
 
-    return found_itl1, found_itl2, found_itl3, found_lad
+    found_ward = None
+    for ward_code in lad_to_wards.get(found_lad, []):
+        ward = ward_regions.get(ward_code)
+        if ward and ward["prepared"].contains(point):
+            found_ward = ward_code
+            break
+
+    return found_itl1, found_itl2, found_itl3, found_lad, found_ward
 
 
 # ---------------------------------------------------------------------------
@@ -223,9 +267,11 @@ def _collect_teams(
     itl2_regions: dict[str, dict],
     itl3_regions: dict[str, dict],
     lad_regions: dict[str, dict],
+    ward_regions: dict[str, dict],
     itl1_to_itl2s: dict[str, list[str]],
     itl2_to_itl3s: dict[str, list[str]],
     itl3_to_lads: dict[str, list[str]],
+    lad_to_wards: dict[str, list[str]],
 ) -> list[dict]:
     """Walk every season and return deduplicated teams (latest season wins)."""
     seasons = sorted(
@@ -298,19 +344,21 @@ def _collect_teams(
 
     teams = sorted(seen.values(), key=lambda t: t["n"])
 
-    # Assign ITL regions via point-in-polygon
     assigned = 0
+    ward_assigned = 0
     for team in teams:
-        itl1, itl2, itl3, lad = _assign_team_regions(
+        itl1, itl2, itl3, lad, ward = _assign_team_regions(
             team["lat"],
             team["lng"],
             itl1_regions,
             itl2_regions,
             itl3_regions,
             lad_regions,
+            ward_regions,
             itl1_to_itl2s,
             itl2_to_itl3s,
             itl3_to_lads,
+            lad_to_wards,
         )
         if itl1:
             team["r1"] = itl1
@@ -320,10 +368,16 @@ def _collect_teams(
             team["r3"] = itl3
         if lad:
             team["rl"] = lad
+        if ward:
+            team["rw"] = ward
         if itl1:
             assigned += 1
+        if ward:
+            ward_assigned += 1
 
-    logger.info("Assigned %d of %d teams to ITL regions", assigned, len(teams))
+    logger.info(
+        "Assigned %d of %d teams to ITL regions (%d to wards)", assigned, len(teams), ward_assigned
+    )
     return teams
 
 
@@ -344,21 +398,23 @@ def _export_boundaries(
     itl2_regions: dict[str, dict],
     itl3_regions: dict[str, dict],
     lad_regions: dict[str, dict],
+    ward_regions: dict[str, dict],
     itl1_to_itl2s: dict[str, list[str]],
     itl2_to_itl3s: dict[str, list[str]],
     itl3_to_lads: dict[str, list[str]],
+    lad_to_wards: dict[str, list[str]],
 ) -> None:
     """Write boundaries.js with simplified England-only geometries and hierarchy."""
 
-    def _region_entry(region: dict) -> dict:
-        simplified = region["geom"].simplify(SIMPLIFY_TOLERANCE, preserve_topology=True)
+    def _region_entry(region: dict, tolerance: float = SIMPLIFY_TOLERANCE) -> dict:
+        simplified = region["geom"].simplify(tolerance, preserve_topology=True)
         c = region["centroid"]
         return {
             "geom": mapping(simplified),
             "centroid": [round(c.x, 4), round(c.y, 4)],
         }
 
-    bd: dict = {"itl1": {}, "itl2": {}, "itl3": {}, "lad": {}}
+    bd: dict = {"itl1": {}, "itl2": {}, "itl3": {}, "lad": {}, "ward": {}}
 
     for name, r in itl1_regions.items():
         if _is_england(r["code"], "itl"):
@@ -376,12 +432,19 @@ def _export_boundaries(
         if _is_england(code, "lad"):
             bd["lad"][code] = _region_entry(r)
 
+    for code, r in ward_regions.items():
+        if _is_england(code, "lad"):
+            bd["ward"][code] = _region_entry(r, WARD_SIMPLIFY_TOLERANCE)
+
     bd["itl1_to_itl2s"] = {
         k: [v2 for v2 in v if v2 in bd["itl2"]] for k, v in itl1_to_itl2s.items() if k in bd["itl1"]
     }
     bd["itl2_to_itl3s"] = {k: v for k, v in itl2_to_itl3s.items() if k in bd["itl2"]}
     bd["itl3_to_lads"] = {
         k: [lc for lc in v if lc in bd["lad"]] for k, v in itl3_to_lads.items() if k in bd["itl3"]
+    }
+    bd["lad_to_wards"] = {
+        k: [wc for wc in v if wc in bd["ward"]] for k, v in lad_to_wards.items() if k in bd["lad"]
     }
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -395,13 +458,14 @@ def _export_boundaries(
 
     size_mb = output_path.stat().st_size / 1024 / 1024
     logger.info(
-        "Wrote %s (%.1f MB, %d ITL1 + %d ITL2 + %d ITL3 + %d LAD regions)",
+        "Wrote %s (%.1f MB, %d ITL1 + %d ITL2 + %d ITL3 + %d LAD + %d ward regions)",
         output_path,
         size_mb,
         len(bd["itl1"]),
         len(bd["itl2"]),
         len(bd["itl3"]),
         len(bd["lad"]),
+        len(bd["ward"]),
     )
 
 
@@ -417,8 +481,8 @@ def main() -> None:
         logger.error("Geocoded data directory not found: %s", GEOCODED_DIR)
         return
 
-    # Check boundary files exist
-    has_boundaries = all(p.exists() for p in BOUNDARY_PATHS.values())
+    core_boundary_keys = ("itl1", "itl2", "itl3", "lad")
+    has_boundaries = all(BOUNDARY_PATHS[k].exists() for k in core_boundary_keys)
     if not has_boundaries:
         logger.warning(
             "Boundary files not found in %s — run 'make boundaries' first. "
@@ -430,9 +494,12 @@ def main() -> None:
     itl2_regions: dict[str, dict] = {}
     itl3_regions: dict[str, dict] = {}
     lad_regions: dict[str, dict] = {}
+    ward_regions: dict[str, dict] = {}
+    ward_to_lad: dict[str, str | None] = {}
     itl1_to_itl2s: dict[str, list[str]] = {}
     itl2_to_itl3s: dict[str, list[str]] = {}
     itl3_to_lads: dict[str, list[str]] = {}
+    lad_to_wards: dict[str, list[str]] = {}
 
     if has_boundaries:
         logger.info("Loading boundary data...")
@@ -440,20 +507,29 @@ def main() -> None:
         itl2_regions = _load_regions(BOUNDARY_PATHS["itl2"], "ITL225CD", "ITL225NM")
         itl3_regions = _load_regions(BOUNDARY_PATHS["itl3"], "ITL325CD", "ITL325NM")
         lad_regions = _load_lad_regions(BOUNDARY_PATHS["lad"])
+        if BOUNDARY_PATHS["wards"].exists():
+            logger.info("Loading ward boundaries...")
+            ward_regions, ward_to_lad = _load_ward_regions(BOUNDARY_PATHS["wards"])
+        else:
+            logger.warning(
+                "Wards file not found at %s, skipping ward-level data", BOUNDARY_PATHS["wards"]
+            )
         logger.info(
-            "Loaded %d ITL1, %d ITL2, %d ITL3, %d LAD regions",
+            "Loaded %d ITL1, %d ITL2, %d ITL3, %d LAD, %d ward regions",
             len(itl1_regions),
             len(itl2_regions),
             len(itl3_regions),
             len(lad_regions),
+            len(ward_regions),
         )
 
         logger.info("Building hierarchy...")
-        itl2_to_itl3s, itl3_to_lads, itl1_to_itl2s = _build_hierarchy(
+        itl2_to_itl3s, itl3_to_lads, itl1_to_itl2s, lad_to_wards = _build_hierarchy(
             itl1_regions,
             itl2_regions,
             itl3_regions,
             lad_regions,
+            ward_to_lad,
         )
 
     logger.info("Scanning geocoded teams in %s", GEOCODED_DIR)
@@ -464,9 +540,11 @@ def main() -> None:
         itl2_regions,
         itl3_regions,
         lad_regions,
+        ward_regions,
         itl1_to_itl2s,
         itl2_to_itl3s,
         itl3_to_lads,
+        lad_to_wards,
     )
     logger.info("Found %d unique teams with coordinates", len(teams))
 
@@ -491,9 +569,11 @@ def main() -> None:
             itl2_regions,
             itl3_regions,
             lad_regions,
+            ward_regions,
             itl1_to_itl2s,
             itl2_to_itl3s,
             itl3_to_lads,
+            lad_to_wards,
         )
 
 

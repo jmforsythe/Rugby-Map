@@ -1,0 +1,2079 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Rugby Map Builder</title>
+    <meta
+      name="description"
+      content="Build custom rugby union maps — select teams, assign them to leagues, and see live territory maps with travel distance statistics."
+    />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="../manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    />
+    <style>
+      :root {
+        --bg: #f9f9f9;
+        --bg-card: #fff;
+        --bg-card-alt: #f5f7fa;
+        --text: #333;
+        --text-muted: #666;
+        --text-heading: #2c3e50;
+        --border: #e0e0e0;
+        --border-light: #f0f0f0;
+        --accent: #0066cc;
+        --accent-hover: #0052a3;
+        --accent-light: #e8f4fd;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --sidebar-w: 370px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1a1a2e;
+          --bg-card: #16213e;
+          --bg-card-alt: #1e2a45;
+          --text: #e0e0e0;
+          --text-muted: #a0a0a0;
+          --text-heading: #e0e8f0;
+          --border: #2a2a4a;
+          --border-light: #252545;
+          --accent: #4da6ff;
+          --accent-hover: #80bfff;
+          --accent-light: #1a2a4a;
+          --shadow: rgba(0, 0, 0, 0.3);
+        }
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header */
+      .app-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+        z-index: 1000;
+      }
+      .app-header a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .app-header a:hover {
+        color: var(--accent);
+      }
+      .app-header h1 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-heading);
+      }
+      .header-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+      }
+
+      /* Layout */
+      .app-body {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-card);
+        border-right: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .sidebar-section {
+        padding: 12px;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .sidebar-section h2 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+
+      /* Search */
+      .search-box {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 14px;
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+      }
+      .search-box:focus {
+        border-color: var(--accent);
+      }
+      .search-box::placeholder {
+        color: var(--text-muted);
+      }
+      .search-results {
+        max-height: 220px;
+        overflow-y: auto;
+        margin-top: 6px;
+      }
+      .search-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+      .search-item:hover {
+        background: var(--accent-light);
+      }
+      .search-item img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .search-hint {
+        color: var(--text-muted);
+        font-size: 12px;
+        padding: 6px 0;
+      }
+
+      /* Leagues panel */
+      .leagues-panel {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+      }
+      .add-league-btn {
+        width: 100%;
+        padding: 8px;
+        border: 2px dashed var(--border);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 13px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .add-league-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .league-card {
+        background: var(--bg-card-alt);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        overflow: hidden;
+      }
+      .league-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .league-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: 2px solid rgba(0, 0, 0, 0.15);
+      }
+      .league-name-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        outline: none;
+        min-width: 0;
+      }
+      .league-count {
+        font-size: 12px;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+      .league-delete {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0 2px;
+        line-height: 1;
+      }
+      .league-delete:hover {
+        color: #e74c3c;
+      }
+      .league-teams {
+        padding: 4px 10px 8px;
+      }
+      .league-team {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 0;
+        font-size: 13px;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .league-team:last-child {
+        border-bottom: none;
+      }
+      .league-team img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+      .league-team-remove {
+        margin-left: auto;
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        padding: 0 4px;
+      }
+      .league-team-remove:hover {
+        color: #e74c3c;
+      }
+
+      /* Stats */
+      .stats-section {
+        padding: 12px;
+        border-top: 1px solid var(--border);
+        flex-shrink: 0;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .stats-section h2 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+      }
+      .stat-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        padding: 3px 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .stat-row:last-child {
+        border-bottom: none;
+      }
+      .stat-label {
+        color: var(--text-muted);
+      }
+      .stat-value {
+        font-weight: 600;
+      }
+
+      /* Map */
+      .map-container {
+        flex: 1;
+        position: relative;
+      }
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Buttons */
+      .btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: var(--bg-card);
+        color: var(--text);
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+        color: #fff;
+      }
+      .copied-toast {
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 6px;
+        font-size: 13px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .copied-toast.show {
+        opacity: 1;
+      }
+
+      /* Toggle for sidebar on mobile */
+      .sidebar-toggle {
+        display: none;
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+        z-index: 2000;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px var(--shadow);
+      }
+
+      /* Territory panel */
+      .territory-panel {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 12px;
+        color: var(--text);
+        min-width: 180px;
+        box-shadow: 0 2px 8px var(--shadow);
+      }
+      .territory-panel-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .territory-panel-header input {
+        cursor: pointer;
+      }
+      .territory-panel-header label {
+        cursor: pointer;
+        flex: 1;
+      }
+      .territory-panel-toggle {
+        font-size: 10px;
+        color: var(--text-muted);
+        transition: transform 0.15s;
+      }
+      .territory-panel.expanded .territory-panel-toggle {
+        transform: rotate(90deg);
+      }
+      .territory-panel-body {
+        display: none;
+        padding: 6px 10px 10px;
+        border-top: 1px solid var(--border-light);
+      }
+      .territory-panel.expanded .territory-panel-body {
+        display: block;
+      }
+      .tp-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .tp-row label {
+        font-size: 11px;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+      .tp-row select {
+        padding: 2px 4px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 11px;
+        cursor: pointer;
+      }
+      .tp-row input[type="range"] {
+        width: 80px;
+        cursor: pointer;
+      }
+      .tp-row .tp-val {
+        font-size: 10px;
+        color: var(--text-muted);
+        min-width: 24px;
+        text-align: right;
+      }
+
+      /* Import modal */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 3000;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: var(--bg-card);
+        border-radius: 10px;
+        box-shadow: 0 8px 32px var(--shadow);
+        width: 420px;
+        max-width: 90vw;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .modal-header h2 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-heading);
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: var(--text-muted);
+        cursor: pointer;
+        line-height: 1;
+        padding: 0 4px;
+      }
+      .modal-close:hover {
+        color: var(--text);
+      }
+      .modal-search {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .modal-search input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 14px;
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+      }
+      .modal-search input:focus {
+        border-color: var(--accent);
+      }
+      .modal-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 6px 0;
+      }
+      .modal-tier {
+        border-bottom: 1px solid var(--border-light);
+      }
+      .modal-tier-header {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        transition: background 0.1s;
+        gap: 6px;
+        user-select: none;
+      }
+      .modal-tier-header:hover {
+        background: var(--accent-light);
+      }
+      .modal-tier-chevron {
+        font-size: 10px;
+        color: var(--text-muted);
+        transition: transform 0.15s;
+        flex-shrink: 0;
+        width: 14px;
+        text-align: center;
+      }
+      .modal-tier.expanded .modal-tier-chevron {
+        transform: rotate(90deg);
+      }
+      .modal-tier-name {
+        flex: 1;
+      }
+      .modal-tier-count {
+        font-size: 12px;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+      .modal-tier-import {
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        cursor: pointer;
+        border: 1px solid var(--accent);
+        background: var(--accent);
+        color: #fff;
+        flex-shrink: 0;
+        margin-left: 6px;
+      }
+      .modal-tier-import:hover {
+        background: var(--accent-hover);
+      }
+      .modal-leagues {
+        display: none;
+        padding-left: 20px;
+      }
+      .modal-tier.expanded .modal-leagues {
+        display: block;
+      }
+      .modal-league-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 16px;
+        cursor: pointer;
+        font-size: 12px;
+        color: var(--text);
+        transition: background 0.1s;
+      }
+      .modal-league-item:hover {
+        background: var(--accent-light);
+      }
+      .modal-league-name {
+        flex: 1;
+      }
+      .modal-league-count {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-left: 8px;
+        flex-shrink: 0;
+      }
+      .modal-empty {
+        padding: 24px 16px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+      .modal-section-header {
+        padding: 10px 16px 4px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+        margin-top: 4px;
+      }
+      .modal-section-header:first-child {
+        border-top: none;
+        margin-top: 0;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 60vh;
+          bottom: auto;
+          border-right: none;
+          border-bottom: 2px solid var(--border);
+          z-index: 1500;
+          transform: translateY(-100%);
+          transition: transform 0.3s ease;
+        }
+        .sidebar.open {
+          transform: translateY(41px);
+        }
+        .sidebar-toggle {
+          display: block;
+        }
+        .map-container {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="../">&larr; Home</a>
+      <h1>Custom Map Builder</h1>
+      <div class="header-actions">
+        <button class="btn" id="btnImportTier">Import Tier</button>
+        <button class="btn" id="btnClearAll">Clear All</button>
+        <button class="btn btn-primary" id="btnCopyLink">Copy Link</button>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+          <h2>Find Teams</h2>
+          <input
+            type="text"
+            class="search-box"
+            id="searchInput"
+            placeholder="Search 3,600+ teams&hellip;"
+          />
+          <div class="search-results" id="searchResults">
+            <div class="search-hint">Type to search by team name</div>
+          </div>
+        </div>
+        <div class="leagues-panel" id="leaguesPanel">
+          <button class="add-league-btn" id="btnAddLeague">+ Add League</button>
+        </div>
+        <div class="stats-section" id="statsSection">
+          <h2>Distance Stats</h2>
+          <div id="statsBody">
+            <div class="search-hint">Add teams to see distance statistics</div>
+          </div>
+        </div>
+      </aside>
+      <div class="map-container">
+        <div id="map"></div>
+        <div class="territory-panel" id="territoryPanel">
+          <div class="territory-panel-header" id="territoryPanelHeader">
+            <input type="checkbox" id="voronoiCheck" checked />
+            <label for="voronoiCheck">Territories</label>
+            <span class="territory-panel-toggle">&#9654;</span>
+          </div>
+          <div class="territory-panel-body">
+            <div class="tp-row">
+              <label for="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">Broad brush</label>
+              <select id="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">
+                <option value="itl1">Region</option>
+                <option value="itl2" selected>Sub-region</option>
+                <option value="itl3">County</option>
+                <option value="lad">District</option>
+              </select>
+            </div>
+            <div class="tp-row">
+              <label for="floorLevel" title="Smallest region size used to split contested areas — the finest brush">Fine brush</label>
+              <select id="floorLevel" title="Smallest region size used to split contested areas — the finest brush">
+                <option value="itl1">Region</option>
+                <option value="itl2">Sub-region</option>
+                <option value="itl3" selected>County</option>
+                <option value="lad">District</option>
+              </select>
+            </div>
+            <div class="tp-row">
+              <label for="fillOpacity">Fill</label>
+              <input
+                type="range"
+                id="fillOpacity"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.6"
+              />
+              <span class="tp-val" id="fillOpacityVal">0.6</span>
+            </div>
+            <div class="tp-row">
+              <label for="borderWeight">Border</label>
+              <input
+                type="range"
+                id="borderWeight"
+                min="0"
+                max="4"
+                step="0.5"
+                value="1"
+              />
+              <span class="tp-val" id="borderWeightVal">1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+    <div class="copied-toast" id="copiedToast">Link copied!</div>
+
+    <div class="modal-overlay" id="importModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Import Tier</h2>
+          <button class="modal-close" id="importModalClose">&times;</button>
+        </div>
+        <div class="modal-search">
+          <input
+            type="text"
+            id="importSearch"
+            placeholder="Filter tiers or leagues&hellip;"
+          />
+        </div>
+        <div class="modal-list" id="importList"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/@turf/turf@7/turf.min.js"></script>
+    <script>
+      "use strict";
+
+      const COLOR_PALETTE = [
+        "#e6194b",
+        "#3cb44b",
+        "#ffe119",
+        "#0082c8",
+        "#f58231",
+        "#911eb4",
+        "#46f0f0",
+        "#f032e6",
+        "#6a8f00",
+        "#fabebe",
+        "#008080",
+        "#e6beff",
+        "#aa6e28",
+        "#fffac8",
+        "#800000",
+        "#008f5a",
+        "#808000",
+        "#ffd8b1",
+        "#000080",
+        "#808080",
+        "#ff6b6b",
+        "#4ecdc4",
+        "#95e1d3",
+        "#f38181",
+        "#aa96da",
+        "#fcbad3",
+        "#a8d8ea",
+        "#ffcfd2",
+        "#5b2c6f",
+        "#1a5276",
+        "#b9441e",
+        "#117a65",
+        "#7d3c98",
+        "#2e4053",
+        "#c0392b",
+        "#1f618d",
+        "#884ea0",
+        "#239b56",
+        "#b7950b",
+        "#6c3483",
+        "#2874a6",
+        "#ca6f1e",
+        "#148f77",
+        "#a04000",
+        "#1b4f72",
+        "#7b241c",
+      ];
+
+      const FALLBACK_ICON =
+        "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";
+      const ENGLAND_BBOX = [-6.5, 49.8, 2.1, 56.0];
+
+      let allTeams = [];
+      let leagues = [];
+      let nextLeagueId = 1;
+      let map, markersGroup, territoryLayer;
+      let territoriesVisible = true;
+      let boundariesReady = false;
+      let cachedAllPlaced = [];
+
+      // ── Haversine ──────────────────────────────────────────────
+      function haversineKm(lat1, lon1, lat2, lon2) {
+        const R = 6371;
+        const dLat = ((lat2 - lat1) * Math.PI) / 180;
+        const dLon = ((lon2 - lon1) * Math.PI) / 180;
+        const a =
+          Math.sin(dLat / 2) ** 2 +
+          Math.cos((lat1 * Math.PI) / 180) *
+            Math.cos((lat2 * Math.PI) / 180) *
+            Math.sin(dLon / 2) ** 2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      }
+
+      function calcLeagueStats(league) {
+        const teams = league.teams;
+        if (teams.length < 2)
+          return {
+            teams: teams.map((t) => ({ name: t.n, avg: 0, total: 0 })),
+            avg: 0,
+          };
+        const teamStats = teams.map((t) => {
+          let total = 0;
+          for (const o of teams) {
+            if (o.n !== t.n) total += haversineKm(t.lat, t.lng, o.lat, o.lng);
+          }
+          const avg = total / (teams.length - 1);
+          return { name: t.n, avg, total };
+        });
+        const leagueAvg =
+          teamStats.reduce((s, t) => s + t.avg, 0) / teamStats.length;
+        return { teams: teamStats, avg: leagueAvg };
+      }
+
+      // ── Map init ───────────────────────────────────────────────
+      function initMap() {
+        map = L.map("map", { zoomControl: true }).setView([52.5, -1.5], 7);
+        const isDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        L.tileLayer(
+          isDark
+            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+          {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            maxZoom: 19,
+          },
+        ).addTo(map);
+        markersGroup = L.layerGroup().addTo(map);
+        territoryLayer = L.layerGroup().addTo(map);
+      }
+
+      // ── Rendering ──────────────────────────────────────────────
+      function renderMarkers() {
+        markersGroup.clearLayers();
+        cachedAllPlaced = [];
+
+        for (const league of leagues) {
+          const stats = calcLeagueStats(league);
+          league._stats = stats;
+          const cluster = L.markerClusterGroup({
+            maxClusterRadius: 0,
+            showCoverageOnHover: false,
+            iconCreateFunction: function (c) {
+              return L.divIcon({
+                html:
+                  "<div style='background:" +
+                  league.color +
+                  ";color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3)'>" +
+                  c.getChildCount() +
+                  "</div>",
+                className: "",
+                iconSize: [32, 32],
+              });
+            },
+          });
+
+          for (const team of league.teams) {
+            const ts = stats.teams.find((s) => s.name === team.n);
+            let officialHtml = "";
+            if (team.lg) {
+              officialHtml =
+                "<hr style='margin:4px 0'><b>Official League:</b> " +
+                escHtml(team.lg) +
+                "<br>" +
+                "<b>Team Avg:</b> " +
+                team.tavg.toFixed(1) +
+                " km<br>" +
+                "<b>Team Total:</b> " +
+                team.ttot.toFixed(1) +
+                " km" +
+                (team.lavg
+                  ? "<br><b>League Avg:</b> " + team.lavg.toFixed(1) + " km"
+                  : "");
+            }
+
+            let customHtml = "";
+            if (ts && league.teams.length > 1) {
+              customHtml =
+                "<hr style='margin:4px 0'><b>Custom League Distances:</b><br>" +
+                "Team Avg: " +
+                ts.avg.toFixed(1) +
+                " km<br>" +
+                "Team Total: " +
+                ts.total.toFixed(1) +
+                " km<br>" +
+                "League Avg: " +
+                stats.avg.toFixed(1) +
+                " km";
+            }
+
+            const popup =
+              "<div style='min-width:180px'>" +
+              "<strong>" +
+              escHtml(team.n) +
+              "</strong><hr style='margin:4px 0'>" +
+              "<div style='font-size:12px;color:#666'>" +
+              "<b>League:</b> " +
+              escHtml(league.name) +
+              "<br>" +
+              (team.addr
+                ? "<b>Address:</b> " + escHtml(team.addr) + "<br>"
+                : "") +
+              officialHtml +
+              customHtml +
+              "</div></div>";
+
+            const icon = L.divIcon({
+              html:
+                "<div style='width:28px;height:28px;border-radius:50%;border:3px solid " +
+                league.color +
+                ";overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center'>" +
+                "<img src='" +
+                escAttr(team.img || FALLBACK_ICON) +
+                "' style='width:20px;height:20px;object-fit:contain' onerror=\"this.src='" +
+                FALLBACK_ICON +
+                "'\">" +
+                "</div>",
+              className: "",
+              iconSize: [28, 28],
+              iconAnchor: [14, 14],
+              popupAnchor: [0, -14],
+            });
+
+            const marker = L.marker([team.lat, team.lng], { icon }).bindPopup(
+              popup,
+            );
+            cluster.addLayer(marker);
+            cachedAllPlaced.push({ team, league });
+          }
+          markersGroup.addLayer(cluster);
+        }
+      }
+
+      function renderMap() {
+        renderMarkers();
+        renderTerritories(cachedAllPlaced);
+        renderStats();
+      }
+
+      function restyleTerritories() {
+        territoryLayer.eachLayer(function (layer) {
+          if (layer.setStyle) {
+            layer.setStyle({
+              fillOpacity: territoryFillOpacity,
+              weight: territoryBorderWeight,
+              opacity: territoryFillOpacity,
+            });
+          } else if (layer.eachLayer) {
+            layer.eachLayer(function (sub) {
+              if (sub.setStyle) {
+                sub.setStyle({
+                  fillOpacity: territoryFillOpacity,
+                  weight: territoryBorderWeight,
+                  opacity: territoryFillOpacity,
+                });
+              }
+            });
+          }
+        });
+      }
+
+      // ── ITL Region Territory Algorithm ─────────────────────────
+      // Port of _collect_group_geometries from core/map_builder.py
+
+      const LEVELS = ["itl1", "itl2", "itl3", "lad"];
+      const LEVEL_IDX = { itl1: 0, itl2: 1, itl3: 2, lad: 3 };
+      const NEXT_LEVEL = { itl1: "itl2", itl2: "itl3", itl3: "lad" };
+      const TEAM_REGION_KEY = { itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl" };
+      const CHILD_MAP_KEY = { itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads" };
+
+      let ENTRY_LEVEL = "itl2";
+      let FLOOR_LEVEL = "itl3";
+      let FLOOR_IDX = LEVEL_IDX[FLOOR_LEVEL];
+      let territoryFillOpacity = 0.6;
+      let territoryBorderWeight = 1;
+
+      function closestGroup(items, centroid) {
+        if (!items.length) return null;
+        let best = null,
+          bestDist = Infinity;
+        for (const it of items) {
+          const dx = centroid[0] - it.team.lng;
+          const dy = centroid[1] - it.team.lat;
+          const d = dx * dx + dy * dy;
+          if (d < bestDist) {
+            bestDist = d;
+            best = it;
+          }
+        }
+        return best ? best.league.color + "|" + best.league.name : null;
+      }
+
+      function buildRegionIndex(allPlaced) {
+        const idx = { itl1: {}, itl2: {}, itl3: {}, lad: {} };
+        for (const p of allPlaced) {
+          for (const level of LEVELS) {
+            const key = p.team[TEAM_REGION_KEY[level]];
+            if (key) {
+              if (!idx[level][key]) idx[level][key] = [];
+              idx[level][key].push(p);
+            }
+          }
+        }
+        return idx;
+      }
+
+      function splitRegion(level, regionKey, parentItems, regionIdx) {
+        if (!boundariesReady || typeof BOUNDARIES === "undefined") return [];
+        const bd = BOUNDARIES;
+        const regionData = (bd[level] || {})[regionKey];
+        if (!regionData) return [];
+
+        const itemsHere = regionIdx[level][regionKey] || [];
+
+        if (!itemsHere.length) {
+          const fb = closestGroup(parentItems, regionData.centroid);
+          if (!fb) return [];
+          const [color] = fb.split("|");
+          return [{ geom: regionData.geom, color }];
+        }
+
+        const groupSet = new Set(itemsHere.map((it) => it.league.name));
+
+        if (groupSet.size === 1) {
+          const color = itemsHere[0].league.color;
+          const childLevel = NEXT_LEVEL[level];
+          if (childLevel && LEVEL_IDX[childLevel] <= FLOOR_IDX) {
+            const childMapName = CHILD_MAP_KEY[level];
+            const childKeys = (bd[childMapName] || {})[regionKey] || [];
+            const occupied = childKeys.filter(
+              (ck) => (regionIdx[childLevel][ck] || []).length > 0,
+            );
+            if (occupied.length <= 1 && occupied.length > 0) {
+              const narrow = [];
+              for (const ck of occupied) {
+                narrow.push(
+                  ...splitRegion(childLevel, ck, itemsHere, regionIdx),
+                );
+              }
+              if (narrow.length) return narrow;
+            }
+          }
+          return [{ geom: regionData.geom, color }];
+        }
+
+        const childLevel = NEXT_LEVEL[level];
+        if (!childLevel) {
+          return voronoiFallback(itemsHere, regionData.geom);
+        }
+
+        const childMapName = CHILD_MAP_KEY[level];
+        const childKeys = (bd[childMapName] || {})[regionKey] || [];
+        if (!childKeys.length) {
+          return voronoiFallback(itemsHere, regionData.geom);
+        }
+
+        const result = [];
+        const emptyChildren = [];
+        for (const ck of childKeys) {
+          const childItems = regionIdx[childLevel][ck] || [];
+          if (!childItems.length) {
+            emptyChildren.push(ck);
+            continue;
+          }
+          const childGroups = new Set(childItems.map((it) => it.league.name));
+          if (childGroups.size === 1) {
+            const childRegion = (bd[childLevel] || {})[ck];
+            if (childRegion)
+              result.push({
+                geom: childRegion.geom,
+                color: childItems[0].league.color,
+              });
+          } else {
+            result.push(...splitRegion(childLevel, ck, childItems, regionIdx));
+          }
+        }
+
+        for (const eck of emptyChildren) {
+          const childRegion = (bd[childLevel] || {})[eck];
+          if (!childRegion) continue;
+          const fb = closestGroup(itemsHere, childRegion.centroid);
+          if (fb) {
+            const [color] = fb.split("|");
+            result.push({ geom: childRegion.geom, color });
+          }
+        }
+
+        return result;
+      }
+
+      function voronoiFallback(items, boundaryGeom) {
+        if (items.length < 2) {
+          return [{ geom: boundaryGeom, color: items[0].league.color }];
+        }
+        try {
+          const points = turf.featureCollection(
+            items.map((p) => {
+              const feat = turf.point([p.team.lng, p.team.lat]);
+              feat.properties._color = p.league.color;
+              return feat;
+            }),
+          );
+          const boundary =
+            typeof boundaryGeom.coordinates !== "undefined"
+              ? turf.feature(boundaryGeom)
+              : boundaryGeom;
+          const bbox = turf.bbox(boundary);
+          const voronoi = turf.voronoi(points, { bbox });
+          if (!voronoi)
+            return [{ geom: boundaryGeom, color: items[0].league.color }];
+
+          const result = [];
+          for (let i = 0; i < voronoi.features.length; i++) {
+            const f = voronoi.features[i];
+            if (!f) continue;
+            try {
+              const clipped = turf.intersect(
+                turf.featureCollection([f, boundary]),
+              );
+              if (clipped) {
+                result.push({
+                  geom: clipped.geometry,
+                  color: items[i].league.color,
+                });
+              }
+            } catch (_) {
+              result.push({ geom: f.geometry, color: items[i].league.color });
+            }
+          }
+          return result;
+        } catch (_) {
+          return [{ geom: boundaryGeom, color: items[0].league.color }];
+        }
+      }
+
+      function renderTerritories(allPlaced) {
+        territoryLayer.clearLayers();
+        if (!territoriesVisible || allPlaced.length < 1) return;
+
+        if (!boundariesReady || typeof BOUNDARIES === "undefined") {
+          renderVoronoiFallbackGlobal(allPlaced);
+          return;
+        }
+
+        const regionIdx = buildRegionIndex(allPlaced);
+
+        const entryRegions = regionIdx[ENTRY_LEVEL];
+        for (const regionKey of Object.keys(entryRegions)) {
+          const cells = splitRegion(
+            ENTRY_LEVEL,
+            regionKey,
+            entryRegions[regionKey],
+            regionIdx,
+          );
+          for (const cell of cells) {
+            L.geoJSON(cell.geom, {
+              style: {
+                fillColor: cell.color,
+                fillOpacity: territoryFillOpacity,
+                color: cell.color,
+                weight: territoryBorderWeight,
+                opacity: territoryFillOpacity,
+              },
+            }).addTo(territoryLayer);
+          }
+        }
+      }
+
+      function renderVoronoiFallbackGlobal(allPlaced) {
+        if (allPlaced.length < 2) return;
+        try {
+          const points = turf.featureCollection(
+            allPlaced.map((p) =>
+              turf.point([p.team.lng, p.team.lat], { _color: p.league.color }),
+            ),
+          );
+          const voronoi = turf.voronoi(points, { bbox: ENGLAND_BBOX });
+          if (!voronoi) return;
+          for (let i = 0; i < voronoi.features.length; i++) {
+            const f = voronoi.features[i];
+            if (!f) continue;
+            const color = allPlaced[i].league.color;
+            L.geoJSON(f, {
+              style: {
+                fillColor: color,
+                fillOpacity: territoryFillOpacity,
+                color: color,
+                weight: territoryBorderWeight,
+                opacity: territoryFillOpacity,
+              },
+            }).addTo(territoryLayer);
+          }
+        } catch (_) {
+          /* turf.voronoi can throw on degenerate inputs */
+        }
+      }
+
+      function renderStats() {
+        const body = document.getElementById("statsBody");
+        if (
+          leagues.length === 0 ||
+          leagues.every((l) => l.teams.length === 0)
+        ) {
+          body.innerHTML =
+            '<div class="search-hint">Add teams to see distance statistics</div>';
+          return;
+        }
+
+        let html = "";
+
+        for (const league of leagues) {
+          if (league.teams.length < 2) {
+            html +=
+              '<div class="stat-row"><span class="stat-label" style="color:' +
+              league.color +
+              '">' +
+              escHtml(league.name) +
+              '</span><span class="stat-value" style="color:var(--text-muted)">need 2+ teams</span></div>';
+            continue;
+          }
+          const s = league._stats;
+          html +=
+            '<div class="stat-row"><span class="stat-label" style="color:' +
+            league.color +
+            '">' +
+            escHtml(league.name) +
+            '</span><span class="stat-value">' +
+            s.avg.toFixed(1) +
+            " km avg</span></div>";
+        }
+
+        const allTeamsInLeagues = leagues.flatMap((l) => l.teams);
+        const withOfficial = allTeamsInLeagues.filter((t) => t.lg);
+        if (withOfficial.length > 0) {
+          const officialLeagues = {};
+          for (const t of withOfficial) {
+            if (!officialLeagues[t.lg])
+              officialLeagues[t.lg] = {
+                name: t.lg,
+                lavg: t.lavg || 0,
+                teams: [],
+              };
+            officialLeagues[t.lg].teams.push(t);
+          }
+          html +=
+            '<div style="margin-top:8px;padding-top:6px;border-top:1px solid var(--border)">' +
+            '<div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Official Leagues</div>';
+          for (const lg of Object.values(officialLeagues).sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+          })) {
+            html +=
+              '<div class="stat-row"><span class="stat-label">' +
+              escHtml(lg.name) +
+              " (" +
+              lg.teams.length +
+              ')</span><span class="stat-value">' +
+              lg.lavg.toFixed(1) +
+              " km avg</span></div>";
+          }
+          html += "</div>";
+        }
+
+        body.innerHTML = html;
+      }
+
+      // ── Search ─────────────────────────────────────────────────
+      function getAssignedNames() {
+        const s = new Set();
+        for (const l of leagues) for (const t of l.teams) s.add(t.n);
+        return s;
+      }
+
+      let searchDebounce;
+      function onSearch() {
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(doSearch, 150);
+      }
+
+      function doSearch() {
+        const q = document
+          .getElementById("searchInput")
+          .value.trim()
+          .toLowerCase();
+        const container = document.getElementById("searchResults");
+
+        if (q.length < 2) {
+          container.innerHTML =
+            '<div class="search-hint">Type to search by team name</div>';
+          return;
+        }
+
+        const assigned = getAssignedNames();
+        const matches = allTeams
+          .filter((t) => t.n.toLowerCase().includes(q) && !assigned.has(t.n))
+          .slice(0, 50);
+
+        if (matches.length === 0) {
+          container.innerHTML =
+            '<div class="search-hint">No matching teams found</div>';
+          return;
+        }
+
+        container.innerHTML = matches
+          .map(
+            (t) =>
+              '<div class="search-item" data-name="' +
+              escAttr(t.n) +
+              '">' +
+              '<img src="' +
+              escAttr(t.img || FALLBACK_ICON) +
+              '" onerror="this.src=\'' +
+              FALLBACK_ICON +
+              "'\">" +
+              "<span>" +
+              escHtml(t.n) +
+              "</span></div>",
+          )
+          .join("");
+      }
+
+      document
+        .getElementById("searchResults")
+        .addEventListener("click", function (e) {
+          const item = e.target.closest(".search-item");
+          if (!item) return;
+          const name = item.dataset.name;
+          addTeamToActiveLeague(name);
+        });
+
+      function addTeamToActiveLeague(name) {
+        const team = allTeams.find((t) => t.n === name);
+        if (!team) return;
+
+        let target =
+          leagues.find((l) => l.active) || leagues[leagues.length - 1];
+        if (!target) {
+          target = createLeague();
+        }
+
+        if (target.teams.some((t) => t.n === name)) return;
+        target.teams.push(team);
+
+        renderLeagues();
+        renderMap();
+        doSearch();
+        saveToHash();
+      }
+
+      // ── League management ──────────────────────────────────────
+      function createLeague(name, color) {
+        const id = nextLeagueId++;
+        const idx = (id - 1) % COLOR_PALETTE.length;
+        const league = {
+          id,
+          name: name || "League " + id,
+          color: color || COLOR_PALETTE[idx],
+          teams: [],
+          active: true,
+        };
+        for (const l of leagues) l.active = false;
+        leagues.push(league);
+        renderLeagues();
+        return league;
+      }
+
+      function deleteLeague(id) {
+        leagues = leagues.filter((l) => l.id !== id);
+        renderLeagues();
+        renderMap();
+        saveToHash();
+      }
+
+      function removeTeam(leagueId, teamName) {
+        const league = leagues.find((l) => l.id === leagueId);
+        if (league) league.teams = league.teams.filter((t) => t.n !== teamName);
+        renderLeagues();
+        renderMap();
+        doSearch();
+        saveToHash();
+      }
+
+      function setActiveLeague(id) {
+        for (const l of leagues) l.active = l.id === id;
+        renderLeagues();
+      }
+
+      function cycleColor(id) {
+        const league = leagues.find((l) => l.id === id);
+        if (!league) return;
+        const idx = COLOR_PALETTE.indexOf(league.color);
+        league.color = COLOR_PALETTE[(idx + 1) % COLOR_PALETTE.length];
+        renderLeagues();
+        renderMap();
+        saveToHash();
+      }
+
+      function renameLeague(id, newName) {
+        const league = leagues.find((l) => l.id === id);
+        if (league) league.name = newName;
+        saveToHash();
+      }
+
+      function renderLeagues() {
+        const panel = document.getElementById("leaguesPanel");
+        let html =
+          '<button class="add-league-btn" id="btnAddLeague">+ Add League</button>';
+
+        for (const league of leagues) {
+          const active = league.active
+            ? "border-left:3px solid " + league.color
+            : "";
+          html +=
+            '<div class="league-card" style="' +
+            active +
+            '" data-id="' +
+            league.id +
+            '">' +
+            '<div class="league-header" data-id="' +
+            league.id +
+            '">' +
+            '<div class="league-color" style="background:' +
+            league.color +
+            '" data-action="color" data-id="' +
+            league.id +
+            '"></div>' +
+            '<input class="league-name-input" value="' +
+            escAttr(league.name) +
+            '" data-action="rename" data-id="' +
+            league.id +
+            '">' +
+            '<span class="league-count">' +
+            league.teams.length +
+            "</span>" +
+            '<button class="league-delete" data-action="delete" data-id="' +
+            league.id +
+            '">&times;</button>' +
+            "</div>" +
+            '<div class="league-teams">';
+
+          for (const team of league.teams) {
+            html +=
+              '<div class="league-team">' +
+              '<img src="' +
+              escAttr(team.img || FALLBACK_ICON) +
+              '" onerror="this.src=\'' +
+              FALLBACK_ICON +
+              "'\">" +
+              "<span>" +
+              escHtml(team.n) +
+              "</span>" +
+              '<button class="league-team-remove" data-action="remove-team" data-league="' +
+              league.id +
+              '" data-team="' +
+              escAttr(team.n) +
+              '">&times;</button>' +
+              "</div>";
+          }
+
+          html += "</div></div>";
+        }
+
+        panel.innerHTML = html;
+
+        panel
+          .querySelector("#btnAddLeague")
+          .addEventListener("click", function () {
+            createLeague();
+            saveToHash();
+          });
+      }
+
+      document
+        .getElementById("leaguesPanel")
+        .addEventListener("click", function (e) {
+          const el = e.target.closest("[data-action]");
+          if (!el) {
+            const header = e.target.closest(".league-header");
+            if (header) setActiveLeague(parseInt(header.dataset.id));
+            return;
+          }
+          const action = el.dataset.action;
+          const id = parseInt(el.dataset.id || el.dataset.league);
+          if (action === "delete") deleteLeague(id);
+          else if (action === "color") cycleColor(id);
+          else if (action === "remove-team") removeTeam(id, el.dataset.team);
+        });
+
+      document
+        .getElementById("leaguesPanel")
+        .addEventListener("input", function (e) {
+          if (e.target.dataset.action === "rename") {
+            renameLeague(parseInt(e.target.dataset.id), e.target.value);
+          }
+        });
+
+      // ── Import tier ─────────────────────────────────────────────
+      // Three sections mirror the main map index page:
+      //   1. Pyramid tiers (pyramid teams only)
+      //   2. All Leagues per tier (pyramid + merit at same absolute level)
+      //   3. Merit competitions (per-competition, per-local-tier)
+      var importData = { pyramid: [], allLeagues: [], merit: [] };
+
+      function buildTierIndex() {
+        // Pyramid-only: group non-merit teams by absolute tier
+        var pyrMap = new Map();
+        // All-leagues: group ALL teams by absolute tier
+        var allMap = new Map();
+        // Merit: group merit teams by competition, then local tier
+        var meritMap = new Map();
+
+        for (var i = 0; i < allTeams.length; i++) {
+          var t = allTeams[i];
+          if (!t.lg) continue;
+          var tierNum = t.t || 999;
+          var tierName = t.tn || "Unknown";
+          var isMerit = !!t.mc;
+
+          // All-leagues (every team with an absolute tier)
+          if (!allMap.has(tierNum))
+            allMap.set(tierNum, {
+              num: tierNum,
+              name: tierName,
+              leagueMap: new Map(),
+            });
+          var allTier = allMap.get(tierNum);
+          if (!allTier.leagueMap.has(t.lg)) allTier.leagueMap.set(t.lg, []);
+          allTier.leagueMap.get(t.lg).push(t);
+
+          if (isMerit) {
+            // Merit per-competition
+            var comp = t.mc;
+            var localTier = t.ml || comp;
+            if (!meritMap.has(comp)) meritMap.set(comp, new Map());
+            var compMap = meritMap.get(comp);
+            if (!compMap.has(localTier))
+              compMap.set(localTier, { name: localTier, leagueMap: new Map() });
+            var mTier = compMap.get(localTier);
+            if (!mTier.leagueMap.has(t.lg)) mTier.leagueMap.set(t.lg, []);
+            mTier.leagueMap.get(t.lg).push(t);
+          } else {
+            // Pyramid-only
+            if (!pyrMap.has(tierNum))
+              pyrMap.set(tierNum, {
+                num: tierNum,
+                name: tierName,
+                leagueMap: new Map(),
+              });
+            var pyrTier = pyrMap.get(tierNum);
+            if (!pyrTier.leagueMap.has(t.lg)) pyrTier.leagueMap.set(t.lg, []);
+            pyrTier.leagueMap.get(t.lg).push(t);
+          }
+        }
+
+        function finalizeTiers(map) {
+          return Array.from(map.values())
+            .sort(function (a, b) {
+              return a.num - b.num;
+            })
+            .map(function (tier) {
+              var lgs = Array.from(tier.leagueMap.entries())
+                .map(function (e) {
+                  return { name: e[0], teams: e[1] };
+                })
+                .sort(function (a, b) {
+                  return a.name.localeCompare(b.name);
+                });
+              return {
+                id: "t" + tier.num,
+                num: tier.num,
+                name: tier.name,
+                leagues: lgs,
+              };
+            });
+        }
+
+        importData.pyramid = finalizeTiers(pyrMap);
+
+        // All-leagues: only include tiers that have merit teams (otherwise same as pyramid)
+        var meritAbsTiers = new Set();
+        for (var j = 0; j < allTeams.length; j++) {
+          if (allTeams[j].mc && allTeams[j].t) meritAbsTiers.add(allTeams[j].t);
+        }
+        importData.allLeagues = finalizeTiers(allMap)
+          .filter(function (tier) {
+            return meritAbsTiers.has(tier.num);
+          })
+          .map(function (tier) {
+            return {
+              id: "al" + tier.num,
+              num: tier.num,
+              name: tier.name + " + Merit",
+              leagues: tier.leagues,
+            };
+          });
+
+        // Merit: per-competition, per-local-tier
+        importData.merit = [];
+        var compNames = Array.from(meritMap.keys()).sort();
+        for (var ci = 0; ci < compNames.length; ci++) {
+          var cName = compNames[ci];
+          var tierEntries = meritMap.get(cName);
+          var tiers = Array.from(tierEntries.values())
+            .sort(function (a, b) {
+              return a.name.localeCompare(b.name);
+            })
+            .map(function (tier) {
+              var lgs = Array.from(tier.leagueMap.entries())
+                .map(function (e) {
+                  return { name: e[0], teams: e[1] };
+                })
+                .sort(function (a, b) {
+                  return a.name.localeCompare(b.name);
+                });
+              return {
+                id: "m_" + cName + "_" + tier.name,
+                num: 0,
+                name: tier.name,
+                leagues: lgs,
+              };
+            });
+          importData.merit.push({ comp: cName, tiers: tiers });
+        }
+      }
+
+      function openImportModal() {
+        document.getElementById("importSearch").value = "";
+        renderImportList("");
+        document.getElementById("importModal").classList.add("open");
+        document.getElementById("importSearch").focus();
+      }
+
+      function closeImportModal() {
+        document.getElementById("importModal").classList.remove("open");
+      }
+
+      function renderTierRow(tier, assigned, q) {
+        var matchingLeagues = tier.leagues.filter(function (lg) {
+          if (q && !tier.name.toLowerCase().includes(q)) {
+            return lg.name.toLowerCase().includes(q);
+          }
+          return true;
+        });
+        if (q && matchingLeagues.length === 0) return "";
+
+        var tierTeamCount = 0,
+          tierAvail = 0,
+          leaguesHtml = "";
+        for (var li = 0; li < matchingLeagues.length; li++) {
+          var lg = matchingLeagues[li];
+          var avail = lg.teams.filter(function (t) {
+            return !assigned.has(t.n);
+          }).length;
+          tierTeamCount += lg.teams.length;
+          tierAvail += avail;
+          leaguesHtml +=
+            '<div class="modal-league-item" data-import-id="' +
+            escAttr(tier.id) +
+            '" data-league="' +
+            escAttr(lg.name) +
+            '">' +
+            '<span class="modal-league-name">' +
+            escHtml(lg.name) +
+            "</span>" +
+            '<span class="modal-league-count">' +
+            avail +
+            " / " +
+            lg.teams.length +
+            " teams</span>" +
+            "</div>";
+        }
+
+        return (
+          '<div class="modal-tier" data-import-id="' +
+          escAttr(tier.id) +
+          '">' +
+          '<div class="modal-tier-header">' +
+          '<span class="modal-tier-chevron">&#9654;</span>' +
+          '<span class="modal-tier-name">' +
+          escHtml(tier.name) +
+          "</span>" +
+          '<span class="modal-tier-count">' +
+          tierAvail +
+          " / " +
+          tierTeamCount +
+          "</span>" +
+          '<button class="modal-tier-import" data-action="import-tier" data-import-id="' +
+          escAttr(tier.id) +
+          '">Import</button>' +
+          "</div>" +
+          '<div class="modal-leagues">' +
+          leaguesHtml +
+          "</div>" +
+          "</div>"
+        );
+      }
+
+      function renderImportList(filter) {
+        var assigned = getAssignedNames();
+        var q = filter.toLowerCase();
+        var html = "";
+        var anyMatch = false;
+
+        // Section 1: Pyramid tiers
+        var pyrHtml = "";
+        for (var pi = 0; pi < importData.pyramid.length; pi++) {
+          var row = renderTierRow(importData.pyramid[pi], assigned, q);
+          if (row) pyrHtml += row;
+        }
+        if (pyrHtml) {
+          html += '<div class="modal-section-header">Pyramid</div>' + pyrHtml;
+          anyMatch = true;
+        }
+
+        // Section 2: All Leagues (pyramid + merit combined)
+        var alHtml = "";
+        for (var ai = 0; ai < importData.allLeagues.length; ai++) {
+          var row2 = renderTierRow(importData.allLeagues[ai], assigned, q);
+          if (row2) alHtml += row2;
+        }
+        if (alHtml) {
+          html +=
+            '<div class="modal-section-header">Pyramid + Merit</div>' + alHtml;
+          anyMatch = true;
+        }
+
+        // Section 3: Merit per-competition
+        var meritHtml = "";
+        for (var mi = 0; mi < importData.merit.length; mi++) {
+          var comp = importData.merit[mi];
+          var compRows = "";
+          for (var mti = 0; mti < comp.tiers.length; mti++) {
+            var row3 = renderTierRow(comp.tiers[mti], assigned, q);
+            if (row3) compRows += row3;
+          }
+          if (compRows) {
+            meritHtml +=
+              '<div class="modal-section-header">' +
+              escHtml(comp.comp) +
+              "</div>" +
+              compRows;
+          }
+        }
+        if (meritHtml) {
+          html += meritHtml;
+          anyMatch = true;
+        }
+
+        if (!anyMatch) {
+          html = '<div class="modal-empty">No matching tiers or leagues</div>';
+        }
+        document.getElementById("importList").innerHTML = html;
+      }
+
+      function findTierById(id) {
+        var all = importData.pyramid.concat(importData.allLeagues);
+        for (var mi = 0; mi < importData.merit.length; mi++) {
+          all = all.concat(importData.merit[mi].tiers);
+        }
+        return all.find(function (t) {
+          return t.id === id;
+        });
+      }
+
+      function importWholeTier(tierId) {
+        var tier = findTierById(tierId);
+        if (!tier) return;
+        var assigned = getAssignedNames();
+
+        for (var i = 0; i < tier.leagues.length; i++) {
+          var lg = tier.leagues[i];
+          var teamsToAdd = lg.teams.filter(function (t) {
+            return !assigned.has(t.n);
+          });
+          if (teamsToAdd.length === 0) continue;
+          var league = createLeague(lg.name);
+          league.teams = teamsToAdd.slice();
+          for (var j = 0; j < teamsToAdd.length; j++)
+            assigned.add(teamsToAdd[j].n);
+        }
+
+        renderImportList(document.getElementById("importSearch").value);
+        renderLeagues();
+        renderMap();
+        doSearch();
+        saveToHash();
+      }
+
+      function importSingleLeague(tierId, leagueName) {
+        var tier = findTierById(tierId);
+        if (!tier) return;
+        var source = tier.leagues.find(function (lg) {
+          return lg.name === leagueName;
+        });
+        if (!source) return;
+
+        var assigned = getAssignedNames();
+        var teamsToAdd = source.teams.filter(function (t) {
+          return !assigned.has(t.n);
+        });
+        if (teamsToAdd.length === 0) return;
+
+        var league = createLeague(leagueName);
+        league.teams = teamsToAdd.slice();
+
+        renderImportList(document.getElementById("importSearch").value);
+        renderLeagues();
+        renderMap();
+        doSearch();
+        saveToHash();
+      }
+
+      document
+        .getElementById("importModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeImportModal();
+            return;
+          }
+
+          var importBtn = e.target.closest("[data-action='import-tier']");
+          if (importBtn) {
+            e.stopPropagation();
+            importWholeTier(importBtn.dataset.importId);
+            return;
+          }
+
+          var leagueItem = e.target.closest(".modal-league-item");
+          if (leagueItem) {
+            importSingleLeague(
+              leagueItem.dataset.importId,
+              leagueItem.dataset.league,
+            );
+            return;
+          }
+
+          var tierHeader = e.target.closest(".modal-tier-header");
+          if (tierHeader) {
+            var tierEl = tierHeader.closest(".modal-tier");
+            if (tierEl) tierEl.classList.toggle("expanded");
+          }
+        });
+      document
+        .getElementById("importModalClose")
+        .addEventListener("click", closeImportModal);
+      document
+        .getElementById("importSearch")
+        .addEventListener("input", function () {
+          renderImportList(this.value);
+        });
+
+      // ── URL hash state ─────────────────────────────────────────
+      function saveToHash() {
+        if (leagues.length === 0) {
+          history.replaceState(null, "", location.pathname);
+          return;
+        }
+        const parts = leagues.map((l) => {
+          const teamNames = l.teams
+            .map((t) => encodeURIComponent(t.n))
+            .join(",");
+          return (
+            encodeURIComponent(l.name) +
+            ":" +
+            encodeURIComponent(l.color) +
+            ":" +
+            teamNames
+          );
+        });
+        history.replaceState(null, "", "#" + parts.join(";"));
+      }
+
+      function loadFromHash() {
+        const hash = location.hash.slice(1);
+        if (!hash) return;
+
+        const teamIndex = new Map();
+        for (const t of allTeams) teamIndex.set(t.n, t);
+
+        const parts = hash.split(";").filter(Boolean);
+        for (const part of parts) {
+          const [rawName, rawColor, ...teamChunks] = part.split(":");
+          const name = decodeURIComponent(rawName || "League");
+          const color = decodeURIComponent(rawColor || COLOR_PALETTE[0]);
+          const teamNames = teamChunks
+            .join(":")
+            .split(",")
+            .map((s) => decodeURIComponent(s))
+            .filter(Boolean);
+          const teams = teamNames.map((n) => teamIndex.get(n)).filter(Boolean);
+          const league = createLeague(name, color);
+          league.teams = teams;
+        }
+        renderLeagues();
+        renderMap();
+      }
+
+      // ── Utility ────────────────────────────────────────────────
+      function escHtml(s) {
+        const d = document.createElement("div");
+        d.textContent = s;
+        return d.innerHTML;
+      }
+      function escAttr(s) {
+        return s
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      // ── Init ───────────────────────────────────────────────────
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", onSearch);
+      document
+        .getElementById("btnAddLeague")
+        .addEventListener("click", function () {
+          createLeague();
+          saveToHash();
+        });
+      document
+        .getElementById("btnImportTier")
+        .addEventListener("click", openImportModal);
+      document
+        .getElementById("btnClearAll")
+        .addEventListener("click", function () {
+          leagues = [];
+          nextLeagueId = 1;
+          renderLeagues();
+          renderMap();
+          saveToHash();
+        });
+      document
+        .getElementById("btnCopyLink")
+        .addEventListener("click", function () {
+          saveToHash();
+          navigator.clipboard.writeText(location.href).then(function () {
+            const toast = document.getElementById("copiedToast");
+            toast.classList.add("show");
+            setTimeout(function () {
+              toast.classList.remove("show");
+            }, 1500);
+          });
+        });
+      document
+        .getElementById("voronoiCheck")
+        .addEventListener("change", function (e) {
+          e.stopPropagation();
+          territoriesVisible = this.checked;
+          renderTerritories(cachedAllPlaced);
+        });
+      document
+        .getElementById("territoryPanelHeader")
+        .addEventListener("click", function (e) {
+          if (e.target.id === "voronoiCheck" || e.target.tagName === "LABEL")
+            return;
+          document
+            .getElementById("territoryPanel")
+            .classList.toggle("expanded");
+        });
+      document
+        .getElementById("entryLevel")
+        .addEventListener("change", function () {
+          ENTRY_LEVEL = this.value;
+          renderTerritories(cachedAllPlaced);
+        });
+      document
+        .getElementById("floorLevel")
+        .addEventListener("change", function () {
+          FLOOR_LEVEL = this.value;
+          FLOOR_IDX = LEVEL_IDX[FLOOR_LEVEL];
+          renderTerritories(cachedAllPlaced);
+        });
+      document
+        .getElementById("fillOpacity")
+        .addEventListener("input", function () {
+          territoryFillOpacity = parseFloat(this.value);
+          document.getElementById("fillOpacityVal").textContent = this.value;
+          restyleTerritories();
+        });
+      document
+        .getElementById("borderWeight")
+        .addEventListener("input", function () {
+          territoryBorderWeight = parseFloat(this.value);
+          document.getElementById("borderWeightVal").textContent = this.value;
+          restyleTerritories();
+        });
+      document
+        .getElementById("sidebarToggle")
+        .addEventListener("click", function () {
+          document.getElementById("sidebar").classList.toggle("open");
+        });
+
+      initMap();
+
+      function onTeamsLoaded() {
+        allTeams = TEAMS_DATA;
+        buildTierIndex();
+        document.getElementById("searchInput").placeholder =
+          "Search " + allTeams.length.toLocaleString() + " teams\u2026";
+        loadFromHash();
+      }
+      function onBoundariesLoaded() {
+        boundariesReady = true;
+        if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
+      }
+    </script>
+    <script src="teams.js" onload="onTeamsLoaded()"></script>
+    <script src="boundaries.js" onload="onBoundariesLoaded()"></script>
+  </body>
+</html>

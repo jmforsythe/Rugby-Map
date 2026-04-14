@@ -8,8 +8,8 @@
       name="description"
       content="Build custom rugby union maps — select teams, assign them to leagues, and see live territory maps with travel distance statistics."
     />
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="../manifest.json" />
+    {{FAVICON_HTML}}
+    {{GA_SCRIPT}}
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -667,7 +667,7 @@
   </head>
   <body>
     <header class="app-header">
-      <a href="../">&larr; Home</a>
+      <a href="{{HOME_HREF}}">&larr; Home</a>
       <h1>Custom Map Builder</h1>
       <div class="header-actions">
         <button class="btn" id="btnImportTier">Import Tier</button>

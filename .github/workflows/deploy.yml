@@ -60,8 +60,8 @@ jobs:
             fi
           done
 
-          # Custom map builder data (teams catalogue + boundaries)
-          python -m rugby.custom_map
+          # Custom map builder data + HTML page (teams catalogue + boundaries)
+          python -m rugby.custom_map --production
 
           # Football maps (not linked from index pages)
           python -m football.maps --production

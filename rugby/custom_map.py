@@ -1,14 +1,17 @@
 """
-Export a deduplicated team catalogue and boundary data for the custom map builder.
+Export a deduplicated team catalogue, boundary data, and assembled HTML page
+for the custom map builder.
 
 Walks all seasons under data/rugby/geocoded_teams/, keeps the most recently
 seen version of each team (by season sort order) with valid lat/lng, runs
 point-in-polygon to assign ITL2/ITL3/LAD regions to each team, and writes:
 
-- teams.js  — team catalogue with pre-computed region assignments
-- boundaries.js — England-only simplified boundary geometries + hierarchy
+- teams.js       — team catalogue with pre-computed region assignments
+- boundaries.js  — England-only simplified boundary geometries + hierarchy
+- index.html     — assembled SPA from rugby/custom_map_assets/ template
 """
 
+import argparse
 import json
 import logging
 from pathlib import Path
@@ -16,8 +19,8 @@ from pathlib import Path
 from shapely.geometry import Point, mapping, shape
 from shapely.prepared import prep
 
-from core import GeocodedLeague, TravelDistances, setup_logging
-from core.config import BOUNDARIES_DIR, DIST_DIR
+from core import GeocodedLeague, TravelDistances, get_config, set_config, setup_logging
+from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
@@ -26,6 +29,7 @@ logger = logging.getLogger(__name__)
 GEOCODED_DIR = DATA_DIR / "geocoded_teams"
 DISTANCE_CACHE_DIR = DATA_DIR / "distance_cache"
 OUTPUT_DIR = DIST_DIR / "custom-map"
+TEMPLATE_DIR = Path(__file__).resolve().parent / "custom_map_assets"
 
 SIMPLIFY_TOLERANCE = 0.001
 
@@ -470,11 +474,55 @@ def _export_boundaries(
 
 
 # ---------------------------------------------------------------------------
+# HTML page assembly
+# ---------------------------------------------------------------------------
+
+
+def _build_page() -> None:
+    """Read the HTML template and write the assembled index.html to OUTPUT_DIR."""
+    template_path = TEMPLATE_DIR / "index.html"
+    if not template_path.exists():
+        logger.error("Template not found: %s", template_path)
+        return
+
+    template = template_path.read_text(encoding="utf-8")
+
+    is_prod = get_config().is_production
+    home_href = "/" if is_prod else "../index.html"
+
+    replacements = {
+        "{{GA_SCRIPT}}": get_google_analytics_script(),
+        "{{FAVICON_HTML}}": get_favicon_html(depth=1),
+        "{{HOME_HREF}}": home_href,
+    }
+    html = template
+    for token, value in replacements.items():
+        html = html.replace(token, value)
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = OUTPUT_DIR / "index.html"
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    logger.info("Wrote %s", output_path)
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Export team catalogue and boundary data for the custom map builder."
+    )
+    parser.add_argument(
+        "--production", action="store_true", help="Use production paths (absolute /)"
+    )
+    args = parser.parse_args()
+    if args.production:
+        set_config(is_production=True)
+
     setup_logging()
 
     if not GEOCODED_DIR.exists():
@@ -575,6 +623,9 @@ def main() -> None:
             itl3_to_lads,
             lad_to_wards,
         )
+
+    # Write index.html from template
+    _build_page()
 
 
 if __name__ == "__main__":

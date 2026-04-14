@@ -863,7 +863,7 @@ POPUP_CSS = """
   color: #555;
 }
 .folium-map .rugby-popup {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   width: 220px;
   font-size: 13px;
 }

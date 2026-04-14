@@ -39,7 +39,10 @@ BOUNDARY_PATHS = {
     "itl3": BOUNDARIES_DIR / "ITL_3.geojson",
     "lad": BOUNDARIES_DIR / "local_authority_districts.geojson",
     "wards": BOUNDARIES_DIR / "wards.geojson",
+    "countries": BOUNDARIES_DIR / "countries.geojson",
 }
+
+COUNTRY_OUTLINES = ["England", "Isle of Man", "Jersey", "Guernsey"]
 
 WARD_SIMPLIFY_TOLERANCE = 0.001
 
@@ -418,7 +421,16 @@ def _export_boundaries(
             "centroid": [round(c.x, 4), round(c.y, 4)],
         }
 
-    bd: dict = {"itl1": {}, "itl2": {}, "itl3": {}, "lad": {}, "ward": {}}
+    bd: dict = {"countries": {}, "itl1": {}, "itl2": {}, "itl3": {}, "lad": {}, "ward": {}}
+
+    countries_path = BOUNDARY_PATHS.get("countries")
+    if countries_path and countries_path.exists():
+        countries_data = _load_geojson(countries_path)
+        for feat in countries_data.get("features", []):
+            name = feat["properties"].get("CTRY24NM", "")
+            if name in COUNTRY_OUTLINES:
+                geom = shape(feat["geometry"]).simplify(SIMPLIFY_TOLERANCE, preserve_topology=True)
+                bd["countries"][name] = {"geom": mapping(geom)}
 
     for name, r in itl1_regions.items():
         if _is_england(r["code"], "itl"):

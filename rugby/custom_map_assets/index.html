@@ -330,6 +330,52 @@
         height: 100%;
       }
 
+      /* Popup styling — matches standard maps (core/map_builder.py POPUP_CSS) */
+      .leaflet-popup-content {
+        margin: 6px 10px !important;
+        line-height: 1.3;
+      }
+      .leaflet-popup-content-wrapper,
+      .leaflet-popup-tip {
+        background: var(--bg-card);
+        color: var(--text);
+        box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+      }
+      .leaflet-popup-close-button {
+        color: var(--text-muted) !important;
+      }
+      .rugby-popup {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        width: 220px;
+        font-size: 13px;
+      }
+      .rugby-popup h4 {
+        margin: 0 0 4px 0;
+        font-size: 15px;
+        line-height: 1.2;
+      }
+      .rugby-popup hr {
+        margin: 6px 0;
+        border: 0;
+        border-top: 1px solid var(--border);
+      }
+      .rugby-popup p {
+        margin: 0 0 3px 0;
+      }
+      .rugby-popup p:last-child {
+        margin-bottom: 0;
+      }
+      .rugby-popup .popup-label {
+        font-weight: bold;
+      }
+      .rugby-popup a {
+        color: var(--accent);
+      }
+      .rugby-popup a:hover {
+        text-decoration: underline;
+      }
+
       /* Buttons */
       .btn {
         padding: 6px 12px;
@@ -877,18 +923,20 @@
       }
 
       // ── Map init ───────────────────────────────────────────────
+      let tileLayer;
+
       function initMap() {
         map = L.map("map", { zoomControl: true }).setView([52.5, -1.5], 7);
         const isDark = window.matchMedia(
           "(prefers-color-scheme: dark)",
         ).matches;
-        L.tileLayer(
+        tileLayer = L.tileLayer(
           isDark
             ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
             : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
           {
             attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             maxZoom: 19,
           },
         ).addTo(map);
@@ -906,14 +954,14 @@
           "(prefers-color-scheme: dark)",
         ).matches;
 
-        const itl1Style = {
+        const countryStyle = {
           fillColor: isDark ? "darkgray" : "lightgray",
           color: isDark ? "#ccc" : "black",
           weight: 2,
           fillOpacity: 0.1,
         };
-        for (const name of Object.keys(bd.itl1 || {})) {
-          L.geoJSON(bd.itl1[name].geom, { style: itl1Style }).addTo(
+        for (const name of Object.keys(bd.countries || {})) {
+          L.geoJSON(bd.countries[name].geom, { style: countryStyle }).addTo(
             boundaryOutlineLayer,
           );
         }
@@ -925,7 +973,7 @@
           fillOpacity: 0,
           opacity: 0.4,
         };
-        for (const level of ["itl2", "itl3"]) {
+        for (const level of ["itl1", "itl2", "itl3"]) {
           for (const name of Object.keys(bd[level] || {})) {
             L.geoJSON(bd[level][name].geom, { style: itlStyle }).addTo(
               boundaryOutlineLayer,
@@ -936,7 +984,15 @@
 
       window
         .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", function () {
+        .addEventListener("change", function (e) {
+          if (tileLayer) {
+            var url = tileLayer._url;
+            if (e.matches && url.indexOf("light_all") !== -1) {
+              tileLayer.setUrl(url.replace("light_all", "dark_all"));
+            } else if (!e.matches && url.indexOf("dark_all") !== -1) {
+              tileLayer.setUrl(url.replace("dark_all", "light_all"));
+            }
+          }
           addBoundaryOutlines();
         });
 
@@ -949,18 +1005,50 @@
           const stats = calcLeagueStats(league);
           league._stats = stats;
           const cluster = L.markerClusterGroup({
-            maxClusterRadius: 0,
+            maxClusterRadius: 1,
             showCoverageOnHover: false,
+            zoomToBoundsOnClick: false,
+            spiderfyOnMaxZoom: true,
+            spiderfyDistanceMultiplier: 2,
+            animate: false,
             iconCreateFunction: function (c) {
+              var count = c.getChildCount();
+              var markers = c.getAllChildMarkers();
+              var bestImg = "";
+              for (var i = 0; i < markers.length; i++) {
+                var mk = markers[i];
+                if (mk.options && mk.options.imageUrl) {
+                  bestImg = mk.options.imageUrl;
+                  break;
+                }
+              }
+              if (bestImg) {
+                return L.divIcon({
+                  html:
+                    "<div style='text-align:center;position:relative'>" +
+                    "<img src='" +
+                    bestImg +
+                    "' style='width:30px;height:30px;border-radius:50%' onerror=\"this.style.display='none'\">" +
+                    "<span style='position:absolute;bottom:-5px;right:-5px;background:" +
+                    league.color +
+                    ";color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center'>" +
+                    count +
+                    "</span></div>",
+                  className: "marker-cluster-custom",
+                  iconSize: [30, 30],
+                  iconAnchor: [15, 15],
+                });
+              }
               return L.divIcon({
                 html:
-                  "<div style='background:" +
+                  "<div style='width:30px;height:30px;border-radius:50%;background:" +
                   league.color +
-                  ";color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3)'>" +
-                  c.getChildCount() +
+                  ";color:white;font-size:12px;line-height:30px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3)'>" +
+                  count +
                   "</div>",
-                className: "",
-                iconSize: [32, 32],
+                className: "marker-cluster-custom",
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
               });
             },
           });
@@ -970,71 +1058,89 @@
             let officialHtml = "";
             if (team.lg) {
               officialHtml =
-                "<hr style='margin:4px 0'><b>Official League:</b> " +
+                "<hr>" +
+                '<p><span class="popup-label">Official League:</span> ' +
                 escHtml(team.lg) +
-                "<br>" +
-                "<b>Team Avg:</b> " +
+                "</p>" +
+                "<p>Team Avg: " +
                 team.tavg.toFixed(1) +
-                " km<br>" +
-                "<b>Team Total:</b> " +
+                " km</p>" +
+                "<p>Team Total: " +
                 team.ttot.toFixed(1) +
-                " km" +
+                " km</p>" +
                 (team.lavg
-                  ? "<br><b>League Avg:</b> " + team.lavg.toFixed(1) + " km"
+                  ? "<p>League Avg: " + team.lavg.toFixed(1) + " km</p>"
                   : "");
             }
 
             let customHtml = "";
             if (ts && league.teams.length > 1) {
               customHtml =
-                "<hr style='margin:4px 0'><b>Custom League Distances:</b><br>" +
-                "Team Avg: " +
+                "<hr>" +
+                '<p><span class="popup-label">Custom Distances:</span></p>' +
+                "<p>Team Avg: " +
                 ts.avg.toFixed(1) +
-                " km<br>" +
-                "Team Total: " +
+                " km</p>" +
+                "<p>Team Total: " +
                 ts.total.toFixed(1) +
-                " km<br>" +
-                "League Avg: " +
+                " km</p>" +
+                "<p>League Avg: " +
                 stats.avg.toFixed(1) +
-                " km";
+                " km</p>";
             }
 
             const popup =
-              "<div style='min-width:180px'>" +
-              "<strong>" +
+              '<div class="rugby-popup">' +
+              '<h4 class="popup-title" style="color:' +
+              league.color +
+              '">' +
               escHtml(team.n) +
-              "</strong><hr style='margin:4px 0'>" +
-              "<div style='font-size:12px;color:#666'>" +
-              "<b>League:</b> " +
+              "</h4><hr>" +
+              '<p><span class="popup-label">League:</span> ' +
               escHtml(league.name) +
-              "<br>" +
+              "</p>" +
               (team.addr
-                ? "<b>Address:</b> " + escHtml(team.addr) + "<br>"
+                ? '<p><span class="popup-label">Address:</span> ' +
+                  escHtml(team.addr) +
+                  "</p>"
                 : "") +
               officialHtml +
               customHtml +
-              "</div></div>";
+              "</div>";
 
-            const icon = L.divIcon({
-              html:
-                "<div style='width:28px;height:28px;border-radius:50%;border:3px solid " +
-                league.color +
-                ";overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center'>" +
-                "<img src='" +
-                escAttr(team.img || FALLBACK_ICON) +
-                "' style='width:20px;height:20px;object-fit:contain' onerror=\"this.src='" +
-                FALLBACK_ICON +
-                "'\">" +
-                "</div>",
-              className: "",
-              iconSize: [28, 28],
-              iconAnchor: [14, 14],
-              popupAnchor: [0, -14],
-            });
+            const hasImg = team.img;
+            const icon = hasImg
+              ? L.divIcon({
+                  html:
+                    "<div style='text-align:center'>" +
+                    "<img src='" +
+                    escAttr(team.img) +
+                    "' style='width:30px;height:30px;border-radius:50%' onerror=\"this.onerror=null;this.src='" +
+                    FALLBACK_ICON +
+                    "'\">" +
+                    "</div>",
+                  className: "",
+                  iconSize: [30, 30],
+                  iconAnchor: [15, 15],
+                  popupAnchor: [0, -15],
+                })
+              : L.divIcon({
+                  html:
+                    "<div style='text-align:center'>" +
+                    "<div style='width:30px;height:30px;border-radius:50%;background:" +
+                    league.color +
+                    ";border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3)'></div>" +
+                    "</div>",
+                  className: "",
+                  iconSize: [30, 30],
+                  iconAnchor: [15, 15],
+                  popupAnchor: [0, -15],
+                });
 
-            const marker = L.marker([team.lat, team.lng], { icon }).bindPopup(
-              popup,
-            );
+            const marker = L.marker([team.lat, team.lng], {
+              icon,
+              imageUrl: team.img || "",
+            }).bindPopup(popup, { maxWidth: 250 });
             cluster.addLayer(marker);
             cachedAllPlaced.push({ team, league });
           }

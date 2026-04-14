@@ -336,6 +336,8 @@ def export_shared_boundaries(
 
     *paths* uses the same format as :func:`load_itl_hierarchy`.
     *country_names* lists country features to include in the outline layer.
+    When provided, ITL/LAD/ward boundaries are also filtered to only include
+    features whose centroid falls within those countries.
     """
     output_dir_path = Path(output_dir)
     output_dir_path.mkdir(parents=True, exist_ok=True)
@@ -353,9 +355,12 @@ def export_shared_boundaries(
         "wards": None,
     }
 
+    # Build a prepared union of the requested countries for spatial filtering
+    country_filter: PreparedGeometry | None = None
     countries_path = Path(paths["countries"])
     if countries_path.exists():
         countries_data = _load_geojson(countries_path)
+        country_geoms: list[BaseGeometry] = []
         for name in country_names or []:
             feats = [
                 f for f in countries_data["features"] if f["properties"].get("CTRY24NM") == name
@@ -374,6 +379,15 @@ def export_shared_boundaries(
                         for f in feats
                     ],
                 }
+                country_geoms.extend(shape(f["geometry"]) for f in feats)
+        if country_geoms:
+            country_filter = prep(unary_union(country_geoms))
+
+    def _feature_in_countries(feat: dict[str, Any]) -> bool:
+        """Return True if the feature's centroid falls within the target countries."""
+        if country_filter is None:
+            return True
+        return country_filter.contains(shape(feat["geometry"]).centroid)
 
     for level, key in [("ITL_1", "itl1"), ("ITL_2", "itl2"), ("ITL_3", "itl3")]:
         gp = Path(paths.get(key, f"boundaries/{level}.geojson"))
@@ -390,6 +404,7 @@ def export_shared_boundaries(
                         "properties": f.get("properties", {}),
                     }
                     for f in data["features"]
+                    if _feature_in_countries(f)
                 ],
             }
 
@@ -407,6 +422,7 @@ def export_shared_boundaries(
                     "properties": f.get("properties", {}),
                 }
                 for f in data["features"]
+                if _feature_in_countries(f)
             ],
         }
 
@@ -424,6 +440,7 @@ def export_shared_boundaries(
                     "properties": f.get("properties", {}),
                 }
                 for f in data["features"]
+                if _feature_in_countries(f)
             ],
         }
 

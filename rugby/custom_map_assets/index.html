@@ -1921,7 +1921,7 @@
       //   1. Pyramid tiers (pyramid teams only)
       //   2. All Leagues per tier (pyramid + merit at same absolute level)
       //   3. Merit competitions (per-competition, per-local-tier)
-      var importData = { pyramid: [], allLeagues: [], merit: [] };
+      var importData = { pyramid: [], allLeagues: [], merit: [], predicted: [], predictedSeason: "" };
 
       function buildTierIndex() {
         // Pyramid-only: group non-merit teams by absolute tier
@@ -2043,6 +2043,40 @@
             });
           importData.merit.push({ comp: cName, tiers: tiers });
         }
+
+        // Predicted tiers from projected markdown
+        importData.predicted = [];
+        importData.predictedSeason = "";
+        if (typeof PROJECTED_DATA !== "undefined" && PROJECTED_DATA && PROJECTED_DATA.tiers) {
+          importData.predictedSeason = PROJECTED_DATA.season || "";
+          var nameIndex = new Map();
+          for (var ni = 0; ni < allTeams.length; ni++) {
+            nameIndex.set(allTeams[ni].n, allTeams[ni]);
+          }
+          for (var pi2 = 0; pi2 < PROJECTED_DATA.tiers.length; pi2++) {
+            var pt = PROJECTED_DATA.tiers[pi2];
+            var predLeagues = [];
+            for (var pli = 0; pli < pt.leagues.length; pli++) {
+              var plg = pt.leagues[pli];
+              var resolved = [];
+              for (var pti = 0; pti < plg.teams.length; pti++) {
+                var team = nameIndex.get(plg.teams[pti]);
+                if (team) resolved.push(team);
+              }
+              if (resolved.length > 0) {
+                predLeagues.push({ name: plg.name, teams: resolved });
+              }
+            }
+            if (predLeagues.length > 0) {
+              importData.predicted.push({
+                id: "pred" + pt.tier,
+                num: pt.tier,
+                name: pt.name,
+                leagues: predLeagues,
+              });
+            }
+          }
+        }
       }
 
       function openImportModal() {
@@ -2123,6 +2157,20 @@
         var html = "";
         var anyMatch = false;
 
+        // Predicted tiers (from projected markdown)
+        if (importData.predicted.length > 0) {
+          var predHtml = "";
+          for (var pri = 0; pri < importData.predicted.length; pri++) {
+            var predRow = renderTierRow(importData.predicted[pri], assigned, q);
+            if (predRow) predHtml += predRow;
+          }
+          if (predHtml) {
+            var predLabel = "Predicted" + (importData.predictedSeason ? " " + escHtml(importData.predictedSeason) : "");
+            html += '<div class="modal-section-header">' + predLabel + "</div>" + predHtml;
+            anyMatch = true;
+          }
+        }
+
         // Section 1: Pyramid tiers
         var pyrHtml = "";
         for (var pi = 0; pi < importData.pyramid.length; pi++) {
@@ -2175,7 +2223,9 @@
       }
 
       function findTierById(id) {
-        var all = importData.pyramid.concat(importData.allLeagues);
+        var all = importData.predicted
+          .concat(importData.pyramid)
+          .concat(importData.allLeagues);
         for (var mi = 0; mi < importData.merit.length; mi++) {
           all = all.concat(importData.merit[mi].tiers);
         }
@@ -2517,6 +2567,7 @@
       }
     </script>
     <script src="teams.js" onload="onTeamsLoaded()"></script>
+    <script src="projected.js"></script>
     <script src="boundaries.js" onload="onBoundariesLoaded()"></script>
   </body>
 </html>

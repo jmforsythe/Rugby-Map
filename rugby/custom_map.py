@@ -421,8 +421,17 @@ def _export_boundaries(
             "centroid": [round(c.x, 4), round(c.y, 4)],
         }
 
-    bd: dict = {"countries": {}, "itl1": {}, "itl2": {}, "itl3": {}, "lad": {}, "ward": {}}
+    bd: dict = {
+        "countries": {},
+        "itl0": {},
+        "itl1": {},
+        "itl2": {},
+        "itl3": {},
+        "lad": {},
+        "ward": {},
+    }
 
+    country_prepared: dict = {}
     countries_path = BOUNDARY_PATHS.get("countries")
     if countries_path and countries_path.exists():
         countries_data = _load_geojson(countries_path)
@@ -430,7 +439,14 @@ def _export_boundaries(
             name = feat["properties"].get("CTRY24NM", "")
             if name in COUNTRY_OUTLINES:
                 geom = shape(feat["geometry"]).simplify(SIMPLIFY_TOLERANCE, preserve_topology=True)
-                bd["countries"][name] = {"geom": mapping(geom)}
+                geom_dict = mapping(geom)
+                c = geom.centroid
+                bd["countries"][name] = {"geom": geom_dict}
+                bd["itl0"][name] = {
+                    "geom": geom_dict,
+                    "centroid": [round(c.x, 4), round(c.y, 4)],
+                }
+                country_prepared[name] = prep(geom)
 
     for name, r in itl1_regions.items():
         if _is_england(r["code"], "itl"):
@@ -451,6 +467,13 @@ def _export_boundaries(
     for code, r in ward_regions.items():
         if _is_england(code, "lad"):
             bd["ward"][code] = _region_entry(r, WARD_SIMPLIFY_TOLERANCE)
+
+    itl0_to_itl1s: dict[str, list[str]] = {}
+    for c_name, c_prep in country_prepared.items():
+        for itl1_name in bd["itl1"]:
+            if c_prep.contains(itl1_regions[itl1_name]["centroid"]):
+                itl0_to_itl1s.setdefault(c_name, []).append(itl1_name)
+    bd["itl0_to_itl1s"] = itl0_to_itl1s
 
     bd["itl1_to_itl2s"] = {
         k: [v2 for v2 in v if v2 in bd["itl2"]] for k, v in itl1_to_itl2s.items() if k in bd["itl1"]
@@ -607,6 +630,26 @@ def main() -> None:
         lad_to_wards,
     )
     logger.info("Found %d unique teams with coordinates", len(teams))
+
+    if has_boundaries:
+        countries_path = BOUNDARY_PATHS.get("countries")
+        if countries_path and countries_path.exists():
+            itl1_to_country: dict[str, str] = {}
+            countries_data = _load_geojson(countries_path)
+            for feat in countries_data.get("features", []):
+                cname = feat["properties"].get("CTRY24NM", "")
+                if cname in COUNTRY_OUTLINES:
+                    c_prep = prep(shape(feat["geometry"]))
+                    for itl1_name, itl1 in itl1_regions.items():
+                        if c_prep.contains(itl1["centroid"]):
+                            itl1_to_country[itl1_name] = cname
+            country_assigned = 0
+            for team in teams:
+                r1 = team.get("r1")
+                if r1 and r1 in itl1_to_country:
+                    team["r0"] = itl1_to_country[r1]
+                    country_assigned += 1
+            logger.info("Assigned %d teams to countries via ITL1", country_assigned)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

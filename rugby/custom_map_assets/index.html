@@ -375,6 +375,80 @@
       .rugby-popup a:hover {
         text-decoration: underline;
       }
+      .move-dropdown {
+        margin-top: 4px;
+      }
+      .move-dropdown-btn {
+        width: 100%;
+        padding: 5px 8px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 12px;
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .move-dropdown-btn:hover {
+        border-color: var(--accent);
+      }
+      .move-dropdown-btn .dd-arrow {
+        font-size: 10px;
+        color: var(--text-muted);
+        transition: transform 0.15s;
+      }
+      .move-dropdown.open .move-dropdown-btn .dd-arrow {
+        transform: rotate(90deg);
+      }
+      .move-dropdown-list {
+        display: none;
+        margin-top: 4px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        max-height: 150px;
+        overflow-y: auto;
+      }
+      .move-dropdown.open .move-dropdown-list {
+        display: block;
+      }
+      .move-dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        font-size: 12px;
+        cursor: pointer;
+        color: var(--text);
+      }
+      .move-dropdown-item:hover {
+        background: var(--accent-light);
+      }
+      .move-dropdown-item .dd-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        border: 1px solid rgba(0,0,0,0.15);
+      }
+      .move-dropdown-item .dd-name {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .move-dropdown-item .dd-count {
+        color: var(--text-muted);
+        font-size: 11px;
+        flex-shrink: 0;
+      }
+      .move-dropdown-item.dd-new {
+        border-top: 1px solid var(--border-light);
+        color: var(--accent);
+      }
 
       /* Buttons */
       .btn {
@@ -758,8 +832,9 @@
             <div class="tp-row">
               <label for="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">Broad brush</label>
               <select id="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">
+                <option value="itl0" selected>Country</option>
                 <option value="itl1">Region</option>
-                <option value="itl2" selected>Sub-region</option>
+                <option value="itl2">Sub-region</option>
                 <option value="itl3">County</option>
                 <option value="lad">District</option>
                 <option value="ward">Ward</option>
@@ -768,11 +843,12 @@
             <div class="tp-row">
               <label for="floorLevel" title="Smallest region size used to split contested areas — the finest brush">Fine brush</label>
               <select id="floorLevel" title="Smallest region size used to split contested areas — the finest brush">
-                <option value="itl1">Region</option>
+                <option value="itl0">Country</option>
+                <option value="itl1" selected>Region</option>
                 <option value="itl2">Sub-region</option>
                 <option value="itl3">County</option>
                 <option value="lad">District</option>
-                <option value="ward" selected>Ward</option>
+                <option value="ward">Ward</option>
               </select>
             </div>
             <div class="tp-row">
@@ -1089,6 +1165,36 @@
                 " km</p>";
             }
 
+            let moveItems = "";
+            for (const ol of leagues) {
+              if (ol.id === league.id) continue;
+              moveItems +=
+                '<div class="move-dropdown-item" data-to="' +
+                ol.id +
+                '">' +
+                '<span class="dd-swatch" style="background:' +
+                ol.color +
+                '"></span>' +
+                '<span class="dd-name">' +
+                escHtml(ol.name) +
+                "</span>" +
+                '<span class="dd-count">' +
+                ol.teams.length +
+                "</span></div>";
+            }
+            moveItems +=
+              '<div class="move-dropdown-item dd-new" data-to="__new__">+ New League</div>';
+            let moveHtml =
+              '<hr><div class="move-dropdown" data-team="' +
+              escAttr(team.n) +
+              '" data-from="' +
+              league.id +
+              '">' +
+              '<button type="button" class="move-dropdown-btn">Move to\u2026 <span class="dd-arrow">&#9654;</span></button>' +
+              '<div class="move-dropdown-list">' +
+              moveItems +
+              "</div></div>";
+
             const popup =
               '<div class="rugby-popup">' +
               '<h4 class="popup-title" style="color:' +
@@ -1106,6 +1212,7 @@
                 : "") +
               officialHtml +
               customHtml +
+              moveHtml +
               "</div>";
 
             const hasImg = team.img;
@@ -1174,11 +1281,11 @@
       // ── ITL Region Territory Algorithm ─────────────────────────
       // Port of _collect_group_geometries from core/map_builder.py
 
-      const LEVELS = ["itl1", "itl2", "itl3", "lad", "ward"];
-      const LEVEL_IDX = { itl1: 0, itl2: 1, itl3: 2, lad: 3, ward: 4 };
-      const NEXT_LEVEL = { itl1: "itl2", itl2: "itl3", itl3: "lad", lad: "ward" };
-      const TEAM_REGION_KEY = { itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl", ward: "rw" };
-      const CHILD_MAP_KEY = { itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads", lad: "lad_to_wards" };
+      const LEVELS = ["itl0", "itl1", "itl2", "itl3", "lad", "ward"];
+      const LEVEL_IDX = { itl0: 0, itl1: 1, itl2: 2, itl3: 3, lad: 4, ward: 5 };
+      const NEXT_LEVEL = { itl0: "itl1", itl1: "itl2", itl2: "itl3", itl3: "lad", lad: "ward" };
+      const TEAM_REGION_KEY = { itl0: "r0", itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl", ward: "rw" };
+      const CHILD_MAP_KEY = { itl0: "itl0_to_itl1s", itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads", lad: "lad_to_wards" };
 
       let ENTRY_LEVEL = "itl2";
       let FLOOR_LEVEL = "ward";
@@ -1279,7 +1386,7 @@
       }
 
       function buildRegionIndex(allPlaced) {
-        const idx = { itl1: {}, itl2: {}, itl3: {}, lad: {}, ward: {} };
+        const idx = { itl0: {}, itl1: {}, itl2: {}, itl3: {}, lad: {}, ward: {} };
         for (const p of allPlaced) {
           for (const level of LEVELS) {
             const key = p.team[TEAM_REGION_KEY[level]];
@@ -1675,6 +1782,20 @@
       function removeTeam(leagueId, teamName) {
         const league = leagues.find((l) => l.id === leagueId);
         if (league) league.teams = league.teams.filter((t) => t.n !== teamName);
+        renderLeagues();
+        renderMap();
+        doSearch();
+        saveToHash();
+      }
+
+      function moveTeam(teamName, fromLeagueId, toLeagueId) {
+        var from = leagues.find(function (l) { return l.id === fromLeagueId; });
+        var to = leagues.find(function (l) { return l.id === toLeagueId; });
+        if (!from || !to) return;
+        var teamIdx = from.teams.findIndex(function (t) { return t.n === teamName; });
+        if (teamIdx === -1) return;
+        var team = from.teams.splice(teamIdx, 1)[0];
+        to.teams.push(team);
         renderLeagues();
         renderMap();
         doSearch();
@@ -2296,8 +2417,92 @@
 
       initMap();
 
+      map.on("popupopen", function (e) {
+        var container = e.popup.getElement();
+        if (!container) return;
+        var dd = container.querySelector(".move-dropdown");
+        if (!dd) return;
+        var btn = dd.querySelector(".move-dropdown-btn");
+        if (btn) {
+          btn.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            dd.classList.toggle("open");
+          });
+        }
+        dd.addEventListener("click", function (ev) {
+          var item = ev.target.closest(".move-dropdown-item");
+          if (!item) return;
+          var toVal = item.dataset.to;
+          var teamName = dd.dataset.team;
+          var fromId = parseInt(dd.dataset.from);
+          if (toVal === "__new__") {
+            var newLeague = createLeague();
+            moveTeam(teamName, fromId, newLeague.id);
+          } else {
+            moveTeam(teamName, fromId, parseInt(toVal));
+          }
+          map.closePopup();
+        });
+      });
+
+      function prepareBoundaryItl0() {
+        if (typeof BOUNDARIES === "undefined") return;
+        var bd = BOUNDARIES;
+
+        if (bd.countries && !bd.itl0) {
+          bd.itl0 = {};
+          for (var name in bd.countries) {
+            var geom = bd.countries[name].geom;
+            var centroid;
+            try {
+              var feat = geom.type === "Feature" ? geom : turf.feature(geom);
+              centroid = turf.centroid(feat).geometry.coordinates;
+            } catch (_) {
+              centroid = [0, 0];
+            }
+            bd.itl0[name] = { geom: geom, centroid: centroid };
+          }
+        }
+
+        if (bd.itl0 && bd.itl1 && !bd.itl0_to_itl1s) {
+          bd.itl0_to_itl1s = {};
+          for (var cName in bd.itl0) bd.itl0_to_itl1s[cName] = [];
+          for (var itl1Name in bd.itl1) {
+            var pt = turf.point(bd.itl1[itl1Name].centroid);
+            for (var cName2 in bd.itl0) {
+              try {
+                var cFeat = bd.itl0[cName2].geom;
+                if (cFeat.type !== "Feature") cFeat = turf.feature(cFeat);
+                if (turf.booleanPointInPolygon(pt, cFeat)) {
+                  bd.itl0_to_itl1s[cName2].push(itl1Name);
+                  break;
+                }
+              } catch (_) {}
+            }
+          }
+        }
+      }
+
+      function assignCountryToTeams() {
+        if (!boundariesReady || typeof BOUNDARIES === "undefined" || !allTeams.length) return;
+        var bd = BOUNDARIES;
+        if (!bd.itl0_to_itl1s) return;
+        var itl1ToCountry = {};
+        for (var cName in bd.itl0_to_itl1s) {
+          var children = bd.itl0_to_itl1s[cName];
+          for (var i = 0; i < children.length; i++) {
+            itl1ToCountry[children[i]] = cName;
+          }
+        }
+        for (var j = 0; j < allTeams.length; j++) {
+          var t = allTeams[j];
+          if (!t.r0 && t.r1 && itl1ToCountry[t.r1]) t.r0 = itl1ToCountry[t.r1];
+        }
+      }
+
       function onTeamsLoaded() {
         allTeams = TEAMS_DATA;
+        assignCountryToTeams();
         buildTierIndex();
         document.getElementById("searchInput").placeholder =
           "Search " + allTeams.length.toLocaleString() + " teams\u2026";
@@ -2305,6 +2510,8 @@
       }
       function onBoundariesLoaded() {
         boundariesReady = true;
+        prepareBoundaryItl0();
+        assignCountryToTeams();
         addBoundaryOutlines();
         if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
       }

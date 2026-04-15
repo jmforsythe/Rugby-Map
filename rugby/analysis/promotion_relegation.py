@@ -48,6 +48,41 @@ def _ordinal(n: int) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Feeder relationships: which lower-tier leagues feed each upper-tier league
+# ---------------------------------------------------------------------------
+
+_TIER5_TO_TIER4: dict[str, str] = {
+    "Regional 1 North West": "National League 2 North",
+    "Regional 1 North East": "National League 2 North",
+    "Regional 1 South Central": "National League 2 East",
+    "Regional 1 South East": "National League 2 East",
+    "Regional 1 Midlands": "National League 2 West",
+    "Regional 1 Tribute Ale South West": "National League 2 West",
+}
+
+_TIER6_TO_TIER5: dict[str, str] = {
+    "Regional 2 North": "Regional 1 North East",
+    "Regional 2 North East": "Regional 1 North East",
+    "Regional 2 North West": "Regional 1 North West",
+    "Regional 2 Midlands North": "Regional 1 North West",
+    "Regional 2 Midlands West": "Regional 1 Midlands",
+    "Regional 2 Midlands East": "Regional 1 Midlands",
+    "Regional 2 Tribute Ale South West": "Regional 1 Tribute Ale South West",
+    "Regional 2 Tribute Ale Severn": "Regional 1 Tribute Ale South West",
+    "Regional 2 South Central": "Regional 1 South Central",
+    "Regional 2 South East": "Regional 1 South Central",
+    "Regional 2 Anglia": "Regional 1 South East",
+    "Regional 2 Thames": "Regional 1 South East",
+}
+
+_PROMOTION_MAP: dict[str, str] = {**_TIER5_TO_TIER4, **_TIER6_TO_TIER5}
+
+_FEEDERS: dict[str, list[str]] = {}
+for _src, _dst in _PROMOTION_MAP.items():
+    _FEEDERS.setdefault(_dst, []).append(_src)
+
+
+# ---------------------------------------------------------------------------
 # Step 1 — discover leagues
 # ---------------------------------------------------------------------------
 
@@ -206,6 +241,18 @@ def _handle_second_xv_blocks(assignments: list[dict]) -> None:
                     break
 
 
+def _assign_dest_leagues(assignments: list[dict]) -> None:
+    """Set dest_league for teams crossing tier boundaries with known feeders."""
+    for a in assignments:
+        if a["next_tier"] < a["current_tier"]:
+            a["dest_league"] = _PROMOTION_MAP.get(a["league_name"], "")
+        elif a["next_tier"] > a["current_tier"]:
+            feeders = _FEEDERS.get(a["league_name"], [])
+            a["dest_league"] = " / ".join(sorted(feeders)) if feeders else ""
+        else:
+            a["dest_league"] = ""
+
+
 def assign_teams(leagues: list[dict], standings: dict[str, list[str]]) -> list[dict]:
     """Apply promotion/relegation rules and return one record per team."""
     assignments: list[dict] = []
@@ -234,6 +281,7 @@ def assign_teams(leagues: list[dict], standings: dict[str, list[str]]) -> list[d
             )
 
     _handle_second_xv_blocks(assignments)
+    _assign_dest_leagues(assignments)
     return assignments
 
 
@@ -307,6 +355,17 @@ def build_markdown(assignments: list[dict], season: str) -> str:
     lines.append("---")
     lines.append("")
 
+    # ---- pre-pass: assign incoming teams to single-league tiers ----
+    tier_league_names: dict[int, set[str]] = {}
+    for a in assignments:
+        tier_league_names.setdefault(a["current_tier"], set()).add(a["league_name"])
+
+    for a in assignments:
+        if a["next_tier"] != a["current_tier"] and not a.get("dest_league"):
+            names = tier_league_names.get(a["next_tier"])
+            if names and len(names) == 1:
+                a["dest_league"] = next(iter(names))
+
     # ---- per-tier sections ----
     tiers_present = sorted({a["current_tier"] for a in assignments})
 
@@ -329,60 +388,66 @@ def build_markdown(assignments: list[dict], season: str) -> str:
         lines.append(f"## Tier {tier_num} — {tier_name} ({total_next} teams)")
         lines.append("")
 
-        # staying, grouped by league
+        # Partition incoming teams: assigned to a specific league vs unassigned
         league_names_in_tier = sorted({a["league_name"] for a in tier_teams})
-        single_league = len(league_names_in_tier) == 1
+        assigned_in: list[dict] = []
+        unassigned_in: list[dict] = []
+        for a in promoted_in + relegated_in:
+            dl = a.get("dest_league", "")
+            if dl and "/" not in dl and dl in league_names_in_tier:
+                assigned_in.append(a)
+            else:
+                unassigned_in.append(a)
 
+        # Per-league projected rosters
         for league_name in league_names_in_tier:
             league_staying = sorted(
                 [a for a in staying if a["league_name"] == league_name],
                 key=lambda x: x["position"],
             )
-            if not league_staying:
+            league_joining = sorted(
+                [a for a in assigned_in if a["dest_league"] == league_name],
+                key=lambda x: x["team_name"],
+            )
+            league_total = len(league_staying) + len(league_joining)
+            if not league_staying and not league_joining:
                 continue
-            if single_league:
-                heading = f"Staying in {league_name} ({len(league_staying)} teams)"
-            else:
-                heading = f"{league_name} — Staying ({len(league_staying)} teams)"
-            lines.append(f"### {heading}")
-            lines.append("")
-            lines.append(f"| # | Team | {season} Position |")
-            lines.append("|---|------|-----------------|")
-            for i, a in enumerate(league_staying, 1):
-                lines.append(f"| {i} | {a['team_name']} | {_ordinal(a['position'])} |")
+
+            lines.append(f"### {league_name} ({league_total} teams)")
             lines.append("")
 
-        # promoted to this tier (from tier below)
-        if promoted_in:
-            holding = f"{tier_name} Promoted"
-            lines.append(
-                f"### Promoted to Tier {tier_num} ({len(promoted_in)} teams) "
-                f'— holding league "{holding}"'
-            )
-            lines.append("")
-            lines.append("| Team | From League | Mechanism |")
-            lines.append("|------|-------------|-----------|")
-            for a in sorted(promoted_in, key=lambda x: x["team_name"]):
-                lines.append(
-                    f"| {a['team_name']} | {a['league_name']} "
-                    f"({_ordinal(a['position'])}) | {a['mechanism']} |"
-                )
-            lines.append("")
+            if league_staying:
+                lines.append(f"**Staying ({len(league_staying)}):**")
+                lines.append("")
+                lines.append(f"| # | Team | {season} Position |")
+                lines.append("|---|------|-----------------|")
+                for i, a in enumerate(league_staying, 1):
+                    lines.append(f"| {i} | {a['team_name']} | {_ordinal(a['position'])} |")
+                lines.append("")
 
-        # relegated to this tier (from tier above)
-        if relegated_in:
-            holding = f"{tier_name} Relegated"
-            lines.append(
-                f"### Relegated to Tier {tier_num} ({len(relegated_in)} teams) "
-                f'— holding league "{holding}"'
-            )
+            if league_joining:
+                lines.append(f"**Joining ({len(league_joining)}):**")
+                lines.append("")
+                lines.append("| Team | From League | Mechanism |")
+                lines.append("|------|-------------|-----------|")
+                for a in league_joining:
+                    lines.append(
+                        f"| {a['team_name']} | {a['league_name']} "
+                        f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                    )
+                lines.append("")
+
+        # Unassigned incoming teams
+        if unassigned_in:
+            lines.append(f"### Unassigned ({len(unassigned_in)} teams)")
             lines.append("")
-            lines.append("| Team | From League | Mechanism |")
-            lines.append("|------|-------------|-----------|")
-            for a in sorted(relegated_in, key=lambda x: x["team_name"]):
+            lines.append("| Team | From League | Mechanism | Possible Destinations |")
+            lines.append("|------|-------------|-----------|----------------------|")
+            for a in sorted(unassigned_in, key=lambda x: x["team_name"]):
+                dl = a.get("dest_league", "")
                 lines.append(
                     f"| {a['team_name']} | {a['league_name']} "
-                    f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                    f"({_ordinal(a['position'])}) | {a['mechanism']} | {dl} |"
                 )
             lines.append("")
 
@@ -393,19 +458,47 @@ def build_markdown(assignments: list[dict], season: str) -> str:
                     [a for a in relegated_out if a["next_tier"] == dest],
                     key=lambda x: (x["league_name"], x["position"]),
                 )
-                lines.append(
-                    f"### Relegated from Tier {tier_num} "
-                    f"({len(dest_teams)} teams) → Tier {dest}"
-                )
-                lines.append("")
-                lines.append("| Team | From League | Mechanism |")
-                lines.append("|------|-------------|-----------|")
-                for a in dest_teams:
+                has_dest = any(a.get("dest_league") for a in dest_teams)
+                if has_dest:
+                    by_source: dict[str, list[dict]] = {}
+                    for a in dest_teams:
+                        by_source.setdefault(a["league_name"], []).append(a)
+                    for src_name in sorted(by_source):
+                        group = by_source[src_name]
+                        dest_hint = group[0].get("dest_league", "")
+                        if dest_hint:
+                            lines.append(
+                                f"### Relegated from {src_name} "
+                                f"({len(group)} teams) → {dest_hint}"
+                            )
+                        else:
+                            lines.append(
+                                f"### Relegated from {src_name} "
+                                f"({len(group)} teams) → Tier {dest}"
+                            )
+                        lines.append("")
+                        lines.append("| Team | From League | Mechanism |")
+                        lines.append("|------|-------------|-----------|")
+                        for a in group:
+                            lines.append(
+                                f"| {a['team_name']} | {a['league_name']} "
+                                f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                            )
+                        lines.append("")
+                else:
                     lines.append(
-                        f"| {a['team_name']} | {a['league_name']} "
-                        f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                        f"### Relegated from Tier {tier_num} "
+                        f"({len(dest_teams)} teams) → Tier {dest}"
                     )
-                lines.append("")
+                    lines.append("")
+                    lines.append("| Team | From League | Mechanism |")
+                    lines.append("|------|-------------|-----------|")
+                    for a in dest_teams:
+                        lines.append(
+                            f"| {a['team_name']} | {a['league_name']} "
+                            f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                        )
+                    lines.append("")
 
         # total check line
         parts = [f"{len(staying)} staying"]

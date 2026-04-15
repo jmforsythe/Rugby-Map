@@ -1287,8 +1287,8 @@
       const TEAM_REGION_KEY = { itl0: "r0", itl1: "r1", itl2: "r2", itl3: "r3", lad: "rl", ward: "rw" };
       const CHILD_MAP_KEY = { itl0: "itl0_to_itl1s", itl1: "itl1_to_itl2s", itl2: "itl2_to_itl3s", itl3: "itl3_to_lads", lad: "lad_to_wards" };
 
-      let ENTRY_LEVEL = "itl2";
-      let FLOOR_LEVEL = "ward";
+      let ENTRY_LEVEL = document.getElementById("entryLevel").value;
+      let FLOOR_LEVEL = document.getElementById("floorLevel").value;
       let FLOOR_IDX = LEVEL_IDX[FLOOR_LEVEL];
       let territoryFillOpacity = 0.6;
       let territoryBorderWeight = 1;

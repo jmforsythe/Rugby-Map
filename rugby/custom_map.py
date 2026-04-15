@@ -335,6 +335,10 @@ def _collect_teams(
                     "t": abs_tier,
                     "tn": abs_tier_name,
                 }
+                if team.get("url"):
+                    entry["url"] = team["url"]
+                if league.get("league_url"):
+                    entry["lu"] = league["league_url"]
                 if is_merit:
                     entry["mc"] = comp_display
                     entry["ml"] = local_tier_name
@@ -591,11 +595,13 @@ def _build_page() -> None:
 
     is_prod = get_config().is_production
     home_href = "/" if is_prod else "../index.html"
+    info_prefix = "/" if is_prod else "../"
 
     replacements = {
         "{{GA_SCRIPT}}": get_google_analytics_script(),
         "{{FAVICON_HTML}}": get_favicon_html(depth=1),
         "{{HOME_HREF}}": home_href,
+        "{{INFO_PREFIX}}": info_prefix,
     }
     html = template
     for token, value in replacements.items():

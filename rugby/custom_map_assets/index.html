@@ -371,6 +371,7 @@
       }
       .rugby-popup a {
         color: var(--accent);
+        text-decoration: none;
       }
       .rugby-popup a:hover {
         text-decoration: underline;
@@ -957,6 +958,14 @@
 
       const FALLBACK_ICON =
         "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";
+      const INFO_PREFIX = "{{INFO_PREFIX}}";
+
+      function sanitizeTeamName(name) {
+        var s = name.replace(/ /g, "_").replace(/\//g, "_").replace(/&/g, "and").replace(/\|/g, "_");
+        s = s.replace(/[\s_-]+/g, "_");
+        return s.replace(/^_+|_+$/g, "");
+      }
+
       let allTeams = [];
       let leagues = [];
       let nextLeagueId = 1;
@@ -1138,14 +1147,14 @@
                 '<p><span class="popup-label">Official League:</span> ' +
                 escHtml(team.lg) +
                 "</p>" +
-                "<p>Team Avg: " +
-                team.tavg.toFixed(1) +
+                "<p>Team Average: " +
+                team.tavg.toFixed(2) +
                 " km</p>" +
                 "<p>Team Total: " +
-                team.ttot.toFixed(1) +
+                team.ttot.toFixed(2) +
                 " km</p>" +
                 (team.lavg
-                  ? "<p>League Avg: " + team.lavg.toFixed(1) + " km</p>"
+                  ? "<p>League Average: " + team.lavg.toFixed(2) + " km</p>"
                   : "");
             }
 
@@ -1154,14 +1163,14 @@
               customHtml =
                 "<hr>" +
                 '<p><span class="popup-label">Custom Distances:</span></p>' +
-                "<p>Team Avg: " +
-                ts.avg.toFixed(1) +
+                "<p>Team Average: " +
+                ts.avg.toFixed(2) +
                 " km</p>" +
                 "<p>Team Total: " +
-                ts.total.toFixed(1) +
+                ts.total.toFixed(2) +
                 " km</p>" +
-                "<p>League Avg: " +
-                stats.avg.toFixed(1) +
+                "<p>League Average: " +
+                stats.avg.toFixed(2) +
                 " km</p>";
             }
 
@@ -1195,6 +1204,18 @@
               moveItems +
               "</div></div>";
 
+            var linksHtml = "";
+            if (team.url) {
+              linksHtml +=
+                '<p><a href="' + escAttr(team.url) + '" target="_blank">View Team Page</a></p>';
+            }
+            if (team.lu) {
+              linksHtml +=
+                '<p><a href="' + escAttr(team.lu) + '" target="_blank">View League Page</a></p>';
+            }
+            linksHtml +=
+              '<p><a href="' + INFO_PREFIX + 'teams/' + sanitizeTeamName(team.n) + '.html" target="_blank">View Info page</a></p>';
+
             const popup =
               '<div class="rugby-popup">' +
               '<h4 class="popup-title" style="color:' +
@@ -1210,6 +1231,7 @@
                   escHtml(team.addr) +
                   "</p>"
                 : "") +
+              linksHtml +
               officialHtml +
               customHtml +
               moveHtml +

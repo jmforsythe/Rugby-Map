@@ -88,6 +88,8 @@ COLOR_PALETTE = [
     "#7b241c",
 ]
 
+UNASSIGNED_COLOR = "#cccccc"
+
 # If a region at this level contains items in multiple child regions, everything in this region will
 # be shaded.
 TIER_ENTRY_LEVELS: dict[int, str] = {

@@ -24,6 +24,7 @@ from core import GeocodedLeague, TravelDistances, get_config, set_config, setup_
 from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import _parse_projected_md
+from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
 logger = logging.getLogger(__name__)
@@ -546,14 +547,19 @@ def _write_projected_js() -> None:
     tiers_list: list[dict] = []
     for tier_num in sorted(tiers_dict):
         tier_name = mens_current_tier_name(tier_num)
-        leagues = [
-            {"name": league_name, "teams": team_names}
-            for league_name, team_names in tiers_dict[tier_num]
-        ]
+        leagues: list[dict] = []
+        league_idx = 0
+        for league_name, team_names in tiers_dict[tier_num]:
+            if league_name == "Unassigned":
+                color = UNASSIGNED_COLOR
+            else:
+                color = COLOR_PALETTE[(tier_num - 1 + league_idx) % len(COLOR_PALETTE)]
+                league_idx += 1
+            leagues.append({"name": league_name, "teams": team_names, "color": color})
         tiers_list.append(
             {
                 "tier": tier_num,
-                "name": f"Tier {tier_num} \u2014 {tier_name}",
+                "name": f"Projected \u2014 {tier_name}",
                 "leagues": leagues,
             }
         )

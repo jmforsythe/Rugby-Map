@@ -225,6 +225,40 @@
         flex-shrink: 0;
         cursor: pointer;
         border: 2px solid rgba(0, 0, 0, 0.15);
+        position: relative;
+      }
+
+      /* Color picker popup */
+      .color-picker-popup {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 2500;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px;
+        box-shadow: 0 4px 16px var(--shadow);
+        display: grid;
+        grid-template-columns: repeat(8, 22px);
+        gap: 4px;
+        margin-top: 4px;
+      }
+      .color-picker-swatch {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.1s, border-color 0.1s;
+      }
+      .color-picker-swatch:hover {
+        transform: scale(1.2);
+        border-color: var(--text);
+      }
+      .color-picker-swatch.active {
+        border-color: var(--text);
+        box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 4px var(--text);
       }
       .league-name-input {
         flex: 1;
@@ -955,6 +989,8 @@
         "#1b4f72",
         "#7b241c",
       ];
+
+      const UNASSIGNED_COLOR = "#cccccc";
 
       const FALLBACK_ICON =
         "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";
@@ -1831,14 +1867,58 @@
         renderLeagues();
       }
 
-      function cycleColor(id) {
-        const league = leagues.find((l) => l.id === id);
+      var activeColorPicker = null;
+
+      function closeColorPicker() {
+        if (activeColorPicker) {
+          activeColorPicker.remove();
+          activeColorPicker = null;
+        }
+        document.removeEventListener("click", onDocClickClosePicker, true);
+      }
+
+      function onDocClickClosePicker(e) {
+        if (activeColorPicker && !activeColorPicker.contains(e.target) && !e.target.closest("[data-action='color']")) {
+          closeColorPicker();
+        }
+      }
+
+      function openColorPicker(id, anchorEl) {
+        closeColorPicker();
+        var league = leagues.find(function (l) { return l.id === id; });
         if (!league) return;
-        const idx = COLOR_PALETTE.indexOf(league.color);
-        league.color = COLOR_PALETTE[(idx + 1) % COLOR_PALETTE.length];
-        renderLeagues();
-        renderMap();
-        saveToHash();
+
+        var popup = document.createElement("div");
+        popup.className = "color-picker-popup";
+        for (var i = 0; i < COLOR_PALETTE.length; i++) {
+          var swatch = document.createElement("div");
+          swatch.className = "color-picker-swatch";
+          if (COLOR_PALETTE[i] === league.color) swatch.className += " active";
+          swatch.style.background = COLOR_PALETTE[i];
+          swatch.dataset.color = COLOR_PALETTE[i];
+          swatch.dataset.leagueId = id;
+          popup.appendChild(swatch);
+        }
+
+        popup.addEventListener("click", function (e) {
+          var sw = e.target.closest(".color-picker-swatch");
+          if (!sw) return;
+          var lg = leagues.find(function (l) { return l.id === parseInt(sw.dataset.leagueId); });
+          if (lg) {
+            lg.color = sw.dataset.color;
+            renderLeagues();
+            renderMap();
+            saveToHash();
+          }
+          closeColorPicker();
+        });
+
+        anchorEl.style.position = "relative";
+        anchorEl.appendChild(popup);
+        activeColorPicker = popup;
+        setTimeout(function () {
+          document.addEventListener("click", onDocClickClosePicker, true);
+        }, 0);
       }
 
       function renameLeague(id, newName) {
@@ -1928,7 +2008,7 @@
           const action = el.dataset.action;
           const id = parseInt(el.dataset.id || el.dataset.league);
           if (action === "delete") deleteLeague(id);
-          else if (action === "color") cycleColor(id);
+          else if (action === "color") { e.stopPropagation(); openColorPicker(id, el); }
           else if (action === "remove-team") removeTeam(id, el.dataset.team);
         });
 
@@ -1998,6 +2078,21 @@
           }
         }
 
+        function assignLeagueColors(leagues, tierNum) {
+          var offset = Math.max(tierNum, 1) - 1;
+          var idx = 0;
+          for (var i = 0; i < leagues.length; i++) {
+            if (leagues[i].color) continue;
+            if (leagues[i].name === "Unassigned") {
+              leagues[i].color = UNASSIGNED_COLOR;
+            } else {
+              leagues[i].color = COLOR_PALETTE[(offset + idx) % COLOR_PALETTE.length];
+              idx++;
+            }
+          }
+          return leagues;
+        }
+
         function finalizeTiers(map) {
           return Array.from(map.values())
             .sort(function (a, b) {
@@ -2009,8 +2104,9 @@
                   return { name: e[0], teams: e[1] };
                 })
                 .sort(function (a, b) {
-                  return a.name.localeCompare(b.name);
+                  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
                 });
+              assignLeagueColors(lgs, tier.num);
               return {
                 id: "t" + tier.num,
                 num: tier.num,
@@ -2056,8 +2152,9 @@
                   return { name: e[0], teams: e[1] };
                 })
                 .sort(function (a, b) {
-                  return a.name.localeCompare(b.name);
+                  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
                 });
+              assignLeagueColors(lgs, 1);
               return {
                 id: "m_" + cName + "_" + tier.name,
                 num: 0,
@@ -2088,10 +2185,11 @@
                 if (team) resolved.push(team);
               }
               if (resolved.length > 0) {
-                predLeagues.push({ name: plg.name, teams: resolved });
+                predLeagues.push({ name: plg.name, teams: resolved, color: plg.color });
               }
             }
             if (predLeagues.length > 0) {
+              assignLeagueColors(predLeagues, pt.tier);
               importData.predicted.push({
                 id: "pred" + pt.tier,
                 num: pt.tier,
@@ -2189,7 +2287,7 @@
             if (predRow) predHtml += predRow;
           }
           if (predHtml) {
-            var predLabel = "Predicted" + (importData.predictedSeason ? " " + escHtml(importData.predictedSeason) : "");
+            var predLabel = "Projected" + (importData.predictedSeason ? " " + escHtml(importData.predictedSeason) : "");
             html += '<div class="modal-section-header">' + predLabel + "</div>" + predHtml;
             anyMatch = true;
           }
@@ -2269,7 +2367,7 @@
             return !assigned.has(t.n);
           });
           if (teamsToAdd.length === 0) continue;
-          var league = createLeague(lg.name);
+          var league = createLeague(lg.name, lg.color);
           league.teams = teamsToAdd.slice();
           for (var j = 0; j < teamsToAdd.length; j++)
             assigned.add(teamsToAdd[j].n);
@@ -2296,7 +2394,7 @@
         });
         if (teamsToAdd.length === 0) return;
 
-        var league = createLeague(leagueName);
+        var league = createLeague(leagueName, source.color);
         league.teams = teamsToAdd.slice();
 
         renderImportList(document.getElementById("importSearch").value);

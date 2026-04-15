@@ -19,42 +19,11 @@ from urllib.parse import quote
 
 from rugby import DATA_DIR
 from rugby.analysis.promotion_relegation import _PROMOTION_MAP
+from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 
 PROJECTED_PATH = DATA_DIR / "projected_2026-2027.md"
 
 BASE_URL = "https://rugbyunionmap.uk/custom-map/"
-
-COLOR_PALETTE = [
-    "#e6194b",
-    "#3cb44b",
-    "#ffe119",
-    "#0082c8",
-    "#f58231",
-    "#911eb4",
-    "#46f0f0",
-    "#f032e6",
-    "#6a8f00",
-    "#fabebe",
-    "#008080",
-    "#e6beff",
-    "#aa6e28",
-    "#fffac8",
-    "#800000",
-    "#008f5a",
-    "#808000",
-    "#ffd8b1",
-    "#000080",
-    "#808080",
-    "#ff6b6b",
-    "#4ecdc4",
-    "#95e1d3",
-    "#f38181",
-    "#aa96da",
-    "#fcbad3",
-    "#a8d8ea",
-    "#ffcfd2",
-    "#5b2c6f",
-]
 
 
 def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, list[str]]]]:
@@ -220,11 +189,22 @@ def _extract_source_league(line: str) -> str | None:
     return re.sub(r"\s*\(\d+\w*\)\s*$", "", cells[1]).strip() or None
 
 
-def build_hash(leagues: list[tuple[str, list[str]]]) -> str:
-    """Build the URL hash string for the custom map page."""
+def build_hash(leagues: list[tuple[str, list[str]]], tier_num: int = 1) -> str:
+    """Build the URL hash string for the custom map page.
+
+    Colours are assigned to match the regular tier maps: the palette start
+    index is offset by ``tier_num - 1`` so that the same league always gets
+    the same colour regardless of how the URL is generated.  "Unassigned"
+    leagues receive a fixed neutral colour.
+    """
     parts: list[str] = []
-    for i, (name, teams) in enumerate(leagues):
-        color = COLOR_PALETTE[i % len(COLOR_PALETTE)]
+    league_idx = 0
+    for name, teams in leagues:
+        if name == "Unassigned":
+            color = UNASSIGNED_COLOR
+        else:
+            color = COLOR_PALETTE[(tier_num - 1 + league_idx) % len(COLOR_PALETTE)]
+            league_idx += 1
         team_str = ",".join(quote(t, safe="") for t in teams)
         parts.append(f"{quote(name, safe='')}:{quote(color, safe='')}:{team_str}")
     return "#" + ";".join(parts)
@@ -233,9 +213,10 @@ def build_hash(leagues: list[tuple[str, list[str]]]) -> str:
 def build_tier_url(
     tier_leagues: list[tuple[str, list[str]]],
     base_url: str = BASE_URL,
+    tier_num: int = 1,
 ) -> str:
     """Build a full custom-map URL for one tier's worth of leagues."""
-    return base_url + build_hash(tier_leagues)
+    return base_url + build_hash(tier_leagues, tier_num)
 
 
 def main() -> None:
@@ -280,9 +261,9 @@ def main() -> None:
             print(f"  {name}: {len(teams)} teams")
 
         if args.hash_only:
-            print(f"\n  {build_hash(leagues)}")
+            print(f"\n  {build_hash(leagues, tier_num)}")
         else:
-            print(f"\n  {build_tier_url(leagues, args.base_url)}")
+            print(f"\n  {build_tier_url(leagues, args.base_url, tier_num)}")
 
 
 if __name__ == "__main__":

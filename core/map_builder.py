@@ -1008,6 +1008,7 @@ def _add_marker(
     color: str,
     tier_order: int | None = None,
     fallback_icon_url: str | None = None,
+    league_border: bool = False,
 ) -> None:
     name_esc = escape(item["name"])
     popup_content = item.get("popup_html") or f'<div class="rugby-popup"><b>{name_esc}</b></div>'
@@ -1032,6 +1033,7 @@ def _add_marker(
 
     icon_size = 30
     icon_url = item.get("icon_url")
+    border_css = f"border: 2px solid {color}; " if league_border else ""
     if icon_url:
         if fallback_icon_url:
             onerror = f"this.onerror=null; this.src='{escape(fallback_icon_url)}'"
@@ -1040,7 +1042,8 @@ def _add_marker(
         icon_html = (
             f'<div style="text-align: center;">'
             f'<img src="{escape(icon_url)}" '
-            f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%;" '
+            f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
+            f'{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3);" '
             f'onerror="{onerror}">'
             f"</div>"
         )
@@ -1436,6 +1439,7 @@ def generate_single_group_map(
             group_colors[it["group"]],
             tier_order=0,
             fallback_icon_url=config.fallback_icon_url,
+            league_border=True,
         )
 
     _add_layer_control(m)

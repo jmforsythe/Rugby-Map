@@ -18,6 +18,7 @@ import re
 from urllib.parse import quote
 
 from rugby import DATA_DIR
+from rugby.analysis.promotion_relegation import _PROMOTION_MAP
 
 PROJECTED_PATH = DATA_DIR / "projected_2026-2027.md"
 
@@ -63,6 +64,7 @@ def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, li
         lines = f.readlines()
 
     tiers: dict[int, list[tuple[str, list[str]]]] = {}
+    team_sources: dict[str, str] = {}
     current_tier: int | None = None
     current_section: str | None = None
     current_teams: list[str] = []
@@ -117,26 +119,57 @@ def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, li
             team = _extract_team_from_row(line)
             if team:
                 current_teams.append(team)
+                if current_section in ("Promoted", "Relegated"):
+                    src = _extract_source_league(line)
+                    if src:
+                        team_sources[team] = src
 
     _flush()
-    return _merge_promoted_relegated(tiers)
+    return _merge_promoted_relegated(tiers, team_sources)
 
 
 def _merge_promoted_relegated(
     tiers: dict[int, list[tuple[str, list[str]]]],
+    team_sources: dict[str, str] | None = None,
 ) -> dict[int, list[tuple[str, list[str]]]]:
-    """Combine 'Promoted' and 'Relegated' entries into a single 'Unassigned' league per tier."""
+    """Distribute promoted/relegated teams into destination leagues where known.
+
+    Uses the feeder-league mapping from ``promotion_relegation`` to assign
+    promoted teams to their correct destination league.  Teams whose
+    destination cannot be determined are collected into an "Unassigned" group.
+    """
+    team_sources = team_sources or {}
+    league_names_by_tier: dict[int, set[str]] = {}
+    for tier_num, leagues in tiers.items():
+        league_names_by_tier[tier_num] = {
+            name for name, _ in leagues if name not in ("Promoted", "Relegated")
+        }
+
     merged: dict[int, list[tuple[str, list[str]]]] = {}
     for tier_num, leagues in tiers.items():
+        league_extra: dict[str, list[str]] = {}
+        unassigned: list[str] = []
         normal: list[tuple[str, list[str]]] = []
-        holding_teams: list[str] = []
+
         for name, teams in leagues:
-            if name in ("Promoted", "Relegated"):
-                holding_teams.extend(teams)
-            else:
+            if name not in ("Promoted", "Relegated"):
                 normal.append((name, teams))
-        if holding_teams:
-            normal.append(("Unassigned", holding_teams))
+                continue
+            for team in teams:
+                src = team_sources.get(team, "")
+                dest = _PROMOTION_MAP.get(src, "")
+                if dest and dest in league_names_by_tier.get(tier_num, set()):
+                    league_extra.setdefault(dest, []).append(team)
+                else:
+                    unassigned.append(team)
+
+        if league_extra:
+            normal = [
+                (lg_name, lg_teams + sorted(league_extra.get(lg_name, [])))
+                for lg_name, lg_teams in normal
+            ]
+        if unassigned:
+            normal.append(("Unassigned", unassigned))
         merged[tier_num] = normal
     return merged
 
@@ -172,6 +205,19 @@ def _extract_team_from_row(line: str) -> str | None:
         return cells[1].strip()
 
     return cells[0].strip() if cells[0] and not cells[0].startswith("---") else None
+
+
+def _extract_source_league(line: str) -> str | None:
+    """Pull the source league name from a promoted/relegated table row.
+
+    Expects rows like ``| Team | Regional 1 Midlands (1st) | Auto-promotion |``
+    and returns ``Regional 1 Midlands``.
+    """
+    cells = [c.strip() for c in line.split("|")]
+    cells = [c for c in cells if c]
+    if len(cells) < 2:
+        return None
+    return re.sub(r"\s*\(\d+\w*\)\s*$", "", cells[1]).strip() or None
 
 
 def build_hash(leagues: list[tuple[str, list[str]]]) -> str:

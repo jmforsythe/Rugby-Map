@@ -8,7 +8,7 @@ Rules applied from `tier_assignment_rules.md`.
 - **Premiership data unavailable** — Championship 1st place stays at Tier 2. No team promoted from Championship to Premiership; no team relegated from Premiership to Championship.
 - **Play-off default heuristic** — every play-off participant remains at their current tier (the statistically most likely individual outcome).
 - **Regional 2 Survival Play-Off** — 10th beats 11th (higher position wins); 11th is relegated.
-- **BPR resolved** — the 5 Counties 1 runners-up promoted via Best Playing Record are Cobham, Dinnington, Finchley, Ryton, and Warrington.
+- **BPR resolved** — the 5 Counties 1 runners-up promoted via Best Playing Record are Dinnington, Finchley, Ryton, Warrington, and Weybridge Vandals.
 
 ---
 
@@ -19,15 +19,15 @@ Rules applied from `tier_assignment_rules.md`.
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Ealing Trailfinders | 1st |
-| 2 | Worcester Warriors | 2nd |
-| 3 | Bedford Blues | 3rd |
-| 4 | Coventry | 4th |
+| 2 | Bedford Blues | 2nd |
+| 3 | Coventry | 3rd |
+| 4 | Worcester Warriors | 4th |
 | 5 | Chinnor | 5th |
-| 6 | Cornish Pirates | 6th |
-| 7 | Nottingham | 7th |
-| 8 | Hartpury RFC | 8th |
-| 9 | Doncaster Knights | 9th |
-| 10 | Ampthill | 10th |
+| 6 | Hartpury RFC | 6th |
+| 7 | Cornish Pirates | 7th |
+| 8 | Nottingham | 8th |
+| 9 | Ampthill | 9th |
+| 10 | Doncaster Knights | 10th |
 | 11 | Caldy | 11th |
 | 12 | Richmond | 12th |
 | 13 | London Scottish | 13th |
@@ -54,23 +54,23 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Plymouth Albion | 2nd |
-| 2 | Blackheath | 3rd |
+| 1 | Blackheath | 2nd |
+| 2 | Plymouth Albion | 3rd |
 | 3 | Sale FC | 4th |
 | 4 | Rosslyn Park | 5th |
-| 5 | Rams | 6th |
-| 6 | Bishop's Stortford | 7th |
+| 5 | Bishop's Stortford | 6th |
+| 6 | Rams | 7th |
 | 7 | Tonbridge Juddians | 8th |
 | 8 | Leeds Tykes | 9th |
-| 9 | Birmingham Moseley | 10th |
+| 9 | Dings Crusaders | 10th |
 | 10 | Clifton | 11th |
 
 ### Promoted to Tier 3 (3 teams) — holding league "National League 1 Promoted"
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
+| Bury St Edmunds | National League 2 East (1st) | Auto-promotion |
 | Camborne | National League 2 West (1st) | Auto-promotion |
-| Old Albanians | National League 2 East (1st) | Auto-promotion |
 | Sheffield | National League 2 North (1st) | Auto-promotion |
 
 ### Relegated to Tier 3 (1 teams) — holding league "National League 1 Relegated"
@@ -83,7 +83,7 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Dings Crusaders | National League 1 (12th) | Auto-relegation |
+| Birmingham Moseley | National League 1 (12th) | Auto-relegation |
 | Sedgley Park | National League 1 (13th) | Auto-relegation |
 | Leicester Lions | National League 1 (14th) | Auto-relegation |
 
@@ -97,14 +97,14 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Bury St Edmunds | 2nd |
-| 2 | Oundle | 3rd |
+| 1 | Oundle | 2nd |
+| 2 | Old Albanians | 3rd |
 | 3 | Barnes | 4th |
 | 4 | Canterbury | 5th |
 | 5 | Dorking | 6th |
 | 6 | Westcombe Park | 7th |
-| 7 | Guernsey | 8th |
-| 8 | Havant | 9th |
+| 7 | Havant | 8th |
+| 8 | Guernsey | 9th |
 | 9 | London Welsh | 10th |
 | 10 | Esher | 11th |
 | 11 | Henley | 12th |
@@ -120,8 +120,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 5 | Fylde | 6th |
 | 6 | Wharfedale | 7th |
 | 7 | Sheffield Tigers | 8th |
-| 8 | Billingham | 9th |
-| 9 | Preston Grasshoppers | 10th |
+| 8 | Preston Grasshoppers | 9th |
+| 9 | Billingham | 10th |
 | 10 | Otley | 11th |
 | 11 | Rossendale | 12th |
 
@@ -133,13 +133,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Hinckley | 3rd |
 | 3 | Taunton Titans | 4th |
 | 4 | Hornets | 5th |
-| 5 | Cinderford | 6th |
-| 6 | Barnstaple | 7th |
-| 7 | Lymm | 8th |
-| 8 | Old Redcliffians | 9th |
-| 9 | Redruth | 10th |
-| 10 | Chester | 11th |
-| 11 | Loughborough Students | 12th |
+| 5 | Barnstaple | 6th |
+| 6 | Cinderford | 7th |
+| 7 | Old Redcliffians | 8th |
+| 8 | Redruth | 9th |
+| 9 | Chester | 10th |
+| 10 | Lymm | 11th |
+| 11 | Exeter University | 12th |
 
 ### Promoted to Tier 4 (6 teams) — holding league "National League 2 Promoted"
 
@@ -156,7 +156,7 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Dings Crusaders | National League 1 (12th) | Auto-relegation |
+| Birmingham Moseley | National League 1 (12th) | Auto-relegation |
 | Leicester Lions | National League 1 (14th) | Auto-relegation |
 | Sedgley Park | National League 1 (13th) | Auto-relegation |
 
@@ -168,7 +168,7 @@ Rules applied from `tier_assignment_rules.md`.
 | Oxford Harlequins | National League 2 East (14th) | Auto-relegation |
 | Scunthorpe | National League 2 North (13th) | Auto-relegation |
 | Hull | National League 2 North (14th) | Auto-relegation |
-| Exeter University | National League 2 West (13th) | Auto-relegation |
+| Loughborough Students | National League 2 West (13th) | Auto-relegation |
 | Syston | National League 2 West (14th) | Auto-relegation |
 
 **National League 2 total: 33 staying + 6 promoted in + 3 relegated in = 42**
@@ -185,8 +185,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Stourbridge | 3rd |
 | 3 | Newent | 4th |
 | 4 | Bromsgrove | 5th |
-| 5 | Bridgnorth | 6th |
-| 6 | Lichfield | 7th |
+| 5 | Lichfield | 6th |
+| 6 | Bridgnorth | 7th |
 | 7 | Banbury | 8th |
 | 8 | Lutterworth | 9th |
 | 9 | Drybrook | 10th |
@@ -200,8 +200,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 3 | Ilkley | 4th |
 | 4 | Blaydon | 5th |
 | 5 | Driffield | 6th |
-| 6 | Kendal | 7th |
-| 7 | Sandal | 8th |
+| 6 | Sandal | 7th |
+| 7 | Kendal | 8th |
 | 8 | Middlesbrough | 9th |
 | 9 | York | 10th |
 
@@ -210,12 +210,12 @@ Rules applied from `tier_assignment_rules.md`.
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Anselmians | 2nd |
-| 2 | Burton | 3rd |
-| 3 | Stockport | 4th |
+| 2 | Stockport | 3rd |
+| 3 | Burton | 4th |
 | 4 | Leek | 5th |
 | 5 | Blackburn | 6th |
-| 6 | Rochdale | 7th |
-| 7 | Bowdon | 8th |
+| 6 | Bowdon | 7th |
+| 7 | Rochdale | 8th |
 | 8 | Manchester | 9th |
 | 9 | Wirral | 10th |
 
@@ -227,8 +227,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Tunbridge Wells | 3rd |
 | 3 | Old Alleynians | 4th |
 | 4 | CS Stags 1863 | 5th |
-| 5 | Farnham | 6th |
-| 6 | Bracknell | 7th |
+| 5 | Bracknell | 6th |
+| 6 | Farnham | 7th |
 | 7 | Worthing | 8th |
 | 8 | Wimbledon | 9th |
 | 9 | Maidenhead | 10th |
@@ -240,12 +240,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 1 | Letchworth Garden City | 2nd |
 | 2 | HUEL Tring | 3rd |
 | 3 | Southend Saxons | 4th |
-| 4 | North Walsham | 5th |
-| 5 | Sudbury | 6th |
-| 6 | Old Northamptonians | 7th |
-| 7 | Hertford | 8th |
+| 4 | Sudbury | 5th |
+| 5 | North Walsham | 6th |
+| 6 | Hertford | 7th |
+| 7 | Old Northamptonians | 8th |
 | 8 | Westcliff | 9th |
-| 9 | Medway | 10th |
+| 9 | Amersham & Chiltern | 10th |
 
 ### Regional 1 Tribute Ale South West — Staying (9 teams)
 
@@ -255,8 +255,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Brixham | 3rd |
 | 3 | Exmouth | 4th |
 | 4 | St Austell | 5th |
-| 5 | Lydney | 6th |
-| 6 | Royal Wootton Bassett | 7th |
+| 5 | Royal Wootton Bassett | 6th |
+| 6 | Lydney | 7th |
 | 7 | Launceston | 8th |
 | 8 | Sidmouth | 9th |
 | 9 | Chew Valley | 10th |
@@ -269,9 +269,9 @@ Rules applied from `tier_assignment_rules.md`.
 | Brunel University | Regional 2 Thames (1st) | Auto-promotion |
 | Dronfield | Regional 2 Midlands North (1st) | Auto-promotion |
 | Eton Manor | Regional 2 Anglia (1st) | Auto-promotion |
-| Market Harborough | Regional 2 Midlands East (1st) | Auto-promotion |
 | Moseley Oak | Regional 2 Midlands West (1st) | Auto-promotion |
 | North Ribblesdale | Regional 2 North West (1st) | Auto-promotion |
+| Northampton Old Scouts | Regional 2 Midlands East (1st) | Auto-promotion |
 | Northern | Regional 2 North (1st) | Auto-promotion |
 | Scarborough | Regional 2 North East (1st) | Auto-promotion |
 | Sidcup | Regional 2 South East (1st) | Auto-promotion |
@@ -282,8 +282,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Exeter University | National League 2 West (13th) | Auto-relegation |
 | Hull | National League 2 North (14th) | Auto-relegation |
+| Loughborough Students | National League 2 West (13th) | Auto-relegation |
 | Oxford Harlequins | National League 2 East (14th) | Auto-relegation |
 | Scunthorpe | National League 2 North (13th) | Auto-relegation |
 | Sevenoaks | National League 2 East (13th) | Auto-relegation |
@@ -299,9 +299,9 @@ Rules applied from `tier_assignment_rules.md`.
 | Cleckheaton | Regional 1 North East (12th) | Auto-relegation |
 | Long Eaton | Regional 1 North West (11th) | Auto-relegation |
 | Derby | Regional 1 North West (12th) | Auto-relegation |
-| Camberley | Regional 1 South Central (11th) | Auto-relegation |
-| Hammersmith & Fulham | Regional 1 South Central (12th) | Auto-relegation |
-| Amersham & Chiltern | Regional 1 South East (11th) | Auto-relegation |
+| Hammersmith & Fulham | Regional 1 South Central (11th) | Auto-relegation |
+| Camberley | Regional 1 South Central (12th) | Auto-relegation |
+| Medway | Regional 1 South East (11th) | Auto-relegation |
 | Shelford | Regional 1 South East (12th) | Auto-relegation |
 | Marlborough | Regional 1 Tribute Ale South West (11th) | Auto-relegation |
 | Matson | Regional 1 Tribute Ale South West (12th) | Auto-relegation |
@@ -322,15 +322,15 @@ Rules applied from `tier_assignment_rules.md`.
 | 4 | Wanstead | 5th |
 | 5 | Harlow | 6th |
 | 6 | Rochford Hundred | 7th |
-| 7 | Chelmsford | 8th |
-| 8 | Woodford | 9th |
+| 7 | Woodford | 8th |
+| 8 | Chelmsford | 9th |
 | 9 | Braintree | 10th |
 
 ### Regional 2 Midlands East — Staying (9 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Northampton Old Scouts | 2nd |
+| 1 | Market Harborough | 2nd |
 | 2 | Broadstreet | 3rd |
 | 3 | Bedford Athletic | 4th |
 | 4 | Peterborough | 5th |
@@ -352,7 +352,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 6 | Ilkeston | 7th |
 | 7 | Matlock | 8th |
 | 8 | Paviors | 9th |
-| 9 | Newark | 10th |
+| 9 | Old Saltleians | 10th |
 
 ### Regional 2 Midlands West — Staying (9 teams)
 
@@ -360,24 +360,24 @@ Rules applied from `tier_assignment_rules.md`.
 |---|------|-----------------|
 | 1 | Stow-on-the-Wold | 2nd |
 | 2 | Luctonians II | 3rd |
-| 3 | Silhillians | 4th |
-| 4 | Hereford | 5th |
-| 5 | Ludlow | 6th |
-| 6 | Edwardians | 7th |
+| 3 | Hereford | 4th |
+| 4 | Silhillians | 5th |
+| 5 | Edwardians | 6th |
+| 6 | Ludlow | 7th |
 | 7 | Kenilworth | 8th |
-| 8 | Shipston on Stour | 9th |
-| 9 | Malvern | 10th |
+| 8 | Malvern | 9th |
+| 9 | Shipston on Stour | 10th |
 
 ### Regional 2 North — Staying (9 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Consett | 2nd |
-| 2 | Keswick | 3rd |
-| 3 | Percy Park | 4th |
-| 4 | West Hartlepool | 5th |
-| 5 | Sunderland | 6th |
-| 6 | Upper Eden | 7th |
+| 2 | Percy Park | 3rd |
+| 3 | Keswick | 4th |
+| 4 | Sunderland | 5th |
+| 5 | Upper Eden | 6th |
+| 6 | West Hartlepool | 7th |
 | 7 | Morpeth | 8th |
 | 8 | Durham City | 9th |
 | 9 | Guisborough | 10th |
@@ -389,12 +389,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 1 | Pocklington | 2nd |
 | 2 | Old Brodleians | 3rd |
 | 3 | Morley | 4th |
-| 4 | Moortown | 5th |
-| 5 | Selby | 6th |
+| 4 | Selby | 5th |
+| 5 | Moortown | 6th |
 | 6 | Malton and Norton | 7th |
 | 7 | Bradford Salem | 8th |
-| 8 | Wetherby | 9th |
-| 9 | Pontefract | 10th |
+| 8 | Pontefract | 9th |
+| 9 | Wetherby | 10th |
 
 ### Regional 2 North West — Staying (9 teams)
 
@@ -402,12 +402,12 @@ Rules applied from `tier_assignment_rules.md`.
 |---|------|-----------------|
 | 1 | Vale of Lune | 2nd |
 | 2 | Sandbach | 3rd |
-| 3 | Douglas (I.O.M.) | 4th |
-| 4 | Burnage | 5th |
-| 5 | Widnes | 6th |
-| 6 | Birkenhead Park | 7th |
-| 7 | Firwood Waterloo | 8th |
-| 8 | Winnington Park | 9th |
+| 3 | Widnes | 4th |
+| 4 | Douglas (I.O.M.) | 5th |
+| 5 | Burnage | 6th |
+| 6 | Winnington Park | 7th |
+| 7 | Birkenhead Park | 8th |
+| 8 | Firwood Waterloo | 9th |
 | 9 | Northwich | 10th |
 
 ### Regional 2 South Central — Staying (9 teams)
@@ -417,8 +417,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 1 | Winchester | 2nd |
 | 2 | Wimborne | 3rd |
 | 3 | Old Tiffinians | 4th |
-| 4 | Tottonians | 5th |
-| 5 | Petersfield | 6th |
+| 4 | Petersfield | 5th |
+| 5 | Tottonians | 6th |
 | 6 | Havant II | 7th |
 | 7 | Twickenham | 8th |
 | 8 | Chobham | 9th |
@@ -429,12 +429,12 @@ Rules applied from `tier_assignment_rules.md`.
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Brighton | 2nd |
-| 2 | Horsham | 3rd |
-| 3 | Gravesend | 4th |
+| 2 | Gravesend | 3rd |
+| 3 | Horsham | 4th |
 | 4 | Old Colfeians | 5th |
 | 5 | Battersea Ironsides | 6th |
-| 6 | Beckenham | 7th |
-| 7 | Sutton & Epsom | 8th |
+| 6 | Sutton & Epsom | 7th |
+| 7 | Beckenham | 8th |
 | 8 | Bromley | 9th |
 | 9 | Canterbury II | 10th |
 
@@ -484,26 +484,26 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
+| Bognor | Counties 1 Hampshire (1st) | Auto-promotion |
 | Bury St Edmunds II | Counties 1 Eastern Counties (1st) | Auto-promotion |
 | Cheshunt | Counties 1 Herts (1st) | Auto-promotion |
 | Chinnor III | Counties 1 Tribute Ale Southern North (1st) | Auto-promotion |
-| Cobham | Counties 1 Surrey/Sussex (2nd) | BPR |
+| Cobham | Counties 1 Surrey/Sussex (1st) | Auto-promotion |
 | Dinnington | Counties 1 Yorkshire (2nd) | BPR |
 | Ealing Trailfinders 1871 | Counties 1 Middx (1st) | Auto-promotion |
 | Finchley | Counties 1 Middx (2nd) | BPR |
 | Hinckley II | Counties 1 Midlands East (South) (1st) | Auto-promotion |
 | Kirkby Lonsdale | Counties 1 Cumbria (1st) | Auto-promotion |
-| Market Rasen & Louth | Counties 1 Midlands East (North) (1st) | Auto-promotion |
 | Nailsea & Backwell | Counties 1 Tribute Ale Western North (1st) | Auto-promotion |
 | Novocastrians | Counties 1 Durham & Northumberland (1st) | Auto-promotion |
 | Old Elthamians | Counties 1 Kent (1st) | Auto-promotion |
-| Portsmouth | Counties 1 Hampshire (1st) | Auto-promotion |
 | Ryton | Counties 1 Durham & Northumberland (2nd) | BPR |
 | Sherborne | Counties 1 Tribute Ale Southern South (1st) | Auto-promotion |
 | Thurrock | Counties 1 Essex (1st) | Auto-promotion |
+| University of Nottingham | Counties 1 Midlands East (North) (1st) | Auto-promotion |
 | Warrington | Counties 1 adm Lancashire & Cheshire (2nd) | BPR |
 | Wath Upon Dearne | Counties 1 Yorkshire (1st) | Auto-promotion |
-| Weybridge Vandals | Counties 1 Surrey/Sussex (1st) | Auto-promotion |
+| Weybridge Vandals | Counties 1 Surrey/Sussex (2nd) | BPR |
 | Whitchurch | Counties 1 Midlands West (North) (1st) | Auto-promotion |
 | Wilmslow | Counties 1 adm Lancashire & Cheshire (1st) | Auto-promotion |
 | Wiveliscombe | Counties 1 Tribute Ale Western West (1st) | Auto-promotion |
@@ -513,15 +513,15 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Amersham & Chiltern | Regional 1 South East (11th) | Auto-relegation |
-| Camberley | Regional 1 South Central (11th) | Auto-relegation |
+| Camberley | Regional 1 South Central (12th) | Auto-relegation |
 | Cleckheaton | Regional 1 North East (12th) | Auto-relegation |
 | Derby | Regional 1 North West (12th) | Auto-relegation |
 | Dudley Kingswinford | Regional 1 Midlands (11th) | Auto-relegation |
-| Hammersmith & Fulham | Regional 1 South Central (12th) | Auto-relegation |
+| Hammersmith & Fulham | Regional 1 South Central (11th) | Auto-relegation |
 | Long Eaton | Regional 1 North West (11th) | Auto-relegation |
 | Marlborough | Regional 1 Tribute Ale South West (11th) | Auto-relegation |
 | Matson | Regional 1 Tribute Ale South West (12th) | Auto-relegation |
+| Medway | Regional 1 South East (11th) | Auto-relegation |
 | Nuneaton | Regional 1 Midlands (12th) | Auto-relegation |
 | Penrith | Regional 1 North East (11th) | Auto-relegation |
 | Shelford | Regional 1 South East (12th) | Auto-relegation |
@@ -534,7 +534,7 @@ Rules applied from `tier_assignment_rules.md`.
 | Holt | Regional 2 Anglia (12th) | Auto-relegation |
 | Daventry | Regional 2 Midlands East (11th) | Survival PO loser |
 | Wellingborough | Regional 2 Midlands East (12th) | Auto-relegation |
-| Old Saltleians | Regional 2 Midlands North (11th) | Survival PO loser |
+| Newark | Regional 2 Midlands North (11th) | Survival PO loser |
 | Belgrave | Regional 2 Midlands North (12th) | Auto-relegation |
 | Stratford Upon Avon | Regional 2 Midlands West (11th) | Survival PO loser |
 | Old Halesonians | Regional 2 Midlands West (12th) | Auto-relegation |
@@ -583,8 +583,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Medicals | 3rd |
-| 2 | Stockton | 4th |
+| 1 | Stockton | 3rd |
+| 2 | Medicals | 4th |
 | 3 | Peterlee and Horden | 5th |
 | 4 | Durham University | 6th |
 | 5 | Gateshead | 7th |
@@ -602,8 +602,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Stowmarket | 3rd |
 | 3 | Southwold | 4th |
 | 4 | West Norfolk | 5th |
-| 5 | Shelford II | 6th |
-| 6 | Ipswich | 7th |
+| 5 | Ipswich | 6th |
+| 6 | Shelford II | 7th |
 | 7 | Newmarket | 8th |
 | 8 | Colchester II | 9th |
 | 9 | Ely | 10th |
@@ -616,9 +616,9 @@ Rules applied from `tier_assignment_rules.md`.
 |---|------|-----------------|
 | 1 | Epping Upper Clapton | 2nd |
 | 2 | Romford & Gidea Park | 3rd |
-| 3 | Campion | 4th |
-| 4 | East London | 5th |
-| 5 | Maldon | 6th |
+| 3 | Maldon | 4th |
+| 4 | Campion | 5th |
+| 5 | East London | 6th |
 | 6 | Billericay | 7th |
 | 7 | Chingford | 8th |
 | 8 | Upminster | 9th |
@@ -628,13 +628,13 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Bognor | 2nd |
+| 1 | Portsmouth | 2nd |
 | 2 | Basingstoke | 3rd |
 | 3 | Andover | 4th |
-| 4 | Sandown & Shanklin | 5th |
-| 5 | Chichester | 6th |
-| 6 | Winchester II | 7th |
-| 7 | Bournemouth II | 8th |
+| 4 | Chichester | 5th |
+| 5 | Sandown & Shanklin | 6th |
+| 6 | Bournemouth II | 7th |
+| 7 | Winchester II | 8th |
 | 8 | Millbrook | 9th |
 | 9 | Gosport & Fareham | 10th |
 | 10 | Guernsey II | 11th |
@@ -648,9 +648,9 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Hitchin | 3rd |
 | 3 | Hertford II | 4th |
 | 4 | Eton Manor II | 5th |
-| 5 | Bishop's Stortford II | 6th |
-| 6 | Fullerians | 7th |
-| 7 | Hemel Hempstead | 8th |
+| 5 | Hemel Hempstead | 6th |
+| 6 | Bishop's Stortford II | 7th |
+| 7 | Fullerians | 8th |
 | 8 | Southend II | 9th |
 | 9 | Welwyn | 10th |
 
@@ -661,8 +661,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 1 | Deal & Betteshanger | 2nd |
 | 2 | Heathfield & Waldron | 3rd |
 | 3 | Sevenoaks II | 4th |
-| 4 | Dover | 5th |
-| 5 | Ashford | 6th |
+| 4 | Ashford | 5th |
+| 5 | Dover | 6th |
 | 6 | Crowborough | 7th |
 | 7 | Beccehamian | 8th |
 | 8 | Gillingham Anchorians | 9th |
@@ -687,15 +687,15 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | University of Nottingham | 2nd |
+| 1 | Market Rasen & Louth | 2nd |
 | 2 | Bourne | 3rd |
 | 3 | Loughborough University II | 4th |
 | 4 | Spalding | 5th |
 | 5 | Southwell | 6th |
 | 6 | Lincoln | 7th |
 | 7 | Keyworth | 8th |
-| 8 | Kesteven | 9th |
-| 9 | Mellish | 10th |
+| 8 | Mellish | 9th |
+| 9 | Kesteven | 10th |
 | 10 | Nottingham Moderns | 11th |
 | 11 | Ashby | 12th |
 
@@ -703,11 +703,11 @@ Rules applied from `tier_assignment_rules.md`.
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Towcestrians | 2nd |
-| 2 | Newbold on Avon | 3rd |
+| 1 | Newbold on Avon | 2nd |
+| 2 | Towcestrians | 3rd |
 | 3 | Nuneaton Old Edwardians | 4th |
-| 4 | Leicester Forest | 5th |
-| 5 | Bugbrooke | 6th |
+| 4 | Bugbrooke | 5th |
+| 5 | Leicester Forest | 6th |
 | 6 | Vipers | 7th |
 | 7 | Long Buckby | 8th |
 | 8 | Market Bosworth | 9th |
@@ -720,16 +720,16 @@ Rules applied from `tier_assignment_rules.md`.
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Crewe & Nantwich | 2nd |
-| 2 | Veseyans | 3rd |
-| 3 | Shrewsbury | 4th |
-| 4 | Spartans (Midlands) | 5th |
+| 2 | Shrewsbury | 3rd |
+| 3 | Spartans (Midlands) | 4th |
+| 4 | Veseyans | 5th |
 | 5 | Newport (Salop) II | 6th |
 | 6 | Burntwood | 7th |
 | 7 | Newcastle (Staffs) | 8th |
 | 8 | Aston Old Edwardians | 9th |
 | 9 | Stourbridge II | 10th |
-| 10 | Telford Hornets | 11th |
-| 11 | Tamworth | 12th |
+| 10 | Tamworth | 11th |
+| 11 | Telford Hornets | 12th |
 
 ### Counties 1 Midlands West (South) — Staying (11 teams)
 
@@ -739,10 +739,10 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Camp Hill | 3rd |
 | 3 | Ledbury | 4th |
 | 4 | Bromyard | 5th |
-| 5 | Earlsdon | 6th |
-| 6 | Evesham | 7th |
-| 7 | Manor Park | 8th |
-| 8 | Leamington | 9th |
+| 5 | Evesham | 6th |
+| 6 | Earlsdon | 7th |
+| 7 | Leamington | 8th |
+| 8 | Manor Park | 9th |
 | 9 | Old Leamingtonians | 10th |
 | 10 | Kidderminster | 11th |
 | 11 | Droitwich | 12th |
@@ -753,11 +753,11 @@ Rules applied from `tier_assignment_rules.md`.
 |---|------|-----------------|
 | 1 | Trinity | 3rd |
 | 2 | Hove | 4th |
-| 3 | Eastbourne | 5th |
-| 4 | Haywards Heath | 6th |
-| 5 | Old Caterhamians | 7th |
-| 6 | London Cornish | 8th |
-| 7 | Old Rutlishians | 9th |
+| 3 | London Cornish | 5th |
+| 4 | Eastbourne | 6th |
+| 5 | Old Rutlishians | 7th |
+| 6 | Old Caterhamians | 8th |
+| 7 | Haywards Heath | 9th |
 | 8 | Old Wimbledonians | 10th |
 | 9 | KCS Old Boys | 11th |
 
@@ -768,9 +768,9 @@ Rules applied from `tier_assignment_rules.md`.
 | 1 | Henley II | 2nd |
 | 2 | Buckingham | 3rd |
 | 3 | High Wycombe | 4th |
-| 4 | Reading | 5th |
-| 5 | Bracknell II | 6th |
-| 6 | Reading Abbey | 7th |
+| 4 | Reading Abbey | 5th |
+| 5 | Reading | 6th |
+| 6 | Bracknell II | 7th |
 | 7 | Bicester | 8th |
 | 8 | Oxford | 9th |
 | 9 | Bletchley | 10th |
@@ -787,8 +787,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 4 | Salisbury | 5th |
 | 5 | Swanage & Wareham | 6th |
 | 6 | Melksham | 7th |
-| 7 | Corsham | 8th |
-| 8 | Trowbridge II | 9th |
+| 7 | Trowbridge II | 8th |
+| 8 | Corsham | 9th |
 | 9 | Chippenham II | 10th |
 | 10 | Swindon | 11th |
 | 11 | Marlborough II | 12th |
@@ -801,11 +801,11 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Midsomer Norton | 3rd |
 | 3 | Clifton II | 4th |
 | 4 | Old Bristolians | 5th |
-| 5 | Chard | 6th |
-| 6 | Bridgwater & Albion | 7th |
-| 7 | Gordon League | 8th |
-| 8 | Gordano | 9th |
-| 9 | Old Redcliffians II | 10th |
+| 5 | Gordon League | 6th |
+| 6 | Old Redcliffians II | 7th |
+| 7 | Gordano | 8th |
+| 8 | Chard | 9th |
+| 9 | Bridgwater & Albion | 10th |
 | 10 | Taunton II | 11th |
 | 11 | Chosen Hill Former Pupils | 12th |
 
@@ -818,8 +818,8 @@ Rules applied from `tier_assignment_rules.md`.
 | 3 | Truro | 4th |
 | 4 | Redruth II | 5th |
 | 5 | Torquay Athletic | 6th |
-| 6 | Kingsbridge | 7th |
-| 7 | St Ives (SW) | 8th |
+| 6 | St Ives (SW) | 7th |
+| 7 | Kingsbridge | 8th |
 | 8 | Newton Abbot | 9th |
 | 9 | Plymstock Oaks | 10th |
 | 10 | Penryn | 11th |
@@ -830,8 +830,8 @@ Rules applied from `tier_assignment_rules.md`.
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Goole | 3rd |
-| 2 | West Leeds | 4th |
-| 3 | Yarnbury | 5th |
+| 2 | Yarnbury | 4th |
+| 3 | West Leeds | 5th |
 | 4 | Keighley | 6th |
 | 5 | Old Rishworthian | 7th |
 | 6 | Wensleydale | 8th |
@@ -848,10 +848,10 @@ Rules applied from `tier_assignment_rules.md`.
 | 2 | Eccles | 4th |
 | 3 | Aldwinians | 5th |
 | 4 | New Brighton | 6th |
-| 5 | Tarleton | 7th |
-| 6 | Broughton Park | 8th |
-| 7 | Liverpool St Helens | 9th |
-| 8 | Aspull | 10th |
+| 5 | Broughton Park | 7th |
+| 6 | Tarleton | 8th |
+| 7 | Aspull | 9th |
+| 8 | Liverpool St Helens | 10th |
 | 9 | Wigan | 11th |
 | 10 | Trafford MV | 12th |
 
@@ -869,11 +869,11 @@ Rules applied from `tier_assignment_rules.md`.
 | Doncaster Phoenix | Regional 2 North East (12th) | Auto-relegation |
 | Ellingham & Ringwood | Regional 2 South Central (12th) | Auto-relegation |
 | Holt | Regional 2 Anglia (12th) | Auto-relegation |
+| Newark | Regional 2 Midlands North (11th) | Survival PO loser |
 | Norwich | Regional 2 Anglia (11th) | Survival PO loser |
 | Old Crossleyans | Regional 2 North East (11th) | Survival PO loser |
 | Old Halesonians | Regional 2 Midlands West (12th) | Auto-relegation |
 | Old Reigatian | Regional 2 South East (12th) | Auto-relegation |
-| Old Saltleians | Regional 2 Midlands North (11th) | Survival PO loser |
 | Oxford Harlequins II | Regional 2 Thames (12th) | Auto-relegation |
 | Reeds Weybridge | Regional 2 South Central (11th) | Survival PO loser |
 | Royal Wootton Bassett II | Regional 2 Tribute Ale Severn (11th) | Survival PO loser |
@@ -905,9 +905,9 @@ Rules applied from `tier_assignment_rules.md`.
 |-----------|-------|-------|
 | Tier 2 → Tier 3 | 1 | Cambridge |
 | Tier 3 → Tier 2 | 1 | Rotherham Titans |
-| Tier 3 → Tier 4 | 3 | Dings Crusaders, Leicester Lions, Sedgley Park |
-| Tier 4 → Tier 3 | 3 | Camborne, Old Albanians, Sheffield |
-| Tier 4 → Tier 5 | 6 | Exeter University, Hull, Oxford Harlequins, Scunthorpe, Sevenoaks, Syston |
+| Tier 3 → Tier 4 | 3 | Birmingham Moseley, Leicester Lions, Sedgley Park |
+| Tier 4 → Tier 3 | 3 | Bury St Edmunds, Camborne, Sheffield |
+| Tier 4 → Tier 5 | 6 | Hull, Loughborough Students, Oxford Harlequins, Scunthorpe, Sevenoaks, Syston |
 | Tier 5 → Tier 4 | 6 | Bournville, Colchester, Devonport Services, Heath, Huddersfield, Jersey Rugby Football Club |
 | Tier 5 → Tier 6 | 12 | 12 teams |
 | Tier 6 → Tier 5 | 12 | 12 teams |

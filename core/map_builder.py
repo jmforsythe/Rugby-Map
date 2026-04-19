@@ -46,6 +46,12 @@ class MarkerItem:
     popup_html: str | None = None
     category: str | None = None
     extra: dict[str, Any] | None = None
+    itl0: str | None = None
+    itl1: str | None = None
+    itl2: str | None = None
+    itl3: str | None = None
+    lad: str | None = None
+    ward: str | None = None
 
 
 @dataclass
@@ -326,6 +332,89 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     }
 
 
+def preassign_itl_regions(items: list[MarkerItem], itl_hierarchy: ITLHierarchy) -> None:
+    """Pre-compute ITL region assignments for all items in a single pass.
+
+    Mutates each item's ``itl0``–``ward`` fields so that subsequent calls to
+    :func:`generate_single_group_map` / :func:`generate_multi_group_map` can
+    skip per-map spatial queries.  Identical ``(latitude, longitude)`` pairs
+    are only queried once.
+    """
+    itl0_regions = itl_hierarchy["itl0_regions"]
+    itl1_regions = itl_hierarchy["itl1_regions"]
+    itl2_regions = itl_hierarchy["itl2_regions"]
+    itl3_regions = itl_hierarchy["itl3_regions"]
+    lad_regions = itl_hierarchy["lad_regions"]
+    ward_regions = itl_hierarchy["ward_regions"]
+    itl1_to_itl2s = itl_hierarchy["itl1_to_itl2s"]
+    itl2_to_itl3s = itl_hierarchy["itl2_to_itl3s"]
+    itl3_to_lads = itl_hierarchy["itl3_to_lads"]
+    lad_to_wards = itl_hierarchy["lad_to_wards"]
+
+    seen: dict[tuple[float, float], tuple[str | None, ...]] = {}
+
+    for item in items:
+        key = (item.latitude, item.longitude)
+        if key in seen:
+            item.itl0, item.itl1, item.itl2, item.itl3, item.lad, item.ward = seen[key]
+            continue
+
+        point = Point(item.longitude, item.latitude)
+        _itl0 = _itl1 = _itl2 = _itl3 = _lad = _ward = None
+
+        for r in itl0_regions.values():
+            if r["prepared"].contains(point):
+                _itl0 = r["name"]
+                break
+
+        for r in itl1_regions.values():
+            if r["prepared"].contains(point):
+                _itl1 = r["name"]
+                break
+
+        if _itl1:
+            for name in itl1_to_itl2s.get(_itl1, []):
+                if itl2_regions[name]["prepared"].contains(point):
+                    _itl2 = name
+                    break
+
+        if _itl2:
+            for name in itl2_to_itl3s.get(_itl2, []):
+                if itl3_regions[name]["prepared"].contains(point):
+                    _itl3 = name
+                    break
+
+        if _itl3:
+            for code in itl3_to_lads.get(_itl3, []):
+                lad = lad_regions.get(code)
+                if lad and lad["prepared"].contains(point):
+                    _lad = code
+                    break
+
+        if _lad and ward_regions:
+            for code in lad_to_wards.get(_lad, []):
+                ward = ward_regions.get(code)
+                if ward and ward["prepared"].contains(point):
+                    _ward = code
+                    break
+
+        item.itl0, item.itl1, item.itl2, item.itl3, item.lad, item.ward = (
+            _itl0,
+            _itl1,
+            _itl2,
+            _itl3,
+            _lad,
+            _ward,
+        )
+        seen[key] = (_itl0, _itl1, _itl2, _itl3, _lad, _ward)
+
+    logger.debug(
+        "Pre-assigned ITL regions for %d items (%d unique locations)",
+        len(items),
+        len(seen),
+    )
+
+
 def export_shared_boundaries(
     paths: dict[str, str],
     output_dir: str = "dist/shared",
@@ -473,12 +562,12 @@ def _items_to_placed(
             "icon_url": item.icon_url,
             "popup_html": item.popup_html,
             "category": item.category,
-            "itl0": None,
-            "itl1": None,
-            "itl2": None,
-            "itl3": None,
-            "lad": None,
-            "ward": None,
+            "itl0": item.itl0,
+            "itl1": item.itl1,
+            "itl2": item.itl2,
+            "itl3": item.itl3,
+            "lad": item.lad,
+            "ward": item.ward,
         }
         by_tier.setdefault(item.tier, []).append(placed)
         tier_numbers.setdefault(item.tier, item.tier_num)
@@ -494,18 +583,12 @@ def _items_to_placed(
 def _assign_items_to_itl_regions(
     items_by_tier: dict[str, list[_PlacedItem]], itl_hierarchy: ITLHierarchy
 ) -> _RegionToItems:
-    """Assign each item to all supported boundary levels via hierarchical containment."""
+    """Assign each item to all supported boundary levels via hierarchical containment.
 
-    itl0_regions = itl_hierarchy["itl0_regions"]
-    itl1_regions = itl_hierarchy["itl1_regions"]
-    itl2_regions = itl_hierarchy["itl2_regions"]
-    itl3_regions = itl_hierarchy["itl3_regions"]
-    lad_regions = itl_hierarchy["lad_regions"]
-    ward_regions = itl_hierarchy["ward_regions"]
-    itl1_to_itl2s = itl_hierarchy["itl1_to_itl2s"]
-    itl2_to_itl3s = itl_hierarchy["itl2_to_itl3s"]
-    itl3_to_lads = itl_hierarchy["itl3_to_lads"]
-    lad_to_wards = itl_hierarchy["lad_to_wards"]
+    If items already carry pre-computed ITL assignments (via
+    :func:`preassign_itl_regions`), spatial queries are skipped and only the
+    region-to-items grouping is built.
+    """
 
     itl0_to_items: dict[str, list[_PlacedItem]] = {}
     itl1_to_items: dict[str, list[_PlacedItem]] = {}
@@ -517,79 +600,111 @@ def _assign_items_to_itl_regions(
     total_assigned = 0
     total_items = 0
 
-    for _, items in items_by_tier.items():
-        for item in items:
-            total_items += 1
-            point = Point(item.get("longitude", 0.0), item.get("latitude", 0.0))
+    first_item = next((it for items in items_by_tier.values() for it in items), None)
+    pre_assigned = first_item is not None and first_item["itl0"] is not None
 
-            item["itl0"] = None
-            item["itl1"] = None
-            item["itl2"] = None
-            item["itl3"] = None
-            item["lad"] = None
-            item["ward"] = None
-
-            for itl0 in itl0_regions.values():
-                if itl0["prepared"].contains(point):
-                    item["itl0"] = itl0["name"]
-                    itl0_to_items.setdefault(itl0["name"], []).append(item)
-                    break
-
-            found_itl1 = None
-            for itl1 in itl1_regions.values():
-                if itl1["prepared"].contains(point):
-                    found_itl1 = itl1["name"]
-                    item["itl1"] = found_itl1
-                    itl1_to_items.setdefault(found_itl1, []).append(item)
-                    break
-            if not found_itl1:
-                continue
-
-            found_itl2 = None
-            for itl2_name in itl1_to_itl2s.get(found_itl1, []):
-                if itl2_regions[itl2_name]["prepared"].contains(point):
-                    found_itl2 = itl2_name
-                    item["itl2"] = found_itl2
-                    itl2_to_items.setdefault(found_itl2, []).append(item)
-                    break
-            if not found_itl2:
-                continue
-
-            found_itl3 = None
-            for itl3_name in itl2_to_itl3s.get(found_itl2, []):
-                if itl3_regions[itl3_name]["prepared"].contains(point):
-                    found_itl3 = itl3_name
-                    item["itl3"] = itl3_name
-                    itl3_to_items.setdefault(itl3_name, []).append(item)
+    if pre_assigned:
+        for items in items_by_tier.values():
+            for item in items:
+                total_items += 1
+                if item["itl0"]:
+                    itl0_to_items.setdefault(item["itl0"], []).append(item)
+                if item["itl1"]:
+                    itl1_to_items.setdefault(item["itl1"], []).append(item)
+                if item["itl2"]:
+                    itl2_to_items.setdefault(item["itl2"], []).append(item)
+                if item["itl3"]:
+                    itl3_to_items.setdefault(item["itl3"], []).append(item)
                     total_assigned += 1
-                    break
-            if not found_itl3:
-                continue
+                if item["lad"]:
+                    lad_to_items.setdefault(item["lad"], []).append(item)
+                if item["ward"]:
+                    ward_to_items.setdefault(item["ward"], []).append(item)
+    else:
+        itl0_regions = itl_hierarchy["itl0_regions"]
+        itl1_regions = itl_hierarchy["itl1_regions"]
+        itl2_regions = itl_hierarchy["itl2_regions"]
+        itl3_regions = itl_hierarchy["itl3_regions"]
+        lad_regions = itl_hierarchy["lad_regions"]
+        ward_regions = itl_hierarchy["ward_regions"]
+        itl1_to_itl2s = itl_hierarchy["itl1_to_itl2s"]
+        itl2_to_itl3s = itl_hierarchy["itl2_to_itl3s"]
+        itl3_to_lads = itl_hierarchy["itl3_to_lads"]
+        lad_to_wards = itl_hierarchy["lad_to_wards"]
 
-            found_lad = None
-            for lad_code in itl3_to_lads.get(found_itl3, []):
-                lad = lad_regions.get(lad_code)
-                if lad and lad["prepared"].contains(point):
-                    found_lad = lad_code
-                    item["lad"] = lad_code
-                    lad_to_items.setdefault(lad_code, []).append(item)
-                    break
+        for _, items in items_by_tier.items():
+            for item in items:
+                total_items += 1
+                point = Point(item.get("longitude", 0.0), item.get("latitude", 0.0))
 
-            if found_lad and ward_regions:
-                for ward_code in lad_to_wards.get(found_lad, []):
-                    ward = ward_regions.get(ward_code)
-                    if ward and ward["prepared"].contains(point):
-                        item["ward"] = ward_code
-                        ward_to_items.setdefault(ward_code, []).append(item)
+                item["itl0"] = None
+                item["itl1"] = None
+                item["itl2"] = None
+                item["itl3"] = None
+                item["lad"] = None
+                item["ward"] = None
+
+                for itl0 in itl0_regions.values():
+                    if itl0["prepared"].contains(point):
+                        item["itl0"] = itl0["name"]
+                        itl0_to_items.setdefault(itl0["name"], []).append(item)
                         break
 
-    logger.debug("ITL Region Assignment:")
+                found_itl1 = None
+                for itl1 in itl1_regions.values():
+                    if itl1["prepared"].contains(point):
+                        found_itl1 = itl1["name"]
+                        item["itl1"] = found_itl1
+                        itl1_to_items.setdefault(found_itl1, []).append(item)
+                        break
+                if not found_itl1:
+                    continue
+
+                found_itl2 = None
+                for itl2_name in itl1_to_itl2s.get(found_itl1, []):
+                    if itl2_regions[itl2_name]["prepared"].contains(point):
+                        found_itl2 = itl2_name
+                        item["itl2"] = found_itl2
+                        itl2_to_items.setdefault(found_itl2, []).append(item)
+                        break
+                if not found_itl2:
+                    continue
+
+                found_itl3 = None
+                for itl3_name in itl2_to_itl3s.get(found_itl2, []):
+                    if itl3_regions[itl3_name]["prepared"].contains(point):
+                        found_itl3 = itl3_name
+                        item["itl3"] = itl3_name
+                        itl3_to_items.setdefault(itl3_name, []).append(item)
+                        total_assigned += 1
+                        break
+                if not found_itl3:
+                    continue
+
+                found_lad = None
+                for lad_code in itl3_to_lads.get(found_itl3, []):
+                    lad = lad_regions.get(lad_code)
+                    if lad and lad["prepared"].contains(point):
+                        found_lad = lad_code
+                        item["lad"] = lad_code
+                        lad_to_items.setdefault(lad_code, []).append(item)
+                        break
+
+                if found_lad and ward_regions:
+                    for ward_code in lad_to_wards.get(found_lad, []):
+                        ward = ward_regions.get(ward_code)
+                        if ward and ward["prepared"].contains(point):
+                            item["ward"] = ward_code
+                            ward_to_items.setdefault(ward_code, []).append(item)
+                            break
+
+    logger.debug("ITL Region Assignment%s:", " (pre-assigned)" if pre_assigned else "")
     logger.debug("  Assigned %d of %d items to ITL regions", total_assigned, total_items)
     logger.debug("  ITL1: %d regions have items", len(itl1_to_items))
     logger.debug("  ITL2: %d regions have items", len(itl2_to_items))
     logger.debug("  ITL3: %d regions have items", len(itl3_to_items))
     logger.debug("  LAD: %d regions have items", len(lad_to_items))
-    if ward_regions:
+    if not pre_assigned and itl_hierarchy["ward_regions"]:
         logger.debug("  Wards: %d regions have items", len(ward_to_items))
 
     for region_name in sorted(itl1_to_items.keys())[:3]:
@@ -831,14 +946,24 @@ def _add_territories(
             return geom
         if geom.geom_type == "Polygon":
             poly = cast(Polygon, geom)
+            if not poly.interiors:
+                return geom
             holes = [r for r in poly.interiors if Polygon(r).area >= min_hole_area]
+            if len(holes) == len(poly.interiors):
+                return geom
             return Polygon(poly.exterior, holes)
         if geom.geom_type == "MultiPolygon":
             multi = cast(MultiPolygon, geom)
+            if not any(p.interiors for p in multi.geoms):
+                return geom
             return MultiPolygon(
                 [
-                    Polygon(
-                        p.exterior, [r for r in p.interiors if Polygon(r).area >= min_hole_area]
+                    (
+                        Polygon(
+                            p.exterior, [r for r in p.interiors if Polygon(r).area >= min_hole_area]
+                        )
+                        if p.interiors
+                        else p
                     )
                     for p in multi.geoms
                 ]

@@ -31,6 +31,7 @@ from core.map_builder import (
     generate_multi_group_map,
     generate_single_group_map,
     load_itl_hierarchy,
+    preassign_itl_regions,
 )
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
@@ -615,6 +616,12 @@ def main() -> None:
     # Load shared data
     logger.debug("Loading ITL hierarchy...")
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
+
+    logger.debug("Pre-assigning ITL regions to all items...")
+    all_marker_items = loaded.pyramid + [
+        it for comp_items in loaded.merit.values() for it in comp_items
+    ]
+    preassign_itl_regions(all_marker_items, itl_hierarchy)
 
     output_dir = DIST_DIR / season
     is_prod = get_config().is_production

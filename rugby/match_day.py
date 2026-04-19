@@ -441,7 +441,11 @@ def build_match_day_map(
             marker = folium.Marker(
                 location=[lat, lng],
                 popup=folium.Popup(popup_html, max_width=320),
-                tooltip=f"{home_name} vs {away_name} ({tooltip_detail})",
+                tooltip=(
+                    f"{home_name} vs {away_name} ({tooltip_detail})"
+                    if tooltip_detail
+                    else f"{home_name} vs {away_name}"
+                ),
                 icon=icon,
             )
             marker.options["imageUrl"] = home_icon_url  # type: ignore[index]

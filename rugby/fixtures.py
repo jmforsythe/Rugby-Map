@@ -34,6 +34,12 @@ logger = logging.getLogger(__name__)
 
 _RFU_BASE = "https://www.englandrugby.com"
 
+_EXTRA_FIXTURE_URLS: list[str] = [
+    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74581&season=2025-2026",
+    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74582&season=2025-2026",
+    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74583&season=2025-2026",
+]
+
 
 def _parse_team_id(url: str) -> int | None:
     """Extract the numeric team ID from an RFU team URL query parameter."""
@@ -344,6 +350,48 @@ def main() -> None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(new_content, encoding="utf-8")
 
+        scraped += 1
+        logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
+
+    extra_urls = [u for u in _EXTRA_FIXTURE_URLS if f"season={season}" in u]
+    for url in extra_urls:
+        parsed = urllib.parse.urlparse(url)
+        params = urllib.parse.parse_qs(parsed.query)
+        division_id = params.get("division", ["unknown"])[0]
+        league_name = f"Division {division_id}"
+        output_path = output_dir / f"extra_{division_id}.json"
+
+        if output_path.exists() and not args.force:
+            logger.info("Skipping extra URL %s (already exists)", league_name)
+            skipped += 1
+            continue
+
+        try:
+            fixtures = scrape_fixtures_from_league(url, league_name)
+        except AntiBotDetectedError:
+            logger.error("Anti-bot detection triggered on extra URL %s", url)
+            raise
+        except Exception:
+            logger.exception("Failed to scrape extra fixture URL %s", url)
+            errors.append(f"SCRAPE_ERROR | {league_name} | {url}")
+            continue
+
+        fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
+
+        fixture_league: FixtureLeague = {
+            "league_name": league_name,
+            "league_url": url,
+            "fixtures": fixtures,
+        }
+
+        new_content = json.dumps(fixture_league, indent=2, ensure_ascii=False) + "\n"
+        if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
+            logger.info("  Unchanged: %s", league_name)
+            skipped += 1
+            continue
+
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(new_content, encoding="utf-8")
         scraped += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
 

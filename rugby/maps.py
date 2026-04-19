@@ -27,6 +27,7 @@ from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.map_builder import (
     MapConfig,
     MarkerItem,
+    TerritoryCache,
     export_shared_boundaries,
     generate_multi_group_map,
     generate_single_group_map,
@@ -625,6 +626,7 @@ def main() -> None:
 
     output_dir = DIST_DIR / season
     is_prod = get_config().is_production
+    territory_cache: TerritoryCache = {}
 
     logger.debug("Exporting shared boundary data...")
     export_shared_boundaries(
@@ -632,6 +634,7 @@ def main() -> None:
         output_dir=str(DIST_DIR / "shared"),
         country_names=COUNTRY_OUTLINES,
         skip_if_exists=is_prod,
+        itl_hierarchy=itl_hierarchy,
     )
 
     # Resolve info-page links for top-level maps (depth 0).
@@ -665,7 +668,7 @@ def main() -> None:
                 sibling_tiers=mens_siblings,
                 current_tier=tier_name,
             )
-            generate_single_group_map(tier_items, out, itl_hierarchy, config)
+            generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
             # Pyramid + merit at same level
             merit_at_level = merit_by_tier_num.get(tier_num, [])
@@ -676,7 +679,7 @@ def main() -> None:
                 config = _build_config(
                     f"{tier_name} + Merit", season, show_debug, _rotated_palette(tier_num)
                 )
-                generate_single_group_map(combined, out, itl_hierarchy, config)
+                generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
 
         # Merit-only tiers below the pyramid
         pyramid_tier_nums = {it[0].tier_num for it in mens_by_tier_r.values()}
@@ -690,7 +693,7 @@ def main() -> None:
             config = _build_config(
                 f"{tier_name} (Merit)", season, show_debug, _rotated_palette(tier_num)
             )
-            generate_single_group_map(merit_items, out, itl_hierarchy, config)
+            generate_single_group_map(merit_items, out, itl_hierarchy, config, territory_cache)
 
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")
@@ -708,7 +711,7 @@ def main() -> None:
                 sibling_tiers=womens_siblings,
                 current_tier=tier_name,
             )
-            generate_single_group_map(tier_items, out, itl_hierarchy, config)
+            generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
     # ------------------------------------------------------------------
     # Pyramid-only all-tiers maps
@@ -717,13 +720,13 @@ def main() -> None:
         logger.info("Creating men's pyramid all-tiers map...")
         out = _output_path(output_dir, "All_Tiers", is_prod)
         config = _build_config("All Tiers Men", season, show_debug)
-        generate_multi_group_map(mens_pyramid_r, out, itl_hierarchy, config)
+        generate_multi_group_map(mens_pyramid_r, out, itl_hierarchy, config, territory_cache)
 
     if gen_all_tiers_women and womens_pyramid_r:
         logger.info("Creating women's pyramid all-tiers map...")
         out = _output_path(output_dir, "All_Tiers_Women", is_prod)
         config = _build_config("All Tiers Women", season, show_debug)
-        generate_multi_group_map(womens_pyramid_r, out, itl_hierarchy, config)
+        generate_multi_group_map(womens_pyramid_r, out, itl_hierarchy, config, territory_cache)
 
     # ------------------------------------------------------------------
     # All-leagues maps (pyramid + merit combined)
@@ -734,7 +737,7 @@ def main() -> None:
             logger.info("Creating men's all-leagues map (pyramid + merit)...")
             out = _output_path(output_dir, "All_Leagues", is_prod)
             config = _build_config("All Leagues Men", season, show_debug)
-            generate_multi_group_map(mens_all, out, itl_hierarchy, config)
+            generate_multi_group_map(mens_all, out, itl_hierarchy, config, territory_cache)
 
     # ------------------------------------------------------------------
     # Per-competition merit maps
@@ -771,7 +774,7 @@ def main() -> None:
                 tier_entry_level={},
                 tier_floor_level={},
             )
-            generate_multi_group_map(comp_items_r, out, itl_hierarchy, config)
+            generate_multi_group_map(comp_items_r, out, itl_hierarchy, config, territory_cache)
 
             # Per-tier maps within the competition
             comp_by_tier, comp_tier_order = _group_by_tier(comp_items_r)
@@ -792,7 +795,7 @@ def main() -> None:
                     sibling_tiers=comp_siblings,
                     current_tier=tier_name,
                 )
-                generate_single_group_map(tier_items, out, itl_hierarchy, config)
+                generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
     logger.info("All maps created successfully in %s", output_dir)
 

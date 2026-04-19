@@ -106,6 +106,7 @@ class ITLRegionGeom(TypedDict):
     name: str
     code: str | None
     geom: BaseGeometry
+    simplified: BaseGeometry
     prepared: PreparedGeometry
     centroid: Point
 
@@ -147,6 +148,9 @@ def _load_geojson(path: str | Path) -> dict[str, Any]:
         return json.load(f)
 
 
+_SIMPLIFY_TOLERANCE = 0.001
+
+
 def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     """Load GeoJSON boundaries and compute hierarchy links.
 
@@ -174,6 +178,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": feat["properties"]["ITL325NM"],
             "code": feat["properties"].get("ITL325CD"),
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -185,6 +190,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": feat["properties"]["ITL225NM"],
             "code": feat["properties"].get("ITL225CD"),
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -196,6 +202,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": feat["properties"]["ITL125NM"],
             "code": feat["properties"].get("ITL125CD"),
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -207,6 +214,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": feat["properties"]["CTRY24NM"],
             "code": feat["properties"].get("CTRY24CD"),
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -222,6 +230,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": props["LAD25NM"],
             "code": lad_code,
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -238,6 +247,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "name": props["WD25NM"],
             "code": ward_code,
             "geom": geom,
+            "simplified": geom.simplify(_SIMPLIFY_TOLERANCE, preserve_topology=True),
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
@@ -420,6 +430,7 @@ def export_shared_boundaries(
     output_dir: str = "dist/shared",
     country_names: list[str] | None = None,
     skip_if_exists: bool = False,
+    itl_hierarchy: ITLHierarchy | None = None,
 ) -> None:
     """Export simplified boundary data to a shared JSON file for client-side use.
 
@@ -427,6 +438,9 @@ def export_shared_boundaries(
     *country_names* lists country features to include in the outline layer.
     When provided, ITL/LAD/ward boundaries are also filtered to only include
     features whose centroid falls within those countries.
+
+    If *itl_hierarchy* is supplied, pre-simplified geometries are used directly
+    instead of re-loading and simplifying the raw GeoJSON files.
     """
     output_dir_path = Path(output_dir)
     output_dir_path.mkdir(parents=True, exist_ok=True)
@@ -444,18 +458,124 @@ def export_shared_boundaries(
         "wards": None,
     }
 
-    # Build a prepared union of the requested countries for spatial filtering
-    country_filter: PreparedGeometry | None = None
-    countries_path = Path(paths["countries"])
-    if countries_path.exists():
-        countries_data = _load_geojson(countries_path)
+    if itl_hierarchy is not None:
+        # Use pre-simplified geometries from the already-loaded hierarchy.
+        # Build country filter from the itl0 (country) regions.
+        country_set = set(country_names or [])
         country_geoms: list[BaseGeometry] = []
-        for name in country_names or []:
-            feats = [
-                f for f in countries_data["features"] if f["properties"].get("CTRY24NM") == name
-            ]
-            if feats:
+        for name, region in itl_hierarchy["itl0_regions"].items():
+            if name in country_set:
                 boundary_data["countries"][name] = {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": mapping(region["simplified"]),
+                            "properties": {"CTRY24NM": name, "CTRY24CD": region["code"]},
+                        }
+                    ],
+                }
+                country_geoms.append(region["geom"])
+
+        country_filter: PreparedGeometry | None = None
+        if country_geoms:
+            country_filter = prep(unary_union(country_geoms))
+
+        def _in_countries(centroid: Point) -> bool:
+            if country_filter is None:
+                return True
+            return country_filter.contains(centroid)
+
+        level_map = {
+            "itl_1": itl_hierarchy["itl1_regions"],
+            "itl_2": itl_hierarchy["itl2_regions"],
+            "itl_3": itl_hierarchy["itl3_regions"],
+        }
+        for bd_key, regions in level_map.items():
+            feats = []
+            for region in regions.values():
+                if not _in_countries(region["centroid"]):
+                    continue
+                feats.append(
+                    {
+                        "type": "Feature",
+                        "geometry": mapping(region["simplified"]),
+                        "properties": {
+                            f"{bd_key.upper().replace('_', '')}25NM": region["name"],
+                            f"{bd_key.upper().replace('_', '')}25CD": region["code"],
+                        },
+                    }
+                )
+            boundary_data[bd_key] = {"type": "FeatureCollection", "features": feats}
+
+        lad_feats = []
+        for region in itl_hierarchy["lad_regions"].values():
+            if not _in_countries(region["centroid"]):
+                continue
+            lad_feats.append(
+                {
+                    "type": "Feature",
+                    "geometry": mapping(region["simplified"]),
+                    "properties": {"LAD25NM": region["name"], "LAD25CD": region["code"]},
+                }
+            )
+        boundary_data["lad"] = {"type": "FeatureCollection", "features": lad_feats}
+
+        ward_feats = []
+        for wcode, region in itl_hierarchy["ward_regions"].items():
+            if not _in_countries(region["centroid"]):
+                continue
+            ward_feats.append(
+                {
+                    "type": "Feature",
+                    "geometry": mapping(region["simplified"]),
+                    "properties": {
+                        "WD25NM": region["name"],
+                        "WD25CD": region["code"],
+                        "LAD25CD": itl_hierarchy["ward_to_lad"].get(wcode),
+                    },
+                }
+            )
+        boundary_data["wards"] = {"type": "FeatureCollection", "features": ward_feats}
+    else:
+        # Fallback: load raw GeoJSON files and simplify on the fly.
+        country_filter_fb: PreparedGeometry | None = None
+        countries_path = Path(paths["countries"])
+        if countries_path.exists():
+            countries_data = _load_geojson(countries_path)
+            country_geoms_fb: list[BaseGeometry] = []
+            for name in country_names or []:
+                feats = [
+                    f for f in countries_data["features"] if f["properties"].get("CTRY24NM") == name
+                ]
+                if feats:
+                    boundary_data["countries"][name] = {
+                        "type": "FeatureCollection",
+                        "features": [
+                            {
+                                "type": "Feature",
+                                "geometry": mapping(
+                                    shape(f["geometry"]).simplify(0.001, preserve_topology=True)
+                                ),
+                                "properties": f.get("properties", {}),
+                            }
+                            for f in feats
+                        ],
+                    }
+                    country_geoms_fb.extend(shape(f["geometry"]) for f in feats)
+            if country_geoms_fb:
+                country_filter_fb = prep(unary_union(country_geoms_fb))
+
+        def _feature_in_countries(feat: dict[str, Any]) -> bool:
+            if country_filter_fb is None:
+                return True
+            return country_filter_fb.contains(shape(feat["geometry"]).centroid)
+
+        for level, key in [("ITL_1", "itl1"), ("ITL_2", "itl2"), ("ITL_3", "itl3")]:
+            gp = Path(paths.get(key, f"boundaries/{level}.geojson"))
+            if gp.exists():
+                data = _load_geojson(gp)
+                boundary_data[level.lower()] = {
                     "type": "FeatureCollection",
                     "features": [
                         {
@@ -465,24 +585,15 @@ def export_shared_boundaries(
                             ),
                             "properties": f.get("properties", {}),
                         }
-                        for f in feats
+                        for f in data["features"]
+                        if _feature_in_countries(f)
                     ],
                 }
-                country_geoms.extend(shape(f["geometry"]) for f in feats)
-        if country_geoms:
-            country_filter = prep(unary_union(country_geoms))
 
-    def _feature_in_countries(feat: dict[str, Any]) -> bool:
-        """Return True if the feature's centroid falls within the target countries."""
-        if country_filter is None:
-            return True
-        return country_filter.contains(shape(feat["geometry"]).centroid)
-
-    for level, key in [("ITL_1", "itl1"), ("ITL_2", "itl2"), ("ITL_3", "itl3")]:
-        gp = Path(paths.get(key, f"boundaries/{level}.geojson"))
-        if gp.exists():
-            data = _load_geojson(gp)
-            boundary_data[level.lower()] = {
+        lad_path = Path(paths["lad"])
+        if lad_path.exists():
+            data = _load_geojson(lad_path)
+            boundary_data["lad"] = {
                 "type": "FeatureCollection",
                 "features": [
                     {
@@ -497,41 +608,23 @@ def export_shared_boundaries(
                 ],
             }
 
-    lad_path = Path(paths["lad"])
-    if lad_path.exists():
-        data = _load_geojson(lad_path)
-        boundary_data["lad"] = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": mapping(
-                        shape(f["geometry"]).simplify(0.001, preserve_topology=True)
-                    ),
-                    "properties": f.get("properties", {}),
-                }
-                for f in data["features"]
-                if _feature_in_countries(f)
-            ],
-        }
-
-    wards_path = Path(paths["wards"])
-    if wards_path.exists():
-        data = _load_geojson(wards_path)
-        boundary_data["wards"] = {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": mapping(
-                        shape(f["geometry"]).simplify(0.001, preserve_topology=True)
-                    ),
-                    "properties": f.get("properties", {}),
-                }
-                for f in data["features"]
-                if _feature_in_countries(f)
-            ],
-        }
+        wards_path = Path(paths["wards"])
+        if wards_path.exists():
+            data = _load_geojson(wards_path)
+            boundary_data["wards"] = {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "type": "Feature",
+                        "geometry": mapping(
+                            shape(f["geometry"]).simplify(0.001, preserve_topology=True)
+                        ),
+                        "properties": f.get("properties", {}),
+                    }
+                    for f in data["features"]
+                    if _feature_in_countries(f)
+                ],
+            }
 
     with open(output_path, "w") as fout:
         json.dump(boundary_data, fout, separators=(",", ":"))
@@ -850,7 +943,7 @@ def _collect_group_geometries(
             fb = closest_group(parent_items, region["centroid"])
             if not fb:
                 return []
-            return [{"geom": region["geom"], "group": fb, "color": group_colors[fb]}]
+            return [{"geom": region["simplified"], "group": fb, "color": group_colors[fb]}]
 
         groups_here = {it["group"] for it in items_here}
         if len(groups_here) == 1:
@@ -874,17 +967,17 @@ def _collect_group_geometries(
                         for ck in children_with:
                             narrow.extend(split_region(child_level_check, ck, items_here))
                         return narrow
-            return [{"geom": region["geom"], "group": grp, "color": group_colors[grp]}]
+            return [{"geom": region["simplified"], "group": grp, "color": group_colors[grp]}]
 
         child_level = next_level.get(level)
         if not child_level:
-            vcells = _create_bounded_voronoi(items_here, region["geom"], group_colors)
+            vcells = _create_bounded_voronoi(items_here, region["simplified"], group_colors)
             if vcells:
                 return vcells
             fb = closest_group(items_here, region["centroid"])
             if not fb:
                 return []
-            return [{"geom": region["geom"], "group": fb, "color": group_colors[fb]}]
+            return [{"geom": region["simplified"], "group": fb, "color": group_colors[fb]}]
 
         child_regions = regions_by_level[child_level]
         child_keys = [
@@ -894,13 +987,13 @@ def _collect_group_geometries(
         ]
 
         if not child_keys:
-            vcells = _create_bounded_voronoi(items_here, region["geom"], group_colors)
+            vcells = _create_bounded_voronoi(items_here, region["simplified"], group_colors)
             if vcells:
                 return vcells
             fb = closest_group(items_here, region["centroid"])
             if not fb:
                 return []
-            return [{"geom": region["geom"], "group": fb, "color": group_colors[fb]}]
+            return [{"geom": region["simplified"], "group": fb, "color": group_colors[fb]}]
 
         result_cells: list[dict[str, Any]] = []
         empty_children: list[str] = []
@@ -913,7 +1006,11 @@ def _collect_group_geometries(
             if len(child_groups) == 1:
                 grp = next(iter(child_groups))
                 result_cells.append(
-                    {"geom": child_regions[ck]["geom"], "group": grp, "color": group_colors[grp]}
+                    {
+                        "geom": child_regions[ck]["simplified"],
+                        "group": grp,
+                        "color": group_colors[grp],
+                    }
                 )
             else:
                 result_cells.extend(split_region(child_level, ck, items_in_child))
@@ -922,7 +1019,11 @@ def _collect_group_geometries(
             fb = closest_group(items_here, child_regions[eck]["centroid"])
             if fb:
                 result_cells.append(
-                    {"geom": child_regions[eck]["geom"], "group": fb, "color": group_colors[fb]}
+                    {
+                        "geom": child_regions[eck]["simplified"],
+                        "group": fb,
+                        "color": group_colors[fb],
+                    }
                 )
         return result_cells
 
@@ -933,12 +1034,17 @@ def _collect_group_geometries(
     return group_geometries
 
 
-def _add_territories(
-    group: folium.FeatureGroup,
+_TerritoryMerged = dict[str, dict[str, Any]]
+"""Per-group merged GeoJSON mapping: ``{group_name: geojson_dict}``."""
+
+TerritoryCache = dict[tuple[Any, ...], _TerritoryMerged]
+"""Cache of territory results keyed by ``(entry_level, floor_level, frozenset(item_names))``."""
+
+
+def _merge_territories(
     group_geometries: dict[str, list[BaseGeometry]],
-    group_colors: dict[str, str],
-) -> None:
-    """Merge and render territory geometries on the feature group."""
+) -> _TerritoryMerged:
+    """Union + hole-removal for each group, returning GeoJSON mapping dicts."""
     min_hole_area = 1e-4
 
     def remove_small_holes(geom: BaseGeometry) -> BaseGeometry:
@@ -970,17 +1076,29 @@ def _add_territories(
             )
         return geom
 
+    result: _TerritoryMerged = {}
     for grp, geometries in group_geometries.items():
         if not geometries:
             continue
-        merged = unary_union([g.simplify(0.001, preserve_topology=True) for g in geometries])
+        merged = unary_union(geometries)
         merged = remove_small_holes(merged)
+        result[grp] = mapping(merged)
+    return result
+
+
+def _render_territories(
+    feature_group: folium.FeatureGroup,
+    merged_geojson: _TerritoryMerged,
+    group_colors: dict[str, str],
+) -> None:
+    """Add pre-merged GeoJSON territory layers to *feature_group*."""
+    for grp, geojson_dict in merged_geojson.items():
         color = group_colors[grp]
 
-        def style_fn(feature, c=color):
+        def style_fn(feature: Any, c: str = color) -> dict[str, Any]:
             return {"fillColor": c, "color": c, "weight": 1, "fillOpacity": 0.6, "opacity": 0.6}
 
-        folium.GeoJson(mapping(merged), style_function=style_fn).add_to(group)
+        folium.GeoJson(geojson_dict, style_function=style_fn).add_to(feature_group)
 
 
 # ---------------------------------------------------------------------------
@@ -1509,11 +1627,35 @@ def _get_debug_boundary_loader_script(config: MapConfig) -> str:
 # ---------------------------------------------------------------------------
 
 
+def _resolve_levels(tier_num: int, config: MapConfig) -> tuple[str, str]:
+    """Return the (entry_level, floor_level) for a tier given the map config."""
+    if config.tier_entry_level and tier_num in config.tier_entry_level:
+        entry = config.tier_entry_level[tier_num]
+    else:
+        entry = config.default_tier_entry_level
+    if config.tier_floor_level and tier_num in config.tier_floor_level:
+        floor = config.tier_floor_level[tier_num]
+    else:
+        floor = config.default_tier_floor_level
+    return entry, floor
+
+
+def _territory_cache_key(
+    items: list[_PlacedItem], config: MapConfig
+) -> tuple[str, str, frozenset[tuple[str, str]]]:
+    """Build a hashable cache key for a set of items sharing one tier."""
+    tier_num = items[0].get("tier_num", 999) if items else 999
+    entry, floor = _resolve_levels(tier_num, config)
+    names = frozenset((it["name"], it["group"]) for it in items)
+    return (entry, floor, names)
+
+
 def generate_single_group_map(
     items: list[MarkerItem],
     output_path: Path,
     itl_hierarchy: ITLHierarchy,
     config: MapConfig,
+    territory_cache: TerritoryCache | None = None,
 ) -> None:
     """Generate a map where all items share one tier, with groups as toggleable layers."""
     if not items:
@@ -1551,11 +1693,18 @@ def generate_single_group_map(
         m.add_child(shading_groups[grp])
         m.add_child(marker_groups[grp])
 
-    geoms = _collect_group_geometries(
-        all_placed, region_to_items, itl_hierarchy, group_colors, config
-    )
+    cache_key = _territory_cache_key(all_placed, config) if territory_cache is not None else None
+    if cache_key is not None and cache_key in territory_cache:  # type: ignore[operator]
+        merged_all = territory_cache[cache_key]  # type: ignore[index]
+    else:
+        geoms = _collect_group_geometries(
+            all_placed, region_to_items, itl_hierarchy, group_colors, config
+        )
+        merged_all = _merge_territories(geoms)
+        if territory_cache is not None and cache_key is not None:
+            territory_cache[cache_key] = merged_all
     for grp, fg in shading_groups.items():
-        _add_territories(fg, {grp: geoms.get(grp, [])}, group_colors)
+        _render_territories(fg, {grp: merged_all[grp]} if grp in merged_all else {}, group_colors)
 
     for it in all_placed:
         _add_marker(
@@ -1595,6 +1744,7 @@ def generate_multi_group_map(
     output_path: Path,
     itl_hierarchy: ITLHierarchy,
     config: MapConfig,
+    territory_cache: TerritoryCache | None = None,
 ) -> None:
     """Generate a map with multiple tiers, each tier as a toggleable layer group."""
     if not items:
@@ -1636,10 +1786,17 @@ def generate_multi_group_map(
         m.add_child(marker_groups[tier])
 
     for tier, placed in sorted(items_by_tier.items()):
-        geoms = _collect_group_geometries(
-            placed, region_to_items, itl_hierarchy, group_colors, config
-        )
-        _add_territories(territory_groups[tier], geoms, group_colors)
+        cache_key = _territory_cache_key(placed, config) if territory_cache is not None else None
+        if cache_key is not None and cache_key in territory_cache:  # type: ignore[operator]
+            merged = territory_cache[cache_key]  # type: ignore[index]
+        else:
+            geoms = _collect_group_geometries(
+                placed, region_to_items, itl_hierarchy, group_colors, config
+            )
+            merged = _merge_territories(geoms)
+            if territory_cache is not None and cache_key is not None:
+                territory_cache[cache_key] = merged
+        _render_territories(territory_groups[tier], merged, group_colors)
 
     tier_order_map = {tier: idx for idx, tier in enumerate(sorted_tier_names)}
     num_items = 0

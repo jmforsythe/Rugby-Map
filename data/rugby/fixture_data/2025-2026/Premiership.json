@@ -580,10 +580,12 @@
     },
     {
       "date": "2026-04-19",
-      "time": "15:00",
+      "time": "",
       "home_team_id": 50,
       "away_team_id": 51,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-elite?matchId=948551&competitionId=201&seasonId=2026"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-elite?matchId=948551&competitionId=201&seasonId=2026",
+      "home_score": 19,
+      "away_score": 85
     },
     {
       "date": "2026-04-24",

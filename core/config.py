@@ -68,6 +68,22 @@ def get_google_analytics_script() -> str:
 """
 
 
+def get_service_worker_registration_script() -> str:
+    """Script to register the site service worker (path is root-relative, production only)."""
+    return """
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(function(reg) {
+                if (reg.waiting) { reg.waiting.postMessage({type: 'SKIP_WAITING'}); }
+            })
+            .catch(function(err) { console.log('ServiceWorker registration failed:', err); });
+        navigator.serviceWorker.addEventListener('controllerchange', function() {});
+    }
+    </script>
+    """
+
+
 def get_favicon_html(depth: int = 0) -> str:
     """Return <link> tags for favicon and manifest.
 
@@ -79,6 +95,7 @@ def get_favicon_html(depth: int = 0) -> str:
     else:
         prefix = "../" * depth if depth > 0 else ""
     return (
+        f'    <link rel="icon" href="{prefix}favicon.ico" sizes="any">\n'
         f'    <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml">\n'
         f'    <link rel="manifest" href="{prefix}manifest.json">'
     )

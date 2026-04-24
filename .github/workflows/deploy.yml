@@ -56,7 +56,7 @@ jobs:
           # Match-day maps (uses committed fixture_data, one per season)
           for season in $SEASONS; do
             if [ -d "data/rugby/fixture_data/$season" ]; then
-              python -m rugby.match_day --season=$season
+              python -m rugby.match_day --season=$season --production
             fi
           done
 

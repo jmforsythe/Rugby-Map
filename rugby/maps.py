@@ -18,6 +18,7 @@ from core import (
     get_config,
     get_favicon_html,
     get_google_analytics_script,
+    get_service_worker_registration_script,
     json_load_cache,
     set_config,
     setup_logging,
@@ -278,21 +279,6 @@ def _header_bar_html(
     """
 
 
-def _service_worker_html() -> str:
-    return """
-    <script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(function(reg) {
-                if (reg.waiting) { reg.waiting.postMessage({type: 'SKIP_WAITING'}); }
-            })
-            .catch(function(err) { console.log('ServiceWorker registration failed:', err); });
-        navigator.serviceWorker.addEventListener('controllerchange', function() {});
-    }
-    </script>
-    """
-
-
 # ---------------------------------------------------------------------------
 # Data loading – build MarkerItem objects from geocoded JSON
 # ---------------------------------------------------------------------------
@@ -430,7 +416,7 @@ def _build_config(
         get_google_analytics_script(),
     ]
     if is_prod:
-        header_elements.append(_service_worker_html())
+        header_elements.append(get_service_worker_registration_script())
 
     body_elements = [
         _header_bar_html(

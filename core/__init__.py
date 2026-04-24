@@ -9,6 +9,7 @@ from core.config import (
     get_config,
     get_favicon_html,
     get_google_analytics_script,
+    get_service_worker_registration_script,
     set_config,
     setup_logging,
 )
@@ -54,6 +55,7 @@ __all__ = [
     "get_config",
     "get_favicon_html",
     "get_google_analytics_script",
+    "get_service_worker_registration_script",
     "get_headers",
     "get_session",
     "json_load_cache",

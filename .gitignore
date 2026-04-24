@@ -9,6 +9,7 @@ dist/*
 !dist/service-worker.js
 !dist/styles.css
 !dist/favicon.svg
+!dist/favicon.ico
 !dist/manifest.json
 
 # Data directories

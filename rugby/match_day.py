@@ -5,7 +5,8 @@ Reads committed fixture_data/<season>/ and geocoded_teams/<season>/ to show
 match venues. A dropdown lets the user switch between match days.
 No network access required — runs in the deployed environment.
 
-Usage: python make_match_day_map.py --season 2025-2026
+Usage: ``python -m rugby.match_day --season 2025-2026 --production`` (use ``--production`` for
+the deployed static site; omit for local file paths).
 """
 
 from __future__ import annotations
@@ -30,6 +31,8 @@ from core import (
     get_config,
     get_favicon_html,
     get_google_analytics_script,
+    get_service_worker_registration_script,
+    set_config,
     setup_logging,
 )
 from core.config import DIST_DIR
@@ -40,6 +43,25 @@ from rugby.tiers import extract_tier
 logger = logging.getLogger(__name__)
 
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+
+
+def _match_day_seo_head(season: str) -> str:
+    """Return <head> elements for document title, viewport, and Open Graph (match day)."""
+    page_title = f"Match Day Fixtures & Results - {season} | English Rugby Union Team Maps"
+    desc = (
+        f"Browse {season} English rugby union fixtures by match day: "
+        "interactive map of match venues, dates, and results."
+    )
+    url = f"https://rugbyunionmap.uk/{season}/match_day/"
+    return f"""    <title>{escape(page_title)}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{escape(desc)}" />
+    <meta property="og:title" content="{escape(page_title)}" />
+    <meta property="og:description" content="{escape(desc)}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{escape(url)}" />
+"""
+
 
 COLOR_PALETTE = [
     "#e6194b",
@@ -286,6 +308,7 @@ def build_match_day_map(
     header = m.get_root().header
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
+    header.add_child(folium.Element(_match_day_seo_head(season)))
 
     is_prod = get_config().is_production
     home_href = "../../" if is_prod else "../../index.html"
@@ -636,9 +659,10 @@ def build_match_day_map(
     """
     html_el.add_child(folium.Element(boundary_script))
 
-    ga = get_google_analytics_script()
-    favicon = get_favicon_html(depth=2)
-    extra_head = f"{ga}\n{favicon}" if ga else favicon
+    head_tail = [get_favicon_html(depth=2), get_google_analytics_script()]
+    if is_prod:
+        head_tail.append(get_service_worker_registration_script())
+    extra_head = "\n".join(part for part in head_tail if part)
     header.add_child(folium.Element(extra_head))
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -673,8 +697,14 @@ def main() -> None:
         default=None,
         help="Output file (default: dist/<season>/match_day/index.html)",
     )
+    parser.add_argument(
+        "--production",
+        action="store_true",
+        help="Use production URLs and paths (static site root, GA/favicon prefixes)",
+    )
     args = parser.parse_args()
 
+    set_config(is_production=args.production, season=args.season)
     setup_logging()
     season: str = args.season
 

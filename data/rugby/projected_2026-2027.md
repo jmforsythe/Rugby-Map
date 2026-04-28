@@ -56,14 +56,14 @@ Rules applied from `tier_assignment_rules.md`.
 |---|------|-----------------|
 | 1 | Blackheath | 2nd |
 | 2 | Plymouth Albion | 3rd |
-| 3 | Sale FC | 4th |
-| 4 | Rosslyn Park | 5th |
+| 3 | Rosslyn Park | 4th |
+| 4 | Sale FC | 5th |
 | 5 | Bishop's Stortford | 6th |
 | 6 | Rams | 7th |
 | 7 | Tonbridge Juddians | 8th |
 | 8 | Leeds Tykes | 9th |
 | 9 | Dings Crusaders | 10th |
-| 10 | Clifton | 11th |
+| 10 | Birmingham Moseley | 11th |
 
 ### Promoted to Tier 3 (3 teams) — holding league "National League 1 Promoted"
 
@@ -83,7 +83,7 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Birmingham Moseley | National League 1 (12th) | Auto-relegation |
+| Clifton | National League 1 (12th) | Auto-relegation |
 | Sedgley Park | National League 1 (13th) | Auto-relegation |
 | Leicester Lions | National League 1 (14th) | Auto-relegation |
 
@@ -156,7 +156,7 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Birmingham Moseley | National League 1 (12th) | Auto-relegation |
+| Clifton | National League 1 (12th) | Auto-relegation |
 | Leicester Lions | National League 1 (14th) | Auto-relegation |
 | Sedgley Park | National League 1 (13th) | Auto-relegation |
 
@@ -960,7 +960,7 @@ Rules applied from `tier_assignment_rules.md`.
 |-----------|-------|-------|
 | Tier 2 → Tier 3 | 1 | Cambridge |
 | Tier 3 → Tier 2 | 1 | Rotherham Titans |
-| Tier 3 → Tier 4 | 3 | Birmingham Moseley, Leicester Lions, Sedgley Park |
+| Tier 3 → Tier 4 | 3 | Clifton, Leicester Lions, Sedgley Park |
 | Tier 4 → Tier 3 | 3 | Bury St Edmunds, Camborne, Sheffield |
 | Tier 4 → Tier 5 | 6 | Hull, Loughborough Students, Oxford Harlequins, Scunthorpe, Sevenoaks, Syston |
 | Tier 5 → Tier 4 | 6 | Bournville, Colchester, Devonport Services, Heath, Huddersfield, Jersey Rugby Football Club |

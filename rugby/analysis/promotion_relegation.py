@@ -1,13 +1,15 @@
-"""Scrape current league standings and project next-season tier assignments.
+"""Project next-season tier assignments from league table order.
 
-Reads geocoded_teams data for tiers 2-7, scrapes live league tables from the
-RFU website (with disk cache), applies the promotion/relegation rules from
-tier_assignment_rules.md, and writes a projected leagues markdown file.
+Reads tiers 2–7 from ``data/rugby/geocoded_teams/<season>/``: team order in each
+league JSON is taken as the table order. Optionally ``--scrape-standings`` can
+fetch live RFU pages instead (no disk cache).
+
+Applies promotion/relegation rules and writes projected leagues markdown.
 
 Usage:
     python -m rugby.analysis.promotion_relegation
     python -m rugby.analysis.promotion_relegation --season 2025-2026
-    python -m rugby.analysis.promotion_relegation --no-cache
+    python -m rugby.analysis.promotion_relegation --scrape-standings
     python -m rugby.analysis.promotion_relegation --interactive-r2-c1
 """
 
@@ -26,7 +28,49 @@ from rugby import DATA_DIR
 from rugby.tiers import extract_tier, mens_current_tier_name
 
 GEOCODED_DIR = DATA_DIR / "geocoded_teams"
-CACHE_DIR = DATA_DIR / "standings_cache"
+
+_BPR_LINE_FRAGMENT = "promoted via Best Playing Record are "
+
+
+def projected_markdown_path(source_season: str) -> Path:
+    """Path to projected-leagues markdown for the season after ``source_season``."""
+    next_start = int(source_season.split("-")[0]) + 1
+    next_season = f"{next_start}-{next_start + 1}"
+    return DATA_DIR / f"projected_{next_season}.md"
+
+
+def _split_bpr_name_list(fragment: str) -> list[str]:
+    fragment = fragment.strip()
+    if not fragment:
+        return []
+    if ", and " in fragment:
+        head, last = fragment.rsplit(", and ", 1)
+        parts = [p.strip() for p in head.split(",") if p.strip()] + [last.strip()]
+    elif " and " in fragment and "," not in fragment:
+        parts = [p.strip() for p in fragment.split(" and ") if p.strip()]
+    else:
+        parts = [p.strip() for p in fragment.split(",") if p.strip()]
+    return [p for p in parts if p]
+
+
+def parse_bpr_teams_from_projected_md(path: Path) -> list[str] | None:
+    """Read **BPR resolved** line from ``promotion_relegation`` output. Returns None if unresolved."""
+    if not path.is_file():
+        return None
+    text = path.read_text(encoding="utf-8")
+    if "BPR data unavailable" in text:
+        return None
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if "**BPR resolved**" not in line or _BPR_LINE_FRAGMENT not in line:
+            continue
+        idx = line.index(_BPR_LINE_FRAGMENT) + len(_BPR_LINE_FRAGMENT)
+        tail = line[idx:].strip()
+        if tail.endswith("."):
+            tail = tail[:-1].strip()
+        names = _split_bpr_name_list(tail)
+        return names if names else None
+    return None
 
 
 def r2_to_c1_map_path(next_season: str) -> Path:
@@ -255,13 +299,23 @@ def load_tier_leagues(season: str) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Step 2 — scrape / cache standings
+# Step 2 — table order: geocoded JSON (default) or live RFU scrape
 # ---------------------------------------------------------------------------
 
 
-def _scrape_standings(league_url: str, league_name: str) -> list[str]:
+def load_standings_order_from_geocoded(season: str, league_filename: str) -> list[str]:
+    """Return team names in table order from a geocoded league JSON file."""
+    path = GEOCODED_DIR / season / league_filename
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    teams = data.get("teams") or []
+    return [str(t["name"]) for t in teams if t.get("name")]
+
+
+def _scrape_standings(league_url: str, league_name: str, *, quiet: bool = False) -> list[str]:
     """Scrape team names in standing order from an RFU league table page."""
-    print(f"  Scraping: {league_name}")
+    if not quiet:
+        print(f"  Scraping: {league_name}")
     response = make_request(league_url, delay_seconds=1)
     soup = BeautifulSoup(response.content, "html.parser")
 
@@ -281,23 +335,31 @@ def _scrape_standings(league_url: str, league_name: str) -> list[str]:
     return teams
 
 
-def get_standings(league: dict, season: str, *, use_cache: bool = True) -> list[str]:
-    """Return team names in standing order, using a per-league disk cache."""
-    cache_file = CACHE_DIR / season / league["filename"]
-
-    if use_cache and cache_file.exists():
-        with open(cache_file, encoding="utf-8") as f:
-            teams: list[str] = json.load(f)
-        print(f"  Cached: {league['league_name']} ({len(teams)} teams)")
-        return teams
-
-    teams = _scrape_standings(league["league_url"], league["league_name"])
-
-    cache_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump(teams, f, indent=2, ensure_ascii=False)
-
-    return teams
+def compute_assignments(
+    season: str,
+    *,
+    bpr_teams: list[str] | None = None,
+    survival_swaps: list[tuple[str, str]] | None = None,
+    quiet: bool = False,
+    scrape_standings: bool = False,
+) -> list[dict]:
+    """Load tier 2–7 leagues, table order from geocoded JSON (or RFU if scraping)."""
+    leagues = load_tier_leagues(season)
+    standings: dict[str, list[str]] = {}
+    for league in leagues:
+        if scrape_standings:
+            teams = _scrape_standings(league["league_url"], league["league_name"], quiet=quiet)
+        else:
+            teams = load_standings_order_from_geocoded(season, league["filename"])
+        standings[league["filename"]] = teams
+        if not teams and not quiet:
+            print(f"  WARNING: No teams found for {league['league_name']}")
+    return assign_teams(
+        leagues,
+        standings,
+        bpr_teams=bpr_teams,
+        survival_swaps=survival_swaps,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -490,7 +552,8 @@ def build_markdown(
     lines.append(f"# Projected {next_season} English Rugby Men's League Assignments")
     lines.append("")
     lines.append(
-        f"Generated automatically from {season} league standings " "scraped from the RFU website."
+        f"Generated automatically from {season} league table order in "
+        "`data/rugby/geocoded_teams/` (same order as teams in each league JSON)."
     )
     lines.append("Rules applied from `tier_assignment_rules.md`.")
     lines.append("")
@@ -741,7 +804,7 @@ def build_markdown(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Scrape league standings and project next-season tier assignments."
+        description="Project next-season tiers from geocoded league table order (or live RFU)."
     )
     parser.add_argument(
         "--season",
@@ -749,9 +812,14 @@ def main() -> None:
         help="Season (default: %(default)s)",
     )
     parser.add_argument(
+        "--scrape-standings",
+        action="store_true",
+        help="Fetch table order from RFU website instead of geocoded_teams JSON",
+    )
+    parser.add_argument(
         "--no-cache",
         action="store_true",
-        help="Ignore disk cache and re-scrape all standings",
+        help=argparse.SUPPRESS,
     )
     parser.add_argument(
         "--output",
@@ -777,12 +845,12 @@ def main() -> None:
     args = parser.parse_args()
 
     season: str = args.season
-    use_cache: bool = not args.no_cache
+    scrape_standings: bool = bool(args.scrape_standings or args.no_cache)
     bpr_teams: list[str] | None = args.bpr
 
     next_start = int(season.split("-")[0]) + 1
     next_season = f"{next_start}-{next_start + 1}"
-    output_path = Path(args.output or str(DATA_DIR / f"projected_{next_season}.md"))
+    output_path = Path(args.output) if args.output else projected_markdown_path(season)
     r2_c1_file = Path(args.r2_c1_map) if args.r2_c1_map else r2_to_c1_map_path(next_season)
 
     print(f"Loading leagues for season {season}...")
@@ -792,21 +860,17 @@ def main() -> None:
         tier_leagues = [lg for lg in leagues if lg["tier_num"] == tier]
         print(f"  Tier {tier}: {len(tier_leagues)} league(s)")
 
-    print(f"\nScraping standings (cache={'on' if use_cache else 'off'})...")
-    standings: dict[str, list[str]] = {}
-    for league in leagues:
-        teams = get_standings(league, season, use_cache=use_cache)
-        standings[league["filename"]] = teams
-        if not teams:
-            print(f"  WARNING: No teams found for {league['league_name']}")
-
-    print("\nApplying promotion/relegation rules...")
+    print(
+        f"\nTable order: {'RFU scrape' if scrape_standings else 'geocoded_teams'} + "
+        f"promotion/relegation rules for {season}..."
+    )
     survival_swaps = _SEASON_SURVIVAL_SWAPS.get(season)
-    assignments = assign_teams(
-        leagues,
-        standings,
+    assignments = compute_assignments(
+        season,
         bpr_teams=bpr_teams,
         survival_swaps=survival_swaps,
+        quiet=False,
+        scrape_standings=scrape_standings,
     )
 
     r2c1: dict[str, str] = load_r2_c1_map(r2_c1_file)

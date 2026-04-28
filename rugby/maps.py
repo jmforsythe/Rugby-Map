@@ -504,7 +504,10 @@ def main() -> None:
     parser.add_argument(
         "--tiers",
         nargs="+",
-        help="Specific tiers to generate (e.g., 'Premiership' 'Championship').",
+        help=(
+            "Only these tier display names (pyramid and merit use the same names). "
+            "Restricts merit-tier maps and pyramid+merit combinations; no extra merit-only maps for other levels."
+        ),
     )
     parser.add_argument("--mens", action="store_true", help="Generate men's tier maps (individual)")
     parser.add_argument(
@@ -591,11 +594,21 @@ def main() -> None:
                 replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier, season))
             )
 
-    total_items = len(loaded.pyramid) + len(adjusted_merit)
+    if args.tiers:
+        tier_sel = frozenset(args.tiers)
+        before_merit = len(adjusted_merit)
+        adjusted_merit = [it for it in adjusted_merit if it.tier in tier_sel]
+        logger.debug(
+            "Tier name filter %s: merit items %d -> %d",
+            list(args.tiers),
+            before_merit,
+            len(adjusted_merit),
+        )
+
     logger.info(
-        "Loaded %d items (%d pyramid, %d merit across %d competitions)",
-        total_items,
-        len(loaded.pyramid),
+        "Map inputs: %d men's pyramid, %d women's pyramid, %d merit items; %d merit competitions in source",
+        len(mens_pyramid),
+        len(womens_pyramid),
         len(adjusted_merit),
         len(loaded.merit),
     )
@@ -638,48 +651,57 @@ def main() -> None:
     # ------------------------------------------------------------------
     # Individual pyramid tier maps (+ optional pyramid+merit variants)
     # ------------------------------------------------------------------
-    if gen_mens_individual and mens_by_tier:
-        logger.info("Creating men's pyramid tier maps...")
+    if gen_mens_individual:
         mens_by_tier_r, mens_tier_order_r = _group_by_tier(mens_pyramid_r)
         mens_siblings = _tier_sibling_links(mens_tier_order_r, is_prod)
-        for tier_name in mens_tier_order_r:
-            tier_items = mens_by_tier_r[tier_name]
-            tier_num = tier_items[0].tier_num
-            out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
-            config = _build_config(
-                tier_name,
-                season,
-                show_debug,
-                _rotated_palette(tier_num),
-                sibling_tiers=mens_siblings,
-                current_tier=tier_name,
-            )
-            generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
-            # Pyramid + merit at same level
-            merit_at_level = merit_by_tier_num.get(tier_num, [])
-            if merit_at_level:
-                combined = tier_items + merit_at_level
+        if mens_by_tier_r:
+            logger.info("Creating men's pyramid tier maps...")
+            for tier_name in mens_tier_order_r:
+                tier_items = mens_by_tier_r[tier_name]
+                tier_num = tier_items[0].tier_num
+                out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
+                config = _build_config(
+                    tier_name,
+                    season,
+                    show_debug,
+                    _rotated_palette(tier_num),
+                    sibling_tiers=mens_siblings,
+                    current_tier=tier_name,
+                )
+                generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
+
+                # Pyramid + merit at same level
+                merit_at_level = merit_by_tier_num.get(tier_num, [])
+                if merit_at_level:
+                    combined = tier_items + merit_at_level
+                    file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+                    out = _output_path(output_dir, file_name, is_prod)
+                    config = _build_config(
+                        f"{tier_name} + Merit", season, show_debug, _rotated_palette(tier_num)
+                    )
+                    generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
+
+        # Merit-only tiers (no men's pyramid at this absolute tier number)
+        pyramid_tier_nums = (
+            {it[0].tier_num for it in mens_by_tier_r.values()} if mens_by_tier_r else set()
+        )
+        if merit_by_tier_num:
+            merit_only_emitted = False
+            for tier_num in sorted(merit_by_tier_num):
+                if tier_num in pyramid_tier_nums:
+                    continue
+                if not merit_only_emitted:
+                    logger.info("Creating men's merit-only tier maps...")
+                    merit_only_emitted = True
+                merit_items = merit_by_tier_num[tier_num]
+                tier_name = mens_current_tier_name(tier_num, season)
                 file_name = tier_name.replace(" ", "_") + "_All_Leagues"
                 out = _output_path(output_dir, file_name, is_prod)
                 config = _build_config(
-                    f"{tier_name} + Merit", season, show_debug, _rotated_palette(tier_num)
+                    f"{tier_name} (Merit)", season, show_debug, _rotated_palette(tier_num)
                 )
-                generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
-
-        # Merit-only tiers below the pyramid
-        pyramid_tier_nums = {it[0].tier_num for it in mens_by_tier_r.values()}
-        for tier_num in sorted(merit_by_tier_num):
-            if tier_num in pyramid_tier_nums:
-                continue
-            merit_items = merit_by_tier_num[tier_num]
-            tier_name = mens_current_tier_name(tier_num, season)
-            file_name = tier_name.replace(" ", "_") + "_All_Leagues"
-            out = _output_path(output_dir, file_name, is_prod)
-            config = _build_config(
-                f"{tier_name} (Merit)", season, show_debug, _rotated_palette(tier_num)
-            )
-            generate_single_group_map(merit_items, out, itl_hierarchy, config, territory_cache)
+                generate_single_group_map(merit_items, out, itl_hierarchy, config, territory_cache)
 
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")

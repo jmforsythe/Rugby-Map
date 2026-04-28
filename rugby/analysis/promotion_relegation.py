@@ -8,6 +8,7 @@ Usage:
     python -m rugby.analysis.promotion_relegation
     python -m rugby.analysis.promotion_relegation --season 2025-2026
     python -m rugby.analysis.promotion_relegation --no-cache
+    python -m rugby.analysis.promotion_relegation --interactive-r2-c1
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -25,6 +27,102 @@ from rugby.tiers import extract_tier, mens_current_tier_name
 
 GEOCODED_DIR = DATA_DIR / "geocoded_teams"
 CACHE_DIR = DATA_DIR / "standings_cache"
+
+
+def r2_to_c1_map_path(next_season: str) -> Path:
+    """JSON mapping Regional 2 relegants → Counties 1 league display names."""
+    return DATA_DIR / f"r2_to_c1_{next_season}.json"
+
+
+def load_r2_c1_map(path: Path) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    raw = data.get("assignments", data)
+    return {str(k): str(v) for k, v in raw.items() if v}
+
+
+def save_r2_c1_map(path: Path, source_season: str, assignments_map: dict[str, str]) -> None:
+    payload = {
+        "source_season": source_season,
+        "assignments": dict(sorted(assignments_map.items())),
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+
+def prompt_r2_c1_assignments(
+    relegated: list[dict],
+    counties_one_leagues: list[str],
+    existing: dict[str, str],
+) -> dict[str, str]:
+    """Prompt for each R2→C1 team; return full map (existing + new)."""
+    result = dict(existing)
+    for a in relegated:
+        if a["league_name"] in _R2_MIDLANDS_NO_C1_LEAGUES:
+            result.pop(a["team_name"], None)
+
+    need = sorted(
+        [a for a in relegated if a["league_name"] not in _R2_MIDLANDS_NO_C1_LEAGUES],
+        key=lambda x: x["team_name"],
+    )
+    midlands_n = len(relegated) - len(need)
+    leagues_sorted = sorted(counties_one_leagues)
+
+    if midlands_n:
+        print(
+            f"\n{midlands_n} side(s) from Regional 2 Midlands East/North/West stay "
+            "unassigned (pooled Relegated to Tier 7 only — no Counties 1 pick)."
+        )
+    print(
+        f"\n{len(need)} team(s) to assign to a Counties 1 league "
+        "(or Enter per team to leave unassigned in the pooled table)."
+    )
+    for idx, a in enumerate(need, 1):
+        name = a["team_name"]
+        if name in result and result[name] in counties_one_leagues:
+            print(
+                f"  [{idx}/{len(need)}] {name}: using saved → {result[name]}",
+            )
+            continue
+
+        print(
+            f"\n  [{idx}/{len(need)}] {name}\n"
+            f"      from {a['league_name']}, {_ordinal(a['position'])} — {a['mechanism']}"
+        )
+        for j, lg in enumerate(leagues_sorted, 1):
+            print(f"      {j:2}. {lg}")
+        choice = input("      League # or exact name (Enter = unassigned): ").strip()
+        if not choice:
+            result.pop(name, None)
+            continue
+        if choice.isdigit():
+            n = int(choice)
+            if 1 <= n <= len(leagues_sorted):
+                result[name] = leagues_sorted[n - 1]
+            else:
+                print("      Invalid number; leaving unassigned.")
+                result.pop(name, None)
+        else:
+            matches = [lg for lg in leagues_sorted if choice.lower() in lg.lower()]
+            if len(matches) == 1:
+                result[name] = matches[0]
+            elif len(matches) > 1:
+                print(f"      Ambiguous ({len(matches)} matches); leaving unassigned.")
+                result.pop(name, None)
+            else:
+                exact = [lg for lg in leagues_sorted if lg == choice]
+                if exact:
+                    result[name] = exact[0]
+                else:
+                    print("      No match; leaving unassigned.")
+                    result.pop(name, None)
+
+    return result
+
 
 _SECOND_XV_RE = re.compile(r"\s+(II|III|IV|2nd XV|3rd XV|4th XV)\s*$")
 
@@ -80,6 +178,53 @@ _PROMOTION_MAP: dict[str, str] = {**_TIER5_TO_TIER4, **_TIER6_TO_TIER5}
 _FEEDERS: dict[str, list[str]] = {}
 for _src, _dst in _PROMOTION_MAP.items():
     _FEEDERS.setdefault(_dst, []).append(_src)
+
+# Regional 2 Midlands: no single natural Counties 1 league — keep relegants pooled.
+_R2_MIDLANDS_NO_C1_LEAGUES: frozenset[str] = frozenset(
+    {
+        "Regional 2 Midlands East",
+        "Regional 2 Midlands North",
+        "Regional 2 Midlands West",
+    }
+)
+
+# When a Regional 2 survival play-off result differs from the default heuristic
+# (10th beats 11th), swap projected outcomes for the two clubs (same league, tier 6).
+_SEASON_SURVIVAL_SWAPS: dict[str, list[tuple[str, str]]] = {
+    "2025-2026": [
+        ("North Dorset", "Royal Wootton Bassett II"),  # R2 Tribute Ale Severn
+        ("Dartfordians", "Canterbury II"),  # R2 South East
+    ],
+}
+
+
+def _apply_survival_swaps(assignments: list[dict], pairs: list[tuple[str, str]] | None) -> None:
+    """Swap next_tier + mechanism for each pair (e.g. 10th/11th after a PO upset)."""
+    if not pairs:
+        return
+    by_name = {a["team_name"]: a for a in assignments}
+    applied = 0
+    for name_a, name_b in pairs:
+        rec_a = by_name.get(name_a)
+        rec_b = by_name.get(name_b)
+        if rec_a is None or rec_b is None:
+            missing = name_a if rec_a is None else name_b
+            print(f"  WARNING: survival swap skipped — team not found: {missing}")
+            continue
+        if rec_a["league_name"] != rec_b["league_name"]:
+            print(
+                f"  WARNING: survival swap skipped — {name_a} and {name_b} "
+                f"not in same league ({rec_a['league_name']} vs {rec_b['league_name']})"
+            )
+            continue
+        if rec_a["current_tier"] != 6 or rec_b["current_tier"] != 6:
+            print("  WARNING: survival swap skipped — expected Regional 2 (tier 6)")
+            continue
+        rec_a["next_tier"], rec_b["next_tier"] = rec_b["next_tier"], rec_a["next_tier"]
+        rec_a["mechanism"], rec_b["mechanism"] = rec_b["mechanism"], rec_a["mechanism"]
+        applied += 1
+    if applied:
+        print(f"  Applied {applied} Regional 2 survival play-off outcome swap(s).")
 
 
 # ---------------------------------------------------------------------------
@@ -269,6 +414,7 @@ def assign_teams(
     leagues: list[dict],
     standings: dict[str, list[str]],
     bpr_teams: list[str] | None = None,
+    survival_swaps: list[tuple[str, str]] | None = None,
 ) -> list[dict]:
     """Apply promotion/relegation rules and return one record per team."""
     assignments: list[dict] = []
@@ -299,6 +445,7 @@ def assign_teams(
     _handle_second_xv_blocks(assignments)
     if bpr_teams:
         _apply_bpr(assignments, bpr_teams)
+    _apply_survival_swaps(assignments, survival_swaps)
     _assign_dest_leagues(assignments)
     return assignments
 
@@ -327,7 +474,11 @@ _TIER_BASE_NAMES: dict[int, str] = {
 
 
 def build_markdown(
-    assignments: list[dict], season: str, *, bpr_teams: list[str] | None = None
+    assignments: list[dict],
+    season: str,
+    *,
+    bpr_teams: list[str] | None = None,
+    r2_to_c1: dict[str, str] | None = None,
 ) -> str:
     """Build projected-leagues markdown matching the existing format."""
     next_start = int(season.split("-")[0]) + 1
@@ -421,6 +572,22 @@ def build_markdown(
         league_names_in_tier = sorted({a["league_name"] for a in tier_teams})
         is_single_league = len(league_names_in_tier) == 1
 
+        r2_c1_map = r2_to_c1 or {}
+        from_r2_by_league: dict[str, list[dict]] = defaultdict(list)
+        relegated_in_pooled: list[dict] = []
+        if tier_num == 7 and relegated_in:
+            for a in relegated_in:
+                if a["league_name"] in _R2_MIDLANDS_NO_C1_LEAGUES:
+                    relegated_in_pooled.append(a)
+                    continue
+                dest = r2_c1_map.get(a["team_name"], "")
+                if dest and dest in league_names_in_tier:
+                    from_r2_by_league[dest].append(a)
+                else:
+                    relegated_in_pooled.append(a)
+        else:
+            relegated_in_pooled = list(relegated_in)
+
         for league_name in league_names_in_tier:
             league_staying = sorted(
                 [a for a in staying if a["league_name"] == league_name],
@@ -440,6 +607,19 @@ def build_markdown(
                 lines.append(f"| {i} | {a['team_name']} | {_ordinal(a['position'])} |")
             lines.append("")
 
+            join_r2 = sorted(from_r2_by_league.get(league_name, []), key=lambda x: x["team_name"])
+            if join_r2:
+                lines.append(f"### {league_name} — From Regional 2 ({len(join_r2)} teams)")
+                lines.append("")
+                lines.append("| Team | From League | Mechanism |")
+                lines.append("|------|-------------|-----------|")
+                for a in join_r2:
+                    lines.append(
+                        f"| {a['team_name']} | {a['league_name']} "
+                        f"({_ordinal(a['position'])}) | {a['mechanism']} |"
+                    )
+                lines.append("")
+
         # Promoted into this tier (pooled)
         if promoted_in:
             lines.append(
@@ -456,16 +636,16 @@ def build_markdown(
                 )
             lines.append("")
 
-        # Relegated into this tier (pooled)
-        if relegated_in:
+        # Relegated into this tier (pooled — tier 7 may omit teams assigned via r2_to_c1)
+        if relegated_in_pooled:
             lines.append(
-                f"### Relegated to Tier {tier_num} ({len(relegated_in)} teams)"
+                f"### Relegated to Tier {tier_num} ({len(relegated_in_pooled)} teams)"
                 f' — holding league "{base_name} Relegated"'
             )
             lines.append("")
             lines.append("| Team | From League | Mechanism |")
             lines.append("|------|-------------|-----------|")
-            for a in relegated_in:
+            for a in relegated_in_pooled:
                 lines.append(
                     f"| {a['team_name']} | {a['league_name']} "
                     f"({_ordinal(a['position'])}) | {a['mechanism']} |"
@@ -583,6 +763,17 @@ def main() -> None:
         metavar="TEAM",
         help="Counties 1 BPR promotion winners (team names)",
     )
+    parser.add_argument(
+        "--interactive-r2-c1",
+        action="store_true",
+        help="Prompt for Counties 1 destination for each Regional 2 relegant; saves JSON map",
+    )
+    parser.add_argument(
+        "--r2-c1-map",
+        type=str,
+        metavar="PATH",
+        help="JSON map team→Counties 1 league (default: data/rugby/r2_to_c1_<next>.json)",
+    )
     args = parser.parse_args()
 
     season: str = args.season
@@ -592,6 +783,7 @@ def main() -> None:
     next_start = int(season.split("-")[0]) + 1
     next_season = f"{next_start}-{next_start + 1}"
     output_path = Path(args.output or str(DATA_DIR / f"projected_{next_season}.md"))
+    r2_c1_file = Path(args.r2_c1_map) if args.r2_c1_map else r2_to_c1_map_path(next_season)
 
     print(f"Loading leagues for season {season}...")
     leagues = load_tier_leagues(season)
@@ -609,10 +801,24 @@ def main() -> None:
             print(f"  WARNING: No teams found for {league['league_name']}")
 
     print("\nApplying promotion/relegation rules...")
-    assignments = assign_teams(leagues, standings, bpr_teams=bpr_teams)
+    survival_swaps = _SEASON_SURVIVAL_SWAPS.get(season)
+    assignments = assign_teams(
+        leagues,
+        standings,
+        bpr_teams=bpr_teams,
+        survival_swaps=survival_swaps,
+    )
+
+    r2c1: dict[str, str] = load_r2_c1_map(r2_c1_file)
+    if args.interactive_r2_c1:
+        r6_down = [a for a in assignments if a["current_tier"] == 6 and a["next_tier"] == 7]
+        c1_leagues = sorted({lg["league_name"] for lg in leagues if lg["tier_num"] == 7})
+        r2c1 = prompt_r2_c1_assignments(r6_down, c1_leagues, r2c1)
+        save_r2_c1_map(r2_c1_file, season, r2c1)
+        print(f"\nSaved R2→C1 map to {r2_c1_file}")
 
     print("Generating markdown...")
-    md = build_markdown(assignments, season, bpr_teams=bpr_teams)
+    md = build_markdown(assignments, season, bpr_teams=bpr_teams, r2_to_c1=r2c1)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:

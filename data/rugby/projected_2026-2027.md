@@ -436,7 +436,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 6 | Sutton & Epsom | 7th |
 | 7 | Beckenham | 8th |
 | 8 | Bromley | 9th |
-| 9 | Canterbury II | 10th |
+| 9 | Dartfordians | 11th |
 
 ### Regional 2 Thames — Staying (9 teams)
 
@@ -464,7 +464,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 6 | Thornbury | 7th |
 | 7 | Longlevens | 8th |
 | 8 | Witney | 9th |
-| 9 | North Dorset | 10th |
+| 9 | Royal Wootton Bassett II | 11th |
 
 ### Regional 2 Tribute Ale South West — Staying (9 teams)
 
@@ -546,11 +546,11 @@ Rules applied from `tier_assignment_rules.md`.
 | Altrincham Kersal | Regional 2 North West (12th) | Auto-relegation |
 | Reeds Weybridge | Regional 2 South Central (11th) | Survival PO loser |
 | Ellingham & Ringwood | Regional 2 South Central (12th) | Auto-relegation |
-| Dartfordians | Regional 2 South East (11th) | Survival PO loser |
+| Canterbury II | Regional 2 South East (10th) | Survival PO loser |
 | Old Reigatian | Regional 2 South East (12th) | Auto-relegation |
 | Windsor | Regional 2 Thames (11th) | Survival PO loser |
 | Oxford Harlequins II | Regional 2 Thames (12th) | Auto-relegation |
-| Royal Wootton Bassett II | Regional 2 Tribute Ale Severn (11th) | Survival PO loser |
+| North Dorset | Regional 2 Tribute Ale Severn (10th) | Survival PO loser |
 | Cheltenham | Regional 2 Tribute Ale Severn (12th) | Auto-relegation |
 | Cullompton | Regional 2 Tribute Ale South West (11th) | Survival PO loser |
 | Wellington | Regional 2 Tribute Ale South West (12th) | Auto-relegation |
@@ -578,6 +578,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 11 | Keswick II | 12th |
 | 12 | Penrith II | 13th |
 | 13 | Millom | 14th |
+
+### Counties 1 Cumbria — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Aspatria | Regional 2 North (11th) | Survival PO loser |
+| Wigton | Regional 2 North (12th) | Auto-relegation |
 
 ### Counties 1 Durham & Northumberland — Staying (10 teams)
 
@@ -610,6 +617,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Ipswich Y.M. | 11th |
 | 11 | North Walsham II | 12th |
 
+### Counties 1 Eastern Counties — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Holt | Regional 2 Anglia (12th) | Auto-relegation |
+| Norwich | Regional 2 Anglia (11th) | Survival PO loser |
+
 ### Counties 1 Essex — Staying (9 teams)
 
 | # | Team | 2025-2026 Position |
@@ -640,6 +654,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Guernsey II | 11th |
 | 11 | Eastleigh | 12th |
 
+### Counties 1 Hampshire — From Regional 2 (1 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Ellingham & Ringwood | Regional 2 South Central (12th) | Auto-relegation |
+
 ### Counties 1 Herts — Staying (9 teams)
 
 | # | Team | 2025-2026 Position |
@@ -669,6 +689,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 9 | Park House | 10th |
 | 10 | Cranbrook | 11th |
 | 11 | Charlton Park | 12th |
+
+### Counties 1 Kent — From Regional 2 (1 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Canterbury II | Regional 2 South East (10th) | Survival PO loser |
 
 ### Counties 1 Middx — Staying (8 teams)
 
@@ -761,6 +787,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Old Wimbledonians | 10th |
 | 9 | KCS Old Boys | 11th |
 
+### Counties 1 Surrey/Sussex — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Old Reigatian | Regional 2 South East (12th) | Auto-relegation |
+| Reeds Weybridge | Regional 2 South Central (11th) | Survival PO loser |
+
 ### Counties 1 Tribute Ale Southern North — Staying (11 teams)
 
 | # | Team | 2025-2026 Position |
@@ -776,6 +809,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 9 | Bletchley | 10th |
 | 10 | Wallingford | 11th |
 | 11 | Gosford All Blacks | 12th |
+
+### Counties 1 Tribute Ale Southern North — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Oxford Harlequins II | Regional 2 Thames (12th) | Auto-relegation |
+| Windsor | Regional 2 Thames (11th) | Survival PO loser |
 
 ### Counties 1 Tribute Ale Southern South — Staying (11 teams)
 
@@ -793,6 +833,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Swindon | 11th |
 | 11 | Marlborough II | 12th |
 
+### Counties 1 Tribute Ale Southern South — From Regional 2 (1 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| North Dorset | Regional 2 Tribute Ale Severn (10th) | Survival PO loser |
+
 ### Counties 1 Tribute Ale Western North — Staying (11 teams)
 
 | # | Team | 2025-2026 Position |
@@ -808,6 +854,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 9 | Bridgwater & Albion | 10th |
 | 10 | Taunton II | 11th |
 | 11 | Chosen Hill Former Pupils | 12th |
+
+### Counties 1 Tribute Ale Western North — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Cheltenham | Regional 2 Tribute Ale Severn (12th) | Auto-relegation |
+| Wellington | Regional 2 Tribute Ale South West (12th) | Auto-relegation |
 
 ### Counties 1 Tribute Ale Western West — Staying (11 teams)
 
@@ -825,6 +878,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Penryn | 11th |
 | 11 | Saltash | 12th |
 
+### Counties 1 Tribute Ale Western West — From Regional 2 (1 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Cullompton | Regional 2 Tribute Ale South West (11th) | Survival PO loser |
+
 ### Counties 1 Yorkshire — Staying (10 teams)
 
 | # | Team | 2025-2026 Position |
@@ -839,6 +898,13 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Hullensians | 10th |
 | 9 | Beverley | 11th |
 | 10 | Leodiensian | 12th |
+
+### Counties 1 Yorkshire — From Regional 2 (2 teams)
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Doncaster Phoenix | Regional 2 North East (12th) | Auto-relegation |
+| Old Crossleyans | Regional 2 North East (11th) | Survival PO loser |
 
 ### Counties 1 adm Lancashire & Cheshire — Staying (10 teams)
 
@@ -855,34 +921,23 @@ Rules applied from `tier_assignment_rules.md`.
 | 9 | Wigan | 11th |
 | 10 | Trafford MV | 12th |
 
-### Relegated to Tier 7 (24 teams) — holding league "Counties 1 Relegated"
+### Counties 1 adm Lancashire & Cheshire — From Regional 2 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
 | Altrincham Kersal | Regional 2 North West (12th) | Auto-relegation |
-| Aspatria | Regional 2 North (11th) | Survival PO loser |
+| West Park (St Helens) | Regional 2 North West (11th) | Survival PO loser |
+
+### Relegated to Tier 7 (6 teams) — holding league "Counties 1 Relegated"
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
 | Belgrave | Regional 2 Midlands North (12th) | Auto-relegation |
-| Cheltenham | Regional 2 Tribute Ale Severn (12th) | Auto-relegation |
-| Cullompton | Regional 2 Tribute Ale South West (11th) | Survival PO loser |
-| Dartfordians | Regional 2 South East (11th) | Survival PO loser |
 | Daventry | Regional 2 Midlands East (11th) | Survival PO loser |
-| Doncaster Phoenix | Regional 2 North East (12th) | Auto-relegation |
-| Ellingham & Ringwood | Regional 2 South Central (12th) | Auto-relegation |
-| Holt | Regional 2 Anglia (12th) | Auto-relegation |
 | Newark | Regional 2 Midlands North (11th) | Survival PO loser |
-| Norwich | Regional 2 Anglia (11th) | Survival PO loser |
-| Old Crossleyans | Regional 2 North East (11th) | Survival PO loser |
 | Old Halesonians | Regional 2 Midlands West (12th) | Auto-relegation |
-| Old Reigatian | Regional 2 South East (12th) | Auto-relegation |
-| Oxford Harlequins II | Regional 2 Thames (12th) | Auto-relegation |
-| Reeds Weybridge | Regional 2 South Central (11th) | Survival PO loser |
-| Royal Wootton Bassett II | Regional 2 Tribute Ale Severn (11th) | Survival PO loser |
 | Stratford Upon Avon | Regional 2 Midlands West (11th) | Survival PO loser |
 | Wellingborough | Regional 2 Midlands East (12th) | Auto-relegation |
-| Wellington | Regional 2 Tribute Ale South West (12th) | Auto-relegation |
-| West Park (St Helens) | Regional 2 North West (11th) | Survival PO loser |
-| Wigton | Regional 2 North (12th) | Auto-relegation |
-| Windsor | Regional 2 Thames (11th) | Survival PO loser |
 
 **Counties 1 total: 199 staying + 24 relegated in = 223**
 

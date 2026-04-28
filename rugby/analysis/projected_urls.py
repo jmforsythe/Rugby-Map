@@ -94,7 +94,33 @@ def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, li
                         team_sources[team] = src
 
     _flush()
+    tiers = _merge_consecutive_league_sections(tiers)
     return _merge_promoted_relegated(tiers, team_sources)
+
+
+def _merge_consecutive_league_sections(
+    tiers: dict[int, list[tuple[str, list[str]]]],
+) -> dict[int, list[tuple[str, list[str]]]]:
+    """Merge duplicate league headings (e.g. Staying + From Regional 2) into one roster."""
+    out: dict[int, list[tuple[str, list[str]]]] = {}
+    for tier_num, leagues in tiers.items():
+        merged: list[tuple[str, list[str]]] = []
+        i = 0
+        while i < len(leagues):
+            name, teams = leagues[i]
+            if name in ("Promoted", "Relegated"):
+                merged.append((name, list(teams)))
+                i += 1
+                continue
+            chunk = list(teams)
+            j = i + 1
+            while j < len(leagues) and leagues[j][0] == name:
+                chunk.extend(leagues[j][1])
+                j += 1
+            merged.append((name, chunk))
+            i = j
+        out[tier_num] = merged
+    return out
 
 
 def _merge_promoted_relegated(

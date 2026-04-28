@@ -24,6 +24,13 @@ from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 from shapely.prepared import PreparedGeometry, prep
 
+from core.basemap_tiles import (
+    CARTO_THEME_MARK_DARK,
+    CARTO_THEME_MARK_LIGHT,
+    CARTO_TILE_URL_LIGHT,
+    folium_carto_attribution,
+)
+
 logger = logging.getLogger(__name__)
 
 
@@ -1184,59 +1191,224 @@ POPUP_CSS = """
 .folium-map.rugby-map-dark .leaflet-bar a:hover {
   background: #1e2a45;
 }
+
+/* Floating theme toggle (maps without breadcrumb header, e.g. Scotland) */
+.rugby-theme-float {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+html[data-rugby-effective="dark"] .rugby-theme-float {
+  background: rgba(22, 33, 62, 0.92);
+  border-color: #2a2a4a;
+}
+.rugby-theme-float__label {
+  cursor: pointer;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+html[data-rugby-effective="light"] .rugby-theme-float__label {
+  color: #444;
+}
+html[data-rugby-effective="dark"] .rugby-theme-float__label {
+  color: #b0c0df;
+}
+.rugby-theme-float select {
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+}
+html[data-rugby-effective="dark"] .rugby-theme-float select {
+  background: #1e2a45;
+  color: #e0e0e0;
+  border-color: #2a2a4a;
+}
+@media (max-width: 520px) {
+  .rugby-theme-float .rugby-theme-float__label {
+    display: none;
+  }
+}
 </style>
 """
 
 DARK_MODE_JS = """
 <script>
 (function() {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var STORAGE_KEY = "rugbyMapTheme";
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function getStoredThemeMode() {
+        try {
+            var v = localStorage.getItem(STORAGE_KEY);
+            if (v === "light" || v === "dark" || v === "system") {
+                return v;
+            }
+        } catch (e) {}
+        return "system";
+    }
+
+    function isEffectiveDark(mode) {
+        if (mode === "dark") {
+            return true;
+        }
+        if (mode === "light") {
+            return false;
+        }
+        return mq.matches;
+    }
+
     function findMap() {
-        var el = document.querySelector('.folium-map');
-        if (!el || !el._leaflet_id) return null;
+        var el = document.querySelector(".folium-map");
+        if (!el || !el._leaflet_id) {
+            return null;
+        }
         var map = window[Object.keys(window).find(function(k) {
-            return k.startsWith('map_') && window[k] instanceof L.Map;
+            return k.startsWith("map_") && window[k] instanceof L.Map;
         })];
         return map || null;
     }
+
     function setMapDarkClass(dark) {
-        var el = document.querySelector('.folium-map');
-        if (el) el.classList.toggle('rugby-map-dark', dark);
+        var el = document.querySelector(".folium-map");
+        if (el) {
+            el.classList.toggle("rugby-map-dark", dark);
+        }
     }
+
     function applyBasemapTheme() {
+        var mode = getStoredThemeMode();
+        var dark = isEffectiveDark(mode);
+        document.documentElement.setAttribute(
+            "data-rugby-effective",
+            dark ? "dark" : "light"
+        );
+        setMapDarkClass(dark);
         var map = findMap();
         if (!map) {
             setTimeout(applyBasemapTheme, 100);
             return;
         }
-        var dark = mq.matches;
-        setMapDarkClass(dark);
         map.eachLayer(function(layer) {
-            if (!layer._url) return;
-            if (dark && layer._url.indexOf('light_all') !== -1) {
-                layer.setUrl(layer._url.replace('light_all', 'dark_all'));
-            } else if (!dark && layer._url.indexOf('dark_all') !== -1) {
-                layer.setUrl(layer._url.replace('dark_all', 'light_all'));
+            if (!layer._url) {
+                return;
+            }
+            if (dark && layer._url.indexOf("__JM_LIGHT__") !== -1) {
+                layer.setUrl(layer._url.replace("__JM_LIGHT__", "__JM_DARK__"));
+            } else if (!dark && layer._url.indexOf("__JM_DARK__") !== -1) {
+                layer.setUrl(layer._url.replace("__JM_DARK__", "__JM_LIGHT__"));
             }
         });
-        if (window.updateBoundaryStyles) window.updateBoundaryStyles(dark);
+        if (window.updateBoundaryStyles) {
+            window.updateBoundaryStyles(dark);
+        }
     }
-    mq.addEventListener('change', applyBasemapTheme);
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyBasemapTheme);
+
+    function syncThemeSelect() {
+        var sel = document.getElementById("rugbyMapThemeSelect");
+        if (!sel) {
+            return;
+        }
+        var mode = getStoredThemeMode();
+        if (sel.value !== mode) {
+            sel.value = mode;
+        }
+    }
+
+    function ensureFloatingThemeToggle() {
+        if (document.getElementById("rugbyMapThemeSelect")) {
+            return;
+        }
+        var wrap = document.createElement("div");
+        wrap.className = "rugby-theme-float";
+        wrap.innerHTML =
+            '<label class="rugby-theme-float__label" for="rugbyMapThemeSelect">Appearance</label>' +
+            '<select id="rugbyMapThemeSelect" aria-label="Map color theme">' +
+            '<option value="light">Light</option>' +
+            '<option value="system">System</option>' +
+            '<option value="dark">Dark</option>' +
+            "</select>";
+        document.body.appendChild(wrap);
+    }
+
+    function bindThemeSelectOnce() {
+        var sel = document.getElementById("rugbyMapThemeSelect");
+        if (!sel || sel.dataset.rugbyThemeBound === "1") {
+            return;
+        }
+        sel.dataset.rugbyThemeBound = "1";
+        sel.addEventListener("change", function() {
+            try {
+                localStorage.setItem(STORAGE_KEY, sel.value);
+            } catch (e) {}
+            applyBasemapTheme();
+        });
+    }
+
+    function onPreferColorSchemeChange() {
+        if (getStoredThemeMode() === "system") {
+            applyBasemapTheme();
+        }
+    }
+
+    if (mq.addEventListener) {
+        mq.addEventListener("change", onPreferColorSchemeChange);
+    } else if (mq.addListener) {
+        mq.addListener(onPreferColorSchemeChange);
+    }
+
+    function initChrome() {
+        ensureFloatingThemeToggle();
+        bindThemeSelectOnce();
+        syncThemeSelect();
+    }
+
+    applyBasemapTheme();
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initChrome);
     } else {
-        applyBasemapTheme();
+        initChrome();
     }
+
+    /** @expose for debugging */
+    window.setRugbyMapThemeMode = function(mode) {
+        if (mode !== "light" && mode !== "dark" && mode !== "system") {
+            return;
+        }
+        try {
+            localStorage.setItem(STORAGE_KEY, mode);
+        } catch (e) {}
+        applyBasemapTheme();
+        syncThemeSelect();
+    };
 })();
 </script>
 """
+
+DARK_MODE_JS = DARK_MODE_JS.replace("__JM_LIGHT__", CARTO_THEME_MARK_LIGHT).replace(
+    "__JM_DARK__", CARTO_THEME_MARK_DARK
+)
 
 
 def _build_base_map(config: MapConfig) -> folium.Map:
     m = folium.Map(location=list(config.center), zoom_start=config.zoom, tiles=None)
     folium.TileLayer(
-        tiles="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        tiles=CARTO_TILE_URL_LIGHT,
+        attr=folium_carto_attribution(),
         control=False,
     ).add_to(m)
     header = m.get_root().header  # type: ignore[attr-defined]
@@ -1391,10 +1563,16 @@ def _legend(
         .map-legend i {{ width:12px !important; height:12px !important; }}
         .legend-content {{ max-height:250px !important; }}
     }}
-    @media (prefers-color-scheme: dark) {{
-        .map-legend {{ background-color:#16213e !important; color:#e0e0e0 !important; border-color:#444 !important; }}
-        .map-legend h4 {{ color:#e0e8f0; }}
-        .map-legend b {{ color:#e0e8f0; }}
+    html[data-rugby-effective="dark"] .map-legend {{
+        background-color:#16213e !important;
+        color:#e0e0e0 !important;
+        border-color:#444 !important;
+    }}
+    html[data-rugby-effective="dark"] .map-legend h4 {{
+        color:#e0e8f0;
+    }}
+    html[data-rugby-effective="dark"] .map-legend b {{
+        color:#e0e8f0;
     }}
     </style>
     <div class="map-legend" style="position:fixed; bottom:50px; right:50px; width:300px;

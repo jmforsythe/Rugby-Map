@@ -21,6 +21,13 @@ from shapely.geometry import Point, mapping, shape
 from shapely.prepared import prep
 
 from core import GeocodedLeague, TravelDistances, get_config, set_config, setup_logging
+from core.basemap_tiles import (
+    CARTO_THEME_MARK_DARK,
+    CARTO_THEME_MARK_LIGHT,
+    CARTO_TILE_URL_DARK,
+    CARTO_TILE_URL_LIGHT,
+    custom_map_basemap_html_attribution,
+)
 from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import _parse_projected_md
@@ -608,6 +615,11 @@ def _build_page() -> None:
         "{{FAVICON_HTML}}": get_favicon_html(depth=1),
         "{{HOME_HREF}}": home_href,
         "{{INFO_PREFIX}}": info_prefix,
+        "{{BASEMAP_TILE_URL_LIGHT_JSON}}": json.dumps(CARTO_TILE_URL_LIGHT),
+        "{{BASEMAP_TILE_URL_DARK_JSON}}": json.dumps(CARTO_TILE_URL_DARK),
+        "{{BASEMAP_MARK_LIGHT_JSON}}": json.dumps(CARTO_THEME_MARK_LIGHT),
+        "{{BASEMAP_MARK_DARK_JSON}}": json.dumps(CARTO_THEME_MARK_DARK),
+        "{{BASEMAP_TILE_ATTR_JSON}}": json.dumps(custom_map_basemap_html_attribution()),
     }
     html = template
     for token, value in replacements.items():

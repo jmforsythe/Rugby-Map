@@ -238,6 +238,14 @@ def _header_bar_html(
         <a class="map-header__crumb" href="{season_href}">{season_esc}</a>
         <span class="map-header__sep">&rsaquo;</span>
         {title_html}
+        <span class="map-header__theme">
+        <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
+        <select id="rugbyMapThemeSelect" class="map-header__theme-select" aria-label="Map color theme">
+            <option value="light">Light</option>
+            <option value="system" selected>System</option>
+            <option value="dark">Dark</option>
+        </select>
+        </span>
     </div>
     <style>
     .map-header {{
@@ -249,31 +257,73 @@ def _header_bar_html(
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
     }}
+    html[data-rugby-effective="dark"] .map-header {{
+        background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a;
+    }}
     .map-header__crumb {{
         text-decoration: none; color: #0066cc; white-space: nowrap;
     }}
+    html[data-rugby-effective="dark"] .map-header__crumb {{
+        color: #4da6ff;
+    }}
     .map-header__crumb:hover {{ text-decoration: underline; }}
     .map-header__sep {{ color: #999; font-size: 0.9em; }}
+    html[data-rugby-effective="dark"] .map-header__sep {{
+        color: #666;
+    }}
     .map-header__title {{
         font-weight: 600; color: #2c3e50; white-space: nowrap;
         overflow: hidden; text-overflow: ellipsis;
+        flex: 1 1 auto; min-width: 0;
+    }}
+    html[data-rugby-effective="dark"] .map-header__title {{
+        color: #e0e8f0;
     }}
     .map-header__select {{
         padding: 3px 8px; border: 1px solid #ccc; border-radius: 4px;
         font-size: 13px; background: white; color: #333;
         max-width: 260px; cursor: pointer;
     }}
-    .leaflet-top {{ top: 34px !important; }}
-    @media (prefers-color-scheme: dark) {{
-        .map-header {{ background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a; }}
-        .map-header__crumb {{ color: #4da6ff; }}
-        .map-header__sep {{ color: #666; }}
-        .map-header__title {{ color: #e0e8f0; }}
-        .map-header__select {{ background: #1e2a45; color: #e0e0e0; border-color: #2a2a4a; }}
+    html[data-rugby-effective="dark"] .map-header__select {{
+        background: #1e2a45; color: #e0e0e0; border-color: #2a2a4a;
     }}
+    .map-header__theme {{
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        flex-shrink: 0;
+    }}
+    .map-header__theme-label {{
+        font-size: 12px;
+        font-weight: 500;
+        color: #444;
+        white-space: nowrap;
+    }}
+    html[data-rugby-effective="dark"] .map-header__theme-label {{
+        color: #aab8d8;
+    }}
+    .map-header__theme-select {{
+        padding: 3px 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 12px;
+        background: #fff;
+        color: #333;
+        cursor: pointer;
+        max-width: 118px;
+    }}
+    html[data-rugby-effective="dark"] .map-header__theme-select {{
+        background: #1e2a45;
+        color: #e0e0e0;
+        border-color: #2a2a4a;
+    }}
+    .leaflet-top {{ top: 34px !important; }}
     @media (max-width: 480px) {{
         .map-header {{ font-size: 12px; }}
         .map-header__select {{ max-width: 140px; font-size: 11px; }}
+        .map-header__theme-label {{ display: none; }}
+        .map-header__theme-select {{ max-width: 100px; font-size: 11px; }}
     }}
     </style>
     """

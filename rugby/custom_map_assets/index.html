@@ -38,21 +38,19 @@
         --shadow: rgba(0, 0, 0, 0.08);
         --sidebar-w: 370px;
       }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #1a1a2e;
-          --bg-card: #16213e;
-          --bg-card-alt: #1e2a45;
-          --text: #e0e0e0;
-          --text-muted: #a0a0a0;
-          --text-heading: #e0e8f0;
-          --border: #2a2a4a;
-          --border-light: #252545;
-          --accent: #4da6ff;
-          --accent-hover: #80bfff;
-          --accent-light: #1a2a4a;
-          --shadow: rgba(0, 0, 0, 0.3);
-        }
+      html[data-rugby-effective="dark"] {
+        --bg: #1a1a2e;
+        --bg-card: #16213e;
+        --bg-card-alt: #1e2a45;
+        --text: #e0e0e0;
+        --text-muted: #a0a0a0;
+        --text-heading: #e0e8f0;
+        --border: #2a2a4a;
+        --border-light: #252545;
+        --accent: #4da6ff;
+        --accent-hover: #80bfff;
+        --accent-light: #1a2a4a;
+        --shadow: rgba(0, 0, 0, 0.3);
       }
       *,
       *::before,
@@ -99,10 +97,42 @@
         font-weight: 600;
         color: var(--text-heading);
       }
-      .header-actions {
+      .app-header__tail {
         margin-left: auto;
         display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .app-header__theme-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .app-header__theme-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-muted);
+        white-space: nowrap;
+      }
+      .header-theme-select {
+        padding: 4px 8px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 12px;
+        background: var(--bg-card);
+        color: var(--text);
+        cursor: pointer;
+        max-width: 118px;
+      }
+      .header-actions {
+        display: flex;
         gap: 8px;
+      }
+      @media (max-width: 640px) {
+        .app-header__theme-label {
+          display: none;
+        }
       }
 
       /* Layout */
@@ -819,15 +849,59 @@
         }
       }
     </style>
+    <script>
+      (function () {
+        var STORAGE_KEY = "rugbyMapTheme";
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        function stored() {
+          try {
+            var v = localStorage.getItem(STORAGE_KEY);
+            if (v === "light" || v === "dark" || v === "system") {
+              return v;
+            }
+          } catch (_) {}
+          return "system";
+        }
+        function darkFor(m) {
+          if (m === "dark") {
+            return true;
+          }
+          if (m === "light") {
+            return false;
+          }
+          return mq.matches;
+        }
+        document.documentElement.setAttribute(
+          "data-rugby-effective",
+          darkFor(stored()) ? "dark" : "light",
+        );
+      })();
+    </script>
   </head>
   <body>
     <header class="app-header">
       <a href="{{HOME_HREF}}">&larr; Home</a>
       <h1>Custom Map Builder</h1>
-      <div class="header-actions">
-        <button class="btn" id="btnImportTier">Import Tier</button>
-        <button class="btn" id="btnClearAll">Clear All</button>
-        <button class="btn btn-primary" id="btnCopyLink">Copy Link</button>
+      <div class="app-header__tail">
+        <span class="app-header__theme-wrap">
+          <label class="app-header__theme-label" for="rugbyMapThemeSelect"
+            >Appearance</label
+          >
+          <select
+            id="rugbyMapThemeSelect"
+            class="header-theme-select"
+            aria-label="Map color theme"
+          >
+            <option value="light">Light</option>
+            <option value="system" selected>System</option>
+            <option value="dark">Dark</option>
+          </select>
+        </span>
+        <div class="header-actions">
+          <button class="btn" id="btnImportTier">Import Tier</button>
+          <button class="btn" id="btnClearAll">Clear All</button>
+          <button class="btn btn-primary" id="btnCopyLink">Copy Link</button>
+        </div>
       </div>
     </header>
 
@@ -941,6 +1015,11 @@
     <script>
       "use strict";
 
+      const BASEMAP_TILE_URL_LIGHT = {{BASEMAP_TILE_URL_LIGHT_JSON}};
+      const BASEMAP_TILE_URL_DARK = {{BASEMAP_TILE_URL_DARK_JSON}};
+      const BASEMAP_MARK_LIGHT = {{BASEMAP_MARK_LIGHT_JSON}};
+      const BASEMAP_MARK_DARK = {{BASEMAP_MARK_DARK_JSON}};
+
       const COLOR_PALETTE = [
         "#e6194b",
         "#3cb44b",
@@ -1010,6 +1089,82 @@
       let boundariesReady = false;
       let cachedAllPlaced = [];
 
+      const RUGBY_THEME_STORAGE_KEY = "rugbyMapTheme";
+      const colorSchemeMediaQuery = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      );
+
+      function getRugbyThemeMode() {
+        try {
+          const v = localStorage.getItem(RUGBY_THEME_STORAGE_KEY);
+          if (v === "light" || v === "dark" || v === "system") {
+            return v;
+          }
+        } catch (_) {}
+        return "system";
+      }
+
+      function isRugbyMapAppearanceDark() {
+        const mode = getRugbyThemeMode();
+        if (mode === "dark") {
+          return true;
+        }
+        if (mode === "light") {
+          return false;
+        }
+        return colorSchemeMediaQuery.matches;
+      }
+
+      function applyRugbyMapThemeUI() {
+        const dark = isRugbyMapAppearanceDark();
+        document.documentElement.setAttribute(
+          "data-rugby-effective",
+          dark ? "dark" : "light",
+        );
+      }
+
+      function swapBasemapTilesForAppearance() {
+        if (!tileLayer) {
+          return;
+        }
+        const dark = isRugbyMapAppearanceDark();
+        const url = tileLayer._url || "";
+        if (dark && url.indexOf(BASEMAP_MARK_LIGHT) !== -1) {
+          tileLayer.setUrl(url.replace(BASEMAP_MARK_LIGHT, BASEMAP_MARK_DARK));
+        } else if (!dark && url.indexOf(BASEMAP_MARK_DARK) !== -1) {
+          tileLayer.setUrl(url.replace(BASEMAP_MARK_DARK, BASEMAP_MARK_LIGHT));
+        }
+      }
+
+      function applyFullRugbyMapTheme() {
+        applyRugbyMapThemeUI();
+        swapBasemapTilesForAppearance();
+        addBoundaryOutlines();
+      }
+
+      function syncRugbyThemeSelect() {
+        const sel = document.getElementById("rugbyMapThemeSelect");
+        if (!sel) {
+          return;
+        }
+        const m = getRugbyThemeMode();
+        if (sel.value !== m) {
+          sel.value = m;
+        }
+      }
+
+      /** For console parity with tier maps (`setRugbyMapThemeMode("light"|"dark"|"system")`). */
+      window.setRugbyMapThemeMode = function (mode) {
+        if (mode !== "light" && mode !== "dark" && mode !== "system") {
+          return;
+        }
+        try {
+          localStorage.setItem(RUGBY_THEME_STORAGE_KEY, mode);
+        } catch (_) {}
+        syncRugbyThemeSelect();
+        applyFullRugbyMapTheme();
+      };
+
       // ── Haversine ──────────────────────────────────────────────
       function haversineKm(lat1, lon1, lat2, lon2) {
         const R = 6371;
@@ -1048,16 +1203,12 @@
 
       function initMap() {
         map = L.map("map", { zoomControl: true }).setView([52.5, -1.5], 7);
-        const isDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
+        applyRugbyMapThemeUI();
+        const isDark = isRugbyMapAppearanceDark();
         tileLayer = L.tileLayer(
-          isDark
-            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+          isDark ? BASEMAP_TILE_URL_DARK : BASEMAP_TILE_URL_LIGHT,
           {
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: {{BASEMAP_TILE_ATTR_JSON}},
             maxZoom: 19,
           },
         ).addTo(map);
@@ -1071,9 +1222,7 @@
         if (!boundariesReady || typeof BOUNDARIES === "undefined") return;
         boundaryOutlineLayer.clearLayers();
         const bd = BOUNDARIES;
-        const isDark = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        ).matches;
+        const isDark = isRugbyMapAppearanceDark();
 
         const countryStyle = {
           fillColor: isDark ? "darkgray" : "lightgray",
@@ -1103,19 +1252,31 @@
         }
       }
 
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", function (e) {
-          if (tileLayer) {
-            var url = tileLayer._url;
-            if (e.matches && url.indexOf("light_all") !== -1) {
-              tileLayer.setUrl(url.replace("light_all", "dark_all"));
-            } else if (!e.matches && url.indexOf("dark_all") !== -1) {
-              tileLayer.setUrl(url.replace("dark_all", "light_all"));
-            }
-          }
-          addBoundaryOutlines();
+      function onSystemColorSchemeChange() {
+        if (getRugbyThemeMode() !== "system") {
+          return;
+        }
+        applyFullRugbyMapTheme();
+      }
+      if (colorSchemeMediaQuery.addEventListener) {
+        colorSchemeMediaQuery.addEventListener(
+          "change",
+          onSystemColorSchemeChange,
+        );
+      } else if (colorSchemeMediaQuery.addListener) {
+        colorSchemeMediaQuery.addListener(onSystemColorSchemeChange);
+      }
+
+      document
+        .getElementById("rugbyMapThemeSelect")
+        .addEventListener("change", function () {
+          try {
+            localStorage.setItem(RUGBY_THEME_STORAGE_KEY, this.value);
+          } catch (_) {}
+          applyFullRugbyMapTheme();
+          syncRugbyThemeSelect();
         });
+      syncRugbyThemeSelect();
 
       // ── Rendering ──────────────────────────────────────────────
       function renderMarkers() {

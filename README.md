@@ -236,4 +236,4 @@ All data and outputs are organized by season. To work with a different season:
 - **Boundary Data (Isle of Man and Channel Islands)**: Database of Global Administrative Areas (GADM)
 - **Team Data**: Scraped from England Rugby (RFU) website
 - **Geocoding**: OpenStreetMap contributors
-- **Map Tiles**: © OpenStreetMap contributors, © CartoDB
+- **Map Tiles**: © OpenStreetMap contributors, © CartoDB (Positron / Dark Matter basemaps).

@@ -649,10 +649,14 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         .search-box {{
             text-align: center;
             margin: 2em 0;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }}
         #searchInput {{
             width: 100%;
             max-width: 500px;
+            box-sizing: border-box;
             padding: 12px 20px;
             font-size: 16px;
             border: 2px solid var(--border);

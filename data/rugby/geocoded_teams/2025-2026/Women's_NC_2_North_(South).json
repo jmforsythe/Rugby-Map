@@ -13,16 +13,6 @@
       "place_id": 350698118
     },
     {
-      "name": "Winnington Park Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25654&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25654.png",
-      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
-      "latitude": 53.25223,
-      "longitude": -2.54034,
-      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
-      "place_id": 350683530
-    },
-    {
       "name": "Macclesfield Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13069&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13069.png",
@@ -31,6 +21,16 @@
       "longitude": -2.1600659,
       "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
       "place_id": 255105008
+    },
+    {
+      "name": "Winnington Park Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25654&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25654.png",
+      "address": "Winnington Park Rfc, Burrows Hill, Hartford, Northwich, Cheshire, CW8 3AA, United Kingdom",
+      "latitude": 53.25223,
+      "longitude": -2.54034,
+      "formatted_address": "CW8 3AA, Hartford, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350683530
     },
     {
       "name": "Vagabond Ladies",
@@ -43,16 +43,6 @@
       "place_id": 352221503
     },
     {
-      "name": "Crewe & Nantwich Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5864.png",
-      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
-      "latitude": 53.0597508,
-      "longitude": -2.4778031,
-      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
-      "place_id": 350568092
-    },
-    {
       "name": "Didsbury Toc H Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6450&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6450.png",
@@ -61,6 +51,16 @@
       "longitude": -2.23351,
       "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
       "place_id": 351541486
+    },
+    {
+      "name": "Crewe & Nantwich Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5864&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5864.png",
+      "address": "Crewe Vagrants Sports Club, Newcastle Road, Willaston, Cheshire, CW5 7EP, United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568092
     },
     {
       "name": "Aldwinian Women",

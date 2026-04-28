@@ -13,16 +13,6 @@
       "place_id": 350876492
     },
     {
-      "name": "Chiswick 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4932",
-      "image_url": "https://images.englandrugby.com/club_images/4932.png",
-      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
-      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
-      "place_id": 352119820
-    },
-    {
       "name": "Ickenham & Uxbridge",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10764",
       "image_url": "https://images.englandrugby.com/club_images/10764.png",
@@ -41,6 +31,16 @@
       "longitude": -0.3265066,
       "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 350422821
+    },
+    {
+      "name": "Chiswick 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4932",
+      "image_url": "https://images.englandrugby.com/club_images/4932.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
     },
     {
       "name": "Old Isleworthians",
@@ -63,16 +63,6 @@
       "place_id": 351606737
     },
     {
-      "name": "U.C.S. 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23418",
-      "image_url": "https://images.englandrugby.com/club_images/23418.png",
-      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
-      "latitude": 51.5579697,
-      "longitude": -0.2027474,
-      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
-      "place_id": 351698665
-    },
-    {
       "name": "Hanwell",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9346",
       "image_url": "https://images.englandrugby.com/club_images/9346.png",
@@ -81,6 +71,16 @@
       "longitude": -0.28094,
       "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 352119428
+    },
+    {
+      "name": "U.C.S. 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23418",
+      "image_url": "https://images.englandrugby.com/club_images/23418.png",
+      "address": "Ucs Playing Fields Hocroft Road West Hampstead London NW2 2BN United Kingdom",
+      "latitude": 51.5579697,
+      "longitude": -0.2027474,
+      "formatted_address": "NW2 2BN, London Borough of Barnet, Greater London, England, United Kingdom",
+      "place_id": 351698665
     },
     {
       "name": "Belsize Park Bulls",
@@ -93,16 +93,6 @@
       "place_id": 351682702
     },
     {
-      "name": "Northolt",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14975",
-      "image_url": "https://images.englandrugby.com/club_images/14975.png",
-      "address": "Cayton Sports & Social Club Cayton Green Park Cayton Road Cayton Road Greenford MIDDLESEX UB6 8BJ UNITED KINGDOM",
-      "latitude": 51.5365369,
-      "longitude": -0.3387648,
-      "formatted_address": "UB6 8BJ, London Borough of Ealing, Greater London, England, United Kingdom",
-      "place_id": 350422177
-    },
-    {
       "name": "Whitton Lions",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25338",
       "image_url": "https://images.englandrugby.com/club_images/25338.png",
@@ -111,6 +101,16 @@
       "longitude": -0.3667651,
       "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
       "place_id": 350871759
+    },
+    {
+      "name": "Northolt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14975",
+      "image_url": "https://images.englandrugby.com/club_images/14975.png",
+      "address": "Cayton Sports & Social Club Cayton Green Park Cayton Road Cayton Road Greenford MIDDLESEX UB6 8BJ UNITED KINGDOM",
+      "latitude": 51.5365369,
+      "longitude": -0.3387648,
+      "formatted_address": "UB6 8BJ, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422177
     }
   ],
   "team_count": 11

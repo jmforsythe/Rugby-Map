@@ -13,16 +13,6 @@
       "place_id": 351690474
     },
     {
-      "name": "Great Yarmouth-Broadland",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8927",
-      "image_url": "https://images.englandrugby.com/club_images/8927.png",
-      "address": "Cobholm Playing Field Cobholm Great Yarmouth NR31 0AY England",
-      "latitude": 52.6081936,
-      "longitude": 1.7118246,
-      "formatted_address": "NR31 0AY, Great Yarmouth, Norfolk, England, United Kingdom",
-      "place_id": 351688799
-    },
-    {
       "name": "Thetford",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22633",
       "image_url": "https://images.englandrugby.com/club_images/22633.png",
@@ -33,14 +23,14 @@
       "place_id": 147482939
     },
     {
-      "name": "Crusaders",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5957",
-      "image_url": "https://images.englandrugby.com/club_images/5957.png",
-      "address": "Little Melton Road Hethersett Norwich Norfolk NR9 3NP United Kingdom",
-      "latitude": 52.6119295,
-      "longitude": 1.1804873,
-      "formatted_address": "NR9 3NP, Little Melton, South Norfolk, Norfolk, England, United Kingdom",
-      "place_id": 350748653
+      "name": "Great Yarmouth-Broadland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8927",
+      "image_url": "https://images.englandrugby.com/club_images/8927.png",
+      "address": "Cobholm Playing Field Cobholm Great Yarmouth NR31 0AY England",
+      "latitude": 52.6081936,
+      "longitude": 1.7118246,
+      "formatted_address": "NR31 0AY, Great Yarmouth, Norfolk, England, United Kingdom",
+      "place_id": 351688799
     },
     {
       "name": "Beccles",
@@ -51,6 +41,16 @@
       "longitude": 1.5742136,
       "formatted_address": "NR34 9RH, Beccles, East Suffolk, Suffolk, England, United Kingdom",
       "place_id": 350746457
+    },
+    {
+      "name": "Crusaders",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5957",
+      "image_url": "https://images.englandrugby.com/club_images/5957.png",
+      "address": "Little Melton Road Hethersett Norwich Norfolk NR9 3NP United Kingdom",
+      "latitude": 52.6119295,
+      "longitude": 1.1804873,
+      "formatted_address": "NR9 3NP, Little Melton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 350748653
     },
     {
       "name": "North Walsham III (Warriors)",

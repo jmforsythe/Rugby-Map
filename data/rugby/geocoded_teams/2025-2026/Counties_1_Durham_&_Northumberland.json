@@ -73,16 +73,6 @@
       "place_id": 350714283
     },
     {
-      "name": "Ponteland",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17046&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/17046.png",
-      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
-      "latitude": 55.0462851,
-      "longitude": -1.740453,
-      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
-      "place_id": 253983840
-    },
-    {
       "name": "Darlington",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6102&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6102.png",
@@ -91,6 +81,16 @@
       "longitude": -1.5645631,
       "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
       "place_id": 350592976
+    },
+    {
+      "name": "Ponteland",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17046&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/17046.png",
+      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
     },
     {
       "name": "Bishop Auckland",

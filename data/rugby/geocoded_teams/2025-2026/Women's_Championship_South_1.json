@@ -23,16 +23,6 @@
       "place_id": 350459302
     },
     {
-      "name": "Exeter University Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=130123&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/130123.png",
-      "address": "Au, University Of Exeter, Sports Park, Stocker Road, EX4 4QN, United Kingdom",
-      "latitude": 50.7377482,
-      "longitude": -3.5372481,
-      "formatted_address": "EX4 4QN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350622100
-    },
-    {
       "name": "London Irish Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12576&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12576.png",
@@ -43,14 +33,14 @@
       "place_id": 351644829
     },
     {
-      "name": "Thurrock Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22773&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/22773.png",
-      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
-      "latitude": 51.4970754,
-      "longitude": 0.3438624,
-      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
-      "place_id": 351834392
+      "name": "Exeter University Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=130123&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/130123.png",
+      "address": "Au, University Of Exeter, Sports Park, Stocker Road, EX4 4QN, United Kingdom",
+      "latitude": 50.7377482,
+      "longitude": -3.5372481,
+      "formatted_address": "EX4 4QN, Exeter, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350622100
     },
     {
       "name": "North Bristol Ladies",
@@ -61,6 +51,16 @@
       "longitude": -2.5712177,
       "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
       "place_id": 350513558
+    },
+    {
+      "name": "Thurrock Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22773&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/22773.png",
+      "address": "Oakfield, Long Lane, Grays, Essex, RM16 2QH, United Kingdom",
+      "latitude": 51.4970754,
+      "longitude": 0.3438624,
+      "formatted_address": "RM16 2QH, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351834392
     },
     {
       "name": "Bath Ladies",

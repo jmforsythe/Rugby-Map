@@ -33,6 +33,26 @@
       "place_id": 350516413
     },
     {
+      "name": "Clifton III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5263&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5263.png",
+      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
+      "latitude": 51.5213982,
+      "longitude": -2.6185414,
+      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350505623
+    },
+    {
+      "name": "Cleve II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5219&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5219.png",
+      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
+      "latitude": 51.4832937,
+      "longitude": -2.4836065,
+      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350508879
+    },
+    {
       "name": "Old Bristolians II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15462&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15462.png",
@@ -53,26 +73,6 @@
       "place_id": 350522186
     },
     {
-      "name": "Dings Crusaders III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6472&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6472.png",
-      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
-      "latitude": 51.4967639,
-      "longitude": -2.5296042,
-      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350507481
-    },
-    {
-      "name": "Clifton III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5263&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5263.png",
-      "address": "Clifton Rfc, Station Road, Cribbs Causeway,  , Bristol, Avon, BS10 7TT, United Kingdom",
-      "latitude": 51.5213982,
-      "longitude": -2.6185414,
-      "formatted_address": "BS10 7TT, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350505623
-    },
-    {
       "name": "Bishopston",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2465&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2465.png",
@@ -83,14 +83,14 @@
       "place_id": 350521169
     },
     {
-      "name": "Cleve II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5219&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5219.png",
-      "address": "Cleve Rfc, The Hayfields, Cossham Street, Mangotsfield, Bristol, BS16 9EN, United Kingdom",
-      "latitude": 51.4832937,
-      "longitude": -2.4836065,
-      "formatted_address": "BS16 9EN, Staple Hill and Mangotsfield, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350508879
+      "name": "Dings Crusaders III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6472&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6472.png",
+      "address": "Dings Crusaders Rfc, Shaftsbury Park, Frenchay, Bristol, Bristol, BS16 1LG, United Kingdom",
+      "latitude": 51.4967639,
+      "longitude": -2.5296042,
+      "formatted_address": "BS16 1LG, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507481
     },
     {
       "name": "Aretians",

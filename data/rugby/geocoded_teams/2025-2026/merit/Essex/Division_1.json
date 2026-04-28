@@ -13,16 +13,6 @@
       "place_id": 351982828
     },
     {
-      "name": "Chelmsford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4484",
-      "image_url": "https://images.englandrugby.com/club_images/4484.png",
-      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
-      "latitude": 51.7399167,
-      "longitude": 0.4975059,
-      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
-      "place_id": 350549772
-    },
-    {
       "name": "Woodford II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25972",
       "image_url": "https://images.englandrugby.com/club_images/25972.png",
@@ -33,14 +23,14 @@
       "place_id": 350657409
     },
     {
-      "name": "Brentwood II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3073",
-      "image_url": "https://images.englandrugby.com/club_images/3073.png",
-      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
-      "latitude": 51.613104,
-      "longitude": 0.3175951,
-      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
-      "place_id": 350546859
+      "name": "Chelmsford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4484",
+      "image_url": "https://images.englandrugby.com/club_images/4484.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
     },
     {
       "name": "Wanstead II",
@@ -53,6 +43,16 @@
       "place_id": 350657328
     },
     {
+      "name": "Brentwood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3073",
+      "image_url": "https://images.englandrugby.com/club_images/3073.png",
+      "address": "King Georges Playing Fields, Ingrave Road, Brentwood, Essex, CM13 2AQ, United Kingdom",
+      "latitude": 51.613104,
+      "longitude": 0.3175951,
+      "formatted_address": "CM13 2AQ, Brentwood, Essex, England, United Kingdom",
+      "place_id": 350546859
+    },
+    {
       "name": "Pegasus Palmerians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16666",
       "image_url": "https://images.englandrugby.com/club_images/16666.png",
@@ -61,16 +61,6 @@
       "longitude": 0.3514895,
       "formatted_address": "Palmers College, Chadwell Road, Little Thurrock, Tilbury, Thurrock, Essex, England, RM17 5TD, United Kingdom",
       "place_id": 90192772
-    },
-    {
-      "name": "Harlow II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9428",
-      "image_url": "https://images.englandrugby.com/club_images/9428.png",
-      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
-      "latitude": 51.7766024,
-      "longitude": 0.1235262,
-      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
-      "place_id": 350549062
     },
     {
       "name": "Thurrock II",
@@ -83,6 +73,16 @@
       "place_id": 351834392
     },
     {
+      "name": "Harlow II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9428",
+      "image_url": "https://images.englandrugby.com/club_images/9428.png",
+      "address": "Latton Park, Howard Way, Harlow, Essex, CM20 3FD, United Kingdom",
+      "latitude": 51.7766024,
+      "longitude": 0.1235262,
+      "formatted_address": "CM20 3FD, Harlow, Essex, England, United Kingdom",
+      "place_id": 350549062
+    },
+    {
       "name": "Romford & Gidea Park II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17959",
       "image_url": "https://images.englandrugby.com/club_images/17959.png",
@@ -91,17 +91,7 @@
       "longitude": 0.1638,
       "formatted_address": "RM7 0EP, London Borough of Havering, Greater London, England, United Kingdom",
       "place_id": 351838100
-    },
-    {
-      "name": "Maldon II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13155",
-      "image_url": "https://images.englandrugby.com/club_images/13155.png",
-      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
-      "latitude": 51.7403821,
-      "longitude": 0.7039643,
-      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
-      "place_id": 350550803
     }
   ],
-  "team_count": 10
+  "team_count": 9
 }

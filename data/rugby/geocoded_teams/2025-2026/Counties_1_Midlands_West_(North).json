@@ -23,16 +23,6 @@
       "place_id": 350568108
     },
     {
-      "name": "Newport (Salop) II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14557&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14557.png",
-      "address": "The Old Showground Forton Road Newport SHROPSHIRE TF10 8BU UNITED KINGDOM ",
-      "latitude": 52.77877,
-      "longitude": -2.3755099,
-      "formatted_address": "TF10 8BU, Newport, Telford and Wrekin, England, United Kingdom",
-      "place_id": 352042941
-    },
-    {
       "name": "Shrewsbury",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19280&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19280.png",
@@ -61,6 +51,16 @@
       "longitude": -1.9029148,
       "formatted_address": "WS9 0SQ, Peronne Poultry Farm, Bourne Vale, Aldridge, Walsall, West Midlands, England, United Kingdom",
       "place_id": 350896313
+    },
+    {
+      "name": "Newport (Salop) II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14557&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14557.png",
+      "address": "The Old Showground Forton Road Newport SHROPSHIRE TF10 8BU UNITED KINGDOM ",
+      "latitude": 52.77877,
+      "longitude": -2.3755099,
+      "formatted_address": "TF10 8BU, Newport, Telford and Wrekin, England, United Kingdom",
+      "place_id": 352042941
     },
     {
       "name": "Burntwood",
@@ -103,16 +103,6 @@
       "place_id": 351208627
     },
     {
-      "name": "Tamworth",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21629&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21629.png",
-      "address": "Wigginton Lodge, Wigginton Park, Tamworth, B79 8ED, England",
-      "latitude": 52.6443607,
-      "longitude": -1.7067476,
-      "formatted_address": "B79 8ED, Tamworth, Staffordshire, England, United Kingdom",
-      "place_id": 350484902
-    },
-    {
       "name": "Telford Hornets",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21796&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/21796.png",
@@ -121,6 +111,16 @@
       "longitude": -2.4447884,
       "formatted_address": "TF4 3NZ, Great Dawley, Dawley, Telford and Wrekin, England, United Kingdom",
       "place_id": 350851295
+    },
+    {
+      "name": "Tamworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21629&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21629.png",
+      "address": "Wigginton Lodge, Wigginton Park, Tamworth, B79 8ED, England",
+      "latitude": 52.6443607,
+      "longitude": -1.7067476,
+      "formatted_address": "B79 8ED, Tamworth, Staffordshire, England, United Kingdom",
+      "place_id": 350484902
     }
   ],
   "team_count": 12

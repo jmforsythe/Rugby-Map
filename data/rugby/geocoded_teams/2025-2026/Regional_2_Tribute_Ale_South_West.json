@@ -23,16 +23,6 @@
       "place_id": 350619219
     },
     {
-      "name": "Okehampton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15342&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15342.png",
-      "address": "Showfield, Oaklands, Okehampton, Devon, EX20 1LN, United Kingdom",
-      "latitude": 50.74082,
-      "longitude": -4.00763,
-      "formatted_address": "EX20 1LN, Okehampton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 351254687
-    },
-    {
       "name": "Wadebridge Camels",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24066&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24066.png",
@@ -43,14 +33,14 @@
       "place_id": 351770635
     },
     {
-      "name": "Ivybridge",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11039&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11039.png",
-      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
-      "latitude": 50.3855432,
-      "longitude": -3.9018249,
-      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 351768115
+      "name": "Okehampton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15342&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15342.png",
+      "address": "Showfield, Oaklands, Okehampton, Devon, EX20 1LN, United Kingdom",
+      "latitude": 50.74082,
+      "longitude": -4.00763,
+      "formatted_address": "EX20 1LN, Okehampton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351254687
     },
     {
       "name": "Crediton",
@@ -63,6 +53,16 @@
       "place_id": 351253152
     },
     {
+      "name": "Ivybridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11039&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11039.png",
+      "address": "Ivybridge R.f.c., Cross-in-hand, Filham, Ivybridge, Devon, PL21 0LR, United Kingdom",
+      "latitude": 50.3855432,
+      "longitude": -3.9018249,
+      "formatted_address": "PL21 0LR, Ugborough, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 351768115
+    },
+    {
       "name": "Winscombe",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25674&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/25674.png",
@@ -71,16 +71,6 @@
       "longitude": -2.8312719,
       "formatted_address": "BS25 1AZ, Winscombe and Sandford, Sandford, North Somerset, England, United Kingdom",
       "place_id": 350512214
-    },
-    {
-      "name": "Teignmouth",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21773&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21773.png",
-      "address": "Bitton Sports Ground, Bitton Park Road, Teignmouth, Devon, TQ14 9DQ, United Kingdom",
-      "latitude": 50.5476295,
-      "longitude": -3.5073944,
-      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350409625
     },
     {
       "name": "Penzance & Newlyn",
@@ -101,6 +91,16 @@
       "longitude": -3.0196718,
       "formatted_address": "TA6 6NW, North Petherton, Somerset, England, United Kingdom",
       "place_id": 350849758
+    },
+    {
+      "name": "Teignmouth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21773&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21773.png",
+      "address": "Bitton Sports Ground, Bitton Park Road, Teignmouth, Devon, TQ14 9DQ, United Kingdom",
+      "latitude": 50.5476295,
+      "longitude": -3.5073944,
+      "formatted_address": "TQ14 9DQ, Teignmouth, Shaldon, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350409625
     },
     {
       "name": "Cullompton",

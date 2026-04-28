@@ -13,6 +13,16 @@
       "place_id": 351117462
     },
     {
+      "name": "Keresley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11294.png",
+      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
+      "latitude": 52.46243,
+      "longitude": -1.54744,
+      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
+      "place_id": 351126048
+    },
+    {
       "name": "Handsworth",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9324&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9324.png",
@@ -31,16 +41,6 @@
       "longitude": -1.5383605,
       "formatted_address": "CV6 2BU, Coventry, West Midlands, England, United Kingdom",
       "place_id": 351124870
-    },
-    {
-      "name": "Keresley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11294&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11294.png",
-      "address": "The John E. Radford Fields, Burrow Hill Lane, Corley, Coventry, CV7 8BE, United Kingdom",
-      "latitude": 52.46243,
-      "longitude": -1.54744,
-      "formatted_address": "CV7 8BE, Corley CP, North Warwickshire, Warwickshire, England, United Kingdom",
-      "place_id": 351126048
     },
     {
       "name": "Hinckley III",
@@ -63,6 +63,26 @@
       "place_id": 351113366
     },
     {
+      "name": "Veseyans II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23984&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/23984.png",
+      "address": "Veseyans Rugby, Little Hardwick Road, Streetly, Streetly, Sutton Coldfield, WS9 0SQ, United Kingdom",
+      "latitude": 52.5877299,
+      "longitude": -1.9029148,
+      "formatted_address": "WS9 0SQ, Peronne Poultry Farm, Bourne Vale, Aldridge, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350896313
+    },
+    {
+      "name": "Stoke Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21074.png",
+      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
+      "latitude": 52.402107,
+      "longitude": -1.4568427,
+      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 351117485
+    },
+    {
       "name": "Pinley",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16908&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16908.png",
@@ -83,14 +103,14 @@
       "place_id": 259019825
     },
     {
-      "name": "Stoke Old Boys",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21074&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21074.png",
-      "address": "Albert Gale Field, Brookvale Avenue, Binley, Coventry, Wmid, CV3 2DG, United Kingdom",
-      "latitude": 52.402107,
-      "longitude": -1.4568427,
-      "formatted_address": "CV3 2DG, Coventry, West Midlands, England, United Kingdom",
-      "place_id": 351117485
+      "name": "Nuneaton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15195&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15195.png",
+      "address": "Nuneaton Rfc, Liberty Way, Attleborough Fields Industrial Estate, Nuneaton, Warwickshire, CV11 6RR, United Kingdom",
+      "latitude": 52.52023,
+      "longitude": -1.4431099,
+      "formatted_address": "CV11 6RR, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
+      "place_id": 351112730
     },
     {
       "name": "Tamworth II",
@@ -101,26 +121,6 @@
       "longitude": -1.7067476,
       "formatted_address": "B79 8ED, Tamworth, Staffordshire, England, United Kingdom",
       "place_id": 350484902
-    },
-    {
-      "name": "Veseyans II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23984&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/23984.png",
-      "address": "Veseyans Rugby, Little Hardwick Road, Streetly, Streetly, Sutton Coldfield, WS9 0SQ, United Kingdom",
-      "latitude": 52.5877299,
-      "longitude": -1.9029148,
-      "formatted_address": "WS9 0SQ, Peronne Poultry Farm, Bourne Vale, Aldridge, Walsall, West Midlands, England, United Kingdom",
-      "place_id": 350896313
-    },
-    {
-      "name": "Nuneaton II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15195&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15195.png",
-      "address": "Nuneaton Rfc, Liberty Way, Attleborough Fields Industrial Estate, Nuneaton, Warwickshire, CV11 6RR, United Kingdom",
-      "latitude": 52.52023,
-      "longitude": -1.4431099,
-      "formatted_address": "CV11 6RR, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
-      "place_id": 351112730
     }
   ],
   "team_count": 12

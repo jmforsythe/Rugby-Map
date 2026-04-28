@@ -13,16 +13,6 @@
       "place_id": 350655754
     },
     {
-      "name": "Harrogate",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9493&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9493.png",
-      "address": "Apollo Capital Stadium, Rudding Lane, Follifoot, Harrogate, HG3 1DQ, England",
-      "latitude": 53.97342,
-      "longitude": -1.50176,
-      "formatted_address": "HG3 1DQ, Follifoot, North Yorkshire, York and North Yorkshire, England, United Kingdom",
-      "place_id": 351352797
-    },
-    {
       "name": "Alnwick",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=486&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/486.png",
@@ -33,14 +23,14 @@
       "place_id": 351640857
     },
     {
-      "name": "Blaydon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2565.png",
-      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
-      "latitude": 54.9532684,
-      "longitude": -1.6916365,
-      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
-      "place_id": 350709994
+      "name": "Harrogate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9493&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9493.png",
+      "address": "Apollo Capital Stadium, Rudding Lane, Follifoot, Harrogate, HG3 1DQ, England",
+      "latitude": 53.97342,
+      "longitude": -1.50176,
+      "formatted_address": "HG3 1DQ, Follifoot, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 351352797
     },
     {
       "name": "Ilkley",
@@ -53,6 +43,16 @@
       "place_id": 351527727
     },
     {
+      "name": "Blaydon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2565&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2565.png",
+      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
+      "latitude": 54.9532684,
+      "longitude": -1.6916365,
+      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350709994
+    },
+    {
       "name": "Driffield",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6745&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6745.png",
@@ -61,36 +61,6 @@
       "longitude": -0.4560725,
       "formatted_address": "YO25 9DW, Kirkburn, Southburn, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
       "place_id": 352190496
-    },
-    {
-      "name": "Kendal",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11240&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11240.png",
-      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
-      "latitude": 54.3459612,
-      "longitude": -2.7351666,
-      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
-      "place_id": 350681165
-    },
-    {
-      "name": "Penrith",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16686&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16686.png",
-      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
-      "latitude": 54.6586627,
-      "longitude": -2.7324676,
-      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
-      "place_id": 350527237
-    },
-    {
-      "name": "Middlesbrough",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13793&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13793.png",
-      "address": "Acklam Park Green Lane, Acklam Middlesbrough NORTH YORKSHIRE TS5 7SL UNITED KINGDOM ",
-      "latitude": 54.55121,
-      "longitude": -1.2515,
-      "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
-      "place_id": 352090787
     },
     {
       "name": "Sandal",
@@ -103,6 +73,26 @@
       "place_id": 350888776
     },
     {
+      "name": "Kendal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11240&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11240.png",
+      "address": "Kendal R.u.f.c., Mint Bridge, Shap Road, Kendal, Cumbria, LA9 6NY, United Kingdom",
+      "latitude": 54.3459612,
+      "longitude": -2.7351666,
+      "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350681165
+    },
+    {
+      "name": "Middlesbrough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13793&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13793.png",
+      "address": "Acklam Park Green Lane, Acklam Middlesbrough NORTH YORKSHIRE TS5 7SL UNITED KINGDOM ",
+      "latitude": 54.55121,
+      "longitude": -1.2515,
+      "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
+      "place_id": 352090787
+    },
+    {
       "name": "York",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26458&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/26458.png",
@@ -111,6 +101,16 @@
       "longitude": -1.105654,
       "formatted_address": "Clifton Park, Shipton Road, Clifton Without, York, York and North Yorkshire, England, YO30 5RQ, United Kingdom",
       "place_id": 257745369
+    },
+    {
+      "name": "Penrith",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16686&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16686.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
     },
     {
       "name": "Cleckheaton",

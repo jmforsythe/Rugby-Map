@@ -53,16 +53,6 @@
       "place_id": 350665376
     },
     {
-      "name": "Witham II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25767",
-      "image_url": "https://images.englandrugby.com/club_images/25767.png",
-      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
-      "latitude": 51.79918,
-      "longitude": 0.62556,
-      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
-      "place_id": 351084508
-    },
-    {
       "name": "Bury St Edmunds IV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3829",
       "image_url": "https://images.englandrugby.com/club_images/3829.png",
@@ -81,6 +71,16 @@
       "longitude": 0.92132,
       "formatted_address": "CO5 8RS, West Mersea, Colchester, Essex, England, United Kingdom",
       "place_id": 351765292
+    },
+    {
+      "name": "Witham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25767",
+      "image_url": "https://images.englandrugby.com/club_images/25767.png",
+      "address": "Witham Rufc, Spa Road, Spa Road, Witham, Essex, CM8 1UN, United Kingdom",
+      "latitude": 51.79918,
+      "longitude": 0.62556,
+      "formatted_address": "CM8 1UN, Witham, Braintree, Essex, England, United Kingdom",
+      "place_id": 351084508
     },
     {
       "name": "Clacton Kestrels",

@@ -23,16 +23,6 @@
       "place_id": 350287352
     },
     {
-      "name": "Woodbridge Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25941.png",
-      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM ",
-      "latitude": 52.10274,
-      "longitude": 1.3760751,
-      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
-      "place_id": 351390957
-    },
-    {
       "name": "Southwold Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19853&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19853.png",
@@ -41,6 +31,16 @@
       "longitude": 1.6674237,
       "formatted_address": "IP18 6TB, Southwold, East Suffolk, Suffolk, England, United Kingdom",
       "place_id": 350660373
+    },
+    {
+      "name": "Woodbridge Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25941&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25941.png",
+      "address": "Hatchley Barn Orford Road Bromeswell Woodbridge SUFFOLK IP12 2PP UNITED KINGDOM ",
+      "latitude": 52.10274,
+      "longitude": 1.3760751,
+      "formatted_address": "IP12 2PP, Bromeswell, East Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 351390957
     },
     {
       "name": "Diss Women",
@@ -53,16 +53,6 @@
       "place_id": 350661359
     },
     {
-      "name": "Braintree Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123157&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/123157.png",
-      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
-      "latitude": 51.8744355,
-      "longitude": 0.5808997,
-      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
-      "place_id": 350550526
-    },
-    {
       "name": "North Walsham Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129248&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/129248.png",
@@ -71,6 +61,16 @@
       "longitude": 1.3831734,
       "formatted_address": "NR10 5BU, Scottow, North Norfolk, Norfolk, England, United Kingdom",
       "place_id": 350734463
+    },
+    {
+      "name": "Braintree Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123157&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/123157.png",
+      "address": "Braintree Rufc, The Clubhouse, Robbswood, , Beckers Green Road,, Braintree, Essex, CM7 3PR, United Kingdom",
+      "latitude": 51.8744355,
+      "longitude": 0.5808997,
+      "formatted_address": "CM7 3PR, Braintree, Essex, England, United Kingdom",
+      "place_id": 350550526
     }
   ],
   "team_count": 7

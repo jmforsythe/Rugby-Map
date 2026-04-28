@@ -216,6 +216,8 @@ def process_league_file(
     max_workers: int = 14,
     delay_seconds: float = 2.0,
     max_retries: int = 3,
+    *,
+    force: bool = False,
 ) -> None:
     """Process a single league JSON file and fetch all addresses."""
     print(f"{"="*80}")
@@ -225,7 +227,7 @@ def process_league_file(
     # Mirror subdirectory structure (e.g. merit/) from league_data to team_addresses
     relative = league_file_path.relative_to(league_dir)
     output_file = DATA_DIR / "team_addresses" / season / relative
-    if output_file.exists():
+    if output_file.exists() and not force:
         print("  Skipping - already processed")
         return
 
@@ -347,7 +349,7 @@ def process_league_file(
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
     success_count = len([t for t in teams_with_addresses if "error" not in t])
-    print(f"✓ Saved to: {output_file}")
+    print(f"[ok] Saved to: {output_file}")
     print(f"  Successfully fetched: {success_count}/{len(teams_with_addresses)}")
 
 
@@ -373,6 +375,11 @@ def main() -> None:
         "--retries", type=int, default=3, help="Max retries for failed requests (default: 3)"
     )
     parser.add_argument("--league", type=str, default=None, help="Process only a single league")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-fetch addresses even if team_addresses JSON already exists",
+    )
     args = parser.parse_args()
 
     season = args.season
@@ -418,6 +425,7 @@ def main() -> None:
                 max_workers=args.workers,
                 delay_seconds=args.delay,
                 max_retries=args.retries,
+                force=args.force,
             )
         except AntiBotDetectedError:
             print("\n✗ Anti-bot detection triggered")
@@ -446,7 +454,7 @@ def main() -> None:
             print(f"    URL: {team_url}&season={season}")
         print(f"{"="*80}")
     else:
-        print("\n✓ All clubs have addresses!")
+        print("\n[ok] All clubs have addresses!")
 
 
 if __name__ == "__main__":

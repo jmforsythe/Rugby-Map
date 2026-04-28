@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=67147&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Economicals",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7316.png",
-      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
-      "latitude": 51.38525,
-      "longitude": -0.02191,
-      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 351011899
-    },
-    {
       "name": "Old Paulines",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15903&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15903.png",
@@ -21,6 +11,16 @@
       "longitude": -0.3374399,
       "formatted_address": "KT7 0PW, Elmbridge, Surrey, England, United Kingdom",
       "place_id": 351429900
+    },
+    {
+      "name": "Economicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7316&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7316.png",
+      "address": "60 South Eden Park Road Beckenham KENT BR3 3BG UNITED KINGDOM ",
+      "latitude": 51.38525,
+      "longitude": -0.02191,
+      "formatted_address": "BR3 3BG, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 351011899
     },
     {
       "name": "Wandsworthians",
@@ -33,16 +33,6 @@
       "place_id": 351430023
     },
     {
-      "name": "Egham Hollowegians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7405.png",
-      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
-      "latitude": 51.4372629,
-      "longitude": -0.5687512,
-      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
-      "place_id": 260325893
-    },
-    {
       "name": "Guildfordians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9083&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9083.png",
@@ -51,6 +41,16 @@
       "longitude": -0.5562019,
       "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
       "place_id": 260456310
+    },
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7405&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.4372629,
+      "longitude": -0.5687512,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
     },
     {
       "name": "Merton",
@@ -81,17 +81,7 @@
       "longitude": -0.39278,
       "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352094850
-    },
-    {
-      "name": "Harlequin Amateurs",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9393&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9393.png",
-      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
-      "latitude": 51.4120846,
-      "longitude": -0.3172338,
-      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350670305
     }
   ],
-  "team_count": 9
+  "team_count": 8
 }

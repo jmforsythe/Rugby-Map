@@ -23,16 +23,6 @@
       "place_id": 350567035
     },
     {
-      "name": "Bromsgrove II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3436&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3436.png",
-      "address": "Bromsgrove RFC Finstall Park Finstall Road Finstall Road Bromsgrove WORCESTERSHIRE B60 3DH UNITED KINGDOM ",
-      "latitude": 52.32506,
-      "longitude": -2.03982,
-      "formatted_address": "B60 3DH, Finstall CP, Tutnall, Bromsgrove, Worcestershire, England, United Kingdom",
-      "place_id": 350918826
-    },
-    {
       "name": "Birmingham & Solihull",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2297&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2297.png",
@@ -43,6 +33,16 @@
       "place_id": 350927523
     },
     {
+      "name": "Bromsgrove II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3436&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3436.png",
+      "address": "Bromsgrove RFC Finstall Park Finstall Road Finstall Road Bromsgrove WORCESTERSHIRE B60 3DH UNITED KINGDOM ",
+      "latitude": 52.32506,
+      "longitude": -2.03982,
+      "formatted_address": "B60 3DH, Finstall CP, Tutnall, Bromsgrove, Worcestershire, England, United Kingdom",
+      "place_id": 350918826
+    },
+    {
       "name": "Harbury",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9352&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9352.png",
@@ -51,16 +51,6 @@
       "longitude": -1.4768699,
       "formatted_address": "CV33 9JN, Harbury, Stratford-on-Avon, Warwickshire, England, United Kingdom",
       "place_id": 351119581
-    },
-    {
-      "name": "Lutterworth II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12965&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12965.png",
-      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
-      "latitude": 52.48131,
-      "longitude": -1.21559,
-      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
-      "place_id": 351475289
     },
     {
       "name": "Southam",
@@ -83,6 +73,16 @@
       "place_id": 351120909
     },
     {
+      "name": "Lutterworth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12965&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12965.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
+    },
+    {
       "name": "Bournville II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2818&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2818.png",
@@ -93,16 +93,6 @@
       "place_id": 350464923
     },
     {
-      "name": "Harborne",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9347&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9347.png",
-      "address": "Club House Address: , West Hill Close, Birmingham, West Midlands, B29 6QQ, United Kingdom",
-      "latitude": 52.4368303,
-      "longitude": -1.9479539,
-      "formatted_address": "B29 6QQ, Birmingham, West Midlands, England, United Kingdom",
-      "place_id": 350470898
-    },
-    {
       "name": "Upton-on-Severn",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23839&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23839.png",
@@ -111,6 +101,16 @@
       "longitude": -2.21837,
       "formatted_address": "WR8 0HW, Upton-upon-Severn, Malvern Hills, Worcestershire, England, United Kingdom",
       "place_id": 352163896
+    },
+    {
+      "name": "Harborne",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9347&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9347.png",
+      "address": "Club House Address: , West Hill Close, Birmingham, West Midlands, B29 6QQ, United Kingdom",
+      "latitude": 52.4368303,
+      "longitude": -1.9479539,
+      "formatted_address": "B29 6QQ, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350470898
     },
     {
       "name": "Coventry Welsh",

@@ -1,0 +1,87 @@
+{
+  "league_name": "Premiership North",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=71148&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "Kingsclere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11636",
+      "image_url": "https://images.englandrugby.com/club_images/11636.png",
+      "address": "Fieldgate Centre Field Gate Drive Kingsclere Newbury Hampshire RG20 5SQ United Kingdom",
+      "latitude": 51.3252785,
+      "longitude": -1.2540245,
+      "formatted_address": "RG20 5SQ, Kingsclere, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 350786223
+    },
+    {
+      "name": "Farnham 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7989",
+      "image_url": "https://images.englandrugby.com/club_images/7989.png",
+      "address": "Farnham Rufc, Wilkinson Way, Monkton Lane, Farnham, Surrey , GU9 9ND, United Kingdom",
+      "latitude": 51.2263917,
+      "longitude": -0.776575,
+      "formatted_address": "GU9 9ND, Farnham, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350644622
+    },
+    {
+      "name": "Farnborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7965",
+      "image_url": "https://images.englandrugby.com/club_images/7965.png",
+      "address": "Farnborough Rfc Rugby Club Tile Barn Close Cove Farnborough Hampshire GU14 8LS United Kingdom",
+      "latitude": 51.30062,
+      "longitude": -0.7640348,
+      "formatted_address": "GU14 8LS, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 350639981
+    },
+    {
+      "name": "Winchester Knights",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25577",
+      "image_url": "https://images.englandrugby.com/club_images/25577.png",
+      "address": "Winchester Rfc Ltd North Walls Park (off Nuns Walk) Winchester Hampshire SO23 7EF United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955222
+    },
+    {
+      "name": "Andover 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=658",
+      "image_url": "https://images.englandrugby.com/club_images/658.png",
+      "address": "The Goodship Ground, Foxcotte Park, Andover, Hampshire, SP11 0TA, United Kingdom",
+      "latitude": 51.2329,
+      "longitude": -1.49904,
+      "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 351963834
+    },
+    {
+      "name": "Alresford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=506",
+      "image_url": "https://images.englandrugby.com/club_images/506.png",
+      "address": "Alresford Recreation Centre, Arlebury Park, The Avenue, Alresford, Hampshire, SO24 9EP, United Kingdom",
+      "latitude": 51.0893299,
+      "longitude": -1.16977,
+      "formatted_address": "SO24 9EP, Arlebury Park, New Alresford, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955854
+    },
+    {
+      "name": "Aldershot & Fleet RUFC 2nd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128437",
+      "image_url": "https://images.englandrugby.com/club_images/128437.png",
+      "address": "Aldershot & Fleet Rugby Club Aldershot Park Heronwood Road Aldershot Hampshire GU12 4AL United Kingdom",
+      "latitude": 51.2362253,
+      "longitude": -0.742555,
+      "formatted_address": "GU12 4AL, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 351320808
+    },
+    {
+      "name": "Alton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=511",
+      "image_url": "https://images.englandrugby.com/club_images/511.png",
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
+    }
+  ],
+  "team_count": 8
+}

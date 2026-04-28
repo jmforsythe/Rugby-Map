@@ -33,16 +33,6 @@
       "place_id": 350868166
     },
     {
-      "name": "Yarm Swifts",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123253&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/123253.png",
-      "address": "Yarm Rugby Club, Wass Way, Durham Lane Industrial Park, Stockton-on-tees, Cleveland, TS16 0RG, United Kingdom",
-      "latitude": 54.528312,
-      "longitude": -1.3545156,
-      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
-      "place_id": 352081218
-    },
-    {
       "name": "Hartlepool Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9560&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9560.png",
@@ -53,14 +43,14 @@
       "place_id": 352086474
     },
     {
-      "name": "Upper Eden Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123275&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/123275.png",
-      "address": "Pennine Park, Westgarth Rd, Kirkby Stephen, Cumbria, CA17 4TF, United Kingdom",
-      "latitude": 54.4707847,
-      "longitude": -2.355303,
-      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
-      "place_id": 350528061
+      "name": "Yarm Swifts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123253&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/123253.png",
+      "address": "Yarm Rugby Club, Wass Way, Durham Lane Industrial Park, Stockton-on-tees, Cleveland, TS16 0RG, United Kingdom",
+      "latitude": 54.528312,
+      "longitude": -1.3545156,
+      "formatted_address": "TS16 0RG, Durham Lane Industrial Park, Kingsmead, Eaglescliffe, Egglescliffe, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 352081218
     },
     {
       "name": "Ripon Bluebelles Women",
@@ -73,5 +63,5 @@
       "place_id": 350647229
     }
   ],
-  "team_count": 7
+  "team_count": 6
 }

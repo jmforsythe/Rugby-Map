@@ -23,16 +23,6 @@
       "place_id": 351847660
     },
     {
-      "name": "Sheffield Medicals",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19089.png",
-      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
-      "latitude": 53.3796125,
-      "longitude": -1.5026038,
-      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
-      "place_id": 351840574
-    },
-    {
       "name": "Hallamshire",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9233&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9233.png",
@@ -53,14 +43,14 @@
       "place_id": 350651819
     },
     {
-      "name": "Withernsea",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25779&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25779.png",
-      "address": "Withernsea Rufc, The Plough Inn, Northside Road, Hollym, Nr Hull, Yorks, HU19 2RS, United Kingdom",
-      "latitude": 53.70667,
-      "longitude": 0.03458,
-      "formatted_address": "HU19 2RS, Hollym, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
-      "place_id": 351377074
+      "name": "Sheffield Medicals",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19089&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19089.png",
+      "address": "Robert Causer (club Captain), 451 Glossop Road, Sheffield, South Yorkshire, S10 5BJ, United Kingdom",
+      "latitude": 53.3796125,
+      "longitude": -1.5026038,
+      "formatted_address": "S10 5BJ, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 351840574
     },
     {
       "name": "Wortley",
@@ -71,17 +61,7 @@
       "longitude": -1.5480414,
       "formatted_address": "S35 7DH, Wortley, Barnsley, South Yorkshire, England, United Kingdom",
       "place_id": 350801719
-    },
-    {
-      "name": "Knottingley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11763&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11763.png",
-      "address": "Knottingley RUFC Howards Field, Marsh Lane Knottingley WF11 9DE UNITED KINGDOM ",
-      "latitude": 53.710701,
-      "longitude": -1.2335157,
-      "formatted_address": "WF11 9DE, Wakefield, West Yorkshire, England, United Kingdom",
-      "place_id": 350887020
     }
   ],
-  "team_count": 8
+  "team_count": 6
 }

@@ -13,6 +13,16 @@
       "place_id": 254576070
     },
     {
+      "name": "Novocastrians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15172",
+      "image_url": "https://images.englandrugby.com/club_images/15172.png",
+      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
       "name": "Whitley Bay Rockcliff Vikings",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25319",
       "image_url": "https://images.englandrugby.com/club_images/25319.png",
@@ -21,16 +31,6 @@
       "longitude": -1.4491323,
       "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
       "place_id": 350711129
-    },
-    {
-      "name": "Ponteland 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17047",
-      "image_url": "https://images.englandrugby.com/club_images/17047.png",
-      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
-      "latitude": 55.0462851,
-      "longitude": -1.740453,
-      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
-      "place_id": 253983840
     },
     {
       "name": "North Shields 2nd XV (Crusaders)",
@@ -43,24 +43,14 @@
       "place_id": 351625772
     },
     {
-      "name": "Novocastrians 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15172",
-      "image_url": "https://images.englandrugby.com/club_images/15172.png",
-      "address": "Sutherland Park The Drive Benton Newcastle Upon Tyne Tyne And Wear NE7 7SY United Kingdom",
-      "latitude": 55.005355,
-      "longitude": -1.5807865,
-      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
-      "place_id": 351642087
-    },
-    {
-      "name": "Jarrovians 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11079",
-      "image_url": "https://images.englandrugby.com/club_images/11079.png",
-      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
-      "latitude": 54.9606054,
-      "longitude": -1.4955724,
-      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
-      "place_id": 253817836
+      "name": "Ponteland 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17047",
+      "image_url": "https://images.englandrugby.com/club_images/17047.png",
+      "address": "Ponteland Leisure Centre Callerton Lane Ponteland Northumberland NE20 9EG United Kingdom",
+      "latitude": 55.0462851,
+      "longitude": -1.740453,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 253983840
     },
     {
       "name": "Blyth 2nds",
@@ -73,14 +63,14 @@
       "place_id": 350710935
     },
     {
-      "name": "Consett and District 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5595",
-      "image_url": "https://images.englandrugby.com/club_images/5595.png",
-      "address": "The Demi Albert Road Consett COUNTY DURHAM DH8 5QU UNITED KINGDOM",
-      "latitude": 54.8522459,
-      "longitude": -1.8347675,
-      "formatted_address": "The Demi, 45, Albert Road, Blackhill, Templetown, Consett, County Durham, North East, England, DH8 5QU, United Kingdom",
-      "place_id": 252541782
+      "name": "Jarrovians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11079",
+      "image_url": "https://images.englandrugby.com/club_images/11079.png",
+      "address": "Lukes Lane Estate, Hebburn, Tyne And Wear, NE31 2BB, United Kingdom",
+      "latitude": 54.9606054,
+      "longitude": -1.4955724,
+      "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
+      "place_id": 253817836
     },
     {
       "name": "Newcastle Ravens 1st XV",
@@ -91,6 +81,16 @@
       "longitude": -1.5807865,
       "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
       "place_id": 351642080
+    },
+    {
+      "name": "Consett and District 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5595",
+      "image_url": "https://images.englandrugby.com/club_images/5595.png",
+      "address": "The Demi Albert Road Consett COUNTY DURHAM DH8 5QU UNITED KINGDOM",
+      "latitude": 54.8522459,
+      "longitude": -1.8347675,
+      "formatted_address": "The Demi, 45, Albert Road, Blackhill, Templetown, Consett, County Durham, North East, England, DH8 5QU, United Kingdom",
+      "place_id": 252541782
     }
   ],
   "team_count": 9

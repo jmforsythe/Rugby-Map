@@ -23,16 +23,6 @@
       "place_id": 351969660
     },
     {
-      "name": "Avonvale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1107&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1107.png",
-      "address": "The Clubhouse, Bathford Playing FIelds Bathford Bath SOMERSET BA1 7SW UNITED KINGDOM ",
-      "latitude": 51.4012987,
-      "longitude": -2.3003884,
-      "formatted_address": "BA1 7SW, Bathford, Bath and North East Somerset, West of England, England, United Kingdom",
-      "place_id": 350490558
-    },
-    {
       "name": "Salisbury II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18608&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18608.png",
@@ -53,14 +43,14 @@
       "place_id": 350932292
     },
     {
-      "name": "Combe Down II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5487&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5487.png",
-      "address": "Holly's Corner, Bramble Way, North Road, Combe Down, Somerset, BA2 5DE, United Kingdom",
-      "latitude": 51.362253,
-      "longitude": -2.3516399,
-      "formatted_address": "BA2 5DE, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
-      "place_id": 350491125
+      "name": "Avonvale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1107&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1107.png",
+      "address": "The Clubhouse, Bathford Playing FIelds Bathford Bath SOMERSET BA1 7SW UNITED KINGDOM ",
+      "latitude": 51.4012987,
+      "longitude": -2.3003884,
+      "formatted_address": "BA1 7SW, Bathford, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350490558
     },
     {
       "name": "Bath Saracens",
@@ -71,6 +61,16 @@
       "longitude": -2.3258899,
       "formatted_address": "BA2 7AU, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
       "place_id": 350936651
+    },
+    {
+      "name": "Combe Down II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5487&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5487.png",
+      "address": "Holly's Corner, Bramble Way, North Road, Combe Down, Somerset, BA2 5DE, United Kingdom",
+      "latitude": 51.362253,
+      "longitude": -2.3516399,
+      "formatted_address": "BA2 5DE, Bath, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350491125
     },
     {
       "name": "Melksham III",

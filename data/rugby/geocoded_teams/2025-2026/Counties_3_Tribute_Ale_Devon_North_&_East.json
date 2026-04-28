@@ -43,16 +43,6 @@
       "place_id": 351248575
     },
     {
-      "name": "Exeter Engineers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7776&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7776.png",
-      "address": "Western Road, Exeter, Devon, EX4 1EG",
-      "latitude": 50.7204695,
-      "longitude": -3.5430213,
-      "formatted_address": "Western Road, St Thomas, Exeter, Devon, Devon and Torbay, England, EX4 1EE, United Kingdom",
-      "place_id": 262285104
-    },
-    {
       "name": "New Cross",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14349&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/14349.png",
@@ -71,6 +61,16 @@
       "longitude": -3.9051935,
       "formatted_address": "EX20 2ED, North Tawton, West Devon, Devon, Devon and Torbay, England, United Kingdom",
       "place_id": 350619468
+    },
+    {
+      "name": "Exeter Engineers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7776&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7776.png",
+      "address": "Western Road, Exeter, Devon, EX4 1EG",
+      "latitude": 50.7204695,
+      "longitude": -3.5430213,
+      "formatted_address": "Western Road, St Thomas, Exeter, Devon, Devon and Torbay, England, EX4 1EE, United Kingdom",
+      "place_id": 262285104
     },
     {
       "name": "Exeter Athletic",

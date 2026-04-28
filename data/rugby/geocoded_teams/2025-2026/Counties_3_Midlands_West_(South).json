@@ -23,6 +23,16 @@
       "place_id": 350600304
     },
     {
+      "name": "Walsall II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24203&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24203.png",
+      "address": "Walsall Rfc, Delves Road, Walsall, West Midlands, WS1 3JY, England",
+      "latitude": 52.5703722,
+      "longitude": -1.9728366,
+      "formatted_address": "WS1 3JY, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 350895240
+    },
+    {
       "name": "Warley",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24269&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24269.png",
@@ -43,24 +53,14 @@
       "place_id": 352158321
     },
     {
-      "name": "Walsall II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24203&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24203.png",
-      "address": "Walsall Rfc, Delves Road, Walsall, West Midlands, WS1 3JY, England",
-      "latitude": 52.5703722,
-      "longitude": -1.9728366,
-      "formatted_address": "WS1 3JY, Walsall, West Midlands, England, United Kingdom",
-      "place_id": 350895240
-    },
-    {
-      "name": "Edwardians II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7362&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7362.png",
-      "address": "The Memorial Ground, Streetsbrook Road, Solihull, West Midlands, B90 3PE, United Kingdom",
-      "latitude": 52.4213495,
-      "longitude": -1.821653,
-      "formatted_address": "B90 3PE, Solihull, West Midlands, England, United Kingdom",
-      "place_id": 350486320
+      "name": "Hereford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10012&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10012.png",
+      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
+      "latitude": 52.0522599,
+      "longitude": -2.72805,
+      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
+      "place_id": 351368605
     },
     {
       "name": "Dudley Kingswinford II",
@@ -83,16 +83,6 @@
       "place_id": 258173048
     },
     {
-      "name": "Hereford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10012&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10012.png",
-      "address": "Belvedere Lane Wyeside Hereford HEREFORDSHIRE HR4 0PH UNITED KINGDOM ",
-      "latitude": 52.0522599,
-      "longitude": -2.72805,
-      "formatted_address": "HR4 0PH, Hereford, Herefordshire, England, United Kingdom",
-      "place_id": 351368605
-    },
-    {
       "name": "Bishops Castle & Onny Valley",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2412&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2412.png",
@@ -103,5 +93,5 @@
       "place_id": 254217798
     }
   ],
-  "team_count": 10
+  "team_count": 9
 }

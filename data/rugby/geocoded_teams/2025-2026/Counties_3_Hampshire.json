@@ -23,16 +23,6 @@
       "place_id": 350831356
     },
     {
-      "name": "Winchester III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127710&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/127710.png",
-      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
-      "latitude": 51.0704306,
-      "longitude": -1.3104807,
-      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
-      "place_id": 351955241
-    },
-    {
       "name": "Portsmouth II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17119&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17119.png",
@@ -41,16 +31,6 @@
       "longitude": -1.0626027,
       "formatted_address": "PO3 5EP, Portsmouth, England, United Kingdom",
       "place_id": 351788884
-    },
-    {
-      "name": "Alton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=510&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/510.png",
-      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
-      "latitude": 51.1586814,
-      "longitude": -0.965807,
-      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
-      "place_id": 350642778
     },
     {
       "name": "Isle Of Wight",
@@ -71,6 +51,26 @@
       "longitude": -1.2949108,
       "formatted_address": "RG28 7NU, Laverstoke, Basingstoke and Deane, Hampshire, England, United Kingdom",
       "place_id": 350788034
+    },
+    {
+      "name": "Alton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=510&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/510.png",
+      "address": "The Clubhouse, Anstey Park, Anstey Lane, Alton, Hampshire, GU34 2NB, United Kingdom",
+      "latitude": 51.1586814,
+      "longitude": -0.965807,
+      "formatted_address": "GU34 2NB, Alton, East Hampshire, Hampshire, England, United Kingdom",
+      "place_id": 350642778
+    },
+    {
+      "name": "Winchester III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127710&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/127710.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
     },
     {
       "name": "Aldershot & Fleet",

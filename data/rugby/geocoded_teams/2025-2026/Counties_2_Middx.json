@@ -23,16 +23,6 @@
       "place_id": 350617567
     },
     {
-      "name": "Kilburn Cosmos",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11432.png",
-      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
-      "latitude": 51.555247,
-      "longitude": -0.228574,
-      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
-      "place_id": 351699235
-    },
-    {
       "name": "Harrow",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9524&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9524.png",
@@ -41,6 +31,16 @@
       "longitude": -0.31634,
       "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
       "place_id": 351342893
+    },
+    {
+      "name": "Kilburn Cosmos",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11432&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11432.png",
+      "address": "Gladstone Park, Jct Of Anson & Kendal Road, London, NW2 6BH, United Kingdom",
+      "latitude": 51.555247,
+      "longitude": -0.228574,
+      "formatted_address": "NW2 6BH, London Borough of Brent, Greater London, England, United Kingdom",
+      "place_id": 351699235
     },
     {
       "name": "Actonians",
@@ -53,16 +53,6 @@
       "place_id": 350876492
     },
     {
-      "name": "Finsbury Park",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8119&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/8119.png",
-      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
-      "latitude": 51.58897,
-      "longitude": -0.0852099,
-      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
-      "place_id": 351606737
-    },
-    {
       "name": "Enfield Ignatians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7513&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7513.png",
@@ -71,6 +61,16 @@
       "longitude": -0.0641678,
       "formatted_address": "EN1 3PL, London Borough of Enfield, Greater London, England, United Kingdom",
       "place_id": 350616232
+    },
+    {
+      "name": "Finsbury Park",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8119&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/8119.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.58897,
+      "longitude": -0.0852099,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
     },
     {
       "name": "Old Millhillians",

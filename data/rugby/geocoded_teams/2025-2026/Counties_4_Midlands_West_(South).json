@@ -13,16 +13,6 @@
       "place_id": 350918073
     },
     {
-      "name": "Malvern II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13209&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13209.png",
-      "address": "Malvern Rfc, Spring Lane, Malvern Link, Worcestershire , WR14 1AJ, United Kingdom",
-      "latitude": 52.1269617,
-      "longitude": -2.3075001,
-      "formatted_address": "WR14 1AJ, Malvern, Malvern Hills, Worcestershire, England, United Kingdom",
-      "place_id": 350893965
-    },
-    {
       "name": "Worcester II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26046&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/26046.png",
@@ -33,14 +23,14 @@
       "place_id": 352161983
     },
     {
-      "name": "Chaddesley Corbett",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4358&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4358.png",
-      "address": "Chaddesley Corbett R.F.C. Chaddesley Corbett Sports Club Fox Lane Chaddesley Corbett WORCESTERSHIRE DY10 4RH UNITED KINGDOM ",
-      "latitude": 52.35476,
-      "longitude": -2.17042,
-      "formatted_address": "DY10 4RH, Chaddesley Corbett, Wyre Forest, Worcestershire, England, United Kingdom",
-      "place_id": 351202188
+      "name": "Malvern II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13209&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13209.png",
+      "address": "Malvern Rfc, Spring Lane, Malvern Link, Worcestershire , WR14 1AJ, United Kingdom",
+      "latitude": 52.1269617,
+      "longitude": -2.3075001,
+      "formatted_address": "WR14 1AJ, Malvern, Malvern Hills, Worcestershire, England, United Kingdom",
+      "place_id": 350893965
     },
     {
       "name": "Stourport",
@@ -53,14 +43,14 @@
       "place_id": 351203494
     },
     {
-      "name": "Tenbury",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21817&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21817.png",
-      "address": "Penlu  Worcester Road Tenbury Wells WORCESTERSHIRE WR15 8AP UNITED KINGDOM ",
-      "latitude": 52.3151303,
-      "longitude": -2.5901565,
-      "formatted_address": "WR15 8AP, Burford, Shropshire, England, United Kingdom",
-      "place_id": 350894078
+      "name": "Chaddesley Corbett",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4358&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4358.png",
+      "address": "Chaddesley Corbett R.F.C. Chaddesley Corbett Sports Club Fox Lane Chaddesley Corbett WORCESTERSHIRE DY10 4RH UNITED KINGDOM ",
+      "latitude": 52.35476,
+      "longitude": -2.17042,
+      "formatted_address": "DY10 4RH, Chaddesley Corbett, Wyre Forest, Worcestershire, England, United Kingdom",
+      "place_id": 351202188
     },
     {
       "name": "Old Halesonians II",
@@ -71,6 +61,16 @@
       "longitude": -2.1106772,
       "formatted_address": "DY9 9JP, Hagley, Bromsgrove, Worcestershire, England, United Kingdom",
       "place_id": 351210321
+    },
+    {
+      "name": "Tenbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21817&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21817.png",
+      "address": "Penlu  Worcester Road Tenbury Wells WORCESTERSHIRE WR15 8AP UNITED KINGDOM ",
+      "latitude": 52.3151303,
+      "longitude": -2.5901565,
+      "formatted_address": "WR15 8AP, Burford, Shropshire, England, United Kingdom",
+      "place_id": 350894078
     },
     {
       "name": "Bromsgrove III",
@@ -91,17 +91,7 @@
       "longitude": -1.9553051,
       "formatted_address": "B97 4SP, Redditch, Worcestershire, England, United Kingdom",
       "place_id": 350489490
-    },
-    {
-      "name": "Stourbridge III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21149&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21149.png",
-      "address": "Stourbridge Rugby Football Club Ltd, Stourton Park, Bridgnorth Road, Stourton , Stourbridge, West Midlands, DY7 6QZ, United Kingdom",
-      "latitude": 52.4595,
-      "longitude": -2.18182,
-      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
-      "place_id": 351208627
     }
   ],
-  "team_count": 10
+  "team_count": 9
 }

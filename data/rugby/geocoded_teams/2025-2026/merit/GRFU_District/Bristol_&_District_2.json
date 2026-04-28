@@ -33,26 +33,6 @@
       "place_id": 351016350
     },
     {
-      "name": "Kingswood II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11693",
-      "image_url": "https://images.englandrugby.com/club_images/11693.png",
-      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
-      "latitude": 51.4598082,
-      "longitude": -2.4862962,
-      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350507212
-    },
-    {
-      "name": "Avonmouth OB III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1087",
-      "image_url": "https://images.englandrugby.com/club_images/1087.png",
-      "address": "Barracks Lane Avonmouth Bristol BS11 9NG United Kingdom",
-      "latitude": 51.4966619,
-      "longitude": -2.682831,
-      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
-      "place_id": 259045915
-    },
-    {
       "name": "Bristol Harlequins II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3263",
       "image_url": "https://images.englandrugby.com/club_images/3263.png",
@@ -73,6 +53,16 @@
       "place_id": 350519395
     },
     {
+      "name": "Avonmouth OB III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1087",
+      "image_url": "https://images.englandrugby.com/club_images/1087.png",
+      "address": "Barracks Lane Avonmouth Bristol BS11 9NG United Kingdom",
+      "latitude": 51.4966619,
+      "longitude": -2.682831,
+      "formatted_address": "Barracks Lane, Shirehampton, Bristol, City of Bristol, West of England, England, BS11 9NG, United Kingdom",
+      "place_id": 259045915
+    },
+    {
       "name": "Frampton Cotterell III",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8293",
       "image_url": "https://images.englandrugby.com/club_images/8293.png",
@@ -81,6 +71,16 @@
       "longitude": -2.4934977,
       "formatted_address": "BS36 2DA, Frampton Cotterell, South Gloucestershire, West of England, England, United Kingdom",
       "place_id": 350515842
+    },
+    {
+      "name": "Kingswood II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11693",
+      "image_url": "https://images.englandrugby.com/club_images/11693.png",
+      "address": "Kingswood Rfc, Grimsbury Road Playing Fields, Grimsbury Road, Kingswood, Bristol, BS15 9RA, England",
+      "latitude": 51.4598082,
+      "longitude": -2.4862962,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350507212
     }
   ],
   "team_count": 8

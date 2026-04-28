@@ -23,14 +23,14 @@
       "place_id": 253943292
     },
     {
-      "name": "Hartlepool Rovers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9567&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9567.png",
-      "address": "The Friarage, Low Warren, Westview Road, Hartlepool, Ctydur, TS24 0BP, United Kingdom",
-      "latitude": 54.7059315,
-      "longitude": -1.2107166,
-      "formatted_address": "TS24 0BP, Hartlepool, Tees Valley, England, United Kingdom",
-      "place_id": 350869168
+      "name": "Whitley Bay Rockcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25300&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25300.png",
+      "address": "Hillheads, Lovaine Avenue, Whitley Bay, Tyne And Wear, NE25 8RW, United Kingdom",
+      "latitude": 55.0375574,
+      "longitude": -1.4491323,
+      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
+      "place_id": 350711110
     },
     {
       "name": "Westoe",
@@ -43,16 +43,6 @@
       "place_id": 350711980
     },
     {
-      "name": "North Shields",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14784&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14784.png",
-      "address": "North Shields R.f.c., Preston Playing Fields, Preston Village, North Shields, Tyne And Wear, NE29 9ND, United Kingdom",
-      "latitude": 55.02074,
-      "longitude": -1.4564,
-      "formatted_address": "NE29 9ND, North Tyneside, North East, England, United Kingdom",
-      "place_id": 351625772
-    },
-    {
       "name": "Jarrovians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11078&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/11078.png",
@@ -63,24 +53,14 @@
       "place_id": 253817836
     },
     {
-      "name": "Whitley Bay Rockcliff",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25300&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25300.png",
-      "address": "Hillheads, Lovaine Avenue, Whitley Bay, Tyne And Wear, NE25 8RW, United Kingdom",
-      "latitude": 55.0375574,
-      "longitude": -1.4491323,
-      "formatted_address": "NE25 8RW, North Tyneside, North East, England, United Kingdom",
-      "place_id": 350711110
-    },
-    {
-      "name": "Ashington",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=899&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/899.png",
-      "address": "Recreation Ground Ellington Road Ashington NORTHUMBERLAND NE63 8TP UNITED KINGDOM ",
-      "latitude": 55.1859193,
-      "longitude": -1.5957141,
-      "formatted_address": "NE63 8TP, Portland, Ashington, Northumberland, North East, England, United Kingdom",
-      "place_id": 351639439
+      "name": "Hartlepool Rovers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9567&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9567.png",
+      "address": "The Friarage, Low Warren, Westview Road, Hartlepool, Ctydur, TS24 0BP, United Kingdom",
+      "latitude": 54.7059315,
+      "longitude": -1.2107166,
+      "formatted_address": "TS24 0BP, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 350869168
     },
     {
       "name": "Sedgefield",
@@ -91,6 +71,26 @@
       "longitude": -1.4574134,
       "formatted_address": "TS21 2BY, Sedgefield, County Durham, North East, England, United Kingdom",
       "place_id": 352084749
+    },
+    {
+      "name": "North Shields",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14784&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14784.png",
+      "address": "North Shields R.f.c., Preston Playing Fields, Preston Village, North Shields, Tyne And Wear, NE29 9ND, United Kingdom",
+      "latitude": 55.02074,
+      "longitude": -1.4564,
+      "formatted_address": "NE29 9ND, North Tyneside, North East, England, United Kingdom",
+      "place_id": 351625772
+    },
+    {
+      "name": "Ashington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=899&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/899.png",
+      "address": "Recreation Ground Ellington Road Ashington NORTHUMBERLAND NE63 8TP UNITED KINGDOM ",
+      "latitude": 55.1859193,
+      "longitude": -1.5957141,
+      "formatted_address": "NE63 8TP, Portland, Ashington, Northumberland, North East, England, United Kingdom",
+      "place_id": 351639439
     },
     {
       "name": "Redcar",

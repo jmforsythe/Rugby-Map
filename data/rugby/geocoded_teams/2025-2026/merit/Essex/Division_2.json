@@ -13,16 +13,6 @@
       "place_id": 351212127
     },
     {
-      "name": "Rochford Hundred II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17908",
-      "image_url": "https://images.englandrugby.com/club_images/17908.png",
-      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
-      "latitude": 51.59684,
-      "longitude": 0.68541,
-      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
-      "place_id": 351982899
-    },
-    {
       "name": "Thames",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21878",
       "image_url": "https://images.englandrugby.com/club_images/21878.png",
@@ -31,6 +21,16 @@
       "longitude": 0.2726188,
       "formatted_address": "Garron Lane, South Ockendon, Thurrock, Essex, England, RM15 5HS, United Kingdom",
       "place_id": 90948359
+    },
+    {
+      "name": "Rochford Hundred II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17908",
+      "image_url": "https://images.englandrugby.com/club_images/17908.png",
+      "address": "Rochford Hundred Rfc, The Rugby Park, , Magnolia Road,, Rochford,, Essex, SS4 3AD, United Kingdom",
+      "latitude": 51.59684,
+      "longitude": 0.68541,
+      "formatted_address": "SS4 3AD, Hawkwell, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982899
     },
     {
       "name": "Runwell Wyverns",
@@ -43,6 +43,16 @@
       "place_id": 351977553
     },
     {
+      "name": "East London II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7164",
+      "image_url": "https://images.englandrugby.com/club_images/7164.png",
+      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
+      "latitude": 51.5291918,
+      "longitude": 0.0102751,
+      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
+      "place_id": 90688992
+    },
+    {
       "name": "Bancroft",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1295",
       "image_url": "https://images.englandrugby.com/club_images/1295.png",
@@ -53,14 +63,14 @@
       "place_id": 351389783
     },
     {
-      "name": "East London II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7164",
-      "image_url": "https://images.englandrugby.com/club_images/7164.png",
-      "address": "71 Holland Road West Ham London E15 3BP United Kingdom",
-      "latitude": 51.5291918,
-      "longitude": 0.0102751,
-      "formatted_address": "East London Rugby Football Club, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
-      "place_id": 90688992
+      "name": "Ilford Wanderers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
+      "image_url": "https://images.englandrugby.com/club_images/10783.png",
+      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
+      "latitude": 51.5988722,
+      "longitude": 0.1005389,
+      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
+      "place_id": 350657114
     },
     {
       "name": "Millwall II",
@@ -81,16 +91,6 @@
       "longitude": 0.17422,
       "formatted_address": "RM7 7AA, London Borough of Havering, Greater London, England, United Kingdom",
       "place_id": 351838315
-    },
-    {
-      "name": "Ilford Wanderers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10783",
-      "image_url": "https://images.englandrugby.com/club_images/10783.png",
-      "address": "IWRFC Sports Ground Forest Road Barkingside Ilford ESSEX IG6 3HJ UNITED KINGDOM",
-      "latitude": 51.5988722,
-      "longitude": 0.1005389,
-      "formatted_address": "IG6 3HJ, London Borough of Redbridge, Greater London, England, United Kingdom",
-      "place_id": 350657114
     },
     {
       "name": "Upminster II",

@@ -23,6 +23,16 @@
       "place_id": 352042941
     },
     {
+      "name": "Stourbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21144&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21144.png",
+      "address": "Stourbridge Rugby Football Club Ltd, Stourton Park, Bridgnorth Road, Stourton , Stourbridge, West Midlands, DY7 6QZ, United Kingdom",
+      "latitude": 52.4595,
+      "longitude": -2.18182,
+      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 351208627
+    },
+    {
       "name": "Newent",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14504&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/14504.png",
@@ -41,26 +51,6 @@
       "longitude": -2.03982,
       "formatted_address": "B60 3DH, Finstall CP, Tutnall, Bromsgrove, Worcestershire, England, United Kingdom",
       "place_id": 350918826
-    },
-    {
-      "name": "Stourbridge",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21144&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21144.png",
-      "address": "Stourbridge Rugby Football Club Ltd, Stourton Park, Bridgnorth Road, Stourton , Stourbridge, West Midlands, DY7 6QZ, United Kingdom",
-      "latitude": 52.4595,
-      "longitude": -2.18182,
-      "formatted_address": "DY7 6QZ, Kinver, South Staffordshire, Staffordshire, England, United Kingdom",
-      "place_id": 351208627
-    },
-    {
-      "name": "Lutterworth",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12958&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12958.png",
-      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
-      "latitude": 52.48131,
-      "longitude": -1.21559,
-      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
-      "place_id": 351475289
     },
     {
       "name": "Lichfield",
@@ -91,6 +81,16 @@
       "longitude": -1.3188274,
       "formatted_address": "OX15 4AF, Bodicote, Cherwell, Oxfordshire, England, United Kingdom",
       "place_id": 350754076
+    },
+    {
+      "name": "Lutterworth",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12958&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12958.png",
+      "address": "Lutterworth R.F.C. Ashby Lane Bitteswell Lutterworth LEICESTERSHIRE LE17 4LW UNITED KINGDOM ",
+      "latitude": 52.48131,
+      "longitude": -1.21559,
+      "formatted_address": "LE17 4LW, Bitteswell with Bittesby, Bitteswell, Harborough, Leicestershire, England, United Kingdom",
+      "place_id": 351475289
     },
     {
       "name": "Drybrook",

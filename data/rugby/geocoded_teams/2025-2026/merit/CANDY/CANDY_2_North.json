@@ -13,16 +13,6 @@
       "place_id": 350713146
     },
     {
-      "name": "Tynedale Hadrians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128168",
-      "image_url": "https://images.englandrugby.com/club_images/128168.png",
-      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
-      "latitude": 54.9685943,
-      "longitude": -2.0186084,
-      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
-      "place_id": 254576070
-    },
-    {
       "name": "Novocastrians 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15171",
       "image_url": "https://images.englandrugby.com/club_images/15171.png",
@@ -43,34 +33,14 @@
       "place_id": 351626964
     },
     {
-      "name": "Alnwick Lions (3rd XV)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=490",
-      "image_url": "https://images.englandrugby.com/club_images/490.png",
-      "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
-      "latitude": 55.40438,
-      "longitude": -1.70158,
-      "formatted_address": "NE66 1BE, Alnwick, Northumberland, North East, England, United Kingdom",
-      "place_id": 351640857
-    },
-    {
-      "name": "Medicals 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13587",
-      "image_url": "https://images.englandrugby.com/club_images/13587.png",
-      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
-      "latitude": 54.9887068,
-      "longitude": -1.5798016,
-      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
-      "place_id": 256752651
-    },
-    {
-      "name": "Ryton 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18472",
-      "image_url": "https://images.englandrugby.com/club_images/18472.png",
-      "address": "Main Road Barmoor Ryton Tyne And Wear NE40 3AG United Kingdom",
-      "latitude": 54.9679607,
-      "longitude": -1.7747145,
-      "formatted_address": "NE40 3AG, Ryton, Gateshead, North East, England, United Kingdom",
-      "place_id": 350712431
+      "name": "Tynedale Hadrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128168",
+      "image_url": "https://images.englandrugby.com/club_images/128168.png",
+      "address": "Station Road Corbridge NE45 5AY UNITED KINGDOM",
+      "latitude": 54.9685943,
+      "longitude": -2.0186084,
+      "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
+      "place_id": 254576070
     },
     {
       "name": "Consett and District 2nd XV",
@@ -83,6 +53,16 @@
       "place_id": 252541782
     },
     {
+      "name": "Alnwick Lions (3rd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=490",
+      "image_url": "https://images.englandrugby.com/club_images/490.png",
+      "address": "Alnwick RUFC Greensfield Greensfield Avenue Alnwick NORTHUMBERLAND NE66 1BE UNITED KINGDOM",
+      "latitude": 55.40438,
+      "longitude": -1.70158,
+      "formatted_address": "NE66 1BE, Alnwick, Northumberland, North East, England, United Kingdom",
+      "place_id": 351640857
+    },
+    {
       "name": "Gateshead II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8512",
       "image_url": "https://images.englandrugby.com/club_images/8512.png",
@@ -93,6 +73,16 @@
       "place_id": 350714283
     },
     {
+      "name": "Ryton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18472",
+      "image_url": "https://images.englandrugby.com/club_images/18472.png",
+      "address": "Main Road Barmoor Ryton Tyne And Wear NE40 3AG United Kingdom",
+      "latitude": 54.9679607,
+      "longitude": -1.7747145,
+      "formatted_address": "NE40 3AG, Ryton, Gateshead, North East, England, United Kingdom",
+      "place_id": 350712431
+    },
+    {
       "name": "Durham City 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6951",
       "image_url": "https://images.englandrugby.com/club_images/6951.png",
@@ -101,6 +91,16 @@
       "longitude": -1.5613055,
       "formatted_address": "DH1 3JU, City of Durham, Durham, County Durham, North East, England, United Kingdom",
       "place_id": 350586188
+    },
+    {
+      "name": "Medicals 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13587",
+      "image_url": "https://images.englandrugby.com/club_images/13587.png",
+      "address": "Cartington Terrace Heaton Newcastle Upon Tyne Tyne And Wear NE6 5QQ United Kingdom",
+      "latitude": 54.9887068,
+      "longitude": -1.5798016,
+      "formatted_address": "Cartington Terrace, Heaton, Newcastle upon Tyne, Tyne and Wear, North East, England, NE6 5QQ, United Kingdom",
+      "place_id": 256752651
     },
     {
       "name": "Ashington II",

@@ -33,6 +33,16 @@
       "place_id": 351542451
     },
     {
+      "name": "Doncaster Demons",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6560.png",
+      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
+      "latitude": 53.5338091,
+      "longitude": -1.0781565,
+      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
+      "place_id": 351183408
+    },
+    {
       "name": "Trafford MV Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123916&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/123916.png",
@@ -53,16 +63,6 @@
       "place_id": 350892601
     },
     {
-      "name": "Doncaster Demons",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6560&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6560.png",
-      "address": "Castle Park Armthorpe Road Doncaster SOUTH YORKSHIRE DN2 5QB UNITED KINGDOM ",
-      "latitude": 53.5338091,
-      "longitude": -1.0781565,
-      "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
-      "place_id": 399475112
-    },
-    {
       "name": "Eccles Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7284&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7284.png",
@@ -71,17 +71,7 @@
       "longitude": -2.3701328,
       "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
       "place_id": 257045139
-    },
-    {
-      "name": "Southport Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19782&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19782.png",
-      "address": "Club House Waterloo Road HIllside Southport. MERSEYSIDE PR8 4QW UNITED KINGDOM ",
-      "latitude": 53.6191699,
-      "longitude": -3.0229499,
-      "formatted_address": "PR8 4QW, Sefton, Liverpool City Region, England, United Kingdom",
-      "place_id": 351804936
     }
   ],
-  "team_count": 8
+  "team_count": 7
 }

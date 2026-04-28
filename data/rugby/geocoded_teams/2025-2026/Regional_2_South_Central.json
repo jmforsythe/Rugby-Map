@@ -23,16 +23,6 @@
       "place_id": 351955241
     },
     {
-      "name": "Old Tiffinians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16068.png",
-      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
-      "latitude": 51.39815,
-      "longitude": -0.34571,
-      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
-      "place_id": 350979304
-    },
-    {
       "name": "Wimborne",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25549&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/25549.png",
@@ -43,14 +33,14 @@
       "place_id": 350975510
     },
     {
-      "name": "Tottonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23023&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/23023.png",
-      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
-      "latitude": 50.9214767,
-      "longitude": -1.5081383,
-      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
-      "place_id": 350831356
+      "name": "Old Tiffinians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16068&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16068.png",
+      "address": "Grist Memorial Ground Summer Road, off Hampton Court Way East Molesey SURREY KT8 9LS UNITED KINGDOM ",
+      "latitude": 51.39815,
+      "longitude": -0.34571,
+      "formatted_address": "KT8 9LS, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 350979304
     },
     {
       "name": "Petersfield",
@@ -63,6 +53,16 @@
       "place_id": 350642411
     },
     {
+      "name": "Tottonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23023&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/23023.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
       "name": "Havant II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9701&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9701.png",
@@ -71,16 +71,6 @@
       "longitude": -0.99329,
       "formatted_address": "PO9 3EJ, Havant, Hampshire, England, United Kingdom",
       "place_id": 351796887
-    },
-    {
-      "name": "Guildford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9045&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9045.png",
-      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
-      "latitude": 51.2002774,
-      "longitude": -0.5902675,
-      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
-      "place_id": 350193498
     },
     {
       "name": "Twickenham",
@@ -101,6 +91,16 @@
       "longitude": -0.6059972,
       "formatted_address": "GU24 8LD, Chobham, Surrey Heath, Surrey, England, United Kingdom",
       "place_id": 350191027
+    },
+    {
+      "name": "Guildford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9045&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9045.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
     },
     {
       "name": "Reeds Weybridge",

@@ -23,16 +23,6 @@
       "place_id": 350175065
     },
     {
-      "name": "Burnley 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3737",
-      "image_url": "https://images.englandrugby.com/club_images/3737.png",
-      "address": "Holden Road, Reedley, Burnley. LANCASHIRE BB10 2LE UNITED KINGDOM ",
-      "latitude": 53.81496,
-      "longitude": -2.23459,
-      "formatted_address": "BB10 2LE, Reedley Hallows, Fence, Pendle, Lancashire, England, United Kingdom",
-      "place_id": 350944241
-    },
-    {
       "name": "Rochdale 3rd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17891",
       "image_url": "https://images.englandrugby.com/club_images/17891.png",
@@ -43,6 +33,16 @@
       "place_id": 351708168
     },
     {
+      "name": "Burnley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3737",
+      "image_url": "https://images.englandrugby.com/club_images/3737.png",
+      "address": "Holden Road, Reedley, Burnley. LANCASHIRE BB10 2LE UNITED KINGDOM ",
+      "latitude": 53.81496,
+      "longitude": -2.23459,
+      "formatted_address": "BB10 2LE, Reedley Hallows, Fence, Pendle, Lancashire, England, United Kingdom",
+      "place_id": 350944241
+    },
+    {
       "name": "Tyldesley 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23370",
       "image_url": "https://images.englandrugby.com/club_images/23370.png",
@@ -51,16 +51,6 @@
       "longitude": -2.4671813,
       "formatted_address": "M29 8HG, Wigan, Greater Manchester, England, United Kingdom",
       "place_id": 351549693
-    },
-    {
-      "name": "Garstang RFC 3rd XV Men",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=126893",
-      "image_url": "https://images.englandrugby.com/club_images/126893.png",
-      "address": "Hudson Park Garstang Sports & Social Club High Street Garstang Preston Lancashire PR3 1EB England",
-      "latitude": 53.9032376,
-      "longitude": -2.7728825,
-      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
-      "place_id": 351349596
     },
     {
       "name": "Bury 3rd XV",
@@ -91,6 +81,16 @@
       "longitude": -2.3921332,
       "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
       "place_id": 350951945
+    },
+    {
+      "name": "Garstang RFC 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=126893",
+      "image_url": "https://images.englandrugby.com/club_images/126893.png",
+      "address": "Hudson Park Garstang Sports & Social Club High Street Garstang Preston Lancashire PR3 1EB England",
+      "latitude": 53.9032376,
+      "longitude": -2.7728825,
+      "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 351349596
     },
     {
       "name": "Aspull 3rd XV",

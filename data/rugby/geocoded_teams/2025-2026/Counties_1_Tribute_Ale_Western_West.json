@@ -23,34 +23,14 @@
       "place_id": 350862697
     },
     {
-      "name": "Kingsbridge",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11610&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11610.png",
-      "address": "High House Derby Road Kingsbridge DEVON TQ7 1JL UNITED KINGDOM ",
-      "latitude": 50.2821644,
-      "longitude": -3.7707274,
-      "formatted_address": "TQ7 1JL, Kingsbridge, West Alvington, South Hams, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350864238
-    },
-    {
-      "name": "St Ives (SW)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20429&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20429.png",
-      "address": "Alexandra Road, St. Ives, Cornw, TR26 1ER, United Kingdom",
-      "latitude": 50.21043,
-      "longitude": -5.49292,
-      "formatted_address": "TR26 1ER, St. Ives, Cornwall, England, United Kingdom",
-      "place_id": 352073872
-    },
-    {
-      "name": "Redruth II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17625&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/17625.png",
-      "address": "Cardrew Lane Redruth TR15 1SY UNITED KINGDOM",
-      "latitude": 50.2384118,
-      "longitude": -5.2288534,
-      "formatted_address": "Cardrew Lane, Redruth, Cornwall, England, TR15 1LU, United Kingdom",
-      "place_id": 262938649
+      "name": "Barnstaple II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1481&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1481.png",
+      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
+      "latitude": 51.0830618,
+      "longitude": -4.0667461,
+      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
+      "place_id": 262081195
     },
     {
       "name": "Truro",
@@ -63,24 +43,14 @@
       "place_id": 350866161
     },
     {
-      "name": "Newton Abbot",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14607&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14607.png",
-      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
-      "latitude": 50.5417908,
-      "longitude": -3.600811,
-      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350858138
-    },
-    {
-      "name": "Barnstaple II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1481&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1481.png",
-      "address": "Pottington Road, Barnstaple, Devon, EX31 1JH, United Kingdom",
-      "latitude": 51.0830618,
-      "longitude": -4.0667461,
-      "formatted_address": "Pottington Road, Pilton, Barnstaple, North Devon, Devon, Devon and Torbay, England, EX31 1JH, United Kingdom",
-      "place_id": 262081195
+      "name": "Redruth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17625&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/17625.png",
+      "address": "Cardrew Lane Redruth TR15 1SY UNITED KINGDOM",
+      "latitude": 50.2384118,
+      "longitude": -5.2288534,
+      "formatted_address": "Cardrew Lane, Redruth, Cornwall, England, TR15 1LU, United Kingdom",
+      "place_id": 262938649
     },
     {
       "name": "Torquay Athletic",
@@ -93,14 +63,34 @@
       "place_id": 350861233
     },
     {
-      "name": "Plymstock Oaks",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16976&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16976.png",
-      "address": "Horsham Fields, Wembury Road, Plymouth, Devon, PL9 0DF, United Kingdom",
-      "latitude": 50.3512721,
-      "longitude": -4.0759156,
-      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
-      "place_id": 350774368
+      "name": "St Ives (SW)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20429&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20429.png",
+      "address": "Alexandra Road, St. Ives, Cornw, TR26 1ER, United Kingdom",
+      "latitude": 50.21043,
+      "longitude": -5.49292,
+      "formatted_address": "TR26 1ER, St. Ives, Cornwall, England, United Kingdom",
+      "place_id": 352073872
+    },
+    {
+      "name": "Kingsbridge",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11610&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11610.png",
+      "address": "High House Derby Road Kingsbridge DEVON TQ7 1JL UNITED KINGDOM ",
+      "latitude": 50.2821644,
+      "longitude": -3.7707274,
+      "formatted_address": "TQ7 1JL, Kingsbridge, West Alvington, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350864238
+    },
+    {
+      "name": "Newton Abbot",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14607&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14607.png",
+      "address": "Newton Abbot R.f.c., Rackerhayes, Rydon Industrial Estate, Newton Road, Kingsteignton, Newton Abbot, Devon, TQ12 3SJ, United Kingdom",
+      "latitude": 50.5417908,
+      "longitude": -3.600811,
+      "formatted_address": "TQ12 3SJ, Kingsteignton, Teignbridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350858138
     },
     {
       "name": "Saltash",
@@ -121,6 +111,16 @@
       "longitude": -5.11452,
       "formatted_address": "TR10 8NT, Penryn, Cornwall, England, United Kingdom",
       "place_id": 352067811
+    },
+    {
+      "name": "Plymstock Oaks",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16976&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16976.png",
+      "address": "Horsham Fields, Wembury Road, Plymouth, Devon, PL9 0DF, United Kingdom",
+      "latitude": 50.3512721,
+      "longitude": -4.0759156,
+      "formatted_address": "PL9 0DF, Brixton, South Hams, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 350774368
     }
   ],
   "team_count": 12

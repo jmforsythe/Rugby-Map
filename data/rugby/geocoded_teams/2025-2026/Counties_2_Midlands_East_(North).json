@@ -23,6 +23,16 @@
       "place_id": 351485394
     },
     {
+      "name": "Scunthorpe II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18840&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18840.png",
+      "address": "Heslam Park, Ashby Road, Scunthorpe, Lincolnshire, DN16 2AG, United Kingdom",
+      "latitude": 53.5768867,
+      "longitude": -0.6540008,
+      "formatted_address": "DN16 2AG, Lincolnshire, North Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350594710
+    },
+    {
       "name": "Melton Mowbray",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13693&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13693.png",
@@ -31,16 +41,6 @@
       "longitude": -0.8773902,
       "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
       "place_id": 406543907
-    },
-    {
-      "name": "Mosborough",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14164.png",
-      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
-      "latitude": 53.3265437,
-      "longitude": -1.3605033,
-      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
-      "place_id": 350801206
     },
     {
       "name": "Loughborough",
@@ -53,26 +53,6 @@
       "place_id": 351470770
     },
     {
-      "name": "Coalville",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5309&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5309.png",
-      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
-      "latitude": 52.72973,
-      "longitude": -1.34399,
-      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
-      "place_id": 351484672
-    },
-    {
-      "name": "Scunthorpe II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18840&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18840.png",
-      "address": "Heslam Park, Ashby Road, Scunthorpe, Lincolnshire, DN16 2AG, United Kingdom",
-      "latitude": 53.5768867,
-      "longitude": -0.6540008,
-      "formatted_address": "DN16 2AG, Lincolnshire, North Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 350594710
-    },
-    {
       "name": "Nottingham Casuals",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15077&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15077.png",
@@ -83,14 +63,24 @@
       "place_id": 350723115
     },
     {
-      "name": "West Bridgford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24734&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24734.png",
-      "address": "The Memorial Ground, Stamford Road, West Bridgford, NOTTINGHAMSHIRE, NG2 6GF, UNITED KINGDOM, ",
-      "latitude": 52.9233965,
-      "longitude": -1.1156935,
-      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
-      "place_id": 351652439
+      "name": "Coalville",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5309&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5309.png",
+      "address": "The Coalville Premier - Memorial Ground, Hall Lane, Whitwick, Coalville, Leicestershire, LE67 5PF, United Kingdom",
+      "latitude": 52.72973,
+      "longitude": -1.34399,
+      "formatted_address": "LE67 5PF, Whitwick, Thringstone, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351484672
+    },
+    {
+      "name": "Mosborough",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14164&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14164.png",
+      "address": "Mosborough Miners Wmc, 22 Station Road, Mosborough, Sheffield, South Yorkshire, S20 5AD, England",
+      "latitude": 53.3265437,
+      "longitude": -1.3605033,
+      "formatted_address": "S20 5AD, Sheffield, South Yorkshire, England, United Kingdom",
+      "place_id": 350801206
     },
     {
       "name": "Tupton",
@@ -101,6 +91,16 @@
       "longitude": -1.41635,
       "formatted_address": "S42 6DW, Tupton, North East Derbyshire, Derbyshire, East Midlands, England, United Kingdom",
       "place_id": 351849813
+    },
+    {
+      "name": "West Bridgford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24734&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24734.png",
+      "address": "The Memorial Ground, Stamford Road, West Bridgford, NOTTINGHAMSHIRE, NG2 6GF, UNITED KINGDOM, ",
+      "latitude": 52.9233965,
+      "longitude": -1.1156935,
+      "formatted_address": "NG2 6GF, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351652439
     },
     {
       "name": "Sleaford",

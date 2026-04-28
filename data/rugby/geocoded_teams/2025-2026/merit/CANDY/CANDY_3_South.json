@@ -23,16 +23,6 @@
       "place_id": 351175744
     },
     {
-      "name": "Barnard Castle 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1378",
-      "image_url": "https://images.englandrugby.com/club_images/1378.png",
-      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM ",
-      "latitude": 54.5425415,
-      "longitude": -1.9196797,
-      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
-      "place_id": 350591888
-    },
-    {
       "name": "Middlesbrough 'A' XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13794",
       "image_url": "https://images.englandrugby.com/club_images/13794.png",
@@ -41,6 +31,16 @@
       "longitude": -1.2515,
       "formatted_address": "TS5 7SL, Middlesbrough, Tees Valley, England, United Kingdom",
       "place_id": 352765479
+    },
+    {
+      "name": "Barnard Castle 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1378",
+      "image_url": "https://images.englandrugby.com/club_images/1378.png",
+      "address": "Barnard Castle RUFC The Clubhouse 7 Birch Road Barnard Castle COUNTY DURHAM DL12 8JR UNITED KINGDOM ",
+      "latitude": 54.5425415,
+      "longitude": -1.9196797,
+      "formatted_address": "DL12 8JR, Barnard Castle, County Durham, North East, England, United Kingdom",
+      "place_id": 350591888
     },
     {
       "name": "Darlington RFC lll",
@@ -81,17 +81,7 @@
       "longitude": -1.0417975,
       "formatted_address": "TS10 3RW, Redcar and Cleveland, Tees Valley, England, United Kingdom",
       "place_id": 351543608
-    },
-    {
-      "name": "Richmondshire II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17795",
-      "image_url": "https://images.englandrugby.com/club_images/17795.png",
-      "address": "The Clubhouse, Theakston Lane, Richmond, North Yorkshire, DL10 4LL, United Kingdom",
-      "latitude": 54.3994665,
-      "longitude": -1.726758,
-      "formatted_address": "DL10 4LL, St. Martin's, Catterick Garrison, North Yorkshire, York and North Yorkshire, England, United Kingdom",
-      "place_id": 350591529
     }
   ],
-  "team_count": 9
+  "team_count": 8
 }

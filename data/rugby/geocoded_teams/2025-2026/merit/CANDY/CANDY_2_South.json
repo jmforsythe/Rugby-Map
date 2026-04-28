@@ -23,26 +23,6 @@
       "place_id": 350592623
     },
     {
-      "name": "Hartlepool B.B.O.B.",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9555",
-      "image_url": "https://images.englandrugby.com/club_images/9555.png",
-      "address": "Hartlepool B.b.o.b. Old Friarage Moor Terrace, Headland Hartlepool County Durham TS24 0PQ United Kingdom",
-      "latitude": 54.6975427,
-      "longitude": -1.1798585,
-      "formatted_address": "TS24 0PQ, Headland, Hartlepool, Tees Valley, England, United Kingdom",
-      "place_id": 351544634
-    },
-    {
-      "name": "Upper Eden Boars (2nd XV)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23816",
-      "image_url": "https://images.englandrugby.com/club_images/23816.png",
-      "address": "Pennine Park Westgarth Rd Kirkby Stephen Cumbria CA17 4TF United Kingdom",
-      "latitude": 54.4707847,
-      "longitude": -2.355303,
-      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
-      "place_id": 351202780
-    },
-    {
       "name": "Darlington II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6103",
       "image_url": "https://images.englandrugby.com/club_images/6103.png",
@@ -63,6 +43,16 @@
       "place_id": 352085948
     },
     {
+      "name": "Hartlepool B.B.O.B.",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9555",
+      "image_url": "https://images.englandrugby.com/club_images/9555.png",
+      "address": "Hartlepool B.b.o.b. Old Friarage Moor Terrace, Headland Hartlepool County Durham TS24 0PQ United Kingdom",
+      "latitude": 54.6975427,
+      "longitude": -1.1798585,
+      "formatted_address": "TS24 0PQ, Headland, Hartlepool, Tees Valley, England, United Kingdom",
+      "place_id": 351544634
+    },
+    {
       "name": "Stockton Saracens",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21041",
       "image_url": "https://images.englandrugby.com/club_images/21041.png",
@@ -71,6 +61,16 @@
       "longitude": -1.33826,
       "formatted_address": "TS18 4JF, Stockton-on-Tees, Tees Valley, England, United Kingdom",
       "place_id": 352082792
+    },
+    {
+      "name": "Upper Eden Boars (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23816",
+      "image_url": "https://images.englandrugby.com/club_images/23816.png",
+      "address": "Pennine Park Westgarth Rd Kirkby Stephen Cumbria CA17 4TF United Kingdom",
+      "latitude": 54.4707847,
+      "longitude": -2.355303,
+      "formatted_address": "CA17 4TF, Kirkby Stephen, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351202780
     },
     {
       "name": "Hartlepool II",

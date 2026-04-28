@@ -23,16 +23,6 @@
       "place_id": 350630373
     },
     {
-      "name": "Drybrook III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6837",
-      "image_url": "https://images.englandrugby.com/club_images/6837.png",
-      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
-      "latitude": 51.8578396,
-      "longitude": -2.5092292,
-      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
-      "place_id": 261364074
-    },
-    {
       "name": "Berry Hill II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2029",
       "image_url": "https://images.englandrugby.com/club_images/2029.png",
@@ -41,6 +31,16 @@
       "longitude": -2.613527,
       "formatted_address": "GL16 7QT, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
       "place_id": 350630751
+    },
+    {
+      "name": "Drybrook III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6837",
+      "image_url": "https://images.englandrugby.com/club_images/6837.png",
+      "address": "Mannings Ground, High Street, Drybrook, Gloucestershire, GL17 9EU, United Kingdom",
+      "latitude": 51.8578396,
+      "longitude": -2.5092292,
+      "formatted_address": "Drybrook Rugby Football Club, High Street, Harrow Hill, Drybrook, Forest of Dean, Gloucestershire, England, GL17 9EU, United Kingdom",
+      "place_id": 261364074
     },
     {
       "name": "Gloucester Old Boys II",

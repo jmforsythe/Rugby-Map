@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=66811&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Fylde Vandals (4th XV)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8446",
-      "image_url": "https://images.englandrugby.com/club_images/8446.png",
-      "address": "Woodlands Memorial Ground, Blackpool Rd, Lytham St Annes, Lytham Saint Annes FY8 4EL, United Kingdom",
-      "latitude": 53.746121,
-      "longitude": -2.9878254,
-      "formatted_address": "FY8 4EL, Fylde, Lancashire, England, United Kingdom",
-      "place_id": 350625913
-    },
-    {
       "name": "Kendal 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11241",
       "image_url": "https://images.englandrugby.com/club_images/11241.png",
@@ -21,6 +11,13 @@
       "longitude": -2.7351666,
       "formatted_address": "LA9 6NY, Kendal, Westmorland and Furness, England, United Kingdom",
       "place_id": 350681165
+    },
+    {
+      "name": "Fylde Vandals (4th XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8446",
+      "image_url": "https://images.englandrugby.com/club_images/8446.png",
+      "address": null,
+      "error": "no_address"
     },
     {
       "name": "Kirkby Lonsdale RUFC Development XV",
@@ -53,26 +50,6 @@
       "place_id": 352152290
     },
     {
-      "name": "Aspull Development XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127668",
-      "image_url": "https://images.englandrugby.com/club_images/127668.png",
-      "address": "Aspull Rugby Club Woods Road, Aspull, Wigan. LANCASHIRE WN21PJ UNITED KINGDOM",
-      "latitude": 53.56447,
-      "longitude": -2.58729,
-      "formatted_address": "WN2 1PJ, Wigan, Greater Manchester, England, United Kingdom",
-      "place_id": 351701161
-    },
-    {
-      "name": "Tarleton 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21658",
-      "image_url": "https://images.englandrugby.com/club_images/21658.png",
-      "address": "Tarleton RFC Carr Lane, Tarleton, Preston. PR4 6BT UNITED KINGDOM",
-      "latitude": 53.6840411,
-      "longitude": -2.8347994,
-      "formatted_address": "PR4 6BT, Tarleton, Mere Brow, West Lancashire, Lancashire, England, United Kingdom",
-      "place_id": 350780520
-    },
-    {
       "name": "Liverpool St Helens 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12442",
       "image_url": "https://images.englandrugby.com/club_images/12442.png",
@@ -83,6 +60,16 @@
       "place_id": 352124822
     },
     {
+      "name": "Aspull Development XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127668",
+      "image_url": "https://images.englandrugby.com/club_images/127668.png",
+      "address": "Aspull Rugby Club Woods Road, Aspull, Wigan. LANCASHIRE WN21PJ UNITED KINGDOM",
+      "latitude": 53.56447,
+      "longitude": -2.58729,
+      "formatted_address": "WN2 1PJ, Wigan, Greater Manchester, England, United Kingdom",
+      "place_id": 351701161
+    },
+    {
       "name": "Littleborough 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12374",
       "image_url": "https://images.englandrugby.com/club_images/12374.png",
@@ -91,6 +78,16 @@
       "longitude": -2.08514,
       "formatted_address": "OL15 0AP, Rochdale, Greater Manchester, England, United Kingdom",
       "place_id": 351710750
+    },
+    {
+      "name": "Tarleton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21658",
+      "image_url": "https://images.englandrugby.com/club_images/21658.png",
+      "address": "Tarleton RFC Carr Lane, Tarleton, Preston. PR4 6BT UNITED KINGDOM",
+      "latitude": 53.6840411,
+      "longitude": -2.8347994,
+      "formatted_address": "PR4 6BT, Tarleton, Mere Brow, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 350780520
     },
     {
       "name": "Preston Grasshoppers 3rd XV",

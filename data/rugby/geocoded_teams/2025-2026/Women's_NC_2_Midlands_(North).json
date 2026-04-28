@@ -13,16 +13,6 @@
       "place_id": 350594710
     },
     {
-      "name": "Mellish Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13671&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13671.png",
-      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
-      "latitude": 53.0091092,
-      "longitude": -1.1009749,
-      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
-      "place_id": 350719287
-    },
-    {
       "name": "Mansfield Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123868&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/123868.png",
@@ -31,6 +21,16 @@
       "longitude": -1.1253882,
       "formatted_address": "NG18 3EW, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
       "place_id": 350717341
+    },
+    {
+      "name": "Mellish Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13671&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13671.png",
+      "address": "Mellish RFC Ltd The Memorial Ground Mapperley Plains Arnold Nottingham NOTTINGHAMSHIRE NG3 5RX UNITED KINGDOM ",
+      "latitude": 53.0091092,
+      "longitude": -1.1009749,
+      "formatted_address": "NG3 5RX, Gedling, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350719287
     },
     {
       "name": "Boston Ladies",
@@ -43,16 +43,6 @@
       "place_id": 350760887
     },
     {
-      "name": "Kesteven Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11312&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11312.png",
-      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
-      "latitude": 52.890697,
-      "longitude": -0.5950534,
-      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 350718958
-    },
-    {
       "name": "Hull Ionian Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10640&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/10640.png",
@@ -63,6 +53,16 @@
       "place_id": 351374888
     },
     {
+      "name": "Kesteven Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11312&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11312.png",
+      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
+      "latitude": 52.890697,
+      "longitude": -0.5950534,
+      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350718958
+    },
+    {
       "name": "Newark Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127797&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/127797.png",
@@ -71,17 +71,7 @@
       "longitude": -0.82701,
       "formatted_address": "NG24 1WN, Newark, Newark on Trent, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
       "place_id": 351655877
-    },
-    {
-      "name": "Amber Valley Tigers Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=564&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/564.png",
-      "address": "Amber Valley Rugby Club, Pye Bridge, Lower Somercotes, Alfreton, DE55 4PD, United Kingdom",
-      "latitude": 53.0736151,
-      "longitude": -1.352606,
-      "formatted_address": "DE55 4PD, Somercotes CP, Amber Valley, Derbyshire, East Midlands, England, United Kingdom",
-      "place_id": 351153942
     }
   ],
-  "team_count": 8
+  "team_count": 7
 }

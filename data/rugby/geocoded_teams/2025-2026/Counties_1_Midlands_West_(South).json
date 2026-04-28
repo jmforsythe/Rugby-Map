@@ -13,16 +13,6 @@
       "place_id": 352161983
     },
     {
-      "name": "Camp Hill",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4063&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4063.png",
-      "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
-      "latitude": 52.4112632,
-      "longitude": -1.8343111,
-      "formatted_address": "B90 2EF, Solihull, West Midlands, England, United Kingdom",
-      "place_id": 350486022
-    },
-    {
       "name": "Alcester",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=368&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/368.png",
@@ -33,24 +23,14 @@
       "place_id": 350479269
     },
     {
-      "name": "Bromyard",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3466&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3466.png",
-      "address": "Clive Richards Sports Ground Tenbury Road Bromyard HEREFORDSHIRE HR7 4LW UNITED KINGDOM",
-      "latitude": 52.19124,
-      "longitude": -2.5090843,
-      "formatted_address": "HR7 4LW, Bromyard and Winslow, Herefordshire, England, United Kingdom",
-      "place_id": 350651176
-    },
-    {
-      "name": "Earlsdon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7088&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7088.png",
-      "address": "R. F. Brown Pavillion Mitchell Avenue Canley Canley Coventry West Midlands CV4 8DY United Kingdom",
-      "latitude": 52.3898274,
-      "longitude": -1.5710019,
-      "formatted_address": "CV4 8DY, Coventry, West Midlands, England, United Kingdom",
-      "place_id": 350566232
+      "name": "Camp Hill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4063&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4063.png",
+      "address": "Camp Hill RFC Haslucks Green Road Shirley Solihull WEST MIDLANDS B90 2EF UNITED KINGDOM ",
+      "latitude": 52.4112632,
+      "longitude": -1.8343111,
+      "formatted_address": "B90 2EF, Solihull, West Midlands, England, United Kingdom",
+      "place_id": 350486022
     },
     {
       "name": "Ledbury",
@@ -73,6 +53,26 @@
       "place_id": 258632014
     },
     {
+      "name": "Bromyard",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3466&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3466.png",
+      "address": "Clive Richards Sports Ground Tenbury Road Bromyard HEREFORDSHIRE HR7 4LW UNITED KINGDOM",
+      "latitude": 52.19124,
+      "longitude": -2.5090843,
+      "formatted_address": "HR7 4LW, Bromyard and Winslow, Herefordshire, England, United Kingdom",
+      "place_id": 350651176
+    },
+    {
+      "name": "Earlsdon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7088&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7088.png",
+      "address": "R. F. Brown Pavillion Mitchell Avenue Canley Canley Coventry West Midlands CV4 8DY United Kingdom",
+      "latitude": 52.3898274,
+      "longitude": -1.5710019,
+      "formatted_address": "CV4 8DY, Coventry, West Midlands, England, United Kingdom",
+      "place_id": 350566232
+    },
+    {
       "name": "Leamington",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11942&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/11942.png",
@@ -83,16 +83,6 @@
       "place_id": 351119215
     },
     {
-      "name": "Old Leamingtonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15805.png",
-      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
-      "latitude": 52.32242,
-      "longitude": -1.54291,
-      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
-      "place_id": 351119196
-    },
-    {
       "name": "Manor Park",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13292&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13292.png",
@@ -101,6 +91,16 @@
       "longitude": -1.48682,
       "formatted_address": "CV10 7HQ, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
       "place_id": 351111535
+    },
+    {
+      "name": "Old Leamingtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15805&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15805.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
     },
     {
       "name": "Kidderminster",

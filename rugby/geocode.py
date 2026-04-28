@@ -297,6 +297,8 @@ def process_address_file(
     season: str,
     max_workers: int = 10,
     api_retries: int = 3,
+    *,
+    force: bool = False,
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
     global teams_without_geocodes
@@ -307,7 +309,7 @@ def process_address_file(
     # Mirror subdirectory structure (e.g. merit/) from team_addresses to geocoded_teams
     relative = address_file_path.relative_to(address_dir)
     output_file = DATA_DIR / "geocoded_teams" / season / relative
-    if output_file.exists():
+    if output_file.exists() and not force:
         print("  Skipping - already geocoded")
         return
 
@@ -380,7 +382,7 @@ def process_address_file(
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
 
-    print(f"✓ Saved to: {output_file}")
+    print(f"[ok] Saved to: {output_file}")
     print(f"  Successfully geocoded: {success_count}/{len(geocoded_teams)}")
 
 
@@ -404,6 +406,11 @@ def main() -> None:
         "--api-retries", type=int, default=3, help="Retries for transient failures (default: 3)"
     )
     parser.add_argument("--league", type=str, default=None, help="Process only a single league")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-geocode even if geocoded_teams JSON already exists",
+    )
     args = parser.parse_args()
 
     season = args.season
@@ -448,6 +455,7 @@ def main() -> None:
                 season,
                 max_workers=args.workers,
                 api_retries=args.api_retries,
+                force=args.force,
             )
         except KeyboardInterrupt:
             print("\n\n✗ Interrupted by user")
@@ -478,7 +486,7 @@ def main() -> None:
                 print(f"    URL: {team_url}")
         print(f"{"="*80}")
     else:
-        print("\n✓ All teams geocoded!")
+        print("\n[ok] All teams geocoded!")
 
 
 if __name__ == "__main__":

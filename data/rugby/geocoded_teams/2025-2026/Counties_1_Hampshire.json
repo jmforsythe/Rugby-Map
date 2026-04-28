@@ -13,16 +13,6 @@
       "place_id": 351787815
     },
     {
-      "name": "Winchester II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25576&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25576.png",
-      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
-      "latitude": 51.0704306,
-      "longitude": -1.3104807,
-      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
-      "place_id": 351955241
-    },
-    {
       "name": "Portsmouth",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17112&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17112.png",
@@ -43,16 +33,6 @@
       "place_id": 260114707
     },
     {
-      "name": "Chichester",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4753.png",
-      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
-      "latitude": 50.8473782,
-      "longitude": -0.7772478,
-      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
-      "place_id": 261915596
-    },
-    {
       "name": "Andover",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=657&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/657.png",
@@ -61,6 +41,26 @@
       "longitude": -1.49904,
       "formatted_address": "SP11 0TA, Charlton, Test Valley, Hampshire, England, United Kingdom",
       "place_id": 351963834
+    },
+    {
+      "name": "Sandown & Shanklin",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18708.png",
+      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
+      "latitude": 50.6561004,
+      "longitude": -1.1652962,
+      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
+      "place_id": 350777134
+    },
+    {
+      "name": "Chichester",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4753&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4753.png",
+      "address": "Oaklands Park Wellington Road Chichester Sussex PO19 6BB United Kingdom",
+      "latitude": 50.8473782,
+      "longitude": -0.7772478,
+      "formatted_address": "Chichester Rugby Football Club, Wellington Road, East Broyle, Chichester, West Sussex, England, PO19 6BB, United Kingdom",
+      "place_id": 261915596
     },
     {
       "name": "Bournemouth II",
@@ -73,6 +73,16 @@
       "place_id": 350978295
     },
     {
+      "name": "Winchester II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25576&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25576.png",
+      "address": "Winchester Rfc Ltd, North Walls Park (off Nuns Walk), Winchester, Hampshire, SO23 7EF, United Kingdom",
+      "latitude": 51.0704306,
+      "longitude": -1.3104807,
+      "formatted_address": "SO23 7EF, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955241
+    },
+    {
       "name": "Millbrook",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13878&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13878.png",
@@ -81,16 +91,6 @@
       "longitude": -1.4702939,
       "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
       "place_id": 350827854
-    },
-    {
-      "name": "Sandown & Shanklin",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18708&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18708.png",
-      "address": "The Clubhouse Station Approach Sandown PO36 9ES United Kingdom",
-      "latitude": 50.6561004,
-      "longitude": -1.1652962,
-      "formatted_address": "PO36 9ES, Lake, Isle of Wight, England, United Kingdom",
-      "place_id": 350777134
     },
     {
       "name": "Gosport & Fareham",

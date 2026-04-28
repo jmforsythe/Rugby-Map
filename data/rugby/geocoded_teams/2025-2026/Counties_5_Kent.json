@@ -13,14 +13,24 @@
       "place_id": 91315466
     },
     {
+      "name": "Sidcup III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19316&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19316.png",
+      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
+      "latitude": 51.425832,
+      "longitude": 0.092888,
+      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 351138781
+    },
+    {
       "name": "Old Elthamians II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15659&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15659.png",
       "address": "Queen Mary Sports Ground (east Ground), Perry Street, Chislehurst, BR7 6HB, England",
-    "latitude": 51.4174891,
-    "longitude": 0.0849123,
-    "formatted_address": "Queen Mary Sports Ground, Chislehurst, London Borough of Bromley, Greater London, England, BR7 6HA, United Kingdom",
-    "place_id": 91423653
+      "latitude": 51.4174891,
+      "longitude": 0.0849123,
+      "formatted_address": "Queen Mary Sports Ground, Chislehurst, London Borough of Bromley, Greater London, England, BR7 6HA, United Kingdom",
+      "place_id": 91423653
     },
     {
       "name": "Edenbridge",
@@ -33,24 +43,14 @@
       "place_id": 352064827
     },
     {
-      "name": "Sidcup III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19316&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19316.png",
-      "address": "Crescent Farm Sydney Road SIDCUP KENT DA14 6RA UNITED KINGDOM ",
-      "latitude": 51.425832,
-      "longitude": 0.092888,
-      "formatted_address": "DA14 6RA, London Borough of Bexley, Greater London, England, United Kingdom",
-      "place_id": 351138781
-    },
-    {
       "name": "Askean",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=974&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/974.png",
       "address": "Charlton Road, London, SE7 7EY, United Kingdom",
-      "latitude": 51.6368146,
-      "longitude": -0.0393038,
-      "formatted_address": "Charlton Road, Ponders End, London Borough of Enfield, Greater London, England, N9 8EX, United Kingdom",
-      "place_id": 257710562
+      "latitude": 51.4796237,
+      "longitude": 0.0302015,
+      "formatted_address": "Royal Mail, Charlton Road, Blackheath Royal Standard, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 7EY, United Kingdom",
+      "place_id": 91477105
     },
     {
       "name": "Old Alleynians III",
@@ -63,16 +63,6 @@
       "place_id": 351899114
     },
     {
-      "name": "Beccehamians II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1764&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1764.png",
-      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
-      "latitude": 51.3706559,
-      "longitude": -0.0087608,
-      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504286
-    },
-    {
       "name": "Lordswood",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12799&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12799.png",
@@ -83,6 +73,16 @@
       "place_id": 350701886
     },
     {
+      "name": "Beccehamians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1764&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1764.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM ",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
       "name": "Park House II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16584&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16584.png",
@@ -91,16 +91,6 @@
       "longitude": 0.0262456,
       "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
       "place_id": 350504076
-    },
-    {
-      "name": "Greenwich",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8954&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/8954.png",
-      "address": "The Pavilion Old Mill Road Old Mill Road London SE18 1QJ UNITED KINGDOM ",
-      "latitude": 51.4820927,
-      "longitude": 0.0834451,
-      "formatted_address": "SE18 1QJ, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 351895794
     },
     {
       "name": "Bromley III",
@@ -123,5 +113,5 @@
       "place_id": 351563999
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

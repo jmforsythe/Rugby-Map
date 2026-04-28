@@ -43,16 +43,6 @@
       "place_id": 350513226
     },
     {
-      "name": "Old Centralians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15531&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15531.png",
-      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
-      "latitude": 51.8444663,
-      "longitude": -2.2201721,
-      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
-      "place_id": 350181524
-    },
-    {
       "name": "Newbury Blues",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14433&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/14433.png",
@@ -63,14 +53,14 @@
       "place_id": 351808599
     },
     {
-      "name": "Longlevens",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12742&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12742.png",
-      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
-      "latitude": 51.8789831,
-      "longitude": -2.2203363,
-      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
-      "place_id": 350631507
+      "name": "Old Centralians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15531&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15531.png",
+      "address": "Old Centralians RFC Saintbridge Sports Centre Painswick Road Gloucester GLOUCESTERSHIRE GL4 4QX UNITED KINGDOM ",
+      "latitude": 51.8444663,
+      "longitude": -2.2201721,
+      "formatted_address": "GL4 4QX, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350181524
     },
     {
       "name": "Thornbury",
@@ -81,6 +71,16 @@
       "longitude": -2.5100507,
       "formatted_address": "BS35 1LG, Rockhampton, South Gloucestershire, West of England, England, United Kingdom",
       "place_id": 350064512
+    },
+    {
+      "name": "Longlevens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12742&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12742.png",
+      "address": "Longlevens Rugby Club, Longford Lane, Longlevens, Glos, Gloucestershire, GL2 9EU, United Kingdom",
+      "latitude": 51.8789831,
+      "longitude": -2.2203363,
+      "formatted_address": "GL2 9EU, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 350631507
     },
     {
       "name": "Witney",
@@ -120,7 +120,7 @@
       "latitude": 51.9319533,
       "longitude": -2.065013,
       "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
-      "place_id": 259583358
+      "place_id": 261137594
     }
   ],
   "team_count": 12

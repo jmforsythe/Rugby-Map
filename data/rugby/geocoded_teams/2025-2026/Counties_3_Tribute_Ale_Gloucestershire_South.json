@@ -33,16 +33,6 @@
       "place_id": 259517279
     },
     {
-      "name": "Old Colstonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15560&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15560.png",
-      "address": "Colstons School, Bell Hill, Bristol, Avon, BS16 1BJ, United Kingdom",
-      "latitude": 51.4806811,
-      "longitude": -2.5561547,
-      "formatted_address": "BS16 1BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 350507379
-    },
-    {
       "name": "Ashley Down Old Boys",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=919&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/919.png",
@@ -53,14 +43,14 @@
       "place_id": 350521213
     },
     {
-      "name": "Southmead",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19760&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19760.png",
-      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
-      "latitude": 51.499895,
-      "longitude": -2.6078965,
-      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 350505286
+      "name": "North Bristol",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14661&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14661.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350513558
     },
     {
       "name": "Whitehall",
@@ -73,14 +63,24 @@
       "place_id": 350519395
     },
     {
-      "name": "North Bristol",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14661&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14661.png",
-      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM ",
-      "latitude": 51.548128,
-      "longitude": -2.5712177,
-      "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350513558
+      "name": "Old Colstonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15560&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15560.png",
+      "address": "Colstons School, Bell Hill, Bristol, Avon, BS16 1BJ, United Kingdom",
+      "latitude": 51.4806811,
+      "longitude": -2.5561547,
+      "formatted_address": "BS16 1BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350507379
+    },
+    {
+      "name": "Southmead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19760&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19760.png",
+      "address": "Southmead RFC The Greenway Centre Doncaster Road Southmead. Bristol BRISTOL BS10 5PY UNITED KINGDOM ",
+      "latitude": 51.499895,
+      "longitude": -2.6078965,
+      "formatted_address": "BS10 5PY, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350505286
     },
     {
       "name": "Cotham Park",

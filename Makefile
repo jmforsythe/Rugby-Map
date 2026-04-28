@@ -1,4 +1,6 @@
 SEASON ?= 2025-2026
+# Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
+FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
 .PHONY: help install install-dev boundaries scrape addresses geocode distances maps pages webpages custom-map-data all scrape-fixtures match-day test lint clean
 
@@ -17,6 +19,7 @@ help:
 	@echo "  pages        Generate team pages"
 	@echo "  webpages     Generate index pages"
 	@echo "  all          Run the full pipeline (scrape -> maps)"
+	@echo "  (optional)   FORCE=1 with scrape, addresses, geocode to overwrite outputs"
 	@echo "  scrape-fixtures  Scrape fixtures from RFU (local only)"
 	@echo "  match-day    Generate match-day map with date dropdown"
 	@echo "  custom-map-data  Export team catalogue for custom map builder"
@@ -34,13 +37,13 @@ boundaries:
 	python -m core.boundaries
 
 scrape:
-	python -m rugby.scrape --season $(SEASON)
+	python -m rugby.scrape --season $(SEASON) $(FORCE_FLAG)
 
 addresses:
-	python -m rugby.addresses --season $(SEASON)
+	python -m rugby.addresses --season $(SEASON) $(FORCE_FLAG)
 
 geocode:
-	python -m rugby.geocode --season $(SEASON)
+	python -m rugby.geocode --season $(SEASON) $(FORCE_FLAG)
 
 distances:
 	python -m rugby.distances --season $(SEASON)

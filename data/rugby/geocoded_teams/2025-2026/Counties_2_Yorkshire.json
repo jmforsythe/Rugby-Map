@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=66496&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Bridlington",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3154&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3154.png",
-      "address": "Dukes Park Queens Gate Bridlington EAST RIDING OF YORKSHIRE YO16 7LN UNITED KINGDOM ",
-      "latitude": 54.0903597,
-      "longitude": -0.1973737,
-      "formatted_address": "YO16 7LN, Bridlington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
-      "place_id": 352186394
-    },
-    {
       "name": "Old Otliensians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15870&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15870.png",
@@ -21,6 +11,16 @@
       "longitude": -1.6735092,
       "formatted_address": "LS21 1DY, Otley, West Yorkshire, England, United Kingdom",
       "place_id": 350691059
+    },
+    {
+      "name": "Bridlington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3154&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3154.png",
+      "address": "Dukes Park Queens Gate Bridlington EAST RIDING OF YORKSHIRE YO16 7LN UNITED KINGDOM ",
+      "latitude": 54.0903597,
+      "longitude": -0.1973737,
+      "formatted_address": "YO16 7LN, Bridlington, East Riding of Yorkshire, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 352186394
     },
     {
       "name": "Roundhegians",
@@ -43,6 +43,16 @@
       "place_id": 351346848
     },
     {
+      "name": "Ripon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17840&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/17840.png",
+      "address": "The Clubhouse Mallorie Park Ripon NORTH YORKSHIRE HG4 2QD UNITED KINGDOM ",
+      "latitude": 54.1344505,
+      "longitude": -1.5328343,
+      "formatted_address": "HG4 2QD, Ripon, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 350647229
+    },
+    {
       "name": "Bradford & Bingley",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2918&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2918.png",
@@ -63,6 +73,16 @@
       "place_id": 350959089
     },
     {
+      "name": "Bramley Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3008&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3008.png",
+      "address": "The Warrels Grosmont Terrace Off Warrels Road Bramley Leeds WEST YORKSHIRE LS13 3NY UNITED KINGDOM ",
+      "latitude": 53.811082,
+      "longitude": -1.6337279,
+      "formatted_address": "LS13 3NY, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350689722
+    },
+    {
       "name": "Halifax Vandals",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9222&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9222.png",
@@ -71,16 +91,6 @@
       "longitude": -1.92123,
       "formatted_address": "HX2 7SL, Calderdale, West Yorkshire, England, United Kingdom",
       "place_id": 351381483
-    },
-    {
-      "name": "Ripon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17840&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/17840.png",
-      "address": "The Clubhouse Mallorie Park Ripon NORTH YORKSHIRE HG4 2QD UNITED KINGDOM ",
-      "latitude": 54.1344505,
-      "longitude": -1.5328343,
-      "formatted_address": "HG4 2QD, Ripon, North Yorkshire, York and North Yorkshire, England, United Kingdom",
-      "place_id": 350647229
     },
     {
       "name": "Northallerton",
@@ -101,16 +111,6 @@
       "longitude": -1.8845003,
       "formatted_address": "HX2 8AR, Calderdale, West Yorkshire, England, United Kingdom",
       "place_id": 350655575
-    },
-    {
-      "name": "Bramley Phoenix",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3008&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3008.png",
-      "address": "The Warrels Grosmont Terrace Off Warrels Road Bramley Leeds WEST YORKSHIRE LS13 3NY UNITED KINGDOM ",
-      "latitude": 53.811082,
-      "longitude": -1.6337279,
-      "formatted_address": "LS13 3NY, Leeds, West Yorkshire, England, United Kingdom",
-      "place_id": 350689722
     },
     {
       "name": "Ossett",

@@ -3,26 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=66551&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Cranleigh",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5785&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5785.png",
-      "address": "Cranleigh Rfc, Clubhouse, Wildwood Lane, Cranleigh, Surrey , GU6 8JR, United Kingdom",
-      "latitude": 51.11491,
-      "longitude": -0.50442,
-      "formatted_address": "GU6 8JR, Alfold, Alfold Crossways, Waverley, Surrey, England, United Kingdom",
-      "place_id": 351333911
-    },
-    {
-      "name": "Old Freemens",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15702&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15702.png",
-      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
-      "latitude": 51.3077453,
-      "longitude": -0.2864699,
-      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
-      "place_id": 350671240
-    },
-    {
       "name": "Old Emanuel",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15679&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15679.png",
@@ -31,6 +11,16 @@
       "longitude": -0.2654359,
       "formatted_address": "KT3 5PE, Royal Borough of Kingston upon Thames, Greater London, England, United Kingdom",
       "place_id": 350671595
+    },
+    {
+      "name": "Cranleigh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5785&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5785.png",
+      "address": "Cranleigh Rfc, Clubhouse, Wildwood Lane, Cranleigh, Surrey , GU6 8JR, United Kingdom",
+      "latitude": 51.11491,
+      "longitude": -0.50442,
+      "formatted_address": "GU6 8JR, Alfold, Alfold Crossways, Waverley, Surrey, England, United Kingdom",
+      "place_id": 351333911
     },
     {
       "name": "London Media",
@@ -43,14 +33,14 @@
       "place_id": 350838388
     },
     {
-      "name": "Warlingham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24282&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24282.png",
-      "address": "Warlingham Rugby Football Club  Limpsfield Road Warlingham SURREY CR6 9RB UNITED KINGDOM ",
-      "latitude": 51.31586,
-      "longitude": -0.06236,
-      "formatted_address": "CR6 9RB, Warlingham, Tandridge, Surrey, England, United Kingdom",
-      "place_id": 351097274
+      "name": "Old Freemens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15702&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15702.png",
+      "address": "Old Freemen's Rugby Football Club, City Of London Freemens School, Ashtead Park, Surrey , KT21 1ET, United Kingdom",
+      "latitude": 51.3077453,
+      "longitude": -0.2864699,
+      "formatted_address": "KT21 1ET, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 350671240
     },
     {
       "name": "Staines",
@@ -61,6 +51,16 @@
       "longitude": -0.41309,
       "formatted_address": "TW13 7NB, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352095030
+    },
+    {
+      "name": "Warlingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24282&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24282.png",
+      "address": "Warlingham Rugby Football Club  Limpsfield Road Warlingham SURREY CR6 9RB UNITED KINGDOM ",
+      "latitude": 51.31586,
+      "longitude": -0.06236,
+      "formatted_address": "CR6 9RB, Warlingham, Tandridge, Surrey, England, United Kingdom",
+      "place_id": 351097274
     },
     {
       "name": "Reigate",

@@ -23,16 +23,6 @@
       "place_id": 350689156
     },
     {
-      "name": "Rotherham Phoenix",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18086&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18086.png",
-      "address": "Herringthorpe Playing Fields, Badsley Moor Lane, Rotherham, South Yorkshire, S65 2PX, England",
-      "latitude": 53.42816,
-      "longitude": -1.34046,
-      "formatted_address": "S65 2PX, Rotherham, South Yorkshire, England, United Kingdom",
-      "place_id": 351858539
-    },
-    {
       "name": "West Park Leeds",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24886&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24886.png",
@@ -53,24 +43,14 @@
       "place_id": 350891298
     },
     {
-      "name": "Burley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3679.png",
-      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
-      "latitude": 53.8233843,
-      "longitude": -1.6141636,
-      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
-      "place_id": 350692295
-    },
-    {
-      "name": "Barnsley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1457&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1457.png",
-      "address": "Barnsley Rugby Club Ltd, Shaw Lane, Barnsley, South Yorkshire, S70 6HZ, United Kingdom",
-      "latitude": 53.5502194,
-      "longitude": -1.4929965,
-      "formatted_address": "S70 6HZ, Barnsley, South Yorkshire, England, United Kingdom",
-      "place_id": 351861271
+      "name": "Rotherham Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18086&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18086.png",
+      "address": "Herringthorpe Playing Fields, Badsley Moor Lane, Rotherham, South Yorkshire, S65 2PX, England",
+      "latitude": 53.42816,
+      "longitude": -1.34046,
+      "formatted_address": "S65 2PX, Rotherham, South Yorkshire, England, United Kingdom",
+      "place_id": 351858539
     },
     {
       "name": "Skipton",
@@ -83,14 +63,24 @@
       "place_id": 350494745
     },
     {
-      "name": "Castleford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4305&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4305.png",
-      "address": "Willowbridge Lane, Whitwood, Whitwood, Castleford, West Yorkshire, WF10 5PD, United Kingdom",
-      "latitude": 53.7164491,
-      "longitude": -1.3806454,
-      "formatted_address": "Willowbridge Lane, Hightown, Cutsyke, Whitwood, Wakefield, West Yorkshire, England, WF10 5NL, United Kingdom",
-      "place_id": 257376410
+      "name": "Barnsley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1457&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1457.png",
+      "address": "Barnsley Rugby Club Ltd, Shaw Lane, Barnsley, South Yorkshire, S70 6HZ, United Kingdom",
+      "latitude": 53.5502194,
+      "longitude": -1.4929965,
+      "formatted_address": "S70 6HZ, Barnsley, South Yorkshire, England, United Kingdom",
+      "place_id": 351861271
+    },
+    {
+      "name": "Burley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3679&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3679.png",
+      "address": "The Club House Abbey Road Leeds WEST YORKSHIRE LS5 3NG UNITED KINGDOM ",
+      "latitude": 53.8233843,
+      "longitude": -1.6141636,
+      "formatted_address": "LS5 3NG, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350692295
     },
     {
       "name": "Hornsea",
@@ -103,6 +93,16 @@
       "place_id": 350652703
     },
     {
+      "name": "Castleford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4305&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4305.png",
+      "address": "Willowbridge Lane, Whitwood, Whitwood, Castleford, West Yorkshire, WF10 5PD, United Kingdom",
+      "latitude": 53.7164491,
+      "longitude": -1.3806454,
+      "formatted_address": "Willowbridge Lane, Hightown, Cutsyke, Whitwood, Wakefield, West Yorkshire, England, WF10 5NL, United Kingdom",
+      "place_id": 257376410
+    },
+    {
       "name": "Thornensians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22713&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/22713.png",
@@ -111,17 +111,7 @@
       "longitude": -0.9517743,
       "formatted_address": "DN8 5BU, Thorne, Moorends, Doncaster, South Yorkshire, England, United Kingdom",
       "place_id": 350598506
-    },
-    {
-      "name": "Dearne Valley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128218&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/128218.png",
-      "address": "Dearne Valley Rufc Clubhouse, Vancouver Drive, South Yorkshire, S63 8DT, United Kingdom",
-      "latitude": 53.51847,
-      "longitude": -1.32819,
-      "formatted_address": "S63 8DT, Barnsley, South Yorkshire, England, United Kingdom",
-      "place_id": 351857334
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

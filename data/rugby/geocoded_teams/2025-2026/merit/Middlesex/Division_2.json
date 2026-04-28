@@ -13,16 +13,6 @@
       "place_id": 351682702
     },
     {
-      "name": "Hammersmith & Fulham III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9259",
-      "image_url": "https://images.englandrugby.com/club_images/9259.png",
-      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
-      "latitude": 51.4693873,
-      "longitude": -0.202864,
-      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
-      "place_id": 352015716
-    },
-    {
       "name": "Hampstead 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9292",
       "image_url": "https://images.englandrugby.com/club_images/9292.png",
@@ -31,6 +21,16 @@
       "longitude": -0.1572017,
       "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
       "place_id": 351699934
+    },
+    {
+      "name": "Hammersmith & Fulham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9259",
+      "image_url": "https://images.englandrugby.com/club_images/9259.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
     },
     {
       "name": "Pinner & Grammarians",
@@ -43,31 +43,11 @@
       "place_id": 259660855
     },
     {
-      "name": "Thamesians 2nd XV (Spartans)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21891",
-      "image_url": "https://images.englandrugby.com/club_images/21891.png",
-      "address": "The Pavilion The Green Twickenham Green Twickenham Middlesex TW2 5AG United Kingdom",
-      "latitude": 51.4444827,
-      "longitude": -0.3434994,
-      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350420812
-    },
-    {
       "name": "London Scottish Lions Extra B's",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12613",
       "image_url": "https://images.englandrugby.com/club_images/12613.png",
       "address": null,
       "error": "no_address"
-    },
-    {
-      "name": "Hackney 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
-      "image_url": "https://images.englandrugby.com/club_images/9155.png",
-      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
-      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
-      "place_id": 350607581
     },
     {
       "name": "Wasps 2nds",
@@ -78,6 +58,26 @@
       "longitude": -0.28094,
       "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 352119447
+    },
+    {
+      "name": "Thamesians 2nd XV (Spartans)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21891",
+      "image_url": "https://images.englandrugby.com/club_images/21891.png",
+      "address": "The Pavilion The Green Twickenham Green Twickenham Middlesex TW2 5AG United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350420812
+    },
+    {
+      "name": "Hackney 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
+      "image_url": "https://images.englandrugby.com/club_images/9155.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
     },
     {
       "name": "Hendon",

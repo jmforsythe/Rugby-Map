@@ -13,26 +13,6 @@
       "place_id": 350502212
     },
     {
-      "name": "Burgess Hill II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3660",
-      "image_url": "https://images.englandrugby.com/club_images/3660.png",
-      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
-      "latitude": 50.9591509,
-      "longitude": -0.1513481,
-      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 350345021
-    },
-    {
-      "name": "Ditchling II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6542",
-      "image_url": "https://images.englandrugby.com/club_images/6542.png",
-      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
-      "latitude": 50.92073,
-      "longitude": -0.12822,
-      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 351007600
-    },
-    {
       "name": "St Leonards Cinque Ports",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20545",
       "image_url": "https://images.englandrugby.com/club_images/20545.png",
@@ -41,6 +21,16 @@
       "longitude": 0.559441,
       "formatted_address": "TN37 6QZ, Hastings, East Sussex, England, United Kingdom",
       "place_id": 352736558
+    },
+    {
+      "name": "Burgess Hill II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3660",
+      "image_url": "https://images.englandrugby.com/club_images/3660.png",
+      "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
+      "latitude": 50.9591509,
+      "longitude": -0.1513481,
+      "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350345021
     },
     {
       "name": "Brighton & Sussex Medics",
@@ -61,6 +51,16 @@
       "longitude": 0.1834776,
       "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
       "place_id": 90844484
+    },
+    {
+      "name": "Ditchling II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6542",
+      "image_url": "https://images.englandrugby.com/club_images/6542.png",
+      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
+      "latitude": 50.92073,
+      "longitude": -0.12822,
+      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 351007600
     },
     {
       "name": "Lewes II",

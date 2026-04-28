@@ -13,16 +13,6 @@
       "place_id": 352135686
     },
     {
-      "name": "Chesham Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4601&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4601.png",
-      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
-      "latitude": 51.7231369,
-      "longitude": -0.6484856,
-      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
-      "place_id": 350650498
-    },
-    {
       "name": "Marlow Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13445&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13445.png",
@@ -31,6 +21,16 @@
       "longitude": -0.7569474,
       "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
       "place_id": 257496634
+    },
+    {
+      "name": "Chesham Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4601&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4601.png",
+      "address": "Chartridge Golf Club, Chartridge Lane, Chesham, Buckinghamshire, HP5 2TF, United Kingdom",
+      "latitude": 51.7231369,
+      "longitude": -0.6484856,
+      "formatted_address": "HP5 2TF, Chartridge, Chesham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650498
     },
     {
       "name": "Ruislip RFC Women",

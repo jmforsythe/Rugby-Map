@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66845&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Wasps FC Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24414&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24414.png",
-      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM ",
-      "latitude": 51.50993,
-      "longitude": -0.28094,
-      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
-      "place_id": 352119447
-    },
-    {
       "name": "Eton Manor Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94054&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/94054.png",
@@ -23,14 +13,24 @@
       "place_id": 351212127
     },
     {
-      "name": "Westcliff Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24958&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24958.png",
-      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
-      "latitude": 51.57658,
-      "longitude": 0.6882,
-      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
-      "place_id": 351982828
+      "name": "Wasps FC Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24414&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24414.png",
+      "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM ",
+      "latitude": 51.50993,
+      "longitude": -0.28094,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119447
+    },
+    {
+      "name": "Barnes Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1405&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1405.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
     },
     {
       "name": "Welwyn Ladies",
@@ -43,14 +43,14 @@
       "place_id": 350915715
     },
     {
-      "name": "Barnes Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1405&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1405.png",
-      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
-      "latitude": 51.4749448,
-      "longitude": -0.2332937,
-      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350838987
+      "name": "Westcliff Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24958&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24958.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
     },
     {
       "name": "Bec Belles Ladies",
@@ -73,16 +73,6 @@
       "place_id": 351555535
     },
     {
-      "name": "Thamesians Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21892&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21892.png",
-      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
-      "latitude": 51.4444827,
-      "longitude": -0.3434994,
-      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350871603
-    },
-    {
       "name": "East London Vixens Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7167&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7167.png",
@@ -91,6 +81,16 @@
       "longitude": 0.010343,
       "formatted_address": "Strength Ambassadors, 71, Holland Road, West Ham, London Borough of Newham, Greater London, England, E15 3BP, United Kingdom",
       "place_id": 91270651
+    },
+    {
+      "name": "Thamesians Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21892&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21892.png",
+      "address": "The Pavilion, The Green, Twickenham Green, Twickenham, Middlesex, TW2 5AG, United Kingdom",
+      "latitude": 51.4444827,
+      "longitude": -0.3434994,
+      "formatted_address": "TW2 5AG, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871603
     }
   ],
   "team_count": 9

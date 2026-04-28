@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=66482&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Didcot II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6429&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6429.png",
-      "address": "Boundary Park, Greenwood Way, Harwell, Didcot, Oxfordshire, OX11 0AB, United Kingdom",
-      "latitude": 51.6080606,
-      "longitude": -1.2695259,
-      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
-      "place_id": 259301410
-    },
-    {
       "name": "Aylesbury Men II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1130&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/1130.png",
@@ -21,6 +11,16 @@
       "longitude": -0.74905,
       "formatted_address": "HP22 5RN, Weston Turville, Buckinghamshire, England, United Kingdom",
       "place_id": 351361902
+    },
+    {
+      "name": "Didcot II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6429&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6429.png",
+      "address": "Boundary Park, Greenwood Way, Harwell, Didcot, Oxfordshire, OX11 0AB, United Kingdom",
+      "latitude": 51.6080606,
+      "longitude": -1.2695259,
+      "formatted_address": "Boundary Park Pavilion Bar, Greenwood Way, Great Western Park, Western Valley, Vale of White Horse, Oxfordshire, England, OX11 6EY, United Kingdom",
+      "place_id": 259301410
     },
     {
       "name": "Littlemore",

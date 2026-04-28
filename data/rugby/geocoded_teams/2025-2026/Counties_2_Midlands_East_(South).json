@@ -73,16 +73,6 @@
       "place_id": 350759693
     },
     {
-      "name": "Peterborough Lions",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16825&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16825.png",
-      "address": "Peterborough Lions Rufc, Sostice Park, Flaxlands, Bretton Woods, Peterborough, Cambridgeshire, PE3 8DF, United Kingdom",
-      "latitude": 52.5912022,
-      "longitude": -0.2837504,
-      "formatted_address": "PE3 8DF, Bretton Centre, Bretton, Peterborough, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
-      "place_id": 350768902
-    },
-    {
       "name": "Rushden & Higham",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18413&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18413.png",
@@ -101,6 +91,16 @@
       "longitude": -1.1560595,
       "formatted_address": "NN13 6PN, Brackley, West Northamptonshire, England, United Kingdom",
       "place_id": 350725197
+    },
+    {
+      "name": "Peterborough Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16825&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16825.png",
+      "address": "Peterborough Lions Rufc, Sostice Park, Flaxlands, Bretton Woods, Peterborough, Cambridgeshire, PE3 8DF, United Kingdom",
+      "latitude": 52.5912022,
+      "longitude": -0.2837504,
+      "formatted_address": "PE3 8DF, Bretton Centre, Bretton, Peterborough, City of Peterborough, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 350768902
     },
     {
       "name": "Huntingdon & District",

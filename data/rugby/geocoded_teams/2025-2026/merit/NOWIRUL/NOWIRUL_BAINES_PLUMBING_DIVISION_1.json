@@ -3,14 +3,14 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=66810&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Blackburn 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2478",
-      "image_url": "https://images.englandrugby.com/club_images/2478.png",
-      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
-      "latitude": 53.772004,
-      "longitude": -2.484677,
-      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
-      "place_id": 406127250
+      "name": "Sandbach 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18678",
+      "image_url": "https://images.englandrugby.com/club_images/18678.png",
+      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
+      "latitude": 53.1560892,
+      "longitude": -2.3670478,
+      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
+      "place_id": 255894806
     },
     {
       "name": "St Edward's O.B.",
@@ -23,14 +23,14 @@
       "place_id": 350990670
     },
     {
-      "name": "Sandbach 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18678",
-      "image_url": "https://images.englandrugby.com/club_images/18678.png",
-      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
-      "latitude": 53.1560892,
-      "longitude": -2.3670478,
-      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
-      "place_id": 255894806
+      "name": "Blackburn 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2478",
+      "image_url": "https://images.englandrugby.com/club_images/2478.png",
+      "address": "Ramsgreave Drive, Blackburn, Lancashire, BB1 8NB, United Kingdom",
+      "latitude": 53.772004,
+      "longitude": -2.484677,
+      "formatted_address": "Ramsgreave Drive, Pleckgate, Blackburn, Blackburn with Darwen, Lancashire, England, BB1 8QP, United Kingdom",
+      "place_id": 406127250
     },
     {
       "name": "Widnes 2nd XV",
@@ -43,16 +43,6 @@
       "place_id": 351680370
     },
     {
-      "name": "Rochdale 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17890",
-      "image_url": "https://images.englandrugby.com/club_images/17890.png",
-      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
-      "latitude": 53.61566,
-      "longitude": -2.19189,
-      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
-      "place_id": 351708168
-    },
-    {
       "name": "Anselmians 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=687",
       "image_url": "https://images.englandrugby.com/club_images/687.png",
@@ -63,14 +53,14 @@
       "place_id": 351064551
     },
     {
-      "name": "Birkenhead Park Wanderers (2nd XV)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2288",
-      "image_url": "https://images.englandrugby.com/club_images/2288.png",
-      "address": "141 Birkenhead Park R. U. F.c. (rugby Union) The Upper Park Park Road North Birkenhead Merseyside CH41 8AA United Kingdom",
-      "latitude": 53.3974526,
-      "longitude": -3.0448955,
-      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 351219120
+      "name": "Rochdale 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17890",
+      "image_url": "https://images.englandrugby.com/club_images/17890.png",
+      "address": "The Clubhouse, Moorgate Avenue, Bamford, Rochdale, OL11 5LU, England",
+      "latitude": 53.61566,
+      "longitude": -2.19189,
+      "formatted_address": "OL11 5LU, Rochdale, Greater Manchester, England, United Kingdom",
+      "place_id": 351708168
     },
     {
       "name": "Vale of Lune 2nd XV",
@@ -83,26 +73,6 @@
       "place_id": 350226941
     },
     {
-      "name": "Eccles 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7280",
-      "image_url": "https://images.englandrugby.com/club_images/7280.png",
-      "address": "Gorton Street Peel Green Eccles, Manchester. Greater Manchester M30 7LZ United Kingdom",
-      "latitude": 53.4797592,
-      "longitude": -2.3701328,
-      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
-      "place_id": 257045139
-    },
-    {
-      "name": "Eagle",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7050",
-      "image_url": "https://images.englandrugby.com/club_images/7050.png",
-      "address": "Eagle Sports And Social Thornton Road Great Sankey Warrington. Cheshire WA5 2SZ United Kingdom",
-      "latitude": 53.38463,
-      "longitude": -2.63924,
-      "formatted_address": "WA5 2SZ, Great Sankey, Warrington, England, United Kingdom",
-      "place_id": 350881827
-    },
-    {
       "name": "West Park (St Helens) 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24866",
       "image_url": "https://images.englandrugby.com/club_images/24866.png",
@@ -111,6 +81,26 @@
       "longitude": -2.7721359,
       "formatted_address": "WA10 3AG, St Helens, Liverpool City Region, England, United Kingdom",
       "place_id": 350426615
+    },
+    {
+      "name": "Birkenhead Park Wanderers (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2288",
+      "image_url": "https://images.englandrugby.com/club_images/2288.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union) The Upper Park Park Road North Birkenhead Merseyside CH41 8AA United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351219120
+    },
+    {
+      "name": "Eccles 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7280",
+      "image_url": "https://images.englandrugby.com/club_images/7280.png",
+      "address": "Gorton Street Peel Green Eccles, Manchester. Greater Manchester M30 7LZ United Kingdom",
+      "latitude": 53.4797592,
+      "longitude": -2.3701328,
+      "formatted_address": "Gorton Street, Winton, Worsley, Salford, Greater Manchester, England, M30 7EH, United Kingdom",
+      "place_id": 257045139
     },
     {
       "name": "Aldwinians 2nd XV",
@@ -123,5 +113,5 @@
       "place_id": 350698316
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

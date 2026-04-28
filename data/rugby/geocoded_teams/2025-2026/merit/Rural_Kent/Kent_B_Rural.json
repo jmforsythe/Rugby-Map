@@ -3,14 +3,14 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1681&division=68022&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Maidstone Mustangs (2nd XV)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13133",
-      "image_url": "https://images.englandrugby.com/club_images/13133.png",
-      "address": "The William Day Mem. Ground The Mote, Willow Way Maidstone Kent ME15 7RN United Kingdom",
-      "latitude": 51.2655929,
-      "longitude": 0.538112,
-      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
-      "place_id": 350250249
+      "name": "Tonbridge Juddians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22917",
+      "image_url": "https://images.englandrugby.com/club_images/22917.png",
+      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
+      "latitude": 51.1984594,
+      "longitude": 0.2708724,
+      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 350856939
     },
     {
       "name": "Medway 4th XV",
@@ -23,14 +23,14 @@
       "place_id": 351563999
     },
     {
-      "name": "Tonbridge Juddians III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22917",
-      "image_url": "https://images.englandrugby.com/club_images/22917.png",
-      "address": "Tonbridge Juddians Rfc, The Clubhouse, The Slade, Tonbridge, Kent , TN9 1HR, United Kingdom",
-      "latitude": 51.1984594,
-      "longitude": 0.2708724,
-      "formatted_address": "TN9 1HR, Tonbridge and Malling, Kent, England, United Kingdom",
-      "place_id": 350856939
+      "name": "Maidstone Mustangs (2nd XV)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13133",
+      "image_url": "https://images.englandrugby.com/club_images/13133.png",
+      "address": "The William Day Mem. Ground The Mote, Willow Way Maidstone Kent ME15 7RN United Kingdom",
+      "latitude": 51.2655929,
+      "longitude": 0.538112,
+      "formatted_address": "ME15 7RN, Maidstone, Kent, England, United Kingdom",
+      "place_id": 350250249
     },
     {
       "name": "Deal & Betteshanger 2nd XV",
@@ -41,6 +41,26 @@
       "longitude": 1.3976372,
       "formatted_address": "CT14 7EJ, Walmer, Dover, Kent, England, United Kingdom",
       "place_id": 351101643
+    },
+    {
+      "name": "Folkestone 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8215",
+      "image_url": "https://images.englandrugby.com/club_images/8215.png",
+      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
+      "latitude": 51.088626,
+      "longitude": 1.1024052,
+      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
+      "place_id": 351104164
+    },
+    {
+      "name": "Sittingbourne 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19442",
+      "image_url": "https://images.englandrugby.com/club_images/19442.png",
+      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
+      "latitude": 51.3468,
+      "longitude": 0.70384,
+      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
+      "place_id": 351564573
     },
     {
       "name": "Leigh (Kent)",
@@ -61,26 +81,6 @@
       "longitude": 1.0622394,
       "formatted_address": "CT5 3QS, Chestfield, Canterbury, Kent, England, United Kingdom",
       "place_id": 350562610
-    },
-    {
-      "name": "Sittingbourne 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19442",
-      "image_url": "https://images.englandrugby.com/club_images/19442.png",
-      "address": "Gore Court Sports Club, The Grove, Key Street, 01795 423 813, Sittingbourne, Kent, ME10 1YT, United Kingdom",
-      "latitude": 51.3468,
-      "longitude": 0.70384,
-      "formatted_address": "ME10 1YT, Bobbing, Swale, Kent, England, United Kingdom",
-      "place_id": 351564573
-    },
-    {
-      "name": "Folkestone 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8215",
-      "image_url": "https://images.englandrugby.com/club_images/8215.png",
-      "address": "Folkestone Rugby Club, New Burlington Field, Bargrove, Newington, Folkestone, Kent, CT18 8BH, United Kingdom",
-      "latitude": 51.088626,
-      "longitude": 1.1024052,
-      "formatted_address": "CT18 8BH, Newington, Folkestone and Hythe, Kent, England, United Kingdom",
-      "place_id": 351104164
     },
     {
       "name": "Gravesend 3rd XV",

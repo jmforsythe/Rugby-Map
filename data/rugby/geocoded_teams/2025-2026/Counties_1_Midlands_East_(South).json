@@ -13,16 +13,6 @@
       "place_id": 259020759
     },
     {
-      "name": "Towcestrians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23056&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/23056.png",
-      "address": "Greens Norton Road Towcester Northamptonshire NN12 8AW United Kingdom",
-      "latitude": 52.1431842,
-      "longitude": -1.0200695,
-      "formatted_address": "Greens Norton Church of England Primary School, Calvert Road, Littleworth, Towcester, West Northamptonshire, England, NN12 8DD, United Kingdom",
-      "place_id": 259097787
-    },
-    {
       "name": "Newbold on Avon",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14411&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/14411.png",
@@ -33,6 +23,16 @@
       "place_id": 351114958
     },
     {
+      "name": "Towcestrians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23056&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/23056.png",
+      "address": "Greens Norton Road Towcester Northamptonshire NN12 8AW United Kingdom",
+      "latitude": 52.1431842,
+      "longitude": -1.0200695,
+      "formatted_address": "Greens Norton Church of England Primary School, Calvert Road, Littleworth, Towcester, West Northamptonshire, England, NN12 8DD, United Kingdom",
+      "place_id": 259097787
+    },
+    {
       "name": "Nuneaton Old Edwardians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15197&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15197.png",
@@ -41,16 +41,6 @@
       "longitude": -1.46376,
       "formatted_address": "CV10 0AL, Nuneaton and Bedworth, Warwickshire, England, United Kingdom",
       "place_id": 351111151
-    },
-    {
-      "name": "Vipers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24033&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24033.png",
-      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
-      "latitude": 52.573137,
-      "longitude": -1.1725976,
-      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
-      "place_id": 351486673
     },
     {
       "name": "Leicester Forest",
@@ -73,6 +63,16 @@
       "place_id": 350728227
     },
     {
+      "name": "Vipers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24033&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24033.png",
+      "address": "Blaby Bypass, Whetstone, Leicester, LE8 6DA, United Kingdom",
+      "latitude": 52.573137,
+      "longitude": -1.1725976,
+      "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486673
+    },
+    {
       "name": "Long Buckby",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12676&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12676.png",
@@ -81,16 +81,6 @@
       "longitude": -1.0842189,
       "formatted_address": "NN6 7QA, Long Buckby, West Northamptonshire, England, United Kingdom",
       "place_id": 350727792
-    },
-    {
-      "name": "Biggleswade",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2180&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2180.png",
-      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
-      "latitude": 52.0699871,
-      "longitude": -0.2705866,
-      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
-      "place_id": 258315732
     },
     {
       "name": "Market Bosworth",
@@ -111,6 +101,16 @@
       "longitude": -0.6914631,
       "formatted_address": "NN17 1EH, North Northamptonshire, England, United Kingdom",
       "place_id": 350726271
+    },
+    {
+      "name": "Biggleswade",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2180&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2180.png",
+      "address": "The Clubhouse Langford Road Biggleswade BEDFORDSHIRE SG18 9RA UNITED KINGDOM",
+      "latitude": 52.0699871,
+      "longitude": -0.2705866,
+      "formatted_address": "Biggleswade RUF & Associated Clubs, Langford Road, Langford, Central Bedfordshire, England, SG18 9RA, United Kingdom",
+      "place_id": 258315732
     },
     {
       "name": "Dunstablians",

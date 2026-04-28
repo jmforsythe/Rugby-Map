@@ -53,16 +53,6 @@
       "place_id": 351247867
     },
     {
-      "name": "Barnes Women II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1409&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1409.png",
-      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
-      "latitude": 51.4749448,
-      "longitude": -0.2332937,
-      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350838987
-    },
-    {
       "name": "Teddington Antlers Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21736&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/21736.png",
@@ -71,6 +61,16 @@
       "longitude": -0.3454989,
       "formatted_address": "TW11 0EA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
       "place_id": 351642203
+    },
+    {
+      "name": "Barnes Women II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1409&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1409.png",
+      "address": "Barn Elms Sports Fields, Queen Elizabeth Walk, Queen Elizabeth Walk, Barnes, SW13 9SA, United Kingdom",
+      "latitude": 51.4749448,
+      "longitude": -0.2332937,
+      "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838987
     }
   ],
   "team_count": 7

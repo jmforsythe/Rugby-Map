@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=66528&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Brighton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3206&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3206.png",
-      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
-      "latitude": 50.86448,
-      "longitude": -0.167788,
-      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
-      "place_id": 350992782
-    },
-    {
       "name": "Sidcup",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19314&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19314.png",
@@ -23,44 +13,14 @@
       "place_id": 351138781
     },
     {
-      "name": "Beckenham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1785&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1785.png",
-      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
-      "latitude": 51.3970834,
-      "longitude": -0.0399249,
-      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504186
-    },
-    {
-      "name": "Horsham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10447.png",
-      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
-      "latitude": 51.06752,
-      "longitude": -0.3217,
-      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
-      "place_id": 351373710
-    },
-    {
-      "name": "Sutton & Epsom",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21414&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21414.png",
-      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
-      "latitude": 51.34908,
-      "longitude": -0.22204,
-      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
-      "place_id": 351485734
-    },
-    {
-      "name": "Old Colfeians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15538&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15538.png",
-      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
-      "latitude": 51.4543889,
-      "longitude": 0.0189041,
-      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 351892216
+      "name": "Brighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3206&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3206.png",
+      "address": "Waterhall Playing Fields Mill Road, Patcham Brighton BN1 8YN UNITED KINGDOM ",
+      "latitude": 50.86448,
+      "longitude": -0.167788,
+      "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
+      "place_id": 350992782
     },
     {
       "name": "Gravesend",
@@ -73,6 +33,26 @@
       "place_id": 350569683
     },
     {
+      "name": "Horsham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10447&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10447.png",
+      "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM ",
+      "latitude": 51.06752,
+      "longitude": -0.3217,
+      "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
+      "place_id": 351373710
+    },
+    {
+      "name": "Old Colfeians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15538&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15538.png",
+      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
+      "latitude": 51.4543889,
+      "longitude": 0.0189041,
+      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351892216
+    },
+    {
       "name": "Battersea Ironsides",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1641&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/1641.png",
@@ -83,14 +63,24 @@
       "place_id": 351555535
     },
     {
-      "name": "Canterbury II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4124&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4124.png",
-      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
-      "latitude": 51.25767,
-      "longitude": 1.08279,
-      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
-      "place_id": 351107399
+      "name": "Sutton & Epsom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21414&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21414.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
+    },
+    {
+      "name": "Beckenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1785&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1785.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
     },
     {
       "name": "Bromley",
@@ -101,6 +91,16 @@
       "longitude": 0.0262456,
       "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
       "place_id": 350504060
+    },
+    {
+      "name": "Canterbury II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4124&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4124.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.25767,
+      "longitude": 1.08279,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
     },
     {
       "name": "Dartfordians",

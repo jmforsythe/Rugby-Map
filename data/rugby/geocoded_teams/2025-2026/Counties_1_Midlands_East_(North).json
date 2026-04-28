@@ -23,16 +23,6 @@
       "place_id": 351513235
     },
     {
-      "name": "Spalding",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19862&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19862.png",
-      "address": "Spalding Rfc Centenary Park Spalding Lincolnshire PE12 6AF United Kingdom",
-      "latitude": 52.7635,
-      "longitude": -0.14693,
-      "formatted_address": "PE12 6AF, Spalding, South Holland, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 351745778
-    },
-    {
       "name": "Bourne",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2776&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2776.png",
@@ -51,6 +41,16 @@
       "longitude": -1.2484043,
       "formatted_address": "LE11 3TU, Charnwood, Leicestershire, England, United Kingdom",
       "place_id": 350230985
+    },
+    {
+      "name": "Spalding",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19862&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19862.png",
+      "address": "Spalding Rfc Centenary Park Spalding Lincolnshire PE12 6AF United Kingdom",
+      "latitude": 52.7635,
+      "longitude": -0.14693,
+      "formatted_address": "PE12 6AF, Spalding, South Holland, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351745778
     },
     {
       "name": "Southwell",
@@ -73,16 +73,6 @@
       "place_id": 350688502
     },
     {
-      "name": "Kesteven",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11309&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11309.png",
-      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
-      "latitude": 52.890697,
-      "longitude": -0.5950534,
-      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 350718958
-    },
-    {
       "name": "Mellish",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13667&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13667.png",
@@ -103,14 +93,14 @@
       "place_id": 350715908
     },
     {
-      "name": "Ashby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=819&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/819.png",
-      "address": "Ashby R.f.c. Clubhouse & Grounds Nottingham Road Ashby-de-la-zouch Leicestershire LE65 1DP United Kingdom",
-      "latitude": 52.751755,
-      "longitude": -1.4554226,
-      "formatted_address": "LE65 1DP, Ashby-de-la-Zouch, North West Leicestershire, Leicestershire, England, United Kingdom",
-      "place_id": 351483383
+      "name": "Kesteven",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11309&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11309.png",
+      "address": "Woodnook, Grantham, Lincolnshire, NG33 5AA, United Kingdom",
+      "latitude": 52.890697,
+      "longitude": -0.5950534,
+      "formatted_address": "NG33 5AA, Londonthorpe and Harrowby Without, South Kesteven, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350718958
     },
     {
       "name": "Nottingham Moderns",
@@ -121,6 +111,16 @@
       "longitude": -1.1569207,
       "formatted_address": "NG11 7AA, Wilford, City of Nottingham, East Midlands, England, United Kingdom",
       "place_id": 350715286
+    },
+    {
+      "name": "Ashby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=819&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/819.png",
+      "address": "Ashby R.f.c. Clubhouse & Grounds Nottingham Road Ashby-de-la-zouch Leicestershire LE65 1DP United Kingdom",
+      "latitude": 52.751755,
+      "longitude": -1.4554226,
+      "formatted_address": "LE65 1DP, Ashby-de-la-Zouch, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 351483383
     }
   ],
   "team_count": 12

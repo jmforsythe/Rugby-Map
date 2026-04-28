@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66835&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Cheltenham Tigers Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4537&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4537.png",
+      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
+      "latitude": 51.9319533,
+      "longitude": -2.065013,
+      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
+      "place_id": 261137594
+    },
+    {
       "name": "Sale FC 1861 Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18560&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18560.png",
@@ -11,16 +21,6 @@
       "longitude": -2.3215055,
       "formatted_address": "M33 3WB, Trafford, Greater Manchester, England, United Kingdom",
       "place_id": 350698118
-    },
-    {
-      "name": "Cheltenham Tigers Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4537&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4537.png",
-      "address": "Newlands Park, Southam Lane, Southam, Cheltenham, Gloucestershire , GL523PE, United Kingdom",
-      "latitude": 51.9319533,
-      "longitude": -2.065013,
-      "formatted_address": "Cheltenham Tigers Rugby Football Club, Southam Lane, Southam, Cheltenham, Gloucestershire, England, GL50 4SJ, United Kingdom",
-      "place_id": 259583358
     },
     {
       "name": "West Park Leeds Women",

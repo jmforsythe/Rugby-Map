@@ -13,16 +13,6 @@
       "place_id": 351842613
     },
     {
-      "name": "Macclesfield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13064.png",
-      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
-      "latitude": 53.2725255,
-      "longitude": -2.1600659,
-      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
-      "place_id": 255105008
-    },
-    {
       "name": "Tynedale",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23390&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23390.png",
@@ -31,6 +21,16 @@
       "longitude": -2.0186084,
       "formatted_address": "Station Road, Dilston Newtown, Corbridge, Northumberland, North East, England, NE45 5AY, United Kingdom",
       "place_id": 254576070
+    },
+    {
+      "name": "Macclesfield",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13064&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13064.png",
+      "address": "Priory Park, Priory Lane, Prestbury, Macclesfield, Cheshire, SK10 4AF, United Kingdom",
+      "latitude": 53.2725255,
+      "longitude": -2.1600659,
+      "formatted_address": "Priory Park, Priory Lane, Manor Park, Prestbury, Macclesfield, Cheshire East, England, SK10 4AE, United Kingdom",
+      "place_id": 255105008
     },
     {
       "name": "Hull Ionians",
@@ -73,26 +73,6 @@
       "place_id": 350494906
     },
     {
-      "name": "Preston Grasshoppers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17180&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/17180.png",
-      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
-      "latitude": 53.7971627,
-      "longitude": -2.7207055,
-      "formatted_address": "Lightfoot Lane, Sharoe Green, Fulwood, Broughton, Preston, Lancashire, England, PR2 3LR, United Kingdom",
-      "place_id": 256777271
-    },
-    {
-      "name": "Otley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16336.png",
-      "address": "Otley R.u.f.c., Cross Green, Otley, Wyorks, LS21 1HE, United Kingdom",
-      "latitude": 53.9065945,
-      "longitude": -1.6874135,
-      "formatted_address": "LS21 1HE, Otley, West Yorkshire, England, United Kingdom",
-      "place_id": 350691070
-    },
-    {
       "name": "Sheffield Tigers",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19099&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19099.png",
@@ -101,6 +81,16 @@
       "longitude": -1.5500457,
       "formatted_address": "Dore Moor Inn, Hathersage Road, Dore, Sheffield, South Yorkshire, England, S17 3AB, United Kingdom",
       "place_id": 256014652
+    },
+    {
+      "name": "Preston Grasshoppers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17180&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/17180.png",
+      "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM ",
+      "latitude": 53.7967514,
+      "longitude": -2.7356618,
+      "formatted_address": "Preston Grasshoppers R.F.C., Lightfoot Green Lane, Fulwood, Broughton, Preston, Lancashire, England, PR4 0AP, United Kingdom",
+      "place_id": 256147200
     },
     {
       "name": "Billingham",
@@ -113,14 +103,24 @@
       "place_id": 352085948
     },
     {
-      "name": "Hull",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10634.png",
-      "address": "Hull Sports Centre, Ferens Ground, Chanterlands Avenue, Hull, Yorkshire, HU5 4EF, United Kingdom",
-      "latitude": 53.7641862,
-      "longitude": -0.3760032,
-      "formatted_address": "HU5 4EF, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
-      "place_id": 351378645
+      "name": "Otley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16336&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16336.png",
+      "address": "Otley R.u.f.c., Cross Green, Otley, Wyorks, LS21 1HE, United Kingdom",
+      "latitude": 53.9065945,
+      "longitude": -1.6874135,
+      "formatted_address": "LS21 1HE, Otley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691070
+    },
+    {
+      "name": "Rossendale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18009.png",
+      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
+      "latitude": 53.7035387,
+      "longitude": -2.2757123,
+      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
+      "place_id": 350949552
     },
     {
       "name": "Scunthorpe",
@@ -133,14 +133,14 @@
       "place_id": 350594710
     },
     {
-      "name": "Rossendale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18009&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18009.png",
-      "address": "Marlpits Sports Centre, Newchurch Road, Rawtenstall, Lancashire, BB4 7SW, United Kingdom",
-      "latitude": 53.7035387,
-      "longitude": -2.2757123,
-      "formatted_address": "BB4 7SW, Rossendale, Lancashire, England, United Kingdom",
-      "place_id": 350949552
+      "name": "Hull",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10634&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10634.png",
+      "address": "Hull Sports Centre, Ferens Ground, Chanterlands Avenue, Hull, Yorkshire, HU5 4EF, United Kingdom",
+      "latitude": 53.7641862,
+      "longitude": -0.3760032,
+      "formatted_address": "HU5 4EF, Kingston upon Hull, Hull and East Yorkshire, England, United Kingdom",
+      "place_id": 351378645
     }
   ],
   "team_count": 14

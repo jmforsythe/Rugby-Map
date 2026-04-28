@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=66544&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Sevenoaks III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19008&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19008.png",
+      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
+      "latitude": 51.27407,
+      "longitude": 0.19735,
+      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
+      "place_id": 352051169
+    },
+    {
       "name": "Cliffe Crusaders",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5260&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/5260.png",
@@ -13,14 +23,54 @@
       "place_id": 350701459
     },
     {
-      "name": "Sevenoaks III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19008&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19008.png",
-      "address": "Knole Paddock Plymouth Drive Sevenoaks KENT TN13 3RP UNITED KINGDOM ",
-      "latitude": 51.27407,
-      "longitude": 0.19735,
-      "formatted_address": "TN13 3RP, Sevenoaks, Kent, England, United Kingdom",
-      "place_id": 352051169
+      "name": "Old Colfeians II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15539&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15539.png",
+      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
+      "latitude": 51.4543889,
+      "longitude": 0.0189041,
+      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 351892216
+    },
+    {
+      "name": "Beckenham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1789&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1789.png",
+      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
+      "latitude": 51.3970834,
+      "longitude": -0.0399249,
+      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504186
+    },
+    {
+      "name": "Rye",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18463.png",
+      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
+      "latitude": 50.9535482,
+      "longitude": 0.7414313,
+      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
+      "place_id": 350854994
+    },
+    {
+      "name": "Sheppey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19172&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19172.png",
+      "address": "Sheppey Rugby Football Club, The Clubhouse, Stupple Field, Lower Road,, Minster,, Sheerness, Kent, ME12 3RT, United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351566033
+    },
+    {
+      "name": "Bromley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3411&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3411.png",
+      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504060
     },
     {
       "name": "Dartfordians II",
@@ -41,56 +91,6 @@
       "longitude": 0.89756,
       "formatted_address": "ME13 8HA, Faversham, Ospringe, Swale, Kent, England, United Kingdom",
       "place_id": 351566722
-    },
-    {
-      "name": "Beckenham III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1789&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1789.png",
-      "address": "Balmoral Avenue Elmers End Beckenham KENT BR3 3RD UNITED KINGDOM ",
-      "latitude": 51.3970834,
-      "longitude": -0.0399249,
-      "formatted_address": "BR3 3RD, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504186
-    },
-    {
-      "name": "Old Colfeians II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15539&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15539.png",
-      "address": "Horn Park, Eltham Road, London, Kent, SE12 8UE, United Kingdom",
-      "latitude": 51.4543889,
-      "longitude": 0.0189041,
-      "formatted_address": "SE12 8UE, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 351892216
-    },
-    {
-      "name": "Sheppey",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19172&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19172.png",
-      "address": "Sheppey Rugby Football Club, The Clubhouse, Stupple Field, Lower Road,, Minster,, Sheerness, Kent, ME12 3RT, United Kingdom",
-      "latitude": 51.4099712,
-      "longitude": 0.7903515,
-      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
-      "place_id": 351566033
-    },
-    {
-      "name": "Rye",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18463&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18463.png",
-      "address": "Rye R.F.C. New Road Rye KENT TN31 7LS UNITED KINGDOM ",
-      "latitude": 50.9535482,
-      "longitude": 0.7414313,
-      "formatted_address": "TN31 7LS, Rye, Playden, Rother, East Sussex, England, United Kingdom",
-      "place_id": 350854994
-    },
-    {
-      "name": "Bromley II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3411&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3411.png",
-      "address": "Bromley Rfc, Warman Sports Club, Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
-      "latitude": 51.3717349,
-      "longitude": 0.0262456,
-      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504060
     },
     {
       "name": "King's College Hospital",

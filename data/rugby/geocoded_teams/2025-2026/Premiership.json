@@ -23,6 +23,16 @@
       "place_id": 350936825
     },
     {
+      "name": "Leicester Tigers",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=46&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/46.png",
+      "address": "Mattioli Woods Welford Road, Leicester Tigers Rfc, Aylestone Road, Leicester, Leicestershire, LE2 7TR, United Kingdom",
+      "latitude": 52.6246099,
+      "longitude": -1.1329,
+      "formatted_address": "LE2 7TR, City of Leicester, England, United Kingdom",
+      "place_id": 351478144
+    },
+    {
       "name": "Exeter Chiefs",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=41&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/41.png",
@@ -41,16 +51,6 @@
       "longitude": -2.6611347,
       "formatted_address": "BS8 3TF, Kingcott Farm, Audley Redwood, Abbots Leigh, North Somerset, England, United Kingdom",
       "place_id": 350521691
-    },
-    {
-      "name": "Leicester Tigers",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=46&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/46.png",
-      "address": "Mattioli Woods Welford Road, Leicester Tigers Rfc, Aylestone Road, Leicester, Leicestershire, LE2 7TR, United Kingdom",
-      "latitude": 52.6246099,
-      "longitude": -1.1329,
-      "formatted_address": "LE2 7TR, City of Leicester, England, United Kingdom",
-      "place_id": 351478144
     },
     {
       "name": "Saracens",
@@ -73,16 +73,6 @@
       "place_id": 351550869
     },
     {
-      "name": "Harlequins",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/45.png",
-      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
-      "latitude": 51.4498118,
-      "longitude": -0.343649,
-      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
-      "place_id": 350871712
-    },
-    {
       "name": "Gloucester Rugby",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=44&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/44.png",
@@ -91,6 +81,16 @@
       "longitude": -2.2424709,
       "formatted_address": "GL1 3AX, Gloucester, Gloucestershire, England, United Kingdom",
       "place_id": 350630195
+    },
+    {
+      "name": "Harlequins",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=45&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/45.png",
+      "address": "Clubs Office Twickenham Stoop Langhorn Drive Twickenham MIDDLESEX TW2 7SX UNITED KINGDOM ",
+      "latitude": 51.4498118,
+      "longitude": -0.343649,
+      "formatted_address": "TW2 7SX, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871712
     },
     {
       "name": "Newcastle Red Bulls",

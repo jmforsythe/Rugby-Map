@@ -13,16 +13,6 @@
       "place_id": 350581569
     },
     {
-      "name": "Derby II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6320&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6320.png",
-      "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
-      "latitude": 52.9425757,
-      "longitude": -1.4722563,
-      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
-      "place_id": 350576784
-    },
-    {
       "name": "Melbourne II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13621&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13621.png",
@@ -33,14 +23,14 @@
       "place_id": 351155401
     },
     {
-      "name": "Long Eaton II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12697&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12697.png",
-      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
-      "latitude": 52.8969978,
-      "longitude": -1.2920806,
-      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
-      "place_id": 350714726
+      "name": "Derby II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6320&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6320.png",
+      "address": "Derby R.f.c., Haslams Lane, Darley Abbey, Derby, Derbyshire, DE22 1EB, United Kingdom",
+      "latitude": 52.9425757,
+      "longitude": -1.4722563,
+      "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
+      "place_id": 350576784
     },
     {
       "name": "Leesbrook",
@@ -53,6 +43,16 @@
       "place_id": 350576702
     },
     {
+      "name": "Nottinghamians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15149&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15149.png",
+      "address": "Adbolton Lane West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AS UNITED KINGDOM ",
+      "latitude": 52.9392721,
+      "longitude": -1.1076793,
+      "formatted_address": "NG2 5AS, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718234
+    },
+    {
       "name": "Rolls Royce",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17945&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17945.png",
@@ -63,14 +63,14 @@
       "place_id": 350579047
     },
     {
-      "name": "Bakewell Mannerians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1242&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1242.png",
-      "address": "Lady Manners School Shutts Lane Bakewell DERBYSHIRE DE45 1JA UNITED KINGDOM",
-      "latitude": 53.2063329,
-      "longitude": -1.6853508,
-      "formatted_address": "Lady Manners School, Shutts Lane, Bakewell CP, Derbyshire Dales, Derbyshire, East Midlands, England, DE45 1JA, United Kingdom",
-      "place_id": 257571578
+      "name": "Long Eaton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12697&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12697.png",
+      "address": "West Park Clubhouse, West Park, Wilsthorpe Road, Long Eaton, Derbys, NG10 4AA, United Kingdom",
+      "latitude": 52.8969978,
+      "longitude": -1.2920806,
+      "formatted_address": "NG10 4AA, Long Eaton, Erewash, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350714726
     },
     {
       "name": "Dronfield II",
@@ -83,14 +83,24 @@
       "place_id": 351843304
     },
     {
-      "name": "Nottinghamians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15149&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15149.png",
-      "address": "Adbolton Lane West Bridgford Nottingham NOTTINGHAMSHIRE NG2 5AS UNITED KINGDOM ",
-      "latitude": 52.9392721,
-      "longitude": -1.1076793,
-      "formatted_address": "NG2 5AS, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
-      "place_id": 350718234
+      "name": "Ashbourne II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=801&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/801.png",
+      "address": "The Recreation Ground, Cokayne Avenue, Ashbourne, Derbyshire, DE6 1EJ, United Kingdom",
+      "latitude": 53.019799,
+      "longitude": -1.7281694,
+      "formatted_address": "DE6 1EJ, Ashbourne CP, Compton, Derbyshire Dales, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 350582140
+    },
+    {
+      "name": "Bakewell Mannerians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1242&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1242.png",
+      "address": "Lady Manners School Shutts Lane Bakewell DERBYSHIRE DE45 1JA UNITED KINGDOM",
+      "latitude": 53.2063329,
+      "longitude": -1.6853508,
+      "formatted_address": "Lady Manners School, Shutts Lane, Bakewell CP, Derbyshire Dales, Derbyshire, East Midlands, England, DE45 1JA, United Kingdom",
+      "place_id": 257571578
     },
     {
       "name": "Ashfield",
@@ -101,16 +111,6 @@
       "longitude": -1.26137,
       "formatted_address": "NG17 8SF, Larwood Park, Sutton-in-Ashfield, Ashfield, Nottinghamshire, East Midlands, England, United Kingdom",
       "place_id": 351649727
-    },
-    {
-      "name": "Ashbourne II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=801&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/801.png",
-      "address": "The Recreation Ground, Cokayne Avenue, Ashbourne, Derbyshire, DE6 1EJ, United Kingdom",
-      "latitude": 53.019799,
-      "longitude": -1.7281694,
-      "formatted_address": "DE6 1EJ, Ashbourne CP, Compton, Derbyshire Dales, Derbyshire, East Midlands, England, United Kingdom",
-      "place_id": 350582140
     },
     {
       "name": "Castle Donington",

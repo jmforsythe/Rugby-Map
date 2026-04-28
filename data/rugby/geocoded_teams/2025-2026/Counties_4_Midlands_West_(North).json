@@ -43,36 +43,6 @@
       "place_id": 352172479
     },
     {
-      "name": "Newcastle (Staffs) III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14460&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14460.png",
-      "address": "Newcastle (staffs) Rufc., The Pavilion, Lilleshall Road, Newcastle-under-lyme, Staffordshire, ST5 3BX, England",
-      "latitude": 52.9977027,
-      "longitude": -2.2149251,
-      "formatted_address": "ST5 3BX, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
-      "place_id": 350837581
-    },
-    {
-      "name": "Essington",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7700.png",
-      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
-      "latitude": 52.6245432,
-      "longitude": -2.0590734,
-      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
-      "place_id": 350896523
-    },
-    {
-      "name": "Stafford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26664&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/26664.png",
-      "address": "Stafford Rugby Club, The County Ground, Blackberry Lane, Stafford, Staffordshire, ST16 2TT, United Kingdom",
-      "latitude": 52.8118304,
-      "longitude": -2.1324176,
-      "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
-      "place_id": 350836744
-    },
-    {
       "name": "Telford Hornets II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21797&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/21797.png",
@@ -81,26 +51,6 @@
       "longitude": -2.4447884,
       "formatted_address": "TF4 3NZ, Great Dawley, Dawley, Telford and Wrekin, England, United Kingdom",
       "place_id": 350851295
-    },
-    {
-      "name": "Aldridge",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=415&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/415.png",
-      "address": "Bourne Vale, Off Little Hardwick Road, Aldridge, West Midlands, WS9 0SH, United Kingdom",
-      "latitude": 52.5900026,
-      "longitude": -1.901233,
-      "formatted_address": "WS9 0SH, Walsall, West Midlands, England, United Kingdom",
-      "place_id": 350896311
-    },
-    {
-      "name": "Linley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12321&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12321.png",
-      "address": "Kidsgrove Athletic Fc , 15 Hollinwood Road, Kidsgrove, Stoke-on-trent, Staffordshire, ST7 1DQ, United Kingdom",
-      "latitude": 53.0814499,
-      "longitude": -2.25294,
-      "formatted_address": "ST7 1DQ, Kidsgrove, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
-      "place_id": 352001069
     },
     {
       "name": "Trentham II",
@@ -113,15 +63,45 @@
       "place_id": 351997401
     },
     {
-      "name": "Stoke on Trent II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21079&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21079.png",
-      "address": "Stoke On Trent Rufc, Hartwell Lane, Barlaston, Stone, Staffordshire, ST15 8TL, England",
-      "latitude": 52.9466819,
-      "longitude": -2.132226,
-      "formatted_address": "Stoke-on-Trent RUFC, Hartwell Lane, Hartwell, Barlaston, Meir Heath, Stafford, Staffordshire, England, ST15 8TL, United Kingdom",
-      "place_id": 256067182
+      "name": "Essington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7700&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7700.png",
+      "address": "Essington Rufc Ltd, High Hill, Essington, Wolverhampton, West Midlands, WV11 2DW, United Kingdom",
+      "latitude": 52.6245432,
+      "longitude": -2.0590734,
+      "formatted_address": "WV11 2DW, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 350896523
+    },
+    {
+      "name": "Linley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12321&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12321.png",
+      "address": "Kidsgrove Athletic Fc , 15 Hollinwood Road, Kidsgrove, Stoke-on-trent, Staffordshire, ST7 1DQ, United Kingdom",
+      "latitude": 53.0814499,
+      "longitude": -2.25294,
+      "formatted_address": "ST7 1DQ, Kidsgrove, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
+      "place_id": 352001069
+    },
+    {
+      "name": "Stafford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26664&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/26664.png",
+      "address": "Stafford Rugby Club, The County Ground, Blackberry Lane, Stafford, Staffordshire, ST16 2TT, United Kingdom",
+      "latitude": 52.8118304,
+      "longitude": -2.1324176,
+      "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
+      "place_id": 350836744
+    },
+    {
+      "name": "Newcastle (Staffs) III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14460&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14460.png",
+      "address": "Newcastle (staffs) Rufc., The Pavilion, Lilleshall Road, Newcastle-under-lyme, Staffordshire, ST5 3BX, England",
+      "latitude": 52.9977027,
+      "longitude": -2.2149251,
+      "formatted_address": "ST5 3BX, Newcastle-under-Lyme, Staffordshire, England, United Kingdom",
+      "place_id": 350837581
     }
   ],
-  "team_count": 12
+  "team_count": 10
 }

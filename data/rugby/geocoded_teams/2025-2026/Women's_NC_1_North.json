@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66843&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Keswick Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125607&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/125607.png",
+      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
+      "latitude": 54.6006588,
+      "longitude": -3.1439604,
+      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
+      "place_id": 350527467
+    },
+    {
       "name": "Ryton Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123699&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/123699.png",
@@ -13,14 +23,14 @@
       "place_id": 350712431
     },
     {
-      "name": "Keswick Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125607&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/125607.png",
-      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
-      "latitude": 54.6006588,
-      "longitude": -3.1439604,
-      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
-      "place_id": 350527467
+      "name": "Lancaster Lionesses Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127629&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/127629.png",
+      "address": "Lancaster University Sports Centre, Lancaster, Lancashire, LA1 4YQ, United Kingdom",
+      "latitude": 54.0129312,
+      "longitude": -2.7921636,
+      "formatted_address": "Lancaster University Sports Centre, Sports Centre Drive, Bowland College, Bailrigg, Lancaster, Lancashire, England, LA1 4AT, United Kingdom",
+      "place_id": 261041902
     },
     {
       "name": "Peterlee and Horden Ladies",
@@ -41,16 +51,6 @@
       "longitude": -2.9180998,
       "formatted_address": "CA1 1LW, Carlisle, Cumberland, England, United Kingdom",
       "place_id": 351025025
-    },
-    {
-      "name": "Lancaster Lionesses Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127629&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/127629.png",
-      "address": "Lancaster University Sports Centre, Lancaster, Lancashire, LA1 4YQ, United Kingdom",
-      "latitude": 54.0129312,
-      "longitude": -2.7921636,
-      "formatted_address": "Lancaster University Sports Centre, Sports Centre Drive, Bowland College, Bailrigg, Lancaster, Lancashire, England, LA1 4AT, United Kingdom",
-      "place_id": 261041902
     },
     {
       "name": "Harrogate Ladies",

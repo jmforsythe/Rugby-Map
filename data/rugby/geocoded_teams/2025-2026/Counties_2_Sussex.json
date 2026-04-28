@@ -23,16 +23,6 @@
       "place_id": 350798701
     },
     {
-      "name": "Ditchling",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6541.png",
-      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
-      "latitude": 50.92073,
-      "longitude": -0.12822,
-      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 351007600
-    },
-    {
       "name": "Seaford",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18868&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18868.png",
@@ -51,6 +41,16 @@
       "longitude": -0.167788,
       "formatted_address": "BN1 8YN, Withdean, Brighton, Brighton and Hove, England, United Kingdom",
       "place_id": 350992782
+    },
+    {
+      "name": "Ditchling",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6541.png",
+      "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
+      "latitude": 50.92073,
+      "longitude": -0.12822,
+      "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 351007600
     },
     {
       "name": "Lewes",

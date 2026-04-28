@@ -516,6 +516,7 @@ def _scrape_league_list(
     season: str,
     *,
     use_competition_subdirs: bool = False,
+    force: bool = False,
 ) -> list[LeagueInfo]:
     """Scrape teams for each league and save to output_dir. Returns skipped leagues.
 
@@ -561,7 +562,7 @@ def _scrape_league_list(
             skipped.append(league)
             continue
 
-        if output_path.exists():
+        if output_path.exists() and not force:
             print(f"Skipping {league_name} (already exists)")
             continue
 
@@ -617,6 +618,11 @@ def main() -> None:
         default="2025-2026",
         help="Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-scrape leagues even if JSON files already exist",
+    )
     args = parser.parse_args()
     season = args.season
 
@@ -654,9 +660,11 @@ def main() -> None:
 
     skipped_leagues: list[LeagueInfo] = []
     try:
-        skipped_leagues += _scrape_league_list(leagues + womens_leagues, base_dir, season)
         skipped_leagues += _scrape_league_list(
-            merit_leagues, merit_dir, season, use_competition_subdirs=True
+            leagues + womens_leagues, base_dir, season, force=args.force
+        )
+        skipped_leagues += _scrape_league_list(
+            merit_leagues, merit_dir, season, use_competition_subdirs=True, force=args.force
         )
     except AntiBotDetectedError:
         return

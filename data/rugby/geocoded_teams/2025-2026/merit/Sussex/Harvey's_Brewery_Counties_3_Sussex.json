@@ -23,16 +23,6 @@
       "place_id": 351005677
     },
     {
-      "name": "Haywards Heath II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9777",
-      "image_url": "https://images.englandrugby.com/club_images/9777.png",
-      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
-      "latitude": 51.0153017,
-      "longitude": -0.1497048,
-      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 350797092
-    },
-    {
       "name": "Uckfield",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23445",
       "image_url": "https://images.englandrugby.com/club_images/23445.png",
@@ -43,16 +33,6 @@
       "place_id": 350852767
     },
     {
-      "name": "Crowborough II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5919",
-      "image_url": "https://images.englandrugby.com/club_images/5919.png",
-      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
-      "latitude": 51.0637043,
-      "longitude": 0.1834776,
-      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
-      "place_id": 90844484
-    },
-    {
       "name": "Horsham Barbarians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
       "image_url": "https://images.englandrugby.com/club_images/10451.png",
@@ -61,6 +41,36 @@
       "longitude": -0.3217,
       "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
       "place_id": 351373710
+    },
+    {
+      "name": "Haywards Heath II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9777",
+      "image_url": "https://images.englandrugby.com/club_images/9777.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
+      "name": "East Grinstead II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
+      "image_url": "https://images.englandrugby.com/club_images/7136.png",
+      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
+      "latitude": 51.109306,
+      "longitude": -0.0283279,
+      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350798701
+    },
+    {
+      "name": "Crowborough II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5919",
+      "image_url": "https://images.englandrugby.com/club_images/5919.png",
+      "address": "Steel Cross Green Lane Crowborough East Sussex TN6 2XB United Kingdom",
+      "latitude": 51.0637043,
+      "longitude": 0.1834776,
+      "formatted_address": "Steel Cross House, Green Lane, Crowborough, Blackness, Crowborough, Wealden, East Sussex, England, TN6 2XB, United Kingdom",
+      "place_id": 90844484
     },
     {
       "name": "Worthing III",
@@ -81,16 +91,6 @@
       "longitude": 0.2394541,
       "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
       "place_id": 350502212
-    },
-    {
-      "name": "East Grinstead II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
-      "image_url": "https://images.englandrugby.com/club_images/7136.png",
-      "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
-      "latitude": 51.109306,
-      "longitude": -0.0283279,
-      "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 350798701
     },
     {
       "name": "Shoreham II",

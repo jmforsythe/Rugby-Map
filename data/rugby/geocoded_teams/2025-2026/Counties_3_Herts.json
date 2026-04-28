@@ -23,26 +23,6 @@
       "place_id": 259698343
     },
     {
-      "name": "Watford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24439.png",
-      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
-      "latitude": 51.6679932,
-      "longitude": -0.3854916,
-      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
-      "place_id": 350886077
-    },
-    {
-      "name": "Cuffley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5994&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5994.png",
-      "address": "Botany Bay Cricket Club, East Lodge Lane, Enfield, Middlesex, EN2 8AS, United Kingdom",
-      "latitude": 51.6772957,
-      "longitude": -0.1229335,
-      "formatted_address": "EN2 8AS, London Borough of Enfield, Greater London, England, United Kingdom",
-      "place_id": 350616438
-    },
-    {
       "name": "Harpenden II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9449&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9449.png",
@@ -53,6 +33,16 @@
       "place_id": 258737501
     },
     {
+      "name": "Watford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24439&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24439.png",
+      "address": "Knutsford Playing Fields, Radlett Road, Watford, Hertfordshire , WD24 4LL, United Kingdom",
+      "latitude": 51.6679932,
+      "longitude": -0.3854916,
+      "formatted_address": "WD24 4LL, Watford, Hertfordshire, England, United Kingdom",
+      "place_id": 350886077
+    },
+    {
       "name": "Cheshunt II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4637&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/4637.png",
@@ -61,6 +51,16 @@
       "longitude": -0.06665,
       "formatted_address": "EN7 6TB, Broxbourne, Hertfordshire, England, United Kingdom",
       "place_id": 351246567
+    },
+    {
+      "name": "Cuffley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5994&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5994.png",
+      "address": "Botany Bay Cricket Club, East Lodge Lane, Enfield, Middlesex, EN2 8AS, United Kingdom",
+      "latitude": 51.6772957,
+      "longitude": -0.1229335,
+      "formatted_address": "EN2 8AS, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 350616438
     },
     {
       "name": "Bishop's Stortford III",
@@ -101,17 +101,7 @@
       "longitude": -0.21076,
       "formatted_address": "SG1 4BB, Stevenage, Hertfordshire, England, United Kingdom",
       "place_id": 351906609
-    },
-    {
-      "name": "Hatfield",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9679&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9679.png",
-      "address": "The Mallard, 89 Great North Road , Hatfield, Hertfordshire, AL95LP, United Kingdom",
-      "latitude": 51.7709355,
-      "longitude": -0.2168167,
-      "formatted_address": "AL9 5LP, Hatfield, Welwyn Hatfield, Hertfordshire, England, United Kingdom",
-      "place_id": 350460654
     }
   ],
-  "team_count": 11
+  "team_count": 10
 }

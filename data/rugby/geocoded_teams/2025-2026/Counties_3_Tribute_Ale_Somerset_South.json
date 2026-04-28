@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=66475&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Tor",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22951&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/22951.png",
-      "address": "Brian Harbinson Memorial Ground, 4 Lowerside Lane, Glastonbury, Somerset, BA6 9GY, United Kingdom",
-      "latitude": 51.15754,
-      "longitude": -2.71599,
-      "formatted_address": "BA6 9GY, Glastonbury, Somerset, England, United Kingdom",
-      "place_id": 350941989
-    },
-    {
       "name": "Wells",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24654&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24654.png",
@@ -31,6 +21,16 @@
       "longitude": -2.9715586,
       "formatted_address": "Weston-super-Mare RFC, Sunnyside Road North, Whitecross Village, Weston-super-Mare, North Somerset, England, BS23 3PA, United Kingdom",
       "place_id": 261559201
+    },
+    {
+      "name": "Tor",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=22951&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/22951.png",
+      "address": "Brian Harbinson Memorial Ground, 4 Lowerside Lane, Glastonbury, Somerset, BA6 9GY, United Kingdom",
+      "latitude": 51.15754,
+      "longitude": -2.71599,
+      "formatted_address": "BA6 9GY, Glastonbury, Somerset, England, United Kingdom",
+      "place_id": 350941989
     },
     {
       "name": "Bridgwater & Albion II",
@@ -53,14 +53,14 @@
       "place_id": 350845328
     },
     {
-      "name": "North Petherton II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14750&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14750.png",
-      "address": "North Petherton RFC Beggars Brook North Petherton SOMERSET TA6 6NW UNITED KINGDOM ",
-      "latitude": 51.0779287,
-      "longitude": -3.0196718,
-      "formatted_address": "TA6 6NW, North Petherton, Somerset, England, United Kingdom",
-      "place_id": 350849758
+      "name": "Chard II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4393&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4393.png",
+      "address": "The Park, Essex Close, Chard, Somerset , TA20 1RH, United Kingdom",
+      "latitude": 50.87361,
+      "longitude": -2.96241,
+      "formatted_address": "TA20 1RH, Chard Town, Chard, Somerset, England, United Kingdom",
+      "place_id": 352033215
     },
     {
       "name": "Martock",
@@ -73,14 +73,24 @@
       "place_id": 350845026
     },
     {
-      "name": "Chard II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4393&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4393.png",
-      "address": "The Park, Essex Close, Chard, Somerset , TA20 1RH, United Kingdom",
-      "latitude": 50.87361,
-      "longitude": -2.96241,
-      "formatted_address": "TA20 1RH, Chard Town, Chard, Somerset, England, United Kingdom",
-      "place_id": 352033215
+      "name": "North Petherton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14750&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14750.png",
+      "address": "North Petherton RFC Beggars Brook North Petherton SOMERSET TA6 6NW UNITED KINGDOM ",
+      "latitude": 51.0779287,
+      "longitude": -3.0196718,
+      "formatted_address": "TA6 6NW, North Petherton, Somerset, England, United Kingdom",
+      "place_id": 350849758
+    },
+    {
+      "name": "Wiveliscombe II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25830&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25830.png",
+      "address": "Wrfc Clubhouse, Recreation Ground, West Road, Wiveliscombe, Taunton, Somerset, TA4 2TA, United Kingdom",
+      "latitude": 51.04077,
+      "longitude": -3.32061,
+      "formatted_address": "TA4 2TA, Wiveliscombe, Somerset, England, United Kingdom",
+      "place_id": 352035435
     },
     {
       "name": "Crewkerne",
@@ -101,27 +111,7 @@
       "longitude": -2.947101,
       "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
       "place_id": 261865175
-    },
-    {
-      "name": "Wiveliscombe II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25830&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25830.png",
-      "address": "Wrfc Clubhouse, Recreation Ground, West Road, Wiveliscombe, Taunton, Somerset, TA4 2TA, United Kingdom",
-      "latitude": 51.04077,
-      "longitude": -3.32061,
-      "formatted_address": "TA4 2TA, Wiveliscombe, Somerset, England, United Kingdom",
-      "place_id": 352035435
-    },
-    {
-      "name": "Wellington II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24633&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24633.png",
-      "address": "The Athletic Ground Corams Lane Wellington SOMERSET TA21 8LL UNITED KINGDOM ",
-      "latitude": 50.9802859,
-      "longitude": -3.2392788,
-      "formatted_address": "TA21 8LL, Wellington, Somerset, England, United Kingdom",
-      "place_id": 350846581
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

@@ -23,16 +23,6 @@
       "place_id": 261154926
     },
     {
-      "name": "Corsham II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5660&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5660.png",
-      "address": "Corsham Rfc, Lacock Road, Corsham, Wiltshire, SN13 9QG, United Kingdom",
-      "latitude": 51.431,
-      "longitude": -2.16898,
-      "formatted_address": "SN13 9QG, Corsham, Wiltshire, England, United Kingdom",
-      "place_id": 351942995
-    },
-    {
       "name": "Colerne",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5431&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/5431.png",
@@ -41,16 +31,6 @@
       "longitude": -2.27937,
       "formatted_address": "SN14 8AT, Colerne, Wiltshire, England, United Kingdom",
       "place_id": 351943764
-    },
-    {
-      "name": "Cricklade",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5892&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5892.png",
-      "address": "Cricklade Rfc, Fairview Field, Cricklade, Wiltshire, SN6 6BA, United Kingdom",
-      "latitude": 51.6404588,
-      "longitude": -1.8546394,
-      "formatted_address": "SN6 6BA, Cricklade, Wiltshire, England, United Kingdom",
-      "place_id": 351949232
     },
     {
       "name": "Chippenham III",
@@ -63,6 +43,26 @@
       "place_id": 351943386
     },
     {
+      "name": "Corsham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5660&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5660.png",
+      "address": "Corsham Rfc, Lacock Road, Corsham, Wiltshire, SN13 9QG, United Kingdom",
+      "latitude": 51.431,
+      "longitude": -2.16898,
+      "formatted_address": "SN13 9QG, Corsham, Wiltshire, England, United Kingdom",
+      "place_id": 351942995
+    },
+    {
+      "name": "Cricklade",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5892&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5892.png",
+      "address": "Cricklade Rfc, Fairview Field, Cricklade, Wiltshire, SN6 6BA, United Kingdom",
+      "latitude": 51.6404588,
+      "longitude": -1.8546394,
+      "formatted_address": "SN6 6BA, Cricklade, Wiltshire, England, United Kingdom",
+      "place_id": 351949232
+    },
+    {
       "name": "Royal Wootton Bassett IV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125724&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/125724.png",
@@ -71,17 +71,7 @@
       "longitude": -1.9004106,
       "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
       "place_id": 350825006
-    },
-    {
-      "name": "Swindon II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21536&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21536.png",
-      "address": "New Pavilion, Greenbridge Rd, Swindon Sn3 3la, Greenbridge Road, Swindon, Wiltshire, SN3 3LA, United Kingdom",
-      "latitude": 51.5670111,
-      "longitude": -1.7474216,
-      "formatted_address": "SN3 3LA, Swindon, Stratton St. Margaret, Swindon, England, United Kingdom",
-      "place_id": 350824558
     }
   ],
-  "team_count": 8
+  "team_count": 7
 }

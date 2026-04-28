@@ -13,26 +13,6 @@
       "place_id": 350406169
     },
     {
-      "name": "Gravesend Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=122847&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/122847.png",
-      "address": "Rectory Field Donald Biggs Drive Milton Road Gravesend Kent DA12 2TL United Kingdom",
-      "latitude": 51.4371393,
-      "longitude": 0.3805001,
-      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
-      "place_id": 350119186
-    },
-    {
-      "name": "Sheppey Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125726&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/125726.png",
-      "address": "Sheppey Rugby Football Club The Clubhouse Stupple Field Lower Road, Minster, Sheerness Kent ME12 3RT United Kingdom",
-      "latitude": 51.4099712,
-      "longitude": 0.7903515,
-      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
-      "place_id": 351114830
-    },
-    {
       "name": "Tunbridge Wells Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124654&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/124654.png",
@@ -41,6 +21,26 @@
       "longitude": 0.2600371,
       "formatted_address": "TN2 5LS, Tunbridge Wells, Kent, England, United Kingdom",
       "place_id": 350403765
+    },
+    {
+      "name": "Cranbrook Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5763&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5763.png",
+      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
+      "latitude": 51.10242,
+      "longitude": 0.53252,
+      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
+      "place_id": 351601927
+    },
+    {
+      "name": "Gravesend Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=122847&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/122847.png",
+      "address": "Rectory Field Donald Biggs Drive Milton Road Gravesend Kent DA12 2TL United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350119186
     },
     {
       "name": "Old Gravesendians Women",
@@ -53,14 +53,14 @@
       "place_id": 350119142
     },
     {
-      "name": "Cranbrook Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5763&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5763.png",
-      "address": "Tomlin Ground Angley Road Cranbrook KENT TN17 2PN UNITED KINGDOM",
-      "latitude": 51.10242,
-      "longitude": 0.53252,
-      "formatted_address": "TN17 2PN, Cranbrook & Sissinghurst, Tunbridge Wells, Kent, England, United Kingdom",
-      "place_id": 351601927
+      "name": "Sheppey Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125726&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/125726.png",
+      "address": "Sheppey Rugby Football Club The Clubhouse Stupple Field Lower Road, Minster, Sheerness Kent ME12 3RT United Kingdom",
+      "latitude": 51.4099712,
+      "longitude": 0.7903515,
+      "formatted_address": "ME12 3RT, Minster-on-Sea, Minster, Swale, Kent, England, United Kingdom",
+      "place_id": 351114830
     },
     {
       "name": "Maidstone Women",

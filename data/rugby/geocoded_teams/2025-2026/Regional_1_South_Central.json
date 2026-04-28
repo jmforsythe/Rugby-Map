@@ -33,16 +33,6 @@
       "place_id": 350854535
     },
     {
-      "name": "CS Stags 1863",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5987&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5987.png",
-      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
-      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
-      "place_id": 352119801
-    },
-    {
       "name": "Old Alleynians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15398&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15398.png",
@@ -51,6 +41,16 @@
       "longitude": -0.07495,
       "formatted_address": "SE21 7HA, London Borough of Southwark, Greater London, England, United Kingdom",
       "place_id": 351899114
+    },
+    {
+      "name": "CS Stags 1863",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5987&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5987.png",
+      "address": "King's House School Sports Ground, Dukes Meadows, Riverside Drive, London, Middlesex, W4 2SH, United Kingdom",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119801
     },
     {
       "name": "Bracknell",
@@ -83,16 +83,6 @@
       "place_id": 350500398
     },
     {
-      "name": "Maidenhead",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13105.png",
-      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
-      "latitude": 51.5151805,
-      "longitude": -0.7183945,
-      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
-      "place_id": 350821079
-    },
-    {
       "name": "Wimbledon",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25512&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/25512.png",
@@ -103,14 +93,14 @@
       "place_id": 350841338
     },
     {
-      "name": "Camberley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3972&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3972.png",
-      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
-      "latitude": 51.3259515,
-      "longitude": -0.7505451,
-      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
-      "place_id": 351323092
+      "name": "Maidenhead",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13105&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13105.png",
+      "address": "Braywick Park Braywick Road Maidenhead BERKSHIRE SL6 1BN UNITED KINGDOM ",
+      "latitude": 51.5151805,
+      "longitude": -0.7183945,
+      "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 350821079
     },
     {
       "name": "Hammersmith & Fulham",
@@ -121,6 +111,16 @@
       "longitude": -0.202864,
       "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
       "place_id": 352015716
+    },
+    {
+      "name": "Camberley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3972&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3972.png",
+      "address": "Watchetts Recreation Park Road Park Road Camberley SURREY GU15 2SR UNITED KINGDOM ",
+      "latitude": 51.3259515,
+      "longitude": -0.7505451,
+      "formatted_address": "GU15 2SR, Surrey Heath, Surrey, England, United Kingdom",
+      "place_id": 351323092
     }
   ],
   "team_count": 12

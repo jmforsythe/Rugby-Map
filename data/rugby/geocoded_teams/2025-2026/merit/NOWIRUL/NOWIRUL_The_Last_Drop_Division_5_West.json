@@ -13,16 +13,6 @@
       "place_id": 351680370
     },
     {
-      "name": "Oxton Parkonians 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16503",
-      "image_url": "https://images.englandrugby.com/club_images/16503.png",
-      "address": "Martin Curphey Memorial Ground Holm Lane, Oxton Birkenhead, Wirral CHESHIRE CH43 2HU UNITED KINGDOM",
-      "latitude": 53.37679,
-      "longitude": -3.0513499,
-      "formatted_address": "CH43 2HU, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 351060067
-    },
-    {
       "name": "Capenhurst RUFC 2nd XV Men",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129846",
       "image_url": "https://images.englandrugby.com/club_images/129846.png",
@@ -43,14 +33,14 @@
       "place_id": 351062213
     },
     {
-      "name": "Birkenhead Park 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2272",
-      "image_url": "https://images.englandrugby.com/club_images/2272.png",
-      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
-      "latitude": 53.3974526,
-      "longitude": -3.0448955,
-      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 350093940
+      "name": "Oxton Parkonians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16503",
+      "image_url": "https://images.englandrugby.com/club_images/16503.png",
+      "address": "Martin Curphey Memorial Ground Holm Lane, Oxton Birkenhead, Wirral CHESHIRE CH43 2HU UNITED KINGDOM",
+      "latitude": 53.37679,
+      "longitude": -3.0513499,
+      "formatted_address": "CH43 2HU, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351060067
     },
     {
       "name": "Merseyside Police",
@@ -63,14 +53,24 @@
       "place_id": 351444829
     },
     {
-      "name": "Sefton 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18949",
-      "image_url": "https://images.englandrugby.com/club_images/18949.png",
-      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
-      "latitude": 53.4283309,
-      "longitude": -2.8961826,
-      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
-      "place_id": 350674497
+      "name": "Moore 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14070",
+      "image_url": "https://images.englandrugby.com/club_images/14070.png",
+      "address": "Moss Lane Moore Warrington Cheshire WA4 6UU United Kingdom",
+      "latitude": 53.3577779,
+      "longitude": -2.637244,
+      "formatted_address": "WA4 6UU, Moore, Halton, Liverpool City Region, England, United Kingdom",
+      "place_id": 350430517
+    },
+    {
+      "name": "Birkenhead Park 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2272",
+      "image_url": "https://images.englandrugby.com/club_images/2272.png",
+      "address": "141 Birkenhead Park R. U. F.c. (rugby Union), The Upper Park, Park Road North, Birkenhead, Merseyside, CH41 8AA, United Kingdom",
+      "latitude": 53.3974526,
+      "longitude": -3.0448955,
+      "formatted_address": "CH41 8AA, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350093940
     },
     {
       "name": "Hoylake RFC & Wallasey RFC 2nd XV Men",
@@ -83,6 +83,16 @@
       "place_id": 351062703
     },
     {
+      "name": "Port Sunlight 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17101",
+      "image_url": "https://images.englandrugby.com/club_images/17101.png",
+      "address": "Leverhulme Playing Fields Warren Lane Bromborough Wirral MERSEYSIDE CH62 3QQ UNITED KINGDOM",
+      "latitude": 53.32787,
+      "longitude": -2.96649,
+      "formatted_address": "CH62 3QQ, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 350613940
+    },
+    {
       "name": "Northwich 3rd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15007",
       "image_url": "https://images.englandrugby.com/club_images/15007.png",
@@ -93,24 +103,14 @@
       "place_id": 350118238
     },
     {
-      "name": "Moore 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14070",
-      "image_url": "https://images.englandrugby.com/club_images/14070.png",
-      "address": "Moss Lane Moore Warrington Cheshire WA4 6UU United Kingdom",
-      "latitude": 53.3577779,
-      "longitude": -2.637244,
-      "formatted_address": "WA4 6UU, Moore, Halton, Liverpool City Region, England, United Kingdom",
-      "place_id": 350430517
-    },
-    {
-      "name": "Port Sunlight 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17101",
-      "image_url": "https://images.englandrugby.com/club_images/17101.png",
-      "address": "Leverhulme Playing Fields Warren Lane Bromborough Wirral MERSEYSIDE CH62 3QQ UNITED KINGDOM",
-      "latitude": 53.32787,
-      "longitude": -2.96649,
-      "formatted_address": "CH62 3QQ, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 350613940
+      "name": "Sefton 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18949",
+      "image_url": "https://images.englandrugby.com/club_images/18949.png",
+      "address": "Sefton Rufc, Thornhead Lane, Leyfield Road, Liverpool, Lancashire, L12 9EY, United Kingdom",
+      "latitude": 53.4283309,
+      "longitude": -2.8961826,
+      "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 350674497
     }
   ],
   "team_count": 11

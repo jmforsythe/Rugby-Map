@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=73583&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Basingstoke RFC Ltd 3rd XV Men",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=130424",
-      "image_url": "https://images.englandrugby.com/club_images/130424.png",
-      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
-      "latitude": 51.2500615,
-      "longitude": -1.1278403,
-      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
-      "place_id": 259365634
-    },
-    {
       "name": "Farnborough",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7965",
       "image_url": "https://images.englandrugby.com/club_images/7965.png",
@@ -23,6 +13,16 @@
       "place_id": 350639981
     },
     {
+      "name": "Basingstoke RFC Ltd 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=130424",
+      "image_url": "https://images.englandrugby.com/club_images/130424.png",
+      "address": "Down Grange Pack Lane Kempshott Basingstoke Hampshire RG22 5HH England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HG, United Kingdom",
+      "place_id": 259365634
+    },
+    {
       "name": "Millbrook RFC 3rd XV Men",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129334",
       "image_url": "https://images.englandrugby.com/club_images/129334.png",
@@ -31,26 +31,6 @@
       "longitude": -1.4702939,
       "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
       "place_id": 350377088
-    },
-    {
-      "name": "Aldershot & Fleet RUFC 2nd XV Men",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128437",
-      "image_url": "https://images.englandrugby.com/club_images/128437.png",
-      "address": "Aldershot & Fleet Rugby Club Aldershot Park Heronwood Road Aldershot Hampshire GU12 4AL United Kingdom",
-      "latitude": 51.2362253,
-      "longitude": -0.742555,
-      "formatted_address": "GU12 4AL, Rushmoor, Hampshire, England, United Kingdom",
-      "place_id": 351320808
-    },
-    {
-      "name": "Eastleigh II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7251",
-      "image_url": "https://images.englandrugby.com/club_images/7251.png",
-      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
-      "latitude": 50.9706889,
-      "longitude": -1.3414294,
-      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
-      "place_id": 260765658
     },
     {
       "name": "Southampton 2nd XV",
@@ -71,6 +51,26 @@
       "longitude": -1.3766234,
       "formatted_address": "SO50 9HT, Chilworth, Test Valley, Hampshire, England, United Kingdom",
       "place_id": 350832256
+    },
+    {
+      "name": "Aldershot & Fleet RUFC 2nd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=128437",
+      "image_url": "https://images.englandrugby.com/club_images/128437.png",
+      "address": "Aldershot & Fleet Rugby Club Aldershot Park Heronwood Road Aldershot Hampshire GU12 4AL United Kingdom",
+      "latitude": 51.2362253,
+      "longitude": -0.742555,
+      "formatted_address": "GU12 4AL, Rushmoor, Hampshire, England, United Kingdom",
+      "place_id": 351320808
+    },
+    {
+      "name": "Eastleigh II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7251",
+      "image_url": "https://images.englandrugby.com/club_images/7251.png",
+      "address": "The Hub Bishopstoke Road Eastleigh Hampshire SO50 6LA United Kingdom",
+      "latitude": 50.9706889,
+      "longitude": -1.3414294,
+      "formatted_address": "The Hub, Bishopstoke Road, Newtown, Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, SO50 6LA, United Kingdom",
+      "place_id": 260765658
     },
     {
       "name": "Alresford 2nd XV",

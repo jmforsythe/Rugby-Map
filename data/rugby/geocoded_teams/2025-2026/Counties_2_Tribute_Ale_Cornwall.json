@@ -33,16 +33,6 @@
       "place_id": 351256697
     },
     {
-      "name": "Liskeard-Looe",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12347.png",
-      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
-      "latitude": 50.4605849,
-      "longitude": -4.4629552,
-      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
-      "place_id": 350772630
-    },
-    {
       "name": "Falmouth",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7910&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7910.png",
@@ -51,16 +41,6 @@
       "longitude": -5.07943,
       "formatted_address": "TR11 2FB, Falmouth, Cornwall, England, United Kingdom",
       "place_id": 352068067
-    },
-    {
-      "name": "Newquay Hornets",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14584.png",
-      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
-      "latitude": 50.41375,
-      "longitude": -5.06232,
-      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
-      "place_id": 352076356
     },
     {
       "name": "Perranporth",
@@ -73,14 +53,24 @@
       "place_id": 352075861
     },
     {
-      "name": "St Austell II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20159&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20159.png",
-      "address": "St. Austell R.f.c., Tregorrick Park, Tregorrick Lane, St.austell, Cornw, PL26 7FH, United Kingdom",
-      "latitude": 50.3279,
-      "longitude": -4.77697,
-      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
-      "place_id": 351770069
+      "name": "Liskeard-Looe",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12347&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12347.png",
+      "address": "Lux Park Coldstyle Road Liskeard CORNWALL PL14 3HZ UNITED KINGDOM ",
+      "latitude": 50.4605849,
+      "longitude": -4.4629552,
+      "formatted_address": "PL14 3HZ, Liskeard, Cornwall, England, United Kingdom",
+      "place_id": 350772630
+    },
+    {
+      "name": "Newquay Hornets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14584&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14584.png",
+      "address": "Newquay Sports Centre Yeoman Way Yeoman Way Newquay CORNWALL TR7 2SL UNITED KINGDOM ",
+      "latitude": 50.41375,
+      "longitude": -5.06232,
+      "formatted_address": "TR7 2SL, Newquay, Cornwall, England, United Kingdom",
+      "place_id": 352076356
     },
     {
       "name": "Launceston II",
@@ -91,6 +81,16 @@
       "longitude": -4.33228,
       "formatted_address": "PL15 9QT, Lawhitton Rural, Lawhitton, Cornwall, England, United Kingdom",
       "place_id": 351765570
+    },
+    {
+      "name": "St Austell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20159&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20159.png",
+      "address": "St. Austell R.f.c., Tregorrick Park, Tregorrick Lane, St.austell, Cornw, PL26 7FH, United Kingdom",
+      "latitude": 50.3279,
+      "longitude": -4.77697,
+      "formatted_address": "PL26 7FH, Pentewan Valley, London Apprentice, Cornwall, England, United Kingdom",
+      "place_id": 351770069
     },
     {
       "name": "Wadebridge Camels II",

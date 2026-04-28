@@ -23,16 +23,6 @@
       "place_id": 351175744
     },
     {
-      "name": "Novocastrians Ladies II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15175&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15175.png",
-      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
-      "latitude": 55.005355,
-      "longitude": -1.5807865,
-      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
-      "place_id": 351642087
-    },
-    {
       "name": "Northallerton Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14845&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/14845.png",
@@ -53,6 +43,16 @@
       "place_id": 350527237
     },
     {
+      "name": "Novocastrians Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15175&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15175.png",
+      "address": "Sutherland Park, The Drive, Benton, Newcastle Upon Tyne, Tyne And Wear, NE7 7SY, United Kingdom",
+      "latitude": 55.005355,
+      "longitude": -1.5807865,
+      "formatted_address": "NE7 7SY, Newcastle upon Tyne, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 351642087
+    },
+    {
       "name": "Darlington Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6104&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6104.png",
@@ -61,17 +61,7 @@
       "longitude": -1.5645631,
       "formatted_address": "DL1 5NR, Darlington, Tees Valley, England, United Kingdom",
       "place_id": 350592976
-    },
-    {
-      "name": "Blaydon Red Kites 2XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125277&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/125277.png",
-      "address": "Crow Trees Ground, Hexham Road, Newcastle Upon Tyne, Tyne And Wear, NE16 3BN, United Kingdom",
-      "latitude": 54.9532684,
-      "longitude": -1.6916365,
-      "formatted_address": "NE16 3BN, Gateshead, Tyne and Wear, North East, England, United Kingdom",
-      "place_id": 350709994
     }
   ],
-  "team_count": 7
+  "team_count": 6
 }

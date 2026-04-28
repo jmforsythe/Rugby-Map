@@ -23,16 +23,6 @@
       "place_id": 350703433
     },
     {
-      "name": "Worcester Warriors",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129797&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/129797.png",
-      "address": "Clubs Office, Training &amp; Playing Ground, Sixways Stadium, Warriors Way, Worcester, WR3 8ZE, United Kingdom",
-      "latitude": 52.21608,
-      "longitude": -2.16251,
-      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
-      "place_id": 352162012
-    },
-    {
       "name": "Coventry",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5722&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/5722.png",
@@ -43,14 +33,14 @@
       "place_id": 350563719
     },
     {
-      "name": "Hartpury RFC",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9602&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9602.png",
-      "address": "Hartpury College Hartpury House Hartpury Gloucester GLOUCESTERSHIRE GL19 3BE UNITED KINGDOM ",
-      "latitude": 51.9076884,
-      "longitude": -2.3091654,
-      "formatted_address": "GL19 3BE, Hartpury, Forest of Dean, Gloucestershire, England, United Kingdom",
-      "place_id": 350630894
+      "name": "Worcester Warriors",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129797&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/129797.png",
+      "address": "Clubs Office, Training &amp; Playing Ground, Sixways Stadium, Warriors Way, Worcester, WR3 8ZE, United Kingdom",
+      "latitude": 52.21608,
+      "longitude": -2.16251,
+      "formatted_address": "WR3 8ZE, Hindlip, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 352162012
     },
     {
       "name": "Chinnor",
@@ -63,34 +53,14 @@
       "place_id": 351734126
     },
     {
-      "name": "Nottingham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15075&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15075.png",
-      "address": "Nottingham Rugby, Nottingham Rugby Ltd., The Bay, 1 Holme Road, West Bridgford, Nottingham, Nottinghamshire, NG2 5AA, United Kingdom",
-      "latitude": 52.9399328,
-      "longitude": -1.1261495,
-      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
-      "place_id": 350718250
-    },
-    {
-      "name": "Caldy",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3933&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/3933.png",
-      "address": "Paton Field, Telegraph Road, West Kirby, Cheshire, CH48 1NX, United Kingdom",
-      "latitude": 53.35961,
-      "longitude": -3.14547,
-      "formatted_address": "CH48 1NX, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 351062870
-    },
-    {
-      "name": "Ampthill",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=632&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/632.png",
-      "address": "Dillingham Park Woburn Street Ampthill Bedfordshire MK45 2HX UNITED KINGDOM ",
-      "latitude": 52.0318695,
-      "longitude": -0.4991971,
-      "formatted_address": "MK45 2HX, Ampthill, Central Bedfordshire, England, United Kingdom",
-      "place_id": 350704166
+      "name": "Hartpury RFC",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9602&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9602.png",
+      "address": "Hartpury College Hartpury House Hartpury Gloucester GLOUCESTERSHIRE GL19 3BE UNITED KINGDOM ",
+      "latitude": 51.9076884,
+      "longitude": -2.3091654,
+      "formatted_address": "GL19 3BE, Hartpury, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630894
     },
     {
       "name": "Cornish Pirates",
@@ -103,6 +73,26 @@
       "place_id": 350867273
     },
     {
+      "name": "Nottingham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15075&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15075.png",
+      "address": "Nottingham Rugby, Nottingham Rugby Ltd., The Bay, 1 Holme Road, West Bridgford, Nottingham, Nottinghamshire, NG2 5AA, United Kingdom",
+      "latitude": 52.9399328,
+      "longitude": -1.1261495,
+      "formatted_address": "NG2 5AA, Lady Bay, West Bridgford, Rushcliffe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 350718250
+    },
+    {
+      "name": "Ampthill",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=632&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/632.png",
+      "address": "Dillingham Park Woburn Street Ampthill Bedfordshire MK45 2HX UNITED KINGDOM ",
+      "latitude": 52.0318695,
+      "longitude": -0.4991971,
+      "formatted_address": "MK45 2HX, Ampthill, Central Bedfordshire, England, United Kingdom",
+      "place_id": 350704166
+    },
+    {
       "name": "Doncaster Knights",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6559&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6559.png",
@@ -111,6 +101,16 @@
       "longitude": -1.0781565,
       "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
       "place_id": 351183408
+    },
+    {
+      "name": "Caldy",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3933&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/3933.png",
+      "address": "Paton Field, Telegraph Road, West Kirby, Cheshire, CH48 1NX, United Kingdom",
+      "latitude": 53.35961,
+      "longitude": -3.14547,
+      "formatted_address": "CH48 1NX, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062870
     },
     {
       "name": "Richmond",

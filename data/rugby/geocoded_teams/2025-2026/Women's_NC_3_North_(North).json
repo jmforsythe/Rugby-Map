@@ -23,6 +23,16 @@
       "place_id": 351640857
     },
     {
+      "name": "Gateshead Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125311&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/125311.png",
+      "address": "Hedley Lawson Park Eastwood Gardens Low Fell Gateshead TYNE AND WEAR NE9 5UB UNITED KINGDOM ",
+      "latitude": 54.9418259,
+      "longitude": -1.5943812,
+      "formatted_address": "NE9 5UB, Gateshead, Tyne and Wear, North East, England, United Kingdom",
+      "place_id": 350714283
+    },
+    {
       "name": "Percy Park Panthers Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124477&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/124477.png",
@@ -31,6 +41,16 @@
       "longitude": -1.44498,
       "formatted_address": "NE30 2BE, North Tyneside, North East, England, United Kingdom",
       "place_id": 351626964
+    },
+    {
+      "name": "Berwick Upon Tweed Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2066&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2066.png",
+      "address": "The Clubhouse 11 Derwentwater Terrace Scremerston Berwick Upon Tweed NORTHUMBERLAND TD15 2QY UNITED KINGDOM ",
+      "latitude": 55.7392512,
+      "longitude": -1.9923902,
+      "formatted_address": "TD15 2QY, Ancroft, Northumberland, North East, England, United Kingdom",
+      "place_id": 350399720
     },
     {
       "name": "Consett & District Women",
@@ -51,37 +71,7 @@
       "longitude": -1.4955724,
       "formatted_address": "LUKES LANE ESTATE, Marine Drive, Lukes Lane, Primrose, Jarrow, South Tyneside, Tyne and Wear, North East, England, NE31 2AQ, United Kingdom",
       "place_id": 253817836
-    },
-    {
-      "name": "Gateshead Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=125311&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/125311.png",
-      "address": "Hedley Lawson Park Eastwood Gardens Low Fell Gateshead TYNE AND WEAR NE9 5UB UNITED KINGDOM ",
-      "latitude": 54.9418259,
-      "longitude": -1.5943812,
-      "formatted_address": "NE9 5UB, Gateshead, Tyne and Wear, North East, England, United Kingdom",
-      "place_id": 350714283
-    },
-    {
-      "name": "Berwick Upon Tweed Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2066&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2066.png",
-      "address": "The Clubhouse 11 Derwentwater Terrace Scremerston Berwick Upon Tweed NORTHUMBERLAND TD15 2QY UNITED KINGDOM ",
-      "latitude": 55.7392512,
-      "longitude": -1.9923902,
-      "formatted_address": "TD15 2QY, Ancroft, Northumberland, North East, England, United Kingdom",
-      "place_id": 350399720
-    },
-    {
-      "name": "Ponteland Tigers Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124285&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/124285.png",
-      "address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, NE20 9EG, United Kingdom",
-      "latitude": 55.0462851,
-      "longitude": -1.740453,
-      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
-      "place_id": 253983840
     }
   ],
-  "team_count": 8
+  "team_count": 7
 }

@@ -33,6 +33,16 @@
       "place_id": 351838100
     },
     {
+      "name": "Maldon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13154.png",
+      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
+      "latitude": 51.7403821,
+      "longitude": 0.7039643,
+      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
+      "place_id": 350550803
+    },
+    {
       "name": "Campion",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4078&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/4078.png",
@@ -63,16 +73,6 @@
       "place_id": 351081198
     },
     {
-      "name": "Maldon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13154&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13154.png",
-      "address": "Drapers Farm Sports Club Drapers Chase Goldhanger Road Heybridge Essex CM9 4QT UNITED KINGDOM",
-      "latitude": 51.7403821,
-      "longitude": 0.7039643,
-      "formatted_address": "CM9 4QT, Heybridge, Maldon, Essex, England, United Kingdom",
-      "place_id": 350550803
-    },
-    {
       "name": "Chingford",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4795&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/4795.png",
@@ -83,16 +83,6 @@
       "place_id": 351217133
     },
     {
-      "name": "Stanford Le Hope",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20883.png",
-      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
-      "latitude": 51.51169,
-      "longitude": 0.43157,
-      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
-      "place_id": 351529090
-    },
-    {
       "name": "Upminster",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23759&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23759.png",
@@ -101,6 +91,16 @@
       "longitude": 0.2605793,
       "formatted_address": "RM14 3HL, London Borough of Havering, Greater London, England, United Kingdom",
       "place_id": 350799898
+    },
+    {
+      "name": "Stanford Le Hope",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20883&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20883.png",
+      "address": "SRGUG Clubhouse Stanford Rec. Ground Grove Road Stanford-le-Hope ESSEX SS17 0ED UNITED KINGDOM",
+      "latitude": 51.51169,
+      "longitude": 0.43157,
+      "formatted_address": "SS17 0ED, Thurrock, Essex, England, United Kingdom",
+      "place_id": 351529090
     }
   ],
   "team_count": 10

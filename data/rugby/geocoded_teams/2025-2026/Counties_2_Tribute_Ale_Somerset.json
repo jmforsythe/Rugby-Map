@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=70432&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Clevedon",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5234&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5234.png",
-      "address": "Clevedon RFC Coleridge Vale Playing Fields Southey Road Clevedon AVON BS21 6PF UNITED KINGDOM ",
-      "latitude": 51.4335802,
-      "longitude": -2.8582071,
-      "formatted_address": "BS21 6PF, Clevedon, North Somerset, England, United Kingdom",
-      "place_id": 350510299
-    },
-    {
       "name": "Burnham-on-Sea",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3722&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/3722.png",
@@ -21,6 +11,16 @@
       "longitude": -2.9846688,
       "formatted_address": "TA8 2BS, Burnham-on-Sea and Highbridge, Burnham-on-Sea, Somerset, England, United Kingdom",
       "place_id": 350850088
+    },
+    {
+      "name": "Clevedon",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5234&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5234.png",
+      "address": "Clevedon RFC Coleridge Vale Playing Fields Southey Road Clevedon AVON BS21 6PF UNITED KINGDOM ",
+      "latitude": 51.4335802,
+      "longitude": -2.8582071,
+      "formatted_address": "BS21 6PF, Clevedon, North Somerset, England, United Kingdom",
+      "place_id": 350510299
     },
     {
       "name": "Minehead Barbarians",
@@ -33,16 +33,6 @@
       "place_id": 350847089
     },
     {
-      "name": "St Bernadettes Old Boys",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20227&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20227.png",
-      "address": "St Bernadettes Old Boys Rfc, Fulford Road, Hartcliffe, Bristol, Avon , BS13 9PB, United Kingdom",
-      "latitude": 51.41041,
-      "longitude": -2.60456,
-      "formatted_address": "BS13 9PB, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 351016343
-    },
-    {
       "name": "Hornets II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10414&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/10414.png",
@@ -51,6 +41,16 @@
       "longitude": -2.947101,
       "formatted_address": "Hutton Moor Road, Haywood Village, Weston-super-Mare, North Somerset, England, BS22 8LY, United Kingdom",
       "place_id": 261865175
+    },
+    {
+      "name": "St Bernadettes Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20227&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20227.png",
+      "address": "St Bernadettes Old Boys Rfc, Fulford Road, Hartcliffe, Bristol, Avon , BS13 9PB, United Kingdom",
+      "latitude": 51.41041,
+      "longitude": -2.60456,
+      "formatted_address": "BS13 9PB, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 351016343
     },
     {
       "name": "Imperial",
@@ -83,14 +83,14 @@
       "place_id": 261418614
     },
     {
-      "name": "Castle Cary",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4259&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4259.png",
-      "address": "Brookhouse Field, Nr. Alhampton, Ditcheat, Castle Cary, Somerset, BA7 7PF, United Kingdom",
-      "latitude": 51.1033,
-      "longitude": -2.5242,
-      "formatted_address": "BA7 7PF, Ditcheat, Somerset, England, United Kingdom",
-      "place_id": 350942302
+      "name": "Chew Valley II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4736&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4736.png",
+      "address": "Lobbingtons, Chew Lane, Chew Stoke, Bristol, Bristol, BS40 8UE, United Kingdom",
+      "latitude": 51.3560626,
+      "longitude": -2.6286898,
+      "formatted_address": "BS40 8UE, Chew Stoke, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350517156
     },
     {
       "name": "Keynsham II",
@@ -103,25 +103,15 @@
       "place_id": 350513226
     },
     {
-      "name": "Chew Valley II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4736&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4736.png",
-      "address": "Lobbingtons, Chew Lane, Chew Stoke, Bristol, Bristol, BS40 8UE, United Kingdom",
-      "latitude": 51.3560626,
-      "longitude": -2.6286898,
-      "formatted_address": "BS40 8UE, Chew Stoke, Bath and North East Somerset, West of England, England, United Kingdom",
-      "place_id": 350517156
-    },
-    {
-      "name": "Rebels Rugby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=123959&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/123959.png",
-      "address": "Milverton Sport, Recreational Ground , Butts Way, Milverton, Taunton, Somerset, TA4 1JR, United Kingdom",
-      "latitude": 51.0238246,
-      "longitude": -3.2586493,
-      "formatted_address": "TA4 1JR, Milverton, Somerset, England, United Kingdom",
-      "place_id": 350848512
+      "name": "Castle Cary",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4259&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4259.png",
+      "address": "Brookhouse Field, Nr. Alhampton, Ditcheat, Castle Cary, Somerset, BA7 7PF, United Kingdom",
+      "latitude": 51.1033,
+      "longitude": -2.5242,
+      "formatted_address": "BA7 7PF, Ditcheat, Somerset, England, United Kingdom",
+      "place_id": 350942302
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

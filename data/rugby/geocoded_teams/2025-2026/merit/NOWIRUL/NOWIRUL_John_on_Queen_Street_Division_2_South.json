@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=183&division=66813&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Ellesmere Port",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7430",
-      "image_url": "https://images.englandrugby.com/club_images/7430.png",
-      "address": "Ellesmere Port RUFC Whitby Sports & Social Club Chester Road, Whitby, Ellesmere Port CHESHIRE CH65 6QF UNITED KINGDOM",
-      "latitude": 53.2621334,
-      "longitude": -2.9094102,
-      "formatted_address": "CH65 6QF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
-      "place_id": 350545909
-    },
-    {
       "name": "Prenton",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17162",
       "image_url": "https://images.englandrugby.com/club_images/17162.png",
@@ -23,14 +13,14 @@
       "place_id": 351060152
     },
     {
-      "name": "Didsbury Toc H 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6447",
-      "image_url": "https://images.englandrugby.com/club_images/6447.png",
-      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM",
-      "latitude": 53.4139,
-      "longitude": -2.23351,
-      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
-      "place_id": 351541486
+      "name": "Ellesmere Port",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7430",
+      "image_url": "https://images.englandrugby.com/club_images/7430.png",
+      "address": "Ellesmere Port RUFC Whitby Sports & Social Club Chester Road, Whitby, Ellesmere Port CHESHIRE CH65 6QF UNITED KINGDOM",
+      "latitude": 53.2621334,
+      "longitude": -2.9094102,
+      "formatted_address": "CH65 6QF, Ellesmere Port, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350545909
     },
     {
       "name": "Marple",
@@ -53,6 +43,16 @@
       "place_id": 352127702
     },
     {
+      "name": "Didsbury Toc H 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6447",
+      "image_url": "https://images.englandrugby.com/club_images/6447.png",
+      "address": "Clubhouse Simon Field Ford Lane Didsbury Manchester LANCASHIRE M20 2RU UNITED KINGDOM",
+      "latitude": 53.4139,
+      "longitude": -2.23351,
+      "formatted_address": "M20 2RU, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351541486
+    },
+    {
       "name": "Firwood Waterloo 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8163",
       "image_url": "https://images.englandrugby.com/club_images/8163.png",
@@ -61,26 +61,6 @@
       "longitude": -3.04513,
       "formatted_address": "L23 8TW, Sefton, Liverpool City Region, England, United Kingdom",
       "place_id": 350996273
-    },
-    {
-      "name": "Broughton Park 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3499",
-      "image_url": "https://images.englandrugby.com/club_images/3499.png",
-      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
-      "latitude": 53.43633,
-      "longitude": -2.25581,
-      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
-      "place_id": 351542451
-    },
-    {
-      "name": "Crewe & Nantwich 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5860",
-      "image_url": "https://images.englandrugby.com/club_images/5860.png",
-      "address": "Crewe Vagrants Sports Club Newcastle Road Willaston Cheshire CW5 7EP United Kingdom",
-      "latitude": 53.0597508,
-      "longitude": -2.4778031,
-      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
-      "place_id": 350568108
     },
     {
       "name": "Burnage 2nd XV",
@@ -93,14 +73,14 @@
       "place_id": 350368827
     },
     {
-      "name": "Sandbach 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18679",
-      "image_url": "https://images.englandrugby.com/club_images/18679.png",
-      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
-      "latitude": 53.1560892,
-      "longitude": -2.3670478,
-      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
-      "place_id": 255894806
+      "name": "Broughton Park 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3499",
+      "image_url": "https://images.englandrugby.com/club_images/3499.png",
+      "address": "Broughton Park Fc 2 Houghend Crescent Off Mauldeth Road West Manchester Lancashire M21 7TL United Kingdom",
+      "latitude": 53.43633,
+      "longitude": -2.25581,
+      "formatted_address": "M21 7TL, Manchester, Greater Manchester, England, United Kingdom",
+      "place_id": 351542451
     },
     {
       "name": "Holmes Chapel",
@@ -113,15 +93,25 @@
       "place_id": 350567853
     },
     {
-      "name": "Wallasey",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24143",
-      "image_url": "https://images.englandrugby.com/club_images/24143.png",
-      "address": "Wallasey Rugby Club Cross Lane Wallasey Merseyside CH458RH United Kingdom",
-      "latitude": 53.41896,
-      "longitude": -3.07493,
-      "formatted_address": "CH45 8RH, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 351061964
+      "name": "Crewe & Nantwich 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5860",
+      "image_url": "https://images.englandrugby.com/club_images/5860.png",
+      "address": "Crewe Vagrants Sports Club Newcastle Road Willaston Cheshire CW5 7EP United Kingdom",
+      "latitude": 53.0597508,
+      "longitude": -2.4778031,
+      "formatted_address": "CW5 7EP, Stapeley and District, Stapeley, Cheshire East, England, United Kingdom",
+      "place_id": 350568108
+    },
+    {
+      "name": "Sandbach 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18679",
+      "image_url": "https://images.englandrugby.com/club_images/18679.png",
+      "address": "Bradwall Road Sandbach CHESHIRE CW11 1RA UNITED KINGDOM ",
+      "latitude": 53.1560892,
+      "longitude": -2.3670478,
+      "formatted_address": "Bradwall Road, Elworth, Sandbach, Cheshire East, England, CW11 1RA, United Kingdom",
+      "place_id": 255894806
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

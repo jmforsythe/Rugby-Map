@@ -23,6 +23,16 @@
       "place_id": 352131644
     },
     {
+      "name": "Capenhurst",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4165",
+      "image_url": "https://images.englandrugby.com/club_images/4165.png",
+      "address": "Capenhurst Sports Ground Capenhurst Lane, Capenhurst Nr Chester CHESHIRE CH1 6ER UNITED KINGDOM",
+      "latitude": 53.26354,
+      "longitude": -2.95206,
+      "formatted_address": "CH1 6ER, URENCO Nuclear Enrichment Plant, Ledsham, Capenhurst, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 350605711
+    },
+    {
       "name": "Port Sunlight",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17100",
       "image_url": "https://images.englandrugby.com/club_images/17100.png",
@@ -33,14 +43,14 @@
       "place_id": 350613940
     },
     {
-      "name": "Capenhurst",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4165",
-      "image_url": "https://images.englandrugby.com/club_images/4165.png",
-      "address": "Capenhurst Sports Ground Capenhurst Lane, Capenhurst Nr Chester CHESHIRE CH1 6ER UNITED KINGDOM",
-      "latitude": 53.26354,
-      "longitude": -2.95206,
-      "formatted_address": "CH1 6ER, URENCO Nuclear Enrichment Plant, Ledsham, Capenhurst, Cheshire West and Chester, England, United Kingdom",
-      "place_id": 350605711
+      "name": "Caldy 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3935",
+      "image_url": "https://images.englandrugby.com/club_images/3935.png",
+      "address": "Paton Field, Telegraph Road, West Kirby, Cheshire, CH48 1NX, United Kingdom",
+      "latitude": 53.35961,
+      "longitude": -3.14547,
+      "formatted_address": "CH48 1NX, Wirral, Liverpool City Region, England, United Kingdom",
+      "place_id": 351062870
     },
     {
       "name": "New Brighton 2nd XV",
@@ -71,27 +81,7 @@
       "longitude": -2.8961826,
       "formatted_address": "L12 9EY, Liverpool, Liverpool City Region, England, United Kingdom",
       "place_id": 350674497
-    },
-    {
-      "name": "Caldy 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3935",
-      "image_url": "https://images.englandrugby.com/club_images/3935.png",
-      "address": "Paton Field, Telegraph Road, West Kirby, Cheshire, CH48 1NX, United Kingdom",
-      "latitude": 53.35961,
-      "longitude": -3.14547,
-      "formatted_address": "CH48 1NX, Wirral, Liverpool City Region, England, United Kingdom",
-      "place_id": 351062870
-    },
-    {
-      "name": "Crosby St Mary's",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5910",
-      "image_url": "https://images.englandrugby.com/club_images/5910.png",
-      "address": "The Playing Fields Gorsey Lane Hightown Liverpool. Merseyside L38 3RB UNITED KINGDOM",
-      "latitude": 53.51769,
-      "longitude": -3.0465399,
-      "formatted_address": "L38 3RB, Moss Farm, Hightown, Sefton, Liverpool City Region, England, United Kingdom",
-      "place_id": 352129154
     }
   ],
-  "team_count": 9
+  "team_count": 8
 }

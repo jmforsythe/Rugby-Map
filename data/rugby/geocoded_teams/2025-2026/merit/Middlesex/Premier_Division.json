@@ -23,6 +23,16 @@
       "place_id": 416762358
     },
     {
+      "name": "Finchley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
+      "image_url": "https://images.englandrugby.com/club_images/8091.png",
+      "address": "Summers Lane London N12 0PD United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
       "name": "Rosslyn Park 4th XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18038",
       "image_url": "https://images.englandrugby.com/club_images/18038.png",
@@ -31,16 +41,6 @@
       "longitude": -0.2472565,
       "formatted_address": "SW15 5JH, London Borough of Wandsworth, Greater London, England, United Kingdom",
       "place_id": 350839761
-    },
-    {
-      "name": "Chiswick 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
-      "image_url": "https://images.englandrugby.com/club_images/4931.png",
-      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
-      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
-      "place_id": 352119820
     },
     {
       "name": "Belsize Park III",
@@ -53,14 +53,14 @@
       "place_id": 351682702
     },
     {
-      "name": "Finchley 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
-      "image_url": "https://images.englandrugby.com/club_images/8091.png",
-      "address": "Summers Lane London N12 0PD United Kingdom",
-      "latitude": 51.6115893,
-      "longitude": -0.1628236,
-      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
-      "place_id": 259427030
+      "name": "Chiswick 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
+      "image_url": "https://images.englandrugby.com/club_images/4931.png",
+      "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
+      "latitude": 51.47357,
+      "longitude": -0.25637,
+      "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352119820
     },
     {
       "name": "New Zealand Kiwis",

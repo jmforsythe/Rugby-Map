@@ -23,24 +23,14 @@
       "place_id": 350816524
     },
     {
-      "name": "Tabard",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21580&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21580.png",
-      "address": "Tabard Rfc, King George V Playing Fields, Cobden Hill, Radlett, Herts                         , WD7 7JN, United Kingdom",
-      "latitude": 51.6762842,
-      "longitude": -0.3124198,
-      "formatted_address": "WD7 7JN, Aldenham, Letchmore Heath, Hertsmere, Hertfordshire, England, United Kingdom",
-      "place_id": 352141599
-    },
-    {
-      "name": "St Albans",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20102&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20102.png",
-      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
-      "latitude": 51.7562274,
-      "longitude": -0.2723515,
-      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
-      "place_id": 350913566
+      "name": "Chess Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4663&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4663.png",
+      "address": "Croxley Guild Of Sport, The Green, Rickmansworth, Hertfordshire, WD3 3HT, United Kingdom",
+      "latitude": 51.6494884,
+      "longitude": -0.4543582,
+      "formatted_address": "WD3 3HT, Croxley Green, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
+      "place_id": 352139344
     },
     {
       "name": "HUEL Tring II",
@@ -53,6 +43,26 @@
       "place_id": 351362618
     },
     {
+      "name": "St Albans",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20102&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20102.png",
+      "address": "Boggymead Spring, Oaklands Lane, Smallford, St. Albans, Hertfordshire, AL4 0HR, United Kingdom",
+      "latitude": 51.7562274,
+      "longitude": -0.2723515,
+      "formatted_address": "AL4 0HR, Colney Heath, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 350913566
+    },
+    {
+      "name": "Tabard",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21580&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21580.png",
+      "address": "Tabard Rfc, King George V Playing Fields, Cobden Hill, Radlett, Herts                         , WD7 7JN, United Kingdom",
+      "latitude": 51.6762842,
+      "longitude": -0.3124198,
+      "formatted_address": "WD7 7JN, Aldenham, Letchmore Heath, Hertsmere, Hertfordshire, England, United Kingdom",
+      "place_id": 352141599
+    },
+    {
       "name": "Verulamians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23976&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/23976.png",
@@ -63,26 +73,6 @@
       "place_id": 350912383
     },
     {
-      "name": "Letchworth 1924",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12183&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12183.png",
-      "address": "Letchworth R.u.f.c., Legends Lane, Baldock Road, Letchworth Garden City, Herts, SG6 2EN, United Kingdom",
-      "latitude": 51.97622,
-      "longitude": -0.2059699,
-      "formatted_address": "SG6 2EN, Letchworth, Hertfordshire, England, United Kingdom",
-      "place_id": 351911889
-    },
-    {
-      "name": "Chess Valley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4663&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4663.png",
-      "address": "Croxley Guild Of Sport, The Green, Rickmansworth, Hertfordshire, WD3 3HT, United Kingdom",
-      "latitude": 51.6494884,
-      "longitude": -0.4543582,
-      "formatted_address": "WD3 3HT, Croxley Green, Rickmansworth, Three Rivers, Hertfordshire, England, United Kingdom",
-      "place_id": 352139344
-    },
-    {
       "name": "Luton",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12941&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/12941.png",
@@ -91,6 +81,16 @@
       "longitude": -0.4296233,
       "formatted_address": "LU1 4BQ, Luton, England, United Kingdom",
       "place_id": 350693235
+    },
+    {
+      "name": "Letchworth 1924",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12183&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12183.png",
+      "address": "Letchworth R.u.f.c., Legends Lane, Baldock Road, Letchworth Garden City, Herts, SG6 2EN, United Kingdom",
+      "latitude": 51.97622,
+      "longitude": -0.2059699,
+      "formatted_address": "SG6 2EN, Letchworth, Hertfordshire, England, United Kingdom",
+      "place_id": 351911889
     }
   ],
   "team_count": 9

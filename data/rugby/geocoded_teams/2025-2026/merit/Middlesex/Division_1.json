@@ -13,16 +13,6 @@
       "place_id": 350422821
     },
     {
-      "name": "West London",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24823",
-      "image_url": "https://images.englandrugby.com/club_images/24823.png",
-      "address": "London Marathon Playing Fields Birkbeck Avenue Greenford Middlesex UB6 8LS United Kingdom",
-      "latitude": 51.54131,
-      "longitude": -0.34867,
-      "formatted_address": "UB6 8LS, London Borough of Ealing, Greater London, England, United Kingdom",
-      "place_id": 352106300
-    },
-    {
       "name": "Twickenham 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
       "image_url": "https://images.englandrugby.com/club_images/23337.png",
@@ -31,6 +21,16 @@
       "longitude": -0.3870802,
       "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 350420094
+    },
+    {
+      "name": "West London",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24823",
+      "image_url": "https://images.englandrugby.com/club_images/24823.png",
+      "address": "London Marathon Playing Fields Birkbeck Avenue Greenford Middlesex UB6 8LS United Kingdom",
+      "latitude": 51.54131,
+      "longitude": -0.34867,
+      "formatted_address": "UB6 8LS, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352106300
     },
     {
       "name": "Grasshoppers II",

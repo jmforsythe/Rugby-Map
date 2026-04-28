@@ -13,6 +13,16 @@
       "place_id": 259564461
     },
     {
+      "name": "Milton Keynes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13918&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13918.png",
+      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
+      "latitude": 52.0023636,
+      "longitude": -0.7803565,
+      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
+      "place_id": 350703816
+    },
+    {
       "name": "Amersham & Chiltern II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=583&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/583.png",
@@ -31,16 +41,6 @@
       "longitude": -0.7183945,
       "formatted_address": "SL6 1BN, Windsor and Maidenhead, England, United Kingdom",
       "place_id": 350821079
-    },
-    {
-      "name": "Milton Keynes",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13918&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13918.png",
-      "address": "Emerson Valley Sports Pavilion, Bowland Drive, Milton Keynes, Buckinghamshire, MK4 2DN, England",
-      "latitude": 52.0023636,
-      "longitude": -0.7803565,
-      "formatted_address": "MK4 2DN, Shenley Brook End, Milton Keynes, City of Milton Keynes, England, United Kingdom",
-      "place_id": 350703816
     },
     {
       "name": "Slough",
@@ -63,16 +63,6 @@
       "place_id": 350650498
     },
     {
-      "name": "Marlow II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13443&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13443.png",
-      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
-      "latitude": 51.5683514,
-      "longitude": -0.7569474,
-      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
-      "place_id": 257496634
-    },
-    {
       "name": "Reading II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17534&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/17534.png",
@@ -81,6 +71,16 @@
       "longitude": -0.9137326,
       "formatted_address": "RG4 6ST, Sonning, Wokingham, England, United Kingdom",
       "place_id": 350790611
+    },
+    {
+      "name": "Marlow II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13443&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13443.png",
+      "address": "Riverwoods Drive Marlow BUCKINGHAMSHIRE SL7 1QU UNITED KINGDOM ",
+      "latitude": 51.5683514,
+      "longitude": -0.7569474,
+      "formatted_address": "Riverwoods Drive, Marlow, Buckinghamshire, England, SL7 1QU, United Kingdom",
+      "place_id": 257496634
     },
     {
       "name": "Risborough",
@@ -93,16 +93,6 @@
       "place_id": 258756831
     },
     {
-      "name": "Henley III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9996&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9996.png",
-      "address": "Dry Leas, Marlow Road, Henley-on-thames, Oxfordshire, RG9 2JA, United Kingdom",
-      "latitude": 51.5423199,
-      "longitude": -0.90493,
-      "formatted_address": "RG9 2JA, Henley-on-Thames, South Oxfordshire, Oxfordshire, England, United Kingdom",
-      "place_id": 351819932
-    },
-    {
       "name": "Bracknell III",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2893&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2893.png",
@@ -113,5 +103,5 @@
       "place_id": 351806964
     }
   ],
-  "team_count": 11
+  "team_count": 10
 }

@@ -43,16 +43,6 @@
       "place_id": 351005677
     },
     {
-      "name": "Haywards Heath",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9776.png",
-      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
-      "latitude": 51.0153017,
-      "longitude": -0.1497048,
-      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 350797092
-    },
-    {
       "name": "Eastbourne",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7209&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7209.png",
@@ -83,6 +73,16 @@
       "place_id": 352009331
     },
     {
+      "name": "Haywards Heath",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9776&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9776.png",
+      "address": "Haywards Heath Rfc Whitemans Green Cuckfield West Sussex RH17 5HX United Kingdom",
+      "latitude": 51.0153017,
+      "longitude": -0.1497048,
+      "formatted_address": "RH17 5HX, Cuckfield, Mid Sussex, West Sussex, England, United Kingdom",
+      "place_id": 350797092
+    },
+    {
       "name": "Old Caterhamians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15510&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15510.png",
@@ -93,16 +93,6 @@
       "place_id": 350558949
     },
     {
-      "name": "KCS Old Boys",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11188&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11188.png",
-      "address": "Old King's Pavillion Dornan Fields Arthur Road Motspur Park Surrey KT3 6LX United Kingdom",
-      "latitude": 51.3943755,
-      "longitude": -0.2357014,
-      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
-      "place_id": 350671643
-    },
-    {
       "name": "Old Wimbledonians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16099&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16099.png",
@@ -111,6 +101,16 @@
       "longitude": -0.2409752,
       "formatted_address": "Coombe Lane, Cottenham Park, Raynes Park, London Borough of Merton, Greater London, England, SW20 0PH, United Kingdom",
       "place_id": 260103652
+    },
+    {
+      "name": "KCS Old Boys",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11188&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11188.png",
+      "address": "Old King's Pavillion Dornan Fields Arthur Road Motspur Park Surrey KT3 6LX United Kingdom",
+      "latitude": 51.3943755,
+      "longitude": -0.2357014,
+      "formatted_address": "KT3 6LX, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350671643
     }
   ],
   "team_count": 11

@@ -13,6 +13,16 @@
       "place_id": 350462368
     },
     {
+      "name": "Lichfield Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12242&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12242.png",
+      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
+      "latitude": 52.6713787,
+      "longitude": -1.7980466,
+      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
+      "place_id": 350895343
+    },
+    {
       "name": "West Bridgford Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24736&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/24736.png",
@@ -33,16 +43,6 @@
       "place_id": 350702984
     },
     {
-      "name": "Lichfield Ladies II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12242&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12242.png",
-      "address": "Lichfield Rufc, Cooke Fields, Tamworth Road, Lichfield, Staffordshire, WS14 9JE, United Kingdom",
-      "latitude": 52.6713787,
-      "longitude": -1.7980466,
-      "formatted_address": "WS14 9JE, Whittington, Lichfield, Staffordshire, England, United Kingdom",
-      "place_id": 350895343
-    },
-    {
       "name": "Aston Old Edwardians Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1002&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/1002.png",
@@ -51,16 +51,6 @@
       "longitude": -1.8739717,
       "formatted_address": "B44 0HP, Birmingham, West Midlands, England, United Kingdom",
       "place_id": 350477749
-    },
-    {
-      "name": "Bournville Womens",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2822&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2822.png",
-      "address": "Avery Fields Sports & Events, 79 Sandon Road, Edgbaston, Birmingham, West Midlands, B17 8DT, United Kingdom",
-      "latitude": 52.4748818,
-      "longitude": -1.9633017,
-      "formatted_address": "B17 8DT, Birmingham, West Midlands, England, United Kingdom",
-      "place_id": 350464923
     },
     {
       "name": "Coalville Ladies",
@@ -73,16 +63,6 @@
       "place_id": 351484672
     },
     {
-      "name": "Old Leamingtonians Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15809&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15809.png",
-      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
-      "latitude": 52.32242,
-      "longitude": -1.54291,
-      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
-      "place_id": 351119196
-    },
-    {
       "name": "Derby Women",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6343&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/6343.png",
@@ -91,6 +71,26 @@
       "longitude": -1.4722563,
       "formatted_address": "DE22 1EB, Derby, East Midlands, England, United Kingdom",
       "place_id": 350576784
+    },
+    {
+      "name": "Bournville Womens",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2822&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2822.png",
+      "address": "Avery Fields Sports & Events, 79 Sandon Road, Edgbaston, Birmingham, West Midlands, B17 8DT, United Kingdom",
+      "latitude": 52.4748818,
+      "longitude": -1.9633017,
+      "formatted_address": "B17 8DT, Birmingham, West Midlands, England, United Kingdom",
+      "place_id": 350464923
+    },
+    {
+      "name": "Old Leamingtonians Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15809&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15809.png",
+      "address": "The Crofts, Bericote Road, Blackdown, Leamington Spa, Warwickshire, CV32 6QP, United Kingdom",
+      "latitude": 52.32242,
+      "longitude": -1.54291,
+      "formatted_address": "CV32 6QP, Blackdown, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 351119196
     },
     {
       "name": "Handsworth Ladies",

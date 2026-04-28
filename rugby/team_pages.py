@@ -24,6 +24,12 @@ from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
 
+# Men's Premiership, men's Championship, and Women's Premiership: show "Current" for the
+# latest season row instead of ordinal position until those competitions finish publicly.
+# All other leagues (including women's Championship tiers, merit, Counties, etc.) show
+# league position on the latest season once the pyramid season is complete for that level.
+_POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Championship", "Women's Premiership"})
+
 
 def _map_url_for_entry(entry: "LeagueHistoryEntry") -> str | None:
     """Return a relative URL to the map page for a league history entry, or None."""
@@ -453,8 +459,10 @@ def get_team_page_html(
                 league: str = entry["league"]
                 position: int = entry["position"]
 
-                # Don't show position for current season (in progress)
-                if season == all_seasons[0]:
+                suppress_position_latest = (
+                    season == all_seasons[0] and league in _POSITION_PENDING_TOP_TIERS
+                )
+                if suppress_position_latest:
                     position_display = '<span class="address">Current</span>'
                 else:
                     position_display = f'<span class="position">#{position}</span>'

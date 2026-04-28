@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=66514&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Leicester Lions II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12078&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12078.png",
+      "address": "Leicester Lions Rfc Ltd, Westleigh Park, Lutterworth Road, Blaby, Leicestershire, LE8 4DY, United Kingdom",
+      "latitude": 52.56378,
+      "longitude": -1.17023,
+      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 351486432
+    },
+    {
       "name": "Sileby Town",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19360&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19360.png",
@@ -23,16 +33,6 @@
       "place_id": 351115901
     },
     {
-      "name": "Leicester Lions II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12078&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12078.png",
-      "address": "Leicester Lions Rfc Ltd, Westleigh Park, Lutterworth Road, Blaby, Leicestershire, LE8 4DY, United Kingdom",
-      "latitude": 52.56378,
-      "longitude": -1.17023,
-      "formatted_address": "LE8 4DY, Blaby, Leicestershire, England, United Kingdom",
-      "place_id": 351486432
-    },
-    {
       "name": "Syston III",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21565&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/21565.png",
@@ -41,16 +41,6 @@
       "longitude": -1.051,
       "formatted_address": "LE7 3FE, Queniborough, Charnwood, Leicestershire, England, United Kingdom",
       "place_id": 351485394
-    },
-    {
-      "name": "Birstall",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2349&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2349.png",
-      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
-      "latitude": 52.6676,
-      "longitude": -1.12622,
-      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
-      "place_id": 351480803
     },
     {
       "name": "Market Harborough II",
@@ -63,6 +53,16 @@
       "place_id": 350682768
     },
     {
+      "name": "Birstall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2349&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2349.png",
+      "address": "Coop Sports Gorund, Birstall Road, Birstall, Leicester, Leicestershire, LE4 4DE, United Kingdom",
+      "latitude": 52.6676,
+      "longitude": -1.12622,
+      "formatted_address": "LE4 4DE, Birstall, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 351480803
+    },
+    {
       "name": "Oakham",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15263&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15263.png",
@@ -71,16 +71,6 @@
       "longitude": -0.7343637,
       "formatted_address": "LE15 7TW, Barleythorpe, Rutland, England, United Kingdom",
       "place_id": 350682432
-    },
-    {
-      "name": "Rugby Welsh",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18334.png",
-      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
-      "latitude": 52.35183,
-      "longitude": -1.28944,
-      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
-      "place_id": 351116375
     },
     {
       "name": "Stamford College Old Boys",
@@ -101,6 +91,16 @@
       "longitude": -1.1725976,
       "formatted_address": "LE8 6DA, Blaby, Leicestershire, England, United Kingdom",
       "place_id": 351486673
+    },
+    {
+      "name": "Rugby Welsh",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18334&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18334.png",
+      "address": "RWRFC c/o 183 Alwyn Road Bilton Rugby WARWICKSHIRE CV22 7RD UNITED KINGDOM ",
+      "latitude": 52.35183,
+      "longitude": -1.28944,
+      "formatted_address": "CV22 7RD, Rugby, Warwickshire, England, United Kingdom",
+      "place_id": 351116375
     },
     {
       "name": "South Leicester",

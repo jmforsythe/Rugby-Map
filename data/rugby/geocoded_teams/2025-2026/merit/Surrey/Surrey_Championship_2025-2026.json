@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=70338&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Sutton & Epsom 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21415",
-      "image_url": "https://images.englandrugby.com/club_images/21415.png",
-      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
-      "latitude": 51.34908,
-      "longitude": -0.22204,
-      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
-      "place_id": 351485734
-    },
-    {
       "name": "Weybridge Vandals 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25095",
       "image_url": "https://images.englandrugby.com/club_images/25095.png",
@@ -21,6 +11,16 @@
       "longitude": -0.436515,
       "formatted_address": "KT12 1QP, Spelthorne, Surrey, England, United Kingdom",
       "place_id": 351420526
+    },
+    {
+      "name": "Sutton & Epsom 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21415",
+      "image_url": "https://images.englandrugby.com/club_images/21415.png",
+      "address": "Cuddington Court Rugby Lane Cheam SURREY SM2 7NF UNITED KINGDOM ",
+      "latitude": 51.34908,
+      "longitude": -0.22204,
+      "formatted_address": "SM2 7NF, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351485734
     },
     {
       "name": "Camberley 2nd XV",
@@ -43,16 +43,6 @@
       "place_id": 350388997
     },
     {
-      "name": "London Irish A XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12532",
-      "image_url": "https://images.englandrugby.com/club_images/12532.png",
-      "address": "London Irish Training Ground & Commercial Office The Avenue Sunbury on Thames MIDDLESEX TW16 5EQ UNITED KINGDOM",
-      "latitude": 51.4138,
-      "longitude": -0.41026,
-      "formatted_address": "TW16 5EQ, Sunbury-on-Thames, Surrey, England, United Kingdom",
-      "place_id": 351644622
-    },
-    {
       "name": "Esher Abbots (3rd XV)",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7651",
       "image_url": "https://images.englandrugby.com/club_images/7651.png",
@@ -63,14 +53,24 @@
       "place_id": 350669902
     },
     {
-      "name": "Guildford 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9047",
-      "image_url": "https://images.englandrugby.com/club_images/9047.png",
-      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
-      "latitude": 51.2002774,
-      "longitude": -0.5902675,
-      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
-      "place_id": 350193498
+      "name": "Battersea Ironsides 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1643",
+      "image_url": "https://images.englandrugby.com/club_images/1643.png",
+      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
+      "latitude": 51.4409947,
+      "longitude": -0.1744597,
+      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
+      "place_id": 351555535
+    },
+    {
+      "name": "London Irish A XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12532",
+      "image_url": "https://images.englandrugby.com/club_images/12532.png",
+      "address": "London Irish Training Ground & Commercial Office The Avenue Sunbury on Thames MIDDLESEX TW16 5EQ UNITED KINGDOM",
+      "latitude": 51.4138,
+      "longitude": -0.41026,
+      "formatted_address": "TW16 5EQ, Sunbury-on-Thames, Surrey, England, United Kingdom",
+      "place_id": 351644622
     },
     {
       "name": "Old Rutlishians 2nd XV",
@@ -83,14 +83,14 @@
       "place_id": 352009331
     },
     {
-      "name": "Battersea Ironsides 3rd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1643",
-      "image_url": "https://images.englandrugby.com/club_images/1643.png",
-      "address": "Openview off Burntwood Lane Wandsworth London SW17 0AW UNITED KINGDOM ",
-      "latitude": 51.4409947,
-      "longitude": -0.1744597,
-      "formatted_address": "SW17 0AW, London Borough of Wandsworth, Greater London, England, United Kingdom",
-      "place_id": 351555535
+      "name": "Guildford 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9047",
+      "image_url": "https://images.englandrugby.com/club_images/9047.png",
+      "address": "Guildford R.f.c., Broadwater Pavilion, Guildford Road, Godalming, Surrey , GU7 3DH, United Kingdom",
+      "latitude": 51.2002774,
+      "longitude": -0.5902675,
+      "formatted_address": "GU7 3DH, Godalming, Waverley, Surrey, England, United Kingdom",
+      "place_id": 350193498
     },
     {
       "name": "Old Reigatian 2nd XV",

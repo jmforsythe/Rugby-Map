@@ -23,34 +23,14 @@
       "place_id": 259570350
     },
     {
-      "name": "Wallingford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24154&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24154.png",
-      "address": "Hithercroft Sports Park, Hithercroft Road, Wallingford, Oxfordshire, OX10 9RB, United Kingdom",
-      "latitude": 51.5994582,
-      "longitude": -1.1427787,
-      "formatted_address": "OX10 9RB, Wallingford, South Oxfordshire, Oxfordshire, England, United Kingdom",
-      "place_id": 350753211
-    },
-    {
-      "name": "Reading Abbey II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17509&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/17509.png",
-      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
-      "latitude": 51.4944682,
-      "longitude": -0.9631065,
-      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
-      "place_id": 350791107
-    },
-    {
-      "name": "Farnham Royal",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7991&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7991.png",
-      "address": "Farnham Park Playing Fields, Beaconsfield Road, Farnham Royal, Slough, Berkshire , SL2 3BP, England",
-      "latitude": 51.5399014,
-      "longitude": -0.6162762,
-      "formatted_address": "SL2 3BP, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
-      "place_id": 350820497
+      "name": "Aldermaston",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=394&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/394.png",
+      "address": "Aldermaston Rugby Football Club, Recreational Society, Awe Aldermaston, Reading, Berkshire, RG7 4PR, England",
+      "latitude": 51.3651889,
+      "longitude": -1.1494415,
+      "formatted_address": "RG7 4PR, Aldermaston, West Berkshire, England, United Kingdom",
+      "place_id": 350792560
     },
     {
       "name": "Berkshire Shire Hall",
@@ -63,24 +43,44 @@
       "place_id": 350790611
     },
     {
-      "name": "Aldermaston",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=394&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/394.png",
-      "address": "Aldermaston Rugby Football Club, Recreational Society, Awe Aldermaston, Reading, Berkshire, RG7 4PR, England",
-      "latitude": 51.3651889,
-      "longitude": -1.1494415,
-      "formatted_address": "RG7 4PR, Aldermaston, West Berkshire, England, United Kingdom",
-      "place_id": 350792560
+      "name": "Farnham Royal",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7991&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7991.png",
+      "address": "Farnham Park Playing Fields, Beaconsfield Road, Farnham Royal, Slough, Berkshire , SL2 3BP, England",
+      "latitude": 51.5399014,
+      "longitude": -0.6162762,
+      "formatted_address": "SL2 3BP, Farnham Royal, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350820497
     },
     {
-      "name": "Thatcham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21921&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21921.png",
-      "address": "Henwick Worthy Sports Fields Henwick Lane Thatcham BERKSHIRE RG18 3BN UNITED KINGDOM ",
-      "latitude": 51.4079239,
-      "longitude": -1.2780853,
-      "formatted_address": "RG18 3BN, Thatcham, West Berkshire, England, United Kingdom",
-      "place_id": 350785551
+      "name": "Reading Abbey II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17509&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/17509.png",
+      "address": "Rosehill, Peppard Road, Emmer Green, Reading, Berkshire, RG4 8XA, United Kingdom",
+      "latitude": 51.4944682,
+      "longitude": -0.9631065,
+      "formatted_address": "RG4 8XA, Kidmore End, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350791107
+    },
+    {
+      "name": "Wallingford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24154&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24154.png",
+      "address": "Hithercroft Sports Park, Hithercroft Road, Wallingford, Oxfordshire, OX10 9RB, United Kingdom",
+      "latitude": 51.5994582,
+      "longitude": -1.1427787,
+      "formatted_address": "OX10 9RB, Wallingford, South Oxfordshire, Oxfordshire, England, United Kingdom",
+      "place_id": 350753211
+    },
+    {
+      "name": "Phoenix",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16885&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16885.png",
+      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
+      "latitude": 51.52412,
+      "longitude": -0.6774,
+      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 351933107
     },
     {
       "name": "Reading III",
@@ -93,14 +93,14 @@
       "place_id": 350790611
     },
     {
-      "name": "Phoenix",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16885&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16885.png",
-      "address": "Institute Road Taplow BERKSHIRE SL6 0NS UNITED KINGDOM ",
-      "latitude": 51.52412,
-      "longitude": -0.6774,
-      "formatted_address": "SL6 0NS, Taplow, Beeches Community Board, Buckinghamshire, England, United Kingdom",
-      "place_id": 351933107
+      "name": "Thatcham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21921&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21921.png",
+      "address": "Henwick Worthy Sports Fields Henwick Lane Thatcham BERKSHIRE RG18 3BN UNITED KINGDOM ",
+      "latitude": 51.4079239,
+      "longitude": -1.2780853,
+      "formatted_address": "RG18 3BN, Thatcham, West Berkshire, England, United Kingdom",
+      "place_id": 350785551
     }
   ],
   "team_count": 10

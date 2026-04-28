@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=66520&season=2025-2026#tables",
   "teams": [
     {
-      "name": "East Retford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7191.png",
-      "address": "Ordsall Road, Retford, DN22 7PW, United Kingdom",
-      "latitude": 53.3139372,
-      "longitude": -0.9585027,
-      "formatted_address": "Ordsall Road, Thrumpton, Retford, Bassetlaw, Nottinghamshire, East Midlands, England, DN22 7PW, United Kingdom",
-      "place_id": 256350282
-    },
-    {
       "name": "Meden Vale",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13583&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13583.png",
@@ -23,6 +13,16 @@
       "place_id": 351653546
     },
     {
+      "name": "East Retford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7191&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7191.png",
+      "address": "Ordsall Road, Retford, DN22 7PW, United Kingdom",
+      "latitude": 53.3139372,
+      "longitude": -0.9585027,
+      "formatted_address": "Ordsall Road, Thrumpton, Retford, Bassetlaw, Nottinghamshire, East Midlands, England, DN22 7PW, United Kingdom",
+      "place_id": 256350282
+    },
+    {
       "name": "Matlock II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13510&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13510.png",
@@ -31,16 +31,6 @@
       "longitude": -1.5550289,
       "formatted_address": "DE4 3RQ, Cromford CP, Derbyshire Dales, Derbyshire, East Midlands, England, United Kingdom",
       "place_id": 350579840
-    },
-    {
-      "name": "Ilkeston II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10817&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10817.png",
-      "address": "The Stute Hallam Fields Road Ilkeston DERBYSHIRE DE7 4AZ UNITED KINGDOM ",
-      "latitude": 52.9529844,
-      "longitude": -1.2945665,
-      "formatted_address": "The Stute, Hallam Fields Road, Ilkeston, Erewash, Derbyshire, East Midlands, England, DE7 4AZ, United Kingdom",
-      "place_id": 257552674
     },
     {
       "name": "Chesterfield Panthers",
@@ -61,6 +51,16 @@
       "longitude": -1.1253882,
       "formatted_address": "NG18 3EW, Mansfield, Nottinghamshire, East Midlands, England, United Kingdom",
       "place_id": 350717341
+    },
+    {
+      "name": "Ilkeston II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10817&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10817.png",
+      "address": "The Stute Hallam Fields Road Ilkeston DERBYSHIRE DE7 4AZ UNITED KINGDOM ",
+      "latitude": 52.9529844,
+      "longitude": -1.2945665,
+      "formatted_address": "The Stute, Hallam Fields Road, Ilkeston, Erewash, Derbyshire, East Midlands, England, DE7 4AZ, United Kingdom",
+      "place_id": 257552674
     },
     {
       "name": "Amber Valley",

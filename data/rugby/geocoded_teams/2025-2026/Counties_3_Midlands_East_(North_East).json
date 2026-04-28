@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=66512&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Market Rasen & Louth II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13399&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13399.png",
-      "address": "Market Rasen And Louth Rufc, Willingham Road, Market Rasen, Lincolnshire, LN8 3RE, United Kingdom",
-      "latitude": 53.3842792,
-      "longitude": -0.3185409,
-      "formatted_address": "LN8 3RE, Market Rasen, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 351513235
-    },
-    {
       "name": "Boston",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2741&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/2741.png",
@@ -23,14 +13,14 @@
       "place_id": 350760887
     },
     {
-      "name": "Grimsby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8979&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/8979.png",
-      "address": "The Pavilion, Springfield Road, Scartho, Grimsby, Lincolnshire, DN33 3JF, United Kingdom",
-      "latitude": 53.5364366,
-      "longitude": -0.0955494,
-      "formatted_address": "DN33 3JF, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 350596920
+      "name": "Market Rasen & Louth II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13399&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13399.png",
+      "address": "Market Rasen And Louth Rufc, Willingham Road, Market Rasen, Lincolnshire, LN8 3RE, United Kingdom",
+      "latitude": 53.3842792,
+      "longitude": -0.3185409,
+      "formatted_address": "LN8 3RE, Market Rasen, West Lindsey, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 351513235
     },
     {
       "name": "Ollerton",
@@ -53,14 +43,24 @@
       "place_id": 351655877
     },
     {
-      "name": "Cleethorpes",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5191.png",
-      "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 4AW, United Kingdom",
-      "latitude": 53.5354253,
-      "longitude": -0.0463993,
-      "formatted_address": "DN36 4AW, Humberston, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
-      "place_id": 350146980
+      "name": "Grimsby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8979&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/8979.png",
+      "address": "The Pavilion, Springfield Road, Scartho, Grimsby, Lincolnshire, DN33 3JF, United Kingdom",
+      "latitude": 53.5364366,
+      "longitude": -0.0955494,
+      "formatted_address": "DN33 3JF, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350596920
+    },
+    {
+      "name": "Southwell II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19819&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19819.png",
+      "address": "The Clubhouse, Southwell Rufc, Park Lane, Southwell, Nott, NG25 0QN, United Kingdom",
+      "latitude": 53.06991,
+      "longitude": -0.96005,
+      "formatted_address": "NG25 0QN, Southwell CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 351657011
     },
     {
       "name": "Bingham",
@@ -73,14 +73,14 @@
       "place_id": 350716079
     },
     {
-      "name": "Southwell II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19819&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19819.png",
-      "address": "The Clubhouse, Southwell Rufc, Park Lane, Southwell, Nott, NG25 0QN, United Kingdom",
-      "latitude": 53.06991,
-      "longitude": -0.96005,
-      "formatted_address": "NG25 0QN, Southwell CP, Newark and Sherwood, Nottinghamshire, East Midlands, England, United Kingdom",
-      "place_id": 351657011
+      "name": "Cleethorpes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5191&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5191.png",
+      "address": "Wilton Fields (formerly Lucarlys), Wilton Road, Grimsby, DN36 4AW, United Kingdom",
+      "latitude": 53.5354253,
+      "longitude": -0.0463993,
+      "formatted_address": "DN36 4AW, Humberston, North East Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 350146980
     },
     {
       "name": "North Hykeham",

@@ -23,26 +23,6 @@
       "place_id": 395232057
     },
     {
-      "name": "Clevedon II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5238&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5238.png",
-      "address": "Clevedon RFC Coleridge Vale Playing Fields Southey Road Clevedon AVON BS21 6PF UNITED KINGDOM ",
-      "latitude": 51.4335802,
-      "longitude": -2.8582071,
-      "formatted_address": "BS21 6PF, Clevedon, North Somerset, England, United Kingdom",
-      "place_id": 350510299
-    },
-    {
-      "name": "Old Redcliffians III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15933&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15933.png",
-      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
-      "latitude": 51.4227768,
-      "longitude": -2.5385264,
-      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 350517876
-    },
-    {
       "name": "Bristol Harlequins",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3262&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/3262.png",
@@ -53,14 +33,24 @@
       "place_id": 350517908
     },
     {
-      "name": "Midsomer Norton II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13845&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13845.png",
-      "address": "Midsomer Norton R.F.C. Norton Down Playing Fields Silver Street Midsomer Norton Radstock SOMERSET BA3 2UE UNITED KINGDOM ",
-      "latitude": 51.27441,
-      "longitude": -2.48478,
-      "formatted_address": "BA3 2UE, Midsomer Norton, Bath and North East Somerset, West of England, England, United Kingdom",
-      "place_id": 350939226
+      "name": "Gordano II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8730&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/8730.png",
+      "address": "Gordano Rfc, Caswell Lane, Portbury, Bristol, Bristol, BS20 7UF, United Kingdom",
+      "latitude": 51.4733448,
+      "longitude": -2.7246778,
+      "formatted_address": "BS20 7UF, Portbury, North Somerset, England, United Kingdom",
+      "place_id": 350509727
+    },
+    {
+      "name": "Clevedon II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5238&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5238.png",
+      "address": "Clevedon RFC Coleridge Vale Playing Fields Southey Road Clevedon AVON BS21 6PF UNITED KINGDOM ",
+      "latitude": 51.4335802,
+      "longitude": -2.8582071,
+      "formatted_address": "BS21 6PF, Clevedon, North Somerset, England, United Kingdom",
+      "place_id": 350510299
     },
     {
       "name": "Nailsea & Backwell II",
@@ -73,14 +63,24 @@
       "place_id": 350518448
     },
     {
-      "name": "Gordano II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8730&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/8730.png",
-      "address": "Gordano Rfc, Caswell Lane, Portbury, Bristol, Bristol, BS20 7UF, United Kingdom",
-      "latitude": 51.4733448,
-      "longitude": -2.7246778,
-      "formatted_address": "BS20 7UF, Portbury, North Somerset, England, United Kingdom",
-      "place_id": 350509727
+      "name": "Midsomer Norton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13845&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13845.png",
+      "address": "Midsomer Norton R.F.C. Norton Down Playing Fields Silver Street Midsomer Norton Radstock SOMERSET BA3 2UE UNITED KINGDOM ",
+      "latitude": 51.27441,
+      "longitude": -2.48478,
+      "formatted_address": "BA3 2UE, Midsomer Norton, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350939226
+    },
+    {
+      "name": "Old Redcliffians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15933&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15933.png",
+      "address": "Old Redcliffians Scotland Lane Brislington Bristol BRISTOL BS4 5LU UNITED KINGDOM ",
+      "latitude": 51.4227768,
+      "longitude": -2.5385264,
+      "formatted_address": "BS4 5LU, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517876
     },
     {
       "name": "Winscombe II",

@@ -1,0 +1,87 @@
+{
+  "league_name": "Premiership South West",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=71149&season=2025-2026#tables",
+  "teams": [
+    {
+      "name": "New Milton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14370",
+      "image_url": "https://images.englandrugby.com/club_images/14370.png",
+      "address": "New Milton Rugby Club Normans Way Ashley New Milton HAMPSHIRE BH25 5FN UNITED KINGDOM ",
+      "latitude": 50.755932,
+      "longitude": -1.6410986,
+      "formatted_address": "BH25 5FN, New Milton, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350497455
+    },
+    {
+      "name": "Tottonians 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23025",
+      "image_url": "https://images.englandrugby.com/club_images/23025.png",
+      "address": "Tottonians RFC Water Lane Totton Southampton HAMPSHIRE SO40 3ZX UNITED KINGDOM ",
+      "latitude": 50.9214767,
+      "longitude": -1.5081383,
+      "formatted_address": "SO40 3ZX, Totton, Totton and Eling, Testwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350831356
+    },
+    {
+      "name": "Ventnor 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23954",
+      "image_url": "https://images.englandrugby.com/club_images/23954.png",
+      "address": "ventnor rugby club Watcombe Bottom Whitwell Road Ventnor ISLE OF WIGHT PO38 1LP UNITED KINGDOM",
+      "latitude": 50.5925029,
+      "longitude": -1.2323758,
+      "formatted_address": "PO38 1LP, Ventnor, Isle of Wight, England, United Kingdom",
+      "place_id": 350777582
+    },
+    {
+      "name": "Christchurch",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94161",
+      "image_url": "https://images.englandrugby.com/club_images/94161.png",
+      "address": "East Christchurch Sports & Social Club Grange Road Christchurch Dorset BH23 4JD United Kingdom",
+      "latitude": 50.7395,
+      "longitude": -1.73794,
+      "formatted_address": "BH23 4JD, Highcliffe and Walkford, Highcliffe-on-Sea, Bournemouth, Christchurch and Poole, England, United Kingdom",
+      "place_id": 350977892
+    },
+    {
+      "name": "Fawley 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8027",
+      "image_url": "https://images.englandrugby.com/club_images/8027.png",
+      "address": "Fawley Rfc, Newlands Road, Fawley, Southampton, Hampshire, SO45 1GA, United Kingdom",
+      "latitude": 50.8250519,
+      "longitude": -1.3732454,
+      "formatted_address": "SO45 1GA, Fawley, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350832056
+    },
+    {
+      "name": "Millbrook RFC 3rd XV Men",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=129334",
+      "image_url": "https://images.englandrugby.com/club_images/129334.png",
+      "address": "Lordshill Recreation Ground Redbridge Lane, Lordshill Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350377088
+    },
+    {
+      "name": "Ellingham & Ringwood III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7455",
+      "image_url": "https://images.englandrugby.com/club_images/7455.png",
+      "address": "Ellingham & Ringwood RFC Parsonage Barn Lane Ringwood HAMPSHIRE BH24 1PZ UNITED KINGDOM ",
+      "latitude": 50.8453,
+      "longitude": -1.77931,
+      "formatted_address": "BH24 1PZ, Ringwood, New Forest, Hampshire, England, United Kingdom",
+      "place_id": 350978707
+    },
+    {
+      "name": "Southampton 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19706",
+      "image_url": "https://images.englandrugby.com/club_images/19706.png",
+      "address": "Southampton RFC Test Park Redbridge Lane Southampton HAMPSHIRE SO16 9BP UNITED KINGDOM ",
+      "latitude": 50.9297039,
+      "longitude": -1.4702939,
+      "formatted_address": "SO16 9BP, Southampton, England, United Kingdom",
+      "place_id": 350827847
+    }
+  ],
+  "team_count": 8
+}

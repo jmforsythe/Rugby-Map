@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66862&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Finchley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8098&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/8098.png",
+      "address": "Summers Lane, London, N12 0PD, United Kingdom",
+      "latitude": 51.6115893,
+      "longitude": -0.1628236,
+      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
+      "place_id": 259427030
+    },
+    {
       "name": "Cheshunt Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4642&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/4642.png",
@@ -11,26 +21,6 @@
       "longitude": -0.06665,
       "formatted_address": "EN7 6TB, Broxbourne, Hertfordshire, England, United Kingdom",
       "place_id": 351246567
-    },
-    {
-      "name": "Chelmsford Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4487.png",
-      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
-      "latitude": 51.7399167,
-      "longitude": 0.4975059,
-      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
-      "place_id": 350549772
-    },
-    {
-      "name": "Hackney Ladies II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9173&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9173.png",
-      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
-      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
-      "place_id": 350607581
     },
     {
       "name": "Romford & GP Ravens Ladies",
@@ -43,14 +33,14 @@
       "place_id": 351838100
     },
     {
-      "name": "Finchley Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8098&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/8098.png",
-      "address": "Summers Lane, London, N12 0PD, United Kingdom",
-      "latitude": 51.6115893,
-      "longitude": -0.1628236,
-      "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
-      "place_id": 259427030
+      "name": "Chelmsford Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4487&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4487.png",
+      "address": "Coronation Park, Smylie Way, Timsons Lane, Springfield, Chelmsford, Essex, CM2 6AG, England",
+      "latitude": 51.7399167,
+      "longitude": 0.4975059,
+      "formatted_address": "CM2 6AG, Chelmsford, Essex, England, United Kingdom",
+      "place_id": 350549772
     },
     {
       "name": "Southend Saints Ladies",
@@ -71,6 +61,16 @@
       "longitude": -0.1572017,
       "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
       "place_id": 351699934
+    },
+    {
+      "name": "Hackney Ladies II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9173&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9173.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
     },
     {
       "name": "Eton Manor Women II",

@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=66863&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Guernsey Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9031&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9031.png",
-      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
-      "latitude": 49.4655774,
-      "longitude": -2.5648758,
-      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
-      "place_id": 352872986
-    },
-    {
       "name": "Seaford Scarlets",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18874&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/18874.png",
@@ -23,14 +13,14 @@
       "place_id": 350501863
     },
     {
-      "name": "Crawley Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5813&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5813.png",
-      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
-      "latitude": 51.13218,
-      "longitude": -0.20909,
-      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
-      "place_id": 351823261
+      "name": "Guernsey Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9031&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9031.png",
+      "address": "Garenne Stand, Foote's Lane, St Peter Port, Guernsey, Hampshire, GY1 2UL, United Kingdom",
+      "latitude": 49.4655774,
+      "longitude": -2.5648758,
+      "formatted_address": "GY1 2UL, St Andrew, L'Aumone, Guernsey",
+      "place_id": 352872986
     },
     {
       "name": "Worthing Warriors",
@@ -43,6 +33,16 @@
       "place_id": 350500398
     },
     {
+      "name": "Crawley Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5813&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5813.png",
+      "address": "The Clubhouse Willoughby Fields, Ifield Avenue Crawley WEST SUSSEX RH11 7LX UNITED KINGDOM ",
+      "latitude": 51.13218,
+      "longitude": -0.20909,
+      "formatted_address": "RH11 7LX, Crawley, West Sussex, England, United Kingdom",
+      "place_id": 351823261
+    },
+    {
       "name": "East Grinstead Ladies",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7139&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7139.png",
@@ -51,17 +51,7 @@
       "longitude": -0.0283279,
       "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
       "place_id": 350798701
-    },
-    {
-      "name": "Uckfield Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124935&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/124935.png",
-      "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM ",
-      "latitude": 50.9786097,
-      "longitude": 0.1106363,
-      "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
-      "place_id": 350401990
     }
   ],
-  "team_count": 6
+  "team_count": 5
 }

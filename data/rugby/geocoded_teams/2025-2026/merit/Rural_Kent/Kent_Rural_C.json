@@ -23,16 +23,6 @@
       "place_id": 90762197
     },
     {
-      "name": "Gravesend 4th XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8883",
-      "image_url": "https://images.englandrugby.com/club_images/8883.png",
-      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
-      "latitude": 51.4371393,
-      "longitude": 0.3805001,
-      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
-      "place_id": 350569683
-    },
-    {
       "name": "Thanet Wanderers 3rd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21903",
       "image_url": "https://images.englandrugby.com/club_images/21903.png",
@@ -41,36 +31,6 @@
       "longitude": 1.4300997,
       "formatted_address": "CT10 3AE, Broadstairs and St Peters, Thanet, Kent, England, United Kingdom",
       "place_id": 350560134
-    },
-    {
-      "name": "Old Gravesendians 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15731",
-      "image_url": "https://images.englandrugby.com/club_images/15731.png",
-      "address": "Old Gravesendians R.F.C. Fleetway Sports Ground Bronte View, Parrock Road Gravesend KENT DA12 1PX UNITED KINGDOM ",
-      "latitude": 51.4358035,
-      "longitude": 0.3789148,
-      "formatted_address": "DA12 1PX, Gravesend, Gravesham, Kent, England, United Kingdom",
-      "place_id": 350569639
-    },
-    {
-      "name": "Vigo 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24007",
-      "image_url": "https://images.englandrugby.com/club_images/24007.png",
-      "address": "Swanswood Field Vigo Village, Harvel Road Vigo KENT DA13 0UA UNITED KINGDOM ",
-      "latitude": 51.3348783,
-      "longitude": 0.3683709,
-      "formatted_address": "DA13 0UA, Luddesdown, Gravesham, Kent, England, United Kingdom",
-      "place_id": 350569797
-    },
-    {
-      "name": "Lordswood 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12800",
-      "image_url": "https://images.englandrugby.com/club_images/12800.png",
-      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
-      "latitude": 51.3403399,
-      "longitude": 0.545787,
-      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
-      "place_id": 350701886
     },
     {
       "name": "Sheppey 2nd XV",
@@ -83,6 +43,36 @@
       "place_id": 351566033
     },
     {
+      "name": "Gravesend 4th XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8883",
+      "image_url": "https://images.englandrugby.com/club_images/8883.png",
+      "address": "Rectory Field, Donald Biggs Drive, Milton Road, Gravesend, Kent, DA12 2TL, United Kingdom",
+      "latitude": 51.4371393,
+      "longitude": 0.3805001,
+      "formatted_address": "DA12 2TL, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569683
+    },
+    {
+      "name": "Lordswood 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12800",
+      "image_url": "https://images.englandrugby.com/club_images/12800.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.3403399,
+      "longitude": 0.545787,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Old Gravesendians 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15731",
+      "image_url": "https://images.englandrugby.com/club_images/15731.png",
+      "address": "Old Gravesendians R.F.C. Fleetway Sports Ground Bronte View, Parrock Road Gravesend KENT DA12 1PX UNITED KINGDOM ",
+      "latitude": 51.4358035,
+      "longitude": 0.3789148,
+      "formatted_address": "DA12 1PX, Gravesend, Gravesham, Kent, England, United Kingdom",
+      "place_id": 350569639
+    },
+    {
       "name": "New Ash Green 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14307",
       "image_url": "https://images.englandrugby.com/club_images/14307.png",
@@ -93,5 +83,5 @@
       "place_id": 350570813
     }
   ],
-  "team_count": 9
+  "team_count": 8
 }

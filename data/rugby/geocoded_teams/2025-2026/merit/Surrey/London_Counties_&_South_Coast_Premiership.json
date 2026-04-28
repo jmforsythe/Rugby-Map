@@ -3,14 +3,14 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1729&division=67760&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Wimbledon 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25513",
-      "image_url": "https://images.englandrugby.com/club_images/25513.png",
-      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
-      "latitude": 51.4182728,
-      "longitude": -0.2460601,
-      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
-      "place_id": 350841338
+      "name": "Belsize Park II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1944",
+      "image_url": "https://images.englandrugby.com/club_images/1944.png",
+      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
+      "latitude": 51.5235406,
+      "longitude": -0.1200453,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
     },
     {
       "name": "Worthing Raiders A (2nd XV)",
@@ -23,16 +23,6 @@
       "place_id": 351175070
     },
     {
-      "name": "Belsize Park II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1944",
-      "image_url": "https://images.englandrugby.com/club_images/1944.png",
-      "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
-      "latitude": 51.5235406,
-      "longitude": -0.1200453,
-      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
-      "place_id": 351682702
-    },
-    {
       "name": "Battersea Ironsides 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1642",
       "image_url": "https://images.englandrugby.com/club_images/1642.png",
@@ -43,14 +33,14 @@
       "place_id": 351555535
     },
     {
-      "name": "Hammersmith & Fulham II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9258",
-      "image_url": "https://images.englandrugby.com/club_images/9258.png",
-      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
-      "latitude": 51.4693873,
-      "longitude": -0.202864,
-      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
-      "place_id": 352015716
+      "name": "Wimbledon 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25513",
+      "image_url": "https://images.englandrugby.com/club_images/25513.png",
+      "address": "Wimbledon Rugby Football Club Limited, Beverley Meads, Barham Road, Wimbledon, Surrey, SW20 0ET, United Kingdom",
+      "latitude": 51.4182728,
+      "longitude": -0.2460601,
+      "formatted_address": "SW20 0ET, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 350841338
     },
     {
       "name": "Barnes Outriders - 3rd XV",
@@ -61,6 +51,16 @@
       "longitude": -0.2332937,
       "formatted_address": "SW13 9SA, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
       "place_id": 350388223
+    },
+    {
+      "name": "Hammersmith & Fulham II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9258",
+      "image_url": "https://images.englandrugby.com/club_images/9258.png",
+      "address": "Hurlingham Park Hurlingham Road Fulham SW6 3RH UNITED KINGDOM ",
+      "latitude": 51.4693873,
+      "longitude": -0.202864,
+      "formatted_address": "SW6 3RH, London Borough of Hammersmith and Fulham, Greater London, England, United Kingdom",
+      "place_id": 352015716
     },
     {
       "name": "Horsham Lions (2nd XV)",

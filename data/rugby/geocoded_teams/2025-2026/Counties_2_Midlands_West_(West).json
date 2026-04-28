@@ -3,14 +3,14 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1597&division=66511&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Willenhall",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25419&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25419.png",
-      "address": "Willenhall Rfc, Elfyn Pugh Memorial Ground, Bognop Road, Essington, Nr Wolverhampton, Staffordshire, WV11 2BA, England",
-      "latitude": 52.6312388,
-      "longitude": -2.060675,
-      "formatted_address": "WV11 2BA, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
-      "place_id": 352175372
+      "name": "Trentham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23125&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/23125.png",
+      "address": "New Inn Lane Trentham Stoke On Trent STAFFORDSHIRE ST4 8BE",
+      "latitude": 52.9684313,
+      "longitude": -2.1884007,
+      "formatted_address": "ST4 8BE, Stoke-on-Trent, England, United Kingdom",
+      "place_id": 351997401
     },
     {
       "name": "Clee Hill",
@@ -23,6 +23,16 @@
       "place_id": 352026682
     },
     {
+      "name": "Willenhall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25419&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25419.png",
+      "address": "Willenhall Rfc, Elfyn Pugh Memorial Ground, Bognop Road, Essington, Nr Wolverhampton, Staffordshire, WV11 2BA, England",
+      "latitude": 52.6312388,
+      "longitude": -2.060675,
+      "formatted_address": "WV11 2BA, Essington, South Staffordshire, Staffordshire, England, United Kingdom",
+      "place_id": 352175372
+    },
+    {
       "name": "Ashbourne",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=800&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/800.png",
@@ -33,16 +43,6 @@
       "place_id": 350582140
     },
     {
-      "name": "Trentham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23125&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/23125.png",
-      "address": "New Inn Lane Trentham Stoke On Trent STAFFORDSHIRE ST4 8BE",
-      "latitude": 52.9684313,
-      "longitude": -2.1884007,
-      "formatted_address": "ST4 8BE, Stoke-on-Trent, England, United Kingdom",
-      "place_id": 351997401
-    },
-    {
       "name": "Stafford",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20777&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/20777.png",
@@ -51,16 +51,6 @@
       "longitude": -2.1324176,
       "formatted_address": "ST16 2TT, Stafford, Staffordshire, England, United Kingdom",
       "place_id": 350836744
-    },
-    {
-      "name": "Leek II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12018&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12018.png",
-      "address": "Chestnut Walk, St Edwards Park, Cheddleton, Leek, Staffordshire, ST13 7BJ, United Kingdom",
-      "latitude": 53.07764,
-      "longitude": -2.04422,
-      "formatted_address": "ST13 7BJ, Saint Edward's Park, Cheddleton, Staffordshire Moorlands, Staffordshire, England, United Kingdom",
-      "place_id": 351989406
     },
     {
       "name": "Bridgnorth Bulls",
@@ -83,6 +73,26 @@
       "place_id": 350575056
     },
     {
+      "name": "Luctonians III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12886&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12886.png",
+      "address": "Luctonians R.F.C. Mortimer Park Hereford Road,  Kingsland Leominster HEREFORDSHIRE HR6 9SB UNITED KINGDOM ",
+      "latitude": 52.25107,
+      "longitude": -2.82568,
+      "formatted_address": "HR6 9SB, Kingsland, Herefordshire, England, United Kingdom",
+      "place_id": 351370187
+    },
+    {
+      "name": "Leek II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12018&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12018.png",
+      "address": "Chestnut Walk, St Edwards Park, Cheddleton, Leek, Staffordshire, ST13 7BJ, United Kingdom",
+      "latitude": 53.07764,
+      "longitude": -2.04422,
+      "formatted_address": "ST13 7BJ, Saint Edward's Park, Cheddleton, Staffordshire Moorlands, Staffordshire, England, United Kingdom",
+      "place_id": 351989406
+    },
+    {
       "name": "Wolverhampton",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25906&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/25906.png",
@@ -101,16 +111,6 @@
       "longitude": -2.171127,
       "formatted_address": "ST4 8WG, Trentham Lakes North, Blurton, Fenton, Stoke-on-Trent, England, United Kingdom",
       "place_id": 350837457
-    },
-    {
-      "name": "Luctonians III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12886&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12886.png",
-      "address": "Luctonians R.F.C. Mortimer Park Hereford Road,  Kingsland Leominster HEREFORDSHIRE HR6 9SB UNITED KINGDOM ",
-      "latitude": 52.25107,
-      "longitude": -2.82568,
-      "formatted_address": "HR6 9SB, Kingsland, Herefordshire, England, United Kingdom",
-      "place_id": 351370187
     },
     {
       "name": "Newcastle (Staffs) II",

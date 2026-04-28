@@ -3,6 +3,26 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=66468&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Cinderford II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5064&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5064.png",
+      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
+      "latitude": 51.8241607,
+      "longitude": -2.4964346,
+      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
+      "place_id": 350630373
+    },
+    {
+      "name": "St Mary's Old Boys (SW)",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20595&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20595.png",
+      "address": "St Mary's Old Boys Rfc, Northwood Park, Trench Lane, Bradley Stoke, Winterbourne, Avon, BS36 1RY, United Kingdom",
+      "latitude": 51.5386109,
+      "longitude": -2.5309005,
+      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515798
+    },
+    {
       "name": "Frampton Cotterell",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8291&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/8291.png",
@@ -19,28 +39,8 @@
       "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
       "latitude": 51.9109697,
       "longitude": -2.0808151,
-      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paulâ€™s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
       "place_id": 261574627
-    },
-    {
-      "name": "St Mary's Old Boys (SW)",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20595&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20595.png",
-      "address": "St Mary's Old Boys Rfc, Northwood Park, Trench Lane, Bradley Stoke, Winterbourne, Avon, BS36 1RY, United Kingdom",
-      "latitude": 51.5386109,
-      "longitude": -2.5309005,
-      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350515798
-    },
-    {
-      "name": "Cinderford II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5064&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5064.png",
-      "address": "Cinderford Rfc, Bells Sport & Rugby Park, Dockham Road, Cinderford, Gloucestershire, GL14 2AQ, United Kingdom",
-      "latitude": 51.8241607,
-      "longitude": -2.4964346,
-      "formatted_address": "GL14 2AQ, Cinderford, Littledean, Forest of Dean, Gloucestershire, England, United Kingdom",
-      "place_id": 350630373
     },
     {
       "name": "Old Elizabethans",
@@ -63,16 +63,6 @@
       "place_id": 351315264
     },
     {
-      "name": "Tewkesbury",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21856&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/21856.png",
-      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM ",
-      "latitude": 51.9892554,
-      "longitude": -2.1575383,
-      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
-      "place_id": 350631002
-    },
-    {
       "name": "Old Patesians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15879&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15879.png",
@@ -83,14 +73,14 @@
       "place_id": 350636802
     },
     {
-      "name": "Dursley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7024&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/7024.png",
-      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
-      "latitude": 51.691656,
-      "longitude": -2.3834713,
-      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
-      "place_id": 350629371
+      "name": "Tewkesbury",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21856&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/21856.png",
+      "address": "Tewkesbury RFC The Moats Lankett Lane Lankett Lane Tewkesbury GLOUCESTERSHIRE GL20 5PG UNITED KINGDOM ",
+      "latitude": 51.9892554,
+      "longitude": -2.1575383,
+      "formatted_address": "GL20 5PG, Tewkesbury, Gloucestershire, England, United Kingdom",
+      "place_id": 350631002
     },
     {
       "name": "Cheltenham North",
@@ -111,6 +101,16 @@
       "longitude": -2.57751,
       "formatted_address": "GL15 6JE, West Dean, Forest of Dean, Gloucestershire, England, United Kingdom",
       "place_id": 351309912
+    },
+    {
+      "name": "Dursley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7024&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/7024.png",
+      "address": "Dursley RFC Limited Hounds Green The Avenue Stinchcombe Dursley GLOUCESTERSHIRE GL11 6AJ UNITED KINGDOM",
+      "latitude": 51.691656,
+      "longitude": -2.3834713,
+      "formatted_address": "GL11 6AJ, Stinchcombe, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 350629371
     },
     {
       "name": "Old Richians",

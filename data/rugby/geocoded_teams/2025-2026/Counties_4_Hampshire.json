@@ -13,16 +13,6 @@
       "place_id": 350832056
     },
     {
-      "name": "Basingstoke II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1568&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1568.png",
-      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
-      "latitude": 51.2500615,
-      "longitude": -1.1278403,
-      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
-      "place_id": 260114707
-    },
-    {
       "name": "Lymington Mariners",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13007&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/13007.png",
@@ -33,14 +23,24 @@
       "place_id": 350831892
     },
     {
-      "name": "Alresford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=505&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/505.png",
-      "address": "Alresford Recreation Centre, Arlebury Park, The Avenue, Alresford, Hampshire, SO24 9EP, United Kingdom",
-      "latitude": 51.0893299,
-      "longitude": -1.16977,
-      "formatted_address": "SO24 9EP, Arlebury Park, New Alresford, Winchester, Hampshire, England, United Kingdom",
-      "place_id": 351955854
+      "name": "Basingstoke II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1568&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1568.png",
+      "address": "Down Grange, Pack Lane, Kempshott, Basingstoke, Hampshire, RG22 5HH, England",
+      "latitude": 51.2500615,
+      "longitude": -1.1278403,
+      "formatted_address": "Down Grange, Pack Lane, Berg Estate, Kempshott, Basingstoke, Basingstoke and Deane, Hampshire, England, RG22 5HH, United Kingdom",
+      "place_id": 260114707
+    },
+    {
+      "name": "Hook and Odiham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10374&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10374.png",
+      "address": "Hook And Odiham Rfc, Papermill Avenue, Hook, Hampshire, RG27 9QU, United Kingdom",
+      "latitude": 51.2889,
+      "longitude": -0.94851,
+      "formatted_address": "RG27 9QU, Green Hart Park, Hook, Hart, Hampshire, England, United Kingdom",
+      "place_id": 351814128
     },
     {
       "name": "Millbrook II",
@@ -63,14 +63,14 @@
       "place_id": 350644622
     },
     {
-      "name": "Hook and Odiham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10374&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10374.png",
-      "address": "Hook And Odiham Rfc, Papermill Avenue, Hook, Hampshire, RG27 9QU, United Kingdom",
-      "latitude": 51.2889,
-      "longitude": -0.94851,
-      "formatted_address": "RG27 9QU, Green Hart Park, Hook, Hart, Hampshire, England, United Kingdom",
-      "place_id": 351814128
+      "name": "Alresford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=505&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/505.png",
+      "address": "Alresford Recreation Centre, Arlebury Park, The Avenue, Alresford, Hampshire, SO24 9EP, United Kingdom",
+      "latitude": 51.0893299,
+      "longitude": -1.16977,
+      "formatted_address": "SO24 9EP, Arlebury Park, New Alresford, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 351955854
     },
     {
       "name": "Nomads",

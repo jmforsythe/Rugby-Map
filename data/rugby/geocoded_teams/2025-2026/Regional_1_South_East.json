@@ -63,44 +63,14 @@
       "place_id": 350734463
     },
     {
-      "name": "Medway",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13595.png",
-      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
-      "latitude": 51.37412,
-      "longitude": 0.49639,
-      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
-      "place_id": 351563999
-    },
-    {
-      "name": "Westcliff",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24949&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/24949.png",
-      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
-      "latitude": 51.57658,
-      "longitude": 0.6882,
-      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
-      "place_id": 351982828
-    },
-    {
-      "name": "Shelford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/19141.png",
-      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
-      "latitude": 52.1584883,
-      "longitude": 0.1220219,
-      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
-      "place_id": 147365263
-    },
-    {
-      "name": "Amersham & Chiltern",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/581.png",
-      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
-      "latitude": 51.6821506,
-      "longitude": -0.6256339,
-      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
-      "place_id": 350650548
+      "name": "Hertford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10046&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10046.png",
+      "address": "Highfields, 62 Hoe Lane, Ware, Hertfordshire, SG12 9NZ, United Kingdom",
+      "latitude": 51.8031723,
+      "longitude": -0.034185,
+      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 351908059
     },
     {
       "name": "Old Northamptonians",
@@ -113,14 +83,44 @@
       "place_id": 350726027
     },
     {
-      "name": "Hertford",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10046&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10046.png",
-      "address": "Highfields, 62 Hoe Lane, Ware, Hertfordshire, SG12 9NZ, United Kingdom",
-      "latitude": 51.8031723,
-      "longitude": -0.034185,
-      "formatted_address": "SG12 9NZ, Ware, East Hertfordshire, Hertfordshire, England, United Kingdom",
-      "place_id": 351908059
+      "name": "Westcliff",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24949&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/24949.png",
+      "address": "The Gables, Airport Business Park Southend, Cherry Orchard Way, Rochford, Essex, SS4 1YG, United Kingdom",
+      "latitude": 51.57658,
+      "longitude": 0.6882,
+      "formatted_address": "SS4 1YG, Rochford, Stroud Green, Rochford, Essex, England, United Kingdom",
+      "place_id": 351982828
+    },
+    {
+      "name": "Amersham & Chiltern",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=581&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/581.png",
+      "address": "Ash Grove Weedon Lane Chesham Bois Amersham BUCKINGHAMSHIRE HP6 5QU UNITED KINGDOM ",
+      "latitude": 51.6821506,
+      "longitude": -0.6256339,
+      "formatted_address": "HP6 5QU, Amersham, Amersham and Villages Community Board, Buckinghamshire, England, United Kingdom",
+      "place_id": 350650548
+    },
+    {
+      "name": "Medway",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13595&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13595.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.37412,
+      "longitude": 0.49639,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Shelford",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19141&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/19141.png",
+      "address": "The Davey Field, Cambridge Road, Cambridge, Cambridgeshire, CB22 5JU, United Kingdom",
+      "latitude": 52.1584883,
+      "longitude": 0.1220219,
+      "formatted_address": "Shelford Rugby Club, Cambridge Road, Great Shelford, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB22 5JJ, United Kingdom",
+      "place_id": 147365263
     }
   ],
   "team_count": 12

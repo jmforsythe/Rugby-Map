@@ -29,7 +29,7 @@
       "address": "Prince Of Wales Stadium, Tommy Taylors Lane, Cheltenham, Gloucestershire, GL52 3PE, United Kingdom",
       "latitude": 51.9109697,
       "longitude": -2.0808151,
-      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paulâ€™s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
+      "formatted_address": "Prince of Wales Stadium, Tommy Taylors Lane, Marle Hill, St Paul’s, Cheltenham, Gloucestershire, England, GL50 4RN, United Kingdom",
       "place_id": 261574627
     },
     {
@@ -43,16 +43,6 @@
       "place_id": 351317856
     },
     {
-      "name": "Matson II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13537&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13537.png",
-      "address": "Matson Rfc, Redwell Road, Matson Rugby Club House, Matson, Gloucestershire, GL4 6JG, United Kingdom",
-      "latitude": 51.83322,
-      "longitude": -2.21803,
-      "formatted_address": "GL4 6JG, Gloucester, Gloucestershire, England, United Kingdom",
-      "place_id": 351314722
-    },
-    {
       "name": "Ledbury II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11964&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/11964.png",
@@ -61,6 +51,16 @@
       "longitude": -2.4399345,
       "formatted_address": "HR8 2LP, Ledbury, Herefordshire, England, United Kingdom",
       "place_id": 350651243
+    },
+    {
+      "name": "Matson II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13537&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13537.png",
+      "address": "Matson Rfc, Redwell Road, Matson Rugby Club House, Matson, Gloucestershire, GL4 6JG, United Kingdom",
+      "latitude": 51.83322,
+      "longitude": -2.21803,
+      "formatted_address": "GL4 6JG, Gloucester, Gloucestershire, England, United Kingdom",
+      "place_id": 351314722
     },
     {
       "name": "CCS Norton Rugby",

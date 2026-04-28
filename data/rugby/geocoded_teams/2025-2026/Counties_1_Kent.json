@@ -7,20 +7,10 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15658&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15658.png",
       "address": "Queen Mary Sports Ground (east Ground), Perry Street, Chislehurst, BR7 6HB, England",
-    "latitude": 51.4174891,
-    "longitude": 0.0849123,
-    "formatted_address": "Queen Mary Sports Ground, Chislehurst, London Borough of Bromley, Greater London, England, BR7 6HA, United Kingdom",
-    "place_id": 91423653
-    },
-    {
-      "name": "Dover",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6688&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6688.png",
-      "address": "Dover Rugby Football Club Crabble Athletic Ground Crabble Road, River Dover Kent CT17 0JB United Kingdom",
-      "latitude": 51.1398353,
-      "longitude": 1.2871083,
-      "formatted_address": "CT17 0JB, River, Dover, Kent, England, United Kingdom",
-      "place_id": 350561191
+      "latitude": 51.4174891,
+      "longitude": 0.0849123,
+      "formatted_address": "Queen Mary Sports Ground, Chislehurst, London Borough of Bromley, Greater London, England, BR7 6HA, United Kingdom",
+      "place_id": 91423653
     },
     {
       "name": "Deal & Betteshanger",
@@ -63,14 +53,14 @@
       "place_id": 350854003
     },
     {
-      "name": "Beccehamian",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1747&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/1747.png",
-      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM",
-      "latitude": 51.3706559,
-      "longitude": -0.0087608,
-      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504286
+      "name": "Dover",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6688&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6688.png",
+      "address": "Dover Rugby Football Club Crabble Athletic Ground Crabble Road, River Dover Kent CT17 0JB United Kingdom",
+      "latitude": 51.1398353,
+      "longitude": 1.2871083,
+      "formatted_address": "CT17 0JB, River, Dover, Kent, England, United Kingdom",
+      "place_id": 350561191
     },
     {
       "name": "Crowborough",
@@ -83,6 +73,16 @@
       "place_id": 90844484
     },
     {
+      "name": "Beccehamian",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1747&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/1747.png",
+      "address": "Sparrows Den Corkscrew Hill West Wickham KENT BR4 9BB UNITED KINGDOM",
+      "latitude": 51.3706559,
+      "longitude": -0.0087608,
+      "formatted_address": "BR4 9BB, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504286
+    },
+    {
       "name": "Gillingham Anchorians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8574&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/8574.png",
@@ -91,6 +91,16 @@
       "longitude": 0.561956,
       "formatted_address": "ME7 3AN, Medway, England, United Kingdom",
       "place_id": 350702104
+    },
+    {
+      "name": "Park House",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16583&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/16583.png",
+      "address": "Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
+      "latitude": 51.3717349,
+      "longitude": 0.0262456,
+      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 350504076
     },
     {
       "name": "Cranbrook",
@@ -111,16 +121,6 @@
       "longitude": 0.0338301,
       "formatted_address": "SE3 8NB, Royal Borough of Greenwich, Greater London, England, United Kingdom",
       "place_id": 351902521
-    },
-    {
-      "name": "Park House",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16583&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/16583.png",
-      "address": "Barnet Wood Road, Hayes, Kent, BR2 7AA, United Kingdom",
-      "latitude": 51.3717349,
-      "longitude": 0.0262456,
-      "formatted_address": "BR2 7AA, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504076
     }
   ],
   "team_count": 12

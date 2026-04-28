@@ -33,16 +33,6 @@
       "place_id": 350670367
     },
     {
-      "name": "London Exiles",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12513&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/12513.png",
-      "address": "Barn Elms Sports Centre, Queen Elizabeth Walk, Barnes, London, SW13 0DG, United Kingdom",
-      "latitude": 51.4757632,
-      "longitude": -0.2296689,
-      "formatted_address": "Barn Elms Sports Centre, Queen Elizabeth Walk, London Borough of Richmond upon Thames, Greater London, England, SW13 9SA, United Kingdom",
-      "place_id": 258421450
-    },
-    {
       "name": "Southwark Lancers",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=19804&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/19804.png",
@@ -51,6 +41,16 @@
       "longitude": -0.0839574,
       "formatted_address": "Chumleigh Gardens, Chumleigh Street, Aylesbury Estate, Old Kent Road, London Borough of Southwark, Greater London, England, SE5 0AW, United Kingdom",
       "place_id": 260374115
+    },
+    {
+      "name": "London Exiles",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12513&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/12513.png",
+      "address": "Barn Elms Sports Centre, Queen Elizabeth Walk, Barnes, London, SW13 0DG, United Kingdom",
+      "latitude": 51.4757632,
+      "longitude": -0.2296689,
+      "formatted_address": "Barn Elms Sports Centre, Queen Elizabeth Walk, London Borough of Richmond upon Thames, Greater London, England, SW13 9SA, United Kingdom",
+      "place_id": 258421450
     },
     {
       "name": "Old Johnians",
@@ -93,16 +93,6 @@
       "place_id": 259557894
     },
     {
-      "name": "Old Glynonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15711&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/15711.png",
-      "address": "Old Glynonians Rfc, Priesthill Playing Field, Reigate Road, Epsom, KT17 3DZ, England",
-      "latitude": 51.33704,
-      "longitude": -0.24328,
-      "formatted_address": "KT17 3DZ, Epsom and Ewell, Surrey, England, United Kingdom",
-      "place_id": 351423674
-    },
-    {
       "name": "Streatham-Croydon",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=21255&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/21255.png",
@@ -111,6 +101,16 @@
       "longitude": -0.1118993,
       "formatted_address": "CR7 7JP, Thornton Heath, London Borough of Croydon, Greater London, England, United Kingdom",
       "place_id": 350559741
+    },
+    {
+      "name": "Old Glynonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15711&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/15711.png",
+      "address": "Old Glynonians Rfc, Priesthill Playing Field, Reigate Road, Epsom, KT17 3DZ, England",
+      "latitude": 51.33704,
+      "longitude": -0.24328,
+      "formatted_address": "KT17 3DZ, Epsom and Ewell, Surrey, England, United Kingdom",
+      "place_id": 351423674
     }
   ],
   "team_count": 11

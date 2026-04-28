@@ -23,16 +23,6 @@
       "place_id": 350450147
     },
     {
-      "name": "Morley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14116.png",
-      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
-      "latitude": 53.7432811,
-      "longitude": -1.6122612,
-      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
-      "place_id": 350691624
-    },
-    {
       "name": "Old Brodleians",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15485&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/15485.png",
@@ -43,14 +33,14 @@
       "place_id": 351382960
     },
     {
-      "name": "Wetherby",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25068&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/25068.png",
-      "address": "Wetherby R.u.f.c., Grange Park Sports Club, Grange Park, Wetherby, West Yorkshire, LS22 5NB, United Kingdom",
-      "latitude": 53.9195614,
-      "longitude": -1.3811227,
-      "formatted_address": "LS22 5NB, Wetherby, Leeds, West Yorkshire, England, United Kingdom",
-      "place_id": 350691213
+      "name": "Morley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14116&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14116.png",
+      "address": "Morley RFC Scatcherd Lane Morley WEST YORKSHIRE LS27 0JJ UNITED KINGDOM ",
+      "latitude": 53.7432811,
+      "longitude": -1.6122612,
+      "formatted_address": "LS27 0JJ, Morley, West Yorkshire, England, United Kingdom",
+      "place_id": 350691624
     },
     {
       "name": "Selby",
@@ -63,14 +53,14 @@
       "place_id": 350901654
     },
     {
-      "name": "Bradford Salem",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2932&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2932.png",
-      "address": "Bradford Salem Rfc, Shay Lane, Heaton, Bradford, West Yorkshire, BD9 6SL, United Kingdom",
-      "latitude": 53.81626,
-      "longitude": -1.7937,
-      "formatted_address": "BD9 6SL, Bradford, West Yorkshire, England, United Kingdom",
-      "place_id": 350969809
+      "name": "Moortown",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14078&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/14078.png",
+      "address": "Moortown R.u.f.c., Moss Valley, King Lane, Alwoodley, Leeds, West Yorkshire, LS17 7NT, United Kingdom",
+      "latitude": 53.8567818,
+      "longitude": -1.5544581,
+      "formatted_address": "LS17 7NT, Alwoodley, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350690630
     },
     {
       "name": "Malton and Norton",
@@ -83,14 +73,14 @@
       "place_id": 350447864
     },
     {
-      "name": "Moortown",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14078&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/14078.png",
-      "address": "Moortown R.u.f.c., Moss Valley, King Lane, Alwoodley, Leeds, West Yorkshire, LS17 7NT, United Kingdom",
-      "latitude": 53.8567818,
-      "longitude": -1.5544581,
-      "formatted_address": "LS17 7NT, Alwoodley, Leeds, West Yorkshire, England, United Kingdom",
-      "place_id": 350690630
+      "name": "Bradford Salem",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2932&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/2932.png",
+      "address": "Bradford Salem Rfc, Shay Lane, Heaton, Bradford, West Yorkshire, BD9 6SL, United Kingdom",
+      "latitude": 53.81626,
+      "longitude": -1.7937,
+      "formatted_address": "BD9 6SL, Bradford, West Yorkshire, England, United Kingdom",
+      "place_id": 350969809
     },
     {
       "name": "Pontefract",
@@ -101,6 +91,16 @@
       "longitude": -1.2927013,
       "formatted_address": "WF8 3RX, Wakefield, West Yorkshire, England, United Kingdom",
       "place_id": 350891085
+    },
+    {
+      "name": "Wetherby",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=25068&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/25068.png",
+      "address": "Wetherby R.u.f.c., Grange Park Sports Club, Grange Park, Wetherby, West Yorkshire, LS22 5NB, United Kingdom",
+      "latitude": 53.9195614,
+      "longitude": -1.3811227,
+      "formatted_address": "LS22 5NB, Wetherby, Leeds, West Yorkshire, England, United Kingdom",
+      "place_id": 350691213
     },
     {
       "name": "Old Crossleyans",
@@ -120,7 +120,7 @@
       "latitude": 53.5338091,
       "longitude": -1.0781565,
       "formatted_address": "Castle Park Stadium, Armthorpe Road, Wheatley Hills, Doncaster, South Yorkshire, England, DN2 5QB, United Kingdom",
-      "place_id": 399475112
+      "place_id": 351183408
     }
   ],
   "team_count": 12

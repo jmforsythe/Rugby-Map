@@ -3,6 +3,26 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&division=68361&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Melton Mowbray 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13694",
+      "image_url": "https://images.englandrugby.com/club_images/13694.png",
+      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
+      "latitude": 52.7528715,
+      "longitude": -0.8773902,
+      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
+      "place_id": 406543907
+    },
+    {
+      "name": "Burbage II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3654",
+      "image_url": "https://images.englandrugby.com/club_images/3654.png",
+      "address": "Britannia Fields Britannia Road Burbage Leicestershire LE10 2HF United Kingdom",
+      "latitude": 52.5248071,
+      "longitude": -1.3509742,
+      "formatted_address": "LE10 2HF, Burbage, Stretton Baskerville, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 351018404
+    },
+    {
       "name": "Belgrave 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1896",
       "image_url": "https://images.englandrugby.com/club_images/1896.png",
@@ -23,26 +43,6 @@
       "place_id": 350681988
     },
     {
-      "name": "Burbage II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3654",
-      "image_url": "https://images.englandrugby.com/club_images/3654.png",
-      "address": "Britannia Fields Britannia Road Burbage Leicestershire LE10 2HF United Kingdom",
-      "latitude": 52.5248071,
-      "longitude": -1.3509742,
-      "formatted_address": "LE10 2HF, Burbage, Stretton Baskerville, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
-      "place_id": 351018404
-    },
-    {
-      "name": "Melton Mowbray 2nd XV",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13694",
-      "image_url": "https://images.englandrugby.com/club_images/13694.png",
-      "address": "Burton Rd Melton Mowbray LE13 1DR ENGLAND",
-      "latitude": 52.7528715,
-      "longitude": -0.8773902,
-      "formatted_address": "Burton Road, Melton Mowbray, Melton, Leicestershire, England, LE13 1DR, United Kingdom",
-      "place_id": 406543907
-    },
-    {
       "name": "Loughborough 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12819",
       "image_url": "https://images.englandrugby.com/club_images/12819.png",
@@ -51,6 +51,16 @@
       "longitude": -1.23085,
       "formatted_address": "LE11 5FJ, Charnwood, Leicestershire, England, United Kingdom",
       "place_id": 351470770
+    },
+    {
+      "name": "Old Newtonians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15835",
+      "image_url": "https://images.englandrugby.com/club_images/15835.png",
+      "address": "Hinckley Road (a47) Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
+      "latitude": 52.6191866,
+      "longitude": -1.2307556,
+      "formatted_address": "Hinckley Road, Leicester Forest East, Blaby, Leicestershire, England, LE3 3NN, United Kingdom",
+      "place_id": 257535498
     },
     {
       "name": "Ashby II",
@@ -81,16 +91,6 @@
       "longitude": -1.38332,
       "formatted_address": "CV13 0BA, Cadeby, Market Bosworth, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
       "place_id": 351113537
-    },
-    {
-      "name": "Old Newtonians",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15835",
-      "image_url": "https://images.englandrugby.com/club_images/15835.png",
-      "address": "Hinckley Road (a47) Leicester Forest East Leicester Leicestershire LE3 3PJ United Kingdom",
-      "latitude": 52.6191866,
-      "longitude": -1.2307556,
-      "formatted_address": "Hinckley Road, Leicester Forest East, Blaby, Leicestershire, England, LE3 3NN, United Kingdom",
-      "place_id": 257535498
     },
     {
       "name": "Market Harborough 3rd XV",

@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=66461&season=2025-2026#tables",
   "teams": [
     {
+      "name": "St Agnes",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20092.png",
+      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
+      "latitude": 50.31821,
+      "longitude": -5.21075,
+      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
+      "place_id": 352075771
+    },
+    {
       "name": "St Ives (SW) II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20430&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/20430.png",
@@ -23,24 +33,14 @@
       "place_id": 350867104
     },
     {
-      "name": "Lankelly-Fowey",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11871&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11871.png",
-      "address": "Lankelly-Fowey RFC Lankelly Farm Lankelly Lane Fowey CORNWALL PL23 1HN UNITED KINGDOM ",
-      "latitude": 50.33597,
-      "longitude": -4.6531399,
-      "formatted_address": "PL23 1HN, Fowey, Cornwall, England, United Kingdom",
-      "place_id": 351768800
-    },
-    {
-      "name": "St Agnes",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20092&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20092.png",
-      "address": "St Agnes Sports Club, Enys Park, West Polberro, St. Agnes, Cornwall, TR5 0SS, United Kingdom",
-      "latitude": 50.31821,
-      "longitude": -5.21075,
-      "formatted_address": "TR5 0SS, St. Agnes, Cornwall, England, United Kingdom",
-      "place_id": 352075771
+      "name": "Saltash II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18630&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/18630.png",
+      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
+      "latitude": 50.4150578,
+      "longitude": -4.2364835,
+      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
+      "place_id": 351762971
     },
     {
       "name": "Camborne S o M",
@@ -53,24 +53,14 @@
       "place_id": 352067944
     },
     {
-      "name": "Saltash II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=18630&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/18630.png",
-      "address": "Saltash Rfc, Moorlands Lane, Saltash, Cornwall , PL12 4HJ, United Kingdom",
-      "latitude": 50.4150578,
-      "longitude": -4.2364835,
-      "formatted_address": "PL12 4HJ, Saltash, Cornwall, England, United Kingdom",
-      "place_id": 351762971
-    },
-    {
-      "name": "Hayle",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9762&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9762.png",
-      "address": "Memorial Park, Marsh Lane, Hayle, Cornwall, TR27 4PS, United Kingdom",
-      "latitude": 50.19573,
-      "longitude": -5.39965,
-      "formatted_address": "TR27 4PS, Hayle, Cornwall, England, United Kingdom",
-      "place_id": 352074538
+      "name": "Lankelly-Fowey",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11871&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11871.png",
+      "address": "Lankelly-Fowey RFC Lankelly Farm Lankelly Lane Fowey CORNWALL PL23 1HN UNITED KINGDOM ",
+      "latitude": 50.33597,
+      "longitude": -4.6531399,
+      "formatted_address": "PL23 1HN, Fowey, Cornwall, England, United Kingdom",
+      "place_id": 351768800
     },
     {
       "name": "Roseland",
@@ -81,6 +71,16 @@
       "longitude": -4.99117,
       "formatted_address": "TR2 5ND, Philleigh, Cornwall, England, United Kingdom",
       "place_id": 352073158
+    },
+    {
+      "name": "Hayle",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9762&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9762.png",
+      "address": "Memorial Park, Marsh Lane, Hayle, Cornwall, TR27 4PS, United Kingdom",
+      "latitude": 50.19573,
+      "longitude": -5.39965,
+      "formatted_address": "TR27 4PS, Hayle, Cornwall, England, United Kingdom",
+      "place_id": 352074538
     }
   ],
   "team_count": 8

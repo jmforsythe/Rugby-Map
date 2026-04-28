@@ -13,16 +13,6 @@
       "place_id": 259517279
     },
     {
-      "name": "St Mary's Old Boys (SW) II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20596",
-      "image_url": "https://images.englandrugby.com/club_images/20596.png",
-      "address": "St Mary's Old Boys Rfc, Northwood Park, Trench Lane, Bradley Stoke, Winterbourne, Avon, BS36 1RY, United Kingdom",
-      "latitude": 51.5386109,
-      "longitude": -2.5309005,
-      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
-      "place_id": 350515798
-    },
-    {
       "name": "Broad Plain II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3341",
       "image_url": "https://images.englandrugby.com/club_images/3341.png",
@@ -31,6 +21,16 @@
       "longitude": -2.595076,
       "formatted_address": "BS3 5AZ, Bristol, City of Bristol, West of England, England, United Kingdom",
       "place_id": 350515558
+    },
+    {
+      "name": "St Mary's Old Boys (SW) II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20596",
+      "image_url": "https://images.englandrugby.com/club_images/20596.png",
+      "address": "St Mary's Old Boys Rfc, Northwood Park, Trench Lane, Bradley Stoke, Winterbourne, Avon, BS36 1RY, United Kingdom",
+      "latitude": 51.5386109,
+      "longitude": -2.5309005,
+      "formatted_address": "BS36 1RY, Winterbourne, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350515798
     },
     {
       "name": "Thornbury II",
@@ -61,27 +61,7 @@
       "longitude": -2.5712177,
       "formatted_address": "BS32 4AG, Motorway Compound, Almondsbury, South Gloucestershire, West of England, England, United Kingdom",
       "place_id": 350513558
-    },
-    {
-      "name": "University of Bristol V",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23555",
-      "image_url": "https://images.englandrugby.com/club_images/23555.png",
-      "address": "University of Bristol RFC University Playing Fields Coombe Dingle Coombe Lane Stoke Bishop AVON BS9 2BJ UNITED KINGDOM",
-      "latitude": 51.4884672,
-      "longitude": -2.6321576,
-      "formatted_address": "BS9 2BJ, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 351196903
-    },
-    {
-      "name": "Wotton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26170",
-      "image_url": "https://images.englandrugby.com/club_images/26170.png",
-      "address": "33 Abingdon Road Fishponds Bristol Gloucestershire BS16 3NR United Kingdom",
-      "latitude": 51.4739391,
-      "longitude": -2.5312718,
-      "formatted_address": "BS16 3NR, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 351017836
     }
   ],
-  "team_count": 8
+  "team_count": 6
 }

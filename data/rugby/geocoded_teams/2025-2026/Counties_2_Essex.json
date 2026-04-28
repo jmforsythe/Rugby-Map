@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&division=66533&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Canvey Island",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4150&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4150.png",
-      "address": "Tewkes Creek, Dovervelt Road, Canvey Island, Essex, SS8 8EJ, United Kingdom",
-      "latitude": 51.52916,
-      "longitude": 0.59358,
-      "formatted_address": "SS8 8EJ, Canvey Island, Castle Point, Essex, England, United Kingdom",
-      "place_id": 351985750
-    },
-    {
       "name": "Burnham-on-Crouch",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3700&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/3700.png",
@@ -33,6 +23,16 @@
       "place_id": 350547148
     },
     {
+      "name": "Canvey Island",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4150&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4150.png",
+      "address": "Tewkes Creek, Dovervelt Road, Canvey Island, Essex, SS8 8EJ, United Kingdom",
+      "latitude": 51.52916,
+      "longitude": 0.59358,
+      "formatted_address": "SS8 8EJ, Canvey Island, Castle Point, Essex, England, United Kingdom",
+      "place_id": 351985750
+    },
+    {
       "name": "Basildon",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1539&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/1539.png",
@@ -41,16 +41,6 @@
       "longitude": 0.47679,
       "formatted_address": "SS14 3AW, Basildon, Essex, England, United Kingdom",
       "place_id": 351979157
-    },
-    {
-      "name": "Dagenham",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6050&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/6050.png",
-      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
-      "latitude": 51.55529,
-      "longitude": 0.16001,
-      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
-      "place_id": 351830956
     },
     {
       "name": "Kings Cross Steelers",
@@ -63,14 +53,14 @@
       "place_id": 91487227
     },
     {
-      "name": "Millwall",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/13906.png",
-      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
-      "latitude": 51.4880471,
-      "longitude": -0.010835,
-      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
-      "place_id": 260159011
+      "name": "Dagenham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6050&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/6050.png",
+      "address": "The Pavillion  Central Park Rainham Road North Dagenham ESSEX RM10 7EJ UNITED KINGDOM ",
+      "latitude": 51.55529,
+      "longitude": 0.16001,
+      "formatted_address": "RM10 7EJ, London Borough of Barking and Dagenham, Greater London, England, United Kingdom",
+      "place_id": 351830956
     },
     {
       "name": "Witham",
@@ -83,6 +73,16 @@
       "place_id": 351084508
     },
     {
+      "name": "Millwall",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=13906&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/13906.png",
+      "address": "75 Manchester Road, Isle Of Dogs, London, E14 3DN, United Kingdom",
+      "latitude": 51.4880471,
+      "longitude": -0.010835,
+      "formatted_address": "Millwall Rugby Club, 75, Manchester Road, Cubitt Town, Isle of Dogs, London Borough of Tower Hamlets, Greater London, England, E14 3DN, United Kingdom",
+      "place_id": 260159011
+    },
+    {
       "name": "Clacton",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5113&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/5113.png",
@@ -91,16 +91,6 @@
       "longitude": 1.1643234,
       "formatted_address": "CO15 6NA, Tendring, Essex, England, United Kingdom",
       "place_id": 350555075
-    },
-    {
-      "name": "Kelvedon and Feering",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124853&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/124853.png",
-      "address": "Rye Mill Lane, Feering, Colchester, Essex , CO5 9SB, United Kingdom",
-      "latitude": 51.84722,
-      "longitude": 0.71123,
-      "formatted_address": "CO5 9SB, Feering, Braintree, Essex, England, United Kingdom",
-      "place_id": 351090134
     },
     {
       "name": "Writtle Wanderers",
@@ -123,5 +113,5 @@
       "place_id": 91283632
     }
   ],
-  "team_count": 12
+  "team_count": 11
 }

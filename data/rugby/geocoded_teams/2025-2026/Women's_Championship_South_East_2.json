@@ -43,16 +43,6 @@
       "place_id": 350852336
     },
     {
-      "name": "Hackney Ladies",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9172&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/9172.png",
-      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
-      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
-      "place_id": 350607581
-    },
-    {
       "name": "Hampstead Women+",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9298&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9298.png",
@@ -61,6 +51,16 @@
       "longitude": -0.1572017,
       "formatted_address": "NW3 2JP, London Borough of Camden, Greater London, England, United Kingdom",
       "place_id": 351699934
+    },
+    {
+      "name": "Hackney Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9172&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/9172.png",
+      "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
+      "latitude": 51.5727667,
+      "longitude": -0.057759,
+      "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
+      "place_id": 350607581
     },
     {
       "name": "Hammersmith & Fulham Women",
@@ -81,17 +81,7 @@
       "longitude": 0.2504757,
       "formatted_address": "DA2 20, Hillhouse Road, Stone, Dartford, Kent, England, DA2 6EX, United Kingdom",
       "place_id": 90762197
-    },
-    {
-      "name": "Blackheath Women",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2505&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/2505.png",
-      "address": "Kidbrooke Lane, London, SE9 6TE, England",
-      "latitude": 51.4581253,
-      "longitude": 0.0478235,
-      "formatted_address": "Kidbrooke Lane, Eltham Park, Well Hall, Royal Borough of Greenwich, Greater London, England, SE9 6TD, United Kingdom",
-      "place_id": 91315466
     }
   ],
-  "team_count": 9
+  "team_count": 8
 }

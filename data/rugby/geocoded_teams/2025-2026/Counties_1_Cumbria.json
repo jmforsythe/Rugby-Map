@@ -3,6 +3,16 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&division=66671&season=2025-2026#tables",
   "teams": [
     {
+      "name": "Kirkby Lonsdale",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11718&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11718.png",
+      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
+      "latitude": 54.2081674,
+      "longitude": -2.6025938,
+      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350680621
+    },
+    {
       "name": "Hawcoat Park",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9735&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/9735.png",
@@ -23,16 +33,6 @@
       "place_id": 351025025
     },
     {
-      "name": "Kirkby Lonsdale",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11718&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11718.png",
-      "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
-      "latitude": 54.2081674,
-      "longitude": -2.6025938,
-      "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
-      "place_id": 350680621
-    },
-    {
       "name": "Cockermouth",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5361&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/5361.png",
@@ -41,16 +41,6 @@
       "longitude": -3.3488062,
       "formatted_address": "CA13 9XQ, Cockermouth, Cumberland, England, United Kingdom",
       "place_id": 351027650
-    },
-    {
-      "name": "St Benedicts",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20199&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/20199.png",
-      "address": "Newlands Avenue Mirehouse Whitehaven Cumbria CA28 9SH United Kingdom",
-      "latitude": 54.5295053,
-      "longitude": -3.578969,
-      "formatted_address": "CA28 9SH, Whitehaven, Cumberland, England, United Kingdom",
-      "place_id": 350528453
     },
     {
       "name": "Whitehaven",
@@ -63,6 +53,16 @@
       "place_id": 351031866
     },
     {
+      "name": "St Benedicts",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20199&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/20199.png",
+      "address": "Newlands Avenue Mirehouse Whitehaven Cumbria CA28 9SH United Kingdom",
+      "latitude": 54.5295053,
+      "longitude": -3.578969,
+      "formatted_address": "CA28 9SH, Whitehaven, Cumberland, England, United Kingdom",
+      "place_id": 350528453
+    },
+    {
       "name": "Egremont",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7411&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/7411.png",
@@ -71,16 +71,6 @@
       "longitude": -3.52821,
       "formatted_address": "CA22 2NL, Egremont, Cumberland, England, United Kingdom",
       "place_id": 351030946
-    },
-    {
-      "name": "Ambleside",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=578&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/578.png",
-      "address": "Galava Park Borrans Road Ambleside Cumbria LA22 0EN United Kingdom",
-      "latitude": 54.4245681,
-      "longitude": -2.967795,
-      "formatted_address": "LA22 0EN, Lakes, Elterwater, Westmorland and Furness, England, United Kingdom",
-      "place_id": 350679064
     },
     {
       "name": "Workington",
@@ -93,14 +83,14 @@
       "place_id": 351028366
     },
     {
-      "name": "Creighton",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5852&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/5852.png",
-      "address": "Sycamore Lane Parkland Carlisle CUMBRIA CA1 3SR UNITED KINGDOM",
-      "latitude": 54.8755644,
-      "longitude": -2.8871217,
-      "formatted_address": "CA1 3SR, St Cuthbert Without, Durdar, Cumberland, England, United Kingdom",
-      "place_id": 350527740
+      "name": "Ambleside",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=578&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/578.png",
+      "address": "Galava Park Borrans Road Ambleside Cumbria LA22 0EN United Kingdom",
+      "latitude": 54.4245681,
+      "longitude": -2.967795,
+      "formatted_address": "LA22 0EN, Lakes, Elterwater, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350679064
     },
     {
       "name": "Windermere",
@@ -111,6 +101,16 @@
       "longitude": -2.9176134,
       "formatted_address": "LA23 3AS, Windermere, Bowness on Windermere, Westmorland and Furness, England, United Kingdom",
       "place_id": 351354688
+    },
+    {
+      "name": "Creighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5852&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/5852.png",
+      "address": "Sycamore Lane Parkland Carlisle CUMBRIA CA1 3SR UNITED KINGDOM",
+      "latitude": 54.8755644,
+      "longitude": -2.8871217,
+      "formatted_address": "CA1 3SR, St Cuthbert Without, Durdar, Cumberland, England, United Kingdom",
+      "place_id": 350527740
     },
     {
       "name": "Keswick II",

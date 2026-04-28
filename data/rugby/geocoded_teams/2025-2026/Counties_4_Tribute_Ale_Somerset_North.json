@@ -3,16 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=66476&season=2025-2026#tables",
   "teams": [
     {
-      "name": "Cheddar Valley",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4466&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/4466.png",
-      "address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, BS27 3DR, United Kingdom",
-      "latitude": 51.2783991,
-      "longitude": -2.7933316,
-      "formatted_address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, England, BS27 3DR, United Kingdom",
-      "place_id": 261650074
-    },
-    {
       "name": "Oldfield Old Boys II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16140&season=2025-2026",
       "image_url": "https://images.englandrugby.com/club_images/16140.png",
@@ -21,6 +11,16 @@
       "longitude": -2.3363342,
       "formatted_address": "Shaft Road, Combe Down, Bath, Bath and North East Somerset, West of England, England, BA2 7HR, United Kingdom",
       "place_id": 261418614
+    },
+    {
+      "name": "Cheddar Valley",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4466&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/4466.png",
+      "address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, BS27 3DR, United Kingdom",
+      "latitude": 51.2783991,
+      "longitude": -2.7933316,
+      "formatted_address": "Cheddar Valley Rugby Club, Sharpham Road, Cheddar, Somerset, England, BS27 3DR, United Kingdom",
+      "place_id": 261650074
     },
     {
       "name": "Chew Valley III",
@@ -43,14 +43,14 @@
       "place_id": 350518448
     },
     {
-      "name": "Keynsham III",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11378&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/11378.png",
-      "address": "Keynsham RFC Crown Fields Bristol Road Keynsham Bristol BRISTOL BS31 2BE UNITED KINGDOM ",
-      "latitude": 51.4189561,
-      "longitude": -2.5057328,
-      "formatted_address": "BS31 2BE, Keynsham, Bath and North East Somerset, West of England, England, United Kingdom",
-      "place_id": 350513226
+      "name": "Yatton II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26416&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/26416.png",
+      "address": "Yatton RFC The Park North End Road Yatton SOMERSET BS49 4AR UNITED KINGDOM ",
+      "latitude": 51.3949799,
+      "longitude": -2.83571,
+      "formatted_address": "BS49 4AR, Yatton, North Somerset, England, United Kingdom",
+      "place_id": 351024156
     },
     {
       "name": "Frome III",
@@ -63,24 +63,14 @@
       "place_id": 350930903
     },
     {
-      "name": "Imperial II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10863&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/10863.png",
-      "address": "South Bristol Sports Centre Imperial RFC West Town Lane Knowle Bristol SOMERSET BS4 5BN UNITED KINGDOM ",
-      "latitude": 51.4318289,
-      "longitude": -2.5465856,
-      "formatted_address": "BS4 5BN, Bristol, City of Bristol, West of England, England, United Kingdom",
-      "place_id": 350517833
-    },
-    {
-      "name": "Yatton II",
-      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26416&season=2025-2026",
-      "image_url": "https://images.englandrugby.com/club_images/26416.png",
-      "address": "Yatton RFC The Park North End Road Yatton SOMERSET BS49 4AR UNITED KINGDOM ",
-      "latitude": 51.3949799,
-      "longitude": -2.83571,
-      "formatted_address": "BS49 4AR, Yatton, North Somerset, England, United Kingdom",
-      "place_id": 351024156
+      "name": "Keynsham III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11378&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/11378.png",
+      "address": "Keynsham RFC Crown Fields Bristol Road Keynsham Bristol BRISTOL BS31 2BE UNITED KINGDOM ",
+      "latitude": 51.4189561,
+      "longitude": -2.5057328,
+      "formatted_address": "BS31 2BE, Keynsham, Bath and North East Somerset, West of England, England, United Kingdom",
+      "place_id": 350513226
     },
     {
       "name": "Walcot II",
@@ -91,6 +81,16 @@
       "longitude": -2.3815316,
       "formatted_address": "BA1 9BJ, Charlcombe, Bath and North East Somerset, West of England, England, United Kingdom",
       "place_id": 350490574
+    },
+    {
+      "name": "Imperial II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10863&season=2025-2026",
+      "image_url": "https://images.englandrugby.com/club_images/10863.png",
+      "address": "South Bristol Sports Centre Imperial RFC West Town Lane Knowle Bristol SOMERSET BS4 5BN UNITED KINGDOM ",
+      "latitude": 51.4318289,
+      "longitude": -2.5465856,
+      "formatted_address": "BS4 5BN, Bristol, City of Bristol, West of England, England, United Kingdom",
+      "place_id": 350517833
     },
     {
       "name": "Midsomer Norton III",

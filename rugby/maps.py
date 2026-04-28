@@ -633,8 +633,18 @@ def main() -> None:
     mens_by_tier, mens_tier_order = _group_by_tier(mens_pyramid)
     womens_by_tier, womens_tier_order = _group_by_tier(womens_pyramid)
 
-    # Build pyramid-adjusted copies of merit items for the combined All_Leagues map.
-    # Merit items use local tier numbers; add the competition offset to get absolute.
+    # Load shared data
+    logger.debug("Loading ITL hierarchy...")
+    itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
+
+    logger.debug("Pre-assigning ITL regions to all items...")
+    all_marker_items = loaded.pyramid + [
+        it for comp_items in loaded.merit.values() for it in comp_items
+    ]
+    preassign_itl_regions(all_marker_items, itl_hierarchy)
+
+    # Merit copies must be created after pre-assign so replace(...) keeps ITL fields
+    # (otherwise +Merit maps skip merit teams in the pre-assigned region path).
     adjusted_merit: list[MarkerItem] = []
     for comp_key, comp_items in loaded.merit.items():
         offset = get_competition_offset(comp_key, season)
@@ -662,16 +672,6 @@ def main() -> None:
         len(adjusted_merit),
         len(loaded.merit),
     )
-
-    # Load shared data
-    logger.debug("Loading ITL hierarchy...")
-    itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
-
-    logger.debug("Pre-assigning ITL regions to all items...")
-    all_marker_items = loaded.pyramid + [
-        it for comp_items in loaded.merit.values() for it in comp_items
-    ]
-    preassign_itl_regions(all_marker_items, itl_hierarchy)
 
     output_dir = DIST_DIR / season
     is_prod = get_config().is_production

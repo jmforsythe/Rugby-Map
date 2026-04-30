@@ -36,6 +36,7 @@ from rugby import DATA_DIR
 from rugby.analysis.projected_urls import _parse_projected_md
 from rugby.distance_lookup import DistanceLookup
 from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
+from rugby.offshore_travel import build_rid_map_from_lookup, offshore_js_payload
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
 logger = logging.getLogger(__name__)
@@ -589,6 +590,7 @@ def _export_distances(lookup: DistanceLookup) -> None:
           km_b64: "...",     // Uint16Array(n*n), km * 10
           min_b64: "...",    // Uint16Array(n*n), minutes * 10 (optional)
           has_min: true,
+          offshore: { regions, gateways, air_minutes, waypoints, ... },  # crown-dependency model
         };
 
     The HTML template decodes these blobs into Uint16Array views once on load.
@@ -621,6 +623,8 @@ def _export_distances(lookup: DistanceLookup) -> None:
         payload["min_b64"] = base64.b64encode(min_payload).decode("ascii")
         payload["scale_min"] = _DIST_SCALE
         payload["has_min"] = True
+
+    payload["offshore"] = offshore_js_payload(build_rid_map_from_lookup(lookup.coord_id))
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output_path = OUTPUT_DIR / "distances.js"

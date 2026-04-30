@@ -13,8 +13,11 @@ Output (single global cache):
     data/rugby/distance_cache/routed/all.npz   -- distance_km, duration_min, lats, lons
     data/rugby/distance_cache/routed/all.json  -- geocode index (id -> teams/leagues)
 
-Unreachable pairs (e.g. Channel Islands -> mainland with no ferry) are stored
-as NaN; callers can fall back to scaled Haversine for those rows/columns.
+Unreachable pairs (e.g. cross-sea hops that are missing from OSM ferry data)
+may be stored as NaN; callers can fall back via ``rugby.distance_lookup`` (pure mainland
+pairs use scaled Haversine for km unless the offshore air-bridge model applies).
+(Jersey, Guernsey, Isle of Man, Southampton, Liverpool) are always merged into
+the geocode set so segmented crown-dependency travel can reuse OSRM inland legs.
 
 Usage (assumes ``osrm-routed`` running on http://localhost:5000):
 
@@ -54,6 +57,7 @@ from urllib3.util.retry import Retry
 
 from core import json_load_cache, setup_logging
 from rugby import DATA_DIR
+from rugby.offshore_travel import augment_coord_meta_for_routing_waypoints
 
 logger = logging.getLogger(__name__)
 
@@ -128,6 +132,8 @@ def collect_geocodes(
                         "address": team.get("formatted_address", team.get("address", "")),
                     }
                 )
+
+    augment_coord_meta_for_routing_waypoints(coord_meta)
 
     coords = sorted(coord_meta.keys())
     seasons_covered = [d.name for d in season_dirs]

@@ -1229,15 +1229,224 @@
         return v * ROUTED_DISTANCES.scale_min;
       }
 
-      // Distance and duration between two team objects. Prefers cached routed
-      // values when both teams have a routed-id (rid); otherwise falls back to
-      // Haversine for km, and returns null minutes.
+      function classifyOffshoreRegion(lat, lng) {
+        const reg = ROUTED_DISTANCES?.offshore?.regions;
+        if (!reg) return "mainland";
+        const jersey = reg.jersey;
+        const guernsey = reg.guernsey;
+        const iom = reg.isle_of_man;
+        if (
+          lat >= jersey[0] &&
+          lat <= jersey[1] &&
+          lng >= jersey[2] &&
+          lng <= jersey[3]
+        )
+          return "jersey";
+        if (
+          lat >= guernsey[0] &&
+          lat <= guernsey[1] &&
+          lng >= guernsey[2] &&
+          lng <= guernsey[3]
+        )
+          return "guernsey";
+        if (
+          lat >= iom[0] &&
+          lat <= iom[1] &&
+          lng >= iom[2] &&
+          lng <= iom[3]
+        )
+          return "isle_of_man";
+        return "mainland";
+      }
+
+      function localAirportWaypointKey(offshoreRegion) {
+        if (offshoreRegion === "jersey") return "jer_airport";
+        if (offshoreRegion === "guernsey") return "gci_airport";
+        if (offshoreRegion === "isle_of_man") return "iom_airport";
+        return null;
+      }
+
+      function airMinutesBetweenRegions(r1, r2) {
+        const am = ROUTED_DISTANCES?.offshore?.air_minutes;
+        if (!am) return 0;
+        if (r1 === "mainland" || r2 === "mainland") {
+          const offshore = r1 === "mainland" ? r2 : r1;
+          if (offshore === "jersey" || offshore === "guernsey")
+            return am.ci_mainland;
+          if (offshore === "isle_of_man") return am.iom_mainland;
+          return am.ci_mainland;
+        }
+        if (
+          (r1 === "jersey" && r2 === "guernsey") ||
+          (r1 === "guernsey" && r2 === "jersey")
+        )
+          return am.jersey_guernsey;
+        return am.mixed_crown_dependency;
+      }
+
+      function segmentKm(lat1, lng1, rid1, lat2, lng2, rid2) {
+        if (
+          rid1 != null &&
+          rid2 != null &&
+          typeof ROUTED_DISTANCES?.n === "number"
+        ) {
+          const rk = routedKm(rid1, rid2);
+          if (rk != null) return rk;
+        }
+        return haversineKm(lat1, lng1, lat2, lng2);
+      }
+
+      function segmentMin(lat1, lng1, rid1, lat2, lng2, rid2) {
+        let m = null;
+        if (
+          rid1 != null &&
+          rid2 != null &&
+          typeof ROUTED_DISTANCES?.n === "number"
+        ) {
+          m = routedMin(rid1, rid2);
+        }
+        if (m != null) return m;
+        const km = haversineKm(lat1, lng1, lat2, lng2);
+        const driveKmh =
+          ROUTED_DISTANCES?.offshore?.air_minutes?.drive_kmh_assumed ?? 55;
+        return (km / driveKmh) * 60;
+      }
+
+      function offshorePairKmMin(teamA, teamB) {
+        if (!ROUTED_DISTANCES?.offshore?.regions) return null;
+
+        const rA = classifyOffshoreRegion(teamA.lat, teamA.lng);
+        const rB = classifyOffshoreRegion(teamB.lat, teamB.lng);
+        const wpLatLng = ROUTED_DISTANCES.offshore.waypoints;
+
+        if (rA === "mainland" && rB === "mainland") return null;
+        if (rA !== "mainland" && rB !== "mainland" && rA === rB)
+          return null;
+
+        let kmSum = 0;
+        let minSum = 0;
+
+        if (rA !== "mainland" && rB !== "mainland") {
+          const k1 = localAirportWaypointKey(rA);
+          const k2 = localAirportWaypointKey(rB);
+          const w1 = wpLatLng[k1];
+          const w2 = wpLatLng[k2];
+
+          kmSum += segmentKm(
+            teamA.lat,
+            teamA.lng,
+            teamA.rid,
+            w1.lat,
+            w1.lon,
+            w1.rid ?? null,
+          );
+          minSum += segmentMin(
+            teamA.lat,
+            teamA.lng,
+            teamA.rid,
+            w1.lat,
+            w1.lon,
+            w1.rid ?? null,
+          );
+
+          kmSum += segmentKm(
+            teamB.lat,
+            teamB.lng,
+            teamB.rid,
+            w2.lat,
+            w2.lon,
+            w2.rid ?? null,
+          );
+          minSum +=
+            segmentMin(
+              teamB.lat,
+              teamB.lng,
+              teamB.rid,
+              w2.lat,
+              w2.lon,
+              w2.rid ?? null,
+            ) + airMinutesBetweenRegions(rA, rB);
+
+          return { km: kmSum, mins: minSum };
+        }
+
+        const mainlandTeam = rA === "mainland" ? teamA : teamB;
+        const offshoreTeam = rA === "mainland" ? teamB : teamA;
+        const offshoreReg = rA === "mainland" ? rB : rA;
+
+        const apKey = localAirportWaypointKey(offshoreReg);
+        const wAp = wpLatLng[apKey];
+        const hubKeys = ROUTED_DISTANCES.offshore.gateways?.[offshoreReg] || [];
+
+        const seaKm = segmentKm(
+          offshoreTeam.lat,
+          offshoreTeam.lng,
+          offshoreTeam.rid,
+          wAp.lat,
+          wAp.lon,
+          wAp.rid ?? null,
+        );
+        const seaMin = segmentMin(
+          offshoreTeam.lat,
+          offshoreTeam.lng,
+          offshoreTeam.rid,
+          wAp.lat,
+          wAp.lon,
+          wAp.rid ?? null,
+        );
+        const corridor = airMinutesBetweenRegions("mainland", offshoreReg);
+
+        let bestKm = null;
+        let bestMin = null;
+        for (const hk of hubKeys) {
+          const wHub = wpLatLng[hk];
+          if (!wHub) continue;
+          const lk = segmentKm(
+            mainlandTeam.lat,
+            mainlandTeam.lng,
+            mainlandTeam.rid,
+            wHub.lat,
+            wHub.lon,
+            wHub.rid ?? null,
+          );
+          const lm = segmentMin(
+            mainlandTeam.lat,
+            mainlandTeam.lng,
+            mainlandTeam.rid,
+            wHub.lat,
+            wHub.lon,
+            wHub.rid ?? null,
+          );
+          const tk = seaKm + lk;
+          const tm = seaMin + corridor + lm;
+          if (
+            bestKm === null ||
+            tk < bestKm - 1e-9 ||
+            (Math.abs(tk - bestKm) <= 1e-6 && tm < bestMin)
+          ) {
+            bestKm = tk;
+            bestMin = tm;
+          }
+        }
+        if (bestKm == null || bestMin == null) return null;
+        return { km: bestKm, mins: bestMin };
+      }
+
+      // Distance and duration between two team objects. Uses crown-dependency
+      // composite (ground-only km + ground minutes + corridor air/block time)
+      // when ROUTED_DISTANCES.offshore metadata is present; otherwise prefers
+      // cached routed values when both teams have a routed-id (rid).
       function pairKm(a, b) {
+        const bespoke = offshorePairKmMin(a, b);
+        if (bespoke) return bespoke.km;
         const r = routedKm(a.rid, b.rid);
         if (r != null) return r;
         return haversineKm(a.lat, a.lng, b.lat, b.lng);
       }
+
       function pairMin(a, b) {
+        const bespoke = offshorePairKmMin(a, b);
+        if (bespoke) return bespoke.mins;
         return routedMin(a.rid, b.rid);
       }
 

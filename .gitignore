@@ -17,9 +17,18 @@ data/boundaries/
 data/caches/
 data/rugby/league_data/
 data/rugby/team_addresses/
-data/rugby/distance_cache/
+# Ignore everything in distance_cache except the global routed cache below.
+# (Glob form, not directory form, so we can re-include specific files.)
+data/rugby/distance_cache/*
+!data/rugby/distance_cache/routed/
+data/rugby/distance_cache/routed/*
 data/rugby/standings_cache/
 data/rugby/*.md
+
+# Routed (road) distance matrix is global and stable across seasons --
+# commit it so the build works without requiring everyone to run OSRM locally.
+!data/rugby/distance_cache/routed/all.npz
+!data/rugby/distance_cache/routed/all.json
 data/football/*
 data/scotland/*
 

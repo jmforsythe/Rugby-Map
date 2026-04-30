@@ -156,12 +156,23 @@ def _render_popup_html(
         team_dist = travel_distances["teams"].get(team_name)
         league_dist = travel_distances["leagues"].get(league_name)
         if team_dist and league_dist:
+            source = travel_distances.get("summary", {}).get("distance_source", "haversine")
+            heading = "Travel Distances" if source != "routed" else "Travel Distances (road)"
+            t_avg_min = team_dist.get("avg_duration_min")
+            t_tot_min = team_dist.get("total_duration_min")
+            l_avg_min = league_dist.get("avg_duration_min")
             distance_html = (
                 f"<hr>"
-                f'<p><span class="popup-label">Travel Distances:</span></p>'
-                f"<p>Team Average: {team_dist['avg_distance_km']:.2f} km</p>"
-                f"<p>Team Total: {team_dist['total_distance_km']:.2f} km</p>"
-                f"<p>League Average: {league_dist['avg_distance_km']:.2f} km</p>"
+                f'<p><span class="popup-label">{heading}:</span></p>'
+                f"<p>Team Average: {team_dist['avg_distance_km']:.2f} km"
+                + (f" / {t_avg_min:.0f} min" if t_avg_min is not None else "")
+                + "</p>"
+                + f"<p>Team Total: {team_dist['total_distance_km']:.2f} km"
+                + (f" / {t_tot_min:.0f} min" if t_tot_min is not None else "")
+                + "</p>"
+                + f"<p>League Average: {league_dist['avg_distance_km']:.2f} km"
+                + (f" / {l_avg_min:.0f} min" if l_avg_min is not None else "")
+                + "</p>"
             )
 
     team_link = (

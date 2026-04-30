@@ -150,6 +150,73 @@ Creates all interactive maps with Voronoi diagrams.
 - Team markers with RFU profile links and fallback logos
 - Checkbox controls for showing/hiding leagues or tiers
 
+## Routed Travel Distances (OSRM)
+
+By default the pipeline uses straight-line (Haversine) distance for the
+travel-distance figures shown on the maps. You can optionally upgrade this to
+**real road distance and driving time** by building a single global routed
+matrix once with [OSRM](https://project-osrm.org/) (OpenStreetMap routing).
+
+The cache is **global, not per-season**: club locations are static across
+seasons, so one file (`data/rugby/distance_cache/routed/all.npz` +
+`all.json`, ~10 MB) covers every season — current and historical. It is
+committed to the repo so most contributors never need to run OSRM at all.
+The pipeline transparently falls back to Haversine for any pair of teams
+that isn't in the cache.
+
+### When to rebuild
+
+Rebuild only when geocodes change, e.g.
+
+- a brand-new club appears,
+- an existing club moves grounds,
+- you've added a new historical season under `geocoded_teams/`.
+
+The build script logs a warning during `make distances` and `make
+custom-map-data` if any current-season team is missing from the cache, so
+you'll know when a refresh is due.
+
+### One-off setup (WSL Ubuntu + Docker)
+
+```bash
+mkdir -p ~/osrm && cd ~/osrm
+curl -fSL -o gb.osm.pbf https://download.geofabrik.de/europe/great-britain-latest.osm.pbf
+docker run --rm -v "$PWD:/data" ghcr.io/project-osrm/osrm-backend \
+    osrm-extract -p /opt/car.lua /data/gb.osm.pbf
+docker run --rm -v "$PWD:/data" ghcr.io/project-osrm/osrm-backend \
+    osrm-partition /data/gb.osrm
+docker run --rm -v "$PWD:/data" ghcr.io/project-osrm/osrm-backend \
+    osrm-customize /data/gb.osrm
+docker run --rm -d -p 5000:5000 -v "$PWD:/data" ghcr.io/project-osrm/osrm-backend \
+    osrm-routed --algorithm mld --max-table-size 5000 /data/gb.osrm
+```
+
+### Rebuild the cache
+
+```bash
+make routed-distances                            # uses OSRM_URL=http://localhost:5000
+make routed-distances OSRM_URL=http://other:5000 # override
+```
+
+This walks every season under `geocoded_teams/`, dedupes to distinct
+geocodes (rounded to 6 dp), calls OSRM `/table` in 256-point chunks, and
+writes `data/rugby/distance_cache/routed/all.{npz,json}`. Takes roughly
+40 seconds per ~1300 distinct points.
+
+After rebuilding, regenerate downstream artifacts as usual:
+
+```bash
+make distances
+make maps
+make custom-map-data
+```
+
+The custom map's `dist/custom-map/distances.js` is ~8 MB raw and ships as
+a base64-encoded Uint16 matrix. GitHub Pages serves `.js` gzipped
+automatically (~3 MB on the wire), so no extra build step is required.
+
+See `rugby/distances_routed.py` for full module-level documentation.
+
 ## Testing
 
 Run the test suite:

@@ -130,6 +130,8 @@ class TeamTravelDistances(TypedDict):
     league: str
     total_distance_km: float
     avg_distance_km: float
+    total_duration_min: NotRequired[float]
+    avg_duration_min: NotRequired[float]
 
 
 class LeagueTravelDistances(TypedDict):
@@ -138,6 +140,7 @@ class LeagueTravelDistances(TypedDict):
     league_name: str
     avg_distance_km: float
     team_count: int
+    avg_duration_min: NotRequired[float]
 
 
 class TravelDistances(TypedDict):

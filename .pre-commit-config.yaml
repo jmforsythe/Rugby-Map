@@ -8,6 +8,8 @@ repos:
       - id: check-json
       - id: check-added-large-files
         args: ["--maxkb=5000"]
+        # Global OSRM distance matrix (committed so CI does not need OSRM).
+        exclude: ^data/rugby/distance_cache/routed/.*\.npz$
       - id: mixed-line-ending
         args: ["--fix=lf"]
 

@@ -1165,7 +1165,7 @@
         applyFullRugbyMapTheme();
       };
 
-      // ── Haversine ──────────────────────────────────────────────
+      // ── Distance: routed (road) lookup with Haversine fallback ─
       function haversineKm(lat1, lon1, lat2, lon2) {
         const R = 6371;
         const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -1178,24 +1178,106 @@
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       }
 
+      // Decode the base64 km/min blobs from distances.js into Uint16 arrays.
+      // Result lives on ROUTED_DISTANCES.km / .min as Uint16Array views, or
+      // null if no routed cache is available.
+      //
+      // NOTE: must be invoked AFTER distances.js has loaded (otherwise
+      // ROUTED_DISTANCES is still undefined). It is wired to the
+      // distances.js <script onload="..."> handler at the bottom of the
+      // page, and also called defensively from onTeamsLoaded().
+      function decodeRoutedDistances() {
+        if (typeof ROUTED_DISTANCES === "undefined" || !ROUTED_DISTANCES) {
+          window.ROUTED_DISTANCES = null;
+          return;
+        }
+        if (ROUTED_DISTANCES.km && ROUTED_DISTANCES.km.BYTES_PER_ELEMENT) {
+          // Already decoded — idempotent.
+          return;
+        }
+        function b64ToUint16(b64) {
+          const bin = atob(b64);
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          // Uint16Array view over the byte buffer (little-endian on all
+          // mainstream browsers, matching numpy default tobytes() ordering).
+          return new Uint16Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 2);
+        }
+        try {
+          ROUTED_DISTANCES.km = b64ToUint16(ROUTED_DISTANCES.km_b64);
+          if (ROUTED_DISTANCES.has_min && ROUTED_DISTANCES.min_b64) {
+            ROUTED_DISTANCES.min = b64ToUint16(ROUTED_DISTANCES.min_b64);
+          }
+        } catch (_) {
+          window.ROUTED_DISTANCES = null;
+        }
+      }
+
+      function routedKm(ridA, ridB) {
+        if (!ROUTED_DISTANCES || !ROUTED_DISTANCES.km) return null;
+        if (ridA == null || ridB == null) return null;
+        const v = ROUTED_DISTANCES.km[ridA * ROUTED_DISTANCES.n + ridB];
+        if (v === ROUTED_DISTANCES.unreachable) return null;
+        return v * ROUTED_DISTANCES.scale_km;
+      }
+
+      function routedMin(ridA, ridB) {
+        if (!ROUTED_DISTANCES || !ROUTED_DISTANCES.min) return null;
+        if (ridA == null || ridB == null) return null;
+        const v = ROUTED_DISTANCES.min[ridA * ROUTED_DISTANCES.n + ridB];
+        if (v === ROUTED_DISTANCES.unreachable) return null;
+        return v * ROUTED_DISTANCES.scale_min;
+      }
+
+      // Distance and duration between two team objects. Prefers cached routed
+      // values when both teams have a routed-id (rid); otherwise falls back to
+      // Haversine for km, and returns null minutes.
+      function pairKm(a, b) {
+        const r = routedKm(a.rid, b.rid);
+        if (r != null) return r;
+        return haversineKm(a.lat, a.lng, b.lat, b.lng);
+      }
+      function pairMin(a, b) {
+        return routedMin(a.rid, b.rid);
+      }
+
       function calcLeagueStats(league) {
         const teams = league.teams;
         if (teams.length < 2)
           return {
-            teams: teams.map((t) => ({ name: t.n, avg: 0, total: 0 })),
+            teams: teams.map((t) => ({ name: t.n, avg: 0, total: 0, avgMin: null, totalMin: null })),
             avg: 0,
+            avgMin: null,
           };
         const teamStats = teams.map((t) => {
           let total = 0;
+          let totalMin = 0;
+          let anyMissingMin = false;
           for (const o of teams) {
-            if (o.n !== t.n) total += haversineKm(t.lat, t.lng, o.lat, o.lng);
+            if (o.n === t.n) continue;
+            total += pairKm(t, o);
+            const m = pairMin(t, o);
+            if (m == null) anyMissingMin = true;
+            else totalMin += m;
           }
-          const avg = total / (teams.length - 1);
-          return { name: t.n, avg, total };
+          const denom = teams.length - 1;
+          const avg = total / denom;
+          const avgMin = anyMissingMin ? null : totalMin / denom;
+          return {
+            name: t.n,
+            avg,
+            total,
+            avgMin,
+            totalMin: anyMissingMin ? null : totalMin,
+          };
         });
         const leagueAvg =
           teamStats.reduce((s, t) => s + t.avg, 0) / teamStats.length;
-        return { teams: teamStats, avg: leagueAvg };
+        const anyMissingLeagueMin = teamStats.some((t) => t.avgMin == null);
+        const leagueAvgMin = anyMissingLeagueMin
+          ? null
+          : teamStats.reduce((s, t) => s + t.avgMin, 0) / teamStats.length;
+        return { teams: teamStats, avg: leagueAvg, avgMin: leagueAvgMin };
       }
 
       // ── Map init ───────────────────────────────────────────────
@@ -1337,6 +1419,13 @@
 
           for (const team of league.teams) {
             const ts = stats.teams.find((s) => s.name === team.n);
+
+            // Helper: "12.34 km" or "12.34 km / 18 min" if duration available.
+            function fmtKmMin(km, min) {
+              const k = km.toFixed(2) + " km";
+              return min == null ? k : k + " / " + min.toFixed(0) + " min";
+            }
+
             let officialHtml = "";
             if (team.lg) {
               officialHtml =
@@ -1345,13 +1434,15 @@
                 escHtml(team.lg) +
                 "</p>" +
                 "<p>Team Average: " +
-                team.tavg.toFixed(2) +
-                " km</p>" +
+                fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
+                "</p>" +
                 "<p>Team Total: " +
-                team.ttot.toFixed(2) +
-                " km</p>" +
+                fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
+                "</p>" +
                 (team.lavg
-                  ? "<p>League Average: " + team.lavg.toFixed(2) + " km</p>"
+                  ? "<p>League Average: " +
+                    fmtKmMin(team.lavg, team.lavg_min != null ? team.lavg_min : null) +
+                    "</p>"
                   : "");
             }
 
@@ -1361,14 +1452,14 @@
                 "<hr>" +
                 '<p><span class="popup-label">Custom Distances:</span></p>' +
                 "<p>Team Average: " +
-                ts.avg.toFixed(2) +
-                " km</p>" +
+                fmtKmMin(ts.avg, ts.avgMin) +
+                "</p>" +
                 "<p>Team Total: " +
-                ts.total.toFixed(2) +
-                " km</p>" +
+                fmtKmMin(ts.total, ts.totalMin) +
+                "</p>" +
                 "<p>League Average: " +
-                stats.avg.toFixed(2) +
-                " km</p>";
+                fmtKmMin(stats.avg, stats.avgMin) +
+                "</p>";
             }
 
             let moveItems = "";
@@ -1849,6 +1940,8 @@
             continue;
           }
           const s = league._stats;
+          const avgMinSuffix =
+            s.avgMin != null ? " / " + s.avgMin.toFixed(0) + " min avg" : "";
           html +=
             '<div class="stat-row"><span class="stat-label" style="color:' +
             league.color +
@@ -1856,7 +1949,9 @@
             escHtml(league.name) +
             '</span><span class="stat-value">' +
             s.avg.toFixed(1) +
-            " km avg</span></div>";
+            " km avg" +
+            avgMinSuffix +
+            "</span></div>";
         }
 
         const allTeamsInLeagues = leagues.flatMap((l) => l.teams);
@@ -1868,6 +1963,7 @@
               officialLeagues[t.lg] = {
                 name: t.lg,
                 lavg: t.lavg || 0,
+                lavg_min: t.lavg_min != null ? t.lavg_min : null,
                 teams: [],
               };
             officialLeagues[t.lg].teams.push(t);
@@ -1878,6 +1974,10 @@
           for (const lg of Object.values(officialLeagues).sort(function (a, b) {
             return a.name.localeCompare(b.name);
           })) {
+            const lgMinSuffix =
+              lg.lavg_min != null
+                ? " / " + lg.lavg_min.toFixed(0) + " min avg"
+                : "";
             html +=
               '<div class="stat-row"><span class="stat-label">' +
               escHtml(lg.name) +
@@ -1885,7 +1985,9 @@
               lg.teams.length +
               ')</span><span class="stat-value">' +
               lg.lavg.toFixed(1) +
-              " km avg</span></div>";
+              " km avg" +
+              lgMinSuffix +
+              "</span></div>";
           }
           html += "</div>";
         }
@@ -2835,6 +2937,9 @@
 
       function onTeamsLoaded() {
         allTeams = TEAMS_DATA;
+        // Defensive: distances.js may have loaded before its onload handler
+        // ran, or in a different order. Idempotent.
+        decodeRoutedDistances();
         assignCountryToTeams();
         buildTierIndex();
         document.getElementById("searchInput").placeholder =
@@ -2850,6 +2955,7 @@
       }
     </script>
     <script src="projected.js"></script>
+    <script src="distances.js" onload="decodeRoutedDistances()"></script>
     <script src="teams.js" onload="onTeamsLoaded()"></script>
     <script src="boundaries.js" onload="onBoundariesLoaded()"></script>
   </body>

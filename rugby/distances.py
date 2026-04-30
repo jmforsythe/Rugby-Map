@@ -1,6 +1,10 @@
 """
 Calculate travel distance statistics for all teams and leagues.
-Outputs a JSON file with team and league distance data that can be used in map generation.
+
+Uses the routed (road) distance matrix from ``rugby.distances_routed`` when
+available, otherwise falls back to Haversine. Output JSON contains both km and
+optional minutes per team / league, plus a ``summary.distance_source`` flag
+indicating which method was used.
 """
 
 import argparse
@@ -15,6 +19,7 @@ from core import (
     TravelDistances,
 )
 from rugby import DATA_DIR
+from rugby.distance_lookup import DistanceLookup
 
 
 def distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -32,44 +37,95 @@ def distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return d
 
 
-distance_cache: dict[tuple[str, str], float] = {}
+# Each cache key is the alphabetically-ordered pair of team names; values are
+# (km, minutes-or-None).
+_pair_cache: dict[tuple[str, str], tuple[float, float | None]] = {}
 
 
-def team_pair_distance(team1: GeocodedTeam, team2: GeocodedTeam) -> float:
+def _team_pair_values(
+    team1: GeocodedTeam, team2: GeocodedTeam, lookup: DistanceLookup
+) -> tuple[float, float | None]:
     key = (min(team1["name"], team2["name"]), max(team1["name"], team2["name"]))
-    if key not in distance_cache:
+    if key not in _pair_cache:
         lat1 = team1.get("latitude", 0.0)
         lon1 = team1.get("longitude", 0.0)
         lat2 = team2.get("latitude", 0.0)
         lon2 = team2.get("longitude", 0.0)
-        distance_cache[key] = distance(lat1, lon1, lat2, lon2)
-    return distance_cache[key]
+        _pair_cache[key] = (
+            lookup.pair_km(lat1, lon1, lat2, lon2),
+            lookup.pair_min(lat1, lon1, lat2, lon2),
+        )
+    return _pair_cache[key]
 
 
-def team_total_distance(team: GeocodedTeam, teams: list[GeocodedTeam]) -> float:
-    total_distance = 0
+def team_pair_distance(team1: GeocodedTeam, team2: GeocodedTeam) -> float:
+    """Backwards-compatible km-only pair lookup (Haversine when no routed cache).
+
+    Kept so external callers / tests that import this function keep working.
+    """
+    return _team_pair_values(team1, team2, _DEFAULT_LOOKUP)[0]
+
+
+def team_totals(
+    team: GeocodedTeam, teams: list[GeocodedTeam], lookup: DistanceLookup
+) -> tuple[float, float | None]:
+    """Sum of pair distances (km) and (sum of pair minutes) for *team* vs *teams*.
+
+    Minutes are returned as ``None`` if any required pair has no routed minutes
+    (so we never mix km from routed and minutes from "no source").
+    """
+    total_km = 0.0
+    total_min: float | None = 0.0
     for opponent in teams:
-        if opponent["name"] != team["name"]:
-            dist = team_pair_distance(team, opponent)
-            total_distance += dist
-    return total_distance
+        if opponent["name"] == team["name"]:
+            continue
+        km, mins = _team_pair_values(team, opponent, lookup)
+        total_km += km
+        if total_min is not None:
+            if mins is None:
+                total_min = None
+            else:
+                total_min += mins
+    return total_km, total_min
 
 
-def team_average_distance(team: GeocodedTeam, teams: list[GeocodedTeam]) -> float:
-    total_distance = team_total_distance(team, teams)
-    opponent_count = len(teams) - 1
-    return total_distance / opponent_count if opponent_count > 0 else 0
+def team_average(
+    team: GeocodedTeam, teams: list[GeocodedTeam], lookup: DistanceLookup
+) -> tuple[float, float | None]:
+    total_km, total_min = team_totals(team, teams, lookup)
+    n = len(teams) - 1
+    if n <= 0:
+        return 0.0, None
+    return total_km / n, (total_min / n if total_min is not None else None)
 
 
-def league_average_distance(league: GeocodedLeague) -> float:
+def league_average(league: GeocodedLeague, lookup: DistanceLookup) -> tuple[float, float | None]:
     valid_teams = [team for team in league["teams"] if "latitude" in team and "longitude" in team]
-    total_avg_distance = 0
+    if not valid_teams:
+        return 0.0, None
+    total_km = 0.0
+    total_min: float | None = 0.0
     for team in valid_teams:
-        total_avg_distance += team_average_distance(team, valid_teams)
-    return total_avg_distance / len(valid_teams) if valid_teams else 0
+        avg_km, avg_min = team_average(team, valid_teams, lookup)
+        total_km += avg_km
+        if total_min is not None:
+            if avg_min is None:
+                total_min = None
+            else:
+                total_min += avg_min
+    n = len(valid_teams)
+    return total_km / n, (total_min / n if total_min is not None else None)
+
+
+# Default lookup used by the historical helpers (``team_pair_distance`` etc.).
+# Initialised to a Haversine-only lookup; ``main`` rebinds it once a season is
+# known so the helpers see the routed cache.
+_DEFAULT_LOOKUP: DistanceLookup = DistanceLookup()
 
 
 def main() -> None:
+    global _DEFAULT_LOOKUP
+
     parser = argparse.ArgumentParser(description="Calculate team and league travel distances")
     parser.add_argument(
         "--season",
@@ -87,8 +143,16 @@ def main() -> None:
         print("Error: geocoded_teams directory not found")
         return
 
+    lookup = DistanceLookup.load()
+    _DEFAULT_LOOKUP = lookup
+    print(
+        f"  Distance source: {'routed' if lookup.has_routed else 'haversine'}"
+        + (f" ({lookup.n_routed} geocodes)" if lookup.has_routed else "")
+    )
+
     all_teams_data: dict[str, TeamTravelDistances] = {}
     league_stats: dict[str, LeagueTravelDistances] = {}
+    missing_routed: list[tuple[str, float, float]] = []
 
     # Process each league file
     for json_file in sorted(geocoded_dir.rglob("*.json")):
@@ -102,22 +166,41 @@ def main() -> None:
             if comp_name.lower() not in league_name.lower():
                 league_name = f"{comp_name} {league_name}"
 
+        if lookup.has_routed:
+            for team in league_data.get("teams", []):
+                lat = team.get("latitude")
+                lng = team.get("longitude")
+                if lat is None or lng is None:
+                    continue
+                if lookup.coord_id(lat, lng) is None:
+                    missing_routed.append((team.get("name", ""), lat, lng))
+
+        avg_km, avg_min = league_average(league_data, lookup)
         league_stats[league_name] = {
             "league_name": league_name,
-            "avg_distance_km": league_average_distance(league_data),
+            "avg_distance_km": round(avg_km, 2),
             "team_count": len(league_data["teams"]),
         }
+        if avg_min is not None:
+            league_stats[league_name]["avg_duration_min"] = round(avg_min, 2)
+
         valid_teams = [
             team for team in league_data["teams"] if "latitude" in team and "longitude" in team
         ]
         for team in valid_teams:
-            avg_distance = team_average_distance(team, valid_teams)
-            all_teams_data[team["name"]] = {
+            t_avg_km, t_avg_min = team_average(team, valid_teams, lookup)
+            t_total_km, t_total_min = team_totals(team, valid_teams, lookup)
+            entry: TeamTravelDistances = {
                 "name": team["name"],
                 "league": league_name,
-                "avg_distance_km": round(avg_distance, 2),
-                "total_distance_km": round(team_total_distance(team, valid_teams), 2),
+                "avg_distance_km": round(t_avg_km, 2),
+                "total_distance_km": round(t_total_km, 2),
             }
+            if t_avg_min is not None:
+                entry["avg_duration_min"] = round(t_avg_min, 2)
+            if t_total_min is not None:
+                entry["total_duration_min"] = round(t_total_min, 2)
+            all_teams_data[team["name"]] = entry
 
     # Sort teams by average distance
     all_teams_data = dict(sorted(all_teams_data.items(), key=lambda x: x[1]["avg_distance_km"]))
@@ -138,6 +221,7 @@ def main() -> None:
                 if all_teams_data
                 else 0
             ),
+            "distance_source": "routed" if lookup.has_routed else "haversine",
         },
     }
 
@@ -148,11 +232,21 @@ def main() -> None:
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print("\n✓ Distance calculations complete!")
+    print("\nDistance calculations complete.")
     print(f"  Output saved to: {output_file}")
     print(f"  Teams processed: {len(all_teams_data)}")
     print(f"  Leagues processed: {len(league_stats)}")
     print(f"  Overall average distance: {output["summary"]["overall_avg_distance_km"]} km")
+    if missing_routed:
+        examples = ", ".join(
+            f"{n} ({lat:.4f},{lng:.4f})" for n, lat, lng in sorted(set(missing_routed))[:5]
+        )
+        print(
+            f"\n  WARNING: {len(set(missing_routed))} team(s) in season {args.season} "
+            "have no routed-cache entry; those teams used Haversine fallback. "
+            "Run `make routed-distances` to refresh the cache. "
+            f"Examples: {examples}"
+        )
 
     # Print top 5 and bottom 5 teams
     print("\n" + "=" * 80)

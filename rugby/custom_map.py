@@ -12,11 +12,14 @@ point-in-polygon to assign ITL2/ITL3/LAD regions to each team, and writes:
 """
 
 import argparse
+import base64
 import json
 import logging
 import re
+import time
 from pathlib import Path
 
+import numpy as np
 from shapely.geometry import Point, mapping, shape
 from shapely.prepared import prep
 
@@ -31,6 +34,7 @@ from core.basemap_tiles import (
 from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import _parse_projected_md
+from rugby.distance_lookup import DistanceLookup
 from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
@@ -289,6 +293,7 @@ def _collect_teams(
     itl2_to_itl3s: dict[str, list[str]],
     itl3_to_lads: dict[str, list[str]],
     lad_to_wards: dict[str, list[str]],
+    lookup: DistanceLookup | None = None,
 ) -> list[dict]:
     """Walk every season and return deduplicated teams (latest season wins)."""
     seasons = sorted(
@@ -299,6 +304,10 @@ def _collect_teams(
     dist_leagues = distances["leagues"] if distances else {}
 
     seen: dict[str, dict] = {}
+    # Track current-season teams that don't appear in the routed cache. Useful
+    # for spotting clubs added since the last `make routed-distances` rebuild.
+    latest_season = seasons[-1] if seasons else None
+    missing_rid_in_latest: set[tuple[str, float, float]] = set()
 
     for season in seasons:
         season_dir = GEOCODED_DIR / season
@@ -351,6 +360,13 @@ def _collect_teams(
                     entry["mc"] = comp_display
                     entry["ml"] = local_tier_name
 
+                if lookup is not None and lookup.has_routed:
+                    rid = lookup.coord_id(lat, lng)
+                    if rid is not None:
+                        entry["rid"] = rid
+                    elif season == latest_season:
+                        missing_rid_in_latest.add((name, lat, lng))
+
                 td = dist_teams.get(name)
                 if td:
                     league_name = td.get("league", "")
@@ -358,10 +374,27 @@ def _collect_teams(
                     entry["lg"] = league_name
                     entry["tavg"] = td.get("avg_distance_km", 0)
                     entry["ttot"] = td.get("total_distance_km", 0)
+                    if "avg_duration_min" in td:
+                        entry["tavg_min"] = td["avg_duration_min"]
+                    if "total_duration_min" in td:
+                        entry["ttot_min"] = td["total_duration_min"]
                     if ld:
                         entry["lavg"] = round(ld.get("avg_distance_km", 0), 2)
+                        if "avg_duration_min" in ld:
+                            entry["lavg_min"] = round(ld["avg_duration_min"], 2)
 
                 seen[name] = entry
+
+    if missing_rid_in_latest:
+        examples = sorted(missing_rid_in_latest)[:5]
+        logger.warning(
+            "%d team(s) in current season %s have no routed-cache entry; "
+            "they will fall back to Haversine in the custom map. "
+            "Run `make routed-distances` to refresh the cache. Examples: %s",
+            len(missing_rid_in_latest),
+            latest_season,
+            ", ".join(f"{n} ({lat:.4f},{lng:.4f})" for n, lat, lng in examples),
+        )
 
     teams = sorted(seen.values(), key=lambda t: t["n"])
 
@@ -523,6 +556,91 @@ def _export_boundaries(
 
 
 # ---------------------------------------------------------------------------
+# Routed-distance export (for JS-side lookup)
+# ---------------------------------------------------------------------------
+
+
+# Use a sentinel that is just above the largest realistic UK road distance
+# (~1000 km) so JS can detect "no value" without needing NaN.
+_DIST_SCALE = 0.1  # quantize: km * 10 (and minutes * 10) into Uint16
+_UNREACHABLE_SENTINEL = 65535  # 0xFFFF
+
+
+def _quantize_to_uint16(matrix: np.ndarray) -> np.ndarray:
+    """Quantize a float matrix (km or minutes) into Uint16 (* 10), with NaN
+    and out-of-range values mapped to ``_UNREACHABLE_SENTINEL``.
+    """
+    arr = matrix.astype(np.float32, copy=False)
+    scaled = np.where(np.isnan(arr), float(_UNREACHABLE_SENTINEL), arr / _DIST_SCALE)
+    np.clip(scaled, 0.0, float(_UNREACHABLE_SENTINEL), out=scaled)
+    return scaled.astype(np.uint16, copy=False)
+
+
+def _export_distances(lookup: DistanceLookup) -> None:
+    """Write ``distances.js`` with the routed matrix as base64 Uint16 blobs.
+
+    Layout::
+
+        var ROUTED_DISTANCES = {
+          n: 1030,
+          scale_km: 0.1,
+          scale_min: 0.1,
+          unreachable: 65535,
+          km_b64: "...",     // Uint16Array(n*n), km * 10
+          min_b64: "...",    // Uint16Array(n*n), minutes * 10 (optional)
+          has_min: true,
+        };
+
+    The HTML template decodes these blobs into Uint16Array views once on load.
+    """
+    distance_km = lookup.routed_km_array()
+    if distance_km is None:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        output_path = OUTPUT_DIR / "distances.js"
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write("// Auto-generated by rugby.custom_map — do not edit\n")
+            f.write("var ROUTED_DISTANCES = null;\n")
+        logger.info("No routed cache available — wrote empty distances.js")
+        return
+
+    n = distance_km.shape[0]
+    duration_min = lookup.routed_min_array()
+
+    km_payload = _quantize_to_uint16(distance_km).tobytes()
+    km_b64 = base64.b64encode(km_payload).decode("ascii")
+
+    payload: dict = {
+        "n": n,
+        "scale_km": _DIST_SCALE,
+        "unreachable": _UNREACHABLE_SENTINEL,
+        "km_b64": km_b64,
+        "has_min": False,
+    }
+    if duration_min is not None:
+        min_payload = _quantize_to_uint16(duration_min).tobytes()
+        payload["min_b64"] = base64.b64encode(min_payload).decode("ascii")
+        payload["scale_min"] = _DIST_SCALE
+        payload["has_min"] = True
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = OUTPUT_DIR / "distances.js"
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("// Auto-generated by rugby.custom_map — do not edit\n")
+        f.write("var ROUTED_DISTANCES = ")
+        f.write(json.dumps(payload, separators=(",", ":")))
+        f.write(";\n")
+
+    size_mb = output_path.stat().st_size / 1024 / 1024
+    logger.info(
+        "Wrote %s (%.1f MB, %d geocodes, %s minutes)",
+        output_path,
+        size_mb,
+        n,
+        "with" if duration_min is not None else "without",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Projected tiers export
 # ---------------------------------------------------------------------------
 
@@ -625,6 +743,10 @@ def _build_page() -> None:
     for token, value in replacements.items():
         html = html.replace(token, value)
 
+    cache_buster = str(int(time.time()))
+    for asset in ("projected.js", "distances.js", "teams.js", "boundaries.js"):
+        html = html.replace(f'src="{asset}"', f'src="{asset}?v={cache_buster}"')
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output_path = OUTPUT_DIR / "index.html"
     with open(output_path, "w", encoding="utf-8") as f:
@@ -708,6 +830,9 @@ def main() -> None:
 
     logger.info("Scanning geocoded teams in %s", GEOCODED_DIR)
     distances = _load_latest_distances()
+
+    routed_lookup = DistanceLookup.load()
+
     teams = _collect_teams(
         distances,
         itl1_regions,
@@ -719,6 +844,7 @@ def main() -> None:
         itl2_to_itl3s,
         itl3_to_lads,
         lad_to_wards,
+        lookup=routed_lookup,
     )
     logger.info("Found %d unique teams with coordinates", len(teams))
 
@@ -758,6 +884,9 @@ def main() -> None:
 
     # Write projected.js (predicted tier compositions)
     _write_projected_js()
+
+    # Write distances.js (routed road distance/duration matrix for JS lookup)
+    _export_distances(routed_lookup)
 
     # Write boundaries.js
     if has_boundaries:

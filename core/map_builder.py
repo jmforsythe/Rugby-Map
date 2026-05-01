@@ -158,13 +158,30 @@ def _load_geojson(path: str | Path) -> dict[str, Any]:
 _SIMPLIFY_TOLERANCE = 0.001
 
 
+def _load_lookup_rows(path: str | Path) -> list[dict[str, str]]:
+    """Load a saved ONS lookup table (list of attribute dicts)."""
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, list):
+        raise ValueError(f"Lookup file {path} must contain a JSON array")
+    return data
+
+
 def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     """Load GeoJSON boundaries and compute hierarchy links.
 
     *paths* maps level names to file paths::
 
         {"itl3": "...", "itl2": "...", "itl1": "...",
-         "countries": "...", "lad": "...", "wards": "..."}
+         "countries": "...", "lad": "...", "wards": "...",
+         "lad_to_itl_lookup": "...",   # optional, ONS authoritative lookup
+         "ward_to_lad_lookup": "..."}  # optional, ONS authoritative lookup
+
+    The two lookup files come from
+    :func:`core.boundaries.download_arcgis_table` and are the preferred source
+    for LAD<->ITL3 and Ward<->LAD relationships.  When a lookup file is
+    missing or absent, this function falls back to the legacy centroid /
+    feature-property heuristics so older deployments keep working.
     """
     itl3_data = _load_geojson(paths["itl3"])
     itl2_data = _load_geojson(paths["itl2"])
@@ -243,7 +260,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
         }
 
     ward_regions: dict[str, ITLRegionGeom] = {}
-    ward_to_lad: dict[str, str | None] = {}
+    ward_to_lad_geojson: dict[str, str | None] = {}
     for feat in ward_data["features"]:
         props = feat["properties"]
         ward_code = props.get("WD25CD")
@@ -258,7 +275,7 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
             "prepared": prep(geom),
             "centroid": geom.centroid,
         }
-        ward_to_lad[ward_code] = props.get("LAD25CD")
+        ward_to_lad_geojson[ward_code] = props.get("LAD25CD")
 
     itl1_by_code = {r["code"]: r["name"] for r in itl1_regions.values() if r["code"]}
     itl2_by_code = {r["code"]: r["name"] for r in itl2_regions.values() if r["code"]}
@@ -292,35 +309,102 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     for itl3_name, itl2_name in itl3_to_itl2.items():
         itl2_to_itl3s.setdefault(itl2_name, []).append(itl3_name)
 
-    logger.debug("Assigning LADs to ITL regions...")
+    # ------------------------------------------------------------------
+    # LAD <-> ITL3 mapping
+    #
+    # Preferred source: the ONS "LAD (April 2025) to LAU1 to ITL3 to ITL2 to
+    # ITL1" lookup table. This is authoritative and avoids the centroid-based
+    # bug where coastal LADs (Torbay, Sefton, Maldon, ...) have offshore
+    # geometric centroids that don't fall in any ITL polygon.
+    # ------------------------------------------------------------------
+    lad_to_itl_lookup_path = paths.get("lad_to_itl_lookup")
     lad_to_itl3: dict[str, str] = {}
     itl3_to_lads: dict[str, list[str]] = {}
-    for lad_code, lad in lad_regions.items():
-        centroid = lad["centroid"]
-        found_itl1 = None
-        for itl1 in itl1_regions.values():
-            if itl1["prepared"].contains(centroid):
-                found_itl1 = itl1["name"]
-                break
-        if not found_itl1:
-            continue
-        found_itl2 = None
-        for itl2_name in itl1_to_itl2s.get(found_itl1, []):
-            if itl2_regions[itl2_name]["prepared"].contains(centroid):
-                found_itl2 = itl2_name
-                break
-        if not found_itl2:
-            continue
-        for itl3_name in itl2_to_itl3s.get(found_itl2, []):
-            if itl3_regions[itl3_name]["prepared"].contains(centroid):
-                lad_to_itl3[lad_code] = itl3_name
-                itl3_to_lads.setdefault(itl3_name, []).append(lad_code)
-                break
+    lookup_hits = 0
+
+    if lad_to_itl_lookup_path and Path(lad_to_itl_lookup_path).exists():
+        logger.debug("Assigning LADs to ITL regions from ONS lookup...")
+        rows = _load_lookup_rows(lad_to_itl_lookup_path)
+        for row in rows:
+            lad_code = row.get("LAD25CD")
+            itl3_name = row.get("ITL325NM")
+            if not lad_code or not itl3_name:
+                continue
+            if lad_code not in lad_regions:
+                # Lookup covers all UK LADs, but our LAD GeoJSON may have been
+                # filtered (or the LAD was retired); silently skip.
+                continue
+            if itl3_name not in itl3_regions:
+                # Authoritative ITL3 name we don't have geometry for; record
+                # the link anyway so item-level assignment still succeeds.
+                pass
+            lad_to_itl3[lad_code] = itl3_name
+            itl3_to_lads.setdefault(itl3_name, []).append(lad_code)
+            lookup_hits += 1
+        logger.debug("  ONS lookup matched %d LADs", lookup_hits)
+    else:
+        logger.debug("LAD->ITL lookup not provided, falling back to centroid logic")
+
+    # Fallback for any LADs not in the lookup (e.g. injected Isle of Man,
+    # Jersey, Guernsey synthetic features, or future LADs the lookup hasn't
+    # caught up with).
+    missing_lads = [code for code in lad_regions if code not in lad_to_itl3]
+    if missing_lads:
+        logger.debug("  Centroid fallback for %d LAD(s)", len(missing_lads))
+        for lad_code in missing_lads:
+            lad = lad_regions[lad_code]
+            centroid = lad["centroid"]
+            found_itl1 = None
+            for itl1 in itl1_regions.values():
+                if itl1["prepared"].contains(centroid):
+                    found_itl1 = itl1["name"]
+                    break
+            if not found_itl1:
+                continue
+            found_itl2 = None
+            for itl2_name in itl1_to_itl2s.get(found_itl1, []):
+                if itl2_regions[itl2_name]["prepared"].contains(centroid):
+                    found_itl2 = itl2_name
+                    break
+            if not found_itl2:
+                continue
+            for itl3_name in itl2_to_itl3s.get(found_itl2, []):
+                if itl3_regions[itl3_name]["prepared"].contains(centroid):
+                    lad_to_itl3[lad_code] = itl3_name
+                    itl3_to_lads.setdefault(itl3_name, []).append(lad_code)
+                    break
 
     logger.debug("  Assigned %d of %d LADs to ITL3 regions", len(lad_to_itl3), len(lad_regions))
     logger.debug("  %d ITL3 regions contain LADs", len(itl3_to_lads))
 
-    logger.debug("Assigning wards to LADs...")
+    # ------------------------------------------------------------------
+    # Ward <-> LAD mapping
+    #
+    # Preferred source: ONS "Ward to Registration District to LAD" lookup.
+    # Covers England + Wales; for Scottish/NI wards or injected island wards
+    # we fall back to the LAD25CD attribute on the ward GeoJSON feature.
+    # ------------------------------------------------------------------
+    ward_to_lad_lookup_path = paths.get("ward_to_lad_lookup")
+    ward_to_lad: dict[str, str | None] = {}
+
+    if ward_to_lad_lookup_path and Path(ward_to_lad_lookup_path).exists():
+        logger.debug("Assigning wards to LADs from ONS lookup...")
+        rows = _load_lookup_rows(ward_to_lad_lookup_path)
+        for row in rows:
+            ward_code = row.get("WD25CD")
+            lad_code = row.get("LAD25CD")
+            if not ward_code:
+                continue
+            ward_to_lad[ward_code] = lad_code or None
+    else:
+        logger.debug("Ward->LAD lookup not provided, using GeoJSON properties")
+
+    # Fill gaps from GeoJSON ward properties for wards the EW lookup doesn't
+    # cover (Scotland, NI, injected islands).
+    for ward_code, lad_code in ward_to_lad_geojson.items():
+        ward_to_lad.setdefault(ward_code, lad_code)
+
+    logger.debug("Building LAD->wards index...")
     lad_to_wards: dict[str, list[str]] = {}
     for ward_code in ward_regions:
         parent = ward_to_lad.get(ward_code)

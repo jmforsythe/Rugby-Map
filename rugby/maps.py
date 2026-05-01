@@ -128,6 +128,8 @@ BOUNDARY_PATHS = {
     "countries": str(BOUNDARIES_DIR / "countries.geojson"),
     "lad": str(BOUNDARIES_DIR / "local_authority_districts.geojson"),
     "wards": str(BOUNDARIES_DIR / "wards.geojson"),
+    "lad_to_itl_lookup": str(BOUNDARIES_DIR / "lad_to_itl.json"),
+    "ward_to_lad_lookup": str(BOUNDARIES_DIR / "ward_to_lad.json"),
 }
 
 COUNTRY_OUTLINES = ["England", "Isle of Man", "Jersey", "Guernsey"]

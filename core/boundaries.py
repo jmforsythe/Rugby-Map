@@ -187,6 +187,53 @@ def wards_url(detail_level: DetailLevel) -> str | None:
         return None  # Wards not available in BUC level
 
 
+# Authoritative ONS lookup tables (no geometry, just attribute relations).
+# These let us build the LAD<->ITL and Ward<->LAD hierarchy directly from ONS
+# data instead of inferring it from polygon centroids, which is error-prone for
+# coastal LADs whose centroids fall offshore (e.g. Torbay, Sefton, Maldon).
+
+# https://geoportal.statistics.gov.uk/datasets/ons::local-authority-district-april-2025-to-lau1-to-itl3-to-itl2-to-itl1-january-2025-lookup-in-the-uk
+LAD_TO_ITL_LOOKUP_URL = (
+    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
+    "ITL125_ITL225_ITL325_LAU125_LAD25_UK_LU/FeatureServer/0"
+)
+LAD_TO_ITL_LOOKUP_FILE = "lad_to_itl.json"
+
+# https://geoportal.statistics.gov.uk/datasets/ons::ward-to-registration-district-to-lad-december-2025-lookup-in-ew
+WARD_TO_LAD_LOOKUP_URL = (
+    "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/"
+    "WD25_REGD25_LAD25_EW_LU/FeatureServer/0"
+)
+WARD_TO_LAD_LOOKUP_FILE = "ward_to_lad.json"
+
+
+def get_lookup_services() -> dict[str, tuple[str, list[str]]]:
+    """Return the non-spatial ONS lookup tables we depend on.
+
+    Maps output filename to ``(service_url, fields_to_keep)``. Fields are
+    explicit so the saved file stays lean even if ONS appends columns.
+    """
+    return {
+        LAD_TO_ITL_LOOKUP_FILE: (
+            LAD_TO_ITL_LOOKUP_URL,
+            [
+                "LAD25CD",
+                "LAD25NM",
+                "ITL325CD",
+                "ITL325NM",
+                "ITL225CD",
+                "ITL225NM",
+                "ITL125CD",
+                "ITL125NM",
+            ],
+        ),
+        WARD_TO_LAD_LOOKUP_FILE: (
+            WARD_TO_LAD_LOOKUP_URL,
+            ["WD25CD", "WD25NM", "LAD25CD", "LAD25NM"],
+        ),
+    }
+
+
 # ONS Open Geography portal ArcGIS REST API FeatureServer services
 def get_boundary_services(detail_level: DetailLevel) -> dict[str, str | None]:
     """
@@ -300,6 +347,90 @@ def download_arcgis_layer(
         raise e
 
 
+def download_arcgis_table(
+    service_url: str,
+    filename: str,
+    fields: list[str],
+    output_dir: str | None = None,
+    max_records: int = 2000,
+) -> None:
+    """Download a non-spatial ArcGIS FeatureServer table to JSON.
+
+    The result is a list of attribute dicts (no geometry) saved to
+    ``<output_dir>/<filename>``. Used for the ONS LAD->ITL and Ward->LAD
+    lookup tables that the map hierarchy is built from.
+
+    Args:
+        service_url: Base URL to the FeatureServer layer (without /query)
+        filename: Output filename
+        fields: ESRI attribute fields to keep -- explicit so we don't bloat
+            the file with unused columns
+        output_dir: Directory to save the file
+        max_records: Number of records to fetch per request
+    """
+    if output_dir is None:
+        output_dir = str(BOUNDARIES_DIR)
+    output_path = Path(output_dir) / filename
+    output_path.parent.mkdir(exist_ok=True, parents=True)
+
+    print(f"Downloading {filename}...")
+
+    try:
+        query_url = f"{service_url}/query"
+        session = _get_session()
+
+        count_response = session.get(
+            query_url,
+            params={"where": "1=1", "returnCountOnly": "true", "f": "json"},
+            timeout=60,
+        )
+        count_response.raise_for_status()
+        total_count = count_response.json().get("count", 0)
+        print(f"  Total rows: {total_count}")
+
+        all_rows: list[dict[str, str]] = []
+        offset = 0
+        out_fields_param = ",".join(fields)
+        while offset < total_count:
+            response = session.get(
+                query_url,
+                params={
+                    "where": "1=1",
+                    "outFields": out_fields_param,
+                    "returnGeometry": "false",
+                    "f": "json",
+                    "resultOffset": offset,
+                    "resultRecordCount": max_records,
+                },
+                timeout=120,
+            )
+            response.raise_for_status()
+            data = response.json()
+            features = data.get("features", [])
+            if not features:
+                break
+            for feat in features:
+                attrs = feat.get("attributes", {})
+                all_rows.append({k: attrs.get(k) for k in fields})
+            offset += len(features)
+            print(f"  Downloaded {offset}/{total_count} rows", end="\r", flush=True)
+            time.sleep(0.5)
+
+        print(f"  Downloaded {len(all_rows)}/{total_count} rows")
+
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(all_rows, f, ensure_ascii=False, separators=(",", ":"))
+
+        print(f"  [OK] Saved to {output_path}")
+
+    except requests.RequestException as e:
+        print(f"  [ERROR] {e}")
+        raise e
+    except json.JSONDecodeError as e:
+        print(f"  [ERROR] Invalid JSON: {e}")
+        raise e
+
+
 def download_extras(
     url: str,
     name: str,
@@ -375,6 +506,11 @@ Detail levels:
             print(f"Skipping {filename} (not available in {detail.value} level)")
             continue
         download_arcgis_layer(service_url, filename)
+        print()
+
+    print("Downloading ONS lookup tables for LAD<->ITL and Ward<->LAD...")
+    for filename, (service_url, fields) in get_lookup_services().items():
+        download_arcgis_table(service_url, filename, fields)
         print()
 
     download_extras(

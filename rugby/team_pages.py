@@ -8,6 +8,7 @@ from typing import TypedDict
 
 from core import (
     GeocodedLeague,
+    TeamTravelDistances,
     TravelDistances,
     get_config,
     get_favicon_html,
@@ -192,6 +193,35 @@ def get_all_seasons() -> list[str]:
     return sorted(seasons, reverse=True)
 
 
+def _format_team_travel_distance_km(team_distances: TeamTravelDistances | None) -> str:
+    if team_distances is None:
+        return "N/A"
+    avg_dist = team_distances.get("avg_distance_km")
+    total_dist = team_distances.get("total_distance_km")
+    if avg_dist is not None and total_dist is not None:
+        return f"{avg_dist:.1f} km / {total_dist:.0f} km"
+    if avg_dist is not None:
+        return f"{avg_dist:.1f} km avg"
+    if total_dist is not None:
+        return f"{total_dist:.0f} km total"
+    return "N/A"
+
+
+def _format_team_travel_time_min(team_distances: TeamTravelDistances | None) -> str:
+    """Format avg/total duration when present (from routed + offshore corridor model)."""
+    if team_distances is None:
+        return "N/A"
+    avg_m = team_distances.get("avg_duration_min")
+    total_m = team_distances.get("total_duration_min")
+    if avg_m is not None and total_m is not None:
+        return f"{round(avg_m)} min / {round(total_m)} min"
+    if avg_m is not None:
+        return f"{round(avg_m)} min avg"
+    if total_m is not None:
+        return f"{round(total_m)} min total"
+    return "—"
+
+
 def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     """Pre-build an index of co-located teams for fast club lookups.
 
@@ -254,7 +284,7 @@ def get_team_page_html(
         seasons_by_year[entry["season"]].append(entry)
 
     num_seasons = len({e["season"] for e in league_history})
-    meta_desc = f"{escape(team_name)} - league history, location, and travel distances across {num_seasons} seasons of English rugby union."
+    meta_desc = f"{escape(team_name)} - league history, location, and travel distances and times across {num_seasons} seasons of English rugby union."
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -297,7 +327,7 @@ def get_team_page_html(
         .league-history-table {{
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px;
+            min-width: 760px;
         }}
         .league-history-table th {{
             background: var(--bg-card-alt);
@@ -344,6 +374,13 @@ def get_team_page_html(
             display: none;
         }}
 
+        .time-header-full {{
+            display: inline;
+        }}
+        .time-header-short {{
+            display: none;
+        }}
+
         /* Responsive styles for smaller screens */
         @media (max-width: 768px) {{
             .league-history-table {{
@@ -369,6 +406,12 @@ def get_team_page_html(
                 display: none;
             }}
             .distance-header-short {{
+                display: inline;
+            }}
+            .time-header-full {{
+                display: none;
+            }}
+            .time-header-short {{
                 display: inline;
             }}
         }}
@@ -433,7 +476,8 @@ def get_team_page_html(
                     <th>Season</th>
                     <th>Tier: League</th>
                     <th>Position</th>
-                    <th><span class="distance-header-full">Travel Distance (Average/Total)</span><span class="distance-header-short">Travel (Avg/Total)</span></th>
+                    <th><span class="distance-header-full">Travel distance (avg / total)</span><span class="distance-header-short">Dist avg/tot</span></th>
+                    <th><span class="time-header-full">Travel time (avg / total)</span><span class="time-header-short">Time avg/tot</span></th>
                     <th class="map-cell"></th>
                 </tr>
             </thead>
@@ -449,6 +493,7 @@ def get_team_page_html(
                     <td>{season}</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                    <td class="distance-cell">&nbsp;</td>
                     <td class="distance-cell">&nbsp;</td>
                     <td class="map-cell"></td>
                 </tr>
@@ -467,21 +512,16 @@ def get_team_page_html(
                 else:
                     position_display = f'<span class="position">#{position}</span>'
 
-                # Get travel distances for this season
-                travel_info = "N/A"
+                team_td: TeamTravelDistances | None = None
                 if season in travel_distances_by_season:
                     season_data = travel_distances_by_season[season]
-                    if "teams" in season_data and team_name in season_data["teams"]:
-                        team_distances = season_data["teams"][team_name]
-                        avg_dist = team_distances.get("avg_distance_km")
-                        total_dist = team_distances.get("total_distance_km")
+                    if "teams" in season_data:
+                        raw_td = season_data["teams"].get(team_name)
+                        if raw_td is not None:
+                            team_td = raw_td
 
-                        if avg_dist is not None and total_dist is not None:
-                            travel_info = f"{avg_dist:.1f} km / {total_dist:.0f} km"
-                        elif avg_dist is not None:
-                            travel_info = f"{avg_dist:.1f} km avg"
-                        elif total_dist is not None:
-                            travel_info = f"{total_dist:.0f} km total"
+                travel_km = escape(_format_team_travel_distance_km(team_td))
+                travel_time = escape(_format_team_travel_time_min(team_td))
 
                 tier_display: str = entry["tier_display"]
                 league_link: str = (
@@ -499,7 +539,8 @@ def get_team_page_html(
                     <td>{season}</td>
                     <td>{league_link}</td>
                     <td>{position_display}</td>
-                    <td class="distance-cell">{travel_info}</td>
+                    <td class="distance-cell">{travel_km}</td>
+                    <td class="distance-cell">{travel_time}</td>
                     <td class="map-cell">{map_cell}</td>
                 </tr>
 """
@@ -521,10 +562,10 @@ def get_team_page_html(
 
 
 def load_travel_distances() -> dict[str, TravelDistances]:
-    """Load travel distances from cache files for all seasons.
+    """Load per-season travel stats from ``data/rugby/distance_cache/<season>.json``.
 
-    Returns:
-        Dictionary mapping season -> TravelDistances
+    Produced by ``python -m rugby.distances`` — includes km plus ``avg_duration_min`` /
+    ``total_duration_min`` when the routed cache resolves every league pair.
     """
     distances_dir = DATA_DIR / "distance_cache"
     travel_distances_by_season: dict[str, TravelDistances] = {}

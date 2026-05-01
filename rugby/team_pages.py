@@ -61,6 +61,7 @@ class LeagueHistoryEntry(TypedDict):
     league: str
     league_url: str
     position: int
+    league_team_count: int
     tier: tuple[int, str]  # (tier_number, tier_name)
     tier_display: str  # e.g. "Level 7" or "East Midlands Level 10"
     is_merit: bool
@@ -128,6 +129,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 league_data: GeocodedLeague = json.load(f)
 
             league_name = league_data["league_name"]
+            league_team_count = len(league_data["teams"])
 
             # Process each team in the league
             for position, team in enumerate(league_data["teams"], start=1):
@@ -169,6 +171,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                         league=league_name,
                         league_url=league_data["league_url"],
                         position=position,
+                        league_team_count=league_team_count,
                         tier=tier,
                         tier_display=tier_display,
                         is_merit=is_merit,
@@ -354,10 +357,16 @@ def get_team_page_html(
             font-size: 0.95em;
         }}
         .league-history-table .map-cell {{
-            width: 2em;
+            width: 2.5em;
+            min-width: 2.25em;
             text-align: center;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 0.5em;
+            padding-right: 1.65em;
+            box-sizing: content-box;
+        }}
+        /* Breathing room to the right of the table (beyond the map column) inside the scroll wrapper. */
+        .league-history-wrap {{
+            padding-right: clamp(1rem, 4vw, 2rem);
         }}
         .position {{
             font-weight: 600;
@@ -469,7 +478,7 @@ def get_team_page_html(
     if league_history:
         html += """    <div class="info-section">
         <h2>League History</h2>
-        <div class="table-wrapper">
+        <div class="table-wrapper league-history-wrap">
         <table class="league-history-table">
             <thead>
                 <tr>
@@ -503,6 +512,7 @@ def get_team_page_html(
             for entry in season_entries:
                 league: str = entry["league"]
                 position: int = entry["position"]
+                n_in_league: int = entry["league_team_count"]
 
                 suppress_position_latest = (
                     season == all_seasons[0] and league in _POSITION_PENDING_TOP_TIERS
@@ -510,7 +520,7 @@ def get_team_page_html(
                 if suppress_position_latest:
                     position_display = '<span class="address">Current</span>'
                 else:
-                    position_display = f'<span class="position">#{position}</span>'
+                    position_display = f'<span class="position">#{position}/{n_in_league}</span>'
 
                 team_td: TeamTravelDistances | None = None
                 if season in travel_distances_by_season:

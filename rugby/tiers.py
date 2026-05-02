@@ -177,6 +177,32 @@ _WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
     "Eastern_Counties_Women's_Merit_Table.json": (104, "National Challenge 1"),
 }
 
+# Men's end-of-season play-off fixture files (RFU competition 2319) under
+# fixture_data/<season>/ — basenames align with rugby.fixtures._EXTRA_FIXTURE_ENTRIES.
+# Must run before generic ``Regional`` / ``National_League`` filename matching.
+_PLAYOFF_FIXTURE_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
+    "Championship_Relegation_and_National_1_Promotion.json": (
+        3,
+        "Play-off: Championship Relegation / National League 1 Promotion",
+    ),
+    "National_1_Relegation_and_National_2_Promotion.json": (
+        4,
+        "Play-off: National League 1 Relegation / National League 2 Promotion",
+    ),
+    "National_Two_Relegation_and_Regional_1_Promotion.json": (
+        5,
+        "Play-off: National League 2 Relegation / Regional 1 Promotion",
+    ),
+    "Regional_1_Relegation_and_Regional_2_Promotion.json": (
+        6,
+        "Play-off: Regional 1 Relegation / Regional 2 Promotion",
+    ),
+    "Regional_2_Relegation.json": (
+        6,
+        "Play-off: Regional 2 Relegation",
+    ),
+}
+
 
 _NAMED_MERIT_LEAGUES: dict[str, int] = {
     # Values are **local** tiers (absolute minus competition offset).
@@ -279,6 +305,10 @@ def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int,
     override = _WOMENS_FILENAME_OVERRIDES.get(filename)
     if override is not None:
         return override
+
+    playoff = _PLAYOFF_FIXTURE_FILENAME_OVERRIDES.get(filename)
+    if playoff is not None:
+        return playoff
 
     is_merit = normalized.startswith("merit/")
 

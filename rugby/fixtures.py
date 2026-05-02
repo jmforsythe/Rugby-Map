@@ -34,10 +34,35 @@ logger = logging.getLogger(__name__)
 
 _RFU_BASE = "https://www.englandrugby.com"
 
-_EXTRA_FIXTURE_URLS: list[str] = [
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74581&season=2025-2026",
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74582&season=2025-2026",
-    "https://www.englandrugby.com/fixtures-and-results/search-results?competition=2319&division=74583&season=2025-2026",
+# RFU fixture views that are not represented as files under geocoded_teams/ (e.g. playoff
+# aggregations). Each row: URL template with ``{season}``, then output path relative to
+# fixture_data/<season>/ using the same underscore stem style as league JSON elsewhere.
+_EXTRA_FIXTURE_ENTRIES: list[tuple[str, str]] = [
+    (
+        "https://www.englandrugby.com/fixtures-and-results/search-results?"
+        "competition=2319&division=74973&season={season}",
+        "Championship_Relegation_and_National_1_Promotion.json",
+    ),
+    (
+        "https://www.englandrugby.com/fixtures-and-results/search-results?"
+        "competition=2319&division=74972&season={season}",
+        "National_1_Relegation_and_National_2_Promotion.json",
+    ),
+    (
+        "https://www.englandrugby.com/fixtures-and-results/search-results?"
+        "competition=2319&division=74984&season={season}",
+        "National_Two_Relegation_and_Regional_1_Promotion.json",
+    ),
+    (
+        "https://www.englandrugby.com/fixtures-and-results/search-results?"
+        "competition=2319&division=74982&season={season}",
+        "Regional_1_Relegation_and_Regional_2_Promotion.json",
+    ),
+    (
+        "https://www.englandrugby.com/fixtures-and-results/search-results?"
+        "competition=2319&division=74753&season={season}",
+        "Regional_2_Relegation.json",
+    ),
 ]
 
 
@@ -56,6 +81,44 @@ def _abs_url(url: str) -> str:
     if url.startswith("/"):
         return f"{_RFU_BASE}{url}"
     return url
+
+
+_LEGACY_MATCH_PATH = "/fixtures-and-results/match-centre-community"
+
+
+def _legacy_match_centre_url(url: str) -> str:
+    """Rebuild RFU match-centre URLs to a minimal stable form: ``matchId`` only.
+
+    Scraped ``href``s include varying extra query keys and ordering. We always emit
+    ``https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=…``.
+    Non-match-centre URLs are returned unchanged.
+    """
+    if not url:
+        return url
+    parsed = urllib.parse.urlparse(url)
+    if "match-centre" not in (parsed.path or "").lower():
+        return url
+    q = urllib.parse.parse_qs(parsed.query, keep_blank_values=False)
+    match_ids = q.get("matchId")
+    if not match_ids or not match_ids[0]:
+        return url
+
+    query = urllib.parse.urlencode({"matchId": match_ids[0]})
+    return urllib.parse.urlunparse(
+        ("https", "www.englandrugby.com", _LEGACY_MATCH_PATH, "", query, "")
+    )
+
+
+def _tag_attr_str(tag: Tag, name: str) -> str:
+    """Return attribute *name* as a single string (BS may use a list for multi-value attrs)."""
+    val = tag.get(name)
+    if isinstance(val, str):
+        return val
+    if isinstance(val, list):
+        for item in val:
+            if isinstance(item, str):
+                return item
+    return ""
 
 
 def _parse_date(date_text: str) -> str:
@@ -82,6 +145,19 @@ def _league_url_to_fixtures_url(league_url: str) -> str:
             "fixtures",
         )
     )
+
+
+def _league_url_with_tables(url: str) -> str:
+    """Normalize a search-results URL to match geocoded ``league_url`` style (``#tables``)."""
+    parsed = urllib.parse.urlparse(url)
+    return urllib.parse.urlunparse(
+        (parsed.scheme, parsed.netloc, parsed.path, parsed.params, parsed.query, "tables")
+    )
+
+
+def _league_display_name_from_relative_path(relative_json: str) -> str:
+    """Human-readable league name from a fixture_data-relative path (underscores → spaces)."""
+    return Path(relative_json).stem.replace("_", " ")
 
 
 def scrape_fixtures_from_league(league_url: str, league_name: str) -> list[Fixture]:
@@ -151,8 +227,10 @@ def _parse_score_links(
     """
     score_links = score_div.find_all(
         "a",
-        class_=lambda c: isinstance(c, str)
-        and ("coh-style-numeric-right" in c or "coh-style-numeric-score" in c),
+        class_=lambda c: (
+            isinstance(c, str)
+            and ("coh-style-numeric-right" in c or "coh-style-numeric-score" in c)
+        ),
     )
     if len(score_links) < 2:
         return None, None, "", ""
@@ -184,12 +262,20 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     away_div = card.find("div", class_="coh-style-away-team")
     score_div = card.find("div", class_="fnr-scores")
 
-    if not home_div or not away_div or not score_div:
+    if (
+        not isinstance(home_div, Tag)
+        or not isinstance(away_div, Tag)
+        or not isinstance(score_div, Tag)
+    ):
         return None
 
-    time_link = score_div.find("a", class_="coh-style-comp-time")
+    time_el = score_div.find("a", attrs={"class": "coh-style-comp-time"})
+    time_link = time_el if isinstance(time_el, Tag) else None
     home_score, away_score, score_match_url, status = _parse_score_links(score_div)
-    vs_div = score_div.find("div", class_="coh-style-comp-versace") if not time_link else None
+    vs_el = (
+        score_div.find("div", attrs={"class": "coh-style-comp-versace"}) if not time_link else None
+    )
+    vs_div = vs_el if isinstance(vs_el, Tag) else None
 
     is_fixture = time_link is not None or vs_div is not None
     is_result = home_score is not None and away_score is not None
@@ -198,34 +284,35 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
         return None
 
     kick_off = time_link.get_text(strip=True) if time_link else ""
-    match_href = time_link.get("href", "") if time_link else ""
+    match_href = _tag_attr_str(time_link, "href") if time_link else ""
     if not match_href:
         match_href = ""
         card_body = card.parent
-        if card_body:
-            info_link = card_body.find("a", class_="c065-match-link")
-            if info_link:
-                match_href = info_link.get("href", "")
-    match_url = _abs_url(match_href) if match_href else score_match_url
+        if isinstance(card_body, Tag):
+            info_el = card_body.find("a", attrs={"class": "c065-match-link"})
+            if isinstance(info_el, Tag):
+                match_href = _tag_attr_str(info_el, "href")
+    raw_match_url = _abs_url(match_href) if match_href else score_match_url
+    match_url = _legacy_match_centre_url(raw_match_url)
 
-    home_link = home_div.find("a", href=True)
-    away_link = away_div.find("a", href=True)
-    if not home_link or not away_link:
+    home_el = home_div.find("a", attrs={"href": True})
+    away_el = away_div.find("a", attrs={"href": True})
+    if not isinstance(home_el, Tag) or not isinstance(away_el, Tag):
         return None
 
-    home_href = home_link["href"]
+    home_href = _tag_attr_str(home_el, "href")
     if home_href.startswith("/"):
         home_href = f"{_RFU_BASE}{home_href}"
     home_id = _parse_team_id(home_href)
 
-    away_href = away_link["href"]
+    away_href = _tag_attr_str(away_el, "href")
     if away_href.startswith("/"):
         away_href = f"{_RFU_BASE}{away_href}"
     away_id = _parse_team_id(away_href)
 
     if home_id is None or away_id is None:
-        home_name = home_link.get_text(strip=True)
-        away_name = away_link.get_text(strip=True)
+        home_name = home_el.get_text(strip=True)
+        away_name = away_el.get_text(strip=True)
         logger.warning("Could not parse team IDs for %s vs %s", home_name, away_name)
         return None
 
@@ -353,16 +440,13 @@ def main() -> None:
         scraped += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
 
-    extra_urls = [u for u in _EXTRA_FIXTURE_URLS if f"season={season}" in u]
-    for url in extra_urls:
-        parsed = urllib.parse.urlparse(url)
-        params = urllib.parse.parse_qs(parsed.query)
-        division_id = params.get("division", ["unknown"])[0]
-        league_name = f"Division {division_id}"
-        output_path = output_dir / f"extra_{division_id}.json"
+    for url_pattern, relative_json in _EXTRA_FIXTURE_ENTRIES:
+        url = url_pattern.format(season=season)
+        output_path = output_dir / relative_json
+        league_name = _league_display_name_from_relative_path(relative_json)
 
         if output_path.exists() and not args.force:
-            logger.info("Skipping extra URL %s (already exists)", league_name)
+            logger.info("Skipping extra scrape %s (already exists)", league_name)
             skipped += 1
             continue
 
@@ -378,13 +462,13 @@ def main() -> None:
 
         fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
 
-        fixture_league: FixtureLeague = {
+        extra_league: FixtureLeague = {
             "league_name": league_name,
-            "league_url": url,
+            "league_url": _league_url_with_tables(url),
             "fixtures": fixtures,
         }
 
-        new_content = json.dumps(fixture_league, indent=2, ensure_ascii=False) + "\n"
+        new_content = json.dumps(extra_league, indent=2, ensure_ascii=False) + "\n"
         if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
             logger.info("  Unchanged: %s", league_name)
             skipped += 1

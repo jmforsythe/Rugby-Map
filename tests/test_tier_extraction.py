@@ -198,6 +198,25 @@ class TestExtractTier:
             "Premiership Women's",
         )
 
+    def test_end_of_season_playoff_fixture_files(self):
+        """fixture_data-only RFU play-off leagues (see rugby.fixtures._EXTRA_FIXTURE_ENTRIES)."""
+        assert extract_tier(
+            "Championship_Relegation_and_National_1_Promotion.json", "2025-2026"
+        ) == (
+            3,
+            "Play-off: Championship relegation / National League 1 promotion",
+        )
+        assert extract_tier("Regional_2_Relegation.json", "2025-2026") == (
+            6,
+            "Play-off: Regional 2 relegation",
+        )
+        assert extract_tier(
+            "2025-2026/National_1_Relegation_and_National_2_Promotion.json", "2025-2026"
+        ) == (
+            4,
+            "Play-off: National League 1 relegation / National League 2 promotion",
+        )
+
     def test_unknown_returns_999(self):
         result = extract_tier("Totally_Unknown.json", "2025-2026")
         assert result == (999, "Unknown Tier")

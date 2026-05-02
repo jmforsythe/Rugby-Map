@@ -940,10 +940,12 @@
     },
     {
       "date": "2026-04-25",
-      "time": "15:00",
+      "time": "",
       "home_team_id": 23901,
       "away_team_id": 24866,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1264222"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1264222",
+      "home_score": 12,
+      "away_score": 30
     }
   ]
 }

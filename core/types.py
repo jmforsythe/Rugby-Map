@@ -91,7 +91,7 @@ class Fixture(TypedDict):
     time: str  # "HH:MM" for fixtures, empty for results
     home_team_id: int
     away_team_id: int
-    match_url: str  # match-centre-community URL
+    match_url: str  # …/match-centre-community?matchId=…
     home_score: NotRequired[int | None]
     away_score: NotRequired[int | None]
     status: NotRequired[str]  # non-numeric outcome: "HWO", "AWO", etc.

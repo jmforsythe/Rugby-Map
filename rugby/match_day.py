@@ -303,7 +303,7 @@ def build_match_day_map(
         attr=folium_carto_attribution(),
         control=False,
     ).add_to(m)
-    header = m.get_root().header
+    header = m.get_root().header  # type: ignore[attr-defined]
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
     header.add_child(folium.Element(_match_day_seo_head(season)))
@@ -399,7 +399,7 @@ def build_match_day_map(
     }}
     </style>
     """
-    html_el = m.get_root().html
+    html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(nav_html))
 
     icon_size = 30
@@ -471,8 +471,10 @@ def build_match_day_map(
         ).add_to(fg)
 
         for fixture, league_name, tier_name, home_team, away_team in resolved:
-            lat = home_team["latitude"]
-            lng = home_team["longitude"]
+            lat = home_team.get("latitude")
+            lng = home_team.get("longitude")
+            if lat is None or lng is None:
+                continue
             home_icon_url = home_team.get("image_url") or RFU_FALLBACK_ICON
             away_icon_url = (away_team.get("image_url") if away_team else None) or RFU_FALLBACK_ICON
             popup_html = _render_popup(fixture, league_name, tier_name, home_team, away_team)
@@ -639,7 +641,7 @@ def build_match_day_map(
     }});
     </script>
     """
-    html_el = m.get_root().html
+    html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(control_html))
 
     is_prod = get_config().is_production

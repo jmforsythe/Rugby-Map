@@ -204,17 +204,17 @@ class TestExtractTier:
             "Championship_Relegation_and_National_1_Promotion.json", "2025-2026"
         ) == (
             3,
-            "Play-off: Championship relegation / National League 1 promotion",
+            "Play-off: Championship Relegation / National League 1 Promotion",
         )
         assert extract_tier("Regional_2_Relegation.json", "2025-2026") == (
             6,
-            "Play-off: Regional 2 relegation",
+            "Play-off: Regional 2 Relegation",
         )
         assert extract_tier(
             "2025-2026/National_1_Relegation_and_National_2_Promotion.json", "2025-2026"
         ) == (
             4,
-            "Play-off: National League 1 relegation / National League 2 promotion",
+            "Play-off: National League 1 Relegation / National League 2 Promotion",
         )
 
     def test_unknown_returns_999(self):

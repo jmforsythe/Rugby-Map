@@ -29,41 +29,33 @@ from core import (
     setup_logging,
 )
 from rugby import DATA_DIR
+from rugby.scrape import clean_filename
 
 logger = logging.getLogger(__name__)
 
 _RFU_BASE = "https://www.englandrugby.com"
 
-# RFU fixture views that are not represented as files under geocoded_teams/ (e.g. playoff
-# aggregations). Each row: URL template with ``{season}``, then output path relative to
-# fixture_data/<season>/ using the same underscore stem style as league JSON elsewhere.
-_EXTRA_FIXTURE_ENTRIES: list[tuple[str, str]] = [
-    (
+# RFU fixture views that are not represented under geocoded_teams/ (e.g. playoff
+# aggregations). Division IDs and ``season=`` query values change each RFU season — list full
+# URLs per season, or use ``{season}`` in the query string and it will be substituted.
+#
+# Output basenames match league scrape (``rugby.scrape``): ``clean_filename(league_name) + ".json"``
+# where *league_name* is the page heading (``.c061--title``). Tier labels for those filenames
+# live in ``rugby.tiers._PLAYOFF_FIXTURE_FILENAME_OVERRIDES`` (extend there if RFU retitles).
+_EXTRA_FIXTURE_URLS_BY_SEASON: dict[str, list[str]] = {
+    "2025-2026": [
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74973&season={season}",
-        "Championship_Relegation_and_National_1_Promotion.json",
-    ),
-    (
+        "competition=2319&division=74973&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74972&season={season}",
-        "National_1_Relegation_and_National_2_Promotion.json",
-    ),
-    (
+        "competition=2319&division=74972&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74984&season={season}",
-        "National_Two_Relegation_and_Regional_1_Promotion.json",
-    ),
-    (
+        "competition=2319&division=74984&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74982&season={season}",
-        "Regional_1_Relegation_and_Regional_2_Promotion.json",
-    ),
-    (
+        "competition=2319&division=75083&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74753&season={season}",
-        "Regional_2_Relegation.json",
-    ),
-]
+        "competition=2319&division=74753&season=2025-2026",
+    ],
+}
 
 
 def _parse_team_id(url: str) -> int | None:
@@ -155,19 +147,47 @@ def _league_url_with_tables(url: str) -> str:
     )
 
 
-def _league_display_name_from_relative_path(relative_json: str) -> str:
-    """Human-readable league name from a fixture_data-relative path (underscores → spaces)."""
-    return Path(relative_json).stem.replace("_", " ")
+def _resolve_extra_fixture_url(url_template: str, season: str) -> str:
+    """Substitute ``{season}`` when present; otherwise return *url_template* unchanged."""
+    if "{season}" in url_template:
+        return url_template.format(season=season)
+    return url_template
 
 
-def scrape_fixtures_from_league(league_url: str, league_name: str) -> list[Fixture]:
-    """Scrape all fixtures from one league's fixtures page."""
+def _fallback_extra_league_display_name(url: str) -> str:
+    """Human-readable league label when ``.c061--title`` is missing (not in tier overrides)."""
+    parsed = urllib.parse.urlparse(url)
+    params = urllib.parse.parse_qs(parsed.query)
+    divs = params.get("division", [])
+    if divs and str(divs[0]).isdigit():
+        return f"RFU play-off division {divs[0]}"
+    return "RFU extra fixtures"
+
+
+def _fixtures_page_heading(soup: BeautifulSoup) -> str | None:
+    """RFU fixtures/results page competition heading (Cohesion ``c061--title``)."""
+    el = soup.select_one(".c061--title")
+    if not isinstance(el, Tag):
+        return None
+    text = el.get_text(strip=True)
+    return text if text else None
+
+
+def scrape_fixtures_from_league(
+    league_url: str, league_name: str
+) -> tuple[list[Fixture], str | None]:
+    """Scrape all fixtures from one league's fixtures page.
+
+    Returns fixtures and the page heading from ``.c061--title`` when present (else ``None``).
+    """
     fixtures_url = _league_url_to_fixtures_url(league_url)
     logger.info("Scraping fixtures from: %s", fixtures_url)
 
     referer = f"{_RFU_BASE}/fixtures-and-results"
     response = make_request(fixtures_url, referer=referer, delay_seconds=1)
     soup = BeautifulSoup(response.content, "html.parser")
+
+    page_heading = _fixtures_page_heading(soup)
 
     fixtures: list[Fixture] = []
     current_date = ""
@@ -206,7 +226,7 @@ def scrape_fixtures_from_league(league_url: str, league_name: str) -> list[Fixtu
                     fixtures.append(fixture)
 
     logger.info("  Found %d fixtures in %s", len(fixtures), league_name)
-    return fixtures
+    return fixtures, page_heading
 
 
 _WALKOVER_PATTERNS: dict[str, str] = {
@@ -400,7 +420,7 @@ def main() -> None:
             continue
 
         try:
-            fixtures = scrape_fixtures_from_league(league_url, league_name)
+            fixtures, _page_heading = scrape_fixtures_from_league(league_url, league_name)
         except AntiBotDetectedError:
             logger.error("Anti-bot detection triggered while scraping %s", league_name)
             logger.error("Please wait before running the script again.")
@@ -440,37 +460,49 @@ def main() -> None:
         scraped += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
 
-    for url_pattern, relative_json in _EXTRA_FIXTURE_ENTRIES:
-        url = url_pattern.format(season=season)
-        output_path = output_dir / relative_json
-        league_name = _league_display_name_from_relative_path(relative_json)
+    extra_urls = _EXTRA_FIXTURE_URLS_BY_SEASON.get(season, [])
+    if not extra_urls:
+        logger.info("No extra fixture URLs configured for season %s", season)
 
-        if output_path.exists() and not args.force:
-            logger.info("Skipping extra scrape %s (already exists)", league_name)
-            skipped += 1
-            continue
+    for url_template in extra_urls:
+        url = _resolve_extra_fixture_url(url_template, season)
 
         try:
-            fixtures = scrape_fixtures_from_league(url, league_name)
+            fixtures, page_heading = scrape_fixtures_from_league(url, url)
         except AntiBotDetectedError:
             logger.error("Anti-bot detection triggered on extra URL %s", url)
             raise
         except Exception:
             logger.exception("Failed to scrape extra fixture URL %s", url)
-            errors.append(f"SCRAPE_ERROR | {league_name} | {url}")
+            errors.append(f"SCRAPE_ERROR | {url}")
             continue
 
         fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
 
+        heading_clean = (page_heading or "").strip()
+        display_name = heading_clean if heading_clean else _fallback_extra_league_display_name(url)
+        relative_json = clean_filename(display_name) + ".json"
+        output_path = output_dir / relative_json
+
+        resolved_league_name = heading_clean if heading_clean else display_name
+        if heading_clean:
+            logger.info("  Page heading for extra scrape: %s", heading_clean)
+        else:
+            logger.warning(
+                "No .c061--title on %s; using fallback league label %r",
+                url,
+                display_name,
+            )
+
         extra_league: FixtureLeague = {
-            "league_name": league_name,
+            "league_name": resolved_league_name,
             "league_url": _league_url_with_tables(url),
             "fixtures": fixtures,
         }
 
         new_content = json.dumps(extra_league, indent=2, ensure_ascii=False) + "\n"
         if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
-            logger.info("  Unchanged: %s", league_name)
+            logger.info("  Unchanged: %s", resolved_league_name)
             skipped += 1
             continue
 

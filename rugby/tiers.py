@@ -178,7 +178,12 @@ _WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
 }
 
 # Men's end-of-season play-off fixture files (RFU competition 2319) under
-# fixture_data/<season>/ — basenames align with rugby.fixtures._EXTRA_FIXTURE_ENTRIES.
+# fixture_data/<season>/.
+#
+# Basenames match ``clean_filename(RFU competition title)`` from the fixtures/results page
+# (same rule as ``rugby.scrape`` league JSON). When RFU retitles a play-off, filenames change —
+# add the new basename here (and/or keep old keys for historical fixture_data trees).
+#
 # Must run before generic ``Regional`` / ``National_League`` filename matching.
 _PLAYOFF_FIXTURE_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
     "Championship_Relegation_and_National_1_Promotion.json": (

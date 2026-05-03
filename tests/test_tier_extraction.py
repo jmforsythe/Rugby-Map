@@ -199,7 +199,7 @@ class TestExtractTier:
         )
 
     def test_end_of_season_playoff_fixture_files(self):
-        """fixture_data-only RFU play-off leagues (see rugby.fixtures._EXTRA_FIXTURE_ENTRIES)."""
+        """fixture_data-only RFU play-off leagues (see rugby.fixtures._EXTRA_FIXTURE_URLS_BY_SEASON)."""
         assert extract_tier(
             "Championship_Relegation_and_National_1_Promotion.json", "2025-2026"
         ) == (

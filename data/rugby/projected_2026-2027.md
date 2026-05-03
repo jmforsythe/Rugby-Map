@@ -8,7 +8,7 @@ Rules applied from `tier_assignment_rules.md`.
 - **Premiership data unavailable** — Championship 1st place stays at Tier 2. No team promoted from Championship to Premiership; no team relegated from Premiership to Championship.
 - **Play-off default heuristic** — every play-off participant remains at their current tier (the statistically most likely individual outcome).
 - **Regional 2 Survival Play-Off** — 10th beats 11th (higher position wins); 11th is relegated.
-- **Counties 2 → Counties 1 (data only)** — 23 feeder mapping(s) in `c2_to_c1_<next-season>.json`; optional `c1_c2_promotion_quotas_<next>.json`. **This document does not list Counties 2 (tier 8) league tables.** Promotions from tier 8 appear under the destination Counties 1 league when the `c2_to_c1` map resolves; otherwise they stay in the pooled "Promoted to Tier 7" section with source labelled Tier 8 only.
+- **Counties 2 → Counties 1 (data only)** — 21 feeder mapping(s) in `c2_to_c1_<next-season>.json`; per-feeder promotion slot counts come from the same file (top-level `default_slots`, plus `{"destination": ..., "slots": N}` overrides per entry). **This document does not list Counties 2 (tier 8) league tables.** Promotions from tier 8 appear under the destination Counties 1 league when the `c2_to_c1` map resolves; otherwise they stay in the pooled "Promoted to Tier 7" section with source labelled Tier 8 only.
 - **BPR resolved** — the 5 Counties 1 runners-up promoted via Best Playing Record are Dinnington, Finchley, Ryton, Warrington, and Weybridge Vandals.
 - **Counties 1 scheduled downs** — after standard promotion rules and BPR, extra relegations to Counties 2 are applied by division using fixed slot counts (bottom of table within each league); shown as *Auto-relegation (scheduled Counties 1 downs)*.
 
@@ -566,7 +566,7 @@ Rules applied from `tier_assignment_rules.md`.
 
 ---
 
-## Tier 7 — Counties 1 (214 teams)
+## Tier 7 — Counties 1 (226 teams)
 
 ### Counties 1 Cumbria — Staying (13 teams)
 
@@ -608,11 +608,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 9 | Hartlepool | 11th |
 | 10 | Acklam | 12th |
 
-### Counties 1 Durham & Northumberland — From Tier 8 (1 teams)
+### Counties 1 Durham & Northumberland — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Barnard Castle | Tier 8 (1st) | Auto-promotion |
+| Barnard Castle | Tier 8 (1st) | Auto-promotion (1st) |
+| Houghton | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Eastern Counties — Staying (8 teams)
 
@@ -634,11 +635,12 @@ Rules applied from `tier_assignment_rules.md`.
 | Holt | Regional 2 Anglia (12th) | Auto-relegation |
 | Norwich | Regional 2 Anglia (11th) | Survival PO loser |
 
-### Counties 1 Eastern Counties — From Tier 8 (1 teams)
+### Counties 1 Eastern Counties — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Cantabrigian | Tier 8 (1st) | Auto-promotion |
+| Cantabrigian | Tier 8 (1st) | Auto-promotion (1st) |
+| Woodbridge | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Essex — Staying (9 teams)
 
@@ -654,11 +656,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Upminster | 9th |
 | 9 | Stanford Le Hope | 10th |
 
-### Counties 1 Essex — From Tier 8 (1 teams)
+### Counties 1 Essex — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Burnham-on-Crouch | Tier 8 (1st) | Auto-promotion |
+| Burnham-on-Crouch | Tier 8 (1st) | Auto-promotion (1st) |
+| Old Brentwoods | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Hampshire — Staying (8 teams)
 
@@ -679,11 +682,13 @@ Rules applied from `tier_assignment_rules.md`.
 |------|-------------|-----------|
 | Ellingham & Ringwood | Regional 2 South Central (12th) | Auto-relegation |
 
-### Counties 1 Hampshire — From Tier 8 (1 teams)
+### Counties 1 Hampshire — From Tier 8 (3 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Farnham II | Tier 8 (1st) | Auto-promotion |
+| Farnham II | Tier 8 (1st) | Auto-promotion (1st) |
+| Havant III | Tier 8 (3rd) | Auto-promotion (3rd) |
+| Trojans | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Herts — Staying (8 teams)
 
@@ -698,11 +703,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 7 | Fullerians | 8th |
 | 8 | Southend II | 9th |
 
-### Counties 1 Herts — From Tier 8 (1 teams)
+### Counties 1 Herts — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Datchworth | Tier 8 (1st) | Auto-promotion |
+| Datchworth | Tier 8 (1st) | Auto-promotion (1st) |
+| Royston | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Kent — Staying (9 teams)
 
@@ -724,11 +730,12 @@ Rules applied from `tier_assignment_rules.md`.
 |------|-------------|-----------|
 | Canterbury II | Regional 2 South East (10th) | Survival PO loser |
 
-### Counties 1 Kent — From Tier 8 (1 teams)
+### Counties 1 Kent — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Tonbridge Juddians II | Tier 8 (1st) | Auto-promotion |
+| Thanet Wanderers | Tier 8 (2nd) | Auto-promotion (2nd) |
+| Tonbridge Juddians II | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Middx — Staying (8 teams)
 
@@ -743,11 +750,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 7 | U.C.S. | 9th |
 | 8 | Saracens Amateurs | 10th |
 
-### Counties 1 Middx — From Tier 8 (1 teams)
+### Counties 1 Middx — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Hackney | Tier 8 (1st) | Auto-promotion |
+| Barnet Elizabethans | Tier 8 (2nd) | Auto-promotion (2nd) |
+| Hackney | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Midlands East (North) — Staying (9 teams)
 
@@ -763,11 +771,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Keyworth | 9th |
 | 9 | Kesteven | 10th |
 
-### Counties 1 Midlands East (North) — From Tier 8 (1 teams)
+### Counties 1 Midlands East (North) — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Mansfield | Tier 8 (1st) | Auto-promotion |
+| Mansfield | Tier 8 (1st) | Auto-promotion (1st) |
+| Syston II | Tier 8 (2nd) | Auto-promotion (2nd) |
 
 ### Counties 1 Midlands East (South) — Staying (9 teams)
 
@@ -783,11 +792,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Market Bosworth | 9th |
 | 9 | Stewarts & Lloyds | 10th |
 
-### Counties 1 Midlands East (South) — From Tier 8 (1 teams)
+### Counties 1 Midlands East (South) — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Oundle II | Tier 8 (1st) | Auto-promotion |
+| Leighton Buzzard | Tier 8 (2nd) | Auto-promotion (2nd) |
+| Oundle II | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Midlands West (North) — Staying (9 teams)
 
@@ -803,12 +813,6 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Aston Old Edwardians | 9th |
 | 9 | Stourbridge II | 10th |
 
-### Counties 1 Midlands West (North) — From Tier 8 (1 teams)
-
-| Team | From League | Mechanism |
-|------|-------------|-----------|
-| Barkers Butts | Tier 8 (1st) | Auto-promotion |
-
 ### Counties 1 Midlands West (South) — Staying (9 teams)
 
 | # | Team | 2025-2026 Position |
@@ -822,12 +826,6 @@ Rules applied from `tier_assignment_rules.md`.
 | 7 | Leamington | 8th |
 | 8 | Manor Park | 9th |
 | 9 | Old Leamingtonians | 10th |
-
-### Counties 1 Midlands West (South) — From Tier 8 (1 teams)
-
-| Team | From League | Mechanism |
-|------|-------------|-----------|
-| Trentham | Tier 8 (1st) | Auto-promotion |
 
 ### Counties 1 Surrey/Sussex — Staying (8 teams)
 
@@ -853,8 +851,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Old Hamptonians | Tier 8 (1st) | Auto-promotion |
-| Pulborough | Tier 8 (1st) | Auto-promotion |
+| Old Hamptonians | Tier 8 (1st) | Auto-promotion (1st) |
+| Pulborough | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Tribute Ale Southern North — Staying (8 teams)
 
@@ -880,8 +878,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Banbury II | Tier 8 (1st) | Auto-promotion |
-| Beaconsfield II | Tier 8 (1st) | Auto-promotion |
+| Banbury II | Tier 8 (1st) | Auto-promotion (1st) |
+| Beaconsfield II | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Tribute Ale Southern South — Staying (9 teams)
 
@@ -907,8 +905,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Combe Down | Tier 8 (1st) | Auto-promotion |
-| Dorchester | Tier 8 (1st) | Auto-promotion |
+| Combe Down | Tier 8 (1st) | Auto-promotion (1st) |
+| Dorchester | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Tribute Ale Western North — Staying (8 teams)
 
@@ -934,8 +932,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Burnham-on-Sea | Tier 8 (1st) | Auto-promotion |
-| Cinderford II | Tier 8 (1st) | Auto-promotion |
+| Burnham-on-Sea | Tier 8 (1st) | Auto-promotion (1st) |
+| Cinderford II | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Tribute Ale Western West — Staying (9 teams)
 
@@ -961,8 +959,8 @@ Rules applied from `tier_assignment_rules.md`.
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Camborne II | Tier 8 (1st) | Auto-promotion |
-| Devonport Services II | Tier 8 (1st) | Auto-promotion |
+| Camborne II | Tier 8 (1st) | Auto-promotion (1st) |
+| Devonport Services II | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 Yorkshire — Staying (8 teams)
 
@@ -984,11 +982,12 @@ Rules applied from `tier_assignment_rules.md`.
 | Doncaster Phoenix | Regional 2 North East (12th) | Auto-relegation |
 | Old Crossleyans | Regional 2 North East (11th) | Survival PO loser |
 
-### Counties 1 Yorkshire — From Tier 8 (1 teams)
+### Counties 1 Yorkshire — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Old Otliensians | Tier 8 (1st) | Auto-promotion |
+| Bridlington | Tier 8 (2nd) | Auto-promotion (2nd) |
+| Old Otliensians | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Counties 1 adm Lancashire & Cheshire — Staying (8 teams)
 
@@ -1010,11 +1009,19 @@ Rules applied from `tier_assignment_rules.md`.
 | Altrincham Kersal | Regional 2 North West (12th) | Auto-relegation |
 | West Park (St Helens) | Regional 2 North West (11th) | Survival PO loser |
 
-### Counties 1 adm Lancashire & Cheshire — From Tier 8 (1 teams)
+### Counties 1 adm Lancashire & Cheshire — From Tier 8 (2 teams)
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
-| Southport | Tier 8 (1st) | Auto-promotion |
+| Bolton | Tier 8 (2nd) | Auto-promotion (2nd) |
+| Southport | Tier 8 (1st) | Auto-promotion (1st) |
+
+### Promoted to Tier 7 (2 teams) — holding league "Counties 1 Promoted"
+
+| Team | From League | Mechanism |
+|------|-------------|-----------|
+| Barkers Butts | Tier 8 (1st) | Auto-promotion (1st) |
+| Trentham | Tier 8 (1st) | Auto-promotion (1st) |
 
 ### Relegated to Tier 7 (6 teams) — holding league "Counties 1 Relegated"
 
@@ -1064,7 +1071,7 @@ Rules applied from `tier_assignment_rules.md`.
 | Aspull | Counties 1 adm Lancashire & Cheshire (11th) | Auto-relegation (scheduled Counties 1 downs) |
 | Trafford MV | Counties 1 adm Lancashire & Cheshire (12th) | Auto-relegation (scheduled Counties 1 downs) |
 
-**Counties 1 total: 167 staying + 23 promoted in + 24 relegated in = 214**
+**Counties 1 total: 167 staying + 35 promoted in + 24 relegated in = 226**
 
 ---
 
@@ -1077,7 +1084,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 4 | National 2 (×3) | 42 | **42** | 33 staying + 6 promoted + 3 relegated in. ✓ |
 | 5 | Regional 1 (×6) | 72 | **72** | 54 staying + 12 promoted + 6 relegated in. ✓ |
 | 6 | Regional 2 (×12) | 144 | **144** | 108 staying + 24 promoted + 12 relegated in. ✓ |
-| 7 | Counties 1 (×19) | varies | **214** | 167 staying + 23 promoted + 24 relegated in |
+| 7 | Counties 1 (×19) | varies | **226** | 167 staying + 35 promoted + 24 relegated in |
 
 ### Movement Totals
 

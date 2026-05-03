@@ -15,11 +15,15 @@ Usage:
     python -m rugby.analysis.promotion_relegation --interactive-c2-c1
     python -m rugby.analysis.promotion_relegation --bpr-md path/to/with_bpr_line.md
 
-County 2 intake per Counties 1 league is optional JSON
-``data/rugby/c1_c2_promotion_quotas_<next-season>.json`` (default_quota + per-league overrides);
-when present, total inbound slots split across Counties 2 leagues mapped to each destination.
-Built-in default BPR promotion names are used when ``--bpr`` and ``--bpr-md`` are omitted
-(override with ``--no-bpr``). See ``DEFAULT_BPR_TEAM_NAMES`` in this module.
+Counties 2 → Counties 1 mapping AND promotion slot counts both live in
+``data/rugby/c2_to_c1_<next-season>.json``. Each entry under ``assignments`` is either:
+
+  * a string — destination Counties 1 league (uses top-level ``default_slots``); or
+  * an object — ``{"destination": "Counties 1 X", "slots": N}`` to override the count.
+
+Top-level ``default_slots`` (default 1) is the per-feeder promotion count for any
+string-form entry. Built-in default BPR promotion names are used when ``--bpr`` and
+``--bpr-md`` are omitted (override with ``--no-bpr``). See ``DEFAULT_BPR_TEAM_NAMES``.
 """
 
 from __future__ import annotations
@@ -99,13 +103,8 @@ def r2_to_c1_map_path(next_season: str) -> Path:
 
 
 def c2_to_c1_map_path(next_season: str) -> Path:
-    """JSON mapping Counties 2 league names → Counties 1 league display names."""
+    """JSON mapping Counties 2 league names → Counties 1 league display names + slot counts."""
     return DATA_DIR / f"c2_to_c1_{next_season}.json"
-
-
-def c1_c2_promotion_quotas_path(next_season: str) -> Path:
-    """JSON: Counties 1 league → how many sides promote in from Counties 2 (split across feeder C2)."""
-    return DATA_DIR / f"c1_c2_promotion_quotas_{next_season}.json"
 
 
 def load_r2_c1_map(path: Path) -> dict[str, str]:
@@ -128,19 +127,70 @@ def save_r2_c1_map(path: Path, source_season: str, assignments_map: dict[str, st
         f.write("\n")
 
 
+def _coerce_assignment_dest(value: Any) -> str:
+    """Extract destination string from either string-form or ``{destination, slots}`` object."""
+    if isinstance(value, dict):
+        return str(value.get("destination", "") or "")
+    return str(value or "")
+
+
 def load_c2_to_c1_map(path: Path) -> dict[str, str]:
+    """Counties 2 league → Counties 1 destination. Tolerates string or object entry values."""
     if not path.exists():
         return {}
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
     raw = data.get("assignments", data)
-    return {str(k): str(v) for k, v in raw.items() if v}
+    out: dict[str, str] = {}
+    for k, v in raw.items():
+        dest = _coerce_assignment_dest(v)
+        if dest:
+            out[str(k)] = dest
+    return out
 
 
-def save_c2_to_c1_map(path: Path, source_season: str, assignments_map: dict[str, str]) -> None:
+def load_c2_to_c1_slots(path: Path) -> tuple[dict[str, int], int]:
+    """Per-Counties 2 explicit promotion slot overrides + the file-level ``default_slots``.
+
+    Default slot count is taken from top-level ``default_slots`` (1 if absent).
+    Per-entry overrides come from object-form values that include ``slots``.
+    String-form values implicitly inherit ``default_slots``.
+    """
+    if not path.exists():
+        return {}, 1
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    default_slots = int(data.get("default_slots", 1))
+    raw = data.get("assignments", {})
+    overrides: dict[str, int] = {}
+    for k, v in raw.items():
+        if isinstance(v, dict) and "slots" in v:
+            overrides[str(k)] = int(v["slots"])
+    return overrides, default_slots
+
+
+def save_c2_to_c1_map(
+    path: Path,
+    source_season: str,
+    assignments_map: dict[str, str],
+    *,
+    default_slots: int = 1,
+    slot_overrides: dict[str, int] | None = None,
+) -> None:
+    """Write the unified file. Entries with non-default ``slots`` are written as objects."""
+    overrides = slot_overrides or {}
+    out: dict[str, Any] = {}
+    for k in sorted(assignments_map):
+        dest = assignments_map[k]
+        slot = overrides.get(k)
+        if slot is not None and slot != default_slots:
+            out[k] = {"destination": dest, "slots": slot}
+        else:
+            out[k] = dest
     payload = {
         "source_season": source_season,
-        "assignments": dict(sorted(assignments_map.items())),
+        "default_slots": default_slots,
+        "assignments": out,
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
@@ -183,55 +233,21 @@ def merge_c2_to_c1_auto_by_suffix(
     return out, filled
 
 
-def load_c2_promotion_quotas(path: Path) -> tuple[dict[str, int], int] | None:
-    """Load per–Counties 1 inbound slot counts.
-
-    Returns ``(quotas_for_named_leagues, default_quota_for_all_else)`` when the file
-    exists with the expected shape; otherwise ``None``.
-    """
-    if not path.is_file():
-        return None
-    with open(path, encoding="utf-8") as f:
-        payload = json.load(f)
-    default_q = int(payload.get("default_quota", 2))
-    raw = payload.get("by_counties_one_league", payload.get("by_counties_one", {}))
-    quotas = {str(k): int(v) for k, v in raw.items()}
-    return quotas, default_q
-
-
-def allocate_c2_promotion_slots(
+def build_c2_promotion_slots(
     c2_to_c1_map: dict[str, str],
+    overrides: dict[str, int],
+    default_slots: int,
     counties_two_labels: frozenset[str],
     counties_one_labels: set[str],
-    quotas_by_c1: dict[str, int],
-    default_quota: int,
 ) -> dict[str, int]:
-    """Split each Counties 1 inbound quota among feeder Counties 2 leagues (table slots)."""
-    inbound: defaultdict[str, list[str]] = defaultdict(list)
-    for c2_league_name, dest in sorted(c2_to_c1_map.items()):
+    """Per-Counties 2 promotion slot count for every mapped feeder (override or default)."""
+    slots: dict[str, int] = {}
+    for c2_name, dest in c2_to_c1_map.items():
         if not dest or dest not in counties_one_labels:
             continue
-        if c2_league_name not in counties_two_labels:
+        if c2_name not in counties_two_labels:
             continue
-        inbound[dest].append(c2_league_name)
-
-    slots: dict[str, int] = {}
-
-    for c1_name in sorted(counties_one_labels):
-        feeders = inbound.get(c1_name, [])
-        if not feeders:
-            continue
-        q = quotas_by_c1.get(c1_name, default_quota)
-        if q <= 0:
-            for fdr in feeders:
-                slots[fdr] = 0
-            continue
-        n = len(feeders)
-        base = q // n
-        rem = q % n
-        for i, feeder in enumerate(feeders):
-            slots[feeder] = base + (1 if i < rem else 0)
-
+        slots[c2_name] = max(0, overrides.get(c2_name, default_slots))
     return slots
 
 
@@ -348,24 +364,56 @@ def prompt_r2_c1_assignments(
     return result
 
 
+def _prompt_slot_count(
+    league_name: str,
+    default_slots: int,
+    existing_override: int | None,
+) -> int | None:
+    """Ask for promotion slots for one C2 league. Returns explicit override or None for default."""
+    current = existing_override if existing_override is not None else default_slots
+    raw = input(
+        f"      Promotion slots into Counties 1 [Enter = {current}"
+        f"{' (default)' if existing_override is None else ' (current override)'}]: "
+    ).strip()
+    if not raw:
+        return existing_override
+    try:
+        n = int(raw)
+    except ValueError:
+        print(f"      Invalid number; keeping {current}.")
+        return existing_override
+    if n < 0:
+        print(f"      Slots cannot be negative; keeping {current}.")
+        return existing_override
+    return n if n != default_slots else None
+
+
 def prompt_c2_c1_assignments(
     counties_two_leagues: list[dict],
     counties_one_names: list[str],
     standings: dict[str, list[str]],
     existing: dict[str, str],
-) -> dict[str, str]:
-    """Prompt for Counties 2 league → Counties 1 destination (one promoter per league)."""
+    *,
+    existing_overrides: dict[str, int] | None = None,
+    default_slots: int = 1,
+) -> tuple[dict[str, str], dict[str, int]]:
+    """Prompt for Counties 2 league → Counties 1 destination AND promotion slot count.
+
+    Returns ``(destinations, slot_overrides)``. Saved entries can be reviewed by
+    re-running. ``slot_overrides`` only stores values that differ from ``default_slots``.
+    """
     result = dict(existing)
+    overrides: dict[str, int] = dict(existing_overrides or {})
     leagues_sorted = sorted(counties_two_leagues, key=lambda lg: lg["league_name"])
     c1_sorted = sorted(counties_one_names)
 
     print(
-        f"\n{len(leagues_sorted)} Counties 2 league(s): assign each feeder to a Counties 1 league.\n"
-        "Promotion counts come from `c1_c2_promotion_quotas_<next>.json` when present "
-        "(split across feeders). Table order fills slots; II/III names are skipped only when "
-        "that promotion would hit Regional 1 or national leagues, or place the side at the "
-        "same tier or above its principal XV (from geocoded squads).\n"
-        "Otherwise each mapped league promotes one side by default."
+        f"\n{len(leagues_sorted)} Counties 2 league(s): assign each feeder to a Counties 1 league "
+        f"and confirm its promotion slot count (default {default_slots}).\n"
+        "Slot counts apply within each Counties 2 league: e.g. slots=2 promotes 1st AND 2nd. "
+        "Table order fills slots; II/III names are skipped only when that promotion would hit "
+        "Regional 1 or national leagues, or place the side at the same tier or above its "
+        "principal XV (from geocoded squads)."
     )
     for idx, lg in enumerate(leagues_sorted, 1):
         lname = lg["league_name"]
@@ -374,10 +422,18 @@ def prompt_c2_c1_assignments(
 
         saved = result.get(lname)
         if saved and saved in counties_one_names:
-            print(f"  [{idx}/{len(leagues_sorted)}] {lname}: using map -> {saved}")
+            saved_slots = overrides.get(lname)
+            slot_disp = (
+                f"{saved_slots} (override)"
+                if saved_slots is not None
+                else f"{default_slots} (default)"
+            )
+            print(
+                f"  [{idx}/{len(leagues_sorted)}] {lname}: using map -> {saved} [slots: {slot_disp}]"
+            )
             continue
 
-        print(f"\n  [{idx}/{len(leagues_sorted)}] {lname}\n" f"      Table-leader (1st): {first}")
+        print(f"\n  [{idx}/{len(leagues_sorted)}] {lname}\n      Table-leader (1st): {first}")
         for j, c1 in enumerate(c1_sorted, 1):
             print(f"      {j:2}. {c1}")
         choice = input(
@@ -386,28 +442,37 @@ def prompt_c2_c1_assignments(
         ).strip()
         if not choice:
             result.pop(lname, None)
+            overrides.pop(lname, None)
             continue
+        chosen: str | None = None
         if choice.isdigit():
             n = int(choice)
             if 1 <= n <= len(c1_sorted):
-                result[lname] = c1_sorted[n - 1]
+                chosen = c1_sorted[n - 1]
             else:
                 print("      Invalid number; leaving unmapped.")
-                result.pop(lname, None)
         else:
             matches = [x for x in c1_sorted if choice.lower() in x.lower()]
             if len(matches) == 1:
-                result[lname] = matches[0]
+                chosen = matches[0]
             elif len(matches) > 1:
                 print(f"      Ambiguous ({len(matches)} matches); leaving unmapped.")
-                result.pop(lname, None)
             elif choice in c1_sorted:
-                result[lname] = choice
+                chosen = choice
             else:
                 print("      No match; leaving unmapped.")
-                result.pop(lname, None)
+        if chosen is None:
+            result.pop(lname, None)
+            overrides.pop(lname, None)
+            continue
+        result[lname] = chosen
+        new_slots = _prompt_slot_count(lname, default_slots, overrides.get(lname))
+        if new_slots is None:
+            overrides.pop(lname, None)
+        else:
+            overrides[lname] = new_slots
 
-    return result
+    return result, overrides
 
 
 _SECOND_XV_RE = re.compile(r"\s+(II|III|IV|2nd XV|3rd XV|4th XV)\s*$")
@@ -1059,8 +1124,9 @@ def build_markdown(
         n_c2_mapped = sum(1 for v in c2_map.values() if v)
         lines.append(
             f"- **Counties 2 → Counties 1 (data only)** — {n_c2_mapped} feeder mapping(s) "
-            "in `c2_to_c1_<next-season>.json`; optional `c1_c2_promotion_quotas_<next>.json`. "
-            "**This document does not list Counties 2 (tier 8) league tables.** "
+            "in `c2_to_c1_<next-season>.json`; per-feeder promotion slot counts come from "
+            'the same file (top-level `default_slots`, plus `{"destination": ..., "slots": N}` '
+            "overrides per entry). **This document does not list Counties 2 (tier 8) league tables.** "
             "Promotions from tier 8 appear under the destination Counties 1 league when "
             "the `c2_to_c1` map resolves; otherwise they stay in the pooled "
             '"Promoted to Tier 7" section with source labelled Tier 8 only.'
@@ -1456,14 +1522,10 @@ def main() -> None:
         "--c2-c1-map",
         type=str,
         metavar="PATH",
-        help="JSON map Counties 2 league→Counties 1 league (default: data/rugby/c2_to_c1_<next>.json)",
-    )
-    parser.add_argument(
-        "--promotion-quotas",
-        type=str,
-        metavar="PATH",
-        help="Inbound Counties 2 promotion slots per Counties 1 league "
-        "(default: data/rugby/c1_c2_promotion_quotas_<next>.json if present)",
+        help=(
+            "JSON map Counties 2 league→Counties 1 league with promotion slot counts "
+            "(default: data/rugby/c2_to_c1_<next>.json)"
+        ),
     )
     args = parser.parse_args()
 
@@ -1502,7 +1564,6 @@ def main() -> None:
     output_path = Path(args.output) if args.output else projected_markdown_path(season)
     r2_c1_file = Path(args.r2_c1_map) if args.r2_c1_map else r2_to_c1_map_path(next_season)
     c2_c1_file = Path(args.c2_c1_map) if args.c2_c1_map else c2_to_c1_map_path(next_season)
-    quotas_path_cli = Path(args.promotion_quotas) if args.promotion_quotas else None
 
     print(f"Loading leagues for season {season}...")
     leagues = load_tier_leagues(season)
@@ -1516,10 +1577,10 @@ def main() -> None:
         f"promotion/relegation rules for {season}..."
     )
     survival_swaps = _SEASON_SURVIVAL_SWAPS.get(season)
-    promo_quota_file = quotas_path_cli or c1_c2_promotion_quotas_path(next_season)
 
     r2c1 = load_r2_c1_map(r2_c1_file)
     c2c1 = load_c2_to_c1_map(c2_c1_file)
+    c2_slot_overrides, c2_default_slots = load_c2_to_c1_slots(c2_c1_file)
     c2_leagues_list = [lg for lg in leagues if lg["tier_num"] == 8]
     c1_labels = {lg["league_name"] for lg in leagues if lg["tier_num"] == 7}
     c2c1, n_c2_suffix = merge_c2_to_c1_auto_by_suffix(c2c1, c2_leagues_list, c1_labels)
@@ -1555,56 +1616,48 @@ def main() -> None:
                 )
             else:
                 st_c2[lg["filename"]] = load_standings_order_from_geocoded(season, lg["filename"])
-        c2c1 = prompt_c2_c1_assignments(c2_leagues_list, c1_names, st_c2, c2c1)
-        save_c2_to_c1_map(c2_c1_file, season, c2c1)
+        c2c1, c2_slot_overrides = prompt_c2_c1_assignments(
+            c2_leagues_list,
+            c1_names,
+            st_c2,
+            c2c1,
+            existing_overrides=c2_slot_overrides,
+            default_slots=c2_default_slots,
+        )
+        save_c2_to_c1_map(
+            c2_c1_file,
+            season,
+            c2c1,
+            default_slots=c2_default_slots,
+            slot_overrides=c2_slot_overrides,
+        )
         print(f"\nSaved Counties 2->Counties 1 map to {c2_c1_file}")
 
-    quotas_loaded = load_c2_promotion_quotas(promo_quota_file)
-    counties_two_slots: dict[str, int] | None = None
-    if quotas_loaded is not None:
-        quotas_ov, def_q = quotas_loaded
-        counties_two_slots = allocate_c2_promotion_slots(
-            c2c1,
-            frozenset(lg["league_name"] for lg in c2_leagues_list),
-            c1_labels,
-            quotas_ov,
-            def_q,
-        )
+    counties_two_slots = build_c2_promotion_slots(
+        c2c1,
+        c2_slot_overrides,
+        c2_default_slots,
+        frozenset(lg["league_name"] for lg in c2_leagues_list),
+        c1_labels,
+    )
+    n_overrides = sum(
+        1 for k, v in c2_slot_overrides.items() if k in counties_two_slots and v != c2_default_slots
+    )
+    if counties_two_slots:
         print(
-            f"  Counties 2->Counties 1 promotions: tier 8 slots from {promo_quota_file.name} "
-            "(quotas split across feeder Counties 2 leagues)."
+            f"  Counties 2->Counties 1 promotions: per-feeder slots from {c2_c1_file.name} "
+            f"(default {c2_default_slots}; {n_overrides} explicit override(s))."
         )
 
-    if quotas_loaded is not None:
-        assignments = compute_assignments(
-            season,
-            bpr_teams=bpr_teams,
-            survival_swaps=survival_swaps,
-            quiet=False,
-            scrape_standings=scrape_standings,
-            counties_two_promotion_slots=counties_two_slots,
-            counties_one_scheduled_downs=True,
-        )
-    elif assignments is None:
-        assignments = compute_assignments(
-            season,
-            bpr_teams=bpr_teams,
-            survival_swaps=survival_swaps,
-            quiet=False,
-            scrape_standings=scrape_standings,
-            counties_two_promotion_slots=None,
-            counties_one_scheduled_downs=True,
-        )
-    else:
-        assignments = compute_assignments(
-            season,
-            bpr_teams=bpr_teams,
-            survival_swaps=survival_swaps,
-            quiet=False,
-            scrape_standings=scrape_standings,
-            counties_two_promotion_slots=None,
-            counties_one_scheduled_downs=True,
-        )
+    assignments = compute_assignments(
+        season,
+        bpr_teams=bpr_teams,
+        survival_swaps=survival_swaps,
+        quiet=False,
+        scrape_standings=scrape_standings,
+        counties_two_promotion_slots=counties_two_slots or None,
+        counties_one_scheduled_downs=True,
+    )
 
     if args.prompt_missing_r2_c1:
         if not sys.stdin.isatty():

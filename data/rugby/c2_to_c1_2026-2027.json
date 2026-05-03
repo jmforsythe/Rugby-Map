@@ -1,27 +1,59 @@
 {
   "source_season": "2025-2026",
+  "default_slots": 2,
   "assignments": {
     "Counties 2 Durham & Northumberland": "Counties 1 Durham & Northumberland",
     "Counties 2 Eastern Counties": "Counties 1 Eastern Counties",
     "Counties 2 Essex": "Counties 1 Essex",
-    "Counties 2 Hampshire": "Counties 1 Hampshire",
+    "Counties 2 Hampshire": {
+      "destination": "Counties 1 Hampshire",
+      "slots": 3
+    },
     "Counties 2 Herts": "Counties 1 Herts",
     "Counties 2 Kent": "Counties 1 Kent",
     "Counties 2 Middx": "Counties 1 Middx",
     "Counties 2 Midlands East (North)": "Counties 1 Midlands East (North)",
     "Counties 2 Midlands East (South)": "Counties 1 Midlands East (South)",
-    "Counties 2 Midlands West (East)": "Counties 1 Midlands West (North)",
-    "Counties 2 Midlands West (West)": "Counties 1 Midlands West (South)",
-    "Counties 2 Surrey": "Counties 1 Surrey/Sussex",
-    "Counties 2 Sussex": "Counties 1 Surrey/Sussex",
-    "Counties 2 Tribute Ale Berks/Bucks & Oxon East": "Counties 1 Tribute Ale Southern North",
-    "Counties 2 Tribute Ale Berks/Bucks & Oxon West": "Counties 1 Tribute Ale Southern North",
-    "Counties 2 Tribute Ale Cornwall": "Counties 1 Tribute Ale Western West",
-    "Counties 2 Tribute Ale Devon": "Counties 1 Tribute Ale Western West",
-    "Counties 2 Tribute Ale Dorset & Wilts North": "Counties 1 Tribute Ale Southern South",
-    "Counties 2 Tribute Ale Dorset & Wilts South": "Counties 1 Tribute Ale Southern South",
-    "Counties 2 Tribute Ale Gloucestershire": "Counties 1 Tribute Ale Western North",
-    "Counties 2 Tribute Ale Somerset": "Counties 1 Tribute Ale Western North",
+    "Counties 2 Surrey": {
+      "destination": "Counties 1 Surrey/Sussex",
+      "slots": 1
+    },
+    "Counties 2 Sussex": {
+      "destination": "Counties 1 Surrey/Sussex",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Berks/Bucks & Oxon East": {
+      "destination": "Counties 1 Tribute Ale Southern North",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Berks/Bucks & Oxon West": {
+      "destination": "Counties 1 Tribute Ale Southern North",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Cornwall": {
+      "destination": "Counties 1 Tribute Ale Western West",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Devon": {
+      "destination": "Counties 1 Tribute Ale Western West",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Dorset & Wilts North": {
+      "destination": "Counties 1 Tribute Ale Southern South",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Dorset & Wilts South": {
+      "destination": "Counties 1 Tribute Ale Southern South",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Gloucestershire": {
+      "destination": "Counties 1 Tribute Ale Western North",
+      "slots": 1
+    },
+    "Counties 2 Tribute Ale Somerset": {
+      "destination": "Counties 1 Tribute Ale Western North",
+      "slots": 1
+    },
     "Counties 2 Yorkshire": "Counties 1 Yorkshire",
     "Counties 2 adm Lancashire & Cheshire": "Counties 1 adm Lancashire & Cheshire"
   }

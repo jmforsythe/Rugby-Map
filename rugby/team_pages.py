@@ -32,6 +32,13 @@ logger = logging.getLogger(__name__)
 _POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Championship", "Women's Premiership"})
 
 
+def _tier_display_number(tier_number: int) -> int:
+    """Tier shown in league links; women's pyramid uses 101+ internally — show 1+ instead."""
+    if tier_number >= 101:
+        return tier_number - 100
+    return tier_number
+
+
 def _map_url_for_entry(entry: "LeagueHistoryEntry") -> str | None:
     """Return a relative URL to the map page for a league history entry, or None."""
     season = entry["season"]
@@ -63,7 +70,7 @@ class LeagueHistoryEntry(TypedDict):
     position: int
     league_team_count: int
     tier: tuple[int, str]  # (tier_number, tier_name)
-    tier_display: str  # e.g. "Level 7" or "East Midlands Level 10"
+    tier_display: str  # pyramid tier digit(s); women's 101+ shown without 100 offset
     is_merit: bool
     competition_key: str  # e.g. "CANDY", "" for pyramid
 
@@ -162,9 +169,9 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 if is_merit:
                     comp_key = rel_path.split("/")[1]
                     comp_display = comp_key.replace("_", " ")
-                    tier_display = f"{comp_display} {tier[0]}"
+                    tier_display = f"{comp_display} {_tier_display_number(tier[0])}"
                 else:
-                    tier_display = f"{tier[0]}"
+                    tier_display = f"{_tier_display_number(tier[0])}"
                 teams_data[team_name]["league_history"].append(
                     LeagueHistoryEntry(
                         season=season,

@@ -988,6 +988,7 @@ def _collect_group_geometries(
         "lad": itl_hierarchy["lad_regions"],
         "ward": itl_hierarchy["ward_regions"],
     }
+    lad_to_itl3 = itl_hierarchy["lad_to_itl3"]
 
     item_ids = {id(it) for it in items}
     filtered: dict[str, dict[str, list[_PlacedItem]]] = {}
@@ -1107,7 +1108,14 @@ def _collect_group_geometries(
                 result_cells.extend(split_region(child_level, ck, items_in_child))
 
         for eck in empty_children:
-            fb = closest_group(items_here, child_regions[eck]["centroid"])
+            pool = items_here
+            if level == "lad":
+                itl3_key = lad_to_itl3.get(region_key)
+                if itl3_key:
+                    pool_itl3 = filtered["itl3"].get(itl3_key, [])
+                    if pool_itl3:
+                        pool = pool_itl3
+            fb = closest_group(pool, child_regions[eck]["centroid"])
             if fb:
                 result_cells.append(
                     {

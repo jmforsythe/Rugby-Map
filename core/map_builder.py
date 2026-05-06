@@ -70,6 +70,10 @@ class MapConfig:
     center: tuple[float, float] = (52.5, -1.5)
     zoom: int = 7
     show_debug: bool = True
+    # Optional override for the document <title>. When None, `title` is used.
+    # Lets callers keep `title` short (for legend/header) while giving the HTML
+    # <title> a longer SEO-friendly form.
+    html_title: str | None = None
     tier_entry_level: dict[int, str] = field(default_factory=dict)
     default_tier_entry_level: str = "itl2"
     tier_floor_level: dict[int, str] = field(default_factory=dict)
@@ -1945,7 +1949,7 @@ def generate_single_group_map(
     header = root.header  # type: ignore[attr-defined]
     html_el = root.html  # type: ignore[attr-defined]
 
-    header.add_child(folium.Element(f"<title>{escape(config.title)}</title>"))
+    header.add_child(folium.Element(f"<title>{escape(config.html_title or config.title)}</title>"))
     for elem in config.header_elements:
         header.add_child(folium.Element(elem))
 
@@ -2030,7 +2034,7 @@ def generate_multi_group_map(
     header = root.header  # type: ignore[attr-defined]
     html_el = root.html  # type: ignore[attr-defined]
 
-    header.add_child(folium.Element(f"<title>{escape(config.title)}</title>"))
+    header.add_child(folium.Element(f"<title>{escape(config.html_title or config.title)}</title>"))
     for elem in config.header_elements:
         header.add_child(folium.Element(elem))
 

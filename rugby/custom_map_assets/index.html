@@ -3,11 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Rugby Map Builder</title>
+    <title>Custom Map | RugbyUnionMap</title>
     <meta
       name="description"
-      content="Build custom rugby union maps — select teams, assign them to leagues, and see live territory maps with travel distance statistics."
+      content="Design your own English rugby union map: pick clubs, group them into leagues, and watch territory shading and travel miles update live. Free map builder from RugbyUnionMap."
     />
+    <meta property="og:title" content="Custom Map | RugbyUnionMap" />
+    <meta
+      property="og:description"
+      content="Design your own English rugby union map: pick clubs, group them into leagues, and watch territory shading and travel miles update live. Free map builder from RugbyUnionMap."
+    />
+    <meta property="og:type" content="website" />
+    {{SEO_EXTRA}}
     {{FAVICON_HTML}}
     {{GA_SCRIPT}}
     <link
@@ -73,6 +80,14 @@
         flex-direction: column;
       }
 
+      .app-header__lead {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 14px;
+        min-width: 0;
+      }
+
       /* Header */
       .app-header {
         display: flex;
@@ -91,6 +106,31 @@
       }
       .app-header a:hover {
         color: var(--accent);
+      }
+      .app-header .site-hub-nav {
+        margin: 0;
+        text-align: left;
+        font-size: 13px;
+        color: var(--text-muted);
+        flex: 1 1 auto;
+        min-width: 0;
+        line-height: 1.35;
+      }
+      .app-header .site-hub-nav__a {
+        color: var(--accent);
+      }
+      .app-header .site-hub-nav__a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+      }
+      .app-header .site-hub-nav__here {
+        font-weight: 600;
+        color: var(--text-heading);
+      }
+      .app-header .site-hub-nav__sep {
+        color: var(--text-muted);
+        padding: 0 0.15em;
+        user-select: none;
       }
       .app-header h1 {
         font-size: 16px;
@@ -880,7 +920,10 @@
   </head>
   <body>
     <header class="app-header">
+      <div class="app-header__lead">
       <a href="{{HOME_HREF}}">&larr; Home</a>
+      {{HUB_NAV_HTML}}
+      </div>
       <h1>Custom Map Builder</h1>
       <div class="app-header__tail">
         <span class="app-header__theme-wrap">

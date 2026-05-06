@@ -17,13 +17,21 @@ import json
 import logging
 import re
 import time
+from html import escape as html_escape
 from pathlib import Path
 
 import numpy as np
 from shapely.geometry import Point, mapping, shape
 from shapely.prepared import prep
 
-from core import GeocodedLeague, TravelDistances, get_config, set_config, setup_logging
+from core import (
+    GeocodedLeague,
+    TravelDistances,
+    get_config,
+    get_twitter_card_meta,
+    set_config,
+    setup_logging,
+)
 from core.basemap_tiles import (
     CARTO_THEME_MARK_DARK,
     CARTO_THEME_MARK_LIGHT,
@@ -37,7 +45,9 @@ from rugby.analysis.projected_urls import _parse_projected_md
 from rugby.distance_lookup import DistanceLookup
 from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby.offshore_travel import build_rid_map_from_lookup, offshore_js_payload
+from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, og_image_meta_html
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
+from rugby.webpages import discover_latest_season_dirname, site_hub_nav_block
 
 logger = logging.getLogger(__name__)
 
@@ -732,11 +742,35 @@ def _build_page() -> None:
     home_href = "/" if is_prod else "../index.html"
     info_prefix = "/" if is_prod else "../"
 
+    if is_prod:
+        page_url = f"{BASE_URL}/custom-map/"
+        seo_extra = (
+            f'    <link rel="canonical" href="{html_escape(page_url)}">\n'
+            f'    <meta property="og:url" content="{html_escape(page_url)}" />\n'
+            + og_image_meta_html(html_escape(OG_DEFAULT_IMAGE), indent="    ")
+            + "\n"
+            f"    {get_twitter_card_meta()}\n"
+        )
+    else:
+        seo_extra = ""
+
+    hub_custom_nav = ""
+    hub_latest_slug = discover_latest_season_dirname(DIST_DIR)
+    if hub_latest_slug:
+        hub_custom_nav = site_hub_nav_block(
+            latest_season=hub_latest_slug,
+            dev_prefix_to_dist_root="" if is_prod else "../",
+            highlight="custom_map",
+            css_variant="default",
+        )
+
     replacements = {
         "{{GA_SCRIPT}}": get_google_analytics_script(),
         "{{FAVICON_HTML}}": get_favicon_html(depth=1),
         "{{HOME_HREF}}": home_href,
+        "{{HUB_NAV_HTML}}": hub_custom_nav,
         "{{INFO_PREFIX}}": info_prefix,
+        "{{SEO_EXTRA}}": seo_extra,
         "{{BASEMAP_TILE_URL_LIGHT_JSON}}": json.dumps(CARTO_TILE_URL_LIGHT),
         "{{BASEMAP_TILE_URL_DARK_JSON}}": json.dumps(CARTO_TILE_URL_DARK),
         "{{BASEMAP_MARK_LIGHT_JSON}}": json.dumps(CARTO_THEME_MARK_LIGHT),

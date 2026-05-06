@@ -154,6 +154,9 @@ _SHARED_BOUNDARIES = str(_SCRIPT_DIR / "maps" / "shared" / "boundaries.json")
 
 
 def _build_config(title: str, season: str, *, is_production: bool = False) -> MapConfig:
+    header_elements: list[str] = []
+    if is_production:
+        header_elements.append('<meta name="robots" content="noindex, follow" />')
     return MapConfig(
         title=f"BSLFL {title} {season}",
         center=(51.42, 0.05),
@@ -165,6 +168,7 @@ def _build_config(title: str, season: str, *, is_production: bool = False) -> Ma
         inline_boundaries_file=_SHARED_BOUNDARIES,
         fallback_icon_url=None,
         color_palette=COLOR_PALETTE,
+        header_elements=header_elements,
     )
 
 

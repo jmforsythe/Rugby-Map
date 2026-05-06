@@ -4,7 +4,7 @@ import logging
 import re
 from collections import defaultdict
 from html import escape
-from typing import TypedDict
+from typing import Any, TypedDict
 
 from core import (
     GeocodedLeague,
@@ -13,15 +13,23 @@ from core import (
     get_config,
     get_favicon_html,
     get_google_analytics_script,
+    get_twitter_card_meta,
     set_config,
     setup_logging,
     team_name_to_filepath,
 )
 from core.config import DIST_DIR
-from rugby import DATA_DIR
+from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.seo import BASE_URL as SITE_BASE_URL
+from rugby.seo import OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
-from rugby.webpages import get_footer_html
+from rugby.webpages import (
+    discover_latest_season_dirname,
+    get_footer_html,
+    site_hub_nav_block,
+    site_hub_navigation_urls,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -272,6 +280,42 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     return club_index
 
 
+def _team_page_structured_data(
+    team_name: str,
+    team_data: TeamData,
+    page_url: str,
+) -> str:
+    """JSON-LD SportsTeam block — links this URL to the club entity in Google's knowledge graph.
+
+    Uses `sameAs` to tie your page to the RFU profile so Google understands both
+    URLs describe the same organisation, even when the slug omits "RFC".
+    """
+    payload: dict[str, Any] = {
+        "@context": "https://schema.org",
+        "@type": "SportsTeam",
+        "name": team_name,
+        "sport": "Rugby union",
+        "url": page_url,
+    }
+    rfu_url = team_data.get("url")
+    if rfu_url:
+        payload["sameAs"] = rfu_url
+    lat, lon = team_data.get("latitude"), team_data.get("longitude")
+    if lat is not None and lon is not None:
+        payload["location"] = {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": float(lat),
+                "longitude": float(lon),
+            },
+        }
+    addr = team_data.get("formatted_address") or team_data.get("address")
+    if addr:
+        payload["address"] = {"@type": "PostalAddress", "streetAddress": addr}
+    return json.dumps(payload, ensure_ascii=True)
+
+
 def get_team_page_html(
     team_name: str,
     team_data: TeamData,
@@ -294,7 +338,81 @@ def get_team_page_html(
         seasons_by_year[entry["season"]].append(entry)
 
     num_seasons = len({e["season"] for e in league_history})
-    meta_desc = f"{escape(team_name)} - league history, location, and travel distances and times across {num_seasons} seasons of English rugby union."
+    if league_history:
+        latest = league_history[0]
+        league_nm = latest["league"]
+        tier_raw = latest["tier"][0]
+        n = _tier_display_number(tier_raw)
+        tier_scope = "English women's rugby" if tier_raw >= 101 else "English rugby"
+        meta_desc = escape(
+            f"{team_name}: English rugby union club—{league_nm} (level {n} of "
+            f"{tier_scope}). Ground, league history across {num_seasons} seasons, tier maps, "
+            f"and travel stats. {BRAND}."
+        )
+    else:
+        meta_desc = escape(
+            f"{team_name}: English rugby union club profile—ground address, league history "
+            f"across {num_seasons} seasons, links to seasonal tier maps, and travel statistics. "
+            f"{BRAND}."
+        )
+    page_title = escape(f"{team_name} | League History | {BRAND}")
+
+    latest_hub_slug = all_seasons[0] if all_seasons else ""
+    hub_nav_block = ""
+    crumb_block = ""
+    if latest_hub_slug:
+        hub_nav_block = site_hub_nav_block(
+            latest_season=latest_hub_slug,
+            dev_prefix_to_dist_root="../",
+            highlight=None,
+            css_variant="default",
+        )
+        hub_urls_tp = site_hub_navigation_urls(
+            latest_season=latest_hub_slug,
+            dev_prefix_to_dist_root="../",
+        )
+        crumb_block = (
+            '    <nav class="crumb-trail" aria-label="Breadcrumb">\n'
+            f'        <a href="{escape(hub_urls_tp["home"])}">Home</a>\n'
+            '        <span class="crumb-trail__sep" aria-hidden="true"> › </span>\n'
+            f'        <a href="{escape(hub_urls_tp["teams"])}">Teams</a>\n'
+            '        <span class="crumb-trail__sep" aria-hidden="true"> › </span>\n'
+            f'        <span class="crumb-trail__here">{escape(team_name)}</span>\n'
+            "    </nav>\n"
+        )
+
+    is_prod = get_config().is_production
+    team_file = team_name_to_filepath(team_name)
+    # Canonical URL is only meaningful in production; omit it in local dev builds.
+    canonical_url = f"{SITE_BASE_URL}/teams/{team_file}" if is_prod else ""
+
+    head_extra = ""
+    if canonical_url:
+        cu = escape(canonical_url)
+        # canonical: tells Google which URL to index when the same page is
+        # reachable via multiple paths (e.g. /teams/Oxford and /teams/Oxford.html).
+        head_extra += f'    <link rel="canonical" href="{cu}">\n'
+        # og:url: the definitive share URL for this page.
+        head_extra += f'    <meta property="og:url" content="{cu}" />\n'
+        head_extra += og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ") + "\n"
+        head_extra += f"    {get_twitter_card_meta()}\n"
+        head_extra += (
+            breadcrumb_ld_script(
+                [
+                    ("Home", f"{SITE_BASE_URL}/"),
+                    ("All Teams", f"{SITE_BASE_URL}/teams/"),
+                    (team_name, canonical_url),
+                ],
+                indent="    ",
+            )
+            + "\n"
+        )
+        # JSON-LD SportsTeam — link this page to the RFU entity and coordinates.
+        head_extra += (
+            '    <script type="application/ld+json">'
+            f"{_team_page_structured_data(team_name, team_data, canonical_url)}"
+            "</script>\n"
+        )
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -302,11 +420,11 @@ def get_team_page_html(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{meta_desc}">
-    <meta property="og:title" content="{escape(team_name)} - English Rugby Union" />
+    <meta property="og:title" content="{page_title}" />
     <meta property="og:description" content="{meta_desc}" />
     <meta property="og:type" content="website" />
-    <title>{escape(team_name)} - English Rugby Union Team Info</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>{page_title}</title>
+{head_extra}    <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}
     <style>
         .team-header {{
@@ -438,6 +556,7 @@ def get_team_page_html(
     <div class="back-link">
         <a href="./{ "" if get_config().is_production else "index.html" }">← All Teams</a>
     </div>
+{hub_nav_block}{crumb_block}
 
     <div class="team-header">
         <h1>{escape(team_name)}</h1>
@@ -695,12 +814,50 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         for t in teams_list
     )
 
+    teams_page_title = f"All Teams | {BRAND}"
+    teams_page_desc = (
+        f"Search {len(teams_list)} English rugby union clubs by name. "
+        "Ground addresses, RFU league history, and links to interactive tier maps."
+    )
+
+    teams_head_extra = ""
+    if get_config().is_production:
+        page_url = f"{SITE_BASE_URL}/teams/"
+        teams_head_extra = (
+            f'    <link rel="canonical" href="{escape(page_url)}">\n'
+            f'    <meta property="og:url" content="{escape(page_url)}" />\n'
+            + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
+            + "\n"
+            f"    {get_twitter_card_meta()}\n"
+            + breadcrumb_ld_script(
+                [("Home", f"{SITE_BASE_URL}/"), ("All Teams", page_url)],
+                indent="    ",
+            )
+            + "\n"
+        )
+
+    is_ix_prod = get_config().is_production
+    home_href_teams_ix = "../" if is_ix_prod else "../index.html"
+    latest_hub_teams_ix = discover_latest_season_dirname(DIST_DIR)
+    hub_ix_nav = ""
+    if latest_hub_teams_ix:
+        hub_ix_nav = site_hub_nav_block(
+            latest_season=latest_hub_teams_ix,
+            dev_prefix_to_dist_root="../",
+            highlight="teams",
+            css_variant="default",
+        )
+
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Teams - English Rugby Union</title>
+    <meta name="description" content="{escape(teams_page_desc)}">
+    <meta property="og:title" content="{escape(teams_page_title)}" />
+    <meta property="og:description" content="{escape(teams_page_desc)}" />
+    <meta property="og:type" content="website" />
+{teams_head_extra}    <title>{escape(teams_page_title)}</title>
     <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}
     <style>
@@ -765,8 +922,9 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
 </head>
 <body class="wide-layout">
     <div class="back-link">
-        <a href="../index.html">← Back to Season Maps</a>
+        <a href="{home_href_teams_ix}">← Home</a>
     </div>
+{hub_ix_nav}
 
     <h1>All English Rugby Union Teams</h1>
 

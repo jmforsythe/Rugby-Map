@@ -84,6 +84,11 @@ def get_service_worker_registration_script() -> str:
     """
 
 
+def get_twitter_card_meta() -> str:
+    """Twitter / X card hint; title, description, and image typically match Open Graph."""
+    return '<meta name="twitter:card" content="summary_large_image" />'
+
+
 def get_favicon_html(depth: int = 0) -> str:
     """Return <link> tags for favicon and manifest.
 

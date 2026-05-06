@@ -6,10 +6,251 @@ Creates:
 """
 
 import argparse
+import json
+import re
+from html import escape
 from pathlib import Path
+from typing import Literal
 
-from core import get_config, get_favicon_html, get_google_analytics_script, set_config
+from core import (
+    get_config,
+    get_favicon_html,
+    get_google_analytics_script,
+    get_twitter_card_meta,
+    set_config,
+)
 from core.config import DIST_DIR
+from rugby import BRAND, short_season
+from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+
+SiteHubHighlight = Literal["home", "latest_season", "match_day", "teams", "custom_map"] | None
+
+
+def discover_latest_season_dirname(dist_dir: Path) -> str:
+    """Highest season slug ``YYYY-YYYY`` under dist (same heuristic as ``main()``)."""
+    seasons: list[str] = []
+    for item in dist_dir.iterdir():
+        if (
+            item.is_dir()
+            and not item.name.startswith(".")
+            and "-" in item.name
+            and len(item.name) == 9
+            and re.match(r"\d{4}-\d{4}", item.name)
+        ):
+            seasons.append(item.name)
+    return sorted(seasons, reverse=True)[0] if seasons else ""
+
+
+def site_hub_navigation_urls(*, latest_season: str, dev_prefix_to_dist_root: str) -> dict[str, str]:
+    """Hrefs for the shared hub nav.
+
+    In production uses path-absolute URLs (stable from any subtree). In development
+    *dev_prefix_to_dist_root* is the ``../`` chain from the HTML file's directory up
+    to ``dist`` (empty string only for ``dist/index.html``).
+    """
+    is_prod = get_config().is_production
+    if is_prod:
+        return {
+            "home": "/",
+            "latest_season": f"/{latest_season}/",
+            "match_day": f"/{latest_season}/match_day/",
+            "teams": "/teams/",
+            "custom_map": "/custom-map/",
+        }
+    pref = dev_prefix_to_dist_root
+
+    def jp(path_under_dist: str) -> str:
+        if pref:
+            return f"{pref}{path_under_dist}"
+        if path_under_dist.startswith("./"):
+            return path_under_dist
+        return f"./{path_under_dist}"
+
+    return {
+        "home": jp("index.html"),
+        "latest_season": jp(f"{latest_season}/index.html"),
+        "match_day": jp(f"{latest_season}/match_day/index.html"),
+        "teams": jp("teams/index.html"),
+        "custom_map": jp("custom-map/index.html"),
+    }
+
+
+def format_site_hub_nav_html(
+    urls: dict[str, str],
+    *,
+    latest_season_slug: str,
+    highlight: SiteHubHighlight,
+    css_variant: Literal["default", "map"] = "default",
+) -> str:
+    """Render the horizontal hub ``<nav>`` (breadcrumb-style links between major sections)."""
+    specs: tuple[tuple[str, SiteHubHighlight], ...] = (
+        ("Home", "home"),
+        (latest_season_slug, "latest_season"),
+        ("Match Day", "match_day"),
+        ("Teams", "teams"),
+        ("Custom Map", "custom_map"),
+    )
+    chunks: list[str] = []
+    for label, slot in specs:
+        if highlight == slot:
+            chunks.append(
+                f'<span class="site-hub-nav__here" aria-current="page">{escape(label)}</span>'
+            )
+        else:
+            chunks.append(
+                f'<a class="site-hub-nav__a" href="{escape(urls[slot])}">{escape(label)}</a>'
+            )
+    inner = '<span class="site-hub-nav__sep" aria-hidden="true">·</span>'.join(chunks)
+    variant = " site-hub-nav--map" if css_variant == "map" else ""
+    return f'    <nav class="site-hub-nav{variant}" aria-label="Site sections">{inner}</nav>\n'
+
+
+def site_hub_nav_block(
+    *,
+    latest_season: str,
+    dev_prefix_to_dist_root: str,
+    highlight: SiteHubHighlight,
+    css_variant: Literal["default", "map"] = "default",
+) -> str:
+    """Full hub strip: resolves URLs then renders ``format_site_hub_nav_html``."""
+    urls = site_hub_navigation_urls(
+        latest_season=latest_season,
+        dev_prefix_to_dist_root=dev_prefix_to_dist_root,
+    )
+    return format_site_hub_nav_html(
+        urls,
+        latest_season_slug=latest_season,
+        highlight=highlight,
+        css_variant=css_variant,
+    )
+
+
+def site_hub_nav_for_map_headers(*, subdirectory_depth: int, latest_season: str) -> str:
+    """Hub row for Folium map pages (tier / merit maps)."""
+    if get_config().is_production:
+        dev_p = ""
+    else:
+        dev_p = "../" * (1 + subdirectory_depth)
+    return site_hub_nav_block(
+        latest_season=latest_season,
+        dev_prefix_to_dist_root=dev_p,
+        highlight=None,
+        css_variant="map",
+    )
+
+
+def site_hub_nav_for_match_day_header(*, latest_season: str, season_on_page: str) -> str:
+    """Hub row embedded under the match-day map chrome."""
+    if get_config().is_production:
+        dev_p = ""
+    else:
+        dev_p = "../../"
+    hl: SiteHubHighlight = "match_day" if season_on_page == latest_season else None
+    return site_hub_nav_block(
+        latest_season=latest_season,
+        dev_prefix_to_dist_root=dev_p,
+        highlight=hl,
+        css_variant="map",
+    )
+
+
+_HOME_PAGE_FAQ: tuple[dict[str, str | None], ...] = (
+    {
+        "question": "What about leagues outside the RFU?",
+        "answer_plain": (
+            '"Merit" leagues organised by the local county bodies are included, but the '
+            '"levels" assigned to them are somewhat arbitrary.'
+        ),
+        "answer_html": None,
+    },
+    {
+        "question": "Where is Scotland / Wales?",
+        "answer_plain": (
+            "These are planned for the future, however English leagues were much easier to get "
+            "the data from due to the RFU website layout, especially as it includes address "
+            "data for each team."
+        ),
+        "answer_html": None,
+    },
+    {
+        "question": "Where is Ireland?",
+        "answer_plain": (
+            "All-Ireland League (top 5 levels of domestic rugby) all cover the whole island, "
+            "making league maps redundant. Lower leagues are organised on a provincial basis, "
+            "so the maps for those would need to be collected / organised separately."
+        ),
+        "answer_html": None,
+    },
+    {
+        "question": "How are league boundaries determined?",
+        "answer_plain": (
+            "Areas are shaded on a county / region basis, with counties that are shared "
+            "between leagues further split by wards / smaller statistical areas."
+        ),
+        "answer_html": None,
+    },
+    {
+        "question": "I found an error. How can I report it?",
+        "answer_plain": (
+            "Please open an issue on our GitHub repository with details about the error you found."
+        ),
+        "answer_html": (
+            'Please open an issue on our <a href="https://github.com/jmforsythe/Rugby-Map/issues" '
+            'target="_blank">GitHub repository</a> with details about the error you found.'
+        ),
+    },
+)
+
+
+def _home_page_faq_html() -> str:
+    """Visible FAQ section (aligned with JSON-LD entries)."""
+    blocks: list[str] = []
+    for item in _HOME_PAGE_FAQ:
+        q = escape(str(item["question"]))
+        raw_html = item.get("answer_html")
+        if raw_html:
+            a = str(raw_html)
+        else:
+            a = escape(str(item["answer_plain"]))
+        blocks.append(f"""        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">{q}</div>
+            <div class="faq-answer">{a}</div>
+        </div>""")
+    return "\n\n".join(blocks)
+
+
+def _home_page_json_ld_script() -> str:
+    """Organization, WebSite, and FAQPage structured data for the home page."""
+    org_id = f"{BASE_URL}/#organization"
+    website_id = f"{BASE_URL}/#website"
+    logo_url = f"{BASE_URL}/favicon.svg"
+    faq_main = [
+        {
+            "@type": "Question",
+            "name": str(item["question"]),
+            "acceptedAnswer": {"@type": "Answer", "text": str(item["answer_plain"])},
+        }
+        for item in _HOME_PAGE_FAQ
+    ]
+    graph: list[dict] = [
+        {
+            "@type": "Organization",
+            "@id": org_id,
+            "name": BRAND,
+            "url": BASE_URL,
+            "logo": {"@type": "ImageObject", "url": logo_url},
+        },
+        {
+            "@type": "WebSite",
+            "@id": website_id,
+            "url": BASE_URL,
+            "name": BRAND,
+            "publisher": {"@id": org_id},
+        },
+        {"@type": "FAQPage", "mainEntity": faq_main},
+    ]
+    payload = {"@context": "https://schema.org", "@graph": graph}
+    return f'    <script type="application/ld+json">{json.dumps(payload, ensure_ascii=True)}</script>\n'
 
 
 def get_footer_html() -> str:
@@ -127,7 +368,7 @@ def _build_merit_section(
     return html
 
 
-def get_season_index_html(season: str, tier_files: dict) -> str:
+def get_season_index_html(season: str, tier_files: dict, latest_season: str) -> str:
     """Generate HTML content for a season's index page."""
     mens_tiers: list[tuple[str, str]] = tier_files.get("mens", [])
     womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
@@ -143,16 +384,51 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
             f'<a href="{match_day_href}">Fixtures &amp; Results →</a></div>\n'
         )
 
+    season_short = short_season(season)
+    page_title = f"{season_short} Season | {BRAND}"
+    page_desc = (
+        f"Browse {season_short} maps for every men's and women's league tier—Premiership to "
+        f"Counties, merit competitions, and all-tier views. Club locations, territory shading "
+        f"by county and ward, and travel distances between teams."
+    )
+
+    is_prod = get_config().is_production
+    season_head_extra = ""
+    if is_prod:
+        page_url = f"{BASE_URL}/{season}/"
+        season_head_extra = (
+            f'    <link rel="canonical" href="{escape(page_url)}">\n'
+            f'    <meta property="og:url" content="{escape(page_url)}" />\n'
+            + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
+            + "\n"
+            f"    {get_twitter_card_meta()}\n"
+            + breadcrumb_ld_script(
+                [("Home", f"{BASE_URL}/"), (season, page_url)],
+                indent="    ",
+            )
+            + "\n"
+        )
+
+    hl: SiteHubHighlight = "latest_season" if season == latest_season else None
+    hub_nav = ""
+    if latest_season:
+        hub_nav = site_hub_nav_block(
+            latest_season=latest_season,
+            dev_prefix_to_dist_root="../",
+            highlight=hl,
+            css_variant="default",
+        )
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive maps of English rugby union teams for the {season} season.">
-    <meta property="og:title" content="English Rugby Union Team Maps - {season}" />
-    <meta property="og:description" content="Interactive maps of English rugby union teams for the {season} season." />
+    <meta name="description" content="{escape(page_desc)}">
+    <meta property="og:title" content="{escape(page_title)}" />
+    <meta property="og:description" content="{escape(page_desc)}" />
     <meta property="og:type" content="website" />
-    <title>English Rugby Union Team Maps - {season}</title>
+{season_head_extra}    <title>{escape(page_title)}</title>
     <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}
     {get_google_analytics_script()}
@@ -161,6 +437,7 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     <div class="back-link">
         <a href="../{ "" if get_config().is_production else "index.html" }">← All Seasons</a>
     </div>
+{hub_nav}
 
     <h1>English Rugby Union Team Maps</h1>
     <p>Season: {season}</p>
@@ -223,18 +500,33 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
 
+    home_title = f"{BRAND} \u2013 English Rugby Club & League Maps"
+    home_desc = (
+        "Interactive maps of English rugby union: every club on the map, league territory "
+        "shading, and travel distances across the men's pyramid, county merit leagues, and "
+        "women's tiers. Browse any season from Premiership down to local rugby."
+    )
+
+    home_head_extra = ""
+    if is_prod:
+        home_head_extra = (
+            f'    <link rel="canonical" href="{escape(BASE_URL)}">\n'
+            f'    <meta property="og:url" content="{escape(BASE_URL)}" />\n'
+            + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
+            + "\n"
+            f"    {get_twitter_card_meta()}\n" + _home_page_json_ld_script()
+        )
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interactive maps showing the geographic distribution of English rugby union teams and leagues across 25 seasons.">
-    <meta property="og:title" content="English Rugby Union Team Maps" />
-    <meta property="og:description" content="Interactive maps showing the geographic distribution of English rugby union teams and leagues." />
-    <meta property="og:image" content="https://raw.githubusercontent.com/jmforsythe/Rugby-Map/main/example.png" />
+    <meta name="description" content="{escape(home_desc)}">
+    <meta property="og:title" content="{escape(home_title)}" />
+    <meta property="og:description" content="{escape(home_desc)}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rugbyunionmap.uk" />
-    <title>English Rugby Union Team Maps</title>
+{home_head_extra}    <title>{escape(home_title)}</title>
     <link rel="stylesheet" href="styles.css">
     {get_favicon_html(depth=0)}
     {get_google_analytics_script()}
@@ -273,42 +565,19 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         html += "    </div>\n"
 
     # FAQ section
-    html += """
+    html += f"""
     <div class="faq">
         <h2>FAQ</h2>
 
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">What about leagues outside the RFU?</div>
-            <div class="faq-answer">"Merit" leagues organised by the local county bodies are included, but the "levels" assigned to them are somewhat arbitrary.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">Where is Scotland / Wales?</div>
-            <div class="faq-answer">These are planned for the future, however English leagues were much easier to get the data from due to the RFU website layout, especially as it includes address data for each team.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">Where is Ireland?</div>
-            <div class="faq-answer">All-Ireland League (top 5 levels of domestic rugby) all cover the whole island, making league maps redundant. Lower leagues are organised on a provincial basis, so the maps for those would need to be collected / organised separately.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">How are league boundaries determined?</div>
-            <div class="faq-answer">Areas are shaded on a county / region basis, with counties that are shared between leagues further split by wards / smaller statistical areas.</div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">I found an error. How can I report it?</div>
-            <div class="faq-answer">Please open an issue on our <a href="https://github.com/jmforsythe/Rugby-Map/issues" target="_blank">GitHub repository</a> with details about the error you found.</div>
-        </div>
+{_home_page_faq_html()}
     </div>
 
     <script>
-        function toggleFaq(element) {
+        function toggleFaq(element) {{
             element.classList.toggle('active');
             const answer = element.nextElementSibling;
             answer.classList.toggle('active');
-        }
+        }}
     </script>
 """
 
@@ -441,6 +710,8 @@ def main() -> None:
 
     print(f"Found {len(seasons)} season(s): {', '.join(sorted(seasons))}")
 
+    latest_season_hub = sorted(seasons, reverse=True)[0] if seasons else ""
+
     # Generate index.html for each season
     for season in seasons:
         season_dir = dist_dir / season
@@ -454,7 +725,11 @@ def main() -> None:
             print(f"  Skipping {season} - no tier maps found")
             continue
 
-        html_content = get_season_index_html(season, tier_files)
+        html_content = get_season_index_html(
+            season,
+            tier_files,
+            latest_season=latest_season_hub or season,
+        )
         index_path = season_dir / "index.html"
 
         with open(index_path, "w", encoding="utf-8") as f:

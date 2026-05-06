@@ -32,14 +32,17 @@ from core import (
     get_favicon_html,
     get_google_analytics_script,
     get_service_worker_registration_script,
+    get_twitter_card_meta,
     set_config,
     setup_logging,
 )
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
 from core.map_builder import DARK_MODE_JS, POPUP_CSS
-from rugby import DATA_DIR
+from rugby import BRAND, DATA_DIR, short_season
+from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
+from rugby.webpages import discover_latest_season_dirname, site_hub_nav_for_match_day_header
 
 logger = logging.getLogger(__name__)
 
@@ -48,20 +51,38 @@ RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.
 
 def _match_day_seo_head(season: str) -> str:
     """Return <head> elements for document title, viewport, and Open Graph (match day)."""
-    page_title = f"Match Day Fixtures & Results - {season} | English Rugby Union Team Maps"
+    season_short = short_season(season)
+    page_title = f"Match Day | {season_short} | {BRAND}"
     desc = (
-        f"Browse {season} English rugby union fixtures by match day: "
-        "interactive map of match venues, dates, and results."
+        f"See upcoming {season_short} English rugby fixtures near you: every ground on an "
+        f"interactive map—pan and zoom to your area, then pick a week for kick-offs, scores, "
+        f"and results."
     )
-    url = f"https://rugbyunionmap.uk/{season}/match_day/"
-    return f"""    <title>{escape(page_title)}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{escape(desc)}" />
-    <meta property="og:title" content="{escape(page_title)}" />
-    <meta property="og:description" content="{escape(desc)}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{escape(url)}" />
-"""
+    lines = [
+        f"    <title>{escape(page_title)}</title>",
+        '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
+        f'    <meta name="description" content="{escape(desc)}" />',
+        f'    <meta property="og:title" content="{escape(page_title)}" />',
+        f'    <meta property="og:description" content="{escape(desc)}" />',
+        '    <meta property="og:type" content="website" />',
+    ]
+    if get_config().is_production:
+        url = f"{BASE_URL}/{season}/match_day/"
+        lines.append(f'    <link rel="canonical" href="{escape(url)}">')
+        lines.append(f'    <meta property="og:url" content="{escape(url)}" />')
+        lines.extend(og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ").split("\n"))
+        lines.append(f"    {get_twitter_card_meta()}")
+        lines.append(
+            breadcrumb_ld_script(
+                [
+                    ("Home", f"{BASE_URL}/"),
+                    (season, f"{BASE_URL}/{season}/"),
+                    ("Match Day", url),
+                ],
+                indent="    ",
+            )
+        )
+    return "\n".join(lines) + "\n"
 
 
 COLOR_PALETTE = [
@@ -312,7 +333,13 @@ def build_match_day_map(
     home_href = "../../" if is_prod else "../../index.html"
     season_href = "../" if is_prod else "../index.html"
     season_esc = escape(season)
+    latest_hub_nav = discover_latest_season_dirname(DIST_DIR) or season
+    hub_secondary = site_hub_nav_for_match_day_header(
+        latest_season=latest_hub_nav,
+        season_on_page=season,
+    )
     nav_html = f"""
+    <div class="map-header-wrap" id="mapHeaderWrap">
     <div class="map-header" id="mapHeader">
         <a class="map-header__crumb" href="{home_href}">Home</a>
         <span class="map-header__sep">&rsaquo;</span>
@@ -328,18 +355,24 @@ def build_match_day_map(
         </select>
         </span>
     </div>
+    {hub_secondary}
+    </div>
     <style>
-    .map-header {{
+    .map-header-wrap {{
         position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-        display: flex; align-items: center; gap: 0.4em;
-        padding: 6px 12px;
         background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
         border-bottom: 1px solid #e0e0e0;
+    }}
+    html[data-rugby-effective="dark"] .map-header-wrap {{
+        background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a;
+    }}
+    .map-header {{
+        position: static;
+        display: flex; align-items: center; gap: 0.4em;
+        padding: 6px 12px;
+        border-bottom: none;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
-    }}
-    html[data-rugby-effective="dark"] .map-header {{
-        background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a;
     }}
     .map-header__crumb {{
         text-decoration: none; color: #0066cc; white-space: nowrap;
@@ -391,7 +424,41 @@ def build_match_day_map(
         color: #e0e0e0;
         border-color: #2a2a4a;
     }}
-    .leaflet-top {{ top: 34px !important; }}
+    .site-hub-nav--map {{
+        padding: 3px 12px 6px;
+        font-size: 12px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #666;
+        border-top: 1px solid #e8e8e8;
+        line-height: 1.35;
+    }}
+    html[data-rugby-effective="dark"] .site-hub-nav--map {{
+        color: #aab8d8;
+        border-top-color: #2a2a4a;
+    }}
+    .site-hub-nav--map .site-hub-nav__a {{
+        color: #0066cc;
+        text-decoration: none;
+        white-space: nowrap;
+    }}
+    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__a {{
+        color: #4da6ff;
+    }}
+    .site-hub-nav--map .site-hub-nav__a:hover {{ text-decoration: underline; }}
+    .site-hub-nav--map .site-hub-nav__here {{
+        font-weight: 600;
+        color: #2c3e50;
+        white-space: nowrap;
+    }}
+    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__here {{
+        color: #e0e8f0;
+    }}
+    .site-hub-nav--map .site-hub-nav__sep {{
+        padding: 0 0.2em;
+        color: #aaa;
+        user-select: none;
+    }}
+    .leaflet-top {{ top: 56px !important; }}
     @media (max-width: 480px) {{
         .map-header {{ font-size: 12px; }}
         .map-header__theme-label {{ display: none; }}

@@ -10,6 +10,7 @@ from core.config import (
     get_favicon_html,
     get_google_analytics_script,
     get_service_worker_registration_script,
+    get_twitter_card_meta,
     set_config,
     setup_logging,
 )
@@ -56,6 +57,7 @@ __all__ = [
     "get_favicon_html",
     "get_google_analytics_script",
     "get_service_worker_registration_script",
+    "get_twitter_card_meta",
     "get_headers",
     "get_session",
     "json_load_cache",

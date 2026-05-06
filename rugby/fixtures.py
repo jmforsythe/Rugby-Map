@@ -49,7 +49,7 @@ _EXTRA_FIXTURE_URLS_BY_SEASON: dict[str, list[str]] = {
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
         "competition=2319&division=74972&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74984&season=2025-2026",
+        "competition=2319&division=75126&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
         "competition=2319&division=75083&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
@@ -518,7 +518,7 @@ def main() -> None:
         )
         logger.warning("Wrote %d errors to %s", len(errors), error_log_path)
 
-    if args.force:
+    if scraped > 0:
         _write_timestamp(output_dir)
 
     logger.info(

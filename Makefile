@@ -2,7 +2,7 @@ SEASON ?= 2025-2026
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data all scrape-fixtures match-day test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data all scrape-fixtures match-day review-screenshots test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -26,6 +26,7 @@ help:
 	@echo "  match-day    Generate match-day map with date dropdown"
 	@echo "  custom-map-data  Export team catalogue for custom map builder"
 	@echo "  test         Run unit tests"
+	@echo "  review-screenshots  PNG snapshots under dist/ -> screenshots/review/"
 	@echo "  lint         Run linters"
 	@echo "  clean        Remove generated output files"
 
@@ -77,6 +78,9 @@ scrape-fixtures:
 
 match-day:
 	python -m rugby.match_day --season $(SEASON)
+
+review-screenshots:
+	python scripts/capture_review_screenshots.py
 
 test:
 	python -m pytest tests/ -v

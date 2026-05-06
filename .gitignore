@@ -34,6 +34,9 @@ data/scotland/*
 
 .cursor/*
 
+# Local review screenshots (see scripts/capture_review_screenshots.py)
+screenshots/review/
+
 scotland/*
 !scotland/__init__.py
 !scotland/*.py

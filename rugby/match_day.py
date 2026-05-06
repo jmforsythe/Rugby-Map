@@ -42,7 +42,6 @@ from core.map_builder import DARK_MODE_JS, POPUP_CSS
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
-from rugby.webpages import discover_latest_season_dirname, site_hub_nav_for_match_day_header
 
 logger = logging.getLogger(__name__)
 
@@ -333,17 +332,15 @@ def build_match_day_map(
     home_href = "../../" if is_prod else "../../index.html"
     season_href = "../" if is_prod else "../index.html"
     season_esc = escape(season)
-    latest_hub_nav = discover_latest_season_dirname(DIST_DIR) or season
-    hub_secondary = site_hub_nav_for_match_day_header(
-        latest_season=latest_hub_nav,
-        season_on_page=season,
-    )
+    home_h_e = escape(home_href)
+    season_h_e = escape(season_href)
+
     nav_html = f"""
     <div class="map-header-wrap" id="mapHeaderWrap">
     <div class="map-header" id="mapHeader">
-        <a class="map-header__crumb" href="{home_href}">Home</a>
+        <a class="map-header__crumb" href="{home_h_e}">Home</a>
         <span class="map-header__sep">&rsaquo;</span>
-        <a class="map-header__crumb" href="{season_href}">{season_esc}</a>
+        <a class="map-header__crumb" href="{season_h_e}">{season_esc}</a>
         <span class="map-header__sep">&rsaquo;</span>
         <span class="map-header__title">Match Day</span>
         <span class="map-header__theme">
@@ -355,7 +352,6 @@ def build_match_day_map(
         </select>
         </span>
     </div>
-    {hub_secondary}
     </div>
     <style>
     .map-header-wrap {{
@@ -424,47 +420,30 @@ def build_match_day_map(
         color: #e0e0e0;
         border-color: #2a2a4a;
     }}
-    .site-hub-nav--map {{
-        padding: 3px 12px 6px;
-        font-size: 12px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        color: #666;
-        border-top: 1px solid #e8e8e8;
-        line-height: 1.35;
+    .leaflet-top {{
+        top: var(--rugby-map-chrome-top, 56px) !important;
     }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map {{
-        color: #aab8d8;
-        border-top-color: #2a2a4a;
-    }}
-    .site-hub-nav--map .site-hub-nav__a {{
-        color: #0066cc;
-        text-decoration: none;
-        white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__a {{
-        color: #4da6ff;
-    }}
-    .site-hub-nav--map .site-hub-nav__a:hover {{ text-decoration: underline; }}
-    .site-hub-nav--map .site-hub-nav__here {{
-        font-weight: 600;
-        color: #2c3e50;
-        white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__here {{
-        color: #e0e8f0;
-    }}
-    .site-hub-nav--map .site-hub-nav__sep {{
-        padding: 0 0.2em;
-        color: #aaa;
-        user-select: none;
-    }}
-    .leaflet-top {{ top: 56px !important; }}
     @media (max-width: 480px) {{
         .map-header {{ font-size: 12px; }}
         .map-header__theme-label {{ display: none; }}
         .map-header__theme-select {{ max-width: 100px; font-size: 11px; }}
     }}
     </style>
+    <script>
+    (function () {{
+        function syncRugbyMapChromeTop() {{
+            var el = document.getElementById("mapHeaderWrap");
+            var px = el && el.offsetHeight ? String(el.offsetHeight) + "px" : "56px";
+            document.documentElement.style.setProperty("--rugby-map-chrome-top", px);
+        }}
+        syncRugbyMapChromeTop();
+        window.addEventListener("resize", syncRugbyMapChromeTop);
+        var wrap = document.getElementById("mapHeaderWrap");
+        if (wrap && window.ResizeObserver) {{
+            new ResizeObserver(syncRugbyMapChromeTop).observe(wrap);
+        }}
+    }})();
+    </script>
     """
     html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(nav_html))

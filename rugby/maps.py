@@ -40,7 +40,6 @@ from core.map_builder import (
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
-from rugby.webpages import discover_latest_season_dirname, site_hub_nav_for_map_headers
 
 logger = logging.getLogger(__name__)
 
@@ -229,9 +228,8 @@ def _header_bar_html(
     subdirectory_depth: int = 0,
     sibling_tiers: list[tuple[str, str]] | None = None,
     current_tier: str | None = None,
-    latest_season_for_hub: str | None = None,
 ) -> str:
-    """Build a fixed breadcrumb header: Home › season › map title (or dropdown)."""
+    """Fixed map chrome: Home › season › title (or tier dropdown), plus appearance."""
     is_prod = get_config().is_production
 
     if is_prod:
@@ -240,13 +238,6 @@ def _header_bar_html(
     else:
         home_href = "../" * (1 + subdirectory_depth) + "index.html"
         season_href = "../" * subdirectory_depth + "index.html"
-
-    hub_row = ""
-    if latest_season_for_hub:
-        hub_row = site_hub_nav_for_map_headers(
-            subdirectory_depth=subdirectory_depth,
-            latest_season=latest_season_for_hub,
-        )
 
     if sibling_tiers and len(sibling_tiers) > 1:
         options = []
@@ -267,21 +258,21 @@ def _header_bar_html(
     return f"""
     <div class="map-header-wrap" id="mapHeaderWrap">
     <div class="map-header" id="mapHeader">
-        <a class="map-header__crumb" href="{home_href}">Home</a>
+        <a class="map-header__crumb" href="{escape(home_href)}">Home</a>
         <span class="map-header__sep">&rsaquo;</span>
-        <a class="map-header__crumb" href="{season_href}">{season_esc}</a>
+        <a class="map-header__crumb" href="{escape(season_href)}">{season_esc}</a>
         <span class="map-header__sep">&rsaquo;</span>
         {title_html}
         <span class="map-header__theme">
         <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
-        <select id="rugbyMapThemeSelect" class="map-header__theme-select" aria-label="Map color theme">
+        <select id="rugbyMapThemeSelect" class="map-header__theme-select"
+            aria-label="Map color theme">
             <option value="light">Light</option>
             <option value="system" selected>System</option>
             <option value="dark">Dark</option>
         </select>
         </span>
     </div>
-    {hub_row}
     </div>
     <style>
     .map-header-wrap {{
@@ -358,41 +349,9 @@ def _header_bar_html(
         color: #e0e0e0;
         border-color: #2a2a4a;
     }}
-    .site-hub-nav--map {{
-        padding: 3px 12px 6px;
-        font-size: 12px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        color: #666;
-        border-top: 1px solid #e8e8e8;
-        line-height: 1.35;
+    .leaflet-top {{
+        top: var(--rugby-map-chrome-top, 56px) !important;
     }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map {{
-        color: #aab8d8;
-        border-top-color: #2a2a4a;
-    }}
-    .site-hub-nav--map .site-hub-nav__a {{
-        color: #0066cc;
-        text-decoration: none;
-        white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__a {{
-        color: #4da6ff;
-    }}
-    .site-hub-nav--map .site-hub-nav__a:hover {{ text-decoration: underline; }}
-    .site-hub-nav--map .site-hub-nav__here {{
-        font-weight: 600;
-        color: #2c3e50;
-        white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .site-hub-nav--map .site-hub-nav__here {{
-        color: #e0e8f0;
-    }}
-    .site-hub-nav--map .site-hub-nav__sep {{
-        padding: 0 0.2em;
-        color: #aaa;
-        user-select: none;
-    }}
-    .leaflet-top {{ top: 56px !important; }}
     @media (max-width: 480px) {{
         .map-header {{ font-size: 12px; }}
         .map-header__select {{ max-width: 140px; font-size: 11px; }}
@@ -400,6 +359,21 @@ def _header_bar_html(
         .map-header__theme-select {{ max-width: 100px; font-size: 11px; }}
     }}
     </style>
+    <script>
+    (function () {{
+        function syncRugbyMapChromeTop() {{
+            var el = document.getElementById("mapHeaderWrap");
+            var px = el && el.offsetHeight ? String(el.offsetHeight) + "px" : "56px";
+            document.documentElement.style.setProperty("--rugby-map-chrome-top", px);
+        }}
+        syncRugbyMapChromeTop();
+        window.addEventListener("resize", syncRugbyMapChromeTop);
+        var wrap = document.getElementById("mapHeaderWrap");
+        if (wrap && window.ResizeObserver) {{
+            new ResizeObserver(syncRugbyMapChromeTop).observe(wrap);
+        }}
+    }})();
+    </script>
     """
 
 
@@ -516,7 +490,6 @@ def _build_config(
     sibling_tiers: list[tuple[str, str]] | None = None,
     current_tier: str | None = None,
     output_file: Path | None = None,
-    latest_season_for_hub: str | None = None,
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
@@ -535,10 +508,6 @@ def _build_config(
     *output_file* is the target HTML path passed to ``generate_*_map``. In
     production builds, canonical and Open Graph URLs are derived from its path
     under ``dist/``.
-
-    *latest_season_for_hub* slug populates hub links to the current season and
-    latest match-day map; use the newest ``YYYY-YYYY`` under ``dist``. When omitted
-    or empty the secondary hub row is omitted.
     """
     is_prod = get_config().is_production
 
@@ -591,7 +560,6 @@ def _build_config(
             subdirectory_depth,
             sibling_tiers=sibling_tiers,
             current_tier=current_tier,
-            latest_season_for_hub=latest_season_for_hub,
         )
     ]
 
@@ -743,6 +711,9 @@ def main() -> None:
     mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]
     womens_pyramid = [it for it in loaded.pyramid if it.tier_num >= 100]
 
+    _, mens_tier_order_for_header = _group_by_tier(mens_pyramid)
+    _, womens_tier_order_for_header = _group_by_tier(womens_pyramid)
+
     if args.tiers:
         mens_pyramid = [it for it in mens_pyramid if it.tier in args.tiers]
         womens_pyramid = [it for it in womens_pyramid if it.tier in args.tiers]
@@ -793,7 +764,8 @@ def main() -> None:
 
     output_dir = DIST_DIR / season
     is_prod = get_config().is_production
-    latest_hub_for_nav = discover_latest_season_dirname(DIST_DIR) or season
+    mens_header_tier_links = _tier_sibling_links(mens_tier_order_for_header, is_prod)
+    womens_header_tier_links = _tier_sibling_links(womens_tier_order_for_header, is_prod)
     territory_cache: TerritoryCache = {}
 
     logger.debug("Exporting shared boundary data...")
@@ -822,7 +794,6 @@ def main() -> None:
     # ------------------------------------------------------------------
     if gen_mens_individual:
         mens_by_tier_r, mens_tier_order_r = _group_by_tier(mens_pyramid_r)
-        mens_siblings = _tier_sibling_links(mens_tier_order_r, is_prod)
 
         if mens_by_tier_r:
             logger.info("Creating men's pyramid tier maps...")
@@ -835,10 +806,9 @@ def main() -> None:
                     season,
                     show_debug,
                     _rotated_palette(tier_num),
-                    sibling_tiers=mens_siblings,
+                    sibling_tiers=mens_header_tier_links,
                     current_tier=tier_name,
                     output_file=out,
-                    latest_season_for_hub=latest_hub_for_nav,
                 )
                 generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
@@ -854,7 +824,6 @@ def main() -> None:
                         show_debug,
                         _rotated_palette(tier_num),
                         output_file=out,
-                        latest_season_for_hub=latest_hub_for_nav,
                     )
                     generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
 
@@ -880,14 +849,12 @@ def main() -> None:
                     show_debug,
                     _rotated_palette(tier_num),
                     output_file=out,
-                    latest_season_for_hub=latest_hub_for_nav,
                 )
                 generate_single_group_map(merit_items, out, itl_hierarchy, config, territory_cache)
 
     if gen_womens_individual and womens_by_tier:
         logger.info("Creating women's pyramid tier maps...")
         womens_by_tier_r, womens_tier_order_r = _group_by_tier(womens_pyramid_r)
-        womens_siblings = _tier_sibling_links(womens_tier_order_r, is_prod)
         for tier_name in womens_tier_order_r:
             tier_items = womens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
@@ -897,10 +864,9 @@ def main() -> None:
                 season,
                 show_debug,
                 _rotated_palette(tier_num),
-                sibling_tiers=womens_siblings,
+                sibling_tiers=womens_header_tier_links,
                 current_tier=tier_name,
                 output_file=out,
-                latest_season_for_hub=latest_hub_for_nav,
             )
             generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
@@ -915,7 +881,6 @@ def main() -> None:
             season,
             show_debug,
             output_file=out,
-            latest_season_for_hub=latest_hub_for_nav,
         )
         generate_multi_group_map(mens_pyramid_r, out, itl_hierarchy, config, territory_cache)
 
@@ -927,7 +892,6 @@ def main() -> None:
             season,
             show_debug,
             output_file=out,
-            latest_season_for_hub=latest_hub_for_nav,
         )
         generate_multi_group_map(womens_pyramid_r, out, itl_hierarchy, config, territory_cache)
 
@@ -944,7 +908,6 @@ def main() -> None:
                 season,
                 show_debug,
                 output_file=out,
-                latest_season_for_hub=latest_hub_for_nav,
             )
             generate_multi_group_map(mens_all, out, itl_hierarchy, config, territory_cache)
 
@@ -983,7 +946,6 @@ def main() -> None:
                 tier_entry_level={},
                 tier_floor_level={},
                 output_file=out,
-                latest_season_for_hub=latest_hub_for_nav,
             )
             generate_multi_group_map(comp_items_r, out, itl_hierarchy, config, territory_cache)
 
@@ -1006,7 +968,6 @@ def main() -> None:
                     sibling_tiers=comp_siblings,
                     current_tier=tier_name,
                     output_file=out,
-                    latest_season_for_hub=latest_hub_for_nav,
                 )
                 generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 

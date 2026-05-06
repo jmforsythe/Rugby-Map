@@ -10,7 +10,6 @@ import json
 import re
 from html import escape
 from pathlib import Path
-from typing import Literal
 
 from core import (
     get_config,
@@ -22,8 +21,6 @@ from core import (
 from core.config import DIST_DIR
 from rugby import BRAND, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
-
-SiteHubHighlight = Literal["home", "latest_season", "match_day", "teams", "custom_map"] | None
 
 
 def discover_latest_season_dirname(dist_dir: Path) -> str:
@@ -39,119 +36,6 @@ def discover_latest_season_dirname(dist_dir: Path) -> str:
         ):
             seasons.append(item.name)
     return sorted(seasons, reverse=True)[0] if seasons else ""
-
-
-def site_hub_navigation_urls(*, latest_season: str, dev_prefix_to_dist_root: str) -> dict[str, str]:
-    """Hrefs for the shared hub nav.
-
-    In production uses path-absolute URLs (stable from any subtree). In development
-    *dev_prefix_to_dist_root* is the ``../`` chain from the HTML file's directory up
-    to ``dist`` (empty string only for ``dist/index.html``).
-    """
-    is_prod = get_config().is_production
-    if is_prod:
-        return {
-            "home": "/",
-            "latest_season": f"/{latest_season}/",
-            "match_day": f"/{latest_season}/match_day/",
-            "teams": "/teams/",
-            "custom_map": "/custom-map/",
-        }
-    pref = dev_prefix_to_dist_root
-
-    def jp(path_under_dist: str) -> str:
-        if pref:
-            return f"{pref}{path_under_dist}"
-        if path_under_dist.startswith("./"):
-            return path_under_dist
-        return f"./{path_under_dist}"
-
-    return {
-        "home": jp("index.html"),
-        "latest_season": jp(f"{latest_season}/index.html"),
-        "match_day": jp(f"{latest_season}/match_day/index.html"),
-        "teams": jp("teams/index.html"),
-        "custom_map": jp("custom-map/index.html"),
-    }
-
-
-def format_site_hub_nav_html(
-    urls: dict[str, str],
-    *,
-    latest_season_slug: str,
-    highlight: SiteHubHighlight,
-    css_variant: Literal["default", "map"] = "default",
-) -> str:
-    """Render the horizontal hub ``<nav>`` (breadcrumb-style links between major sections)."""
-    specs: tuple[tuple[str, SiteHubHighlight], ...] = (
-        ("Home", "home"),
-        (latest_season_slug, "latest_season"),
-        ("Match Day", "match_day"),
-        ("Teams", "teams"),
-        ("Custom Map", "custom_map"),
-    )
-    chunks: list[str] = []
-    for label, slot in specs:
-        if highlight == slot:
-            chunks.append(
-                f'<span class="site-hub-nav__here" aria-current="page">{escape(label)}</span>'
-            )
-        else:
-            chunks.append(
-                f'<a class="site-hub-nav__a" href="{escape(urls[slot])}">{escape(label)}</a>'
-            )
-    inner = '<span class="site-hub-nav__sep" aria-hidden="true">·</span>'.join(chunks)
-    variant = " site-hub-nav--map" if css_variant == "map" else ""
-    return f'    <nav class="site-hub-nav{variant}" aria-label="Site sections">{inner}</nav>\n'
-
-
-def site_hub_nav_block(
-    *,
-    latest_season: str,
-    dev_prefix_to_dist_root: str,
-    highlight: SiteHubHighlight,
-    css_variant: Literal["default", "map"] = "default",
-) -> str:
-    """Full hub strip: resolves URLs then renders ``format_site_hub_nav_html``."""
-    urls = site_hub_navigation_urls(
-        latest_season=latest_season,
-        dev_prefix_to_dist_root=dev_prefix_to_dist_root,
-    )
-    return format_site_hub_nav_html(
-        urls,
-        latest_season_slug=latest_season,
-        highlight=highlight,
-        css_variant=css_variant,
-    )
-
-
-def site_hub_nav_for_map_headers(*, subdirectory_depth: int, latest_season: str) -> str:
-    """Hub row for Folium map pages (tier / merit maps)."""
-    if get_config().is_production:
-        dev_p = ""
-    else:
-        dev_p = "../" * (1 + subdirectory_depth)
-    return site_hub_nav_block(
-        latest_season=latest_season,
-        dev_prefix_to_dist_root=dev_p,
-        highlight=None,
-        css_variant="map",
-    )
-
-
-def site_hub_nav_for_match_day_header(*, latest_season: str, season_on_page: str) -> str:
-    """Hub row embedded under the match-day map chrome."""
-    if get_config().is_production:
-        dev_p = ""
-    else:
-        dev_p = "../../"
-    hl: SiteHubHighlight = "match_day" if season_on_page == latest_season else None
-    return site_hub_nav_block(
-        latest_season=latest_season,
-        dev_prefix_to_dist_root=dev_p,
-        highlight=hl,
-        css_variant="map",
-    )
 
 
 _HOME_PAGE_FAQ: tuple[dict[str, str | None], ...] = (
@@ -368,7 +252,7 @@ def _build_merit_section(
     return html
 
 
-def get_season_index_html(season: str, tier_files: dict, latest_season: str) -> str:
+def get_season_index_html(season: str, tier_files: dict) -> str:
     """Generate HTML content for a season's index page."""
     mens_tiers: list[tuple[str, str]] = tier_files.get("mens", [])
     womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
@@ -409,16 +293,6 @@ def get_season_index_html(season: str, tier_files: dict, latest_season: str) -> 
             + "\n"
         )
 
-    hl: SiteHubHighlight = "latest_season" if season == latest_season else None
-    hub_nav = ""
-    if latest_season:
-        hub_nav = site_hub_nav_block(
-            latest_season=latest_season,
-            dev_prefix_to_dist_root="../",
-            highlight=hl,
-            css_variant="default",
-        )
-
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -437,7 +311,6 @@ def get_season_index_html(season: str, tier_files: dict, latest_season: str) -> 
     <div class="back-link">
         <a href="../{ "" if get_config().is_production else "index.html" }">← All Seasons</a>
     </div>
-{hub_nav}
 
     <h1>English Rugby Union Team Maps</h1>
     <p>Season: {season}</p>
@@ -710,8 +583,6 @@ def main() -> None:
 
     print(f"Found {len(seasons)} season(s): {', '.join(sorted(seasons))}")
 
-    latest_season_hub = sorted(seasons, reverse=True)[0] if seasons else ""
-
     # Generate index.html for each season
     for season in seasons:
         season_dir = dist_dir / season
@@ -725,11 +596,7 @@ def main() -> None:
             print(f"  Skipping {season} - no tier maps found")
             continue
 
-        html_content = get_season_index_html(
-            season,
-            tier_files,
-            latest_season=latest_season_hub or season,
-        )
+        html_content = get_season_index_html(season, tier_files)
         index_path = season_dir / "index.html"
 
         with open(index_path, "w", encoding="utf-8") as f:

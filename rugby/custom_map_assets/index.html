@@ -80,14 +80,6 @@
         flex-direction: column;
       }
 
-      .app-header__lead {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px 14px;
-        min-width: 0;
-      }
-
       /* Header */
       .app-header {
         display: flex;
@@ -107,32 +99,14 @@
       .app-header a:hover {
         color: var(--accent);
       }
-      .app-header .site-hub-nav {
-        margin: 0;
-        text-align: left;
-        font-size: 13px;
-        color: var(--text-muted);
-        flex: 1 1 auto;
-        min-width: 0;
-        line-height: 1.35;
-      }
-      .app-header .site-hub-nav__a {
-        color: var(--accent);
-      }
-      .app-header .site-hub-nav__a:hover {
-        color: var(--accent-hover);
-        text-decoration: underline;
-      }
-      .app-header .site-hub-nav__here {
-        font-weight: 600;
-        color: var(--text-heading);
-      }
-      .app-header .site-hub-nav__sep {
-        color: var(--text-muted);
-        padding: 0 0.15em;
-        user-select: none;
+      .app-header__home {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 14px;
       }
       .app-header h1 {
+        flex: 1 1 auto;
+        min-width: 0;
         font-size: 16px;
         font-weight: 600;
         color: var(--text-heading);
@@ -920,10 +894,7 @@
   </head>
   <body>
     <header class="app-header">
-      <div class="app-header__lead">
-      <a href="{{HOME_HREF}}">&larr; Home</a>
-      {{HUB_NAV_HTML}}
-      </div>
+      {{HOME_LINK_HTML}}
       <h1>Custom Map Builder</h1>
       <div class="app-header__tail">
         <span class="app-header__theme-wrap">

@@ -24,12 +24,7 @@ from rugby.addresses import team_name_to_club_name
 from rugby.seo import BASE_URL as SITE_BASE_URL
 from rugby.seo import OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
-from rugby.webpages import (
-    discover_latest_season_dirname,
-    get_footer_html,
-    site_hub_nav_block,
-    site_hub_navigation_urls,
-)
+from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
 
@@ -357,31 +352,9 @@ def get_team_page_html(
         )
     page_title = escape(f"{team_name} | League History | {BRAND}")
 
-    latest_hub_slug = all_seasons[0] if all_seasons else ""
-    hub_nav_block = ""
-    crumb_block = ""
-    if latest_hub_slug:
-        hub_nav_block = site_hub_nav_block(
-            latest_season=latest_hub_slug,
-            dev_prefix_to_dist_root="../",
-            highlight=None,
-            css_variant="default",
-        )
-        hub_urls_tp = site_hub_navigation_urls(
-            latest_season=latest_hub_slug,
-            dev_prefix_to_dist_root="../",
-        )
-        crumb_block = (
-            '    <nav class="crumb-trail" aria-label="Breadcrumb">\n'
-            f'        <a href="{escape(hub_urls_tp["home"])}">Home</a>\n'
-            '        <span class="crumb-trail__sep" aria-hidden="true"> › </span>\n'
-            f'        <a href="{escape(hub_urls_tp["teams"])}">Teams</a>\n'
-            '        <span class="crumb-trail__sep" aria-hidden="true"> › </span>\n'
-            f'        <span class="crumb-trail__here">{escape(team_name)}</span>\n'
-            "    </nav>\n"
-        )
-
     is_prod = get_config().is_production
+    teams_index_href = "./" if is_prod else "./index.html"
+
     team_file = team_name_to_filepath(team_name)
     # Canonical URL is only meaningful in production; omit it in local dev builds.
     canonical_url = f"{SITE_BASE_URL}/teams/{team_file}" if is_prod else ""
@@ -554,9 +527,8 @@ def get_team_page_html(
 </head>
 <body>
     <div class="back-link">
-        <a href="./{ "" if get_config().is_production else "index.html" }">← All Teams</a>
+        <a href="{escape(teams_index_href)}">← All Teams</a>
     </div>
-{hub_nav_block}{crumb_block}
 
     <div class="team-header">
         <h1>{escape(team_name)}</h1>
@@ -838,15 +810,6 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
 
     is_ix_prod = get_config().is_production
     home_href_teams_ix = "../" if is_ix_prod else "../index.html"
-    latest_hub_teams_ix = discover_latest_season_dirname(DIST_DIR)
-    hub_ix_nav = ""
-    if latest_hub_teams_ix:
-        hub_ix_nav = site_hub_nav_block(
-            latest_season=latest_hub_teams_ix,
-            dev_prefix_to_dist_root="../",
-            highlight="teams",
-            css_variant="default",
-        )
 
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
@@ -924,7 +887,6 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
     <div class="back-link">
         <a href="{home_href_teams_ix}">← Home</a>
     </div>
-{hub_ix_nav}
 
     <h1>All English Rugby Union Teams</h1>
 

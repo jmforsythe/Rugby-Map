@@ -45,7 +45,7 @@ _RFU_BASE = "https://www.englandrugby.com"
 _EXTRA_FIXTURE_URLS_BY_SEASON: dict[str, list[str]] = {
     "2025-2026": [
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74973&season=2025-2026",
+        "competition=2319&division=75192&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
         "competition=2319&division=74972&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"

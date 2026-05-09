@@ -17,7 +17,9 @@ from typing import Any, TypedDict, cast
 
 import folium
 import numpy as np
+from branca.element import MacroElement
 from folium.plugins import FeatureGroupSubGroup, MarkerCluster
+from folium.template import Template as FoliumTemplate
 from scipy.spatial import Voronoi
 from shapely.geometry import MultiPolygon, Point, Polygon, mapping, shape
 from shapely.geometry.base import BaseGeometry
@@ -1339,6 +1341,132 @@ html[data-rugby-effective="dark"] .rugby-theme-float select {
     display: none;
   }
 }
+
+/* ── Leaflet layer control — align with map header / site chrome (all Folium rugby maps) ── */
+.folium-map .leaflet-control-layers {
+  border-radius: 8px;
+  overflow: visible;
+}
+.folium-map:not(.rugby-map-dark) .leaflet-control-layers {
+  background: #fff;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.folium-map:not(.rugby-map-dark) .leaflet-control-layers-toggle {
+  background: #fff;
+  border: 1px solid #ddd;
+}
+.folium-map:not(.rugby-map-dark) .leaflet-control-layers-toggle:hover {
+  background: #f5f8fc;
+}
+.folium-map .leaflet-control-layers-expanded {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.folium-map:not(.rugby-map-dark) .leaflet-control-layers-expanded {
+  padding: 5px;
+}
+.folium-map.rugby-map-dark .leaflet-control-layers-expanded {
+  padding: 5px;
+}
+.folium-map .leaflet-control-layers-expanded .leaflet-control-layers-list {
+  padding: 2px;
+}
+/* Scroll long overlay lists — shared max-height; typography stays consistent (no oversized mobile fonts). */
+.folium-map .leaflet-control-layers-list {
+  overflow-y: auto !important;
+  max-height: min(70vh, 480px);
+}
+@media only screen and (max-width: 768px) {
+  .folium-map .leaflet-control-layers-list {
+    max-height: min(55vh, 360px);
+    font-size: 13px;
+  }
+}
+.folium-map:not(.rugby-map-dark) .leaflet-control-layers-separator {
+  border-top-color: #e8e8e8;
+}
+
+/* Bulk overlay actions (shown when an overlays section exists) */
+.folium-map .rugby-layers-bulk-row-wrap {
+  padding: 0 3px 6px 3px;
+  margin: 2px -2px 4px -2px;
+  border-bottom: 1px solid #eaeaea;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-row-wrap {
+  border-bottom-color: #2a354f;
+}
+.folium-map .rugby-layers-bulk-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.folium-map .rugby-layers-bulk-hint {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  flex: 1 1 100%;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-hint {
+  color: #9aaccc;
+}
+.folium-map .rugby-layers-bulk-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: linear-gradient(#fff, #f2f2f2);
+  color: #333;
+  cursor: pointer;
+}
+.folium-map .rugby-layers-bulk-btn:hover {
+  background: #e9eef5;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-btn {
+  background: linear-gradient(#243352, #1e2a45);
+  border-color: #3d4f73;
+  color: #e0e8f0;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-btn:hover {
+  background: #2f4165;
+}
+
+/* Tier maps: territory vs markers bulk rows */
+.folium-map .rugby-layers-bulk-split {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid #e8e8e8;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-split {
+  border-top-color: #2a354f;
+}
+.folium-map .rugby-layers-bulk-subrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.folium-map .rugby-layers-bulk-tag {
+  min-width: 4.5em;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+.folium-map.rugby-map-dark .rugby-layers-bulk-tag {
+  color: #9eb6d8;
+}
+
 </style>
 """
 
@@ -1702,9 +1830,7 @@ def _legend(
             cat_items = by_category[cat]
             if show_sub:
                 label = escape(cat) if cat else "Other"
-                html += (
-                    f'<p style="margin:6px 0 2px 8px;">' f"<i>{label}</i> ({len(cat_items)})</p>"
-                )
+                html += f'<p style="margin:6px 0 2px 8px;"><i>{label}</i> ({len(cat_items)})</p>'
             indent = "23px" if show_sub else "15px"
             for grp in sorted({it["group"] for it in cat_items}):
                 color = group_colors[grp]
@@ -1737,26 +1863,162 @@ def _legend(
     return folium.Element(html)
 
 
-def _add_layer_control(m: folium.Map) -> None:
-    folium.LayerControl().add_to(m)
-    header = m.get_root().header  # type: ignore[attr-defined]
-    header.add_child(folium.Element("""
-    <script>
-    (function hookLayerControl() {
-        if (!window.L || !L.Control || !L.Control.Layers) { setTimeout(hookLayerControl, 50); return; }
-        if (L.Control.Layers.prototype._layerControlHooked) { return; }
-        var orig = L.Control.Layers.prototype.addTo;
+# Injected into ``Figure.script`` (bottom of page) *before* ``L.control.layers().addTo`` — not
+# ``<head>``. A head script runs before Leaflet loads and races the page's layer ``addTo``, so the
+# ``L.Control.Layers`` prototype hook never applies and bulk buttons never appear.
+_LAYER_CONTROL_HOOK_JS = r"""
+(function() {
+    /** Matches ``FeatureGroup`` names from ``generate_*_group_map`` (territory shading vs crest markers). */
+    function rugbyLayerEntryName(ent) {
+        return typeof ent.name === 'string' ? ent.name : '';
+    }
+    function rugbyIsTerritoryOverlay(ent) {
+        return rugbyLayerEntryName(ent).indexOf(' - Territory') !== -1;
+    }
+    function rugbyIsMarkersOverlay(ent) {
+        return rugbyLayerEntryName(ent).indexOf(' - Markers') !== -1;
+    }
+    function rugbyHasTerritoryMarkerSplit(ctrl) {
+        if (!ctrl || typeof ctrl._layers !== 'object') {
+            return false;
+        }
+        var hasT = false, hasM = false, lid;
+        for (lid in ctrl._layers) {
+            if (!Object.prototype.hasOwnProperty.call(ctrl._layers, lid)) continue;
+            var ent = ctrl._layers[lid];
+            if (!ent || !ent.overlay) continue;
+            if (rugbyIsTerritoryOverlay(ent)) hasT = true;
+            if (rugbyIsMarkersOverlay(ent)) hasM = true;
+        }
+        return hasT && hasM;
+    }
+    function rugbyApplyOverlayBulkFiltered(map, enable, predicate) {
+        var ctrl = window.layerControl;
+        if (!ctrl || !map || typeof ctrl._layers !== 'object') {
+            return;
+        }
+        var lid;
+        for (lid in ctrl._layers) {
+            if (!Object.prototype.hasOwnProperty.call(ctrl._layers, lid)) continue;
+            var ent = ctrl._layers[lid];
+            if (!ent || !ent.overlay || !ent.layer) continue;
+            if (predicate && !predicate(ent)) continue;
+            if (enable) {
+                if (!map.hasLayer(ent.layer)) map.addLayer(ent.layer);
+            } else if (map.hasLayer(ent.layer)) {
+                map.removeLayer(ent.layer);
+            }
+        }
+    }
+    function rugbyInstallBulkToolbar() {
+        var ctrl = window.layerControl;
+        if (!ctrl || !ctrl._container) return false;
+        // Leaflet 1.9+ uses ``<section class="leaflet-control-layers-list">`` (not ``<form>``).
+        var panel =
+            (ctrl._section && ctrl._section.classList.contains("leaflet-control-layers-list")
+                ? ctrl._section
+                : null) ||
+            ctrl._container.querySelector("section.leaflet-control-layers-list") ||
+            ctrl._container.querySelector("form.leaflet-control-layers-list") ||
+            ctrl._container.querySelector(".leaflet-control-layers-list");
+        if (!panel || panel.dataset.rugbyBulkBar === "1") return true;
+        var overlaySec = panel.querySelector(".leaflet-control-layers-overlays");
+        if (!overlaySec) return false;
+        var hasSplit = rugbyHasTerritoryMarkerSplit(ctrl);
+        var globalRow =
+            '<div class="rugby-layers-bulk-row rugby-layers-bulk-row--global">' +
+            '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="all-on">All on</button>' +
+            '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="all-off">' +
+            'All off</button></div>';
+        var splitBlock = '';
+        if (hasSplit) {
+            splitBlock =
+                '<div class="rugby-layers-bulk-split">' +
+                '<div class="rugby-layers-bulk-subrow">' +
+                '<span class="rugby-layers-bulk-tag">Territory</span>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="terr-on">' +
+                'All on</button>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="terr-off">' +
+                'All off</button></div>' +
+                '<div class="rugby-layers-bulk-subrow">' +
+                '<span class="rugby-layers-bulk-tag">Markers</span>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="mrk-on">' +
+                'All on</button>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="mrk-off">' +
+                'All off</button></div></div>';
+        }
+        var wrapper = document.createElement('div');
+        wrapper.className = 'rugby-layers-bulk-row-wrap';
+        wrapper.innerHTML =
+            '<div class="rugby-layers-bulk-hint">Overlay layers</div>' + globalRow + splitBlock;
+        overlaySec.parentNode.insertBefore(wrapper, overlaySec);
+        panel.dataset.rugbyBulkBar = "1";
+        wrapper.addEventListener(
+            'click',
+            function (ev) {
+                var btn = ev.target.closest('button[data-rugby-bulk-act]');
+                if (!btn) return;
+                var mapInst = ctrl._map;
+                if (!mapInst) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                var act = btn.getAttribute('data-rugby-bulk-act');
+                if (act === 'all-on') rugbyApplyOverlayBulkFiltered(mapInst, true, null);
+                else if (act === 'all-off') rugbyApplyOverlayBulkFiltered(mapInst, false, null);
+                else if (act === 'terr-on') rugbyApplyOverlayBulkFiltered(mapInst, true, rugbyIsTerritoryOverlay);
+                else if (act === 'terr-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsTerritoryOverlay);
+                else if (act === 'mrk-on') rugbyApplyOverlayBulkFiltered(mapInst, true, rugbyIsMarkersOverlay);
+                else if (act === 'mrk-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsMarkersOverlay);
+            },
+            true,
+        );
+        return true;
+    }
+    function rugbyScheduleBulkRetries() {
+        var tries = 0;
+        function step() {
+            if (rugbyInstallBulkToolbar()) return;
+            tries += 1;
+            if (tries >= 140) return;
+            setTimeout(step, 50);
+        }
+        step();
+    }
+    function hookLayerControlCtor() {
+        if (!window.L || !L.Control || !L.Control.Layers) {
+            setTimeout(hookLayerControlCtor, 50);
+            return;
+        }
+        if (L.Control.Layers.prototype._layerControlHooked) return;
         L.Control.Layers.prototype._layerControlHooked = true;
-        L.Control.Layers.prototype.addTo = function(map) { var r = orig.call(this, map); window.layerControl = this; return r; };
-    })();
-    </script>
-    """))
-    header.add_child(folium.Element("""
-    <style>
-    .leaflet-control-layers-list { overflow-y: auto !important; }
-    @media only screen and (max-width: 768px) { .leaflet-control-layers-list { font-size: large !important; } }
-    </style>
-    """))
+        var orig = L.Control.Layers.prototype.addTo;
+        L.Control.Layers.prototype.addTo = function (map) {
+            var ret = orig.call(this, map);
+            window.layerControl = this;
+            rugbyScheduleBulkRetries();
+            return ret;
+        };
+    }
+    hookLayerControlCtor();
+})();
+"""
+
+
+class LayerControlHook(MacroElement):
+    """Adds hook + bulk overlay UI in the figure script *before* ``LayerControl``'s ``addTo``."""
+
+    _template = FoliumTemplate(
+        "{% macro script(this, kwargs) %}" + _LAYER_CONTROL_HOOK_JS + "{% endmacro %}"
+    )
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._name = "LayerControlHook"
+
+
+def _add_layer_control(m: folium.Map) -> None:
+    m.add_child(LayerControlHook())
+    folium.LayerControl().add_to(m)
 
 
 # ---------------------------------------------------------------------------

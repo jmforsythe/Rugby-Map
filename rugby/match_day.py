@@ -42,7 +42,7 @@ from core import (
 )
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
-from core.map_builder import DARK_MODE_JS, POPUP_CSS
+from core.map_builder import DARK_MODE_JS, POPUP_CSS, LayerControlHook
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import (
@@ -55,22 +55,6 @@ from rugby.tiers import (
 logger = logging.getLogger(__name__)
 
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
-
-MATCHDAY_LAYER_CONTROL_HOOK_HTML = """
-    <script>
-    (function hookLayerControl() {
-        if (!window.L || !L.Control || !L.Control.Layers) { setTimeout(hookLayerControl, 50); return; }
-        if (L.Control.Layers.prototype._layerControlHooked) { return; }
-        var orig = L.Control.Layers.prototype.addTo;
-        L.Control.Layers.prototype._layerControlHooked = true;
-        L.Control.Layers.prototype.addTo = function(map) { var r = orig.call(this, map); window.layerControl = this; return r; };
-    })();
-    </script>
-    <style>
-    .leaflet-control-layers-list { overflow-y: auto !important; max-height: min(70vh, 480px); }
-    @media only screen and (max-width: 768px) { .leaflet-control-layers-list { font-size: large !important; max-height: min(55vh, 360px); } }
-    </style>
-"""
 
 
 def matchday_cluster_icon_create_js(icon_size: int, rfu_fallback: str) -> str:
@@ -122,8 +106,9 @@ _MATCHDAY_WIDGET_HTML = """
     .matchday-control {
         position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
         background:white; padding:8px 16px; border-radius:8px;
-        border:2px solid grey; font-family:sans-serif; text-align:center;
-        box-shadow:0 2px 8px rgba(0,0,0,0.2);
+        border:1px solid #e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        text-align:center;
+        box-shadow:0 2px 10px rgba(0,0,0,0.1);
     }
     .matchday-control select {
         font-size:15px; padding:4px 8px; border-radius:4px; border:1px solid #ccc;
@@ -941,10 +926,8 @@ def build_match_day_map(
         logger.warning("No fixtures could be placed on the map")
         return
 
+    m.add_child(LayerControlHook())
     folium.LayerControl(position="topright", collapsed=True).add_to(m)
-    m.get_root().header.add_child(  # type: ignore[attr-defined]
-        folium.Element(MATCHDAY_LAYER_CONTROL_HOOK_HTML)
-    )
 
     dropdown_options = "\n".join(
         f'<option value="{escape(date_iso)}">'

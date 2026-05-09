@@ -2,8 +2,12 @@
 Generate a single interactive map with a date dropdown for all upcoming fixtures.
 
 Reads committed fixture_data/<season>/ and geocoded_teams/<season>/ to show
-match venues. A dropdown lets the user switch between match days.
-No network access required — runs in the deployed environment.
+match venues. A dropdown (centre) selects the match day; tier filters use the
+native Leaflet ``L.control.layers`` widget at top-right (same chrome as the
+All Leagues map). Overlays are **one row per absolute pyramid tier**, grouped under **Men's**
+(tier &lt; 101), **Women's** (101+), and **Other** (unknown). Only tiers
+with fixtures on the selected date appear. No network
+access required — runs in the deployed environment.
 
 Usage: ``python -m rugby.match_day --season 2025-2026 --production`` (use ``--production`` for
 the deployed static site; omit for local file paths).
@@ -21,7 +25,7 @@ from html import escape
 from pathlib import Path
 
 import folium
-from folium.plugins import MarkerCluster
+from folium.plugins import FeatureGroupSubGroup, MarkerCluster
 
 from core import (
     Fixture,
@@ -41,11 +45,349 @@ from core.config import DIST_DIR
 from core.map_builder import DARK_MODE_JS, POPUP_CSS
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
-from rugby.tiers import extract_tier
+from rugby.tiers import (
+    _womens_current_tier_name,
+    extract_tier,
+    get_competition_offset,
+    mens_current_tier_name,
+)
 
 logger = logging.getLogger(__name__)
 
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+
+MATCHDAY_LAYER_CONTROL_HOOK_HTML = """
+    <script>
+    (function hookLayerControl() {
+        if (!window.L || !L.Control || !L.Control.Layers) { setTimeout(hookLayerControl, 50); return; }
+        if (L.Control.Layers.prototype._layerControlHooked) { return; }
+        var orig = L.Control.Layers.prototype.addTo;
+        L.Control.Layers.prototype._layerControlHooked = true;
+        L.Control.Layers.prototype.addTo = function(map) { var r = orig.call(this, map); window.layerControl = this; return r; };
+    })();
+    </script>
+    <style>
+    .leaflet-control-layers-list { overflow-y: auto !important; max-height: min(70vh, 480px); }
+    @media only screen and (max-width: 768px) { .leaflet-control-layers-list { font-size: large !important; max-height: min(55vh, 360px); } }
+    </style>
+"""
+
+
+def matchday_cluster_icon_create_js(icon_size: int, rfu_fallback: str) -> str:
+    """Leaflet MarkerCluster `icon_create_function` body (cluster crest + count)."""
+    half = icon_size // 2
+    return f"""
+    function(cluster) {{
+        var markers = cluster.getAllChildMarkers();
+        var bestMarker = null;
+        var bestTier = Infinity;
+        var names = [];
+        for (var i = 0; i < markers.length; i++) {{
+            var mk = markers[i];
+            if (mk.options.tierOrder !== undefined && mk.options.tierOrder !== null && mk.options.tierOrder < bestTier) {{
+                bestTier = mk.options.tierOrder;
+                bestMarker = mk;
+            }}
+            if (mk.options.itemName) names.push(mk.options.itemName);
+        }}
+        if (!bestMarker) bestMarker = markers[0];
+        names.sort();
+        var count = cluster.getChildCount();
+        var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' matches';
+        var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
+        if (imageUrl) {{
+            return L.divIcon({{
+                html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
+                      '<img src="' + imageUrl + '" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;" onerror="this.onerror=null;this.src=\\'{rfu_fallback}\\'">' +
+                      '<span style="position:absolute;bottom:-5px;right:-5px;background:#333;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center;">' + count + '</span></div>',
+                className: 'marker-cluster-custom',
+                iconSize: L.point({icon_size}, {icon_size}),
+                iconAnchor: L.point({half}, {half})
+            }});
+        }} else {{
+            return L.divIcon({{
+                html: '<div style="text-align:center;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
+                      '<div style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:#666;color:white;font-size:12px;line-height:{icon_size}px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3);">' + count + '</div></div>',
+                className: 'marker-cluster-custom',
+                iconSize: L.point({icon_size}, {icon_size}),
+                iconAnchor: L.point({half}, {half})
+            }});
+        }}
+    }}
+    """
+
+
+_MATCHDAY_WIDGET_HTML = """
+    <style>
+    .matchday-control {
+        position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
+        background:white; padding:8px 16px; border-radius:8px;
+        border:2px solid grey; font-family:sans-serif; text-align:center;
+        box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    }
+    .matchday-control select {
+        font-size:15px; padding:4px 8px; border-radius:4px; border:1px solid #ccc;
+        cursor:pointer;
+    }
+    .matchday-subtitle { margin:4px 0 0 0; color:#666; font-size:13px; }
+    .matchday-updated { margin:2px 0 0 0; color:#999; font-size:11px; }
+    .folium-map .leaflet-control-layers-overlays .matchday-lc-heading {
+        font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+        color:#555; padding:8px 8px 4px 6px; margin:0; border-top:1px solid #e0e0e0;
+    }
+    .folium-map .leaflet-control-layers-overlays .matchday-lc-heading:first-child {
+        border-top:0; padding-top:4px;
+    }
+    html[data-rugby-effective="dark"] .folium-map .leaflet-control-layers-overlays .matchday-lc-heading,
+    .folium-map.rugby-map-dark .leaflet-control-layers-overlays .matchday-lc-heading {
+        color:#aab8d8; border-top-color:#2a2a4a;
+    }
+    @media only screen and (max-width: 768px) {
+        .matchday-control { width:90%; max-width:360px; padding:6px 10px; }
+        .matchday-control select { font-size:13px; }
+    }
+    html[data-rugby-effective="dark"] .matchday-control {
+        background-color:#16213e !important;
+        color:#e0e0e0 !important;
+        border-color:#444 !important;
+    }
+    html[data-rugby-effective="dark"] .matchday-control select {
+        background:#1a1a2e;
+        color:#e0e0e0;
+        border-color:#444;
+    }
+    html[data-rugby-effective="dark"] .matchday-subtitle { color:#aaa !important; }
+    html[data-rugby-effective="dark"] .matchday-updated { color:#777 !important; }
+    </style>
+
+    <div class="matchday-control">
+        <select id="matchday-select" onchange="switchMatchDay(this.value)">
+            @@DROPDOWN_OPTIONS@@
+        </select>
+        <p class="matchday-subtitle" id="matchday-info"></p>
+        <p class="matchday-updated">Data updated: @@UPDATED_DISPLAY@@</p>
+    </div>
+
+    <script>
+    var dateInfo = @@DATE_INFO_JSON@@;
+    var allDates = @@ALL_DATES_JSON@@;
+    var tierProxyVars = @@TIER_PROXY_VARS_JSON@@;
+    var tierLabels = @@TIER_LABEL_JSON@@;
+    var subgroupsByDate = @@SUBGROUPS_BY_DATE_JSON@@;
+    var mapObj = null;
+    var tierProxies = {};
+    var tierInControl = {};
+    var tierUserVisible = {};
+    var matchdayInitDone = false;
+    var matchdaySuppressEvents = false;
+
+    function getMap() {
+        if (mapObj) return mapObj;
+        var containers = document.querySelectorAll('.folium-map');
+        if (containers.length > 0) mapObj = window[containers[0].id];
+        return mapObj;
+    }
+
+    function tierKeyForLayer(layer) {
+        for (var k in tierProxies) {
+            if (tierProxies[k] === layer) return k;
+        }
+        return null;
+    }
+
+    function matchdayOverlayLabelName(el) {
+        var sp = el.querySelector('span');
+        if (sp) return (sp.textContent || '').replace(/\\s+/g, ' ').trim();
+        return (el.textContent || '').replace(/\\s+/g, ' ').trim();
+    }
+
+    function matchdayTierKeyForLabelText(name) {
+        for (var k in tierLabels) {
+            if (tierLabels[k] === name) return k;
+        }
+        return null;
+    }
+
+    function matchdayTierCategory(k) {
+        if (k === null) return 'other';
+        var n = parseInt(k, 10);
+        if (isNaN(n) || n === 999) return 'other';
+        if (n >= 101) return 'womens';
+        return 'mens';
+    }
+
+    function sortMatchdayOverlayLabels() {
+        var section = document.querySelector('.folium-map .leaflet-control-layers-overlays');
+        if (!section) return;
+        section.querySelectorAll('.matchday-lc-heading').forEach(function(h) { h.remove(); });
+        var labels = Array.prototype.slice.call(section.querySelectorAll('label'));
+        function orderForName(name) {
+            var kk = matchdayTierKeyForLabelText(name);
+            if (kk === null) return 99999;
+            var n = parseInt(kk, 10);
+            return isNaN(n) ? 99999 : n;
+        }
+        labels.sort(function(a, b) {
+            return orderForName(matchdayOverlayLabelName(a)) - orderForName(matchdayOverlayLabelName(b));
+        });
+        labels.forEach(function(el) { section.appendChild(el); });
+    }
+
+    function applyMatchdayLayerSectionHeadings() {
+        var section = document.querySelector('.folium-map .leaflet-control-layers-overlays');
+        if (!section) return;
+        section.querySelectorAll('.matchday-lc-heading').forEach(function(h) { h.remove(); });
+        var labels = Array.prototype.slice.call(section.querySelectorAll('label'));
+        if (labels.length === 0) return;
+        var catOrder = ['mens', 'womens', 'other'];
+        var catTitle = { mens: "Men's", womens: "Women's", other: 'Other' };
+        while (section.firstChild) {
+            section.removeChild(section.firstChild);
+        }
+        for (var ci = 0; ci < catOrder.length; ci++) {
+            var cat = catOrder[ci];
+            var block = labels.filter(function(lab) {
+                var name = matchdayOverlayLabelName(lab);
+                var k = matchdayTierKeyForLabelText(name);
+                return matchdayTierCategory(k) === cat;
+            });
+            if (block.length === 0) continue;
+            var hd = document.createElement('div');
+            hd.className = 'matchday-lc-heading';
+            hd.setAttribute('role', 'presentation');
+            hd.textContent = catTitle[cat];
+            section.appendChild(hd);
+            for (var bi = 0; bi < block.length; bi++) {
+                section.appendChild(block[bi]);
+            }
+        }
+    }
+
+    function rebindLayerControlForDate(date) {
+        var map = getMap();
+        if (!map || !window.layerControl) return;
+        var avail = subgroupsByDate[date] || {};
+        matchdaySuppressEvents = true;
+        var tierKeys = Object.keys(tierProxies).sort(function(a, b) {
+            return parseInt(a, 10) - parseInt(b, 10);
+        });
+        for (var xi = 0; xi < tierKeys.length; xi++) {
+            var k = tierKeys[xi];
+            var proxy = tierProxies[k];
+            if (typeof proxy.clearLayers === 'function') proxy.clearLayers();
+            var subVar = avail[k];
+            if (subVar) {
+                var sub = window[subVar];
+                if (sub) proxy.addLayer(sub);
+                if (tierUserVisible[k] !== false) {
+                    if (!map.hasLayer(proxy)) map.addLayer(proxy);
+                } else {
+                    if (map.hasLayer(proxy)) map.removeLayer(proxy);
+                }
+                if (!tierInControl[k]) {
+                    window.layerControl.addOverlay(proxy, tierLabels[k]);
+                    tierInControl[k] = true;
+                }
+            } else {
+                if (map.hasLayer(proxy)) map.removeLayer(proxy);
+                if (tierInControl[k]) {
+                    window.layerControl.removeLayer(proxy);
+                    tierInControl[k] = false;
+                }
+            }
+        }
+        matchdaySuppressEvents = false;
+        sortMatchdayOverlayLabels();
+        applyMatchdayLayerSectionHeadings();
+    }
+
+    function initMatchdayLayerWiring() {
+        if (matchdayInitDone) return true;
+        var map = getMap();
+        if (!map || !window.layerControl) return false;
+        for (var k in tierProxyVars) {
+            var p = window[tierProxyVars[k]];
+            if (p) {
+                tierProxies[k] = p;
+                tierInControl[k] = true;
+                tierUserVisible[k] = true;
+            }
+        }
+        map.on('overlayadd', function(e) {
+            if (matchdaySuppressEvents) return;
+            var k = tierKeyForLayer(e.layer);
+            if (k !== null) tierUserVisible[k] = true;
+        });
+        map.on('overlayremove', function(e) {
+            if (matchdaySuppressEvents) return;
+            var k = tierKeyForLayer(e.layer);
+            if (k !== null) tierUserVisible[k] = false;
+        });
+        matchdayInitDone = true;
+        return true;
+    }
+
+    function switchMatchDay(selectedDate) {
+        var info = dateInfo[selectedDate];
+        if (info) {
+            document.getElementById('matchday-info').innerHTML = info.display + ' &mdash; ' + info.label;
+        }
+        if (!initMatchdayLayerWiring()) {
+            setTimeout(function() { switchMatchDay(selectedDate); }, 50);
+            return;
+        }
+        rebindLayerControlForDate(selectedDate);
+    }
+
+    window.addEventListener('load', function() {
+        var today = new Date().toISOString().slice(0, 10);
+        var defaultDate = allDates[allDates.length - 1];
+        for (var i = 0; i < allDates.length; i++) {
+            var iso = allDates[i];
+            if (iso >= today) {
+                var d = new Date(iso + 'T00:00:00');
+                if (d.getDay() === 6) {
+                    defaultDate = iso;
+                    break;
+                }
+            }
+        }
+        var sel = document.getElementById('matchday-select');
+        if (sel) { sel.value = defaultDate; }
+        switchMatchDay(defaultDate);
+    });
+    </script>"""
+
+
+def build_matchday_control_html(
+    *,
+    dropdown_options: str,
+    updated_display: str,
+    date_info_json: str,
+    all_dates_json: str,
+    tier_proxy_vars_json: str,
+    tier_label_json: str,
+    subgroups_by_date_json: str,
+) -> str:
+    """Dropdown + scripts for date switching and tier overlay rebinding."""
+    return (
+        _MATCHDAY_WIDGET_HTML.replace("@@DROPDOWN_OPTIONS@@", dropdown_options)
+        .replace("@@UPDATED_DISPLAY@@", updated_display)
+        .replace("@@DATE_INFO_JSON@@", date_info_json)
+        .replace("@@ALL_DATES_JSON@@", all_dates_json)
+        .replace("@@TIER_PROXY_VARS_JSON@@", tier_proxy_vars_json)
+        .replace("@@TIER_LABEL_JSON@@", tier_label_json)
+        .replace("@@SUBGROUPS_BY_DATE_JSON@@", subgroups_by_date_json)
+    )
+
+
+def _matchday_layer_label(tier_num: int, season: str) -> str:
+    """LayerControl label per absolute tier — same naming as All Leagues merit maps."""
+    if tier_num == 999:
+        return "Unknown Tier"
+    if tier_num >= 101:
+        return _womens_current_tier_name(tier_num)
+    return mens_current_tier_name(tier_num, season)
 
 
 def _match_day_seo_head(season: str) -> str:
@@ -278,8 +620,15 @@ def _resolve_matches(
     matches: list[tuple[Fixture, str, str]],
     team_index: dict[int, GeocodedTeam],
     season: str,
-) -> list[tuple[Fixture, str, str, GeocodedTeam, GeocodedTeam | None]]:
-    """Resolve team IDs to geocoded teams, dropping unresolvable ones."""
+) -> list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]:
+    """Resolve team IDs to geocoded teams, dropping unresolvable ones.
+
+    The returned ``tier_num`` is the **absolute** pyramid tier:
+    merit-league local tiers are shifted by their competition offset so
+    e.g. CANDY local tier 1 (offset 7) becomes absolute tier 8 — the same
+    convention the All Leagues map uses. The ``tier_name`` is left as the
+    competition-qualified label from ``extract_tier`` (e.g. "CANDY 1").
+    """
     resolved = []
     for fixture, league_name, rel_path in matches:
         home_team = team_index.get(fixture["home_team_id"])
@@ -287,7 +636,10 @@ def _resolve_matches(
             continue
         away_team = team_index.get(fixture["away_team_id"])
         tier_num, tier_name = extract_tier(rel_path, season)
-        resolved.append((fixture, league_name, tier_name, home_team, away_team))
+        if tier_num != 999 and rel_path.replace("\\", "/").startswith("merit/"):
+            comp_key = rel_path.replace("\\", "/").split("/")[1]
+            tier_num += get_competition_offset(comp_key, season)
+        resolved.append((fixture, league_name, tier_num, tier_name, home_team, away_team))
     return resolved
 
 
@@ -452,11 +804,56 @@ def build_match_day_map(
     crest = icon_size
     total_w = crest * 2 + 2
 
-    date_layers: list[tuple[str, str, int, int]] = []  # (date_iso, js_var, count, results)
+    resolved_per_date: dict[
+        str, list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]
+    ] = {}
+    tier_nums_seen: set[int] = set()
+    for date_iso in sorted_dates:
+        resolved = _resolve_matches(fixtures_by_date[date_iso], team_index, season)
+        if not resolved:
+            continue
+        resolved_per_date[date_iso] = resolved
+        for row in resolved:
+            tier_nums_seen.add(row[2])
+
+    if not resolved_per_date:
+        logger.warning("No fixtures could be placed on the map")
+        return
+
+    sorted_tier_nums = sorted(tier_nums_seen)
+
+    parent_cluster = MarkerCluster(
+        control=False,
+        options={
+            "maxClusterRadius": 1,
+            "disableClusteringAtZoom": None,
+            "spiderfyOnMaxZoom": True,
+            "spiderfyDistanceMultiplier": 2,
+            "showCoverageOnHover": False,
+            "zoomToBoundsOnClick": False,
+            "animate": False,
+            "animateAddingMarkers": False,
+        },
+        icon_create_function=matchday_cluster_icon_create_js(icon_size, RFU_FALLBACK_ICON),
+    )
+    m.add_child(parent_cluster)
+
+    tier_label_by_num: dict[int, str] = {
+        tn: _matchday_layer_label(tn, season) for tn in sorted_tier_nums
+    }
+
+    tier_proxies: dict[int, folium.FeatureGroup] = {}
+    for tier_num in sorted_tier_nums:
+        label = tier_label_by_num[tier_num]
+        proxy = folium.FeatureGroup(name=label, overlay=True, control=True, show=True)
+        proxy.add_to(m)
+        tier_proxies[tier_num] = proxy
+
+    date_meta: list[tuple[str, int, int]] = []  # (date_iso, total_count, result_count)
+    subgroups_by_date: dict[str, dict[int, str]] = {}
 
     for date_iso in sorted_dates:
-        matches = fixtures_by_date[date_iso]
-        resolved = _resolve_matches(matches, team_index, season)
+        resolved = resolved_per_date.get(date_iso)
         if not resolved:
             continue
 
@@ -466,227 +863,128 @@ def build_match_day_map(
             if (f.get("home_score") is not None and f.get("away_score") is not None)
             or f.get("status")
         )
+        date_meta.append((date_iso, len(resolved), result_count))
 
-        fg = folium.FeatureGroup(name=f"date_{date_iso}", show=False, overlay=True)
-        date_layers.append((date_iso, fg.get_name(), len(resolved), result_count))
+        by_tier_num: dict[
+            int, list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]
+        ] = defaultdict(list)
+        for row in resolved:
+            by_tier_num[row[2]].append(row)
 
-        cluster = MarkerCluster(
-            control=False,
-            options={
-                "maxClusterRadius": 1,
-                "disableClusteringAtZoom": None,
-                "spiderfyOnMaxZoom": True,
-                "spiderfyDistanceMultiplier": 2,
-                "showCoverageOnHover": False,
-                "zoomToBoundsOnClick": False,
-                "animate": False,
-                "animateAddingMarkers": False,
-            },
-            icon_create_function=f"""
-            function(cluster) {{
-                var markers = cluster.getAllChildMarkers();
-                var bestMarker = markers[0];
-                var count = cluster.getChildCount();
-                var names = [];
-                for (var i = 0; i < markers.length; i++) {{
-                    if (markers[i].options.itemName) names.push(markers[i].options.itemName);
-                }}
-                names.sort();
-                var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' matches';
-                var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
-                if (imageUrl) {{
-                    return L.divIcon({{
-                        html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                              '<img src="' + imageUrl + '" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;" onerror="this.onerror=null;this.src=\\'{RFU_FALLBACK_ICON}\\'">' +
-                              '<span style="position:absolute;bottom:-5px;right:-5px;background:#333;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center;">' + count + '</span></div>',
-                        className: 'marker-cluster-custom',
-                        iconSize: L.point({icon_size}, {icon_size}),
-                        iconAnchor: L.point({icon_size // 2}, {icon_size // 2})
-                    }});
-                }} else {{
-                    return L.divIcon({{
-                        html: '<div style="text-align:center;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                              '<div style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:#666;color:white;font-size:12px;line-height:{icon_size}px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3);">' + count + '</div></div>',
-                        className: 'marker-cluster-custom',
-                        iconSize: L.point({icon_size}, {icon_size}),
-                        iconAnchor: L.point({icon_size // 2}, {icon_size // 2})
-                    }});
-                }}
-            }}
-            """,
-        ).add_to(fg)
-
-        for fixture, league_name, tier_name, home_team, away_team in resolved:
-            lat = home_team.get("latitude")
-            lng = home_team.get("longitude")
-            if lat is None or lng is None:
-                continue
-            home_icon_url = home_team.get("image_url") or RFU_FALLBACK_ICON
-            away_icon_url = (away_team.get("image_url") if away_team else None) or RFU_FALLBACK_ICON
-            popup_html = _render_popup(fixture, league_name, tier_name, home_team, away_team)
-
-            home_name = home_team.get("name", "Home")
-            away_name = away_team.get("name", "Away") if away_team else "Away"
-
-            onerror = f"this.onerror=null; this.src='{RFU_FALLBACK_ICON}'"
-            icon_html = (
-                f'<div style="display:flex;align-items:center;gap:2px">'
-                f'<img src="{escape(home_icon_url)}" '
-                f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
-                f'onerror="{onerror}">'
-                f'<img src="{escape(away_icon_url)}" '
-                f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
-                f'onerror="{onerror}">'
-                f"</div>"
+        date_subs: dict[int, str] = {}
+        for tier_num in sorted(by_tier_num.keys()):
+            sub = FeatureGroupSubGroup(
+                parent_cluster, name=None, overlay=True, control=False, show=False
             )
-            icon = folium.DivIcon(
-                html=icon_html,
-                icon_size=(total_w, crest),
-                icon_anchor=(total_w // 2, crest // 2),
-            )
+            m.add_child(sub)
+            date_subs[tier_num] = sub.get_name()
 
-            home_score = fixture.get("home_score")
-            away_score = fixture.get("away_score")
-            status = fixture.get("status")
-            if status:
-                tooltip_detail = status
-            elif home_score is not None and away_score is not None:
-                tooltip_detail = f"{home_score}-{away_score}"
-            else:
-                tooltip_detail = fixture["time"] or ""
+            for fixture, league_name, _tn, tname, home_team, away_team in by_tier_num[tier_num]:
+                lat = home_team.get("latitude")
+                lng = home_team.get("longitude")
+                if lat is None or lng is None:
+                    continue
+                home_icon_url = home_team.get("image_url") or RFU_FALLBACK_ICON
+                away_icon_url = (
+                    away_team.get("image_url") if away_team else None
+                ) or RFU_FALLBACK_ICON
+                popup_html = _render_popup(fixture, league_name, tname, home_team, away_team)
 
-            marker = folium.Marker(
-                location=[lat, lng],
-                popup=folium.Popup(popup_html, max_width=320),
-                tooltip=(
-                    f"{home_name} vs {away_name} ({tooltip_detail})"
-                    if tooltip_detail
-                    else f"{home_name} vs {away_name}"
-                ),
-                icon=icon,
-            )
-            marker.options["imageUrl"] = home_icon_url  # type: ignore[index]
-            marker.options["itemName"] = f"{home_name} vs {away_name}"  # type: ignore[index]
-            marker.add_to(cluster)
+                home_name = home_team.get("name", "Home")
+                away_name = away_team.get("name", "Away") if away_team else "Away"
 
-        fg.add_to(m)
+                onerror = f"this.onerror=null; this.src='{RFU_FALLBACK_ICON}'"
+                icon_html = (
+                    f'<div style="display:flex;align-items:center;gap:2px">'
+                    f'<img src="{escape(home_icon_url)}" '
+                    f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
+                    f'onerror="{onerror}">'
+                    f'<img src="{escape(away_icon_url)}" '
+                    f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
+                    f'onerror="{onerror}">'
+                    f"</div>"
+                )
+                icon = folium.DivIcon(
+                    html=icon_html,
+                    icon_size=(total_w, crest),
+                    icon_anchor=(total_w // 2, crest // 2),
+                )
 
-    if not date_layers:
+                home_score = fixture.get("home_score")
+                away_score = fixture.get("away_score")
+                status = fixture.get("status")
+                if status:
+                    tooltip_detail = status
+                elif home_score is not None and away_score is not None:
+                    tooltip_detail = f"{home_score}-{away_score}"
+                else:
+                    tooltip_detail = fixture["time"] or ""
+
+                marker = folium.Marker(
+                    location=[lat, lng],
+                    popup=folium.Popup(popup_html, max_width=320),
+                    tooltip=(
+                        f"{home_name} vs {away_name} ({tooltip_detail})"
+                        if tooltip_detail
+                        else f"{home_name} vs {away_name}"
+                    ),
+                    icon=icon,
+                )
+                marker.options["imageUrl"] = home_icon_url  # type: ignore[index]
+                marker.options["itemName"] = f"{home_name} vs {away_name}"  # type: ignore[index]
+                marker.options["tierOrder"] = tier_num  # type: ignore[index]
+                marker.add_to(sub)
+
+        subgroups_by_date[date_iso] = date_subs
+
+    if not date_meta:
         logger.warning("No fixtures could be placed on the map")
         return
 
+    folium.LayerControl(position="topright", collapsed=True).add_to(m)
+    m.get_root().header.add_child(  # type: ignore[attr-defined]
+        folium.Element(MATCHDAY_LAYER_CONTROL_HOOK_HTML)
+    )
+
     dropdown_options = "\n".join(
-        f'<option value="{js_var}">'
-        f"{_date_short(date_iso)} ({_count_label(count, results)})</option>"
-        for date_iso, js_var, count, results in date_layers
+        f'<option value="{escape(date_iso)}">'
+        f"{_date_short(date_iso)} ({_count_label(total, results)})</option>"
+        for date_iso, total, results in date_meta
     )
 
     date_info_json = json.dumps(
         {
-            js_var: {
-                "date": date_iso,
+            date_iso: {
                 "display": _date_display(date_iso),
-                "label": _count_label(count, results),
+                "label": _count_label(total, results),
             }
-            for date_iso, js_var, count, results in date_layers
+            for date_iso, total, results in date_meta
+        }
+    )
+    all_dates_json = json.dumps([d for d, _, _ in date_meta])
+
+    tier_proxy_vars_json = json.dumps(
+        {str(tn): proxy.get_name() for tn, proxy in tier_proxies.items()}
+    )
+    tier_label_json = json.dumps({str(tn): tier_label_by_num[tn] for tn in sorted_tier_nums})
+    subgroups_by_date_json = json.dumps(
+        {
+            date: {str(tn): name for tn, name in subs.items()}
+            for date, subs in subgroups_by_date.items()
         }
     )
 
-    all_layer_vars_json = json.dumps([js_var for _, js_var, *_ in date_layers])
-
     updated_display = f"{generated_at.day} {generated_at.strftime('%b %Y')}"
 
-    control_html = f"""
-    <style>
-    .matchday-control {{
-        position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
-        background:white; padding:8px 16px; border-radius:8px;
-        border:2px solid grey; font-family:sans-serif; text-align:center;
-        box-shadow:0 2px 8px rgba(0,0,0,0.2);
-    }}
-    .matchday-control select {{
-        font-size:15px; padding:4px 8px; border-radius:4px; border:1px solid #ccc;
-        cursor:pointer;
-    }}
-    .matchday-subtitle {{ margin:4px 0 0 0; color:#666; font-size:13px; }}
-    .matchday-updated {{ margin:2px 0 0 0; color:#999; font-size:11px; }}
-    @media only screen and (max-width: 768px) {{
-        .matchday-control {{ width:90%; padding:6px 10px; }}
-        .matchday-control select {{ font-size:13px; }}
-    }}
-    html[data-rugby-effective="dark"] .matchday-control {{
-        background-color:#16213e !important;
-        color:#e0e0e0 !important;
-        border-color:#444 !important;
-    }}
-    html[data-rugby-effective="dark"] .matchday-control select {{
-        background:#1a1a2e;
-        color:#e0e0e0;
-        border-color:#444;
-    }}
-    html[data-rugby-effective="dark"] .matchday-subtitle {{ color:#aaa !important; }}
-    html[data-rugby-effective="dark"] .matchday-updated {{ color:#777 !important; }}
-    </style>
-
-    <div class="matchday-control">
-        <select id="matchday-select" onchange="switchMatchDay(this.value)">
-            {dropdown_options}
-        </select>
-        <p class="matchday-subtitle" id="matchday-info"></p>
-        <p class="matchday-updated">Data updated: {updated_display}</p>
-    </div>
-
-    <script>
-    var dateInfo = {date_info_json};
-    var allLayers = {all_layer_vars_json};
-    var mapObj = null;
-
-    function getMap() {{
-        if (mapObj) return mapObj;
-        var containers = document.querySelectorAll('.folium-map');
-        if (containers.length > 0) mapObj = window[containers[0].id];
-        return mapObj;
-    }}
-
-    function switchMatchDay(selectedVar) {{
-        var info = dateInfo[selectedVar];
-        if (info) {{
-            document.getElementById('matchday-info').innerHTML = info.display + ' &mdash; ' + info.label;
-        }}
-
-        var map = getMap();
-        if (!map) return;
-
-        for (var i = 0; i < allLayers.length; i++) {{
-            var layerObj = window[allLayers[i]];
-            if (!layerObj) continue;
-            if (allLayers[i] === selectedVar) {{
-                if (!map.hasLayer(layerObj)) map.addLayer(layerObj);
-            }} else {{
-                if (map.hasLayer(layerObj)) map.removeLayer(layerObj);
-            }}
-        }}
-    }}
-
-    window.addEventListener('load', function() {{
-        var today = new Date().toISOString().slice(0, 10);
-        var defaultVar = allLayers[allLayers.length - 1];
-        for (var i = 0; i < allLayers.length; i++) {{
-            var info = dateInfo[allLayers[i]];
-            if (info && info.date >= today) {{
-                var d = new Date(info.date + 'T00:00:00');
-                if (d.getDay() === 6) {{
-                    defaultVar = allLayers[i];
-                    break;
-                }}
-            }}
-        }}
-        var sel = document.getElementById('matchday-select');
-        if (sel) {{ sel.value = defaultVar; }}
-        switchMatchDay(defaultVar);
-    }});
-    </script>
-    """
+    control_html = build_matchday_control_html(
+        dropdown_options=dropdown_options,
+        updated_display=updated_display,
+        date_info_json=date_info_json,
+        all_dates_json=all_dates_json,
+        tier_proxy_vars_json=tier_proxy_vars_json,
+        tier_label_json=tier_label_json,
+        subgroups_by_date_json=subgroups_by_date_json,
+    )
     html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(control_html))
 
@@ -767,12 +1065,13 @@ def build_match_day_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
-    total_placed = sum(c for _, _, c, _ in date_layers)
+    total_placed = sum(total for _, total, _ in date_meta)
     logger.info(
-        "Map saved to %s (%d matches across %d dates)",
+        "Map saved to %s (%d matches across %d dates, %d tiers)",
         output_path,
         total_placed,
-        len(date_layers),
+        len(date_meta),
+        len(tier_proxies),
     )
 
 

@@ -6,7 +6,7 @@ Rules applied from `tier_assignment_rules.md`.
 ## Assumptions
 
 - **Premiership data unavailable** — Championship 1st place stays at Tier 2. No team promoted from Championship to Premiership; no team relegated from Premiership to Championship.
-- **Play-off default heuristic** — every play-off participant remains at their current tier (the statistically most likely individual outcome).
+- **Knockout play-off results applied (strict winners only)** — 3 complete file(s) and 1 pending under `data/rugby/fixture_data/2025-2026/*_Relegation_and_*_Promotion.json`. For each complete file, the only teams whose assignment changes are the **winners**: undefeated lower-tier teams (W ≥ 1, L = 0) promote, except when an undefeated upper-tier team with at least as good a record absorbs them in a tie (the 'highest team stays' defender rule). The same number of upper-tier playoff participants relegate to keep per-tier head-counts balanced, picked worst-record-first (most losses, fewest wins). Every other team in the playoff takes its default outcome. Pending files keep the default heuristic until every fixture has a score.
 - **Regional 2 Survival Play-Off** — 10th beats 11th (higher position wins); 11th is relegated.
 - **Counties 2 → Counties 1 (data only)** — 21 feeder mapping(s) in `c2_to_c1_<next-season>.json`; per-feeder promotion slot counts come from the same file (top-level `default_slots`, plus `{"destination": ..., "slots": N}` overrides per entry). **This document does not list Counties 2 (tier 8) league tables.** Promotions from tier 8 appear under the destination Counties 1 league when the `c2_to_c1` map resolves; otherwise they stay in the pooled "Promoted to Tier 7" section with source labelled Tier 8 only.
 - **BPR resolved** — the 5 Counties 1 runners-up promoted via Best Playing Record are Dinnington, Finchley, Ryton, Warrington, and Weybridge Vandals.
@@ -111,7 +111,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Esher | 11th |
 | 11 | Henley | 12th |
 
-### National League 2 North — Staying (11 teams)
+### National League 2 North — Staying (10 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
@@ -125,7 +125,6 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Preston Grasshoppers | 9th |
 | 9 | Billingham | 10th |
 | 10 | Otley | 11th |
-| 11 | Rossendale | 12th |
 
 ### National League 2 West — Staying (11 teams)
 
@@ -143,13 +142,14 @@ Rules applied from `tier_assignment_rules.md`.
 | 10 | Chester | 11th |
 | 11 | Exeter University | 12th |
 
-### Promoted to Tier 4 (6 teams) — holding league "National League 2 Promoted"
+### Promoted to Tier 4 (7 teams) — holding league "National League 2 Promoted"
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
 | Bournville | Regional 1 Midlands (1st) | Auto-promotion |
 | Colchester | Regional 1 South East (1st) | Auto-promotion |
 | Devonport Services | Regional 1 Tribute Ale South West (1st) | Auto-promotion |
+| Harrogate | Regional 1 North East (3rd) | Auto-promotion (won play-off) |
 | Heath | Regional 1 North East (1st) | Auto-promotion |
 | Huddersfield | Regional 1 North West (1st) | Auto-promotion |
 | Jersey Rugby Football Club | Regional 1 South Central (1st) | Auto-promotion |
@@ -162,24 +162,25 @@ Rules applied from `tier_assignment_rules.md`.
 | Leicester Lions | National League 1 (14th) | Auto-relegation |
 | Sedgley Park | National League 1 (13th) | Auto-relegation |
 
-### Relegated from Tier 4 (6 teams) → Tier 5
+### Relegated from Tier 4 (7 teams) → Tier 5
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
 | Sevenoaks | National League 2 East (13th) | Auto-relegation |
 | Oxford Harlequins | National League 2 East (14th) | Auto-relegation |
+| Rossendale | National League 2 North (12th) | Auto-relegation (lost play-off) |
 | Scunthorpe | National League 2 North (13th) | Auto-relegation |
 | Hull | National League 2 North (14th) | Auto-relegation |
 | Loughborough Students | National League 2 West (13th) | Auto-relegation |
 | Syston | National League 2 West (14th) | Auto-relegation |
 
-**National League 2 total: 33 staying + 6 promoted in + 3 relegated in = 42**
+**National League 2 total: 32 staying + 7 promoted in + 3 relegated in = 42**
 
 ---
 
 ## Tier 5 — Regional 1 (72 teams)
 
-### Regional 1 Midlands — Staying (9 teams)
+### Regional 1 Midlands — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
@@ -191,23 +192,21 @@ Rules applied from `tier_assignment_rules.md`.
 | 6 | Bridgnorth | 7th |
 | 7 | Banbury | 8th |
 | 8 | Lutterworth | 9th |
-| 9 | Drybrook | 10th |
 
-### Regional 1 North East — Staying (9 teams)
+### Regional 1 North East — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Alnwick | 2nd |
-| 2 | Harrogate | 3rd |
-| 3 | Ilkley | 4th |
-| 4 | Blaydon | 5th |
-| 5 | Driffield | 6th |
-| 6 | Sandal | 7th |
-| 7 | Kendal | 8th |
-| 8 | Middlesbrough | 9th |
-| 9 | York | 10th |
+| 2 | Ilkley | 4th |
+| 3 | Blaydon | 5th |
+| 4 | Driffield | 6th |
+| 5 | Sandal | 7th |
+| 6 | Kendal | 8th |
+| 7 | Middlesbrough | 9th |
+| 8 | York | 10th |
 
-### Regional 1 North West — Staying (9 teams)
+### Regional 1 North West — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
@@ -218,8 +217,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 5 | Blackburn | 6th |
 | 6 | Bowdon | 7th |
 | 7 | Rochdale | 8th |
-| 8 | Manchester | 9th |
-| 9 | Wirral | 10th |
+| 8 | Wirral | 10th |
 
 ### Regional 1 South Central — Staying (9 teams)
 
@@ -235,7 +233,7 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Wimbledon | 9th |
 | 9 | Maidenhead | 10th |
 
-### Regional 1 South East — Staying (9 teams)
+### Regional 1 South East — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
@@ -247,7 +245,6 @@ Rules applied from `tier_assignment_rules.md`.
 | 6 | Hertford | 7th |
 | 7 | Old Northamptonians | 8th |
 | 8 | Westcliff | 9th |
-| 9 | Amersham & Chiltern | 10th |
 
 ### Regional 1 Tribute Ale South West — Staying (9 teams)
 
@@ -263,11 +260,12 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Sidmouth | 9th |
 | 9 | Chew Valley | 10th |
 
-### Promoted to Tier 5 (12 teams) — holding league "Regional 1 Promoted"
+### Promoted to Tier 5 (15 teams) — holding league "Regional 1 Promoted"
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
 | Bournemouth | Regional 2 South Central (1st) | Auto-promotion |
+| Broadstreet | Regional 2 Midlands East (3rd) | Auto-promotion (won play-off) |
 | Brunel University | Regional 2 Thames (1st) | Auto-promotion |
 | Dronfield | Regional 2 Midlands North (1st) | Auto-promotion |
 | Eton Manor | Regional 2 Anglia (1st) | Auto-promotion |
@@ -275,40 +273,46 @@ Rules applied from `tier_assignment_rules.md`.
 | North Ribblesdale | Regional 2 North West (1st) | Auto-promotion |
 | Northampton Old Scouts | Regional 2 Midlands East (1st) | Auto-promotion |
 | Northern | Regional 2 North (1st) | Auto-promotion |
+| Old Colfeians | Regional 2 South East (5th) | Auto-promotion (won play-off) |
 | Scarborough | Regional 2 North East (1st) | Auto-promotion |
 | Sidcup | Regional 2 South East (1st) | Auto-promotion |
 | Trowbridge | Regional 2 Tribute Ale Severn (1st) | Auto-promotion |
+| Vale of Lune | Regional 2 North West (2nd) | Auto-promotion (won play-off) |
 | Weston-super-Mare | Regional 2 Tribute Ale South West (1st) | Auto-promotion |
 
-### Relegated to Tier 5 (6 teams) — holding league "Regional 1 Relegated"
+### Relegated to Tier 5 (7 teams) — holding league "Regional 1 Relegated"
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
 | Hull | National League 2 North (14th) | Auto-relegation |
 | Loughborough Students | National League 2 West (13th) | Auto-relegation |
 | Oxford Harlequins | National League 2 East (14th) | Auto-relegation |
+| Rossendale | National League 2 North (12th) | Auto-relegation (lost play-off) |
 | Scunthorpe | National League 2 North (13th) | Auto-relegation |
 | Sevenoaks | National League 2 East (13th) | Auto-relegation |
 | Syston | National League 2 West (14th) | Auto-relegation |
 
-### Relegated from Tier 5 (12 teams) → Tier 6
+### Relegated from Tier 5 (15 teams) → Tier 6
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
+| Drybrook | Regional 1 Midlands (10th) | Auto-relegation (lost play-off) |
 | Dudley Kingswinford | Regional 1 Midlands (11th) | Auto-relegation |
 | Nuneaton | Regional 1 Midlands (12th) | Auto-relegation |
 | Penrith | Regional 1 North East (11th) | Auto-relegation |
 | Cleckheaton | Regional 1 North East (12th) | Auto-relegation |
+| Manchester | Regional 1 North West (9th) | Auto-relegation (lost play-off) |
 | Long Eaton | Regional 1 North West (11th) | Auto-relegation |
 | Derby | Regional 1 North West (12th) | Auto-relegation |
 | Hammersmith & Fulham | Regional 1 South Central (11th) | Auto-relegation |
 | Camberley | Regional 1 South Central (12th) | Auto-relegation |
+| Amersham & Chiltern | Regional 1 South East (10th) | Auto-relegation (lost play-off) |
 | Medway | Regional 1 South East (11th) | Auto-relegation |
 | Shelford | Regional 1 South East (12th) | Auto-relegation |
 | Marlborough | Regional 1 Tribute Ale South West (11th) | Auto-relegation |
 | Matson | Regional 1 Tribute Ale South West (12th) | Auto-relegation |
 
-**Regional 1 total: 54 staying + 12 promoted in + 6 relegated in = 72**
+**Regional 1 total: 50 staying + 15 promoted in + 7 relegated in = 72**
 
 ---
 
@@ -328,19 +332,18 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Chelmsford | 9th |
 | 9 | Braintree | 10th |
 
-### Regional 2 Midlands East — Staying (9 teams)
+### Regional 2 Midlands East — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Market Harborough | 2nd |
-| 2 | Broadstreet | 3rd |
-| 3 | Bedford Athletic | 4th |
-| 4 | Peterborough | 5th |
-| 5 | Stamford | 6th |
-| 6 | Kettering | 7th |
-| 7 | Oadby Wyggestonians | 8th |
-| 8 | Olney | 9th |
-| 9 | Old Coventrians | 10th |
+| 2 | Bedford Athletic | 4th |
+| 3 | Peterborough | 5th |
+| 4 | Stamford | 6th |
+| 5 | Kettering | 7th |
+| 6 | Oadby Wyggestonians | 8th |
+| 7 | Olney | 9th |
+| 8 | Old Coventrians | 10th |
 
 ### Regional 2 Midlands North — Staying (9 teams)
 
@@ -398,19 +401,18 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Pontefract | 9th |
 | 9 | Wetherby | 10th |
 
-### Regional 2 North West — Staying (9 teams)
+### Regional 2 North West — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
-| 1 | Vale of Lune | 2nd |
-| 2 | Sandbach | 3rd |
-| 3 | Widnes | 4th |
-| 4 | Douglas (I.O.M.) | 5th |
-| 5 | Burnage | 6th |
-| 6 | Winnington Park | 7th |
-| 7 | Birkenhead Park | 8th |
-| 8 | Firwood Waterloo | 9th |
-| 9 | Northwich | 10th |
+| 1 | Sandbach | 3rd |
+| 2 | Widnes | 4th |
+| 3 | Douglas (I.O.M.) | 5th |
+| 4 | Burnage | 6th |
+| 5 | Winnington Park | 7th |
+| 6 | Birkenhead Park | 8th |
+| 7 | Firwood Waterloo | 9th |
+| 8 | Northwich | 10th |
 
 ### Regional 2 South Central — Staying (9 teams)
 
@@ -426,19 +428,18 @@ Rules applied from `tier_assignment_rules.md`.
 | 8 | Chobham | 9th |
 | 9 | Guildford | 10th |
 
-### Regional 2 South East — Staying (9 teams)
+### Regional 2 South East — Staying (8 teams)
 
 | # | Team | 2025-2026 Position |
 |---|------|-----------------|
 | 1 | Brighton | 2nd |
 | 2 | Gravesend | 3rd |
 | 3 | Horsham | 4th |
-| 4 | Old Colfeians | 5th |
-| 5 | Battersea Ironsides | 6th |
-| 6 | Sutton & Epsom | 7th |
-| 7 | Beckenham | 8th |
-| 8 | Bromley | 9th |
-| 9 | Dartfordians | 11th |
+| 4 | Battersea Ironsides | 6th |
+| 5 | Sutton & Epsom | 7th |
+| 6 | Beckenham | 8th |
+| 7 | Bromley | 9th |
+| 8 | Dartfordians | 11th |
 
 ### Regional 2 Thames — Staying (9 teams)
 
@@ -516,16 +517,19 @@ Rules applied from `tier_assignment_rules.md`.
 | Wiveliscombe | Counties 1 Tribute Ale Western West (1st) | Auto-promotion |
 | Worcester | Counties 1 Midlands West (South) (1st) | Auto-promotion |
 
-### Relegated to Tier 6 (12 teams) — holding league "Regional 2 Relegated"
+### Relegated to Tier 6 (15 teams) — holding league "Regional 2 Relegated"
 
 | Team | From League | Mechanism |
 |------|-------------|-----------|
+| Amersham & Chiltern | Regional 1 South East (10th) | Auto-relegation (lost play-off) |
 | Camberley | Regional 1 South Central (12th) | Auto-relegation |
 | Cleckheaton | Regional 1 North East (12th) | Auto-relegation |
 | Derby | Regional 1 North West (12th) | Auto-relegation |
+| Drybrook | Regional 1 Midlands (10th) | Auto-relegation (lost play-off) |
 | Dudley Kingswinford | Regional 1 Midlands (11th) | Auto-relegation |
 | Hammersmith & Fulham | Regional 1 South Central (11th) | Auto-relegation |
 | Long Eaton | Regional 1 North West (11th) | Auto-relegation |
+| Manchester | Regional 1 North West (9th) | Auto-relegation (lost play-off) |
 | Marlborough | Regional 1 Tribute Ale South West (11th) | Auto-relegation |
 | Matson | Regional 1 Tribute Ale South West (12th) | Auto-relegation |
 | Medway | Regional 1 South East (11th) | Auto-relegation |
@@ -562,7 +566,7 @@ Rules applied from `tier_assignment_rules.md`.
 | Cullompton | Regional 2 Tribute Ale South West (11th) | Survival PO loser |
 | Wellington | Regional 2 Tribute Ale South West (12th) | Auto-relegation |
 
-**Regional 2 total: 108 staying + 24 promoted in + 12 relegated in = 144**
+**Regional 2 total: 105 staying + 24 promoted in + 15 relegated in = 144**
 
 ---
 
@@ -1081,9 +1085,9 @@ Rules applied from `tier_assignment_rules.md`.
 |------|-------|--------|-----------|-------|
 | 2 | Championship | 14 | **14** | 13 staying + 1 promoted + 0 relegated in. ✓ |
 | 3 | National 1 | 14 | **14** | 10 staying + 3 promoted + 1 relegated in. ✓ |
-| 4 | National 2 (×3) | 42 | **42** | 33 staying + 6 promoted + 3 relegated in. ✓ |
-| 5 | Regional 1 (×6) | 72 | **72** | 54 staying + 12 promoted + 6 relegated in. ✓ |
-| 6 | Regional 2 (×12) | 144 | **144** | 108 staying + 24 promoted + 12 relegated in. ✓ |
+| 4 | National 2 (×3) | 42 | **42** | 32 staying + 7 promoted + 3 relegated in. ✓ |
+| 5 | Regional 1 (×6) | 72 | **72** | 50 staying + 15 promoted + 7 relegated in. ✓ |
+| 6 | Regional 2 (×12) | 144 | **144** | 105 staying + 24 promoted + 15 relegated in. ✓ |
 | 7 | Counties 1 (×19) | varies | **226** | 167 staying + 35 promoted + 24 relegated in |
 
 ### Movement Totals
@@ -1094,9 +1098,9 @@ Rules applied from `tier_assignment_rules.md`.
 | Tier 3 → Tier 2 | 1 | Rotherham Titans |
 | Tier 3 → Tier 4 | 3 | Clifton, Leicester Lions, Sedgley Park |
 | Tier 4 → Tier 3 | 3 | Bury St Edmunds, Camborne, Sheffield |
-| Tier 4 → Tier 5 | 6 | Hull, Loughborough Students, Oxford Harlequins, Scunthorpe, Sevenoaks, Syston |
-| Tier 5 → Tier 4 | 6 | Bournville, Colchester, Devonport Services, Heath, Huddersfield, Jersey Rugby Football Club |
-| Tier 5 → Tier 6 | 12 | 12 teams |
-| Tier 6 → Tier 5 | 12 | 12 teams |
+| Tier 4 → Tier 5 | 7 | Hull, Loughborough Students, Oxford Harlequins, Rossendale, Scunthorpe, Sevenoaks, Syston |
+| Tier 5 → Tier 4 | 7 | Bournville, Colchester, Devonport Services, Harrogate, Heath, Huddersfield, Jersey Rugby Football Club |
+| Tier 5 → Tier 6 | 15 | 15 teams |
+| Tier 6 → Tier 5 | 15 | 15 teams |
 | Tier 6 → Tier 7 | 24 | 24 teams |
 | Tier 7 → Tier 6 | 24 | 24 teams |

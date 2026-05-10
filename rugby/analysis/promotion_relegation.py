@@ -6,10 +6,28 @@ fetch live RFU pages instead (no disk cache).
 
 Applies promotion/relegation rules and writes projected leagues markdown.
 
+When ``data/rugby/fixture_data/<season>/`` contains the four standard tier 2-6
+playoff JSONs (``Championship_Relegation_and_National_1_Promotion.json``,
+``National_1_Relegation_and_National_2_Promotion.json``,
+``National_Two_Relegation_and_Regional_1_Promotion.json``,
+``Regional_1_Relegation_and_Regional_2_Promotion.json``) the script applies a
+"strict winners only" override per complete file. **Promotees** are undefeated
+lower-tier teams (W ≥ 1, L = 0) — but each is "absorbed" by an undefeated
+upper-tier team whose record is at least as good (the "highest team stays"
+defender tiebreak). Lower teams that aren't absorbed are promoted. To keep
+per-tier head-counts balanced, the same number of upper-tier playoff
+participants relegate, picked worst-record-first. Every other team in the
+playoff (lower teams that lost matches, upper teams that aren't bottom-N by
+record) takes its default outcome — only the strict winners cause changes.
+Files with any pending fixture defer ALL overrides until complete. Pass
+``--no-playoff-overrides`` to skip and use the "every play-off participant
+stays" heuristic.
+
 Usage:
     python -m rugby.analysis.promotion_relegation
     python -m rugby.analysis.promotion_relegation --season 2025-2026
     python -m rugby.analysis.promotion_relegation --scrape-standings
+    python -m rugby.analysis.promotion_relegation --no-playoff-overrides
     python -m rugby.analysis.promotion_relegation --interactive-r2-c1
     python -m rugby.analysis.promotion_relegation --prompt-missing-r2-c1
     python -m rugby.analysis.promotion_relegation --interactive-c2-c1
@@ -32,6 +50,7 @@ import argparse
 import json
 import re
 import sys
+import urllib.parse
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -43,6 +62,7 @@ from rugby import DATA_DIR
 from rugby.tiers import extract_tier, mens_current_tier_name
 
 GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+FIXTURE_DIR = DATA_DIR / "fixture_data"
 
 _BPR_LINE_FRAGMENT = "promoted via Best Playing Record are "
 
@@ -697,6 +717,231 @@ def _apply_survival_swaps(assignments: list[dict], pairs: list[tuple[str, str]] 
 
 
 # ---------------------------------------------------------------------------
+# Play-off knockout overrides (tier 2-6 promotion/relegation playoffs)
+# ---------------------------------------------------------------------------
+
+# Filename in ``data/rugby/fixture_data/<season>/`` -> ``(upper_tier, lower_tier)``.
+# A playoff between tier U and tier L (U < L numerically): undefeated lower-tier teams
+# promote to U, upper-tier teams that lost any match relegate to L.
+PLAYOFF_FIXTURE_FILES: dict[str, tuple[int, int]] = {
+    "Championship_Relegation_and_National_1_Promotion.json": (2, 3),
+    "National_1_Relegation_and_National_2_Promotion.json": (3, 4),
+    "National_Two_Relegation_and_Regional_1_Promotion.json": (4, 5),
+    "Regional_1_Relegation_and_Regional_2_Promotion.json": (5, 6),
+}
+
+_PLAYOFF_WIN_PROMOTE_MECH = "Auto-promotion (won play-off)"
+_PLAYOFF_LOSS_RELEGATE_MECH = "Auto-relegation (lost play-off)"
+
+
+def _team_id_from_rfu_url(url: str) -> int | None:
+    """Extract numeric team ID from an RFU search-results URL ('?team=12345')."""
+    if not url:
+        return None
+    parsed = urllib.parse.urlparse(url)
+    params = urllib.parse.parse_qs(parsed.query)
+    for raw in params.get("team", []):
+        if raw.isdigit():
+            return int(raw)
+    return None
+
+
+def load_team_id_lookup(season: str) -> dict[int, tuple[str, str, int]]:
+    """Build ``{team_id: (team_name, league_name, tier_num)}`` for every men's pyramid team
+    in ``data/rugby/geocoded_teams/<season>/`` (top-level files only; merit leagues skipped).
+    """
+    season_dir = GEOCODED_DIR / season
+    out: dict[int, tuple[str, str, int]] = {}
+    if not season_dir.is_dir():
+        return out
+    for path in sorted(season_dir.glob("*.json")):
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        tier_num, _ = extract_tier(path.name, season)
+        league_name = data["league_name"]
+        for team in data.get("teams", []):
+            tid = _team_id_from_rfu_url(team.get("url", ""))
+            if tid is not None and tid not in out:
+                out[tid] = (team["name"], league_name, tier_num)
+    return out
+
+
+def load_playoff_outcomes(
+    season: str,
+    *,
+    team_id_lookup: dict[int, tuple[str, str, int]] | None = None,
+) -> dict[tuple[str, str], dict]:
+    """Read tier 2-6 playoff fixture JSONs and tally each team's wins/losses.
+
+    Returns ``{(team_name, league_name): record}`` where ``record`` includes
+    ``wins``, ``losses``, ``current_tier``, ``target_tier``, ``source_file``,
+    and ``playoff_complete`` (False if its source file has any pending fixture
+    — score missing — meaning later matches may yet be added). Keyed by
+    ``(name, league)`` to disambiguate teams sharing a name across leagues.
+    Skips fixtures with missing scores. Skips teams whose ID is not in
+    ``team_id_lookup`` or whose tier doesn't match either side of the playoff
+    pair.
+    """
+    season_dir = FIXTURE_DIR / season
+    if not season_dir.is_dir():
+        return {}
+    lookup = team_id_lookup if team_id_lookup is not None else load_team_id_lookup(season)
+    out: dict[tuple[str, str], dict] = {}
+    for filename, (upper, lower) in PLAYOFF_FIXTURE_FILES.items():
+        path = season_dir / filename
+        if not path.is_file():
+            continue
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        fixtures = data.get("fixtures", [])
+        playoff_complete = all(
+            f.get("home_score") is not None and f.get("away_score") is not None for f in fixtures
+        )
+        for fix in fixtures:
+            home_score = fix.get("home_score")
+            away_score = fix.get("away_score")
+            if home_score is None or away_score is None:
+                continue
+            for tid_raw, scored, conceded in (
+                (fix.get("home_team_id"), home_score, away_score),
+                (fix.get("away_team_id"), away_score, home_score),
+            ):
+                if tid_raw is None:
+                    continue
+                info = lookup.get(int(tid_raw))
+                if not info:
+                    continue
+                name, league, tier = info
+                if tier not in (upper, lower):
+                    continue
+                rec = out.setdefault(
+                    (name, league),
+                    {
+                        "wins": 0,
+                        "losses": 0,
+                        "current_tier": tier,
+                        "target_tier": lower if tier == upper else upper,
+                        "source_file": filename,
+                        "playoff_complete": playoff_complete,
+                    },
+                )
+                if scored > conceded:
+                    rec["wins"] += 1
+                elif scored < conceded:
+                    rec["losses"] += 1
+                # ties contribute neither
+    return out
+
+
+def apply_playoff_overrides(
+    assignments: list[dict],
+    outcomes: dict[tuple[str, str], dict],
+) -> int:
+    """Apply playoff overrides per source file using a 'strict winners only' rule.
+
+    The aim is to stay close to the user's original framing — *undefeated teams promote
+    or stay up; teams that lose go down or don't get promoted* — while keeping per-tier
+    head-counts balanced and the diff minimal. For each complete playoff file:
+
+      1. **Promotees**: undefeated lower-tier teams (W ≥ 1, L = 0). Each is "absorbed"
+         in record order by an undefeated upper-tier team whose record is at least as
+         good (the 'highest team stays' tiebreak — a defender keeps the slot when their
+         record matches a challenger's). Lower teams that aren't absorbed are promoted.
+      2. **Relegations**: the same number of upper-tier teams as promotees, picked from
+         the playoff's upper-tier participants in *worst-record-first* order (most
+         losses, fewest wins, then alphabetical). This keeps the per-tier counts balanced.
+      3. Every other team in the playoff (lower-tier teams that lost matches, upper-tier
+         teams that aren't in the bottom N by record) takes its default outcome — no
+         override is applied. This is the "we are only evaluating the playoff winners"
+         principle: only the strict winners cause assignment changes.
+
+    Files with any pending fixture defer ALL overrides until they're complete. Returns
+    the number of changed assignments.
+    """
+    if not outcomes:
+        return 0
+
+    by_file: dict[str, list[tuple[tuple[str, str], dict]]] = defaultdict(list)
+    for key, rec in outcomes.items():
+        by_file[rec["source_file"]].append((key, rec))
+
+    desired: dict[tuple[str, str], tuple[int, str]] = {}
+
+    for file_recs in by_file.values():
+        if not file_recs:
+            continue
+        first_rec = file_recs[0][1]
+        if not first_rec.get("playoff_complete"):
+            continue
+
+        upper = min(first_rec["current_tier"], first_rec["target_tier"])
+        lower = max(first_rec["current_tier"], first_rec["target_tier"])
+
+        def record_key(rec: dict) -> tuple[int, int]:
+            """Best record sorts smallest: (-wins, losses)."""
+            return (-rec["wins"], rec["losses"])
+
+        # Undefeated lower-tier teams (challengers), best record first.
+        ud_lower: list[tuple[tuple[str, str], dict]] = sorted(
+            (
+                (k, r)
+                for k, r in file_recs
+                if r["current_tier"] == lower and r["wins"] > 0 and r["losses"] == 0
+            ),
+            key=lambda kr: (record_key(kr[1]), kr[0][0]),
+        )
+        # Undefeated upper-tier teams (defenders), best record first.
+        ud_upper: list[tuple[tuple[str, str], dict]] = sorted(
+            (
+                (k, r)
+                for k, r in file_recs
+                if r["current_tier"] == upper and r["wins"] > 0 and r["losses"] == 0
+            ),
+            key=lambda kr: (record_key(kr[1]), kr[0][0]),
+        )
+
+        # Apply absorption: in record order, an undefeated upper team whose record is
+        # at least as good as the challenger's absorbs them — the defender keeps the
+        # slot, the challenger doesn't promote.
+        promotees: list[tuple[tuple[str, str], dict]] = []
+        i_upper = 0
+        for key_l, rec_l in ud_lower:
+            if i_upper < len(ud_upper) and record_key(ud_upper[i_upper][1]) <= record_key(rec_l):
+                i_upper += 1  # defender absorbs challenger
+            else:
+                promotees.append((key_l, rec_l))
+
+        n_promote = len(promotees)
+        if n_promote == 0:
+            continue
+
+        # Relegations: pick worst-record upper-tier playoff participants to balance
+        # the promotions (most losses, fewest wins, alphabetical).
+        upper_in_play: list[tuple[tuple[str, str], dict]] = sorted(
+            ((k, r) for k, r in file_recs if r["current_tier"] == upper),
+            key=lambda kr: (-kr[1]["losses"], kr[1]["wins"], kr[0][0]),
+        )
+        relegatees = upper_in_play[:n_promote]
+
+        for key_p, _ in promotees:
+            desired[key_p] = (upper, _PLAYOFF_WIN_PROMOTE_MECH)
+        for key_r, _ in relegatees:
+            desired[key_r] = (lower, _PLAYOFF_LOSS_RELEGATE_MECH)
+
+    changed = 0
+    for a in assignments:
+        key = (a["team_name"], a["league_name"])
+        if key not in desired:
+            continue
+        new_tier, new_mech = desired[key]
+        if a["next_tier"] != new_tier or a["mechanism"] != new_mech:
+            a["next_tier"] = new_tier
+            a["mechanism"] = new_mech
+            changed += 1
+    return changed
+
+
+# ---------------------------------------------------------------------------
 # Step 1 — discover leagues
 # ---------------------------------------------------------------------------
 
@@ -770,6 +1015,7 @@ def compute_assignments(
     scrape_standings: bool = False,
     counties_two_promotion_slots: dict[str, int] | None = None,
     counties_one_scheduled_downs: bool = False,
+    playoff_outcomes: dict[tuple[str, str], dict] | None = None,
 ) -> list[dict]:
     """Load tier 2–8 leagues, table order from geocoded JSON (or RFU if scraping)."""
     leagues = load_tier_leagues(season)
@@ -800,6 +1046,15 @@ def compute_assignments(
         tier8_promote_positions_by_filename=tier8_pf,
         principal_best_tier_by_label=principal_best_tier_by_label,
     )
+    if playoff_outcomes:
+        n_overridden = apply_playoff_overrides(out, playoff_outcomes)
+        if n_overridden:
+            _assign_dest_leagues(out)
+            if not quiet:
+                print(
+                    f"  Play-off overrides: {n_overridden} assignment(s) updated from "
+                    "knockout playoff results."
+                )
     if counties_one_scheduled_downs:
         c1fz = frozenset(lg["league_name"] for lg in leagues if lg["tier_num"] == 7)
         nb = _apply_counties_one_scheduled_downs(out, c1fz, quiet=quiet)
@@ -1086,6 +1341,7 @@ def build_markdown(
     bpr_teams: list[str] | None = None,
     r2_to_c1: dict[str, str] | None = None,
     c2_to_c1: dict[str, str] | None = None,
+    playoff_outcomes: dict[tuple[str, str], dict] | None = None,
 ) -> str:
     """Build projected-leagues markdown matching the existing format."""
     next_start = int(season.split("-")[0]) + 1
@@ -1111,10 +1367,30 @@ def build_markdown(
         "Tier 2. No team promoted from Championship to Premiership; no team "
         "relegated from Premiership to Championship."
     )
-    lines.append(
-        "- **Play-off default heuristic** — every play-off participant remains "
-        "at their current tier (the statistically most likely individual outcome)."
-    )
+    if playoff_outcomes:
+        files_seen: dict[str, bool] = {}
+        for rec in playoff_outcomes.values():
+            files_seen.setdefault(rec["source_file"], rec.get("playoff_complete", False))
+        n_files_complete = sum(1 for v in files_seen.values() if v)
+        n_files_pending = sum(1 for v in files_seen.values() if not v)
+        lines.append(
+            "- **Knockout play-off results applied (strict winners only)** — "
+            f"{n_files_complete} complete file(s) and {n_files_pending} pending under "
+            f"`data/rugby/fixture_data/{season}/*_Relegation_and_*_Promotion.json`. "
+            "For each complete file, the only teams whose assignment changes are the "
+            "**winners**: undefeated lower-tier teams (W ≥ 1, L = 0) promote, except "
+            "when an undefeated upper-tier team with at least as good a record absorbs "
+            "them in a tie (the 'highest team stays' defender rule). The same number of "
+            "upper-tier playoff participants relegate to keep per-tier head-counts "
+            "balanced, picked worst-record-first (most losses, fewest wins). Every "
+            "other team in the playoff takes its default outcome. Pending files keep "
+            "the default heuristic until every fixture has a score."
+        )
+    else:
+        lines.append(
+            "- **Play-off default heuristic** — every play-off participant remains "
+            "at their current tier (the statistically most likely individual outcome)."
+        )
     lines.append(
         "- **Regional 2 Survival Play-Off** — 10th beats 11th (higher position "
         "wins); 11th is relegated."
@@ -1527,6 +1803,15 @@ def main() -> None:
             "(default: data/rugby/c2_to_c1_<next>.json)"
         ),
     )
+    parser.add_argument(
+        "--no-playoff-overrides",
+        action="store_true",
+        help=(
+            "Skip applying knockout playoff outcomes from "
+            "data/rugby/fixture_data/<season>/*_Relegation_and_*_Promotion.json; "
+            "fall back to the 'every play-off participant stays' heuristic."
+        ),
+    )
     args = parser.parse_args()
 
     season: str = args.season
@@ -1578,6 +1863,21 @@ def main() -> None:
     )
     survival_swaps = _SEASON_SURVIVAL_SWAPS.get(season)
 
+    playoff_outcomes: dict[tuple[str, str], dict] | None = None
+    if not args.no_playoff_overrides:
+        playoff_outcomes = load_playoff_outcomes(season)
+        if playoff_outcomes:
+            n_files = sum(1 for f in PLAYOFF_FIXTURE_FILES if (FIXTURE_DIR / season / f).is_file())
+            print(
+                f"  Play-off outcomes: {len(playoff_outcomes)} team record(s) loaded from "
+                f"{n_files} fixture file(s) under data/rugby/fixture_data/{season}/."
+            )
+        else:
+            print(
+                "  Play-off outcomes: no recognised playoff fixture files found "
+                f"under data/rugby/fixture_data/{season}/ (skipping overrides)."
+            )
+
     r2c1 = load_r2_c1_map(r2_c1_file)
     c2c1 = load_c2_to_c1_map(c2_c1_file)
     c2_slot_overrides, c2_default_slots = load_c2_to_c1_slots(c2_c1_file)
@@ -1599,6 +1899,7 @@ def main() -> None:
             quiet=False,
             scrape_standings=scrape_standings,
             counties_two_promotion_slots=None,
+            playoff_outcomes=playoff_outcomes,
         )
         r6_down = [a for a in assignments if a["current_tier"] == 6 and a["next_tier"] == 7]
         c1_leagues = sorted({lg["league_name"] for lg in leagues if lg["tier_num"] == 7})
@@ -1657,6 +1958,7 @@ def main() -> None:
         scrape_standings=scrape_standings,
         counties_two_promotion_slots=counties_two_slots or None,
         counties_one_scheduled_downs=True,
+        playoff_outcomes=playoff_outcomes,
     )
 
     if args.prompt_missing_r2_c1:
@@ -1680,6 +1982,7 @@ def main() -> None:
         bpr_teams=bpr_teams,
         r2_to_c1=r2c1,
         c2_to_c1=c2c1,
+        playoff_outcomes=playoff_outcomes,
     )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

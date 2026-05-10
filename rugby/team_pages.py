@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 # latest season row instead of ordinal position until those competitions finish publicly.
 # All other leagues (including women's Championship tiers, merit, Counties, etc.) show
 # league position on the latest season once the pyramid season is complete for that level.
-_POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Championship", "Women's Premiership"})
+_POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Women's Premiership"})
 
 
 def _tier_display_number(tier_number: int) -> int:

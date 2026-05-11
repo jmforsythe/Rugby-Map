@@ -990,8 +990,15 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         logger.warning("No team entries to index")
         return
 
-    # Sort by club name (remove II/III/IV suffixes for sorting)
-    teams_list.sort(key=lambda x: team_name_to_club_name(x["name"]).lower())
+    # Sort by club name (remove II/III/IV suffixes for grouping), then by display name
+    # so e.g. 1st XV appears before II/2nd XV; filename breaks ties between identical labels.
+    teams_list.sort(
+        key=lambda x: (
+            team_name_to_club_name(x["name"]).lower(),
+            x["name"].lower(),
+            x["file"].lower(),
+        ),
+    )
 
     teams_js = ",\n            ".join(
         f'{{file: "{escape(t["file"])}", name: "{escape(t["name"])}", img: "{escape(t["image_url"])}"}}'

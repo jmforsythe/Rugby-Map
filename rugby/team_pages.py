@@ -1,8 +1,12 @@
+from __future__ import annotations
+
 import argparse
 import json
 import logging
 import re
+import urllib.parse
 from collections import defaultdict
+from collections.abc import Callable, Iterable
 from html import escape
 from typing import Any, TypedDict
 
@@ -14,6 +18,7 @@ from core import (
     get_favicon_html,
     get_google_analytics_script,
     get_twitter_card_meta,
+    sanitize_team_name,
     set_config,
     setup_logging,
     team_name_to_filepath,
@@ -35,6 +40,102 @@ logger = logging.getLogger(__name__)
 _POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Women's Premiership"})
 
 
+def _parse_rfu_team_id(url: str | None) -> int | None:
+    """Numeric id from ``team=`` in an RFU team profile URL, if present."""
+    if not url:
+        return None
+    parsed = urllib.parse.urlparse(url)
+    params = urllib.parse.parse_qs(parsed.query)
+    vals = params.get("team", [])
+    if vals and vals[0].isdigit():
+        return int(vals[0])
+    return None
+
+
+def _build_canonical_page_key_lookup(
+    pairs: Iterable[tuple[str, int | None]],
+) -> Callable[[str, int | None], str]:
+    """Resolver mapping ``(display_name, team_id)`` → canonical page key.
+
+    Two observations are treated as the same team when they share a display
+    name or an RFU ``team=`` id, transitively. So ``(name_a, id_a)``,
+    ``(name_a, id_b)`` and ``(name_b, id_b)`` all collapse to one bucket.
+
+    Each canonical key is the smallest id in the connected component when any
+    observation in that component carries an id, otherwise the alphabetically
+    smallest display name. The choice is deterministic so the same dataset
+    always produces the same set of page files.
+    """
+    parent: dict[tuple[str, Any], tuple[str, Any]] = {}
+
+    def find(node: tuple[str, Any]) -> tuple[str, Any]:
+        if node not in parent:
+            parent[node] = node
+            return node
+        root = node
+        while parent[root] != root:
+            root = parent[root]
+        cur = node
+        while parent[cur] != root:
+            nxt = parent[cur]
+            parent[cur] = root
+            cur = nxt
+        return root
+
+    def union(a: tuple[str, Any], b: tuple[str, Any]) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    for name, tid in pairs:
+        find(("name", name))
+        if tid is not None:
+            find(("id", tid))
+            union(("name", name), ("id", tid))
+
+    root_members: defaultdict[tuple[str, Any], list[tuple[str, Any]]] = defaultdict(list)
+    for node in list(parent):
+        root_members[find(node)].append(node)
+
+    root_to_canonical: dict[tuple[str, Any], str] = {}
+    for root, members in root_members.items():
+        ids = sorted(n[1] for n in members if n[0] == "id")
+        if ids:
+            root_to_canonical[root] = str(ids[0])
+        else:
+            names = sorted(n[1] for n in members if n[0] == "name")
+            root_to_canonical[root] = names[0]
+
+    def lookup(name: str, tid: int | None) -> str:
+        if tid is not None:
+            return root_to_canonical[find(("id", tid))]
+        return root_to_canonical[find(("name", name))]
+
+    return lookup
+
+
+def _display_names_with_multiple_profiles(all_teams: dict[str, TeamData]) -> set[str]:
+    """Display names that map to more than one aggregated team row (different RFU profiles)."""
+    name_to_keys: defaultdict[str, set[str]] = defaultdict(set)
+    for page_key, td in all_teams.items():
+        n = td.get("name") or ""
+        if n:
+            name_to_keys[n].add(page_key)
+    return {n for n, keys in name_to_keys.items() if len(keys) > 1}
+
+
+def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set[str]) -> str:
+    """``dist/teams/*.html`` path; add ``_<team_id>`` when the display name is shared by multiple profiles."""
+    display = team_data.get("name") or ""
+    if not display:
+        return "unknown.html"
+    if display in ambiguous_display_names:
+        tid = _parse_rfu_team_id(team_data.get("url"))
+        if tid is not None:
+            return sanitize_team_name(display) + f"_{tid}.html"
+    return team_name_to_filepath(display)
+
+
 def _tier_display_number(tier_number: int) -> int:
     """Tier shown in league links; women's pyramid uses 101+ internally — show 1+ instead."""
     if tier_number >= 101:
@@ -42,7 +143,7 @@ def _tier_display_number(tier_number: int) -> int:
     return tier_number
 
 
-def _map_url_for_entry(entry: "LeagueHistoryEntry") -> str | None:
+def _map_url_for_entry(entry: LeagueHistoryEntry) -> str | None:
     """Return a relative URL to the map page for a league history entry, or None."""
     season = entry["season"]
     is_prod = get_config().is_production
@@ -76,6 +177,10 @@ class LeagueHistoryEntry(TypedDict):
     tier_display: str  # pyramid tier digit(s); women's 101+ shown without 100 offset
     is_merit: bool
     competition_key: str  # e.g. "CANDY", "" for pyramid
+    # Display name observed for this team in this league/season. Differs from the
+    # canonical TeamData["name"] when the team has been renamed — required to
+    # look up distance-cache entries that were keyed by the historical name.
+    team_name: str
 
 
 class TeamData(TypedDict):
@@ -89,6 +194,9 @@ class TeamData(TypedDict):
     longitude: float | None
     formatted_address: str | None
     league_history: list[LeagueHistoryEntry]
+    # Display name → set of seasons that name was observed in. Used to render
+    # the "Previously known as" line when an aggregated team has been renamed.
+    name_seasons: dict[str, set[str]]
 
 
 class TeamListEntry(TypedDict):
@@ -103,13 +211,40 @@ def collect_all_teams_data() -> dict[str, TeamData]:
     """
     Collect all team data from geocoded files across all seasons.
 
+    Two observations are merged into one aggregated team row when they share
+    either a display name or an RFU ``team=`` id (transitively). This catches
+    clubs that renamed (e.g. Newcastle Falcons → Newcastle Red Bulls) where
+    the id is stable across name changes, as well as renumbered profiles
+    where the display name links two ids together.
+
     Returns:
-        Dictionary mapping team names to their aggregated data including:
-        - All league participations across seasons
-        - Latest address, coordinates, logo
-        - URL to team page
+        Dictionary mapping a stable canonical page key to aggregated team
+        data. Within each season-chronological walk, later observations
+        overwrite scalar fields, so name/url/image/address reflect the most
+        recent appearance for the merged team.
     """
     geocoded_dir = DATA_DIR / "geocoded_teams"
+
+    if not geocoded_dir.exists():
+        return {}
+
+    season_dirs = [
+        d for d in sorted(geocoded_dir.iterdir()) if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+    ]
+
+    # First pass: gather every (display_name, team_id) pair so we can build
+    # the transitive grouping before aggregating. We deliberately read each
+    # league file twice rather than holding all parsed JSON in memory.
+    name_id_pairs: set[tuple[str, int | None]] = set()
+    for season_dir in season_dirs:
+        for league_file in season_dir.rglob("*.json"):
+            with open(league_file, encoding="utf-8") as f:
+                league_data: GeocodedLeague = json.load(f)
+            for team in league_data["teams"]:
+                name_id_pairs.add((team["name"], _parse_rfu_team_id(team.get("url"))))
+
+    resolve_page_key = _build_canonical_page_key_lookup(name_id_pairs)
+
     teams_data: defaultdict[str, TeamData] = defaultdict(
         lambda: TeamData(
             name=None,
@@ -120,51 +255,43 @@ def collect_all_teams_data() -> dict[str, TeamData]:
             longitude=None,
             formatted_address=None,
             league_history=[],
+            name_seasons={},
         )
     )
 
-    if not geocoded_dir.exists():
-        return {}
-
-    # Process each season
-    for season_dir in sorted(geocoded_dir.iterdir()):
-        if not season_dir.is_dir() or not re.match(r"\d{4}-\d{4}", season_dir.name):
-            continue
-
+    for season_dir in season_dirs:
         season = season_dir.name
 
-        # Process each league file in the season
         for league_file in season_dir.rglob("*.json"):
             with open(league_file, encoding="utf-8") as f:
-                league_data: GeocodedLeague = json.load(f)
+                league_data = json.load(f)
 
             league_name = league_data["league_name"]
             league_team_count = len(league_data["teams"])
 
-            # Process each team in the league
             for position, team in enumerate(league_data["teams"], start=1):
                 team_name = team["name"]
+                team_url = team.get("url")
+                page_key = resolve_page_key(team_name, _parse_rfu_team_id(team_url))
 
-                # Update team data (using latest values)
-                teams_data[team_name]["name"] = team_name
-                teams_data[team_name]["url"] = team.get("url")
-                teams_data[team_name]["image_url"] = team.get("image_url")
+                teams_data[page_key]["name"] = team_name
+                teams_data[page_key]["url"] = team_url
+                teams_data[page_key]["image_url"] = team.get("image_url")
+                teams_data[page_key]["name_seasons"].setdefault(team_name, set()).add(season)
 
-                # Update address/location if available
                 addr = team.get("address")
                 lat = team.get("latitude")
                 lon = team.get("longitude")
                 fmt_addr = team.get("formatted_address")
                 if addr:
-                    teams_data[team_name]["address"] = addr
+                    teams_data[page_key]["address"] = addr
                 if lat is not None:
-                    teams_data[team_name]["latitude"] = lat
+                    teams_data[page_key]["latitude"] = lat
                 if lon is not None:
-                    teams_data[team_name]["longitude"] = lon
+                    teams_data[page_key]["longitude"] = lon
                 if fmt_addr:
-                    teams_data[team_name]["formatted_address"] = fmt_addr
+                    teams_data[page_key]["formatted_address"] = fmt_addr
 
-                # Add league participation to history
                 rel_path = league_file.relative_to(season_dir).as_posix()
                 tier = extract_tier(rel_path, season)
                 is_merit = rel_path.startswith("merit/")
@@ -175,7 +302,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                     tier_display = f"{comp_display} {_tier_display_number(tier[0])}"
                 else:
                     tier_display = f"{_tier_display_number(tier[0])}"
-                teams_data[team_name]["league_history"].append(
+                teams_data[page_key]["league_history"].append(
                     LeagueHistoryEntry(
                         season=season,
                         league=league_name,
@@ -186,6 +313,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                         tier_display=tier_display,
                         is_merit=is_merit,
                         competition_key=comp_key,
+                        team_name=team_name,
                     )
                 )
 
@@ -204,6 +332,52 @@ def get_all_seasons() -> list[str]:
         if season_dir.is_dir() and re.match(r"\d{4}-\d{4}", season_dir.name)
     ]
     return sorted(seasons, reverse=True)
+
+
+def _format_season_ranges(seasons: Iterable[str]) -> str:
+    """Compress sorted ``YYYY-YYYY`` season strings into comma-separated ranges.
+
+    Two seasons are consecutive when the second starts the year after the first
+    ends — e.g. ``2000-2001`` and ``2001-2002`` collapse to ``2000-2001 to
+    2001-2002``. Non-contiguous chunks stay separated by commas.
+    """
+    sorted_seasons = sorted({s for s in seasons if s})
+    if not sorted_seasons:
+        return ""
+
+    def start_year(s: str) -> int:
+        return int(s.split("-", 1)[0])
+
+    ranges: list[tuple[str, str]] = []
+    range_start = sorted_seasons[0]
+    prev = sorted_seasons[0]
+    for s in sorted_seasons[1:]:
+        if start_year(s) == start_year(prev) + 1:
+            prev = s
+            continue
+        ranges.append((range_start, prev))
+        range_start = s
+        prev = s
+    ranges.append((range_start, prev))
+
+    return ", ".join(start if start == end else f"{start} to {end}" for start, end in ranges)
+
+
+def _format_previous_names(team_data: TeamData) -> str:
+    """Inline string for the "Previously known as" row, ``""`` when not renamed.
+
+    Past names are listed most-recent-use first so the entry directly preceding
+    the current name appears at the front. Each name is followed by the
+    compressed season range(s) it was used in.
+    """
+    name_seasons = team_data.get("name_seasons") or {}
+    current_name = team_data.get("name") or ""
+    past = [(n, seasons) for n, seasons in name_seasons.items() if n != current_name and seasons]
+    if not past:
+        return ""
+    past.sort(key=lambda item: max(item[1]), reverse=True)
+    parts = [f"{escape(name)} ({escape(_format_season_ranges(seasons))})" for name, seasons in past]
+    return "; ".join(parts)
 
 
 def _format_team_travel_distance_km(team_distances: TeamTravelDistances | None) -> str:
@@ -239,27 +413,27 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     """Pre-build an index of co-located teams for fast club lookups.
 
     Groups teams by address and coordinates, then builds a mapping from
-    each team name to its co-located siblings.
+    each page key to sibling page keys at the same location.
 
     Returns:
-        Dictionary mapping team name -> sorted list of other team names at same location
+        Dictionary mapping page key -> sorted list of other page keys at same location
     """
     address_groups: defaultdict[str, list[str]] = defaultdict(list)
     coord_groups: defaultdict[tuple[float, float], list[str]] = defaultdict(list)
 
-    for team_name, data in all_teams.items():
+    for page_key, data in all_teams.items():
         addr = data.get("address")
         lat = data.get("latitude")
         lon = data.get("longitude")
         if addr:
-            address_groups[addr].append(team_name)
+            address_groups[addr].append(page_key)
         if lat is not None and lon is not None:
-            coord_groups[(lat, lon)].append(team_name)
+            coord_groups[(lat, lon)].append(page_key)
 
     club_index: dict[str, list[str]] = {}
-    for team_name in all_teams:
+    for page_key in all_teams:
         siblings: set[str] = set()
-        data = all_teams[team_name]
+        data = all_teams[page_key]
         addr = data.get("address")
         lat = data.get("latitude")
         lon = data.get("longitude")
@@ -269,8 +443,8 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
             key = (lat, lon)
             if key in coord_groups:
                 siblings.update(coord_groups[key])
-        siblings.discard(team_name)
-        club_index[team_name] = sorted(siblings)
+        siblings.discard(page_key)
+        club_index[page_key] = sorted(siblings)
 
     return club_index
 
@@ -312,15 +486,19 @@ def _team_page_structured_data(
 
 
 def get_team_page_html(
-    team_name: str,
+    page_key: str,
     team_data: TeamData,
+    all_teams: dict[str, TeamData],
     club_index: dict[str, list[str]],
     travel_distances_by_season: dict[str, TravelDistances],
     all_seasons: list[str],
+    ambiguous_display_names: set[str],
 ) -> str:
     """Generate HTML content for a team's individual page."""
 
-    club_teams = club_index.get(team_name, [])
+    team_name = team_data.get("name") or page_key
+
+    club_teams = club_index.get(page_key, [])
 
     # Sort league history by season (most recent first)
     league_history: list[LeagueHistoryEntry] = sorted(
@@ -355,7 +533,7 @@ def get_team_page_html(
     is_prod = get_config().is_production
     teams_index_href = "./" if is_prod else "./index.html"
 
-    team_file = team_name_to_filepath(team_name)
+    team_file = _team_page_output_filename(team_data, ambiguous_display_names)
     # Canonical URL is only meaningful in production; omit it in local dev builds.
     canonical_url = f"{SITE_BASE_URL}/teams/{team_file}" if is_prod else ""
 
@@ -552,6 +730,10 @@ def get_team_page_html(
         address = team_data.get("formatted_address") or team_data.get("address")
         html += f'        <div class="info-row"><span class="info-label">Address:</span> <span class="address">{escape(address or "")}</span></div>\n'
 
+    previous_names_html = _format_previous_names(team_data)
+    if previous_names_html:
+        html += f'        <div class="info-row"><span class="info-label">Previously known as:</span> {previous_names_html}</div>\n'
+
     team_url = team_data.get("url")
     if team_url:
         html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(team_url)}" target="_blank">View on England Rugby</a></div>\n'
@@ -565,8 +747,11 @@ def get_team_page_html(
         <h2>Other Teams at This Club</h2>
         <ul class="club-teams">
 """
-        for club_team in club_teams:
-            html += f'            <li><a href="{team_name_to_filepath(club_team)}" class="card-link card-inline">{escape(club_team)}</a></li>\n'
+        for sibling_key in club_teams:
+            sib = all_teams[sibling_key]
+            sib_name = sib.get("name") or sibling_key
+            sib_file = _team_page_output_filename(sib, ambiguous_display_names)
+            html += f'            <li><a href="{escape(sib_file)}" class="card-link card-inline">{escape(sib_name)}</a></li>\n'
 
         html += """        </ul>
     </div>
@@ -624,7 +809,10 @@ def get_team_page_html(
                 if season in travel_distances_by_season:
                     season_data = travel_distances_by_season[season]
                     if "teams" in season_data:
-                        raw_td = season_data["teams"].get(team_name)
+                        # Use the name observed for this row — the cache was keyed
+                        # by whichever display name the team had that season, so
+                        # the current name won't match for renamed teams.
+                        raw_td = season_data["teams"].get(entry["team_name"])
                         if raw_td is not None:
                             team_td = raw_td
 
@@ -724,16 +912,23 @@ def generate_team_pages() -> dict[str, TeamData]:
     teams_dir = DIST_DIR / "teams"
     teams_dir.mkdir(parents=True, exist_ok=True)
 
+    ambiguous = _display_names_with_multiple_profiles(all_teams)
+
     # Generate page for each team
     generated_count = 0
-    for team_name, team_data in all_teams.items():
+    for page_key, team_data in all_teams.items():
         try:
             html_content = get_team_page_html(
-                team_name, team_data, club_index, travel_distances_by_season, all_seasons
+                page_key,
+                team_data,
+                all_teams,
+                club_index,
+                travel_distances_by_season,
+                all_seasons,
+                ambiguous,
             )
 
-            # Create filename from team name
-            filename = team_name_to_filepath(team_name)
+            filename = _team_page_output_filename(team_data, ambiguous)
             filepath = teams_dir / filename
 
             with open(filepath, "w", encoding="utf-8") as f:
@@ -742,7 +937,7 @@ def generate_team_pages() -> dict[str, TeamData]:
             generated_count += 1
 
         except Exception as e:
-            logger.error("Error generating page for %s: %s", team_name, e)
+            logger.error("Error generating page for %s: %s", page_key, e)
 
     logger.info("Generated %d team pages in %s", generated_count, teams_dir)
     return all_teams
@@ -758,25 +953,42 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         logger.warning("Teams directory doesn't exist")
         return
 
-    # Get all team HTML files
     team_files = sorted(teams_dir.glob("*.html"))
     if not team_files:
         logger.warning("No team HTML files found")
         return
 
-    # Extract team names from filenames (remove .html and convert underscores to spaces)
     teams_list: list[TeamListEntry] = []
-    for file_path in team_files:
-        if file_path.name == "index.html":
-            continue
-        filename: str = file_path.name[:-5]  # Remove .html
-        display_name: str = filename.replace("_", " ")
-        image_url = RFU_FALLBACK_ICON
-        if all_teams and display_name in all_teams:
-            image_url = all_teams[display_name].get("image_url") or RFU_FALLBACK_ICON
-        teams_list.append(
-            TeamListEntry(file=file_path.name, name=display_name, image_url=image_url)
-        )
+    if all_teams is not None:
+        ambiguous = _display_names_with_multiple_profiles(all_teams)
+        for _pk, td in all_teams.items():
+            display_name = td.get("name") or ""
+            if not display_name:
+                continue
+            fn = _team_page_output_filename(td, ambiguous)
+            if not (teams_dir / fn).exists():
+                continue
+            teams_list.append(
+                TeamListEntry(
+                    file=fn,
+                    name=display_name,
+                    image_url=td.get("image_url") or RFU_FALLBACK_ICON,
+                )
+            )
+    else:
+        for file_path in team_files:
+            if file_path.name == "index.html":
+                continue
+            filename: str = file_path.name[:-5]  # Remove .html
+            display_name: str = filename.replace("_", " ")
+            image_url = RFU_FALLBACK_ICON
+            teams_list.append(
+                TeamListEntry(file=file_path.name, name=display_name, image_url=image_url)
+            )
+
+    if not teams_list:
+        logger.warning("No team entries to index")
+        return
 
     # Sort by club name (remove II/III/IV suffixes for sorting)
     teams_list.sort(key=lambda x: team_name_to_club_name(x["name"]).lower())

@@ -161,6 +161,32 @@ ul.club-teams {
   border-bottom: 2px solid var(--border);
 }
 
+/* Season index: pair “All Seasons” and “Fixtures” as one toolbar row */
+.season-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2em 0 1em;
+}
+
+.season-top-nav .back-link {
+  margin: 0;
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .season-top-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .season-top-nav .back-link {
+    text-align: center;
+  }
+}
+
 .back-link {
   text-align: center;
   margin: 2em 0;

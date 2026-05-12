@@ -260,12 +260,26 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     has_match_day = tier_files.get("has_match_day", False)
     merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = tier_files.get("merit", [])
 
-    match_day_link = ""
+    all_seasons_href = f"../{'' if get_config().is_production else 'index.html'}"
+
+    top_nav_html: str
     if has_match_day:
         match_day_href = "match_day/" if get_config().is_production else "match_day/index.html"
-        match_day_link = (
-            f'    <div class="back-link">'
-            f'<a href="{match_day_href}">Fixtures &amp; Results →</a></div>\n'
+        top_nav_html = (
+            '    <nav class="season-top-nav" aria-label="Season">\n'
+            '    <div class="back-link">\n'
+            f'        <a href="{all_seasons_href}">← All Seasons</a>\n'
+            "    </div>\n"
+            '    <div class="back-link">\n'
+            f'        <a href="{match_day_href}">Fixtures &amp; Results →</a>\n'
+            "    </div>\n"
+            "    </nav>\n"
+        )
+    else:
+        top_nav_html = (
+            '    <div class="back-link">\n'
+            f'        <a href="{all_seasons_href}">← All Seasons</a>\n'
+            "    </div>\n"
         )
 
     season_short = short_season(season)
@@ -308,14 +322,10 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     {get_google_analytics_script()}
 </head>
 <body>
-    <div class="back-link">
-        <a href="../{ "" if get_config().is_production else "index.html" }">← All Seasons</a>
-    </div>
-
+{top_nav_html}
     <h1>English Rugby Union Team Maps</h1>
     <p>Season: {season}</p>
-
-{match_day_link}"""
+"""
 
     # Men's sections
     if mens_tiers or merit_competitions:

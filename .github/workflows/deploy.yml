@@ -49,15 +49,16 @@ jobs:
             python -m rugby.maps --no-debug --season=$season --production
           done
 
-          python -m rugby.team_pages --production
-          python -m rugby.webpages --production
-
-          # Match-day maps (uses committed fixture_data, one per season)
+          # Match-day maps before webpages — season indexes link to match_day only if it exists
+          # when rugby.webpages runs (see rugby.webpages.detect_tier_files ``has_match_day``).
           for season in $SEASONS; do
             if [ -d "data/rugby/fixture_data/$season" ]; then
               python -m rugby.match_day --season=$season --production
             fi
           done
+
+          python -m rugby.team_pages --production
+          python -m rugby.webpages --production
 
           # Custom map builder data + HTML page (teams catalogue + boundaries)
           python -m rugby.custom_map --production

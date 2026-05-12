@@ -367,6 +367,13 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
         league_url = data.get("league_url", "")
         if not league_url:
             continue
+        if "englandrugby.com" not in league_url.lower():
+            logger.warning(
+                "Skipping %s — league_url must be RFU (englandrugby.com): %s",
+                league_name,
+                league_url,
+            )
+            continue
 
         relative = json_file.relative_to(geocoded_dir)
         leagues.append((league_name, league_url, relative))

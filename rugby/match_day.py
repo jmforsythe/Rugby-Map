@@ -1,13 +1,16 @@
 """
-Generate a single interactive map with a date dropdown for all upcoming fixtures.
+Generate one interactive ``match_day`` Folium map per season with a calendar-date dropdown.
 
 Reads committed fixture_data/<season>/ and geocoded_teams/<season>/ to show
-match venues. A dropdown (centre) selects the match day; tier filters use the
+match venues and results. The dropdown selects the fixture day; tier filters use the
 native Leaflet ``L.control.layers`` widget at top-right (same chrome as the
 All Leagues map). Overlays are **one row per absolute pyramid tier**, grouped under **Men's**
 (tier &lt; 101), **Women's** (101+), and **Other** (unknown). Only tiers
-with fixtures on the selected date appear. No network
-access required — runs in the deployed environment.
+with fixtures on the selected date appear. Once built, maps run fully offline.
+
+Archived seasons whose last scraped fixture falls before today's date default the dropdown to the
+calendar date with the **most** mapped fixtures (ties: earliest such date) — typically a heavy
+Saturday in mid-season.
 
 Usage: ``python -m rugby.match_day --season 2025-2026 --production`` (use ``--production`` for
 the deployed static site; omit for local file paths).
@@ -20,7 +23,7 @@ import json
 import logging
 import urllib.parse
 from collections import defaultdict
-from datetime import datetime
+from datetime import date, datetime
 from html import escape
 from pathlib import Path
 
@@ -159,6 +162,7 @@ _MATCHDAY_WIDGET_HTML = """
     var tierProxyVars = @@TIER_PROXY_VARS_JSON@@;
     var tierLabels = @@TIER_LABEL_JSON@@;
     var subgroupsByDate = @@SUBGROUPS_BY_DATE_JSON@@;
+    var historicSeason = @@HISTORIC_ARCHIVE_JS@@;
     var mapObj = null;
     var tierProxies = {};
     var tierInControl = {};
@@ -326,20 +330,37 @@ _MATCHDAY_WIDGET_HTML = """
 
     window.addEventListener('load', function() {
         var today = new Date().toISOString().slice(0, 10);
-        var defaultDate = allDates[allDates.length - 1];
-        for (var i = 0; i < allDates.length; i++) {
-            var iso = allDates[i];
-            if (iso >= today) {
-                var d = new Date(iso + 'T00:00:00');
-                if (d.getDay() === 6) {
-                    defaultDate = iso;
-                    break;
+        var defaultDate = allDates.length ? allDates[allDates.length - 1] : '';
+
+        /* Historic / fully-past scraped seasons: default to the busiest day (most mapped fixtures). */
+        if (historicSeason || (allDates.length && allDates[allDates.length - 1] < today)) {
+            defaultDate = allDates[0];
+            var bestN = -1;
+            for (var i = 0; i < allDates.length; i++) {
+                var isoH = allDates[i];
+                var infoH = dateInfo[isoH];
+                var n = infoH && typeof infoH.fixtureCount === 'number' ? infoH.fixtureCount : 0;
+                if (n > bestN) {
+                    bestN = n;
+                    defaultDate = isoH;
+                }
+            }
+        } else {
+            defaultDate = allDates[allDates.length - 1];
+            for (var j = 0; j < allDates.length; j++) {
+                var iso = allDates[j];
+                if (iso >= today) {
+                    var d = new Date(iso + 'T00:00:00');
+                    if (d.getDay() === 6) {
+                        defaultDate = iso;
+                        break;
+                    }
                 }
             }
         }
         var sel = document.getElementById('matchday-select');
-        if (sel) { sel.value = defaultDate; }
-        switchMatchDay(defaultDate);
+        if (sel && defaultDate) { sel.value = defaultDate; }
+        if (defaultDate) { switchMatchDay(defaultDate); }
     });
     </script>"""
 
@@ -353,6 +374,7 @@ def build_matchday_control_html(
     tier_proxy_vars_json: str,
     tier_label_json: str,
     subgroups_by_date_json: str,
+    historic_archive_js: str,
 ) -> str:
     """Dropdown + scripts for date switching and tier overlay rebinding."""
     return (
@@ -363,6 +385,7 @@ def build_matchday_control_html(
         .replace("@@TIER_PROXY_VARS_JSON@@", tier_proxy_vars_json)
         .replace("@@TIER_LABEL_JSON@@", tier_label_json)
         .replace("@@SUBGROUPS_BY_DATE_JSON@@", subgroups_by_date_json)
+        .replace("@@HISTORIC_ARCHIVE_JS@@", historic_archive_js)
     )
 
 
@@ -375,15 +398,35 @@ def _matchday_layer_label(tier_num: int, season: str) -> str:
     return mens_current_tier_name(tier_num, season)
 
 
-def _match_day_seo_head(season: str) -> str:
+def _today_inside_season_calendar(season: str, *, today: date | None = None) -> bool:
+    """True when *today* lies in the nominal Sep–Aug rugby season bracket for ``YYYY-YYYY``."""
+    probe = date.today() if today is None else today
+    try:
+        y0_str, y1_str = season.split("-", 1)
+        y0 = int(y0_str)
+        y1 = int(y1_str)
+    except (ValueError, TypeError):
+        return True
+
+    sep1 = date(y0, 9, 1)
+    aug_end = date(y1, 8, 31)
+    return sep1 <= probe <= aug_end
+
+
+def _match_day_seo_head(season: str, *, historic_archive: bool) -> str:
     """Return <head> elements for document title, viewport, and Open Graph (match day)."""
     season_short = short_season(season)
     page_title = f"Match Day | {season_short} | {BRAND}"
-    desc = (
-        f"See upcoming {season_short} English rugby fixtures near you: every ground on an "
-        f"interactive map—pan and zoom to your area, then pick a week for kick-offs, scores, "
-        f"and results."
-    )
+    if historic_archive:
+        desc = (
+            f"Historical {season_short} English rugby union fixtures mapped by match Saturday—clubs, "
+            f"scores, tiers, merit and pyramid—all grounds with kick-off picker on the leaflet map."
+        )
+    else:
+        desc = (
+            f"{season_short} English rugby fixtures and results on one map—venues, tiers, men's and "
+            f"women's competitions; browse Saturday match piles and layered tier filters."
+        )
     lines = [
         f"    <title>{escape(page_title)}</title>",
         '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />',
@@ -468,15 +511,67 @@ def build_team_index(season: str) -> dict[int, GeocodedTeam]:
 # Fixture loading
 # ---------------------------------------------------------------------------
 
+_PREM_2019_20_SEASON = "2019-2020"
+_PREM_2019_20_END = date(2021, 12, 31)
+
+
+def _parse_season_calendar_years(season: str) -> tuple[int, int] | None:
+    """Return ``(y0, y1)`` from ``YYYY-YYYY`` or *None* if invalid."""
+    try:
+        y0_str, y1_str = season.split("-", 1)
+        y0, y1 = int(y0_str), int(y1_str)
+    except (ValueError, TypeError):
+        return None
+    return y0, y1
+
+
+def _is_premiership_league(league_name: str, rel_path: str) -> bool:
+    path = rel_path.replace("\\", "/")
+    return (
+        league_name.strip() == "Premiership"
+        or path.endswith("/Premiership.json")
+        or path == "Premiership.json"
+    )
+
+
+def _fixture_date_in_matchday_window(
+    d: date,
+    *,
+    season: str,
+    league_name: str,
+    rel_path: str,
+) -> bool:
+    """True if *d* lies in a generous Jan--Dec window for the season folder.
+
+    Default: ``1 Jan y0`` through ``31 Dec y1`` (e.g. ``2024-2025`` → 2024-01-01 .. 2025-12-31).
+
+    **2019-2020 Premiership:** extend the inclusive end through ``31 Dec 2021`` so Covid-delayed
+    Premiership rounds (e.g. autumn 2020) stay valid if data ever spills past ``31 Dec y1``.
+    """
+    years = _parse_season_calendar_years(season)
+    if years is None:
+        return True
+    y0, y1 = years
+    start = date(y0, 1, 1)
+    end = date(y1, 12, 31)
+    if season == _PREM_2019_20_SEASON and _is_premiership_league(league_name, rel_path):
+        end = _PREM_2019_20_END
+    return start <= d <= end
+
 
 def load_all_fixtures(season: str) -> dict[str, list[tuple[Fixture, str, str]]]:
-    """Load all fixtures grouped by date. Returns {date: [(fixture, league_name, rel_path)]}."""
+    """Load all fixtures grouped by date. Returns {date: [(fixture, league_name, rel_path)]}.
+
+    Fixtures outside **1 Jan y0 .. 31 Dec y1** for season slug ``y0-y1`` are omitted; **2019-2020**
+    **Premiership** is allowed through **31 Dec 2021**.
+    """
     fixture_dir = DATA_DIR / "fixture_data" / season
     if not fixture_dir.exists():
         logger.error("fixture_data/%s/ not found — run scrape_fixtures.py first", season)
         return {}
 
     by_date: dict[str, list[tuple[Fixture, str, str]]] = defaultdict(list)
+    dropped = 0
     for json_file in sorted(fixture_dir.rglob("*.json")):
         with open(json_file, encoding="utf-8") as f:
             data: FixtureLeague = json.load(f)
@@ -485,9 +580,28 @@ def load_all_fixtures(season: str) -> dict[str, list[tuple[Fixture, str, str]]]:
         rel_path = json_file.relative_to(fixture_dir).as_posix()
 
         for fixture in data.get("fixtures", []):
+            ds = fixture.get("date")
+            if not isinstance(ds, str):
+                continue
+            try:
+                d = date.fromisoformat(ds)
+            except ValueError:
+                dropped += 1
+                continue
+            if not _fixture_date_in_matchday_window(
+                d, season=season, league_name=league_name, rel_path=rel_path
+            ):
+                dropped += 1
+                continue
             by_date[fixture["date"]].append((fixture, league_name, rel_path))
 
     total = sum(len(v) for v in by_date.values())
+    if dropped:
+        logger.info(
+            "Dropped %d fixture(s) outside match-day calendar window for %s",
+            dropped,
+            season,
+        )
     logger.info("Loaded %d fixtures across %d dates", total, len(by_date))
     return by_date
 
@@ -596,7 +710,7 @@ def _date_short(iso_date: str) -> str:
     """Short display for dropdown: 'Sat 11 Apr'"""
     try:
         dt = datetime.strptime(iso_date, "%Y-%m-%d")
-        return f"{dt.strftime('%a')} {dt.day} {dt.strftime('%b')}"
+        return f"{dt.strftime('%a')} {dt.day} {dt.strftime('%b')} {dt.year}"
     except ValueError:
         return iso_date
 
@@ -650,6 +764,9 @@ def build_match_day_map(
     else:
         generated_at = datetime.now()
 
+    today_iso = date.today().isoformat()
+    historic_archive = sorted_dates[-1] < today_iso and not _today_inside_season_calendar(season)
+
     m = folium.Map(
         location=[52.5, -1.5],
         zoom_start=7,
@@ -663,7 +780,7 @@ def build_match_day_map(
     header = m.get_root().header  # type: ignore[attr-defined]
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
-    header.add_child(folium.Element(_match_day_seo_head(season)))
+    header.add_child(folium.Element(_match_day_seo_head(season, historic_archive=historic_archive)))
 
     is_prod = get_config().is_production
     home_href = "../../" if is_prod else "../../index.html"
@@ -940,6 +1057,7 @@ def build_match_day_map(
             date_iso: {
                 "display": _date_display(date_iso),
                 "label": _count_label(total, results),
+                "fixtureCount": total,
             }
             for date_iso, total, results in date_meta
         }
@@ -967,6 +1085,7 @@ def build_match_day_map(
         tier_proxy_vars_json=tier_proxy_vars_json,
         tier_label_json=tier_label_json,
         subgroups_by_date_json=subgroups_by_date_json,
+        historic_archive_js="true" if historic_archive else "false",
     )
     html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(control_html))

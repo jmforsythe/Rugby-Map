@@ -606,7 +606,9 @@ def get_team_page_html(
         .league-history-table {{
             width: 100%;
             border-collapse: collapse;
-            min-width: 760px;
+            /* Never force the table wider than its card: min-width 760px caused a horizontal
+               scrollbar on common viewport widths (section padding shrinks the inner width). */
+            min-width: min(100%, 760px);
         }}
         .league-history-table th {{
             background: var(--bg-card-alt);
@@ -639,10 +641,6 @@ def get_team_page_html(
             padding-left: 0.5em;
             padding-right: 1.65em;
             box-sizing: content-box;
-        }}
-        /* Breathing room to the right of the table (beyond the map column) inside the scroll wrapper. */
-        .league-history-wrap {{
-            padding-right: clamp(1rem, 4vw, 2rem);
         }}
         .position {{
             font-weight: 600;
@@ -761,7 +759,7 @@ def get_team_page_html(
     if league_history:
         html += """    <div class="info-section">
         <h2>League History</h2>
-        <div class="table-wrapper league-history-wrap">
+        <div class="table-wrapper">
         <table class="league-history-table">
             <thead>
                 <tr>

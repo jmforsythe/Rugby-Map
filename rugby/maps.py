@@ -156,13 +156,13 @@ def _render_popup_html(
     league_name: str,
     league_url: str,
     team_url: str,
-    address: str,
+    address: str | None,
     travel_distances: TravelDistances | None,
 ) -> str:
     """Build the popup HTML for a rugby team marker."""
     name_esc = escape(team_name)
     league_esc = escape(league_name)
-    address_esc = escape(address)
+    address_esc = escape(address or "")
 
     distance_html = ""
     if travel_distances:
@@ -427,7 +427,7 @@ def _load_marker_items(
 
             team_name = team["name"]
             team_url = team.get("url", "")
-            address = team.get("formatted_address", team.get("address", ""))
+            address = team.get("formatted_address") or team.get("address") or ""
             icon_url = team.get("image_url") or RFU_FALLBACK_ICON
 
             popup = _render_popup_html(

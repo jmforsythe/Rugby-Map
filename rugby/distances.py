@@ -10,6 +10,7 @@ indicating which method was used.
 import argparse
 import json
 import math
+from pathlib import Path
 
 from core import (
     GeocodedLeague,
@@ -123,38 +124,35 @@ def league_average(league: GeocodedLeague, lookup: DistanceLookup) -> tuple[floa
 _DEFAULT_LOOKUP: DistanceLookup = DistanceLookup()
 
 
-def main() -> None:
+def _season_names_under_geocoded_teams() -> list[str]:
+    root = DATA_DIR / "geocoded_teams"
+    if not root.is_dir():
+        return []
+    return sorted(d.name for d in root.iterdir() if d.is_dir())
+
+
+def run_for_season(
+    season: str, lookup: DistanceLookup, *, print_rankings: bool = True
+) -> Path | None:
+    """
+    Compute travel stats for ``season`` and write ``distance_cache/<season>.json``.
+
+    Pair lookups are keyed by team name only; that matches treating club stadium
+    locations as stable across seasons (same convention as ``distances_routed``).
+    """
     global _DEFAULT_LOOKUP
 
-    parser = argparse.ArgumentParser(description="Calculate team and league travel distances")
-    parser.add_argument(
-        "--season",
-        type=str,
-        default="2025-2026",
-        help="Season to calculate (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
-    )
-    args = parser.parse_args()
-    print("Calculating team and league travel distances...")
-
-    # Load all geocoded teams
-    geocoded_dir = DATA_DIR / "geocoded_teams" / args.season
-
+    geocoded_dir = DATA_DIR / "geocoded_teams" / season
     if not geocoded_dir.exists():
-        print("Error: geocoded_teams directory not found")
-        return
+        print(f"Error: geocoded_teams directory not found for season {season!r}")
+        return None
 
-    lookup = DistanceLookup.load()
     _DEFAULT_LOOKUP = lookup
-    print(
-        f"  Distance source: {'routed' if lookup.has_routed else 'haversine'}"
-        + (f" ({lookup.n_routed} geocodes)" if lookup.has_routed else "")
-    )
 
     all_teams_data: dict[str, TeamTravelDistances] = {}
     league_stats: dict[str, LeagueTravelDistances] = {}
     missing_routed: list[tuple[str, float, float]] = []
 
-    # Process each league file
     for json_file in sorted(geocoded_dir.rglob("*.json")):
         with open(json_file, encoding="utf-8") as f:
             league_data: GeocodedLeague = json.load(f)
@@ -202,10 +200,8 @@ def main() -> None:
                 entry["total_duration_min"] = round(t_total_min, 2)
             all_teams_data[team["name"]] = entry
 
-    # Sort teams by average distance
     all_teams_data = dict(sorted(all_teams_data.items(), key=lambda x: x[1]["avg_distance_km"]))
 
-    # Create output structure
     output: TravelDistances = {
         "teams": all_teams_data,
         "leagues": league_stats,
@@ -225,10 +221,9 @@ def main() -> None:
         },
     }
 
-    # Save to JSON
-    if not (DATA_DIR / "distance_cache").exists():
-        (DATA_DIR / "distance_cache").mkdir(parents=True)
-    output_file = DATA_DIR / "distance_cache" / f"{args.season}.json"
+    cache_dir = DATA_DIR / "distance_cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    output_file = cache_dir / f"{season}.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
@@ -236,41 +231,86 @@ def main() -> None:
     print(f"  Output saved to: {output_file}")
     print(f"  Teams processed: {len(all_teams_data)}")
     print(f"  Leagues processed: {len(league_stats)}")
-    print(f"  Overall average distance: {output["summary"]["overall_avg_distance_km"]} km")
+    src = output["summary"]["distance_source"]
+    print(f"  Overall average distance: {output["summary"]["overall_avg_distance_km"]} km ({src})")
+
     if missing_routed:
         examples = ", ".join(
             f"{n} ({lat:.4f},{lng:.4f})" for n, lat, lng in sorted(set(missing_routed))[:5]
         )
         print(
-            f"\n  WARNING: {len(set(missing_routed))} team(s) in season {args.season} "
+            f"\n  WARNING: {len(set(missing_routed))} team(s) in season {season} "
             "have no routed-cache entry; those teams used Haversine fallback. "
             "Run `make routed-distances` to refresh the cache. "
             f"Examples: {examples}"
         )
 
-    # Print top 5 and bottom 5 teams
-    print("\n" + "=" * 80)
-    print("TOP 5 TEAMS - LOWEST AVERAGE TRAVEL DISTANCE")
-    print("=" * 80)
-    for i, team in enumerate(list(all_teams_data.values())[:5], 1):
-        print(f"{i}. {team["name"]} ({team["league"]}): {team["avg_distance_km"]} km")
+    if print_rankings:
+        print("\n" + "=" * 80)
+        print("TOP 5 TEAMS - LOWEST AVERAGE TRAVEL DISTANCE")
+        print("=" * 80)
+        for i, team in enumerate(list(all_teams_data.values())[:5], 1):
+            print(f"{i}. {team["name"]} ({team["league"]}): {team["avg_distance_km"]} km")
 
-    print("\n" + "=" * 80)
-    print("BOTTOM 5 TEAMS - HIGHEST AVERAGE TRAVEL DISTANCE")
-    print("=" * 80)
-    for i, team in enumerate(list(all_teams_data.values())[-5:], len(all_teams_data) - 4):
-        print(f"{i}. {team["name"]} ({team["league"]}): {team["avg_distance_km"]} km")
+        print("\n" + "=" * 80)
+        print("BOTTOM 5 TEAMS - HIGHEST AVERAGE TRAVEL DISTANCE")
+        print("=" * 80)
+        for i, team in enumerate(list(all_teams_data.values())[-5:], len(all_teams_data) - 4):
+            print(f"{i}. {team["name"]} ({team["league"]}): {team["avg_distance_km"]} km")
 
-    # Print league rankings
-    sorted_leagues = sorted(league_stats.values(), key=lambda x: x["avg_distance_km"])
-    print("\n" + "=" * 80)
-    print("LEAGUE RANKINGS - AVERAGE TRAVEL DISTANCE")
-    print("=" * 80)
-    for i, league in enumerate(sorted_leagues[:10], 1):
+        sorted_leagues = sorted(league_stats.values(), key=lambda x: x["avg_distance_km"])
+        print("\n" + "=" * 80)
+        print("LEAGUE RANKINGS - AVERAGE TRAVEL DISTANCE")
+        print("=" * 80)
+        for i, league in enumerate(sorted_leagues[:10], 1):
+            print(
+                f"{i}. {league["league_name"]}: {league["avg_distance_km"]} km "
+                f"({league["team_count"]} teams)"
+            )
+        print()
+
+    return output_file
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Calculate team and league travel distances")
+    parser.add_argument(
+        "--season",
+        type=str,
+        default="2025-2026",
+        help="Season to calculate (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
+    )
+    parser.add_argument(
+        "--all-seasons",
+        action="store_true",
+        help="Rebuild distance_cache/*.json for every season under geocoded_teams/",
+    )
+    args = parser.parse_args()
+
+    if args.all_seasons:
+        names = _season_names_under_geocoded_teams()
+        if not names:
+            print("Error: no season directories under geocoded_teams")
+            return
+        lookup = DistanceLookup.load()
+        print("Calculating team and league travel distances (all seasons)...")
         print(
-            f"{i}. {league["league_name"]}: {league["avg_distance_km"]} km ({league["team_count"]} teams)"
+            f"  Distance source: {'routed' if lookup.has_routed else 'haversine'}"
+            + (f" ({lookup.n_routed} geocodes)" if lookup.has_routed else "")
         )
-    print()
+        for season in names:
+            print(f"\n--- {season} ---")
+            run_for_season(season, lookup, print_rankings=False)
+        print(f"\nFinished {len(names)} seasons.")
+        return
+
+    print("Calculating team and league travel distances...")
+    lookup = DistanceLookup.load()
+    print(
+        f"  Distance source: {'routed' if lookup.has_routed else 'haversine'}"
+        + (f" ({lookup.n_routed} geocodes)" if lookup.has_routed else "")
+    )
+    run_for_season(args.season, lookup, print_rankings=True)
 
 
 if __name__ == "__main__":

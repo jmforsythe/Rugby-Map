@@ -13,6 +13,7 @@ import time
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
+import requests
 from bs4 import BeautifulSoup, Tag
 
 from core import (
@@ -110,6 +111,68 @@ def extract_address_from_soup(soup: BeautifulSoup) -> str | None:
     return None
 
 
+def sleep_before_rfu_request(delay_seconds: float) -> None:
+    """Pacing before hitting RFU (matches historical scripts: delay + small jitter)."""
+    if delay_seconds and delay_seconds > 0:
+        time.sleep(delay_seconds + random.uniform(0.0, 0.35))
+
+
+def get_rfu_team_page_response(url: str, *, timeout: int = 10) -> requests.Response:
+    """Single GET to an RFU page with curl fallback when requests sees Cloudflare 202."""
+    response = get_session().get(url, headers=get_headers(), timeout=timeout)
+    if response.status_code == 202:
+        from core.http import _curl_fallback
+
+        response = _curl_fallback(url, None, timeout)
+    return response
+
+
+def maybe_raise_rfu_antibot(response: requests.Response, *, log_text: str) -> None:
+    """Raise AntiBotDetectedError when RFU still returns a challenge after curl fallback.
+
+    Prefer :func:`handle_rfu_antibot_with_backoff` inside retry loops so transient
+    Cloudflare blocks get exponential backoff before giving up.
+    """
+    if response.status_code in (202, 403):
+        raise AntiBotDetectedError(f"{response.status_code} code", log_text=log_text)
+
+
+def handle_rfu_antibot_with_backoff(
+    response: requests.Response,
+    log_lines: list[str],
+    attempt: int,
+    max_retries: int,
+    *,
+    backoff_base_seconds: float = 5.0,
+) -> bool:
+    """If response is anti-bot, either backoff and retry or raise.
+
+    Uses exponential waits ``backoff_base_seconds * 2**attempt`` before the
+    next HTTP attempt (same ``attempt`` index as the caller's retry loop).
+
+    Returns:
+        ``True`` if the caller should ``continue`` to the next loop iteration.
+        ``False`` if the response is ok (not 202/403 after curl fallback).
+
+    Raises:
+        AntiBotDetectedError: On the final attempt when still blocked.
+    """
+    if response.status_code not in (202, 403):
+        return False
+
+    log_lines.append(f"    ✗ {response.status_code} blocked - bot detection")
+
+    if attempt < max_retries - 1:
+        wait = backoff_base_seconds * (2**attempt)
+        log_lines.append(
+            f"    ! Anti-bot — backing off {wait:.1f}s then retry ({attempt + 1}/{max_retries})..."
+        )
+        time.sleep(wait)
+        return True
+
+    raise AntiBotDetectedError(f"{response.status_code} code", log_text="\n".join(log_lines))
+
+
 def fetch_club_address(
     club_name: str, team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
 ) -> tuple[str | None, str]:
@@ -129,19 +192,11 @@ def fetch_club_address(
     # Fetch the page once and try both extraction methods
     for attempt in range(max_retries):
         try:
-            if delay_seconds and delay_seconds > 0:
-                time.sleep(delay_seconds + random.uniform(0.0, 0.35))
+            sleep_before_rfu_request(delay_seconds)
 
-            response = get_session().get(team_url, headers=get_headers(), timeout=10)
-            if response.status_code == 202:
-                from core.http import _curl_fallback
-
-                response = _curl_fallback(team_url, None, 10)
-            if response.status_code in (202, 403):
-                log_lines.append(f"    ✗ {response.status_code} blocked - bot detection")
-                raise AntiBotDetectedError(
-                    f"{response.status_code} code", log_text="\n".join(log_lines)
-                )
+            response = get_rfu_team_page_response(team_url, timeout=10)
+            if handle_rfu_antibot_with_backoff(response, log_lines, attempt, max_retries):
+                continue
 
             response.raise_for_status()
             soup = BeautifulSoup(response.content, "html.parser")

@@ -7,15 +7,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124746",
       "image_url": "https://images.englandrugby.com/club_images/124746.png",
       "address": null,
-      "error": "no_address"
+      "latitude": 51.475808,
+      "longitude": -0.230323
     },
     {
       "name": "Chiswick 2nd XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=4931",
       "image_url": "https://images.englandrugby.com/club_images/4931.png",
       "address": "The Clubhouse Riverside Lands, Dukes Meadows Riverside Lands London MIDDLESEX W4 2SH UNITED KINGDOM",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
+      "latitude": 51.473573,
+      "longitude": -0.256371,
       "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352119820
     },
@@ -24,8 +25,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
       "image_url": "https://images.englandrugby.com/club_images/15924.png",
       "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
-      "latitude": 51.532942,
-      "longitude": -0.3287333,
+      "latitude": 51.532269,
+      "longitude": -0.327573,
       "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 350872989
     },
@@ -44,8 +45,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
       "image_url": "https://images.englandrugby.com/club_images/23337.png",
       "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
-      "latitude": 51.4227324,
-      "longitude": -0.3870802,
+      "latitude": 51.422975,
+      "longitude": -0.383274,
       "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 350420094
     },
@@ -54,8 +55,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
       "image_url": "https://images.englandrugby.com/club_images/8854.png",
       "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
-      "latitude": 51.4865187,
-      "longitude": -0.3373001,
+      "latitude": 51.486857,
+      "longitude": -0.336395,
       "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 350421136
     },
@@ -64,8 +65,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26638",
       "image_url": "https://images.englandrugby.com/club_images/26638.png",
       "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
-      "latitude": 51.5245627,
-      "longitude": -0.3265066,
+      "latitude": 51.52449,
+      "longitude": -0.326301,
       "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 350422821
     },
@@ -74,8 +75,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
       "image_url": "https://images.englandrugby.com/club_images/9155.png",
       "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
+      "latitude": 51.573233,
+      "longitude": -0.059186,
       "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
       "place_id": 350607581
     },
@@ -84,8 +85,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24392",
       "image_url": "https://images.englandrugby.com/club_images/24392.png",
       "address": "Twyford Avenue Sports Ground Twyford Avenue Acton MIDDLESEX W3 9QA UNITED KINGDOM",
-      "latitude": 51.50993,
-      "longitude": -0.28094,
+      "latitude": 51.509996,
+      "longitude": -0.280963,
       "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 352119447
     },
@@ -94,8 +95,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15744",
       "image_url": "https://images.englandrugby.com/club_images/15744.png",
       "address": "Old Haberdashers Sports Ground Croxdale Road Theobald Street Borehamwood WD6 4PY United Kingdom",
-      "latitude": 51.6605027,
-      "longitude": -0.2831607,
+      "latitude": 51.660479,
+      "longitude": -0.283241,
       "formatted_address": "WD6 4PY, Elstree and Borehamwood, Borehamwood, Hertsmere, Hertfordshire, England, United Kingdom",
       "place_id": 352141214
     }

@@ -7,8 +7,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10293",
       "image_url": "https://images.englandrugby.com/club_images/10293.png",
       "address": "Holmes Chapel Community Centre Station Road Holmes Chapel Cheshire CW4 8AA United Kingdom",
-      "latitude": 53.1983465,
-      "longitude": -2.3502281,
+      "latitude": 53.199207,
+      "longitude": -2.34987,
       "formatted_address": "CW4 8AA, Holmes Chapel, Cheshire East, England, United Kingdom",
       "place_id": 350567853
     },
@@ -17,8 +17,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14201",
       "image_url": "https://images.englandrugby.com/club_images/14201.png",
       "address": "Mossley Hill Road Liverpool MERSEYSIDE L18 8BX UNITED KINGDOM",
-      "latitude": 53.3736046,
-      "longitude": -2.9214784,
+      "latitude": 53.373548,
+      "longitude": -2.921368,
       "formatted_address": "L18 8BX, Liverpool City Region, England, United Kingdom",
       "place_id": 350674852
     },
@@ -27,7 +27,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17169",
       "image_url": "https://images.englandrugby.com/club_images/17169.png",
       "address": null,
-      "error": "no_address"
+      "latitude": 53.411299,
+      "longitude": -2.753809
     }
   ],
   "team_count": 3

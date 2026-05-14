@@ -7,15 +7,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94051",
       "image_url": "https://images.englandrugby.com/club_images/94051.png",
       "address": "Pavilion Grainville Playing Fields Jersey St Saviour JE2 7LJ Jersey",
-      "error": "geocoding_failed"
+      "latitude": 51.433808,
+      "longitude": -0.51916
     },
     {
       "name": "East Grinstead II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=7136",
       "image_url": "https://images.englandrugby.com/club_images/7136.png",
       "address": "Saint Hill Road, East Grinstead, Wsuss, RH19 4JU, United Kingdom",
-      "latitude": 51.109306,
-      "longitude": -0.0283279,
+      "latitude": 51.109681,
+      "longitude": -0.02921,
       "formatted_address": "RH19 4JU, East Grinstead, Mid Sussex, West Sussex, England, United Kingdom",
       "place_id": 350798701
     },
@@ -24,8 +25,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23449",
       "image_url": "https://images.englandrugby.com/club_images/23449.png",
       "address": "Hempstead Playing Fields Nevill Road, Manor park Uckfield EAST SUSSEX TN221LX UNITED KINGDOM",
-      "latitude": 50.9786097,
-      "longitude": 0.1106363,
+      "latitude": 50.978698,
+      "longitude": 0.110093,
       "formatted_address": "TN22 1LX, Uckfield, Wealden, East Sussex, England, United Kingdom",
       "place_id": 350852767
     },
@@ -34,8 +35,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=14523",
       "image_url": "https://images.englandrugby.com/club_images/14523.png",
       "address": "Newick Rfc C/o The Crown Inn Church Road Newick East Sussex BN8 4JX United Kingdom",
-      "latitude": 50.9714056,
-      "longitude": 0.0210742,
+      "latitude": 50.971243,
+      "longitude": 0.021,
       "formatted_address": "BN8 4JX, Newick, Lewes, East Sussex, England, United Kingdom",
       "place_id": 350503623
     },
@@ -44,8 +45,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3207",
       "image_url": "https://images.englandrugby.com/club_images/3207.png",
       "address": "C/0 CB administrator Sussex Rugby University of Brighton Sports Centre Falmer Campus Brighton BN1 9PH",
-      "latitude": 50.8600421,
-      "longitude": -0.0862726,
+      "latitude": 50.860353,
+      "longitude": -0.084473,
       "formatted_address": "BN1 9PH, Brighton and Hove, England, United Kingdom",
       "place_id": 350500798
     },
@@ -54,8 +55,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=3660",
       "image_url": "https://images.englandrugby.com/club_images/3660.png",
       "address": "Southway Playing FIelds Poveys Close Burgess Hill WEST SUSSEX RH15 9TA UNITED KINGDOM",
-      "latitude": 50.9591509,
-      "longitude": -0.1513481,
+      "latitude": 50.959181,
+      "longitude": -0.151412,
       "formatted_address": "RH15 9TA, Burgess Hill, Mid Sussex, West Sussex, England, United Kingdom",
       "place_id": 350345021
     }

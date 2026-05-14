@@ -7,8 +7,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26123",
       "image_url": "https://images.englandrugby.com/club_images/26123.png",
       "address": "The Rugby Park Roundstone Lane Angmering WEST SUSSEX BN16 4AX UNITED KINGDOM",
-      "latitude": 50.8234684,
-      "longitude": -0.4737397,
+      "latitude": 50.820663,
+      "longitude": -0.475349,
       "formatted_address": "BN16 4AX, Angmering, Arun, West Sussex, England, United Kingdom",
       "place_id": 351175070
     },
@@ -17,15 +17,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94051",
       "image_url": "https://images.englandrugby.com/club_images/94051.png",
       "address": "Pavilion Grainville Playing Fields Jersey St Saviour JE2 7LJ Jersey",
-      "error": "geocoding_failed"
+      "latitude": 51.433808,
+      "longitude": -0.51916
     },
     {
       "name": "Ditchling",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=6541",
       "image_url": "https://images.englandrugby.com/club_images/6541.png",
       "address": "St James's Montefiore Cricket Club, Keymer Road, Ditchling, West Sussex, BN6 8RE, United Kingdom",
-      "latitude": 50.92073,
-      "longitude": -0.12822,
+      "latitude": 50.920724,
+      "longitude": -0.128223,
       "formatted_address": "BN6 8RE, Hassocks, Keymer, Mid Sussex, West Sussex, England, United Kingdom",
       "place_id": 351007600
     },
@@ -34,8 +35,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1452",
       "image_url": "https://images.englandrugby.com/club_images/1452.png",
       "address": "Barns Green & Itchingfield Sports And Social Club Muntham Drive Barns Green Horsham West Sussex RH13 0PT United Kingdom",
-      "latitude": 51.033237,
-      "longitude": -0.3956182,
+      "latitude": 51.033315,
+      "longitude": -0.395702,
       "formatted_address": "RH13 0PT, Itchingfield, Horsham, West Sussex, England, United Kingdom",
       "place_id": 350794178
     },
@@ -44,8 +45,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=20968",
       "image_url": "https://images.englandrugby.com/club_images/20968.png",
       "address": "Steyning Rfc 9 Priory Field Upper Beeding West Sussex BN44 3HU United Kingdom",
-      "latitude": 50.88554,
-      "longitude": -0.30617,
+      "latitude": 50.885536,
+      "longitude": -0.306169,
       "formatted_address": "BN44 3HU, Upper Beeding, Horsham, West Sussex, England, United Kingdom",
       "place_id": 351007097
     },
@@ -54,8 +55,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10504",
       "image_url": "https://images.englandrugby.com/club_images/10504.png",
       "address": "Hove Recreation Ground Shirley Drive Hove East Sussex BN3 6NQ United Kingdom",
-      "latitude": 50.8390486,
-      "longitude": -0.1652114,
+      "latitude": 50.839077,
+      "longitude": -0.165239,
       "formatted_address": "BN3 6NQ, Hove, Brighton and Hove, England, United Kingdom",
       "place_id": 351005677
     },
@@ -64,8 +65,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=10451",
       "image_url": "https://images.englandrugby.com/club_images/10451.png",
       "address": "Horsham RUFC PO Box 114 Hammerpond Road Horsham WEST SUSSEX RH13 6YE UNITED KINGDOM",
-      "latitude": 51.06752,
-      "longitude": -0.3217,
+      "latitude": 51.067526,
+      "longitude": -0.321585,
       "formatted_address": "RH13 6YE, Horsham, West Sussex, England, United Kingdom",
       "place_id": 351373710
     },
@@ -74,8 +75,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9891",
       "image_url": "https://images.englandrugby.com/club_images/9891.png",
       "address": "Hellingly Rfc Hellingly Sports Club Horsebridge Recreational Ground Lower Horsebridge Nr. Hailsham East Sussex BN27 4DJ United Kingdom",
-      "latitude": 50.8813025,
-      "longitude": 0.2394541,
+      "latitude": 50.881332,
+      "longitude": 0.239426,
       "formatted_address": "BN27 4DJ, Hellingly, Wealden, East Sussex, England, United Kingdom",
       "place_id": 350502212
     }

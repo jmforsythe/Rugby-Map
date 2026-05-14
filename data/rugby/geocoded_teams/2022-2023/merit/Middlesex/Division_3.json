@@ -7,15 +7,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124784",
       "image_url": "https://images.englandrugby.com/club_images/124784.png",
       "address": null,
-      "error": "no_address"
+      "latitude": 51.509996,
+      "longitude": -0.280963
     },
     {
       "name": "Quintin",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17356",
       "image_url": "https://images.englandrugby.com/club_images/17356.png",
       "address": "Chiswick Rfc Dukes Meadows Riverside Drive Chiswick W4 2SH United Kingdom",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
+      "latitude": 51.473573,
+      "longitude": -0.256371,
       "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352119801
     },
@@ -24,8 +25,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=1946",
       "image_url": "https://images.englandrugby.com/club_images/1946.png",
       "address": "Coram's Fields, 93 Guilford Street, London, WC1N 1DN, United Kingdom",
-      "latitude": 51.5235406,
-      "longitude": -0.1200453,
+      "latitude": 51.523542,
+      "longitude": -0.120085,
       "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
       "place_id": 351682702
     },
@@ -34,8 +35,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16056",
       "image_url": "https://images.englandrugby.com/club_images/16056.png",
       "address": "Hackney Marshes Centre Homerton Road London E9 5PF United Kingdom",
-      "latitude": 51.5527479,
-      "longitude": -0.0255018,
+      "latitude": 51.552233,
+      "longitude": -0.021898,
       "formatted_address": "Hackney Marshes Centre, Homerton Road, Hackney Wick, London Borough of Hackney, Greater London, England, E9 5PF, United Kingdom",
       "place_id": 259818900
     },
@@ -44,8 +45,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=24823",
       "image_url": "https://images.englandrugby.com/club_images/24823.png",
       "address": "London Marathon Playing Fields Birkbeck Avenue Greenford Middlesex UB6 8LS United Kingdom",
-      "latitude": 51.54131,
-      "longitude": -0.34867,
+      "latitude": 51.541308,
+      "longitude": -0.348671,
       "formatted_address": "UB6 8LS, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 352106300
     },
@@ -54,8 +55,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=127123",
       "image_url": "https://images.englandrugby.com/club_images/127123.png",
       "address": "Sipson Lane Middlesex UB3 5EH United Kingdom",
-      "latitude": 51.48794,
-      "longitude": -0.43704,
+      "latitude": 51.487946,
+      "longitude": -0.437037,
       "formatted_address": "UB3 5EH, London Borough of Hillingdon, Greater London, England, United Kingdom",
       "place_id": 352778959
     },
@@ -64,8 +65,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9385",
       "image_url": "https://images.englandrugby.com/club_images/9385.png",
       "address": "Haringey Rhinos Rugby Club New River Sport And Fitness White Hart Lane Wood Green Middlesex N22 5QW United Kingdom",
-      "latitude": 51.6041816,
-      "longitude": -0.1013207,
+      "latitude": 51.604657,
+      "longitude": -0.100056,
       "formatted_address": "N22 5QW, London Borough of Haringey, Greater London, England, United Kingdom",
       "place_id": 350257433
     },
@@ -74,8 +75,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8061",
       "image_url": "https://images.englandrugby.com/club_images/8061.png",
       "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
-      "latitude": 51.43562,
-      "longitude": -0.39278,
+      "latitude": 51.435608,
+      "longitude": -0.392913,
       "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352094850
     },
@@ -84,8 +85,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9156",
       "image_url": "https://images.englandrugby.com/club_images/9156.png",
       "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
+      "latitude": 51.573233,
+      "longitude": -0.059186,
       "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
       "place_id": 350607581
     }

@@ -7,8 +7,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16286",
       "image_url": "https://images.englandrugby.com/club_images/16286.png",
       "address": "Hudson Park Garstang Sports & Social Club High Street Garstang Preston Lancashire PR3 1EB England",
-      "latitude": 53.9032376,
-      "longitude": -2.7728825,
+      "latitude": 53.902976,
+      "longitude": -2.773258,
       "formatted_address": "PR3 1EB, Garstang, Bonds, Wyre, Lancashire, England, United Kingdom",
       "place_id": 351349596
     },
@@ -17,8 +17,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=5289",
       "image_url": "https://images.englandrugby.com/club_images/5289.png",
       "address": "Littlemoor Park, Littlemoor Road, Clitheroe, Lancashire, BB7 1ER, United Kingdom",
-      "latitude": 53.8647663,
-      "longitude": -2.3921332,
+      "latitude": 53.864755,
+      "longitude": -2.39284,
       "formatted_address": "BB7 1ER, Clitheroe, Ribble Valley, Lancashire, England, United Kingdom",
       "place_id": 350951945
     },
@@ -27,15 +27,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8446",
       "image_url": "https://images.englandrugby.com/club_images/8446.png",
       "address": null,
-      "error": "no_address"
+      "latitude": 53.74437,
+      "longitude": -2.987417
     },
     {
       "name": "Preston Grasshoppers 6th XV",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17185",
       "image_url": "https://images.englandrugby.com/club_images/17185.png",
       "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM",
-      "latitude": 53.7967514,
-      "longitude": -2.7356618,
+      "latitude": 53.797229,
+      "longitude": -2.733251,
       "formatted_address": "Preston Grasshoppers R.F.C., Lightfoot Green Lane, Fulwood, Broughton, Preston, Lancashire, England, PR4 0AP, United Kingdom",
       "place_id": 256711895
     },
@@ -44,8 +45,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=94086",
       "image_url": "https://images.englandrugby.com/club_images/94086.png",
       "address": "Aspull Rugby Club Woods Road, Aspull, Wigan. LANCASHIRE WN21PJ UNITED KINGDOM",
-      "latitude": 53.56447,
-      "longitude": -2.58729,
+      "latitude": 53.564455,
+      "longitude": -2.587292,
       "formatted_address": "WN2 1PJ, Wigan, Greater Manchester, England, United Kingdom",
       "place_id": 351701161
     },
@@ -54,8 +55,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=16279",
       "image_url": "https://images.englandrugby.com/club_images/16279.png",
       "address": "46 Dingle Road, Upholland, Skelmersdale, Lancashire, WN8 0EW, England",
-      "latitude": 53.54627,
-      "longitude": -2.72694,
+      "latitude": 53.546277,
+      "longitude": -2.726942,
       "formatted_address": "WN8 0EW, Up Holland, Upholland, West Lancashire, Lancashire, England, United Kingdom",
       "place_id": 352156955
     },
@@ -64,8 +65,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8193",
       "image_url": "https://images.englandrugby.com/club_images/8193.png",
       "address": "Fleetwood Rugby Club Melbourne Avenue Fleetwood LANCASHIRE FY7 8AY UNITED KINGDOM ",
-      "latitude": 53.9038537,
-      "longitude": -3.0345288,
+      "latitude": 53.904285,
+      "longitude": -3.034885,
       "formatted_address": "FY7 8AY, Fleetwood, Wyre, Lancashire, England, United Kingdom",
       "place_id": 350625726
     },
@@ -74,8 +75,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17184",
       "image_url": "https://images.englandrugby.com/club_images/17184.png",
       "address": "Lightfoot Green, Fulwood, Preston. LANCASHIRE PR4 0AP UNITED KINGDOM",
-      "latitude": 53.7967514,
-      "longitude": -2.7356618,
+      "latitude": 53.797229,
+      "longitude": -2.733251,
       "formatted_address": "Preston Grasshoppers R.F.C., Lightfoot Green Lane, Fulwood, Broughton, Preston, Lancashire, England, PR4 0AP, United Kingdom",
       "place_id": 256711895
     },
@@ -84,8 +85,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=11720",
       "image_url": "https://images.englandrugby.com/club_images/11720.png",
       "address": "The Clubhouse Underley Park Underley Park Kirkby Lonsdale Cumbria LA6 2DS United Kingdom",
-      "latitude": 54.2081674,
-      "longitude": -2.6025938,
+      "latitude": 54.207915,
+      "longitude": -2.602949,
       "formatted_address": "LA6 2DS, Kirkby Lonsdale, Westmorland and Furness, England, United Kingdom",
       "place_id": 350680621
     },
@@ -94,8 +95,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=2527",
       "image_url": "https://images.englandrugby.com/club_images/2527.png",
       "address": "Fleetwood Road Norbreck Blackpool LANCASHIRE FY5 1RN UNITED KINGDOM",
-      "latitude": 53.8630795,
-      "longitude": -3.038701,
+      "latitude": 53.862836,
+      "longitude": -3.036416,
       "formatted_address": "Fleetwood Road, Churchtown, Bispham, Blackpool, Lancashire, England, FY5 1RD, United Kingdom",
       "place_id": 253323592
     },
@@ -105,7 +106,7 @@
       "image_url": "https://images.englandrugby.com/club_images/5461.png",
       "address": "The Club House, Holt House, Harrison Drive, Colne                              , Lancashire, BB8 9SF, United Kingdom",
       "latitude": 53.86244,
-      "longitude": -2.17995,
+      "longitude": -2.17993,
       "formatted_address": "BB8 9SF, Colne, Pendle, Lancashire, England, United Kingdom",
       "place_id": 350953683
     },
@@ -114,8 +115,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=12122",
       "image_url": "https://images.englandrugby.com/club_images/12122.png",
       "address": "Round Ash Park Hand Lane Pennington Leigh. LANCASHIRE WN7 3NA UNITED KINGDOM ",
-      "latitude": 53.4810869,
-      "longitude": -2.5216359,
+      "latitude": 53.481032,
+      "longitude": -2.521389,
       "formatted_address": "WN7 3NA, Wigan, Greater Manchester, England, United Kingdom",
       "place_id": 350892601
     }

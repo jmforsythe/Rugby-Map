@@ -17,8 +17,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8091",
       "image_url": "https://images.englandrugby.com/club_images/8091.png",
       "address": "Summers Lane London N12 0PD United Kingdom",
-      "latitude": 51.6115893,
-      "longitude": -0.1628236,
+      "latitude": 51.606017,
+      "longitude": -0.172771,
       "formatted_address": "Summers Lane, Woodhouse Road, Friern Barnet, London Borough of Barnet, Greater London, England, N12 0RS, United Kingdom",
       "place_id": 259427030
     },
@@ -27,8 +27,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=17356",
       "image_url": "https://images.englandrugby.com/club_images/17356.png",
       "address": "Chiswick Rfc Dukes Meadows Riverside Drive Chiswick W4 2SH United Kingdom",
-      "latitude": 51.47357,
-      "longitude": -0.25637,
+      "latitude": 51.473573,
+      "longitude": -0.256371,
       "formatted_address": "W4 2SH, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 352119801
     },
@@ -37,8 +37,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=26638",
       "image_url": "https://images.englandrugby.com/club_images/26638.png",
       "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
-      "latitude": 51.5245627,
-      "longitude": -0.3265066,
+      "latitude": 51.52449,
+      "longitude": -0.326301,
       "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 350422821
     },
@@ -47,15 +47,16 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=124784",
       "image_url": "https://images.englandrugby.com/club_images/124784.png",
       "address": null,
-      "error": "no_address"
+      "latitude": 51.509996,
+      "longitude": -0.280963
     },
     {
       "name": "Grasshoppers II",
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=8854",
       "image_url": "https://images.englandrugby.com/club_images/8854.png",
       "address": "Grasshoppers Rugby Club, Syon Lane, Isleworth, Middlesex, TW7 5PN, United Kingdom",
-      "latitude": 51.4865187,
-      "longitude": -0.3373001,
+      "latitude": 51.486857,
+      "longitude": -0.336395,
       "formatted_address": "TW7 5PN, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 350421136
     },
@@ -64,8 +65,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=15924",
       "image_url": "https://images.englandrugby.com/club_images/15924.png",
       "address": "Old Priorians RFC Perivale Lane Greenford London MIDDLESEX UB6 8TL ENGLAND",
-      "latitude": 51.532942,
-      "longitude": -0.3287333,
+      "latitude": 51.532269,
+      "longitude": -0.327573,
       "formatted_address": "UB6 8TL, London Borough of Ealing, Greater London, England, United Kingdom",
       "place_id": 350872989
     },
@@ -74,8 +75,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=23337",
       "image_url": "https://images.englandrugby.com/club_images/23337.png",
       "address": "Parkfields South Road Hampton MIDDLESEX TW12 3PE UNITED KINGDOM ",
-      "latitude": 51.4227324,
-      "longitude": -0.3870802,
+      "latitude": 51.422975,
+      "longitude": -0.383274,
       "formatted_address": "TW12 3PE, London Borough of Hounslow, Greater London, England, United Kingdom",
       "place_id": 350420094
     },
@@ -84,8 +85,8 @@
       "url": "https://www.englandrugby.com/fixtures-and-results/search-results?team=9155",
       "image_url": "https://images.englandrugby.com/club_images/9155.png",
       "address": "Spring Hill Sports Ground, Spring Hill, Upper Clapton, Hackney, E5 9BL, United Kingdom",
-      "latitude": 51.5727667,
-      "longitude": -0.057759,
+      "latitude": 51.573233,
+      "longitude": -0.059186,
       "formatted_address": "E5 9BL, London Borough of Waltham Forest, Greater London, England, United Kingdom",
       "place_id": 350607581
     }

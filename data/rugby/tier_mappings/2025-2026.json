@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "season": "2025-2026",
+  "overrides_by_tier": {
+    "5": {
+      "Regional 1 Tribute Ale South West": "National League 2 West",
+      "Regional 1 Midlands": "National League 2 West",
+      "Regional 1 North West": "National League 2 North",
+      "Regional 1 North East": "National League 2 North",
+      "Regional 1 South East": "National League 2 East",
+      "Regional 1 South Central": "National League 2 East"
+    },
+    "6": {
+      "Regional 2 Tribute Ale South West": "Regional 1 Tribute Ale South West",
+      "Regional 2 Tribute Ale Severn": "Regional 1 Tribute Ale South West",
+      "Regional 2 Midlands West": "Regional 1 Midlands",
+      "Regional 2 Midlands East": "Regional 1 Midlands",
+      "Regional 2 West Midlands": "Regional 1 Midlands",
+      "Regional 2 East Midlands": "Regional 1 Midlands",
+      "Regional 2 Midlands North": "Regional 1 North West",
+      "Regional 2 North West": "Regional 1 North West",
+      "Regional 2 North Midlands": "Regional 1 North West",
+      "Regional 2 North": "Regional 1 North East",
+      "Regional 2 North East": "Regional 1 North East",
+      "Regional 2 Anglia": "Regional 1 South East",
+      "Regional 2 Thames": "Regional 1 South East",
+      "Regional 2 South East": "Regional 1 South Central",
+      "Regional 2 South Central": "Regional 1 South Central"
+    },
+    "8": {
+      "Counties 2 Midlands West (East)": [
+        "Counties 1 Midlands West (North)",
+        "Counties 1 Midlands West (South)"
+      ],
+      "Counties 2 Midlands West (West)": [
+        "Counties 1 Midlands West (North)",
+        "Counties 1 Midlands West (South)"
+      ],
+      "Counties 2 Surrey": "Counties 1 Surrey/Sussex",
+      "Counties 2 Sussex": "Counties 1 Surrey/Sussex",
+      "Counties 2 Tribute Ale Berks/Bucks & Oxon East": "Counties 1 Tribute Ale Southern North",
+      "Counties 2 Tribute Ale Berks/Bucks & Oxon West": "Counties 1 Tribute Ale Southern North",
+      "Counties 2 Tribute Ale Cornwall": "Counties 1 Tribute Ale Western West",
+      "Counties 2 Tribute Ale Devon": "Counties 1 Tribute Ale Western West",
+      "Counties 2 Tribute Ale Dorset & Wilts North": "Counties 1 Tribute Ale Southern South",
+      "Counties 2 Tribute Ale Dorset & Wilts South": "Counties 1 Tribute Ale Southern South",
+      "Counties 2 Tribute Ale Gloucestershire": "Counties 1 Tribute Ale Western North",
+      "Counties 2 Tribute Ale Somerset": "Counties 1 Tribute Ale Western North"
+    },
+    "9": {
+      "Counties 3 Midlands East (North East)": "Counties 2 Midlands East (North)",
+      "Counties 3 Midlands East (North West)": "Counties 2 Midlands East (North)",
+      "Counties 3 Midlands East (South North)": "Counties 2 Midlands East (South)",
+      "Counties 3 Midlands East (South South)": "Counties 2 Midlands East (South)",
+      "Counties 3 Midlands West (North)": "Counties 2 Midlands West (West)",
+      "Counties 3 Midlands West (South)": "Counties 2 Midlands West (West)",
+      "Counties 3 Tribute Ale Berks Bucks & Oxon North": "Counties 2 Tribute Ale Berks/Bucks & Oxon West",
+      "Counties 3 Tribute Ale Berks Bucks & Oxon South": "Counties 2 Tribute Ale Berks/Bucks & Oxon East",
+      "Counties 3 Tribute Ale Dorset & Wilts Central": [
+        "Counties 2 Tribute Ale Dorset & Wilts North",
+        "Counties 2 Tribute Ale Dorset & Wilts South"
+      ]
+    },
+    "10": {
+      "Counties 4 Tribute Ale Berks Bucks & Oxon Central": [
+        "Counties 3 Tribute Ale Berks Bucks & Oxon North",
+        "Counties 3 Tribute Ale Berks Bucks & Oxon South"
+      ]
+    }
+  }
+}

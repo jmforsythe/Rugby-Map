@@ -163,12 +163,16 @@ def _merit_tier_name(comp_display: str, local_tier: int) -> str:
     return f"{comp_display} {local_tier}"
 
 
-def _womens_current_tier_name(tier: int) -> str:
+def womens_current_tier_name(tier: int) -> str:
+    """Return the display name for an absolute women's pyramid tier number (101+)."""
     if tier in WOMENS_CURRENT_TIER_NAMES:
         return WOMENS_CURRENT_TIER_NAMES[tier]
     if 102 <= tier <= 103:
         return f"Championship {tier - 101}"
     return f"National Challenge {tier - 103}"
+
+
+_womens_current_tier_name = womens_current_tier_name
 
 
 _WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
@@ -472,7 +476,7 @@ def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | 
         if filename.startswith(prefix):
             num = get_number_from_tier_name(filename, prefix)
             tier = offset + num
-            return (tier, _womens_current_tier_name(tier))
+            return (tier, womens_current_tier_name(tier))
     return None
 
 

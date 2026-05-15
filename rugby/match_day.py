@@ -49,10 +49,10 @@ from core.map_builder import DARK_MODE_JS, POPUP_CSS, LayerControlHook
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import (
-    _womens_current_tier_name,
     extract_tier,
     get_competition_offset,
     mens_current_tier_name,
+    womens_current_tier_name,
 )
 
 logger = logging.getLogger(__name__)
@@ -394,7 +394,7 @@ def _matchday_layer_label(tier_num: int, season: str) -> str:
     if tier_num == 999:
         return "Unknown Tier"
     if tier_num >= 101:
-        return _womens_current_tier_name(tier_num)
+        return womens_current_tier_name(tier_num)
     return mens_current_tier_name(tier_num, season)
 
 

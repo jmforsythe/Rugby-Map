@@ -438,6 +438,56 @@ body.wide-layout {
   margin: 0 0 1.5em;
 }
 
+/* Bottom-of-season-page diagram thumbnails (responsive row → columns when multiple) */
+.season-diagram-previews {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.season-diagram-previews__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.season-diagram-previews__cell {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* League pyramid diagram: thumbnail only → full SVG/PNG */
+.pyramid-diagram-preview {
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+a.pyramid-diagram-preview__link {
+  display: block;
+  padding: 0;
+  line-height: 0;
+}
+
+a.pyramid-diagram-preview__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
+  opacity: 0.93;
+}
+
+.pyramid-diagram-preview__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(85vh, 520px);
+  object-fit: contain;
+  transition: opacity 0.15s ease;
+}
+
 /* Merit section */
 .merit-section {
   margin: 1.5em 0;

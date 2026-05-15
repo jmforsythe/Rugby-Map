@@ -29,6 +29,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install "playwright>=1.40"
+          python -m playwright install chromium --with-deps
 
       - name: Download boundary data
         run: |
@@ -47,6 +49,15 @@ jobs:
 
           for season in $SEASONS; do
             python -m rugby.maps --no-debug --season=$season --production
+          done
+
+          for season in $SEASONS; do
+            start_year="${season%%-*}"
+            if [ "$start_year" -ge 2022 ]; then
+              # Men's pyramid + women's pyramid (pyramid.png / pyramid_womens.png in dist/<season>/).
+              python -m rugby.pyramid_image --season="$season" --png --png-scale 2
+              python -m rugby.pyramid_image --womens --season="$season" --png --png-scale 2
+            fi
           done
 
           # Match-day maps before webpages — season indexes link to match_day only if it exists

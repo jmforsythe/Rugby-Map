@@ -595,7 +595,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             if prefix == "National_League":
                 # Filename league number is authoritative (NL3 stays NL3; never "Regional 1").
                 return (tier, f"National League {num}")
-            return (tier, mens_current_tier_name(tier, season))
+            # Neutral map titles for pre-2022 eras (avoid anachronistic Regional/Counties wording).
+            return (tier, f"Level {tier}")
     return None
 
 

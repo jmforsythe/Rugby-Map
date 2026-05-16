@@ -137,6 +137,99 @@ def _home_page_json_ld_script() -> str:
     return f'    <script type="application/ld+json">{json.dumps(payload, ensure_ascii=True)}</script>\n'
 
 
+def _not_found_redirect_script(*, is_prod: bool) -> str:
+    """Client-side target from ``location.pathname`` (GitHub serves one static ``404.html``)."""
+    default_home = "/" if is_prod else "/index.html"
+    script = rf"""(function () {{
+  var isProd = {json.dumps(is_prod)};
+  var defaultHome = {json.dumps(default_home)};
+  var path = location.pathname;
+  var m;
+
+  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/merit\\/([^/]+)(?:\\/|$)/);
+  if (m) {{
+    location.replace(
+      isProd
+        ? "/" + m[1] + "/merit/" + m[2] + "/All_Tiers/"
+        : "/" + m[1] + "/merit/" + m[2] + "/All_Tiers.html"
+    );
+    return;
+  }}
+
+  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/match_day(?:\\/|$)/);
+  if (m) {{
+    location.replace(
+      isProd ? "/" + m[1] + "/match_day/" : "/" + m[1] + "/match_day/index.html"
+    );
+    return;
+  }}
+
+  m = path.match(/^\\/(\d{{4}}-\d{{4}})(?:\\/|$)/);
+  if (m) {{
+    location.replace(isProd ? "/" + m[1] + "/" : "/" + m[1] + "/index.html");
+    return;
+  }}
+
+  if (path.indexOf("/teams/") === 0 || path === "/teams") {{
+    location.replace(isProd ? "/teams/" : "/teams/index.html");
+    return;
+  }}
+
+  if (path.indexOf("/custom-map/") === 0 || path === "/custom-map") {{
+    location.replace(isProd ? "/custom-map/" : "/custom-map/index.html");
+    return;
+  }}
+
+  location.replace(defaultHome);
+}})();"""
+    return f"    <script>\n{script}\n    </script>\n"
+
+
+def get_not_found_html() -> str:
+    """HTML for GitHub Pages ``404.html``: missing URLs show this, then redirect home.
+
+    `GitHub Pages custom 404 <https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site>`_.
+    Path-aware redirects use ``location.pathname`` (the URL the user requested, not ``/404.html``).
+    """
+    is_prod = get_config().is_production
+    default_home = "/" if is_prod else "/index.html"
+    style_href = "/styles.css" if is_prod else "styles.css"
+    page_title = f"Page not found | {BRAND}"
+    default_esc = escape(default_home)
+    head_extra = ""
+    if is_prod:
+        head_extra = (
+            f'    <link rel="canonical" href="{escape(BASE_URL + "/")}">\n'
+            f'    <meta property="og:title" content="{escape(page_title)}" />\n'
+            f'    <meta property="og:description" content="This page is not on the site. Redirecting to the home page." />\n'
+            f'    <meta property="og:type" content="website" />\n'
+            f'    <meta property="og:url" content="{escape(BASE_URL + "/")}" />\n'
+            + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
+            + "\n"
+            f"    {get_twitter_card_meta()}\n"
+        )
+    redirect_script = _not_found_redirect_script(is_prod=is_prod)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="This page is not on the site. Redirecting to the home page.">
+{head_extra}    <title>{escape(page_title)}</title>
+    <link rel="stylesheet" href="{style_href}">
+    {get_favicon_html(depth=0)}
+    {get_google_analytics_script()}
+{redirect_script}</head>
+<body>
+    <h1>Page not found</h1>
+    <p>That map or address is not on this site. If JavaScript is enabled you will be sent to the nearest index (for example the season page when the path starts with a year). Otherwise open the <a href="{default_esc}">home page</a>.</p>
+{get_footer_html()}
+</body>
+</html>
+"""
+
+
 def get_footer_html() -> str:
     """Return common footer HTML."""
     return """    <div class="footer">
@@ -726,7 +819,12 @@ def main() -> None:
     with open(top_level_path, "w", encoding="utf-8") as f:
         f.write(top_level_html)
 
+    not_found_path = dist_dir / "404.html"
+    with open(not_found_path, "w", encoding="utf-8") as f:
+        f.write(get_not_found_html())
+
     print(f"\nCreated {top_level_path}")
+    print(f"Created {not_found_path}")
     print("\nAll index pages generated successfully!")
 
 

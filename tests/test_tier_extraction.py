@@ -148,12 +148,24 @@ class TestExtractTierMenPre2021:
         )
 
     def test_bbo_with_premier(self):
-        """Once Premier exists (2005+), BB&O Premier is tier 8 (no -1 for county), BB&O 1 is tier 9."""
+        """Once Premier exists (2004+), BB&O Premier is tier 8 (no -1 for county), BB&O 1 is tier 9."""
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_Premier.json", "2005-2006") == (
             8,
             "Level 8",
         )
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_1_North.json", "2005-2006") == (
+            9,
+            "Level 9",
+        )
+        assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_Premier.json", "2004-2005") == (
+            8,
+            "Level 8",
+        )
+        assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_1_North.json", "2004-2005") == (
+            9,
+            "Level 9",
+        )
+        assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_1_South.json", "2004-2005") == (
             9,
             "Level 9",
         )

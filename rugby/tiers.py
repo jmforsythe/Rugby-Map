@@ -578,7 +578,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             num = get_number_from_tier_name(filename, prefix)
             if (
                 prefix == "Berks_Bucks_&_Oxon"
-                and season < "2005-2006"
+                and season < "2004-2005"
                 and "Premier" not in filename
             ):
                 num -= 1

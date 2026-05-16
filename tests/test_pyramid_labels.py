@@ -14,6 +14,15 @@ def test_strip_league_title_sponsors_removes_leading_x_marker() -> None:
     assert _strip_league_title_sponsors("xxNorth Premier") == "North Premier"
 
 
+def test_strip_league_title_sponsors_drops_rfuw_prefix() -> None:
+    """Legacy ``RFUW …`` branding (defunct governing body) is hidden on pyramid titles."""
+    assert _strip_league_title_sponsors("RFUW Premiership") == "Premiership"
+    assert _strip_league_title_sponsors("RFUW Championship North 1") == "Championship North 1"
+    assert _strip_league_title_sponsors("RFUW NC South East South 2") == "NC South East South 2"
+    # ``x`` marker still wins as the outermost prefix before RFUW is stripped.
+    assert _strip_league_title_sponsors("xRFUW Premiership") == "Premiership"
+
+
 def test_national_league_short_title_strips_x_before_geo_parse() -> None:
     assert league_short_display_name("xNational League 3 North", 5, "2018-2019") == "North"
 

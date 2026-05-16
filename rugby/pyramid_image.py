@@ -508,16 +508,22 @@ def _strip_league_title_sponsors(league_name: str) -> str:
     """Strip known RFU sponsor slabs from league titles.
 
     Removes a leading historical RFU ``x`` marker (same convention as ``x`` filenames in
-    :mod:`rugby.tiers`), then applies ``Tribute Ale`` removal, then standalone ``Tribute``,
-    then leading tokens from :func:`rugby.tiers._strip_sponsor_prefix` on an underscore-normalised
-    form so filename sponsor lists match API ``league_name`` strings (e.g.
-    ``Cotton Traders Counties …``).
+    :mod:`rugby.tiers`), drops the obsolete women's ``RFUW`` brand prefix (RFU Women — the
+    governing-body acronym used in pre-2012 league names; the body itself was merged into the
+    RFU, so the label is just legacy noise on the pyramid), then applies ``Tribute Ale``
+    removal, then standalone ``Tribute``, then leading tokens from
+    :func:`rugby.tiers._strip_sponsor_prefix` on an underscore-normalised form so filename
+    sponsor lists match API ``league_name`` strings (e.g. ``Cotton Traders Counties …``).
     """
     s = league_name.strip()
     if not s:
         return s
     while len(s) >= 2 and s.startswith("x"):
         s = s[1:].lstrip()
+    if not s:
+        return s
+    while s.startswith("RFUW "):
+        s = s[len("RFUW ") :].lstrip()
     if not s:
         return s
     s = TRIBUTE_ALE_PATTERN.sub(" ", s)

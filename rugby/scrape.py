@@ -464,6 +464,17 @@ _BANNED_DIVISION_IDS = {
     68221,  # 2025-2026 Table 1, 2
     69496,
     73475,  # 2025-2026 Table 3, 3C
+    # Devon One Promotion / Ranking — performance splits of Tribute Devon One
+    4754,  # 2009-2010 Tribute Devon One Promotion
+    4755,  # 2009-2010 Tribute Devon One Ranking
+    # South West Pilot League — one-off pilot pool, not part of the pyramid
+    9944,  # 2016-2017 South West Pilot League
+    # Women's merit tables that duplicate or aggregate other women's leagues
+    14075,  # 2018-2019 NC Midlands Merit
+    14076,  # 2018-2019 NC Lancashire Merit
+    28136,  # 2018-2019 Eastern Counties Women's Merit Table
+    # Somerset Three South — short-lived 2003-2004 league, not a real pyramid tier
+    2033,  # 2003-2004 Somerset Three South
 }
 
 _BANNED_FILENAMES = [

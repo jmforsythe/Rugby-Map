@@ -4,9 +4,24 @@ import json
 
 from rugby.pyramid_image import (
     _strip_league_title_sponsors,
+    _team_lower_xv_roman,
     league_short_display_name,
     pyramid_band_tier_label,
 )
+
+
+def test_team_lower_xv_roman_reserve_suffixes() -> None:
+    assert _team_lower_xv_roman("Avon RFC II") == "II"
+    assert _team_lower_xv_roman("Somewhere III") == "III"
+    assert _team_lower_xv_roman("Club 2nd XV") == "II"
+    assert _team_lower_xv_roman("Club 4th XV") == "IV"
+    assert _team_lower_xv_roman("Club 6th XV") == "VI"
+
+
+def test_team_lower_xv_roman_principal_or_unknown() -> None:
+    assert _team_lower_xv_roman("Club 1st XV") is None
+    assert _team_lower_xv_roman("Club") is None
+    assert _team_lower_xv_roman("") is None
 
 
 def test_strip_league_title_sponsors_removes_leading_x_marker() -> None:

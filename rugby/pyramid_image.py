@@ -225,6 +225,17 @@ def _hex_to_rgb_norm(hex_color: str) -> tuple[float, float, float]:
     return (r, g, b)
 
 
+def _hex_relative_luminance(hex_color: str) -> float:
+    """WCAG relative luminance for sRGB hex ``#rrggbb`` (0 = black, 1 = white)."""
+    r, g, b = _hex_to_rgb_norm(hex_color)
+
+    def lin(c: float) -> float:
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+
+    rl, gl, bl = lin(r), lin(g), lin(b)
+    return 0.2126 * rl + 0.7152 * gl + 0.0722 * bl
+
+
 def _rgb_norm_to_hex(r: float, g: float, b: float) -> str:
     ri = int(round(max(0.0, min(1.0, r)) * 255))
     gi = int(round(max(0.0, min(1.0, g)) * 255))
@@ -2293,6 +2304,57 @@ def _crest_club_label(team_name: str) -> str:
     return cand or raw
 
 
+def _team_lower_xv_roman(team_name: str) -> str | None:
+    """Roman ordinal for reserve XVs (RFU ``II`` / ``2nd XV`` style); ``None`` for principal sides."""
+    raw = (team_name or "").strip()
+    if not raw:
+        return None
+    parts = raw.split()
+    if len(parts) < 2:
+        return None
+    last = parts[-1]
+    if last in ("II", "III", "IV", "V"):
+        return last
+    last_two = f"{parts[-2]} {parts[-1]}"
+    if last_two == "2nd XV":
+        return "II"
+    if last_two == "3rd XV":
+        return "III"
+    if last_two == "4th XV":
+        return "IV"
+    if last_two == "5th XV":
+        return "V"
+    if last_two == "6th XV":
+        return "VI"
+    return None
+
+
+def _svg_lower_xv_roman_corner(
+    roman: str,
+    bx: float,
+    by_slot: float,
+    inner_sz: float,
+    *,
+    fill: str,
+) -> str:
+    """Small serif Roman badge, top-right inside the crest square (stroke halo for contrast)."""
+    size = max(8.0, min(15.0, inner_sz * 0.26))
+    tx = bx + inner_sz - max(1.5, size * 0.12)
+    ty = by_slot + size * 0.58
+    esc = xml_escape(roman)
+    sw = max(0.75, size * 0.13)
+    # Tier bands use either light or dark league titles; halo must contrast with both fill and crests.
+    halo = "#1a2330" if _hex_relative_luminance(fill) > 0.55 else "#ffffff"
+    hop = "0.88" if halo == "#ffffff" else "0.92"
+    return (
+        f'<text x="{tx:.2f}" y="{ty:.2f}" '
+        f'font-family="Times New Roman, Times, serif" font-size="{size:.2f}" '
+        f'font-weight="700" fill="{fill}" text-anchor="end" dominant-baseline="middle" '
+        f'stroke="{halo}" stroke-opacity="{hop}" stroke-width="{sw:.2f}" '
+        f'paint-order="stroke fill" text-rendering="geometricPrecision">{esc}</text>'
+    )
+
+
 # Extra padding around each crest tile so embedded HTML/CSS can draw club labels past the crest box.
 _LABEL_EXPAND_INNER_RATIO = 0.70
 
@@ -2620,6 +2682,17 @@ def _render_league_cell(
                         font_scale=crest_name_font_scale,
                         label_expand_px=crest_label_expand,
                         wrap_width_px=crest_wrap_w,
+                    )
+                )
+            roman_badge = _team_lower_xv_roman(tm.name)
+            if roman_badge:
+                crest_parts.append(
+                    _svg_lower_xv_roman_corner(
+                        roman_badge,
+                        bx,
+                        by_slot,
+                        inner_sz,
+                        fill=title_color,
                     )
                 )
             idx += 1

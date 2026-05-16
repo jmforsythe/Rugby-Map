@@ -52,12 +52,9 @@ jobs:
           done
 
           for season in $SEASONS; do
-            start_year="${season%%-*}"
-            if [ "$start_year" -ge 2022 ]; then
-              # Men's pyramid + women's pyramid (pyramid.png / pyramid_womens.png in dist/<season>/).
-              python -m rugby.pyramid_image --season="$season" --png --png-scale 2
-              python -m rugby.pyramid_image --womens --season="$season" --png --png-scale 2
-            fi
+            # Men's + women's league pyramids (pyramid.png / pyramid_womens.png in dist/<season>/).
+            python -m rugby.pyramid_image --season="$season" --png --png-scale 2
+            python -m rugby.pyramid_image --womens --season="$season" --png --png-scale 2
           done
 
           # Match-day maps before webpages — season indexes link to match_day only if it exists

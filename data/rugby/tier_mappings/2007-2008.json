@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "season": "2007-2008",
+  "overrides_by_tier": {
+    "5": {
+      "London 1": "National League Three South",
+      "Midlands 1": "National League Three North",
+      "North 1": "National League Three North",
+      "South West 1": "National League Three South"
+    },
+    "6": {
+      "Midlands 2 West": "Midlands 1",
+      "Midlands 2 East": "Midlands 1",
+      "London 2 North": "London 1",
+      "London 2 South": "London 1",
+      "North 2 East": "North 1",
+      "North 2 West": "North 1",
+      "South West 2 East": "South West 1",
+      "Tribute South West 2 West": "South West 1"
+    },
+    "8": {
+      "Berks/Bucks & Oxon Prem A": "Southern Counties North",
+      "Berks/Bucks & Oxon Premier": "Southern Counties North",
+      "Cumbria": "North Lancs/Cumbria",
+      "Dorset & Wilts 1 North": "Southern Counties South",
+      "Dorset & Wilts 1 South": "Southern Counties South",
+      "High Bridge Jewellers Gloucester Premier": "Tribute Western Counties North",
+      "North Lancs 1": "North Lancs/Cumbria",
+      "Tribute Cornwall/Devon": "Tribute Western Counties West",
+      "Tribute Somerset Premier": "Tribute Western Counties North"
+    },
+    "9": {
+      "Berks/Bucks & Oxon 1 North": "Berks/Bucks & Oxon Premier",
+      "Berks/Bucks & Oxon 1 South": "Berks/Bucks & Oxon Premier",
+      "Eastern Counties 1": "London 4 North East",
+      "Essex 1": "London 4 North East",
+      "Hampshire 1": "London 4 South West",
+      "Herts/Middlesex 1": "London 4 North West",
+      "High Bridge Jewellers Gloucester 1": "High Bridge Jewellers Gloucester Premier",
+      "Kent 1": "London 4 South East",
+      "Surrey 1": "London 4 South West",
+      "Sussex 1": "London 4 South West",
+      "Tribute Cornwall 1": "Tribute Cornwall/Devon",
+      "Tribute Devon 1": "Tribute Cornwall/Devon",
+      "Tribute Somerset 1": "Tribute Somerset Premier"
+    },
+    "10": {
+      "Dorset & Wilts 3 West": [
+        "Dorset & Wilts 2 North",
+        "Dorset & Wilts 2 South"
+      ],
+      "Midlands 6 East (NE)": "Midlands 5 East (North)",
+      "Midlands 6 East (NW)": "Midlands 5 East (North)",
+      "Midlands 6 East (S)": "Midlands 5 East (South)",
+      "Midlands 6 West (SE)": "Midlands 5 West (South)",
+      "Midlands 6 West (SW)": "Midlands 5 West (South)"
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "RFUW Championship North 1": "RFUW Premiership",
+      "RFUW Championship South 1": "RFUW Premiership"
+    },
+    "3": {
+      "RFUW Championship North 2": "RFUW Championship North 1",
+      "RFUW Championship South West 2": "RFUW Championship South 1"
+    }
+  }
+}

@@ -525,7 +525,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Southern_Counties": 7,
         "Western_Counties": 7,
         "Yorkshire": 6,
-        "Lancs_Cheshire": (7 if season >= "2018-2019" else 6),
+        # Same regional band as South_Lancs_Cheshire; the >=2018 bump was off by one for 2018-2019.
+        "Lancs_Cheshire": (6 if season <= "2018-2019" else 7),
         "South_Lancs_Cheshire": 6,
         "Lancashire_(North)": 8,
         "Cheshire": 8,
@@ -535,11 +536,12 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Staffordshire": 8,
         "Warwickshire": 8,
         "NLD_Leics": 8,
-        "NLD_N_Leics": 8,
-        "Derbys_N_Leics": 8,
+        # One level below other offset-8 county leagues (tier 9 base, not 8).
+        "NLD_N_Leics": 9,
+        "Derbys_N_Leics": 9,
         "East_Mids_S_Leics": 8,
         "East_Midlands": 8,
-        "Notts_Lincs": 8,
+        "Notts_Lincs": 9,
         "East_Counties": 8,
         # Merit entries: values are local offsets (absolute - COMPETITION_OFFSETS)
         "merit/East_Midlands/East_Midlands": 0,
@@ -591,8 +593,9 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
             if pre_champ and prefix in main_pyramid_prefixes:
                 tier -= 1
             if prefix == "National_League":
+                # Filename league number is authoritative (NL3 stays NL3; never "Regional 1").
                 return (tier, f"National League {num}")
-            return (tier, f"Level {tier}")
+            return (tier, mens_current_tier_name(tier, season))
     return None
 
 
@@ -613,10 +616,34 @@ def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] |
 
 
 def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] | None:
+    """Normalize RFU legacy ``w*`` / RFUW filenames, then classify tiers.
+
+    Before the RFUW **2007–2008** restructure there was no separate Championship tier: the top
+    flight was split into Premiership 1 / Premiership 2, and National Challenge sat one level
+    higher on the numbering scale used post-restructure — i.e. **NC *n*** maps to ``102 + n``
+    (tier 103+), not ``103 + n`` (tier 104+).
+
+    Seasons **2007–2008 onward** normalize ``wPremiership_*`` to a single Women's Premiership
+    tier (101).
+    """
+
     if filename.startswith("x") and len(filename) > 1:
         filename = filename[1:]
     if filename.startswith("RFUW_"):
         filename = filename.replace("RFUW_", "Women's_")
+
+    pre_rfuw_restructure = season < "2007-2008"
+
+    # Dual-tier Premiership (no Championship) plus bumped NC numbering — eras before 2007–2008.
+    if pre_rfuw_restructure and filename.startswith("wPremiership"):
+        num = get_number_from_tier_name(filename, "wPremiership")
+        if num == 1:
+            return (101, "Premiership 1 Women's")
+        if num == 2:
+            return (102, "Premiership 2 Women's")
+        # Basename ``wPremiership`` with no ordinal — treat as the top tier.
+        return (101, "Premiership Women's")
+
     if filename.startswith("wPrem"):
         filename = "Women's_Premiership.json"
     elif filename.startswith("w") and not filename.startswith("Women"):
@@ -627,6 +654,15 @@ def extract_tier_women_pre_2012(filename: str, season: str) -> tuple[int, str] |
         filename = filename.removesuffix("A.json") + "1.json"
     elif filename.endswith("B.json"):
         filename = filename.removesuffix("B.json") + "2.json"
+
+    if pre_rfuw_restructure:
+        if filename.startswith("Women's_Premiership"):
+            return (101, "Premiership Women's")
+        num_nc = get_number_from_tier_name(filename, "")
+        if filename.startswith("Women") and num_nc != 0:
+            return (102 + num_nc, f"National Challenge {num_nc}")
+        return None
+
     return extract_tier_women_pre_2018(filename, "2012-2013")
 
 

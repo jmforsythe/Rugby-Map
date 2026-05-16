@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "season": "2002-2003",
+  "overrides_by_tier": {
+    "5": {
+      "London 1": "National League Three South",
+      "Midlands 1": "National League Three North",
+      "North 1": "National League Three North",
+      "South West 1": "National League Three South"
+    },
+    "6": {
+      "Midlands 2 West": "Midlands 1",
+      "Midlands 2 East": "Midlands 1",
+      "London 2 North": "London 1",
+      "London 2 South": "London 1",
+      "North 2 East": "North 1",
+      "North 2 West": "North 1",
+      "South West 2 East": "South West 1",
+      "South West 2 West": "South West 1"
+    },
+    "8": {
+      "Cornwall/Devon": "Western Counties West",
+      "Cumbria": "North Lancs/Cumbria",
+      "Gloucester Premier": "Western Counties North",
+      "North Lancs 1": "North Lancs/Cumbria",
+      "Somerset Premier": "Western Counties North",
+      "xBerks/Bucks & Oxon 1": "Southern Counties North",
+      "xDorset & Wilts 1": "Southern Counties South"
+    },
+    "9": {
+      "Cornwall 1": "Cornwall/Devon",
+      "Devon 1": "Cornwall/Devon",
+      "Eastern Counties 1": "London 4 North East",
+      "Gloucester 1": "Gloucester Premier",
+      "Hampshire 1": "London 4 South West",
+      "Herts/Middlesex 1": "London 4 North West",
+      "Kent 1": "London 4 South East",
+      "Somerset 1": "Somerset Premier",
+      "Surrey 1": "London 4 South West",
+      "Sussex 1": "London 4 South West",
+      "xEast Midlands 1": "Midlands 4 East (South)",
+      "xNLD/Leics 1 East": "Midlands 4 East (North)",
+      "xNLD/Leics 1 West": "Midlands 4 East (North)",
+      "xNorth Midlands 1": "Midlands 4 West (South)",
+      "xStaffordshire 1": "Midlands 4 West (North)",
+      "xWarwickshire 1": "Midlands 4 West (South)"
+    },
+    "10": {
+      "xEast Counties 2 North": "Eastern Counties 1",
+      "xEast Counties 2 South": "Eastern Counties 1"
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "wPremiership 2": "wPremiership 1"
+    },
+    "3": {
+      "wMidlands 1": "wPremiership 2",
+      "wNorth 1": "wPremiership 2",
+      "wSouth East 1": "wPremiership 2",
+      "wSouth West 1": "wPremiership 2"
+    },
+    "4": {
+      "wMidlands 2": "wMidlands 1",
+      "wNorth 2": "wNorth 1",
+      "wSouth East 2": "wSouth East 1",
+      "wSouth West 2": "wSouth West 1"
+    }
+  }
+}

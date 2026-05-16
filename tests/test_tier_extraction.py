@@ -104,11 +104,11 @@ class TestExtractTierMenPre2021:
 
     def test_north_1(self):
         result = extract_tier_men_pre_2021("North_1.json", "2018-2019")
-        assert result == (6, "Level 6")
+        assert result == (6, "Regional 2")
 
     def test_london_2(self):
         result = extract_tier_men_pre_2021("London_2_North.json", "2018-2019")
-        assert result == (7, "Level 7")
+        assert result == (7, "Counties 1")
 
     def test_unknown_returns_none(self):
         assert extract_tier_men_pre_2021("Totally_Unknown.json", "2018-2019") is None
@@ -121,53 +121,69 @@ class TestExtractTierMenPre2021:
 
     def test_yorkshire_5a(self):
         """Yorkshire 5A/5B/5C must parse as tier 11 pre-championship (offset 6 + 5, no -1 for county)."""
-        assert extract_tier_men_pre_2021("Yorkshire_5A.json", "2007-2008") == (11, "Level 11")
-        assert extract_tier_men_pre_2021("Yorkshire_5B.json", "2007-2008") == (11, "Level 11")
-        assert extract_tier_men_pre_2021("Yorkshire_5C.json", "2008-2009") == (11, "Level 11")
+        assert extract_tier_men_pre_2021("Yorkshire_5A.json", "2007-2008") == (11, "Counties 5")
+        assert extract_tier_men_pre_2021("Yorkshire_5B.json", "2007-2008") == (11, "Counties 5")
+        assert extract_tier_men_pre_2021("Yorkshire_5C.json", "2008-2009") == (11, "Counties 5")
 
     def test_yorkshire_5_named_variants(self):
         """Named Yorkshire 5 variants: tier 11 pre-championship (no -1 for county), 11 post."""
         assert extract_tier_men_pre_2021("Yorkshire_5_North_West.json", "2006-2007") == (
             11,
-            "Level 11",
+            "Counties 5",
         )
         assert extract_tier_men_pre_2021("Yorkshire_Division_Five.json", "2009-2010") == (
             11,
-            "Level 11",
+            "Counties 5",
         )
 
     def test_bbo_pre_premier_era(self):
         """BB&O 1 is the top county league before 2005 (no Premier existed), no -1 for county prefix."""
         assert extract_tier_men_pre_2021("xBerks_Bucks_&_Oxon_1.json", "2000-2001") == (
             8,
-            "Level 8",
+            "Counties 2",
         )
         assert extract_tier_men_pre_2021("xBerks_Bucks_&_Oxon_2.json", "2000-2001") == (
             9,
-            "Level 9",
+            "Counties 3",
         )
 
     def test_bbo_with_premier(self):
         """Once Premier exists (2005+), BB&O Premier is tier 8 (no -1 for county), BB&O 1 is tier 9."""
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_Premier.json", "2005-2006") == (
             8,
-            "Level 8",
+            "Counties 2",
         )
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_1_North.json", "2005-2006") == (
             9,
-            "Level 9",
+            "Counties 3",
         )
 
     def test_midlands_east_geographic_split(self):
         """Midlands East (South) A/B are geographic splits at tier 11."""
         assert extract_tier_men_pre_2021("Midlands_East_(South)_A.json", "2009-2010") == (
             11,
-            "Level 11",
+            "Counties 5",
         )
         assert extract_tier_men_pre_2021("Midlands_East_(South)_B.json", "2009-2010") == (
             11,
-            "Level 11",
+            "Counties 5",
         )
+
+    def test_derbys_notts_nld_n_leics_one_level_deeper_than_peer_counties(self):
+        """Derbys/N Leics, NLD/N Leics, Notts/Lincs use tier-9 base (not offset 8)."""
+        expected = (9, "Counties 3")
+        for fn in (
+            "Derbys_N_Leics.json",
+            "NLD_N_Leics.json",
+            "Notts_Lincs.json",
+            "xDerbys_N_Leics.json",
+            "xNLD_N_Leics.json",
+            "xNotts_Lincs.json",
+        ):
+            assert extract_tier_men_pre_2021(fn, "2005-2006") == expected
+            assert extract_tier(fn, "2005-2006") == expected
+            assert extract_tier_men_pre_2021(fn, "2004-2005") == expected
+            assert extract_tier(fn, "2018-2019") == expected
 
 
 class TestExtractTierWomenPre2018:
@@ -184,6 +200,29 @@ class TestExtractTierWomenPre2018:
             103,
             "Championship 2",
         )
+
+
+class TestExtractTierWomenPreRfuRestructure:
+    """Women's tiers before RFUW renamed the pyramid from 2007–2008 (dual Prem / no Championship).
+
+    Premiership 1 → 101, Premiership 2 → 102; National Challenge levels sit one notch higher
+    (NC1 → tier 103) than post-restructure (NC1 → 104).
+    """
+
+    def test_dual_premiership_separate_levels(self):
+        assert extract_tier("wPremiership_1.json", "2002-2003") == (101, "Premiership 1 Women's")
+        assert extract_tier("wPremiership_2.json", "2006-2007") == (102, "Premiership 2 Women's")
+        assert extract_tier("xwPremiership_2.json", "2004-2005") == (102, "Premiership 2 Women's")
+
+    def test_w_prem_without_ordinal(self):
+        assert extract_tier("wPremiership.json", "2006-2007") == (101, "Premiership Women's")
+
+    def test_national_challenge_bumped_prior_to_rfuf_rename(self):
+        assert extract_tier("wMidlands_1.json", "2002-2003") == (103, "National Challenge 1")
+        assert extract_tier("wSouth_West_2.json", "2005-2006") == (104, "National Challenge 2")
+
+    def test_from_rfuf_rename_season_w_prem_still_folded(self):
+        assert extract_tier("wPremiership_1.json", "2007-2008") == (101, "Premiership Women's")
 
 
 class TestExtractTier:
@@ -275,7 +314,7 @@ class TestExtractTierMeritPath:
     def test_pyramid_north_still_works(self):
         """Pyramid North_1.json still resolves via pyramid path."""
         result = extract_tier("North_1.json", "2018-2019")
-        assert result == (6, "Level 6")
+        assert result == (6, "Regional 2")
 
     def test_hampshire_merit(self):
         result = extract_tier("merit/Hampshire/Hampshire_Merit_One.json", "2013-2014")

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "season": "2017-2018",
+  "overrides_by_tier": {
+    "5": {
+      "London & SE Premier": "National League 2 South",
+      "Midlands Premier": "National League 2 North",
+      "North Premier": "National League 2 North",
+      "South West Premier": "National League 2 South"
+    },
+    "6": {
+      "London 1 North": "London & SE Premier",
+      "London 1 South": "London & SE Premier",
+      "Midlands 1 East": "Midlands Premier",
+      "Midlands 1 West": "Midlands Premier",
+      "North One East": "North Premier",
+      "North One West": "North Premier",
+      "Wadworth 6X South West 1 East": "South West Premier",
+      "Tribute South West 1 West": "South West Premier"
+    },
+    "8": {
+      "Cumbria": "North Lancs/Cumbria",
+      "London 3 Eastern Counties": "London 2 North East",
+      "London 3 Essex": "London 2 North East",
+      "Tribute Cornwall League": "Tribute Western Counties West",
+      "Tribute Cornwall/Devon": "Tribute Western Counties West",
+      "Tribute Somerset Premier": "Tribute Western Counties North",
+      "Wadworth 6X Berks/Bucks & Oxon Premier": "Wadworth 6X Southern Counties North",
+      "Wadworth 6X Dorset & Wilts 1 North": "Wadworth 6X Southern Counties South",
+      "Wadworth 6X Dorset & Wilts 1 South": "Wadworth 6X Southern Counties South",
+      "Wadworth 6X Gloucester Premier": "Tribute Western Counties North"
+    },
+    "9": {
+      "Essex (Canterbury Jack) League 1 Premier": "London 3 Essex",
+      "Greene King IPA Eastern Counties 1 North": "London 3 Eastern Counties",
+      "Greene King IPA Eastern Counties 1 South": "London 3 Eastern Counties",
+      "Greene King IPA Eastern Counties 1 West": "London 3 Eastern Counties",
+      "Harvey's of Sussex 1": "London 3 South West",
+      "Herts/Middlesex 1": "London 3 North West",
+      "Lancs/Cheshire Division Three (North)": "South Lancs/Cheshire Division Two",
+      "Lancs/Cheshire Division Three (South)": "South Lancs/Cheshire Division Two",
+      "Shepherd Neame Kent 1": "London 3 South East",
+      "Snows Group Hampshire 1": "London 3 South West",
+      "Surrey 1": "London 3 South West",
+      "Tribute Devon 1": "Tribute Cornwall/Devon",
+      "Tribute Somerset 1": "Tribute Somerset Premier",
+      "Wadworth 6X Berks/Bucks & Oxon 1": "Wadworth 6X Berks/Bucks & Oxon Premier",
+      "Wadworth 6X Berks/Bucks & Oxon Championship": "Wadworth 6X Berks/Bucks & Oxon Premier",
+      "Wadworth 6X Gloucester 1": "Wadworth 6X Gloucester Premier"
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "Women's Championship North": "Women's Premiership",
+      "Women's Championship South": "Women's Premiership"
+    },
+    "3": {
+      "Women's Championship Midlands 2": "Women's Championship North",
+      "Women's Championship North 2": "Women's Championship North",
+      "Women's Championship South East 2": "Women's Championship South",
+      "Women's Championship South West 2": "Women's Championship South"
+    },
+    "4": {
+      "Women's NC East 1": "Women's Championship South East 2",
+      "Women's NC London & SE 1": "Women's Championship South East 2",
+      "Women's NC Midlands 1": "Women's Championship Midlands 2",
+      "Women's NC North East 1": "Women's Championship North 2",
+      "Women's NC North West 1": "Women's Championship North 2",
+      "Women's NC South East East 1": "Women's Championship South East 2",
+      "Women's NC South East West 1": "Women's Championship South East 2",
+      "Women's NC South West 1": "Women's Championship South West 2"
+    }
+  }
+}

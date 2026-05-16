@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "season": "2005-2006",
+  "overrides_by_tier": {
+    "5": {
+      "London 1": "National League Three South",
+      "Midlands 1": "National League Three North",
+      "North 1": "National League Three North",
+      "South West 1": "National League Three South"
+    },
+    "6": {
+      "Midlands 2 West": "Midlands 1",
+      "Midlands 2 East": "Midlands 1",
+      "London 2 North": "London 1",
+      "London 2 South": "London 1",
+      "North 2 East": "North 1",
+      "North 2 West": "North 1",
+      "South West 2 East": "South West 1",
+      "South West 2 West": "South West 1"
+    },
+    "8": {
+      "Berks/Bucks & Oxon Prem A": "Southern Counties North",
+      "Berks/Bucks & Oxon Premier": "Southern Counties North",
+      "Cornwall/Devon": "Western Counties West",
+      "Cumbria": "North Lancs/Cumbria",
+      "Dorset & Wilts 1 North": "Southern Counties South",
+      "Dorset & Wilts 1 South": "Southern Counties South",
+      "Gloucester Premier": "Western Counties North",
+      "North Lancs 1": "North Lancs/Cumbria",
+      "Somerset Premier": "Western Counties North"
+    },
+    "9": {
+      "Berks/Bucks & Oxon 1 North": "Berks/Bucks & Oxon Premier",
+      "Berks/Bucks & Oxon 1 South": "Berks/Bucks & Oxon Premier",
+      "Cornwall 1": "Cornwall/Devon",
+      "Devon 1": "Cornwall/Devon",
+      "Eastern Counties 1": "London 4 North East",
+      "Essex 1": "London 4 North East",
+      "Gloucester 1": "Gloucester Premier",
+      "Hampshire 1": "London 4 South West",
+      "Herts/Middlesex 1": "London 4 North West",
+      "Kent 1": "London 4 South East",
+      "Somerset 1": "Somerset Premier",
+      "Surrey 1": "London 4 South West",
+      "Sussex 1": "London 4 South West",
+      "xDerbys/N Leics": "Midlands 4 East (North)",
+      "xEast Mids/S Leics 1": "Midlands 4 East (South)",
+      "xNLD/N Leics": "Midlands 4 East (South)",
+      "xNorth Mids (South) 1": "Midlands 4 West (South)",
+      "xNotts/Lincs": "Midlands 4 East (North)",
+      "xWarwickshire 1": "Midlands 4 West (South)"
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "wPremiership 2": "wPremiership 1"
+    },
+    "3": {
+      "wMidlands 1": "wPremiership 2",
+      "wNorth 1": "wPremiership 2",
+      "wSouth East 1": "wPremiership 2",
+      "wSouth West 1": "wPremiership 2"
+    },
+    "4": {
+      "wMidlands 2": "wMidlands 1",
+      "wSouth East 2": "wSouth East 1",
+      "wSouth West 2": "wSouth West 1"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "season": "2021-2022",
+  "overrides_by_tier": {
+    "5": {
+      "London & SE Premier": "National League 2 South",
+      "Midlands Premier": "National League 2 North",
+      "North Premier": "National League 2 North",
+      "Tribute South West Premier": "National League 2 South"
+    },
+    "6": {
+      "London 1 North": "London & SE Premier",
+      "London 1 South": "London & SE Premier",
+      "Midlands 1 East": "Midlands Premier",
+      "Midlands 1 West": "Midlands Premier",
+      "North One East": "North Premier",
+      "North One West": "North Premier",
+      "Tribute South West 1 East": "Tribute South West Premier",
+      "Tribute South West 1 West": "Tribute South West Premier"
+    },
+    "8": {
+      "London 3 Eastern Counties": "London 2 North East",
+      "London 3 Essex": "London 2 North East",
+      "Tribute Berks/Bucks & Oxon Premier": "Tribute Southern Counties North",
+      "Tribute Cornwall/Devon": "Tribute Western Counties West",
+      "Tribute Dorset & Wilts 1 North": "Tribute Southern Counties South",
+      "Tribute Dorset & Wilts 1 South": "Tribute Southern Counties South",
+      "Tribute Gloucester Premier": "Tribute Western Counties North",
+      "Tribute Somerset Premier": "Tribute Western Counties North"
+    },
+    "9": {
+      "Durham/Northumberland Three North": "Durham/Northumberland Two",
+      "Durham/Northumberland Three South": "Durham/Northumberland Two",
+      "Essex 1": "London 3 Essex",
+      "Greene King IPA Eastern Counties 1 North": "London 3 Eastern Counties",
+      "Greene King IPA Eastern Counties 1 South": "London 3 Eastern Counties",
+      "Greene King IPA Eastern Counties 1 West": "London 3 Eastern Counties",
+      "Hampshire Premier": "London 3 South West",
+      "Harvey\u2019s Brewery Sussex 1": "London 3 South West",
+      "Herts/Middlesex 1": "London 3 North West",
+      "Kent 1": "London 3 South East",
+      "Midlands 4 East (N) East": "Midlands 3 East (North)",
+      "Midlands 4 East (N) West": "Midlands 3 East (North)",
+      "Surrey 1": "London 3 South West",
+      "Tribute Berks/Bucks & Oxon 1": "Tribute Berks/Bucks & Oxon Premier",
+      "Tribute Cornwall 1": "Tribute Cornwall/Devon",
+      "Tribute Devon 1": "Tribute Cornwall/Devon",
+      "Tribute Dorset & Wilts 2 Central": [
+        "Tribute Dorset & Wilts 1 North",
+        "Tribute Dorset & Wilts 1 South"
+      ],
+      "Tribute Gloucestershire 1 North": "Tribute Gloucester Premier",
+      "Tribute Gloucestershire 1 South": "Tribute Gloucester Premier",
+      "Tribute Somerset 1": "Tribute Somerset Premier"
+    },
+    "10": {
+      "Hampshire 1": "Hampshire Premier"
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "Women's Championship North 1": "Women's Premiership",
+      "Women's Championship South 1": "Women's Premiership"
+    },
+    "3": {
+      "Women's Championship Midlands 2": "Women's Championship North 1",
+      "Women's Championship North 2": "Women's Championship North 1",
+      "Women's Championship South East 2": "Women's Championship South 1",
+      "Women's Championship South West 2": "Women's Championship South 1"
+    },
+    "4": {
+      "Women's NC 1 East": "Women's Championship South East 2",
+      "Women's NC 1 Midlands": "Women's Championship Midlands 2",
+      "Women's NC 1 North": "Women's Championship North 2",
+      "Women's NC 1 North West": "Women's Championship North 2",
+      "Women's NC 1 South East (East)": "Women's Championship South East 2",
+      "Women's NC 1 South East (North)": "Women's Championship North 2",
+      "Women's NC 1 South West (East)": "Women's Championship South West 2",
+      "Women's NC 1 South West (West)": "Women's Championship South West 2"
+    }
+  }
+}

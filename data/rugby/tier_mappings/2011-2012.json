@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "season": "2011-2012",
+  "overrides_by_tier": {
+    "5": {
+      "National League 3 London & SE": "SSE National League 2 South",
+      "National League 3 Midlands": "SSE National League 2 North",
+      "National League 3 South West": "SSE National League 2 South",
+      "National League Three North": "SSE National League 2 North"
+    },
+    "6": {
+      "London 1 North": "National League 3 London & SE",
+      "London 1 South": "National League 3 London & SE",
+      "Midlands 1 East": "National League 3 Midlands",
+      "Midlands 1 West": "National League 3 Midlands",
+      "North One East": "National League Three North",
+      "North One West": "National League Three North",
+      "South West 1 East": "National League 3 South West",
+      "Tribute South West 1 West": "National League 3 South West"
+    },
+    "8": {
+      "Berks/Bucks & Oxon Premier": "Southern Counties North",
+      "Cumbria": "North Lancs/Cumbria",
+      "Dorset & Wilts 1 North": "Southern Counties South",
+      "Dorset & Wilts 1 South": "Southern Counties South",
+      "Gloucester Premier": "Tribute Western Counties North",
+      "North Lancashire Division One": "North Lancs/Cumbria",
+      "Tribute Cornwall/Devon": "Tribute Western Counties West",
+      "Tribute Somerset Premier": "Tribute Western Counties North"
+    },
+    "9": {
+      "Berks/Bucks & Oxon 1": "Berks/Bucks & Oxon Premier",
+      "Berks/Bucks & Oxon Championship": "Berks/Bucks & Oxon Premier",
+      "Essex (Canterbury Jack) League 1": "London 3 North East",
+      "Gloucester 1": "Gloucester Premier",
+      "Greene King IPA Eastern Counties 1": "London 3 North East",
+      "Herts/Middlesex 1": "London 3 North West",
+      "Shepherd Neame Kent 1": "London 3 South East",
+      "Snows Group Hampshire 1": "London 3 South West",
+      "Surrey 1": "London 3 South West",
+      "Sussex Spitfire 1": "London 3 South West",
+      "Tribute Cornwall 1": "Tribute Cornwall/Devon",
+      "Tribute Devon 1": "Tribute Cornwall/Devon",
+      "Tribute Somerset 1": "Tribute Somerset Premier"
+    },
+    "10": {
+      "Essex (Spitfire) League 2": "Essex (Canterbury Jack) League 1"
+    },
+    "11": {
+      "Dorset & Wilts 4": [
+        "Dorset & Wilts 3 North",
+        "Dorset & Wilts 3 South"
+      ]
+    }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "RFUW Championship North 1": "RFUW Premiership",
+      "RFUW Championship South 1": "RFUW Premiership"
+    },
+    "3": {
+      "RFUW Championship Midlands 2": "RFUW Championship North 1",
+      "RFUW Championship North 2": "RFUW Championship North 1",
+      "RFUW Championship South East 2": "RFUW Championship South 1",
+      "RFUW Championship South West 2": "RFUW Championship South 1"
+    },
+    "4": {
+      "RFUW NC Midlands 1": "RFUW Championship Midlands 2",
+      "RFUW NC North 1": "RFUW Championship North 2",
+      "RFUW NC South East North 1": "RFUW Championship South East 2",
+      "RFUW NC South East South 1": "RFUW Championship South East 2"
+    }
+  }
+}

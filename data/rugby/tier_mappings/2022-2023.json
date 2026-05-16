@@ -43,5 +43,27 @@
       "Counties 3 Midlands East (N) West": "Counties 2 Midlands East (North)",
       "Counties 3 Tribute Dorset & Wilts Central": "Counties 2 Tribute Dorset & Wilts Central"
     }
+  },
+  "womens_overrides_by_tier": {
+    "2": {
+      "Women's Championship North 1": "Women's Premiership",
+      "Women's Championship South 1": "Women's Premiership"
+    },
+    "3": {
+      "Women's Championship Midlands 2": "Women's Championship North 1",
+      "Women's Championship North 2": "Women's Championship North 1",
+      "Women's Championship South East 2": "Women's Championship South 1",
+      "Women's Championship South West 2": "Women's Championship South 1"
+    },
+    "4": {
+      "Women's NC 1 East": "Women's Championship South East 2",
+      "Women's NC 1 Midlands": "Women's Championship Midlands 2",
+      "Women's NC 1 North": "Women's Championship North 2",
+      "Women's NC 1 North West": "Women's Championship North 2",
+      "Women's NC 1 South East (East)": "Women's Championship South East 2",
+      "Women's NC 1 South East (West)": "Women's Championship South East 2",
+      "Women's NC 1 South West (East)": "Women's Championship South West 2",
+      "Women's NC 1 South West (West)": "Women's Championship South West 2"
+    }
   }
 }

@@ -31,6 +31,7 @@ Usage::
     python -m rugby.pyramid_image --ignore-stem-slot-strips
     python -m rugby.pyramid_image --womens
     python -m rugby.pyramid_image --womens --season 2024-2025 --png
+    python -m rugby.pyramid_image --womens --interactive-stem-orphans  # TTY: bands 2–4 feeders
 """
 
 from __future__ import annotations
@@ -38,6 +39,7 @@ from __future__ import annotations
 import argparse
 import base64
 import colorsys
+import contextlib
 import hashlib
 import html
 import io
@@ -493,7 +495,8 @@ def build_crest_white_corner_transparent_href_map(
 # ``Tribute Ale``, normalises ``/`` and ``&``, and falls back to prefix comparison with
 # tier digits stripped so renamed subdivisions still nest. Identity-tail keys peel the
 # canonical tier label off the front so that e.g. ``Counties 3 Hampshire`` reliably
-# matches ``Counties 2 Hampshire`` across seasons.
+# matches ``Counties 2 Hampshire`` across seasons; trailing division digits / words
+# (``1``, ``One``, …) are removed before comparing tails.
 
 # RFU Counties / Regional naming includes this sponsor slab in API league titles.
 TRIBUTE_ALE_PATTERN = re.compile(r"\s*Tribute Ale\s*", re.IGNORECASE)
@@ -504,11 +507,17 @@ TRIBUTE_WORD_PATTERN = re.compile(r"\s+Tribute\b\s*", re.IGNORECASE)
 def _strip_league_title_sponsors(league_name: str) -> str:
     """Strip known RFU sponsor slabs from league titles.
 
-    Applies ``Tribute Ale`` removal, then standalone ``Tribute``, then leading tokens from
-    :func:`rugby.tiers._strip_sponsor_prefix` on an underscore-normalised form so filename
-    sponsor lists match API ``league_name`` strings (e.g. ``Cotton Traders Counties …``).
+    Removes a leading historical RFU ``x`` marker (same convention as ``x`` filenames in
+    :mod:`rugby.tiers`), then applies ``Tribute Ale`` removal, then standalone ``Tribute``,
+    then leading tokens from :func:`rugby.tiers._strip_sponsor_prefix` on an underscore-normalised
+    form so filename sponsor lists match API ``league_name`` strings (e.g.
+    ``Cotton Traders Counties …``).
     """
     s = league_name.strip()
+    if not s:
+        return s
+    while len(s) >= 2 and s.startswith("x"):
+        s = s[1:].lstrip()
     if not s:
         return s
     s = TRIBUTE_ALE_PATTERN.sub(" ", s)
@@ -524,14 +533,54 @@ def _strip_league_title_sponsors(league_name: str) -> str:
 
 
 _TRAILING_SPACE_DIGITS_RE = re.compile(r"\s+\d+$")
+# Longest tokens first so e.g. ``fourteen`` wins over ``four``.
+_TRAILING_DIVISION_NUMBER_WORDS: tuple[str, ...] = (
+    "seventeen",
+    "eighteen",
+    "nineteen",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "eleven",
+    "twelve",
+    "twenty",
+    "eight",
+    "three",
+    "seven",
+    "zero",
+    "five",
+    "four",
+    "nine",
+    "one",
+    "six",
+    "ten",
+    "two",
+)
+_TRAILING_SPACE_NUMBER_WORD_RE = re.compile(
+    r"\s+(?:" + "|".join(re.escape(w) for w in _TRAILING_DIVISION_NUMBER_WORDS) + r")\s*$",
+    re.IGNORECASE,
+)
+# Whole-token removal (longest tokens first so ``fourteen`` beats ``four``).
+_STEM_NUMBER_WORD_BOUNDARY_RE = re.compile(
+    r"\b(?:"
+    + "|".join(re.escape(w) for w in sorted(_TRAILING_DIVISION_NUMBER_WORDS, key=len, reverse=True))
+    + r")\b",
+    re.IGNORECASE,
+)
 
 
 def _strip_trailing_numeric_suffix(s: str) -> str:
-    """Remove trailing `` … <digits>`` segments (e.g. ``North 1`` → ``North``).
+    """Remove trailing `` … <digits>`` or `` … <English number word>`` segments.
 
-    Only strips when digits are preceded by whitespace, so tier labels like ``Regional 2`` or
-    ``National League 2`` are unchanged when passed whole. Applied to geographic tails after
-    the canonical tier prefix is removed in :func:`league_short_display_name`.
+    Examples: ``North 1`` → ``North``; ``North One`` → ``North``; ``London 3 South East 2``
+    → strips only the final division marker.
+
+    Digits must be preceded by whitespace so tier labels like ``Regional 2`` stay intact when
+    passed whole. Number words are matched as a final whitespace-delimited token only.
+
+    Applied to geographic tails after the canonical tier prefix is removed in
+    :func:`league_short_display_name`.
     """
     t = s.rstrip()
     if not t:
@@ -539,6 +588,7 @@ def _strip_trailing_numeric_suffix(s: str) -> str:
     original = t
     while True:
         new = _TRAILING_SPACE_DIGITS_RE.sub("", t).rstrip()
+        new = _TRAILING_SPACE_NUMBER_WORD_RE.sub("", new).rstrip()
         if not new:
             return original
         if new == t:
@@ -547,22 +597,54 @@ def _strip_trailing_numeric_suffix(s: str) -> str:
     return t
 
 
+_MENS_NATIONAL_LEAGUE_GEO_RE = re.compile(
+    r"(?i)^National\s+League\s+(?:One|Two|Three|1|2|3)\s+(.+)$"
+)
+
+
+def _mens_short_after_national_league_division(league_name: str) -> str | None:
+    """``National League …`` + geography → short region title (e.g. NL3 North → ``North``)."""
+    m = _MENS_NATIONAL_LEAGUE_GEO_RE.match(league_name.strip())
+    if not m:
+        return None
+    tail = m.group(1).strip()
+    if not tail:
+        return None
+    out = _strip_trailing_numeric_suffix(tail)
+    return out if out else tail
+
+
 def _feeder_match_key(league_name: str) -> str:
     """Normalised league name for NL2 → Regional feeder lookups (sponsors stripped)."""
     return _strip_league_title_sponsors(league_name).strip().casefold()
 
 
-def _stem_match_digits_stripped_key(league_name: str) -> str:
-    """Normalised key for digit-insensitive prefix matching (sponsors stripped)."""
-    s = _strip_league_title_sponsors(league_name).casefold()
-    s = s.replace("&", " and ")
+def _stem_parent_relaxed_match_key(league_name: str) -> str:
+    """Normalise league titles for Counties stem parent lookup.
+
+    Strips sponsors via :func:`_strip_league_title_sponsors` (same token list as tier
+    filenames / ``rugby.tiers._strip_sponsor_prefix``), folds ``/`` and ``&`` to
+    whitespace, removes **all** digit runs and English number-word tokens (``zero`` …
+    ``twenty``, longest-token-safe boundaries), then collapses whitespace.
+    """
+    s = _strip_league_title_sponsors(league_name).strip().casefold()
+    s = s.replace("&", " ")
     s = re.sub(r"[/]", " ", s)
-    s = re.sub(r"\d", "", s)
-    return " ".join(s.split())
+    s = " ".join(s.split())
+    if not s:
+        return ""
+    while True:
+        prev = s
+        s = re.sub(r"\d+", "", s)
+        s = _STEM_NUMBER_WORD_BOUNDARY_RE.sub(" ", s)
+        s = " ".join(s.split())
+        if s == prev:
+            break
+    return s
 
 
 def _stem_identity_tail_key(league_name: str, tier_num: int, season: str) -> str:
-    """Geographic tail after the canonical tier label; digits removed from the tail only."""
+    """Geographic tail after the canonical tier label; trailing division markers stripped then digits removed."""
     stripped = _strip_league_title_sponsors(league_name).strip()
     tier_label = mens_current_tier_name(tier_num, season)
     prefix = tier_label + " "
@@ -573,6 +655,7 @@ def _stem_identity_tail_key(league_name: str, tier_num: int, season: str) -> str
         tail = stripped[len(tier_label) :].strip().lstrip()
     else:
         tail = stripped
+    tail = _strip_trailing_numeric_suffix(tail)
     tail_norm = tail.casefold().replace("&", " and ")
     tail_norm = re.sub(r"[/]", " ", tail_norm)
     tail_norm = re.sub(r"\d+", "", tail_norm)
@@ -592,7 +675,9 @@ def league_short_display_name(
 ) -> str:
     """Strip sponsor prefixes and pyramid tier redundancy for diagram titles.
 
-    Examples (men's): ``Regional 2 Anglia`` → ``Anglia``;
+    Examples (men's): ``National League Three North`` → ``North``;
+    ``National League 3 North`` → ``North``;
+    ``Regional 2 Anglia`` → ``Anglia``;
     ``Regional 1 Tribute Ale South West`` → ``Regional 1 South West`` → ``South West``;
     ``Counties 1 Hampshire`` → ``Hampshire``.
 
@@ -600,12 +685,19 @@ def league_short_display_name(
     ``Women's NC 1 South East (South)`` → ``South East (South)``;
     ``Women's Premiership`` → ``Premiership``.
 
-    Trailing division numbers (space + digits at end) are stripped from the title **after**
-    removing the redundant tier prefix — not from strings that are exactly the tier label.
+    Trailing division markers (space + digits at end, or a trailing English number word such
+    as ``One`` / ``Two``) are stripped from the title **after** removing the redundant tier
+    prefix — not from strings that are exactly the tier label.
+
+    Men's ``National League [1–3] …`` titles are shortened using only the geographic tail
+    (before the canonical ``Regional`` / ``Counties`` prefix rules apply).
     """
     if gender == "womens":
         return _womens_league_short_display_name(league_name, tier_num)
     league_name = _strip_league_title_sponsors(league_name)
+    nl_geo = _mens_short_after_national_league_division(league_name)
+    if nl_geo is not None:
+        return nl_geo
     tier_label = mens_current_tier_name(tier_num, season)
     if league_name == tier_label:
         return league_name
@@ -631,7 +723,7 @@ _WOMENS_LEAGUE_PREFIXES_BY_VISIBLE_TIER: dict[int, tuple[str, ...]] = {
 
 def _womens_league_short_display_name(league_name: str, visible_tier: int) -> str:
     """Strip ``Women's <tier shorthand>`` prefixes for women's pyramid cell titles."""
-    name = league_name.strip()
+    name = _strip_league_title_sponsors(league_name).strip()
     for prefix in _WOMENS_LEAGUE_PREFIXES_BY_VISIBLE_TIER.get(visible_tier, ()):
         if name == prefix:
             return name
@@ -667,7 +759,10 @@ def _find_stem_parent_league(
     for ``Counties 2 Hampshire`` → ``Counties 3 Hampshire``.
 
     Sponsor slabs are stripped first (same tokens as tier filenames). If literals fail,
-    prefix checks repeat with **digits removed** so tier subdivision renames still nest."""
+    prefix checks repeat under :func:`_stem_parent_relaxed_match_key` (sponsors removed; all
+    digits and English number words stripped; whitespace normalised) so renames and
+    divisions still nest — e.g. ``Durham/Northumberland Two`` under ``Durham/Northumberland One``.
+    """
     cn = _strip_league_title_sponsors(child.league_name).strip()
 
     literals: list[LeagueData] = []
@@ -678,14 +773,15 @@ def _find_stem_parent_league(
     if literals:
         return max(literals, key=lambda lg: len(_strip_league_title_sponsors(lg.league_name)))
 
-    cn_ds = _stem_match_digits_stripped_key(child.league_name)
-    literals_ds: list[LeagueData] = []
-    for p in parents:
-        pn_ds = _stem_match_digits_stripped_key(p.league_name)
-        if pn_ds and cn_ds.startswith(pn_ds):
-            literals_ds.append(p)
-    if literals_ds:
-        return max(literals_ds, key=lambda lg: len(_stem_match_digits_stripped_key(lg.league_name)))
+    cn_rx = _stem_parent_relaxed_match_key(child.league_name)
+    literals_rx: list[LeagueData] = []
+    if cn_rx:
+        for p in parents:
+            pn_rx = _stem_parent_relaxed_match_key(p.league_name)
+            if pn_rx and cn_rx.startswith(pn_rx):
+                literals_rx.append(p)
+    if literals_rx:
+        return max(literals_rx, key=lambda lg: len(_stem_parent_relaxed_match_key(lg.league_name)))
 
     cc = _stem_league_core_suffix(child, season)
     tails: list[LeagueData] = []
@@ -696,18 +792,19 @@ def _find_stem_parent_league(
     if tails:
         return max(tails, key=lambda lg: len(_stem_league_core_suffix(lg, season)))
 
-    cc_ds = _stem_match_digits_stripped_key(cc)
-    tails_ds: list[LeagueData] = []
-    for p in parents:
-        core = _stem_league_core_suffix(p, season)
-        core_ds = _stem_match_digits_stripped_key(core)
-        if core_ds and cc_ds.startswith(core_ds):
-            tails_ds.append(p)
-    if tails_ds:
+    cc_rx = _stem_parent_relaxed_match_key(cc)
+    tails_rx: list[LeagueData] = []
+    if cc_rx:
+        for p in parents:
+            core = _stem_league_core_suffix(p, season)
+            core_rx = _stem_parent_relaxed_match_key(core)
+            if core_rx and cc_rx.startswith(core_rx):
+                tails_rx.append(p)
+    if tails_rx:
         return max(
-            tails_ds,
+            tails_rx,
             key=lambda lg: len(
-                _stem_match_digits_stripped_key(_stem_league_core_suffix(lg, season))
+                _stem_parent_relaxed_match_key(_stem_league_core_suffix(lg, season))
             ),
         )
 
@@ -722,11 +819,11 @@ def _match_parent_override_label(
     child_league_name: str,
 ) -> LeagueData | None:
     """Resolve one override parent string against tier-(``ptier``) ``parents``."""
-    want = want_raw.strip().casefold()
+    want = _strip_league_title_sponsors(want_raw).strip().casefold()
     if not want:
         return None
     for p in parents:
-        if p.league_name.strip().casefold() == want:
+        if _strip_league_title_sponsors(p.league_name).strip().casefold() == want:
             return p
     tail_key = _stem_identity_tail_key(want_raw, ptier, season)
     fuzzy = [
@@ -789,11 +886,46 @@ def _stem_resolve_league_identity(
     ]
     if len(matches) == 1:
         return matches[0]
-    want_cf = league_label.strip().casefold()
+    want_cf = _strip_league_title_sponsors(league_label).strip().casefold()
     exact = [
         lg
         for lg in candidates
-        if lg.tier_num == tier_num and lg.league_name.strip().casefold() == want_cf
+        if lg.tier_num == tier_num
+        and _strip_league_title_sponsors(lg.league_name).strip().casefold() == want_cf
+    ]
+    if len(exact) == 1:
+        return exact[0]
+    return None
+
+
+def _womens_feeder_resolve_league_identity(
+    candidates: list[LeagueData],
+    league_label: str,
+    visual_band: int,
+    _season_here: str,
+    _season_foreign: str,
+) -> LeagueData | None:
+    """Pick the unique women's pyramid league matching ``league_label`` from another season.
+
+    Uses geography tails after band-specific ``Women's …`` prefixes (see :func:`_womens_geo_tail_raw`),
+    then exact sponsor-stripped name match. Season parameters mirror :func:`_stem_resolve_league_identity`
+    for API consistency (reserved for future era-specific rules).
+    """
+    tail_foreign = _womens_geo_tail_raw(league_label, visual_band).casefold()
+    matches = [
+        lg
+        for lg in candidates
+        if lg.tier_num == visual_band
+        and _womens_geo_tail_raw(lg.league_name, visual_band).casefold() == tail_foreign
+    ]
+    if len(matches) == 1:
+        return matches[0]
+    want_cf = _strip_league_title_sponsors(league_label).strip().casefold()
+    exact = [
+        lg
+        for lg in candidates
+        if lg.tier_num == visual_band
+        and _strip_league_title_sponsors(lg.league_name).strip().casefold() == want_cf
     ]
     if len(exact) == 1:
         return exact[0]
@@ -805,9 +937,21 @@ def pyramid_band_tier_label(visible_tier: int, season: str, gender: Gender) -> s
 
     Internally both genders use bands 1..N. For women's, the underlying RFU tier numbers
     (101..) are recovered by adding 100 before consulting :func:`womens_current_tier_name`.
+
+    Men's band 1 uses **Championship** on the diagram margin for seasons before 2009–2010 (the
+    :func:`~rugby.tiers.mens_current_tier_name` pre-Championship era). That matches historical
+    pyramid figures where the apex is not labelled Premiership. From 2009–10 onward band 1 is
+    Premiership.
+
+    Men's seasons before 2022–2023 use neutral ``Level N`` on the exterior margin from tier 5
+    downward (below National League 2), instead of anachronistic Regional / Counties wording.
     """
     if gender == "womens":
         return womens_current_tier_name(visible_tier + 100)
+    if visible_tier == 1 and season and season < "2009-2010":
+        return "Championship"
+    if _season_start_year(season) <= 2021 and visible_tier >= 5:
+        return f"Level {visible_tier}"
     return mens_current_tier_name(visible_tier, season)
 
 
@@ -1647,7 +1791,7 @@ class WomensNestedLayout:
 
 def _womens_geo_tail_raw(league_name: str, tier_band: int) -> str:
     """RFU geography after stripping this visual band's ``Women's …`` title prefix."""
-    name = league_name.strip()
+    name = _strip_league_title_sponsors(league_name).strip()
     remainder: str | None = None
     for prefix in _WOMENS_LEAGUE_PREFIXES_BY_VISIBLE_TIER.get(tier_band, ()):
         if name.casefold() == prefix.casefold():
@@ -1690,11 +1834,15 @@ def _match_womens_parent_override_label(
     child_league_name: str,
 ) -> LeagueData | None:
     """Resolve one ``womens_overrides_by_tier`` parent entry against tier-(``ptier``) leagues."""
-    want_raw = want_raw.strip()
+    want_raw = _strip_league_title_sponsors(want_raw).strip()
     if not want_raw:
         return None
     want_cf = want_raw.casefold()
-    exact = [lg for lg in parents if lg.league_name.strip().casefold() == want_cf.strip()]
+    exact = [
+        lg
+        for lg in parents
+        if _strip_league_title_sponsors(lg.league_name).strip().casefold() == want_cf
+    ]
     if len(exact) == 1:
         return exact[0]
     elif len(exact) > 1:
@@ -3889,7 +4037,7 @@ def render_pyramid_svg(
         )
 
     if gender == "mens":
-        assert stem_layout is not None
+        # No tier 7+ data → ``_stem_build_layout`` returns None; stem render is a no-op.
         stem = _render_stem_extension(
             leagues_by_tier,
             season,
@@ -3947,7 +4095,7 @@ def render_pyramid_svg(
 
 
 # ---------------------------------------------------------------------------
-# Interactive Counties stem linker (TTY only)
+# Interactive parent linker: pyramid tiers 5–6 + Counties stem (TTY only)
 # ---------------------------------------------------------------------------
 #
 # Each interactive session starts from the saved tier-mapping file (when present) so
@@ -3962,7 +4110,7 @@ def stem_interactive_parent_overrides(
     *,
     seed_overrides: StemParentOverrides | None = None,
 ) -> StemParentOverrides:
-    """TTY-only: resolve Counties stem orphans with numeric menu prompts.
+    """TTY-only: prompt for missing tier 5→4 and tier 6→5 mappings, then Counties stem orphans.
 
     Returns ``(child tier, child league_name) -> (parent league_name, ...)`` for links; an empty
     tuple marks explicitly unlinked children so heuristics stay off. ``s`` / ``stop`` exits early.
@@ -3977,19 +4125,23 @@ def stem_interactive_parent_overrides(
 
     overrides: StemParentOverrides = dict(seed_overrides) if seed_overrides else {}
     print(
-        "\nCounties stem orphan linker\n"
-        "  blank or 0 — leave this league unlinked\n"
+        "\nInteractive parent linker (men's pyramid)\n"
+        "  — First: tier 5 (Regional 1) → tier 4 (NL2), then tier 6 (Regional 2) → tier 5\n"
+        "  — Then: Counties stem orphans (tier 8+)\n"
+        "  blank or 0 — leave this league without a parent mapping (explicit unlinked)\n"
         "  number — parent from the list below\n"
-        "  s / stop — stop prompting (remaining orphans unchanged)\n"
+        "  s / stop — stop prompting (remaining work unchanged)\n"
     )
 
     while True:
-        nxt = _stem_next_orphan_for_prompt(leagues_by_tier, season, overrides)
+        nxt = _interactive_next_missing_pyramid_feeder_prompt(leagues_by_tier, overrides)
+        if nxt is None:
+            nxt = _stem_next_orphan_for_prompt(leagues_by_tier, season, overrides)
         if nxt is None:
             n_linked_children = sum(1 for v in overrides.values() if v)
             nexplicit = sum(1 for v in overrides.values() if not v)
             logger.info(
-                "Interactive stem linker finished (%d child league(s) linked; %d explicitly unlinked).",
+                "Interactive parent linker finished (%d child league(s) linked; %d explicitly unlinked).",
                 n_linked_children,
                 nexplicit,
             )
@@ -3999,12 +4151,109 @@ def stem_interactive_parent_overrides(
         choice = _stem_prompt_parent_pick(tier, child, candidates)
         if choice is None:
             logger.info(
-                "Interactive stem linker stopped early (%d choice(s) recorded).", len(overrides)
+                "Interactive parent linker stopped early (%d choice(s) recorded).", len(overrides)
             )
             return overrides
 
         key = (child.tier_num, child.league_name)
         overrides[key] = () if choice == "" else (choice,)
+
+
+def womens_interactive_feeder_overrides(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    *,
+    seed_overrides: StemParentOverrides | None = None,
+) -> StemParentOverrides:
+    """TTY-only: prompt for missing women's feeder links for visual bands 2→1, 3→2, 4→3.
+
+    Writes choices into the same flat shape as :func:`womens_parent_overrides_load`
+    (keys ``(band, child league_name)`` with ``2 ≤ band ≤ 4``). Blank / ``0`` sets explicit
+    unlinked (``"-"`` on save); ``s`` / ``stop`` exits early.
+
+    ``seed_overrides`` is merged so partial JSON from prior runs is preserved until each
+    child is confirmed or skipped.
+    """
+    if not sys.stdin.isatty():
+        raise RuntimeError(
+            "--interactive-stem-orphans requires an interactive terminal (stdin is not a TTY)."
+        )
+
+    overrides: StemParentOverrides = dict(seed_overrides) if seed_overrides else {}
+    print(
+        "\nInteractive women's feeder linker (bands 2–4)\n"
+        "  Band 2 — Championship → Premiership\n"
+        "  Band 3 — Championship → Championship (feeder row above)\n"
+        "  Band 4 — National Challenge 1 → Championship\n"
+        "  blank or 0 — explicit unlinked for this league\n"
+        "  number — parent from the list below\n"
+        "  s / stop — stop prompting (remaining bands unchanged)\n"
+    )
+
+    while True:
+        nxt = _interactive_next_missing_womens_feeder_prompt(leagues_by_tier, overrides)
+        if nxt is None:
+            wo = {k: v for k, v in overrides.items() if isinstance(k[0], int) and 2 <= k[0] <= 4}
+            n_linked = sum(1 for v in wo.values() if v)
+            n_explicit = sum(1 for v in wo.values() if not v)
+            logger.info(
+                "Women's interactive feeder linker finished (%d linked; %d explicitly unlinked).",
+                n_linked,
+                n_explicit,
+            )
+            return overrides
+
+        band, child, candidates = nxt
+        tp = band - 1
+        choice = _stem_prompt_parent_pick(
+            band,
+            child,
+            candidates,
+            banner=(
+                "Women's pyramid feeder — assign parent "
+                f"(band {band} child → band {tp}; Premiership → Championship → NC1 taper)"
+            ),
+        )
+        if choice is None:
+            wo = {k: v for k, v in overrides.items() if isinstance(k[0], int) and 2 <= k[0] <= 4}
+            logger.info(
+                "Women's interactive feeder linker stopped early (%d feeder entries recorded).",
+                len(wo),
+            )
+            return overrides
+
+        overrides[(band, child.league_name)] = () if choice == "" else (choice,)
+
+
+def _interactive_next_missing_womens_feeder_prompt(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    overrides: StemParentOverrides,
+) -> tuple[int, LeagueData, list[LeagueData]] | None:
+    """Next band 2–4 league with no ``(band, league_name)`` entry in ``overrides``."""
+    for band in (2, 3, 4):
+        candidates = list(leagues_by_tier.get(band - 1, ()))
+        candidates.sort(key=lambda lg: lg.league_name)
+        for lg in sorted(leagues_by_tier.get(band, ()), key=lambda lg: lg.league_name):
+            if (band, lg.league_name) not in overrides:
+                return (band, lg, candidates)
+    return None
+
+
+def _interactive_next_missing_pyramid_feeder_prompt(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    overrides: StemParentOverrides,
+) -> tuple[int, LeagueData, list[LeagueData]] | None:
+    """Next tier 5 or 6 league with no ``(tier, league_name)`` entry in ``overrides``."""
+    tier4 = _ordered_tier4_leagues(leagues_by_tier.get(4, []))
+    for lg in _alpha_sort_leagues(leagues_by_tier.get(5, [])):
+        if (5, lg.league_name) not in overrides:
+            return (5, lg, tier4)
+
+    tier5 = _alpha_sort_leagues(leagues_by_tier.get(5, []))
+    for lg in _alpha_sort_leagues(leagues_by_tier.get(6, [])):
+        if (6, lg.league_name) not in overrides:
+            return (6, lg, tier5)
+
+    return None
 
 
 def _stem_next_orphan_for_prompt(
@@ -4032,12 +4281,21 @@ def _stem_prompt_parent_pick(
     tier: int,
     child: LeagueData,
     candidates: list[LeagueData],
+    *,
+    banner: str | None = None,
 ) -> str | None:
     """``None`` aborts further prompts; ``""`` means keep unlinked."""
     tier_parent = tier - 1
+    if banner is not None:
+        heading = banner
+    elif tier <= 6:
+        heading = "Pyramid feeder — assign Regional / NL2 parent"
+    else:
+        heading = "Counties stem — assign parent"
     print(
-        f"\n--- Tier {tier} orphan: {child.league_name!r}\n"
-        f"    Candidate tier-{tier_parent} parents:\n",
+        f"\n--- {heading}\n"
+        f"    Tier {tier} child: {child.league_name!r}\n"
+        f"    Pick a tier-{tier_parent} parent:\n",
         flush=True,
     )
     upper = len(candidates)
@@ -4117,9 +4375,11 @@ def _stem_prompt_parent_pick(
 #   interactive saves and hand-edited strips apply on the same run. Skip with
 #   ``--ignore-stem-slot-strips``.
 # - Cross-season merge (:func:`stem_parent_overrides_merge_cross_season`) folds in
-#   parent links from other seasons' tier-mapping files when both leagues resolve
-#   uniquely in the current season; newly inferred links are written back so later
-#   runs do not repeat the inference.
+#   men's stem / Counties parent links from other seasons' tier-mapping files when both
+#   leagues resolve uniquely in the current season; newly inferred links are written back
+#   so later runs do not repeat the inference.
+# - Women's feeder bands 2–4 use :func:`womens_parent_overrides_merge_cross_season` the same way
+#   (seed interactive prompts and persist inferred rows on non-interactive runs).
 
 
 def stem_parent_overrides_store_path(season: str) -> Path:
@@ -4430,6 +4690,97 @@ def stem_parent_overrides_merge_cross_season(
     return merged
 
 
+def womens_parent_overrides_merge_cross_season(
+    season: str,
+    leagues_by_tier: dict[int, list[LeagueData]],
+    base: StemParentOverrides,
+) -> StemParentOverrides:
+    """Augment ``base`` with ``womens_overrides_by_tier`` entries from other seasons' JSON files.
+
+    Same calendar-distance ordering as :func:`stem_parent_overrides_merge_cross_season`. Only
+    visual feeder bands ``2``–``4`` are considered; child/parent names are mapped into the
+    current season via :func:`_womens_feeder_resolve_league_identity`. Entries already in
+    ``base`` are never replaced.
+    """
+    merged = dict(base)
+    current_file = stem_parent_overrides_store_path(season).resolve()
+    bundles: list[tuple[int, str, StemParentOverrides, Path]] = []
+
+    tier_map_paths = sorted(TIER_MAPPINGS_DIR.glob("*.json")) if TIER_MAPPINGS_DIR.is_dir() else []
+    for path in tier_map_paths:
+        m = _TIER_MAPPING_FILENAME_RE.match(path.name)
+        if not m:
+            continue
+        if path.resolve() == current_file:
+            continue
+        fn_season = m.group("season")
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        flat_w = womens_parent_overrides_from_payload(payload)
+        if not flat_w:
+            continue
+        file_season = payload.get("season") if isinstance(payload, dict) else None
+        if isinstance(file_season, str) and _SEASON_RE.fullmatch(file_season):
+            eff_foreign = file_season
+        elif fn_season:
+            eff_foreign = fn_season
+        else:
+            continue
+        gap = abs(_season_start_year(eff_foreign) - _season_start_year(season))
+        bundles.append((gap, eff_foreign, flat_w, path))
+
+    bundles.sort(key=lambda b: (b[0], str(b[3])))
+
+    for gap, eff_foreign, flat, path in bundles:
+        for (t_child, child_foreign), parent_specs_foreign in flat.items():
+            if not isinstance(t_child, int) or not (2 <= t_child <= 4):
+                continue
+            children_tier = leagues_by_tier.get(t_child, [])
+            parents_tier = leagues_by_tier.get(t_child - 1, [])
+            child_here = _womens_feeder_resolve_league_identity(
+                children_tier,
+                child_foreign,
+                t_child,
+                season,
+                eff_foreign,
+            )
+            if child_here is None:
+                continue
+            key_new = (t_child, child_here.league_name)
+            if key_new in merged:
+                continue
+            resolved_names: list[str] = []
+            seen_rn: set[str] = set()
+            for pf in parent_specs_foreign:
+                parent_here = _womens_feeder_resolve_league_identity(
+                    parents_tier,
+                    pf,
+                    t_child - 1,
+                    season,
+                    eff_foreign,
+                )
+                if parent_here is None:
+                    continue
+                nm = parent_here.league_name
+                if nm not in seen_rn:
+                    seen_rn.add(nm)
+                    resolved_names.append(nm)
+            if not resolved_names:
+                continue
+            merged[key_new] = tuple(resolved_names)
+            logger.info(
+                "Women's feeder link(s) inferred from %s (Δseason-years=%d): %r → %r",
+                path.name,
+                gap,
+                child_here.league_name,
+                merged[key_new],
+            )
+
+    return merged
+
+
 def stem_parent_overrides_load(season: str) -> StemParentOverrides | None:
     """Return saved interactive stem links, or ``None`` if absent / unreadable."""
     overrides, _strips = stem_parent_json_load(season)
@@ -4482,6 +4833,70 @@ def stem_parent_overrides_save(season: str, overrides: StemParentOverrides) -> P
         blob["stem_slot_strips"] = preserved_strips
     if preserved_womens is not None:
         blob["womens_overrides_by_tier"] = preserved_womens
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(blob, indent=2) + "\n", encoding="utf-8")
+    return path
+
+
+def _womens_flat_feeder_overrides_to_nested_json(
+    flat: StemParentOverrides,
+) -> dict[str, dict[str, str | list[str]]]:
+    """Flat ``(band 2–4, child) → parents`` into JSON ``womens_overrides_by_tier`` shape."""
+    by_band: dict[int, dict[str, str | list[str]]] = {}
+    for (t_num, child_name), parents_tuple in flat.items():
+        if not isinstance(t_num, int) or not (2 <= t_num <= 4):
+            continue
+        if not parents_tuple:
+            enc: str | list[str] = "-"
+        elif len(parents_tuple) == 1:
+            enc = parents_tuple[0]
+        else:
+            enc = list(parents_tuple)
+        by_band.setdefault(t_num, {})[child_name] = enc
+    out: dict[str, dict[str, str | list[str]]] = {}
+    for k in sorted(by_band.keys()):
+        items = sorted(by_band[k].items(), key=lambda it: _stem_sort_key_league_name(it[0]))
+        out[str(k)] = dict(items)
+    return out
+
+
+def womens_parent_overrides_save(season: str, overrides: StemParentOverrides) -> Path | None:
+    """Persist women's feeder overrides; keeps existing men's ``overrides_by_tier`` and stem strips."""
+    subset = {k: v for k, v in overrides.items() if isinstance(k[0], int) and 2 <= k[0] <= 4}
+    nested = _womens_flat_feeder_overrides_to_nested_json(subset)
+    if not nested:
+        return None
+
+    path = stem_parent_overrides_store_path(season)
+    preserved_mens: dict[str, object] = {}
+    preserved_strips: object | None = None
+    schema_version: int = STEM_PARENT_OVERRIDE_SCHEMA_VERSION
+
+    if path.is_file():
+        try:
+            prev = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(prev, dict):
+                raw_mens = prev.get("overrides_by_tier")
+                if isinstance(raw_mens, dict):
+                    preserved_mens = dict(raw_mens)
+                if "stem_slot_strips" in prev:
+                    preserved_strips = prev["stem_slot_strips"]
+                sv = prev.get("schema_version")
+                if sv is not None:
+                    with contextlib.suppress(TypeError, ValueError):
+                        schema_version = int(sv)
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    blob: dict[str, object] = {
+        "schema_version": schema_version,
+        "season": season,
+        "overrides_by_tier": preserved_mens,
+        "womens_overrides_by_tier": nested,
+    }
+    if preserved_strips is not None:
+        blob["stem_slot_strips"] = preserved_strips
+
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(blob, indent=2) + "\n", encoding="utf-8")
     return path
@@ -4635,8 +5050,8 @@ def main() -> int:
             "Outputs default to dist/<season>/pyramid_womens.{svg,png}. "
             "Optional womens_overrides_by_tier (bands 2–4 only) in tier_mappings load unless "
             "--ignore-saved-stem-parent-overrides is set. "
-            "Counties stem tooling (--interactive-stem-orphans, --ignore-stem-slot-strips) "
-            "has no effect with --womens."
+            "Men's interactive parent linker (--interactive-stem-orphans) and "
+            "--ignore-stem-slot-strips have no effect with --womens."
         ),
     )
     parser.add_argument(
@@ -4698,9 +5113,10 @@ def main() -> int:
         "--interactive-stem-orphans",
         action="store_true",
         help=(
-            "TTY only: prompt once per auto-detected Counties orphan (tier>=8) to pick a "
-            "tier-(N-1) parent by number; blank/0 marks explicit unlinked; s stops prompting. "
-            "Choices are merged into data/rugby/tier_mappings/<season>.json (non-empty)."
+            "TTY only: interactively edit data/rugby/tier_mappings/<season>.json. "
+            "Default (men's): tier 5→4 and tier 6→5 feeders, then Counties stem orphans. "
+            "With --womens: feeder links for women's visual bands 2→1, 3→2, and 4→3 only. "
+            "blank/0 = explicit unlinked; s stops prompting."
         ),
     )
     parser.add_argument(
@@ -4710,7 +5126,7 @@ def main() -> int:
             "Skip loading parent_overrides from data/rugby/tier_mappings/<season>.json. This "
             "covers the tier 5/6 NL2-Regional nesting and the Counties stem links; men's "
             "tiers 4–6 fall back to equal-width and the stem uses its name-matching heuristic. "
-            "With --womens, womens_overrides_by_tier is also skipped (prefix-only nesting). "
+            "With --womens, skips ``womens_overrides_by_tier`` only (prefix inference for feeders). "
             "stem_slot_strips still apply unless --ignore-stem-slot-strips."
         ),
     )
@@ -4764,7 +5180,7 @@ def main() -> int:
             saved = stem_parent_overrides_save(season, parent_overrides)
             if saved is not None:
                 logger.info(
-                    "Saved Counties stem parent overrides (%d entries) to %s",
+                    "Saved interactive parent overrides (%d entries) to %s",
                     len(parent_overrides),
                     saved,
                 )
@@ -4803,19 +5219,54 @@ def main() -> int:
                 stem_parent_overrides_store_path(season),
             )
     else:
-        if not args.ignore_saved_stem_parent_overrides:
-            womens_parent_overrides = womens_parent_overrides_load(season)
-            if womens_parent_overrides:
-                logger.info(
-                    "Loaded %d women's feeder override(s) from %s",
-                    len(womens_parent_overrides),
-                    stem_parent_overrides_store_path(season),
+        if args.interactive_stem_orphans:
+            seed_w: StemParentOverrides | None = None
+            if not args.ignore_saved_stem_parent_overrides:
+                base_w = womens_parent_overrides_load(season) or {}
+                merged_w = womens_parent_overrides_merge_cross_season(
+                    season, leagues_by_tier, base_w
                 )
-        if args.interactive_stem_orphans or args.ignore_stem_slot_strips:
-            logger.info(
-                "Counties stem tooling has no effect with --womens "
-                "(--interactive-stem-orphans / --ignore-stem-slot-strips)."
+                seed_w = merged_w if merged_w else None
+            womens_parent_overrides = womens_interactive_feeder_overrides(
+                leagues_by_tier,
+                seed_overrides=seed_w,
             )
+            persisted = womens_parent_overrides_save(season, womens_parent_overrides)
+            if persisted is not None:
+                n_w = sum(
+                    1 for (tb, _) in womens_parent_overrides if isinstance(tb, int) and 2 <= tb <= 4
+                )
+                logger.info(
+                    "Saved women's feeder overrides (%d entries) to %s",
+                    n_w,
+                    persisted,
+                )
+        elif not args.ignore_saved_stem_parent_overrides:
+            base_w = womens_parent_overrides_load(season) or {}
+            womens_parent_overrides = womens_parent_overrides_merge_cross_season(
+                season, leagues_by_tier, base_w
+            )
+            if womens_parent_overrides:
+                n_base_w = len(base_w)
+                n_extra_w = len(womens_parent_overrides) - n_base_w
+                logger.info(
+                    "Loaded %d women's feeder override(s) (%d from %s%s)",
+                    len(womens_parent_overrides),
+                    n_base_w,
+                    stem_parent_overrides_store_path(season),
+                    f"; +{n_extra_w} inferred from other seasons" if n_extra_w else "",
+                )
+                if n_extra_w > 0:
+                    persisted_w = womens_parent_overrides_save(season, womens_parent_overrides)
+                    if persisted_w is not None:
+                        logger.info(
+                            "Persisted inferred women's feeder links to %s (+%d new, %d total).",
+                            persisted_w,
+                            n_extra_w,
+                            len(womens_parent_overrides),
+                        )
+        if args.ignore_stem_slot_strips:
+            logger.info("--ignore-stem-slot-strips has no effect with --womens.")
 
     svg = render_pyramid_svg(
         season,

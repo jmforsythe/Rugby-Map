@@ -47,7 +47,7 @@ _EXTRA_FIXTURE_URLS_BY_SEASON: dict[str, list[str]] = {
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
         "competition=2319&division=75192&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
-        "competition=2319&division=74972&season=2025-2026",
+        "competition=2319&division=75205&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"
         "competition=2319&division=75126&season=2025-2026",
         "https://www.englandrugby.com/fixtures-and-results/search-results?"

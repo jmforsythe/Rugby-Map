@@ -34,7 +34,7 @@ Usage::
     python -m rugby.pyramid_image --womens
     python -m rugby.pyramid_image --womens --season 2024-2025 --png
     python -m rugby.pyramid_image --womens --interactive-stem-orphans  # TTY: bands 2–4 feeders
-    python -m rugby.pyramid_image --labels-under-valid-crests --labels-under-layout-height-scale 1.15
+    python -m rugby.pyramid_image --labels-under-valid-crests --labels-under-layout-height-scale 1.22
 """
 
 from __future__ import annotations
@@ -133,9 +133,11 @@ IMAGE_WIDTH = 3200
 # :func:`_canvas_horizontal_weight`).
 REFERENCE_HORIZONTAL_WEIGHT_CAP = 26
 # Merit pages need a generous width so crest grids stay readable; multi-league rows widen
-# further via :data:`MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE`. Side padding is reduced by
-# biasing single-league merit cells toward the wider lower chord (:data:`MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC`).
-MERIT_CANVAS_MIN_WIDTH = 2800
+# further via :data:`MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE`. The apex chord is proportional
+# to canvas width --- keep this close to :data:`IMAGE_WIDTH` so tier‑1 merit rows do not pinch
+# vs the men's national pyramid. Single-league trapezoids still bias interior sampling toward
+# the wider lower chord (:data:`MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC`).
+MERIT_CANVAS_MIN_WIDTH = 3140
 # Virtual league-count floor for merit canvas sizing so ``cap_w == 1`` ladders still reserve
 # horizontal slack beyond the slot math alone (paired with :data:`MERIT_CANVAS_MIN_WIDTH`).
 MERIT_CANVAS_HORIZONTAL_WEIGHT_FLOOR = 14
@@ -248,6 +250,25 @@ def _labels_under_layout_height_scale_scope(scale: float) -> Iterator[None]:
         _labels_under_layout_height_scale_cv.reset(tok)
 
 
+_labels_under_caption_cell_adjustments_cv: contextvars.ContextVar[bool] = contextvars.ContextVar(
+    "_labels_under_caption_cell_adjustments_cv", default=False
+)
+
+
+def _effective_labels_under_caption_cell_adjustments() -> bool:
+    """True inside :func:`render_pyramid_svg` when ``labels_under_valid_crests`` is on."""
+    return bool(_labels_under_caption_cell_adjustments_cv.get())
+
+
+@contextlib.contextmanager
+def _labels_under_caption_cell_adjustments_scope(active: bool) -> Iterator[None]:
+    tok = _labels_under_caption_cell_adjustments_cv.set(bool(active))
+    try:
+        yield
+    finally:
+        _labels_under_caption_cell_adjustments_cv.reset(tok)
+
+
 # Merit local tiers > 6 share :func:`_pyramid_height_px`; row height divides by
 # ``max(6, merit_max_tier)`` so the stack stays within the triangle to the tier‑6 baseline.
 _merit_band_row_divisor_cv: contextvars.ContextVar[int | None] = contextvars.ContextVar(
@@ -291,7 +312,7 @@ PYRAMID_COMPRESS_CLEARANCE_PX = 100.0
 # Stem (tiers 7–11): same chord width as the tier‑6 base; divider line below Regional 2.
 COUNTIES_ROW_HEIGHT = 220
 COUNTIES_TIER_GAP = 30  # vertical gap between stem tier sections
-STEM_INNER_MARGIN_H = 8.0  # horizontal inset matching :func:`compute_band_layout`
+STEM_INNER_MARGIN_H = 7.0  # horizontal inset matching :func:`compute_band_layout`
 STEM_BOTTOM_MARGIN_Y = 20.0
 # Solid band between pyramid tier 6 and Counties stem — inset inside the triangle outline;
 # fill is a midpoint of tier 6 / 7 league cell colours (``TIER_COLORS``).
@@ -311,8 +332,10 @@ COUNTIES_ORPHAN_ROW_HEIGHT = 176  # second league row height when orphans need a
 COUNTIES_MARGIN_TIER_LABEL_ROTATE_DEG = 270.0
 
 # League cell appearance.
-LEAGUE_CELL_PADDING_X = 6
+LEAGUE_CELL_PADDING_X = 5
 LEAGUE_CELL_PADDING_Y = 4
+# Thinner gutter under the crest grid when captions sit beneath crests (see :func:`_render_league_cell`).
+LEAGUE_CELL_LOGO_PADDING_BOTTOM_CAPTION_UNDER = 2.0
 LEAGUE_TITLE_HEIGHT = 26  # minimum title band height
 LEAGUE_TITLE_FONT_MAX = 13.0
 LEAGUE_TITLE_FONT_MIN = 9.0
@@ -354,7 +377,14 @@ LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES = 2
 # Also scale overall pyramid tier height + Counties stem row heights (:func:`_pyramid_height_px`,
 # Counties constants below) via :func:`_labels_under_layout_height_scale_scope` for extra headroom.
 # (trapezoid) cells, so logos don't crowd or get clipped by the pyramid silhouette.
-LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE = 1.10
+LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE = 1.15
+
+# Pyramid band height ``bh`` vs playable league ``cell_h`` trims (half each above/below the cell).
+_PYRAMID_BAND_CELL_VERTICAL_TRIM_DEFAULT = 16.0
+_PYRAMID_BAND_CELL_VERTICAL_TRIM_CAPTION_UNDER = 10.0
+# Stem Counties / orphan rectangles: nominal row minus this for ``cell_h`` / orphan inner height.
+_STEM_BLOC_CELL_VERTICAL_TRIM_DEFAULT = 14.0
+_STEM_BLOC_CELL_VERTICAL_TRIM_CAPTION_UNDER = 10.0
 LEAGUE_SLANT_GAP = 14
 # Merit single-league trapezoids widen toward the band bottom; sample the interior chord
 # most of the way down so crest grids use almost the full trap width (mid-band was too tight
@@ -2175,6 +2205,20 @@ def _pyramid_band_height_px() -> float:
     return _pyramid_height_px() / float(_pyramid_band_row_divisor())
 
 
+def _pyramid_band_playable_vertical_trim_px() -> float:
+    """Total px shaved from nominal band height ``bh`` when deriving league ``cell_h``."""
+    if _effective_labels_under_caption_cell_adjustments():
+        return float(_PYRAMID_BAND_CELL_VERTICAL_TRIM_CAPTION_UNDER)
+    return float(_PYRAMID_BAND_CELL_VERTICAL_TRIM_DEFAULT)
+
+
+def _stem_row_playable_vertical_trim_px() -> float:
+    """Subtract from Counties / orphan nominal row heights for inner ``cell_h``."""
+    if _effective_labels_under_caption_cell_adjustments():
+        return float(_STEM_BLOC_CELL_VERTICAL_TRIM_CAPTION_UNDER)
+    return float(_STEM_BLOC_CELL_VERTICAL_TRIM_DEFAULT)
+
+
 def _pyramid_bottom_y() -> float:
     return _pyramid_top_y() + _pyramid_height_px()
 
@@ -2377,7 +2421,7 @@ def compute_band_layout(
     band_top = _pyramid_top_y() + (tier_num - 1) * bh
     band_bottom = band_top + bh
     band_center_y = (band_top + band_bottom) / 2
-    inset = 8.0
+    inset = 7.0
     safe_w_top = _triangle_interior_width_at(band_top)
     safe_w_bottom = _triangle_interior_width_at(band_bottom)
     if interior_width_y is not None:
@@ -2388,7 +2432,7 @@ def compute_band_layout(
     cell_w_raw = avail_w / n
     gap = min(8.0, cell_w_raw * 0.06)
     cell_w = cell_w_raw - gap
-    cell_h = bh - 16
+    cell_h = bh - _pyramid_band_playable_vertical_trim_px()
     row_left_x = _pyramid_center_x() - avail_w / 2
     row_top_y = band_center_y - cell_h / 2
     return BandLayout(
@@ -3721,6 +3765,11 @@ def _render_league_cell(
     n_slots = len(team_rows) + (1 if place_extra_badge else 0)
     crest_name_font_scale = _crest_slot_team_name_font_scale(league.tier_num)
     cell_stroke = LEAGUE_CELL_STROKE_WOMENS if gender == "womens" else LEAGUE_CELL_STROKE_MENS
+    logo_strip_bottom_pad = (
+        LEAGUE_CELL_LOGO_PADDING_BOTTOM_CAPTION_UNDER
+        if labels_under_valid_crests
+        else float(LEAGUE_CELL_PADDING_Y)
+    )
 
     cell_pad_l = x + LEAGUE_CELL_PADDING_X
     cell_pad_r = x + w - LEAGUE_CELL_PADDING_X
@@ -3795,11 +3844,11 @@ def _render_league_cell(
             )
 
         logo_area_y = y + title_area_h
-        logo_area_h = max(0.0, h - title_area_h - LEAGUE_CELL_PADDING_Y)
+        logo_area_h = max(0.0, h - title_area_h - logo_strip_bottom_pad)
     else:
         if gender == "mens":
             logo_area_y = y + LEAGUE_CELL_PADDING_Y
-            logo_area_h = max(0.0, h - 2 * LEAGUE_CELL_PADDING_Y)
+            logo_area_h = max(0.0, h - LEAGUE_CELL_PADDING_Y - logo_strip_bottom_pad)
         else:
             reserve_top = (
                 LEAGUE_LOGO_GRID_TITLE_RESERVE_WOMENS_PREM
@@ -3807,7 +3856,7 @@ def _render_league_cell(
                 else LEAGUE_LOGO_GRID_TITLE_RESERVE_Y
             )
             logo_area_y = y + reserve_top
-            logo_area_h = max(0.0, h - reserve_top - LEAGUE_CELL_PADDING_Y)
+            logo_area_h = max(0.0, h - reserve_top - logo_strip_bottom_pad)
 
     layout_logo_h, _ = _logo_grid_vertical_layout_height(
         logo_area_h,
@@ -3827,7 +3876,8 @@ def _render_league_cell(
         ideal_x0 = content_mid_x - grid_w / 2
         logo_area_inner_r = logo_area_x + logo_area_w
         grid_x0 = max(logo_area_x, min(ideal_x0, logo_area_inner_r - grid_w))
-        grid_y0 = logo_area_y + (layout_logo_h - grid_h) / 2
+        v_anchor_h = float(logo_area_h) if labels_under_valid_crests else float(layout_logo_h)
+        grid_y0 = logo_area_y + max(0.0, (v_anchor_h - grid_h) / 2.0)
 
         pad = min(LEAGUE_LOGO_PADDING, logo_size * 0.08)
         slot_inner_px = logo_size - 2 * pad
@@ -5584,7 +5634,7 @@ def _render_stem_extension(
         orphan_row_px = _stem_scaled_orphan_row_height_px()
         orphan_gap_px = _stem_scaled_orphan_row_gap_px()
         tier_gap_px = _stem_scaled_tier_gap_px()
-        cell_h = counties_row_px - 14
+        cell_h = counties_row_px - _stem_row_playable_vertical_trim_px()
         row_top = cursor_y
 
         if pure_cells:
@@ -5608,7 +5658,7 @@ def _render_stem_extension(
             cursor_y += counties_row_px
             if orphan_cells:
                 cursor_y += orphan_gap_px
-                oph_h = orphan_row_px - 14
+                oph_h = orphan_row_px - _stem_row_playable_vertical_trim_px()
                 oph_top = cursor_y
                 for lg, lx, lw in orphan_cells:
                     bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
@@ -5777,6 +5827,7 @@ def render_pyramid_svg(
         _canvas_width_scope(float(canvas_w)),
         _merit_pyramid_band_row_divisor_scope(merit_max_tier if is_merit else None),
         _labels_under_layout_height_scale_scope(lu_layout_scale),
+        _labels_under_caption_cell_adjustments_scope(labels_under_valid_crests),
     ):
         merit_interior_floor_y: float | None = (
             (

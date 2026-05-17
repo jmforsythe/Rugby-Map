@@ -9,6 +9,7 @@ MarkerItem objects and a MapConfig with all project-specific settings.
 
 import json
 import logging
+import math
 from collections import defaultdict
 from dataclasses import dataclass, field
 from html import escape
@@ -34,6 +35,18 @@ from core.basemap_tiles import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Great-circle distance in km (WGS84 sphere, R=6371)."""
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    )
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return 6371.0 * c
 
 
 # ---------------------------------------------------------------------------
@@ -1023,9 +1036,10 @@ def _collect_group_geometries(
     def closest_group(parent_items: list[_PlacedItem], centroid: Point) -> str | None:
         if not parent_items:
             return None
+        clat, clon = centroid.y, centroid.x
         best = min(
             parent_items,
-            key=lambda it: centroid.distance(Point(it["longitude"], it["latitude"])),
+            key=lambda it: _haversine_km(clat, clon, it["latitude"], it["longitude"]),
         )
         return best["group"]
 

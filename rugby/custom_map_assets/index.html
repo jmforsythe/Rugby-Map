@@ -1908,10 +1908,10 @@
         if (!items.length) return null;
         let best = null,
           bestDist = Infinity;
+        const clat = centroid[1],
+          clng = centroid[0];
         for (const it of items) {
-          const dx = centroid[0] - it.team.lng;
-          const dy = centroid[1] - it.team.lat;
-          const d = dx * dx + dy * dy;
+          const d = haversineKm(clat, clng, it.team.lat, it.team.lng);
           if (d < bestDist) {
             bestDist = d;
             best = it;

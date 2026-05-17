@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,58 +35,83 @@ jobs:
           pip install "playwright>=1.40"
           python -m playwright install chromium --with-deps
 
-      - name: Download boundary data
+      - name: Download boundary data (ONS / ITL etc.)
         run: |
           python -m core.boundaries --detail BGC
 
-      - name: Generate maps
-        env:
-          GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+      - name: Discover seasons (geocoded_teams dirs)
+        id: seasons
         run: |
-          # Get all season folders from geocoded_teams directory
-          SEASONS=$(ls -d data/rugby/geocoded_teams/*/ 2>/dev/null | xargs -n 1 basename | sort -r)
+          set -eo pipefail
+          list="${RUNNER_TEMP}/ci-seasons.txt"
+          ( ls -d data/rugby/geocoded_teams/*/ 2>/dev/null || true ) | xargs -n1 basename | sort -r > "$list"
+          echo "path=$list" >> "$GITHUB_OUTPUT"
+          echo "Season count: $(wc -l < "$list" | tr -d ' ')"
+          cat "$list"
 
-          for season in $SEASONS; do
-            python -m rugby.distances --season=$season
-          done
+      - name: Rugby — travel distances (all seasons)
+        run: |
+          set -eo pipefail
+          while read -r season; do
+            [ -z "$season" ] && continue
+            python -m rugby.distances --season="$season"
+          done < "${{ steps.seasons.outputs.path }}"
 
-          for season in $SEASONS; do
-            python -m rugby.maps --no-debug --season=$season --production
-          done
+      - name: Rugby — Folium tier / league maps (all seasons)
+        run: |
+          set -eo pipefail
+          while read -r season; do
+            [ -z "$season" ] && continue
+            python -m rugby.maps --no-debug --season="$season" --production
+          done < "${{ steps.seasons.outputs.path }}"
 
-          for season in $SEASONS; do
-            # Men's + women's national pyramids, then merit competition pyramids + merged
-            # men's national + merit (pyramid_All_Leagues.{png,svg} in dist/<season>/).
+      - name: Rugby — pyramid images PNG (Playwright / Chromium)
+        run: |
+          set -eo pipefail
+          while read -r season; do
+            [ -z "$season" ] && continue
             python -m rugby.pyramid_image --season="$season" --png --png-scale 2
             python -m rugby.pyramid_image --womens --season="$season" --png --png-scale 2
             if find "data/rugby/geocoded_teams/$season/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
               python -m rugby.pyramid_image --merit --season="$season" --png --png-scale 2
             fi
-          done
+          done < "${{ steps.seasons.outputs.path }}"
 
-          # Match-day maps before webpages — season indexes link to match_day only if it exists
-          # when rugby.webpages runs (see rugby.webpages.detect_tier_files ``has_match_day``).
-          for season in $SEASONS; do
+      # Match-day maps before webpages — season indexes link only if outputs exist when rugby.webpages runs.
+      - name: Rugby — match-day maps (seasons with fixture_data)
+        run: |
+          set -eo pipefail
+          while read -r season; do
+            [ -z "$season" ] && continue
             if [ -d "data/rugby/fixture_data/$season" ]; then
-              python -m rugby.match_day --season=$season --production
+              python -m rugby.match_day --season="$season" --production
             fi
-          done
+          done < "${{ steps.seasons.outputs.path }}"
 
+      - name: Rugby — team profile pages & teams directory
+        run: |
           python -m rugby.team_pages --production
+
+      - name: Rugby — season indexes & site landing pages
+        run: |
           python -m rugby.webpages --production
 
-          # Custom map builder data + HTML page (teams catalogue + boundaries)
+      - name: Rugby — custom map builder (teams catalogue & boundaries JSON)
+        run: |
           python -m rugby.custom_map --production
 
-          # Football maps (not linked from index pages)
+      - name: Football — Folium maps
+        run: |
           python -m football.maps --production
 
+      - name: Rugby — sitemap & robots.txt
+        run: |
           python -m rugby.seo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload artifact (dist/)
         uses: actions/upload-pages-artifact@v3
         with:
           path: "dist"

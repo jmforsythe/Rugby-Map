@@ -34,6 +34,7 @@ Usage::
     python -m rugby.pyramid_image --womens
     python -m rugby.pyramid_image --womens --season 2024-2025 --png
     python -m rugby.pyramid_image --womens --interactive-stem-orphans  # TTY: bands 2–4 feeders
+    python -m rugby.pyramid_image --labels-under-valid-crests --labels-under-layout-height-scale 1.15
 """
 
 from __future__ import annotations
@@ -221,6 +222,32 @@ def _pyramid_interior_floor_y_scope(floor_y: float | None):
         _pyramid_interior_floor_y_cv.reset(tok)
 
 
+_labels_under_layout_height_scale_cv: contextvars.ContextVar[float] = contextvars.ContextVar(
+    "_labels_under_layout_height_scale_cv", default=1.0
+)
+
+
+def _effective_labels_under_layout_height_scale() -> float:
+    """Pyramid tier + Counties stem vertical multiplier (:func:`_labels_under_layout_height_scale_scope`)."""
+    s = float(_labels_under_layout_height_scale_cv.get())
+    if math.isnan(s):
+        return 1.0
+    return max(1.0, min(s, 4.0))
+
+
+@contextlib.contextmanager
+def _labels_under_layout_height_scale_scope(scale: float) -> Iterator[None]:
+    s = float(scale)
+    if not math.isfinite(s) or s < 1.0:
+        s = 1.0
+    s = max(1.0, min(s, 4.0))
+    tok = _labels_under_layout_height_scale_cv.set(s)
+    try:
+        yield
+    finally:
+        _labels_under_layout_height_scale_cv.reset(tok)
+
+
 # Merit local tiers > 6 share :func:`_pyramid_height_px`; row height divides by
 # ``max(6, merit_max_tier)`` so the stack stays within the triangle to the tier‑6 baseline.
 _merit_band_row_divisor_cv: contextvars.ContextVar[int | None] = contextvars.ContextVar(
@@ -315,8 +342,19 @@ _LEAGUE_LOGO_WOMENS_CELL_FRAC_BY_BAND_MAX_TIER: tuple[tuple[int, float], ...] = 
     (6, 0.46),
 )
 LEAGUE_LOGO_PADDING = 3
-# Extra horizontal gap between team crests and the slanted pyramid edge for outer
+# Optional caption below valid crest URLs (see ``labels_under_valid_crests`` in :func:`_render_league_cell`).
+LEAGUE_LOGO_UNDER_CAPTION_GAP_PX = 2.5
+LEAGUE_LOGO_UNDER_CAPTION_LINE_RATIO = 1.15
+# Vertical space budgeted inside each crest slot when planning the grid (:func:`_labels_under_logo_layout`,
+# :func:`_logo_grid_vertical_layout_height`). Caption HTML still uses ``overflow:visible``—long names may
+# extend beyond this without shrinking logos as aggressively as reserving three full lines.
+LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES = 2
+# When ``labels_under_valid_crests`` is on, shrink the vertical budget passed to :func:`_best_grid`
+# so typical caption rows avoid clipping (:func:`_logo_grid_vertical_layout_height`).
+# Also scale overall pyramid tier height + Counties stem row heights (:func:`_pyramid_height_px`,
+# Counties constants below) via :func:`_labels_under_layout_height_scale_scope` for extra headroom.
 # (trapezoid) cells, so logos don't crowd or get clipped by the pyramid silhouette.
+LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE = 1.10
 LEAGUE_SLANT_GAP = 14
 # Merit single-league trapezoids widen toward the band bottom; sample the interior chord
 # most of the way down so crest grids use almost the full trap width (mid-band was too tight
@@ -2129,7 +2167,8 @@ def _pyramid_height_px() -> float:
     """
     w = _triangle_base_width()
     max_h = max(float(PYRAMID_BAND_HEIGHT) * 2.0, w - PYRAMID_COMPRESS_CLEARANCE_PX)
-    return float(min(float(PYRAMID_HEIGHT), max_h))
+    raw_h = float(min(float(PYRAMID_HEIGHT), max_h))
+    return raw_h * _effective_labels_under_layout_height_scale()
 
 
 def _pyramid_band_height_px() -> float:
@@ -3166,6 +3205,17 @@ def _best_grid(n: int, box_w: float, box_h: float) -> tuple[int, int, float]:
     return (best_cols, best_rows, best_size)
 
 
+def _grid_row_horizontal_offset_px(
+    row_index: int, cols: int, n_slots: int, logo_size: float
+) -> float:
+    """Centre incomplete rows horizontally within ``cols × logo_size``."""
+    remaining = n_slots - row_index * cols
+    n_this_row = min(cols, max(0, remaining))
+    if n_this_row <= 0 or n_this_row >= cols:
+        return 0.0
+    return (cols - n_this_row) * logo_size / 2.0
+
+
 def _womens_league_logo_cap_px(cell_h: float, visible_tier: int) -> float:
     """Upper bound on crest tile edge for women's pyramid league cells."""
     abs_cap = _LEAGUE_LOGO_WOMENS_ABS_BY_BAND_MAX_TIER[-1][1]
@@ -3202,6 +3252,28 @@ def _svg_text(
         f'font-family="{family}" font-size="{size:.2f}" '
         f'font-weight="{weight}" fill="{fill}" text-anchor="{anchor}" '
         f'dominant-baseline="middle">{xml_escape(text)}</text>'
+    )
+
+
+def _svg_text_tspans(
+    x: float,
+    y: float,
+    segments: tuple[tuple[str, str], ...],
+    *,
+    size: float = 14.0,
+    weight: str = "normal",
+    anchor: str = "start",
+    family: str = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+) -> str:
+    """One SVG ``<text>`` containing ``<tspan fill="…">…</tspan>`` runs."""
+    tspans = "".join(
+        f'<tspan fill="{fill}">{xml_escape(fragment)}</tspan>' for fragment, fill in segments
+    )
+    return (
+        f'<text x="{x:.2f}" y="{y:.2f}" '
+        f'font-family="{family}" font-size="{size:.2f}" '
+        f'font-weight="{weight}" fill="transparent" text-anchor="{anchor}" '
+        f'dominant-baseline="middle">{tspans}</text>'
     )
 
 
@@ -3326,56 +3398,187 @@ _LABEL_EXPAND_INNER_RATIO = 0.70
 _FALLBACK_CLUB_LABEL_MAX_LINES = 18
 
 
+def _labels_under_logo_layout(
+    slot_inner_px: float,
+    font_scale: float,
+) -> tuple[float, float, int]:
+    """Return ``(crest_img_px, caption_block_h, caption_fz)`` reserving space beneath the crest.
+
+    ``caption_block_h`` includes top gap + ``LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES`` line-heights.
+
+    The league grid allocates a reduced vertical bbox (see :func:`_logo_grid_vertical_layout_height`)
+    so bottom-row captions do not spill past the cell.
+    """
+    cap_fz = max(5, min(12, int(slot_inner_px * 0.21 * font_scale)))
+    lh = cap_fz * LEAGUE_LOGO_UNDER_CAPTION_LINE_RATIO
+    block_h = LEAGUE_LOGO_UNDER_CAPTION_GAP_PX + lh * float(
+        LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES
+    )
+    crest_px = float(max(14.0, slot_inner_px - block_h))
+    return crest_px, block_h, cap_fz
+
+
+def _logo_grid_vertical_layout_height(
+    logo_area_h: float,
+    n_slots: int,
+    logo_area_w: float,
+    *,
+    reserve_bottom_caption: bool,
+    crest_name_font_scale: float,
+) -> tuple[float, float]:
+    """Height passed to :func:`_best_grid` and centered stretch for crest rows vs full logo strip.
+
+    When ``reserve_bottom_caption``, peels off a strip at the bottom of ``logo_area_h`` sized for
+    ``LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES`` caption lines (from a provisional grid cell size).
+    """
+    if not reserve_bottom_caption or n_slots <= 0 or logo_area_h <= 0.0 or logo_area_w <= 0.0:
+        return logo_area_h, 0.0
+
+    _, _, sz_probe = _best_grid(n_slots, float(logo_area_w), float(logo_area_h))
+    if sz_probe <= 0.0:
+        return logo_area_h, 0.0
+    pad_p = min(float(LEAGUE_LOGO_PADDING), sz_probe * 0.08)
+    inner_probe = float(max(1.0, sz_probe - 2.0 * pad_p))
+    fz_probe = max(5, min(12, int(inner_probe * 0.21 * crest_name_font_scale)))
+    lh_probe = fz_probe * LEAGUE_LOGO_UNDER_CAPTION_LINE_RATIO
+    bottom_reserve = LEAGUE_LOGO_UNDER_CAPTION_GAP_PX + lh_probe * float(
+        LEAGUE_LOGO_UNDER_CAPTION_RESERVED_LINES
+    )
+    bottom_reserve = min(bottom_reserve, max(0.0, logo_area_h * 0.5))
+    used_h = max(0.0, logo_area_h - bottom_reserve)
+    return used_h, bottom_reserve
+
+
 def _svg_crest_foreign_object_slot(
     x: float,
     y: float,
-    inner_sz: float,
+    crest_img_px: float,
     href: str,
     club_label: str,
     *,
     text_fill: str,
     font_scale: float = 1.0,
+    caption_under_px: tuple[float, float] | None = None,
 ) -> str:
-    """Crest tile: remote ``<img>`` plus hidden HTML club label on ``onerror`` (404, etc.).
+    """Crest tile: remote ``<img>`` plus fallback club label when the URL fails.
 
-    The ``foreignObject`` is enlarged around the crest box (``overflow:visible`` on SVG and
-    XHTML sides) so a long fallback name can spill past the crest square.
+    When ``caption_under_px`` is set, the club label is also shown beneath successfully loaded crests,
+    reserving vertical space inside the tile while allowing overflow (``overflow: visible``).
 
-    SVG ``<image>`` alone cannot flip to text when remote PNG fails; Chromium and other
-    browsers handle ``onerror`` for HTML ``img``, including Playwright rasterisation.
+    Fallback text paints **below** the image clip inside ``data-crest-slot``. The crest shell is
+    stacked above the caption (``z-index``) so small transparent PNGs are not visibly composited over
+    the club name underneath. ``onload`` also forces ``display:none`` on the fallback DIV after loads.
+
+    If both caption and crest load fail (fallback text shown), ``onerror`` hides the bottom caption via
+    ``querySelector('[data-slot-caption-under]')``.
+
+    SVG ``<image>`` cannot switch to fallback text like HTML ``img`` ``onerror``; Playwright/Chromium
+    rasterisation follows HTML behaviour.
     """
     nm = (club_label or "").strip() or "?"
-    fz = max(5, min(12, int(inner_sz * 0.21 * font_scale)))
+    fz_fb = max(5, min(12, int(crest_img_px * 0.21 * font_scale)))
     name_body = html.escape(nm, quote=False)
     alt_h = html.escape(nm, quote=True)
     src_h = html.escape(href, quote=True)
 
-    expand = max(14.0, inner_sz * _LABEL_EXPAND_INNER_RATIO)
-    side = inner_sz + 2.0 * expand
-    fox = x - expand
-    foy = y - expand
+    expand = max(14.0, crest_img_px * _LABEL_EXPAND_INNER_RATIO)
+
+    img_shell = "this.closest('[data-crest-slot]')"
+    img_onerror_plain = (
+        "onerror=\"this.style.display='none';var bx="
+        f"{img_shell};if(!bx)return;var fb=bx.querySelector('[data-crest-img-fallback]');"
+        "if(fb)fb.style.display='flex';\""
+    )
+    img_onerror_hide_caption = (
+        "onerror=\"this.style.display='none';var bx="
+        f"{img_shell};if(!bx)return;var fb=bx.querySelector('[data-crest-img-fallback]');"
+        "if(fb)fb.style.display='flex';var pr=bx.closest('[data-pyramid-slot-root]');"
+        "if(!pr)return;var cn=pr.querySelector('[data-slot-caption-under]');"
+        "if(cn)cn.style.display='none';\""
+    )
+    img_onerr = img_onerror_hide_caption if caption_under_px is not None else img_onerror_plain
+    img_onload_suppress_fallback = (
+        "onload=\"var bx=this.closest('[data-crest-slot]');if(!bx)return;"
+        "var fb=bx.querySelector('[data-crest-img-fallback]');"
+        "if(fb){fb.style.display='none';}\""
+    )
+
+    crest_fb_overlay = (
+        '<div data-crest-img-fallback="1" '
+        'style="display:none;box-sizing:border-box;position:absolute;left:0;top:0;'
+        f"width:{crest_img_px:.2f}px;min-height:{crest_img_px:.2f}px;z-index:1;"
+        "align-content:center;align-items:center;display:flex;flex-wrap:wrap;justify-content:center;"
+        "text-align:center;line-height:1.12;pointer-events:none;"
+        f"color:{text_fill};font-size:{fz_fb}px;font-weight:600;"
+        "font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:visible;"
+        'word-wrap:break-word;hyphens:auto;padding:4px;">'
+        f"{name_body}</div>"
+    )
+    crest_img_clip = (
+        f'<div style="position:absolute;left:0;top:0;box-sizing:border-box;z-index:2;'
+        f"isolation:isolate;width:{crest_img_px:.2f}px;height:{crest_img_px:.2f}px;"
+        'overflow:hidden;display:flex;align-items:center;justify-content:center">'
+        '<img referrerpolicy="no-referrer" '
+        f"{img_onload_suppress_fallback} "
+        f"{img_onerr} "
+        ' style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;'
+        'display:block" '
+        f'src="{src_h}" alt="{alt_h}" />'
+        "</div>"
+    )
+    crest_stack_z = ";z-index:2" if caption_under_px is not None else ""
+    crest_box = (
+        f'<div data-crest-slot="1" style="flex:0 0 auto;box-sizing:border-box;position:relative;'
+        f"width:{crest_img_px:.2f}px;height:{crest_img_px:.2f}px;max-width:{crest_img_px:.2f}px;"
+        f'max-height:{crest_img_px:.2f}px;overflow:visible{crest_stack_z}">'
+        f"{crest_fb_overlay}{crest_img_clip}</div>"
+    )
+
+    if caption_under_px is None:
+        content_h = crest_img_px
+        fo_w = crest_img_px + 2.0 * expand
+        fo_h = content_h + 2.0 * expand
+        inner_stack = crest_box
+    else:
+        cap_fz, cap_block_h = caption_under_px
+        content_h = crest_img_px + cap_block_h
+        fo_w = crest_img_px + 2.0 * expand
+        fo_h = content_h + 2.0 * expand
+        lh = cap_fz * LEAGUE_LOGO_UNDER_CAPTION_LINE_RATIO
+        caption_min_h = max(1.0, cap_block_h - LEAGUE_LOGO_UNDER_CAPTION_GAP_PX)
+        gap_s = f"{LEAGUE_LOGO_UNDER_CAPTION_GAP_PX:.2f}px"
+        cap_style_inner = (
+            "position:relative;z-index:1;flex-shrink:0;box-sizing:border-box;display:flex;"
+            f"width:{crest_img_px:.2f}px;"
+            f"max-width:{crest_img_px:.2f}px;min-height:{caption_min_h:.2f}px;"
+            "align-items:flex-start;justify-content:center;text-align:center;flex-wrap:wrap;"
+            f"overflow:visible;line-height:{lh:.2f}px;color:{text_fill};"
+            f"font-size:{int(cap_fz)}px;font-weight:600;font-family:system-ui,-apple-system,"
+            "Segoe UI,Roboto,sans-serif;word-wrap:break-word;hyphens:auto;"
+        )
+        inner_stack = (
+            '<div data-pyramid-slot-root="1" '
+            'style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;'
+            f'gap:{gap_s};position:relative;box-sizing:border-box;margin:0;padding:0;overflow:visible">'
+            f"{crest_box}"
+            f'<div data-slot-caption-under="1" style="{cap_style_inner}">{name_body}</div>'
+            "</div>"
+        )
 
     div_body = (
         f'<div xmlns="http://www.w3.org/1999/xhtml" '
         f'style="box-sizing:border-box;margin:0;padding:{expand:.2f}px;width:100%;height:100%;'
-        'display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:visible">'
-        f'<div style="flex:0 0 auto;box-sizing:border-box;width:{inner_sz:.2f}px;min-height:{inner_sz:.2f}px;'
-        'display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible">'
-        '<img referrerpolicy="no-referrer" '
-        "onerror=\"this.style.display='none';var n=this.nextElementSibling;if(n)n.style.display='flex';\""
-        ' style="max-width:100%;max-height:100%;object-fit:contain;display:block" '
-        f'src="{src_h}" alt="{alt_h}" />'
-        '<div style="display:none;box-sizing:border-box;width:100%;flex:1 1 auto;min-height:0;'
-        "flex-wrap:wrap;align-content:center;justify-content:center;text-align:center;"
-        "line-height:1.12;"
-        f"color:{text_fill};font-size:{fz}px;font-weight:600;"
-        "font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:visible;"
-        'word-wrap:break-word;hyphens:auto">'
-        f"{name_body}</div></div></div>"
+        "display:flex;flex-direction:column;align-items:center;justify-content:flex-start;"
+        'overflow:visible">'
+        f"{inner_stack}"
+        "</div>"
     )
+
+    fox = x - expand
+    foy = y - expand
     return (
         f'<foreignObject overflow="visible" x="{fox:.2f}" y="{foy:.2f}" '
-        f'width="{side:.2f}" height="{side:.2f}">{div_body}</foreignObject>'
+        f'width="{fo_w:.2f}" height="{fo_h:.2f}">{div_body}</foreignObject>'
     )
 
 
@@ -3495,6 +3698,7 @@ def _render_league_cell(
     gender: Gender = DEFAULT_GENDER,
     prefix_merged_merit_competition: bool = False,
     strip_merit_tier_display_prefix: bool = False,
+    labels_under_valid_crests: bool = False,
 ) -> str:
     """SVG fragment for one league cell: optional title strip + grid of crests or name fallbacks
     (``+X`` badge only when ``team_count`` exceeds loaded team rows).
@@ -3506,6 +3710,10 @@ def _render_league_cell(
     When ``safe_left_x`` / ``safe_right_x`` are provided they bound the logo grid to a
     rectangle inscribed inside the trapezium so placements do not crowd the slanted pyramid
     edge.
+
+    When ``labels_under_valid_crests`` is true, crest images shrink within each slot so the club
+    name can render beneath URLs that load successfully, and vertical layout leaves a padded band at
+    the bottom of the logo area so captions do not cross the league cell edge.
     """
     team_rows = list(league.teams)
     extra_vs_count = max(0, league.team_count - len(team_rows))
@@ -3514,8 +3722,12 @@ def _render_league_cell(
     crest_name_font_scale = _crest_slot_team_name_font_scale(league.tier_num)
     cell_stroke = LEAGUE_CELL_STROKE_WOMENS if gender == "womens" else LEAGUE_CELL_STROKE_MENS
 
-    grid_left = x + LEAGUE_CELL_PADDING_X
-    grid_right = x + w - LEAGUE_CELL_PADDING_X
+    cell_pad_l = x + LEAGUE_CELL_PADDING_X
+    cell_pad_r = x + w - LEAGUE_CELL_PADDING_X
+    cell_pad_mid_x = (cell_pad_l + cell_pad_r) / 2.0
+
+    grid_left = cell_pad_l
+    grid_right = cell_pad_r
     if safe_left_x is not None:
         grid_left = max(grid_left, safe_left_x)
     if safe_right_x is not None:
@@ -3597,7 +3809,14 @@ def _render_league_cell(
             logo_area_y = y + reserve_top
             logo_area_h = max(0.0, h - reserve_top - LEAGUE_CELL_PADDING_Y)
 
-    cols, rows, logo_size = _best_grid(n_slots, logo_area_w, logo_area_h)
+    layout_logo_h, _ = _logo_grid_vertical_layout_height(
+        logo_area_h,
+        n_slots,
+        logo_area_w,
+        reserve_bottom_caption=labels_under_valid_crests,
+        crest_name_font_scale=crest_name_font_scale,
+    )
+    cols, rows, logo_size = _best_grid(n_slots, logo_area_w, layout_logo_h)
     if gender == "womens":
         logo_cap = _womens_league_logo_cap_px(h, league.tier_num)
         if logo_size > logo_cap > 0:
@@ -3605,24 +3824,37 @@ def _render_league_cell(
     if logo_size > 0 and n_slots > 0:
         grid_w = cols * logo_size
         grid_h = rows * logo_size
-        grid_x0 = logo_area_x + (logo_area_w - grid_w) / 2
-        grid_y0 = logo_area_y + (logo_area_h - grid_h) / 2
+        ideal_x0 = cell_pad_mid_x - grid_w / 2
+        logo_area_inner_r = logo_area_x + logo_area_w
+        grid_x0 = max(logo_area_x, min(ideal_x0, logo_area_inner_r - grid_w))
+        grid_y0 = logo_area_y + (layout_logo_h - grid_h) / 2
 
         pad = min(LEAGUE_LOGO_PADDING, logo_size * 0.08)
-        inner_sz = logo_size - 2 * pad
+        slot_inner_px = logo_size - 2 * pad
 
-        crest_label_expand = max(14.0, inner_sz * _LABEL_EXPAND_INNER_RATIO)
+        crest_label_expand = max(14.0, slot_inner_px * _LABEL_EXPAND_INNER_RATIO)
         crest_wrap_w = max(
             24.0,
-            inner_sz + 2.0 * crest_label_expand,
+            slot_inner_px + 2.0 * crest_label_expand,
             logo_size * 1.08,
         )
+
+        if labels_under_valid_crests:
+            crest_img_px, _cap_bh, caption_fz = _labels_under_logo_layout(
+                float(slot_inner_px),
+                crest_name_font_scale,
+            )
+            caption_tuple: tuple[float, float] | None = (float(caption_fz), _cap_bh)
+        else:
+            crest_img_px = float(slot_inner_px)
+            caption_tuple = None
 
         idx = 0
         for tm in team_rows:
             r = idx // cols
             c = idx % cols
-            cell_x = grid_x0 + c * logo_size
+            row_x = _grid_row_horizontal_offset_px(r, cols, n_slots, logo_size)
+            cell_x = grid_x0 + row_x + c * logo_size
             cell_y = grid_y0 + r * logo_size
             bx = cell_x + pad
             by_slot = cell_y + pad
@@ -3637,11 +3869,12 @@ def _render_league_cell(
                     _svg_crest_foreign_object_slot(
                         bx,
                         by_slot,
-                        inner_sz,
+                        crest_img_px,
                         href,
                         club_nm,
                         text_fill=title_color,
                         font_scale=crest_name_font_scale,
+                        caption_under_px=caption_tuple,
                     )
                 )
             else:
@@ -3649,7 +3882,7 @@ def _render_league_cell(
                     _crest_slot_fallback_name_svg(
                         bx,
                         by_slot,
-                        inner_sz,
+                        slot_inner_px,
                         club_nm,
                         fill=title_color,
                         font_scale=crest_name_font_scale,
@@ -3664,7 +3897,7 @@ def _render_league_cell(
                         roman_badge,
                         bx,
                         by_slot,
-                        inner_sz,
+                        crest_img_px,
                         fill=title_color,
                     )
                 )
@@ -3673,7 +3906,8 @@ def _render_league_cell(
         if place_extra_badge:
             r = idx // cols
             c = idx % cols
-            cell_x = grid_x0 + c * logo_size
+            row_x = _grid_row_horizontal_offset_px(r, cols, n_slots, logo_size)
+            cell_x = grid_x0 + row_x + c * logo_size
             cell_y = grid_y0 + r * logo_size
             bx = cell_x + pad
             by_slot = cell_y + pad
@@ -3689,8 +3923,8 @@ def _render_league_cell(
                 _svg_rect(
                     bx,
                     by_slot,
-                    inner_sz,
-                    inner_sz,
+                    crest_img_px,
+                    crest_img_px,
                     fill=badge_bg,
                     stroke=badge_border,
                     stroke_width=1.5,
@@ -3699,10 +3933,10 @@ def _render_league_cell(
             crest_parts.append(
                 _svg_text(
                     f"+{extra_vs_count}",
-                    bx + inner_sz / 2,
-                    by_slot + inner_sz / 2,
+                    bx + crest_img_px / 2,
+                    by_slot + crest_img_px / 2,
                     fill=badge_text_fill,
-                    size=max(11.0, min(inner_sz * 0.42, 22.0)),
+                    size=max(11.0, min(slot_inner_px * 0.42, 22.0)),
                     weight="700",
                     anchor="middle",
                 )
@@ -3840,6 +4074,7 @@ def _render_pyramid_band(
     merit_equal_column_templates: dict[int, BandLayout] | None = None,
     mens_merge_merit_leagues: bool = False,
     merit_parent_overrides: StemParentOverrides | None = None,
+    labels_under_valid_crests: bool = False,
 ) -> str:
     """Render one tier band of the pyramid triangle (tiers 1–6).
 
@@ -4061,6 +4296,7 @@ def _render_pyramid_band(
                     strip_merit_tier_display_prefix=(
                         merit_competition is not None and gender == "mens"
                     ),
+                    labels_under_valid_crests=labels_under_valid_crests,
                 )
             )
     else:
@@ -4123,6 +4359,7 @@ def _render_pyramid_band(
                     strip_merit_tier_display_prefix=(
                         merit_competition is not None and gender == "mens"
                     ),
+                    labels_under_valid_crests=labels_under_valid_crests,
                 )
             )
 
@@ -5253,6 +5490,26 @@ def _stem_build_layout(
     )
 
 
+def _stem_scaled_counties_row_height_px() -> float:
+    return float(COUNTIES_ROW_HEIGHT) * _effective_labels_under_layout_height_scale()
+
+
+def _stem_scaled_orphan_row_height_px() -> float:
+    return float(COUNTIES_ORPHAN_ROW_HEIGHT) * _effective_labels_under_layout_height_scale()
+
+
+def _stem_scaled_tier_gap_px() -> float:
+    return float(COUNTIES_TIER_GAP) * _effective_labels_under_layout_height_scale()
+
+
+def _stem_scaled_orphan_row_gap_px() -> float:
+    return float(STEM_ORPHAN_ROW_GAP_PX) * _effective_labels_under_layout_height_scale()
+
+
+def _stem_scaled_bottom_margin_px() -> float:
+    return float(STEM_BOTTOM_MARGIN_Y) * _effective_labels_under_layout_height_scale()
+
+
 def _stem_extension_bottom_y(
     leagues_by_tier: dict[int, list[LeagueData]], layout: StemLayout | None
 ) -> float:
@@ -5260,15 +5517,18 @@ def _stem_extension_bottom_y(
         return _pyramid_bottom_y()
     stem_tiers = sorted(t for t in leagues_by_tier if t >= 7)
     cursor_y = _stem_content_top_y()
+    row_h = _stem_scaled_counties_row_height_px()
+    oph_h_blk = _stem_scaled_orphan_row_gap_px() + _stem_scaled_orphan_row_height_px()
+    gap_between = _stem_scaled_tier_gap_px()
     for tier_num in stem_tiers:
         leagues = leagues_by_tier.get(tier_num, [])
         if not leagues:
             continue
         orphan_band = 0.0
         if layout.orphan_row_positions.get(tier_num) and layout.pure_tree_placements.get(tier_num):
-            orphan_band = STEM_ORPHAN_ROW_GAP_PX + COUNTIES_ORPHAN_ROW_HEIGHT
-        cursor_y += COUNTIES_ROW_HEIGHT + orphan_band + COUNTIES_TIER_GAP
-    return cursor_y + STEM_BOTTOM_MARGIN_Y
+            orphan_band = oph_h_blk
+        cursor_y += row_h + orphan_band + gap_between
+    return cursor_y + _stem_scaled_bottom_margin_px()
 
 
 @dataclass
@@ -5287,6 +5547,7 @@ def _render_stem_extension(
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
     mens_merge_merit_leagues: bool = False,
+    labels_under_valid_crests: bool = False,
 ) -> StemExtensionLayout:
     stem_tiers = sorted(t for t in leagues_by_tier if t >= 7)
     if (
@@ -5314,7 +5575,11 @@ def _render_stem_extension(
 
         pure_cells = layout.pure_tree_placements.get(tier_num, [])
         orphan_cells = layout.orphan_row_positions.get(tier_num, [])
-        cell_h = COUNTIES_ROW_HEIGHT - 14
+        counties_row_px = _stem_scaled_counties_row_height_px()
+        orphan_row_px = _stem_scaled_orphan_row_height_px()
+        orphan_gap_px = _stem_scaled_orphan_row_gap_px()
+        tier_gap_px = _stem_scaled_tier_gap_px()
+        cell_h = counties_row_px - 14
         row_top = cursor_y
 
         if pure_cells:
@@ -5332,12 +5597,13 @@ def _render_stem_extension(
                         season,
                         crest_href_remap=crest_href_remap,
                         prefix_merged_merit_competition=mens_merge_merit_leagues,
+                        labels_under_valid_crests=labels_under_valid_crests,
                     )
                 )
-            cursor_y += COUNTIES_ROW_HEIGHT
+            cursor_y += counties_row_px
             if orphan_cells:
-                cursor_y += STEM_ORPHAN_ROW_GAP_PX
-                oph_h = COUNTIES_ORPHAN_ROW_HEIGHT - 14
+                cursor_y += orphan_gap_px
+                oph_h = orphan_row_px - 14
                 oph_top = cursor_y
                 for lg, lx, lw in orphan_cells:
                     bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
@@ -5353,9 +5619,10 @@ def _render_stem_extension(
                             season,
                             crest_href_remap=crest_href_remap,
                             prefix_merged_merit_competition=mens_merge_merit_leagues,
+                            labels_under_valid_crests=labels_under_valid_crests,
                         )
                     )
-                cursor_y += COUNTIES_ORPHAN_ROW_HEIGHT
+                cursor_y += orphan_row_px
         elif orphan_cells:
             for lg, lx, lw in orphan_cells:
                 bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
@@ -5371,9 +5638,10 @@ def _render_stem_extension(
                         season,
                         crest_href_remap=crest_href_remap,
                         prefix_merged_merit_competition=mens_merge_merit_leagues,
+                        labels_under_valid_crests=labels_under_valid_crests,
                     )
                 )
-            cursor_y += COUNTIES_ROW_HEIGHT
+            cursor_y += counties_row_px
 
         band_bottom = cursor_y
         tier_team_sum = sum(lg.team_count for lg in leagues)
@@ -5397,7 +5665,7 @@ def _render_stem_extension(
             )
         )
 
-        cursor_y += COUNTIES_TIER_GAP
+        cursor_y += tier_gap_px
 
     return StemExtensionLayout(stem_bottom_y=stem_bottom_y, parts=parts)
 
@@ -5420,6 +5688,8 @@ def render_pyramid_svg(
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
     mens_merge_merit_leagues: bool = False,
+    labels_under_valid_crests: bool = False,
+    labels_under_layout_height_scale: float | None = None,
 ) -> str:
     """Render the full pyramid: tiers 1–6 taper plus integrated Counties stem (tier 7–11).
 
@@ -5452,8 +5722,20 @@ def render_pyramid_svg(
     When ``transparent_white_crest_backgrounds`` is True, unique RFU ``image_url`` values are
     optionally remapped to inlined transparent-background PNG data URIs (see
     :func:`build_crest_white_corner_transparent_href_map`).
+
+    When ``labels_under_valid_crests`` is True, crest slots reserve space beneath each logo URL row
+    for the club label (tier stem included). Pyramid band span and Counties stem row heights scale by
+    :data:`LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE` (or ``labels_under_layout_height_scale``, ≥ 1)
+    within the active canvas scope so captions gain vertical room without changing the triangle width.
     """
     is_merit = merit_competition is not None
+
+    lu_layout_scale = 1.0
+    if labels_under_valid_crests:
+        if labels_under_layout_height_scale is not None:
+            lu_layout_scale = max(1.0, min(float(labels_under_layout_height_scale), 2.5))
+        else:
+            lu_layout_scale = float(LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE)
 
     leagues_by_tier: dict[int, list[LeagueData]] = {}
     for lg in leagues:
@@ -5489,6 +5771,7 @@ def render_pyramid_svg(
     with (
         _canvas_width_scope(float(canvas_w)),
         _merit_pyramid_band_row_divisor_scope(merit_max_tier if is_merit else None),
+        _labels_under_layout_height_scale_scope(lu_layout_scale),
     ):
         merit_interior_floor_y: float | None = (
             (
@@ -5634,6 +5917,7 @@ def render_pyramid_svg(
                         merit_equal_column_templates=merit_equal_column_templates,
                         mens_merge_merit_leagues=mens_merge_merit_leagues,
                         merit_parent_overrides=parent_overrides if is_merit else None,
+                        labels_under_valid_crests=labels_under_valid_crests,
                     )
                 )
 
@@ -5648,6 +5932,7 @@ def render_pyramid_svg(
                     merit_competition=merit_competition,
                     merit_local_offset=merit_local_offset,
                     mens_merge_merit_leagues=mens_merge_merit_leagues,
+                    labels_under_valid_crests=labels_under_valid_crests,
                 )
                 parts.extend(stem.parts)
 
@@ -5704,6 +5989,31 @@ def render_pyramid_svg(
                 cx_title = cx_p
             else:
                 cx_title = float(canvas_w) / 2.0
+            if mens_merge_merit_leagues and gender == "mens" and not is_merit:
+                season_short_s = short_season(season)
+                subtitle_el = _svg_text_tspans(
+                    cx_title,
+                    subtitle_y,
+                    (
+                        ("Men's pyramid + ", subtitle_fill),
+                        ("merit leagues", MERIT_MERGED_LEAGUE_CELL_BG_MENS),
+                        (f", {season_short_s}", subtitle_fill),
+                    ),
+                    size=16.0,
+                    weight="500",
+                    anchor="middle",
+                )
+            else:
+                subtitle_el = _svg_text(
+                    subtitle_text,
+                    cx_title,
+                    subtitle_y,
+                    fill=subtitle_fill,
+                    size=16.0,
+                    weight="500",
+                    anchor="middle",
+                )
+
             title_parts = [
                 _svg_text(
                     main_title,
@@ -5714,15 +6024,7 @@ def render_pyramid_svg(
                     weight="800",
                     anchor="middle",
                 ),
-                _svg_text(
-                    subtitle_text,
-                    cx_title,
-                    subtitle_y,
-                    fill=subtitle_fill,
-                    size=16.0,
-                    weight="500",
-                    anchor="middle",
-                ),
+                subtitle_el,
             ]
 
             body = "\n".join(title_parts + parts)
@@ -7204,6 +7506,8 @@ def _render_mens_standard_pyramid(
         transparent_white_crest_backgrounds=args.transparent_white_crest_backgrounds,
         crest_transparency_workers=cw,
         mens_merge_merit_leagues=all_leagues,
+        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_layout_height_scale=args.labels_under_layout_height_scale,
     )
 
     svg_path.parent.mkdir(parents=True, exist_ok=True)
@@ -7352,6 +7656,8 @@ def _render_one_merit_pyramid(
         crest_transparency_workers=crest_bg_workers,
         merit_competition=competition,
         merit_local_offset=offset,
+        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_layout_height_scale=args.labels_under_layout_height_scale,
     )
 
     svg_path = args.output or _default_svg_path(season, "mens", merit_competition=competition)
@@ -7490,6 +7796,25 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--labels-under-valid-crests",
+        action="store_true",
+        help=(
+            "Draw each club name beneath crest images that load; shrinks crest tile height so "
+            "labels plus gap fit inside the existing grid square (women's pyramid and merit too)."
+        ),
+    )
+    parser.add_argument(
+        "--labels-under-layout-height-scale",
+        type=float,
+        default=None,
+        metavar="FACTOR",
+        help=(
+            "With --labels-under-valid-crests only: stretches pyramid tiers 1–6 and Counties stem "
+            f"rows/gaps vertically by FACTOR (default {LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE:g}; "
+            "1 = no stretch). Ignored when crest labels are off."
+        ),
+    )
+    parser.add_argument(
         "--interactive-stem-orphans",
         action="store_true",
         help=(
@@ -7528,6 +7853,12 @@ def main() -> int:
     if cw < 1 or cw > 32:
         logger.error("--crest-bg-workers must be between 1 and 32")
         return 1
+
+    if args.labels_under_layout_height_scale is not None:
+        s = float(args.labels_under_layout_height_scale)
+        if not math.isfinite(s) or s < 1.0 or s > 2.5:
+            logger.error("--labels-under-layout-height-scale must be finite and between 1 and 2.5")
+            return 1
 
     if args.png_scale <= 0 or args.png_scale > 4:
         logger.error("--png-scale must be > 0 and ≤ 4")
@@ -7700,6 +8031,8 @@ def main() -> int:
         stem_slot_strips=stem_slot_strips,
         transparent_white_crest_backgrounds=args.transparent_white_crest_backgrounds,
         crest_transparency_workers=cw,
+        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_layout_height_scale=args.labels_under_layout_height_scale,
     )
 
     svg_path.parent.mkdir(parents=True, exist_ok=True)

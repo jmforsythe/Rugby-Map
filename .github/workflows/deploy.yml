@@ -52,9 +52,13 @@ jobs:
           done
 
           for season in $SEASONS; do
-            # Men's + women's league pyramids (pyramid.png / pyramid_womens.png in dist/<season>/).
+            # Men's + women's national pyramids, then merit competition pyramids + merged
+            # men's national + merit (pyramid_All_Leagues.{png,svg} in dist/<season>/).
             python -m rugby.pyramid_image --season="$season" --png --png-scale 2
             python -m rugby.pyramid_image --womens --season="$season" --png --png-scale 2
+            if find "data/rugby/geocoded_teams/$season/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
+              python -m rugby.pyramid_image --merit --season="$season" --png --png-scale 2
+            fi
           done
 
           # Match-day maps before webpages — season indexes link to match_day only if it exists

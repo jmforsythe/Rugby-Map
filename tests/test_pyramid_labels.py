@@ -48,6 +48,91 @@ def test_national_league_short_title_strips_x_before_geo_parse() -> None:
     assert league_short_display_name("xNational League 3 North", 5, "2018-2019") == "North"
 
 
+def test_merged_merit_league_title_prefixes_competition_when_not_in_name() -> None:
+    assert (
+        league_short_display_name(
+            "Table 1",
+            10,
+            "2025-2026",
+            gender="mens",
+            merit_geocoded_competition="Herts_Middlesex",
+            prefix_merit_competition_if_absent=True,
+        )
+        == "Herts Middlesex: Table 1"
+    )
+
+
+def test_merged_merit_league_title_skips_prefix_when_name_contains_competition() -> None:
+    assert (
+        league_short_display_name(
+            "NOWIRUL BAINES PLUMBING DIVISION 1",
+            10,
+            "2025-2026",
+            gender="mens",
+            merit_geocoded_competition="NOWIRUL",
+            prefix_merit_competition_if_absent=True,
+        )
+        == "NOWIRUL BAINES PLUMBING DIVISION 1"
+    )
+
+
+def test_strip_league_title_sponsors_removes_inline_greene_king() -> None:
+    assert (
+        _strip_league_title_sponsors(
+            "Eastern Counties Greene King Division One North",
+        )
+        == "Eastern Counties Division One North"
+    )
+    assert (
+        _strip_league_title_sponsors(
+            "Counties 2 Greene King IPA Hampshire Bowl",
+        )
+        == "Counties 2 Hampshire Bowl"
+    )
+
+
+def test_merit_diagram_strips_leading_hyphen_after_east_midlands_tier_prefix() -> None:
+    """RFU uses ``tier - geo``; removing ``East Midlands 2`` must not leave ``- Northants``."""
+    assert (
+        league_short_display_name(
+            "East Midlands 2 - Northants A",
+            2,
+            "2025-2026",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label="East Midlands 2",
+        )
+        == "Northants A"
+    )
+
+
+def test_merit_diagram_strips_local_tier_label_prefix_from_title() -> None:
+    """Standalone merit cells use ``tier_name`` as the margin label; drop that prefix from the RFU name."""
+    assert (
+        league_short_display_name(
+            "CANDY 2 North",
+            2,
+            "2025-2026",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label="CANDY 2",
+        )
+        == "North"
+    )
+    assert (
+        league_short_display_name(
+            "Eastern Counties Greene King Division One North",
+            1,
+            "2025-2026",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label="Eastern Counties 1",
+        )
+        == "Division One North"
+    )
+
+
+def test_national_and_all_leagues_titles_do_not_strip_merit_tier_label_by_default() -> None:
+    assert league_short_display_name("CANDY 2 North", 2, "2025-2026") == "CANDY 2 North"
+
+
 def test_pyramid_margin_uses_level_below_nl2_before_2022() -> None:
     assert pyramid_band_tier_label(4, "2021-2022", "mens") == "National League 2"
     assert pyramid_band_tier_label(5, "2021-2022", "mens") == "Level 5"
@@ -173,6 +258,37 @@ def test_merit_equal_column_templates_from_shallowest_tier_with_n() -> None:
     assert below.avail_w == ref.avail_w
 
 
+def test_merit_parent_aligned_band_gloucester_only_column() -> None:
+    """Sparse merit row: one child under two parents uses the parent's column, not full chord."""
+    from rugby.pyramid_image import BandLayout, LeagueData, _merit_parent_aligned_band_placements
+
+    prev = [
+        LeagueData(2, "", "Bristol & District 2", [], 0),
+        LeagueData(2, "", "Gloucester & District 2", [], 0),
+    ]
+    child = LeagueData(3, "", "Gloucester & District 3", [], 0)
+    ovs = {(3, child.league_name): ("Gloucester & District 2",)}
+    lay = BandLayout(
+        tier_num=3,
+        band_top=0.0,
+        band_bottom=80.0,
+        band_center_y=40.0,
+        avail_w=400.0,
+        row_left_x=100.0,
+        cell_w_raw=200.0,
+        gap=10.0,
+        cell_w=190.0,
+        cell_h=60.0,
+        row_top_y=10.0,
+    )
+    pl = _merit_parent_aligned_band_placements(3, [child], prev, lay, ovs, "GRFU_District")
+    assert pl is not None and len(pl) == 1
+    _lg, x_rect, _w, col = pl[0]
+    assert _lg.league_name == child.league_name
+    assert col == 1
+    assert x_rect >= lay.row_left_x + lay.cell_w_raw * 0.5
+
+
 def test_merit_pyramid_band_column_order_candy_2_3_pattern() -> None:
     """Dual-feed child sorts between single-feed columns (tier_mappings parent indices)."""
     t2 = [
@@ -208,10 +324,24 @@ def test_merit_chain_margin_label_uses_league_when_upper_single_or_empty() -> No
         2: [_lg(2, "Counties 3 Example")],
     }
     assert _merit_chain_single_league_margin_label(by, 1, "2025-2026", "mens") == (
-        league_short_display_name(by[1][0].league_name, 1, "2025-2026", gender="mens")
+        league_short_display_name(
+            by[1][0].league_name,
+            1,
+            "2025-2026",
+            gender="mens",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label=by[1][0].tier_name,
+        )
     )
     assert _merit_chain_single_league_margin_label(by, 2, "2025-2026", "mens") == (
-        league_short_display_name(by[2][0].league_name, 2, "2025-2026", gender="mens")
+        league_short_display_name(
+            by[2][0].league_name,
+            2,
+            "2025-2026",
+            gender="mens",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label=by[2][0].tier_name,
+        )
     )
 
 

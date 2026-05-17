@@ -68,6 +68,7 @@ from core.http import get_headers
 from rugby import DATA_DIR, short_season
 from rugby.addresses import team_name_to_club_name
 from rugby.tiers import (
+    LEAGUE_TITLE_SPONSOR_PHRASES,
     _strip_sponsor_prefix,
     extract_tier,
     get_competition_offset,
@@ -675,6 +676,30 @@ TRIBUTE_ALE_PATTERN = re.compile(r"\s*Tribute Ale\s*", re.IGNORECASE)
 TRIBUTE_WORD_PATTERN = re.compile(r"\s+Tribute\b\s*", re.IGNORECASE)
 
 
+def _normalize_league_title_apostrophe(s: str) -> str:
+    return s.replace("\u2019", "'").replace("\u2018", "'")
+
+
+def _strip_league_title_sponsor_phrases_anywhere(title: str) -> str:
+    """Remove :data:`~rugby.tiers.LEAGUE_TITLE_SPONSOR_PHRASES` wherever they appear as words."""
+    normalized = _normalize_league_title_apostrophe(title.strip())
+    if not normalized:
+        return normalized
+    out = normalized
+    for _ in range(4):
+        prev = out
+        for phrase in LEAGUE_TITLE_SPONSOR_PHRASES:
+            words = phrase.split()
+            if not words:
+                continue
+            core = r"\s+".join(re.escape(w) for w in words)
+            out = re.sub(rf"(?i)\b{core}\b", " ", out)
+        out = " ".join(out.split())
+        if out == prev:
+            break
+    return out
+
+
 def _strip_league_title_sponsors(league_name: str) -> str:
     """Strip known RFU sponsor slabs from league titles.
 
@@ -685,6 +710,10 @@ def _strip_league_title_sponsors(league_name: str) -> str:
     removal, then standalone ``Tribute``, then leading tokens from
     :func:`rugby.tiers._strip_sponsor_prefix` on an underscore-normalised form so filename
     sponsor lists match API ``league_name`` strings (e.g. ``Cotton Traders Counties …``).
+
+    Finally removes each phrase in :data:`rugby.tiers.LEAGUE_TITLE_SPONSOR_PHRASES` wherever it
+    appears as a whole word (longest phrases first), so mid-title slabs such as
+    ``Greene King`` / ``Greene King IPA`` are dropped for diagram labels.
     """
     s = league_name.strip()
     if not s:
@@ -706,7 +735,8 @@ def _strip_league_title_sponsors(league_name: str) -> str:
             break
         compact = stripped
     spaced = compact.replace("_", " ")
-    return " ".join(spaced.split())
+    spaced = " ".join(spaced.split())
+    return _strip_league_title_sponsor_phrases_anywhere(spaced)
 
 
 _TRAILING_SPACE_DIGITS_RE = re.compile(r"\s+\d+$")
@@ -843,12 +873,54 @@ def _season_start_year(season_label: str) -> int:
     return int(season_label.split("-", maxsplit=1)[0])
 
 
+def _strip_merit_league_title_tier_prefix(title: str, merit_tier_label: str) -> str:
+    """Drop a leading merit band label from ``title`` when it duplicates the margin tier name.
+
+    RFU titles usually start with ``"{Competition} {local_n} …"`` (matching ``tier_name``), but some
+    files omit the tier digit — ``"{Competition} Greene King …"`` while the margin still says
+    ``"{Competition} {n}"``. In that case strip the competition name prefix once.
+
+    East Midlands (and similar) sometimes use ``"… 2 - Northants"``; stripping the numeric tier
+    can leave a leading hyphen — :func:`_strip_diagram_title_leading_hyphen` removes that.
+    """
+    label = merit_tier_label.strip()
+    if not label:
+        return _strip_diagram_title_leading_hyphen(title)
+    t = title.strip()
+    m = re.match(rf"(?i){re.escape(label)}\s+(?P<rest>.+)", t)
+    if m:
+        return _strip_diagram_title_leading_hyphen(m.group("rest"))
+    mnum = re.match(r"^(?P<base>.+)\s+(?P<num>\d+)\s*$", label)
+    if not mnum:
+        return _strip_diagram_title_leading_hyphen(t)
+    base, num = mnum.group("base").strip(), mnum.group("num")
+    m2 = re.match(rf"(?i){re.escape(base)}\s+{re.escape(num)}\s+(?P<rest>.+)", t)
+    if m2:
+        return _strip_diagram_title_leading_hyphen(m2.group("rest"))
+    if re.fullmatch(rf"(?i){re.escape(base)}\s+{re.escape(num)}\s*", t):
+        return t
+    m3 = re.match(rf"(?i){re.escape(base)}\s+(?P<rest>.+)", t)
+    if m3:
+        return _strip_diagram_title_leading_hyphen(m3.group("rest"))
+    return _strip_diagram_title_leading_hyphen(t)
+
+
+def _strip_diagram_title_leading_hyphen(s: str) -> str:
+    """Strip leading hyphen/dash characters and whitespace (RFU ``tier - geo`` naming leftovers)."""
+    t = s.strip()
+    return re.sub(r"^[\s\u2013\u2014\u2212\-]+", "", t).strip()
+
+
 def league_short_display_name(
     league_name: str,
     tier_num: int,
     season: str,
     *,
     gender: Gender = DEFAULT_GENDER,
+    merit_geocoded_competition: str | None = None,
+    prefix_merit_competition_if_absent: bool = False,
+    strip_merit_tier_display_prefix: bool = False,
+    merit_tier_display_label: str | None = None,
 ) -> str:
     """Strip sponsor prefixes and pyramid tier redundancy for diagram titles.
 
@@ -868,22 +940,51 @@ def league_short_display_name(
 
     Men's ``National League [1–3] …`` titles are shortened using only the geographic tail
     (before the canonical ``Regional`` / ``Counties`` prefix rules apply).
+
+    When ``prefix_merit_competition_if_absent`` is set with ``merit_geocoded_competition``,
+    the competition label (folder name with underscores → spaces) is prepended as
+    ``"<Competition>: <tail>"`` only if it is not already present as a substring of the
+    sponsor-stripped name (case-insensitive). Used on ``pyramid_All_Leagues`` merit cells.
+
+    When ``strip_merit_tier_display_prefix`` is set with ``merit_tier_display_label`` (per-league
+    merit ``tier_name``, matching the standalone merit margin), that label plus a space is removed
+    from the title before other men's shortening. Used only on per-competition merit pyramids,
+    not on national or All Leagues diagrams.
     """
     if gender == "womens":
         return _womens_league_short_display_name(league_name, tier_num)
-    league_name = _strip_league_title_sponsors(league_name)
-    nl_geo = _mens_short_after_national_league_division(league_name)
+    sponsor_stripped = _strip_league_title_sponsors(league_name)
+    stripped = sponsor_stripped
+    if (
+        strip_merit_tier_display_prefix
+        and merit_tier_display_label
+        and merit_tier_display_label.strip()
+    ):
+        stripped = _strip_merit_league_title_tier_prefix(stripped, merit_tier_display_label)
+    nl_geo = _mens_short_after_national_league_division(stripped)
     if nl_geo is not None:
-        return nl_geo
-    tier_label = mens_current_tier_name(tier_num, season)
-    if league_name == tier_label:
-        return league_name
-    prefix = tier_label + " "
-    if league_name.startswith(prefix):
-        tail = league_name[len(prefix) :].strip() or league_name
-        out = _strip_trailing_numeric_suffix(tail)
-        return out or tail
-    return league_name
+        out = nl_geo
+    else:
+        tier_label = mens_current_tier_name(tier_num, season)
+        if stripped == tier_label:
+            out = stripped
+        else:
+            prefix = tier_label + " "
+            if stripped.startswith(prefix):
+                tail = stripped[len(prefix) :].strip() or stripped
+                out = _strip_trailing_numeric_suffix(tail) or tail
+            else:
+                out = stripped
+
+    if (
+        prefix_merit_competition_if_absent
+        and merit_geocoded_competition
+        and merit_geocoded_competition.strip()
+    ):
+        comp_disp = merit_geocoded_competition.replace("_", " ").strip()
+        if comp_disp.casefold() not in sponsor_stripped.casefold():
+            return f"{comp_disp}: {out}"
+    return out
 
 
 # Women's league names use ``Women's NC <N>`` shorthand on disk even though the human tier
@@ -1477,7 +1578,14 @@ def _merit_chain_single_league_margin_label(
         if len(row) != 1:
             return None
     lg = row_here[0]
-    return league_short_display_name(lg.league_name, lg.tier_num, season, gender=gender)
+    return league_short_display_name(
+        lg.league_name,
+        lg.tier_num,
+        season,
+        gender=gender,
+        strip_merit_tier_display_prefix=gender == "mens",
+        merit_tier_display_label=lg.tier_name if gender == "mens" else None,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -2594,6 +2702,66 @@ def compute_nested_tier56_layout(
     )
 
 
+def _mens_merge_hybrid_band_layout(
+    tier_num: int,
+    leagues: list[LeagueData],
+    nested: NestedTier56Layout,
+) -> tuple[list[LeagueData], dict[str, tuple[float, float]]] | None:
+    """Scale nested national geometry horizontally; place merit leagues in an equal-width strip.
+
+    ``pyramid_All_Leagues`` merges county merit rows into tiers 4–6. Without this, extra merit
+    names force :func:`compute_nested_tier56_layout` to bail and every column becomes equal
+    width, breaking alignment with the national NL2 / Regional grid.
+    """
+    nat = [lg for lg in leagues if lg.merit_geocoded_competition is None]
+    mer = [lg for lg in leagues if lg.merit_geocoded_competition is not None]
+    if not mer or not nat:
+        return None
+    if tier_num == 4:
+        order = nested.tier4_order
+        rects = nested.tier4_rects
+    elif tier_num == 5:
+        order = nested.tier5_order
+        rects = nested.tier5_rects
+    elif tier_num == 6:
+        order = nested.tier6_order
+        rects = nested.tier6_rects
+    else:
+        return None
+    nat_names = {lg.league_name for lg in nat}
+    if nat_names != {lg.league_name for lg in order} or len(nat) != len(order):
+        return None
+    nat_ordered = list(order)
+    mer_sorted = sorted(mer, key=lambda lg: (lg.league_name.lower(), lg.league_name))
+    n_nat = len(nat_ordered)
+    n_mer = len(mer_sorted)
+    n_tot = n_nat + n_mer
+    lay = compute_band_layout(tier_num, n_tot)
+    if lay is None:
+        return None
+    gap = lay.gap
+    inner_left = lay.row_left_x + gap / 2
+    inner_avail = max(40.0, lay.avail_w - gap)
+    w_nat = inner_avail * n_nat / n_tot
+    w_mer = inner_avail * n_mer / n_tot
+    xs = [rects[lg.league_name][0] for lg in nat_ordered]
+    ws = [rects[lg.league_name][1] for lg in nat_ordered]
+    x_min = min(xs)
+    x_max = max(x + w for x, w in zip(xs, ws, strict=False))
+    span = x_max - x_min
+    scale = w_nat / span if span > 1e-9 else 0.0
+    out_rects: dict[str, tuple[float, float]] = {}
+    for lg in nat_ordered:
+        x, w = rects[lg.league_name]
+        out_rects[lg.league_name] = (inner_left + (x - x_min) * scale, w * scale)
+    mer_left = inner_left + w_nat
+    mer_cells = _divide_span_into_cells(mer_left, mer_left + w_mer, n_mer)
+    for lg, (x, w) in zip(mer_sorted, mer_cells, strict=False):
+        out_rects[lg.league_name] = (x, w)
+    leagues_ordered = nat_ordered + mer_sorted
+    return leagues_ordered, out_rects
+
+
 @dataclass(frozen=True)
 class WomensNestedLayout:
     """Visual bands 1–6 geometry for ``--womens`` (tier 7+ stem omitted)."""
@@ -3325,6 +3493,8 @@ def _render_league_cell(
     show_league_title: bool = True,
     crest_href_remap: dict[str, str] | None = None,
     gender: Gender = DEFAULT_GENDER,
+    prefix_merged_merit_competition: bool = False,
+    strip_merit_tier_display_prefix: bool = False,
 ) -> str:
     """SVG fragment for one league cell: optional title strip + grid of crests or name fallbacks
     (``+X`` badge only when ``team_count`` exceeds loaded team rows).
@@ -3358,7 +3528,14 @@ def _render_league_cell(
 
     if show_league_title:
         short_name = league_short_display_name(
-            league.league_name, league.tier_num, season, gender=gender
+            league.league_name,
+            league.tier_num,
+            season,
+            gender=gender,
+            merit_geocoded_competition=league.merit_geocoded_competition,
+            prefix_merit_competition_if_absent=prefix_merged_merit_competition,
+            strip_merit_tier_display_prefix=strip_merit_tier_display_prefix,
+            merit_tier_display_label=league.tier_name if strip_merit_tier_display_prefix else None,
         )
         inner_w_title = max(24.0, w - 2 * LEAGUE_CELL_PADDING_X)
         min_logo_reserve = max(52.0, min(h * 0.26, logo_area_w * 0.45)) if n_slots > 0 else 8.0
@@ -3661,6 +3838,8 @@ def _render_pyramid_band(
     leagues_by_tier: dict[int, list[LeagueData]] | None = None,
     merit_pyramid_band_orders: dict[int, list[LeagueData]] | None = None,
     merit_equal_column_templates: dict[int, BandLayout] | None = None,
+    mens_merge_merit_leagues: bool = False,
+    merit_parent_overrides: StemParentOverrides | None = None,
 ) -> str:
     """Render one tier band of the pyramid triangle (tiers 1–6).
 
@@ -3679,6 +3858,10 @@ def _render_pyramid_band(
 
     ``merit_equal_column_templates`` maps league count ``n`` (>= 2) to horizontal strip geometry
     from the shallowest tier with ``n`` columns so vertical dividers align across wider bands below.
+
+    ``merit_parent_overrides`` keys visible-band tier numbers; when a row has fewer leagues than
+    the tier above, children are aligned to parent columns (sparse rows) so a single child is not
+    stretched across the full chord.
     """
     if not leagues:
         return ""
@@ -3716,7 +3899,18 @@ def _render_pyramid_band(
         and all(lg.league_name in w_rects for lg in leagues)
     )
 
-    if use_nested_t4:
+    merge_hybrid: tuple[list[LeagueData], dict[str, tuple[float, float]]] | None = None
+    if (
+        mens_merge_merit_leagues
+        and gender == "mens"
+        and nested is not None
+        and tier_num in (4, 5, 6)
+    ):
+        merge_hybrid = _mens_merge_hybrid_band_layout(tier_num, leagues, nested)
+
+    if merge_hybrid is not None:
+        leagues_ordered, rects_map = merge_hybrid
+    elif use_nested_t4:
         assert nested is not None
         leagues_ordered = list(nested.tier4_order)
         rects_map = nested.tier4_rects
@@ -3752,9 +3946,19 @@ def _render_pyramid_band(
         leagues_ordered = _alpha_sort_leagues(leagues)
         rects_map = None
     else:
-        leagues_ordered = sorted(
-            leagues, key=lambda lg: slots.get((lg.tier_num, lg.league_name), 0.5)
-        )
+        if mens_merge_merit_leagues:
+            leagues_ordered = sorted(
+                leagues,
+                key=lambda lg: (
+                    slots.get((lg.tier_num, lg.league_name), 0.5),
+                    lg.merit_geocoded_competition is not None,
+                    lg.league_name.lower(),
+                ),
+            )
+        else:
+            leagues_ordered = sorted(
+                leagues, key=lambda lg: slots.get((lg.tier_num, lg.league_name), 0.5)
+            )
         rects_map = None
 
     n = len(leagues_ordered)
@@ -3785,64 +3989,142 @@ def _render_pyramid_band(
     y0 = lay_vertical.row_top_y
     y1 = lay_vertical.row_top_y + lay_vertical.cell_h
 
-    parts: list[str] = []
-    for i, lg in enumerate(leagues_ordered):
-        bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
-        if rects_map is not None:
-            x_rect, cell_w = rects_map[lg.league_name]
-        else:
-            assert lay_equal is not None
-            cx_cell = lay_equal.row_left_x + (i + 0.5) * lay_equal.cell_w_raw
-            x_rect = cx_cell - lay_equal.cell_w / 2
-            cell_w = lay_equal.cell_w
-
-        trap_pts: list[tuple[float, float]] | None = None
-        clip_id: str | None = None
-        safe_left_x: float | None = None
-        safe_right_x: float | None = None
-        if n == 1:
-            trap_pts = _trapezoid_both_points(y0, y1)
-            clip_id = f"pyramidT{tier_num}both"
-            if gender == "womens":
-                # Mid-band chord — avoids over-narrow crest grids at the apex when mirroring men's Prem scale.
-                y_safe = (y0 + y1) / 2
-                safe_left_x = _triangle_left_x_interior(y_safe) + LEAGUE_SLANT_GAP
-                safe_right_x = _triangle_right_x_interior(y_safe) - LEAGUE_SLANT_GAP
-            elif merit_competition is not None:
-                y_ref = y0 + MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC * (y1 - y0)
-                safe_left_x = _triangle_left_x_interior(y_ref) + MERIT_LEAGUE_SLANT_GAP
-                safe_right_x = _triangle_right_x_interior(y_ref) - MERIT_LEAGUE_SLANT_GAP
-            else:
-                safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
-                safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
-        elif i == 0:
-            trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w)
-            clip_id = f"pyramidT{tier_num}L{i}"
-            safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
-        elif i == n - 1:
-            trap_pts = _trapezoid_right_points(y0, y1, x_rect)
-            clip_id = f"pyramidT{tier_num}R{i}"
-            safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
-
-        parts.append(
-            _render_league_cell(
-                lg,
-                x_rect,
-                lay_vertical.row_top_y,
-                cell_w,
-                lay_vertical.cell_h,
-                bg,
-                title_color,
-                season,
-                trapezoid_points=trap_pts,
-                clip_id=clip_id,
-                safe_left_x=safe_left_x,
-                safe_right_x=safe_right_x,
-                show_league_title=n > 1,
-                crest_href_remap=crest_href_remap,
-                gender=gender,
+    merit_placements: list[tuple[LeagueData, float, float, int]] | None = None
+    merit_n_prev = 0
+    if (
+        merit_competition is not None
+        and tier_num > 1
+        and merit_equal_column_templates is not None
+        and merit_pyramid_band_orders is not None
+        and merit_parent_overrides is not None
+        and rects_map is None
+    ):
+        prev_ord_m = merit_pyramid_band_orders.get(tier_num - 1, [])
+        merit_n_prev = len(prev_ord_m)
+        tpl_m = merit_equal_column_templates.get(merit_n_prev) if merit_n_prev >= 2 else None
+        if tpl_m is not None and n < merit_n_prev:
+            lay_merit_align = replace(
+                tpl_m,
+                tier_num=tier_num,
+                band_top=lay_vertical.band_top,
+                band_bottom=lay_vertical.band_bottom,
+                band_center_y=lay_vertical.band_center_y,
+                cell_h=lay_vertical.cell_h,
+                row_top_y=lay_vertical.row_top_y,
             )
-        )
+            merit_placements = _merit_parent_aligned_band_placements(
+                tier_num,
+                leagues_ordered,
+                prev_ord_m,
+                lay_merit_align,
+                merit_parent_overrides,
+                merit_competition,
+            )
+
+    parts: list[str] = []
+    if merit_placements is not None:
+        n_m = len(merit_placements)
+        show_lt_merit_sparse = n_m > 1 or merit_n_prev >= 2
+        for mi, (lg, x_rect, cell_w, col_idx) in enumerate(merit_placements):
+            bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
+            trap_pts = None
+            clip_id = None
+            safe_left_x = None
+            safe_right_x = None
+            if col_idx == 0:
+                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w)
+                clip_id = f"pyramidT{tier_num}Lm{mi}"
+                safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
+            elif col_idx == merit_n_prev - 1:
+                trap_pts = _trapezoid_right_points(y0, y1, x_rect)
+                clip_id = f"pyramidT{tier_num}Rm{mi}"
+                safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
+
+            parts.append(
+                _render_league_cell(
+                    lg,
+                    x_rect,
+                    lay_vertical.row_top_y,
+                    cell_w,
+                    lay_vertical.cell_h,
+                    bg,
+                    title_color,
+                    season,
+                    trapezoid_points=trap_pts,
+                    clip_id=clip_id,
+                    safe_left_x=safe_left_x,
+                    safe_right_x=safe_right_x,
+                    show_league_title=show_lt_merit_sparse,
+                    crest_href_remap=crest_href_remap,
+                    gender=gender,
+                    prefix_merged_merit_competition=mens_merge_merit_leagues,
+                    strip_merit_tier_display_prefix=(
+                        merit_competition is not None and gender == "mens"
+                    ),
+                )
+            )
+    else:
+        for i, lg in enumerate(leagues_ordered):
+            bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
+            if rects_map is not None:
+                x_rect, cell_w = rects_map[lg.league_name]
+            else:
+                assert lay_equal is not None
+                cx_cell = lay_equal.row_left_x + (i + 0.5) * lay_equal.cell_w_raw
+                x_rect = cx_cell - lay_equal.cell_w / 2
+                cell_w = lay_equal.cell_w
+
+            trap_pts = None
+            clip_id = None
+            safe_left_x = None
+            safe_right_x = None
+            if n == 1:
+                trap_pts = _trapezoid_both_points(y0, y1)
+                clip_id = f"pyramidT{tier_num}both"
+                if gender == "womens":
+                    # Mid-band chord — avoids over-narrow crest grids at the apex when mirroring men's Prem scale.
+                    y_safe = (y0 + y1) / 2
+                    safe_left_x = _triangle_left_x_interior(y_safe) + LEAGUE_SLANT_GAP
+                    safe_right_x = _triangle_right_x_interior(y_safe) - LEAGUE_SLANT_GAP
+                elif merit_competition is not None:
+                    y_ref = y0 + MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC * (y1 - y0)
+                    safe_left_x = _triangle_left_x_interior(y_ref) + MERIT_LEAGUE_SLANT_GAP
+                    safe_right_x = _triangle_right_x_interior(y_ref) - MERIT_LEAGUE_SLANT_GAP
+                else:
+                    safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
+                    safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
+            elif i == 0:
+                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w)
+                clip_id = f"pyramidT{tier_num}L{i}"
+                safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
+            elif i == n - 1:
+                trap_pts = _trapezoid_right_points(y0, y1, x_rect)
+                clip_id = f"pyramidT{tier_num}R{i}"
+                safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
+
+            parts.append(
+                _render_league_cell(
+                    lg,
+                    x_rect,
+                    lay_vertical.row_top_y,
+                    cell_w,
+                    lay_vertical.cell_h,
+                    bg,
+                    title_color,
+                    season,
+                    trapezoid_points=trap_pts,
+                    clip_id=clip_id,
+                    safe_left_x=safe_left_x,
+                    safe_right_x=safe_right_x,
+                    show_league_title=n > 1,
+                    crest_href_remap=crest_href_remap,
+                    gender=gender,
+                    prefix_merged_merit_competition=mens_merge_merit_leagues,
+                    strip_merit_tier_display_prefix=(
+                        merit_competition is not None and gender == "mens"
+                    ),
+                )
+            )
 
     bt = lay_vertical.band_top
     bb = lay_vertical.band_bottom
@@ -4026,6 +4308,96 @@ def _merit_pyramid_band_column_order(
         )
 
     return sorted(leagues, key=sort_key)
+
+
+def _merit_resolve_parent_column_index(
+    child: LeagueData,
+    pspec: tuple[str, ...],
+    prev_ord: list[LeagueData],
+    competition: str,
+) -> int | None:
+    """Map tier-(N−1) parent name(s) from overrides to a column index in ``prev_ord``."""
+    if len(pspec) == 1:
+        fk = _feeder_match_key(pspec[0])
+        for i, p in enumerate(prev_ord):
+            if _feeder_match_key(p.league_name) == fk:
+                return i
+        return None
+    pick = _find_merit_parent_league(child, list(prev_ord), competition)
+    if pick is None:
+        return None
+    fk_pick = _feeder_match_key(pick.league_name)
+    for i, p in enumerate(prev_ord):
+        if _feeder_match_key(p.league_name) == fk_pick:
+            return i
+    return None
+
+
+def _merit_parent_aligned_band_placements(
+    tier_num: int,
+    leagues_ordered: list[LeagueData],
+    prev_ord: list[LeagueData],
+    lay_template: BandLayout,
+    parent_overrides: StemParentOverrides | None,
+    merit_competition: str | None,
+) -> list[tuple[LeagueData, float, float, int]] | None:
+    """Place leagues in parent-column slots when this band is **sparse** (fewer cells than above).
+
+    Without this, ``compute_band_layout(..., n=1)`` stretches a single child across the full
+    chord (e.g. GRFU: Gloucester & District 3 under Bristol+Gloucester tier 2), which looks
+    like the league sits under both parents. We reuse the tier-(N−1) column template so
+    empty parent columns stay blank.
+    """
+    n_prev = len(prev_ord)
+    n_here = len(leagues_ordered)
+    if n_prev < 2 or n_here >= n_prev or tier_num <= 1:
+        return None
+    ovs = parent_overrides or {}
+    comp = merit_competition or ""
+    buckets: defaultdict[int, list[LeagueData]] = defaultdict(list)
+
+    for lg in leagues_ordered:
+        pspec = ovs.get((tier_num, lg.league_name))
+        if pspec:
+            if not pspec:
+                return None
+            idx = _merit_resolve_parent_column_index(lg, pspec, prev_ord, comp)
+            if idx is None:
+                return None
+            buckets[idx].append(lg)
+        else:
+            pick = _find_merit_parent_league(lg, list(prev_ord), comp)
+            if pick is None:
+                return None
+            idx = next(
+                (
+                    i
+                    for i, p in enumerate(prev_ord)
+                    if _feeder_match_key(p.league_name) == _feeder_match_key(pick.league_name)
+                ),
+                None,
+            )
+            if idx is None:
+                return None
+            buckets[idx].append(lg)
+
+    out: list[tuple[LeagueData, float, float, int]] = []
+    for col_idx in range(n_prev):
+        kids = buckets[col_idx]
+        if not kids:
+            continue
+        kids_sorted = sorted(kids, key=lambda x: _merit_natural_league_sort_key(x.league_name))
+        span_l, span_r = cell_horizontal_extent(lay_template, col_idx)
+        if len(kids_sorted) == 1:
+            cx_cell = lay_template.row_left_x + (col_idx + 0.5) * lay_template.cell_w_raw
+            x_rect = cx_cell - lay_template.cell_w / 2
+            out.append((kids_sorted[0], x_rect, lay_template.cell_w, col_idx))
+        else:
+            raw_cells = _divide_span_into_cells(span_l, span_r, len(kids_sorted))
+            split_cells = _apply_interior_column_gaps(raw_cells, lay_template.gap)
+            for lg, (x_rect, cell_w) in zip(kids_sorted, split_cells, strict=True):
+                out.append((lg, x_rect, cell_w, col_idx))
+    return out or None
 
 
 # Counties 1 row (tier 7): Western → Southern → Midlands blocks, then northern blocks,
@@ -4914,6 +5286,7 @@ def _render_stem_extension(
     crest_href_remap: dict[str, str] | None = None,
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
+    mens_merge_merit_leagues: bool = False,
 ) -> StemExtensionLayout:
     stem_tiers = sorted(t for t in leagues_by_tier if t >= 7)
     if (
@@ -4958,6 +5331,7 @@ def _render_stem_extension(
                         title_color,
                         season,
                         crest_href_remap=crest_href_remap,
+                        prefix_merged_merit_competition=mens_merge_merit_leagues,
                     )
                 )
             cursor_y += COUNTIES_ROW_HEIGHT
@@ -4978,6 +5352,7 @@ def _render_stem_extension(
                             title_color,
                             season,
                             crest_href_remap=crest_href_remap,
+                            prefix_merged_merit_competition=mens_merge_merit_leagues,
                         )
                     )
                 cursor_y += COUNTIES_ORPHAN_ROW_HEIGHT
@@ -4995,6 +5370,7 @@ def _render_stem_extension(
                         title_color,
                         season,
                         crest_href_remap=crest_href_remap,
+                        prefix_merged_merit_competition=mens_merge_merit_leagues,
                     )
                 )
             cursor_y += COUNTIES_ROW_HEIGHT
@@ -5067,10 +5443,11 @@ def render_pyramid_svg(
     the trapezoid taper instead of a rectangular stem. ``parent_overrides`` for merit are keyed
     by **visible band** (after offset translation by the caller).
 
-    When ``mens_merge_merit_leagues`` is True (men's national diagram only), tier bands 1–6 use
-    equal-width alphabetical layout instead of NL2/Regional/Counties proportional nesting so merit
-    leagues at absolute tiers 1–6 can appear beside pyramid leagues. The Counties stem still
-    builds from the combined tier map (tiers 7+); ``merit_competition`` must remain ``None``.
+    When ``mens_merge_merit_leagues`` is True (``pyramid_All_Leagues``), national tiers 4–6 still
+    use the usual NL2 / Regional / Counties nested layout; merit rows on those tiers share the
+    band as extra equal-width columns in an outer strip. Bands 1–3 follow normal slot ordering
+    (merit sorts after national when slots tie). The Counties stem still builds from the combined
+    tier map (tiers 7+); ``merit_competition`` must remain ``None``.
 
     When ``transparent_white_crest_backgrounds`` is True, unique RFU ``image_url`` values are
     optionally remapped to inlined transparent-background PNG data URIs (see
@@ -5127,10 +5504,26 @@ def render_pyramid_svg(
             stem_layout: StemLayout | None
             womens_nested_layout: WomensNestedLayout | None = None
             if gender == "mens" and not is_merit and mens_merge_merit_leagues:
-                slots = {}
-                nested_layout = None
+                national_by_tier_for_layout: dict[int, list[LeagueData]] = {
+                    t: [lg for lg in ls if lg.merit_geocoded_competition is None]
+                    for t, ls in leagues_by_tier.items()
+                }
+                leaf_order = order_pyramid_leaves(
+                    national_by_tier_for_layout, parent_overrides=parent_overrides
+                )
+                slots = compute_league_slots(
+                    national_by_tier_for_layout,
+                    leaf_order,
+                    parent_overrides=parent_overrides,
+                )
+                nested_layout = compute_nested_tier56_layout(
+                    national_by_tier_for_layout,
+                    slots,
+                    parent_overrides=parent_overrides,
+                )
                 logger.info(
-                    "Men's pyramid + merit: tiers 1–6 use equal-width bands (merged merit rows)."
+                    "Men's pyramid + merit: national tiers 4–6 use feeder/nested layout; "
+                    "merged merit rows add equal-width strip columns per band."
                 )
                 log_stem_orphans = parent_overrides is None
                 stem_layout = _stem_build_layout(
@@ -5239,6 +5632,8 @@ def render_pyramid_svg(
                         leagues_by_tier=leagues_by_tier,
                         merit_pyramid_band_orders=merit_pyramid_band_orders,
                         merit_equal_column_templates=merit_equal_column_templates,
+                        mens_merge_merit_leagues=mens_merge_merit_leagues,
+                        merit_parent_overrides=parent_overrides if is_merit else None,
                     )
                 )
 
@@ -5252,6 +5647,7 @@ def render_pyramid_svg(
                     crest_href_remap=crest_href_remap,
                     merit_competition=merit_competition,
                     merit_local_offset=merit_local_offset,
+                    mens_merge_merit_leagues=mens_merge_merit_leagues,
                 )
                 parts.extend(stem.parts)
 
@@ -6065,6 +6461,54 @@ def _stem_payload_flat(payload: object) -> StemParentOverrides | None:
     return stem_parent_overrides_flatten_nested(nested)
 
 
+def stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+    season: str,
+    base: StemParentOverrides,
+) -> StemParentOverrides:
+    """Fold per-merit JSON sections into ``(absolute_tier, child)`` keys for All Leagues stems.
+
+    :func:`stem_parent_json_load` / :func:`stem_parent_overrides_load` only flatten the ``men``
+    section. Apex and intra-merit links under ``CANDY``, ``Essex``, ``East_Midlands``, etc. are
+    stored with *local* tier numbers; without this pass, :func:`_resolve_stem_parents` relies on
+    heuristics and unrelated leagues (e.g. another county's ``Division 1``) can become the parent.
+
+    Each competition is only merged when it appears under ``data/rugby/geocoded_teams`` for
+    ``season`` and :func:`rugby.tiers.get_competition_offset` returns a positive offset. Existing
+    ``base`` entries are never overwritten.
+    """
+    merged = dict(base)
+    payload = _stem_parent_override_read_payload(season)
+    if not isinstance(payload, dict):
+        return merged
+    reserved = frozenset({"schema_version", "season", "men", "women", "stem_slot_strips"})
+    merit_on_disk = frozenset(discover_merit_competitions(season))
+    added = 0
+    for comp, section in payload.items():
+        if comp in reserved or not isinstance(section, dict):
+            continue
+        comp_s = str(comp)
+        if comp_s not in merit_on_disk:
+            continue
+        off = int(get_competition_offset(comp_s, season))
+        if off <= 0:
+            continue
+        local_flat = merit_parent_overrides_from_payload(payload, comp_s)
+        if not local_flat:
+            continue
+        for (loc_t, child_name), parents in local_flat.items():
+            abs_k = (int(loc_t) + off, child_name)
+            if abs_k in merged:
+                continue
+            merged[abs_k] = parents
+            added += 1
+    if added > 0:
+        logger.info(
+            "Merged %d merit JSON feeder link(s) into All Leagues stem overrides (absolute tiers).",
+            added,
+        )
+    return merged
+
+
 def stem_parent_overrides_merge_cross_season(
     season: str,
     leagues_by_tier: dict[int, list[LeagueData]],
@@ -6732,6 +7176,13 @@ def _render_mens_standard_pyramid(
                         n_extra,
                         len(parent_overrides),
                     )
+
+    if all_leagues:
+        parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+            season, dict(parent_overrides or {})
+        )
+        if not parent_overrides:
+            parent_overrides = None
 
     if not args.ignore_stem_slot_strips:
         stem_slot_strips = stem_slot_strips_load(season)

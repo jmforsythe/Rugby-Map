@@ -377,6 +377,7 @@ _SPONSOR_PREFIXES = [
     "Tribute_",
     "Wadworth_",
     "Greene_King_IPA_",
+    "Greene_King_",
     "Shepherd_Neame_",
     "6X_",
     "Snows_Group_",
@@ -404,6 +405,30 @@ _SPONSOR_PREFIXES = [
     "Euromanx_",
     "Five_Grain_",
 ]
+
+
+def _league_title_sponsor_phrases_longest_first() -> tuple[str, ...]:
+    """Human-readable sponsor labels (from :data:`_SPONSOR_PREFIXES`) for diagram title cleanup.
+
+    Longest phrases first so e.g. ``Greene King IPA`` is removed before ``Greene King``.
+    Apostrophes are normalised to ASCII for consistent matching against RFU titles.
+    """
+    seen_cf: set[str] = set()
+    phrases: list[str] = []
+    for p in _SPONSOR_PREFIXES:
+        q = p.rstrip("_").replace("_", " ").strip().replace("\u2019", "'").replace("\u2018", "'")
+        if not q:
+            continue
+        cf = q.casefold()
+        if cf in seen_cf:
+            continue
+        seen_cf.add(cf)
+        phrases.append(q)
+    phrases.sort(key=len, reverse=True)
+    return tuple(phrases)
+
+
+LEAGUE_TITLE_SPONSOR_PHRASES = _league_title_sponsor_phrases_longest_first()
 
 
 def _strip_sponsor_prefix(filename: str) -> str:

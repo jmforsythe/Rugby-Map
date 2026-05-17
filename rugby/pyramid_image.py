@@ -3724,7 +3724,6 @@ def _render_league_cell(
 
     cell_pad_l = x + LEAGUE_CELL_PADDING_X
     cell_pad_r = x + w - LEAGUE_CELL_PADDING_X
-    cell_pad_mid_x = (cell_pad_l + cell_pad_r) / 2.0
 
     grid_left = cell_pad_l
     grid_right = cell_pad_r
@@ -3734,6 +3733,7 @@ def _render_league_cell(
         grid_right = min(grid_right, safe_right_x)
     logo_area_x = grid_left
     logo_area_w = max(0.0, grid_right - grid_left)
+    content_mid_x = logo_area_x + logo_area_w / 2.0
 
     title_parts: list[str] = []
     crest_parts: list[str] = []
@@ -3749,7 +3749,7 @@ def _render_league_cell(
             strip_merit_tier_display_prefix=strip_merit_tier_display_prefix,
             merit_tier_display_label=league.tier_name if strip_merit_tier_display_prefix else None,
         )
-        inner_w_title = max(24.0, w - 2 * LEAGUE_CELL_PADDING_X)
+        inner_w_title = max(24.0, logo_area_w)
         min_logo_reserve = max(52.0, min(h * 0.26, logo_area_w * 0.45)) if n_slots > 0 else 8.0
         max_title_px = max(
             float(LEAGUE_TITLE_HEIGHT),
@@ -3778,7 +3778,7 @@ def _render_league_cell(
         title_area_h = min(max_title_px, len(lines) * line_h + 4.0)
         title_area_h = max(title_area_h, min(line_h + 4.0, float(LEAGUE_TITLE_HEIGHT)))
 
-        cx = x + w / 2
+        cx = content_mid_x
         cy_mid = y + title_area_h / 2
         y_line0 = cy_mid - (len(lines) - 1) * line_h / 2
         for i, line in enumerate(lines):
@@ -3824,7 +3824,7 @@ def _render_league_cell(
     if logo_size > 0 and n_slots > 0:
         grid_w = cols * logo_size
         grid_h = rows * logo_size
-        ideal_x0 = cell_pad_mid_x - grid_w / 2
+        ideal_x0 = content_mid_x - grid_w / 2
         logo_area_inner_r = logo_area_x + logo_area_w
         grid_x0 = max(logo_area_x, min(ideal_x0, logo_area_inner_r - grid_w))
         grid_y0 = logo_area_y + (layout_logo_h - grid_h) / 2
@@ -3858,6 +3858,9 @@ def _render_league_cell(
             cell_y = grid_y0 + r * logo_size
             bx = cell_x + pad
             by_slot = cell_y + pad
+            # Shrunk crest + under-caption stacks are narrower than ``slot_inner_px``; centre in slot
+            # so ``foreignObject`` boxes line up under the league title.
+            crest_col_x = bx + max(0.0, (slot_inner_px - crest_img_px) / 2.0)
             club_nm = _crest_club_label(tm.name)
             if tm.image_url:
                 href = (
@@ -3867,7 +3870,7 @@ def _render_league_cell(
                 )
                 crest_parts.append(
                     _svg_crest_foreign_object_slot(
-                        bx,
+                        crest_col_x,
                         by_slot,
                         crest_img_px,
                         href,
@@ -3892,10 +3895,11 @@ def _render_league_cell(
                 )
             roman_badge = _team_lower_xv_roman(tm.name)
             if roman_badge:
+                roman_left_x = crest_col_x if tm.image_url else bx
                 crest_parts.append(
                     _svg_lower_xv_roman_corner(
                         roman_badge,
-                        bx,
+                        roman_left_x,
                         by_slot,
                         crest_img_px,
                         fill=title_color,
@@ -3911,6 +3915,7 @@ def _render_league_cell(
             cell_y = grid_y0 + r * logo_size
             bx = cell_x + pad
             by_slot = cell_y + pad
+            crest_col_x = bx + max(0.0, (slot_inner_px - crest_img_px) / 2.0)
             if gender == "womens":
                 badge_bg = "#3d282c"
                 badge_border = "#6d5256"
@@ -3921,7 +3926,7 @@ def _render_league_cell(
                 badge_text_fill = "#eef3fa"
             crest_parts.append(
                 _svg_rect(
-                    bx,
+                    crest_col_x,
                     by_slot,
                     crest_img_px,
                     crest_img_px,
@@ -3933,7 +3938,7 @@ def _render_league_cell(
             crest_parts.append(
                 _svg_text(
                     f"+{extra_vs_count}",
-                    bx + crest_img_px / 2,
+                    crest_col_x + crest_img_px / 2,
                     by_slot + crest_img_px / 2,
                     fill=badge_text_fill,
                     size=max(11.0, min(slot_inner_px * 0.42, 22.0)),

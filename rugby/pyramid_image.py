@@ -130,6 +130,22 @@ IMAGE_WIDTH = 3200
 # is ~26 leagues; merged merit raises tier‑7 stem demand via summed subtree footprints — see
 # :func:`_canvas_horizontal_weight`).
 REFERENCE_HORIZONTAL_WEIGHT_CAP = 26
+# Merit pages need a generous width so crest grids stay readable; multi-league rows widen
+# further via :data:`MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE`. Side padding is reduced by
+# biasing single-league merit cells toward the wider lower chord (:data:`MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC`).
+MERIT_CANVAS_MIN_WIDTH = 2800
+# Virtual league-count floor for merit canvas sizing so ``cap_w == 1`` ladders still reserve
+# horizontal slack beyond the slot math alone (paired with :data:`MERIT_CANVAS_MIN_WIDTH`).
+MERIT_CANVAS_HORIZONTAL_WEIGHT_FLOOR = 14
+# Extra page width per league beyond the first at the widest populated merit band (narrow apex).
+MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE = 340
+# Merit SVG export crops empty horizontal gutters: parallel tier/stats labels sit outside the
+# outline; this cushion is beyond :data:`EDGE_TIER_LABEL_OUTSET_PX` +
+# :data:`EDGE_TIER_STATS_OUTSET_EXTRA_PX` for rotated text extents.
+MERIT_SVG_TIGHT_BOUNDS_EXTRA_LEFT = 175.0
+MERIT_SVG_TIGHT_BOUNDS_EXTRA_RIGHT = 36.0
+# Minimum export width after cropping (avoids degenerate viewBoxes on odd edge cases).
+MERIT_SVG_EXPORT_MIN_WIDTH = 480
 
 _canvas_width_px_cv: contextvars.ContextVar[float | None] = contextvars.ContextVar(
     "_canvas_width_px_cv", default=None
@@ -142,18 +158,34 @@ def _effective_canvas_width_px() -> float:
     return float(IMAGE_WIDTH if w is None else w)
 
 
-def _compute_canvas_width_px(canvas_horizontal_weight: float) -> int:
+def _compute_canvas_width_px(
+    canvas_horizontal_weight: float,
+    *,
+    for_merit: bool = False,
+    merit_widest_band: int = 1,
+) -> int:
     """Expand canvas when horizontal demand exceeds :data:`REFERENCE_HORIZONTAL_WEIGHT_CAP`.
 
     Demand uses league counts on pyramid tiers 1–6 and summed :func:`_stem_branch_column_weight`
     values on stem rows (tier‑7 roots and orphan subtrees), so merged merit ladders widen the
     SVG even when the widest league count barely changes.
+
+    Merit uses a floor from :data:`MERIT_CANVAS_MIN_WIDTH` plus
+    :data:`MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE` for each extra league at the busiest
+    band (``merit_widest_band``), then ``max(..., total)`` from slot math. Merit ``cap_w`` is
+    floored at :data:`MERIT_CANVAS_HORIZONTAL_WEIGHT_FLOOR`.
     """
     cap_w = max(1.0, float(canvas_horizontal_weight))
+    if for_merit:
+        cap_w = max(cap_w, float(MERIT_CANVAS_HORIZONTAL_WEIGHT_FLOOR))
     inner_ref = IMAGE_WIDTH - 2 * PAGE_MARGIN_X
     slot_px = max(1, int(round(inner_ref / float(REFERENCE_HORIZONTAL_WEIGHT_CAP))))
     inner = slot_px * int(math.ceil(cap_w))
     total = PAGE_MARGIN_X * 2 + inner
+    if for_merit:
+        mw = max(1, int(merit_widest_band))
+        merit_floor = MERIT_CANVAS_MIN_WIDTH + (mw - 1) * MERIT_CANVAS_EXTRA_WIDTH_PER_WIDEST_LEAGUE
+        return max(merit_floor, total)
     return max(IMAGE_WIDTH, total)
 
 
@@ -164,6 +196,52 @@ def _canvas_width_scope(width_px: float):
         yield
     finally:
         _canvas_width_px_cv.reset(tok)
+
+
+# Merit diagrams shorten or extend the taper vs the fixed men's six-row triangle; inset
+# geometry and outline corners use this floor *y* while rendering.
+_pyramid_interior_floor_y_cv: contextvars.ContextVar[float | None] = contextvars.ContextVar(
+    "_pyramid_interior_floor_y_cv", default=None
+)
+
+
+def _effective_pyramid_interior_floor_y() -> float:
+    """Bottom *y* of the visible pyramid taper for inset math, or full tier‑6 for national diagrams."""
+    v = _pyramid_interior_floor_y_cv.get()
+    return float(_pyramid_bottom_y() if v is None else v)
+
+
+@contextlib.contextmanager
+def _pyramid_interior_floor_y_scope(floor_y: float | None):
+    tok = _pyramid_interior_floor_y_cv.set(floor_y)
+    try:
+        yield
+    finally:
+        _pyramid_interior_floor_y_cv.reset(tok)
+
+
+# Merit local tiers > 6 share :func:`_pyramid_height_px`; row height divides by
+# ``max(6, merit_max_tier)`` so the stack stays within the triangle to the tier‑6 baseline.
+_merit_band_row_divisor_cv: contextvars.ContextVar[int | None] = contextvars.ContextVar(
+    "_merit_band_row_divisor_cv", default=None
+)
+
+
+@contextlib.contextmanager
+def _merit_pyramid_band_row_divisor_scope(merit_max_tier: int | None):
+    tok = _merit_band_row_divisor_cv.set(merit_max_tier)
+    try:
+        yield
+    finally:
+        _merit_band_row_divisor_cv.reset(tok)
+
+
+def _pyramid_band_row_divisor() -> int:
+    """Band-height divisor: 6 for national/women's; ``max(6, merit_max_tier)`` when rendering merit."""
+    v = _merit_band_row_divisor_cv.get()
+    if v is not None:
+        return max(PYRAMID_NUM_BANDS, v)
+    return PYRAMID_NUM_BANDS
 
 
 # Outer page margin (transparent gutter around the whole graphic).
@@ -178,10 +256,9 @@ PYRAMID_BAND_HEIGHT = 360  # vertical extent of one tier row inside the triangle
 PYRAMID_NUM_BANDS = 6
 PYRAMID_HEIGHT = PYRAMID_BAND_HEIGHT * PYRAMID_NUM_BANDS
 
-# The triangle apex is placed *above* the visible image area so that tier 1
-# has a comfortably wide band (rather than collapsing toward a sharp point).
-# Larger absolute values mean a less aggressive taper — i.e. wider top tiers.
-PYRAMID_APEX_OFFSET = 1100
+# Taper = interior width (2 vertical : 1 horizontal half‑width). Narrow canvases shorten
+# the six tier bands (:func:`_pyramid_height_px`) so the logical apex stays above band 1.
+PYRAMID_COMPRESS_CLEARANCE_PX = 100.0
 
 # Stem (tiers 7–11): same chord width as the tier‑6 base; divider line below Regional 2.
 COUNTIES_ROW_HEIGHT = 220
@@ -240,6 +317,11 @@ LEAGUE_LOGO_PADDING = 3
 # Extra horizontal gap between team crests and the slanted pyramid edge for outer
 # (trapezoid) cells, so logos don't crowd or get clipped by the pyramid silhouette.
 LEAGUE_SLANT_GAP = 14
+# Merit single-league trapezoids widen toward the band bottom; sample the interior chord
+# most of the way down so crest grids use almost the full trap width (mid-band was too tight
+# on the sides; band bottom can clip tall rows — ``0.78`` is the compromise).
+MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC = 0.78
+MERIT_LEAGUE_SLANT_GAP = 9.0
 LEAGUE_CELL_STROKE_MENS = "#22324b"
 
 # Per-tier styling (background tint, title text colour). Modelled loosely on
@@ -1378,6 +1460,26 @@ def pyramid_band_tier_label(
     return mens_current_tier_name(visible_tier, season)
 
 
+def _merit_chain_single_league_margin_label(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    visible_tier: int,
+    season: str,
+    gender: Gender,
+) -> str | None:
+    """Merit-only: left margin shows league name when this band and every non-empty band above are single-league."""
+    row_here = leagues_by_tier.get(visible_tier, [])
+    if len(row_here) != 1:
+        return None
+    for u in range(1, visible_tier):
+        row = leagues_by_tier.get(u, [])
+        if not row:
+            continue
+        if len(row) != 1:
+            return None
+    lg = row_here[0]
+    return league_short_display_name(lg.league_name, lg.tier_num, season, gender=gender)
+
+
 # ---------------------------------------------------------------------------
 # Data loading (geocoded league JSON -> LeagueData)
 # ---------------------------------------------------------------------------
@@ -1900,20 +2002,6 @@ def _pyramid_top_y() -> float:
     return PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT
 
 
-def _pyramid_bottom_y() -> float:
-    return _pyramid_top_y() + PYRAMID_HEIGHT
-
-
-def _triangle_apex_y() -> float:
-    """Logical apex y of the linear width function. Above the visible top so
-    that tier 1's row has a usable width."""
-    return _pyramid_top_y() - PYRAMID_APEX_OFFSET
-
-
-def _triangle_base_y() -> float:
-    return _pyramid_bottom_y()
-
-
 def _pyramid_center_x() -> float:
     """Horizontal centre of the pyramid trapezoid / triangle."""
     return _effective_canvas_width_px() / 2
@@ -1922,6 +2010,41 @@ def _pyramid_center_x() -> float:
 def _triangle_base_width() -> float:
     """Chord width at the pyramid base (widest horizontal extent)."""
     return _effective_canvas_width_px() - 2 * PAGE_MARGIN_X
+
+
+def _pyramid_height_px() -> float:
+    """Vertical span of visual bands 1–6 inside the triangle.
+
+    With :func:`_triangle_taper_height_px` equal to interior width (2:1 slant), the apex
+    must sit above band 1, so ``height < interior width``. On narrow canvases we compress
+    row height; at the default width this matches :data:`PYRAMID_HEIGHT`.
+    """
+    w = _triangle_base_width()
+    max_h = max(float(PYRAMID_BAND_HEIGHT) * 2.0, w - PYRAMID_COMPRESS_CLEARANCE_PX)
+    return float(min(float(PYRAMID_HEIGHT), max_h))
+
+
+def _pyramid_band_height_px() -> float:
+    return _pyramid_height_px() / float(_pyramid_band_row_divisor())
+
+
+def _pyramid_bottom_y() -> float:
+    return _pyramid_top_y() + _pyramid_height_px()
+
+
+def _triangle_taper_height_px() -> float:
+    """Vertical distance from logical apex to tier‑6 baseline (2 down : 1 across half‑width)."""
+    return float(_triangle_base_width())
+
+
+def _triangle_apex_y() -> float:
+    """Logical apex y of the linear width function. Above the visible top so
+    that tier 1's row has a usable width."""
+    return _triangle_base_y() - _triangle_taper_height_px()
+
+
+def _triangle_base_y() -> float:
+    return _pyramid_bottom_y()
 
 
 def _triangle_width_at(y: float) -> float:
@@ -1941,11 +2064,11 @@ def _triangle_left_x(y: float) -> float:
 
 
 def _outline_left_x_at_y(y: float) -> float:
-    """Left silhouette at ``y``: linear taper up to tier 6, then vertical (stem) at tier‑6 chord."""
-    yb = _pyramid_bottom_y()
-    if y <= yb:
+    """Left silhouette at ``y``: taper while ``y`` is on the visible pyramid, then vertical."""
+    y_cut = _effective_pyramid_interior_floor_y()
+    if y <= y_cut:
         return _triangle_left_x(y)
-    return _triangle_left_x(yb)
+    return _triangle_left_x(y_cut)
 
 
 def _triangle_right_x(y: float) -> float:
@@ -1979,7 +2102,7 @@ def _parallel_line_from_left_pyramid_edge(
     midx = (x0_raw + x1_raw) / 2
     midy = (band_top + band_bottom) / 2
     cx = _pyramid_center_x()
-    ref_y = (_pyramid_top_y() + _pyramid_bottom_y()) / 2
+    ref_y = (_pyramid_top_y() + _effective_pyramid_interior_floor_y()) / 2
     if nx * (cx - midx) + ny * (ref_y - midy) < 0:
         nx, ny = -nx, -ny
     ox = nx * perpendicular_px
@@ -1993,7 +2116,7 @@ def _triangle_left_x_interior(y: float) -> float:
     if inset <= 1e-9:
         return _triangle_left_x(y)
     yt = _pyramid_top_y()
-    yb = _pyramid_bottom_y()
+    yb = _effective_pyramid_interior_floor_y()
     x_top, y_top, x_bot, y_bot = _parallel_line_from_left_pyramid_edge(yt, yb, inset)
     denom = y_bot - y_top
     if abs(denom) < 1e-9:
@@ -2014,15 +2137,15 @@ def _triangle_interior_width_at(y: float) -> float:
 
 
 def _stem_inner_playfield() -> tuple[float, float]:
-    """``(inner_left_x, inner_width)`` for tier 7+ at the tier 6 pyramid base chord."""
-    yb = _pyramid_bottom_y()
+    """``(inner_left_x, inner_width)`` at the pyramid base chord where the stem attaches."""
+    yb = _effective_pyramid_interior_floor_y()
     iw = max(40.0, _triangle_interior_width_at(yb) - 2 * STEM_INNER_MARGIN_H)
     return _pyramid_center_x() - iw / 2, iw
 
 
 def _stem_content_top_y() -> float:
     """Y for the tier‑7 stem row cursor: gap + separator bar + matching gap below."""
-    y6 = _pyramid_bottom_y()
+    y6 = _effective_pyramid_interior_floor_y()
     g = TIER67_SEPARATOR_GAP_PX
     bar_h = g * TIER67_SEPARATOR_BAR_GAP_MULT
     return y6 + g + bar_h + g
@@ -2035,7 +2158,7 @@ def _pyramid_left_edge_angle_deg_bottom_to_top() -> float:
     match the stroke above the stem.
     """
     yt = _pyramid_top_y()
-    yb = _pyramid_bottom_y()
+    yb = _effective_pyramid_interior_floor_y()
     x_lt = _triangle_left_x(yt)
     x_lb = _triangle_left_x(yb)
     return math.degrees(math.atan2(yt - yb, x_lt - x_lb))
@@ -2088,21 +2211,37 @@ class BandLayout:
     row_top_y: float
 
 
-def compute_band_layout(tier_num: int, n: int) -> BandLayout | None:
-    """Shared layout for tier ``tier_num`` with ``n`` equal league slots."""
+def compute_band_layout(
+    tier_num: int,
+    n: int,
+    *,
+    interior_width_y: float | None = None,
+) -> BandLayout | None:
+    """Shared layout for tier ``tier_num`` with ``n`` equal league slots.
+
+    By default the playable width is the **narrower** of this band's top and bottom interior
+    chords (so slots fit the full vertical extent). When ``interior_width_y`` is set,
+    horizontal pitch uses the interior width at that *y* only — e.g. the band bottom
+    for merit column templates so vertical dividers follow thirds of the wider lower edge.
+    """
     if n <= 0:
         return None
-    band_top = _pyramid_top_y() + (tier_num - 1) * PYRAMID_BAND_HEIGHT
-    band_bottom = band_top + PYRAMID_BAND_HEIGHT
+    bh = _pyramid_band_height_px()
+    band_top = _pyramid_top_y() + (tier_num - 1) * bh
+    band_bottom = band_top + bh
     band_center_y = (band_top + band_bottom) / 2
     inset = 8.0
     safe_w_top = _triangle_interior_width_at(band_top)
     safe_w_bottom = _triangle_interior_width_at(band_bottom)
-    avail_w = max(40.0, min(safe_w_top, safe_w_bottom) - 2 * inset)
+    if interior_width_y is not None:
+        chord_w = _triangle_interior_width_at(interior_width_y)
+    else:
+        chord_w = min(safe_w_top, safe_w_bottom)
+    avail_w = max(40.0, chord_w - 2 * inset)
     cell_w_raw = avail_w / n
     gap = min(8.0, cell_w_raw * 0.06)
     cell_w = cell_w_raw - gap
-    cell_h = PYRAMID_BAND_HEIGHT - 16
+    cell_h = bh - 16
     row_left_x = _pyramid_center_x() - avail_w / 2
     row_top_y = band_center_y - cell_h / 2
     return BandLayout(
@@ -2118,6 +2257,36 @@ def compute_band_layout(tier_num: int, n: int) -> BandLayout | None:
         cell_h=cell_h,
         row_top_y=row_top_y,
     )
+
+
+def _merit_equal_column_templates(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    *,
+    max_tier: int | None = None,
+) -> dict[int, BandLayout]:
+    """For each column count ``n`` (>= 2), layout from the **shallowest** tier with ``n`` leagues.
+
+    Reusing ``row_left_x`` / ``cell_w_raw`` / ``cell_w`` across wider bands keeps vertical
+    dividers plumb-aligned on merit pyramids (e.g. Eastern Counties 3 | 3). Horizontal
+    pitch comes from each reference tier's **band bottom** (lower trapezium edge) so
+    column thirds match the wider chord.
+    """
+    templates: dict[int, BandLayout] = {}
+    t_cap = max_tier if max_tier is not None else PYRAMID_NUM_BANDS
+    for t in range(1, t_cap + 1):
+        row = leagues_by_tier.get(t, [])
+        if not row:
+            continue
+        n_here = len(row)
+        if n_here < 2 or n_here in templates:
+            continue
+        bh = _pyramid_band_height_px()
+        band_top = _pyramid_top_y() + (t - 1) * bh
+        band_bottom = band_top + bh
+        bl = compute_band_layout(t, n_here, interior_width_y=band_bottom)
+        if bl is not None:
+            templates[n_here] = bl
+    return templates
 
 
 def cell_horizontal_extent(layout: BandLayout, index: int) -> tuple[float, float]:
@@ -3402,6 +3571,7 @@ def _tier_margin_label_svg(
     gender: Gender = DEFAULT_GENDER,
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
+    primary_label_override: str | None = None,
 ) -> str:
     """Tier caption parallel to the left pyramid/stem silhouette in the exterior margin.
 
@@ -3414,6 +3584,9 @@ def _tier_margin_label_svg(
     ``tier_num`` is the **visual** band number (1..6 for women's, 1..11 for men's). The
     human-readable tier name is derived from ``gender`` so women's bands read e.g.
     ``Premiership Women's`` and ``National Challenge 1``.
+
+    When ``primary_label_override`` is set (merit single-league ladder), it replaces the tier
+    name on the primary margin line.
     """
     tier_human = pyramid_band_tier_label(
         tier_num,
@@ -3422,12 +3595,13 @@ def _tier_margin_label_svg(
         merit_competition=merit_competition,
         merit_local_offset=merit_local_offset,
     )
+    primary_text = tier_human if primary_label_override is None else primary_label_override
     x_top, y_top, x_bottom, y_bottom = _parallel_line_from_left_pyramid_edge(
         band_top, band_bottom, -EDGE_TIER_LABEL_OUTSET_PX
     )
     path_len = math.hypot(x_top - x_bottom, y_bottom - y_top)
     max_chars = max(10, min(52, int(path_len / 9.8)))
-    label = _shorten(tier_human, max_chars)
+    label = _shorten(primary_text, max_chars)
     font_sz = min(19.5, max(11.8, path_len / max(len(label) * 0.58, 1.0)))
     mx = (x_top + x_bottom) / 2
     my = (y_top + y_bottom) / 2
@@ -3484,6 +3658,9 @@ def _render_pyramid_band(
     gender: Gender = DEFAULT_GENDER,
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
+    leagues_by_tier: dict[int, list[LeagueData]] | None = None,
+    merit_pyramid_band_orders: dict[int, list[LeagueData]] | None = None,
+    merit_equal_column_templates: dict[int, BandLayout] | None = None,
 ) -> str:
     """Render one tier band of the pyramid triangle (tiers 1–6).
 
@@ -3493,6 +3670,15 @@ def _render_pyramid_band(
     For ``gender == "womens"``, :class:`WomensNestedLayout` applies the tier 1–4 taper when feeder
     resolution succeeds (prefix inference plus optional ``women`` section on bands ``2–4``)
     and lays out NC2/NC3 as equal-width rows; otherwise every band is equal-width alphabetical.
+
+    ``leagues_by_tier`` is optional; when set with ``merit_competition``, single-league ladders
+    from the apex use the league name on the left margin instead of the generic merit tier label.
+
+    ``merit_pyramid_band_orders`` supplies left-to-right column order from merit parent overrides
+    (dual-feed columns centred between single-feed neighbours).
+
+    ``merit_equal_column_templates`` maps league count ``n`` (>= 2) to horizontal strip geometry
+    from the shallowest tier with ``n`` columns so vertical dividers align across wider bands below.
     """
     if not leagues:
         return ""
@@ -3546,10 +3732,24 @@ def _render_pyramid_band(
         assert womens_nested is not None
         leagues_ordered = list(w_order)
         rects_map = w_rects
-    elif gender == "womens" or merit_competition is not None:
-        # Merit comps don't follow men's NL2/Regional naming so the slot table is meaningless;
-        # alphabetical equal-width matches the women's fallback at the same band.
-        leagues_ordered = sorted(leagues, key=lambda lg: lg.league_name)
+    elif merit_competition is not None:
+        custom = (
+            merit_pyramid_band_orders.get(tier_num)
+            if merit_pyramid_band_orders is not None
+            else None
+        )
+        names_here = frozenset(lg.league_name for lg in leagues)
+        if (
+            custom
+            and frozenset(lg.league_name for lg in custom) == names_here
+            and len(custom) == len(leagues)
+        ):
+            leagues_ordered = list(custom)
+        else:
+            leagues_ordered = _alpha_sort_leagues(leagues)
+        rects_map = None
+    elif gender == "womens":
+        leagues_ordered = _alpha_sort_leagues(leagues)
         rects_map = None
     else:
         leagues_ordered = sorted(
@@ -3567,7 +3767,21 @@ def _render_pyramid_band(
         lay_equal = compute_band_layout(tier_num, n)
         if lay_equal is None:
             return ""
-
+        if (
+            merit_competition is not None
+            and merit_equal_column_templates is not None
+            and n >= 2
+            and (tpl := merit_equal_column_templates.get(n)) is not None
+        ):
+            lay_equal = replace(
+                tpl,
+                tier_num=tier_num,
+                band_top=lay_vertical.band_top,
+                band_bottom=lay_vertical.band_bottom,
+                band_center_y=lay_vertical.band_center_y,
+                cell_h=lay_vertical.cell_h,
+                row_top_y=lay_vertical.row_top_y,
+            )
     y0 = lay_vertical.row_top_y
     y1 = lay_vertical.row_top_y + lay_vertical.cell_h
 
@@ -3594,6 +3808,10 @@ def _render_pyramid_band(
                 y_safe = (y0 + y1) / 2
                 safe_left_x = _triangle_left_x_interior(y_safe) + LEAGUE_SLANT_GAP
                 safe_right_x = _triangle_right_x_interior(y_safe) - LEAGUE_SLANT_GAP
+            elif merit_competition is not None:
+                y_ref = y0 + MERIT_SINGLE_LEAGUE_SAFE_Y_FRAC * (y1 - y0)
+                safe_left_x = _triangle_left_x_interior(y_ref) + MERIT_LEAGUE_SLANT_GAP
+                safe_right_x = _triangle_right_x_interior(y_ref) - MERIT_LEAGUE_SLANT_GAP
             else:
                 safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
                 safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
@@ -3629,6 +3847,11 @@ def _render_pyramid_band(
     bt = lay_vertical.band_top
     bb = lay_vertical.band_bottom
     tier_total_teams = sum(lg.team_count for lg in leagues_ordered)
+    margin_override = None
+    if merit_competition is not None and leagues_by_tier is not None:
+        margin_override = _merit_chain_single_league_margin_label(
+            leagues_by_tier, tier_num, season, gender
+        )
     parts.append(
         _tier_margin_label_svg(
             tier_num,
@@ -3640,37 +3863,48 @@ def _render_pyramid_band(
             gender=gender,
             merit_competition=merit_competition,
             merit_local_offset=merit_local_offset,
+            primary_label_override=margin_override,
         )
     )
 
     return "\n".join(parts)
 
 
-def _extended_pyramid_outline_points(stem_bottom_y: float) -> list[tuple[float, float]]:
-    """Taper plus straight stem matching tier‑6 base width."""
+def _extended_pyramid_outline_points(
+    stem_bottom_y: float,
+    *,
+    pyramid_poly_bottom_y: float | None = None,
+) -> list[tuple[float, float]]:
+    """Taper closed at ``pyramid_poly_bottom_y`` (merit) or tier‑6 baseline; optional stem below."""
     apex_y = _pyramid_top_y()
-    y6 = _pyramid_bottom_y()
+    y_corner = _pyramid_bottom_y() if pyramid_poly_bottom_y is None else pyramid_poly_bottom_y
     cx = _pyramid_center_x()
     w_top = _triangle_width_at(apex_y)
-    w6 = _triangle_width_at(y6)
+    w_corner = _triangle_width_at(y_corner)
     tl = (cx - w_top / 2, apex_y)
     tr = (cx + w_top / 2, apex_y)
-    br = (cx + w6 / 2, y6)
-    bl = (cx - w6 / 2, y6)
-    if stem_bottom_y <= y6 + 0.05:
+    br = (cx + w_corner / 2, y_corner)
+    bl = (cx - w_corner / 2, y_corner)
+    if stem_bottom_y <= y_corner + 0.05:
         return [tl, tr, br, bl]
     return [
         tl,
         tr,
         br,
-        (cx + w6 / 2, stem_bottom_y),
-        (cx - w6 / 2, stem_bottom_y),
+        (cx + w_corner / 2, stem_bottom_y),
+        (cx - w_corner / 2, stem_bottom_y),
         bl,
     ]
 
 
-def _render_pyramid_outline(stem_bottom_y: float) -> str:
-    pts_str = _svg_polygon_points_attr(_extended_pyramid_outline_points(stem_bottom_y))
+def _render_pyramid_outline(
+    stem_bottom_y: float,
+    *,
+    pyramid_poly_bottom_y: float | None = None,
+) -> str:
+    pts_str = _svg_polygon_points_attr(
+        _extended_pyramid_outline_points(stem_bottom_y, pyramid_poly_bottom_y=pyramid_poly_bottom_y)
+    )
     return (
         f'<polygon points="{pts_str}" fill="none" stroke="{TRIANGLE_STROKE}" '
         f'stroke-width="{TRIANGLE_STROKE_WIDTH:.1f}" '
@@ -3680,7 +3914,7 @@ def _render_pyramid_outline(stem_bottom_y: float) -> str:
 
 def _tier67_separator_bar_svg() -> str:
     """Band between tier 6 and Counties — uniform inset ``G``, bar height ``G * mult``."""
-    y6 = _pyramid_bottom_y()
+    y6 = _effective_pyramid_interior_floor_y()
     g = TIER67_SEPARATOR_GAP_PX
     bar_h = g * TIER67_SEPARATOR_BAR_GAP_MULT
     xl = _triangle_left_x(y6) + g
@@ -3750,6 +3984,48 @@ def _alpha_sort_leagues(leagues: list[LeagueData]) -> list[LeagueData]:
         return tuple(int(p) if p.isdigit() else p.lower() for p in parts)
 
     return sorted(leagues, key=key)
+
+
+def _merit_natural_league_sort_key(league_name: str) -> tuple[object, ...]:
+    parts = re.split(r"(\d+)", league_name)
+    return tuple(int(p) if p.isdigit() else p.lower() for p in parts)
+
+
+def _merit_pyramid_band_column_order(
+    tier_num: int,
+    leagues: list[LeagueData],
+    parent_row_names: tuple[str, ...] | None,
+    parent_overrides: StemParentOverrides | None,
+) -> list[LeagueData]:
+    """Left-to-right column order for a merit tier from tier_mappings parent links.
+
+    Maps each child's parent name(s) to indices in the tier-above row (already ordered).
+    Sorting by ``(min_parent_idx, max_parent_idx, name)`` places dual-feed leagues between
+    their parents' single-feed branches (e.g. CANDY: North — Central — South).
+    """
+    if tier_num <= 1 or not parent_row_names or not parent_overrides:
+        return _alpha_sort_leagues(leagues)
+    parent_index = {name: i for i, name in enumerate(parent_row_names)}
+    unset_rank = 10**9
+
+    def sort_key(lg: LeagueData) -> tuple[int, int, tuple[object, ...]]:
+        pspec = parent_overrides.get((tier_num, lg.league_name))
+        if pspec is None or not pspec:
+            return (unset_rank, unset_rank, _merit_natural_league_sort_key(lg.league_name))
+        indices: list[int] = []
+        for p in pspec:
+            idx = parent_index.get(p)
+            if idx is not None:
+                indices.append(idx)
+        if not indices:
+            return (unset_rank, unset_rank, _merit_natural_league_sort_key(lg.league_name))
+        return (
+            min(indices),
+            max(indices),
+            _merit_natural_league_sort_key(lg.league_name),
+        )
+
+    return sorted(leagues, key=sort_key)
 
 
 # Counties 1 row (tier 7): Western → Southern → Midlands blocks, then northern blocks,
@@ -4469,12 +4745,42 @@ def _stem_orphan_root_geometry(
     return placements
 
 
+def _merit_canvas_horizontal_weight_pyramid(leagues_by_tier: dict[int, list[LeagueData]]) -> float:
+    """Merit horizontal demand: max of scaled chord packing and raw league counts per band.
+
+    ``n * w_row / w_nat`` captures deep wide rows; each band also contributes at least ``n`` so
+    apex tiers with several leagues are not under-weighted when ``w_row ≪ w_nat``.
+    """
+    cap = max(leagues_by_tier.keys(), default=0)
+    if cap < 1:
+        return 1.0
+    denom = max(PYRAMID_NUM_BANDS, cap)
+    w_nat = max(1.0, _triangle_interior_width_at(_pyramid_bottom_y()))
+    demand = 1.0
+    bh = _pyramid_height_px() / float(denom)
+    for t in range(1, cap + 1):
+        row = leagues_by_tier.get(t, ())
+        n = len(row)
+        if n == 0:
+            continue
+        y_band_bottom = _pyramid_top_y() + t * bh
+        w_row = max(1.0, _triangle_interior_width_at(y_band_bottom))
+        scaled = float(n) * w_row / w_nat
+        demand = max(demand, scaled, float(n))
+    return max(demand, 1.0)
+
+
 def _canvas_horizontal_weight(
     leagues_by_tier: dict[int, list[LeagueData]],
     stem_forest: tuple[list[StemTreeNode], dict[int, list[StemTreeNode]]] | None,
+    *,
+    is_merit: bool = False,
 ) -> float:
     """Horizontal packing demand: widest pyramid band vs stem footprint sums vs widest stem row."""
-    pyramid_w = max((len(leagues_by_tier.get(t, ())) for t in range(1, 7)), default=0)
+    if is_merit:
+        pyramid_w = _merit_canvas_horizontal_weight_pyramid(leagues_by_tier)
+    else:
+        pyramid_w = max((len(leagues_by_tier.get(t, ())) for t in range(1, 7)), default=0)
     if stem_forest is None:
         return float(max(pyramid_w, 1))
 
@@ -4612,11 +4918,11 @@ def _render_stem_extension(
     stem_tiers = sorted(t for t in leagues_by_tier if t >= 7)
     if (
         layout is None
-        or stem_bottom_y <= _pyramid_bottom_y() + 0.05
+        or stem_bottom_y <= _effective_pyramid_interior_floor_y() + 0.05
         or not stem_tiers
         or not any(leagues_by_tier.get(t) for t in stem_tiers)
     ):
-        return StemExtensionLayout(stem_bottom_y=_pyramid_bottom_y(), parts=[])
+        return StemExtensionLayout(stem_bottom_y=_effective_pyramid_interior_floor_y(), parts=[])
 
     parts: list[str] = []
     content_top = _stem_content_top_y()
@@ -4695,6 +5001,11 @@ def _render_stem_extension(
 
         band_bottom = cursor_y
         tier_team_sum = sum(lg.team_count for lg in leagues)
+        margin_override = None
+        if merit_competition is not None:
+            margin_override = _merit_chain_single_league_margin_label(
+                leagues_by_tier, tier_num, season, "mens"
+            )
         parts.append(
             _tier_margin_label_svg(
                 tier_num,
@@ -4706,6 +5017,7 @@ def _render_stem_extension(
                 total_teams=tier_team_sum,
                 merit_competition=merit_competition,
                 merit_local_offset=merit_local_offset,
+                primary_label_override=margin_override,
             )
         )
 
@@ -4717,29 +5029,6 @@ def _render_stem_extension(
 # ---------------------------------------------------------------------------
 # Top-level SVG assembly
 # ---------------------------------------------------------------------------
-
-
-def _format_merit_pyramid_feeder_note(
-    merit_parent_overrides_visible: StemParentOverrides | None,
-) -> str:
-    """Subtitle line naming men's pyramid feeders for merit visible band ``1`` (apex row)."""
-    if not merit_parent_overrides_visible:
-        return ""
-    bits: list[str] = []
-    for tier_vis, child_nm in sorted(
-        merit_parent_overrides_visible.keys(), key=lambda k: (k[0], k[1])
-    ):
-        if tier_vis != 1:
-            continue
-        pspec = merit_parent_overrides_visible[(tier_vis, child_nm)]
-        if not pspec:
-            continue
-        pname = pspec[0] if len(pspec) == 1 else " / ".join(pspec)
-        bits.append(f"{child_nm}: {pname}")
-    if not bits:
-        return ""
-    merged = "  ·  ".join(bits)
-    return _shorten(f"Feeds national pyramid — {merged}", 220)
 
 
 def render_pyramid_svg(
@@ -4772,10 +5061,11 @@ def render_pyramid_svg(
 
     For merit mode, pass ``merit_competition`` (the geocoded directory name) and
     ``merit_local_offset`` (returned by :func:`load_merit_pyramid_leagues`). The men's tier
-    1–6 weighted nesting helpers are skipped (merit comps don't follow NL2/Regional naming);
-    bands fall back to equal-width alphabetical order, and the stem path renders local
-    tier 7+ leagues exactly as for the men's pyramid. ``parent_overrides`` for merit are
-    keyed by **visible band** (after offset translation by the caller).
+    1–6 weighted nesting helpers are skipped (merit comps don't follow NL2/Regional naming).
+    Merit diagrams use a **variable-height** taper: only tiers with data are drawn, the outline
+    closes at the lowest tier (not an empty six-row shell), and local tiers beyond band 6 keep
+    the trapezoid taper instead of a rectangular stem. ``parent_overrides`` for merit are keyed
+    by **visible band** (after offset translation by the caller).
 
     When ``mens_merge_merit_leagues`` is True (men's national diagram only), tier bands 1–6 use
     equal-width alphabetical layout instead of NL2/Regional/Counties proportional nesting so merit
@@ -4792,8 +5082,12 @@ def render_pyramid_svg(
     for lg in leagues:
         leagues_by_tier.setdefault(lg.tier_num, []).append(lg)
 
+    merit_max_tier = 0
+    if is_merit:
+        merit_max_tier = max((t for t, ls in leagues_by_tier.items() if ls), default=0)
+
     stem_forest_prebuilt: tuple[list[StemTreeNode], dict[int, list[StemTreeNode]]] | None = None
-    if gender == "mens" or is_merit:
+    if gender == "mens":
         stem_tiers_chk = sorted(t for t in leagues_by_tier if t >= 7)
         if stem_tiers_chk and any(leagues_by_tier.get(t) for t in stem_tiers_chk):
             stem_forest_prebuilt = _build_stem_forest(
@@ -4801,190 +5095,255 @@ def render_pyramid_svg(
                 season,
                 parent_overrides=parent_overrides,
                 log_unlinked=parent_overrides is None,
-                merit_competition=merit_competition if is_merit else None,
-            )
-
-    canvas_horizontal_weight = _canvas_horizontal_weight(leagues_by_tier, stem_forest_prebuilt)
-    canvas_w = _compute_canvas_width_px(canvas_horizontal_weight)
-
-    with _canvas_width_scope(float(canvas_w)):
-        nested_layout: NestedTier56Layout | None
-        stem_layout: StemLayout | None
-        womens_nested_layout: WomensNestedLayout | None = None
-        if gender == "mens" and not is_merit and mens_merge_merit_leagues:
-            slots = {}
-            nested_layout = None
-            logger.info(
-                "Men's pyramid + merit: tiers 1–6 use equal-width bands (merged merit rows)."
-            )
-            log_stem_orphans = parent_overrides is None
-            stem_layout = _stem_build_layout(
-                leagues_by_tier,
-                season,
-                parent_overrides=parent_overrides,
-                stem_slot_strips=stem_slot_strips,
-                log_stem_orphans=log_stem_orphans,
                 merit_competition=None,
-                stem_forest=stem_forest_prebuilt,
-            )
-            stem_bottom_y = _stem_extension_bottom_y(leagues_by_tier, stem_layout)
-        elif gender == "mens" and not is_merit:
-            leaf_order = order_pyramid_leaves(leagues_by_tier, parent_overrides=parent_overrides)
-            slots = compute_league_slots(
-                leagues_by_tier, leaf_order, parent_overrides=parent_overrides
-            )
-            nested_layout = compute_nested_tier56_layout(
-                leagues_by_tier, slots, parent_overrides=parent_overrides
             )
 
-            log_stem_orphans = parent_overrides is None
-            stem_layout = _stem_build_layout(
-                leagues_by_tier,
-                season,
-                parent_overrides=parent_overrides,
-                stem_slot_strips=stem_slot_strips,
-                log_stem_orphans=log_stem_orphans,
-                merit_competition=None,
-                stem_forest=stem_forest_prebuilt,
-            )
-            stem_bottom_y = _stem_extension_bottom_y(leagues_by_tier, stem_layout)
-        elif is_merit:
-            # Merit pyramid: equal-width tier bands 1–6 (alphabetical), plus the stem layout
-            # (men's-style geographic nesting) for any local tier 7+ leagues. The men's NL2 /
-            # Regional ordering helpers don't apply here.
-            slots = {}
-            nested_layout = None
-            log_stem_orphans = parent_overrides is None
-            stem_layout = _stem_build_layout(
-                leagues_by_tier,
-                season,
-                parent_overrides=parent_overrides,
-                stem_slot_strips=stem_slot_strips,
-                log_stem_orphans=log_stem_orphans,
-                merit_competition=merit_competition,
-                stem_forest=stem_forest_prebuilt,
-            )
-            stem_bottom_y = _stem_extension_bottom_y(leagues_by_tier, stem_layout)
-        else:
-            # Women's pyramid: taper bands 1–4 via prefixes + optional ``women`` section;
-            # NC2/NC3 are equal-width rows. No stem.
-            slots = {}
-            nested_layout = None
-            stem_layout = None
-            stem_bottom_y = _pyramid_bottom_y()
-            womens_nested_layout = compute_womens_nested_layout(
-                leagues_by_tier, womens_parent_overrides
-            )
-            if womens_nested_layout is None:
-                logger.info("Women's pyramid: feeder nesting unavailable — equal-width tier bands.")
+    canvas_horizontal_weight = _canvas_horizontal_weight(
+        leagues_by_tier, stem_forest_prebuilt, is_merit=is_merit
+    )
+    canvas_w = _compute_canvas_width_px(
+        canvas_horizontal_weight,
+        for_merit=is_merit,
+        merit_widest_band=(
+            max((len(row) for row in leagues_by_tier.values() if row), default=1) if is_merit else 1
+        ),
+    )
 
-        crest_href_remap: dict[str, str] | None = None
-        if transparent_white_crest_backgrounds:
-            crest_href_remap = build_crest_white_corner_transparent_href_map(
-                leagues,
-                max_workers=max(1, min(int(crest_transparency_workers), 32)),
+    with (
+        _canvas_width_scope(float(canvas_w)),
+        _merit_pyramid_band_row_divisor_scope(merit_max_tier if is_merit else None),
+    ):
+        merit_interior_floor_y: float | None = (
+            (
+                _pyramid_top_y() + merit_max_tier * _pyramid_band_height_px()
+                if merit_max_tier > 0
+                else _pyramid_bottom_y()
             )
-            if not crest_href_remap:
-                crest_href_remap = None
-
-        parts: list[str] = []
-        parts.append(_render_pyramid_outline(stem_bottom_y))
-        for tier_num in range(1, 7):
-            parts.append(
-                _render_pyramid_band(
-                    tier_num,
-                    leagues_by_tier.get(tier_num, []),
-                    slots,
+            if is_merit
+            else None
+        )
+        with _pyramid_interior_floor_y_scope(merit_interior_floor_y if is_merit else None):
+            nested_layout: NestedTier56Layout | None
+            stem_layout: StemLayout | None
+            womens_nested_layout: WomensNestedLayout | None = None
+            if gender == "mens" and not is_merit and mens_merge_merit_leagues:
+                slots = {}
+                nested_layout = None
+                logger.info(
+                    "Men's pyramid + merit: tiers 1–6 use equal-width bands (merged merit rows)."
+                )
+                log_stem_orphans = parent_overrides is None
+                stem_layout = _stem_build_layout(
+                    leagues_by_tier,
                     season,
-                    nested=nested_layout,
-                    womens_nested=womens_nested_layout,
+                    parent_overrides=parent_overrides,
+                    stem_slot_strips=stem_slot_strips,
+                    log_stem_orphans=log_stem_orphans,
+                    merit_competition=None,
+                    stem_forest=stem_forest_prebuilt,
+                )
+                stem_bottom_y = _stem_extension_bottom_y(leagues_by_tier, stem_layout)
+            elif gender == "mens" and not is_merit:
+                leaf_order = order_pyramid_leaves(
+                    leagues_by_tier, parent_overrides=parent_overrides
+                )
+                slots = compute_league_slots(
+                    leagues_by_tier, leaf_order, parent_overrides=parent_overrides
+                )
+                nested_layout = compute_nested_tier56_layout(
+                    leagues_by_tier, slots, parent_overrides=parent_overrides
+                )
+
+                log_stem_orphans = parent_overrides is None
+                stem_layout = _stem_build_layout(
+                    leagues_by_tier,
+                    season,
+                    parent_overrides=parent_overrides,
+                    stem_slot_strips=stem_slot_strips,
+                    log_stem_orphans=log_stem_orphans,
+                    merit_competition=None,
+                    stem_forest=stem_forest_prebuilt,
+                )
+                stem_bottom_y = _stem_extension_bottom_y(leagues_by_tier, stem_layout)
+            elif is_merit:
+                # Merit: variable-depth taper (all local tiers as trapezoid bands); no rectangular stem.
+                slots = {}
+                nested_layout = None
+                stem_layout = None
+                stem_bottom_y = merit_interior_floor_y or _pyramid_bottom_y()
+            else:
+                # Women's pyramid: taper bands 1–4 via prefixes + optional ``women`` section;
+                # NC2/NC3 are equal-width rows. No stem.
+                slots = {}
+                nested_layout = None
+                stem_layout = None
+                stem_bottom_y = _pyramid_bottom_y()
+                womens_nested_layout = compute_womens_nested_layout(
+                    leagues_by_tier, womens_parent_overrides
+                )
+                if womens_nested_layout is None:
+                    logger.info(
+                        "Women's pyramid: feeder nesting unavailable — equal-width tier bands."
+                    )
+
+            merit_pyramid_band_orders: dict[int, list[LeagueData]] | None = None
+            merit_equal_column_templates: dict[int, BandLayout] | None = None
+            if is_merit:
+                mct = _merit_equal_column_templates(leagues_by_tier, max_tier=merit_max_tier)
+                merit_equal_column_templates = mct if mct else None
+                merit_pyramid_band_orders = {}
+                po_merit = parent_overrides
+                for t in range(1, merit_max_tier + 1):
+                    row_m = list(leagues_by_tier.get(t, []))
+                    if not row_m:
+                        merit_pyramid_band_orders[t] = []
+                        continue
+                    prev_ord = merit_pyramid_band_orders.get(t - 1, [])
+                    prev_nm: tuple[str, ...] | None = (
+                        tuple(lg.league_name for lg in prev_ord) if t > 1 and prev_ord else None
+                    )
+                    merit_pyramid_band_orders[t] = _merit_pyramid_band_column_order(
+                        t, row_m, prev_nm, po_merit
+                    )
+
+            crest_href_remap: dict[str, str] | None = None
+            if transparent_white_crest_backgrounds:
+                crest_href_remap = build_crest_white_corner_transparent_href_map(
+                    leagues,
+                    max_workers=max(1, min(int(crest_transparency_workers), 32)),
+                )
+                if not crest_href_remap:
+                    crest_href_remap = None
+
+            parts: list[str] = []
+            parts.append(
+                _render_pyramid_outline(
+                    stem_bottom_y,
+                    pyramid_poly_bottom_y=(merit_interior_floor_y if is_merit else None),
+                )
+            )
+            tier_loop = range(1, merit_max_tier + 1) if is_merit else range(1, 7)
+            for tier_num in tier_loop:
+                parts.append(
+                    _render_pyramid_band(
+                        tier_num,
+                        leagues_by_tier.get(tier_num, []),
+                        slots,
+                        season,
+                        nested=nested_layout,
+                        womens_nested=womens_nested_layout,
+                        crest_href_remap=crest_href_remap,
+                        gender=gender,
+                        merit_competition=merit_competition,
+                        merit_local_offset=merit_local_offset,
+                        leagues_by_tier=leagues_by_tier,
+                        merit_pyramid_band_orders=merit_pyramid_band_orders,
+                        merit_equal_column_templates=merit_equal_column_templates,
+                    )
+                )
+
+            if gender == "mens" and not is_merit:
+                # No tier 7+ data → ``_stem_build_layout`` returns None; stem render is a no-op.
+                stem = _render_stem_extension(
+                    leagues_by_tier,
+                    season,
+                    stem_bottom_y,
+                    stem_layout,
                     crest_href_remap=crest_href_remap,
-                    gender=gender,
                     merit_competition=merit_competition,
                     merit_local_offset=merit_local_offset,
                 )
-            )
+                parts.extend(stem.parts)
 
-        if (gender == "mens" and not is_merit) or is_merit:
-            # No tier 7+ data → ``_stem_build_layout`` returns None; stem render is a no-op.
-            stem = _render_stem_extension(
-                leagues_by_tier,
-                season,
-                stem_bottom_y,
-                stem_layout,
-                crest_href_remap=crest_href_remap,
-                merit_competition=merit_competition,
-                merit_local_offset=merit_local_offset,
-            )
-            parts.extend(stem.parts)
+            image_height = int(stem_bottom_y + PAGE_MARGIN_BOTTOM)
 
-        image_height = int(stem_bottom_y + PAGE_MARGIN_BOTTOM)
-
-        title_y = PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT / 2 - 14
-        subtitle_y = PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT / 2 + 18
-        page_bg = PAGE_BG_WOMENS if gender == "womens" else PAGE_BG
-        subtitle_fill = SUBTITLE_FILL_WOMENS if gender == "womens" else SUBTITLE_FILL_MENS
-        apex_feed_line = ""
-        if is_merit:
-            comp_display = (merit_competition or "").replace("_", " ")
-            main_title = f"{comp_display.upper()} MERIT PYRAMID".strip()
-            subtitle_text = f"{comp_display}, {short_season(season)}"
-            apex_feed_line = _format_merit_pyramid_feeder_note(parent_overrides)
-        else:
-            main_title = "ENGLISH RUGBY PYRAMID"
-            if gender == "womens":
-                subtitle_text = f"Women's leagues, {short_season(season)}"
-            elif mens_merge_merit_leagues:
-                subtitle_text = f"Men's pyramid + merit leagues, {short_season(season)}"
+            title_y = PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT / 2 - 14
+            subtitle_y = PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT / 2 + 18
+            page_bg = PAGE_BG_WOMENS if gender == "womens" else PAGE_BG
+            subtitle_fill = SUBTITLE_FILL_WOMENS if gender == "womens" else SUBTITLE_FILL_MENS
+            if is_merit:
+                comp_display = (merit_competition or "").replace("_", " ")
+                main_title = f"{comp_display.upper()} MERIT PYRAMID".strip()
+                subtitle_text = f"{comp_display}, {short_season(season)}"
             else:
-                subtitle_text = f"Men's leagues, {short_season(season)}"
-        cx_title = canvas_w / 2
-        title_parts = [
-            _svg_text(
-                main_title,
-                cx_title,
-                title_y,
-                fill=TITLE_TEXT,
-                size=34.0,
-                weight="800",
-                anchor="middle",
-            ),
-            _svg_text(
-                subtitle_text,
-                cx_title,
-                subtitle_y,
-                fill=subtitle_fill,
-                size=16.0,
-                weight="500",
-                anchor="middle",
-            ),
-        ]
-        if apex_feed_line:
-            title_parts.append(
+                main_title = "ENGLISH RUGBY PYRAMID"
+                if gender == "womens":
+                    subtitle_text = f"Women's leagues, {short_season(season)}"
+                elif mens_merge_merit_leagues:
+                    subtitle_text = f"Men's pyramid + merit leagues, {short_season(season)}"
+                else:
+                    subtitle_text = f"Men's leagues, {short_season(season)}"
+            export_w = int(canvas_w)
+            merit_crop_tx = 0.0
+            if is_merit:
+                title_half = max(
+                    340.0,
+                    max(len(main_title) * 18.5, len(subtitle_text) * 10.0) * 0.5 + 36.0,
+                )
+                outline_pts = _extended_pyramid_outline_points(
+                    stem_bottom_y,
+                    pyramid_poly_bottom_y=merit_interior_floor_y,
+                )
+                min_ox = min(p[0] for p in outline_pts)
+                max_ox = max(p[0] for p in outline_pts)
+                sw = float(TRIANGLE_STROKE_WIDTH)
+                left_gutter = (
+                    EDGE_TIER_LABEL_OUTSET_PX
+                    + EDGE_TIER_STATS_OUTSET_EXTRA_PX
+                    + MERIT_SVG_TIGHT_BOUNDS_EXTRA_LEFT
+                )
+                right_gutter = MERIT_SVG_TIGHT_BOUNDS_EXTRA_RIGHT
+                cmin0 = min_ox - left_gutter - sw
+                cmax0 = max_ox + right_gutter + sw
+                cx_p = _pyramid_center_x()
+                # Symmetric crop around the pyramid axis: label room is mostly on the left, so
+                # using the midpoint of [cmin0, cmax0] shifted the frame left vs the trapezoid.
+                content_left = min(cmin0, cx_p - title_half)
+                content_right = max(cmax0, cx_p + title_half)
+                half = max(cx_p - content_left, content_right - cx_p)
+                cmin = cx_p - half
+                cmax = cx_p + half
+                export_w = max(MERIT_SVG_EXPORT_MIN_WIDTH, int(math.ceil(cmax - cmin)))
+                merit_crop_tx = -cmin
+                cx_title = cx_p
+            else:
+                cx_title = float(canvas_w) / 2.0
+            title_parts = [
                 _svg_text(
-                    apex_feed_line,
+                    main_title,
                     cx_title,
-                    subtitle_y + 36.0,
+                    title_y,
+                    fill=TITLE_TEXT,
+                    size=34.0,
+                    weight="800",
+                    anchor="middle",
+                ),
+                _svg_text(
+                    subtitle_text,
+                    cx_title,
+                    subtitle_y,
                     fill=subtitle_fill,
-                    size=13.5,
+                    size=16.0,
                     weight="500",
                     anchor="middle",
-                )
+                ),
+            ]
+
+            body = "\n".join(title_parts + parts)
+            if is_merit:
+                body = f'<g transform="translate({merit_crop_tx:.2f}, 0)">\n' f"{body}\n" f"</g>"
+
+            svg = (
+                f'<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+                f'<svg xmlns="http://www.w3.org/2000/svg" '
+                f'xmlns:xlink="http://www.w3.org/1999/xlink" '
+                f'viewBox="0 0 {export_w} {image_height}" '
+                f'width="{export_w}" height="{image_height}">\n'
+                f'<rect x="0" y="0" width="{export_w}" height="{image_height}" fill="{page_bg}"/>\n'
+                f"{body}\n"
+                f"</svg>\n"
             )
-
-        body = "\n".join(title_parts + parts)
-
-        svg = (
-            f'<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
-            f'<svg xmlns="http://www.w3.org/2000/svg" '
-            f'xmlns:xlink="http://www.w3.org/1999/xlink" '
-            f'viewBox="0 0 {canvas_w} {image_height}" '
-            f'width="{canvas_w}" height="{image_height}">\n'
-            f'<rect x="0" y="0" width="{canvas_w}" height="{image_height}" fill="{page_bg}"/>\n'
-            f"{body}\n"
-            f"</svg>\n"
-        )
-        return svg
+            return svg
 
 
 # ---------------------------------------------------------------------------

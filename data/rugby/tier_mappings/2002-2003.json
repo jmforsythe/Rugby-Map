@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2002-2003",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "London 1": "National League Three South",
       "Midlands 1": "National League Three North",
@@ -50,7 +50,7 @@
       "xEast Counties 2 South": "Eastern Counties 1"
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "wPremiership 2": "wPremiership 1"
     },

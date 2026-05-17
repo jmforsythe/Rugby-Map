@@ -92,9 +92,7 @@ def test_womens_parent_overrides_merge_cross_season(tmp_path, monkeypatch) -> No
     monkeypatch.setattr(pi, "TIER_MAPPINGS_DIR", tmp_path)
     foreign = {
         "season": "2023-2024",
-        "womens_overrides_by_tier": {
-            "3": {"Women's Championship North 2": "Women's Championship North 1"}
-        },
+        "women": {"3": {"Women's Championship North 2": "Women's Championship North 1"}},
     }
     (tmp_path / "2023-2024.json").write_text(json.dumps(foreign), encoding="utf-8")
     (tmp_path / "2024-2025.json").write_text(json.dumps({"season": "2024-2025"}), encoding="utf-8")

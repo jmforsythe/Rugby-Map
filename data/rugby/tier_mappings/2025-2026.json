@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2025-2026",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "Regional 1 Tribute Ale South West": "National League 2 West",
       "Regional 1 Midlands": "National League 2 West",
@@ -68,7 +68,7 @@
       ]
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "Women's Championship North 1": "Women's Premiership",
       "Women's Championship South 1": "Women's Premiership"
@@ -88,6 +88,208 @@
       "Women's NC 1 South East (South)": "Women's Championship South East 2",
       "Women's NC 1 South West (East)": "Women's Championship South West 2",
       "Women's NC 1 South West (West)": "Women's Championship South West 2"
+    }
+  },
+  "CANDY": {
+    "1": {
+      "CANDY 1": "Counties 3 Durham & Northumberland"
+    },
+    "2": {
+      "CANDY 2 North": "CANDY 1",
+      "CANDY 2 South": "CANDY 1"
+    },
+    "3": {
+      "CANDY 3 North": "CANDY 2 North",
+      "CANDY 3 South": "CANDY 2 South",
+      "CANDY 3 Central": [
+        "CANDY 2 North",
+        "CANDY 2 South"
+      ]
+    }
+  },
+  "Devon": {
+    "1": {
+      "Devon Merit Table NE": [
+        "Counties 3 Tribute Ale Devon North & East",
+        "Counties 3 Tribute Ale Devon South & West"
+      ],
+      "Devon Merit Table SW": "Counties 3 Tribute Ale Devon South & West"
+    }
+  },
+  "East_Midlands": {
+    "2": {
+      "East Midlands 2 - Bedfordshire (North)": "Counties 3 Midlands East (South South)",
+      "East Midlands 2 - Bedfordshire (South)": "Counties 3 Midlands East (South South)",
+      "East Midlands 2 - Northants A": "Counties 3 Midlands East (South South)"
+    },
+    "3": {
+      "East Midlands 2 - Northants B": "East Midlands 2 - Northants A"
+    }
+  },
+  "Eastern_Counties": {
+    "1": {
+      "Eastern Counties Greene King Division One North": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One South": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One West": "Counties 2 Eastern Counties"
+    },
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Eastern Counties Greene King Division One North",
+      "Eastern Counties Greene King Division Two South": "Eastern Counties Greene King Division One South",
+      "Eastern Counties Greene King Division Two West": "Eastern Counties Greene King Division One West"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division 1": "Counties 2 Essex"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4 East": "Division 3",
+      "Division 4 West": "Division 3"
+    }
+  },
+  "GRFU_District": {
+    "1": {
+      "Bristol & District 1": "Counties 4 Tribute Ale Somerset North",
+      "Gloucester & District 1": "Counties 4 Tribute Ale Gloucestershire South"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
+    },
+    "3": {
+      "Gloucester & District 3": "Gloucester & District 2"
+    }
+  },
+  "Hampshire": {
+    "5": {
+      "Counties 5 Hampshire": "Counties 4 Hampshire"
+    },
+    "6": {
+      "Counties 6 North": "Counties 5 Hampshire",
+      "Counties 6 South": "Counties 5 Hampshire",
+      "Premiership North": "Counties 5 Hampshire",
+      "Premiership South East": "Counties 5 Hampshire",
+      "Premiership South West": "Counties 5 Hampshire"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Table 1": "Counties 3 Herts"
+    },
+    "2": {
+      "Table 2": "Table 1"
+    },
+    "3": {
+      "Table 3": "Table 2"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Counties 3 Midlands East (South North)"
+    },
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    }
+  },
+  "Middlesex": {
+    "1": {
+      "Premier Division": "Counties 2 Middx"
+    },
+    "2": {
+      "Division 1": "Premier Division"
+    },
+    "3": {
+      "Division 2": "Division 1"
+    },
+    "4": {
+      "Division 3": "Division 2"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 3 adm Lancashire & Cheshire"
+    },
+    "2": {
+      "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL BATHTIME PREMIER LEAGUE"
+    },
+    "3": {
+      "NOWIRUL John on Queen Street Division 2 South": "NOWIRUL BAINES PLUMBING DIVISION 1",
+      "NOWIRUL Kudos Showers Division 2 North": "NOWIRUL BAINES PLUMBING DIVISION 1"
+    },
+    "4": {
+      "NOWIRUL Alchemi Professional Solutions  Division 3 South": "NOWIRUL John on Queen Street Division 2 South",
+      "NOWIRUL Rainford Electrical Services Division 3 North/Central": "NOWIRUL Kudos Showers Division 2 North",
+      "NOWIRUL Trevolution Ltd Division 3 West": [
+        "NOWIRUL John on Queen Street Division 2 South",
+        "NOWIRUL Kudos Showers Division 2 North"
+      ]
+    },
+    "5": {
+      "NOWIRUL County Couriers Division 4 North/Central": "NOWIRUL Rainford Electrical Services Division 3 North/Central",
+      "NOWIRUL Division 4 West": "NOWIRUL Trevolution Ltd Division 3 West",
+      "NOWIRUL WMD Division 4 East": [
+        "NOWIRUL Alchemi Professional Solutions  Division 3 South",
+        "NOWIRUL Rainford Electrical Services Division 3 North/Central"
+      ]
+    },
+    "6": {
+      "NOWIRUL The Last Drop Division 5 East": "NOWIRUL WMD Division 4 East",
+      "NOWIRUL The Last Drop Division 5 West": "NOWIRUL Division 4 West"
+    }
+  },
+  "Rural_Kent": {
+    "1": {
+      "Kent A Rural": "Counties 5 Kent"
+    },
+    "2": {
+      "Kent B Rural": "Kent A Rural"
+    },
+    "3": {
+      "Kent Rural C": "Kent B Rural"
+    }
+  },
+  "Surrey": {
+    "1": {
+      "London Counties & South Coast Premiership": "Counties 5 Surrey"
+    },
+    "2": {
+      "Surrey Championship 2025-2026": "London Counties & South Coast Premiership"
+    },
+    "3": {
+      "Surrey Alliance League 2025-2026": "Surrey Championship 2025-2026"
+    },
+    "4": {
+      "Surrey Conference League 2025-2026": "Surrey Alliance League 2025-2026"
+    },
+    "5": {
+      "Surrey Combination 1 2025-2026": "Surrey Conference League 2025-2026"
+    },
+    "6": {
+      "Surrey Combination 2 2025-2026": "Surrey Combination 1 2025-2026"
+    },
+    "7": {
+      "Surrey Foundation League A 2025-2026": "Surrey Combination 2 2025-2026"
+    }
+  },
+  "Sussex": {
+    "3": {
+      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
+    },
+    "4": {
+      "Harvey's Wharf IPA Counties 4 Sussex East": "Harvey's Brewery Counties 3 Sussex",
+      "Harvey's Wharf IPA Counties 4 Sussex West": "Harvey's Brewery Counties 3 Sussex"
+    },
+    "5": {
+      "Harvey's Olympia Counties 5 Sussex": [
+        "Harvey's Wharf IPA Counties 4 Sussex East",
+        "Harvey's Wharf IPA Counties 4 Sussex West"
+      ]
     }
   }
 }

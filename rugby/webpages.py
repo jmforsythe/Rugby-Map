@@ -253,7 +253,13 @@ def _build_mens_pyramid_diagram_preview_cell(season: str, tier_files: dict[str, 
     if not tier_files.get("pyramid_preview"):
         return ""
     full_href = tier_files.get("pyramid_full_href")
-    if not isinstance(full_href, str) or not full_href:
+    thumb_src = tier_files.get("pyramid_thumb_src")
+    if (
+        not isinstance(full_href, str)
+        or not full_href
+        or not isinstance(thumb_src, str)
+        or not thumb_src
+    ):
         return ""
 
     alt = escape(
@@ -261,13 +267,14 @@ def _build_mens_pyramid_diagram_preview_cell(season: str, tier_files: dict[str, 
         "(click for the full diagram)"
     )
     href_esc = escape(full_href)
+    thumb_esc = escape(thumb_src)
     aria = escape(f"Open full men's pyramid diagram for {season}")
 
     inner = (
         '            <div class="pyramid-diagram-preview">\n'
         f'            <a class="pyramid-diagram-preview__link" href="{href_esc}" '
         f'aria-label="{aria}">\n'
-        '                <img class="pyramid-diagram-preview__img" src="pyramid.png" width="760" '
+        f'                <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760" '
         'loading="lazy" decoding="async"'
         f' alt="{alt}">\n'
         "            </a>\n"
@@ -722,11 +729,22 @@ def detect_tier_files(season_dir: Path) -> dict:
     ).exists()
 
     pyramid_png = season_dir / "pyramid.png"
+    pyramid_all_png = season_dir / "pyramid_All_Leagues.png"
     pyramid_svg = season_dir / "pyramid.svg"
-    pyramid_preview = pyramid_png.is_file()
+    pyramid_all_svg = season_dir / "pyramid_All_Leagues.svg"
+    pyramid_preview = pyramid_png.is_file() or pyramid_all_png.is_file()
+    pyramid_thumb_src: str | None = None
+    if pyramid_png.is_file():
+        pyramid_thumb_src = "pyramid.png"
+    elif pyramid_all_png.is_file():
+        pyramid_thumb_src = "pyramid_All_Leagues.png"
     pyramid_full_asset: str | None = None
-    if pyramid_svg.is_file():
+    if pyramid_all_svg.is_file():
+        pyramid_full_asset = "pyramid_All_Leagues.svg"
+    elif pyramid_svg.is_file():
         pyramid_full_asset = "pyramid.svg"
+    elif pyramid_all_png.is_file():
+        pyramid_full_asset = "pyramid_All_Leagues.png"
     elif pyramid_png.is_file():
         pyramid_full_asset = "pyramid.png"
 
@@ -748,6 +766,7 @@ def detect_tier_files(season_dir: Path) -> dict:
         "merit_only_tiers": merit_only_tiers,
         "has_match_day": has_match_day,
         "pyramid_preview": pyramid_preview,
+        "pyramid_thumb_src": pyramid_thumb_src,
         "pyramid_full_href": pyramid_full_asset,
         "pyramid_womens_preview": pyramid_womens_preview,
         "pyramid_womens_full_href": pyramid_womens_full,

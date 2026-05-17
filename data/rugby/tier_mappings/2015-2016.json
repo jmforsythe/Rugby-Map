@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2015-2016",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "National League 3 London & SE": "National League 2 South",
       "National League 3 Midlands": "National League 2 North",
@@ -52,7 +52,7 @@
       ]
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "Women's Championship North 1": "Women's Premiership",
       "Women's Championship South 1": "Women's Premiership"

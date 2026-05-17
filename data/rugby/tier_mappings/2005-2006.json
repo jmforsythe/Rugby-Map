@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2005-2006",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "London 1": "National League Three South",
       "Midlands 1": "National League Three North",
@@ -51,7 +51,7 @@
       "xWarwickshire 1": "Midlands 4 West (South)"
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "wPremiership 2": "wPremiership 1"
     },

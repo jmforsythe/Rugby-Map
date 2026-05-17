@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2010-2011",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "National League 3 London & SE": "National League 2 South",
       "National League 3 Midlands": "National League 2 North",
@@ -48,7 +48,7 @@
       "Essex (Spitfire) League 2": "Essex (Canterbury Jack) League 1"
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "RFUW Championship North 1": "RFUW Premiership",
       "RFUW Championship South 1": "RFUW Premiership"

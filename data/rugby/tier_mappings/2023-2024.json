@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "season": "2023-2024",
-  "overrides_by_tier": {
+  "men": {
     "5": {
       "Regional 1 South West": "National League 2 West",
       "Regional 1 Midlands": "National League 2 West",
@@ -53,7 +53,7 @@
       "Counties 3 Tribute Dorset & Wilts Central": "Counties 2 Tribute Dorset & Wilts Central"
     }
   },
-  "womens_overrides_by_tier": {
+  "women": {
     "2": {
       "Women's Championship North 1": "Women's Premiership",
       "Women's Championship South 1": "Women's Premiership"

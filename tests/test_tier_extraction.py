@@ -398,7 +398,7 @@ class TestExtractTierMeritPath:
             "merit/Midlands_Reserve/South_-_West_Midlands_Reserve_Team_League.json", "2011-2012"
         ) == (1, "Midlands Reserve 1")
         assert get_competition_offset("Midlands_Reserve", "2011-2012") == 10
-        assert get_competition_offset("Midlands_Reserve", "2013-2014") == 8
+        assert get_competition_offset("Midlands_Reserve", "2013-2014") == 10
 
     def test_nowirul_premier_current(self):
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2025-2026")
@@ -455,6 +455,22 @@ class TestExtractTierMeritPath:
         assert extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2013-2014") == (
             2,
             "East Midlands 2",
+        )
+        assert extract_tier("merit/East_Midlands/Youngs_Bitter.json", "2013-2014") == (
+            3,
+            "East Midlands 3",
+        )
+        assert extract_tier("merit/East_Midlands/Estrella_Damm.json", "2013-2014") == (
+            5,
+            "East Midlands 5",
+        )
+        assert extract_tier("merit/East_Midlands/Dogs_Head_DNA.json", "2013-2014") == (
+            6,
+            "East Midlands 6",
+        )
+        assert extract_tier("merit/East_Midlands/Youngs_London_Stout.json", "2013-2014") == (
+            7,
+            "East Midlands 7",
         )
 
     def test_rural_kent_invicta_apex_2010_2011(self):

@@ -111,8 +111,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2025-2026", "2025-2026", 8),
     ],
     # 2011-2012 geographic apex feeds Midlands 5 West (abs 10); local 1 → 11 under nationals.
+    # 2013-2014 West Reserve Div 1 likewise feeds Midlands 5 West (North/South).
     "Midlands_Reserve": [
         ("2011-2012", "2011-2012", 10),
+        ("2013-2014", "2013-2014", 10),
     ],
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
@@ -428,6 +430,16 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
+    # 2013-2014: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
+    if season == "2013-2014":
+        if path.startswith("merit/East_Midlands/Youngs_Bitter"):
+            return (3, "Level 3")
+        if path.startswith("merit/East_Midlands/Estrella_Damm"):
+            return (5, "Level 5")
+        if path.startswith("merit/East_Midlands/Dogs_Head"):
+            return (6, "Level 6")
+        if path.startswith("merit/East_Midlands/Youngs_London_Stout"):
+            return (7, "Level 7")
     for prefix, local_tier in sorted(
         _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True
     ):

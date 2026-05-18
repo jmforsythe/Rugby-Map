@@ -98,22 +98,19 @@
       "Eagle IPA League": "Bombardier League"
     },
     "3": {
-      "Courage Best League": "Eagle IPA League"
+      "Youngs Bitter": "Eagle IPA League"
     },
     "4": {
-      "Directors League": "Courage Best League"
+      "Directors League": "Youngs Bitter"
     },
     "5": {
-      "Waggledance League": "Directors League"
+      "Estrella Damm": "Directors League"
     },
     "6": {
-      "Winter Warmer League": "Waggledance League"
+      "Dogs Head DNA": "Estrella Damm"
     },
     "7": {
-      "Estrella Damm": "Eagle IPA League",
-      "Youngs Bitter": "Eagle IPA League",
-      "Youngs London Stout": "Eagle IPA League",
-      "Dogs Head DNA": "Eagle IPA League"
+      "Youngs London Stout": "Dogs Head DNA"
     }
   },
   "Essex": {
@@ -241,8 +238,8 @@
   "Midlands_Reserve": {
     "1": {
       "Midlands West Reserve League Div 1": [
-        "Midlands 3 West (North)",
-        "Midlands 3 West (South)"
+        "Midlands 5 West (North)",
+        "Midlands 5 West (South)"
       ]
     },
     "2": {
@@ -273,25 +270,13 @@
     "5": {
       "Raging Bull Division 4 North": "Raging Bull Division 3 North",
       "Raging Bull Division 4 South": "Raging Bull Division 3 South",
-      "Raging Bull Division 4 East": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ],
-      "Raging Bull Division 4 West": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ]
+      "Raging Bull Division 4 East": "Raging Bull Division 3 North",
+      "Raging Bull Division 4 West": "Raging Bull Division 3 South"
     },
     "6": {
       "Raging Bull Division 5 South": "Raging Bull Division 4 South",
-      "Raging Bull Division 5 West": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
-      "Raging Bull Division 5 East": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
+      "Raging Bull Division 5 West": "Raging Bull Division 4 West",
+      "Raging Bull Division 5 East": "Raging Bull Division 4 East",
       "Raging Bull Division 5 North": "Raging Bull Division 4 North"
     }
   },

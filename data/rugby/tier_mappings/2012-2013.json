@@ -274,25 +274,13 @@
     "5": {
       "Raging Bull Division 4 North": "Raging Bull Division 3 North",
       "Raging Bull Division 4 South": "Raging Bull Division 3 South",
-      "Raging Bull Division 4 East": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ],
-      "Raging Bull Division 4 West": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ]
+      "Raging Bull Division 4 East": "Raging Bull Division 3 North",
+      "Raging Bull Division 4 West": "Raging Bull Division 3 South"
     },
     "6": {
       "Raging Bull Division 5 South": "Raging Bull Division 4 South",
-      "Raging Bull Division 5 West": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
-      "Raging Bull Division 5 East": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
+      "Raging Bull Division 5 West": "Raging Bull Division 4 West",
+      "Raging Bull Division 5 East": "Raging Bull Division 4 East",
       "Raging Bull Division 5 North": "Raging Bull Division 4 North"
     }
   },

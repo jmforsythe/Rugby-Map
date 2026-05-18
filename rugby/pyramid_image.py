@@ -54,7 +54,7 @@ import re
 import sys
 import time
 from collections import defaultdict
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Iterator, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field, replace
 from pathlib import Path
@@ -973,6 +973,65 @@ def _season_start_year(season_label: str) -> int:
     return int(season_label.split("-", maxsplit=1)[0])
 
 
+def _longest_common_string_prefix(strings: Sequence[str]) -> str:
+    """Character-longest prefix common to every non-empty string in ``strings``."""
+    if not strings:
+        return ""
+    first = strings[0]
+    for other in strings[1:]:
+        n = min(len(first), len(other))
+        i = 0
+        while i < n and first[i] == other[i]:
+            i += 1
+        first = first[:i]
+        if not first:
+            return ""
+    return first
+
+
+_MIN_MERIT_MARGIN_LCP_CHARS = 3
+
+
+def _merit_band_normalize_league_title_for_margin(league: LeagueData) -> str:
+    """Sponsor-stripped (or East Midlands–specific) title for margin LCP."""
+    if league.merit_geocoded_competition == "East_Midlands":
+        return _east_midlands_pyramid_league_title_normalize(league.league_name).strip()
+    return _strip_league_title_sponsors(league.league_name).strip()
+
+
+def _merit_band_margin_primary_label(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    visible_tier: int,
+    _season: str,
+    gender: Gender,
+) -> str | None:
+    """Merit left margin: longest prefix shared by every league title in this band.
+
+    Normalization matches cell-title cleanup: global sponsor strip, except East Midlands
+    which keeps sponsor league identity via :func:`_east_midlands_pyramid_league_title_normalize`.
+
+    When the shared prefix is shorter than :data:`_MIN_MERIT_MARGIN_LCP_CHARS`, returns
+    ``None`` so the margin falls back to :func:`pyramid_band_tier_label`.
+    """
+    if gender == "womens":
+        return None
+    row = [
+        lg
+        for lg in leagues_by_tier.get(visible_tier, [])
+        if not getattr(lg, "merit_chain_placeholder", False)
+        and not getattr(lg, "merit_column_spacer", False)
+    ]
+    if not row:
+        return None
+    norms = [_merit_band_normalize_league_title_for_margin(lg) for lg in row]
+    if any(not n for n in norms):
+        return None
+    lcp = _longest_common_string_prefix(norms).rstrip()
+    if len(lcp) < _MIN_MERIT_MARGIN_LCP_CHARS:
+        return None
+    return lcp
+
+
 def _strip_merit_league_title_tier_prefix(title: str, merit_tier_label: str) -> str:
     """Drop a leading merit band label from ``title`` when it duplicates the margin tier name.
 
@@ -1069,7 +1128,13 @@ def league_short_display_name(
     ):
         stripped = _strip_merit_league_title_tier_prefix(stripped, merit_tier_display_label)
     nl_geo = _mens_short_after_national_league_division(stripped)
-    if nl_geo is not None:
+    # Per-competition merit pyramids pass **visual** band 1..K as ``tier_num``; that must not be
+    # interpreted as a national pyramid tier. Otherwise band 2 sets the label to "Championship"
+    # and mangles NOWIRUL (and similar) titles that contain that word — e.g. "… Championship League"
+    # becomes the nonsense tail "League".
+    if strip_merit_tier_display_prefix:
+        out = stripped if nl_geo is None else nl_geo
+    elif nl_geo is not None:
         out = nl_geo
     else:
         tier_label = mens_current_tier_name(tier_num, season)
@@ -1942,44 +2007,6 @@ def merit_augment_skipped_parent_chains_for_pyramid(
             ovs[key] = (top_syn_name,)
 
     return lb, ovs
-
-
-def _merit_chain_single_league_margin_label(
-    leagues_by_tier: dict[int, list[LeagueData]],
-    visible_tier: int,
-    season: str,
-    gender: Gender,
-) -> str | None:
-    """Merit-only: left margin shows league name when this band and every non-empty band above are single-league."""
-    row_here = [
-        lg
-        for lg in leagues_by_tier.get(visible_tier, [])
-        if not getattr(lg, "merit_chain_placeholder", False)
-        and not getattr(lg, "merit_column_spacer", False)
-    ]
-    if len(row_here) != 1:
-        return None
-    for u in range(1, visible_tier):
-        row = [
-            lg
-            for lg in leagues_by_tier.get(u, [])
-            if not getattr(lg, "merit_chain_placeholder", False)
-            and not getattr(lg, "merit_column_spacer", False)
-        ]
-        if not row:
-            continue
-        if len(row) != 1:
-            return None
-    lg = row_here[0]
-    return league_short_display_name(
-        lg.league_name,
-        lg.tier_num,
-        season,
-        gender=gender,
-        merit_geocoded_competition=lg.merit_geocoded_competition,
-        strip_merit_tier_display_prefix=gender == "mens",
-        merit_tier_display_label=lg.tier_name if gender == "mens" else None,
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -4412,8 +4439,8 @@ def _tier_margin_label_svg(
     human-readable tier name is derived from ``gender`` so women's bands read e.g.
     ``Premiership Women's`` and ``National Challenge 1``.
 
-    When ``primary_label_override`` is set (merit single-league ladder), it replaces the tier
-    name on the primary margin line.
+    When ``primary_label_override`` is set, it replaces the tier name on the primary margin
+    line (merit pyramids: longest common prefix of normalized league titles in that band).
     """
     tier_human = pyramid_band_tier_label(
         tier_num,
@@ -4807,7 +4834,7 @@ def _render_pyramid_band(
     tier_total_teams = sum(lg.team_count for lg in leagues_ordered)
     margin_override = None
     if merit_competition is not None and leagues_by_tier is not None:
-        margin_override = _merit_chain_single_league_margin_label(
+        margin_override = _merit_band_margin_primary_label(
             leagues_by_tier, tier_num, season, gender
         )
     parts.append(
@@ -6131,7 +6158,7 @@ def _render_stem_extension(
         tier_team_sum = sum(lg.team_count for lg in leagues)
         margin_override = None
         if merit_competition is not None:
-            margin_override = _merit_chain_single_league_margin_label(
+            margin_override = _merit_band_margin_primary_label(
                 leagues_by_tier, tier_num, season, "mens"
             )
         parts.append(

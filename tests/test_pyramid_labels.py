@@ -5,8 +5,8 @@ import json
 from rugby.pyramid_image import (
     LeagueData,
     _find_merit_parent_league,
+    _merit_band_margin_primary_label,
     _merit_canvas_horizontal_weight_pyramid,
-    _merit_chain_single_league_margin_label,
     _merit_equal_column_templates,
     _merit_pyramid_band_column_order,
     _strip_league_title_sponsors,
@@ -167,6 +167,21 @@ def test_merit_diagram_strips_local_tier_label_prefix_from_title() -> None:
             merit_tier_display_label="Eastern Counties 1",
         )
         == "Division One North"
+    )
+
+
+def test_merit_diagram_nowirul_championship_league_not_collapsed_at_band_2() -> None:
+    """Visual band 2 is not national tier 2; ``… Championship League`` must not become ``League``."""
+    assert (
+        league_short_display_name(
+            "Cotton Traders Championship League",
+            2,
+            "2018-2019",
+            merit_geocoded_competition="NOWIRUL",
+            strip_merit_tier_display_prefix=True,
+            merit_tier_display_label="NOWIRUL 2",
+        )
+        == "Championship League"
     )
 
 
@@ -417,13 +432,13 @@ def test_merit_pyramid_band_column_order_candy_2_3_pattern() -> None:
     ]
 
 
-def test_merit_chain_margin_label_uses_league_when_upper_single_or_empty() -> None:
-    """Shallow merit slice: empty diagram bands above do not break the ladder."""
+def test_merit_band_margin_label_uses_longest_common_prefix_when_upper_single_or_empty() -> None:
+    """Shallow merit slice: LCP margin per band; empty bands above do not affect this band."""
     by = {
         1: [_lg(1, "Counties 2 Tribute Ale Devon North & East")],
         2: [_lg(2, "Counties 3 Example")],
     }
-    assert _merit_chain_single_league_margin_label(by, 1, "2025-2026", "mens") == (
+    assert _merit_band_margin_primary_label(by, 1, "2025-2026", "mens") == (
         league_short_display_name(
             by[1][0].league_name,
             1,
@@ -433,7 +448,7 @@ def test_merit_chain_margin_label_uses_league_when_upper_single_or_empty() -> No
             merit_tier_display_label=by[1][0].tier_name,
         )
     )
-    assert _merit_chain_single_league_margin_label(by, 2, "2025-2026", "mens") == (
+    assert _merit_band_margin_primary_label(by, 2, "2025-2026", "mens") == (
         league_short_display_name(
             by[2][0].league_name,
             2,
@@ -445,13 +460,23 @@ def test_merit_chain_margin_label_uses_league_when_upper_single_or_empty() -> No
     )
 
 
-def test_merit_chain_margin_label_none_when_upper_tier_splints() -> None:
+def test_merit_band_margin_label_lcp_when_band_splinters_or_single_below() -> None:
     by = {
         1: [_lg(1, "Merit A"), _lg(1, "Merit B")],
         2: [_lg(2, "Merit C")],
     }
-    assert _merit_chain_single_league_margin_label(by, 1, "2025-2026", "mens") is None
-    assert _merit_chain_single_league_margin_label(by, 2, "2025-2026", "mens") is None
+    assert _merit_band_margin_primary_label(by, 1, "2025-2026", "mens") == "Merit"
+    assert _merit_band_margin_primary_label(by, 2, "2025-2026", "mens") == "Merit C"
+
+
+def test_merit_band_margin_label_multi_league_shared_prefix() -> None:
+    by = {
+        3: [
+            _lg(3, "Raging Bull Division 4 East"),
+            _lg(3, "Raging Bull Division 4 West"),
+        ],
+    }
+    assert _merit_band_margin_primary_label(by, 3, "2012-2013", "mens") == "Division 4"
 
 
 def test_pyramid_margin_tier1_championship_before_2009_premiership_pyramid() -> None:

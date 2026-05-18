@@ -11,8 +11,20 @@ from rugby.tiers import (
     extract_tier_men_pre_2021,
     extract_tier_women_current,
     extract_tier_women_pre_2018,
+    get_competition_offset,
     get_number_from_tier_name,
 )
+
+
+def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
+    """All-leagues era: apex merit rows share absolute tier 11 (local 1 + offset 10)."""
+    for season in ("2008-2009", "2009-2010"):
+        assert get_competition_offset("East_Midlands", season) == 10
+        assert get_competition_offset("Nottinghamshire", season) == 10
+    assert get_competition_offset("East_Midlands", "2007-2008") == 8
+    assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
+    assert get_competition_offset("East_Midlands", "2010-2011") == 8
+    assert get_competition_offset("Nottinghamshire", "2010-2011") == 9
 
 
 class TestExtractTierMenCurrent:

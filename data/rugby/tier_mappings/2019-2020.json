@@ -97,10 +97,10 @@
       ]
     },
     "3": {
-      "Banana Bread Beer Merit Table": "-",
-      "Directors Merit Table": "-",
-      "Estrella Damm Merit Table": "-",
-      "Youngs London Stout Merit Table": "-"
+      "Banana Bread Beer Merit Table": "Bombardier Merit Table",
+      "Directors Merit Table": "Bombardier Merit Table",
+      "Estrella Damm Merit Table": "Bombardier Merit Table",
+      "Youngs London Stout Merit Table": "Bombardier Merit Table"
     }
   },
   "Eastern_Counties": {
@@ -188,6 +188,9 @@
     }
   },
   "Lancashire": {
+    "1": {
+      "ADM 1st Division": "Lancs/Cheshire Division One"
+    },
     "2": {
       "ADM 1st Division": "Lancs/Cheshire Division Two"
     }
@@ -281,7 +284,10 @@
     },
     "7": {
       "NOWIRUL Division 5 East": "NOWIRUL Division 4 East",
-      "NOWIRUL Division 5 North": "NOWIRUL James Trickett & Co Division 4 North",
+      "NOWIRUL Division 5 North": [
+        "NOWIRUL Division 4 East",
+        "NOWIRUL Howell & Co Division 4 West"
+      ],
       "NOWIRUL Widnes Coaches Ltd Division 5 West": "NOWIRUL Howell & Co Division 4 West"
     }
   },
@@ -305,8 +311,8 @@
       "Surrey Championship": "Surrey Premiership"
     },
     "4": {
-      "Surrey Conference North": "-",
-      "Surrey Conference South": "-"
+      "Surrey Conference North": "Surrey Championship",
+      "Surrey Conference South": "Surrey Championship"
     },
     "5": {
       "Surrey Combination 1 North": "Surrey Conference North",

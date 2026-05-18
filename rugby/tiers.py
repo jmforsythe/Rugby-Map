@@ -56,12 +56,16 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2017-2018", "2017-2018", 10),
     ],
     "East_Midlands": [
-        ("2009-2010", "2009-2010", 11),
+        # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming drops (2009-2010)
+        # or below Midlands 6 East (tier 10) when present (2008-2009): local 1 → absolute 11.
+        ("2008-2009", "2009-2010", 10),
     ],
     "Essex": [
         ("2008-2009", "2008-2009", 11),
         ("2010-2011", "2013-2014", 10),
-        ("2014-2015", "2022-2023", 9),
+        # 2022-2023 only: apex one band higher than 2014-2015 .. 2021-2022 (offset 9).
+        ("2022-2023", "2022-2023", 8),
+        ("2014-2015", "2021-2022", 9),
     ],
     "GRFU_District": [
         ("2010-2011", "2011-2012", 11),
@@ -104,19 +108,20 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
         ("2017-2018", "2017-2018", 9),
-        ("2018-2019", "2018-2019", 10),
+        # Align with 2019-2020: NW merit apex shares the Lancashire stem row (abs 10).
+        ("2018-2019", "2018-2019", 9),
         ("2019-2020", "2019-2020", 9),
         ("2021-2022", "2021-2022", 7),
         ("2022-2023", "2023-2024", 10),
         ("2024-2025", "2025-2026", 9),
     ],
     "Nottinghamshire": [
-        ("2009-2010", "2009-2010", 11),
+        ("2008-2009", "2009-2010", 10),
     ],
     "Rural_Kent": [
         ("2008-2009", "2010-2011", 10),
         ("2011-2012", "2012-2013", 8),
-        ("2013-2014", "2018-2019", 11),
+        ("2013-2014", "2018-2019", 9),
         ("2019-2020", "2019-2020", 8),
         ("2021-2022", "2021-2022", 8),
         ("2022-2023", "2022-2023", 10),
@@ -508,6 +513,10 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/Devon": (1 if season >= "2025-2026" else 0),
         "merit/East_Midlands": 1,
         "merit/Eastern_Counties": 0,
+        # Essex 2022-2023 renamed Division_1 to Premier_Division (no Division_1 that
+        # season). Specific prefix gives "Premier_Division" → 1+0=1 so it slots into
+        # the merit pyramid as local tier 1 instead of tier 0 (which created a gap).
+        "merit/Essex/Premier": 1,
         "merit/Essex": 0,
         "merit/GRFU_District": 0,
         "merit/Hampshire/Solent": 5,
@@ -517,7 +526,11 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/Middlesex": 1,
         "merit/Midlands_Reserve": 0,
         "merit/Lancashire/Premier": 1,
-        "merit/Lancashire": (2 if "2016-2017" <= season <= "2019-2020" else 1),
+        # Lancashire merit always uses offset 1: it never has a Championship-style
+        # second-named tier above the divisions (unlike NOWIRUL 2017-2020), so the
+        # Premier league is local 1 directly. Without this, ADM_Premier_Division
+        # in 2018-2020 was misplaced at local 2, leaving a gap at local 1.
+        "merit/Lancashire": 1,
         "merit/NOWIRUL/Premier": 1,
         "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/Nottinghamshire": 0,
@@ -634,10 +647,17 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "merit/Middlesex": 0,
         "merit/Midlands_Reserve": 0,
         "merit/Lancashire/Premier": 1,
-        "merit/Lancashire": (2 if "2016-2017" <= season <= "2019-2020" else 1),
+        # Lancashire merit always uses offset 1: it never has a Championship-style
+        # second-named tier above the divisions (unlike NOWIRUL 2017-2020), so the
+        # Premier league is local 1 directly.
+        "merit/Lancashire": 1,
         "merit/NOWIRUL/Premier": 1,
         "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/Nottinghamshire": 0,
+        # Rural Kent 2013-2018 has a single "Premier 2 East" file at the top of the merit
+        # pyramid; the `_2_` is the tier number, so a specific prefix forces num extraction
+        # past "Premier" (which would otherwise return 0).
+        "merit/Rural_Kent/Premier": 0,
         "merit/Rural_Kent": 0,
         "merit/Surrey": 1,
         "merit/Sussex": 3,

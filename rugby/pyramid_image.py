@@ -99,6 +99,10 @@ STEM_PARENT_OVERRIDE_SCHEMA_VERSION = 2
 # span one cell across the horizontal union of those parents' tier-(N−1) bands.
 StemParentOverrides = dict[tuple[int, str], tuple[str, ...]]
 
+# Synthetic merit-bridge league names (diagram-only); BOM prefix avoids accidental RFU collisions.
+_MERIT_CHAIN_LEAGUE_PREFIX = "\ufeffMeritChain_"
+_MERIT_EMPTY_COLUMN_SPACER_PREFIX = "\ufeffMeritColSpacer_"
+
 
 @dataclass(frozen=True)
 class StemSlotBand:
@@ -557,6 +561,10 @@ class LeagueData:
     #: Merit competition **local** tier from RFU filenames (1-based within that competition). Used for parent matching when
     #: ``tier_num`` is re-stamped to a visible band or to an absolute pyramid tier.
     merit_local_tier: int | None = None
+    #: Synthetic row bridging skipped merit tiers so layout aligns under distant JSON parents (diagram only).
+    merit_chain_placeholder: bool = False
+    #: Diagram-only spacer filling a parent column when no real (or bridge) league maps there (sparse rows).
+    merit_column_spacer: bool = False
 
 
 @dataclass
@@ -1496,6 +1504,8 @@ def _match_parent_override_label(
     ptier: int,
     season: str,
     child_league_name: str,
+    *,
+    log_miss: bool = True,
 ) -> LeagueData | None:
     """Resolve one override parent string against tier-(``ptier``) ``parents``."""
     want = _strip_league_title_sponsors(want_raw).strip().casefold()
@@ -1510,12 +1520,74 @@ def _match_parent_override_label(
     ]
     if len(fuzzy) == 1:
         return fuzzy[0]
-    logger.warning(
-        "Stem parent override %r for %r does not match any tier-%d league; ignoring.",
-        want_raw,
-        child_league_name,
-        ptier,
-    )
+    if log_miss:
+        logger.warning(
+            "Stem parent override %r for %r does not match any tier-%d league; ignoring.",
+            want_raw,
+            child_league_name,
+            ptier,
+        )
+    return None
+
+
+def _merit_ancestor_candidate_pool(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    child: LeagueData,
+) -> list[LeagueData]:
+    """Same-geocode-merit leagues strictly below ``child`` within this diagram slice.
+
+    Counties stem merit rows use absolute tiers ``>= 7`` so ancestors live in ``7 … child-1``.
+    Standalone merit pyramids use visible bands ``1 … K``; ancestors live in ``1 … child-1``.
+
+    Used when RFU data skips a rung but tier_mappings tie a child to a grandparent-style feeder.
+    Chain placeholders (:attr:`LeagueData.merit_chain_placeholder`) are excluded — only real RFU leagues
+    anchor overrides.
+    """
+    comp = child.merit_geocoded_competition
+    if comp is None:
+        return []
+    ct = child.tier_num
+    lo = 7 if ct >= 7 else 1
+    out: list[LeagueData] = []
+    for t in range(lo, ct):
+        for lg in leagues_by_tier.get(t, ()):
+            if lg.merit_geocoded_competition != comp:
+                continue
+            if getattr(lg, "merit_chain_placeholder", False):
+                continue
+            out.append(lg)
+    return out
+
+
+def _match_parent_override_in_merit_ancestor_pool(
+    pool: list[LeagueData],
+    want_raw: str,
+    season: str,
+    child_tier_num: int,
+) -> LeagueData | None:
+    """Match override label to any same-competition ancestor; prefer the closest tier below the child."""
+    want_cf = _strip_league_title_sponsors(want_raw).strip().casefold()
+    if not want_cf:
+        return None
+    elig = [p for p in pool if p.tier_num < child_tier_num]
+    exact = [
+        p for p in elig if _strip_league_title_sponsors(p.league_name).strip().casefold() == want_cf
+    ]
+    if len(exact) == 1:
+        return exact[0]
+    if len(exact) > 1:
+        return max(exact, key=lambda p: p.tier_num)
+
+    fuzzy: list[LeagueData] = []
+    for p in elig:
+        tk_w = _stem_identity_tail_key(want_raw, p.tier_num, season)
+        tk_p = _stem_identity_tail_key(p.league_name, p.tier_num, season)
+        if tk_w == tk_p:
+            fuzzy.append(p)
+    if len(fuzzy) == 1:
+        return fuzzy[0]
+    if len(fuzzy) > 1:
+        return max(fuzzy, key=lambda p: p.tier_num)
     return None
 
 
@@ -1577,6 +1649,7 @@ def _resolve_stem_parents(
     parent_overrides: StemParentOverrides | None,
     *,
     merit_competition: str | None = None,
+    leagues_by_tier: dict[int, list[LeagueData]] | None = None,
 ) -> list[LeagueData]:
     """Heuristic parents unless ``parent_overrides`` fixes ``(tier, child) -> parent names``."""
     key = (child.tier_num, child.league_name)
@@ -1588,9 +1661,38 @@ def _resolve_stem_parents(
         ptier = child.tier_num - 1
         matched: list[LeagueData] = []
         seen_pk: set[tuple[int, str]] = set()
+        use_merit_pool = (
+            child.merit_geocoded_competition is not None and leagues_by_tier is not None
+        )
+        merit_pool: list[LeagueData] = (
+            _merit_ancestor_candidate_pool(leagues_by_tier, child)
+            if use_merit_pool and leagues_by_tier is not None
+            else []
+        )
         for want_raw in specs:
-            p = _match_parent_override_label(parents, want_raw, ptier, season, child.league_name)
+            p = _match_parent_override_label(
+                parents,
+                want_raw,
+                ptier,
+                season,
+                child.league_name,
+                log_miss=False,
+            )
+            if p is None and merit_pool:
+                p = _match_parent_override_in_merit_ancestor_pool(
+                    merit_pool,
+                    want_raw,
+                    season,
+                    child.tier_num,
+                )
             if p is None:
+                logger.warning(
+                    "Stem parent override %r for %r does not match tier-%d or same-competition "
+                    "ancestor pool; ignoring.",
+                    want_raw,
+                    child.league_name,
+                    ptier,
+                )
                 continue
             pk = (p.tier_num, p.league_name)
             if pk not in seen_pk:
@@ -1732,6 +1834,88 @@ def pyramid_band_tier_label(
     return mens_current_tier_name(visible_tier, season)
 
 
+def merit_augment_skipped_parent_chains_for_pyramid(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    parent_overrides: StemParentOverrides | None,
+    *,
+    season: str,
+    merit_competition: str,
+    merit_local_offset: int,
+) -> tuple[dict[int, list[LeagueData]], StemParentOverrides]:
+    """Insert synthetic leagues so JSON parents multiple bands above lay out tier-by-tier.
+
+    When tier_mappings tie a merit child to an ancestor more than one visible band above (RFU data
+    skipped intermediate rungs), :func:`_merit_parent_aligned_band_placements` cannot map the child
+    under that parent and the SVG stretches it across the full chord. For each single-parent override
+    that resolves to such an ancestor, this inserts one placeholder row per skipped band, wires each
+    placeholder's override to the league immediately below, and retargets the real child's override to
+    the nearest placeholder — yielding an imaginary chain ``child → … → anchor``. Multi-parent
+    overrides are unchanged.
+    """
+    src = parent_overrides or {}
+    lb: dict[int, list[LeagueData]] = {t: list(ls) for t, ls in leagues_by_tier.items()}
+    ovs: StemParentOverrides = dict(src)
+    uid = [0]
+
+    def synth_league(tier_visible: int) -> LeagueData:
+        uid[0] += 1
+        label = pyramid_band_tier_label(
+            tier_visible,
+            season,
+            DEFAULT_GENDER,
+            merit_competition=merit_competition,
+            merit_local_offset=merit_local_offset,
+        )
+        name = f"{_MERIT_CHAIN_LEAGUE_PREFIX}{tier_visible}_{uid[0]}"
+        return LeagueData(
+            tier_num=tier_visible,
+            tier_name=label,
+            league_name=name,
+            teams=[],
+            team_count=0,
+            merit_geocoded_competition=merit_competition,
+            merit_local_tier=None,
+            merit_chain_placeholder=True,
+        )
+
+    def anchor_parent(pspec: tuple[str, ...], child_ld: LeagueData) -> LeagueData | None:
+        if len(pspec) != 1:
+            return None
+        pool = _merit_ancestor_candidate_pool(lb, child_ld)
+        return _match_parent_override_in_merit_ancestor_pool(
+            pool, pspec[0], season, child_ld.tier_num
+        )
+
+    for tc in sorted(lb.keys()):
+        if tc <= 1:
+            continue
+        for lg in list(lb.get(tc, ())):
+            if getattr(lg, "merit_chain_placeholder", False):
+                continue
+            key = (tc, lg.league_name)
+            pspec = ovs.get(key)
+            if not pspec:
+                continue
+            anchor = anchor_parent(pspec, lg)
+            if anchor is None:
+                continue
+            tp = anchor.tier_num
+            if tp >= tc - 1:
+                continue
+
+            cur_below = anchor.league_name
+            top_syn_name = ""
+            for mid in range(tp + 1, tc):
+                syn = synth_league(mid)
+                lb.setdefault(mid, []).append(syn)
+                ovs[(mid, syn.league_name)] = (cur_below,)
+                cur_below = syn.league_name
+                top_syn_name = syn.league_name
+            ovs[key] = (top_syn_name,)
+
+    return lb, ovs
+
+
 def _merit_chain_single_league_margin_label(
     leagues_by_tier: dict[int, list[LeagueData]],
     visible_tier: int,
@@ -1739,11 +1923,21 @@ def _merit_chain_single_league_margin_label(
     gender: Gender,
 ) -> str | None:
     """Merit-only: left margin shows league name when this band and every non-empty band above are single-league."""
-    row_here = leagues_by_tier.get(visible_tier, [])
+    row_here = [
+        lg
+        for lg in leagues_by_tier.get(visible_tier, [])
+        if not getattr(lg, "merit_chain_placeholder", False)
+        and not getattr(lg, "merit_column_spacer", False)
+    ]
     if len(row_here) != 1:
         return None
     for u in range(1, visible_tier):
-        row = leagues_by_tier.get(u, [])
+        row = [
+            lg
+            for lg in leagues_by_tier.get(u, [])
+            if not getattr(lg, "merit_chain_placeholder", False)
+            and not getattr(lg, "merit_column_spacer", False)
+        ]
         if not row:
             continue
         if len(row) != 1:
@@ -3868,6 +4062,8 @@ def _render_league_cell(
     prefix_merged_merit_competition: bool = False,
     strip_merit_tier_display_prefix: bool = False,
     labels_under_valid_crests: bool = False,
+    bg_bleed_l: float = 0.0,
+    bg_bleed_r: float = 0.0,
 ) -> str:
     """SVG fragment for one league cell: optional title strip + grid of crests or name fallbacks
     (``+X`` badge only when ``team_count`` exceeds loaded team rows).
@@ -3883,7 +4079,67 @@ def _render_league_cell(
     When ``labels_under_valid_crests`` is true, crest images shrink within each slot so the club
     name can render beneath URLs that load successfully, and vertical layout leaves a padded band at
     the bottom of the logo area so captions do not cross the league cell edge.
+
+    ``bg_bleed_l`` / ``bg_bleed_r`` widen the flat rectangle background only (tier bands with
+    multiple columns) so inter-column gutters do not show page behind; layout ``x`` / ``w`` stay
+    unchanged for titles and crests.
     """
+    if getattr(league, "merit_chain_placeholder", False):
+        bg_ph, _title_col = _league_cell_tier_colors(league, league.tier_num, gender)
+        cell_stroke_ph = (
+            LEAGUE_CELL_STROKE_WOMENS if gender == "womens" else LEAGUE_CELL_STROKE_MENS
+        )
+        if getattr(league, "merit_column_spacer", False):
+            inset = max(2.5, min(w, h) * 0.02)
+            ix = x + inset
+            iy = y + inset
+            iw = max(6.0, w - 2 * inset)
+            ih = max(6.0, h - 2 * inset)
+            clipped_body_ph = (
+                f'<rect x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" rx="5" '
+                f'fill="#ebebef" fill-opacity="0.72" stroke="{cell_stroke_ph}" '
+                f'stroke-width="1.05" stroke-dasharray="8 6"/>'
+            )
+        else:
+            pad = max(4.0, min(w, h) * 0.035)
+            ix = x + pad
+            iy = y + pad
+            iw = max(10.0, w - 2 * pad)
+            ih = max(10.0, h - 2 * pad)
+            cx = x + w / 2
+            cy = y + h / 2
+            inner = (
+                f'<rect x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" rx="6" '
+                f'fill="#f4f4f6" fill-opacity="0.95" stroke="{cell_stroke_ph}" '
+                f'stroke-width="1.10" stroke-dasharray="6 5"/>'
+            )
+            dots = _svg_text(
+                "\u22ee",
+                cx,
+                cy,
+                fill="#889",
+                size=min(16.0, h * 0.24),
+                weight="600",
+                anchor="middle",
+            )
+            clipped_body_ph = f"{inner}\n{dots}"
+        if trapezoid_points is not None and clip_id is not None:
+            pts = _svg_polygon_points_attr(trapezoid_points)
+            poly_bg = (
+                f'<polygon points="{pts}" fill="{bg_ph}" stroke="{cell_stroke_ph}" '
+                f'stroke-width="1.00"/>'
+            )
+            return (
+                f'<defs><clipPath id="{xml_escape(clip_id)}">'
+                f'<polygon points="{pts}"/></clipPath></defs>\n'
+                f'<g clip-path="url(#{xml_escape(clip_id)})">\n'
+                f"{poly_bg}\n"
+                f"{clipped_body_ph}\n"
+                "</g>\n"
+            )
+        outline_ph = _svg_rect(x, y, w, h, fill=bg_ph, stroke=cell_stroke_ph, stroke_width=1.0)
+        return f"{outline_ph}\n{clipped_body_ph}"
+
     team_rows = list(league.teams)
     extra_vs_count = max(0, league.team_count - len(team_rows))
     place_extra_badge = extra_vs_count > 0
@@ -4140,7 +4396,9 @@ def _render_league_cell(
             f"<g>\n{crest_layer_xml}\n</g>"
         )
 
-    outline = _svg_rect(x, y, w, h, fill=bg, stroke=cell_stroke, stroke_width=1.0)
+    bx = x - max(0.0, bg_bleed_l)
+    bw = w + max(0.0, bg_bleed_l) + max(0.0, bg_bleed_r)
+    outline = _svg_rect(bx, y, bw, h, fill=bg, stroke=cell_stroke, stroke_width=1.0)
     return f"{outline}\n{clipped_body}\n{crest_layer_xml}"
 
 
@@ -4381,6 +4639,12 @@ def _render_pyramid_band(
     if lay_vertical is None:
         return ""
 
+    band_gap_half = 0.0
+    if n >= 2:
+        lay_g = compute_band_layout(tier_num, n)
+        if lay_g is not None:
+            band_gap_half = lay_g.gap / 2.0
+
     lay_equal: BandLayout | None = None
     if rects_map is None:
         lay_equal = compute_band_layout(tier_num, n)
@@ -4405,6 +4669,7 @@ def _render_pyramid_band(
     y1 = lay_vertical.row_top_y + lay_vertical.cell_h
 
     merit_placements: list[tuple[LeagueData, float, float, int]] | None = None
+    merit_sparse_gap_half = 0.0
     merit_n_prev = 0
     if (
         merit_competition is not None
@@ -4417,7 +4682,7 @@ def _render_pyramid_band(
         prev_ord_m = merit_pyramid_band_orders.get(tier_num - 1, [])
         merit_n_prev = len(prev_ord_m)
         tpl_m = merit_equal_column_templates.get(merit_n_prev) if merit_n_prev >= 2 else None
-        if tpl_m is not None and n < merit_n_prev:
+        if tpl_m is not None and n <= merit_n_prev:
             lay_merit_align = replace(
                 tpl_m,
                 tier_num=tier_num,
@@ -4434,7 +4699,11 @@ def _render_pyramid_band(
                 lay_merit_align,
                 merit_parent_overrides,
                 merit_competition,
+                season=season,
+                merit_local_offset=merit_local_offset,
             )
+            if merit_n_prev >= 2:
+                merit_sparse_gap_half = lay_merit_align.gap / 2.0
 
     parts: list[str] = []
     if merit_placements is not None:
@@ -4446,14 +4715,18 @@ def _render_pyramid_band(
             clip_id = None
             safe_left_x = None
             safe_right_x = None
+            mg = merit_sparse_gap_half
             if col_idx == 0:
-                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w)
+                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w + mg)
                 clip_id = f"pyramidT{tier_num}Lm{mi}"
                 safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
             elif col_idx == merit_n_prev - 1:
-                trap_pts = _trapezoid_right_points(y0, y1, x_rect)
+                trap_pts = _trapezoid_right_points(y0, y1, x_rect - mg)
                 clip_id = f"pyramidT{tier_num}Rm{mi}"
                 safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
+
+            mb_l = mg if trap_pts is None and col_idx > 0 else 0.0
+            mb_r = mg if trap_pts is None and col_idx < merit_n_prev - 1 else 0.0
 
             parts.append(
                 _render_league_cell(
@@ -4477,9 +4750,12 @@ def _render_pyramid_band(
                         merit_competition is not None and gender == "mens"
                     ),
                     labels_under_valid_crests=labels_under_valid_crests,
+                    bg_bleed_l=mb_l,
+                    bg_bleed_r=mb_r,
                 )
             )
     else:
+        gh = band_gap_half
         for i, lg in enumerate(leagues_ordered):
             bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
             if rects_map is not None:
@@ -4510,13 +4786,16 @@ def _render_pyramid_band(
                     safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
                     safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
             elif i == 0:
-                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w)
+                trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w + gh)
                 clip_id = f"pyramidT{tier_num}L{i}"
                 safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
             elif i == n - 1:
-                trap_pts = _trapezoid_right_points(y0, y1, x_rect)
+                trap_pts = _trapezoid_right_points(y0, y1, x_rect - gh)
                 clip_id = f"pyramidT{tier_num}R{i}"
                 safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
+
+            bg_l = gh if trap_pts is None and i > 0 else 0.0
+            bg_r = gh if trap_pts is None and i < n - 1 else 0.0
 
             parts.append(
                 _render_league_cell(
@@ -4540,6 +4819,8 @@ def _render_pyramid_band(
                         merit_competition is not None and gender == "mens"
                     ),
                     labels_under_valid_crests=labels_under_valid_crests,
+                    bg_bleed_l=bg_l,
+                    bg_bleed_r=bg_r,
                 )
             )
 
@@ -4750,6 +5031,34 @@ def _merit_resolve_parent_column_index(
     return None
 
 
+def _merit_empty_column_spacer_league(
+    tier_num: int,
+    merit_competition: str,
+    col_idx: int,
+    *,
+    season: str,
+    merit_local_offset: int,
+) -> LeagueData:
+    """Reserve a parent-aligned slot when no merit league maps into that column (diagram-only)."""
+    label = pyramid_band_tier_label(
+        tier_num,
+        season,
+        DEFAULT_GENDER,
+        merit_competition=merit_competition,
+        merit_local_offset=merit_local_offset,
+    )
+    return LeagueData(
+        tier_num=tier_num,
+        tier_name=label,
+        league_name=f"{_MERIT_EMPTY_COLUMN_SPACER_PREFIX}{tier_num}_{col_idx}",
+        teams=[],
+        team_count=0,
+        merit_geocoded_competition=merit_competition or None,
+        merit_chain_placeholder=True,
+        merit_column_spacer=True,
+    )
+
+
 def _merit_parent_aligned_band_placements(
     tier_num: int,
     leagues_ordered: list[LeagueData],
@@ -4757,20 +5066,26 @@ def _merit_parent_aligned_band_placements(
     lay_template: BandLayout,
     parent_overrides: StemParentOverrides | None,
     merit_competition: str | None,
+    *,
+    season: str,
+    merit_local_offset: int,
 ) -> list[tuple[LeagueData, float, float, int]] | None:
-    """Place leagues in parent-column slots when this band is **sparse** (fewer cells than above).
+    """Place leagues in parent-column slots when this band has no more leagues than the tier above.
 
-    Without this, ``compute_band_layout(..., n=1)`` stretches a single child across the full
-    chord (e.g. GRFU: Gloucester & District 3 under Bristol+Gloucester tier 2), which looks
-    like the league sits under both parents. We reuse the tier-(N−1) column template so
-    empty parent columns stay blank.
+    Reuses the tier-(N−1) column template so sparse rows do not stretch across the chord.
+    Columns with no mapped league render a diagram-only spacer so the tier above keeps correct
+    horizontal rhythm (avoid another parent's cell visually occupying that slice).
+
+    Returns ``None`` when alignment cannot be inferred or when there are strictly more leagues here
+    than parent columns (caller falls back to equal-width slots).
     """
     n_prev = len(prev_ord)
     n_here = len(leagues_ordered)
-    if n_prev < 2 or n_here >= n_prev or tier_num <= 1:
+    if n_prev < 2 or n_here > n_prev or tier_num <= 1:
         return None
     ovs = parent_overrides or {}
     comp = merit_competition or ""
+    mc_for_ld = merit_competition or ""
     buckets: defaultdict[int, list[LeagueData]] = defaultdict(list)
 
     for lg in leagues_ordered:
@@ -4802,6 +5117,16 @@ def _merit_parent_aligned_band_placements(
     for col_idx in range(n_prev):
         kids = buckets[col_idx]
         if not kids:
+            spacer = _merit_empty_column_spacer_league(
+                tier_num,
+                mc_for_ld,
+                col_idx,
+                season=season,
+                merit_local_offset=merit_local_offset,
+            )
+            cx_cell = lay_template.row_left_x + (col_idx + 0.5) * lay_template.cell_w_raw
+            x_rect = cx_cell - lay_template.cell_w / 2
+            out.append((spacer, x_rect, lay_template.cell_w, col_idx))
             continue
         kids_sorted = sorted(kids, key=lambda x: _merit_natural_league_sort_key(x.league_name))
         span_l, span_r = cell_horizontal_extent(lay_template, col_idx)
@@ -4814,7 +5139,7 @@ def _merit_parent_aligned_band_placements(
             split_cells = _apply_interior_column_gaps(raw_cells, lay_template.gap)
             for lg, (x_rect, cell_w) in zip(kids_sorted, split_cells, strict=True):
                 out.append((lg, x_rect, cell_w, col_idx))
-    return out or None
+    return out
 
 
 # Counties 1 row (tier 7): Western → Southern → Midlands blocks, then northern blocks,
@@ -4916,6 +5241,7 @@ def _build_stem_forest(
                 season,
                 parent_overrides,
                 merit_competition=merit_competition,
+                leagues_by_tier=leagues_by_tier,
             )
             if not parent_lds:
                 orphan_node = StemTreeNode(lg)
@@ -5891,7 +6217,9 @@ def render_pyramid_svg(
     Merit diagrams use a **variable-height** taper: only tiers with data are drawn, the outline
     closes at the lowest tier (not an empty six-row shell), and local tiers beyond band 6 keep
     the trapezoid taper instead of a rectangular stem. ``parent_overrides`` for merit are keyed
-    by **visible band** (after offset translation by the caller).
+    by **visible band** (after offset translation by the caller). Skipped intra-merit rungs (JSON parent
+    several bands above the child) gain diagram-only placeholder rows so narrow-column alignment still
+    nests under that ancestor instead of stretching across the chord.
 
     When ``mens_merge_merit_leagues`` is True (``pyramid_All_Leagues``), national tiers 4–6 still
     use the usual NL2 / Regional / Counties nested layout; merit rows on those tiers share the
@@ -5920,6 +6248,16 @@ def render_pyramid_svg(
     leagues_by_tier: dict[int, list[LeagueData]] = {}
     for lg in leagues:
         leagues_by_tier.setdefault(lg.tier_num, []).append(lg)
+
+    merit_pyramid_parent_ov = parent_overrides
+    if is_merit and merit_competition and parent_overrides:
+        leagues_by_tier, merit_pyramid_parent_ov = merit_augment_skipped_parent_chains_for_pyramid(
+            leagues_by_tier,
+            parent_overrides,
+            season=season,
+            merit_competition=merit_competition,
+            merit_local_offset=merit_local_offset,
+        )
 
     merit_max_tier = 0
     if is_merit:
@@ -6049,7 +6387,7 @@ def render_pyramid_svg(
                 mct = _merit_equal_column_templates(leagues_by_tier, max_tier=merit_max_tier)
                 merit_equal_column_templates = mct if mct else None
                 merit_pyramid_band_orders = {}
-                po_merit = parent_overrides
+                po_merit = merit_pyramid_parent_ov
                 for t in range(1, merit_max_tier + 1):
                     row_m = list(leagues_by_tier.get(t, []))
                     if not row_m:
@@ -6097,7 +6435,7 @@ def render_pyramid_svg(
                         merit_pyramid_band_orders=merit_pyramid_band_orders,
                         merit_equal_column_templates=merit_equal_column_templates,
                         mens_merge_merit_leagues=mens_merge_merit_leagues,
-                        merit_parent_overrides=parent_overrides if is_merit else None,
+                        merit_parent_overrides=merit_pyramid_parent_ov if is_merit else None,
                         labels_under_valid_crests=labels_under_valid_crests,
                     )
                 )
@@ -6381,7 +6719,9 @@ def merit_interactive_feeder_overrides(
 
     Operates on **local** merit tier numbers (JSON / disk convention). Apex rows (minimum local
     tier present) pick parents from the men's pyramid row at tier
-    :func:`merit_pyramid_absolute_parent_tier`. Deeper rows pick from merit tier-(N−1).
+    :func:`merit_pyramid_absolute_parent_tier`. Deeper rows prefer merit tier-(N−1); if that tier
+    has no leagues in geocoded data, the prompt lists **every** merit league on a higher level
+    (lower local tier), nearest tier first, so a child can attach multiple local tiers above.
 
     Blank / ``0`` records explicit unlink (``"-"``). Comma-separated indices assign multiple parents.
     ``s`` / ``stop`` exits early. ``seed_overrides_local`` seeds prior JSON work.
@@ -6409,7 +6749,7 @@ def merit_interactive_feeder_overrides(
     if len(tiers_present) >= 2:
         extra_tier_note = (
             f"\n  Then intra-merit tiers {min_tier + 1} .. {tiers_present[-1]} "
-            "(local child → merit tier-(N−1))."
+            "(prefer merit tier-(N−1); if empty, choose any higher merit tier)."
         )
 
     print(
@@ -6443,23 +6783,39 @@ def merit_interactive_feeder_overrides(
             )
             return overrides
 
-        local_tier, child, candidates = nxt
+        local_tier, child, candidates, intra_expanded_to_higher_merit = nxt
         if local_tier == min_tier:
             banner = (
                 f"Merit pyramid {comp_display!r} — apex → men's pyramid "
                 f"(local tier {local_tier}, target {mens_current_tier_name(apex_abs_parent, season)})"
             )
+            pick_instruction = None
+            show_merit_local_on_candidates = False
         else:
-            banner = (
-                f"Merit pyramid {comp_display!r} — assign parent(s) "
-                f"(local tier {local_tier} child → local tier {local_tier - 1})"
-            )
+            if intra_expanded_to_higher_merit:
+                banner = (
+                    f"Merit pyramid {comp_display!r} — assign parent(s) "
+                    f"(local tier {local_tier} child; no leagues at local tier {local_tier - 1})"
+                )
+                pick_instruction = (
+                    "Pick parent league(s) from any higher merit tier "
+                    f"(local tier ≤ {local_tier - 2}); nearest tier listed first:"
+                )
+            else:
+                banner = (
+                    f"Merit pyramid {comp_display!r} — assign parent(s) "
+                    f"(local tier {local_tier} child → local tier {local_tier - 1})"
+                )
+                pick_instruction = f"Pick merit local tier {local_tier - 1} parent(s):"
+            show_merit_local_on_candidates = True
         choice = _stem_prompt_parent_pick(
             local_tier,
             child,
             candidates,
             banner=banner,
             prompt_parent_numeric_tier=apex_abs_parent if local_tier == min_tier else None,
+            pick_instruction=pick_instruction,
+            show_candidate_merit_local_tier=show_merit_local_on_candidates,
         )
         if choice is None:
             logger.info(
@@ -6472,6 +6828,36 @@ def merit_interactive_feeder_overrides(
         overrides[(local_tier, child.league_name)] = choice
 
 
+def _merit_intra_parent_candidates(
+    leagues_by_local_tier: dict[int, list[LeagueData]],
+    child_local_tier: int,
+    min_tier: int,
+) -> tuple[list[LeagueData], bool]:
+    """Parents for an intra-merit child at ``child_local_tier``.
+
+    Prefer leagues at ``child_local_tier - 1``. If that tier is empty in geocoded data, use every
+    league on tiers ``min_tier .. child_local_tier - 2`` (higher merit levels), descending tier so
+    the nearest populated tier appears first; within each tier, alphabetical.
+
+    Returns ``(candidates, expanded)`` where ``expanded`` is True when the immediate tier had no
+    leagues and candidates were drawn from farther above.
+    """
+    immediate_parent_tier = child_local_tier - 1
+    immediate = list(leagues_by_local_tier.get(immediate_parent_tier, ()))
+    immediate.sort(key=lambda lg: lg.league_name)
+    if immediate:
+        return immediate, False
+
+    merged: list[LeagueData] = []
+    seen: set[str] = set()
+    for t in range(child_local_tier - 2, min_tier - 1, -1):
+        for lg in sorted(leagues_by_local_tier.get(t, ()), key=lambda x: x.league_name):
+            if lg.league_name not in seen:
+                seen.add(lg.league_name)
+                merged.append(lg)
+    return merged, True
+
+
 def _merit_next_missing_prompt(
     leagues_by_local_tier: dict[int, list[LeagueData]],
     overrides: StemParentOverrides,
@@ -6479,8 +6865,13 @@ def _merit_next_missing_prompt(
     competition: str,
     season: str,
     mens_by_pyramid_abs_tier: dict[int, list[LeagueData]],
-) -> tuple[int, LeagueData, list[LeagueData]] | None:
-    """Next merit league missing overrides: apex → men's pyramid, then intra-merit feeders."""
+) -> tuple[int, LeagueData, list[LeagueData], bool] | None:
+    """Next merit league missing overrides: apex → men's pyramid, then intra-merit feeders.
+
+    Fourth tuple element is ``intra_expanded_to_higher_merit``: True when intra-merit parent
+    candidates omit the immediate tier above because it had no leagues (see
+    :func:`_merit_intra_parent_candidates`). Always ``False`` for apex rows.
+    """
     feed_abs = merit_pyramid_absolute_parent_tier(competition, min_tier, season)
     pyramid_parents = sorted(
         mens_by_pyramid_abs_tier.get(feed_abs, ()), key=lambda lg: lg.league_name
@@ -6488,16 +6879,15 @@ def _merit_next_missing_prompt(
     if pyramid_parents:
         for lg in sorted(leagues_by_local_tier.get(min_tier, ()), key=lambda x: x.league_name):
             if (min_tier, lg.league_name) not in overrides:
-                return (min_tier, lg, pyramid_parents)
+                return (min_tier, lg, pyramid_parents, False)
 
     for tier in sorted(leagues_by_local_tier.keys()):
         if tier <= min_tier:
             continue
-        candidates = list(leagues_by_local_tier.get(tier - 1, ()))
-        candidates.sort(key=lambda lg: lg.league_name)
+        candidates, expanded = _merit_intra_parent_candidates(leagues_by_local_tier, tier, min_tier)
         for lg in sorted(leagues_by_local_tier.get(tier, ()), key=lambda lg: lg.league_name):
             if (tier, lg.league_name) not in overrides:
-                return (tier, lg, candidates)
+                return (tier, lg, candidates, expanded)
     return None
 
 
@@ -6547,12 +6937,19 @@ def _stem_prompt_parent_pick(
     *,
     banner: str | None = None,
     prompt_parent_numeric_tier: int | None = None,
+    pick_instruction: str | None = None,
+    show_candidate_merit_local_tier: bool = False,
 ) -> tuple[str, ...] | None:
     """``None`` stops further prompts; ``()`` means explicit unlink; otherwise parent name(s).
 
     Multi-parent tuples preserve pick order when several indices are given (e.g. ``1,2``).
 
     Use ``prompt_parent_numeric_tier`` when the parent's band is not ``tier - 1`` (merit apex→men).
+
+    ``pick_instruction`` overrides the default “Pick pyramid tier-…” line (used for merit intra).
+
+    When ``candidates`` is empty, returns ``()`` immediately (no stdin prompt) so the linker
+    advances; use hand-edited tier-mapping JSON to supply parents when pyramid data is absent.
     """
     tier_parent_show = (
         tier - 1 if prompt_parent_numeric_tier is None else prompt_parent_numeric_tier
@@ -6563,26 +6960,29 @@ def _stem_prompt_parent_pick(
         heading = "Pyramid feeder — assign Regional / NL2 parent"
     else:
         heading = "Counties stem — assign parent"
+    if pick_instruction is None:
+        instr_line = f"    Pick pyramid tier-{tier_parent_show} parent(s):\n"
+    else:
+        instr_line = f"    {pick_instruction}\n"
     print(
-        f"\n--- {heading}\n"
-        f"    Tier {tier} child: {child.league_name!r}\n"
-        f"    Pick pyramid tier-{tier_parent_show} parent(s):\n",
+        f"\n--- {heading}\n" f"    Tier {tier} child: {child.league_name!r}\n" f"{instr_line}",
         flush=True,
     )
     upper = len(candidates)
     if upper == 0:
         print(
-            "    (no leagues loaded at that tier)\n",
+            "    (no leagues loaded at that tier — leaving unlinked; use JSON to set parents.)\n",
             flush=True,
         )
-        raw = input("[Enter=leave unlinked, s=stop prompting]> ").strip().lower()
-        if raw in {"s", "stop"}:
-            return None
         return ()
 
     for i, p in enumerate(candidates, start=1):
         display = _strip_league_title_sponsors(p.league_name)
-        print(f"  [{i:2d}] {display}", flush=True)
+        if show_candidate_merit_local_tier:
+            lt = p.merit_local_tier if p.merit_local_tier is not None else p.tier_num
+            print(f"  [{i:2d}] (merit local {lt}) {display}", flush=True)
+        else:
+            print(f"  [{i:2d}] {display}", flush=True)
     print("  [ 0] Leave unlinked", flush=True)
     print("       comma-separated picks for multiple parents (e.g. 1,2).", flush=True)
     print("       s / stop — stop prompting for other orphans.\n", flush=True)
@@ -6851,10 +7251,14 @@ def merit_parent_overrides_from_payload(
     """Parse a per-merit ``<competition>`` section from tier-mapping JSON.
 
     Returns ``StemParentOverrides`` keyed by ``(local_tier, child_name)`` for the named
-    merit competition, or ``None`` when the section is absent or malformed. Rows from local tier
-    ``1`` onward are kept — tier ``1`` (or whichever is the apex for this competition after
-    data loads) may map to leagues on the **men's pyramid** feeder row immediately above this
-    competition's shallowest merit band.
+    merit competition, or ``None`` when the section is absent or malformed. Rows from
+    **local tier ``0`` onward** are kept — GRFU District and some other merits use
+    ``"0"`` for the shared ``… District Premier`` apex that feeds the men's pyramid;
+    tiers ``1+`` are intra-merit (or additional apex rows when no premier file exists).
+
+    The interactive linker and :func:`merit_parent_overrides_merge_cross_season` use the
+    shallowest **local** tier present in **geocoded** data as ``min_tier``; disk keys must
+    match that numbering so saved links round-trip.
     """
     if not isinstance(payload, dict):
         return None
@@ -6864,7 +7268,7 @@ def merit_parent_overrides_from_payload(
     flat = stem_parent_overrides_flatten_nested(nested)
     if flat is None:
         return None
-    filtered = {(t, n): v for (t, n), v in flat.items() if t >= 1}
+    filtered = {(t, n): v for (t, n), v in flat.items() if t >= 0}
     return filtered if filtered else None
 
 

@@ -13,8 +13,48 @@ from rugby.pyramid_image import (
     _team_lower_xv_roman,
     compute_band_layout,
     league_short_display_name,
+    merit_augment_skipped_parent_chains_for_pyramid,
+    merit_pyramid_absolute_child_tier,
     pyramid_band_tier_label,
 )
+
+
+def test_merit_augment_skipped_parent_chain_inserts_placeholders() -> None:
+    """Grandparent-style tier_mappings links gain synthetic tiers so layout can nest columns."""
+    comp = "Demo_Comp"
+    apex = LeagueData(
+        1,
+        "Demo_Comp 1",
+        "Parent Apex",
+        [],
+        0,
+        merit_geocoded_competition=comp,
+        merit_local_tier=1,
+    )
+    deep = LeagueData(
+        4,
+        "Demo_Comp 4",
+        "Deep Child",
+        [],
+        0,
+        merit_geocoded_competition=comp,
+        merit_local_tier=4,
+    )
+    lb = {1: [apex], 4: [deep]}
+    ovs = {(4, "Deep Child"): ("Parent Apex",)}
+    out_lb, out_ovs = merit_augment_skipped_parent_chains_for_pyramid(
+        lb,
+        ovs,
+        season="2022-2023",
+        merit_competition=comp,
+        merit_local_offset=0,
+    )
+    assert len(out_lb[2]) == 1 and out_lb[2][0].merit_chain_placeholder
+    assert len(out_lb[3]) == 1 and out_lb[3][0].merit_chain_placeholder
+    mid2, mid3 = out_lb[2][0].league_name, out_lb[3][0].league_name
+    assert out_ovs[(2, mid2)] == ("Parent Apex",)
+    assert out_ovs[(3, mid3)] == (mid2,)
+    assert out_ovs[(4, "Deep Child")] == (mid3,)
 
 
 def test_team_lower_xv_roman_reserve_suffixes() -> None:
@@ -282,11 +322,21 @@ def test_merit_parent_aligned_band_gloucester_only_column() -> None:
         cell_h=60.0,
         row_top_y=10.0,
     )
-    pl = _merit_parent_aligned_band_placements(3, [child], prev, lay, ovs, "GRFU_District")
-    assert pl is not None and len(pl) == 1
-    _lg, x_rect, _w, col = pl[0]
+    pl = _merit_parent_aligned_band_placements(
+        3,
+        [child],
+        prev,
+        lay,
+        ovs,
+        "GRFU_District",
+        season="2025-2026",
+        merit_local_offset=0,
+    )
+    assert pl is not None and len(pl) == 2
+    by_col = {col: (lg, x_rect, cw) for lg, x_rect, cw, col in pl}
+    _lg, x_rect, _w = by_col[1]
     assert _lg.league_name == child.league_name
-    assert col == 1
+    assert by_col[0][0].merit_column_spacer is True
     assert x_rect >= lay.row_left_x + lay.cell_w_raw * 0.5
 
 
@@ -410,6 +460,13 @@ def test_pyramid_margin_tier1_championship_before_2009_premiership_pyramid() -> 
     assert pyramid_band_tier_label(1, "2008-2009", "mens") == "Championship"
     assert pyramid_band_tier_label(1, "2009-2010", "mens") == "Premiership"
     assert pyramid_band_tier_label(1, "2025-2026", "mens") == "Premiership"
+
+
+def test_merit_absolute_tier_apex_east_midlands_nottinghamshire_2008_2009() -> None:
+    """Bombardier League and Nottinghamshire Group 1 map to men's absolute tier 11 (offset 10)."""
+    for season in ("2008-2009", "2009-2010"):
+        assert merit_pyramid_absolute_child_tier("East_Midlands", 1, season) == 11
+        assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, season) == 11
 
 
 def test_national_league_division_short_title() -> None:

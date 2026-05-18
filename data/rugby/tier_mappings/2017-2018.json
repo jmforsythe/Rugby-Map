@@ -264,11 +264,11 @@
     }
   },
   "Rural_Kent": {
-    "0": {
+    "2": {
       "Premier 2 East": "Shepherd Neame Kent 2"
     },
     "3": {
-      "Late Red 3": "-"
+      "Late Red 3": "Premier 2 East"
     },
     "4": {
       "Cinque 4 East": "Late Red 3",
@@ -280,8 +280,8 @@
       "Surrey Championship": "Surrey 4"
     },
     "4": {
-      "Surrey East Conference": "-",
-      "Surrey West Conference": "-"
+      "Surrey East Conference": "Surrey Championship",
+      "Surrey West Conference": "Surrey Championship"
     },
     "5": {
       "Surrey Combination 1 North": [

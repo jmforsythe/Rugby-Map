@@ -60,23 +60,6 @@
       "Essex (Oranjeboom) League 3": "Essex (Spitfire) League 2"
     }
   },
-  "East_Midlands": {
-    "1": {
-      "Bombardier League": [
-        "Midlands 4 East (North)",
-        "Midlands 4 East (South)"
-      ]
-    },
-    "2": {
-      "Eagle IPA League": "Bombardier League"
-    },
-    "3": {
-      "Directors League": "Eagle IPA League",
-      "Waggledance League": "Eagle IPA League",
-      "Winter Warmer League": "Eagle IPA League",
-      "Courage Best League": "Eagle IPA League"
-    }
-  },
   "Essex": {
     "1": {
       "Essex BL Office Centre Merit Table Division 1": "Essex (Oranjeboom) League 3"
@@ -164,10 +147,13 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Group 1": "Midlands 5 East (North)"
+      "Group 1": [
+        "Midlands 6 East (NE)",
+        "Midlands 6 East (NW)"
+      ]
     },
     "3": {
-      "Group 3": "-"
+      "Group 3": "Group 1"
     },
     "4": {
       "Group 4": "Group 3"
@@ -185,6 +171,29 @@
     },
     "3": {
       "Division C": "Division B"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Bombardier League": [
+        "Midlands 6 East (NE)",
+        "Midlands 6 East (NW)"
+      ]
+    },
+    "2": {
+      "Eagle IPA League": "Bombardier League"
+    },
+    "3": {
+      "Courage Best League": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Courage Best League"
+    },
+    "5": {
+      "Waggledance League": "Directors League"
+    },
+    "6": {
+      "Winter Warmer League": "Waggledance League"
     }
   }
 }

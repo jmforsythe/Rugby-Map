@@ -86,8 +86,8 @@
       "East Midlands 1": "Counties 2 Midlands East (South)"
     },
     "3": {
-      "East Midlands 3 South": "-",
-      "East Midlands 3 West": "-"
+      "East Midlands 3 South": "East Midlands 1",
+      "East Midlands 3 West": "East Midlands 1"
     }
   },
   "Eastern_Counties": {
@@ -105,11 +105,11 @@
     }
   },
   "Essex": {
-    "0": {
+    "1": {
       "Premier Division": "Counties 2 Essex"
     },
     "2": {
-      "Division 2": "-"
+      "Division 2": "Premier Division"
     },
     "3": {
       "Division 3": "Division 2"
@@ -174,7 +174,7 @@
       "Leicestershire Merit B": "Leicestershire Merit A"
     },
     "4": {
-      "Leicestershire Merit D": "-"
+      "Leicestershire Merit D": "Leicestershire Merit B"
     }
   },
   "Middlesex": {

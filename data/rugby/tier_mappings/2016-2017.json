@@ -152,7 +152,7 @@
       "Solent League": "Snows Group Hampshire 2"
     },
     "7": {
-      "Solent League 2": "-"
+      "Solent League 2": "Solent League"
     },
     "8": {
       "Solent League 3": "Solent League 2"
@@ -282,11 +282,11 @@
     }
   },
   "Rural_Kent": {
-    "0": {
+    "2": {
       "Premier 2 East": "Shepherd Neame Kent 2"
     },
     "3": {
-      "Late Red 3": "-"
+      "Late Red 3": "Premier 2 East"
     },
     "4": {
       "Dragon Fire 4 East": "Late Red 3",
@@ -298,8 +298,8 @@
       "Surrey Chamionship": "Surrey 4"
     },
     "4": {
-      "Surrey East Conference": "-",
-      "Surrey West Conference": "-"
+      "Surrey East Conference": "Surrey Chamionship",
+      "Surrey West Conference": "Surrey Chamionship"
     },
     "5": {
       "Surrey Combination 1 North": [

@@ -64,17 +64,21 @@
   "East_Midlands": {
     "1": {
       "Bombardier League": [
-        "Midlands East (South) A",
-        "Midlands East (South) B"
+        "Midlands 5 East (North)",
+        "Midlands 5 East (South)"
       ]
     },
     "2": {
       "Eagle IPA League": "Bombardier League"
     },
-    "3": {
-      "Directors League": "Eagle IPA League",
-      "Waggledance League": "Eagle IPA League",
-      "Winter Warmer League": "Eagle IPA League"
+    "4": {
+      "Directors League": "Eagle IPA League"
+    },
+    "5": {
+      "Waggledance League": "Directors League"
+    },
+    "6": {
+      "Winter Warmer League": "Waggledance League"
     }
   },
   "Hampshire": {
@@ -131,7 +135,7 @@
       "LRU Division 3": "LRU Division 2"
     },
     "7": {
-      "LRU Division 6": "-"
+      "LRU Division 6": "LRU Division 3"
     },
     "8": {
       "LRU Division 7": "LRU Division 6"
@@ -156,10 +160,10 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Group 1": "-"
+      "Group 1": "Midlands 5 East (North)"
     },
     "3": {
-      "Group 3": "-"
+      "Group 3": "Group 1"
     },
     "4": {
       "Group 4": "Group 3"
@@ -188,7 +192,7 @@
       "Surrey JONAP Premier": "Surrey 4"
     },
     "3": {
-      "Surrey JONAP Alliance": "-"
+      "Surrey JONAP Alliance": "Surrey JONAP Premier"
     },
     "4": {
       "Surrey JONAP Conference 1": "Surrey JONAP Alliance",

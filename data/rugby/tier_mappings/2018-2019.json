@@ -187,10 +187,10 @@
     }
   },
   "Lancashire": {
-    "2": {
-      "ADM Premier Division": "-"
+    "1": {
+      "ADM Premier Division": "Lancs/Cheshire Division Three"
     },
-    "3": {
+    "2": {
       "ADM First Division": "ADM Premier Division"
     }
   },
@@ -253,7 +253,7 @@
   },
   "NOWIRUL": {
     "1": {
-      "Cotton Traders Premier League": "-"
+      "Cotton Traders Premier League": "Lancs/Cheshire Division Three"
     },
     "2": {
       "Cotton Traders Championship League": "Cotton Traders Premier League"
@@ -288,11 +288,11 @@
     }
   },
   "Rural_Kent": {
-    "0": {
+    "2": {
       "Premier 2 East": "Shepherd Neame Kent 2"
     },
     "3": {
-      "Late Red 3": "-"
+      "Late Red 3": "Premier 2 East"
     },
     "4": {
       "Five Grain 4 East": "Late Red 3",
@@ -304,8 +304,8 @@
       "Surrey Championship": "Surrey 4"
     },
     "4": {
-      "Surrey Conference North": "-",
-      "Surrey Conference South": "-"
+      "Surrey Conference North": "Surrey Championship",
+      "Surrey Conference South": "Surrey Championship"
     },
     "5": {
       "Surrey Combination 1 North": "Surrey Conference North",

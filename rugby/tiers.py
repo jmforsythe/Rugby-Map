@@ -264,22 +264,25 @@ _PLAYOFF_FIXTURE_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
 
 _NAMED_MERIT_LEAGUES: dict[str, int] = {
     # Values are **local** tiers (absolute minus competition offset).
-    # East Midlands (offset 8): Bombardier (1) > Eagle IPA/etc (2) > Directors/rest (3)
+    # East Midlands sponsor ladder (six tiers): Bombardier → Eagle IPA → Courage Best →
+    # Directors → Waggledance → Winter Warmer. Other sponsor-named files share local tier 7
+    # below that ladder. Prefix matching uses longest keys first (see _match_named_merit_leagues).
     "merit/East_Midlands/Bombardier": 1,
     "merit/East_Midlands/Eagle_IPA": 2,
-    "merit/East_Midlands/Youngs_Bitter": 2,
-    "merit/East_Midlands/Youngs_London_Gold": 2,
-    "merit/East_Midlands/Estrella_Damm_Merit": 3,
-    "merit/East_Midlands/Estrella": 2,
-    "merit/East_Midlands/Directors": 3,
-    "merit/East_Midlands/Courage": 3,
-    "merit/East_Midlands/Youngs_London_Stout": 3,
-    "merit/East_Midlands/Youngs": 3,
-    "merit/East_Midlands/Waggledance": 3,
-    "merit/East_Midlands/Red_Stripe": 3,
-    "merit/East_Midlands/Winter_Warmer": 3,
-    "merit/East_Midlands/Banana_Bread": 3,
-    "merit/East_Midlands/Dogs_Head": 3,
+    "merit/East_Midlands/Courage_Best": 3,
+    "merit/East_Midlands/Directors": 4,
+    "merit/East_Midlands/Waggledance_League": 5,
+    "merit/East_Midlands/Waggledance": 5,
+    "merit/East_Midlands/Winter_Warmer": 6,
+    "merit/East_Midlands/Youngs_London_Stout": 7,
+    "merit/East_Midlands/Youngs_London_Gold": 7,
+    "merit/East_Midlands/Youngs_Bitter": 7,
+    "merit/East_Midlands/Estrella_Damm_Merit": 7,
+    "merit/East_Midlands/Estrella": 7,
+    "merit/East_Midlands/Youngs": 7,
+    "merit/East_Midlands/Red_Stripe": 7,
+    "merit/East_Midlands/Banana_Bread": 7,
+    "merit/East_Midlands/Dogs_Head": 7,
     # East Midlands Northants A & B: B sits one level below A
     "merit/East_Midlands/East_Midlands_2_-_Northants_A": 2,
     "merit/East_Midlands/East_Midlands_2_-_Northants_B": 3,
@@ -340,7 +343,9 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     as league identifiers. Sponsor stripping destroys this identity, so we match
     the original path first to assign distinct local tiers within the hierarchy.
     """
-    for prefix, local_tier in _NAMED_MERIT_LEAGUES.items():
+    for prefix, local_tier in sorted(
+        _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True
+    ):
         if path.startswith(prefix):
             return (local_tier, f"Level {local_tier}")
     return None

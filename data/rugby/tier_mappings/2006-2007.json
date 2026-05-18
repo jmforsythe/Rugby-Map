@@ -30,8 +30,14 @@
       "Somerset Premier": "Western Counties North"
     },
     "9": {
-      "Berks/Bucks & Oxon 1 North": "Berks/Bucks & Oxon Premier",
-      "Berks/Bucks & Oxon 1 South": "Berks/Bucks & Oxon Premier",
+      "Berks/Bucks & Oxon 1 North": [
+        "Berks/Bucks & Oxon Prem A",
+        "Berks/Bucks & Oxon Premier"
+      ],
+      "Berks/Bucks & Oxon 1 South": [
+        "Berks/Bucks & Oxon Prem A",
+        "Berks/Bucks & Oxon Premier"
+      ],
       "Cornwall 1": "Cornwall/Devon",
       "Devon 1": "Cornwall/Devon",
       "Eastern Counties 1": "London 4 North East",

@@ -532,17 +532,17 @@ class TestNamedMeritLeagues:
         result = extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2014-2015")
         assert result == (2, "East Midlands 2")
 
-    def test_directors_third_tier(self):
+    def test_directors_fourth_tier(self):
         result = extract_tier("merit/East_Midlands/Directors_League.json", "2014-2015")
-        assert result == (3, "East Midlands 3")
+        assert result == (4, "East Midlands 4")
 
-    def test_estrella_second_tier(self):
+    def test_estrella_parallel_seventh_tier(self):
         result = extract_tier("merit/East_Midlands/Estrella_Damm.json", "2014-2015")
-        assert result == (2, "East Midlands 2")
+        assert result == (7, "East Midlands 7")
 
-    def test_youngs_bitter_second_tier(self):
+    def test_youngs_bitter_parallel_seventh_tier(self):
         result = extract_tier("merit/East_Midlands/Youngs_Bitter.json", "2014-2015")
-        assert result == (2, "East Midlands 2")
+        assert result == (7, "East Midlands 7")
 
     def test_bombardier_merit_table(self):
         result = extract_tier("merit/East_Midlands/Bombardier_Merit_Table.json", "2019-2020")
@@ -550,11 +550,11 @@ class TestNamedMeritLeagues:
 
     def test_directors_merit_table(self):
         result = extract_tier("merit/East_Midlands/Directors_Merit_Table.json", "2019-2020")
-        assert result == (3, "East Midlands 3")
+        assert result == (4, "East Midlands 4")
 
-    def test_banana_bread_lowest(self):
+    def test_banana_bread_parallel_seventh_tier(self):
         result = extract_tier("merit/East_Midlands/Banana_Bread_Beer_Merit_Table.json", "2019-2020")
-        assert result == (3, "East Midlands 3")
+        assert result == (7, "East Midlands 7")
 
     def test_numbered_format_unaffected(self):
         """Post-2022 numbered format should not be caught by named league matching."""

@@ -75,20 +75,18 @@
       "Bombardier League": "Tribute Cornwall League"
     },
     "2": {
-      "Eagle IPA League": "Bombardier League",
-      "Estrella Damm": "Bombardier League",
-      "Youngs Bitter": "Bombardier League"
+      "Eagle IPA League": "Bombardier League"
     },
-    "3": {
-      "Directors League": "Eagle IPA League",
-      "Waggledance": [
-        "Eagle IPA League",
-        "Youngs Bitter"
-      ],
-      "Youngs London Stout": [
-        "Eagle IPA League",
-        "Youngs Bitter"
-      ]
+    "4": {
+      "Directors League": "Eagle IPA League"
+    },
+    "5": {
+      "Waggledance": "Directors League"
+    },
+    "7": {
+      "Estrella Damm": "Eagle IPA League",
+      "Youngs Bitter": "Eagle IPA League",
+      "Youngs London Stout": "Eagle IPA League"
     }
   },
   "Eastern_Counties": {

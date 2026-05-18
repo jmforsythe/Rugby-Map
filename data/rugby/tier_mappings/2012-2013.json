@@ -97,11 +97,19 @@
       ]
     },
     "3": {
-      "Directors League": "Eagle IPA League",
-      "Courage Best League": "Eagle IPA League",
-      "Red Stripe": "Eagle IPA League",
-      "Waggledance League": "Eagle IPA League",
-      "Winter Warmer League": "Eagle IPA League"
+      "Courage Best League": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Courage Best League"
+    },
+    "5": {
+      "Waggledance League": "Directors League"
+    },
+    "6": {
+      "Winter Warmer League": "Waggledance League"
+    },
+    "7": {
+      "Red Stripe": "Eagle IPA League"
     }
   },
   "Essex": {

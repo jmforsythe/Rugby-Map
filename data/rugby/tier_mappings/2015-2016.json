@@ -88,16 +88,24 @@
       ]
     },
     "2": {
-      "Eagle IPA League": "Bombardier League",
-      "Estrella Damm": "Bombardier League",
-      "Youngs Bitter": "Bombardier League"
+      "Eagle IPA League": "Bombardier League"
     },
     "3": {
-      "Directors League": "Eagle IPA League",
-      "Youngs London Stout": [
-        "Eagle IPA League",
-        "Youngs Bitter"
-      ]
+      "Courage Best League": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Courage Best League"
+    },
+    "5": {
+      "Waggledance League": "Directors League"
+    },
+    "6": {
+      "Winter Warmer League": "Waggledance League"
+    },
+    "7": {
+      "Estrella Damm": "Eagle IPA League",
+      "Youngs Bitter": "Eagle IPA League",
+      "Youngs London Stout": "Eagle IPA League"
     }
   },
   "Eastern_Counties": {

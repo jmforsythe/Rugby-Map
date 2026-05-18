@@ -31,8 +31,14 @@
       "Tribute Somerset Premier": "Tribute Western Counties North"
     },
     "9": {
-      "Berks/Bucks & Oxon 1 North": "Berks/Bucks & Oxon Premier",
-      "Berks/Bucks & Oxon 1 South": "Berks/Bucks & Oxon Premier",
+      "Berks/Bucks & Oxon 1 North": [
+        "Berks/Bucks & Oxon Prem A",
+        "Berks/Bucks & Oxon Premier"
+      ],
+      "Berks/Bucks & Oxon 1 South": [
+        "Berks/Bucks & Oxon Prem A",
+        "Berks/Bucks & Oxon Premier"
+      ],
       "Eastern Counties 1": "London 3 North East",
       "Essex (Canterbury Jack) League 1": "London 3 North East",
       "Gloucester 1": "Gloucester Premier",
@@ -71,8 +77,11 @@
     "2": {
       "Eagle IPA League": "Bombardier League"
     },
+    "3": {
+      "Courage Best League": "Eagle IPA League"
+    },
     "4": {
-      "Directors League": "Eagle IPA League"
+      "Directors League": "Courage Best League"
     },
     "5": {
       "Waggledance League": "Directors League"

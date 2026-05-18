@@ -469,6 +469,20 @@ def test_merit_absolute_tier_apex_east_midlands_nottinghamshire_2008_2009() -> N
         assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, season) == 11
 
 
+def test_east_midlands_pyramid_preserves_sponsor_in_title() -> None:
+    """East Midlands merit pyramid labels keep sponsor wording (skip global sponsor stripping)."""
+    assert (
+        league_short_display_name(
+            "Bombardier League",
+            11,
+            "2008-2009",
+            merit_geocoded_competition="East_Midlands",
+        )
+        == "Bombardier League"
+    )
+    assert league_short_display_name("Bombardier League", 11, "2008-2009") == "League"
+
+
 def test_national_league_division_short_title() -> None:
     assert league_short_display_name("National League Three North", 5, "2018-2019") == "North"
     assert league_short_display_name("National League 3 North", 5, "2018-2019") == "North"

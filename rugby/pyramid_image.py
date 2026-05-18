@@ -779,6 +779,27 @@ def _strip_league_title_sponsor_phrases_anywhere(title: str) -> str:
     return out
 
 
+def _east_midlands_pyramid_league_title_normalize(league_name: str) -> str:
+    """Normalize East Midlands merit titles without stripping sponsor wording.
+
+    Pyramid labels keep Bombardier/Eagle IPA/etc. as part of the league identity; only
+    legacy ``x`` scrape markers and obsolete ``RFUW`` prefixes are removed (same as the
+    leading cleanup in :func:`_strip_league_title_sponsors`).
+    """
+    s = league_name.strip()
+    if not s:
+        return s
+    while len(s) >= 2 and s.startswith("x"):
+        s = s[1:].lstrip()
+    if not s:
+        return s
+    while s.startswith("RFUW "):
+        s = s[len("RFUW ") :].lstrip()
+    if not s:
+        return s
+    return _normalize_league_title_apostrophe(" ".join(s.split()))
+
+
 def _strip_league_title_sponsors(league_name: str) -> str:
     """Strip known RFU sponsor slabs from league titles.
 
@@ -1029,10 +1050,17 @@ def league_short_display_name(
     merit ``tier_name``, matching the standalone merit margin), that label plus a space is removed
     from the title before other men's shortening. Used only on per-competition merit pyramids,
     not on national or All Leagues diagrams.
+
+    East Midlands merit (``merit_geocoded_competition == "East_Midlands"``): sponsor wording in
+    ``league_name`` is kept for diagram titles; only legacy ``x`` / ``RFUW`` prefixes are cleaned.
     """
     if gender == "womens":
         return _womens_league_short_display_name(league_name, tier_num)
-    sponsor_stripped = _strip_league_title_sponsors(league_name)
+    sponsor_stripped = (
+        _east_midlands_pyramid_league_title_normalize(league_name)
+        if merit_geocoded_competition == "East_Midlands"
+        else _strip_league_title_sponsors(league_name)
+    )
     stripped = sponsor_stripped
     if (
         strip_merit_tier_display_prefix
@@ -1948,6 +1976,7 @@ def _merit_chain_single_league_margin_label(
         lg.tier_num,
         season,
         gender=gender,
+        merit_geocoded_competition=lg.merit_geocoded_competition,
         strip_merit_tier_display_prefix=gender == "mens",
         merit_tier_display_label=lg.tier_name if gender == "mens" else None,
     )

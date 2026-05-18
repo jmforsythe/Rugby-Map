@@ -493,6 +493,7 @@ _BANNED_FILENAMES = [
     "Bristol_&_District_3-4.json",
     "Gloucester_&_District_3-4.json",
     "Leicestershire_U18_League.json",
+    "Leicestershire_U17_League.json",
 ]
 
 

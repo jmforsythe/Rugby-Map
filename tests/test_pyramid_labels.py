@@ -463,9 +463,13 @@ def test_pyramid_margin_tier1_championship_before_2009_premiership_pyramid() -> 
 
 
 def test_merit_absolute_tier_apex_east_midlands_nottinghamshire_2008_2009() -> None:
-    """Bombardier League and Nottinghamshire Group 1 map to men's absolute tier 11 (offset 10)."""
-    for season in ("2008-2009", "2009-2010"):
+    """Bombardier (East Midlands) is absolute tier 11 with offset 10 through 2010-2011.
+
+    Nottinghamshire Group 1 keeps that apex only for 2008-2009 and 2009-2010 (offset 10).
+    """
+    for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert merit_pyramid_absolute_child_tier("East_Midlands", 1, season) == 11
+    for season in ("2008-2009", "2009-2010"):
         assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, season) == 11
 
 

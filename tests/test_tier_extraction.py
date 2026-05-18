@@ -17,13 +17,14 @@ from rugby.tiers import (
 
 
 def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
-    """All-leagues era: apex merit rows share absolute tier 11 (local 1 + offset 10)."""
-    for season in ("2008-2009", "2009-2010"):
+    """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8)."""
+    for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert get_competition_offset("East_Midlands", season) == 10
+    for season in ("2008-2009", "2009-2010"):
         assert get_competition_offset("Nottinghamshire", season) == 10
     assert get_competition_offset("East_Midlands", "2007-2008") == 8
     assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
-    assert get_competition_offset("East_Midlands", "2010-2011") == 8
+    assert get_competition_offset("East_Midlands", "2011-2012") == 8
     assert get_competition_offset("Nottinghamshire", "2010-2011") == 9
 
 
@@ -435,6 +436,18 @@ class TestExtractTierMeritPath:
             "East Midlands 2",
         )
 
+    def test_rural_kent_invicta_apex_2010_2011(self):
+        """2010-2011: Invicta Three is local 1 above Divisions A–C."""
+        season = "2010-2011"
+        assert extract_tier("merit/Rural_Kent/Invicta_Three.json", season) == (1, "Rural Kent 1")
+        assert extract_tier("merit/Rural_Kent/Division_A.json", season) == (2, "Rural Kent 2")
+        assert extract_tier("merit/Rural_Kent/Division_B.json", season) == (3, "Rural Kent 3")
+        assert extract_tier("merit/Rural_Kent/Division_C.json", season) == (4, "Rural Kent 4")
+        assert extract_tier("merit/Rural_Kent/Division_A.json", "2011-2012") == (
+            1,
+            "Rural Kent 1",
+        )
+
     def test_backslash_path(self):
         """Windows-style backslash paths are normalised."""
         result = extract_tier("merit\\CANDY\\CANDY_1.json", "2025-2026")
@@ -459,6 +472,21 @@ class TestExtractTierMeritPath:
         assert extract_tier("merit/Surrey/Surrey_JONAP_Alliance.json", "2010-2011") == (
             3,
             "Surrey 3",
+        )
+
+    def test_surrey_premier_filenames_nine_rung_2010_2012(self):
+        """2010-2011..2012-2013: Surrey_Premier ladder uses nine locals (conference bands split)."""
+        assert extract_tier("merit/Surrey/Surrey_Conference_1.json", "2011-2012") == (
+            3,
+            "Surrey 3",
+        )
+        assert extract_tier("merit/Surrey/Surrey_Foundation_League.json", "2010-2011") == (
+            9,
+            "Surrey 9",
+        )
+        assert extract_tier("merit/Surrey/Surrey_Conference_1.json", "2013-2014") == (
+            4,
+            "Surrey 4",
         )
 
     def test_herts_middlesex_compound_suffixes(self):

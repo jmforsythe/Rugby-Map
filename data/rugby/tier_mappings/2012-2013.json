@@ -318,23 +318,29 @@
     "1": {
       "Surrey Premier": "Surrey 4"
     },
-    "3": {
+    "2": {
       "Surrey Alliance": "Surrey Premier"
     },
+    "3": {
+      "Surrey Conference 1": "Surrey Alliance"
+    },
     "4": {
-      "Surrey Conference 1": "Surrey Alliance",
-      "Surrey Conference 2": "Surrey Alliance",
-      "Surrey Conference 3": "Surrey Alliance"
+      "Surrey Conference 2": "Surrey Conference 1"
     },
     "5": {
-      "Surrey Combination 1": "Surrey Conference 1"
+      "Surrey Conference 3": "Surrey Conference 2"
     },
     "6": {
-      "Surrey Combination 2": "Surrey Combination 1"
+      "Surrey Combination 1": "Surrey Conference 3"
     },
     "7": {
-      "Surrey Combination 3": "Surrey Combination 2",
-      "Surrey Foundation League": "Surrey Combination 2"
+      "Surrey Combination 2": "Surrey Combination 1"
+    },
+    "8": {
+      "Surrey Combination 3": "Surrey Combination 2"
+    },
+    "9": {
+      "Surrey Foundation League": "Surrey Combination 3"
     }
   }
 }

@@ -133,8 +133,8 @@
   },
   "GRFU_District": {
     "1": {
-      "South 1": "Tribute Somerset 3 South",
-      "North 1": "Tribute Somerset 3 North"
+      "South 1": "Gloucester 3",
+      "North 1": "Gloucester 3"
     },
     "2": {
       "South 2": "South 1",
@@ -142,7 +142,7 @@
     },
     "3": {
       "South 3": "South 2",
-      "North 3": "South 2"
+      "North 3": "North 2"
     },
     "4": {
       "North 4": "North 3"
@@ -178,8 +178,7 @@
   },
   "Leicestershire": {
     "1": {
-      "LRU Premier": "Midlands 3 East (South)",
-      "Leicestershire U17 League": "Midlands 3 East (South)"
+      "LRU Premier": "Midlands 3 East (South)"
     },
     "2": {
       "LRU Division 1": "LRU Premier"
@@ -243,7 +242,7 @@
       "University of Salford Division 2 South": "University of Salford Division 1"
     },
     "4": {
-      "University of Salford Division 3 North": "University of Salford Division 2 South",
+      "University of Salford Division 3 North": "University of Salford Division 2 North",
       "University of Salford Division 3 South": "University of Salford Division 2 South"
     },
     "5": {
@@ -267,14 +266,16 @@
   },
   "Rural_Kent": {
     "1": {
-      "Division A": "Shepherd Neame Kent 2"
+      "Invicta Three": "Shepherd Neame Kent 2"
     },
     "2": {
-      "Division B": "Division A"
+      "Division A": "Invicta Three"
     },
     "3": {
-      "Division C": "Division B",
-      "Invicta Three": "Division B"
+      "Division B": "Division A"
+    },
+    "4": {
+      "Division C": "Division B"
     }
   },
   "Surrey": {
@@ -282,23 +283,29 @@
       "Surrey Premier": "Surrey 4",
       "London 1 South Reserve League": "Surrey 4"
     },
-    "3": {
+    "2": {
       "Surrey Alliance": "Surrey Premier"
     },
+    "3": {
+      "Surrey Conference 1": "Surrey Alliance"
+    },
     "4": {
-      "Surrey Conference 1": "Surrey Alliance",
-      "Surrey Conference 2": "Surrey Alliance",
-      "Surrey Conference 3": "Surrey Alliance"
+      "Surrey Conference 2": "Surrey Conference 1"
     },
     "5": {
-      "Surrey Combination 1": "Surrey Conference 1"
+      "Surrey Conference 3": "Surrey Conference 2"
     },
     "6": {
-      "Surrey Combination 2": "Surrey Combination 1"
+      "Surrey Combination 1": "Surrey Conference 3"
     },
     "7": {
-      "Surrey Combination 3": "Surrey Combination 2",
-      "Surrey Foundation League": "Surrey Combination 2"
+      "Surrey Combination 2": "Surrey Combination 1"
+    },
+    "8": {
+      "Surrey Combination 3": "Surrey Combination 2"
+    },
+    "9": {
+      "Surrey Foundation League": "Surrey Combination 3"
     }
   }
 }

@@ -58,9 +58,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "East_Midlands": [
         # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming drops (2009-2010)
         # or below Midlands 6 East (tier 10) when present (2008-2009): local 1 → absolute 11.
+        # Same offset through 2010-2011 (Bombardier parents Midlands 3 East North/South in tier_mappings).
         # With Leicestershire at offset 11 (LRU at 12), 2009-2010 uses local 3 for Eagle IPA (missing
         # Courage Best file) so Eagle sits at abs 13 — see _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010.
-        ("2008-2009", "2009-2010", 10),
+        ("2008-2009", "2010-2011", 10),
     ],
     "Essex": [
         ("2008-2009", "2008-2009", 11),
@@ -311,8 +312,9 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Leicestershire/Leicestershire_Invitation": 2,
     # Surrey (offset 9): Premier (1) > Championship (2) > Alliance (3) >
     # Conference (4) > Combination 1 (5) > Combination 2 (6) >
-    # Combination 3 / Foundation (7). 2009-2010 JONAP uses nine local rungs;
-    # see _NAMED_MERIT_LEAGUES_SURREY_2009_2010.
+    # Combination 3 / Foundation (7). 2009-2010 JONAP and 2010-2011..2012-2013 ``Surrey_*`` files
+    # use nine separate local bands; see _NAMED_MERIT_LEAGUES_SURREY_2009_2010 and
+    # _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG.
     "merit/Surrey/Surrey_Premier": 1,
     "merit/Surrey/Surrey_Chamionship": 2,
     "merit/Surrey/Surrey_Championship": 2,
@@ -367,6 +369,29 @@ _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010: tuple[tuple[str, int], ...] = (
     ("merit/East_Midlands/Bombardier_League", 1),
 )
 
+# 2010-2011 only: Invicta Three is the Rural Kent apex above Divisions A–C (all feed below Invicta).
+_NAMED_MERIT_LEAGUES_RURAL_KENT_2010_2011: tuple[tuple[str, int], ...] = (
+    ("merit/Rural_Kent/Division_C", 4),
+    ("merit/Rural_Kent/Division_B", 3),
+    ("merit/Rural_Kent/Division_A", 2),
+    ("merit/Rural_Kent/Invicta_Three", 1),
+)
+
+# 2010-2011 .. 2012-2013: same nine-rung layout as 2009-2010 JONAP but ``Surrey_*`` filenames
+# (Premier, Alliance, Conference 1–3, Combination 1–3, Foundation); see tier_mappings those seasons.
+_SURREY_NINE_RUNG_PREMIER_SEASONS = frozenset({"2010-2011", "2011-2012", "2012-2013"})
+_NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_Foundation_League", 9),
+    ("merit/Surrey/Surrey_Combination_3", 8),
+    ("merit/Surrey/Surrey_Combination_2", 7),
+    ("merit/Surrey/Surrey_Combination_1", 6),
+    ("merit/Surrey/Surrey_Conference_3", 5),
+    ("merit/Surrey/Surrey_Conference_2", 4),
+    ("merit/Surrey/Surrey_Conference_1", 3),
+    ("merit/Surrey/Surrey_Alliance", 2),
+    ("merit/Surrey/Surrey_Premier", 1),
+)
+
 
 def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None:
     """Match merit paths with sponsor-named leagues before sponsor stripping.
@@ -381,6 +406,14 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
                 return (local_tier, f"Level {local_tier}")
     if season == "2009-2010" and path.startswith("merit/East_Midlands/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season == "2010-2011" and path.startswith("merit/Rural_Kent/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_RURAL_KENT_2010_2011:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season in _SURREY_NINE_RUNG_PREMIER_SEASONS and path.startswith("merit/Surrey/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
     for prefix, local_tier in sorted(

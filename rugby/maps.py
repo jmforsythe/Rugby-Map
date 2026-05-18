@@ -38,6 +38,8 @@ from core.map_builder import (
     preassign_itl_regions,
 )
 from rugby import BRAND, DATA_DIR, short_season
+from rugby.distance_lookup import DistanceLookup
+from rugby.distances import enrich_island_excl_stats
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import (
     extract_tier,
@@ -46,6 +48,7 @@ from rugby.tiers import (
     mens_current_tier_name,
     pyramid_json_stem_supplanted_by_lancashire_county_merit,
 )
+from rugby.travel_display import render_popup_travel_html
 
 logger = logging.getLogger(__name__)
 
@@ -175,24 +178,8 @@ def _render_popup_html(
         team_dist = travel_distances["teams"].get(team_name)
         league_dist = travel_distances["leagues"].get(league_name)
         if team_dist and league_dist:
-            source = travel_distances.get("summary", {}).get("distance_source", "haversine")
-            heading = "Travel Distances" if source != "routed" else "Travel Distances (road)"
-            t_avg_min = team_dist.get("avg_duration_min")
-            t_tot_min = team_dist.get("total_duration_min")
-            l_avg_min = league_dist.get("avg_duration_min")
-            distance_html = (
-                f"<hr>"
-                f'<p><span class="popup-label">{heading}:</span></p>'
-                f"<p>Team Average: {team_dist['avg_distance_km']:.2f} km"
-                + (f" / {t_avg_min:.0f} min" if t_avg_min is not None else "")
-                + "</p>"
-                + f"<p>Team Total: {team_dist['total_distance_km']:.2f} km"
-                + (f" / {t_tot_min:.0f} min" if t_tot_min is not None else "")
-                + "</p>"
-                + f"<p>League Average: {league_dist['avg_distance_km']:.2f} km"
-                + (f" / {l_avg_min:.0f} min" if l_avg_min is not None else "")
-                + "</p>"
-            )
+            source = str(travel_distances.get("summary", {}).get("distance_source", "haversine"))
+            distance_html = render_popup_travel_html(team_dist, league_dist, distance_source=source)
 
     team_link = (
         f'<p><a href="{escape(team_url)}" target="_blank">View Team Page</a></p>'
@@ -735,6 +722,7 @@ def main() -> None:
     travel_distances: TravelDistances | None = None
     if travel_distance_path.exists():
         travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
+        travel_distances = enrich_island_excl_stats(travel_distances, season, DistanceLookup.load())
         logger.debug("  Loaded travel distances for %d teams", len(travel_distances["teams"]))
     else:
         logger.debug("  No travel distance data found")

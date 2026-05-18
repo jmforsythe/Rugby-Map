@@ -43,6 +43,7 @@ from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_a
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import _parse_projected_md
 from rugby.distance_lookup import DistanceLookup
+from rugby.distances import enrich_island_excl_stats
 from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby.offshore_travel import build_rid_map_from_lookup, offshore_js_payload
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
@@ -279,21 +280,31 @@ def _assign_team_regions(
 # ---------------------------------------------------------------------------
 
 
-def _load_latest_distances() -> TravelDistances | None:
-    """Load the distance cache for the most recent season available."""
+def _load_distances_by_season() -> dict[str, TravelDistances]:
+    """Load and enrich per-season distance caches."""
     if not DISTANCE_CACHE_DIR.exists():
-        return None
-    cache_files = sorted(DISTANCE_CACHE_DIR.glob("*.json"))
-    if not cache_files:
-        return None
-    latest = cache_files[-1]
-    logger.info("Loading distance cache from %s", latest.name)
-    with open(latest, encoding="utf-8") as f:
-        return json.load(f)
+        return {}
+    lookup = DistanceLookup.load()
+    by_season: dict[str, TravelDistances] = {}
+    for cache_file in sorted(DISTANCE_CACHE_DIR.glob("*.json")):
+        season = cache_file.stem
+        try:
+            with open(cache_file, encoding="utf-8") as f:
+                data: TravelDistances = json.load(f)
+            by_season[season] = enrich_island_excl_stats(data, season, lookup)
+        except (json.JSONDecodeError, OSError) as exc:
+            logger.warning("Skipping distance cache %s: %s", cache_file.name, exc)
+    if by_season:
+        logger.info(
+            "Loaded distance caches for %d seasons (latest: %s)",
+            len(by_season),
+            sorted(by_season)[-1],
+        )
+    return by_season
 
 
 def _collect_teams(
-    distances: TravelDistances | None,
+    distances_by_season: dict[str, TravelDistances] | None,
     itl1_regions: dict[str, dict],
     itl2_regions: dict[str, dict],
     itl3_regions: dict[str, dict],
@@ -310,8 +321,8 @@ def _collect_teams(
         [d.name for d in GEOCODED_DIR.iterdir() if d.is_dir()],
     )
 
-    dist_teams = distances["teams"] if distances else {}
-    dist_leagues = distances["leagues"] if distances else {}
+    dist_teams = {}
+    dist_leagues = {}
 
     seen: dict[str, dict] = {}
     # Track current-season teams that don't appear in the routed cache. Useful
@@ -321,6 +332,9 @@ def _collect_teams(
 
     for season in seasons:
         season_dir = GEOCODED_DIR / season
+        season_travel = (distances_by_season or {}).get(season, {})
+        dist_teams = season_travel.get("teams", {})
+        dist_leagues = season_travel.get("leagues", {})
         for json_path in sorted(season_dir.rglob("*.json")):
             rel_path = json_path.relative_to(season_dir).as_posix()
             rel_parts = list(json_path.relative_to(season_dir).parts)
@@ -388,10 +402,21 @@ def _collect_teams(
                         entry["tavg_min"] = td["avg_duration_min"]
                     if "total_duration_min" in td:
                         entry["ttot_min"] = td["total_duration_min"]
+                    if "excl_avg_distance_km" in td:
+                        entry["tavg_excl"] = td["excl_avg_distance_km"]
+                        entry["ttot_excl"] = td["excl_total_distance_km"]
+                    if "excl_avg_duration_min" in td:
+                        entry["tavg_min_excl"] = td["excl_avg_duration_min"]
+                    if "excl_total_duration_min" in td:
+                        entry["ttot_min_excl"] = td["excl_total_duration_min"]
                     if ld:
                         entry["lavg"] = round(ld.get("avg_distance_km", 0), 2)
                         if "avg_duration_min" in ld:
                             entry["lavg_min"] = round(ld["avg_duration_min"], 2)
+                        if "excl_avg_distance_km" in ld:
+                            entry["lavg_excl"] = round(ld["excl_avg_distance_km"], 2)
+                        if "excl_avg_duration_min" in ld:
+                            entry["lavg_min_excl"] = round(ld["excl_avg_duration_min"], 2)
 
                 seen[name] = entry
 
@@ -864,12 +889,12 @@ def main() -> None:
         )
 
     logger.info("Scanning geocoded teams in %s", GEOCODED_DIR)
-    distances = _load_latest_distances()
+    distances_by_season = _load_distances_by_season()
 
     routed_lookup = DistanceLookup.load()
 
     teams = _collect_teams(
-        distances,
+        distances_by_season,
         itl1_regions,
         itl2_regions,
         itl3_regions,

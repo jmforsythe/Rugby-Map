@@ -132,6 +132,11 @@ class TeamTravelDistances(TypedDict):
     avg_distance_km: float
     total_duration_min: NotRequired[float]
     avg_duration_min: NotRequired[float]
+    # Present for mainland teams in leagues with offshore opponents.
+    excl_total_distance_km: NotRequired[float]
+    excl_avg_distance_km: NotRequired[float]
+    excl_total_duration_min: NotRequired[float]
+    excl_avg_duration_min: NotRequired[float]
 
 
 class LeagueTravelDistances(TypedDict):
@@ -141,6 +146,9 @@ class LeagueTravelDistances(TypedDict):
     avg_distance_km: float
     team_count: int
     avg_duration_min: NotRequired[float]
+    # Average of mainland teams' excl averages when the league has offshore clubs.
+    excl_avg_distance_km: NotRequired[float]
+    excl_avg_duration_min: NotRequired[float]
 
 
 class TravelDistances(TypedDict):

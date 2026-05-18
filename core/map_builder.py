@@ -1268,6 +1268,38 @@ POPUP_CSS = """
 .folium-map .rugby-popup .popup-label {
   font-weight: bold;
 }
+.folium-map .rugby-popup .island-travel-label {
+  cursor: help;
+}
+.folium-map .rugby-popup .island-travel-hint {
+  font-size: 0.85em;
+  opacity: 0.75;
+  font-weight: normal;
+}
+.folium-map .rugby-popup .island-travel-note {
+  font-size: 0.92em;
+  opacity: 0.85;
+  margin: 0 0 6px 0 !important;
+}
+.folium-map.rugby-map-dark .rugby-popup .island-travel-note {
+  opacity: 0.78;
+}
+.folium-map .rugby-popup .island-stat-group {
+  display: block;
+}
+.folium-map .rugby-popup .island-stat-group .island-travel-label {
+  display: inline;
+  margin: 0;
+}
+.folium-map .rugby-popup .island-stat-group p {
+  margin: 0 0 2px 0;
+}
+.folium-map .rugby-popup .island-stat-group p:last-child {
+  margin-bottom: 0;
+}
+.folium-map .rugby-popup .island-stat-group--spaced {
+  margin-top: 0.55em;
+}
 .folium-map .rugby-popup .popup-regions {
   margin: 0 0 3px 0;
 }

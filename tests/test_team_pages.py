@@ -1,11 +1,8 @@
 """Tests for team pages logic."""
 
 from core import TeamTravelDistances
-from rugby.team_pages import (
-    _format_team_travel_distance_km,
-    _format_team_travel_time_min,
-    build_club_index,
-)
+from rugby.team_pages import build_club_index
+from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
 
 
 class TestFormatTravelCells:
@@ -16,7 +13,7 @@ class TestFormatTravelCells:
             "avg_distance_km": 12.5,
             "total_distance_km": 137.2,
         }
-        assert _format_team_travel_distance_km(td) == "12.5 km / 137 km"
+        assert format_team_travel_distance_km(td) == "12.5 km / 137 km"
 
     def test_time_missing_shows_em_dash(self):
         td: TeamTravelDistances = {
@@ -25,7 +22,7 @@ class TestFormatTravelCells:
             "avg_distance_km": 10.0,
             "total_distance_km": 100.0,
         }
-        assert _format_team_travel_time_min(td) == "—"
+        assert format_team_travel_time_min(td) == "—"
 
     def test_time_both_parts(self):
         td: TeamTravelDistances = {
@@ -36,7 +33,7 @@ class TestFormatTravelCells:
             "avg_duration_min": 95.25,
             "total_duration_min": 1029.75,
         }
-        assert _format_team_travel_time_min(td) == "95 min / 1030 min"
+        assert format_team_travel_time_min(td) == "95 min / 1030 min"
 
 
 class TestBuildClubIndex:

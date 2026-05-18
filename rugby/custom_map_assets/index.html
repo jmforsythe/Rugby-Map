@@ -447,6 +447,53 @@
       .rugby-popup .popup-label {
         font-weight: bold;
       }
+      .rugby-popup .island-travel-label {
+        cursor: help;
+      }
+      .rugby-popup .island-travel-hint {
+        font-size: 0.85em;
+        opacity: 0.75;
+        font-weight: normal;
+      }
+      .rugby-popup .island-travel-note {
+        font-size: 0.92em;
+        opacity: 0.85;
+        margin: 0 0 6px 0 !important;
+      }
+      .rugby-popup .island-stat-group {
+        display: block;
+      }
+      .rugby-popup .island-stat-group p {
+        margin: 0 0 2px 0;
+      }
+      .rugby-popup .island-stat-group p:last-child {
+        margin-bottom: 0;
+      }
+      .rugby-popup .island-stat-group--spaced {
+        margin-top: 0.55em;
+      }
+      .stat-value .island-stat-group {
+        display: block;
+      }
+      .stat-value .island-stat-group .island-travel-label {
+        cursor: help;
+        font-size: 0.92em;
+        font-weight: 600;
+        display: block;
+        margin: 0;
+      }
+      .stat-value .island-stat-group .island-stat-value {
+        display: block;
+        line-height: 1.2;
+      }
+      .stat-value .island-stat-group--spaced {
+        margin-top: 0.55em;
+      }
+      .stat-value .island-travel-hint {
+        font-size: 0.85em;
+        opacity: 0.75;
+        font-weight: normal;
+      }
       .rugby-popup a {
         color: var(--accent);
         text-decoration: none;
@@ -1243,6 +1290,48 @@
         return v * ROUTED_DISTANCES.scale_min;
       }
 
+      const ISLAND_TRAVEL_INCL_LABEL = "Including island clubs";
+      const ISLAND_TRAVEL_EXCL_LABEL = "Excluding island clubs";
+      const ISLAND_TRAVEL_INCL_TITLE =
+        "Travel to every league opponent, including clubs on the Isle of Man and in the Channel Islands (Jersey and Guernsey).";
+      const ISLAND_TRAVEL_EXCL_TITLE =
+        "Travel to mainland opponents only — legs to island clubs are omitted.";
+      const ISLAND_TRAVEL_DUAL_NOTE =
+        "This league includes island clubs; figures below show travel with and without those trips.";
+
+      function islandTravelLabelHtml(including, asPopupLabel) {
+        const label = including ? ISLAND_TRAVEL_INCL_LABEL : ISLAND_TRAVEL_EXCL_LABEL;
+        const title = including ? ISLAND_TRAVEL_INCL_TITLE : ISLAND_TRAVEL_EXCL_TITLE;
+        const css = asPopupLabel
+          ? "popup-label island-travel-label"
+          : "island-travel-label";
+        return (
+          '<span class="' +
+          css +
+          '" title="' +
+          escAttr(title) +
+          '">' +
+          escHtml(label) +
+          ' <span class="island-travel-hint" aria-hidden="true">ⓘ</span></span>'
+        );
+      }
+
+
+      function fmtIslandStatBlock(including, km, minSuffix) {
+        const spaced = including ? "" : " island-stat-group--spaced";
+        return (
+          '<span class="island-stat-group' +
+          spaced +
+          '">' +
+          islandTravelLabelHtml(including, false) +
+          '<span class="island-stat-value">' +
+          km.toFixed(1) +
+          " km avg" +
+          minSuffix +
+          "</span></span>"
+        );
+      }
+
       function classifyOffshoreRegion(lat, lng) {
         const reg = ROUTED_DISTANCES?.offshore?.regions;
         if (!reg) return "mainland";
@@ -1464,35 +1553,69 @@
         return routedMin(a.rid, b.rid);
       }
 
+      function isOffshoreTeam(t) {
+        return classifyOffshoreRegion(t.lat, t.lng) !== "mainland";
+      }
+
+      function calcTeamPairStats(t, teams, mainlandOnly) {
+        let total = 0;
+        let totalMin = 0;
+        let count = 0;
+        let anyMissingMin = false;
+        for (const o of teams) {
+          if (o.n === t.n) continue;
+          if (mainlandOnly && isOffshoreTeam(o)) continue;
+          total += pairKm(t, o);
+          const m = pairMin(t, o);
+          if (m == null) anyMissingMin = true;
+          else totalMin += m;
+          count++;
+        }
+        if (count === 0) {
+          return { avg: 0, total: 0, avgMin: null, totalMin: null };
+        }
+        const avg = total / count;
+        const avgMin = anyMissingMin ? null : totalMin / count;
+        return {
+          avg,
+          total,
+          avgMin,
+          totalMin: anyMissingMin ? null : totalMin,
+        };
+      }
+
       function calcLeagueStats(league) {
         const teams = league.teams;
         if (teams.length < 2)
           return {
-            teams: teams.map((t) => ({ name: t.n, avg: 0, total: 0, avgMin: null, totalMin: null })),
+            teams: teams.map((t) => ({
+              name: t.n,
+              avg: 0,
+              total: 0,
+              avgMin: null,
+              totalMin: null,
+            })),
             avg: 0,
             avgMin: null,
           };
+        const hasOffshore = teams.some(isOffshoreTeam);
         const teamStats = teams.map((t) => {
-          let total = 0;
-          let totalMin = 0;
-          let anyMissingMin = false;
-          for (const o of teams) {
-            if (o.n === t.n) continue;
-            total += pairKm(t, o);
-            const m = pairMin(t, o);
-            if (m == null) anyMissingMin = true;
-            else totalMin += m;
-          }
-          const denom = teams.length - 1;
-          const avg = total / denom;
-          const avgMin = anyMissingMin ? null : totalMin / denom;
-          return {
+          const incl = calcTeamPairStats(t, teams, false);
+          const stat = {
             name: t.n,
-            avg,
-            total,
-            avgMin,
-            totalMin: anyMissingMin ? null : totalMin,
+            avg: incl.avg,
+            total: incl.total,
+            avgMin: incl.avgMin,
+            totalMin: incl.totalMin,
           };
+          if (hasOffshore && !isOffshoreTeam(t)) {
+            const excl = calcTeamPairStats(t, teams, true);
+            stat.avgExcl = excl.avg;
+            stat.totalExcl = excl.total;
+            stat.avgMinExcl = excl.avgMin;
+            stat.totalMinExcl = excl.totalMin;
+          }
+          return stat;
         });
         const leagueAvg =
           teamStats.reduce((s, t) => s + t.avg, 0) / teamStats.length;
@@ -1500,7 +1623,19 @@
         const leagueAvgMin = anyMissingLeagueMin
           ? null
           : teamStats.reduce((s, t) => s + t.avgMin, 0) / teamStats.length;
-        return { teams: teamStats, avg: leagueAvg, avgMin: leagueAvgMin };
+        const result = { teams: teamStats, avg: leagueAvg, avgMin: leagueAvgMin };
+        if (hasOffshore) {
+          const mainland = teamStats.filter((t) => t.avgExcl != null);
+          if (mainland.length > 0) {
+            result.avgExcl =
+              mainland.reduce((s, t) => s + t.avgExcl, 0) / mainland.length;
+            const anyMissingExclMin = mainland.some((t) => t.avgMinExcl == null);
+            result.avgMinExcl = anyMissingExclMin
+              ? null
+              : mainland.reduce((s, t) => s + t.avgMinExcl, 0) / mainland.length;
+          }
+        }
+        return result;
       }
 
       // ── Map init ───────────────────────────────────────────────
@@ -1649,40 +1784,151 @@
               return min == null ? k : k + " / " + min.toFixed(0) + " min";
             }
 
+            function popupTravelBlock(
+              including,
+              teamAvg,
+              teamTot,
+              teamAvgMin,
+              teamTotMin,
+              leagueAvg,
+              leagueAvgMin,
+            ) {
+              const spaced = including ? "" : " island-stat-group--spaced";
+              let html =
+                '<div class="island-stat-group' +
+                spaced +
+                '"><p>' +
+                islandTravelLabelHtml(including, true) +
+                "</p>" +
+                "<p>Team Average: " +
+                fmtKmMin(teamAvg, teamAvgMin) +
+                "</p>" +
+                "<p>Team Total: " +
+                fmtKmMin(teamTot, teamTotMin) +
+                "</p>";
+              if (leagueAvg != null) {
+                html +=
+                  "<p>League Average: " +
+                  fmtKmMin(leagueAvg, leagueAvgMin) +
+                  "</p>";
+              }
+              return html + "</div>";
+            }
+
+            function popupDualTravel(
+              inclTeamAvg,
+              inclTeamTot,
+              inclTeamAvgMin,
+              inclTeamTotMin,
+              inclLeagueAvg,
+              inclLeagueAvgMin,
+              exclTeamAvg,
+              exclTeamTot,
+              exclTeamAvgMin,
+              exclTeamTotMin,
+              exclLeagueAvg,
+              exclLeagueAvgMin,
+            ) {
+              return (
+                '<p class="island-travel-note">' +
+                escHtml(ISLAND_TRAVEL_DUAL_NOTE) +
+                "</p>" +
+                popupTravelBlock(
+                  true,
+                  inclTeamAvg,
+                  inclTeamTot,
+                  inclTeamAvgMin,
+                  inclTeamTotMin,
+                  inclLeagueAvg,
+                  inclLeagueAvgMin,
+                ) +
+                popupTravelBlock(
+                  false,
+                  exclTeamAvg,
+                  exclTeamTot,
+                  exclTeamAvgMin,
+                  exclTeamTotMin,
+                  exclLeagueAvg,
+                  exclLeagueAvgMin,
+                )
+              );
+            }
+
             let officialHtml = "";
             if (team.lg) {
+              const hasDual =
+                team.tavg_excl != null && team.ttot_excl != null;
               officialHtml =
                 "<hr>" +
                 '<p><span class="popup-label">Official League:</span> ' +
                 escHtml(team.lg) +
-                "</p>" +
-                "<p>Team Average: " +
-                fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
-                "</p>" +
-                "<p>Team Total: " +
-                fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
-                "</p>" +
-                (team.lavg
-                  ? "<p>League Average: " +
-                    fmtKmMin(team.lavg, team.lavg_min != null ? team.lavg_min : null) +
-                    "</p>"
-                  : "");
+                "</p>";
+              if (hasDual) {
+                officialHtml += popupDualTravel(
+                  team.tavg,
+                  team.ttot,
+                  team.tavg_min != null ? team.tavg_min : null,
+                  team.ttot_min != null ? team.ttot_min : null,
+                  team.lavg != null ? team.lavg : null,
+                  team.lavg_min != null ? team.lavg_min : null,
+                  team.tavg_excl,
+                  team.ttot_excl,
+                  team.tavg_min_excl != null ? team.tavg_min_excl : null,
+                  team.ttot_min_excl != null ? team.ttot_min_excl : null,
+                  team.lavg_excl != null ? team.lavg_excl : null,
+                  team.lavg_min_excl != null ? team.lavg_min_excl : null,
+                );
+              } else {
+                officialHtml +=
+                  "<p>Team Average: " +
+                  fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
+                  "</p>" +
+                  "<p>Team Total: " +
+                  fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
+                  "</p>" +
+                  (team.lavg
+                    ? "<p>League Average: " +
+                      fmtKmMin(
+                        team.lavg,
+                        team.lavg_min != null ? team.lavg_min : null,
+                      ) +
+                      "</p>"
+                    : "");
+              }
             }
 
             let customHtml = "";
             if (ts && league.teams.length > 1) {
               customHtml =
                 "<hr>" +
-                '<p><span class="popup-label">Custom Distances:</span></p>' +
-                "<p>Team Average: " +
-                fmtKmMin(ts.avg, ts.avgMin) +
-                "</p>" +
-                "<p>Team Total: " +
-                fmtKmMin(ts.total, ts.totalMin) +
-                "</p>" +
-                "<p>League Average: " +
-                fmtKmMin(stats.avg, stats.avgMin) +
-                "</p>";
+                '<p><span class="popup-label">Custom Distances:</span></p>';
+              if (ts.avgExcl != null) {
+                customHtml += popupDualTravel(
+                  ts.avg,
+                  ts.total,
+                  ts.avgMin,
+                  ts.totalMin,
+                  stats.avg,
+                  stats.avgMin,
+                  ts.avgExcl,
+                  ts.totalExcl,
+                  ts.avgMinExcl,
+                  ts.totalMinExcl,
+                  stats.avgExcl != null ? stats.avgExcl : null,
+                  stats.avgMinExcl != null ? stats.avgMinExcl : null,
+                );
+              } else {
+                customHtml +=
+                  "<p>Team Average: " +
+                  fmtKmMin(ts.avg, ts.avgMin) +
+                  "</p>" +
+                  "<p>Team Total: " +
+                  fmtKmMin(ts.total, ts.totalMin) +
+                  "</p>" +
+                  "<p>League Average: " +
+                  fmtKmMin(stats.avg, stats.avgMin) +
+                  "</p>";
+              }
             }
 
             let moveItems = "";
@@ -2165,16 +2411,32 @@
           const s = league._stats;
           const avgMinSuffix =
             s.avgMin != null ? " / " + s.avgMin.toFixed(0) + " min avg" : "";
-          html +=
-            '<div class="stat-row"><span class="stat-label" style="color:' +
-            league.color +
-            '">' +
-            escHtml(league.name) +
-            '</span><span class="stat-value">' +
-            s.avg.toFixed(1) +
-            " km avg" +
-            avgMinSuffix +
-            "</span></div>";
+          if (s.avgExcl != null) {
+            const exclMinSuffix =
+              s.avgMinExcl != null
+                ? " / " + s.avgMinExcl.toFixed(0) + " min avg"
+                : "";
+            html +=
+              '<div class="stat-row"><span class="stat-label" style="color:' +
+              league.color +
+              '">' +
+              escHtml(league.name) +
+              '</span><span class="stat-value">' +
+              fmtIslandStatBlock(true, s.avg, avgMinSuffix) +
+              fmtIslandStatBlock(false, s.avgExcl, exclMinSuffix) +
+              "</span></div>";
+          } else {
+            html +=
+              '<div class="stat-row"><span class="stat-label" style="color:' +
+              league.color +
+              '">' +
+              escHtml(league.name) +
+              '</span><span class="stat-value">' +
+              s.avg.toFixed(1) +
+              " km avg" +
+              avgMinSuffix +
+              "</span></div>";
+          }
         }
 
         const allTeamsInLeagues = leagues.flatMap((l) => l.teams);
@@ -2187,6 +2449,9 @@
                 name: t.lg,
                 lavg: t.lavg || 0,
                 lavg_min: t.lavg_min != null ? t.lavg_min : null,
+                lavg_excl: t.lavg_excl != null ? t.lavg_excl : null,
+                lavg_min_excl:
+                  t.lavg_min_excl != null ? t.lavg_min_excl : null,
                 teams: [],
               };
             officialLeagues[t.lg].teams.push(t);
@@ -2201,16 +2466,32 @@
               lg.lavg_min != null
                 ? " / " + lg.lavg_min.toFixed(0) + " min avg"
                 : "";
-            html +=
-              '<div class="stat-row"><span class="stat-label">' +
-              escHtml(lg.name) +
-              " (" +
-              lg.teams.length +
-              ')</span><span class="stat-value">' +
-              lg.lavg.toFixed(1) +
-              " km avg" +
-              lgMinSuffix +
-              "</span></div>";
+            if (lg.lavg_excl != null) {
+              const lgExclMinSuffix =
+                lg.lavg_min_excl != null
+                  ? " / " + lg.lavg_min_excl.toFixed(0) + " min avg"
+                  : "";
+              html +=
+                '<div class="stat-row"><span class="stat-label">' +
+                escHtml(lg.name) +
+                " (" +
+                lg.teams.length +
+                ')</span><span class="stat-value">' +
+                fmtIslandStatBlock(true, lg.lavg, lgMinSuffix) +
+                fmtIslandStatBlock(false, lg.lavg_excl, lgExclMinSuffix) +
+                "</span></div>";
+            } else {
+              html +=
+                '<div class="stat-row"><span class="stat-label">' +
+                escHtml(lg.name) +
+                " (" +
+                lg.teams.length +
+                ')</span><span class="stat-value">' +
+                lg.lavg.toFixed(1) +
+                " km avg" +
+                lgMinSuffix +
+                "</span></div>";
+            }
           }
           html += "</div>";
         }

@@ -26,9 +26,12 @@ from core import (
 from core.config import DIST_DIR
 from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.distance_lookup import DistanceLookup
+from rugby.distances import enrich_island_excl_stats
 from rugby.seo import BASE_URL as SITE_BASE_URL
 from rugby.seo import OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
+from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
 from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
@@ -379,35 +382,6 @@ def _format_previous_names(team_data: TeamData) -> str:
     return "; ".join(parts)
 
 
-def _format_team_travel_distance_km(team_distances: TeamTravelDistances | None) -> str:
-    if team_distances is None:
-        return "N/A"
-    avg_dist = team_distances.get("avg_distance_km")
-    total_dist = team_distances.get("total_distance_km")
-    if avg_dist is not None and total_dist is not None:
-        return f"{avg_dist:.1f} km / {total_dist:.0f} km"
-    if avg_dist is not None:
-        return f"{avg_dist:.1f} km avg"
-    if total_dist is not None:
-        return f"{total_dist:.0f} km total"
-    return "N/A"
-
-
-def _format_team_travel_time_min(team_distances: TeamTravelDistances | None) -> str:
-    """Format avg/total duration when present (from routed + offshore corridor model)."""
-    if team_distances is None:
-        return "N/A"
-    avg_m = team_distances.get("avg_duration_min")
-    total_m = team_distances.get("total_duration_min")
-    if avg_m is not None and total_m is not None:
-        return f"{round(avg_m)} min / {round(total_m)} min"
-    if avg_m is not None:
-        return f"{round(avg_m)} min avg"
-    if total_m is not None:
-        return f"{round(total_m)} min total"
-    return "—"
-
-
 def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     """Pre-build an index of co-located teams for fast club lookups.
 
@@ -627,6 +601,29 @@ def get_team_page_html(
         .league-history-table .distance-cell {{
             font-variant-numeric: tabular-nums;
             color: var(--text-muted);
+            line-height: 1.45;
+        }}
+        .island-stat-group {{
+            display: block;
+        }}
+        .island-stat-group .island-travel-label {{
+            cursor: help;
+            font-size: 0.88em;
+            font-weight: 600;
+            color: var(--text-heading);
+            display: block;
+            margin: 0;
+        }}
+        .island-stat-group .island-stat-value {{
+            display: block;
+        }}
+        .island-stat-group--spaced {{
+            margin-top: 0.55em;
+        }}
+        .island-travel-hint {{
+            font-size: 0.85em;
+            opacity: 0.75;
+            font-weight: normal;
         }}
         .league-history-table .league-link {{
             display: inline-block;
@@ -813,8 +810,8 @@ def get_team_page_html(
                         if raw_td is not None:
                             team_td = raw_td
 
-                travel_km = escape(_format_team_travel_distance_km(team_td))
-                travel_time = escape(_format_team_travel_time_min(team_td))
+                travel_km = format_team_travel_distance_km(team_td)
+                travel_time = format_team_travel_time_min(team_td)
 
                 tier_display: str = entry["tier_display"]
                 league_link: str = (
@@ -866,13 +863,14 @@ def load_travel_distances() -> dict[str, TravelDistances]:
     if not distances_dir.exists():
         return {}
 
-    for distance_file in distances_dir.glob("*.json"):
+    lookup = DistanceLookup.load()
+    for distance_file in sorted(distances_dir.glob("*.json")):
         season: str = distance_file.stem  # e.g., "2018-2019"
 
         try:
             with open(distance_file, encoding="utf-8") as f:
                 data: TravelDistances = json.load(f)
-                travel_distances_by_season[season] = data
+                travel_distances_by_season[season] = enrich_island_excl_stats(data, season, lookup)
         except Exception as e:
             logger.warning("Could not load distances for %s: %s", season, e)
 

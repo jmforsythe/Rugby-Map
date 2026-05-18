@@ -21,6 +21,7 @@ from core import (
 )
 from rugby import DATA_DIR
 from rugby.distance_lookup import DistanceLookup
+from rugby.offshore_travel import OffshoreRegion, classify_region
 
 
 def distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -67,18 +68,39 @@ def team_pair_distance(team1: GeocodedTeam, team2: GeocodedTeam) -> float:
     return _team_pair_values(team1, team2, _DEFAULT_LOOKUP)[0]
 
 
+def _team_region(team: GeocodedTeam) -> OffshoreRegion:
+    lat = team.get("latitude")
+    lon = team.get("longitude")
+    if lat is None or lon is None:
+        return "mainland"
+    return classify_region(lat, lon)
+
+
+def _is_offshore_team(team: GeocodedTeam) -> bool:
+    return _team_region(team) != "mainland"
+
+
 def team_totals(
-    team: GeocodedTeam, teams: list[GeocodedTeam], lookup: DistanceLookup
+    team: GeocodedTeam,
+    teams: list[GeocodedTeam],
+    lookup: DistanceLookup,
+    *,
+    mainland_opponents_only: bool = False,
 ) -> tuple[float, float | None]:
     """Sum of pair distances (km) and (sum of pair minutes) for *team* vs *teams*.
 
     Minutes are returned as ``None`` if any required pair has no routed minutes
     (so we never mix km from routed and minutes from "no source").
+
+    When ``mainland_opponents_only`` is set, offshore opponents are skipped
+    (used for mainland teams' excl-island stats).
     """
     total_km = 0.0
     total_min: float | None = 0.0
     for opponent in teams:
         if opponent["name"] == team["name"]:
+            continue
+        if mainland_opponents_only and _is_offshore_team(opponent):
             continue
         km, mins = _team_pair_values(team, opponent, lookup)
         total_km += km
@@ -91,19 +113,33 @@ def team_totals(
 
 
 def team_average(
-    team: GeocodedTeam, teams: list[GeocodedTeam], lookup: DistanceLookup
+    team: GeocodedTeam,
+    teams: list[GeocodedTeam],
+    lookup: DistanceLookup,
+    *,
+    mainland_opponents_only: bool = False,
 ) -> tuple[float, float | None]:
-    total_km, total_min = team_totals(team, teams, lookup)
-    n = len(teams) - 1
+    opponents = [
+        o
+        for o in teams
+        if o["name"] != team["name"] and not (mainland_opponents_only and _is_offshore_team(o))
+    ]
+    n = len(opponents)
     if n <= 0:
         return 0.0, None
+    total_km, total_min = team_totals(
+        team, teams, lookup, mainland_opponents_only=mainland_opponents_only
+    )
     return total_km / n, (total_min / n if total_min is not None else None)
 
 
-def league_average(league: GeocodedLeague, lookup: DistanceLookup) -> tuple[float, float | None]:
+def league_average(
+    league: GeocodedLeague, lookup: DistanceLookup
+) -> tuple[float, float | None, float | None, float | None]:
+    """League incl. avg (km, min) and optional excl. avg (km, min) for mainland teams."""
     valid_teams = [team for team in league["teams"] if "latitude" in team and "longitude" in team]
     if not valid_teams:
-        return 0.0, None
+        return 0.0, None, None, None
     total_km = 0.0
     total_min: float | None = 0.0
     for team in valid_teams:
@@ -115,7 +151,31 @@ def league_average(league: GeocodedLeague, lookup: DistanceLookup) -> tuple[floa
             else:
                 total_min += avg_min
     n = len(valid_teams)
-    return total_km / n, (total_min / n if total_min is not None else None)
+    incl_km = total_km / n
+    incl_min = total_min / n if total_min is not None else None
+
+    has_offshore = any(_is_offshore_team(t) for t in valid_teams)
+    if not has_offshore:
+        return incl_km, incl_min, None, None
+
+    mainland_teams = [t for t in valid_teams if not _is_offshore_team(t)]
+    if not mainland_teams:
+        return incl_km, incl_min, None, None
+
+    excl_km_sum = 0.0
+    excl_min_sum: float | None = 0.0
+    for team in mainland_teams:
+        avg_km, avg_min = team_average(team, valid_teams, lookup, mainland_opponents_only=True)
+        excl_km_sum += avg_km
+        if excl_min_sum is not None:
+            if avg_min is None:
+                excl_min_sum = None
+            else:
+                excl_min_sum += avg_min
+    m = len(mainland_teams)
+    excl_km = excl_km_sum / m
+    excl_min = excl_min_sum / m if excl_min_sum is not None else None
+    return incl_km, incl_min, excl_km, excl_min
 
 
 # Default lookup used by the historical helpers (``team_pair_distance`` etc.).
@@ -129,6 +189,96 @@ def _season_names_under_geocoded_teams() -> list[str]:
     if not root.is_dir():
         return []
     return sorted(d.name for d in root.iterdir() if d.is_dir())
+
+
+def league_display_name(json_file: Path, geocoded_dir: Path, league_data: GeocodedLeague) -> str:
+    """Canonical league label matching ``run_for_season`` / distance cache keys."""
+    league_name = league_data["league_name"]
+    rel_parts = json_file.relative_to(geocoded_dir).parts
+    if len(rel_parts) >= 3 and rel_parts[0] == "merit":
+        comp_name = rel_parts[1].replace("_", " ")
+        if comp_name.lower() not in league_name.lower():
+            league_name = f"{comp_name} {league_name}"
+    return league_name
+
+
+def _patch_team_excl_stats(
+    entry: TeamTravelDistances,
+    team: GeocodedTeam,
+    valid_teams: list[GeocodedTeam],
+    lookup: DistanceLookup,
+) -> bool:
+    if _is_offshore_team(team) or "excl_avg_distance_km" in entry:
+        return False
+    x_avg_km, x_avg_min = team_average(team, valid_teams, lookup, mainland_opponents_only=True)
+    x_total_km, x_total_min = team_totals(team, valid_teams, lookup, mainland_opponents_only=True)
+    entry["excl_avg_distance_km"] = round(x_avg_km, 2)
+    entry["excl_total_distance_km"] = round(x_total_km, 2)
+    if x_avg_min is not None:
+        entry["excl_avg_duration_min"] = round(x_avg_min, 2)
+    if x_total_min is not None:
+        entry["excl_total_duration_min"] = round(x_total_min, 2)
+    return True
+
+
+def enrich_island_excl_stats(
+    travel: TravelDistances,
+    season: str,
+    lookup: DistanceLookup | None = None,
+) -> TravelDistances:
+    """Add missing ``excl_*`` stats when distance cache predates island splits."""
+    geocoded_dir = DATA_DIR / "geocoded_teams" / season
+    if not geocoded_dir.exists():
+        return travel
+
+    lk = lookup or DistanceLookup.load()
+    global _DEFAULT_LOOKUP
+    previous_lookup = _DEFAULT_LOOKUP
+    _DEFAULT_LOOKUP = lk
+
+    teams: dict[str, TeamTravelDistances] = dict(travel.get("teams", {}))
+    leagues: dict[str, LeagueTravelDistances] = dict(travel.get("leagues", {}))
+    patched = False
+
+    for json_file in sorted(geocoded_dir.rglob("*.json")):
+        with open(json_file, encoding="utf-8") as f:
+            league_data: GeocodedLeague = json.load(f)
+
+        league_name = league_display_name(json_file, geocoded_dir, league_data)
+        valid_teams = [
+            team for team in league_data["teams"] if "latitude" in team and "longitude" in team
+        ]
+        if not valid_teams or not any(_is_offshore_team(t) for t in valid_teams):
+            continue
+
+        league_entry = leagues.setdefault(
+            league_name,
+            {
+                "league_name": league_name,
+                "avg_distance_km": 0.0,
+                "team_count": len(league_data["teams"]),
+            },
+        )
+        if "excl_avg_distance_km" not in league_entry:
+            _incl_km, _incl_min, excl_km, excl_min = league_average(league_data, lk)
+            if excl_km is not None:
+                league_entry["excl_avg_distance_km"] = round(excl_km, 2)
+                if excl_min is not None:
+                    league_entry["excl_avg_duration_min"] = round(excl_min, 2)
+                patched = True
+
+        for team in valid_teams:
+            name = team["name"]
+            entry = teams.get(name)
+            if entry is None:
+                continue
+            if _patch_team_excl_stats(entry, team, valid_teams, lk):
+                patched = True
+
+    _DEFAULT_LOOKUP = previous_lookup
+    if not patched:
+        return travel
+    return {**travel, "teams": teams, "leagues": leagues}
 
 
 def run_for_season(
@@ -157,12 +307,7 @@ def run_for_season(
         with open(json_file, encoding="utf-8") as f:
             league_data: GeocodedLeague = json.load(f)
 
-        league_name = league_data["league_name"]
-        rel_parts = json_file.relative_to(geocoded_dir).parts
-        if len(rel_parts) >= 3 and rel_parts[0] == "merit":
-            comp_name = rel_parts[1].replace("_", " ")
-            if comp_name.lower() not in league_name.lower():
-                league_name = f"{comp_name} {league_name}"
+        league_name = league_display_name(json_file, geocoded_dir, league_data)
 
         if lookup.has_routed:
             for team in league_data.get("teams", []):
@@ -173,18 +318,24 @@ def run_for_season(
                 if lookup.coord_id(lat, lng) is None:
                     missing_routed.append((team.get("name", ""), lat, lng))
 
-        avg_km, avg_min = league_average(league_data, lookup)
-        league_stats[league_name] = {
+        avg_km, avg_min, excl_avg_km, excl_avg_min = league_average(league_data, lookup)
+        league_entry: LeagueTravelDistances = {
             "league_name": league_name,
             "avg_distance_km": round(avg_km, 2),
             "team_count": len(league_data["teams"]),
         }
         if avg_min is not None:
-            league_stats[league_name]["avg_duration_min"] = round(avg_min, 2)
+            league_entry["avg_duration_min"] = round(avg_min, 2)
+        if excl_avg_km is not None:
+            league_entry["excl_avg_distance_km"] = round(excl_avg_km, 2)
+        if excl_avg_min is not None:
+            league_entry["excl_avg_duration_min"] = round(excl_avg_min, 2)
+        league_stats[league_name] = league_entry
 
         valid_teams = [
             team for team in league_data["teams"] if "latitude" in team and "longitude" in team
         ]
+        league_has_offshore = any(_is_offshore_team(t) for t in valid_teams)
         for team in valid_teams:
             t_avg_km, t_avg_min = team_average(team, valid_teams, lookup)
             t_total_km, t_total_min = team_totals(team, valid_teams, lookup)
@@ -198,6 +349,19 @@ def run_for_season(
                 entry["avg_duration_min"] = round(t_avg_min, 2)
             if t_total_min is not None:
                 entry["total_duration_min"] = round(t_total_min, 2)
+            if league_has_offshore and not _is_offshore_team(team):
+                x_avg_km, x_avg_min = team_average(
+                    team, valid_teams, lookup, mainland_opponents_only=True
+                )
+                x_total_km, x_total_min = team_totals(
+                    team, valid_teams, lookup, mainland_opponents_only=True
+                )
+                entry["excl_avg_distance_km"] = round(x_avg_km, 2)
+                entry["excl_total_distance_km"] = round(x_total_km, 2)
+                if x_avg_min is not None:
+                    entry["excl_avg_duration_min"] = round(x_avg_min, 2)
+                if x_total_min is not None:
+                    entry["excl_total_duration_min"] = round(x_total_min, 2)
             all_teams_data[team["name"]] = entry
 
     all_teams_data = dict(sorted(all_teams_data.items(), key=lambda x: x[1]["avg_distance_km"]))

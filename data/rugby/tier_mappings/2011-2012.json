@@ -81,10 +81,7 @@
   },
   "East_Midlands": {
     "1": {
-      "Bombardier League": [
-        "Midlands 3 East (North)",
-        "Midlands 3 East (South)"
-      ]
+      "Bombardier League": "Midlands 3 East (North)"
     },
     "2": {
       "Eagle IPA League": "Bombardier League"
@@ -102,7 +99,7 @@
       "Winter Warmer League": "Waggledance League"
     },
     "7": {
-      "Red Stripe": "Eagle IPA League"
+      "Red Stripe": "Winter Warmer League"
     }
   },
   "Essex": {
@@ -188,7 +185,7 @@
   },
   "Leicestershire": {
     "1": {
-      "LRU Premier": "Midlands 3 East (South)"
+      "LRU Premier": "Midlands 4 East (South)"
     },
     "2": {
       "LRU Division 1": "LRU Premier"
@@ -226,15 +223,9 @@
       "Sixth Division": "Fifth Division"
     }
   },
-  "Midlands_Reserve": {
-    "0": {
-      "North - West Midlands Reserve Team League": "Midlands 2 West (North)",
-      "South - West Midlands Reserve Team League": "Midlands 2 West (South)"
-    }
-  },
   "Nottinghamshire": {
     "1": {
-      "Group 1": "Midlands 4 East (North)"
+      "Group 1": "Midlands 5 East (North)"
     },
     "2": {
       "Group 2": "Group 1"
@@ -264,7 +255,7 @@
       "University of Salford Division 2 South": "University of Salford Division 1"
     },
     "4": {
-      "University of Salford Division 3 North": "University of Salford Division 2 South",
+      "University of Salford Division 3 North": "University of Salford Division 2 North",
       "University of Salford Division 3 South": "University of Salford Division 2 South"
     },
     "5": {
@@ -328,6 +319,12 @@
     },
     "9": {
       "Surrey Foundation League": "Surrey Combination 3"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
+      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
     }
   }
 }

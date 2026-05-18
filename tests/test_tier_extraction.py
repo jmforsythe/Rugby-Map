@@ -17,15 +17,19 @@ from rugby.tiers import (
 
 
 def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
-    """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8)."""
+    """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8).
+
+    Nottinghamshire offset 10 while tier_mappings apex is Midlands 5 East (North) (2008-2009–2019-2020);
+    offset 9 when the stem uses Midlands 4 naming (2021-2022+).
+    """
     for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert get_competition_offset("East_Midlands", season) == 10
-    for season in ("2008-2009", "2009-2010"):
+    for season in ("2008-2009", "2009-2010", "2010-2011", "2011-2012", "2019-2020"):
         assert get_competition_offset("Nottinghamshire", season) == 10
     assert get_competition_offset("East_Midlands", "2007-2008") == 8
     assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
     assert get_competition_offset("East_Midlands", "2011-2012") == 8
-    assert get_competition_offset("Nottinghamshire", "2010-2011") == 9
+    assert get_competition_offset("Nottinghamshire", "2021-2022") == 9
 
 
 class TestExtractTierMenCurrent:
@@ -365,6 +369,12 @@ class TestExtractTierMeritPath:
         result = extract_tier("merit/Leicestershire/LRU_Division_1.json", "2013-2014")
         assert result == (2, "Leicestershire 2")
 
+    def test_leicestershire_offset_when_apex_midlands_4_east_south(self) -> None:
+        """Premiership/LRU apex feeds Midlands 4 East (South) in tier_mappings (2010-2011–2014-2015)."""
+        for season in ("2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015"):
+            assert get_competition_offset("Leicestershire", season) == 9
+        assert get_competition_offset("Leicestershire", "2015-2016") == 8
+
     def test_middlesex_premier_division(self):
         result = extract_tier("merit/Middlesex/Premier_Division.json", "2025-2026")
         assert result == (1, "Middlesex 1")
@@ -378,6 +388,17 @@ class TestExtractTierMeritPath:
             "merit/Midlands_Reserve/Midlands_West_Reserve_League_Div_1.json", "2013-2014"
         )
         assert result == (1, "Midlands Reserve 1")
+
+    def test_midlands_reserve_geographic_apex_filenames(self):
+        """2011-2012 style stems lack Div 1/2 — match North/South apex via :data:`_NAMED_MERIT_LEAGUES`."""
+        assert extract_tier(
+            "merit/Midlands_Reserve/North_-_West_Midlands_Reserve_Team_League.json", "2011-2012"
+        ) == (1, "Midlands Reserve 1")
+        assert extract_tier(
+            "merit/Midlands_Reserve/South_-_West_Midlands_Reserve_Team_League.json", "2011-2012"
+        ) == (1, "Midlands Reserve 1")
+        assert get_competition_offset("Midlands_Reserve", "2011-2012") == 10
+        assert get_competition_offset("Midlands_Reserve", "2013-2014") == 8
 
     def test_nowirul_premier_current(self):
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2025-2026")

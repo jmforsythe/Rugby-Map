@@ -92,6 +92,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     ],
     "Leicestershire": [
         ("2009-2010", "2009-2010", 11),
+        # Apex to Midlands 4 East (South) in tier_mappings (national tier 9): local 1 → absolute 10.
+        ("2010-2011", "2014-2015", 9),
         ("2023-2024", "2023-2024", 7),
         ("2025-2026", "2025-2026", 9),
     ],
@@ -108,6 +110,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "Middlesex": [
         ("2025-2026", "2025-2026", 8),
     ],
+    # 2011-2012 geographic apex feeds Midlands 5 West (abs 10); local 1 → 11 under nationals.
+    "Midlands_Reserve": [
+        ("2011-2012", "2011-2012", 10),
+    ],
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
         ("2017-2018", "2017-2018", 9),
@@ -119,9 +125,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2024-2025", "2025-2026", 9),
     ],
     "Nottinghamshire": [
-        # Keep offset 10 with East_Midlands in 2008-2010: local 1 → 11 under Midlands 5 East.
-        # Raising to 11 would map Group 1 onto abs 12 — same band as Leicestershire LRU.
-        ("2008-2009", "2009-2010", 10),
+        # Offset 10 while apex feeds Midlands 5 East (North) in tier_mappings: local 1 → abs 11.
+        # 2008-2009–2019-2020 (with East_Midlands, 2008-2010; Notts stem aligned to M5 from 2010-2011).
+        # Default 9 from :data:`COMPETITION_OFFSETS` when apex uses Midlands 4 naming (2021-2022+).
+        ("2008-2009", "2019-2020", 10),
     ],
     "Rural_Kent": [
         ("2008-2009", "2010-2011", 10),
@@ -340,6 +347,11 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Herts_Middlesex/Merit_North_1": 2,
     "merit/Herts_Middlesex/Merit_North_2": 3,
     "merit/Herts_Middlesex/Merit_South_1": 2,
+    # Midlands Reserve: some seasons use ``North_-_West_…`` / ``South_-_West_…`` filenames without
+    # ``Div_N``; :func:`get_number_from_tier_name` would yield 0 → local tier 0, and merit SVGs
+    # only draw bands ``range(1, max+1)``, so those leagues vanished from diagrams.
+    "merit/Midlands_Reserve/North": 1,
+    "merit/Midlands_Reserve/South": 1,
 }
 
 # 2009-2010 only: JONAP ladder uses separate local tiers for each Conference and
@@ -513,12 +525,6 @@ _SPONSOR_PREFIXES = [
     "Ellis_Mediation_",
     "Fill_Your_Boots_",
     "Webb_Ellis_",
-    "Banana_Bread_Beer_",
-    "Bombardier_",
-    "Directors_",
-    "Estrella_Damm_",
-    "Youngs_London_Stout_",
-    "Youngs_London_Gold_",
     "Sale_Sharks_",
     "County_Courier_Services_",
     "Howell_&_Co_",

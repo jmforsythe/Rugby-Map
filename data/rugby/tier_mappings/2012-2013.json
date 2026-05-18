@@ -91,10 +91,7 @@
   },
   "East_Midlands": {
     "2": {
-      "Eagle IPA League": [
-        "Midlands 4 East (North)",
-        "Midlands 4 East (South)"
-      ]
+      "Eagle IPA League": "Midlands 4 East (North)"
     },
     "3": {
       "Courage Best League": "Eagle IPA League"
@@ -109,7 +106,7 @@
       "Winter Warmer League": "Waggledance League"
     },
     "7": {
-      "Red Stripe": "Eagle IPA League"
+      "Red Stripe": "Winter Warmer League"
     }
   },
   "Essex": {
@@ -198,7 +195,7 @@
   },
   "Leicestershire": {
     "1": {
-      "LRU Premier": "Midlands 3 East (South)"
+      "LRU Premier": "Midlands 4 East (South)"
     },
     "2": {
       "LRU Division 1": "LRU Premier"
@@ -241,7 +238,7 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Group 1": "Midlands 4 East (North)"
+      "Group 1": "Midlands 5 East (North)"
     },
     "2": {
       "Group 2": "Group 1"

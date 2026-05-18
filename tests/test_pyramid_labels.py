@@ -465,11 +465,12 @@ def test_pyramid_margin_tier1_championship_before_2009_premiership_pyramid() -> 
 def test_merit_absolute_tier_apex_east_midlands_nottinghamshire_2008_2009() -> None:
     """Bombardier (East Midlands) is absolute tier 11 with offset 10 through 2010-2011.
 
-    Nottinghamshire Group 1 keeps that apex only for 2008-2009 and 2009-2010 (offset 10).
+    Nottinghamshire Group 1 is absolute 11 with offset 10 whenever apex feeds Midlands 5 East
+    (North) (2008-2009–2019-2020 in tier_mappings).
     """
     for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert merit_pyramid_absolute_child_tier("East_Midlands", 1, season) == 11
-    for season in ("2008-2009", "2009-2010"):
+    for season in ("2008-2009", "2009-2010", "2010-2011", "2019-2020"):
         assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, season) == 11
 
 
@@ -484,7 +485,9 @@ def test_east_midlands_pyramid_preserves_sponsor_in_title() -> None:
         )
         == "Bombardier League"
     )
-    assert league_short_display_name("Bombardier League", 11, "2008-2009") == "League"
+    # East Midlands ladder sponsors are not in :data:`rugby.tiers._SPONSOR_PREFIXES`; they are
+    # league identity (see 2011–2012 merit filenames) and match via ``_NAMED_MERIT_LEAGUES``.
+    assert league_short_display_name("Bombardier League", 11, "2008-2009") == "Bombardier League"
 
 
 def test_national_league_division_short_title() -> None:

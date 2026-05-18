@@ -80,10 +80,7 @@
   },
   "East_Midlands": {
     "1": {
-      "Bombardier League": [
-        "Midlands 3 East (North)",
-        "Midlands 3 East (South)"
-      ]
+      "Bombardier League": "Midlands 3 East (North)"
     },
     "2": {
       "Eagle IPA League": "Bombardier League"
@@ -180,7 +177,7 @@
   },
   "Leicestershire": {
     "1": {
-      "Leicestershire Premiership": "Midlands 3 East (South)"
+      "Leicestershire Premiership": "Midlands 4 East (South)"
     },
     "2": {
       "LRU Division 1": "Leicestershire Premiership"
@@ -232,7 +229,7 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Group 1": "Midlands 4 East (North)"
+      "Group 1": "Midlands 5 East (North)"
     },
     "2": {
       "Group 2": "Group 1"

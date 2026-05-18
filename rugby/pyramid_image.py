@@ -4114,60 +4114,9 @@ def _render_league_cell(
     unchanged for titles and crests.
     """
     if getattr(league, "merit_chain_placeholder", False):
-        bg_ph, _title_col = _league_cell_tier_colors(league, league.tier_num, gender)
-        cell_stroke_ph = (
-            LEAGUE_CELL_STROKE_WOMENS if gender == "womens" else LEAGUE_CELL_STROKE_MENS
-        )
-        if getattr(league, "merit_column_spacer", False):
-            inset = max(2.5, min(w, h) * 0.02)
-            ix = x + inset
-            iy = y + inset
-            iw = max(6.0, w - 2 * inset)
-            ih = max(6.0, h - 2 * inset)
-            clipped_body_ph = (
-                f'<rect x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" rx="5" '
-                f'fill="#ebebef" fill-opacity="0.72" stroke="{cell_stroke_ph}" '
-                f'stroke-width="1.05" stroke-dasharray="8 6"/>'
-            )
-        else:
-            pad = max(4.0, min(w, h) * 0.035)
-            ix = x + pad
-            iy = y + pad
-            iw = max(10.0, w - 2 * pad)
-            ih = max(10.0, h - 2 * pad)
-            cx = x + w / 2
-            cy = y + h / 2
-            inner = (
-                f'<rect x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" rx="6" '
-                f'fill="#f4f4f6" fill-opacity="0.95" stroke="{cell_stroke_ph}" '
-                f'stroke-width="1.10" stroke-dasharray="6 5"/>'
-            )
-            dots = _svg_text(
-                "\u22ee",
-                cx,
-                cy,
-                fill="#889",
-                size=min(16.0, h * 0.24),
-                weight="600",
-                anchor="middle",
-            )
-            clipped_body_ph = f"{inner}\n{dots}"
-        if trapezoid_points is not None and clip_id is not None:
-            pts = _svg_polygon_points_attr(trapezoid_points)
-            poly_bg = (
-                f'<polygon points="{pts}" fill="{bg_ph}" stroke="{cell_stroke_ph}" '
-                f'stroke-width="1.00"/>'
-            )
-            return (
-                f'<defs><clipPath id="{xml_escape(clip_id)}">'
-                f'<polygon points="{pts}"/></clipPath></defs>\n'
-                f'<g clip-path="url(#{xml_escape(clip_id)})">\n'
-                f"{poly_bg}\n"
-                f"{clipped_body_ph}\n"
-                "</g>\n"
-            )
-        outline_ph = _svg_rect(x, y, w, h, fill=bg_ph, stroke=cell_stroke_ph, stroke_width=1.0)
-        return f"{outline_ph}\n{clipped_body_ph}"
+        # Layout still reserves this slot (parent-aligned merit columns / bridged rungs); draw nothing
+        # so the pyramid interior reads as empty space, as before synthetic leagues existed.
+        return ""
 
     team_rows = list(league.teams)
     extra_vs_count = max(0, league.team_count - len(team_rows))

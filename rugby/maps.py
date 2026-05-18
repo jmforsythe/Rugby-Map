@@ -682,10 +682,30 @@ def main() -> None:
     parser.add_argument(
         "--production", action="store_true", help="Change folder structure for production"
     )
+    parser.add_argument(
+        "--emit-shared-boundaries-only",
+        action="store_true",
+        help=(
+            "Write dist/shared/boundaries.json for the static site bundle and exit. "
+            "Uses the same geometry sources as tier maps — run once before parallel per-season CI jobs."
+        ),
+    )
     args = parser.parse_args()
 
     set_config(is_production=args.production, season=args.season, show_debug=not args.no_debug)
     setup_logging()
+
+    if args.emit_shared_boundaries_only:
+        logger.info("Emitting shared boundaries only (production=%s)", args.production)
+        itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
+        export_shared_boundaries(
+            BOUNDARY_PATHS,
+            output_dir=str(DIST_DIR / "shared"),
+            country_names=COUNTRY_OUTLINES,
+            skip_if_exists=False,
+            itl_hierarchy=itl_hierarchy,
+        )
+        return
 
     season = args.season
     show_debug = not args.no_debug

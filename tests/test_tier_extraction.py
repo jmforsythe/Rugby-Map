@@ -424,6 +424,17 @@ class TestExtractTierMeritPath:
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
         assert result == (1, "East Midlands 1")
 
+    def test_east_midlands_eagle_ipa_2009_2010_reserves_courage_rung(self):
+        """Absent Courage Best file: Eagle IPA is local 3 so tier 12 stays Leicestershire LRU-only."""
+        assert extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2009-2010") == (
+            3,
+            "East Midlands 3",
+        )
+        assert extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2013-2014") == (
+            2,
+            "East Midlands 2",
+        )
+
     def test_backslash_path(self):
         """Windows-style backslash paths are normalised."""
         result = extract_tier("merit\\CANDY\\CANDY_1.json", "2025-2026")
@@ -434,15 +445,21 @@ class TestExtractTierMeritPath:
         assert result == (999, "Unknown Tier")
 
     def test_surrey_jonap_stripped(self):
-        """JONAP sponsor prefix is stripped so JONAP leagues match named entries."""
+        """2009-2010 JONAP Foundation is local tier 9 (nine-rung ladder); other seasons unchanged."""
         result = extract_tier("merit/Surrey/Surrey_JONAP_Foundation_League.json", "2009-2010")
-        assert result == (7, "Surrey 7")
+        assert result == (9, "Surrey 9")
         result_no_jonap = extract_tier("merit/Surrey/Surrey_Foundation.json", "2010-2011")
         assert result_no_jonap == (7, "Surrey 7")
 
     def test_surrey_jonap_alliance(self):
-        result = extract_tier("merit/Surrey/Surrey_JONAP_Alliance.json", "2009-2010")
-        assert result == (3, "Surrey 3")
+        assert extract_tier("merit/Surrey/Surrey_JONAP_Alliance.json", "2009-2010") == (
+            2,
+            "Surrey 2",
+        )
+        assert extract_tier("merit/Surrey/Surrey_JONAP_Alliance.json", "2010-2011") == (
+            3,
+            "Surrey 3",
+        )
 
     def test_herts_middlesex_compound_suffixes(self):
         """Merit Table 7NE/7SW/6NE/5NE must parse the number despite joined suffix."""

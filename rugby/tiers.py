@@ -58,6 +58,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "East_Midlands": [
         # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming drops (2009-2010)
         # or below Midlands 6 East (tier 10) when present (2008-2009): local 1 → absolute 11.
+        # With Leicestershire at offset 11 (LRU at 12), 2009-2010 uses local 3 for Eagle IPA (missing
+        # Courage Best file) so Eagle sits at abs 13 — see _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010.
         ("2008-2009", "2009-2010", 10),
     ],
     "Essex": [
@@ -116,6 +118,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2024-2025", "2025-2026", 9),
     ],
     "Nottinghamshire": [
+        # Keep offset 10 with East_Midlands in 2008-2010: local 1 → 11 under Midlands 5 East.
+        # Raising to 11 would map Group 1 onto abs 12 — same band as Leicestershire LRU.
         ("2008-2009", "2009-2010", 10),
     ],
     "Rural_Kent": [
@@ -307,7 +311,8 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Leicestershire/Leicestershire_Invitation": 2,
     # Surrey (offset 9): Premier (1) > Championship (2) > Alliance (3) >
     # Conference (4) > Combination 1 (5) > Combination 2 (6) >
-    # Combination 3 / Foundation (7)
+    # Combination 3 / Foundation (7). 2009-2010 JONAP uses nine local rungs;
+    # see _NAMED_MERIT_LEAGUES_SURREY_2009_2010.
     "merit/Surrey/Surrey_Premier": 1,
     "merit/Surrey/Surrey_Chamionship": 2,
     "merit/Surrey/Surrey_Championship": 2,
@@ -335,6 +340,33 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Herts_Middlesex/Merit_South_1": 2,
 }
 
+# 2009-2010 only: JONAP ladder uses separate local tiers for each Conference and
+# Combination band, with Foundation below Combination 3 (see ``tier_mappings/2009-2010.json``).
+# Longest-prefix match first (tuple order).
+_NAMED_MERIT_LEAGUES_SURREY_2009_2010: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_JONAP_Foundation_League", 9),
+    ("merit/Surrey/Surrey_JONAP_Foundation", 9),
+    ("merit/Surrey/Surrey_JONAP_Combination_3", 8),
+    ("merit/Surrey/Surrey_JONAP_Combination_2", 7),
+    ("merit/Surrey/Surrey_JONAP_Combination_1", 6),
+    ("merit/Surrey/Surrey_JONAP_Conference_3", 5),
+    ("merit/Surrey/Surrey_JONAP_Conference_2", 4),
+    ("merit/Surrey/Surrey_JONAP_Conference_1", 3),
+    ("merit/Surrey/Surrey_JONAP_Alliance", 2),
+    ("merit/Surrey/Surrey_JONAP_Premier", 1),
+)
+
+# 2009-2010 only: Courage Best has no geocoded file but occupied a rung; numbering Eagle IPA
+# as local 3 keeps absolute tier 12 for Leicestershire LRU alone on ``pyramid_All_Leagues`` stem
+# (parallel East Midlands / Leicestershire ladders no longer share every band).
+_NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010: tuple[tuple[str, int], ...] = (
+    ("merit/East_Midlands/Winter_Warmer_League", 6),
+    ("merit/East_Midlands/Waggledance_League", 5),
+    ("merit/East_Midlands/Directors_League", 4),
+    ("merit/East_Midlands/Eagle_IPA_League", 3),
+    ("merit/East_Midlands/Bombardier_League", 1),
+)
+
 
 def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None:
     """Match merit paths with sponsor-named leagues before sponsor stripping.
@@ -343,6 +375,14 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     as league identifiers. Sponsor stripping destroys this identity, so we match
     the original path first to assign distinct local tiers within the hierarchy.
     """
+    if season == "2009-2010" and path.startswith("merit/Surrey/Surrey_JONAP"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_2009_2010:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season == "2009-2010" and path.startswith("merit/East_Midlands/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
     for prefix, local_tier in sorted(
         _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True
     ):

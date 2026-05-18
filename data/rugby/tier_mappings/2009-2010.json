@@ -69,19 +69,13 @@
   },
   "East_Midlands": {
     "1": {
-      "Bombardier League": [
-        "Midlands 5 East (North)",
-        "Midlands 5 East (South)"
-      ]
-    },
-    "2": {
-      "Eagle IPA League": "Bombardier League"
+      "Bombardier League": "Midlands 5 East (North)"
     },
     "3": {
-      "Courage Best League": "Eagle IPA League"
+      "Eagle IPA League": "Bombardier League"
     },
     "4": {
-      "Directors League": "Courage Best League"
+      "Directors League": "Eagle IPA League"
     },
     "5": {
       "Waggledance League": "Directors League"
@@ -200,23 +194,29 @@
     "1": {
       "Surrey JONAP Premier": "Surrey 4"
     },
-    "3": {
+    "2": {
       "Surrey JONAP Alliance": "Surrey JONAP Premier"
     },
+    "3": {
+      "Surrey JONAP Conference 1": "Surrey JONAP Alliance"
+    },
     "4": {
-      "Surrey JONAP Conference 1": "Surrey JONAP Alliance",
-      "Surrey JONAP Conference 2": "Surrey JONAP Alliance",
-      "Surrey JONAP Conference 3": "Surrey JONAP Alliance"
+      "Surrey JONAP Conference 2": "Surrey JONAP Conference 1"
     },
     "5": {
-      "Surrey JONAP Combination 1": "Surrey JONAP Conference 1"
+      "Surrey JONAP Conference 3": "Surrey JONAP Conference 2"
     },
     "6": {
-      "Surrey JONAP Combination 2": "Surrey JONAP Combination 1"
+      "Surrey JONAP Combination 1": "Surrey JONAP Conference 3"
     },
     "7": {
-      "Surrey JONAP Combination 3": "Surrey JONAP Combination 2",
-      "Surrey JONAP Foundation League": "Surrey JONAP Combination 2"
+      "Surrey JONAP Combination 2": "Surrey JONAP Combination 1"
+    },
+    "8": {
+      "Surrey JONAP Combination 3": "Surrey JONAP Combination 2"
+    },
+    "9": {
+      "Surrey JONAP Foundation League": "Surrey JONAP Combination 3"
     }
   }
 }

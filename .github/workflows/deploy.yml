@@ -57,11 +57,15 @@ jobs:
           if [ -z "$FIRST" ]; then echo "No geocoded season dirs"; exit 1; fi
           python -m rugby.maps --production --season="$FIRST" --no-debug --emit-shared-boundaries-only
 
+      # upload-artifact strips parent dirs when uploading a folder alone; downstream expects data/boundaries/*.geojson.
+      - name: Pack boundary GeoJSON for artifact
+        run: tar czf rugby-boundaries.tar.gz data/boundaries
+
       - name: Upload boundary GeoJSON cache (reuse in matrix jobs)
         uses: actions/upload-artifact@v4
         with:
           name: rugby-boundaries-data
-          path: data/boundaries
+          path: rugby-boundaries.tar.gz
           retention-days: 3
 
       - name: Upload dist/shared bootstrap
@@ -103,7 +107,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: rugby-boundaries-data
-          path: data
+          path: .
+
+      - name: Extract boundaries into workspace
+        run: tar xzf rugby-boundaries.tar.gz
 
       - name: Restore dist/shared
         uses: actions/download-artifact@v4
@@ -150,7 +157,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: rugby-boundaries-data
-          path: data
+          path: .
+
+      - name: Extract boundaries into workspace
+        run: tar xzf rugby-boundaries.tar.gz
 
       - name: Setup Python
         uses: actions/setup-python@v5

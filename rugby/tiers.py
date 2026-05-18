@@ -8,6 +8,7 @@ Use :func:`get_competition_offset` to translate back to absolute pyramid positio
 """
 
 import logging
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +31,9 @@ COMPETITION_OFFSETS: dict[str, int] = {
     "Hampshire": 5,
     "Herts_Middlesex": 9,
     "Leicestershire": 8,
+    # Lancashire merit (historic comp 230): one tier band above NOWIRUL;
+    # subsumes Lancs-area Counties pyramid rows in pyramid_All_Leagues.svg — see pyramid_image.
+    "Lancashire": 7,
     "Middlesex": 9,
     "Midlands_Reserve": 8,
     "NOWIRUL": 8,
@@ -84,6 +88,16 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2023-2024", "2023-2024", 7),
         ("2025-2026", "2025-2026", 9),
     ],
+    # Lancashire county merit: apex sits immediately above NOWIRUL (offset −1 per era).
+    "Lancashire": [
+        ("2010-2011", "2014-2015", 8),
+        ("2017-2018", "2017-2018", 8),
+        ("2018-2019", "2018-2019", 9),
+        ("2019-2020", "2019-2020", 8),
+        ("2021-2022", "2021-2022", 6),
+        ("2022-2023", "2023-2024", 9),
+        ("2024-2025", "2025-2026", 8),
+    ],
     "Middlesex": [
         ("2025-2026", "2025-2026", 8),
     ],
@@ -134,6 +148,36 @@ def get_competition_offset(comp_name: str, season: str = "") -> int:
                 if season >= start and (not end or season <= end):
                     return offset
     return COMPETITION_OFFSETS.get(comp_name, 0)
+
+
+LANCASHIRE_COUNTY_MERIT_SUBSUMES_PYRAMID_FILENAME_PREFIXES: tuple[str, ...] = (
+    # Lancs merit (RFU competition 230) occupies this ladder historically; pyramid files
+    # would duplicate geography — skip when merit/Lancashire/ has data (maps + pyramid_All_Leagues).
+    "Euromanx_South_Lancs_Cheshire",
+    "North_Lancashire",
+    "North_Lancs_Cumbria",
+    "South_Lancs_Cheshire",
+    "Lancs_Cheshire",
+    "NC_Lancashire",
+    "Merseyside",
+)
+
+
+def lancashire_merit_geocoded_nonempty(geocoded_season_dir: Path | str) -> bool:
+    """True when ``merit/Lancashire`` under the season folder has at least one JSON league."""
+    root = Path(geocoded_season_dir)
+    d = root / "merit" / "Lancashire"
+    if not d.is_dir():
+        return False
+    return next(d.glob("*.json"), None) is not None
+
+
+def pyramid_json_stem_supplanted_by_lancashire_county_merit(league_filepath_stem: str) -> bool:
+    """True if this men's top-level pyramid JSON stem duplicates Lancashire county merit ladders."""
+    return any(
+        league_filepath_stem.startswith(p)
+        for p in LANCASHIRE_COUNTY_MERIT_SUBSUMES_PYRAMID_FILENAME_PREFIXES
+    )
 
 
 def mens_current_tier_name(tier: int, season: str = "") -> str:
@@ -472,6 +516,8 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/Leicestershire": 0,
         "merit/Middlesex": 1,
         "merit/Midlands_Reserve": 0,
+        "merit/Lancashire/Premier": 1,
+        "merit/Lancashire": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/NOWIRUL/Premier": 1,
         "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/Nottinghamshire": 0,
@@ -587,6 +633,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "merit/Leicestershire": (1 if season < "2015-2016" else 0),
         "merit/Middlesex": 0,
         "merit/Midlands_Reserve": 0,
+        "merit/Lancashire/Premier": 1,
+        "merit/Lancashire": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/NOWIRUL/Premier": 1,
         "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
         "merit/Nottinghamshire": 0,

@@ -21,6 +21,7 @@ _PYRAMID_COMPETITIONS = [
 
 _MERIT_COMPETITIONS = [
     183,  # 'IMPACT' Rugby North West Leagues
+    230,  # Lancashire County Rugby Union Leagues (historical)
     202,  # Hampshire Merit Tables
     1600,  # Midlands Reserve Team Leagues
     252,  # Leicestershire Competitions
@@ -497,6 +498,7 @@ _BANNED_FILENAMES = [
 
 _COMPETITION_NAMES: dict[str, str] = {
     "183": "NOWIRUL",
+    "230": "Lancashire",
     "202": "Hampshire",
     "1600": "Midlands_Reserve",
     "252": "Leicestershire",

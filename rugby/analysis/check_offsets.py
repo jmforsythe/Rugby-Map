@@ -34,6 +34,7 @@ COMP_TO_PYRAMID_PATTERN: dict[str, list[str]] = {
     "Hampshire": ["Hampshire"],
     "Herts_Middlesex": ["Herts", "Middx"],
     "Leicestershire": ["Midlands_East"],
+    "Lancashire": ["Lancashire", "Lancs_Cheshire", "Cumbria", "North_Lancs"],
     "Middlesex": ["Middx"],
     "NOWIRUL": ["Lancashire", "Lancs_Cheshire", "Cumbria", "North_Lancs"],
     "Nottinghamshire": ["Midlands_East"],

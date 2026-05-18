@@ -39,7 +39,13 @@ from core.map_builder import (
 )
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
-from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
+from rugby.tiers import (
+    extract_tier,
+    get_competition_offset,
+    lancashire_merit_geocoded_nonempty,
+    mens_current_tier_name,
+    pyramid_json_stem_supplanted_by_lancashire_county_merit,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -403,8 +409,19 @@ def _load_marker_items(
     if not geocoded_path.is_dir():
         return LoadedItems()
 
+    subsume_lancs = lancashire_merit_geocoded_nonempty(geocoded_path)
+
     result = LoadedItems()
     for filepath in geocoded_path.rglob("*.json"):
+        rel_parts_early = filepath.relative_to(geocoded_path).parts
+        is_root_pyramid = len(rel_parts_early) == 1
+        if (
+            subsume_lancs
+            and is_root_pyramid
+            and pyramid_json_stem_supplanted_by_lancashire_county_merit(filepath.stem)
+        ):
+            continue
+
         rel_path = filepath.relative_to(geocoded_path).as_posix()
         tier_num, tier_name = extract_tier(rel_path, season)
 

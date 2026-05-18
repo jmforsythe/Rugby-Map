@@ -54,7 +54,7 @@ import re
 import sys
 import time
 from collections import defaultdict
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field, replace
 from pathlib import Path
@@ -73,7 +73,9 @@ from rugby.tiers import (
     _strip_sponsor_prefix,
     extract_tier,
     get_competition_offset,
+    lancashire_merit_geocoded_nonempty,
     mens_current_tier_name,
+    pyramid_json_stem_supplanted_by_lancashire_county_merit,
     womens_current_tier_name,
 )
 
@@ -426,6 +428,7 @@ _MERGED_MERIT_COUNTIES_PARENT_SUBSTRINGS: dict[str, tuple[str, ...]] = {
     "Hampshire": ("hampshire",),
     "Herts_Middlesex": ("herts", "middx"),
     "Leicestershire": ("midlands east", "south north"),
+    "Lancashire": ("lancashire", "cheshire"),
     "Middlesex": ("middx", "middlesex"),
     "NOWIRUL": ("lancashire", "cheshire"),
     "Rural_Kent": ("kent",),
@@ -1741,6 +1744,7 @@ def load_pyramid_leagues(
     season: str,
     *,
     gender: Gender = DEFAULT_GENDER,
+    omit_top_level_filepath: Callable[[Path], bool] | None = None,
 ) -> list[LeagueData]:
     """Load this gender's pyramid leagues from the geocoded_teams directory.
 
@@ -1750,6 +1754,10 @@ def load_pyramid_leagues(
 
     Women's: tiers 101–106 (Premiership → NC 3) re-stamped to visual bands 1–6. No stem.
     Men's leagues, merit competitions, and the county championship are skipped.
+
+    ``omit_top_level_filepath``: if set, invoked for each top-level ``*.json`` path; returning
+    True skips loading that league (used by merged pyramid+merit when Lancashire merit
+    subsumes duplicate NW Counties ladders).
     """
     season_dir = GEOCODED_DIR / season
     if not season_dir.is_dir():
@@ -1758,6 +1766,8 @@ def load_pyramid_leagues(
     leagues: list[LeagueData] = []
     # Only top-level files — merit/, county_championship/, etc. are skipped.
     for filepath in sorted(season_dir.glob("*.json")):
+        if omit_top_level_filepath is not None and omit_top_level_filepath(filepath):
+            continue
         league = _load_league_file(filepath, season, gender=gender)
         if league is None:
             continue
@@ -1950,8 +1960,23 @@ def load_pyramid_leagues_with_merit(season: str) -> list[LeagueData]:
 
     Absolute tiers may exceed 11 for deep local structures; stem styling falls back to default
     greys beyond :data:`TIER_COLORS`.
+
+    Lancashire county merit (competition 230) occupies the Lancashire-area Counties ladders in
+    some seasons — matching top-level pyramid files are omitted so duplicated NW ladders do not
+    appear beside ``merit/Lancashire``.
     """
-    merged = list(load_pyramid_leagues(season, gender="mens"))
+    geo_root = GEOCODED_DIR / season
+
+    def _omit_duplicate_lancashire_pyramid(filepath: Path) -> bool:
+        return lancashire_merit_geocoded_nonempty(
+            geo_root
+        ) and pyramid_json_stem_supplanted_by_lancashire_county_merit(filepath.stem)
+
+    merged = list(
+        load_pyramid_leagues(
+            season, gender="mens", omit_top_level_filepath=_omit_duplicate_lancashire_pyramid
+        )
+    )
     n_nat = len(merged)
     comps = discover_merit_competitions(season)
     for competition in comps:

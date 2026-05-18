@@ -96,10 +96,14 @@
     "4": {
       "Directors Merit Table": "Bombardier Merit Table"
     },
+    "5": {
+      "Estrella Damm Merit Table": "Directors Merit Table"
+    },
     "7": {
-      "Banana Bread Beer Merit Table": "Bombardier Merit Table",
-      "Estrella Damm Merit Table": "Bombardier Merit Table",
-      "Youngs London Stout Merit Table": "Bombardier Merit Table"
+      "Banana Bread Beer Merit Table": "Bombardier Merit Table"
+    },
+    "6": {
+      "Youngs London Stout Merit Table": "Estrella Damm Merit Table"
     }
   },
   "Eastern_Counties": {
@@ -227,7 +231,10 @@
   },
   "Midlands_Reserve": {
     "1": {
-      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+      "Midlands Reserve League Div 1": [
+        "Midlands 5 West (North)",
+        "Midlands 5 West (South)"
+      ]
     },
     "2": {
       "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
@@ -271,22 +278,13 @@
       "NOWIRUL Division 3 South": "NOWIRUL Independent Energy Division 2 South"
     },
     "6": {
-      "NOWIRUL Division 4 East": [
-        "NOWIRUL Division 3 North",
-        "NOWIRUL Division 3 South"
-      ],
-      "NOWIRUL Howell & Co Division 4 West": [
-        "NOWIRUL Division 3 North",
-        "NOWIRUL Division 3 South"
-      ],
+      "NOWIRUL Division 4 East": "NOWIRUL Division 3 North",
+      "NOWIRUL Howell & Co Division 4 West": "NOWIRUL Division 3 South",
       "NOWIRUL James Trickett & Co Division 4 North": "NOWIRUL Division 3 North"
     },
     "7": {
       "NOWIRUL Division 5 East": "NOWIRUL Division 4 East",
-      "NOWIRUL Division 5 North": [
-        "NOWIRUL Division 4 East",
-        "NOWIRUL Howell & Co Division 4 West"
-      ],
+      "NOWIRUL Division 5 North": "NOWIRUL James Trickett & Co Division 4 North",
       "NOWIRUL Widnes Coaches Ltd Division 5 West": "NOWIRUL Howell & Co Division 4 West"
     }
   },
@@ -303,10 +301,10 @@
     }
   },
   "Surrey": {
-    "1": {
+    "2": {
       "Surrey Premiership": "Surrey 4"
     },
-    "2": {
+    "3": {
       "Surrey Championship": "Surrey Premiership"
     },
     "4": {
@@ -318,20 +316,11 @@
       "Surrey Combination 1 South": "Surrey Conference South"
     },
     "6": {
-      "Surrey Combination 2": [
-        "Surrey Combination 1 North",
-        "Surrey Combination 1 South"
-      ],
-      "Surrey Combination 2 Draft  2": [
-        "Surrey Combination 1 North",
-        "Surrey Combination 1 South"
-      ]
+      "Surrey Combination 2": "Surrey Combination 1 North",
+      "Surrey Combination 2 Draft  2": "Surrey Combination 1 South"
     },
     "7": {
-      "Surrey Foundation": [
-        "Surrey Combination 2",
-        "Surrey Combination 2 Draft  2"
-      ]
+      "Surrey Foundation": "Surrey Combination 2"
     }
   },
   "Sussex": {

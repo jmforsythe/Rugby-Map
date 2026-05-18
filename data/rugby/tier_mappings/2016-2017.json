@@ -43,6 +43,12 @@
       "Sussex Spitfire 1": "London 3 South West",
       "Tribute Devon 1": "Tribute Cornwall/Devon",
       "Tribute Somerset 1": "Tribute Somerset Premier"
+    },
+    "10": {
+      "Berks/Bucks & Oxon 2": [
+        "Berks/Bucks & Oxon 1",
+        "Berks/Bucks & Oxon Championship"
+      ]
     }
   },
   "women": {
@@ -68,25 +74,6 @@
   "CANDY": {
     "1": {
       "Division 1": "Durham/Northumberland Division Two"
-    }
-  },
-  "East_Midlands": {
-    "1": {
-      "Bombardier League": "Tribute Cornwall League"
-    },
-    "2": {
-      "Eagle IPA League": "Bombardier League"
-    },
-    "4": {
-      "Directors League": "Eagle IPA League"
-    },
-    "5": {
-      "Waggledance": "Directors League"
-    },
-    "7": {
-      "Estrella Damm": "Eagle IPA League",
-      "Youngs Bitter": "Eagle IPA League",
-      "Youngs London Stout": "Eagle IPA League"
     }
   },
   "Eastern_Counties": {
@@ -216,7 +203,10 @@
   },
   "Midlands_Reserve": {
     "1": {
-      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+      "Midlands Reserve League Div 1": [
+        "Midlands 5 West (North)",
+        "Midlands 5 West (South)"
+      ]
     },
     "2": {
       "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
@@ -262,14 +252,8 @@
     },
     "6": {
       "Freshnet Division 4 South": "Sale Sharks Division 3 South",
-      "INDEPENDENT E-NRG Division 4 West": [
-        "Sale Sharks Division 3 North",
-        "Sale Sharks Division 3 South"
-      ],
-      "Sale Sharks Division 4 East": [
-        "Sale Sharks Division 3 North",
-        "Sale Sharks Division 3 South"
-      ],
+      "INDEPENDENT E-NRG Division 4 West": "Sale Sharks Division 3 South",
+      "Sale Sharks Division 4 East": "Sale Sharks Division 3 North",
       "Sale Sharks Division 4 North": "Sale Sharks Division 3 North"
     },
     "7": {
@@ -300,10 +284,7 @@
       "Surrey West Conference": "Surrey Chamionship"
     },
     "5": {
-      "Surrey Combination 1 North": [
-        "Surrey East Conference",
-        "Surrey West Conference"
-      ],
+      "Surrey Combination 1 North": "Surrey East Conference",
       "Surrey Combination 1 South East": "Surrey East Conference",
       "Surrey Combination 1 South West": "Surrey West Conference"
     },
@@ -311,6 +292,27 @@
       "Surrey Combination 2 North": "Surrey Combination 1 North",
       "Surrey Combination 2 South East": "Surrey Combination 1 South East",
       "Surrey Combination 2 South West": "Surrey Combination 1 South West"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Bombardier League": "Tribute Cornwall League"
+    },
+    "2": {
+      "Eagle IPA League": "Bombardier League"
+    },
+    "3": {
+      "Youngs Bitter": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Youngs Bitter"
+    },
+    "5": {
+      "Estrella Damm": "Directors League",
+      "Waggledance": "Directors League"
+    },
+    "6": {
+      "Youngs London Stout": "Estrella Damm"
     }
   }
 }

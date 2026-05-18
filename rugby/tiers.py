@@ -111,10 +111,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2025-2026", "2025-2026", 8),
     ],
     # 2011-2012 geographic apex feeds Midlands 5 West (abs 10); local 1 → 11 under nationals.
-    # 2013-2014 West Reserve Div 1 likewise feeds Midlands 5 West (North/South).
+    # 2013-2014+ West / Midlands Reserve apex feeds Midlands 5 West (North/South).
     "Midlands_Reserve": [
         ("2011-2012", "2011-2012", 10),
-        ("2013-2014", "2013-2014", 10),
+        ("2013-2014", "2019-2020", 10),
     ],
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
@@ -142,7 +142,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2023-2024", "", 11),
     ],
     "Surrey": [
+        # Nine-rung Premier ladder (2010-2012): local 1 apex → abs 13 below Surrey 4 (tier 12).
         ("2009-2010", "2012-2013", 12),
+        # Four-conference / Championship ladders (2013-2015): apex at local 3 → abs 13.
+        ("2013-2014", "2014-2015", 10),
         ("2015-2016", "2018-2019", 11),
         ("2019-2020", "2019-2020", 12),
         ("2021-2022", "2021-2022", 12),
@@ -405,6 +408,51 @@ _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG: tuple[tuple[str, int], ...] = (
     ("merit/Surrey/Surrey_Alliance", 2),
     ("merit/Surrey/Surrey_Premier", 1),
 )
+_SURREY_FOUR_CONF_SEASONS = frozenset({"2013-2014", "2014-2015"})
+_NAMED_MERIT_LEAGUES_SURREY_FOUR_CONF: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_Foundation_League", 10),
+    ("merit/Surrey/Surrey_Foundation", 10),
+    ("merit/Surrey/Surrey_Combination_3", 9),
+    ("merit/Surrey/Surrey_Combination_2", 8),
+    ("merit/Surrey/Surrey_Combination_1", 7),
+    ("merit/Surrey/Surrey_Conference_4", 6),
+    ("merit/Surrey/Surrey_Conference_3", 5),
+    ("merit/Surrey/Surrey_Conference_2", 4),
+    ("merit/Surrey/Surrey_Conference_1", 3),
+)
+_SURREY_CHAMP_THREE_CONF_SEASONS = frozenset({"2015-2016"})
+_NAMED_MERIT_LEAGUES_SURREY_CHAMP_THREE_CONF: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_Foundation_League", 8),
+    ("merit/Surrey/Surrey_Foundation", 8),
+    ("merit/Surrey/Surrey_Combination_2", 7),
+    ("merit/Surrey/Surrey_Combination_1", 6),
+    ("merit/Surrey/Surrey_Conference_3", 5),
+    ("merit/Surrey/Surrey_Conference_2", 4),
+    ("merit/Surrey/Surrey_Conference_1", 3),
+    ("merit/Surrey/Surrey_Championship", 2),
+    ("merit/Surrey/Surrey_Chamionship", 2),
+)
+_SURREY_CHAMP_EASTWEST_SEASONS = frozenset({"2016-2017", "2017-2018"})
+_NAMED_MERIT_LEAGUES_SURREY_CHAMP_EASTWEST: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_Combination_2", 6),
+    ("merit/Surrey/Surrey_Combination_1", 5),
+    ("merit/Surrey/Surrey_West_Conference", 4),
+    ("merit/Surrey/Surrey_East_Conference", 4),
+    ("merit/Surrey/Surrey_Championship", 2),
+    ("merit/Surrey/Surrey_Chamionship", 2),
+)
+_SURREY_PREMIER_CHAMP_NS_SEASONS = frozenset({"2018-2019", "2019-2020"})
+_NAMED_MERIT_LEAGUES_SURREY_PREMIER_CHAMP_NS: tuple[tuple[str, int], ...] = (
+    ("merit/Surrey/Surrey_Foundation", 7),
+    ("merit/Surrey/Surrey_Combination_2", 6),
+    ("merit/Surrey/Surrey_Combination_1", 5),
+    ("merit/Surrey/Surrey_Conference_South", 4),
+    ("merit/Surrey/Surrey_Conference_North", 4),
+    ("merit/Surrey/Surrey_Championship", 3),
+    ("merit/Surrey/Surrey_Chamionship", 3),
+    ("merit/Surrey/Surrey_Premiership", 2),
+    ("merit/Surrey/Surrey_Premier", 2),
+)
 
 
 def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None:
@@ -430,16 +478,33 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
-    # 2013-2014: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
-    if season == "2013-2014":
-        if path.startswith("merit/East_Midlands/Youngs_Bitter"):
-            return (3, "Level 3")
-        if path.startswith("merit/East_Midlands/Estrella_Damm"):
-            return (5, "Level 5")
-        if path.startswith("merit/East_Midlands/Dogs_Head"):
-            return (6, "Level 6")
-        if path.startswith("merit/East_Midlands/Youngs_London_Stout"):
-            return (7, "Level 7")
+    if season in _SURREY_FOUR_CONF_SEASONS and path.startswith("merit/Surrey/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_FOUR_CONF:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season in _SURREY_CHAMP_THREE_CONF_SEASONS and path.startswith("merit/Surrey/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_CHAMP_THREE_CONF:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season in _SURREY_CHAMP_EASTWEST_SEASONS and path.startswith("merit/Surrey/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_CHAMP_EASTWEST:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    if season in _SURREY_PREMIER_CHAMP_NS_SEASONS and path.startswith("merit/Surrey/"):
+        for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_CHAMP_NS:
+            if path.startswith(prefix):
+                return (local_tier, f"Level {local_tier}")
+    # 2013-2014 .. 2019-2020: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
+    if "2013-2014" <= season <= "2019-2020" and path.startswith("merit/East_Midlands/"):
+        for stem, local_tier in (
+            ("Youngs_Bitter", 3),
+            ("Estrella_Damm", 5),
+            ("Youngs_London_Stout", 6),
+            ("Youngs_London_Gold", 6),
+            ("Dogs_Head", 7),
+        ):
+            if path.startswith(f"merit/East_Midlands/{stem}"):
+                return (local_tier, f"Level {local_tier}")
     for prefix, local_tier in sorted(
         _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True
     ):

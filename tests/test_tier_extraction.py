@@ -464,11 +464,11 @@ class TestExtractTierMeritPath:
             5,
             "East Midlands 5",
         )
-        assert extract_tier("merit/East_Midlands/Dogs_Head_DNA.json", "2013-2014") == (
+        assert extract_tier("merit/East_Midlands/Youngs_London_Stout.json", "2013-2014") == (
             6,
             "East Midlands 6",
         )
-        assert extract_tier("merit/East_Midlands/Youngs_London_Stout.json", "2013-2014") == (
+        assert extract_tier("merit/East_Midlands/Dogs_Head_DNA.json", "2013-2014") == (
             7,
             "East Midlands 7",
         )
@@ -522,8 +522,19 @@ class TestExtractTierMeritPath:
             "Surrey 9",
         )
         assert extract_tier("merit/Surrey/Surrey_Conference_1.json", "2013-2014") == (
-            4,
-            "Surrey 4",
+            3,
+            "Surrey 3",
+        )
+        assert extract_tier("merit/Surrey/Surrey_Foundation_League.json", "2014-2015") == (
+            10,
+            "Surrey 10",
+        )
+        assert get_competition_offset("Surrey", "2011-2012") == 12
+        assert get_competition_offset("Surrey", "2013-2014") == 10
+        assert get_competition_offset("Surrey", "2014-2015") == 10
+        assert extract_tier("merit/Surrey/Surrey_Championship.json", "2015-2016") == (
+            2,
+            "Surrey 2",
         )
 
     def test_herts_middlesex_compound_suffixes(self):
@@ -618,13 +629,13 @@ class TestNamedMeritLeagues:
         result = extract_tier("merit/East_Midlands/Directors_League.json", "2014-2015")
         assert result == (4, "East Midlands 4")
 
-    def test_estrella_parallel_seventh_tier(self):
+    def test_estrella_main_ladder_fifth_tier(self):
         result = extract_tier("merit/East_Midlands/Estrella_Damm.json", "2014-2015")
-        assert result == (7, "East Midlands 7")
+        assert result == (5, "East Midlands 5")
 
-    def test_youngs_bitter_parallel_seventh_tier(self):
+    def test_youngs_bitter_main_ladder_third_tier(self):
         result = extract_tier("merit/East_Midlands/Youngs_Bitter.json", "2014-2015")
-        assert result == (7, "East Midlands 7")
+        assert result == (3, "East Midlands 3")
 
     def test_bombardier_merit_table(self):
         result = extract_tier("merit/East_Midlands/Bombardier_Merit_Table.json", "2019-2020")

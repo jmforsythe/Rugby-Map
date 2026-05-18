@@ -47,6 +47,12 @@
       "Wadworth 6X Berks/Bucks & Oxon 1": "Wadworth 6X Berks/Bucks & Oxon Premier",
       "Wadworth 6X Berks/Bucks & Oxon Championship": "Wadworth 6X Berks/Bucks & Oxon Premier",
       "Wadworth 6X Gloucester 1": "Wadworth 6X Gloucester Premier"
+    },
+    "10": {
+      "Wadworth 6X Berks/Bucks & Oxon 2": [
+        "Wadworth 6X Berks/Bucks & Oxon 1",
+        "Wadworth 6X Berks/Bucks & Oxon Championship"
+      ]
     }
   },
   "women": {
@@ -94,8 +100,8 @@
     "4": {
       "Directors League": "Eagle IPA League"
     },
-    "7": {
-      "Estrella Damm": "Eagle IPA League"
+    "5": {
+      "Estrella Damm": "Directors League"
     }
   },
   "Eastern_Counties": {
@@ -216,7 +222,10 @@
   },
   "Midlands_Reserve": {
     "1": {
-      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+      "Midlands Reserve League Div 1": [
+        "Midlands 5 West (North)",
+        "Midlands 5 West (South)"
+      ]
     },
     "2": {
       "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
@@ -248,14 +257,8 @@
     },
     "6": {
       "Howell& Co Division 4 South": "Sale Sharks Division 3 South",
-      "INDEPENDENT E-NRG Division 4 West": [
-        "Sale Sharks Division 3 North",
-        "Sale Sharks Division 3 South"
-      ],
-      "Sale Sharks Division 4 East": [
-        "Sale Sharks Division 3 North",
-        "Sale Sharks Division 3 South"
-      ],
+      "INDEPENDENT E-NRG Division 4 West": "Sale Sharks Division 3 South",
+      "Sale Sharks Division 4 East": "Sale Sharks Division 3 North",
       "Division 4 North": "Sale Sharks Division 3 North"
     },
     "7": {
@@ -286,14 +289,14 @@
       "Surrey West Conference": "Surrey Championship"
     },
     "5": {
-      "Surrey Combination 1 North": [
-        "Surrey East Conference",
-        "Surrey West Conference"
-      ],
+      "Surrey Combination 1 North": "Surrey East Conference",
       "Surrey Combination 1 South East": "Surrey East Conference",
       "Surrey Combination 1 South West": "Surrey West Conference"
     },
     "6": {
+      "Surrey Combination 2 North": "Surrey Combination 1 North",
+      "Surrey Combination 2 South East": "Surrey Combination 1 South East",
+      "Surrey Combination 2 South West": "Surrey Combination 1 South West",
       "Surrey Combination 2 North West": "Surrey Combination 1 North"
     }
   },

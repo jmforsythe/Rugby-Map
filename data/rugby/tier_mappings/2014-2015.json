@@ -43,6 +43,12 @@
       "Tribute Devon 1": "Tribute Cornwall/Devon",
       "Tribute Somerset 1": "Tribute Somerset Premier"
     },
+    "10": {
+      "Berks/Bucks & Oxon 2": [
+        "Berks/Bucks & Oxon 1",
+        "Berks/Bucks & Oxon Championship"
+      ]
+    },
     "11": {
       "Dorset & Wilts 4": [
         "Dorset & Wilts 3 North",
@@ -86,21 +92,16 @@
       "Eagle IPA League": "Bombardier League"
     },
     "3": {
-      "Courage Best League": "Eagle IPA League"
+      "Youngs Bitter": "Eagle IPA League"
     },
     "4": {
-      "Directors League": "Courage Best League"
+      "Directors League": "Youngs Bitter"
     },
     "5": {
-      "Waggledance League": "Directors League"
+      "Estrella Damm": "Directors League"
     },
     "6": {
-      "Winter Warmer League": "Waggledance League"
-    },
-    "7": {
-      "Estrella Damm": "Eagle IPA League",
-      "Youngs Bitter": "Eagle IPA League",
-      "Youngs London Stout": "Eagle IPA League"
+      "Youngs London Stout": "Estrella Damm"
     }
   },
   "Eastern_Counties": {
@@ -216,8 +217,8 @@
   "Midlands_Reserve": {
     "1": {
       "Midlands West Reserve League Div 1": [
-        "Midlands 3 West (North)",
-        "Midlands 3 West (South)"
+        "Midlands 5 West (North)",
+        "Midlands 5 West (South)"
       ]
     },
     "2": {
@@ -263,25 +264,13 @@
     "5": {
       "Raging Bull Division 4 North": "Raging Bull Division 3 North",
       "Raging Bull Division 4 South": "Raging Bull Division 3 South",
-      "Raging Bull Division 4 East": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ],
-      "Raging Bull Division 4 West": [
-        "Raging Bull Division 3 North",
-        "Raging Bull Division 3 South"
-      ]
+      "Raging Bull Division 4 East": "Raging Bull Division 3 North",
+      "Raging Bull Division 4 West": "Raging Bull Division 3 South"
     },
     "6": {
       "Raging Bull Division 5 South": "Raging Bull Division 4 South",
-      "Raging Bull Division 5 West": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
-      "Raging Bull Division 5 East": [
-        "Raging Bull Division 4 North",
-        "Raging Bull Division 4 South"
-      ],
+      "Raging Bull Division 5 West": "Raging Bull Division 4 West",
+      "Raging Bull Division 5 East": "Raging Bull Division 4 East",
       "Raging Bull Division 5 North": "Raging Bull Division 4 North"
     }
   },
@@ -299,21 +288,29 @@
     }
   },
   "Surrey": {
+    "3": {
+      "Surrey Conference 1": "Surrey 4"
+    },
     "4": {
-      "Surrey Conference 1": "Surrey 4",
-      "Surrey Conference 2": "Surrey 4",
-      "Surrey Conference 3": "Surrey 4",
-      "Surrey Conference 4": "Surrey 4"
+      "Surrey Conference 2": "Surrey Conference 1"
     },
     "5": {
-      "Surrey Combination 1": "Surrey Conference 1"
+      "Surrey Conference 3": "Surrey Conference 2"
     },
     "6": {
-      "Surrey Combination 2": "Surrey Combination 1"
+      "Surrey Conference 4": "Surrey Conference 3"
     },
     "7": {
-      "Surrey Combination 3": "Surrey Combination 2",
-      "Surrey Foundation League": "Surrey Combination 2"
+      "Surrey Combination 1": "Surrey Conference 4"
+    },
+    "8": {
+      "Surrey Combination 2": "Surrey Combination 1"
+    },
+    "9": {
+      "Surrey Combination 3": "Surrey Combination 2"
+    },
+    "10": {
+      "Surrey Foundation League": "Surrey Combination 3"
     }
   }
 }

@@ -1,19 +1,20 @@
 """Generate a static HTML carousel to skim pyramid SVG/PNG renders under ``dist/<season>/``.
 
 After running ``python -m rugby.pyramid_image`` (with optional ``--png``) for several
-seasons, rebuild the viewer and open ``dist/pyramid-gallery.html`` in a browser:
+seasons, rebuild the viewer and open the gallery HTML in a browser:
 
 - Arrow keys (← / →) or on-screen buttons change the slide.
 - ``Home`` / ``End`` jump to newest / oldest.
 - ``-`` / ``+`` (or ``=``) zoom the image; ``0`` resets to 100%.
 - Hold **Ctrl** and scroll the stage to zoom.
-- Prefers ``pyramid.png`` over ``pyramid.svg`` when both exist.
+- Prefers ``.png`` over ``.svg`` when both exist.
   SVG slides use ``<object>`` (not ``<img>``) because browsers omit ``foreignObject``/crest markup when SVG is rasterised via ``img``.
 
 Run::
 
     python -m rugby.analysis.pyramid_gallery
     python -m rugby.analysis.pyramid_gallery --womens
+    python -m rugby.analysis.pyramid_gallery --all-leagues
 """
 
 from __future__ import annotations
@@ -27,6 +28,15 @@ from pathlib import Path
 from core.config import DIST_DIR, REPO_ROOT
 
 _SEASON_DIR_RE = re.compile(r"^[12]\d{3}-[12]\d{3}$")
+
+STEM_NATIONAL = "pyramid"
+STEM_ALL_LEAGUES = "pyramid_All_Leagues"
+STEM_WOMENS = "pyramid_womens"
+
+DEFAULT_OUTPUT_BY_STEM: dict[str, str] = {
+    STEM_NATIONAL: "pyramid-gallery.html",
+    STEM_ALL_LEAGUES: "pyramid-all-leagues-gallery.html",
+}
 
 
 def _season_sort_key(folder_name: str) -> tuple[int, int]:
@@ -47,7 +57,13 @@ def _pick_image(season_dir: Path, stem: str) -> str | None:
     return None
 
 
-def collect_slides(dist_root: Path, *, include_womens: bool) -> list[dict[str, str]]:
+def collect_slides(
+    dist_root: Path,
+    *,
+    stem: str = STEM_NATIONAL,
+    slide_label: str = "Men",
+    include_womens: bool = False,
+) -> list[dict[str, str]]:
     """Slide dicts: ``label``, ``href`` (relative to ``dist_root``)."""
     if not dist_root.is_dir():
         return []
@@ -60,17 +76,17 @@ def collect_slides(dist_root: Path, *, include_womens: bool) -> list[dict[str, s
     slides: list[dict[str, str]] = []
     for season in seasons:
         sdir = dist_root / season
-        href_m = _pick_image(sdir, "pyramid")
-        if href_m is not None:
-            slides.append({"label": f"Men · {season}", "href": href_m})
+        href = _pick_image(sdir, stem)
+        if href is not None:
+            slides.append({"label": f"{slide_label} · {season}", "href": href})
         if include_womens:
-            href_w = _pick_image(sdir, "pyramid_womens")
+            href_w = _pick_image(sdir, STEM_WOMENS)
             if href_w is not None:
                 slides.append({"label": f"Women · {season}", "href": href_w})
     return slides
 
 
-def build_html(slides: list[dict[str, str]]) -> str:
+def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid gallery") -> str:
     data_json = json.dumps(slides)
     # json.dumps yields ASCII-safe escapes; safe to embed verbatim in JS.
     return f"""<!DOCTYPE html>
@@ -78,7 +94,7 @@ def build_html(slides: list[dict[str, str]]) -> str:
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Pyramid gallery</title>
+  <title>{page_title}</title>
   <style>
     :root {{
       font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -302,7 +318,7 @@ def _validate_dist_path(path: Path) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Write dist/pyramid-gallery.html to flip through pyramid renders."
+        description="Write an HTML carousel to flip through pyramid renders under dist/<season>/."
     )
     parser.add_argument(
         "--dist",
@@ -314,28 +330,58 @@ def main() -> int:
         "--output",
         type=Path,
         default=None,
-        help="HTML output path (default: <dist>/pyramid-gallery.html)",
+        help="HTML output path (default depends on --all-leagues)",
+    )
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--all-leagues",
+        action="store_true",
+        help=(
+            "Use pyramid_All_Leagues.{png,svg} (national + merit) per season; "
+            f"default output {DEFAULT_OUTPUT_BY_STEM[STEM_ALL_LEAGUES]!r}."
+        ),
     )
     parser.add_argument(
         "--womens",
         action="store_true",
-        help="Include pyramid_womens.png/svg slides after each men's slide when present.",
+        help=(
+            "With national pyramid (default): also include pyramid_womens slides. "
+            "Ignored with --all-leagues."
+        ),
     )
     args = parser.parse_args()
     dist_root: Path = args.dist
-    out: Path = args.output if args.output is not None else dist_root / "pyramid-gallery.html"
 
-    slides = collect_slides(dist_root, include_womens=args.womens)
+    if args.all_leagues:
+        stem = STEM_ALL_LEAGUES
+        slide_label = "All leagues"
+        page_title = "Pyramid — all leagues gallery"
+        include_womens = False
+    else:
+        stem = STEM_NATIONAL
+        slide_label = "Men"
+        page_title = "Pyramid gallery"
+        include_womens = args.womens
+
+    default_out_name = DEFAULT_OUTPUT_BY_STEM[stem]
+    out: Path = args.output if args.output is not None else dist_root / default_out_name
+
+    slides = collect_slides(
+        dist_root,
+        stem=stem,
+        slide_label=slide_label,
+        include_womens=include_womens,
+    )
     if not slides:
         print(
             f"No pyramid images found under {dist_root} (expected "
-            f"*/pyramid.png or pyramid.svg per season).",
+            f"*/{stem}.png or {stem}.svg per season).",
             file=sys.stderr,
         )
         return 1
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(build_html(slides), encoding="utf-8")
+    out.write_text(build_html(slides, page_title=page_title), encoding="utf-8")
     print(f"Wrote {len(slides)} slides -> {out}")
     print("Open that file in a browser; arrow keys flip slides; use - / + / 0 or Zoom buttons.")
     return 0

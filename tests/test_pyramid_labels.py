@@ -567,3 +567,109 @@ def test_womens_parent_overrides_merge_cross_season(tmp_path, monkeypatch) -> No
         "2024-2025", leagues_by_tier, dict(base_override)
     )
     assert merged2[(3, "Women's Championship North 2")] == ("Women's Premiership",)
+
+
+def test_stem_parent_override_prefers_same_merit_competition() -> None:
+    """Generic parent labels like 'Division 1' must not attach to another county's league."""
+    from rugby.pyramid_image import (
+        LeagueData,
+        _find_merit_parent_league,
+        _merit_counties_hint_matches,
+        _resolve_stem_parents,
+    )
+
+    assert not _merit_counties_hint_matches("essex", "herts/middlesex 1")
+    assert _merit_counties_hint_matches("essex", "essex (canterbury jack) league 1 premier")
+
+    essex_d1 = LeagueData(
+        10,
+        "Level 10",
+        "Division 1",
+        [],
+        0,
+        merit_geocoded_competition="Essex",
+        merit_local_tier=1,
+    )
+    middx_d1 = LeagueData(
+        10,
+        "Level 10",
+        "Division 1",
+        [],
+        0,
+        merit_geocoded_competition="Middlesex",
+        merit_local_tier=1,
+    )
+    middx_d2 = LeagueData(
+        11,
+        "Level 11",
+        "Division 2",
+        [],
+        0,
+        merit_geocoded_competition="Middlesex",
+        merit_local_tier=2,
+    )
+    parents = [essex_d1, middx_d1]
+    assert (
+        _find_merit_parent_league(middx_d2, parents, "Middlesex").merit_geocoded_competition
+        == "Middlesex"
+    )
+    overrides = {(11, "Division 2"): ("Division 1",)}
+    resolved = _resolve_stem_parents(
+        middx_d2,
+        parents,
+        "2017-2018",
+        overrides,
+        merit_competition="Middlesex",
+        leagues_by_tier={10: parents, 11: [middx_d2]},
+    )
+    assert len(resolved) == 1
+    assert resolved[0].merit_geocoded_competition == "Middlesex"
+    assert resolved[0].league_name == "Division 1"
+
+
+def test_stem_forest_merit_division_name_collision() -> None:
+    """Stem forest must link by (competition, name), not bare league name alone."""
+    from rugby.pyramid_image import (
+        _build_stem_forest,
+        _stem_forest_registry_key,
+        load_pyramid_leagues_with_merit,
+        stem_parent_overrides_load,
+        stem_parent_overrides_merge_merit_sections_for_absolute_tiers,
+    )
+
+    assert _stem_forest_registry_key(
+        LeagueData(10, "L10", "Division 1", [], 0, merit_geocoded_competition="Essex")
+    ) != _stem_forest_registry_key(
+        LeagueData(10, "L10", "Division 1", [], 0, merit_geocoded_competition="Middlesex")
+    )
+
+    season = "2017-2018"
+    leagues = load_pyramid_leagues_with_merit(season)
+    leagues_by_tier: dict[int, list] = {}
+    for lg in leagues:
+        leagues_by_tier.setdefault(lg.tier_num, []).append(lg)
+    merged = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+        season, dict(stem_parent_overrides_load(season) or {})
+    )
+    roots, _orphans = _build_stem_forest(leagues_by_tier, season, merged)
+
+    parent_node: dict[int, object] = {}
+
+    def walk(n) -> None:
+        for ch in n.children:
+            if ch.league.merit_geocoded_competition == "Middlesex":
+                parent_node[id(ch.league)] = n.league
+            walk(ch)
+
+    for root in roots:
+        walk(root)
+
+    middx_d2 = next(
+        lg
+        for lg in leagues
+        if lg.league_name == "Division 2" and lg.merit_geocoded_competition == "Middlesex"
+    )
+    par = parent_node.get(id(middx_d2))
+    assert par is not None
+    assert par.league_name == "Division 1"
+    assert par.merit_geocoded_competition == "Middlesex"

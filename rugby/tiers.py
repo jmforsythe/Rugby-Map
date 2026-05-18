@@ -78,7 +78,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     ],
     "Hampshire": [
         ("2008-2009", "2008-2009", 7),
-        ("2009-2010", "2016-2017", 6),
+        # 2016-2017 drops geographic splits; Solent apex moves to local 6 → default offset 5 (abs 11).
+        ("2009-2010", "2015-2016", 6),
         ("2022-2023", "2022-2023", 6),
         ("2025-2026", "2025-2026", 6),
     ],
@@ -434,10 +435,10 @@ _NAMED_MERIT_LEAGUES_SURREY_CHAMP_THREE_CONF: tuple[tuple[str, int], ...] = (
 )
 _SURREY_CHAMP_EASTWEST_SEASONS = frozenset({"2016-2017", "2017-2018"})
 _NAMED_MERIT_LEAGUES_SURREY_CHAMP_EASTWEST: tuple[tuple[str, int], ...] = (
-    ("merit/Surrey/Surrey_Combination_2", 6),
-    ("merit/Surrey/Surrey_Combination_1", 5),
-    ("merit/Surrey/Surrey_West_Conference", 4),
-    ("merit/Surrey/Surrey_East_Conference", 4),
+    ("merit/Surrey/Surrey_Combination_2", 5),
+    ("merit/Surrey/Surrey_Combination_1", 4),
+    ("merit/Surrey/Surrey_West_Conference", 3),
+    ("merit/Surrey/Surrey_East_Conference", 3),
     ("merit/Surrey/Surrey_Championship", 2),
     ("merit/Surrey/Surrey_Chamionship", 2),
 )
@@ -504,6 +505,19 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
             ("Dogs_Head", 7),
         ):
             if path.startswith(f"merit/East_Midlands/{stem}"):
+                return (local_tier, f"Level {local_tier}")
+    # 2016-2017: unnumbered ``Solent League`` is the merit apex (local 6), like ``Solent 1`` from
+    # 2017-2018. Zeroth-map offset 5 + num 0 placed it at local 5 while ``Solent_League_2`` used
+    # num 2 → local 7, leaving a gap at local 6.
+    if season == "2016-2017" and path.startswith("merit/Hampshire/Solent_League"):
+        for suffix, local_tier in (
+            ("Solent_League_4", 9),
+            ("Solent_League_3", 8),
+            ("Solent_League_2", 7),
+            ("Solent_League", 6),
+        ):
+            stem = f"merit/Hampshire/{suffix}"
+            if path.startswith(stem) and (len(path) == len(stem) or path[len(stem)] in "./"):
                 return (local_tier, f"Level {local_tier}")
     for prefix, local_tier in sorted(
         _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True

@@ -537,6 +537,29 @@ class TestExtractTierMeritPath:
             "Surrey 2",
         )
 
+    def test_surrey_champ_eastwest_2016_2017(self):
+        """2016-2017 drops Alliance; East/West Conference sit at local 3, not 4."""
+        assert extract_tier("merit/Surrey/Surrey_Chamionship.json", "2016-2017") == (
+            2,
+            "Surrey 2",
+        )
+        assert extract_tier("merit/Surrey/Surrey_East_Conference.json", "2016-2017") == (
+            3,
+            "Surrey 3",
+        )
+        assert extract_tier("merit/Surrey/Surrey_West_Conference.json", "2016-2017") == (
+            3,
+            "Surrey 3",
+        )
+        assert extract_tier("merit/Surrey/Surrey_Combination_1_North.json", "2016-2017") == (
+            4,
+            "Surrey 4",
+        )
+        assert extract_tier("merit/Surrey/Surrey_Combination_2_North.json", "2016-2017") == (
+            5,
+            "Surrey 5",
+        )
+
     def test_herts_middlesex_compound_suffixes(self):
         """Merit Table 7NE/7SW/6NE/5NE must parse the number despite joined suffix."""
         assert extract_tier("merit/Herts_Middlesex/Merit_Table_7NE.json", "2015-2016") == (
@@ -570,6 +593,32 @@ class TestExtractTierMeritPath:
             8,
             "Hampshire 8",
         )
+
+    def test_hampshire_solent_league_2016_2017(self):
+        """Unnumbered Solent League is local tier 6; numbered rungs follow without a gap."""
+        assert extract_tier("merit/Hampshire/Solent_League.json", "2016-2017") == (
+            6,
+            "Hampshire 6",
+        )
+        assert extract_tier("merit/Hampshire/Solent_League_2.json", "2016-2017") == (
+            7,
+            "Hampshire 7",
+        )
+        assert extract_tier("merit/Hampshire/Solent_League_3.json", "2016-2017") == (
+            8,
+            "Hampshire 8",
+        )
+        assert extract_tier("merit/Hampshire/Solent_League_4.json", "2016-2017") == (
+            9,
+            "Hampshire 9",
+        )
+        # Prior seasons kept geographic splits below bare Solent League at local 5.
+        assert extract_tier("merit/Hampshire/Solent_League.json", "2015-2016") == (
+            5,
+            "Hampshire 5",
+        )
+        assert get_competition_offset("Hampshire", "2015-2016") == 6
+        assert get_competition_offset("Hampshire", "2016-2017") == 5
 
     def test_five_grain_sponsor_stripped(self):
         """Five_Grain_ sponsor prefix is stripped so 'Five' is not parsed as 5."""

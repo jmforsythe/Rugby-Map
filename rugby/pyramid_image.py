@@ -44,6 +44,7 @@ import base64
 import colorsys
 import contextlib
 import contextvars
+import functools
 import hashlib
 import html
 import io
@@ -1375,6 +1376,26 @@ def _merit_matching_direction_parents(
     return matched
 
 
+def _merit_counties_hint_matches(hint: str, blob: str) -> bool:
+    """True when ``hint`` appears as a whole token in ``blob`` (not e.g. ``essex`` ⊂ ``middlesex``)."""
+    if not hint or not blob:
+        return False
+    return re.search(rf"(?<![a-z]){re.escape(hint)}(?![a-z])", blob) is not None
+
+
+def _merit_same_competition_parents(
+    child: LeagueData,
+    parents: list[LeagueData],
+    competition: str,
+) -> list[LeagueData]:
+    """Parents from the same merit geocode folder as ``child`` when identifiable."""
+    comp = child.merit_geocoded_competition or competition
+    if not comp:
+        return list(parents)
+    scoped = [p for p in parents if p.merit_geocoded_competition == comp]
+    return scoped if scoped else list(parents)
+
+
 def _find_merit_parent_league(
     child: LeagueData,
     parents: list[LeagueData],
@@ -1391,7 +1412,9 @@ def _find_merit_parent_league(
     """
     if not parents:
         return None
-    parents_u = sorted(parents, key=lambda lg: lg.league_name)
+    parents_u = sorted(
+        _merit_same_competition_parents(child, parents, competition), key=lambda lg: lg.league_name
+    )
     if len(parents_u) == 1:
         return parents_u[0]
 
@@ -1599,14 +1622,30 @@ def _match_parent_override_label(
     child_league_name: str,
     *,
     log_miss: bool = True,
+    child_merit_competition: str | None = None,
 ) -> LeagueData | None:
     """Resolve one override parent string against tier-(``ptier``) ``parents``."""
     want = _strip_league_title_sponsors(want_raw).strip().casefold()
     if not want:
         return None
-    for p in parents:
-        if _strip_league_title_sponsors(p.league_name).strip().casefold() == want:
-            return p
+    exact = [
+        p for p in parents if _strip_league_title_sponsors(p.league_name).strip().casefold() == want
+    ]
+    if len(exact) == 1:
+        return exact[0]
+    if len(exact) > 1:
+        if child_merit_competition:
+            scoped = [p for p in exact if p.merit_geocoded_competition == child_merit_competition]
+            if len(scoped) == 1:
+                return scoped[0]
+        if log_miss:
+            logger.warning(
+                "Ambiguous stem parent override %r for %r (tier %d); skipping entry.",
+                want_raw,
+                child_league_name,
+                ptier,
+            )
+        return None
     tail_key = _stem_identity_tail_key(want_raw, ptier, season)
     fuzzy = [
         p for p in parents if _stem_identity_tail_key(p.league_name, ptier, season) == tail_key
@@ -1657,6 +1696,8 @@ def _match_parent_override_in_merit_ancestor_pool(
     want_raw: str,
     season: str,
     child_tier_num: int,
+    *,
+    child_merit_competition: str | None = None,
 ) -> LeagueData | None:
     """Match override label to any same-competition ancestor; prefer the closest tier below the child."""
     want_cf = _strip_league_title_sponsors(want_raw).strip().casefold()
@@ -1669,6 +1710,10 @@ def _match_parent_override_in_merit_ancestor_pool(
     if len(exact) == 1:
         return exact[0]
     if len(exact) > 1:
+        if child_merit_competition:
+            scoped = [p for p in exact if p.merit_geocoded_competition == child_merit_competition]
+            if scoped:
+                return max(scoped, key=lambda p: p.tier_num)
         return max(exact, key=lambda p: p.tier_num)
 
     fuzzy: list[LeagueData] = []
@@ -1720,7 +1765,7 @@ def _find_merged_merit_counties_anchor_parent(
         stripped = _strip_league_title_sponsors(p.league_name).strip().casefold()
         core = _stem_league_core_suffix(p, season).casefold()
         blob = f"{stripped} {core}"
-        hits = sum(1 for h in hints if h in blob)
+        hits = sum(1 for h in hints if _merit_counties_hint_matches(h, blob))
         if hits <= 0:
             continue
         scored.append((hits, p))
@@ -1735,6 +1780,32 @@ def _find_merged_merit_counties_anchor_parent(
     return min(tied, key=lambda lg: len(lg.league_name))
 
 
+def _parent_override_specs_for_child(
+    child: LeagueData,
+    season: str,
+    parent_overrides: StemParentOverrides,
+    *,
+    merit_competition: str | None = None,
+) -> tuple[str, ...] | None:
+    """JSON parent label(s) for ``child``, preferring per-merit sections when keys collide.
+
+    ``stem_parent_overrides_merge_merit_sections_for_absolute_tiers`` keys only
+    ``(absolute_tier, child_name)``, so e.g. Essex and Middlesex both named ``Division 1``
+    at tier 10 share one merged entry — use the competition's own JSON row instead.
+    """
+    comp = child.merit_geocoded_competition or merit_competition
+    cloc = child.merit_local_tier
+    if comp is not None and cloc is not None:
+        payload = _stem_parent_override_read_payload(season)
+        if payload is not None:
+            local_flat = merit_parent_overrides_from_payload(payload, comp)
+            if local_flat is not None:
+                local_specs = local_flat.get((cloc, child.league_name))
+                if local_specs is not None:
+                    return local_specs
+    return parent_overrides.get((child.tier_num, child.league_name))
+
+
 def _resolve_stem_parents(
     child: LeagueData,
     parents: list[LeagueData],
@@ -1745,10 +1816,11 @@ def _resolve_stem_parents(
     leagues_by_tier: dict[int, list[LeagueData]] | None = None,
 ) -> list[LeagueData]:
     """Heuristic parents unless ``parent_overrides`` fixes ``(tier, child) -> parent names``."""
-    key = (child.tier_num, child.league_name)
     ovs = parent_overrides or {}
-    if key in ovs:
-        specs = ovs[key]
+    specs = _parent_override_specs_for_child(
+        child, season, ovs, merit_competition=merit_competition
+    )
+    if specs is not None:
         if not specs:
             return []
         ptier = child.tier_num - 1
@@ -1762,21 +1834,39 @@ def _resolve_stem_parents(
             if use_merit_pool and leagues_by_tier is not None
             else []
         )
+        child_comp = child.merit_geocoded_competition or merit_competition
         for want_raw in specs:
-            p = _match_parent_override_label(
-                parents,
-                want_raw,
-                ptier,
-                season,
-                child.league_name,
-                log_miss=False,
-            )
+            p: LeagueData | None = None
+            comp = child_comp
+            if comp is not None:
+                same_comp = [x for x in parents if x.merit_geocoded_competition == comp]
+                if same_comp:
+                    p = _match_parent_override_label(
+                        same_comp,
+                        want_raw,
+                        ptier,
+                        season,
+                        child.league_name,
+                        log_miss=False,
+                        child_merit_competition=comp,
+                    )
+            if p is None:
+                p = _match_parent_override_label(
+                    parents,
+                    want_raw,
+                    ptier,
+                    season,
+                    child.league_name,
+                    log_miss=False,
+                    child_merit_competition=child_comp,
+                )
             if p is None and merit_pool:
                 p = _match_parent_override_in_merit_ancestor_pool(
                     merit_pool,
                     want_raw,
                     season,
                     child.tier_num,
+                    child_merit_competition=child_comp,
                 )
             if p is None:
                 logger.warning(
@@ -1976,7 +2066,11 @@ def merit_augment_skipped_parent_chains_for_pyramid(
             return None
         pool = _merit_ancestor_candidate_pool(lb, child_ld)
         return _match_parent_override_in_merit_ancestor_pool(
-            pool, pspec[0], season, child_ld.tier_num
+            pool,
+            pspec[0],
+            season,
+            child_ld.tier_num,
+            child_merit_competition=merit_competition,
         )
 
     for tc in sorted(lb.keys()):
@@ -2154,7 +2248,13 @@ def load_merit_pyramid_leagues_raw(season: str, competition: str) -> list[League
         league = _load_league_file(filepath, season, gender="mens", extract_rel=rel)
         if league is None:
             continue
-        raw.append(replace(league, merit_local_tier=league.tier_num))
+        raw.append(
+            replace(
+                league,
+                merit_local_tier=league.tier_num,
+                merit_geocoded_competition=competition,
+            )
+        )
     return raw
 
 
@@ -5022,9 +5122,16 @@ def _merit_resolve_parent_column_index(
     """Map tier-(N−1) parent name(s) from overrides to a column index in ``prev_ord``."""
     if len(pspec) == 1:
         fk = _feeder_match_key(pspec[0])
-        for i, p in enumerate(prev_ord):
-            if _feeder_match_key(p.league_name) == fk:
-                return i
+        matches = [i for i, p in enumerate(prev_ord) if _feeder_match_key(p.league_name) == fk]
+        if len(matches) == 1:
+            return matches[0]
+        if len(matches) > 1:
+            comp = child.merit_geocoded_competition
+            if comp:
+                for i in matches:
+                    if prev_ord[i].merit_geocoded_competition == comp:
+                        return i
+            return matches[0]
         return None
     pick = _find_merit_parent_league(child, list(prev_ord), competition)
     if pick is None:
@@ -5216,6 +5323,11 @@ def _stem_sort_children(nodes: list[StemTreeNode]) -> list[StemTreeNode]:
     return sorted(nodes, key=lambda sn: _stem_sort_key_league_name(sn.league.league_name))
 
 
+def _stem_forest_registry_key(lg: LeagueData) -> tuple[str, str]:
+    """Stem node registry key: merit geocode folder + league name (national rows use ``""``)."""
+    return (lg.merit_geocoded_competition or "", lg.league_name)
+
+
 def _build_stem_forest(
     leagues_by_tier: dict[int, list[LeagueData]],
     season: str,
@@ -5229,11 +5341,11 @@ def _build_stem_forest(
 
     tier7_sorted = _sorted_stem_leagues_at_tier(7, leagues_by_tier.get(7, []), season)
     roots: list[StemTreeNode] = []
-    by_league: dict[tuple[int, str], list[StemTreeNode]] = defaultdict(list)
+    by_league: dict[tuple[str, str], list[StemTreeNode]] = defaultdict(list)
     for lg in tier7_sorted:
         n = StemTreeNode(lg)
         roots.append(n)
-        by_league[(lg.tier_num, lg.league_name)].append(n)
+        by_league[_stem_forest_registry_key(lg)].append(n)
 
     for t in stem_tiers:
         if t <= 7:
@@ -5264,8 +5376,7 @@ def _build_stem_forest(
                 key=lambda p: _stem_sort_key_league_name(p.league_name),
             )
             primary = parent_lds_sorted[0]
-            pk = (primary.tier_num, primary.league_name)
-            parent_nodes = by_league.get(pk, [])
+            parent_nodes = by_league.get(_stem_forest_registry_key(primary), [])
             if not parent_nodes:
                 orphans.setdefault(t, []).append(StemTreeNode(lg))
                 if log_unlinked:
@@ -5282,7 +5393,7 @@ def _build_stem_forest(
                     p.league_name for p in parent_lds_sorted
                 )
             parent_nodes[0].children.append(child_node)
-            by_league[(lg.tier_num, lg.league_name)].append(child_node)
+            by_league[_stem_forest_registry_key(lg)].append(child_node)
 
     uniq_nodes: dict[int, StemTreeNode] = {}
     for r in roots:
@@ -7169,6 +7280,12 @@ def _parse_stem_slot_strips(payload: object) -> tuple[StemSlotStrip, ...]:
 
 def _stem_parent_override_read_payload(season: str) -> dict | None:
     """Return parsed stem JSON object for ``season``, or ``None`` if missing/unreadable."""
+    return _stem_parent_override_read_payload_impl(season)
+
+
+@functools.lru_cache(maxsize=16)
+def _stem_parent_override_read_payload_impl(season: str) -> dict | None:
+    """Cached JSON read; use :func:`_stem_parent_override_read_payload` in call sites."""
     path = stem_parent_overrides_store_path(season)
     if not path.is_file():
         return None

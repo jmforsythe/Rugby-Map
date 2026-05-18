@@ -73,5 +73,266 @@
       "Women's NC South East West 1": "Women's Championship South East 2",
       "Women's NC South West 1": "Women's Championship South West 2"
     }
+  },
+  "CANDY": {
+    "1": {
+      "Division One": "Durham/Northumberland Division Two"
+    },
+    "2": {
+      "Division Two North": "Division One",
+      "Division Two South": "Division One"
+    }
+  },
+  "Devon": {
+    "1": {
+      "Devon Merit Table 1": "Tribute Devon 1"
+    },
+    "2": {
+      "Devon Merit Table 2SW": "Devon Merit Table 1"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Bombardier Merit Table": [
+        "Midlands 3 East (North)",
+        "Midlands 3 East (South)"
+      ]
+    },
+    "2": {
+      "Youngs London Gold Merit Table": "Bombardier Merit Table"
+    },
+    "3": {
+      "Banana Bread Beer Merit Table": "Youngs London Gold Merit Table",
+      "Directors Merit Table": "Youngs London Gold Merit Table",
+      "Estrella Damm Merit Table": "Youngs London Gold Merit Table"
+    }
+  },
+  "Eastern_Counties": {
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1 North",
+      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1 South",
+      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1 West"
+    },
+    "3": {
+      "Eastern Counties Greene King Division Three South": "Eastern Counties Greene King Division Two South",
+      "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division 1": "Essex (Canterbury Jack) 1"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Divsion 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Divsion 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    },
+    "6": {
+      "Division 6 East": "Division 5",
+      "Division 6 West": "Division 5"
+    }
+  },
+  "GRFU_District": {
+    "0": {
+      "Wadworth 6X District Premier": [
+        "Wadworth 6X Gloucestershire 2 North",
+        "Wadworth 6X Gloucestershire 2 South"
+      ]
+    },
+    "1": {
+      "Wadworth 6X Bristol & District 1": "Wadworth 6X District Premier",
+      "Wadworth 6X Gloucester & District 1": "Wadworth 6X District Premier"
+    },
+    "2": {
+      "Wadworth 6X Bristol & District 2": "Wadworth 6X Bristol & District 1",
+      "Wadworth 6X Gloucester & District 2": "Wadworth 6X Gloucester & District 1"
+    },
+    "3": {
+      "Wadworth 6X Gloucester & District 3": "Wadworth 6X Gloucester & District 2",
+      "Wadworth 6X Bristol & District 3": "Wadworth 6X Bristol & District 2"
+    }
+  },
+  "Hampshire": {
+    "7": {
+      "Hampshire 3": "Hampshire 2"
+    },
+    "8": {
+      "Hampshire 4": "Hampshire 3"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 2"
+    },
+    "2": {
+      "Merit Table 2": "Merit Table 1"
+    },
+    "3": {
+      "Merit Table 3": "Merit Table 2"
+    },
+    "4": {
+      "Merit Table 4 NE": "Merit Table 3",
+      "Merit Table 4SW": "Merit Table 3"
+    },
+    "5": {
+      "Merit Table 5 SW": "Merit Table 4SW",
+      "Merit Table 5NE": "Merit Table 4 NE"
+    }
+  },
+  "Lancashire": {
+    "2": {
+      "ADM Premier Division": "-"
+    },
+    "3": {
+      "ADM First Division": "ADM Premier Division"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Midlands 3 East (North)"
+    },
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    },
+    "3": {
+      "Leicestershire Merit C": "Leicestershire Merit B"
+    }
+  },
+  "Middlesex": {
+    "0": {
+      "Premier Division": "London 3 North West"
+    },
+    "1": {
+      "Division 1": "Premier Division"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Division 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+    },
+    "2": {
+      "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
+    },
+    "3": {
+      "Midlands Reserve League Div 3": "Midlands Reserve League Div 2"
+    }
+  },
+  "Nottinghamshire": {
+    "1": {
+      "Security Plus Pennant Group 1": "Midlands 4 East (North)"
+    },
+    "2": {
+      "Security Plus Pennant Group 2": "Security Plus Pennant Group 1"
+    },
+    "3": {
+      "Security Plus Pennant Group 3": "Security Plus Pennant Group 2"
+    },
+    "4": {
+      "Security Plus Pennant Group 4 North": "Security Plus Pennant Group 3",
+      "Security Plus Pennant Group 4 South": "Security Plus Pennant Group 3"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "Cotton Traders Premier League": "-"
+    },
+    "2": {
+      "Cotton Traders Championship League": "Cotton Traders Premier League"
+    },
+    "3": {
+      "Sale Sharks Division 1": "Cotton Traders Championship League"
+    },
+    "4": {
+      "County Courier Services  Division 2 North": "Sale Sharks Division 1",
+      "Sale Sharks Division 2 South": "Sale Sharks Division 1"
+    },
+    "5": {
+      "Sale Sharks Division 3 North": "County Courier Services  Division 2 North",
+      "Sale Sharks Division 3 South": "Sale Sharks Division 2 South"
+    },
+    "6": {
+      "Howell & Co Division 4 South": "Sale Sharks Division 3 South",
+      "INDEPENDENT E-NRG Division 4 West": [
+        "Sale Sharks Division 3 North",
+        "Sale Sharks Division 3 South"
+      ],
+      "Sale Sharks Division 4 East": [
+        "Sale Sharks Division 3 North",
+        "Sale Sharks Division 3 South"
+      ],
+      "Sale Sharks Division 4 North": "Sale Sharks Division 3 North"
+    },
+    "7": {
+      "Sale Sharks Division 5 East": "Sale Sharks Division 4 East",
+      "Sale Sharks Division 5 North": "Sale Sharks Division 4 North",
+      "Sale Sharks Division 5 West": "INDEPENDENT E-NRG Division 4 West"
+    }
+  },
+  "Rural_Kent": {
+    "0": {
+      "Premier 2 East": "Shepherd Neame Kent 2"
+    },
+    "3": {
+      "Late Red 3": "-"
+    },
+    "4": {
+      "Five Grain 4 East": "Late Red 3",
+      "Five Grain 4 West": "Late Red 3"
+    }
+  },
+  "Surrey": {
+    "2": {
+      "Surrey Championship": "Surrey 4"
+    },
+    "4": {
+      "Surrey Conference North": "-",
+      "Surrey Conference South": "-"
+    },
+    "5": {
+      "Surrey Combination 1 North": "Surrey Conference North",
+      "Surrey Combination 1 South": "Surrey Conference South"
+    },
+    "6": {
+      "Surrey Combination 2": [
+        "Surrey Combination 1 North",
+        "Surrey Combination 1 South"
+      ]
+    },
+    "7": {
+      "Surrey Foundation": "Surrey Combination 2"
+    }
+  },
+  "Sussex": {
+    "5": {
+      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
+      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
+    },
+    "6": {
+      "Sussex 3 EAST Bonfire Boy": "Sussex 2 'Armada Ale'",
+      "Sussex 3 WEST 'Forwards Choice'": "Sussex 2 'Armada Ale'"
+    },
+    "7": {
+      "Sussex 4 EAST Albion Ale'": "Sussex 3 EAST Bonfire Boy",
+      "Sussex 4 WEST 'Wild Hop'": "Sussex 3 WEST 'Forwards Choice'"
+    }
   }
 }

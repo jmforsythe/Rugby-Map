@@ -4,6 +4,7 @@ import json
 
 from rugby.pyramid_image import (
     LeagueData,
+    _find_merit_parent_league,
     _merit_canvas_horizontal_weight_pyramid,
     _merit_chain_single_league_margin_label,
     _merit_equal_column_templates,
@@ -287,6 +288,55 @@ def test_merit_parent_aligned_band_gloucester_only_column() -> None:
     assert _lg.league_name == child.league_name
     assert col == 1
     assert x_rect >= lay.row_left_x + lay.cell_w_raw * 0.5
+
+
+def _merit_tc_ld(tier: int, merit_local: int, league_name: str) -> LeagueData:
+    """League fixture with explicit RFU merit local tier for geographic parent tests."""
+    return LeagueData(
+        tier_num=tier,
+        tier_name="",
+        league_name=league_name,
+        teams=[],
+        team_count=0,
+        merit_local_tier=merit_local,
+    )
+
+
+def test_merit_parent_infer_cardinal_prefix_matches_unique_parent_tail() -> None:
+    competition = "Demo"
+    child = _merit_tc_ld(3, 3, "Demo 3 North Premier")
+    north = _merit_tc_ld(2, 2, "Demo 2 North")
+    south = _merit_tc_ld(2, 2, "Demo 2 South")
+    picked = _find_merit_parent_league(child, [south, north], competition)
+    assert picked is not None
+    assert picked.league_name == north.league_name
+
+
+def test_merit_parent_infer_cardinal_missing_matching_parent_returns_none() -> None:
+    competition = "Demo"
+    child = _merit_tc_ld(3, 3, "Demo 3 North")
+    south = _merit_tc_ld(2, 2, "Demo 2 South")
+    west = _merit_tc_ld(2, 2, "Demo 2 West")
+    assert _find_merit_parent_league(child, [south, west], competition) is None
+
+
+def test_merit_parent_infer_cardinal_rejects_remainder_that_has_other_direction() -> None:
+    competition = "Demo"
+    child = _merit_tc_ld(3, 3, "Demo 3 South East North")
+    se = _merit_tc_ld(2, 2, "Demo 2 South East")
+    nw = _merit_tc_ld(2, 2, "Demo 2 North West")
+    picked = _find_merit_parent_league(child, [nw, se], competition)
+    assert picked is None
+
+
+def test_merit_parent_infer_cardinal_suffix_matches_unique_parent_tail() -> None:
+    competition = "Demo"
+    child = _merit_tc_ld(3, 3, "Demo 3 Counties North")
+    north = _merit_tc_ld(2, 2, "Demo 2 North")
+    south = _merit_tc_ld(2, 2, "Demo 2 South")
+    picked = _find_merit_parent_league(child, [north, south], competition)
+    assert picked is not None
+    assert picked.league_name == north.league_name
 
 
 def test_merit_pyramid_band_column_order_candy_2_3_pattern() -> None:

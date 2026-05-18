@@ -1180,6 +1180,100 @@ def _merit_local_tier_for_naming(league: LeagueData) -> int:
     return league.merit_local_tier if league.merit_local_tier is not None else league.tier_num
 
 
+# Canonical lower-case cardinal / inter-cardinal tails for merit subdivision matching.
+_MERIT_COMPASS_DIRECTION_PHRASES: tuple[str, ...] = (
+    "north east",
+    "north west",
+    "south east",
+    "south west",
+    # Single-word compass points last so compound tails beat single tokens.
+    "north",
+    "south",
+    "east",
+    "west",
+)
+_MERIT_COMPASS_DIRECTION_PHRASES_DESC: tuple[str, ...] = tuple(
+    sorted(_MERIT_COMPASS_DIRECTION_PHRASES, key=len, reverse=True)
+)
+
+
+def _merit_normalize_direction_tail(fragment: str) -> str:
+    """Lower-case collapsed tail for cardinal comparison (digits / number-words stripped)."""
+    raw = fragment.strip().casefold().replace("-", " ")
+    raw = _strip_trailing_numeric_suffix(raw).strip()
+    raw = " ".join(raw.split())
+    return raw
+
+
+def _merit_tail_contains_direction_phrase_casefold(norm_tail: str, phrase_lc: str) -> bool:
+    """True iff ``phrase_lc`` occurs in ``norm_tail`` as a consecutive word run."""
+    if not phrase_lc or not norm_tail:
+        return False
+    parts = phrase_lc.split()
+    core = r"\s+".join(re.escape(t) for t in parts)
+    return re.search(rf"(?i)\b{core}\b", norm_tail) is not None
+
+
+def _merit_clear_cardinal_in_geo_tail(child_tail_opt: str | None) -> str | None:
+    """If merit geo tail denotes a single unambiguous compass direction, return canonical phrase.
+
+    Used when :func:`_merit_geo_tail` failed to tie child to exactly one parent: we still nest
+    under a tier-above league whose geographic tail **is exactly** that direction
+    (e.g. child's tail ``North Premier`` vs parent ``County 2 North`` → ``north``). The
+    direction may be an unambiguous prefix or suffix of the child's tail.
+
+    Requires that no second direction phrase appears in the non-direction remainder so we avoid
+    false positives on tails like ``North East Mid`` or ``Southern North``.
+    """
+    if child_tail_opt is None:
+        return None
+    n = _merit_normalize_direction_tail(child_tail_opt)
+    if not n:
+        return None
+
+    for phrase in _MERIT_COMPASS_DIRECTION_PHRASES_DESC:
+        if n == phrase:
+            return phrase
+        if len(n) > len(phrase) and n.startswith(phrase + " "):
+            rem = n[len(phrase) + 1 :].strip()
+            if any(
+                _merit_tail_contains_direction_phrase_casefold(rem, p)
+                for p in _MERIT_COMPASS_DIRECTION_PHRASES
+            ):
+                continue
+            return phrase
+        if not (
+            n.endswith(phrase) and (len(n) == len(phrase) or n[len(n) - len(phrase) - 1].isspace())
+        ):
+            continue
+        rem = n[: len(n) - len(phrase)].rstrip()
+        if any(
+            _merit_tail_contains_direction_phrase_casefold(rem, p)
+            for p in _MERIT_COMPASS_DIRECTION_PHRASES
+        ):
+            continue
+        return phrase
+
+    return None
+
+
+def _merit_matching_direction_parents(
+    parents: list[LeagueData],
+    competition: str,
+    canon_direction: str,
+) -> list[LeagueData]:
+    """Parents whose merit geo tail normalises exactly to ``canon_direction``."""
+    matched: list[LeagueData] = []
+    for p in parents:
+        pt_opt = _merit_geo_tail(p.league_name, _merit_local_tier_for_naming(p), competition)
+        if pt_opt is None:
+            continue
+        if _merit_normalize_direction_tail(pt_opt) != canon_direction:
+            continue
+        matched.append(p)
+    return matched
+
+
 def _find_merit_parent_league(
     child: LeagueData,
     parents: list[LeagueData],
@@ -1219,6 +1313,12 @@ def _find_merit_parent_league(
             exact_tail,
             key=lambda lg: len(_strip_league_title_sponsors(lg.league_name)),
         )
+
+    cardinal = _merit_clear_cardinal_in_geo_tail(child_tail)
+    if cardinal is not None:
+        dir_parents = _merit_matching_direction_parents(parents_u, competition, cardinal)
+        if len(dir_parents) == 1:
+            return dir_parents[0]
 
     if child_tail:
         apex: list[LeagueData] = []
@@ -7081,10 +7181,11 @@ def merit_parent_overrides_merge_cross_season(
     """Augment ``base`` with per-merit section entries from other seasons' JSON files.
 
     Same calendar-distance ordering as :func:`stem_parent_overrides_merge_cross_season`.
-    Keys are **local** merit tier numbers (matches the on-disk JSON convention) so seasons
-    with different comp ranges (e.g. Hampshire 4–6 one year, 5–6 the next) still line up.
-    Child apex rows resolve parent names against **men's** pyramid leagues at tier
-    :func:`merit_pyramid_absolute_parent_tier`; intra-merit rows resolve tier-(local N−1) as before.
+    Keys are **local** merit tier numbers as in the current year's data. When the shallowest tier
+    in the foreign mapping (apex / root leagues) differs from this season's numbering (e.g. local
+    5 last year vs 7 now), apex rows still match against **this season's apex row**, then feed
+    from **men's** pyramid tier :func:`merit_pyramid_absolute_parent_tier` computed from the
+    current apex local tier. Deeper tiers still resolve merit tier-(N−1).
     """
     merged = dict(base)
     current_file = stem_parent_overrides_store_path(season).resolve()
@@ -7121,28 +7222,38 @@ def merit_parent_overrides_merge_cross_season(
     apex_local_here = min(leagues_by_local_tier) if leagues_by_local_tier else None
 
     for gap, eff_foreign, flat, path in bundles:
+        foreign_apex_local = min(loc_t for (loc_t, _nm) in flat)
         for (t_child, child_foreign), parent_specs_foreign in flat.items():
-            children_tier = leagues_by_local_tier.get(t_child, [])
-            apex_row = apex_local_here is not None and t_child == apex_local_here
-            if apex_row:
+            if t_child == foreign_apex_local:
+                if apex_local_here is None:
+                    continue
+                apex_here_int: int = apex_local_here
+                resolved_child_local: int = apex_here_int
+                children_rows = leagues_by_local_tier.get(apex_here_int)
+                children_tier_ld: list[LeagueData] = list(children_rows) if children_rows else []
                 parent_feed_pyramid_tier = merit_pyramid_absolute_parent_tier(
-                    competition, t_child, season
+                    competition, apex_here_int, season
                 )
                 parents_tier_ld = list(mens_by_abs.get(parent_feed_pyramid_tier) or ())
                 parent_resolve_tier = parent_feed_pyramid_tier
             else:
-                parents_tier_ld = list(leagues_by_local_tier.get(t_child - 1) or ())
+                resolved_child_local = t_child
+                children_rows_l = leagues_by_local_tier.get(t_child)
+                children_tier_ld = list(children_rows_l) if children_rows_l else []
+                parents_rows = leagues_by_local_tier.get(t_child - 1)
+                parents_tier_ld = list(parents_rows) if parents_rows else []
                 parent_resolve_tier = t_child - 1
+
             child_here = _stem_resolve_league_identity(
-                children_tier,
+                children_tier_ld,
                 child_foreign,
-                t_child,
+                resolved_child_local,
                 season,
                 eff_foreign,
             )
             if child_here is None:
                 continue
-            key_new = (t_child, child_here.league_name)
+            key_new = (resolved_child_local, child_here.league_name)
             if key_new in merged:
                 continue
             resolved_names: list[str] = []
@@ -7817,7 +7928,9 @@ def main() -> int:
             "SVGs are written, the men's merged pyramid (national + merit at absolute tiers) "
             "is regenerated at "
             "dist/<season>/pyramid_All_Leagues.{svg,png} (default paths; --output/--png-output "
-            "apply only to merit outputs). Run without --merit for "
+            "apply only to merit outputs). If that merit directory is missing or has no leagues, "
+            "merit pyramids are skipped and only this merged diagram is produced (national only). "
+            "Run without --merit for "
             "dist/<season>/pyramid.{svg,png}."
         ),
     )
@@ -7955,16 +8068,17 @@ def main() -> int:
         else:
             comps = discover_merit_competitions(season)
             if not comps:
-                logger.error(
-                    "No merit competitions found under data/rugby/geocoded_teams/%s/merit/",
+                logger.warning(
+                    "No merit competitions under data/rugby/geocoded_teams/%s/merit/; "
+                    "skipping merit SVGs - pyramid_All_Leagues will use national tiers only.",
                     season,
                 )
-                return 1
-            logger.info(
-                "Rendering merit pyramids for %d competition(s): %s",
-                len(comps),
-                ", ".join(comps),
-            )
+            else:
+                logger.info(
+                    "Rendering merit pyramids for %d competition(s): %s",
+                    len(comps),
+                    ", ".join(comps),
+                )
         if (args.output is not None or args.png_output is not None) and len(comps) > 1:
             logger.error(
                 "--output / --png-output cannot be combined with --merit covering "

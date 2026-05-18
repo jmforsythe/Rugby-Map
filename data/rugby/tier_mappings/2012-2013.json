@@ -76,5 +76,257 @@
       "Women's NC South East North 1": "Women's Championship South East 2",
       "Women's NC South East South 1": "Women's Championship South East 2"
     }
+  },
+  "Devon": {
+    "1": {
+      "Devon Merit Table 1": "Tribute Devon 2"
+    },
+    "2": {
+      "Devon Merit Table 2": "Devon Merit Table 1"
+    },
+    "3": {
+      "Devon Merit Table 3NE": "Devon Merit Table 2",
+      "Devon Merit Table 3SW": "Devon Merit Table 2"
+    }
+  },
+  "East_Midlands": {
+    "2": {
+      "Eagle IPA League": [
+        "Midlands 4 East (North)",
+        "Midlands 4 East (South)"
+      ]
+    },
+    "3": {
+      "Directors League": "Eagle IPA League",
+      "Courage Best League": "Eagle IPA League",
+      "Red Stripe": "Eagle IPA League",
+      "Waggledance League": "Eagle IPA League",
+      "Winter Warmer League": "Eagle IPA League"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division One": "Yorkshire Division Four"
+    },
+    "2": {
+      "Division Two": "Division One"
+    },
+    "3": {
+      "Division Three": "Division Two"
+    },
+    "4": {
+      "Division Four": "Division Three"
+    },
+    "5": {
+      "Division Five": "Division Four"
+    },
+    "6": {
+      "Division Six": "Division Five"
+    },
+    "7": {
+      "Division Seven": "Division Six"
+    },
+    "8": {
+      "Division Eight": "Division Seven"
+    }
+  },
+  "GRFU_District": {
+    "0": {
+      "Premier": "Gloucester 3"
+    },
+    "1": {
+      "North 1": "Premier",
+      "South 1": "Premier"
+    },
+    "2": {
+      "North 2": "North 1",
+      "South 2": "South 1"
+    },
+    "3": {
+      "North 3": "North 2",
+      "South 3": "South 2"
+    },
+    "4": {
+      "North 4": "North 3",
+      "South 4": "South 3"
+    }
+  },
+  "Hampshire": {
+    "5": {
+      "Hampshire Senior Merit": "Snows Group Hampshire 2"
+    },
+    "6": {
+      "Hampshire Merit One": "Hampshire Senior Merit"
+    },
+    "7": {
+      "Hampshire Merit Two": "Hampshire Merit One"
+    },
+    "8": {
+      "Hampshire Merit Three": "Hampshire Merit Two"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 3"
+    },
+    "2": {
+      "Merit Table 2": "Merit Table 1"
+    },
+    "3": {
+      "Merit Table 3": "Merit Table 2"
+    },
+    "4": {
+      "Merit Table 4": "Merit Table 3"
+    },
+    "5": {
+      "Merit Table 5": "Merit Table 4"
+    },
+    "6": {
+      "Merit Table 6": "Merit Table 5"
+    },
+    "7": {
+      "Merit Table 7": "Merit Table 6"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "LRU Premier": "Midlands 3 East (South)"
+    },
+    "2": {
+      "LRU Division 1": "LRU Premier"
+    },
+    "3": {
+      "LRU Division 2": "LRU Division 1"
+    },
+    "4": {
+      "LRU Division 3": "LRU Division 2"
+    },
+    "5": {
+      "LRU Division 4": "LRU Division 3"
+    },
+    "6": {
+      "LRU Division 5": "LRU Division 4"
+    }
+  },
+  "Middlesex": {
+    "1": {
+      "First Division": "Herts/Middlesex 1"
+    },
+    "2": {
+      "Second Division": "First Division"
+    },
+    "3": {
+      "Third Division": "Second Division"
+    },
+    "4": {
+      "Fourth Division": "Third Division"
+    },
+    "5": {
+      "Fifth Division": "Fourth Division"
+    },
+    "6": {
+      "Sixth Division": "Fifth Division"
+    },
+    "7": {
+      "Seventh Division": "Sixth Division"
+    }
+  },
+  "Nottinghamshire": {
+    "1": {
+      "Group 1": "Midlands 4 East (North)"
+    },
+    "2": {
+      "Group 2": "Group 1"
+    },
+    "3": {
+      "Group 3": "Group 2"
+    },
+    "4": {
+      "Group 4": "Group 3"
+    },
+    "5": {
+      "Group 5": "Group 4"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "Bateman BMW Premier League": [
+        "North Lancashire Division Two",
+        "South Lancs/Cheshire Division Three"
+      ]
+    },
+    "2": {
+      "Raging Bull Division 1": "Bateman BMW Premier League"
+    },
+    "3": {
+      "Raging Bull Division 2 North": "Raging Bull Division 1",
+      "Raging Bull Division 2 South": "Raging Bull Division 1"
+    },
+    "4": {
+      "Raging Bull Division 3 North": "Raging Bull Division 2 North",
+      "Raging Bull Division 3 South": "Raging Bull Division 2 South"
+    },
+    "5": {
+      "Raging Bull Division 4 North": "Raging Bull Division 3 North",
+      "Raging Bull Division 4 South": "Raging Bull Division 3 South",
+      "Raging Bull Division 4 East": [
+        "Raging Bull Division 3 North",
+        "Raging Bull Division 3 South"
+      ],
+      "Raging Bull Division 4 West": [
+        "Raging Bull Division 3 North",
+        "Raging Bull Division 3 South"
+      ]
+    },
+    "6": {
+      "Raging Bull Division 5 South": "Raging Bull Division 4 South",
+      "Raging Bull Division 5 West": [
+        "Raging Bull Division 4 North",
+        "Raging Bull Division 4 South"
+      ],
+      "Raging Bull Division 5 East": [
+        "Raging Bull Division 4 North",
+        "Raging Bull Division 4 South"
+      ],
+      "Raging Bull Division 5 North": "Raging Bull Division 4 North"
+    }
+  },
+  "Rural_Kent": {
+    "3": {
+      "Invicta Three East": "Shepherd Neame Kent 2"
+    },
+    "4": {
+      "Late Red 4": "Invicta Three East"
+    },
+    "5": {
+      "Dragon Fire 5": "Late Red 4"
+    },
+    "6": {
+      "Early Bird 6 East": "Dragon Fire 5",
+      "Early Bird 6 West": "Dragon Fire 5"
+    }
+  },
+  "Surrey": {
+    "1": {
+      "Surrey Premier": "Surrey 4"
+    },
+    "3": {
+      "Surrey Alliance": "-"
+    },
+    "4": {
+      "Surrey Conference 1": "Surrey Alliance",
+      "Surrey Conference 2": "Surrey Alliance",
+      "Surrey Conference 3": "Surrey Alliance"
+    },
+    "5": {
+      "Surrey Combination 1": "Surrey Conference 1"
+    },
+    "6": {
+      "Surrey Combination 2": "Surrey Combination 1"
+    },
+    "7": {
+      "Surrey Combination 3": "Surrey Combination 2",
+      "Surrey Foundation League": "Surrey Combination 2"
+    }
   }
 }

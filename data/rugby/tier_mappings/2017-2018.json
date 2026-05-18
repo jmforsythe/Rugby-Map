@@ -70,5 +70,242 @@
       "Women's NC South East West 1": "Women's Championship South East 2",
       "Women's NC South West 1": "Women's Championship South West 2"
     }
+  },
+  "CANDY": {
+    "1": {
+      "Division 1": "Durham/Northumberland Division Two"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    }
+  },
+  "Devon": {
+    "1": {
+      "Devon Merit Table 1": "Tribute Devon 2"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Bombardier League": "Tribute Cornwall League"
+    },
+    "2": {
+      "Eagle IPA League": "Bombardier League",
+      "Estrella Damm": "Bombardier League"
+    },
+    "3": {
+      "Directors League": "Eagle IPA League"
+    }
+  },
+  "Eastern_Counties": {
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1 North",
+      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1 South",
+      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1 West"
+    },
+    "3": {
+      "Eastern Counties Greene King Division Three South": "Eastern Counties Greene King Division Two South",
+      "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North",
+      "Eastern Counties Greene King Division Three West": "Eastern Counties Greene King Division Two West"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division 1": "Essex (Canterbury Jack) League 1 Premier"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Division 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    },
+    "6": {
+      "Division 6 East": "Division 5",
+      "Division 6 West": "Division 5"
+    }
+  },
+  "GRFU_District": {
+    "1": {
+      "Bristol & District 1": "Tribute Somerset 3 North",
+      "Gloucester & District 1": "Wadworth 6X Gloucester 3"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
+    },
+    "3": {
+      "Gloucester & District 3": "Gloucester & District 2",
+      "Bristol & District 3": "Bristol & District 2"
+    },
+    "4": {
+      "Gloucester & District 4": "Gloucester & District 3"
+    }
+  },
+  "Hampshire": {
+    "6": {
+      "Solent 1": "Snows Group Hampshire 2"
+    },
+    "7": {
+      "Solent 2": "Solent 1"
+    },
+    "8": {
+      "Solent 3": "Solent 2"
+    },
+    "9": {
+      "Solent 4": "Solent 3"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 2"
+    },
+    "2": {
+      "Merit Table 2": "Merit Table 1"
+    },
+    "3": {
+      "Merit Table 3": "Merit Table 2"
+    },
+    "4": {
+      "Merit Table 4": "Merit Table 3"
+    },
+    "5": {
+      "Merit Table 5": "Merit Table 4"
+    },
+    "6": {
+      "Merit Table 6 SW": "Merit Table 5",
+      "Merit Table 6NE": "Merit Table 5"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Midlands 3 East (North)"
+    },
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    },
+    "3": {
+      "Leicestershire Merit C": "Leicestershire Merit B"
+    }
+  },
+  "Middlesex": {
+    "1": {
+      "Division 1": "Herts/Middlesex 1"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Division 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    },
+    "6": {
+      "Division 6": "Division 5"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+    },
+    "2": {
+      "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
+    },
+    "3": {
+      "Midlands Reserve League Div 3": "Midlands Reserve League Div 2"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "Cotton Traders Premier League": [
+        "Lancs/Cheshire Division Three (North)",
+        "Lancs/Cheshire Division Three (South)"
+      ]
+    },
+    "2": {
+      "Cotton Traders Championship League": "Cotton Traders Premier League"
+    },
+    "3": {
+      "Sale Sharks Division 1": "Cotton Traders Championship League"
+    },
+    "4": {
+      "County Courier Services  Division 2 North": "Sale Sharks Division 1",
+      "Sale Sharks Division 2 South": "Sale Sharks Division 1"
+    },
+    "5": {
+      "Sale Sharks Division 3 North": "County Courier Services  Division 2 North",
+      "Sale Sharks Division 3 South": "Sale Sharks Division 2 South"
+    },
+    "6": {
+      "Howell& Co Division 4 South": "Sale Sharks Division 3 South",
+      "INDEPENDENT E-NRG Division 4 West": [
+        "Sale Sharks Division 3 North",
+        "Sale Sharks Division 3 South"
+      ],
+      "Sale Sharks Division 4 East": [
+        "Sale Sharks Division 3 North",
+        "Sale Sharks Division 3 South"
+      ],
+      "Division 4 North": "Sale Sharks Division 3 North"
+    },
+    "7": {
+      "Division 5 North": "Division 4 North",
+      "Sale Sharks Division 5 East": "Sale Sharks Division 4 East",
+      "Sale Sharks Division 5 South": "Howell& Co Division 4 South",
+      "Sale Sharks Division 5 West": "INDEPENDENT E-NRG Division 4 West"
+    }
+  },
+  "Rural_Kent": {
+    "0": {
+      "Premier 2 East": "Shepherd Neame Kent 2"
+    },
+    "3": {
+      "Late Red 3": "-"
+    },
+    "4": {
+      "Cinque 4 East": "Late Red 3",
+      "Cinque 4 West": "Late Red 3"
+    }
+  },
+  "Surrey": {
+    "2": {
+      "Surrey Championship": "Surrey 4"
+    },
+    "4": {
+      "Surrey East Conference": "-",
+      "Surrey West Conference": "-"
+    },
+    "5": {
+      "Surrey Combination 1 North": [
+        "Surrey East Conference",
+        "Surrey West Conference"
+      ],
+      "Surrey Combination 1 South East": "Surrey East Conference",
+      "Surrey Combination 1 South West": "Surrey West Conference"
+    },
+    "6": {
+      "Surrey Combination 2 North West": "Surrey Combination 1 North"
+    }
+  },
+  "Sussex": {
+    "5": {
+      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
+      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
+    },
+    "6": {
+      "Sussex 3 'Forwards Choice'": "Sussex 2 'Armada Ale'"
+    },
+    "7": {
+      "Sussex 4 EAST 'Bonfire Boy'": "Sussex 3 'Forwards Choice'",
+      "Sussex 4 WEST 'Wild Hop'": "Sussex 3 'Forwards Choice'"
+    }
   }
 }

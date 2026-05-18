@@ -69,5 +69,246 @@
       "Women's NC South East South 1": "Women's Championship South East 2",
       "Women's NC South West 1": "Women's Championship South West 2"
     }
+  },
+  "CANDY": {
+    "1": {
+      "UBS Candy League D1": "Durham/Northumberland Division Two"
+    },
+    "2": {
+      "UBS Candy League D2": "UBS Candy League D1"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Bombardier League": [
+        "Midlands 3 East (North)",
+        "Midlands 3 East (South)"
+      ]
+    },
+    "2": {
+      "Eagle IPA League": "Bombardier League",
+      "Estrella Damm": "Bombardier League",
+      "Youngs Bitter": "Bombardier League"
+    },
+    "3": {
+      "Directors League": "Eagle IPA League",
+      "Youngs London Stout": [
+        "Eagle IPA League",
+        "Youngs Bitter"
+      ]
+    }
+  },
+  "Eastern_Counties": {
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1",
+      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1",
+      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1"
+    },
+    "3": {
+      "Eastern Counties Greene King Division Three South": "Eastern Counties Greene King Division Two South",
+      "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North",
+      "Eastern Counties Greene King Division Three West": "Eastern Counties Greene King Division Two West"
+    },
+    "4": {
+      "Eastern Counties Greene King Division Four North": "Eastern Counties Greene King Division Three North",
+      "Eastern Counties Greene King Division Four South": "Eastern Counties Greene King Division Three South"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division One": "Essex (Canterbury Jack) League 1"
+    },
+    "2": {
+      "Division Two": "Division One"
+    },
+    "3": {
+      "Division Three": "Division Two"
+    },
+    "4": {
+      "Division Four": "Division Three"
+    },
+    "5": {
+      "Division Five": "Division Four"
+    },
+    "6": {
+      "Division Six": "Division Five"
+    },
+    "7": {
+      "Division Seven": "Division Six"
+    },
+    "8": {
+      "Division Eight": "Division Seven"
+    }
+  },
+  "GRFU_District": {
+    "0": {
+      "Premier": "Gloucester 3"
+    },
+    "1": {
+      "Bristol & District 1": "Premier",
+      "Gloucester & District 1": "Premier"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
+    },
+    "3": {
+      "Gloucester & District 3": "Gloucester & District 2",
+      "Bristol & District 3": "Bristol & District 2"
+    },
+    "4": {
+      "Gloucester & District 4": "Gloucester & District 3"
+    }
+  },
+  "Hampshire": {
+    "5": {
+      "Solent League": "Snows Group Hampshire 2"
+    },
+    "6": {
+      "Hampshire North": "Solent League",
+      "Hampshire South East": "Solent League",
+      "Hampshire South West": "Solent League"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Premiership": "Midlands 3 East (South)"
+    },
+    "2": {
+      "LRU Division 1": "Leicestershire Premiership"
+    },
+    "3": {
+      "LRU Division 2": "LRU Division 1"
+    },
+    "4": {
+      "LRU Division 3": "LRU Division 2"
+    },
+    "5": {
+      "LRU Division 4 (North)": "LRU Division 3",
+      "LRU Division 4 (South)": "LRU Division 3"
+    }
+  },
+  "Middlesex": {
+    "1": {
+      "Division 1": "Herts/Middlesex 1"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Division 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    },
+    "6": {
+      "Division 6": "Division 5"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "Midlands West Reserve League Div 1": [
+        "Midlands 3 West (North)",
+        "Midlands 3 West (South)"
+      ]
+    },
+    "2": {
+      "Midlands West Reserve League Div 2": "Midlands West Reserve League Div 1"
+    },
+    "3": {
+      "Midlands West Reserve League Div 3": "Midlands West Reserve League Div 2"
+    }
+  },
+  "Nottinghamshire": {
+    "1": {
+      "Group 1": "Midlands 4 East (North)"
+    },
+    "2": {
+      "Group 2": "Group 1"
+    },
+    "3": {
+      "Group 3": "Group 2"
+    },
+    "4": {
+      "Group 4N": "Group 3",
+      "Group 4S": "Group 3"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "Bateman BMW Premier League": [
+        "North Lancashire Division Two",
+        "South Lancs/Cheshire Division Three"
+      ]
+    },
+    "2": {
+      "Raging Bull Division 1": "Bateman BMW Premier League"
+    },
+    "3": {
+      "Raging Bull Division 2 North": "Raging Bull Division 1",
+      "Raging Bull Division 2 South": "Raging Bull Division 1"
+    },
+    "4": {
+      "Raging Bull Division 3 North": "Raging Bull Division 2 North",
+      "Raging Bull Division 3 South": "Raging Bull Division 2 South"
+    },
+    "5": {
+      "Raging Bull Division 4 North": "Raging Bull Division 3 North",
+      "Raging Bull Division 4 South": "Raging Bull Division 3 South",
+      "Raging Bull Division 4 East": [
+        "Raging Bull Division 3 North",
+        "Raging Bull Division 3 South"
+      ],
+      "Raging Bull Division 4 West": [
+        "Raging Bull Division 3 North",
+        "Raging Bull Division 3 South"
+      ]
+    },
+    "6": {
+      "Raging Bull Division 5 South": "Raging Bull Division 4 South",
+      "Raging Bull Division 5 West": [
+        "Raging Bull Division 4 North",
+        "Raging Bull Division 4 South"
+      ],
+      "Raging Bull Division 5 East": [
+        "Raging Bull Division 4 North",
+        "Raging Bull Division 4 South"
+      ],
+      "Raging Bull Division 5 North": "Raging Bull Division 4 North"
+    }
+  },
+  "Rural_Kent": {
+    "0": {
+      "Premier 2 East": "Shepherd Neame Kent 2"
+    },
+    "3": {
+      "Late Red 3 East": "-",
+      "Late Red 3 West": "-"
+    },
+    "4": {
+      "Dragon Fire 4 East": "Late Red 3 East",
+      "Dragon Fire 4 West": "Late Red 3 West"
+    }
+  },
+  "Surrey": {
+    "4": {
+      "Surrey Conference 1": "Surrey 4",
+      "Surrey Conference 2": "Surrey 4",
+      "Surrey Conference 3": "Surrey 4",
+      "Surrey Conference 4": "Surrey 4"
+    },
+    "5": {
+      "Surrey Combination 1": "Surrey Conference 1"
+    },
+    "6": {
+      "Surrey Combination 2": "Surrey Combination 1"
+    },
+    "7": {
+      "Surrey Combination 3": "Surrey Combination 2",
+      "Surrey Foundation League": "Surrey Combination 2"
+    }
   }
 }

@@ -86,5 +86,195 @@
       "Women's NC 1 South West (East)": "Women's Championship South West 2",
       "Women's NC 1 South West (West)": "Women's Championship South West 2"
     }
+  },
+  "CANDY": {
+    "1": {
+      "Division One": "Counties 3 Durham & Northumberland"
+    },
+    "2": {
+      "Division Two North": "Division One",
+      "Division Two South": "Division One"
+    },
+    "3": {
+      "Division Three North": "Division Two North",
+      "Division Three South": "Division Two South"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "East Midlands 1": "Counties 2 Midlands East (South)"
+    },
+    "2": {
+      "East Midlands 2 - Bedfordshire": "East Midlands 1",
+      "East Midlands 2 - Northants A": "East Midlands 1"
+    },
+    "3": {
+      "East Midlands 2 - Northants B": "East Midlands 2 - Northants A"
+    }
+  },
+  "Eastern_Counties": {
+    "1": {
+      "Eastern Counties Greene King Division One North": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One South": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One West": "Counties 2 Eastern Counties"
+    },
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Eastern Counties Greene King Division One North",
+      "Eastern Counties Greene King Division Two South": "Eastern Counties Greene King Division One South"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division 1": "Counties 2 Essex"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3 East": "Division 2",
+      "Division 3 West": "Division 2"
+    },
+    "4": {
+      "Division 4 East": "Division 3 East",
+      "Division 4 West": "Division 3 West"
+    }
+  },
+  "GRFU_District": {
+    "1": {
+      "Bristol & District 1": "Counties 4 Tribute Somerset North",
+      "Gloucester & District 1": "Counties 4 Tribute Gloucestershire"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
+    },
+    "3": {
+      "Gloucester & District 3": "Gloucester & District 2"
+    }
+  },
+  "Hampshire": {
+    "6": {
+      "Hampshire Premiership North": "Counties 4 Hampshire",
+      "Hampshire Premiership South": "Counties 4 Hampshire"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Merit Championship North": "Counties 3 Herts/Middx",
+      "Merit Championship South": "Counties 3 Herts/Middx"
+    },
+    "2": {
+      "Merit North 1": "Merit Championship North",
+      "Merit South 1": "Merit Championship South"
+    },
+    "3": {
+      "Merit North 2": "Merit North 1"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Counties 2 Midlands East (North)"
+    },
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    },
+    "3": {
+      "Leicestershire Merit C": "Leicestershire Merit B"
+    }
+  },
+  "Middlesex": {
+    "1": {
+      "Premier Division": "Counties 3 Herts/Middx"
+    },
+    "2": {
+      "Division 1": "Premier Division"
+    },
+    "3": {
+      "Division 2": "Division 1"
+    },
+    "4": {
+      "Division 3": "Division 2"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 3 adm Lancashire & Cheshire"
+    },
+    "2": {
+      "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL BATHTIME PREMIER LEAGUE"
+    },
+    "3": {
+      "NOWIRUL John on Queen Street Division 2 South": "NOWIRUL BAINES PLUMBING DIVISION 1",
+      "NOWIRUL Wayne Lord Plumbing Division 2 North": "NOWIRUL BAINES PLUMBING DIVISION 1"
+    },
+    "4": {
+      "NOWIRUL Bowness Bay Brewing Ltd Division 3 North": "NOWIRUL Wayne Lord Plumbing Division 2 North",
+      "NOWIRUL County Couriers Division 3 Central": [
+        "NOWIRUL John on Queen Street Division 2 South",
+        "NOWIRUL Wayne Lord Plumbing Division 2 North"
+      ],
+      "NOWIRUL EDS Hygiene Specialists Division 3 South": "NOWIRUL John on Queen Street Division 2 South",
+      "NOWIRUL The Bay Division 3 West": [
+        "NOWIRUL John on Queen Street Division 2 South",
+        "NOWIRUL Wayne Lord Plumbing Division 2 North"
+      ]
+    },
+    "5": {
+      "NOWIRUL Newton Heating Ltd Division 4 West": "NOWIRUL The Bay Division 3 West",
+      "NOWIRUL WMD Division 4 East": "NOWIRUL County Couriers Division 3 Central"
+    },
+    "6": {
+      "NOWIRUL MAS Optimal Division 5 West": "NOWIRUL Newton Heating Ltd Division 4 West",
+      "NOWIRUL Rainford Electrical Services 5 East": "NOWIRUL WMD Division 4 East"
+    }
+  },
+  "Rural_Kent": {
+    "1": {
+      "Kent A Rural": "Counties 5 Kent"
+    },
+    "2": {
+      "Kent B Rural": "Kent A Rural"
+    },
+    "3": {
+      "Kent Rural C": "Kent B Rural"
+    }
+  },
+  "Surrey": {
+    "1": {
+      "London Counties & South Coast Premiership": "Counties 5 Surrey"
+    },
+    "2": {
+      "Surrey Championship 2024-2025": "London Counties & South Coast Premiership"
+    },
+    "3": {
+      "Surrey Alliance League 2024-2025": "Surrey Championship 2024-2025"
+    },
+    "4": {
+      "Surrey Conference League 2024-2025": "Surrey Alliance League 2024-2025"
+    },
+    "5": {
+      "Surrey Combination 1 League 2024-2025": "Surrey Conference League 2024-2025"
+    },
+    "6": {
+      "Surrey Combination 2 League 2024-2025": "Surrey Combination 1 League 2024-2025"
+    },
+    "7": {
+      "Surrey Foundation League A 2024-2025": "Surrey Combination 2 League 2024-2025"
+    }
+  },
+  "Sussex": {
+    "3": {
+      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
+    },
+    "4": {
+      "Harvey's Wharf IPA Counties 4 Sussex East": "Harvey's Brewery Counties 3 Sussex",
+      "Harvey's Wharf IPA Counties 4 Sussex West": "Harvey's Brewery Counties 3 Sussex"
+    },
+    "5": {
+      "Harvey's Olympia Counties 5 Sussex": [
+        "Harvey's Wharf IPA Counties 4 Sussex East",
+        "Harvey's Wharf IPA Counties 4 Sussex West"
+      ]
+    }
   }
 }

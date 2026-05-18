@@ -78,5 +78,265 @@
       "Women's NC 1 South West (East)": "Women's Championship South West 2",
       "Women's NC 1 South West (West)": "Women's Championship South West 2"
     }
+  },
+  "CANDY": {
+    "1": {
+      "CANDY Division One": "Durham/Northumberland Two"
+    },
+    "2": {
+      "CANDY Division Two North": "CANDY Division One",
+      "CANDY Division Two South": "CANDY Division One"
+    },
+    "3": {
+      "CANDY Division Three South": "CANDY Division Two South"
+    }
+  },
+  "Devon": {
+    "1": {
+      "Devon Merit Table 1": "Tribute Devon 1"
+    },
+    "2": {
+      "Devon Merit Table 2NE": "Devon Merit Table 1",
+      "Devon Merit Table 2SW": "Devon Merit Table 1"
+    }
+  },
+  "East_Midlands": {
+    "1": {
+      "Webb Ellis East Midlands 1": "Midlands 3 East (South)"
+    },
+    "2": {
+      "Alban Wise Insurance East Midlands 2": "Webb Ellis East Midlands 1"
+    },
+    "3": {
+      "East Midlands 3 East": "Alban Wise Insurance East Midlands 2",
+      "Ellis Mediation East Midlands 3 South": "Alban Wise Insurance East Midlands 2",
+      "Fill Your Boots East Midlands 3 West": "Alban Wise Insurance East Midlands 2"
+    }
+  },
+  "Eastern_Counties": {
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1 North",
+      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1 South",
+      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1 West"
+    },
+    "3": {
+      "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North",
+      "Eastern Counties Greene King Division Three South": "Eastern Counties Greene King Division Two South"
+    }
+  },
+  "Essex": {
+    "1": {
+      "Division 1": "Essex 1"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Divsion 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Divsion 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    },
+    "6": {
+      "Division 6 East": "Division 5",
+      "Division 6 West": "Division 5"
+    }
+  },
+  "GRFU_District": {
+    "1": {
+      "Bristol & District 1": "Tribute Somerset 2 North",
+      "Gloucester & District 1": "Tribute Gloucestershire 2 South"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
+    }
+  },
+  "Hampshire": {
+    "6": {
+      "Hampshire 2": "Hampshire 1"
+    },
+    "7": {
+      "Hampshire 3": "Hampshire 2"
+    },
+    "8": {
+      "Hampshire 4": "Hampshire 3"
+    }
+  },
+  "Herts_Middlesex": {
+    "1": {
+      "Merit 1": "Herts/Middlesex 2"
+    },
+    "2": {
+      "Merit 2": "Merit 1"
+    },
+    "3": {
+      "Merit 3": "Merit 2"
+    },
+    "4": {
+      "Merit 4 NE": "Merit 3",
+      "Merit 4SW": "Merit 3"
+    },
+    "5": {
+      "Merit 5 N/E": "Merit 4 NE",
+      "Merit 5 S/W": "Merit 4SW"
+    }
+  },
+  "Lancashire": {
+    "1": {
+      "ADM Premier Division": "North One West"
+    },
+    "2": {
+      "ADM Championship": "ADM Premier Division",
+      "ADM Division 1": "ADM Premier Division",
+      "Combi Division 1": "ADM Premier Division"
+    },
+    "3": {
+      "Combi Division 2": "Combi Division 1"
+    }
+  },
+  "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Midlands 3 East (North)"
+    },
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    },
+    "3": {
+      "Leicestershire Merit C": "Leicestershire Merit B"
+    },
+    "4": {
+      "Leicestershire Merit D": "Leicestershire Merit C"
+    }
+  },
+  "Middlesex": {
+    "0": {
+      "Premier Division": "London 3 North West"
+    },
+    "1": {
+      "Division 1": "Premier Division"
+    },
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "4": {
+      "Division 4": "Division 3"
+    },
+    "5": {
+      "Division 5": "Division 4"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "Midlands Reserve League Div 1": "Midlands 3 East (South)"
+    },
+    "2": {
+      "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
+    },
+    "3": {
+      "Midlands Reserve League Div 3": "Midlands Reserve League Div 2"
+    }
+  },
+  "Nottinghamshire": {
+    "1": {
+      "Security Plus Pennant Group 1": "Midlands 4 East (N) West"
+    },
+    "2": {
+      "Security Plus Pennant Group 2": "Security Plus Pennant Group 1"
+    },
+    "3": {
+      "Security Plus Pennant Group 3": "Security Plus Pennant Group 2"
+    },
+    "4": {
+      "Security Plus Pennant Group 4": "Security Plus Pennant Group 3"
+    }
+  },
+  "NOWIRUL": {
+    "1": {
+      "NOWIRUL Cotton Traders Premier League": "-"
+    },
+    "2": {
+      "NOWIRUL Baines Plumbing Division 1": "NOWIRUL Cotton Traders Premier League"
+    },
+    "3": {
+      "NOWIRUL County Courier Services  Division 2 North": "NOWIRUL Baines Plumbing Division 1",
+      "NOWIRUL The Right Broker Division 2 South": "NOWIRUL Baines Plumbing Division 1"
+    },
+    "4": {
+      "NOWIRUL Howell & Co Division 3 West": "NOWIRUL County Courier Services  Division 2 North",
+      "NOWIRUL Simply Lifetime Mortgages Division 3 North": "NOWIRUL County Courier Services  Division 2 North",
+      "NOWIRUL The Right Broker Division 3 South": "NOWIRUL The Right Broker Division 2 South"
+    },
+    "5": {
+      "NOWIRUL Classic Engraving Division 4 East": [
+        "NOWIRUL Simply Lifetime Mortgages Division 3 North",
+        "NOWIRUL The Right Broker Division 3 South"
+      ],
+      "NOWIRUL Wayne Lord Plumbing Division 4 North": "NOWIRUL Simply Lifetime Mortgages Division 3 North",
+      "NOWIRUL Widnes Transport & Training Division 4 West": "NOWIRUL Howell & Co Division 3 West"
+    },
+    "6": {
+      "NOWIRUL MAS Optimal Division 5 West": "NOWIRUL Widnes Transport & Training Division 4 West",
+      "NOWIRUL Tatton Brewery Division 5 East": "NOWIRUL Classic Engraving Division 4 East"
+    }
+  },
+  "Rural_Kent": {
+    "3": {
+      "Kent 3 Rural": "Kent 2"
+    },
+    "4": {
+      "Kent 4 Rural": "Kent 3 Rural"
+    },
+    "5": {
+      "Kent 5 Rural East": "Kent 4 Rural",
+      "Kent 5 Rural West": "Kent 4 Rural"
+    }
+  },
+  "Surrey": {
+    "1": {
+      "Surrey Premiership League 1": "Surrey 4"
+    },
+    "2": {
+      "Surrey Championship League 2": "Surrey Premiership League 1"
+    },
+    "3": {
+      "Surrey Alliance League 3": "Surrey Championship League 2"
+    },
+    "4": {
+      "Surrey Conference League 4": "Surrey Alliance League 3"
+    },
+    "5": {
+      "Surrey Combination 1 North League 5": "Surrey Conference League 4",
+      "Surrey Combination 1 South League 5 B": "Surrey Conference League 4"
+    },
+    "6": {
+      "Surrey Combination 2 League 6": [
+        "Surrey Combination 1 North League 5",
+        "Surrey Combination 1 South League 5 B"
+      ]
+    },
+    "7": {
+      "Surrey Foundation League 7": "Surrey Combination 2 League 6"
+    }
+  },
+  "Sussex": {
+    "5": {
+      "Harvey's Wharf IPA Sussex 2 East": "Harvey\u2019s Brewery Sussex 1",
+      "Harvey's Wharf IPA Sussex 2 West": "Harvey\u2019s Brewery Sussex 1"
+    },
+    "6": {
+      "Harvey's Olympia Sussex 3 Central": [
+        "Harvey's Wharf IPA Sussex 2 East",
+        "Harvey's Wharf IPA Sussex 2 West"
+      ],
+      "Harvey's Olympia Sussex 3 East": "Harvey's Wharf IPA Sussex 2 East",
+      "Harvey's Olympia Sussex 3 West": "Harvey's Wharf IPA Sussex 2 West"
+    }
   }
 }

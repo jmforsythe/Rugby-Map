@@ -68,11 +68,16 @@ jobs:
           path: rugby-boundaries.tar.gz
           retention-days: 3
 
-      - name: Upload dist/shared bootstrap
+      # Directory uploads drop the containing folder name → shared assets would land wrong and break every map.
+      # Tar preserves paths: dist/shared/{boundaries,...} and match_day assets that expect /shared/... on the server.
+      - name: Pack dist/shared for artifact
+        run: tar czf rugby-dist-shared.tar.gz -C dist shared
+
+      - name: Upload dist/shared bootstrap tarball
         uses: actions/upload-artifact@v4
         with:
           name: rugby-dist-shared
-          path: dist/shared
+          path: rugby-dist-shared.tar.gz
           retention-days: 3
 
   # Parallel per-season: distances → Folium maps → pyramid PNG → match_day (fixture seasons only).
@@ -112,11 +117,14 @@ jobs:
       - name: Extract boundaries into workspace
         run: tar xzf rugby-boundaries.tar.gz
 
-      - name: Restore dist/shared
+      - name: Download dist/shared tarball
         uses: actions/download-artifact@v4
         with:
           name: rugby-dist-shared
-          path: dist
+          path: .
+
+      - name: Extract dist/shared into workspace
+        run: mkdir -p dist && tar xzf rugby-dist-shared.tar.gz -C dist
 
       - name: Rugby — travel distances / maps / pyramid / match_day (single season)
         env:
@@ -136,11 +144,14 @@ jobs:
             python -m rugby.match_day --season="$SEASON" --production
           fi
 
-      - name: Upload dist/<season> slice
+      - name: Pack season output tarball (preserve YYYY-YYYY/ prefix across merge)
+        run: tar czf "rugby-season-${{ matrix.season }}.tar.gz" -C dist "${{ matrix.season }}"
+
+      - name: Upload dist/<season> tarball
         uses: actions/upload-artifact@v4
         with:
           name: rugby-dist-season-${{ matrix.season }}
-          path: dist/${{ matrix.season }}
+          path: rugby-season-${{ matrix.season }}.tar.gz
           retention-days: 3
 
   assemble:
@@ -173,21 +184,37 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Merge dist/shared + per-season dirs
+      - name: Initialise dist layout
         run: mkdir -p dist
 
-      - name: Download rugby-dist-shared into dist/
+      - name: Download dist/shared tarball
         uses: actions/download-artifact@v4
         with:
           name: rugby-dist-shared
-          path: dist
+          path: .
 
-      - name: Merge all season artifacts into dist/
+      - name: Extract dist/shared into dist/
+        run: tar xzf rugby-dist-shared.tar.gz -C dist
+
+      - name: Download all season tarball artifacts
         uses: actions/download-artifact@v4
         with:
           pattern: rugby-dist-season-*
-          path: dist
-          merge-multiple: true
+          path: _incoming
+
+      - name: Extract all seasons into dist/
+        run: |
+          set -eo pipefail
+          maps=$(find _incoming -type f -name 'rugby-season-*.tar.gz' | wc -l)
+          if [ "$maps" -lt 1 ]; then
+            echo "No season tarball under _incoming:"
+            find _incoming -type f || true
+            exit 1
+          fi
+          while IFS= read -r -d '' tg; do
+            echo "Unpack $tg"
+            tar xzf "$tg" -C dist
+          done < <(find _incoming -type f -name 'rugby-season-*.tar.gz' -print0)
 
       - name: Rugby — team profile pages & teams directory
         run: |

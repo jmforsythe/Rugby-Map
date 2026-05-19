@@ -152,8 +152,23 @@ jobs:
         run: |
           bash scripts/ci_rugby_season.sh "$SEASON"
 
-      - name: Pack season output tarball (preserve YYYY-YYYY/ prefix across merge)
-        run: tar --zstd -cf "rugby-season-${{ matrix.season }}.tar.zst" -C dist "${{ matrix.season }}"
+      # Tarball layout: dist/<season>/… plus data/rugby/distance_cache/<season>.json
+      # (official league travel stats for custom-map teams.js — routed km/min when
+      # the global OSRM cache is present, Haversine otherwise). Extract at repo root
+      # in assemble, not under dist/.
+      - name: Pack season output tarball
+        env:
+          SEASON: ${{ matrix.season }}
+        run: |
+          set -eo pipefail
+          cache="data/rugby/distance_cache/${SEASON}.json"
+          if [ ! -f "$cache" ]; then
+            echo "Missing distance cache (rugby.distances should have written $cache)"
+            exit 1
+          fi
+          tar --zstd -cf "rugby-season-${SEASON}.tar.zst" \
+            "dist/${SEASON}" \
+            "$cache"
 
       - name: Upload dist/<season> tarball
         uses: actions/upload-artifact@v4
@@ -210,7 +225,7 @@ jobs:
           pattern: rugby-dist-season-*
           path: _incoming
 
-      - name: Extract all seasons into dist/
+      - name: Extract all seasons (maps + distance caches)
         run: |
           set -eo pipefail
           maps=$(find _incoming -type f \( -name 'rugby-season-*.tar.zst' -o -name 'rugby-season-*.tar.gz' \) | wc -l)
@@ -222,11 +237,21 @@ jobs:
           while IFS= read -r -d '' tg; do
             echo "Unpack $tg"
             case "$tg" in
-              *.tar.zst) tar --zstd -xf "$tg" -C dist ;;
-              *.tar.gz) tar xzf "$tg" -C dist ;;
+              *.tar.zst) tar --zstd -xf "$tg" ;;
+              *.tar.gz) tar xzf "$tg" ;;
               *) echo "Unknown archive: $tg"; exit 1 ;;
             esac
           done < <(find _incoming -type f \( -name 'rugby-season-*.tar.zst' -o -name 'rugby-season-*.tar.gz' \) -print0)
+
+      - name: Verify per-season distance caches for custom map
+        run: |
+          set -eo pipefail
+          count=$(find data/rugby/distance_cache -maxdepth 1 -name '*.json' | wc -l | tr -d ' ')
+          echo "Per-season distance caches restored: ${count}"
+          if [ "${count}" -lt 1 ]; then
+            echo "Expected data/rugby/distance_cache/<season>.json from matrix jobs"
+            exit 1
+          fi
 
       - name: Generate rugby, custom map, and football outputs (parallel)
         run: |

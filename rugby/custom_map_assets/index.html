@@ -1340,16 +1340,30 @@
       }
 
 
+      function fmtKmMin(km, min) {
+        if (km == null || typeof km !== "number" || !Number.isFinite(km)) {
+          return "—";
+        }
+        const k = km.toFixed(2) + " km";
+        if (min == null || typeof min !== "number" || !Number.isFinite(min)) {
+          return k;
+        }
+        return k + " / " + min.toFixed(0) + " min";
+      }
+
       function fmtIslandStatBlock(including, km, minSuffix) {
         const spaced = including ? "" : " island-stat-group--spaced";
+        const kmText =
+          km == null || typeof km !== "number" || !Number.isFinite(km)
+            ? "—"
+            : km.toFixed(1) + " km avg";
         return (
           '<span class="island-stat-group' +
           spaced +
           '">' +
           islandTravelLabelHtml(including, false) +
           '<span class="island-stat-value">' +
-          km.toFixed(1) +
-          " km avg" +
+          kmText +
           minSuffix +
           "</span></span>"
         );
@@ -1801,12 +1815,6 @@
           for (const team of league.teams) {
             const ts = stats.teams.find((s) => s.name === team.n);
 
-            // Helper: "12.34 km" or "12.34 km / 18 min" if duration available.
-            function fmtKmMin(km, min) {
-              const k = km.toFixed(2) + " km";
-              return min == null ? k : k + " / " + min.toFixed(0) + " min";
-            }
-
             function popupTravelBlock(
               including,
               teamAvg,
@@ -1879,8 +1887,15 @@
 
             let officialHtml = "";
             if (team.lg) {
+              const hasOfficialTravel =
+                team.tavg != null &&
+                team.ttot != null &&
+                Number.isFinite(team.tavg) &&
+                Number.isFinite(team.ttot);
               const hasDual =
-                team.tavg_excl != null && team.ttot_excl != null;
+                hasOfficialTravel &&
+                team.tavg_excl != null &&
+                team.ttot_excl != null;
               officialHtml =
                 "<hr>" +
                 '<p><span class="popup-label">Official League:</span> ' +
@@ -1901,7 +1916,7 @@
                   team.lavg_excl != null ? team.lavg_excl : null,
                   team.lavg_min_excl != null ? team.lavg_min_excl : null,
                 );
-              } else {
+              } else if (hasOfficialTravel) {
                 officialHtml +=
                   "<p>Team Average: " +
                   fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
@@ -1909,7 +1924,7 @@
                   "<p>Team Total: " +
                   fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
                   "</p>" +
-                  (team.lavg
+                  (team.lavg != null
                     ? "<p>League Average: " +
                       fmtKmMin(
                         team.lavg,
@@ -2470,7 +2485,7 @@
             if (!officialLeagues[t.lg])
               officialLeagues[t.lg] = {
                 name: t.lg,
-                lavg: t.lavg || 0,
+                lavg: t.lavg != null ? t.lavg : null,
                 lavg_min: t.lavg_min != null ? t.lavg_min : null,
                 lavg_excl: t.lavg_excl != null ? t.lavg_excl : null,
                 lavg_min_excl:
@@ -2504,14 +2519,17 @@
                 fmtIslandStatBlock(false, lg.lavg_excl, lgExclMinSuffix) +
                 "</span></div>";
             } else {
+              const lgAvgText =
+                lg.lavg != null && Number.isFinite(lg.lavg)
+                  ? lg.lavg.toFixed(1) + " km avg"
+                  : "—";
               html +=
                 '<div class="stat-row"><span class="stat-label">' +
                 escHtml(lg.name) +
                 " (" +
                 lg.teams.length +
                 ')</span><span class="stat-value">' +
-                lg.lavg.toFixed(1) +
-                " km avg" +
+                lgAvgText +
                 lgMinSuffix +
                 "</span></div>";
             }

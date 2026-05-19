@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Per-season CI: distances, then maps ∥ match_day while pyramid PNGs run one-at-a-time.
+# rugby.distances writes data/rugby/distance_cache/<season>.json (official league travel
+# stats: OSRM routed km/min when the committed global cache exists, else Haversine).
+# deploy.yml packs that file into the season tarball for custom_map at assemble time.
 # Parallel pyramid_image --png launches multiple Chromium instances and causes runner
 # OOM / Playwright screenshot timeouts (especially pyramid_All_Leagues).
 set -euo pipefail

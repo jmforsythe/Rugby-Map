@@ -90,7 +90,7 @@ jobs:
           path: rugby-dist-shared.tar.zst
           retention-days: 3
 
-  # Parallel per-season: distances → maps ∥ pyramids ∥ match_day (merit comps in parallel).
+  # Parallel per-season: distances → maps ∥ match_day; pyramid PNGs sequential (one Chromium).
   rugby-season:
     needs: prepare
     runs-on: ubuntu-latest

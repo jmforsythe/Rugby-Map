@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Per-season CI: distances, then maps / pyramids / match_day in parallel.
-# Merit competitions render concurrently; pyramid_All_Leagues runs after they finish.
+# Per-season CI: distances, then maps ∥ match_day while pyramid PNGs run one-at-a-time.
+# Parallel pyramid_image --png launches multiple Chromium instances and causes runner
+# OOM / Playwright screenshot timeouts (especially pyramid_All_Leagues).
 set -euo pipefail
 
 SEASON="${1:?usage: ci_rugby_season.sh YYYY-YYYY}"
@@ -15,9 +16,20 @@ run_bg() {
   pids+=("$!")
 }
 
+run_pyramid() {
+  if ! "$@"; then
+    fail=1
+  fi
+}
+
 run_bg python -m rugby.maps --no-debug --season="$SEASON" --production
-run_bg python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
-run_bg python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
+
+if [[ -d "data/rugby/fixture_data/$SEASON" ]]; then
+  run_bg python -m rugby.match_day --season="$SEASON" --production
+fi
+
+run_pyramid python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
+run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
 
 merit_comps=()
 if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
@@ -26,12 +38,9 @@ if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -pr
   )
   for comp in "${merit_comps[@]}"; do
     [[ -n "$comp" ]] || continue
-    run_bg python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2
+    run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2
   done
-fi
-
-if [[ -d "data/rugby/fixture_data/$SEASON" ]]; then
-  run_bg python -m rugby.match_day --season="$SEASON" --production
+  run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2
 fi
 
 for pid in "${pids[@]}"; do
@@ -39,11 +48,5 @@ for pid in "${pids[@]}"; do
     fail=1
   fi
 done
-
-if ((${#merit_comps[@]} > 0)); then
-  if ! python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2; then
-    fail=1
-  fi
-fi
 
 exit "$fail"

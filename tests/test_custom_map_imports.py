@@ -84,6 +84,29 @@ class TestBuildJsPayload:
         assert pack["tiers"][0]["leagues"][0]["color"].startswith("#")
         assert pack["tiers"][0]["leagues"][1]["name"] == "Unassigned"
 
+    def test_duplicate_tier_numbers_get_distinct_ids(self):
+        spec = {
+            "schema_version": 1,
+            "id": "mwrugbycoaching",
+            "label": "MW Rugby Coaching",
+            "tiers": [
+                {
+                    "tier": 4,
+                    "name": "National 2 (South, Central, North)",
+                    "leagues": [{"name": "National 2 South", "teams": ["A"]}],
+                },
+                {
+                    "tier": 4,
+                    "name": "National 2 (West, East, North)",
+                    "leagues": [{"name": "National 2 West", "teams": ["B"]}],
+                },
+            ],
+        }
+        pack = spec_to_js_pack(spec)
+        ids = [t["id"] for t in pack["tiers"]]
+        assert ids == ["mwrugbycoaching_4_0", "mwrugbycoaching_4_1"]
+        assert len(set(ids)) == 2
+
 
 class TestAssignLeagueColors:
     def test_uses_map_builder_sort_not_casefold(self):

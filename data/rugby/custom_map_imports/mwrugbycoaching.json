@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "mwrugbycoaching",
+  "label": "MW Rugby Coaching",
+  "season": "2026-2027",
+  "tiers": [
+    {
+      "tier": 4,
+      "name": "mwrugbycoaching - National 2 (South, Central, North)",
+      "leagues": [
+        {
+          "name": "National 2 South",
+          "teams": [
+            "Barnes",
+            "Barnstaple",
+            "Devonport Services",
+            "Dorking",
+            "Esher",
+            "Exeter University",
+            "Guernsey",
+            "Havant",
+            "Henley",
+            "Jersey Rugby Football Club",
+            "London Welsh",
+            "Redruth",
+            "Taunton Titans",
+            "Westcombe Park"
+          ]
+        },
+        {
+          "name": "National 2 North",
+          "teams": [
+            "Billingham",
+            "Darlington Mowden Park",
+            "Fylde",
+            "Harrogate",
+            "Heath",
+            "Huddersfield",
+            "Hull Ionians",
+            "Lymm",
+            "Otley",
+            "Preston Grasshoppers",
+            "Sedgley Park",
+            "Sheffield Tigers",
+            "Tynedale",
+            "Wharfedale"
+          ]
+        },
+        {
+          "name": "National 2 Midlands & Central",
+          "teams": [
+            "Bournville",
+            "Canterbury",
+            "Chester",
+            "Cinderford",
+            "Clifton",
+            "Colchester",
+            "Hinckley",
+            "Hornets",
+            "Leicester Lions",
+            "Luctonians",
+            "Macclesfield",
+            "Old Albanians",
+            "Old Redcliffians",
+            "Oundle"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "name": "mwrugbycoaching - National 2 (West, East, North)",
+      "leagues": [
+        {
+          "name": "National 2 West",
+          "teams": [
+            "Barnstaple",
+            "Bournville",
+            "Cinderford",
+            "Clifton",
+            "Devonport Services",
+            "Exeter University",
+            "Hornets",
+            "Jersey Rugby Football Club",
+            "Luctonians",
+            "Macclesfield",
+            "Old Redcliffians",
+            "Redruth",
+            "Sheffield Tigers",
+            "Taunton Titans"
+          ]
+        },
+        {
+          "name": "National 2 North",
+          "teams": [
+            "Billingham",
+            "Chester",
+            "Darlington Mowden Park",
+            "Fylde",
+            "Harrogate",
+            "Heath",
+            "Huddersfield",
+            "Hull Ionians",
+            "Lymm",
+            "Otley",
+            "Preston Grasshoppers",
+            "Sedgley Park",
+            "Tynedale",
+            "Wharfedale"
+          ]
+        },
+        {
+          "name": "National 2 East",
+          "teams": [
+            "Barnes",
+            "Canterbury",
+            "Colchester",
+            "Dorking",
+            "Esher",
+            "Guernsey",
+            "Havant",
+            "Henley",
+            "Hinckley",
+            "Leicester Lions",
+            "London Welsh",
+            "Old Albanians",
+            "Oundle",
+            "Westcombe Park"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -107,14 +107,20 @@ def load_projected_tier_teams(
     bpr_teams: list[str] | None = None,
     quiet: bool = False,
 ) -> list[str]:
-    from rugby.analysis.promotion_relegation import _SEASON_SURVIVAL_SWAPS, compute_assignments
+    from rugby.analysis.promotion_relegation import (
+        _SEASON_SURVIVAL_SWAPS,
+        compute_assignments,
+        load_playoff_outcomes,
+    )
 
+    playoff_outcomes = load_playoff_outcomes(season)
     assignments = compute_assignments(
         season,
         bpr_teams=bpr_teams,
         survival_swaps=_SEASON_SURVIVAL_SWAPS.get(season),
         quiet=quiet,
         scrape_standings=not use_cache,
+        playoff_outcomes=playoff_outcomes or None,
     )
     names = [a["team_name"] for a in assignments if a["next_tier"] == tier]
     return sorted(names)

@@ -106,13 +106,33 @@ def assign_all_leagues_colors(
             merit_idx += 1
 
 
+def _tier_js_id(
+    import_id: str,
+    tier: dict[str, Any],
+    tier_idx: int,
+    *,
+    duplicate_tier_nums: set[int],
+) -> str:
+    """Stable import-modal id; disambiguate when one pack has multiple rows at the same tier."""
+    explicit = tier.get("id")
+    if explicit:
+        return str(explicit)
+    tier_num = int(tier["tier"])
+    if tier_num in duplicate_tier_nums:
+        return f"{import_id}_{tier_num}_{tier_idx}"
+    return f"{import_id}_{tier_num}"
+
+
 def spec_to_js_pack(spec: dict[str, Any]) -> dict[str, Any]:
     """Add league colours for the assembled JS payload."""
     import_id = spec["id"]
     label = spec.get("label", import_id)
     season = spec.get("season", "")
+    tiers_in = list(spec.get("tiers", []))
+    tier_nums = [int(t["tier"]) for t in tiers_in]
+    duplicate_tier_nums = {n for n in tier_nums if tier_nums.count(n) > 1}
     tiers_out: list[dict[str, Any]] = []
-    for tier in spec.get("tiers", []):
+    for tier_idx, tier in enumerate(tiers_in):
         tier_num = int(tier["tier"])
         leagues = sorted(
             [dict(lg) for lg in tier.get("leagues", [])],
@@ -122,7 +142,9 @@ def spec_to_js_pack(spec: dict[str, Any]) -> dict[str, Any]:
         tier_name = tier.get("name") or f"{label} — {mens_current_tier_name(tier_num)}"
         tiers_out.append(
             {
-                "id": f"{import_id}_{tier_num}",
+                "id": _tier_js_id(
+                    import_id, tier, tier_idx, duplicate_tier_nums=duplicate_tier_nums
+                ),
                 "tier": tier_num,
                 "name": tier_name,
                 "leagues": leagues,
@@ -147,9 +169,17 @@ def validate_import_spec(spec: dict[str, Any], *, source: str) -> None:
     tiers = spec.get("tiers")
     if not isinstance(tiers, list) or not tiers:
         raise ValueError(f"{source}: tiers must be a non-empty list")
+    tier_ids_seen: set[str] = set()
     for tier in tiers:
         if "tier" not in tier:
             raise ValueError(f"{source}: tier entry missing tier number")
+        if tier.get("id") is not None:
+            tid = str(tier["id"])
+            if not tid:
+                raise ValueError(f"{source}: tier id must be non-empty when set")
+            if tid in tier_ids_seen:
+                raise ValueError(f"{source}: duplicate tier id {tid!r}")
+            tier_ids_seen.add(tid)
         leagues = tier.get("leagues")
         if not isinstance(leagues, list) or not leagues:
             raise ValueError(f"{source}: tier {tier.get('tier')} has no leagues")

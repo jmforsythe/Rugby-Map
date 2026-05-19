@@ -269,15 +269,15 @@
       "NOWIRUL The Right Broker Division 2 South": "NOWIRUL Baines Plumbing Division 1"
     },
     "4": {
-      "NOWIRUL Howell & Co Division 3 West": "NOWIRUL County Courier Services  Division 2 North",
+      "NOWIRUL Howell & Co Division 3 West": [
+        "NOWIRUL County Courier Services  Division 2 North",
+        "NOWIRUL The Right Broker Division 2 South"
+      ],
       "NOWIRUL Simply Lifetime Mortgages Division 3 North": "NOWIRUL County Courier Services  Division 2 North",
       "NOWIRUL The Right Broker Division 3 South": "NOWIRUL The Right Broker Division 2 South"
     },
     "5": {
-      "NOWIRUL Classic Engraving Division 4 East": [
-        "NOWIRUL Simply Lifetime Mortgages Division 3 North",
-        "NOWIRUL The Right Broker Division 3 South"
-      ],
+      "NOWIRUL Classic Engraving Division 4 East": "NOWIRUL The Right Broker Division 3 South",
       "NOWIRUL Wayne Lord Plumbing Division 4 North": "NOWIRUL Simply Lifetime Mortgages Division 3 North",
       "NOWIRUL Widnes Transport & Training Division 4 West": "NOWIRUL Howell & Co Division 3 West"
     },

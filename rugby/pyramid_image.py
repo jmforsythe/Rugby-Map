@@ -528,9 +528,19 @@ def _tier_band_colors(tier_num: int, gender: Gender) -> tuple[str, str]:
     return TIER_COLORS.get(tier_num, ("#cccccc", "#222222"))
 
 
-def _league_cell_tier_colors(league: LeagueData, tier_num: int, gender: Gender) -> tuple[str, str]:
-    """Per-cell colours: orange tint for merit rows in the merged men's All Leagues diagram."""
-    if gender == "mens" and league.merit_geocoded_competition is not None:
+def _league_cell_tier_colors(
+    league: LeagueData,
+    tier_num: int,
+    gender: Gender,
+    *,
+    mens_merge_merit_leagues: bool = False,
+) -> tuple[str, str]:
+    """Per-cell colours: orange tint for merit rows in the merged men's All Leagues diagram only."""
+    if (
+        mens_merge_merit_leagues
+        and gender == "mens"
+        and league.merit_geocoded_competition is not None
+    ):
         return MERIT_MERGED_LEAGUE_CELL_BG_MENS, MERIT_MERGED_LEAGUE_CELL_TITLE_MENS
     return _tier_band_colors(tier_num, gender)
 
@@ -4815,7 +4825,9 @@ def _render_pyramid_band(
         n_m = len(merit_placements)
         show_lt_merit_sparse = n_m > 1 or merit_n_prev >= 2
         for mi, (lg, x_rect, cell_w, col_idx) in enumerate(merit_placements):
-            bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
+            bg, title_color = _league_cell_tier_colors(
+                lg, tier_num, gender, mens_merge_merit_leagues=mens_merge_merit_leagues
+            )
             trap_pts = None
             clip_id = None
             safe_left_x = None
@@ -4862,7 +4874,9 @@ def _render_pyramid_band(
     else:
         gh = band_gap_half
         for i, lg in enumerate(leagues_ordered):
-            bg, title_color = _league_cell_tier_colors(lg, tier_num, gender)
+            bg, title_color = _league_cell_tier_colors(
+                lg, tier_num, gender, mens_merge_merit_leagues=mens_merge_merit_leagues
+            )
             if rects_map is not None:
                 x_rect, cell_w = rects_map[lg.league_name]
             else:
@@ -6206,7 +6220,9 @@ def _render_stem_extension(
 
         if pure_cells:
             for lg, lx, lw in pure_cells:
-                bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
+                bg, title_color = _league_cell_tier_colors(
+                    lg, tier_num, "mens", mens_merge_merit_leagues=mens_merge_merit_leagues
+                )
                 parts.append(
                     _render_league_cell(
                         lg,
@@ -6228,7 +6244,9 @@ def _render_stem_extension(
                 oph_h = orphan_row_px - _stem_row_playable_vertical_trim_px()
                 oph_top = cursor_y
                 for lg, lx, lw in orphan_cells:
-                    bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
+                    bg, title_color = _league_cell_tier_colors(
+                        lg, tier_num, "mens", mens_merge_merit_leagues=mens_merge_merit_leagues
+                    )
                     parts.append(
                         _render_league_cell(
                             lg,
@@ -6247,7 +6265,9 @@ def _render_stem_extension(
                 cursor_y += orphan_row_px
         elif orphan_cells:
             for lg, lx, lw in orphan_cells:
-                bg, title_color = _league_cell_tier_colors(lg, tier_num, "mens")
+                bg, title_color = _league_cell_tier_colors(
+                    lg, tier_num, "mens", mens_merge_merit_leagues=mens_merge_merit_leagues
+                )
                 parts.append(
                     _render_league_cell(
                         lg,

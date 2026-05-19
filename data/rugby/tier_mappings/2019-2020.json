@@ -93,17 +93,17 @@
     "1": {
       "Bombardier Merit Table": "Midlands 3 East (North)"
     },
-    "4": {
+    "2": {
       "Directors Merit Table": "Bombardier Merit Table"
     },
-    "5": {
+    "3": {
       "Estrella Damm Merit Table": "Directors Merit Table"
     },
-    "7": {
-      "Banana Bread Beer Merit Table": "Bombardier Merit Table"
-    },
-    "6": {
+    "4": {
       "Youngs London Stout Merit Table": "Estrella Damm Merit Table"
+    },
+    "5": {
+      "Banana Bread Beer Merit Table": "Youngs London Stout Merit Table"
     }
   },
   "Eastern_Counties": {
@@ -192,10 +192,7 @@
   },
   "Lancashire": {
     "1": {
-      "ADM 1st Division": "Lancs/Cheshire Division One"
-    },
-    "2": {
-      "ADM 1st Division": "Lancs/Cheshire Division Two"
+      "ADM 1st Division": "North One West"
     }
   },
   "Leicestershire": {
@@ -242,7 +239,7 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Security Plus Pennant Group 1": "Midlands 5 East (North)"
+      "Security Plus Pennant Group 1": "Midlands 4 East (North)"
     },
     "2": {
       "Security Plus Pennant Group 2N": "Security Plus Pennant Group 1",
@@ -261,7 +258,7 @@
   },
   "NOWIRUL": {
     "1": {
-      "NOWIRUL Cotton Traders Premier League": "Lancs/Cheshire Division Two"
+      "NOWIRUL Cotton Traders Premier League": "ADM 1st Division"
     },
     "2": {
       "NOWIRUL Cotton Traders Championship League": "NOWIRUL Cotton Traders Premier League"

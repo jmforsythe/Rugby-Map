@@ -19,13 +19,15 @@ from rugby.tiers import (
 def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
     """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8).
 
-    Nottinghamshire offset 10 while tier_mappings apex is Midlands 5 East (North) (2008-2009–2019-2020);
-    offset 9 when the stem uses Midlands 4 naming (2021-2022+).
+    Nottinghamshire offset 10 while tier_mappings apex is Midlands 5 East (North) (2008-2009–2017-2018);
+    offset 9 when no Midlands 5 East (2018-2019–2019-2020) or Midlands 4 stem naming (2021-2022+).
     """
     for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert get_competition_offset("East_Midlands", season) == 10
-    for season in ("2008-2009", "2009-2010", "2010-2011", "2011-2012", "2019-2020"):
+    for season in ("2008-2009", "2009-2010", "2010-2011", "2011-2012"):
         assert get_competition_offset("Nottinghamshire", season) == 10
+    for season in ("2018-2019", "2019-2020"):
+        assert get_competition_offset("Nottinghamshire", season) == 9
     assert get_competition_offset("East_Midlands", "2007-2008") == 8
     assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
     assert get_competition_offset("East_Midlands", "2011-2012") == 8
@@ -692,11 +694,11 @@ class TestNamedMeritLeagues:
 
     def test_directors_merit_table(self):
         result = extract_tier("merit/East_Midlands/Directors_Merit_Table.json", "2019-2020")
-        assert result == (4, "East Midlands 4")
+        assert result == (2, "East Midlands 2")
 
     def test_banana_bread_parallel_seventh_tier(self):
         result = extract_tier("merit/East_Midlands/Banana_Bread_Beer_Merit_Table.json", "2019-2020")
-        assert result == (7, "East Midlands 7")
+        assert result == (5, "East Midlands 5")
 
     def test_numbered_format_unaffected(self):
         """Post-2022 numbered format should not be caught by named league matching."""

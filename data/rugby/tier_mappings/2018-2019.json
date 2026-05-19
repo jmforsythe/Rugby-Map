@@ -99,17 +99,17 @@
     "1": {
       "Bombardier Merit Table": "Midlands 3 East (North)"
     },
-    "4": {
+    "2": {
       "Directors Merit Table": "Bombardier Merit Table"
     },
-    "5": {
+    "3": {
       "Estrella Damm Merit Table": "Directors Merit Table"
     },
-    "7": {
-      "Banana Bread Beer Merit Table": "Bombardier Merit Table"
-    },
-    "6": {
+    "4": {
       "Youngs London Gold Merit Table": "Estrella Damm Merit Table"
+    },
+    "5": {
+      "Banana Bread Beer Merit Table": "Youngs London Gold Merit Table"
     }
   },
   "Eastern_Counties": {
@@ -193,7 +193,7 @@
   },
   "Lancashire": {
     "1": {
-      "ADM Premier Division": "Lancs/Cheshire Division Three"
+      "ADM Premier Division": "North One West"
     },
     "2": {
       "ADM First Division": "ADM Premier Division"
@@ -246,7 +246,7 @@
   },
   "Nottinghamshire": {
     "1": {
-      "Security Plus Pennant Group 1": "Midlands 5 East (North)"
+      "Security Plus Pennant Group 1": "Midlands 4 East (North)"
     },
     "2": {
       "Security Plus Pennant Group 2": "Security Plus Pennant Group 1"
@@ -261,7 +261,7 @@
   },
   "NOWIRUL": {
     "1": {
-      "Cotton Traders Premier League": "Lancs/Cheshire Division Three"
+      "Cotton Traders Premier League": "ADM First Division"
     },
     "2": {
       "Cotton Traders Championship League": "Cotton Traders Premier League"
@@ -301,8 +301,25 @@
       "Five Grain 4 West": "Late Red 3"
     }
   },
+  "Sussex": {
+    "5": {
+      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
+      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
+    },
+    "6": {
+      "Sussex 3 EAST Bonfire Boy": "Sussex 2 'Armada Ale'",
+      "Sussex 3 WEST 'Forwards Choice'": "Sussex 2 Reserves 'Olympia Ale'"
+    },
+    "7": {
+      "Sussex 4 EAST Albion Ale'": "Sussex 3 EAST Bonfire Boy",
+      "Sussex 4 WEST 'Wild Hop'": "Sussex 3 WEST 'Forwards Choice'"
+    }
+  },
   "Surrey": {
     "2": {
+      "Surrey Championship": "Surrey 4"
+    },
+    "3": {
       "Surrey Championship": "Surrey 4"
     },
     "4": {
@@ -321,20 +338,6 @@
     },
     "7": {
       "Surrey Foundation": "Surrey Combination 2"
-    }
-  },
-  "Sussex": {
-    "5": {
-      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
-      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
-    },
-    "6": {
-      "Sussex 3 EAST Bonfire Boy": "Sussex 2 'Armada Ale'",
-      "Sussex 3 WEST 'Forwards Choice'": "Sussex 2 'Armada Ale'"
-    },
-    "7": {
-      "Sussex 4 EAST Albion Ale'": "Sussex 3 EAST Bonfire Boy",
-      "Sussex 4 WEST 'Wild Hop'": "Sussex 3 WEST 'Forwards Choice'"
     }
   }
 }

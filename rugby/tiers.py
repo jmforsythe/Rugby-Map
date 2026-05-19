@@ -102,8 +102,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "Lancashire": [
         ("2010-2011", "2014-2015", 8),
         ("2017-2018", "2017-2018", 8),
-        ("2018-2019", "2018-2019", 9),
-        ("2019-2020", "2019-2020", 8),
+        # Apex at national tier 7; stem to North One West (tier 6) in tier_mappings.
+        ("2018-2019", "2019-2020", 6),
         ("2021-2022", "2021-2022", 6),
         ("2022-2023", "2023-2024", 9),
         ("2024-2025", "2025-2026", 8),
@@ -120,18 +120,22 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
         ("2017-2018", "2017-2018", 9),
-        # Align with 2019-2020: NW merit apex shares the Lancashire stem row (abs 10).
-        ("2018-2019", "2018-2019", 9),
-        ("2019-2020", "2019-2020", 9),
+        # Apex at national tier 9 (2018-2019); stem to Lancashire county merit (offset 6 → abs 7).
+        ("2018-2019", "2018-2019", 8),
+        # 2019-2020: apex at Lancs/Cheshire Division One (national tier 8).
+        ("2019-2020", "2019-2020", 7),
         ("2021-2022", "2021-2022", 7),
         ("2022-2023", "2023-2024", 10),
         ("2024-2025", "2025-2026", 9),
     ],
     "Nottinghamshire": [
         # Offset 10 while apex feeds Midlands 5 East (North) in tier_mappings: local 1 → abs 11.
-        # 2008-2009–2019-2020 (with East_Midlands, 2008-2010; Notts stem aligned to M5 from 2010-2011).
+        # 2008-2009–2017-2018 / 2019-2020 (with East_Midlands, 2008-2010; Notts stem aligned to M5 from 2010-2011).
+        # 2018-2019: no Midlands 5 East — apex at tier 10, stem to Midlands 4 East (North) (offset 9).
         # Default 9 from :data:`COMPETITION_OFFSETS` when apex uses Midlands 4 naming (2021-2022+).
-        ("2008-2009", "2019-2020", 10),
+        ("2008-2009", "2017-2018", 10),
+        # 2018-2019 / 2019-2020: no Midlands 5 East — apex at tier 10, stem to Midlands 4 East (North).
+        ("2018-2019", "2019-2020", 9),
     ],
     "Rural_Kent": [
         ("2008-2009", "2010-2011", 10),
@@ -147,8 +151,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2009-2010", "2012-2013", 12),
         # Four-conference / Championship ladders (2013-2015): apex at local 3 → abs 13.
         ("2013-2014", "2014-2015", 10),
-        ("2015-2016", "2018-2019", 11),
-        ("2019-2020", "2019-2020", 12),
+        ("2015-2016", "2017-2018", 11),
+        ("2018-2019", "2019-2020", 10),
         ("2021-2022", "2021-2022", 12),
         ("2022-2023", "", 11),
     ],
@@ -495,8 +499,19 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_CHAMP_NS:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
-    # 2013-2014 .. 2019-2020: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
-    if "2013-2014" <= season <= "2019-2020" and path.startswith("merit/East_Midlands/"):
+    # 2018-2019 / 2019-2020: no Eagle IPA / Courage Best rungs; non-Bombardier tables two bands higher.
+    if season in ("2018-2019", "2019-2020") and path.startswith("merit/East_Midlands/"):
+        for stem, local_tier in (
+            ("Directors", 2),
+            ("Estrella_Damm", 3),
+            ("Youngs_London_Gold", 4),
+            ("Youngs_London_Stout", 4),
+            ("Banana_Bread", 5),
+        ):
+            if path.startswith(f"merit/East_Midlands/{stem}"):
+                return (local_tier, f"East Midlands {local_tier}")
+    # 2013-2014 .. 2018-2019: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
+    if "2013-2014" <= season <= "2018-2019" and path.startswith("merit/East_Midlands/"):
         for stem, local_tier in (
             ("Youngs_Bitter", 3),
             ("Estrella_Damm", 5),

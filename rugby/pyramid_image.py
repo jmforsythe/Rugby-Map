@@ -7971,8 +7971,6 @@ def tier7_column_order_merge_cross_season(
 
     for gap, eff_foreign, foreign_map, path in bundles:
         for child_foreign, parent_foreign in foreign_map.items():
-            if child_foreign in merged:
-                continue
             children_tier = leagues_by_tier.get(7, [])
             child_here = _stem_resolve_league_identity(
                 children_tier,
@@ -7982,6 +7980,8 @@ def tier7_column_order_merge_cross_season(
                 eff_foreign,
             )
             if child_here is None:
+                continue
+            if child_here.league_name in merged:
                 continue
             parent_here: LeagueData | None = None
             for pt in range(6, 0, -1):

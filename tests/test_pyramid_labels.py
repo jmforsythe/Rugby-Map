@@ -705,6 +705,49 @@ def test_tier7_sort_parent_merge_cross_season(tmp_path, monkeypatch) -> None:
     assert merged[(7, "Counties 1 South")] == ("Regional 2 SW",)
 
 
+def test_tier7_column_order_merge_skips_when_current_season_has_entry(
+    tmp_path, monkeypatch, caplog
+) -> None:
+    """Do not re-infer tier-7 column order when this season's JSON already has the league."""
+    import logging
+
+    import rugby.pyramid_image as pi
+
+    monkeypatch.setattr(pi, "TIER_MAPPINGS_DIR", tmp_path)
+    current = {
+        "season": "2015-2016",
+        "tier7_column_order": {
+            "Southern Counties North": "South West 1 East",
+            "Southern Counties South": "South West 1 East",
+        },
+    }
+    foreign = {
+        "season": "2017-2018",
+        "tier7_column_order": {
+            "Wadworth 6X Southern Counties North": "Wadworth 6X South West 1 East",
+            "Wadworth 6X Southern Counties South": "Wadworth 6X South West 1 East",
+        },
+    }
+    (tmp_path / "2015-2016.json").write_text(json.dumps(current), encoding="utf-8")
+    (tmp_path / "2017-2018.json").write_text(json.dumps(foreign), encoding="utf-8")
+
+    def lg(t: int, name: str) -> pi.LeagueData:
+        return pi.LeagueData(tier_num=t, tier_name="", league_name=name, teams=[], team_count=0)
+
+    leagues_by_tier = {
+        6: [lg(6, "South West 1 East")],
+        7: [
+            lg(7, "Southern Counties North"),
+            lg(7, "Southern Counties South"),
+        ],
+    }
+    base = pi.tier7_column_order_from_payload(current)
+    with caplog.at_level(logging.INFO):
+        merged = pi.tier7_column_order_merge_cross_season("2015-2016", leagues_by_tier, base)
+    assert merged == base
+    assert "Tier-7 column-order inferred" not in caplog.text
+
+
 def test_womens_parent_overrides_merge_cross_season(tmp_path, monkeypatch) -> None:
     """Infer band-3→2 feeder from another season's tier_mappings JSON when names align."""
     import rugby.pyramid_image as pi

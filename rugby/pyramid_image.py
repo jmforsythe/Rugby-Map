@@ -984,6 +984,11 @@ def _season_start_year(season_label: str) -> int:
     return int(season_label.split("-", maxsplit=1)[0])
 
 
+def _label_text_ignore_whitespace(s: str) -> str:
+    """Case-folded, whitespace-stripped form for comparing merit band labels."""
+    return "".join(s.split()).casefold()
+
+
 def _longest_common_string_prefix(strings: Sequence[str]) -> str:
     """Character-longest prefix common to every non-empty string in ``strings``."""
     if not strings:
@@ -1015,6 +1020,8 @@ def _merit_band_margin_primary_label(
     visible_tier: int,
     _season: str,
     gender: Gender,
+    *,
+    merit_competition: str | None = None,
 ) -> str | None:
     """Merit left margin: longest prefix shared by every league title in this band.
 
@@ -1023,6 +1030,9 @@ def _merit_band_margin_primary_label(
 
     When the shared prefix is shorter than :data:`_MIN_MERIT_MARGIN_LCP_CHARS`, returns
     ``None`` so the margin falls back to :func:`pyramid_band_tier_label`.
+
+    When the shared prefix equals the merit competition display name (whitespace ignored),
+    returns ``None`` — the competition name alone is not a useful tier label.
     """
     if gender == "womens":
         return None
@@ -1040,6 +1050,10 @@ def _merit_band_margin_primary_label(
     lcp = _longest_common_string_prefix(norms).rstrip()
     if len(lcp) < _MIN_MERIT_MARGIN_LCP_CHARS:
         return None
+    if merit_competition:
+        comp_display = merit_competition.replace("_", " ").strip()
+        if _label_text_ignore_whitespace(lcp) == _label_text_ignore_whitespace(comp_display):
+            return None
     return lcp
 
 
@@ -4949,7 +4963,11 @@ def _render_pyramid_band(
     margin_override = None
     if merit_competition is not None and leagues_by_tier is not None:
         margin_override = _merit_band_margin_primary_label(
-            leagues_by_tier, tier_num, season, gender
+            leagues_by_tier,
+            tier_num,
+            season,
+            gender,
+            merit_competition=merit_competition,
         )
     parts.append(
         _tier_margin_label_svg(
@@ -6290,7 +6308,11 @@ def _render_stem_extension(
         margin_override = None
         if merit_competition is not None:
             margin_override = _merit_band_margin_primary_label(
-                leagues_by_tier, tier_num, season, "mens"
+                leagues_by_tier,
+                tier_num,
+                season,
+                "mens",
+                merit_competition=merit_competition,
             )
         parts.append(
             _tier_margin_label_svg(

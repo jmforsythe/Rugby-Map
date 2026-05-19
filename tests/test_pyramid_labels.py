@@ -479,6 +479,29 @@ def test_merit_band_margin_label_multi_league_shared_prefix() -> None:
     assert _merit_band_margin_primary_label(by, 3, "2012-2013", "mens") == "Division 4"
 
 
+def test_merit_band_margin_label_rejects_lcp_that_is_only_competition_name() -> None:
+    """Shared prefix equal to the competition name is not a valid tier margin label."""
+    by = {
+        1: [_lg(1, "Sussex Alpha"), _lg(1, "Sussex Beta")],
+    }
+    assert (
+        _merit_band_margin_primary_label(by, 1, "2025-2026", "mens", merit_competition="Sussex")
+        is None
+    )
+    by_em = {
+        1: [
+            _lg(1, "East Midlands North"),
+            _lg(1, "East Midlands South"),
+        ],
+    }
+    assert (
+        _merit_band_margin_primary_label(
+            by_em, 1, "2025-2026", "mens", merit_competition="East_Midlands"
+        )
+        is None
+    )
+
+
 def test_pyramid_margin_tier1_championship_before_2009_premiership_pyramid() -> None:
     """Pre–Championship-tier era: apex margin says Championship (not Premiership)."""
     assert pyramid_band_tier_label(1, "2000-2001", "mens") == "Championship"

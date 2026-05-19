@@ -449,24 +449,37 @@ class TestExtractTierMeritPath:
         assert result == (3, "Sussex 3")
 
     def test_east_midlands_numbered(self):
+        """2025-2026: no East_Midlands_1 file; the three EM 2 branches all sit at local 1.
+
+        Shared-club analysis (see ``rugby.analysis.east_midlands_hierarchy``) finds no
+        observations linking the Bedfordshire (North/South) and Northants A divisions
+        in either direction, so they tie at tier 1.
+        """
         result = extract_tier(
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
-        assert result == (2, "East Midlands 2")
+        assert result == (1, "East Midlands 1")
 
     def test_east_midlands_b_variant(self):
+        """Northants B is the only league confirmed below the EM 2 cluster in 2025-2026."""
         result = extract_tier("merit/East_Midlands/East_Midlands_2_-_Northants_B.json", "2025-2026")
-        assert result == (3, "East Midlands 3")
+        assert result == (2, "East Midlands 2")
 
     def test_east_midlands_sponsor_named(self):
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
         assert result == (1, "East Midlands 1")
 
-    def test_east_midlands_eagle_ipa_2009_2010_reserves_courage_rung(self):
-        """Absent Courage Best file: Eagle IPA is local 3 so tier 12 stays Leicestershire LRU-only."""
+    def test_east_midlands_main_ladder_2013_2014(self):
+        """2013-2014: Bombardier > Eagle IPA > Youngs Bitter > Directors > {Dogs Head, Youngs London Stout} > Estrella Damm.
+
+        Derived from shared-club analysis: 8 confirmed observations of Bombardier above
+        Eagle IPA, 4 of Eagle IPA above Youngs Bitter, etc.  Estrella Damm sits at the
+        bottom of the main ladder because every confirmed relationship places it below
+        Bombardier/Eagle IPA/Youngs Bitter/Directors.
+        """
         assert extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2009-2010") == (
-            3,
-            "East Midlands 3",
+            2,
+            "East Midlands 2",
         )
         assert extract_tier("merit/East_Midlands/Eagle_IPA_League.json", "2013-2014") == (
             2,
@@ -477,16 +490,16 @@ class TestExtractTierMeritPath:
             "East Midlands 3",
         )
         assert extract_tier("merit/East_Midlands/Estrella_Damm.json", "2013-2014") == (
-            5,
-            "East Midlands 5",
-        )
-        assert extract_tier("merit/East_Midlands/Youngs_London_Stout.json", "2013-2014") == (
             6,
             "East Midlands 6",
         )
+        assert extract_tier("merit/East_Midlands/Youngs_London_Stout.json", "2013-2014") == (
+            5,
+            "East Midlands 5",
+        )
         assert extract_tier("merit/East_Midlands/Dogs_Head_DNA.json", "2013-2014") == (
-            7,
-            "East Midlands 7",
+            5,
+            "East Midlands 5",
         )
 
     def test_rural_kent_invicta_apex_2010_2011(self):
@@ -694,9 +707,14 @@ class TestNamedMeritLeagues:
         result = extract_tier("merit/East_Midlands/Directors_League.json", "2014-2015")
         assert result == (4, "East Midlands 4")
 
-    def test_estrella_main_ladder_fifth_tier(self):
+    def test_estrella_main_ladder_sixth_tier(self):
+        """Estrella Damm sits at the bottom of the 2014-2015 ladder (tier 6).
+
+        Shared-club analysis confirms Bombardier, Eagle IPA, Youngs Bitter, Directors,
+        and Youngs London Stout all rank above it.
+        """
         result = extract_tier("merit/East_Midlands/Estrella_Damm.json", "2014-2015")
-        assert result == (5, "East Midlands 5")
+        assert result == (6, "East Midlands 6")
 
     def test_youngs_bitter_main_ladder_third_tier(self):
         result = extract_tier("merit/East_Midlands/Youngs_Bitter.json", "2014-2015")
@@ -710,16 +728,25 @@ class TestNamedMeritLeagues:
         result = extract_tier("merit/East_Midlands/Directors_Merit_Table.json", "2019-2020")
         assert result == (2, "East Midlands 2")
 
-    def test_banana_bread_parallel_seventh_tier(self):
-        result = extract_tier("merit/East_Midlands/Banana_Bread_Beer_Merit_Table.json", "2019-2020")
-        assert result == (5, "East Midlands 5")
+    def test_banana_bread_ties_with_directors_2019_2020(self):
+        """2019-2020: Banana Bread Beer ties with Directors at local tier 2.
 
-    def test_numbered_format_unaffected(self):
-        """Post-2022 numbered format should not be caught by named league matching."""
+        Shared-club evidence places both below Bombardier but above Youngs London Stout
+        and Estrella Damm; no evidence separates them from each other.
+        """
+        result = extract_tier("merit/East_Midlands/Banana_Bread_Beer_Merit_Table.json", "2019-2020")
+        assert result == (2, "East Midlands 2")
+
+    def test_numbered_format_routed_through_per_season_table(self):
+        """Post-2021 numbered format is matched by the per-season EM table.
+
+        2025-2026 has no East_Midlands_1 file; the three EM 2 branches all sit at tier 1
+        (no shared-club observations separate them).
+        """
         result = extract_tier(
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
-        assert result == (2, "East Midlands 2")
+        assert result == (1, "East Midlands 1")
 
     def test_middlesex_ordinal_divisions(self):
         """Ordinal-named divisions should get distinct local tiers."""

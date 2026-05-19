@@ -56,11 +56,10 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2017-2018", "2017-2018", 10),
     ],
     "East_Midlands": [
-        # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming drops (2009-2010)
-        # or below Midlands 6 East (tier 10) when present (2008-2009): local 1 → absolute 11.
-        # Same offset through 2010-2011 (Bombardier parents Midlands 3 East North/South in tier_mappings).
-        # With Leicestershire at offset 11 (LRU at 12), 2009-2010 uses local 3 for Eagle IPA (missing
-        # Courage Best file) so Eagle sits at abs 13 — see _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010.
+        # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming
+        # drops (2009-2010) or below Midlands 6 East (tier 10) when present (2008-2009):
+        # Bombardier local 1 → absolute 11.  Same offset through 2010-2011 (Bombardier parents
+        # Midlands 3 East North/South in tier_mappings).
         ("2008-2009", "2010-2011", 10),
     ],
     "Essex": [
@@ -285,30 +284,184 @@ _PLAYOFF_FIXTURE_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
 }
 
 
+# Per-season East Midlands tier assignments derived from shared-club analysis.
+#
+# For every season, ``rugby.analysis.east_midlands_hierarchy`` walks the geocoded
+# data and builds confirmed ordering relationships: if a club had its 2nd XV in
+# league A and 3rd XV in league B, then A ranks above B.  A level-based
+# topological sort over those relationships produces sequential local tiers
+# with no gaps; leagues that are tied or that the data cannot separate share a
+# tier.  See that module for the supporting evidence.
+#
+# Keys are filename prefixes (matched after stripping leading sponsor prefixes
+# from :data:`_SPONSOR_PREFIXES`).  Longest-prefix-first matching applies,
+# with a boundary requirement (the prefix must be followed by ``.``, ``_``, or
+# end of string) to avoid e.g. ``East_Midlands_1`` swallowing ``East_Midlands_10``.
+_EAST_MIDLANDS_TIERS: dict[str, dict[str, int]] = {
+    "2008-2009": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Courage_Best": 3,
+        "Directors": 3,
+        "Waggledance": 4,
+        "Winter_Warmer": 4,
+    },
+    "2009-2010": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Directors": 3,
+        "Waggledance": 4,
+        "Winter_Warmer": 4,
+    },
+    "2010-2011": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Courage_Best": 3,
+        "Directors": 3,
+        "Waggledance": 4,
+        "Winter_Warmer": 4,
+    },
+    "2011-2012": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Courage_Best": 3,
+        "Directors": 3,
+        "Red_Stripe": 4,
+        "Waggledance": 4,
+        "Winter_Warmer": 4,
+    },
+    # 2012-2013: no Bombardier file in the data.
+    "2012-2013": {
+        "Eagle_IPA": 1,
+        "Courage_Best": 2,
+        "Directors": 2,
+        "Red_Stripe": 3,
+        "Waggledance": 3,
+        "Winter_Warmer": 3,
+    },
+    "2013-2014": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Youngs_Bitter": 3,
+        "Directors": 4,
+        "Dogs_Head": 5,
+        "Youngs_London_Stout": 5,
+        "Estrella_Damm": 6,
+    },
+    "2014-2015": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Youngs_Bitter": 3,
+        "Directors": 4,
+        "Youngs_London_Stout": 5,
+        "Estrella_Damm": 6,
+    },
+    "2015-2016": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Youngs_Bitter": 3,
+        "Directors": 4,
+        "Youngs_London_Stout": 5,
+        "Estrella_Damm": 6,
+    },
+    "2016-2017": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Youngs_Bitter": 3,
+        "Directors": 4,
+        "Youngs_London_Stout": 5,
+        "Estrella_Damm": 6,
+        "Waggledance": 7,
+    },
+    # Collapsed ladder: only four leagues survive.
+    "2017-2018": {
+        "Bombardier": 1,
+        "Eagle_IPA": 2,
+        "Directors": 3,
+        "Estrella_Damm": 4,
+    },
+    # Bombardier and Youngs London Gold tie at the top: no shared-club
+    # observations link them in either direction this season.
+    "2018-2019": {
+        "Bombardier": 1,
+        "Youngs_London_Gold": 1,
+        "Banana_Bread": 2,
+        "Directors": 2,
+        "Estrella_Damm": 3,
+    },
+    "2019-2020": {
+        "Bombardier": 1,
+        "Banana_Bread": 2,
+        "Directors": 2,
+        "Youngs_London_Stout": 3,
+        "Estrella_Damm": 4,
+    },
+    # Modern numbered format: sponsor prefix is stripped before matching, so
+    # e.g. ``Webb_Ellis_East_Midlands_1`` → ``East_Midlands_1``.
+    "2021-2022": {
+        "East_Midlands_1": 1,
+        "East_Midlands_2": 2,
+        "East_Midlands_3_East": 3,
+        "East_Midlands_3_South": 3,
+        "East_Midlands_3_West": 3,
+    },
+    # 2022-2023 data has no East_Midlands_2 file; only two tiers present.
+    "2022-2023": {
+        "East_Midlands_1": 1,
+        "East_Midlands_3_South": 2,
+        "East_Midlands_3_West": 2,
+    },
+    "2023-2024": {
+        "East_Midlands_1": 1,
+        "East_Midlands_2": 2,
+        "East_Midlands_3": 3,
+    },
+    # EM 2 - Bedfordshire has no shared clubs with EM 1, so the data cannot
+    # distinguish them; they tie at tier 1.
+    "2024-2025": {
+        "East_Midlands_1": 1,
+        "East_Midlands_2_-_Bedfordshire": 1,
+        "East_Midlands_2_-_Northants_A": 2,
+        "East_Midlands_2_-_Northants_B": 3,
+    },
+    # 2025-2026: no East_Midlands_1 file; the three "EM 2 - X" branches have
+    # no shared-club links between them, so all sit at tier 1; only Northants
+    # B is confirmed below Northants A.
+    "2025-2026": {
+        "East_Midlands_2_-_Bedfordshire_(North)": 1,
+        "East_Midlands_2_-_Bedfordshire_(South)": 1,
+        "East_Midlands_2_-_Northants_A": 1,
+        "East_Midlands_2_-_Northants_B": 2,
+    },
+}
+
+
+def _lookup_east_midlands_tier(path: str, season: str) -> tuple[int, str] | None:
+    """Look up an East Midlands merit league's local tier for ``season``.
+
+    Strips leading sponsor prefixes from the filename portion, then matches
+    against ``_EAST_MIDLANDS_TIERS[season]`` longest-prefix-first with a
+    boundary requirement so e.g. ``East_Midlands_1`` does not match
+    ``East_Midlands_10``.
+    """
+    table = _EAST_MIDLANDS_TIERS.get(season)
+    if table is None:
+        return None
+    prefix = "merit/East_Midlands/"
+    if not path.startswith(prefix):
+        return None
+    filename = path[len(prefix) :]
+    stem = _strip_sponsor_prefix(filename)
+    for key, tier in sorted(table.items(), key=lambda kv: len(kv[0]), reverse=True):
+        if stem.startswith(key) and (len(stem) == len(key) or stem[len(key)] in "._"):
+            return (tier, f"Level {tier}")
+    return None
+
+
 _NAMED_MERIT_LEAGUES: dict[str, int] = {
     # Values are **local** tiers (absolute minus competition offset).
-    # East Midlands sponsor ladder (six tiers): Bombardier → Eagle IPA → Courage Best →
-    # Directors → Waggledance → Winter Warmer. Other sponsor-named files share local tier 7
-    # below that ladder. Prefix matching uses longest keys first (see _match_named_merit_leagues).
-    "merit/East_Midlands/Bombardier": 1,
-    "merit/East_Midlands/Eagle_IPA": 2,
-    "merit/East_Midlands/Courage_Best": 3,
-    "merit/East_Midlands/Directors": 4,
-    "merit/East_Midlands/Waggledance_League": 5,
-    "merit/East_Midlands/Waggledance": 5,
-    "merit/East_Midlands/Winter_Warmer": 6,
-    "merit/East_Midlands/Youngs_London_Stout": 7,
-    "merit/East_Midlands/Youngs_London_Gold": 7,
-    "merit/East_Midlands/Youngs_Bitter": 7,
-    "merit/East_Midlands/Estrella_Damm_Merit": 7,
-    "merit/East_Midlands/Estrella": 7,
-    "merit/East_Midlands/Youngs": 7,
-    "merit/East_Midlands/Red_Stripe": 7,
-    "merit/East_Midlands/Banana_Bread": 7,
-    "merit/East_Midlands/Dogs_Head": 7,
-    # East Midlands Northants A & B: B sits one level below A
-    "merit/East_Midlands/East_Midlands_2_-_Northants_A": 2,
-    "merit/East_Midlands/East_Midlands_2_-_Northants_B": 3,
+    # East Midlands merit leagues are handled by _EAST_MIDLANDS_TIERS (per-season
+    # tables derived from shared-club analysis) — see _lookup_east_midlands_tier.
     # NOWIRUL (offset 8): Premier (1) > Championship/Conference A (2) >
     # Conference B (3); generic Divisions use zeroth_tier_map offset 2
     "merit/NOWIRUL/Cotton_Traders_Premier": 1,
@@ -379,17 +532,6 @@ _NAMED_MERIT_LEAGUES_SURREY_2009_2010: tuple[tuple[str, int], ...] = (
     ("merit/Surrey/Surrey_JONAP_Conference_1", 3),
     ("merit/Surrey/Surrey_JONAP_Alliance", 2),
     ("merit/Surrey/Surrey_JONAP_Premier", 1),
-)
-
-# 2009-2010 only: Courage Best has no geocoded file but occupied a rung; numbering Eagle IPA
-# as local 3 keeps absolute tier 12 for Leicestershire LRU alone on ``pyramid_All_Leagues`` stem
-# (parallel East Midlands / Leicestershire ladders no longer share every band).
-_NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010: tuple[tuple[str, int], ...] = (
-    ("merit/East_Midlands/Winter_Warmer_League", 6),
-    ("merit/East_Midlands/Waggledance_League", 5),
-    ("merit/East_Midlands/Directors_League", 4),
-    ("merit/East_Midlands/Eagle_IPA_League", 3),
-    ("merit/East_Midlands/Bombardier_League", 1),
 )
 
 # 2010-2011 only: Invicta Three is the Rural Kent apex above Divisions A–C (all feed below Invicta).
@@ -468,12 +610,13 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     as league identifiers. Sponsor stripping destroys this identity, so we match
     the original path first to assign distinct local tiers within the hierarchy.
     """
+    # East Midlands: all seasons routed through the per-season table derived
+    # from shared-club analysis (see _EAST_MIDLANDS_TIERS).
+    em_result = _lookup_east_midlands_tier(path, season)
+    if em_result is not None:
+        return em_result
     if season == "2009-2010" and path.startswith("merit/Surrey/Surrey_JONAP"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_2009_2010:
-            if path.startswith(prefix):
-                return (local_tier, f"Level {local_tier}")
-    if season == "2009-2010" and path.startswith("merit/East_Midlands/"):
-        for prefix, local_tier in _NAMED_MERIT_LEAGUES_EAST_MIDLANDS_2009_2010:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
     if season == "2010-2011" and path.startswith("merit/Rural_Kent/"):
@@ -514,28 +657,6 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
         ):
             if stem in path:
                 return (local_tier, f"NOWIRUL {local_tier}")
-    # 2018-2019 / 2019-2020: no Eagle IPA / Courage Best rungs; non-Bombardier tables two bands higher.
-    if season in ("2018-2019", "2019-2020") and path.startswith("merit/East_Midlands/"):
-        for stem, local_tier in (
-            ("Directors", 2),
-            ("Estrella_Damm", 3),
-            ("Youngs_London_Gold", 4),
-            ("Youngs_London_Stout", 4),
-            ("Banana_Bread", 5),
-        ):
-            if path.startswith(f"merit/East_Midlands/{stem}"):
-                return (local_tier, f"East Midlands {local_tier}")
-    # 2013-2014 .. 2018-2019: sponsor renames on the main ladder (same local tiers as 2012-2013 rungs).
-    if "2013-2014" <= season <= "2018-2019" and path.startswith("merit/East_Midlands/"):
-        for stem, local_tier in (
-            ("Youngs_Bitter", 3),
-            ("Estrella_Damm", 5),
-            ("Youngs_London_Stout", 6),
-            ("Youngs_London_Gold", 6),
-            ("Dogs_Head", 7),
-        ):
-            if path.startswith(f"merit/East_Midlands/{stem}"):
-                return (local_tier, f"Level {local_tier}")
     # 2016-2017: unnumbered ``Solent League`` is the merit apex (local 6), like ``Solent 1`` from
     # 2017-2018. Zeroth-map offset 5 + num 0 placed it at local 5 while ``Solent_League_2`` used
     # num 2 → local 7, leaving a gap at local 6.

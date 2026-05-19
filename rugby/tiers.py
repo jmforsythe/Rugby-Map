@@ -125,7 +125,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         # 2019-2020: apex at Lancs/Cheshire Division One (national tier 8).
         ("2019-2020", "2019-2020", 7),
         ("2021-2022", "2021-2022", 7),
-        ("2022-2023", "2023-2024", 10),
+        # Local tiers 3–8 (gaps at 1–2 for removed Championship/Conference); offset 8 → abs 11–16.
+        ("2022-2023", "2023-2024", 8),
         ("2024-2025", "2025-2026", 9),
     ],
     "Nottinghamshire": [
@@ -499,6 +500,20 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_CHAMP_NS:
             if path.startswith(prefix):
                 return (local_tier, f"Level {local_tier}")
+    # 2022-2023 / 2023-2024: no Championship / Conference rungs; ladder matches 2017-2020 positions
+    # (Premier local 3, Division N at 3+N). Visible bands 1–6 after load_merit restamp.
+    if season in ("2022-2023", "2023-2024") and path.startswith("merit/NOWIRUL/"):
+        for stem, local_tier in (
+            ("NOWIRUL_BATHTIME", 3),
+            ("NOWIRUL_COTTON_TRADERS_PREMIER", 3),
+            ("BAINES", 4),
+            ("Division_2", 5),
+            ("Division_3", 6),
+            ("Division_4", 7),
+            ("Division_5", 8),
+        ):
+            if stem in path:
+                return (local_tier, f"NOWIRUL {local_tier}")
     # 2018-2019 / 2019-2020: no Eagle IPA / Courage Best rungs; non-Bombardier tables two bands higher.
     if season in ("2018-2019", "2019-2020") and path.startswith("merit/East_Midlands/"):
         for stem, local_tier in (

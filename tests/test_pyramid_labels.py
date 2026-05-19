@@ -314,6 +314,51 @@ def test_merit_equal_column_templates_from_shallowest_tier_with_n() -> None:
     assert below.avail_w == ref.avail_w
 
 
+def test_merit_parent_aligned_sparse_row_uses_parent_grid_column() -> None:
+    """Child rows inherit the parent's column index from the band above, not sparse list index."""
+    from rugby.pyramid_image import BandLayout, LeagueData, _merit_parent_aligned_band_placements
+
+    # Wide band above: four columns; only columns 1 and 3 have leagues.
+    lay4 = BandLayout(
+        tier_num=4,
+        band_top=0.0,
+        band_bottom=80.0,
+        band_center_y=40.0,
+        avail_w=800.0,
+        row_left_x=0.0,
+        cell_w_raw=200.0,
+        gap=8.0,
+        cell_w=192.0,
+        cell_h=60.0,
+        row_top_y=10.0,
+    )
+    prev_ord = [
+        LeagueData(4, "", "parent_b", [], 0),
+        LeagueData(4, "", "parent_d", [], 0),
+    ]
+    prev_cols = {"parent_b": 1, "parent_d": 3}
+    child_b = LeagueData(5, "", "child_b", [], 0)
+    child_d = LeagueData(5, "", "child_d", [], 0)
+    pl = _merit_parent_aligned_band_placements(
+        5,
+        [child_b, child_d],
+        prev_ord,
+        lay4,
+        {(5, child_b.league_name): ("parent_b",), (5, child_d.league_name): ("parent_d",)},
+        "NOWIRUL",
+        season="2023-2024",
+        merit_local_offset=0,
+        prev_league_col_index=prev_cols,
+    )
+    assert pl is not None
+    by_name = {lg.league_name: (col, cw) for lg, _x, cw, col in pl if not lg.merit_column_spacer}
+    assert by_name["child_b"][0] == 1
+    assert by_name["child_d"][0] == 3
+    # Each child should be ~one quarter of the row, not half.
+    assert by_name["child_b"][1] < lay4.avail_w * 0.3
+    assert by_name["child_d"][1] < lay4.avail_w * 0.3
+
+
 def test_merit_parent_aligned_band_gloucester_only_column() -> None:
     """Sparse merit row: one child under two parents uses the parent's column, not full chord."""
     from rugby.pyramid_image import BandLayout, LeagueData, _merit_parent_aligned_band_placements

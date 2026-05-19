@@ -4639,6 +4639,8 @@ def _render_pyramid_band(
     leagues_by_tier: dict[int, list[LeagueData]] | None = None,
     merit_pyramid_band_orders: dict[int, list[LeagueData]] | None = None,
     merit_equal_column_templates: dict[int, BandLayout] | None = None,
+    merit_max_column_count: int = 0,
+    merit_league_column_index: dict[str, int] | None = None,
     mens_merge_merit_leagues: bool = False,
     merit_parent_overrides: StemParentOverrides | None = None,
     labels_under_valid_crests: bool = False,
@@ -4800,6 +4802,7 @@ def _render_pyramid_band(
     merit_placements: list[tuple[LeagueData, float, float, int]] | None = None
     merit_sparse_gap_half = 0.0
     merit_n_prev = 0
+    grid_n = 0
     if (
         merit_competition is not None
         and tier_num > 1
@@ -4810,8 +4813,9 @@ def _render_pyramid_band(
     ):
         prev_ord_m = merit_pyramid_band_orders.get(tier_num - 1, [])
         merit_n_prev = len(prev_ord_m)
-        tpl_m = merit_equal_column_templates.get(merit_n_prev) if merit_n_prev >= 2 else None
-        if tpl_m is not None and n <= merit_n_prev:
+        grid_n = merit_max_column_count if merit_max_column_count >= 2 else merit_n_prev
+        tpl_m = merit_equal_column_templates.get(grid_n) if grid_n >= 2 else None
+        if tpl_m is not None and n <= grid_n:
             lay_merit_align = replace(
                 tpl_m,
                 tier_num=tier_num,
@@ -4830,14 +4834,15 @@ def _render_pyramid_band(
                 merit_competition,
                 season=season,
                 merit_local_offset=merit_local_offset,
+                prev_league_col_index=merit_league_column_index,
             )
-            if merit_n_prev >= 2:
+            if grid_n >= 2:
                 merit_sparse_gap_half = lay_merit_align.gap / 2.0
 
     parts: list[str] = []
     if merit_placements is not None:
         n_m = len(merit_placements)
-        show_lt_merit_sparse = n_m > 1 or merit_n_prev >= 2
+        show_lt_merit_sparse = n_m > 1 or grid_n >= 2
         for mi, (lg, x_rect, cell_w, col_idx) in enumerate(merit_placements):
             bg, title_color = _league_cell_tier_colors(
                 lg, tier_num, gender, mens_merge_merit_leagues=mens_merge_merit_leagues
@@ -4851,13 +4856,13 @@ def _render_pyramid_band(
                 trap_pts = _trapezoid_left_points(y0, y1, x_rect + cell_w + mg)
                 clip_id = f"pyramidT{tier_num}Lm{mi}"
                 safe_left_x = _triangle_left_x_interior(y0) + LEAGUE_SLANT_GAP
-            elif col_idx == merit_n_prev - 1:
+            elif col_idx == grid_n - 1:
                 trap_pts = _trapezoid_right_points(y0, y1, x_rect - mg)
                 clip_id = f"pyramidT{tier_num}Rm{mi}"
                 safe_right_x = _triangle_right_x_interior(y0) - LEAGUE_SLANT_GAP
 
             mb_l = mg if trap_pts is None and col_idx > 0 else 0.0
-            mb_r = mg if trap_pts is None and col_idx < merit_n_prev - 1 else 0.0
+            mb_r = mg if trap_pts is None and col_idx < grid_n - 1 else 0.0
 
             parts.append(
                 _render_league_cell(
@@ -4885,6 +4890,10 @@ def _render_pyramid_band(
                     bg_bleed_r=mb_r,
                 )
             )
+        if merit_league_column_index is not None:
+            for lg, _x, _w, col_idx in merit_placements:
+                if not getattr(lg, "merit_column_spacer", False):
+                    merit_league_column_index[lg.league_name] = col_idx
     else:
         gh = band_gap_half
         for i, lg in enumerate(leagues_ordered):
@@ -5150,8 +5159,28 @@ def _merit_resolve_parent_column_index(
     pspec: tuple[str, ...],
     prev_ord: list[LeagueData],
     competition: str,
+    *,
+    prev_league_col_index: dict[str, int] | None = None,
 ) -> int | None:
-    """Map tier-(N−1) parent name(s) from overrides to a column index in ``prev_ord``."""
+    """Map tier-(N−1) parent name(s) from overrides to a column index in ``prev_ord``.
+
+      When ``prev_league_col_index`` is set (prior band used parent-aligned layout), match
+    on the parent's **grid column** from that band—not its index in the sparse ``prev_ord``
+    list—so a row of two leagues in columns 1 and 3 of a four-column grid stays narrow.
+    """
+    if prev_league_col_index:
+        cols: list[int] = []
+        for p in pspec:
+            fk = _feeder_match_key(p)
+            for pname, cidx in prev_league_col_index.items():
+                if _feeder_match_key(pname) == fk:
+                    cols.append(cidx)
+                    break
+        if len(cols) == 1:
+            return cols[0]
+        if len(cols) > 1:
+            return min(cols)
+
     if len(pspec) == 1:
         fk = _feeder_match_key(pspec[0])
         matches = [i for i, p in enumerate(prev_ord) if _feeder_match_key(p.league_name) == fk]
@@ -5213,6 +5242,7 @@ def _merit_parent_aligned_band_placements(
     *,
     season: str,
     merit_local_offset: int,
+    prev_league_col_index: dict[str, int] | None = None,
 ) -> list[tuple[LeagueData, float, float, int]] | None:
     """Place leagues in parent-column slots when this band has no more leagues than the tier above.
 
@@ -5225,7 +5255,11 @@ def _merit_parent_aligned_band_placements(
     """
     n_prev = len(prev_ord)
     n_here = len(leagues_ordered)
-    if n_prev < 2 or n_here > n_prev or tier_num <= 1:
+    grid_column_count = max(
+        n_prev,
+        max(prev_league_col_index.values(), default=-1) + 1 if prev_league_col_index else n_prev,
+    )
+    if grid_column_count < 2 or n_here > grid_column_count or tier_num <= 1:
         return None
     ovs = parent_overrides or {}
     comp = merit_competition or ""
@@ -5237,7 +5271,9 @@ def _merit_parent_aligned_band_placements(
         if pspec:
             if not pspec:
                 return None
-            idx = _merit_resolve_parent_column_index(lg, pspec, prev_ord, comp)
+            idx = _merit_resolve_parent_column_index(
+                lg, pspec, prev_ord, comp, prev_league_col_index=prev_league_col_index
+            )
             if idx is None:
                 return None
             buckets[idx].append(lg)
@@ -5245,20 +5281,28 @@ def _merit_parent_aligned_band_placements(
             pick = _find_merit_parent_league(lg, list(prev_ord), comp)
             if pick is None:
                 return None
-            idx = next(
-                (
-                    i
-                    for i, p in enumerate(prev_ord)
-                    if _feeder_match_key(p.league_name) == _feeder_match_key(pick.league_name)
-                ),
-                None,
-            )
+            idx = None
+            if prev_league_col_index:
+                fk_pick = _feeder_match_key(pick.league_name)
+                for pname, cidx in prev_league_col_index.items():
+                    if _feeder_match_key(pname) == fk_pick:
+                        idx = cidx
+                        break
+            if idx is None:
+                idx = next(
+                    (
+                        i
+                        for i, p in enumerate(prev_ord)
+                        if _feeder_match_key(p.league_name) == _feeder_match_key(pick.league_name)
+                    ),
+                    None,
+                )
             if idx is None:
                 return None
             buckets[idx].append(lg)
 
     out: list[tuple[LeagueData, float, float, int]] = []
-    for col_idx in range(n_prev):
+    for col_idx in range(grid_column_count):
         kids = buckets[col_idx]
         if not kids:
             spacer = _merit_empty_column_spacer_league(
@@ -6541,7 +6585,13 @@ def render_pyramid_svg(
 
             merit_pyramid_band_orders: dict[int, list[LeagueData]] | None = None
             merit_equal_column_templates: dict[int, BandLayout] | None = None
+            merit_max_column_count = 0
+            merit_league_column_index: dict[str, int] = {}
             if is_merit:
+                merit_max_column_count = max(
+                    (len(row) for row in leagues_by_tier.values() if row),
+                    default=0,
+                )
                 mct = _merit_equal_column_templates(leagues_by_tier, max_tier=merit_max_tier)
                 merit_equal_column_templates = mct if mct else None
                 merit_pyramid_band_orders = {}
@@ -6592,6 +6642,8 @@ def render_pyramid_svg(
                         leagues_by_tier=leagues_by_tier,
                         merit_pyramid_band_orders=merit_pyramid_band_orders,
                         merit_equal_column_templates=merit_equal_column_templates,
+                        merit_max_column_count=merit_max_column_count,
+                        merit_league_column_index=merit_league_column_index if is_merit else None,
                         mens_merge_merit_leagues=mens_merge_merit_leagues,
                         merit_parent_overrides=merit_pyramid_parent_ov if is_merit else None,
                         labels_under_valid_crests=labels_under_valid_crests,

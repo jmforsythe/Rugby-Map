@@ -410,6 +410,20 @@ class TestExtractTierMeritPath:
         result = extract_tier("merit/NOWIRUL/NOWIRUL_BAINES_PLUMBING_DIVISION_1.json", "2025-2026")
         assert result == (2, "NOWIRUL 2")
 
+    def test_nowirul_2023_2024_no_championship_gap(self):
+        """2022-2024: locals 3–8 (reserved 1–2) with offset 8 → abs 11–16."""
+        assert extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2023-2024") == (
+            3,
+            "NOWIRUL 3",
+        )
+        assert extract_tier(
+            "merit/NOWIRUL/NOWIRUL_BAINES_PLUMBING_DIVISION_1.json", "2023-2024"
+        ) == (4, "NOWIRUL 4")
+        assert extract_tier(
+            "merit/NOWIRUL/NOWIRUL_Wayne_Lord_Plumbing_Division_2_North.json", "2023-2024"
+        ) == (5, "NOWIRUL 5")
+        assert get_competition_offset("NOWIRUL", "2023-2024") == 8
+
     def test_nowirul_old_conference(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Conference_A.json", "2013-2014")
         assert result == (2, "NOWIRUL 2")

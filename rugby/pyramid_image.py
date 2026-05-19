@@ -9037,6 +9037,15 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--pyramid-all-leagues-only",
+        action="store_true",
+        help=(
+            "Render only dist/<season>/pyramid_All_Leagues.{svg,png} (national + merit at "
+            "absolute tiers). For CI after parallel --merit COMP runs; not combinable with "
+            "--womens or --merit."
+        ),
+    )
+    parser.add_argument(
         "--merit",
         nargs="?",
         const="",
@@ -9188,6 +9197,12 @@ def main() -> int:
     if args.womens and args.merit is not None:
         logger.error("--womens and --merit are mutually exclusive")
         return 1
+
+    if args.pyramid_all_leagues_only:
+        if args.womens or args.merit is not None:
+            logger.error("--pyramid-all-leagues-only cannot be combined with --womens or --merit")
+            return 1
+        return _render_mens_standard_pyramid(season, args, cw, all_leagues=True)
 
     if args.merit is not None:
         if args.merit:

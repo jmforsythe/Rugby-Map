@@ -35,7 +35,17 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Cache ONS boundary GeoJSON
+        uses: actions/cache@v4
+        id: boundaries-cache
+        with:
+          path: data/boundaries
+          key: boundaries-bgc-${{ hashFiles('core/boundaries.py', 'requirements.txt') }}
+          restore-keys: |
+            boundaries-bgc-
+
       - name: Download boundary data (ONS / ITL etc.)
+        if: steps.boundaries-cache.outputs.cache-hit != 'true'
         run: |
           python -m core.boundaries --detail BGC
 
@@ -59,28 +69,28 @@ jobs:
 
       # upload-artifact strips parent dirs when uploading a folder alone; downstream expects data/boundaries/*.geojson.
       - name: Pack boundary GeoJSON for artifact
-        run: tar czf rugby-boundaries.tar.gz data/boundaries
+        run: tar --zstd -cf rugby-boundaries.tar.zst data/boundaries
 
       - name: Upload boundary GeoJSON cache (reuse in matrix jobs)
         uses: actions/upload-artifact@v4
         with:
           name: rugby-boundaries-data
-          path: rugby-boundaries.tar.gz
+          path: rugby-boundaries.tar.zst
           retention-days: 3
 
       # Directory uploads drop the containing folder name → shared assets would land wrong and break every map.
       # Tar preserves paths: dist/shared/{boundaries,...} and match_day assets that expect /shared/... on the server.
       - name: Pack dist/shared for artifact
-        run: tar czf rugby-dist-shared.tar.gz -C dist shared
+        run: tar --zstd -cf rugby-dist-shared.tar.zst -C dist shared
 
       - name: Upload dist/shared bootstrap tarball
         uses: actions/upload-artifact@v4
         with:
           name: rugby-dist-shared
-          path: rugby-dist-shared.tar.gz
+          path: rugby-dist-shared.tar.zst
           retention-days: 3
 
-  # Parallel per-season: distances → Folium maps → pyramid PNG → match_day (fixture seasons only).
+  # Parallel per-season: distances → maps ∥ pyramids ∥ match_day (merit comps in parallel).
   rugby-season:
     needs: prepare
     runs-on: ubuntu-latest
@@ -88,7 +98,7 @@ jobs:
       GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 26
       matrix:
         season: ${{ fromJSON(needs.prepare.outputs.seasons_json) }}
     steps:
@@ -102,9 +112,19 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-py3.12-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Playwright for pyramid PNG export
+        run: |
           pip install "playwright>=1.40"
           python -m playwright install chromium --with-deps
 
@@ -115,7 +135,7 @@ jobs:
           path: .
 
       - name: Extract boundaries into workspace
-        run: tar xzf rugby-boundaries.tar.gz
+        run: tar --zstd -xf rugby-boundaries.tar.zst
 
       - name: Download dist/shared tarball
         uses: actions/download-artifact@v4
@@ -124,34 +144,22 @@ jobs:
           path: .
 
       - name: Extract dist/shared into workspace
-        run: mkdir -p dist && tar xzf rugby-dist-shared.tar.gz -C dist
+        run: mkdir -p dist && tar --zstd -xf rugby-dist-shared.tar.zst -C dist
 
-      - name: Rugby — travel distances / maps / pyramid / match_day (single season)
+      - name: Rugby — distances, maps, pyramids, match_day (parallel)
         env:
           SEASON: ${{ matrix.season }}
         run: |
-          set -eo pipefail
-          python -m rugby.distances --season="$SEASON"
-          python -m rugby.maps --no-debug --season="$SEASON" --production
-
-          python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
-          python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
-          if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
-            python -m rugby.pyramid_image --merit --season="$SEASON" --png --png-scale 2
-          fi
-
-          if [ -d "data/rugby/fixture_data/$SEASON" ]; then
-            python -m rugby.match_day --season="$SEASON" --production
-          fi
+          bash scripts/ci_rugby_season.sh "$SEASON"
 
       - name: Pack season output tarball (preserve YYYY-YYYY/ prefix across merge)
-        run: tar czf "rugby-season-${{ matrix.season }}.tar.gz" -C dist "${{ matrix.season }}"
+        run: tar --zstd -cf "rugby-season-${{ matrix.season }}.tar.zst" -C dist "${{ matrix.season }}"
 
       - name: Upload dist/<season> tarball
         uses: actions/upload-artifact@v4
         with:
           name: rugby-dist-season-${{ matrix.season }}
-          path: rugby-season-${{ matrix.season }}.tar.gz
+          path: rugby-season-${{ matrix.season }}.tar.zst
           retention-days: 3
 
   assemble:
@@ -171,7 +179,7 @@ jobs:
           path: .
 
       - name: Extract boundaries into workspace
-        run: tar xzf rugby-boundaries.tar.gz
+        run: tar --zstd -xf rugby-boundaries.tar.zst
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -194,7 +202,7 @@ jobs:
           path: .
 
       - name: Extract dist/shared into dist/
-        run: tar xzf rugby-dist-shared.tar.gz -C dist
+        run: tar --zstd -xf rugby-dist-shared.tar.zst -C dist
 
       - name: Download all season tarball artifacts
         uses: actions/download-artifact@v4
@@ -205,7 +213,7 @@ jobs:
       - name: Extract all seasons into dist/
         run: |
           set -eo pipefail
-          maps=$(find _incoming -type f -name 'rugby-season-*.tar.gz' | wc -l)
+          maps=$(find _incoming -type f \( -name 'rugby-season-*.tar.zst' -o -name 'rugby-season-*.tar.gz' \) | wc -l)
           if [ "$maps" -lt 1 ]; then
             echo "No season tarball under _incoming:"
             find _incoming -type f || true
@@ -213,24 +221,29 @@ jobs:
           fi
           while IFS= read -r -d '' tg; do
             echo "Unpack $tg"
-            tar xzf "$tg" -C dist
-          done < <(find _incoming -type f -name 'rugby-season-*.tar.gz' -print0)
+            case "$tg" in
+              *.tar.zst) tar --zstd -xf "$tg" -C dist ;;
+              *.tar.gz) tar xzf "$tg" -C dist ;;
+              *) echo "Unknown archive: $tg"; exit 1 ;;
+            esac
+          done < <(find _incoming -type f \( -name 'rugby-season-*.tar.zst' -o -name 'rugby-season-*.tar.gz' \) -print0)
 
-      - name: Rugby — team profile pages & teams directory
+      - name: Generate rugby, custom map, and football outputs (parallel)
         run: |
-          python -m rugby.team_pages --production
+          set -eo pipefail
+          pids=()
+          python -m rugby.team_pages --production & pids+=($!)
+          python -m rugby.custom_map --production & pids+=($!)
+          python -m football.maps --production & pids+=($!)
+          fail=0
+          for pid in "${pids[@]}"; do
+            wait "$pid" || fail=1
+          done
+          exit "$fail"
 
       - name: Rugby — season indexes & site landing pages
         run: |
           python -m rugby.webpages --production
-
-      - name: Rugby — custom map builder (teams catalogue & boundaries JSON)
-        run: |
-          python -m rugby.custom_map --production
-
-      - name: Football — Folium maps
-        run: |
-          python -m football.maps --production
 
       - name: Rugby — sitemap & robots.txt
         run: |
@@ -240,7 +253,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Upload artifact (dist/)
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "dist"
 

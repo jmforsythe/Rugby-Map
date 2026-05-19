@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Interactive parent linker for historical men's pyramid seasons (tiers 5–6 feeders, then Counties stem).
+# Interactive parent linker for historical men's pyramid seasons (tiers 5–6, tier 7 order, stem).
 # Women's equivalent: scripts/pyramid_interactive_seasons_womens.sh (--womens bands 2–4 feeders).
 #
 # Requires a real interactive terminal (TTY). Cursor/agent terminals will fail with:
@@ -14,7 +14,7 @@
 # Seasons run newest-first between the 2022 and ~2008 restructures:
 #   2021-2022 … 2008-2009
 #
-# Prompts:
+# Prompts (in order): tier 5→4, tier 6→5, tier 7 column-order (tiers 1–6 feeders), tier 8+ stem
 #   blank or 0 — explicit unlinked for that league
 #   1–N       — pick numbered parent at the tier above
 #   s / stop  — stop prompting; SVG still writes for that season

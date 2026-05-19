@@ -606,6 +606,105 @@ def test_womens_flat_feeder_overrides_json_roundtrip() -> None:
     assert back == flat
 
 
+def test_pyramid_above_tier7_postfix_order() -> None:
+    """Feeder tree postfix: tier-6 leaves, then tier-5, then tier-4; tiers 3–1 last."""
+    from rugby.pyramid_image import LeagueData, _pyramid_above_tier7_postfix_order
+
+    def lg(t: int, name: str) -> LeagueData:
+        return LeagueData(tier_num=t, tier_name="", league_name=name, teams=[], team_count=0)
+
+    leagues_by_tier = {
+        1: [lg(1, "Prem")],
+        4: [
+            lg(4, "National League 2 West"),
+            lg(4, "National League 2 North"),
+        ],
+        5: [lg(5, "Regional 1 South West"), lg(5, "Regional 1 North West")],
+        6: [
+            lg(6, "Regional 2 SW A"),
+            lg(6, "Regional 2 SW B"),
+            lg(6, "Regional 2 NW"),
+        ],
+    }
+    ovs = {
+        (5, "Regional 1 South West"): ("National League 2 West",),
+        (5, "Regional 1 North West"): ("National League 2 North",),
+        (6, "Regional 2 SW A"): ("Regional 1 South West",),
+        (6, "Regional 2 SW B"): ("Regional 1 South West",),
+        (6, "Regional 2 NW"): ("Regional 1 North West",),
+    }
+    names = [x.league_name for x in _pyramid_above_tier7_postfix_order(leagues_by_tier, ovs)]
+    assert names.index("Regional 2 SW A") < names.index("Regional 2 SW B")
+    assert names.index("Regional 2 SW B") < names.index("Regional 1 South West")
+    assert names.index("Regional 1 South West") < names.index("National League 2 West")
+    assert names.index("Regional 2 NW") < names.index("Regional 1 North West")
+    assert names.index("Regional 1 North West") < names.index("National League 2 North")
+    assert names[-1] == "Prem"
+
+
+def test_tier7_ordered_by_feeder_parent_postfix_index() -> None:
+    from rugby.pyramid_image import LeagueData, _tier7_ordered_leagues
+
+    def lg(t: int, name: str) -> LeagueData:
+        return LeagueData(tier_num=t, tier_name="", league_name=name, teams=[], team_count=0)
+
+    leagues_by_tier = {
+        4: [lg(4, "National League 2 West"), lg(4, "National League 2 North")],
+        5: [lg(5, "Regional 1 South West"), lg(5, "Regional 1 North West")],
+        6: [lg(6, "Regional 2 SW"), lg(6, "Regional 2 NW")],
+        7: [
+            lg(7, "Counties 1 North"),
+            lg(7, "Counties 1 South"),
+        ],
+    }
+    ovs = {
+        (5, "Regional 1 South West"): ("National League 2 West",),
+        (5, "Regional 1 North West"): ("National League 2 North",),
+        (6, "Regional 2 SW"): ("Regional 1 South West",),
+        (6, "Regional 2 NW"): ("Regional 1 North West",),
+        (7, "Counties 1 South"): ("Regional 2 SW",),
+        (7, "Counties 1 North"): ("Regional 2 NW",),
+    }
+    ordered = _tier7_ordered_leagues(
+        list(leagues_by_tier[7]),
+        "2024-2025",
+        leagues_by_tier=leagues_by_tier,
+        parent_overrides=ovs,
+    )
+    assert [x.league_name for x in ordered] == ["Counties 1 South", "Counties 1 North"]
+
+
+def test_tier7_sort_parent_merge_cross_season(tmp_path, monkeypatch) -> None:
+    """Infer tier-7 column-order parent from another season when names align."""
+    import rugby.pyramid_image as pi
+
+    monkeypatch.setattr(pi, "TIER_MAPPINGS_DIR", tmp_path)
+    foreign = {
+        "season": "2023-2024",
+        "tier7_column_order": {"Counties 1 South": "Regional 2 SW"},
+        "men": {
+            "5": {"Regional 1 South West": "National League 2 West"},
+            "6": {"Regional 2 SW": "Regional 1 South West"},
+        },
+    }
+    (tmp_path / "2023-2024.json").write_text(json.dumps(foreign), encoding="utf-8")
+    (tmp_path / "2024-2025.json").write_text(json.dumps({"season": "2024-2025"}), encoding="utf-8")
+
+    def lg(t: int, name: str) -> pi.LeagueData:
+        return pi.LeagueData(tier_num=t, tier_name="", league_name=name, teams=[], team_count=0)
+
+    leagues_by_tier = {
+        4: [lg(4, "National League 2 West")],
+        5: [lg(5, "Regional 1 South West")],
+        6: [lg(6, "Regional 2 SW")],
+        7: [lg(7, "Counties 1 South")],
+    }
+    merged_map = pi.tier7_column_order_merge_cross_season("2024-2025", leagues_by_tier, {})
+    assert merged_map["Counties 1 South"] == "Regional 2 SW"
+    merged = pi.stem_parent_overrides_load_merged("2024-2025", leagues_by_tier)
+    assert merged[(7, "Counties 1 South")] == ("Regional 2 SW",)
+
+
 def test_womens_parent_overrides_merge_cross_season(tmp_path, monkeypatch) -> None:
     """Infer band-3→2 feeder from another season's tier_mappings JSON when names align."""
     import rugby.pyramid_image as pi

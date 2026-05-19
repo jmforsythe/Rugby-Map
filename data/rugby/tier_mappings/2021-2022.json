@@ -36,7 +36,7 @@
       "Greene King IPA Eastern Counties 1 South": "London 3 Eastern Counties",
       "Greene King IPA Eastern Counties 1 West": "London 3 Eastern Counties",
       "Hampshire Premier": "London 3 South West",
-      "Harvey’s Brewery Sussex 1": "London 3 South West",
+      "Harvey\u2019s Brewery Sussex 1": "London 3 South West",
       "Herts/Middlesex 1": "London 3 North West",
       "Kent 1": "London 3 South East",
       "Midlands 4 East (N) East": "Midlands 3 East (North)",
@@ -56,6 +56,24 @@
     "10": {
       "Hampshire 1": "Hampshire Premier"
     }
+  },
+  "tier7_column_order": {
+    "Cumbria One": "North One West",
+    "Durham/Northumberland One": "North One East",
+    "London 2 North East": "London 1 North",
+    "London 2 North West": "London 1 North",
+    "London 2 South East": "London 1 South",
+    "London 2 South West": "London 1 South",
+    "Midlands 2 East (North)": "Midlands 1 East",
+    "Midlands 2 East (South)": "Midlands 1 East",
+    "Midlands 2 West (North)": "Midlands 1 West",
+    "Midlands 2 West (South)": "Midlands 1 West",
+    "North Two West": "North One West",
+    "Tribute Southern Counties North": "Tribute South West 1 East",
+    "Tribute Southern Counties South": "Tribute South West 1 East",
+    "Tribute Western Counties North": "Tribute South West 1 West",
+    "Tribute Western Counties West": "Tribute South West 1 West",
+    "Yorkshire One": "North One East"
   },
   "women": {
     "2": {
@@ -327,8 +345,8 @@
   },
   "Sussex": {
     "5": {
-      "Harvey's Wharf IPA Sussex 2 East": "Harvey’s Brewery Sussex 1",
-      "Harvey's Wharf IPA Sussex 2 West": "Harvey’s Brewery Sussex 1"
+      "Harvey's Wharf IPA Sussex 2 East": "Harvey\u2019s Brewery Sussex 1",
+      "Harvey's Wharf IPA Sussex 2 West": "Harvey\u2019s Brewery Sussex 1"
     },
     "6": {
       "Harvey's Olympia Sussex 3 Central": [

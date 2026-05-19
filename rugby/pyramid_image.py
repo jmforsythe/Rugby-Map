@@ -94,6 +94,9 @@ _PYRAMID_TIER_NUM_MIN = 1
 _PYRAMID_TIER_NUM_MAX_WOMENS = 6  # women's data only goes to NC 3 (visual band 6)
 
 STEM_PARENT_OVERRIDE_SCHEMA_VERSION = 2
+# Counties 1 left-to-right column order (feeder parent in tiers 1–6). Stored top-level in
+# tier_mappings JSON; legacy copies may still exist under ``men["7"]``.
+TIER7_COLUMN_ORDER_JSON_KEY = "tier7_column_order"
 
 # Counties stem overrides: ``(child tier, child league_name) -> parent league names``.
 # Empty tuple = explicitly unlinked (JSON ``"-"``). One string = single parent. JSON array =
@@ -5087,8 +5090,10 @@ def _tier67_separator_bar_svg() -> str:
 # bands instead of collapsing when breadth sits on different absolute tiers (the older
 # ``max descendants on one tier`` heuristic missed stacked merit depth).
 #
-# Tier 7 (Counties 1) league columns follow a fixed geographic-ish left-to-right order
-# (see :data:`_TIER7_TAIL_SORT_ORDER`); tiers 8-11 remain alphabetically sorted.
+# Tier 7 (Counties 1) league columns are ordered left-to-right by the postfix-order index of
+# each league's chosen feeder parent in tiers 1–6 (``men`` tier ``"7"`` in tier_mappings JSON,
+# collected via the interactive linker). When no mappings exist, a fixed geographic-ish order
+# applies (see :data:`_TIER7_TAIL_SORT_ORDER`). Tiers 8–11 remain alphabetically sorted.
 #
 # Parent override values in ``data/rugby/tier_mappings/<season>.json`` may be a single
 # string (one parent) or a JSON array (one stem cell stretched across the horizontal
@@ -5355,6 +5360,74 @@ _TIER7_TAIL_SORT_ORDER: tuple[str, ...] = (
 )
 
 
+def _pyramid_above_tier7_postfix_order(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    parent_overrides: StemParentOverrides | None,
+) -> list[LeagueData]:
+    """Men's pyramid leagues at tiers 1–6 in postfix order of the tier 4→5→6 feeder tree.
+
+    Walks NL2 (tier 4) West→North→East, each Regional 1 child in JSON insertion order, then each
+    Regional 2 child in JSON order; emits tier 6 leaves before their Regional 1 parent, then
+    Regional 1 before NL2. Tiers 3, 2, 1 follow (single-league bands). Any tier 5/6 leagues not
+    reachable through the feeder map are appended alphabetically at the end.
+    """
+    ovs = parent_overrides or {}
+    t4_to_t5 = _parents_for_child_tier(ovs, 5)
+    t5_to_t6 = _parents_for_child_tier(ovs, 6)
+    by_tier_fk: dict[int, dict[str, LeagueData]] = {
+        t: _leagues_by_feeder_key(leagues_by_tier.get(t, [])) for t in range(1, 7)
+    }
+    out: list[LeagueData] = []
+    seen: set[str] = set()
+
+    def emit(lg: LeagueData) -> None:
+        if lg.league_name in seen:
+            return
+        seen.add(lg.league_name)
+        out.append(lg)
+
+    def postfix_regional1(r1_name: str) -> None:
+        fk_r1 = _feeder_match_key(r1_name)
+        for r2_name in t5_to_t6.get(fk_r1, []):
+            lg6 = by_tier_fk[6].get(_feeder_match_key(r2_name))
+            if lg6 is not None:
+                emit(lg6)
+        lg5 = by_tier_fk[5].get(fk_r1)
+        if lg5 is not None:
+            emit(lg5)
+
+    for nl2 in _ordered_tier4_leagues(leagues_by_tier.get(4, [])):
+        fk4 = _feeder_match_key(nl2.league_name)
+        for r1_name in t4_to_t5.get(fk4, []):
+            postfix_regional1(r1_name)
+        emit(nl2)
+
+    for t in (3, 2, 1):
+        for lg in sorted(leagues_by_tier.get(t, ()), key=lambda x: x.league_name):
+            emit(lg)
+
+    for t in (5, 6):
+        for lg in _alpha_sort_leagues(leagues_by_tier.get(t, [])):
+            emit(lg)
+
+    return out
+
+
+def _tier7_parent_sort_index(
+    parent_label: str,
+    postfix_order: list[LeagueData],
+) -> int | None:
+    """Index of ``parent_label`` in ``postfix_order``, matching by name or feeder key."""
+    by_name = {lg.league_name: i for i, lg in enumerate(postfix_order)}
+    if parent_label in by_name:
+        return by_name[parent_label]
+    fk = _feeder_match_key(parent_label)
+    for i, lg in enumerate(postfix_order):
+        if _feeder_match_key(lg.league_name) == fk:
+            return i
+    return None
+
+
 def _tier7_normalized_tail(league_name: str, season: str) -> str:
     """Lowercase tail after ``Counties 1 `` with sponsors stripped; ``&`` → ``and``, ``/`` → space."""
     stripped = _strip_league_title_sponsors(league_name).strip()
@@ -5368,8 +5441,8 @@ def _tier7_normalized_tail(league_name: str, season: str) -> str:
     return " ".join(tail_cf.split())
 
 
-def _tier7_ordered_leagues(leagues: list[LeagueData], season: str) -> list[LeagueData]:
-    """Tier‑7 stem leagues left‑to‑right per :data:`_TIER7_TAIL_SORT_ORDER`; unknown tails sort last."""
+def _tier7_ordered_leagues_legacy(leagues: list[LeagueData], season: str) -> list[LeagueData]:
+    """Tier‑7 left‑to‑right per :data:`_TIER7_TAIL_SORT_ORDER` when no JSON sort parents exist."""
     order = {name: i for i, name in enumerate(_TIER7_TAIL_SORT_ORDER)}
 
     def sort_key(lg: LeagueData) -> tuple[int, tuple[object, ...]]:
@@ -5380,13 +5453,51 @@ def _tier7_ordered_leagues(leagues: list[LeagueData], season: str) -> list[Leagu
     return sorted(leagues, key=sort_key)
 
 
+def _tier7_ordered_leagues(
+    leagues: list[LeagueData],
+    season: str,
+    *,
+    leagues_by_tier: dict[int, list[LeagueData]] | None = None,
+    parent_overrides: StemParentOverrides | None = None,
+) -> list[LeagueData]:
+    """Tier‑7 stem leagues left‑to‑right by feeder-parent postfix index, then alphabetically."""
+    use_json_sort = bool(
+        parent_overrides
+        and leagues_by_tier
+        and any(t == 7 and parents for (t, _), parents in parent_overrides.items())
+    )
+    if not use_json_sort:
+        return _tier7_ordered_leagues_legacy(leagues, season)
+
+    postfix = _pyramid_above_tier7_postfix_order(leagues_by_tier, parent_overrides)
+    unset = len(postfix)
+
+    def sort_key(lg: LeagueData) -> tuple[int, tuple[object, ...]]:
+        pspec = parent_overrides.get((7, lg.league_name)) if parent_overrides else None
+        if pspec:
+            idx = _tier7_parent_sort_index(pspec[0], postfix)
+            if idx is not None:
+                return idx, _stem_sort_key_league_name(lg.league_name)
+        return unset, _stem_sort_key_league_name(lg.league_name)
+
+    return sorted(leagues, key=sort_key)
+
+
 def _sorted_stem_leagues_at_tier(
     tier_num: int,
     leagues: list[LeagueData],
     season: str,
+    *,
+    leagues_by_tier: dict[int, list[LeagueData]] | None = None,
+    parent_overrides: StemParentOverrides | None = None,
 ) -> list[LeagueData]:
     if tier_num == 7:
-        return _tier7_ordered_leagues(leagues, season)
+        return _tier7_ordered_leagues(
+            leagues,
+            season,
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+        )
     return _alpha_sort_leagues(leagues)
 
 
@@ -5415,7 +5526,13 @@ def _build_stem_forest(
     stem_tiers = sorted(t for t in leagues_by_tier if t >= 7)
     orphans: dict[int, list[StemTreeNode]] = {}
 
-    tier7_sorted = _sorted_stem_leagues_at_tier(7, leagues_by_tier.get(7, []), season)
+    tier7_sorted = _sorted_stem_leagues_at_tier(
+        7,
+        leagues_by_tier.get(7, []),
+        season,
+        leagues_by_tier=leagues_by_tier,
+        parent_overrides=parent_overrides,
+    )
     roots: list[StemTreeNode] = []
     by_league: dict[tuple[str, str], list[StemTreeNode]] = defaultdict(list)
     for lg in tier7_sorted:
@@ -5427,7 +5544,13 @@ def _build_stem_forest(
         if t <= 7:
             continue
         parents_ld = leagues_by_tier.get(t - 1, [])
-        for lg in _sorted_stem_leagues_at_tier(t, leagues_by_tier.get(t, []), season):
+        for lg in _sorted_stem_leagues_at_tier(
+            t,
+            leagues_by_tier.get(t, []),
+            season,
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+        ):
             parent_lds = _resolve_stem_parents(
                 lg,
                 parents_ld,
@@ -6241,6 +6364,7 @@ def _render_stem_extension(
     stem_bottom_y: float,
     layout: StemLayout | None,
     *,
+    parent_overrides: StemParentOverrides | None = None,
     crest_href_remap: dict[str, str] | None = None,
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
@@ -6265,7 +6389,13 @@ def _render_stem_extension(
     cursor_y = content_top
 
     for tier_num in stem_tiers:
-        leagues = _sorted_stem_leagues_at_tier(tier_num, leagues_by_tier[tier_num], season)
+        leagues = _sorted_stem_leagues_at_tier(
+            tier_num,
+            leagues_by_tier[tier_num],
+            season,
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+        )
         if not leagues:
             continue
 
@@ -6657,6 +6787,7 @@ def render_pyramid_svg(
                     season,
                     stem_bottom_y,
                     stem_layout,
+                    parent_overrides=parent_overrides,
                     crest_href_remap=crest_href_remap,
                     merit_competition=merit_competition,
                     merit_local_offset=merit_local_offset,
@@ -6803,9 +6934,12 @@ def stem_interactive_parent_overrides(
         )
 
     overrides: StemParentOverrides = dict(seed_overrides) if seed_overrides else {}
+    n_t7_pending = _count_missing_tier7_sort_parents(leagues_by_tier, overrides)
     print(
         "\nInteractive parent linker (men's pyramid)\n"
         "  — First: tier 5 (Regional 1) → tier 4 (NL2), then tier 6 (Regional 2) → tier 5\n"
+        "  — Then: tier 7 / Counties 1 column order → feeder parent in tiers 1–6 (postfix list)\n"
+        f"    ({n_t7_pending} tier-7 league(s) still need a column-order parent this run)\n"
         "  — Then: Counties stem orphans (tier 8+)\n"
         "  blank or 0 — leave this league without a parent mapping (explicit unlinked)\n"
         "  number — single parent from the list below\n"
@@ -6813,8 +6947,18 @@ def stem_interactive_parent_overrides(
         "  s / stop — stop prompting (remaining work unchanged)\n"
     )
 
+    tier7_phase_announced = False
     while True:
         nxt = _interactive_next_missing_pyramid_feeder_prompt(leagues_by_tier, overrides)
+        if nxt is None:
+            nxt = _interactive_next_missing_tier7_sort_parent_prompt(leagues_by_tier, overrides)
+            if nxt is not None and not tier7_phase_announced:
+                tier7_phase_announced = True
+                print(
+                    "\n>>> Tier 7 / Counties 1 — choose a feeder parent for left-to-right column order\n"
+                    "    (numbered list is tiers 1–6 in postfix tree order)\n",
+                    flush=True,
+                )
         if nxt is None:
             nxt = _stem_next_orphan_for_prompt(leagues_by_tier, season, overrides)
         if nxt is None:
@@ -6835,7 +6979,10 @@ def stem_interactive_parent_overrides(
             )
             return overrides
 
-        overrides[(child.tier_num, child.league_name)] = choice
+        if tier == 7:
+            overrides[(7, child.league_name)] = (choice[0],) if choice else ()
+        else:
+            overrides[(child.tier_num, child.league_name)] = choice
 
 
 def womens_interactive_feeder_overrides(
@@ -7119,6 +7266,39 @@ def _interactive_next_missing_pyramid_feeder_prompt(
     return None
 
 
+def _tier7_sort_parent_candidates(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    parent_overrides: StemParentOverrides | None,
+) -> list[LeagueData]:
+    """Tier 1–6 leagues offered as tier-7 column-order feeders (postfix, then fallback)."""
+    ordered = _pyramid_above_tier7_postfix_order(leagues_by_tier, parent_overrides)
+    if ordered:
+        return ordered
+    fallback: list[LeagueData] = []
+    for t in range(1, 7):
+        fallback.extend(leagues_by_tier.get(t, ()))
+    return sorted(fallback, key=lambda lg: (lg.tier_num, lg.league_name))
+
+
+def _count_missing_tier7_sort_parents(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    overrides: StemParentOverrides,
+) -> int:
+    return sum(1 for lg in leagues_by_tier.get(7, ()) if (7, lg.league_name) not in overrides)
+
+
+def _interactive_next_missing_tier7_sort_parent_prompt(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    overrides: StemParentOverrides,
+) -> tuple[int, LeagueData, list[LeagueData]] | None:
+    """Next tier 7 league with no ``(7, league_name)`` sort-parent entry in ``overrides``."""
+    candidates = _tier7_sort_parent_candidates(leagues_by_tier, overrides)
+    for lg in _alpha_sort_leagues(leagues_by_tier.get(7, [])):
+        if (7, lg.league_name) not in overrides:
+            return (7, lg, candidates)
+    return None
+
+
 def _stem_next_orphan_for_prompt(
     leagues_by_tier: dict[int, list[LeagueData]],
     season: str,
@@ -7132,7 +7312,15 @@ def _stem_next_orphan_for_prompt(
     )[1]
     flat: list[tuple[int, LeagueData, list[LeagueData]]] = []
     for t in sorted(orphans.keys()):
-        plist = list(_sorted_stem_leagues_at_tier(t - 1, leagues_by_tier.get(t - 1, []), season))
+        plist = list(
+            _sorted_stem_leagues_at_tier(
+                t - 1,
+                leagues_by_tier.get(t - 1, []),
+                season,
+                leagues_by_tier=leagues_by_tier,
+                parent_overrides=overrides,
+            )
+        )
         for sn in sorted(
             orphans[t], key=lambda n: _stem_sort_key_league_name(n.league.league_name)
         ):
@@ -7166,12 +7354,20 @@ def _stem_prompt_parent_pick(
     )
     if banner is not None:
         heading = banner
+    elif tier == 7:
+        heading = "Tier 7 / Counties 1 — assign column-order feeder parent"
     elif tier <= 6:
         heading = "Pyramid feeder — assign Regional / NL2 parent"
     else:
         heading = "Counties stem — assign parent"
     if pick_instruction is None:
-        instr_line = f"    Pick pyramid tier-{tier_parent_show} parent(s):\n"
+        if tier == 7:
+            instr_line = (
+                "    Pick the most appropriate feeder parent from tiers 1–6 "
+                "(listed in postfix tree order):\n"
+            )
+        else:
+            instr_line = f"    Pick pyramid tier-{tier_parent_show} parent(s):\n"
     else:
         instr_line = f"    {pick_instruction}\n"
     print(
@@ -7180,10 +7376,19 @@ def _stem_prompt_parent_pick(
     )
     upper = len(candidates)
     if upper == 0:
-        print(
-            "    (no leagues loaded at that tier — leaving unlinked; use JSON to set parents.)\n",
-            flush=True,
-        )
+        if tier == 7:
+            print(
+                "    ERROR: no men's pyramid leagues at tiers 1–6 are loaded — cannot suggest "
+                "feeders.\n"
+                "    Check geocoded data for this season, or edit "
+                f"{TIER7_COLUMN_ORDER_JSON_KEY!r} in tier_mappings JSON by hand.\n",
+                flush=True,
+            )
+        else:
+            print(
+                "    (no leagues loaded at that tier — leaving unlinked; use JSON to set parents.)\n",
+                flush=True,
+            )
         return ()
 
     for i, p in enumerate(candidates, start=1):
@@ -7191,6 +7396,8 @@ def _stem_prompt_parent_pick(
         if show_candidate_merit_local_tier:
             lt = p.merit_local_tier if p.merit_local_tier is not None else p.tier_num
             print(f"  [{i:2d}] (merit local {lt}) {display}", flush=True)
+        elif tier == 7:
+            print(f"  [{i:2d}] (tier {p.tier_num}) {display}", flush=True)
         else:
             print(f"  [{i:2d}] {display}", flush=True)
     print("  [ 0] Leave unlinked", flush=True)
@@ -7253,7 +7460,8 @@ def _stem_prompt_parent_pick(
 #     "men": {
 #       "5": {"<child>": "<parent>" | ["<p1>", "<p2>"] | "-"},
 #       "6": {...},
-#       "7": {...}, ...
+#       "7": {"<Counties 1>": "<feeder in tiers 1–6>" | "-"},  # column order only (not stem links)
+#       "8": {...}, ...
 #     },
 #     "women": {
 #       "2": {"<Women's Championship …>": "<Women's Premiership …>"},
@@ -7265,13 +7473,18 @@ def _stem_prompt_parent_pick(
 #       "2": {"<merit child>": "<merit parent>" | [...] | "-"},
 #       "3": {...}, ...
 #     },
+#     "tier7_column_order": {
+#       "<Counties 1 …>": "<feeder league in tiers 1–6>"
+#     },
 #     "stem_slot_strips": [
 #       {"bands": [{"tier": N, "leagues": [...], "weights": [...]}, ...]}
 #     ]
 #   }
 #
 # - ``men`` keys ``"5"`` and ``"6"`` drive Regional 1 → NL2 and Regional 2 → Regional 1
-#   nesting; ``"7"`` and below drive the Counties stem.
+#   nesting. ``tier7_column_order`` sets Counties 1 left-to-right order via a feeder parent
+#   in tiers 1–6 (postfix index); legacy ``men["7"]`` is still read. ``"8"`` and below in
+#   ``men`` drive Counties stem parent links.
 # - ``women`` keys are feeder **child visual bands** ``2``–``4`` only (bands ``5``–``6``
 #   are equal-width rows with no feeder geometry). Omit the object for prefix-only
 #   nesting on those three transitions.
@@ -7443,6 +7656,11 @@ def stem_parent_json_load(
             season,
         )
 
+    tier7_map = tier7_column_order_from_payload(payload)
+    if flat is None:
+        flat = {}
+    if tier7_map:
+        tier7_column_order_into_overrides(flat, tier7_map)
     return (flat if flat else None, strips)
 
 
@@ -7561,7 +7779,131 @@ def _stem_payload_flat(payload: object) -> StemParentOverrides | None:
     if not isinstance(payload, dict):
         return None
     nested = payload.get("men")
-    return stem_parent_overrides_flatten_nested(nested)
+    flat = stem_parent_overrides_flatten_nested(nested)
+    if flat is None:
+        return None
+    # Tier 7 in ``men`` is column-order metadata only (see ``tier7_column_order`` I/O).
+    return {k: v for k, v in flat.items() if k[0] != 7}
+
+
+def tier7_column_order_from_payload(payload: object) -> dict[str, str]:
+    """Parse tier-7 column-order map ``{Counties 1 child: feeder parent}`` from JSON."""
+    if not isinstance(payload, dict):
+        return {}
+    out: dict[str, str] = {}
+
+    def ingest(section: object) -> None:
+        if not isinstance(section, dict):
+            return
+        for cn, pn in section.items():
+            if not isinstance(cn, str):
+                continue
+            tup = _stem_override_parents_from_json_value(pn)
+            if tup is None or not tup:
+                continue
+            out[cn] = tup[0]
+
+    ingest(payload.get(TIER7_COLUMN_ORDER_JSON_KEY))
+    men = payload.get("men")
+    if isinstance(men, dict):
+        ingest(men.get("7"))
+    return out
+
+
+def tier7_column_order_into_overrides(
+    overrides: StemParentOverrides,
+    column_order: dict[str, str],
+) -> None:
+    """Merge ``column_order`` into ``overrides`` as ``(7, child) -> (parent,)``."""
+    for child_name, parent_name in column_order.items():
+        overrides.setdefault((7, child_name), (parent_name,))
+
+
+def tier7_column_order_from_overrides(
+    overrides: StemParentOverrides,
+) -> dict[str, str]:
+    """Extract tier-7 column-order parents (non-empty only)."""
+    out: dict[str, str] = {}
+    for (t_num, child_name), parents in overrides.items():
+        if t_num == 7 and parents:
+            out[child_name] = parents[0]
+    return out
+
+
+def tier7_column_order_merge_cross_season(
+    season: str,
+    leagues_by_tier: dict[int, list[LeagueData]],
+    base: dict[str, str],
+) -> dict[str, str]:
+    """Augment tier-7 column-order map from other seasons' tier_mappings files."""
+    merged = dict(base)
+    current_file = stem_parent_overrides_store_path(season).resolve()
+    bundles: list[tuple[int, str, dict[str, str], Path]] = []
+
+    tier_map_paths = sorted(TIER_MAPPINGS_DIR.glob("*.json")) if TIER_MAPPINGS_DIR.is_dir() else []
+    for path in tier_map_paths:
+        m = _TIER_MAPPING_FILENAME_RE.match(path.name)
+        if not m:
+            continue
+        if path.resolve() == current_file:
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        foreign_map = tier7_column_order_from_payload(payload)
+        if not foreign_map:
+            continue
+        file_season = payload.get("season") if isinstance(payload, dict) else None
+        fn_season = m.group("season")
+        if isinstance(file_season, str) and _SEASON_RE.fullmatch(file_season):
+            eff_foreign = file_season
+        elif fn_season:
+            eff_foreign = fn_season
+        else:
+            continue
+        gap = abs(_season_start_year(eff_foreign) - _season_start_year(season))
+        bundles.append((gap, eff_foreign, foreign_map, path))
+
+    bundles.sort(key=lambda b: (b[0], str(b[3])))
+
+    for gap, eff_foreign, foreign_map, path in bundles:
+        for child_foreign, parent_foreign in foreign_map.items():
+            if child_foreign in merged:
+                continue
+            children_tier = leagues_by_tier.get(7, [])
+            child_here = _stem_resolve_league_identity(
+                children_tier,
+                child_foreign,
+                7,
+                season,
+                eff_foreign,
+            )
+            if child_here is None:
+                continue
+            parent_here: LeagueData | None = None
+            for pt in range(6, 0, -1):
+                parent_here = _stem_resolve_league_identity(
+                    leagues_by_tier.get(pt, []),
+                    parent_foreign,
+                    pt,
+                    season,
+                    eff_foreign,
+                )
+                if parent_here is not None:
+                    break
+            if parent_here is None:
+                continue
+            merged[child_here.league_name] = parent_here.league_name
+            logger.info(
+                "Tier-7 column-order inferred from %s (Δseason-years=%d): %r → %r",
+                path.name,
+                gap,
+                child_here.league_name,
+                parent_here.league_name,
+            )
+
+    return merged
 
 
 def stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
@@ -7658,7 +8000,6 @@ def stem_parent_overrides_merge_cross_season(
     for gap, eff_foreign, flat, path in bundles:
         for (t_child, child_foreign), parent_specs_foreign in flat.items():
             children_tier = leagues_by_tier.get(t_child, [])
-            parents_tier = leagues_by_tier.get(t_child - 1, [])
             child_here = _stem_resolve_league_identity(
                 children_tier,
                 child_foreign,
@@ -7673,6 +8014,9 @@ def stem_parent_overrides_merge_cross_season(
                 continue
             resolved_names: list[str] = []
             seen_rn: set[str] = set()
+            if t_child == 7:
+                continue
+            parents_tier = leagues_by_tier.get(t_child - 1, [])
             for pf in parent_specs_foreign:
                 parent_here = _stem_resolve_league_identity(
                     parents_tier,
@@ -7908,9 +8252,27 @@ def merit_parent_overrides_merge_cross_season(
 
 
 def stem_parent_overrides_load(season: str) -> StemParentOverrides | None:
-    """Return saved interactive stem links, or ``None`` if absent / unreadable."""
+    """Return saved stem links plus tier-7 column-order parents, or ``None`` if absent."""
     overrides, _strips = stem_parent_json_load(season)
     return overrides
+
+
+def stem_parent_overrides_load_merged(
+    season: str,
+    leagues_by_tier: dict[int, list[LeagueData]],
+    *,
+    apply_cross_season: bool = True,
+) -> StemParentOverrides:
+    """Load disk overrides and optionally merge stem + tier-7 column-order from other seasons."""
+    base_ov = stem_parent_overrides_load(season) or {}
+    tier7_map = tier7_column_order_from_overrides(base_ov)
+    stem_only = {k: v for k, v in base_ov.items() if k[0] != 7}
+    if apply_cross_season:
+        stem_only = stem_parent_overrides_merge_cross_season(season, leagues_by_tier, stem_only)
+        tier7_map = tier7_column_order_merge_cross_season(season, leagues_by_tier, tier7_map)
+    merged: StemParentOverrides = dict(stem_only)
+    tier7_column_order_into_overrides(merged, tier7_map)
+    return merged
 
 
 def stem_parent_overrides_save(season: str, overrides: StemParentOverrides) -> Path | None:
@@ -7928,17 +8290,23 @@ def stem_parent_overrides_save(season: str, overrides: StemParentOverrides) -> P
             prev = json.loads(path.read_text(encoding="utf-8"))
             if isinstance(prev, dict):
                 for k, v in prev.items():
-                    if k in {"schema_version", "season", "men"}:
+                    if k in {"schema_version", "season", "men", TIER7_COLUMN_ORDER_JSON_KEY}:
                         continue
                     preserved_other[k] = v
         except (OSError, json.JSONDecodeError):
             pass
-    ordered_tiers = _encode_overrides_for_json(overrides)
+    tier7_map = tier7_column_order_from_overrides(overrides)
+    stem_only = {k: v for k, v in overrides.items() if k[0] != 7}
+    ordered_tiers = _encode_overrides_for_json(stem_only)
     blob: dict[str, object] = {
         "schema_version": STEM_PARENT_OVERRIDE_SCHEMA_VERSION,
         "season": season,
         "men": ordered_tiers,
     }
+    if tier7_map:
+        blob[TIER7_COLUMN_ORDER_JSON_KEY] = dict(
+            sorted(tier7_map.items(), key=lambda it: _stem_sort_key_league_name(it[0]))
+        )
     for k, v in preserved_other.items():
         blob[k] = v
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -7951,10 +8319,10 @@ def _encode_overrides_for_json(
 ) -> dict[str, dict[str, str | list[str]]]:
     """Flatten ``(tier, child) -> parents`` into nested JSON form with stable ordering.
 
-    Tier 5/6 (and merit child tiers 2–6) layout reads JSON insertion order for left-to-right
-    placement, so insertion order within each tier is preserved as-is. Stem-style tiers
-    (tier 7+) are sorted alphabetically (the stem code re-sorts internally; saved order is
-    purely cosmetic for those rows).
+    Tier 5/6 layout reads JSON insertion order for left-to-right placement. Tier 7 entries
+    are Counties 1 column-order parents (re-sorted on render by feeder postfix index). Stem
+    tiers 8+ are stored alphabetically (the stem code re-sorts internally; saved order is
+    cosmetic for those rows).
     """
     by_tier: dict[str, dict[str, str | list[str]]] = {}
     for (t_num, child_name), parents_tuple in overrides.items():
@@ -7968,7 +8336,7 @@ def _encode_overrides_for_json(
     ordered_tiers: dict[str, dict[str, str | list[str]]] = {}
     for k in sorted(by_tier.keys(), key=lambda tk: int(tk)):
         items = list(by_tier[k].items())
-        if int(k) >= 7:
+        if int(k) >= 8:
             items.sort(key=lambda it: _stem_sort_key_league_name(it[0]))
         ordered_tiers[k] = dict(items)
     return ordered_tiers
@@ -8267,9 +8635,7 @@ def _render_mens_standard_pyramid(
 
     if not args.ignore_saved_stem_parent_overrides:
         base_ov = stem_parent_overrides_load(season) or {}
-        parent_overrides = stem_parent_overrides_merge_cross_season(
-            season, national_by_tier, base_ov
-        )
+        parent_overrides = stem_parent_overrides_load_merged(season, national_by_tier)
         if parent_overrides:
             n_base = len(base_ov)
             n_extra = len(parent_overrides) - n_base
@@ -8633,7 +8999,8 @@ def main() -> int:
         action="store_true",
         help=(
             "TTY only: interactively edit data/rugby/tier_mappings/<season>.json. "
-            "Default (men's): tier 5→4 and tier 6→5 feeders, then Counties stem orphans. "
+            "Default (men's): tier 5→4 and tier 6→5 feeders, tier 7 column-order parents "
+            "(feeder in tiers 1–6, postfix list), then Counties stem orphans. "
             "With --womens: feeder links for women's visual bands 2→1, 3→2, and 4→3 only. "
             "With --merit: merit feeder prompts (then the run still writes merit + men's "
             "pyramid outputs as usual). "
@@ -8740,9 +9107,8 @@ def main() -> int:
         if args.interactive_stem_orphans:
             seed: StemParentOverrides | None = None
             if not args.ignore_saved_stem_parent_overrides:
-                base_ov = stem_parent_overrides_load(season) or {}
-                seed = stem_parent_overrides_merge_cross_season(season, leagues_by_tier, base_ov)
-                seed = seed if seed else None
+                merged_seed = stem_parent_overrides_load_merged(season, leagues_by_tier)
+                seed = merged_seed if merged_seed else None
             parent_overrides = stem_interactive_parent_overrides(
                 leagues_by_tier, season, seed_overrides=seed
             )
@@ -8755,9 +9121,7 @@ def main() -> int:
                 )
         elif not args.ignore_saved_stem_parent_overrides:
             base_ov = stem_parent_overrides_load(season) or {}
-            parent_overrides = stem_parent_overrides_merge_cross_season(
-                season, leagues_by_tier, base_ov
-            )
+            parent_overrides = stem_parent_overrides_load_merged(season, leagues_by_tier)
             if parent_overrides:
                 n_base = len(base_ov)
                 n_extra = len(parent_overrides) - n_base

@@ -3802,21 +3802,27 @@ def _womens_league_logo_cap_px(cell_h: float, visible_tier: int) -> float:
 # ---------------------------------------------------------------------------
 
 
-def _page_watermark_x(export_w: float) -> float:
-    """Horizontal centre of the watermark: midway between page centre and the right margin."""
+def _page_watermark_x(export_w: float, *, merit_crop_tx: float = 0.0) -> float:
+    """Horizontal centre of the watermark in export coordinates.
+
+    Midway between the right page margin and the top chord's right corner of the pyramid
+    trapezoid (``merit_crop_tx`` maps canvas x into the cropped SVG viewBox).
+    """
     margin = float(PAGE_MARGIN_X)
-    centre = export_w / 2.0
-    right_margin = export_w - margin
-    return (centre + right_margin) / 2.0
+    corner_x = export_w - margin
+    pyramid_top_right_x = _triangle_right_x(_pyramid_top_y()) + merit_crop_tx
+    return (corner_x + pyramid_top_right_x) / 2.0
 
 
-def _page_watermark_svg(export_w: float, y: float, page_bg: str) -> list[str]:
+def _page_watermark_svg(
+    export_w: float, y: float, page_bg: str, *, merit_crop_tx: float = 0.0
+) -> list[str]:
     """Domain label in the title strip (export coordinates, above the pyramid)."""
     fill = _watermark_fill_for_page_bg(page_bg)
     return [
         _svg_text(
             WATERMARK_DOMAIN,
-            _page_watermark_x(export_w),
+            _page_watermark_x(export_w, merit_crop_tx=merit_crop_tx),
             y,
             fill=fill,
             size=WATERMARK_FONT_SIZE,
@@ -6918,7 +6924,9 @@ def render_pyramid_svg(
                     anchor="middle",
                 )
 
-            watermark_el = "\n".join(_page_watermark_svg(float(export_w), title_y, page_bg))
+            watermark_el = "\n".join(
+                _page_watermark_svg(float(export_w), title_y, page_bg, merit_crop_tx=merit_crop_tx)
+            )
             title_parts = [
                 _svg_text(
                     main_title,

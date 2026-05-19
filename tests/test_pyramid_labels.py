@@ -856,6 +856,25 @@ def test_watermark_fill_is_subtle_against_page_background() -> None:
         assert abs(_hex_relative_luminance(wm) - _hex_relative_luminance(page_bg)) < 0.06
 
 
+def test_page_watermark_x_between_corner_and_pyramid_top_right() -> None:
+    from rugby.pyramid_image import (
+        IMAGE_WIDTH,
+        PAGE_MARGIN_X,
+        _canvas_width_scope,
+        _page_watermark_x,
+        _pyramid_top_y,
+        _triangle_right_x,
+    )
+
+    export_w = float(IMAGE_WIDTH)
+    with _canvas_width_scope(export_w):
+        corner_x = export_w - float(PAGE_MARGIN_X)
+        top_right_x = _triangle_right_x(_pyramid_top_y())
+        x = _page_watermark_x(export_w)
+    assert abs(x - (corner_x + top_right_x) / 2.0) < 0.01
+    assert min(corner_x, top_right_x) < x < max(corner_x, top_right_x)
+
+
 def test_order_tier_mappings_payload_top_level_key_order() -> None:
     from rugby.pyramid_image import TIER7_COLUMN_ORDER_JSON_KEY, order_tier_mappings_payload
 

@@ -109,10 +109,13 @@
       "Eagle IPA League": "Bombardier League"
     },
     "3": {
-      "Courage Best League": "Eagle IPA League"
+      "Courage Best League": "Eagle IPA League",
+      "Directors League": "Eagle IPA League"
     },
     "4": {
-      "Directors League": "Courage Best League"
+      "Directors League": "Courage Best League",
+      "Waggledance League": "Directors League",
+      "Winter Warmer League": "Directors League"
     },
     "5": {
       "Waggledance League": "Directors League"
@@ -245,21 +248,10 @@
       "Sixth Division": "Fifth Division"
     }
   },
-  "Nottinghamshire": {
+  "Midlands_Reserve": {
     "1": {
-      "Group 1": "Midlands 5 East (North)"
-    },
-    "2": {
-      "Group 2": "Group 1"
-    },
-    "3": {
-      "Group 3": "Group 2"
-    },
-    "4": {
-      "Group 4": "Group 3"
-    },
-    "5": {
-      "Group 5": "Group 4"
+      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
+      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
     }
   },
   "NOWIRUL": {
@@ -297,6 +289,23 @@
       "University of Salford Division 5 North": "University of Salford Division 4 North",
       "University of Salford Division 5 South": "University of Salford Division 4 South",
       "University of Salford Division 5 West": "University of Salford Division 4 West"
+    }
+  },
+  "Nottinghamshire": {
+    "1": {
+      "Group 1": "Midlands 5 East (North)"
+    },
+    "2": {
+      "Group 2": "Group 1"
+    },
+    "3": {
+      "Group 3": "Group 2"
+    },
+    "4": {
+      "Group 4": "Group 3"
+    },
+    "5": {
+      "Group 5": "Group 4"
     }
   },
   "Rural_Kent": {
@@ -341,12 +350,6 @@
     },
     "9": {
       "Surrey Foundation League": "Surrey Combination 3"
-    }
-  },
-  "Midlands_Reserve": {
-    "1": {
-      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
-      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
     }
   }
 }

@@ -16,7 +16,6 @@ that still lay out as orphan geometry (add ``--dry-run`` to preview only).
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import re
 import sys
@@ -30,6 +29,7 @@ from rugby.pyramid_image import (
     LEAGUE_CELL_STROKE_MENS,
     LEAGUE_CELL_STROKE_WOMENS,
     TIER_MAPPINGS_DIR,
+    TIER_MAPPINGS_RESERVED_TOP_KEYS,
     LeagueData,
     StemLayout,
     StemParentOverrides,
@@ -44,6 +44,7 @@ from rugby.pyramid_image import (
     stem_parent_overrides_merge_merit_sections_for_absolute_tiers,
     stem_parent_overrides_store_path,
     stem_slot_strips_load,
+    write_tier_mappings_json,
 )
 from rugby.tiers import get_competition_offset
 
@@ -232,7 +233,7 @@ def _leagues_by_tier(leagues: Iterable[LeagueData]) -> dict[int, list[LeagueData
     return d
 
 
-STEM_JSON_RESERVED = frozenset({"schema_version", "season", "men", "women", "stem_slot_strips"})
+STEM_JSON_RESERVED = TIER_MAPPINGS_RESERVED_TOP_KEYS
 
 
 def stem_layout_for_season(season: str, *, all_leagues: bool) -> StemLayout | None:
@@ -386,7 +387,7 @@ def purge_orphan_entries_from_tier_mapping_json(
                 continue
             _prune_empty_tier_bands(section)
 
-        path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        write_tier_mappings_json(path, payload)
         lines.insert(0, f"{season}: wrote {path} ({removed} mapping(s) removed).")
     else:
         lines.insert(0, f"{season}: dry-run - would remove {removed} mapping(s).")

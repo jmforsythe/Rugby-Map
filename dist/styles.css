@@ -438,30 +438,40 @@ body.wide-layout {
   margin: 0 0 1.5em;
 }
 
-/* Bottom-of-season-page diagram thumbnails (responsive row → columns when multiple) */
-.season-diagram-previews {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
+/* Stacked pyramid previews (inline in tier table, merit cards, women's list) */
+.pyramid-diagram-stack,
+.pyramid-diagram-stack--compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
 }
 
-.season-diagram-previews__row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: 1.25rem;
-  align-items: start;
+.pyramid-diagram-stack--compact {
+  gap: 0.5rem;
 }
 
-.season-diagram-previews__cell {
-  margin: 0;
-  padding: 0;
-  min-width: 0;
+.tier-table__diagrams td {
+  vertical-align: top;
+  padding-top: 0.5em;
+}
+
+.merit-card-body .pyramid-diagram-stack--compact {
+  margin-top: 0.75em;
 }
 
 /* League pyramid diagram: thumbnail only → full SVG/PNG */
 .pyramid-diagram-preview {
   margin: 0 auto;
   max-width: 760px;
+}
+
+.pyramid-diagram-preview--compact {
+  max-width: 100%;
+}
+
+.pyramid-diagram-preview--compact .pyramid-diagram-preview__img {
+  max-height: min(55vh, 320px);
 }
 
 a.pyramid-diagram-preview__link {

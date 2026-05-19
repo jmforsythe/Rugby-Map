@@ -126,10 +126,13 @@
       "Directors League": "Youngs Bitter"
     },
     "5": {
-      "Estrella Damm": "Directors League"
+      "Estrella Damm": "Directors League",
+      "Youngs London Stout": "Directors League",
+      "Dogs Head DNA": "Directors League"
     },
     "6": {
-      "Youngs London Stout": "Estrella Damm"
+      "Youngs London Stout": "Estrella Damm",
+      "Estrella Damm": "Youngs London Stout"
     },
     "7": {
       "Dogs Head DNA": "Youngs London Stout"

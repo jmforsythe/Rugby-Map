@@ -89,11 +89,17 @@
     "1": {
       "Bombardier League": "Midlands 5 East (North)"
     },
-    "3": {
+    "2": {
       "Eagle IPA League": "Bombardier League"
     },
-    "4": {
+    "3": {
+      "Eagle IPA League": "Bombardier League",
       "Directors League": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Eagle IPA League",
+      "Waggledance League": "Directors League",
+      "Winter Warmer League": "Directors League"
     },
     "5": {
       "Waggledance League": "Directors League"

@@ -84,6 +84,29 @@
     "Tribute Western Counties West": "Tribute South West 2 West",
     "Yorkshire 1": "North 2 East"
   },
+  "East_Midlands": {
+    "1": {
+      "Bombardier League": "Midlands 6 East (NE)"
+    },
+    "2": {
+      "Eagle IPA League": "Bombardier League"
+    },
+    "3": {
+      "Courage Best League": "Eagle IPA League",
+      "Directors League": "Eagle IPA League"
+    },
+    "4": {
+      "Directors League": "Courage Best League",
+      "Waggledance League": "Directors League",
+      "Winter Warmer League": "Directors League"
+    },
+    "5": {
+      "Waggledance League": "Directors League"
+    },
+    "6": {
+      "Winter Warmer League": "Waggledance League"
+    }
+  },
   "Essex": {
     "1": {
       "Essex BL Office Centre Merit Table Division 1": "Essex (Oranjeboom) League 3"
@@ -195,26 +218,6 @@
     },
     "3": {
       "Division C": "Division B"
-    }
-  },
-  "East_Midlands": {
-    "1": {
-      "Bombardier League": "Midlands 6 East (NE)"
-    },
-    "2": {
-      "Eagle IPA League": "Bombardier League"
-    },
-    "3": {
-      "Courage Best League": "Eagle IPA League"
-    },
-    "4": {
-      "Directors League": "Courage Best League"
-    },
-    "5": {
-      "Waggledance League": "Directors League"
-    },
-    "6": {
-      "Winter Warmer League": "Waggledance League"
     }
   }
 }

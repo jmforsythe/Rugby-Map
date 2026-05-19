@@ -248,129 +248,118 @@ def _link(name: str) -> str:
     return f"{name}/" if get_config().is_production else f"{name}.html"
 
 
-def _build_mens_pyramid_diagram_preview_cell(season: str, tier_files: dict[str, object]) -> str:
-    """Men's pyramid thumbnail → full SVG/PNG inside one grid cell, or empty if unavailable."""
-    if not tier_files.get("pyramid_preview"):
-        return ""
-    full_href = tier_files.get("pyramid_full_href")
-    thumb_src = tier_files.get("pyramid_thumb_src")
-    if (
-        not isinstance(full_href, str)
-        or not full_href
-        or not isinstance(thumb_src, str)
-        or not thumb_src
-    ):
-        return ""
-
-    alt = escape(
-        f"Men's rugby league pyramid for {season}: club crests by tier "
-        "(click for the full diagram)"
-    )
-    href_esc = escape(full_href)
-    thumb_esc = escape(thumb_src)
-    aria = escape(f"Open full men's pyramid diagram for {season}")
-
-    inner = (
-        '            <div class="pyramid-diagram-preview">\n'
-        f'            <a class="pyramid-diagram-preview__link" href="{href_esc}" '
-        f'aria-label="{aria}">\n'
-        f'                <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760" '
-        'loading="lazy" decoding="async"'
-        f' alt="{alt}">\n'
-        "            </a>\n"
-        "            </div>\n"
-    )
-    return f'        <div class="season-diagram-previews__cell">\n{inner}        </div>\n'
+def _pyramid_diagram_full_href(season_dir: Path, stem: str) -> str | None:
+    """Prefer SVG over PNG for the linked full diagram."""
+    svg = season_dir / f"{stem}.svg"
+    if svg.is_file():
+        return f"{stem}.svg"
+    png = season_dir / f"{stem}.png"
+    if png.is_file():
+        return f"{stem}.png"
+    return None
 
 
-def _build_all_leagues_pyramid_diagram_preview_cell(
-    season: str, tier_files: dict[str, object]
+def _pyramid_labels_stem(stem: str) -> str:
+    """Labelled variant stem (``pyramid`` → ``pyramid_Labels``)."""
+    return f"{stem}_Labels"
+
+
+def _detect_pyramid_diagram_pair(season_dir: Path, stem: str) -> dict[str, str | None]:
+    """Unlabelled and labelled (``{stem}_Labels``) pyramid thumbnail + full href."""
+    thumb_src: str | None = None
+    full_href = _pyramid_diagram_full_href(season_dir, stem)
+    png = season_dir / f"{stem}.png"
+    if png.is_file():
+        thumb_src = f"{stem}.png"
+    elif full_href is not None:
+        thumb_src = full_href
+
+    labels_stem = _pyramid_labels_stem(stem)
+    labels_thumb: str | None = None
+    labels_full = _pyramid_diagram_full_href(season_dir, labels_stem)
+    labels_png = season_dir / f"{labels_stem}.png"
+    if labels_png.is_file():
+        labels_thumb = f"{labels_stem}.png"
+    elif labels_full is not None:
+        labels_thumb = labels_full
+
+    return {
+        "thumb_src": thumb_src,
+        "full_href": full_href,
+        "labels_thumb_src": labels_thumb,
+        "labels_full_href": labels_full,
+    }
+
+
+def _build_pyramid_diagram_preview_html(
+    *,
+    thumb_src: str,
+    full_href: str,
+    alt: str,
+    aria_label: str,
+    compact: bool = False,
 ) -> str:
-    """Merged men's national + merit pyramid thumbnail → full SVG/PNG, or empty if unavailable."""
-    if not tier_files.get("pyramid_all_leagues_preview"):
-        return ""
-    full_href = tier_files.get("pyramid_all_leagues_full_href")
-    thumb_src = tier_files.get("pyramid_all_leagues_thumb_src")
-    if (
-        not isinstance(full_href, str)
-        or not full_href
-        or not isinstance(thumb_src, str)
-        or not thumb_src
-    ):
-        return ""
-
-    alt = escape(
-        f"Men's national and merit leagues pyramid for {season}: club crests by tier "
-        "(click for the full diagram)"
-    )
+    """Clickable pyramid thumbnail linking to the full SVG/PNG."""
+    compact_cls = " pyramid-diagram-preview--compact" if compact else ""
     href_esc = escape(full_href)
     thumb_esc = escape(thumb_src)
-    aria = escape(f"Open full men's national and merit leagues pyramid diagram for {season}")
-
-    inner = (
-        '            <div class="pyramid-diagram-preview">\n'
-        f'            <a class="pyramid-diagram-preview__link" href="{href_esc}" '
-        f'aria-label="{aria}">\n'
-        f'                <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760" '
-        'loading="lazy" decoding="async"'
-        f' alt="{alt}">\n'
-        "            </a>\n"
-        "            </div>\n"
-    )
-    return f'        <div class="season-diagram-previews__cell">\n{inner}        </div>\n'
-
-
-def _build_womens_pyramid_diagram_preview_cell(season: str, tier_files: dict[str, object]) -> str:
-    """Women's pyramid thumbnail → full SVG/PNG inside one grid cell, or empty if unavailable."""
-    if not tier_files.get("pyramid_womens_preview"):
-        return ""
-    full_href = tier_files.get("pyramid_womens_full_href")
-    if not isinstance(full_href, str) or not full_href:
-        return ""
-
-    alt = escape(
-        f"Women's rugby league pyramid for {season}: club crests by tier "
-        "(click for the full diagram)"
-    )
-    href_esc = escape(full_href)
-    aria = escape(f"Open full women's pyramid diagram for {season}")
-
-    inner = (
-        '            <div class="pyramid-diagram-preview">\n'
-        f'            <a class="pyramid-diagram-preview__link" href="{href_esc}" '
-        f'aria-label="{aria}">\n'
-        '                <img class="pyramid-diagram-preview__img" src="pyramid_womens.png" width="760" '
-        'loading="lazy" decoding="async"'
-        f' alt="{alt}">\n'
-        "            </a>\n"
-        "            </div>\n"
-    )
-    return f'        <div class="season-diagram-previews__cell">\n{inner}        </div>\n'
-
-
-def _build_season_diagram_previews_html(season: str, tier_files: dict[str, object]) -> str:
-    """Bottom-of-page diagram strip: men's national, merged all-leagues, and women's pyramids."""
-    cells: list[str] = []
-    mens = _build_mens_pyramid_diagram_preview_cell(season, tier_files)
-    if mens:
-        cells.append(mens)
-    all_leagues = _build_all_leagues_pyramid_diagram_preview_cell(season, tier_files)
-    if all_leagues:
-        cells.append(all_leagues)
-    womens = _build_womens_pyramid_diagram_preview_cell(season, tier_files)
-    if womens:
-        cells.append(womens)
-    if not cells:
-        return ""
-    merged = "".join(cells)
+    alt_esc = escape(alt)
+    aria_esc = escape(aria_label)
     return (
-        "\n"
-        '    <aside class="season-diagram-previews" aria-label="League pyramid diagrams">\n'
-        '    <div class="season-diagram-previews__row">\n'
-        f"{merged}"
-        "    </div>\n"
-        "    </aside>\n"
+        f'        <div class="pyramid-diagram-preview{compact_cls}">\n'
+        f'        <a class="pyramid-diagram-preview__link" href="{href_esc}" '
+        f'aria-label="{aria_esc}">\n'
+        f'            <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760" '
+        'loading="lazy" decoding="async"'
+        f' alt="{alt_esc}">\n'
+        "        </a>\n"
+        "        </div>\n"
     )
+
+
+def _build_pyramid_diagram_stack_html(
+    pair: dict[str, str | None],
+    *,
+    alt_base: str,
+    aria_base: str,
+    compact: bool = False,
+) -> str:
+    """Stack unlabelled then labelled pyramid previews, or empty if neither exists."""
+    blocks: list[str] = []
+    thumb = pair.get("thumb_src")
+    full = pair.get("full_href")
+    if isinstance(thumb, str) and thumb and isinstance(full, str) and full:
+        blocks.append(
+            _build_pyramid_diagram_preview_html(
+                thumb_src=thumb,
+                full_href=full,
+                alt=alt_base,
+                aria_label=aria_base,
+                compact=compact,
+            )
+        )
+    labels_thumb = pair.get("labels_thumb_src")
+    labels_full = pair.get("labels_full_href")
+    if (
+        isinstance(labels_thumb, str)
+        and labels_thumb
+        and isinstance(labels_full, str)
+        and labels_full
+    ):
+        blocks.append(
+            _build_pyramid_diagram_preview_html(
+                thumb_src=labels_thumb,
+                full_href=labels_full,
+                alt=f"{alt_base} (club names labelled)",
+                aria_label=f"{aria_base} with club name labels",
+                compact=compact,
+            )
+        )
+    if not blocks:
+        return ""
+    inner = "".join(blocks)
+    stack_cls = "pyramid-diagram-stack--compact" if compact else "pyramid-diagram-stack"
+    return f'        <div class="{stack_cls}">\n{inner}        </div>\n'
 
 
 def _build_pyramid_section(
@@ -379,6 +368,10 @@ def _build_pyramid_section(
     all_leagues_href: str | None = None,
     tier_plus_merit: dict[str, str] | None = None,
     merit_only_tiers: list[tuple[str, str]] | None = None,
+    *,
+    mens_pyramid_diagrams: dict[str, str | None] | None = None,
+    all_leagues_pyramid_diagrams: dict[str, str | None] | None = None,
+    season: str = "",
 ) -> str:
     """Build the pyramid tier list, optionally with a +merit column."""
     has_merit_col = all_leagues_href is not None or bool(merit_only_tiers)
@@ -430,14 +423,41 @@ def _build_pyramid_section(
         )
         html += "    </tr>\n"
 
+    mens_stack = ""
+    if mens_pyramid_diagrams:
+        mens_stack = _build_pyramid_diagram_stack_html(
+            mens_pyramid_diagrams,
+            alt_base=f"Men's rugby league pyramid for {season}: club crests by tier",
+            aria_base=f"Open full men's pyramid diagram for {season}",
+            compact=True,
+        )
+    all_leagues_stack = ""
+    if all_leagues_pyramid_diagrams:
+        all_leagues_stack = _build_pyramid_diagram_stack_html(
+            all_leagues_pyramid_diagrams,
+            alt_base=(
+                f"Men's national and merit leagues pyramid for {season}: club crests by tier"
+            ),
+            aria_base=(f"Open full men's national and merit leagues pyramid diagram for {season}"),
+            compact=True,
+        )
+    if mens_stack or all_leagues_stack:
+        html += '    <tr class="tier-table__diagrams">\n'
+        html += f"        <td>{mens_stack or ''}</td>\n"
+        if has_merit_col:
+            html += f"        <td>{all_leagues_stack or ''}</td>\n"
+        html += "    </tr>\n"
+
     html += "    </tbody>\n"
     html += "    </table>\n    </div>\n"
     return html
 
 
 def _build_merit_section(
-    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]],
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]], dict[str, str | None]]],
     all_leagues_href: str | None,
+    *,
+    season: str = "",
 ) -> str:
     """Build the merit competitions section as collapsible cards."""
     if not merit_competitions:
@@ -454,7 +474,7 @@ def _build_merit_section(
 
     html += '    <div class="merit-grid">\n'
 
-    for comp_display, comp_all_href, comp_tiers in merit_competitions:
+    for comp_display, comp_all_href, comp_tiers, comp_pyramid_diagrams in merit_competitions:
         html += '    <details class="merit-card">\n'
         html += f"    <summary>{comp_display}</summary>\n"
         html += '    <div class="merit-card-body">\n'
@@ -463,6 +483,14 @@ def _build_merit_section(
         for tier_name, tier_href in comp_tiers:
             html += f'        <li><a href="{tier_href}">{tier_name}</a></li>\n'
         html += "    </ul>\n"
+        comp_stack = _build_pyramid_diagram_stack_html(
+            comp_pyramid_diagrams,
+            alt_base=f"{comp_display} merit pyramid for {season}: club crests by tier",
+            aria_base=f"Open full {comp_display} merit pyramid diagram for {season}",
+            compact=True,
+        )
+        if comp_stack:
+            html += comp_stack
         html += "    </div>\n"
         html += "    </details>\n"
 
@@ -476,7 +504,14 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
     has_all_leagues = tier_files.get("has_all_leagues", False)
     has_match_day = tier_files.get("has_match_day", False)
-    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = tier_files.get("merit", [])
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]], dict[str, str | None]]] = (
+        tier_files.get("merit", [])
+    )
+    mens_pyramid_diagrams: dict[str, str | None] = tier_files.get("mens_pyramid_diagrams", {})
+    all_leagues_pyramid_diagrams: dict[str, str | None] = tier_files.get(
+        "all_leagues_pyramid_diagrams", {}
+    )
+    womens_pyramid_diagrams: dict[str, str | None] = tier_files.get("womens_pyramid_diagrams", {})
 
     all_seasons_href = f"../{'' if get_config().is_production else 'index.html'}"
 
@@ -557,11 +592,15 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
                 all_leagues_href=_link("All_Leagues") if has_all_leagues else None,
                 tier_plus_merit=tier_plus_merit,
                 merit_only_tiers=merit_only,
+                mens_pyramid_diagrams=mens_pyramid_diagrams,
+                all_leagues_pyramid_diagrams=all_leagues_pyramid_diagrams,
+                season=season,
             )
         if merit_competitions:
             html += _build_merit_section(
                 merit_competitions,
                 all_leagues_href=None,
+                season=season,
             )
 
     # Women's section (pyramid only, no merit)
@@ -577,10 +616,17 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
         for tier_name, tier_file in womens_tiers:
             html += f'        <li><a href="{tier_file}">{tier_name}</a></li>\n'
         html += """    </ul>
-    </div>
+"""
+        womens_stack = _build_pyramid_diagram_stack_html(
+            womens_pyramid_diagrams,
+            alt_base=f"Women's rugby league pyramid for {season}: club crests by tier",
+            aria_base=f"Open full women's pyramid diagram for {season}",
+        )
+        if womens_stack:
+            html += womens_stack
+        html += """    </div>
 """
 
-    html += _build_season_diagram_previews_html(season, tier_files)
     html += f"""
 {get_footer_html()}
 </body>
@@ -745,7 +791,7 @@ def detect_tier_files(season_dir: Path) -> dict:
 
     # Detect merit competitions
     merit_dir = season_dir / "merit"
-    merit_competitions: list[tuple[str, str, list[tuple[str, str]]]] = []
+    merit_competitions: list[tuple[str, str, list[tuple[str, str]], dict[str, str | None]]] = []
     if merit_dir.is_dir():
         for comp_dir in sorted(merit_dir.iterdir()):
             if not comp_dir.is_dir():
@@ -762,45 +808,18 @@ def detect_tier_files(season_dir: Path) -> dict:
             comp_tiers_raw = _detect_existing(comp_dir, tier_candidates)
             prefix = f"merit/{comp_dir.name}/"
             comp_tiers = [(name, prefix + href) for name, href in comp_tiers_raw]
-            merit_competitions.append((comp_display, all_tiers_href, comp_tiers))
+            comp_pyramid = _detect_pyramid_diagram_pair(
+                season_dir, f"pyramid_merit_{comp_dir.name}"
+            )
+            merit_competitions.append((comp_display, all_tiers_href, comp_tiers, comp_pyramid))
 
     has_match_day = (season_dir / "match_day" / "index.html").exists() or (
         season_dir / "match_day.html"
     ).exists()
 
-    pyramid_png = season_dir / "pyramid.png"
-    pyramid_all_png = season_dir / "pyramid_All_Leagues.png"
-    pyramid_svg = season_dir / "pyramid.svg"
-    pyramid_all_svg = season_dir / "pyramid_All_Leagues.svg"
-
-    # Men's national pyramid only (season index "men's" preview); not pyramid_All_Leagues.
-    pyramid_preview = pyramid_png.is_file()
-    pyramid_thumb_src: str | None = "pyramid.png" if pyramid_png.is_file() else None
-    pyramid_full_asset: str | None = None
-    if pyramid_svg.is_file():
-        pyramid_full_asset = "pyramid.svg"
-    elif pyramid_png.is_file():
-        pyramid_full_asset = "pyramid.png"
-
-    # Merged men's national + merit (separate thumbnail/link on the season index).
-    pyramid_all_leagues_preview = pyramid_all_png.is_file()
-    pyramid_all_leagues_thumb_src: str | None = (
-        "pyramid_All_Leagues.png" if pyramid_all_png.is_file() else None
-    )
-    pyramid_all_leagues_full: str | None = None
-    if pyramid_all_svg.is_file():
-        pyramid_all_leagues_full = "pyramid_All_Leagues.svg"
-    elif pyramid_all_png.is_file():
-        pyramid_all_leagues_full = "pyramid_All_Leagues.png"
-
-    pyramid_womens_png = season_dir / "pyramid_womens.png"
-    pyramid_womens_svg = season_dir / "pyramid_womens.svg"
-    pyramid_womens_preview = pyramid_womens_png.is_file()
-    pyramid_womens_full: str | None = None
-    if pyramid_womens_svg.is_file():
-        pyramid_womens_full = "pyramid_womens.svg"
-    elif pyramid_womens_png.is_file():
-        pyramid_womens_full = "pyramid_womens.png"
+    mens_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid")
+    all_leagues_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid_All_Leagues")
+    womens_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid_womens")
 
     return {
         "mens": mens_tiers,
@@ -810,14 +829,9 @@ def detect_tier_files(season_dir: Path) -> dict:
         "tier_plus_merit": tier_plus_merit,
         "merit_only_tiers": merit_only_tiers,
         "has_match_day": has_match_day,
-        "pyramid_preview": pyramid_preview,
-        "pyramid_thumb_src": pyramid_thumb_src,
-        "pyramid_full_href": pyramid_full_asset,
-        "pyramid_all_leagues_preview": pyramid_all_leagues_preview,
-        "pyramid_all_leagues_thumb_src": pyramid_all_leagues_thumb_src,
-        "pyramid_all_leagues_full_href": pyramid_all_leagues_full,
-        "pyramid_womens_preview": pyramid_womens_preview,
-        "pyramid_womens_full_href": pyramid_womens_full,
+        "mens_pyramid_diagrams": mens_pyramid_diagrams,
+        "all_leagues_pyramid_diagrams": all_leagues_pyramid_diagrams,
+        "womens_pyramid_diagrams": womens_pyramid_diagrams,
     }
 
 

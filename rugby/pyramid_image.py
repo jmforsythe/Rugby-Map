@@ -7481,6 +7481,10 @@ def _stem_prompt_parent_pick(
 #     ]
 #   }
 #
+# Top-level keys are written in this order: ``schema_version``, ``season``, ``men``,
+# ``tier7_column_order``, ``women``, then all other sections alphabetically (merit
+# competitions, ``stem_slot_strips``, etc.).
+#
 # - ``men`` keys ``"5"`` and ``"6"`` drive Regional 1 → NL2 and Regional 2 → Regional 1
 #   nesting. ``tier7_column_order`` sets Counties 1 left-to-right order via a feeder parent
 #   in tiers 1–6 (postfix index); legacy ``men["7"]`` is still read. ``"8"`` and below in
@@ -7511,6 +7515,50 @@ def _stem_prompt_parent_pick(
 #   :func:`merit_parent_overrides_merge_cross_season`) folds in parent links from
 #   other seasons' tier-mapping files when both leagues resolve uniquely in the current
 #   season; newly inferred links are written back so later runs do not repeat the inference.
+
+
+# Top-level keys in tier_mappings JSON that are not merit competition sections.
+TIER_MAPPINGS_RESERVED_TOP_KEYS: frozenset[str] = frozenset(
+    {
+        "schema_version",
+        "season",
+        "men",
+        TIER7_COLUMN_ORDER_JSON_KEY,
+        "women",
+        "stem_slot_strips",
+    }
+)
+
+# Fixed top-level key order when writing tier_mappings JSON (remaining keys: alphabetical).
+TIER_MAPPINGS_TOP_KEY_ORDER: tuple[str, ...] = (
+    "schema_version",
+    "season",
+    "men",
+    TIER7_COLUMN_ORDER_JSON_KEY,
+    "women",
+)
+
+
+def order_tier_mappings_payload(payload: dict[str, object]) -> dict[str, object]:
+    """Return ``payload`` with stable top-level key order for tier_mappings JSON."""
+    ordered: dict[str, object] = {}
+    seen: set[str] = set()
+    for key in TIER_MAPPINGS_TOP_KEY_ORDER:
+        if key in payload:
+            ordered[key] = payload[key]
+            seen.add(key)
+    for key in sorted(k for k in payload if k not in seen):
+        ordered[key] = payload[key]
+    return ordered
+
+
+def write_tier_mappings_json(path: Path, payload: dict[str, object]) -> None:
+    """Write tier_mappings JSON with :func:`order_tier_mappings_payload` key ordering."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(order_tier_mappings_payload(payload), indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def stem_parent_overrides_store_path(season: str) -> Path:
@@ -7925,7 +7973,7 @@ def stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
     payload = _stem_parent_override_read_payload(season)
     if not isinstance(payload, dict):
         return merged
-    reserved = frozenset({"schema_version", "season", "men", "women", "stem_slot_strips"})
+    reserved = TIER_MAPPINGS_RESERVED_TOP_KEYS
     merit_on_disk = frozenset(discover_merit_competitions(season))
     added = 0
     for comp, section in payload.items():
@@ -8298,19 +8346,15 @@ def stem_parent_overrides_save(season: str, overrides: StemParentOverrides) -> P
     tier7_map = tier7_column_order_from_overrides(overrides)
     stem_only = {k: v for k, v in overrides.items() if k[0] != 7}
     ordered_tiers = _encode_overrides_for_json(stem_only)
-    blob: dict[str, object] = {
-        "schema_version": STEM_PARENT_OVERRIDE_SCHEMA_VERSION,
-        "season": season,
-        "men": ordered_tiers,
-    }
+    blob: dict[str, object] = dict(preserved_other)
+    blob["schema_version"] = STEM_PARENT_OVERRIDE_SCHEMA_VERSION
+    blob["season"] = season
+    blob["men"] = ordered_tiers
     if tier7_map:
         blob[TIER7_COLUMN_ORDER_JSON_KEY] = dict(
             sorted(tier7_map.items(), key=lambda it: _stem_sort_key_league_name(it[0]))
         )
-    for k, v in preserved_other.items():
-        blob[k] = v
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(blob, indent=2) + "\n", encoding="utf-8")
+    write_tier_mappings_json(path, blob)
     return path
 
 
@@ -8394,18 +8438,11 @@ def womens_parent_overrides_save(season: str, overrides: StemParentOverrides) ->
         except (OSError, json.JSONDecodeError):
             pass
 
-    blob: dict[str, object] = {
-        "schema_version": schema_version,
-        "season": season,
-    }
-    if "men" in preserved_other:
-        blob["men"] = preserved_other.pop("men")
+    blob: dict[str, object] = dict(preserved_other)
+    blob["schema_version"] = schema_version
+    blob["season"] = season
     blob["women"] = nested
-    for k, v in preserved_other.items():
-        blob[k] = v
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(blob, indent=2) + "\n", encoding="utf-8")
+    write_tier_mappings_json(path, blob)
     return path
 
 
@@ -8445,22 +8482,11 @@ def merit_parent_overrides_save(
         except (OSError, json.JSONDecodeError):
             pass
 
-    blob: dict[str, object] = {
-        "schema_version": schema_version,
-        "season": season,
-    }
-    # Keep men/women near the top for readability; other sections (other merit comps,
-    # stem_slot_strips) follow in their original on-disk order, then the competition
-    # we just wrote.
-    for k in ("men", "women"):
-        if k in preserved_other:
-            blob[k] = preserved_other.pop(k)
-    for k, v in preserved_other.items():
-        blob[k] = v
+    blob: dict[str, object] = dict(preserved_other)
+    blob["schema_version"] = schema_version
+    blob["season"] = season
     blob[competition] = nested
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(blob, indent=2) + "\n", encoding="utf-8")
+    write_tier_mappings_json(path, blob)
     return path
 
 
@@ -8577,6 +8603,75 @@ def _validate_season(value: str) -> str:
     return value
 
 
+def _pyramid_labels_path(path: Path) -> Path:
+    """Sibling path for club-name-labelled variant (``pyramid.svg`` → ``pyramid_Labels.svg``)."""
+    return path.with_name(f"{path.stem}_Labels{path.suffix}")
+
+
+def _labels_under_layout_scale(args: argparse.Namespace) -> float | None:
+    if args.labels_under_layout_height_scale is not None:
+        return args.labels_under_layout_height_scale
+    return LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE
+
+
+def _uses_custom_pyramid_output_paths(args: argparse.Namespace) -> bool:
+    return args.output is not None or args.png_output is not None
+
+
+def _write_pyramid_svg_and_png(
+    svg: str,
+    svg_path: Path,
+    png_path: Path,
+    args: argparse.Namespace,
+) -> int:
+    svg_path.parent.mkdir(parents=True, exist_ok=True)
+    svg_path.write_text(svg, encoding="utf-8")
+    logger.info("Wrote %s", svg_path)
+    if args.png:
+        logger.info(
+            "Rasterising %s to PNG (scale=%.2f) …",
+            svg_path.name,
+            args.png_scale,
+        )
+        try:
+            rasterise_svg_to_png(
+                svg_path,
+                png_path,
+                scale=args.png_scale,
+                image_poll_timeout_ms=args.png_image_timeout_ms,
+            )
+        except RuntimeError as exc:
+            logger.error("%s", exc)
+            return 1
+        logger.info("Wrote %s", png_path)
+    return 0
+
+
+def _write_labelled_pyramid_sibling(
+    *,
+    season: str,
+    leagues: list[LeagueData],
+    base_svg_path: Path,
+    base_png_path: Path,
+    args: argparse.Namespace,
+    render_kwargs: dict[str, object],
+) -> int:
+    """When using default output paths, also write ``*_Labels.{svg,png}``."""
+    if _uses_custom_pyramid_output_paths(args):
+        return 0
+    labels_svg_path = _pyramid_labels_path(base_svg_path)
+    labels_png_path = _pyramid_labels_path(base_png_path)
+    logger.info("Rendering labelled pyramid (%s) …", labels_svg_path.name)
+    svg_labels = render_pyramid_svg(
+        season,
+        leagues,
+        labels_under_valid_crests=True,
+        labels_under_layout_height_scale=_labels_under_layout_scale(args),
+        **render_kwargs,
+    )
+    return _write_pyramid_svg_and_png(svg_labels, labels_svg_path, labels_png_path, args)
+
+
 def _default_svg_path(
     season: str,
     gender: Gender = DEFAULT_GENDER,
@@ -8674,40 +8769,40 @@ def _render_mens_standard_pyramid(
             stem_parent_overrides_store_path(season),
         )
 
+    render_kwargs: dict[str, object] = {
+        "gender": gender,
+        "parent_overrides": parent_overrides,
+        "womens_parent_overrides": None,
+        "stem_slot_strips": stem_slot_strips,
+        "transparent_white_crest_backgrounds": args.transparent_white_crest_backgrounds,
+        "crest_transparency_workers": cw,
+        "mens_merge_merit_leagues": all_leagues,
+    }
+    use_labels_on_primary = (
+        _uses_custom_pyramid_output_paths(args) and args.labels_under_valid_crests
+    )
     svg = render_pyramid_svg(
         season,
         leagues,
-        gender=gender,
-        parent_overrides=parent_overrides,
-        womens_parent_overrides=None,
-        stem_slot_strips=stem_slot_strips,
-        transparent_white_crest_backgrounds=args.transparent_white_crest_backgrounds,
-        crest_transparency_workers=cw,
-        mens_merge_merit_leagues=all_leagues,
-        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_valid_crests=use_labels_on_primary,
         labels_under_layout_height_scale=args.labels_under_layout_height_scale,
+        **render_kwargs,
     )
 
-    svg_path.parent.mkdir(parents=True, exist_ok=True)
-    svg_path.write_text(svg, encoding="utf-8")
-    logger.info("Wrote %s", svg_path)
-
-    if args.png:
-        logger.info(
-            "Rasterising men's pyramid SVG to PNG (scale=%.2f) …",
-            args.png_scale,
+    rc = _write_pyramid_svg_and_png(svg, svg_path, png_path, args)
+    if rc != 0:
+        return rc
+    if not use_labels_on_primary:
+        rc = _write_labelled_pyramid_sibling(
+            season=season,
+            leagues=leagues,
+            base_svg_path=svg_path,
+            base_png_path=png_path,
+            args=args,
+            render_kwargs=render_kwargs,
         )
-        try:
-            rasterise_svg_to_png(
-                svg_path,
-                png_path,
-                scale=args.png_scale,
-                image_poll_timeout_ms=args.png_image_timeout_ms,
-            )
-        except RuntimeError as exc:
-            logger.error("%s", exc)
-            return 1
-        logger.info("Wrote %s", png_path)
+        if rc != 0:
+            return rc
 
     return 0
 
@@ -8825,43 +8920,42 @@ def _render_one_merit_pyramid(
         if not overrides_visible:
             overrides_visible = None
 
+    render_kwargs: dict[str, object] = {
+        "gender": "mens",
+        "parent_overrides": overrides_visible,
+        "transparent_white_crest_backgrounds": args.transparent_white_crest_backgrounds,
+        "crest_transparency_workers": crest_bg_workers,
+        "merit_competition": competition,
+        "merit_local_offset": offset,
+    }
+    use_labels_on_primary = (
+        _uses_custom_pyramid_output_paths(args) and args.labels_under_valid_crests
+    )
     svg = render_pyramid_svg(
         season,
         leagues_visible,
-        gender="mens",
-        parent_overrides=overrides_visible,
-        transparent_white_crest_backgrounds=args.transparent_white_crest_backgrounds,
-        crest_transparency_workers=crest_bg_workers,
-        merit_competition=competition,
-        merit_local_offset=offset,
-        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_valid_crests=use_labels_on_primary,
         labels_under_layout_height_scale=args.labels_under_layout_height_scale,
+        **render_kwargs,
     )
 
     svg_path = args.output or _default_svg_path(season, "mens", merit_competition=competition)
     png_path = args.png_output or _default_png_path(season, "mens", merit_competition=competition)
 
-    svg_path.parent.mkdir(parents=True, exist_ok=True)
-    svg_path.write_text(svg, encoding="utf-8")
-    logger.info("Wrote %s", svg_path)
-
-    if args.png:
-        logger.info(
-            "Rasterising merit %s SVG to PNG (scale=%.2f) — this requires Playwright …",
-            competition,
-            args.png_scale,
+    rc = _write_pyramid_svg_and_png(svg, svg_path, png_path, args)
+    if rc != 0:
+        return rc
+    if not use_labels_on_primary:
+        rc = _write_labelled_pyramid_sibling(
+            season=season,
+            leagues=leagues_visible,
+            base_svg_path=svg_path,
+            base_png_path=png_path,
+            args=args,
+            render_kwargs=render_kwargs,
         )
-        try:
-            rasterise_svg_to_png(
-                svg_path,
-                png_path,
-                scale=args.png_scale,
-                image_poll_timeout_ms=args.png_image_timeout_ms,
-            )
-        except RuntimeError as exc:
-            logger.error("%s", exc)
-            return 1
-        logger.info("Wrote %s", png_path)
+        if rc != 0:
+            return rc
 
     return 0
 
@@ -9201,38 +9295,39 @@ def main() -> int:
         if args.ignore_stem_slot_strips:
             logger.info("--ignore-stem-slot-strips has no effect with --womens.")
 
+    render_kwargs: dict[str, object] = {
+        "gender": gender,
+        "parent_overrides": parent_overrides,
+        "womens_parent_overrides": womens_parent_overrides,
+        "stem_slot_strips": stem_slot_strips,
+        "transparent_white_crest_backgrounds": args.transparent_white_crest_backgrounds,
+        "crest_transparency_workers": cw,
+    }
+    use_labels_on_primary = (
+        _uses_custom_pyramid_output_paths(args) and args.labels_under_valid_crests
+    )
     svg = render_pyramid_svg(
         season,
         leagues,
-        gender=gender,
-        parent_overrides=parent_overrides,
-        womens_parent_overrides=womens_parent_overrides,
-        stem_slot_strips=stem_slot_strips,
-        transparent_white_crest_backgrounds=args.transparent_white_crest_backgrounds,
-        crest_transparency_workers=cw,
-        labels_under_valid_crests=args.labels_under_valid_crests,
+        labels_under_valid_crests=use_labels_on_primary,
         labels_under_layout_height_scale=args.labels_under_layout_height_scale,
+        **render_kwargs,
     )
 
-    svg_path.parent.mkdir(parents=True, exist_ok=True)
-    svg_path.write_text(svg, encoding="utf-8")
-    logger.info("Wrote %s", svg_path)
-
-    if args.png:
-        logger.info(
-            "Rasterising SVG to PNG (scale=%.2f) — this requires Playwright …", args.png_scale
+    rc = _write_pyramid_svg_and_png(svg, svg_path, png_path, args)
+    if rc != 0:
+        return rc
+    if not use_labels_on_primary:
+        rc = _write_labelled_pyramid_sibling(
+            season=season,
+            leagues=leagues,
+            base_svg_path=svg_path,
+            base_png_path=png_path,
+            args=args,
+            render_kwargs=render_kwargs,
         )
-        try:
-            rasterise_svg_to_png(
-                svg_path,
-                png_path,
-                scale=args.png_scale,
-                image_poll_timeout_ms=args.png_image_timeout_ms,
-            )
-        except RuntimeError as exc:
-            logger.error("%s", exc)
-            return 1
-        logger.info("Wrote %s", png_path)
+        if rc != 0:
+            return rc
 
     return 0
 

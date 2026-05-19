@@ -840,3 +840,29 @@ def test_stem_forest_merit_division_name_collision() -> None:
     assert par is not None
     assert par.league_name == "Division 1"
     assert par.merit_geocoded_competition == "Middlesex"
+
+
+def test_order_tier_mappings_payload_top_level_key_order() -> None:
+    from rugby.pyramid_image import TIER7_COLUMN_ORDER_JSON_KEY, order_tier_mappings_payload
+
+    payload = {
+        "Zebra": {"1": {}},
+        "women": {"2": {}},
+        TIER7_COLUMN_ORDER_JSON_KEY: {"Counties 1 A": "Regional 2 X"},
+        "men": {"5": {}},
+        "season": "2025-2026",
+        "CANDY": {"1": {}},
+        "schema_version": 2,
+        "stem_slot_strips": [],
+    }
+    ordered = order_tier_mappings_payload(payload)
+    assert list(ordered.keys()) == [
+        "schema_version",
+        "season",
+        "men",
+        TIER7_COLUMN_ORDER_JSON_KEY,
+        "women",
+        "CANDY",
+        "Zebra",
+        "stem_slot_strips",
+    ]

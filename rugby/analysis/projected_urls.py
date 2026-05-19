@@ -25,6 +25,51 @@ PROJECTED_PATH = DATA_DIR / "projected_2026-2027.md"
 
 BASE_URL = "https://rugbyunionmap.uk/custom-map/"
 
+# ``Best Playing Record into Tier N`` sections are folded into Unassigned on export.
+_BPR_LEAGUE_RE = re.compile(r"^Best Playing Record\b", re.IGNORECASE)
+
+
+def normalize_tier_leagues(
+    leagues: list[tuple[str, list[str]]],
+) -> list[tuple[str, list[str]]]:
+    """Sort each league's teams A–Z and merge BPR sections into Unassigned."""
+    bpr_teams: list[str] = []
+    kept: list[tuple[str, list[str]]] = []
+
+    for name, teams in leagues:
+        if _BPR_LEAGUE_RE.search(name):
+            bpr_teams.extend(teams)
+        else:
+            kept.append((name, list(teams)))
+
+    if bpr_teams:
+        unassigned_idx = next((i for i, (n, _) in enumerate(kept) if n == "Unassigned"), None)
+        if unassigned_idx is None:
+            kept.append(("Unassigned", []))
+            unassigned_idx = len(kept) - 1
+        un_name, un_teams = kept[unassigned_idx]
+        kept[unassigned_idx] = (un_name, un_teams + bpr_teams)
+
+    normalized = [(name, sorted(teams, key=str.casefold)) for name, teams in kept]
+    return sorted(normalized, key=lambda item: item[0].casefold())
+
+
+def normalize_parsed_tiers(
+    tiers: dict[int, list[tuple[str, list[str]]]],
+) -> dict[int, list[tuple[str, list[str]]]]:
+    """Apply :func:`normalize_tier_leagues` to every tier in *tiers*."""
+    return {tier_num: normalize_tier_leagues(leagues) for tier_num, leagues in tiers.items()}
+
+
+def normalize_import_spec_leagues(spec: dict) -> dict:
+    """Normalize league rosters inside a version-1 import spec dict."""
+    for tier in spec.get("tiers", []):
+        leagues = [(lg["name"], lg["teams"]) for lg in tier.get("leagues", [])]
+        tier["leagues"] = [
+            {"name": name, "teams": teams} for name, teams in normalize_tier_leagues(leagues)
+        ]
+    return spec
+
 
 def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, list[str]]]]:
     """Parse the projected markdown into ``{tier: [(league_name, [team, ...]), ...]}``."""
@@ -95,7 +140,8 @@ def _parse_projected_md(path: str | None = None) -> dict[int, list[tuple[str, li
 
     _flush()
     tiers = _merge_consecutive_league_sections(tiers)
-    return _merge_promoted_relegated(tiers, team_sources)
+    tiers = _merge_promoted_relegated(tiers, team_sources)
+    return normalize_parsed_tiers(tiers)
 
 
 def _merge_consecutive_league_sections(
@@ -225,7 +271,7 @@ def build_hash(leagues: list[tuple[str, list[str]]], tier_num: int = 1) -> str:
     """
     parts: list[str] = []
     league_idx = 0
-    for name, teams in leagues:
+    for name, teams in sorted(leagues, key=lambda item: item[0]):
         if name == "Unassigned":
             color = UNASSIGNED_COLOR
         else:

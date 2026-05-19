@@ -1145,6 +1145,29 @@
       let allTeams = [];
       let leagues = [];
       let nextLeagueId = 1;
+
+      function compareLeagueNames(a, b) {
+        return String(a).localeCompare(String(b), undefined, { sensitivity: "base" });
+      }
+
+      /** Same ordering as ``sorted(group_names)`` on generated pyramid maps. */
+      function compareLeagueNamesForMapColors(a, b) {
+        a = String(a);
+        b = String(b);
+        return a < b ? -1 : a > b ? 1 : 0;
+      }
+
+      function sortLeaguesByName(leagueList) {
+        return leagueList.slice().sort(function (a, b) {
+          return compareLeagueNames(a.name, b.name);
+        });
+      }
+
+      function sortLeaguesInPlace() {
+        leagues.sort(function (a, b) {
+          return compareLeagueNames(a.name, b.name);
+        });
+      }
       let map, boundaryOutlineLayer, territoryLayer, markersGroup;
       let territoriesVisible = true;
       let boundariesReady = false;
@@ -2595,6 +2618,7 @@
         };
         for (const l of leagues) l.active = false;
         leagues.push(league);
+        sortLeaguesInPlace();
         renderLeagues();
         return league;
       }
@@ -2699,7 +2723,7 @@
         let html =
           '<button class="add-league-btn" id="btnAddLeague">+ Add League</button>';
 
-        for (const league of leagues) {
+        for (const league of sortLeaguesByName(leagues)) {
           const active = league.active
             ? "border-left:3px solid " + league.color
             : "";
@@ -2792,176 +2816,165 @@
       //   1. Pyramid tiers (pyramid teams only)
       //   2. All Leagues per tier (pyramid + merit at same absolute level)
       //   3. Merit competitions (per-competition, per-local-tier)
-      var importData = { pyramid: [], allLeagues: [], merit: [], predicted: [], predictedSeason: "" };
+      var importData = {
+        pyramid: [],
+        allLeagues: [],
+        merit: [],
+        bonus: [],
+        seasonLabel: "",
+      };
 
-      function buildTierIndex() {
-        // Pyramid-only: group non-merit teams by absolute tier
-        var pyrMap = new Map();
-        // All-leagues: group ALL teams by absolute tier
-        var allMap = new Map();
-        // Merit: group merit teams by competition, then local tier
-        var meritMap = new Map();
-
-        for (var i = 0; i < allTeams.length; i++) {
-          var t = allTeams[i];
-          if (!t.lg) continue;
-          var tierNum = t.t || 999;
-          var tierName = t.tn || "Unknown";
-          var isMerit = !!t.mc;
-
-          // All-leagues (every team with an absolute tier)
-          if (!allMap.has(tierNum))
-            allMap.set(tierNum, {
-              num: tierNum,
-              name: tierName,
-              leagueMap: new Map(),
-            });
-          var allTier = allMap.get(tierNum);
-          if (!allTier.leagueMap.has(t.lg)) allTier.leagueMap.set(t.lg, []);
-          allTier.leagueMap.get(t.lg).push(t);
-
-          if (isMerit) {
-            // Merit per-competition
-            var comp = t.mc;
-            var localTier = t.ml || comp;
-            if (!meritMap.has(comp)) meritMap.set(comp, new Map());
-            var compMap = meritMap.get(comp);
-            if (!compMap.has(localTier))
-              compMap.set(localTier, { name: localTier, leagueMap: new Map() });
-            var mTier = compMap.get(localTier);
-            if (!mTier.leagueMap.has(t.lg)) mTier.leagueMap.set(t.lg, []);
-            mTier.leagueMap.get(t.lg).push(t);
+      function assignLeagueColors(leagues, tierNum, force) {
+        var ordered = leagues.slice().sort(function (a, b) {
+          return compareLeagueNamesForMapColors(a.name, b.name);
+        });
+        var offset = Math.max(tierNum, 1) - 1;
+        var idx = 0;
+        for (var i = 0; i < ordered.length; i++) {
+          var lg = ordered[i];
+          if (lg.color && !force) {
+            if (lg.name !== "Unassigned") idx++;
+            continue;
+          }
+          if (lg.name === "Unassigned") {
+            lg.color = UNASSIGNED_COLOR;
           } else {
-            // Pyramid-only
-            if (!pyrMap.has(tierNum))
-              pyrMap.set(tierNum, {
-                num: tierNum,
-                name: tierName,
-                leagueMap: new Map(),
-              });
-            var pyrTier = pyrMap.get(tierNum);
-            if (!pyrTier.leagueMap.has(t.lg)) pyrTier.leagueMap.set(t.lg, []);
-            pyrTier.leagueMap.get(t.lg).push(t);
+            lg.color = COLOR_PALETTE[(offset + idx) % COLOR_PALETTE.length];
+            idx++;
           }
         }
+        return leagues;
+      }
 
-        function assignLeagueColors(leagues, tierNum) {
-          var offset = Math.max(tierNum, 1) - 1;
-          var idx = 0;
-          for (var i = 0; i < leagues.length; i++) {
-            if (leagues[i].color) continue;
-            if (leagues[i].name === "Unassigned") {
-              leagues[i].color = UNASSIGNED_COLOR;
-            } else {
-              leagues[i].color = COLOR_PALETTE[(offset + idx) % COLOR_PALETTE.length];
-              idx++;
-            }
+      function applyAllLeaguesColors(leagues, tierNum, pyramidTier) {
+        var pyramidColors = new Map();
+        var pyramidCount = 0;
+        if (pyramidTier && pyramidTier.leagues) {
+          for (var pi = 0; pi < pyramidTier.leagues.length; pi++) {
+            var plg = pyramidTier.leagues[pi];
+            if (plg.color) pyramidColors.set(plg.name, plg.color);
+            if (plg.name !== "Unassigned") pyramidCount++;
           }
-          return leagues;
         }
-
-        function finalizeTiers(map) {
-          return Array.from(map.values())
-            .sort(function (a, b) {
-              return a.num - b.num;
-            })
-            .map(function (tier) {
-              var lgs = Array.from(tier.leagueMap.entries())
-                .map(function (e) {
-                  return { name: e[0], teams: e[1] };
-                })
-                .sort(function (a, b) {
-                  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-                });
-              assignLeagueColors(lgs, tier.num);
-              return {
-                id: "t" + tier.num,
-                num: tier.num,
-                name: tier.name,
-                leagues: lgs,
-              };
-            });
+        var offset = Math.max(tierNum, 1) - 1;
+        var meritIdx = 0;
+        var ordered = leagues.slice().sort(function (a, b) {
+          return compareLeagueNamesForMapColors(a.name, b.name);
+        });
+        for (var li = 0; li < ordered.length; li++) {
+          var lg = ordered[li];
+          if (lg.name === "Unassigned") {
+            lg.color = UNASSIGNED_COLOR;
+          } else if (pyramidColors.has(lg.name)) {
+            lg.color = pyramidColors.get(lg.name);
+          } else {
+            lg.color =
+              COLOR_PALETTE[(offset + pyramidCount + meritIdx) % COLOR_PALETTE.length];
+            meritIdx++;
+          }
         }
+        return leagues;
+      }
 
-        importData.pyramid = finalizeTiers(pyrMap);
-
-        // All-leagues: only include tiers that have merit teams (otherwise same as pyramid)
-        var meritAbsTiers = new Set();
-        for (var j = 0; j < allTeams.length; j++) {
-          if (allTeams[j].mc && allTeams[j].t) meritAbsTiers.add(allTeams[j].t);
+      function resolveImportTier(tier, nameIndex, tierId) {
+        var leagues = [];
+        for (var li = 0; li < tier.leagues.length; li++) {
+          var lg = tier.leagues[li];
+          var resolved = [];
+          for (var ti = 0; ti < lg.teams.length; ti++) {
+            var team = nameIndex.get(
+              typeof lg.teams[ti] === "string" ? lg.teams[ti] : lg.teams[ti].n,
+            );
+            if (team) resolved.push(team);
+          }
+          if (resolved.length > 0) {
+            leagues.push({ name: lg.name, teams: resolved, color: lg.color });
+          }
         }
-        importData.allLeagues = finalizeTiers(allMap)
-          .filter(function (tier) {
-            return meritAbsTiers.has(tier.num);
-          })
-          .map(function (tier) {
-            return {
-              id: "al" + tier.num,
-              num: tier.num,
-              name: tier.name + " + Merit",
-              leagues: tier.leagues,
-            };
-          });
+        if (leagues.length === 0) return null;
+        var resolvedId =
+          tierId ||
+          tier.id ||
+          (tier.tier != null ? "t" + tier.tier : tier.num != null ? "t" + tier.num : "");
+        return {
+          id: resolvedId,
+          num: tier.tier != null ? tier.tier : tier.num,
+          name: tier.name,
+          leagues: sortLeaguesByName(leagues),
+        };
+      }
 
-        // Merit: per-competition, per-local-tier
+      function resolveImportTiers(tiers, nameIndex, idForTier) {
+        var out = [];
+        for (var i = 0; i < tiers.length; i++) {
+          var row = resolveImportTier(
+            tiers[i],
+            nameIndex,
+            idForTier ? idForTier(tiers[i], i) : null,
+          );
+          if (row) out.push(row);
+        }
+        return out;
+      }
+
+      function buildImportCatalog() {
+        importData.pyramid = [];
+        importData.allLeagues = [];
         importData.merit = [];
-        var compNames = Array.from(meritMap.keys()).sort();
-        for (var ci = 0; ci < compNames.length; ci++) {
-          var cName = compNames[ci];
-          var tierEntries = meritMap.get(cName);
-          var tiers = Array.from(tierEntries.values())
-            .sort(function (a, b) {
-              return a.name.localeCompare(b.name);
-            })
-            .map(function (tier) {
-              var lgs = Array.from(tier.leagueMap.entries())
-                .map(function (e) {
-                  return { name: e[0], teams: e[1] };
-                })
-                .sort(function (a, b) {
-                  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-                });
-              assignLeagueColors(lgs, 1);
-              return {
-                id: "m_" + cName + "_" + tier.name,
-                num: 0,
-                name: tier.name,
-                leagues: lgs,
-              };
-            });
-          importData.merit.push({ comp: cName, tiers: tiers });
+        importData.bonus = [];
+        importData.seasonLabel = "";
+
+        var nameIndex = new Map();
+        for (var ni = 0; ni < allTeams.length; ni++) {
+          nameIndex.set(allTeams[ni].n, allTeams[ni]);
         }
 
-        // Predicted tiers from projected markdown
-        importData.predicted = [];
-        importData.predictedSeason = "";
-        if (typeof PROJECTED_DATA !== "undefined" && PROJECTED_DATA && PROJECTED_DATA.tiers) {
-          importData.predictedSeason = PROJECTED_DATA.season || "";
-          var nameIndex = new Map();
-          for (var ni = 0; ni < allTeams.length; ni++) {
-            nameIndex.set(allTeams[ni].n, allTeams[ni]);
+        if (typeof SEASON_IMPORTS !== "undefined" && SEASON_IMPORTS) {
+          importData.seasonLabel = SEASON_IMPORTS.season || "";
+          importData.pyramid = resolveImportTiers(SEASON_IMPORTS.pyramid || [], nameIndex);
+          for (var pxi = 0; pxi < importData.pyramid.length; pxi++) {
+            assignLeagueColors(importData.pyramid[pxi].leagues, importData.pyramid[pxi].num, true);
           }
-          for (var pi2 = 0; pi2 < PROJECTED_DATA.tiers.length; pi2++) {
-            var pt = PROJECTED_DATA.tiers[pi2];
-            var predLeagues = [];
-            for (var pli = 0; pli < pt.leagues.length; pli++) {
-              var plg = pt.leagues[pli];
-              var resolved = [];
-              for (var pti = 0; pti < plg.teams.length; pti++) {
-                var team = nameIndex.get(plg.teams[pti]);
-                if (team) resolved.push(team);
-              }
-              if (resolved.length > 0) {
-                predLeagues.push({ name: plg.name, teams: resolved, color: plg.color });
-              }
+          importData.allLeagues = resolveImportTiers(
+            SEASON_IMPORTS.allLeagues || [],
+            nameIndex,
+          );
+          for (var ali = 0; ali < importData.allLeagues.length; ali++) {
+            var alTier = importData.allLeagues[ali];
+            var pyrTier = importData.pyramid.find(function (t) {
+              return t.num === alTier.num;
+            });
+            applyAllLeaguesColors(alTier.leagues, alTier.num, pyrTier);
+          }
+          var meritSrc = SEASON_IMPORTS.merit || [];
+          for (var mi = 0; mi < meritSrc.length; mi++) {
+            var comp = meritSrc[mi];
+            var tiers = resolveImportTiers(comp.tiers || [], nameIndex);
+            if (tiers.length > 0) {
+              importData.merit.push({ comp: comp.comp, tiers: tiers });
             }
-            if (predLeagues.length > 0) {
-              assignLeagueColors(predLeagues, pt.tier);
-              importData.predicted.push({
-                id: "pred" + pt.tier,
-                num: pt.tier,
-                name: pt.name,
-                leagues: predLeagues,
+          }
+        }
+
+        if (typeof BONUS_IMPORTS !== "undefined" && BONUS_IMPORTS && BONUS_IMPORTS.length) {
+          for (var bi = 0; bi < BONUS_IMPORTS.length; bi++) {
+            var pack = BONUS_IMPORTS[bi];
+            var packTiers = resolveImportTiers(
+              pack.tiers || [],
+              nameIndex,
+              function (tier) {
+                return (
+                  tier.id ||
+                  pack.id + "_" + (tier.tier != null ? tier.tier : tier.num)
+                );
+              },
+            );
+            if (packTiers.length > 0) {
+              importData.bonus.push({
+                id: pack.id,
+                label: pack.label || pack.id,
+                season: pack.season || "",
+                tiers: packTiers,
               });
             }
           }
@@ -2980,12 +2993,14 @@
       }
 
       function renderTierRow(tier, assigned, q) {
-        var matchingLeagues = tier.leagues.filter(function (lg) {
-          if (q && !tier.name.toLowerCase().includes(q)) {
-            return lg.name.toLowerCase().includes(q);
-          }
-          return true;
-        });
+        var matchingLeagues = sortLeaguesByName(
+          tier.leagues.filter(function (lg) {
+            if (q && !tier.name.toLowerCase().includes(q)) {
+              return lg.name.toLowerCase().includes(q);
+            }
+            return true;
+          }),
+        );
         if (q && matchingLeagues.length === 0) return "";
 
         var tierTeamCount = 0,
@@ -3029,7 +3044,7 @@
           " / " +
           tierTeamCount +
           "</span>" +
-          '<button class="modal-tier-import" data-action="import-tier" data-import-id="' +
+          '<button type="button" class="modal-tier-import" data-action="import-tier" data-import-id="' +
           escAttr(tier.id) +
           '">Import</button>' +
           "</div>" +
@@ -3046,20 +3061,23 @@
         var html = "";
         var anyMatch = false;
 
-        // Predicted tiers (from projected markdown)
-        if (importData.predicted.length > 0) {
-          var predHtml = "";
-          for (var pri = 0; pri < importData.predicted.length; pri++) {
-            var predRow = renderTierRow(importData.predicted[pri], assigned, q);
-            if (predRow) predHtml += predRow;
+        // Bonus import packs (projected leagues, drafts, etc.)
+        for (var bpi = 0; bpi < importData.bonus.length; bpi++) {
+          var bonusPack = importData.bonus[bpi];
+          var bonusHtml = "";
+          for (var bti = 0; bti < bonusPack.tiers.length; bti++) {
+            var bonusRow = renderTierRow(bonusPack.tiers[bti], assigned, q);
+            if (bonusRow) bonusHtml += bonusRow;
           }
-          if (predHtml) {
-            var predLabel = "Projected" + (importData.predictedSeason ? " " + escHtml(importData.predictedSeason) : "");
-            html += '<div class="modal-section-header">' + predLabel + "</div>" + predHtml;
+          if (bonusHtml) {
+            var bonusLabel = escHtml(bonusPack.label);
+            if (bonusPack.season && bonusPack.label.indexOf(bonusPack.season) < 0) {
+              bonusLabel += " " + escHtml(bonusPack.season);
+            }
+            html += '<div class="modal-section-header">' + bonusLabel + "</div>" + bonusHtml;
             anyMatch = true;
           }
         }
-
         // Section 1: Pyramid tiers
         var pyrHtml = "";
         for (var pi = 0; pi < importData.pyramid.length; pi++) {
@@ -3067,7 +3085,11 @@
           if (row) pyrHtml += row;
         }
         if (pyrHtml) {
-          html += '<div class="modal-section-header">Pyramid</div>' + pyrHtml;
+          var pyrLabel = "Pyramid";
+          if (importData.seasonLabel) {
+            pyrLabel += " (" + escHtml(importData.seasonLabel) + ")";
+          }
+          html += '<div class="modal-section-header">' + pyrLabel + "</div>" + pyrHtml;
           anyMatch = true;
         }
 
@@ -3112,9 +3134,10 @@
       }
 
       function findTierById(id) {
-        var all = importData.predicted
-          .concat(importData.pyramid)
-          .concat(importData.allLeagues);
+        var all = importData.pyramid.concat(importData.allLeagues);
+        for (var bi = 0; bi < importData.bonus.length; bi++) {
+          all = all.concat(importData.bonus[bi].tiers);
+        }
         for (var mi = 0; mi < importData.merit.length; mi++) {
           all = all.concat(importData.merit[mi].tiers);
         }
@@ -3139,6 +3162,7 @@
           for (var j = 0; j < teamsToAdd.length; j++)
             assigned.add(teamsToAdd[j].n);
         }
+        sortLeaguesInPlace();
 
         renderImportList(document.getElementById("importSearch").value);
         renderLeagues();
@@ -3163,6 +3187,7 @@
 
         var league = createLeague(leagueName, source.color);
         league.teams = teamsToAdd.slice();
+        sortLeaguesInPlace();
 
         renderImportList(document.getElementById("importSearch").value);
         renderLeagues();
@@ -3182,15 +3207,16 @@
           var importBtn = e.target.closest("[data-action='import-tier']");
           if (importBtn) {
             e.stopPropagation();
-            importWholeTier(importBtn.dataset.importId);
+            e.preventDefault();
+            importWholeTier(importBtn.getAttribute("data-import-id"));
             return;
           }
 
           var leagueItem = e.target.closest(".modal-league-item");
           if (leagueItem) {
             importSingleLeague(
-              leagueItem.dataset.importId,
-              leagueItem.dataset.league,
+              leagueItem.getAttribute("data-import-id"),
+              leagueItem.getAttribute("data-league"),
             );
             return;
           }
@@ -3216,7 +3242,7 @@
           history.replaceState(null, "", location.pathname);
           return;
         }
-        const parts = leagues.map((l) => {
+        const parts = sortLeaguesByName(leagues).map((l) => {
           const teamNames = l.teams
             .map((t) => encodeURIComponent(t.n))
             .join(",");
@@ -3238,6 +3264,7 @@
         const teamIndex = new Map();
         for (const t of allTeams) teamIndex.set(t.n, t);
 
+        leagues = [];
         const parts = hash.split(";").filter(Boolean);
         for (const part of parts) {
           const [rawName, rawColor, ...teamChunks] = part.split(":");
@@ -3249,9 +3276,16 @@
             .map((s) => decodeURIComponent(s))
             .filter(Boolean);
           const teams = teamNames.map((n) => teamIndex.get(n)).filter(Boolean);
-          const league = createLeague(name, color);
-          league.teams = teams;
+          leagues.push({
+            id: nextLeagueId++,
+            name,
+            color,
+            teams,
+            active: false,
+          });
         }
+        sortLeaguesInPlace();
+        if (leagues.length) leagues[0].active = true;
         renderLeagues();
         renderMap();
       }
@@ -3263,7 +3297,7 @@
         return d.innerHTML;
       }
       function escAttr(s) {
-        return s
+        return String(s)
           .replace(/&/g, "&amp;")
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#39;")
@@ -3445,7 +3479,7 @@
         // ran, or in a different order. Idempotent.
         decodeRoutedDistances();
         assignCountryToTeams();
-        buildTierIndex();
+        buildImportCatalog();
         document.getElementById("searchInput").placeholder =
           "Search " + allTeams.length.toLocaleString() + " teams\u2026";
         loadFromHash();
@@ -3458,7 +3492,8 @@
         if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
       }
     </script>
-    <script src="projected.js"></script>
+    <script src="bonus_imports.js"></script>
+    <script src="season_imports.js"></script>
     <script src="distances.js" onload="decodeRoutedDistances()"></script>
     <script src="teams.js" onload="onTeamsLoaded()"></script>
     <script src="boundaries.js" onload="onBoundariesLoaded()"></script>

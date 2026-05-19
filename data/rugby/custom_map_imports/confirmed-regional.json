@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "id": "confirmed-regional",
+  "label": "Confirmed Regional (from swrugby.co.uk)",
+  "season": "2026-2027",
+  "tiers": [
+    {
+      "tier": 5,
+      "name": "Confirmed Regional — Regional 1",
+      "leagues": [
+        {
+          "name": "Regional 1 Midlands",
+          "teams": [
+            "Banbury",
+            "Bridgnorth",
+            "Broadstreet",
+            "Bromsgrove",
+            "Lichfield",
+            "Loughborough Students",
+            "Lutterworth",
+            "Moseley Oak",
+            "Newport (Salop)",
+            "Oxford Harlequins",
+            "Stourbridge",
+            "Syston"
+          ]
+        },
+        {
+          "name": "Regional 1 North East",
+          "teams": [
+            "Alnwick",
+            "Blaydon",
+            "Driffield",
+            "Hull",
+            "Ilkley",
+            "Middlesbrough",
+            "North Ribblesdale",
+            "Northern",
+            "Sandal",
+            "Scarborough",
+            "Scunthorpe",
+            "York"
+          ]
+        },
+        {
+          "name": "Regional 1 North West",
+          "teams": [
+            "Anselmians",
+            "Blackburn",
+            "Bowdon",
+            "Burton",
+            "Dronfield",
+            "Kendal",
+            "Leek",
+            "Rochdale",
+            "Rossendale",
+            "Stockport",
+            "Vale of Lune",
+            "Wirral"
+          ]
+        },
+        {
+          "name": "Regional 1 South Central",
+          "teams": [
+            "Bournemouth",
+            "Bracknell",
+            "Brunel University",
+            "CS Stags 1863",
+            "Farnham",
+            "London Scottish Lions",
+            "Maidenhead",
+            "Old Alleynians",
+            "Sevenoaks",
+            "Tunbridge Wells",
+            "Wimbledon",
+            "Worthing"
+          ]
+        },
+        {
+          "name": "Regional 1 South East",
+          "teams": [
+            "Eton Manor",
+            "Hertford",
+            "HUEL Tring",
+            "Letchworth Garden City",
+            "North Walsham",
+            "Northampton Old Scouts",
+            "Old Colfeians",
+            "Old Northamptonians",
+            "Sidcup",
+            "Southend Saxons",
+            "Sudbury",
+            "Westcliff"
+          ]
+        },
+        {
+          "name": "Regional 1 Tribute Ale South West",
+          "teams": [
+            "Brixham",
+            "Chew Valley",
+            "Exmouth",
+            "Launceston",
+            "Lydney",
+            "Newent",
+            "Royal Wootton Bassett",
+            "Sidmouth",
+            "St Austell",
+            "Topsham",
+            "Trowbridge",
+            "Weston-super-Mare"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 6,
+      "name": "Confirmed Regional — Regional 2",
+      "leagues": [
+        {
+          "name": "Regional 2 Anglia",
+          "teams": [
+            "Braintree",
+            "Brentwood",
+            "Bury St Edmunds II",
+            "Chelmsford",
+            "Cheshunt",
+            "Finchley",
+            "Harlow",
+            "Rochford Hundred",
+            "Thurrock",
+            "Wanstead",
+            "Woodford",
+            "Wymondham"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands East",
+          "teams": [
+            "Bedford Athletic",
+            "Hinckley II",
+            "Kettering",
+            "Market Harborough",
+            "Nuneaton",
+            "Oadby Wyggestonians",
+            "Old Coventrians",
+            "Old Saltleians",
+            "Olney",
+            "Peterborough",
+            "Shelford",
+            "Stamford"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands North",
+          "teams": [
+            "Derby",
+            "Ilkeston",
+            "Long Eaton",
+            "Matlock",
+            "Melbourne",
+            "Paviors",
+            "Stoke on Trent",
+            "Sutton Coldfield",
+            "University of Nottingham",
+            "Walsall",
+            "West Bridgford",
+            "Whitchurch"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands West",
+          "teams": [
+            "Drybrook",
+            "Dudley Kingswinford",
+            "Edwardians",
+            "Hereford",
+            "Kenilworth",
+            "Luctonians II",
+            "Ludlow",
+            "Malvern",
+            "Shipston on Stour",
+            "Silhillians",
+            "Stow-on-the-Wold",
+            "Worcester"
+          ]
+        },
+        {
+          "name": "Regional 2 North",
+          "teams": [
+            "Consett",
+            "Durham City",
+            "Guisborough",
+            "Keswick",
+            "Morpeth",
+            "Novocastrians",
+            "Penrith",
+            "Percy Park",
+            "Ryton",
+            "Sunderland",
+            "Upper Eden",
+            "West Hartlepool"
+          ]
+        },
+        {
+          "name": "Regional 2 North East",
+          "teams": [
+            "Bradford Salem",
+            "Cleckheaton",
+            "Dinnington",
+            "Malton and Norton",
+            "Moortown",
+            "Morley",
+            "Old Brodleians",
+            "Pocklington",
+            "Pontefract",
+            "Selby",
+            "Wath Upon Dearne",
+            "Wetherby"
+          ]
+        },
+        {
+          "name": "Regional 2 North West",
+          "teams": [
+            "Birkenhead Park",
+            "Burnage",
+            "Douglas (I.O.M.)",
+            "Firwood Waterloo",
+            "Kirkby Lonsdale",
+            "Manchester",
+            "Northwich",
+            "Sandbach",
+            "Warrington",
+            "Widnes",
+            "Wilmslow",
+            "Winnington Park"
+          ]
+        },
+        {
+          "name": "Regional 2 South Central",
+          "teams": [
+            "Bognor",
+            "Camberley",
+            "Chobham",
+            "Guildford",
+            "Havant II",
+            "Old Tiffinians",
+            "Petersfield",
+            "Tottonians",
+            "Twickenham",
+            "Weybridge Vandals",
+            "Wimborne",
+            "Winchester"
+          ]
+        },
+        {
+          "name": "Regional 2 South East",
+          "teams": [
+            "Battersea Ironsides",
+            "Beckenham",
+            "Brighton",
+            "Bromley",
+            "Cobham",
+            "Dartfordians",
+            "Gravesend",
+            "Hammersmith & Fulham",
+            "Horsham",
+            "Medway",
+            "Old Elthamians",
+            "Sutton & Epsom"
+          ]
+        },
+        {
+          "name": "Regional 2 Thames",
+          "teams": [
+            "Amersham & Chiltern",
+            "Aylesbury Men I",
+            "Beaconsfield",
+            "Belsize Park",
+            "Ealing Trailfinders 1871",
+            "Grasshoppers",
+            "H.A.C.",
+            "Harpenden",
+            "London Irish Wild Geese",
+            "Marlow",
+            "Old Priorians",
+            "Teddington"
+          ]
+        },
+        {
+          "name": "Regional 2 Tribute Ale Severn",
+          "teams": [
+            "Chinnor III",
+            "Chippenham",
+            "Cleve",
+            "Keynsham",
+            "Longlevens",
+            "Marlborough",
+            "Matson",
+            "Newbury Blues",
+            "Old Centralians",
+            "Royal Wootton Bassett II",
+            "Thornbury",
+            "Witney"
+          ]
+        },
+        {
+          "name": "Regional 2 Tribute Ale South West",
+          "teams": [
+            "Crediton",
+            "Ivybridge",
+            "Nailsea & Backwell",
+            "North Petherton",
+            "Okehampton",
+            "Penzance & Newlyn",
+            "Sherborne",
+            "Teignmouth",
+            "Tiverton",
+            "Wadebridge Camels",
+            "Winscombe",
+            "Wiveliscombe"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,796 @@
+{
+  "schema_version": 1,
+  "id": "projected-2026-2027",
+  "label": "Projected 2026-2027",
+  "season": "2026-2027",
+  "tiers": [
+    {
+      "tier": 2,
+      "name": "Projected 2026-2027 — Championship",
+      "leagues": [
+        {
+          "name": "Championship",
+          "teams": [
+            "Ampthill",
+            "Bedford Blues",
+            "Caldy",
+            "Chinnor",
+            "Cornish Pirates",
+            "Coventry",
+            "Doncaster Knights",
+            "Ealing Trailfinders",
+            "Hartpury RFC",
+            "London Scottish",
+            "Nottingham",
+            "Richmond",
+            "Worcester Warriors"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Rotherham Titans"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 3,
+      "name": "Projected 2026-2027 — National League 1",
+      "leagues": [
+        {
+          "name": "National League 1",
+          "teams": [
+            "Birmingham Moseley",
+            "Bishop's Stortford",
+            "Blackheath",
+            "Dings Crusaders",
+            "Leeds Tykes",
+            "Plymouth Albion",
+            "Rams",
+            "Rosslyn Park",
+            "Sale FC",
+            "Tonbridge Juddians"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Bury St Edmunds",
+            "Camborne",
+            "Cambridge",
+            "Sheffield"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "name": "Projected 2026-2027 — National League 2",
+      "leagues": [
+        {
+          "name": "National League 2 East",
+          "teams": [
+            "Barnes",
+            "Canterbury",
+            "Colchester",
+            "Dorking",
+            "Esher",
+            "Guernsey",
+            "Havant",
+            "Henley",
+            "Jersey Rugby Football Club",
+            "London Welsh",
+            "Old Albanians",
+            "Oundle",
+            "Westcombe Park"
+          ]
+        },
+        {
+          "name": "National League 2 North",
+          "teams": [
+            "Billingham",
+            "Darlington Mowden Park",
+            "Fylde",
+            "Harrogate",
+            "Heath",
+            "Huddersfield",
+            "Hull Ionians",
+            "Macclesfield",
+            "Otley",
+            "Preston Grasshoppers",
+            "Sheffield Tigers",
+            "Tynedale",
+            "Wharfedale"
+          ]
+        },
+        {
+          "name": "National League 2 West",
+          "teams": [
+            "Barnstaple",
+            "Bournville",
+            "Chester",
+            "Cinderford",
+            "Devonport Services",
+            "Exeter University",
+            "Hinckley",
+            "Hornets",
+            "Luctonians",
+            "Lymm",
+            "Old Redcliffians",
+            "Redruth",
+            "Taunton Titans"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Clifton",
+            "Leicester Lions",
+            "Sedgley Park"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 5,
+      "name": "Projected 2026-2027 — Regional 1",
+      "leagues": [
+        {
+          "name": "Regional 1 Midlands",
+          "teams": [
+            "Banbury",
+            "Bridgnorth",
+            "Broadstreet",
+            "Bromsgrove",
+            "Lichfield",
+            "Lutterworth",
+            "Moseley Oak",
+            "Newent",
+            "Newport (Salop)",
+            "Northampton Old Scouts",
+            "Stourbridge"
+          ]
+        },
+        {
+          "name": "Regional 1 North East",
+          "teams": [
+            "Alnwick",
+            "Blaydon",
+            "Driffield",
+            "Ilkley",
+            "Kendal",
+            "Middlesbrough",
+            "Northern",
+            "Sandal",
+            "Scarborough",
+            "York"
+          ]
+        },
+        {
+          "name": "Regional 1 North West",
+          "teams": [
+            "Anselmians",
+            "Blackburn",
+            "Bowdon",
+            "Burton",
+            "Dronfield",
+            "Leek",
+            "North Ribblesdale",
+            "Rochdale",
+            "Stockport",
+            "Vale of Lune",
+            "Wirral"
+          ]
+        },
+        {
+          "name": "Regional 1 South Central",
+          "teams": [
+            "Bournemouth",
+            "Bracknell",
+            "CS Stags 1863",
+            "Farnham",
+            "London Scottish Lions",
+            "Maidenhead",
+            "Old Alleynians",
+            "Old Colfeians",
+            "Sidcup",
+            "Tunbridge Wells",
+            "Wimbledon",
+            "Worthing"
+          ]
+        },
+        {
+          "name": "Regional 1 South East",
+          "teams": [
+            "Brunel University",
+            "Eton Manor",
+            "Hertford",
+            "HUEL Tring",
+            "Letchworth Garden City",
+            "North Walsham",
+            "Old Northamptonians",
+            "Southend Saxons",
+            "Sudbury",
+            "Westcliff"
+          ]
+        },
+        {
+          "name": "Regional 1 Tribute Ale South West",
+          "teams": [
+            "Brixham",
+            "Chew Valley",
+            "Exmouth",
+            "Launceston",
+            "Lydney",
+            "Royal Wootton Bassett",
+            "Sidmouth",
+            "St Austell",
+            "Topsham",
+            "Trowbridge",
+            "Weston-super-Mare"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Hull",
+            "Loughborough Students",
+            "Oxford Harlequins",
+            "Rossendale",
+            "Scunthorpe",
+            "Sevenoaks",
+            "Syston"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 6,
+      "name": "Projected 2026-2027 — Regional 2",
+      "leagues": [
+        {
+          "name": "Regional 2 Anglia",
+          "teams": [
+            "Braintree",
+            "Brentwood",
+            "Chelmsford",
+            "H.A.C.",
+            "Harlow",
+            "Rochford Hundred",
+            "Wanstead",
+            "Woodford",
+            "Wymondham"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands East",
+          "teams": [
+            "Bedford Athletic",
+            "Kettering",
+            "Market Harborough",
+            "Oadby Wyggestonians",
+            "Old Coventrians",
+            "Olney",
+            "Peterborough",
+            "Stamford"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands North",
+          "teams": [
+            "Ilkeston",
+            "Matlock",
+            "Melbourne",
+            "Old Saltleians",
+            "Paviors",
+            "Stoke on Trent",
+            "Sutton Coldfield",
+            "Walsall",
+            "West Bridgford"
+          ]
+        },
+        {
+          "name": "Regional 2 Midlands West",
+          "teams": [
+            "Edwardians",
+            "Hereford",
+            "Kenilworth",
+            "Luctonians II",
+            "Ludlow",
+            "Malvern",
+            "Shipston on Stour",
+            "Silhillians",
+            "Stow-on-the-Wold"
+          ]
+        },
+        {
+          "name": "Regional 2 North",
+          "teams": [
+            "Consett",
+            "Durham City",
+            "Guisborough",
+            "Keswick",
+            "Morpeth",
+            "Percy Park",
+            "Sunderland",
+            "Upper Eden",
+            "West Hartlepool"
+          ]
+        },
+        {
+          "name": "Regional 2 North East",
+          "teams": [
+            "Bradford Salem",
+            "Malton and Norton",
+            "Moortown",
+            "Morley",
+            "Old Brodleians",
+            "Pocklington",
+            "Pontefract",
+            "Selby",
+            "Wetherby"
+          ]
+        },
+        {
+          "name": "Regional 2 North West",
+          "teams": [
+            "Birkenhead Park",
+            "Burnage",
+            "Douglas (I.O.M.)",
+            "Firwood Waterloo",
+            "Northwich",
+            "Sandbach",
+            "Widnes",
+            "Winnington Park"
+          ]
+        },
+        {
+          "name": "Regional 2 South Central",
+          "teams": [
+            "Chobham",
+            "Guildford",
+            "Havant II",
+            "Old Tiffinians",
+            "Petersfield",
+            "Tottonians",
+            "Twickenham",
+            "Wimborne",
+            "Winchester"
+          ]
+        },
+        {
+          "name": "Regional 2 South East",
+          "teams": [
+            "Battersea Ironsides",
+            "Beckenham",
+            "Brighton",
+            "Bromley",
+            "Dartfordians",
+            "Gravesend",
+            "Horsham",
+            "Sutton & Epsom"
+          ]
+        },
+        {
+          "name": "Regional 2 Thames",
+          "teams": [
+            "Aylesbury Men I",
+            "Beaconsfield",
+            "Belsize Park",
+            "Grasshoppers",
+            "Harpenden",
+            "London Irish Wild Geese",
+            "Marlow",
+            "Old Priorians",
+            "Teddington"
+          ]
+        },
+        {
+          "name": "Regional 2 Tribute Ale Severn",
+          "teams": [
+            "Chippenham",
+            "Cleve",
+            "Keynsham",
+            "Longlevens",
+            "Newbury Blues",
+            "Old Centralians",
+            "Royal Wootton Bassett II",
+            "Thornbury",
+            "Witney"
+          ]
+        },
+        {
+          "name": "Regional 2 Tribute Ale South West",
+          "teams": [
+            "Crediton",
+            "Ivybridge",
+            "North Petherton",
+            "Okehampton",
+            "Penzance & Newlyn",
+            "Teignmouth",
+            "Tiverton",
+            "Wadebridge Camels",
+            "Winscombe"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Amersham & Chiltern",
+            "Bognor",
+            "Bury St Edmunds II",
+            "Camberley",
+            "Cheshunt",
+            "Chinnor III",
+            "Cleckheaton",
+            "Cobham",
+            "Derby",
+            "Dinnington",
+            "Drybrook",
+            "Dudley Kingswinford",
+            "Ealing Trailfinders 1871",
+            "Finchley",
+            "Hammersmith & Fulham",
+            "Hinckley II",
+            "Kirkby Lonsdale",
+            "Long Eaton",
+            "Manchester",
+            "Marlborough",
+            "Matson",
+            "Medway",
+            "Nailsea & Backwell",
+            "Novocastrians",
+            "Nuneaton",
+            "Old Elthamians",
+            "Penrith",
+            "Ryton",
+            "Shelford",
+            "Sherborne",
+            "Thurrock",
+            "University of Nottingham",
+            "Warrington",
+            "Wath Upon Dearne",
+            "Weybridge Vandals",
+            "Whitchurch",
+            "Wilmslow",
+            "Wiveliscombe",
+            "Worcester"
+          ]
+        }
+      ]
+    },
+    {
+      "tier": 7,
+      "name": "Projected 2026-2027 — Counties 1",
+      "leagues": [
+        {
+          "name": "Counties 1 Cumbria",
+          "teams": [
+            "Ambleside",
+            "Aspatria",
+            "Carlisle",
+            "Cockermouth",
+            "Creighton",
+            "Egremont",
+            "Hawcoat Park",
+            "Keswick II",
+            "Millom",
+            "Penrith II",
+            "St Benedicts",
+            "Whitehaven",
+            "Wigton",
+            "Windermere",
+            "Workington"
+          ]
+        },
+        {
+          "name": "Counties 1 Durham & Northumberland",
+          "teams": [
+            "Acklam",
+            "Barnard Castle",
+            "Bishop Auckland",
+            "Darlington",
+            "Durham University",
+            "Gateshead",
+            "Hartlepool",
+            "Houghton",
+            "Medicals",
+            "Peterlee and Horden",
+            "Ponteland",
+            "Stockton"
+          ]
+        },
+        {
+          "name": "Counties 1 Eastern Counties",
+          "teams": [
+            "Cantabrigian",
+            "Colchester II",
+            "Holt",
+            "Ipswich",
+            "Newmarket",
+            "Norwich",
+            "Saffron Walden",
+            "Shelford II",
+            "Southwold",
+            "Stowmarket",
+            "West Norfolk",
+            "Woodbridge"
+          ]
+        },
+        {
+          "name": "Counties 1 Essex",
+          "teams": [
+            "Billericay",
+            "Burnham-on-Crouch",
+            "Campion",
+            "Chingford",
+            "East London",
+            "Epping Upper Clapton",
+            "Maldon",
+            "Old Brentwoods",
+            "Romford & Gidea Park",
+            "Stanford Le Hope",
+            "Upminster"
+          ]
+        },
+        {
+          "name": "Counties 1 Hampshire",
+          "teams": [
+            "Andover",
+            "Basingstoke",
+            "Bournemouth II",
+            "Chichester",
+            "Ellingham & Ringwood",
+            "Farnham II",
+            "Havant III",
+            "Millbrook",
+            "Portsmouth",
+            "Sandown & Shanklin",
+            "Trojans",
+            "Winchester II"
+          ]
+        },
+        {
+          "name": "Counties 1 Herts",
+          "teams": [
+            "Bishop's Stortford II",
+            "Datchworth",
+            "Eton Manor II",
+            "Fullerians",
+            "Hemel Hempstead",
+            "Hertford II",
+            "Hitchin",
+            "Old Albanian Romans",
+            "Royston",
+            "Southend II"
+          ]
+        },
+        {
+          "name": "Counties 1 Kent",
+          "teams": [
+            "Ashford",
+            "Beccehamian",
+            "Canterbury II",
+            "Crowborough",
+            "Deal & Betteshanger",
+            "Dover",
+            "Gillingham Anchorians",
+            "Heathfield & Waldron",
+            "Park House",
+            "Sevenoaks II",
+            "Thanet Wanderers",
+            "Tonbridge Juddians II"
+          ]
+        },
+        {
+          "name": "Counties 1 Middx",
+          "teams": [
+            "Barnet Elizabethans",
+            "Chiswick",
+            "Hackney",
+            "Hampstead",
+            "Old Haberdashers",
+            "Old Streetonians",
+            "Ruislip",
+            "Saracens Amateurs",
+            "U.C.S.",
+            "Wasps FC"
+          ]
+        },
+        {
+          "name": "Counties 1 Midlands East (North)",
+          "teams": [
+            "Bourne",
+            "Kesteven",
+            "Keyworth",
+            "Lincoln",
+            "Loughborough University II",
+            "Mansfield",
+            "Market Rasen & Louth",
+            "Mellish",
+            "Southwell",
+            "Spalding",
+            "Syston II"
+          ]
+        },
+        {
+          "name": "Counties 1 Midlands East (South)",
+          "teams": [
+            "Bugbrooke",
+            "Leicester Forest",
+            "Leighton Buzzard",
+            "Long Buckby",
+            "Market Bosworth",
+            "Newbold on Avon",
+            "Nuneaton Old Edwardians",
+            "Oundle II",
+            "Stewarts & Lloyds",
+            "Towcestrians",
+            "Vipers"
+          ]
+        },
+        {
+          "name": "Counties 1 Midlands West (North)",
+          "teams": [
+            "Aston Old Edwardians",
+            "Burntwood",
+            "Crewe & Nantwich",
+            "Newcastle (Staffs)",
+            "Newport (Salop) II",
+            "Shrewsbury",
+            "Spartans (Midlands)",
+            "Stourbridge II",
+            "Veseyans"
+          ]
+        },
+        {
+          "name": "Counties 1 Midlands West (South)",
+          "teams": [
+            "Alcester",
+            "Bromyard",
+            "Camp Hill",
+            "Earlsdon",
+            "Evesham",
+            "Leamington",
+            "Ledbury",
+            "Manor Park",
+            "Old Leamingtonians"
+          ]
+        },
+        {
+          "name": "Counties 1 Surrey/Sussex",
+          "teams": [
+            "Eastbourne",
+            "Haywards Heath",
+            "Hove",
+            "London Cornish",
+            "Old Caterhamians",
+            "Old Hamptonians",
+            "Old Reigatian",
+            "Old Rutlishians",
+            "Old Wimbledonians",
+            "Pulborough",
+            "Reeds Weybridge",
+            "Trinity"
+          ]
+        },
+        {
+          "name": "Counties 1 Tribute Ale Southern North",
+          "teams": [
+            "Banbury II",
+            "Beaconsfield II",
+            "Bicester",
+            "Bracknell II",
+            "Buckingham",
+            "Henley II",
+            "High Wycombe",
+            "Oxford",
+            "Oxford Harlequins II",
+            "Reading",
+            "Reading Abbey",
+            "Windsor"
+          ]
+        },
+        {
+          "name": "Counties 1 Tribute Ale Southern South",
+          "teams": [
+            "Chippenham II",
+            "Combe Down",
+            "Corsham",
+            "Devizes",
+            "Dorchester",
+            "Frome",
+            "Melksham",
+            "North Dorset",
+            "Salisbury",
+            "Swanage & Wareham",
+            "Trowbridge II",
+            "Walcot"
+          ]
+        },
+        {
+          "name": "Counties 1 Tribute Ale Western North",
+          "teams": [
+            "Burnham-on-Sea",
+            "Chard",
+            "Cheltenham",
+            "Cinderford II",
+            "Clifton II",
+            "Dings Crusaders II",
+            "Gordano",
+            "Gordon League",
+            "Midsomer Norton",
+            "Old Bristolians",
+            "Old Redcliffians II",
+            "Wellington"
+          ]
+        },
+        {
+          "name": "Counties 1 Tribute Ale Western West",
+          "teams": [
+            "Barnstaple II",
+            "Camborne II",
+            "Cullompton",
+            "Devonport Services II",
+            "Kingsbridge",
+            "Newton Abbot",
+            "Paignton",
+            "Redruth II",
+            "Saltash",
+            "St Ives (SW)",
+            "Torquay Athletic",
+            "Truro"
+          ]
+        },
+        {
+          "name": "Counties 1 Yorkshire",
+          "teams": [
+            "Beverley",
+            "Bridlington",
+            "Doncaster Phoenix",
+            "Goole",
+            "Harrogate Pythons",
+            "Keighley",
+            "Old Crossleyans",
+            "Old Otliensians",
+            "Old Rishworthian",
+            "Wensleydale",
+            "West Leeds",
+            "Yarnbury"
+          ]
+        },
+        {
+          "name": "Counties 1 adm Lancashire & Cheshire",
+          "teams": [
+            "Aldwinians",
+            "Altrincham Kersal",
+            "Bolton",
+            "Broughton Park",
+            "Didsbury Toc H",
+            "Eccles",
+            "Liverpool St Helens",
+            "New Brighton",
+            "Southport",
+            "Tarleton",
+            "West Park (St Helens)",
+            "Wigan"
+          ]
+        },
+        {
+          "name": "Unassigned",
+          "teams": [
+            "Barkers Butts",
+            "Belgrave",
+            "Daventry",
+            "Newark",
+            "Old Halesonians",
+            "Stratford Upon Avon",
+            "Trentham",
+            "Wellingborough"
+          ]
+        }
+      ]
+    }
+  ]
+}

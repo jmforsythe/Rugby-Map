@@ -471,6 +471,22 @@ def _rgb_norm_to_hex(r: float, g: float, b: float) -> str:
     return f"#{ri:02x}{gi:02x}{bi:02x}"
 
 
+def _mix_hex_colors(hex_a: str, hex_b: str, t: float) -> str:
+    """Linear sRGB mix: ``(1 - t) * hex_a + t * hex_b`` (``t`` in 0–1)."""
+    t_clamped = max(0.0, min(1.0, t))
+    ar, ag, ab = _hex_to_rgb_norm(hex_a)
+    br, bg, bb = _hex_to_rgb_norm(hex_b)
+    u = 1.0 - t_clamped
+    return _rgb_norm_to_hex(
+        u * ar + t_clamped * br, u * ag + t_clamped * bg, u * ab + t_clamped * bb
+    )
+
+
+def _watermark_fill_for_page_bg(page_bg: str) -> str:
+    """Subtle watermark tint derived from the page background colour."""
+    return _mix_hex_colors(page_bg, "#ffffff", WATERMARK_PAGE_BG_WHITE_MIX)
+
+
 def _mens_hex_to_womens_hsv_shifted(mens_hex: str, hue_shift: float) -> str:
     """Same HSV saturation and value as ``mens_hex``; hue rotated by ``hue_shift`` (0–1 turns)."""
     r, g, b = _hex_to_rgb_norm(mens_hex)
@@ -499,6 +515,10 @@ PAGE_BG_WOMENS = _mens_hex_to_womens_hsv_shifted(PAGE_BG, WOMENS_HSV_HUE_SHIFT)
 TITLE_TEXT = "#f4f4f4"
 SUBTITLE_FILL_MENS = "#aab8d8"
 SUBTITLE_FILL_WOMENS = _mens_hex_to_womens_hsv_shifted(SUBTITLE_FILL_MENS, WOMENS_HSV_HUE_SHIFT)
+# Page watermark (title strip): domain text tinted slightly lighter than ``page_bg``.
+WATERMARK_DOMAIN = "rugbyunionmap.uk"
+WATERMARK_FONT_SIZE = 24.0
+WATERMARK_PAGE_BG_WHITE_MIX = 0.14
 TIER_LABEL_TEXT = "#dde6f0"
 TIER_MARGIN_LABEL_TEXT_WOMENS = _mens_hex_to_womens_hsv_shifted(
     TIER_LABEL_TEXT, WOMENS_HSV_HUE_SHIFT
@@ -3782,6 +3802,30 @@ def _womens_league_logo_cap_px(cell_h: float, visible_tier: int) -> float:
 # ---------------------------------------------------------------------------
 
 
+def _page_watermark_x(export_w: float) -> float:
+    """Horizontal centre of the watermark: midway between page centre and the right margin."""
+    margin = float(PAGE_MARGIN_X)
+    centre = export_w / 2.0
+    right_margin = export_w - margin
+    return (centre + right_margin) / 2.0
+
+
+def _page_watermark_svg(export_w: float, y: float, page_bg: str) -> list[str]:
+    """Domain label in the title strip (export coordinates, above the pyramid)."""
+    fill = _watermark_fill_for_page_bg(page_bg)
+    return [
+        _svg_text(
+            WATERMARK_DOMAIN,
+            _page_watermark_x(export_w),
+            y,
+            fill=fill,
+            size=WATERMARK_FONT_SIZE,
+            weight="500",
+            anchor="middle",
+        ),
+    ]
+
+
 def _svg_text(
     text: str,
     x: float,
@@ -6874,6 +6918,7 @@ def render_pyramid_svg(
                     anchor="middle",
                 )
 
+            watermark_el = "\n".join(_page_watermark_svg(float(export_w), title_y, page_bg))
             title_parts = [
                 _svg_text(
                     main_title,
@@ -6898,6 +6943,7 @@ def render_pyramid_svg(
                 f'viewBox="0 0 {export_w} {image_height}" '
                 f'width="{export_w}" height="{image_height}">\n'
                 f'<rect x="0" y="0" width="{export_w}" height="{image_height}" fill="{page_bg}"/>\n'
+                f"{watermark_el}\n"
                 f"{body}\n"
                 f"</svg>\n"
             )

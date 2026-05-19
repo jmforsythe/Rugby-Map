@@ -842,6 +842,20 @@ def test_stem_forest_merit_division_name_collision() -> None:
     assert par.merit_geocoded_competition == "Middlesex"
 
 
+def test_watermark_fill_is_subtle_against_page_background() -> None:
+    from rugby.pyramid_image import (
+        PAGE_BG,
+        PAGE_BG_WOMENS,
+        _hex_relative_luminance,
+        _watermark_fill_for_page_bg,
+    )
+
+    for page_bg in (PAGE_BG, PAGE_BG_WOMENS):
+        wm = _watermark_fill_for_page_bg(page_bg)
+        assert wm != page_bg
+        assert abs(_hex_relative_luminance(wm) - _hex_relative_luminance(page_bg)) < 0.06
+
+
 def test_order_tier_mappings_payload_top_level_key_order() -> None:
     from rugby.pyramid_image import TIER7_COLUMN_ORDER_JSON_KEY, order_tier_mappings_payload
 

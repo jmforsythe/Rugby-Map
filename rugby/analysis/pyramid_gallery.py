@@ -103,16 +103,22 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
     }}
     body {{
       margin: 0;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
     }}
     header {{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       padding: 0.75rem 1rem;
-      width: 100%;
       box-sizing: border-box;
       border-bottom: 1px solid #333;
+      background: #1a1b1e;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem 1rem;
@@ -139,9 +145,11 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
     button:focus-visible {{ outline: 2px solid #6ea8fe; outline-offset: 2px; }}
     #stage {{
       flex: 1;
+      min-height: 0;
       width: 100%;
+      margin-top: var(--gallery-header-h, 4.5rem);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 0.75rem;
       box-sizing: border-box;
@@ -168,11 +176,15 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
       display: block;
       margin: 0 auto;
       min-height: min(120px, 30vh);
+      /* Let wheel events reach the page for Ctrl+scroll zoom (nested SVG doc otherwise captures them). */
+      pointer-events: none;
     }}
     footer {{
+      flex-shrink: 0;
       padding: 0.5rem;
       font-size: 0.8rem;
       opacity: 0.65;
+      text-align: center;
     }}
   </style>
 </head>
@@ -277,12 +289,26 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
     imgEl.addEventListener("load", () => applyZoom());
     objEl.addEventListener("load", () => applyZoom());
 
-    document.getElementById("stage").addEventListener("wheel", (e) => {{
+    function syncHeaderOffset() {{
+      const hdr = document.querySelector("header");
+      if (hdr) {{
+        document.documentElement.style.setProperty(
+          "--gallery-header-h",
+          hdr.offsetHeight + "px"
+        );
+      }}
+    }}
+    syncHeaderOffset();
+    window.addEventListener("resize", syncHeaderOffset);
+
+    function onWheelZoom(e) {{
       if (!e.ctrlKey) return;
       e.preventDefault();
       const dir = e.deltaY > 0 ? -1 : 1;
-      bumpZoom(dir * ZOOM_STEP * (e.deltaMode === 1 ? 3 : 1));
-    }}, {{ passive: false }});
+      const scale = e.deltaMode === 1 ? 3 : (e.deltaMode === 2 ? 24 : 1);
+      bumpZoom(dir * ZOOM_STEP * scale);
+    }}
+    window.addEventListener("wheel", onWheelZoom, {{ passive: false, capture: true }});
 
     window.addEventListener("keydown", (e) => {{
       if (e.key === "ArrowLeft") {{ e.preventDefault(); show(idx - 1); }}

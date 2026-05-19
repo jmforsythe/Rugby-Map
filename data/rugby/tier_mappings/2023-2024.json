@@ -204,12 +204,12 @@
     },
     "4": {
       "NOWIRUL Bowness Bay Brewing Ltd Division 3 North": "NOWIRUL Wayne Lord Plumbing Division 2 North",
-      "NOWIRUL County Couriers Division 3 Central": "NOWIRUL Wayne Lord Plumbing Division 2 North",
-      "NOWIRUL EDS Hygiene Specialists Division 3 South": "NOWIRUL John on Pedder Street Division 2 South",
-      "NOWIRUL The Bay Travel Division 3 West": [
+      "NOWIRUL County Couriers Division 3 Central": [
         "NOWIRUL John on Pedder Street Division 2 South",
         "NOWIRUL Wayne Lord Plumbing Division 2 North"
-      ]
+      ],
+      "NOWIRUL EDS Hygiene Specialists Division 3 South": "NOWIRUL John on Pedder Street Division 2 South",
+      "NOWIRUL The Bay Travel Division 3 West": "NOWIRUL Wayne Lord Plumbing Division 2 North"
     },
     "5": {
       "NOWIRUL WMD Division 4 East": "NOWIRUL County Couriers Division 3 Central",

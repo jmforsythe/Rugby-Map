@@ -8548,49 +8548,22 @@ def merit_parent_overrides_save(
 # PNG rasterisation (Playwright)
 # ---------------------------------------------------------------------------
 
+# Chromium can truncate ``foreignObject`` HTML subtrees on very tall single-shot
+# screenshots while native SVG (background rects, polygons) still paints to the
+# full viewport. Tile vertically and stitch so crest grids reach the stem foot.
+PNG_TILE_HEIGHT_CSS = 2048
 
-def rasterise_svg_to_png(
-    svg_path: Path,
-    png_path: Path,
-    *,
-    scale: float = 1.0,
-    image_poll_timeout_ms: float = 120_000.0,
-) -> None:
-    """Render ``svg_path`` to ``png_path`` using Playwright (Chromium).
 
-    Requires ``pip install playwright && playwright install chromium`` (already
-    documented in ``requirements-dev.txt``).
-
-    Crests load inside ``foreignObject`` ``<img>`` nodes. Navigation uses ``domcontentloaded``
-    only — ``load`` would block until every crest URL finishes (which can hang indefinitely).
-    We poll until each ``img`` is ``complete`` or ``image_poll_timeout_ms`` elapses, then shoot.
-    """
-    try:
-        from playwright.sync_api import sync_playwright  # noqa: PLC0415
-    except ImportError as exc:  # pragma: no cover - convenience guard
-        raise RuntimeError(
-            "Playwright is required for PNG output. "
-            "Run: pip install -r requirements-dev.txt && python -m playwright install chromium"
-        ) from exc
-
-    # Read intrinsic SVG dimensions from the file so we can size the viewport
-    # large enough to capture the whole image without scrolling artefacts.
-    svg_text = svg_path.read_text(encoding="utf-8")
+def _parse_svg_dimensions(svg_text: str) -> tuple[int, int]:
     width_match = re.search(r'<svg[^>]*\swidth="(\d+(?:\.\d+)?)"', svg_text)
     height_match = re.search(r'<svg[^>]*\sheight="(\d+(?:\.\d+)?)"', svg_text)
     if not width_match or not height_match:
-        raise RuntimeError(f"Could not parse width/height from SVG header in {svg_path}")
-    svg_w = int(float(width_match.group(1)))
-    svg_h = int(float(height_match.group(1)))
+        raise RuntimeError("Could not parse width/height from SVG header")
+    return int(float(width_match.group(1))), int(float(height_match.group(1)))
 
-    svg_uri = svg_path.resolve().as_uri()
 
-    timeout_ms = float(image_poll_timeout_ms)
-    if timeout_ms <= 0:
-        timeout_ms = 1_000.0
-
-    # True when every HTMLImageElement has left the "still loading" state (success or error).
-    imgs_done_js = """\
+def _playwright_imgs_done_js() -> str:
+    return """\
 (() => {
     for (const im of document.images) {
         if (!im.complete) {
@@ -8601,49 +8574,181 @@ def rasterise_svg_to_png(
 })()
 """
 
+
+def _wait_for_pyramid_crest_images(page, *, timeout_ms: float) -> None:
+    t0 = time.monotonic()
+    while (time.monotonic() - t0) * 1000.0 < timeout_ms:
+        if page.evaluate(_playwright_imgs_done_js()):
+            break
+        page.wait_for_timeout(150)
+    else:
+        incomplete = page.evaluate("""(() => {
+                let n = 0;
+                for (const im of document.images) {
+                    if (!im.complete) n++;
+                }
+                return n;
+            })()""")
+        logger.warning(
+            "PNG: %d crest <img> nodes still loading after %.0f ms; "
+            "capturing anyway (some crests may be incomplete).",
+            int(incomplete),
+            timeout_ms,
+        )
+
+
+def _stitch_png_tiles(tiles: list, out_path: Path) -> None:
+    from PIL import Image as PILImage
+
+    if not tiles:
+        raise RuntimeError("No PNG tiles to stitch")
+    out_w = tiles[0].width
+    canvas = PILImage.new("RGBA", (out_w, sum(img.height for img in tiles)), (0, 0, 0, 0))
+    y = 0
+    for img in tiles:
+        if img.width != out_w:
+            raise RuntimeError(f"PNG tile width mismatch: expected {out_w}, got {img.width}")
+        canvas.paste(img, (0, y))
+        y += img.height
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(out_path, format="PNG")
+
+
+def rasterise_svg_to_png(
+    svg_path: Path,
+    png_path: Path,
+    *,
+    scale: float = 1.0,
+    image_poll_timeout_ms: float = 120_000.0,
+    tile_height_css: int = PNG_TILE_HEIGHT_CSS,
+) -> None:
+    """Render ``svg_path`` to ``png_path`` using Playwright (Chromium).
+
+    Requires ``pip install playwright && playwright install chromium`` (already
+    documented in ``requirements-dev.txt``).
+
+    Crests load inside ``foreignObject`` ``<img>`` nodes. Navigation uses ``domcontentloaded``
+    only — ``load`` would block until every crest URL finishes (which can hang indefinitely).
+    We poll until each ``img`` is ``complete`` or ``image_poll_timeout_ms`` elapses, then shoot.
+
+    Very tall SVGs are captured in vertical tiles (see ``PNG_TILE_HEIGHT_CSS``) and stitched
+    with Pillow so ``foreignObject`` crest grids are not truncated mid-stem.
+    """
+    try:
+        from playwright.sync_api import sync_playwright  # noqa: PLC0415
+    except ImportError as exc:  # pragma: no cover - convenience guard
+        raise RuntimeError(
+            "Playwright is required for PNG output. "
+            "Run: pip install -r requirements-dev.txt && python -m playwright install chromium"
+        ) from exc
+
+    try:
+        from PIL import Image
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError(
+            "Pillow is required for tiled PNG output. Run: pip install Pillow"
+        ) from exc
+
+    svg_text = svg_path.read_text(encoding="utf-8")
+    svg_w, svg_h = _parse_svg_dimensions(svg_text)
+    svg_uri = svg_path.resolve().as_uri()
+
+    timeout_ms = float(image_poll_timeout_ms)
+    if timeout_ms <= 0:
+        timeout_ms = 1_000.0
+
+    tile_h = max(256, int(tile_height_css))
+
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True, timeout=120_000)
         try:
+            first_tile_h = min(tile_h, svg_h) if svg_h > tile_h else svg_h
             ctx = browser.new_context(
-                viewport={"width": svg_w, "height": svg_h},
+                viewport={"width": svg_w, "height": first_tile_h},
                 device_scale_factor=scale,
             )
             page = ctx.new_page()
-            png_path.parent.mkdir(parents=True, exist_ok=True)
             page.goto(svg_uri, wait_until="domcontentloaded", timeout=180_000)
+            _wait_for_pyramid_crest_images(page, timeout_ms=timeout_ms)
 
-            t0 = time.monotonic()
-            while (time.monotonic() - t0) * 1000.0 < timeout_ms:
-                if page.evaluate(imgs_done_js):
-                    break
-                page.wait_for_timeout(150)
-
-            if not page.evaluate(imgs_done_js):
-                incomplete = page.evaluate("""(() => {
-                        let n = 0;
-                        for (const im of document.images) {
-                            if (!im.complete) n++;
-                        }
-                        return n;
-                    })()""")
-                logger.warning(
-                    "PNG: %d crest <img> nodes still loading after %.0f ms; "
-                    "capturing anyway (some crests may be incomplete).",
-                    int(incomplete),
-                    timeout_ms,
+            tiles: list[Image.Image] = []
+            for tile_y in range(0, svg_h, tile_h):
+                th = min(tile_h, svg_h - tile_y)
+                page.set_viewport_size({"width": svg_w, "height": th})
+                page.evaluate(
+                    """(offsetY) => {
+                        const root = document.documentElement;
+                        root.style.transform = `translate(0, ${-offsetY}px)`;
+                        root.style.transformOrigin = 'top left';
+                    }""",
+                    tile_y,
                 )
+                page.wait_for_timeout(200)
+                png_bytes = page.screenshot(
+                    full_page=False,
+                    omit_background=True,
+                    timeout=240_000,
+                    type="png",
+                )
+                tiles.append(Image.open(io.BytesIO(png_bytes)).convert("RGBA"))
 
-            page.wait_for_timeout(400)
-            # ``full_page=True`` can hang or take extreme time on wide SVGs with hundreds of
-            # ``foreignObject`` crests; viewport already matches the SVG width/height.
-            page.screenshot(
-                path=str(png_path),
-                full_page=False,
-                omit_background=True,
-                timeout=240_000,
+            _stitch_png_tiles(tiles, png_path)
+            logger.info(
+                "Wrote %s (%d×%d px, %d tile(s), scale=%.2f)",
+                png_path,
+                tiles[0].width,
+                sum(t.height for t in tiles),
+                len(tiles),
+                scale,
             )
         finally:
             browser.close()
+
+
+PYRAMID_PREVIEW_MAX_WIDTH = 760
+
+
+def _preview_png_path(png_path: Path) -> Path:
+    """Index-page thumbnail beside the full PNG (``pyramid.png`` → ``pyramid.preview.png``)."""
+    return png_path.with_name(f"{png_path.stem}.preview.png")
+
+
+def write_pyramid_preview_png(
+    full_png_path: Path,
+    preview_path: Path,
+    *,
+    max_width: int = PYRAMID_PREVIEW_MAX_WIDTH,
+) -> bool:
+    """Downscale a raster pyramid PNG for season-index thumbnails.
+
+    Returns ``True`` when a preview file was written.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        logger.warning("Pillow not installed — skipping preview PNG for %s", full_png_path.name)
+        return False
+
+    with Image.open(full_png_path) as im:
+        if im.mode in ("RGBA", "LA"):
+            background = Image.new("RGB", im.size, (255, 255, 255))
+            background.paste(im, mask=im.split()[-1])
+            rgb = background
+        elif im.mode == "P" and "transparency" in im.info:
+            rgba = im.convert("RGBA")
+            background = Image.new("RGB", rgba.size, (255, 255, 255))
+            background.paste(rgba, mask=rgba.split()[-1])
+            rgb = background
+        else:
+            rgb = im.convert("RGB")
+        w, h = rgb.size
+        if w > max_width:
+            new_h = max(1, round(h * max_width / w))
+            rgb = rgb.resize((max_width, new_h), Image.Resampling.LANCZOS)
+        preview_path.parent.mkdir(parents=True, exist_ok=True)
+        rgb.save(preview_path, format="PNG", optimize=True)
+    logger.info("Wrote preview %s (from %s)", preview_path, full_png_path.name)
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -8698,6 +8803,12 @@ def _write_pyramid_svg_and_png(
             logger.error("%s", exc)
             return 1
         logger.info("Wrote %s", png_path)
+        if not args.no_png_preview:
+            write_pyramid_preview_png(
+                png_path,
+                _preview_png_path(png_path),
+                max_width=args.png_preview_max_width,
+            )
     return 0
 
 
@@ -9107,6 +9218,24 @@ def main() -> int:
         help="Device-scale-factor for the PNG (>1 for higher-DPI output).",
     )
     parser.add_argument(
+        "--no-png-preview",
+        action="store_true",
+        help=(
+            "Skip writing a downscaled *.preview.png beside each full PNG "
+            "(season index thumbnails; default is to write previews)."
+        ),
+    )
+    parser.add_argument(
+        "--png-preview-max-width",
+        type=int,
+        default=PYRAMID_PREVIEW_MAX_WIDTH,
+        metavar="PX",
+        help=(
+            "Max width in pixels for *.preview.png thumbnails "
+            f"(default {PYRAMID_PREVIEW_MAX_WIDTH})."
+        ),
+    )
+    parser.add_argument(
         "--png-image-timeout-ms",
         type=float,
         default=120_000.0,
@@ -9200,6 +9329,10 @@ def main() -> int:
 
     if args.png_scale <= 0 or args.png_scale > 4:
         logger.error("--png-scale must be > 0 and ≤ 4")
+        return 1
+
+    if args.png_preview_max_width < 120 or args.png_preview_max_width > 4096:
+        logger.error("--png-preview-max-width must be between 120 and 4096")
         return 1
 
     if args.womens and args.merit is not None:

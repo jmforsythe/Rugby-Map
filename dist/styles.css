@@ -454,6 +454,7 @@ body.wide-layout {
 .tier-table__diagrams td {
   vertical-align: top;
   padding-top: 0.5em;
+  min-width: 0;
 }
 
 .merit-card-body .pyramid-diagram-stack--compact {
@@ -468,6 +469,8 @@ body.wide-layout {
 
 .pyramid-diagram-preview--compact {
   max-width: 100%;
+  width: 100%;
+  min-width: 0;
 }
 
 .pyramid-diagram-preview--compact .pyramid-diagram-preview__img {
@@ -742,12 +745,21 @@ a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
 /* Tier table (pyramid / +merit columns) */
 .tier-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0 0.4em;
   background: var(--bg-card);
   border-radius: 8px;
   padding: 1em;
   box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* Keep Pyramid / + Merit columns equal while lazy-loaded previews resolve. */
+.tier-table--dual th,
+.tier-table--dual td,
+.tier-table:has(thead th:nth-child(2)) th,
+.tier-table:has(thead th:nth-child(2)) td {
+  width: 50%;
 }
 
 .tier-table__head {
@@ -770,6 +782,7 @@ a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
   font-size: 0.95em;
   transition: all 0.2s;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .tier-link:hover {

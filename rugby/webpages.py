@@ -259,35 +259,46 @@ def _pyramid_diagram_full_href(season_dir: Path, stem: str) -> str | None:
     return None
 
 
+def _pyramid_full_png_href(season_dir: Path, stem: str) -> str | None:
+    """Full-resolution PNG href when present (for open-image-in-new-tab)."""
+    png = season_dir / f"{stem}.png"
+    return f"{stem}.png" if png.is_file() else None
+
+
+def _pyramid_preview_thumb_src(season_dir: Path, stem: str) -> str | None:
+    """Small preview PNG for inline display, else full PNG, else SVG."""
+    preview = season_dir / f"{stem}.preview.png"
+    if preview.is_file():
+        return f"{stem}.preview.png"
+    png = season_dir / f"{stem}.png"
+    if png.is_file():
+        return f"{stem}.png"
+    return _pyramid_diagram_full_href(season_dir, stem)
+
+
 def _pyramid_labels_stem(stem: str) -> str:
     """Labelled variant stem (``pyramid`` → ``pyramid_Labels``)."""
     return f"{stem}_Labels"
 
 
 def _detect_pyramid_diagram_pair(season_dir: Path, stem: str) -> dict[str, str | None]:
-    """Unlabelled and labelled (``{stem}_Labels``) pyramid thumbnail + full href."""
-    thumb_src: str | None = None
+    """Unlabelled and labelled pyramid preview + full (SVG) + full PNG hrefs."""
     full_href = _pyramid_diagram_full_href(season_dir, stem)
-    png = season_dir / f"{stem}.png"
-    if png.is_file():
-        thumb_src = f"{stem}.png"
-    elif full_href is not None:
-        thumb_src = full_href
+    thumb_src = _pyramid_preview_thumb_src(season_dir, stem)
+    full_png_href = _pyramid_full_png_href(season_dir, stem)
 
     labels_stem = _pyramid_labels_stem(stem)
-    labels_thumb: str | None = None
     labels_full = _pyramid_diagram_full_href(season_dir, labels_stem)
-    labels_png = season_dir / f"{labels_stem}.png"
-    if labels_png.is_file():
-        labels_thumb = f"{labels_stem}.png"
-    elif labels_full is not None:
-        labels_thumb = labels_full
+    labels_thumb = _pyramid_preview_thumb_src(season_dir, labels_stem)
+    labels_full_png = _pyramid_full_png_href(season_dir, labels_stem)
 
     return {
         "thumb_src": thumb_src,
         "full_href": full_href,
+        "full_png_href": full_png_href,
         "labels_thumb_src": labels_thumb,
         "labels_full_href": labels_full,
+        "labels_full_png_href": labels_full_png,
     }
 
 
@@ -297,19 +308,31 @@ def _build_pyramid_diagram_preview_html(
     full_href: str,
     alt: str,
     aria_label: str,
+    full_png_href: str | None = None,
     compact: bool = False,
 ) -> str:
-    """Clickable pyramid thumbnail linking to the full SVG/PNG."""
+    """Clickable pyramid thumbnail linking to the full SVG (or PNG if no SVG).
+
+    The inline ``<img>`` loads a small ``*.preview.png`` when available. On
+    right-click → open image, ``data-full-png`` swaps to the full ``--png-scale``
+    PNG before the browser context menu opens.
+    """
     compact_cls = " pyramid-diagram-preview--compact" if compact else ""
     href_esc = escape(full_href)
     thumb_esc = escape(thumb_src)
     alt_esc = escape(alt)
     aria_esc = escape(aria_label)
+    full_png_attr = ""
+    context_menu = ""
+    if full_png_href and full_png_href != thumb_src:
+        full_png_attr = f' data-full-png="{escape(full_png_href)}"'
+        context_menu = ' oncontextmenu="if(this.dataset.fullPng){this.src=this.dataset.fullPng}"'
     return (
         f'        <div class="pyramid-diagram-preview{compact_cls}">\n'
         f'        <a class="pyramid-diagram-preview__link" href="{href_esc}" '
         f'aria-label="{aria_esc}">\n'
-        f'            <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760" '
+        f'            <img class="pyramid-diagram-preview__img" src="{thumb_esc}" width="760"'
+        f"{full_png_attr}{context_menu} "
         'loading="lazy" decoding="async"'
         f' alt="{alt_esc}">\n'
         "        </a>\n"
@@ -333,6 +356,7 @@ def _build_pyramid_diagram_stack_html(
             _build_pyramid_diagram_preview_html(
                 thumb_src=thumb,
                 full_href=full,
+                full_png_href=pair.get("full_png_href"),
                 alt=alt_base,
                 aria_label=aria_base,
                 compact=compact,
@@ -350,6 +374,7 @@ def _build_pyramid_diagram_stack_html(
             _build_pyramid_diagram_preview_html(
                 thumb_src=labels_thumb,
                 full_href=labels_full,
+                full_png_href=pair.get("labels_full_png_href"),
                 alt=f"{alt_base} (club names labelled)",
                 aria_label=f"{aria_base} with club name labels",
                 compact=compact,
@@ -379,7 +404,8 @@ def _build_pyramid_section(
     extra_merit = merit_only_tiers or []
 
     html = '    <div class="pyramid-section">\n'
-    html += '    <table class="tier-table">\n'
+    table_cls = "tier-table tier-table--dual" if has_merit_col else "tier-table"
+    html += f'    <table class="{table_cls}">\n'
 
     if has_merit_col:
         html += "    <thead><tr>"

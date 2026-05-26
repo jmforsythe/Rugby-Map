@@ -12,7 +12,6 @@ from dataclasses import dataclass, field, replace
 from html import escape
 from pathlib import Path
 from typing import cast
-from urllib.parse import quote
 
 from core import (
     TravelDistances,
@@ -40,7 +39,13 @@ from core.map_builder import (
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
-from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+from rugby.seo import (
+    BASE_URL,
+    OG_DEFAULT_IMAGE,
+    absolute_url,
+    breadcrumb_ld_script,
+    og_image_meta_html,
+)
 from rugby.tiers import (
     extract_tier,
     get_competition_offset,
@@ -57,9 +62,8 @@ RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.
 
 def _absolute_map_url(dist_path_parent_posix: str) -> str:
     """Public HTTPS URL for a directory under dist/ (the folder that contains index.html)."""
-    parts = [p for p in dist_path_parent_posix.split("/") if p]
-    enc = "/".join(quote(p, safe="") for p in parts)
-    return f"{BASE_URL}/{enc}/"
+    site_path = "/" + "/".join(p for p in dist_path_parent_posix.split("/") if p) + "/"
+    return absolute_url(site_path)
 
 
 COLOR_PALETTE = [

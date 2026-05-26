@@ -29,7 +29,7 @@ from rugby.addresses import team_name_to_club_name
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
 from rugby.seo import BASE_URL as SITE_BASE_URL
-from rugby.seo import OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+from rugby.seo import OG_DEFAULT_IMAGE, absolute_url, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import extract_tier
 from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
 from rugby.webpages import get_footer_html
@@ -508,9 +508,11 @@ def get_team_page_html(
 
     team_file = _team_page_output_filename(team_data, ambiguous_display_names)
     # Canonical URL is only meaningful in production; omit it in local dev builds.
-    canonical_url = f"{SITE_BASE_URL}/teams/{team_file}" if is_prod else ""
+    canonical_url = absolute_url(f"/teams/{team_file}") if is_prod else ""
 
     head_extra = ""
+    if not league_history:
+        head_extra += '    <meta name="robots" content="noindex">\n'
     if canonical_url:
         cu = escape(canonical_url)
         # canonical: tells Google which URL to index when the same page is

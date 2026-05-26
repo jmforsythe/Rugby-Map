@@ -14,6 +14,39 @@ from core.config import DIST_DIR, REPO_ROOT
 
 BASE_URL = "https://rugbyunionmap.uk"
 
+# Encode each path segment for URLs; keep apostrophe literal to match on-disk names
+# (e.g. Premiership_Women's/) and avoid canonical/sitemap mismatches with %27.
+_PATH_SEGMENT_SAFE = "'"
+
+
+def encode_url_path(site_path: str) -> str:
+    """Return a pathname (leading ``/``) with per-segment quoting for ``<loc>``/canonical."""
+    if not site_path or site_path == "/":
+        return "/"
+    trailing_slash = site_path.endswith("/")
+    parts = [p for p in site_path.strip("/").split("/") if p]
+    encoded = "/" + "/".join(quote(p, safe=_PATH_SEGMENT_SAFE) for p in parts)
+    return encoded + "/" if trailing_slash else encoded
+
+
+def absolute_url(site_path: str) -> str:
+    """``BASE_URL`` + encoded pathname (``/`` for site root)."""
+    if site_path in ("", "/"):
+        return f"{BASE_URL}/"
+    return f"{BASE_URL}{encode_url_path(site_path)}"
+
+
+def absolute_url_for_dist_file(dist_dir: Path, html_file: Path) -> str:
+    """Public URL for a file under *dist_dir* (``index.html`` → directory URL)."""
+    rel = html_file.relative_to(dist_dir)
+    if rel.name == "index.html":
+        parent = rel.parent.as_posix()
+        site_path = "/" if parent == "." else f"/{parent}/"
+    else:
+        site_path = f"/{rel.as_posix()}"
+    return absolute_url(site_path)
+
+
 # Share image deployed at site root (copied from repo `example.png` in main()).
 OG_SHARE_IMAGE_FILE = "example.png"
 OG_IMAGE_WIDTH = 709
@@ -79,6 +112,15 @@ _MATCH_DAY_INDEX = re.compile(r"^/\d{4}-\d{4}/match_day/$")
 _SEASON_DIR_NAME = re.compile(r"^\d{4}-\d{4}$")
 
 
+def _is_redirect_stub(html_file: Path) -> bool:
+    """True when *html_file* is a generated legacy redirect (marked in HTML)."""
+    try:
+        head = html_file.read_text(encoding="utf-8", errors="replace")[:800]
+    except OSError:
+        return False
+    return 'data-rugby-redirect="1"' in head
+
+
 def _discover_latest_season(dist_dir: Path) -> str:
     """Highest ``YYYY-YYYY`` season slug under *dist_dir*; ``""`` if none."""
     seasons = [
@@ -129,14 +171,16 @@ def generate_sitemap(dist_dir: Path) -> str:
         if rel_path.parts and rel_path.parts[0] == "football":
             continue
 
-        rel_posix = rel_path.as_posix()
-        if html_file.name == "index.html":
-            parent = rel_path.parent.as_posix()
-            url_path = "/" if parent == "." else f"/{quote(parent)}/"
-        else:
-            url_path = f"/{quote(rel_posix)}"
+        # Redirect stubs for legacy URLs are noindex and must not be re-submitted.
+        if html_file.name == "index.html" and _is_redirect_stub(html_file):
+            continue
 
-        loc = f"{BASE_URL}{url_path}"
+        loc = absolute_url_for_dist_file(dist_dir, html_file)
+        url_path = encode_url_path(
+            "/" + rel_path.parent.as_posix() + "/"
+            if rel_path.name == "index.html"
+            else f"/{rel_path.as_posix()}"
+        )
         prio = _priority_for_site_path(url_path, latest_season=latest_season)
         lm = _lastmod_utc_date(html_file)
         url_parts.append((prio, loc, lm))
@@ -187,6 +231,11 @@ def main() -> None:
     robots_path = dist_dir / "robots.txt"
     robots_path.write_text(robots, encoding="utf-8")
     print(f"Created {robots_path}")
+
+    from rugby.redirects import generate_legacy_redirects
+
+    redirect_count = generate_legacy_redirects(dist_dir)
+    print(f"Legacy redirect stubs: {redirect_count} written or updated")
 
 
 if __name__ == "__main__":

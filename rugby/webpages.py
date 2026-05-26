@@ -146,13 +146,9 @@ def _not_found_redirect_script(*, is_prod: bool) -> str:
   var path = location.pathname;
   var m;
 
-  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/merit\\/([^/]+)(?:\\/|$)/);
+  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/merit(?:\\/|$)/);
   if (m) {{
-    location.replace(
-      isProd
-        ? "/" + m[1] + "/merit/" + m[2] + "/All_Tiers/"
-        : "/" + m[1] + "/merit/" + m[2] + "/All_Tiers.html"
-    );
+    location.replace(isProd ? "/" + m[1] + "/" : "/" + m[1] + "/index.html");
     return;
   }}
 

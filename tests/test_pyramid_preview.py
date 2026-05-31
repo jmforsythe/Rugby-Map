@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 from PIL import Image
@@ -47,6 +48,34 @@ def test_stitch_png_tiles(tmp_path: Path) -> None:
     assert merged.size == (10, 10)
     assert merged.getpixel((5, 2)) == (255, 0, 0, 255)
     assert merged.getpixel((5, 7)) == (0, 0, 255, 255)
+
+
+def test_stem_wants_full_png_only_national_and_all_leagues() -> None:
+    assert pi.stem_wants_full_png(Path("pyramid.png"))
+    assert pi.stem_wants_full_png(Path("pyramid_Labels.png"))
+    assert pi.stem_wants_full_png(Path("pyramid_All_Leagues.png"))
+    assert pi.stem_wants_full_png(Path("pyramid_All_Leagues_Labels.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid_womens.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid_merit_Hampshire.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid_merit_Hampshire_Labels.png"))
+
+
+def test_pyramid_png_output_mode_preview_only_for_merit() -> None:
+    args = argparse.Namespace(
+        png=True,
+        png_force_full=False,
+        output=None,
+        png_output=None,
+    )
+    assert pi._pyramid_png_output_mode(Path("pyramid.png"), args) == "full"
+    assert pi._pyramid_png_output_mode(Path("pyramid_merit_Essex.png"), args) == "preview_only"
+    args.png = False
+    assert pi._pyramid_png_output_mode(Path("pyramid.png"), args) == "none"
+
+
+def test_effective_preview_raster_scale() -> None:
+    assert pi._effective_preview_raster_scale(760, 760) == 1.0
+    assert pi._effective_preview_raster_scale(1520, 760) == 0.5
 
 
 def test_preview_html_links_svg_and_swaps_png_on_contextmenu() -> None:

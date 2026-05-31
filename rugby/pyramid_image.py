@@ -10,9 +10,10 @@ unchanged).
 Outputs an SVG to ``dist/<season>/pyramid.svg`` for the men's national pyramid (or
 ``pyramid_womens.svg`` with ``--womens``). After ``--merit``, an **all-leagues** men's diagram
 (merit leagues merged at absolute tiers, same offsets as All Leagues maps) is written to
-``dist/<season>/pyramid_All_Leagues.{svg,png}``, leaving ``pyramid.svg`` as national-only. With ``--png``, rasterised PNGs use Playwright (already a dev
-dependency). PNG export polls ``<img>`` crest loads instead of waiting for
-``networkidle`` so slow RFU hosts do not hang the run.
+``dist/<season>/pyramid_All_Leagues.{svg,png}``, leaving ``pyramid.svg`` as national-only. With ``--png``, Playwright rasterises full PNGs for
+``pyramid`` / ``pyramid_All_Leagues`` (and ``*_Labels`` siblings); other stems get
+``*.preview.png`` thumbnails only. PNG export polls ``<img>`` crest loads instead of
+waiting for ``networkidle`` so slow RFU hosts do not hang the run.
 
 Cross-tier parent links, sibling ordering, and optional ``stem_slot_strips`` all live
 in ``data/rugby/tier_mappings/<season>.json``; mappings from other seasons are merged
@@ -8707,6 +8708,26 @@ def rasterise_svg_to_png(
 
 PYRAMID_PREVIEW_MAX_WIDTH = 760
 
+_FULL_PNG_STEMS = frozenset(
+    {
+        "pyramid",
+        "pyramid_Labels",
+        "pyramid_All_Leagues",
+        "pyramid_All_Leagues_Labels",
+    }
+)
+
+
+def stem_wants_full_png(png_path: Path) -> bool:
+    """True when ``png_path`` should get a full ``--png-scale`` raster, not preview-only."""
+    return png_path.stem in _FULL_PNG_STEMS
+
+
+def _effective_preview_raster_scale(svg_width: int, max_width: int) -> float:
+    if svg_width <= max_width:
+        return 1.0
+    return max_width / svg_width
+
 
 def _preview_png_path(png_path: Path) -> Path:
     """Index-page thumbnail beside the full PNG (``pyramid.png`` → ``pyramid.preview.png``)."""
@@ -8751,6 +8772,40 @@ def write_pyramid_preview_png(
     return True
 
 
+def rasterise_svg_to_preview_png(
+    svg_path: Path,
+    preview_path: Path,
+    *,
+    max_width: int = PYRAMID_PREVIEW_MAX_WIDTH,
+    image_poll_timeout_ms: float = 120_000.0,
+    tile_height_css: int = PNG_TILE_HEIGHT_CSS,
+) -> None:
+    """Rasterise ``svg_path`` directly to a downscaled index thumbnail (no full PNG)."""
+    import tempfile
+
+    svg_text = svg_path.read_text(encoding="utf-8")
+    svg_w, _svg_h = _parse_svg_dimensions(svg_text)
+    scale = _effective_preview_raster_scale(svg_w, max_width)
+    preview_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
+        tmp_path = Path(tmp.name)
+    try:
+        rasterise_svg_to_png(
+            svg_path,
+            tmp_path,
+            scale=scale,
+            image_poll_timeout_ms=image_poll_timeout_ms,
+            tile_height_css=tile_height_css,
+        )
+        write_pyramid_preview_png(
+            tmp_path,
+            preview_path,
+            max_width=max_width,
+        )
+    finally:
+        tmp_path.unlink(missing_ok=True)
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -8777,6 +8832,17 @@ def _uses_custom_pyramid_output_paths(args: argparse.Namespace) -> bool:
     return args.output is not None or args.png_output is not None
 
 
+def _pyramid_png_output_mode(png_path: Path, args: argparse.Namespace) -> str:
+    """``none`` | ``full`` (full PNG + preview) | ``preview_only`` (thumbnail only)."""
+    if not args.png:
+        return "none"
+    if _uses_custom_pyramid_output_paths(args) or getattr(args, "png_force_full", False):
+        return "full"
+    if stem_wants_full_png(png_path):
+        return "full"
+    return "preview_only"
+
+
 def _write_pyramid_svg_and_png(
     svg: str,
     svg_path: Path,
@@ -8786,29 +8852,45 @@ def _write_pyramid_svg_and_png(
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     svg_path.write_text(svg, encoding="utf-8")
     logger.info("Wrote %s", svg_path)
-    if args.png:
-        logger.info(
-            "Rasterising %s to PNG (scale=%.2f) …",
-            svg_path.name,
-            args.png_scale,
-        )
-        try:
+    mode = _pyramid_png_output_mode(png_path, args)
+    if mode == "none":
+        return 0
+    preview_path = _preview_png_path(png_path)
+    try:
+        if mode == "full":
+            logger.info(
+                "Rasterising %s to full PNG (scale=%.2f) …",
+                svg_path.name,
+                args.png_scale,
+            )
             rasterise_svg_to_png(
                 svg_path,
                 png_path,
                 scale=args.png_scale,
                 image_poll_timeout_ms=args.png_image_timeout_ms,
             )
-        except RuntimeError as exc:
-            logger.error("%s", exc)
-            return 1
-        logger.info("Wrote %s", png_path)
-        if not args.no_png_preview:
-            write_pyramid_preview_png(
-                png_path,
-                _preview_png_path(png_path),
-                max_width=args.png_preview_max_width,
+            logger.info("Wrote %s", png_path)
+            if not args.no_png_preview:
+                write_pyramid_preview_png(
+                    png_path,
+                    preview_path,
+                    max_width=args.png_preview_max_width,
+                )
+        else:
+            logger.info(
+                "Rasterising %s to preview PNG only (max width %d px) …",
+                svg_path.name,
+                args.png_preview_max_width,
             )
+            rasterise_svg_to_preview_png(
+                svg_path,
+                preview_path,
+                max_width=args.png_preview_max_width,
+                image_poll_timeout_ms=args.png_image_timeout_ms,
+            )
+    except RuntimeError as exc:
+        logger.error("%s", exc)
+        return 1
     return 0
 
 
@@ -9223,6 +9305,15 @@ def main() -> int:
         help=(
             "Skip writing a downscaled *.preview.png beside each full PNG "
             "(season index thumbnails; default is to write previews)."
+        ),
+    )
+    parser.add_argument(
+        "--png-force-full",
+        action="store_true",
+        help=(
+            "Rasterise every diagram at --png-scale (default: full PNG only for "
+            "pyramid / pyramid_All_Leagues and their *_Labels siblings; other stems "
+            "get *.preview.png only)."
         ),
     )
     parser.add_argument(

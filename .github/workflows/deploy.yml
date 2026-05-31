@@ -146,11 +146,43 @@ jobs:
       - name: Extract dist/shared into workspace
         run: mkdir -p dist && tar --zstd -xf rugby-dist-shared.tar.zst -C dist
 
+      - name: Pyramid raster cache digest
+        id: pyramid-cache-digest
+        env:
+          SEASON: ${{ matrix.season }}
+        run: echo "digest=$(python -m rugby.pyramid_ci_cache digest "$SEASON")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pyramid raster cache
+        uses: actions/cache@v4
+        id: pyramid-raster-cache
+        with:
+          path: _pyramid_raster_cache/${{ matrix.season }}
+          key: pyramid-raster-${{ matrix.season }}-${{ steps.pyramid-cache-digest.outputs.digest }}
+          restore-keys: |
+            pyramid-raster-${{ matrix.season }}-
+
+      - name: Restore cached pyramid artifacts into dist
+        env:
+          SEASON: ${{ matrix.season }}
+        run: |
+          set -eo pipefail
+          mkdir -p "dist/${SEASON}"
+          if python -m rugby.pyramid_ci_cache check "$SEASON"; then
+            python -m rugby.pyramid_ci_cache restore "$SEASON"
+            echo "PYRAMID_RASTER_CACHE_RESTORED=1" >> "$GITHUB_ENV"
+          fi
+
       - name: Rugby — distances, maps, pyramids, match_day (parallel)
         env:
           SEASON: ${{ matrix.season }}
         run: |
           bash scripts/ci_rugby_season.sh "$SEASON"
+
+      - name: Save pyramid raster cache
+        if: env.PYRAMID_RASTER_CACHE_RESTORED != '1'
+        env:
+          SEASON: ${{ matrix.season }}
+        run: python -m rugby.pyramid_ci_cache save "$SEASON"
 
       # Tarball layout: dist/<season>/… plus data/rugby/distance_cache/<season>.json
       # (official league travel stats for custom-map teams.js — routed km/min when

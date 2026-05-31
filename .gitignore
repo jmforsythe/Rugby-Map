@@ -4,6 +4,9 @@
 __pycache__/
 ignore_folder/
 
+# CI pyramid raster cache (GitHub Actions only)
+_pyramid_raster_cache/
+
 # Build output
 dist/*
 !dist/service-worker.js

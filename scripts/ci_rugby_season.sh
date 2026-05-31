@@ -5,6 +5,8 @@
 # deploy.yml packs that file into the season tarball for custom_map at assemble time.
 # Parallel pyramid_image --png launches multiple Chromium instances and causes runner
 # OOM / Playwright screenshot timeouts (especially pyramid_All_Leagues).
+# Full PNGs: pyramid + pyramid_All_Leagues (+ *_Labels). Other stems: *.preview.png only.
+# Set PYRAMID_RASTER_CACHE_RESTORED=1 (deploy.yml) to skip raster when cache is valid.
 set -euo pipefail
 
 SEASON="${1:?usage: ci_rugby_season.sh YYYY-YYYY}"
@@ -31,19 +33,23 @@ if [[ -d "data/rugby/fixture_data/$SEASON" ]]; then
   run_bg python -m rugby.match_day --season="$SEASON" --production
 fi
 
-run_pyramid python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
-run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
+if [[ "${PYRAMID_RASTER_CACHE_RESTORED:-0}" == "1" ]]; then
+  echo "Pyramid raster cache hit for ${SEASON} — skipping Playwright export"
+else
+  run_pyramid python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
+  run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
 
-merit_comps=()
-if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
-  mapfile -t merit_comps < <(
-    python -c "from rugby.pyramid_image import discover_merit_competitions as d; print('\n'.join(d('${SEASON}')))"
-  )
-  for comp in "${merit_comps[@]}"; do
-    [[ -n "$comp" ]] || continue
-    run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2
-  done
-  run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2
+  merit_comps=()
+  if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
+    mapfile -t merit_comps < <(
+      python -c "from rugby.pyramid_image import discover_merit_competitions as d; print('\n'.join(d('${SEASON}')))"
+    )
+    for comp in "${merit_comps[@]}"; do
+      [[ -n "$comp" ]] || continue
+      run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2
+    done
+    run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2
+  fi
 fi
 
 for pid in "${pids[@]}"; do

@@ -30,6 +30,8 @@ data/rugby/*.md
 !data/rugby/distance_cache/routed/all.npz
 !data/rugby/distance_cache/routed/all.json
 data/football/*
+!data/football/geocoded_teams/
+!data/football/geocoded_teams/**
 data/scotland/*
 
 .cursor/*

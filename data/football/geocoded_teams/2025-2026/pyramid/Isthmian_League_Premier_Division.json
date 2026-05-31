@@ -1,0 +1,221 @@
+{
+  "league_name": "Isthmian League Premier Division",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "Aveley",
+      "url": "https://en.wikipedia.org/wiki/Aveley_F.C.",
+      "image_url": null,
+      "address": "Aveley F.C.",
+      "level": 7,
+      "latitude": 51.50345833,
+      "longitude": 0.25289167,
+      "formatted_address": "Aveley F.C."
+    },
+    {
+      "name": "Billericay Town",
+      "url": "https://en.wikipedia.org/wiki/Billericay_Town_F.C.",
+      "image_url": null,
+      "address": null,
+      "level": 7
+    },
+    {
+      "name": "Brentwood Town",
+      "url": "https://en.wikipedia.org/wiki/Brentwood_Town_F.C.",
+      "image_url": null,
+      "address": "Brentwood Town F.C.",
+      "level": 7,
+      "latitude": 51.634,
+      "longitude": 0.3006,
+      "formatted_address": "Brentwood Town F.C."
+    },
+    {
+      "name": "Burgess Hill Town",
+      "url": "https://en.wikipedia.org/wiki/Burgess_Hill_Town_F.C.",
+      "image_url": null,
+      "address": "Burgess Hill Town F.C.",
+      "level": 7,
+      "latitude": 50.96694444,
+      "longitude": -0.12472222,
+      "formatted_address": "Burgess Hill Town F.C."
+    },
+    {
+      "name": "Canvey Island",
+      "url": "https://en.wikipedia.org/wiki/Canvey_Island_F.C.",
+      "image_url": null,
+      "address": null,
+      "level": 7
+    },
+    {
+      "name": "Carshalton Athletic",
+      "url": "https://en.wikipedia.org/wiki/Carshalton_Athletic_F.C.",
+      "image_url": null,
+      "address": "Carshalton Athletic F.C.",
+      "level": 7,
+      "latitude": 51.36969722,
+      "longitude": -0.17180833,
+      "formatted_address": "Carshalton Athletic F.C."
+    },
+    {
+      "name": "Chatham Town",
+      "url": "https://en.wikipedia.org/wiki/Chatham_Town_F.C.",
+      "image_url": null,
+      "address": "Chatham Town F.C.",
+      "level": 7,
+      "latitude": 51.368611111,
+      "longitude": 0.521388888,
+      "formatted_address": "Chatham Town F.C."
+    },
+    {
+      "name": "Cheshunt",
+      "url": "https://en.wikipedia.org/wiki/Cheshunt_F.C.",
+      "image_url": null,
+      "address": "Cheshunt F.C.",
+      "level": 7,
+      "latitude": 51.69439694,
+      "longitude": -0.04166,
+      "formatted_address": "Cheshunt F.C."
+    },
+    {
+      "name": "Chichester City",
+      "url": "https://en.wikipedia.org/wiki/Chichester_City_F.C.",
+      "image_url": null,
+      "address": "Chichester City F.C.",
+      "level": 7,
+      "latitude": 50.8425,
+      "longitude": -0.775411,
+      "formatted_address": "Chichester City F.C."
+    },
+    {
+      "name": "Cray Valley Paper Mills",
+      "url": "https://en.wikipedia.org/wiki/Cray_Valley_Paper_Mills_F.C.",
+      "image_url": null,
+      "address": "Cray Valley Paper Mills F.C.",
+      "level": 7,
+      "latitude": 51.45060889,
+      "longitude": 0.03469194,
+      "formatted_address": "Cray Valley Paper Mills F.C."
+    },
+    {
+      "name": "Cray Wanderers",
+      "url": "https://en.wikipedia.org/wiki/Cray_Wanderers_F.C.",
+      "image_url": null,
+      "address": "Hayes Lane",
+      "level": 7,
+      "latitude": 51.39010278,
+      "longitude": 0.02108333,
+      "formatted_address": "Hayes Lane"
+    },
+    {
+      "name": "Dartford",
+      "url": "https://en.wikipedia.org/wiki/Dartford_F.C.",
+      "image_url": null,
+      "address": "Princes Park",
+      "level": 7,
+      "latitude": 51.437172,
+      "longitude": 0.2308,
+      "formatted_address": "Princes Park"
+    },
+    {
+      "name": "Dulwich Hamlet",
+      "url": "https://en.wikipedia.org/wiki/Dulwich_Hamlet_F.C.",
+      "image_url": null,
+      "address": "Champion Hill",
+      "level": 7,
+      "latitude": 51.461231,
+      "longitude": -0.084061,
+      "formatted_address": "Champion Hill"
+    },
+    {
+      "name": "Folkestone Invicta",
+      "url": "https://en.wikipedia.org/wiki/Folkestone_Invicta_F.C.",
+      "image_url": null,
+      "address": "Cheriton Road",
+      "level": 7,
+      "latitude": 51.0866,
+      "longitude": 1.15945,
+      "formatted_address": "Cheriton Road"
+    },
+    {
+      "name": "Hashtag United",
+      "url": "https://en.wikipedia.org/wiki/Hashtag_United_F.C.",
+      "image_url": null,
+      "address": "Hashtag United F.C.",
+      "level": 7,
+      "latitude": 51.574043888,
+      "longitude": 0.5181,
+      "formatted_address": "Hashtag United F.C."
+    },
+    {
+      "name": "Lewes",
+      "url": "https://en.wikipedia.org/wiki/Lewes_F.C.",
+      "image_url": null,
+      "address": "The Dripping Pan",
+      "level": 7,
+      "latitude": 50.869019,
+      "longitude": 0.012275,
+      "formatted_address": "The Dripping Pan"
+    },
+    {
+      "name": "Potters Bar Town",
+      "url": "https://en.wikipedia.org/wiki/Potters_Bar_Town_F.C.",
+      "image_url": null,
+      "address": "Potters Bar Town F.C.",
+      "level": 7,
+      "latitude": 51.69611111,
+      "longitude": -0.1775,
+      "formatted_address": "Potters Bar Town F.C."
+    },
+    {
+      "name": "Ramsgate",
+      "url": "https://en.wikipedia.org/wiki/Ramsgate_F.C.",
+      "image_url": null,
+      "address": "Ramsgate F.C.",
+      "level": 7,
+      "latitude": 51.3326,
+      "longitude": 1.3995,
+      "formatted_address": "Ramsgate F.C."
+    },
+    {
+      "name": "St Albans City",
+      "url": "https://en.wikipedia.org/wiki/St_Albans_City_F.C.",
+      "image_url": null,
+      "address": "Clarence Park, St Albans",
+      "level": 7,
+      "latitude": 51.753,
+      "longitude": -0.324,
+      "formatted_address": "Clarence Park, St Albans"
+    },
+    {
+      "name": "Welling United",
+      "url": "https://en.wikipedia.org/wiki/Welling_United_F.C.",
+      "image_url": null,
+      "address": "Park View Road",
+      "level": 7,
+      "latitude": 51.460317,
+      "longitude": 0.116514,
+      "formatted_address": "Park View Road"
+    },
+    {
+      "name": "Whitehawk",
+      "url": "https://en.wikipedia.org/wiki/Whitehawk_F.C.",
+      "image_url": null,
+      "address": "Whitehawk F.C.",
+      "level": 7,
+      "latitude": 50.8214,
+      "longitude": -0.0961444,
+      "formatted_address": "Whitehawk F.C."
+    },
+    {
+      "name": "Wingate & Finchley",
+      "url": "https://en.wikipedia.org/wiki/Wingate_%26_Finchley_F.C.",
+      "image_url": null,
+      "address": "Wingate & Finchley F.C.",
+      "level": 7,
+      "latitude": 51.6068,
+      "longitude": -0.171539,
+      "formatted_address": "Wingate & Finchley F.C."
+    }
+  ],
+  "team_count": 22
+}

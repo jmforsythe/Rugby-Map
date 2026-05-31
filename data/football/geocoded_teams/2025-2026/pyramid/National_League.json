@@ -1,0 +1,244 @@
+{
+  "league_name": "National League",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "Aldershot Town",
+      "url": "https://en.wikipedia.org/wiki/Aldershot_Town_F.C.",
+      "image_url": null,
+      "address": "Recreation Ground",
+      "level": 5,
+      "latitude": 51.248386,
+      "longitude": -0.754789,
+      "formatted_address": "Recreation Ground"
+    },
+    {
+      "name": "Altrincham",
+      "url": "https://en.wikipedia.org/wiki/Altrincham_F.C.",
+      "image_url": null,
+      "address": "Moss Lane",
+      "level": 5,
+      "latitude": 53.383436,
+      "longitude": -2.335158,
+      "formatted_address": "Moss Lane"
+    },
+    {
+      "name": "Boreham Wood",
+      "url": "https://en.wikipedia.org/wiki/Boreham_Wood_F.C.",
+      "image_url": null,
+      "address": "Meadow Park",
+      "level": 5,
+      "latitude": 51.661944,
+      "longitude": -0.272222,
+      "formatted_address": "Meadow Park"
+    },
+    {
+      "name": "Boston United",
+      "url": "https://en.wikipedia.org/wiki/Boston_United_F.C.",
+      "image_url": null,
+      "address": "York Street",
+      "level": 5,
+      "latitude": 52.976786,
+      "longitude": -0.019117,
+      "formatted_address": "York Street"
+    },
+    {
+      "name": "Brackley Town",
+      "url": "https://en.wikipedia.org/wiki/Brackley_Town_F.C.",
+      "image_url": null,
+      "address": "Brackley Town F.C.",
+      "level": 5,
+      "latitude": 52.0246,
+      "longitude": -1.14407,
+      "formatted_address": "Brackley Town F.C."
+    },
+    {
+      "name": "Braintree Town",
+      "url": "https://en.wikipedia.org/wiki/Braintree_Town_F.C.",
+      "image_url": null,
+      "address": "Cressing Road",
+      "level": 5,
+      "latitude": 51.875322,
+      "longitude": 0.572956,
+      "formatted_address": "Cressing Road"
+    },
+    {
+      "name": "Carlisle United",
+      "url": "https://en.wikipedia.org/wiki/Carlisle_United_F.C.",
+      "image_url": null,
+      "address": "Brunton Park",
+      "level": 5,
+      "latitude": 54.89556,
+      "longitude": -2.91365,
+      "formatted_address": "Brunton Park"
+    },
+    {
+      "name": "Eastleigh",
+      "url": "https://en.wikipedia.org/wiki/Eastleigh_F.C.",
+      "image_url": null,
+      "address": "Ten Acres",
+      "level": 5,
+      "latitude": 50.95229444,
+      "longitude": -1.37176944,
+      "formatted_address": "Ten Acres"
+    },
+    {
+      "name": "F.C. Halifax Town",
+      "url": "https://en.wikipedia.org/wiki/F.C._Halifax_Town",
+      "image_url": null,
+      "address": null,
+      "level": 5
+    },
+    {
+      "name": "Forest Green Rovers",
+      "url": "https://en.wikipedia.org/wiki/Forest_Green_Rovers_F.C.",
+      "image_url": null,
+      "address": "The New Lawn",
+      "level": 5,
+      "latitude": 51.6984,
+      "longitude": -2.233233,
+      "formatted_address": "The New Lawn"
+    },
+    {
+      "name": "Gateshead",
+      "url": "https://en.wikipedia.org/wiki/Gateshead_F.C.",
+      "image_url": null,
+      "address": "Gateshead International Stadium",
+      "level": 5,
+      "latitude": 54.961111111,
+      "longitude": -1.579722222,
+      "formatted_address": "Gateshead International Stadium"
+    },
+    {
+      "name": "Hartlepool United",
+      "url": "https://en.wikipedia.org/wiki/Hartlepool_United_F.C.",
+      "image_url": null,
+      "address": "Victoria Park",
+      "level": 5,
+      "latitude": 54.689139,
+      "longitude": -1.212722,
+      "formatted_address": "Victoria Park"
+    },
+    {
+      "name": "Morecambe",
+      "url": "https://en.wikipedia.org/wiki/Morecambe_F.C.",
+      "image_url": null,
+      "address": "Globe Arena",
+      "level": 5,
+      "latitude": 54.0615,
+      "longitude": -2.86716,
+      "formatted_address": "Globe Arena"
+    },
+    {
+      "name": "Rochdale",
+      "url": "https://en.wikipedia.org/wiki/Rochdale_A.F.C.",
+      "image_url": null,
+      "address": "Spotland Stadium",
+      "level": 5,
+      "latitude": 53.620833,
+      "longitude": -2.18,
+      "formatted_address": "Spotland Stadium"
+    },
+    {
+      "name": "Scunthorpe United",
+      "url": "https://en.wikipedia.org/wiki/Scunthorpe_United_F.C.",
+      "image_url": null,
+      "address": "Glanford Park",
+      "level": 5,
+      "latitude": 53.586722,
+      "longitude": -0.69525,
+      "formatted_address": "Glanford Park"
+    },
+    {
+      "name": "Solihull Moors",
+      "url": "https://en.wikipedia.org/wiki/Solihull_Moors_F.C.",
+      "image_url": null,
+      "address": "Damson Park",
+      "level": 5,
+      "latitude": 52.4389,
+      "longitude": -1.75724,
+      "formatted_address": "Damson Park"
+    },
+    {
+      "name": "Southend United",
+      "url": "https://en.wikipedia.org/wiki/Southend_United_F.C.",
+      "image_url": null,
+      "address": "Roots Hall",
+      "level": 5,
+      "latitude": 51.549,
+      "longitude": 0.701556,
+      "formatted_address": "Roots Hall"
+    },
+    {
+      "name": "Sutton United",
+      "url": "https://en.wikipedia.org/wiki/Sutton_United_F.C.",
+      "image_url": null,
+      "address": "Gander Green Lane",
+      "level": 5,
+      "latitude": 51.3675,
+      "longitude": -0.204444444,
+      "formatted_address": "Gander Green Lane"
+    },
+    {
+      "name": "Tamworth",
+      "url": "https://en.wikipedia.org/wiki/Tamworth_F.C.",
+      "image_url": null,
+      "address": "The Lamb Ground",
+      "level": 5,
+      "latitude": 52.628403,
+      "longitude": -1.688925,
+      "formatted_address": "The Lamb Ground"
+    },
+    {
+      "name": "Truro City",
+      "url": "https://en.wikipedia.org/wiki/Truro_City_F.C.",
+      "image_url": null,
+      "address": "Bolitho Park",
+      "level": 5,
+      "latitude": 50.408357,
+      "longitude": -4.146996,
+      "formatted_address": "Bolitho Park"
+    },
+    {
+      "name": "Wealdstone",
+      "url": "https://en.wikipedia.org/wiki/Wealdstone_F.C.",
+      "image_url": null,
+      "address": "Wealdstone F.C.",
+      "level": 5,
+      "latitude": 51.569402777,
+      "longitude": -0.416638888,
+      "formatted_address": "Wealdstone F.C."
+    },
+    {
+      "name": "Woking",
+      "url": "https://en.wikipedia.org/wiki/Woking_F.C.",
+      "image_url": null,
+      "address": "Kingfield Stadium",
+      "level": 5,
+      "latitude": 51.306333,
+      "longitude": -0.558811,
+      "formatted_address": "Kingfield Stadium"
+    },
+    {
+      "name": "Yeovil Town",
+      "url": "https://en.wikipedia.org/wiki/Yeovil_Town_F.C.",
+      "image_url": null,
+      "address": "Huish Park",
+      "level": 5,
+      "latitude": 50.950278,
+      "longitude": -2.674881,
+      "formatted_address": "Huish Park"
+    },
+    {
+      "name": "York City",
+      "url": "https://en.wikipedia.org/wiki/York_City_F.C.",
+      "image_url": null,
+      "address": "York Community Stadium",
+      "level": 5,
+      "latitude": 53.984347636,
+      "longitude": -1.052935385,
+      "formatted_address": "York Community Stadium"
+    }
+  ],
+  "team_count": 24
+}

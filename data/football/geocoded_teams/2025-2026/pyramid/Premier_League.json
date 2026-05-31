@@ -1,0 +1,207 @@
+{
+  "league_name": "Premier League",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "A.F.C Bournemouth",
+      "url": "https://en.wikipedia.org/wiki/AFC_Bournemouth",
+      "image_url": null,
+      "address": "Dean Court",
+      "level": 1,
+      "latitude": 50.735278,
+      "longitude": -1.838333,
+      "formatted_address": "Dean Court"
+    },
+    {
+      "name": "Arsenal",
+      "url": "https://en.wikipedia.org/wiki/Arsenal_F.C.",
+      "image_url": null,
+      "address": "Emirates Stadium",
+      "level": 1,
+      "latitude": 51.555,
+      "longitude": -0.108333333,
+      "formatted_address": "Emirates Stadium"
+    },
+    {
+      "name": "Aston Villa",
+      "url": "https://en.wikipedia.org/wiki/Aston_Villa_F.C.",
+      "image_url": null,
+      "address": "Villa Park",
+      "level": 1,
+      "latitude": 52.509166666,
+      "longitude": -1.884722222,
+      "formatted_address": "Villa Park"
+    },
+    {
+      "name": "Brentford",
+      "url": "https://en.wikipedia.org/wiki/Brentford_F.C.",
+      "image_url": null,
+      "address": "Griffin Park",
+      "level": 1,
+      "latitude": 51.488167,
+      "longitude": -0.302639,
+      "formatted_address": "Griffin Park"
+    },
+    {
+      "name": "Brighton & Hove Albion",
+      "url": "https://en.wikipedia.org/wiki/Brighton_%26_Hove_Albion_F.C.",
+      "image_url": null,
+      "address": "Brighton Community Stadium",
+      "level": 1,
+      "latitude": 50.861822222,
+      "longitude": -0.083277777,
+      "formatted_address": "Brighton Community Stadium"
+    },
+    {
+      "name": "Burnley",
+      "url": "https://en.wikipedia.org/wiki/Burnley_F.C.",
+      "image_url": null,
+      "address": "Turf Moor",
+      "level": 1,
+      "latitude": 53.789064,
+      "longitude": -2.230225,
+      "formatted_address": "Turf Moor"
+    },
+    {
+      "name": "Chelsea",
+      "url": "https://en.wikipedia.org/wiki/Chelsea_F.C.",
+      "image_url": null,
+      "address": "Stamford Bridge",
+      "level": 1,
+      "latitude": 51.481666666,
+      "longitude": -0.191111111,
+      "formatted_address": "Stamford Bridge"
+    },
+    {
+      "name": "Crystal Palace",
+      "url": "https://en.wikipedia.org/wiki/Crystal_Palace_F.C.",
+      "image_url": null,
+      "address": "Selhurst Park",
+      "level": 1,
+      "latitude": 51.398333333,
+      "longitude": -0.085555555,
+      "formatted_address": "Selhurst Park"
+    },
+    {
+      "name": "Everton",
+      "url": "https://en.wikipedia.org/wiki/Everton_F.C.",
+      "image_url": null,
+      "address": "Hill Dickinson Stadium",
+      "level": 1,
+      "latitude": 53.4250789,
+      "longitude": -3.0027851,
+      "formatted_address": "Hill Dickinson Stadium"
+    },
+    {
+      "name": "Fulham",
+      "url": "https://en.wikipedia.org/wiki/Fulham_F.C.",
+      "image_url": null,
+      "address": "Craven Cottage",
+      "level": 1,
+      "latitude": 51.475,
+      "longitude": -0.221666666,
+      "formatted_address": "Craven Cottage"
+    },
+    {
+      "name": "Leeds United",
+      "url": "https://en.wikipedia.org/wiki/Leeds_United_F.C.",
+      "image_url": null,
+      "address": "Elland Road",
+      "level": 1,
+      "latitude": 53.777777777,
+      "longitude": -1.572222222,
+      "formatted_address": "Elland Road"
+    },
+    {
+      "name": "Liverpool",
+      "url": "https://en.wikipedia.org/wiki/Liverpool_F.C.",
+      "image_url": null,
+      "address": "Anfield",
+      "level": 1,
+      "latitude": 53.430833333,
+      "longitude": -2.960833333,
+      "formatted_address": "Anfield"
+    },
+    {
+      "name": "Manchester City",
+      "url": "https://en.wikipedia.org/wiki/Manchester_City_F.C.",
+      "image_url": null,
+      "address": "Etihad Stadium",
+      "level": 1,
+      "latitude": 53.483055555,
+      "longitude": -2.200277777,
+      "formatted_address": "Etihad Stadium"
+    },
+    {
+      "name": "Manchester United",
+      "url": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+      "image_url": null,
+      "address": "Old Trafford",
+      "level": 1,
+      "latitude": 53.463055555,
+      "longitude": -2.291388888,
+      "formatted_address": "Old Trafford"
+    },
+    {
+      "name": "Newcastle United",
+      "url": "https://en.wikipedia.org/wiki/Newcastle_United_F.C.",
+      "image_url": null,
+      "address": "St James’ Park",
+      "level": 1,
+      "latitude": 54.975555555,
+      "longitude": -1.621666666,
+      "formatted_address": "St James’ Park"
+    },
+    {
+      "name": "Nottingham Forest",
+      "url": "https://en.wikipedia.org/wiki/Nottingham_Forest_F.C.",
+      "image_url": null,
+      "address": "City Ground",
+      "level": 1,
+      "latitude": 52.94,
+      "longitude": -1.132778,
+      "formatted_address": "City Ground"
+    },
+    {
+      "name": "Sunderland",
+      "url": "https://en.wikipedia.org/wiki/Sunderland_A.F.C.",
+      "image_url": null,
+      "address": "Stadium of Light",
+      "level": 1,
+      "latitude": 54.914429068,
+      "longitude": -1.388172971,
+      "formatted_address": "Stadium of Light"
+    },
+    {
+      "name": "Tottenham Hotspur",
+      "url": "https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C.",
+      "image_url": null,
+      "address": "Tottenham Hotspur Stadium",
+      "level": 1,
+      "latitude": 51.604444444,
+      "longitude": -0.066388888,
+      "formatted_address": "Tottenham Hotspur Stadium"
+    },
+    {
+      "name": "West Ham United",
+      "url": "https://en.wikipedia.org/wiki/West_Ham_United_F.C.",
+      "image_url": null,
+      "address": "London Stadium",
+      "level": 1,
+      "latitude": 51.538611111,
+      "longitude": -0.016388888,
+      "formatted_address": "London Stadium"
+    },
+    {
+      "name": "Wolverhampton Wanderers",
+      "url": "https://en.wikipedia.org/wiki/Wolverhampton_Wanderers_F.C.",
+      "image_url": null,
+      "address": "Molineux Stadium",
+      "level": 1,
+      "latitude": 52.590277777,
+      "longitude": -2.130277777,
+      "formatted_address": "Molineux Stadium"
+    }
+  ],
+  "team_count": 20
+}

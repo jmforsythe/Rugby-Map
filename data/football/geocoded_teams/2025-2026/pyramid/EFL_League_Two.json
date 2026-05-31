@@ -1,0 +1,238 @@
+{
+  "league_name": "EFL League Two",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "Accrington Stanley",
+      "url": "https://en.wikipedia.org/wiki/Accrington_Stanley_F.C.",
+      "image_url": null,
+      "address": "Crown Ground",
+      "level": 4,
+      "latitude": 53.765356,
+      "longitude": -2.370911,
+      "formatted_address": "Crown Ground"
+    },
+    {
+      "name": "Barnet",
+      "url": "https://en.wikipedia.org/wiki/Barnet_F.C.",
+      "image_url": null,
+      "address": "The Hive Stadium",
+      "level": 4,
+      "latitude": 51.6026,
+      "longitude": -0.291785,
+      "formatted_address": "The Hive Stadium"
+    },
+    {
+      "name": "Barrow",
+      "url": "https://en.wikipedia.org/wiki/Barrow_A.F.C.",
+      "image_url": null,
+      "address": "Holker Street",
+      "level": 4,
+      "latitude": 54.123333333,
+      "longitude": -3.235,
+      "formatted_address": "Holker Street"
+    },
+    {
+      "name": "Bristol Rovers",
+      "url": "https://en.wikipedia.org/wiki/Bristol_Rovers_F.C.",
+      "image_url": null,
+      "address": "Memorial Stadium",
+      "level": 4,
+      "latitude": 51.4862,
+      "longitude": -2.58313,
+      "formatted_address": "Memorial Stadium"
+    },
+    {
+      "name": "Bromley",
+      "url": "https://en.wikipedia.org/wiki/Bromley_F.C.",
+      "image_url": null,
+      "address": "Hayes Lane",
+      "level": 4,
+      "latitude": 51.39010278,
+      "longitude": 0.02108333,
+      "formatted_address": "Hayes Lane"
+    },
+    {
+      "name": "Cambridge United",
+      "url": "https://en.wikipedia.org/wiki/Cambridge_United_F.C.",
+      "image_url": null,
+      "address": "Abbey Stadium",
+      "level": 4,
+      "latitude": 52.2114,
+      "longitude": 0.153,
+      "formatted_address": "Abbey Stadium"
+    },
+    {
+      "name": "Cheltenham Town",
+      "url": "https://en.wikipedia.org/wiki/Cheltenham_Town_F.C.",
+      "image_url": null,
+      "address": "Whaddon Road",
+      "level": 4,
+      "latitude": 51.906158,
+      "longitude": -2.060211,
+      "formatted_address": "Whaddon Road"
+    },
+    {
+      "name": "Chesterfield",
+      "url": "https://en.wikipedia.org/wiki/Chesterfield_F.C.",
+      "image_url": null,
+      "address": "Proact Stadium",
+      "level": 4,
+      "latitude": 53.253442,
+      "longitude": -1.427203,
+      "formatted_address": "Proact Stadium"
+    },
+    {
+      "name": "Colchester United",
+      "url": "https://en.wikipedia.org/wiki/Colchester_United_F.C.",
+      "image_url": null,
+      "address": "Colchester Community Stadium",
+      "level": 4,
+      "latitude": 51.9234,
+      "longitude": 0.897703,
+      "formatted_address": "Colchester Community Stadium"
+    },
+    {
+      "name": "Crawley Town",
+      "url": "https://en.wikipedia.org/wiki/Crawley_Town_F.C.",
+      "image_url": null,
+      "address": "The Peoples Pension Stadium",
+      "level": 4,
+      "latitude": 51.099706,
+      "longitude": -0.194767,
+      "formatted_address": "The Peoples Pension Stadium"
+    },
+    {
+      "name": "Crewe Alexandra",
+      "url": "https://en.wikipedia.org/wiki/Crewe_Alexandra_F.C.",
+      "image_url": null,
+      "address": "Alexandra Stadium",
+      "level": 4,
+      "latitude": 53.087419,
+      "longitude": -2.435747,
+      "formatted_address": "Alexandra Stadium"
+    },
+    {
+      "name": "Fleetwood Town",
+      "url": "https://en.wikipedia.org/wiki/Fleetwood_Town_F.C.",
+      "image_url": null,
+      "address": "Highbury Stadium",
+      "level": 4,
+      "latitude": 53.916508,
+      "longitude": -3.024728,
+      "formatted_address": "Highbury Stadium"
+    },
+    {
+      "name": "Gillingham",
+      "url": "https://en.wikipedia.org/wiki/Gillingham_F.C.",
+      "image_url": null,
+      "address": "Priestfield Stadium",
+      "level": 4,
+      "latitude": 51.384166666,
+      "longitude": 0.560833333,
+      "formatted_address": "Priestfield Stadium"
+    },
+    {
+      "name": "Grimsby Town",
+      "url": "https://en.wikipedia.org/wiki/Grimsby_Town_F.C.",
+      "image_url": null,
+      "address": "Blundell Park",
+      "level": 4,
+      "latitude": 53.570225,
+      "longitude": -0.046497,
+      "formatted_address": "Blundell Park"
+    },
+    {
+      "name": "Harrogate Town",
+      "url": "https://en.wikipedia.org/wiki/Harrogate_Town_F.C.",
+      "image_url": null,
+      "address": null,
+      "level": 4
+    },
+    {
+      "name": "Milton Keynes",
+      "url": "https://en.wikipedia.org/wiki/Milton_Keynes_Dons_FC",
+      "image_url": null,
+      "address": null,
+      "level": 4
+    },
+    {
+      "name": "",
+      "url": "https://en.wikipedia.org/wiki/Wales",
+      "image_url": null,
+      "address": null,
+      "level": 4
+    },
+    {
+      "name": "Notts County",
+      "url": "https://en.wikipedia.org/wiki/Notts_County_F.C.",
+      "image_url": null,
+      "address": "Meadow Lane",
+      "level": 4,
+      "latitude": 52.9425,
+      "longitude": -1.137222,
+      "formatted_address": "Meadow Lane"
+    },
+    {
+      "name": "Oldham Athletic",
+      "url": "https://en.wikipedia.org/wiki/Oldham_Athletic_A.F.C.",
+      "image_url": null,
+      "address": "Boundary Park",
+      "level": 4,
+      "latitude": 53.555277777,
+      "longitude": -2.128611111,
+      "formatted_address": "Boundary Park"
+    },
+    {
+      "name": "Salford City",
+      "url": "https://en.wikipedia.org/wiki/Salford_City_F.C.",
+      "image_url": null,
+      "address": "Moor Lane",
+      "level": 4,
+      "latitude": 53.513638888,
+      "longitude": -2.276777777,
+      "formatted_address": "Moor Lane"
+    },
+    {
+      "name": "Shrewsbury Town",
+      "url": "https://en.wikipedia.org/wiki/Shrewsbury_Town_F.C.",
+      "image_url": null,
+      "address": "New Meadow",
+      "level": 4,
+      "latitude": 52.68863,
+      "longitude": -2.74933,
+      "formatted_address": "New Meadow"
+    },
+    {
+      "name": "Swindon Town",
+      "url": "https://en.wikipedia.org/wiki/Swindon_Town_F.C.",
+      "image_url": null,
+      "address": "County Ground, Swindon",
+      "level": 4,
+      "latitude": 51.564444,
+      "longitude": -1.770556,
+      "formatted_address": "County Ground, Swindon"
+    },
+    {
+      "name": "Tranmere Rovers",
+      "url": "https://en.wikipedia.org/wiki/Tranmere_Rovers_F.C.",
+      "image_url": null,
+      "address": "Prenton Park",
+      "level": 4,
+      "latitude": 53.373722,
+      "longitude": -3.0325,
+      "formatted_address": "Prenton Park"
+    },
+    {
+      "name": "Walsall",
+      "url": "https://en.wikipedia.org/wiki/Walsall_F.C.",
+      "image_url": null,
+      "address": "Bescot Stadium",
+      "level": 4,
+      "latitude": 52.565433,
+      "longitude": -1.990706,
+      "formatted_address": "Bescot Stadium"
+    }
+  ],
+  "team_count": 24
+}

@@ -1,0 +1,241 @@
+{
+  "league_name": "EFL Championship",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "Birmingham City",
+      "url": "https://en.wikipedia.org/wiki/Birmingham_City_F.C.",
+      "image_url": null,
+      "address": "St Andrew's",
+      "level": 2,
+      "latitude": 52.475702777,
+      "longitude": -1.868188888,
+      "formatted_address": "St Andrew's"
+    },
+    {
+      "name": "Blackburn Rovers",
+      "url": "https://en.wikipedia.org/wiki/Blackburn_Rovers_F.C.",
+      "image_url": null,
+      "address": "Ewood Park",
+      "level": 2,
+      "latitude": 53.728611111,
+      "longitude": -2.489166666,
+      "formatted_address": "Ewood Park"
+    },
+    {
+      "name": "Bristol City",
+      "url": "https://en.wikipedia.org/wiki/Bristol_City_F.C.",
+      "image_url": null,
+      "address": "Ashton Gate Stadium",
+      "level": 2,
+      "latitude": 51.44,
+      "longitude": -2.620278,
+      "formatted_address": "Ashton Gate Stadium"
+    },
+    {
+      "name": "Charlton Athletic",
+      "url": "https://en.wikipedia.org/wiki/Charlton_Athletic_F.C.",
+      "image_url": null,
+      "address": "The Valley",
+      "level": 2,
+      "latitude": 51.487489,
+      "longitude": 0.035632,
+      "formatted_address": "The Valley"
+    },
+    {
+      "name": "Coventry City",
+      "url": "https://en.wikipedia.org/wiki/Coventry_City_F.C.",
+      "image_url": null,
+      "address": "Ricoh Arena",
+      "level": 2,
+      "latitude": 52.448056,
+      "longitude": -1.495556,
+      "formatted_address": "Ricoh Arena"
+    },
+    {
+      "name": "Derby County",
+      "url": "https://en.wikipedia.org/wiki/Derby_County_F.C.",
+      "image_url": null,
+      "address": "Pride Park Stadium",
+      "level": 2,
+      "latitude": 52.915,
+      "longitude": -1.447222222,
+      "formatted_address": "Pride Park Stadium"
+    },
+    {
+      "name": "Hull City",
+      "url": "https://en.wikipedia.org/wiki/Hull_City_A.F.C.",
+      "image_url": null,
+      "address": "MKM Stadium",
+      "level": 2,
+      "latitude": 53.746111111,
+      "longitude": -0.367777777,
+      "formatted_address": "MKM Stadium"
+    },
+    {
+      "name": "Ipswich Town",
+      "url": "https://en.wikipedia.org/wiki/Ipswich_Town_F.C.",
+      "image_url": null,
+      "address": "Portman Road",
+      "level": 2,
+      "latitude": 52.055,
+      "longitude": 1.145277777,
+      "formatted_address": "Portman Road"
+    },
+    {
+      "name": "Leicester City",
+      "url": "https://en.wikipedia.org/wiki/Leicester_City_F.C.",
+      "image_url": null,
+      "address": "Leicester City Stadium",
+      "level": 2,
+      "latitude": 52.620277777,
+      "longitude": -1.142222222,
+      "formatted_address": "Leicester City Stadium"
+    },
+    {
+      "name": "Middlesbrough",
+      "url": "https://en.wikipedia.org/wiki/Middlesbrough_F.C.",
+      "image_url": null,
+      "address": "Riverside Stadium",
+      "level": 2,
+      "latitude": 54.578333333,
+      "longitude": -1.216944444,
+      "formatted_address": "Riverside Stadium"
+    },
+    {
+      "name": "Millwall",
+      "url": "https://en.wikipedia.org/wiki/Millwall_F.C.",
+      "image_url": null,
+      "address": "The Den",
+      "level": 2,
+      "latitude": 51.485833,
+      "longitude": -0.050833,
+      "formatted_address": "The Den"
+    },
+    {
+      "name": "Norwich City",
+      "url": "https://en.wikipedia.org/wiki/Norwich_City_F.C.",
+      "image_url": null,
+      "address": "Carrow Road",
+      "level": 2,
+      "latitude": 52.622222222,
+      "longitude": 1.309166666,
+      "formatted_address": "Carrow Road"
+    },
+    {
+      "name": "Oxford United",
+      "url": "https://en.wikipedia.org/wiki/Oxford_United_F.C.",
+      "image_url": null,
+      "address": "Kassam Stadium",
+      "level": 2,
+      "latitude": 51.716419,
+      "longitude": -1.208067,
+      "formatted_address": "Kassam Stadium"
+    },
+    {
+      "name": "Portsmouth",
+      "url": "https://en.wikipedia.org/wiki/Portsmouth_F.C.",
+      "image_url": null,
+      "address": "Fratton Park",
+      "level": 2,
+      "latitude": 50.796388888,
+      "longitude": -1.063888888,
+      "formatted_address": "Fratton Park"
+    },
+    {
+      "name": "Preston North End",
+      "url": "https://en.wikipedia.org/wiki/Preston_North_End_F.C.",
+      "image_url": null,
+      "address": "Deepdale",
+      "level": 2,
+      "latitude": 53.772222222,
+      "longitude": -2.688055555,
+      "formatted_address": "Deepdale"
+    },
+    {
+      "name": "Queens Park Rangers",
+      "url": "https://en.wikipedia.org/wiki/Queens_Park_Rangers_F.C.",
+      "image_url": null,
+      "address": "Kiyan Prince Foundation Stadium",
+      "level": 2,
+      "latitude": 51.509166666,
+      "longitude": -0.232222222,
+      "formatted_address": "Kiyan Prince Foundation Stadium"
+    },
+    {
+      "name": "Sheffield United",
+      "url": "https://en.wikipedia.org/wiki/Sheffield_United_F.C.",
+      "image_url": null,
+      "address": "Bramall Lane",
+      "level": 2,
+      "latitude": 53.370277777,
+      "longitude": -1.470833333,
+      "formatted_address": "Bramall Lane"
+    },
+    {
+      "name": "Sheffield Wednesday",
+      "url": "https://en.wikipedia.org/wiki/Sheffield_Wednesday_F.C.",
+      "image_url": null,
+      "address": "Hillsborough Stadium",
+      "level": 2,
+      "latitude": 53.411388888,
+      "longitude": -1.500555555,
+      "formatted_address": "Hillsborough Stadium"
+    },
+    {
+      "name": "Southampton",
+      "url": "https://en.wikipedia.org/wiki/Southampton_F.C.",
+      "image_url": null,
+      "address": "St Mary's Stadium",
+      "level": 2,
+      "latitude": 50.90583333,
+      "longitude": -1.39111111,
+      "formatted_address": "St Mary's Stadium"
+    },
+    {
+      "name": "Stoke City",
+      "url": "https://en.wikipedia.org/wiki/Stoke_City_F.C.",
+      "image_url": null,
+      "address": "Britannia Stadium",
+      "level": 2,
+      "latitude": 52.988333333,
+      "longitude": -2.175555555,
+      "formatted_address": "Britannia Stadium"
+    },
+    {
+      "name": "",
+      "url": "https://en.wikipedia.org/wiki/Wales",
+      "image_url": null,
+      "address": null,
+      "level": 2
+    },
+    {
+      "name": "Watford",
+      "url": "https://en.wikipedia.org/wiki/Watford_F.C.",
+      "image_url": null,
+      "address": "Vicarage Road",
+      "level": 2,
+      "latitude": 51.649928,
+      "longitude": -0.401606,
+      "formatted_address": "Vicarage Road"
+    },
+    {
+      "name": "West Bromwich Albion",
+      "url": "https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C.",
+      "image_url": null,
+      "address": "The Hawthorns",
+      "level": 2,
+      "latitude": 52.509166666,
+      "longitude": -1.963888888,
+      "formatted_address": "The Hawthorns"
+    },
+    {
+      "name": "",
+      "url": "https://en.wikipedia.org/wiki/Wales",
+      "image_url": null,
+      "address": null,
+      "level": 2
+    }
+  ],
+  "team_count": 24
+}

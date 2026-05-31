@@ -1,0 +1,47 @@
+{
+  "league_name": "Isthmian League South Central",
+  "league_url": "",
+  "teams": [
+    {
+      "name": "Ascot United",
+      "url": "https://en.wikipedia.org/wiki/Ascot_United_F.C.",
+      "image_url": null,
+      "address": "Ascot Racecourse",
+      "level": 8,
+      "latitude": 51.4161,
+      "longitude": -0.676944,
+      "formatted_address": "Ascot Racecourse"
+    },
+    {
+      "name": "Metropolitan Police",
+      "url": "https://en.wikipedia.org/wiki/Metropolitan_Police_F.C.",
+      "image_url": null,
+      "address": "Metropolitan Police F.C.",
+      "level": 8,
+      "latitude": 51.3904,
+      "longitude": -0.351733,
+      "formatted_address": "Metropolitan Police F.C."
+    },
+    {
+      "name": "Moneyfields",
+      "url": "https://en.wikipedia.org/wiki/Moneyfields_F.C.",
+      "image_url": null,
+      "address": "Moneyfields F.C.",
+      "level": 8,
+      "latitude": 50.81517222,
+      "longitude": -1.06064167,
+      "formatted_address": "Moneyfields F.C."
+    },
+    {
+      "name": "Raynes Park Vale",
+      "url": "https://en.wikipedia.org/wiki/Raynes_Park_Vale_F.C.",
+      "image_url": null,
+      "address": "Raynes Park Vale F.C.",
+      "level": 8,
+      "latitude": 51.40332222,
+      "longitude": -0.22703611,
+      "formatted_address": "Raynes Park Vale F.C."
+    }
+  ],
+  "team_count": 4
+}

@@ -34,6 +34,28 @@ def _normalize_site_path(path: str) -> str:
     return p
 
 
+def resolve_not_found_redirect(pathname: str, *, is_prod: bool) -> str:
+    """Next hop for a missing URL: parent directory index, else site home.
+
+    GitHub Pages serves one static ``404.html`` for every missing path. The browser
+    keeps the requested URL in ``location.pathname``, so we walk up one segment per
+    404 until an existing ``index.html`` is reached.
+    """
+    default_home = "/" if is_prod else "/index.html"
+    path = pathname or "/"
+    if path != "/" and path.endswith("/"):
+        path = path.rstrip("/")
+    if path in ("", "/"):
+        return default_home
+    slash = path.rfind("/")
+    if slash <= 0:
+        return default_home
+    parent = path[:slash] or "/"
+    if parent == "/":
+        return default_home
+    return f"{parent}/" if is_prod else f"{parent}/index.html"
+
+
 def _redirect_stub_html(target_url: str, title: str) -> str:
     t = escape(target_url)
     title_esc = escape(title)

@@ -835,3 +835,103 @@ a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
+
+/* 404 page (GitHub Pages custom 404.html) */
+body.not-found {
+  max-width: 560px;
+}
+
+body.not-found > p {
+  text-align: inherit;
+}
+
+.not-found-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow);
+  padding: 2rem 1.75rem;
+  text-align: center;
+}
+
+.not-found-code {
+  margin: 0 0 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+
+.not-found-card h1 {
+  margin-top: 0;
+  font-size: 1.75rem;
+}
+
+.not-found-lead,
+.not-found-path,
+.not-found-redirect {
+  color: var(--text-muted);
+  margin: 0.75rem 0;
+  text-align: center;
+}
+
+.not-found-path code,
+#requested-path {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-light);
+  color: var(--text-heading);
+  font-size: 0.9em;
+  word-break: break-all;
+}
+
+.not-found-redirect #redirect-countdown {
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.not-found-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.not-found-button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  background: var(--hero-primary-bg);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  max-width: 100%;
+  word-break: break-all;
+}
+
+.not-found-button:hover {
+  background: var(--hero-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-shadow);
+  color: #fff;
+}
+
+.not-found-link {
+  display: inline;
+  color: var(--accent);
+  font-size: 0.95em;
+  text-decoration: none;
+  padding: 0;
+}
+
+.not-found-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}

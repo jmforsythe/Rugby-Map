@@ -138,45 +138,64 @@ def _home_page_json_ld_script() -> str:
 
 
 def _not_found_redirect_script(*, is_prod: bool) -> str:
-    """Client-side target from ``location.pathname`` (GitHub serves one static ``404.html``)."""
+    """Redirect to the parent index from ``location.pathname`` (one static ``404.html``)."""
     default_home = "/" if is_prod else "/index.html"
+    redirect_delay = 3
     script = rf"""(function () {{
   var isProd = {json.dumps(is_prod)};
   var defaultHome = {json.dumps(default_home)};
+  var delay = {redirect_delay};
+
+  function parentRedirect(pathname) {{
+    var path = pathname || "/";
+    if (path !== "/" && path.charAt(path.length - 1) === "/") {{
+      path = path.replace(/\/+$/, "");
+    }}
+    if (!path || path === "/") {{
+      return defaultHome;
+    }}
+    var slash = path.lastIndexOf("/");
+    if (slash <= 0) {{
+      return defaultHome;
+    }}
+    var parent = path.slice(0, slash) || "/";
+    if (parent === "/") {{
+      return defaultHome;
+    }}
+    return isProd ? parent + "/" : parent + "/index.html";
+  }}
+
   var path = location.pathname;
-  var m;
+  var target = parentRedirect(path);
+  var pathEl = document.getElementById("requested-path");
+  var targetEl = document.getElementById("redirect-target");
+  var countdownEl = document.getElementById("redirect-countdown");
+  var meta = document.getElementById("redirect-meta");
 
-  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/merit(?:\\/|$)/);
-  if (m) {{
-    location.replace(isProd ? "/" + m[1] + "/" : "/" + m[1] + "/index.html");
-    return;
+  if (pathEl) {{
+    pathEl.textContent = path;
+  }}
+  if (targetEl) {{
+    targetEl.href = target;
+    targetEl.textContent = target;
+  }}
+  if (meta) {{
+    meta.setAttribute("content", delay + ";url=" + target);
   }}
 
-  m = path.match(/^\\/(\d{{4}}-\d{{4}})\\/match_day(?:\\/|$)/);
-  if (m) {{
-    location.replace(
-      isProd ? "/" + m[1] + "/match_day/" : "/" + m[1] + "/match_day/index.html"
-    );
-    return;
+  var remaining = delay;
+  function tick() {{
+    if (countdownEl) {{
+      countdownEl.textContent = String(remaining);
+    }}
+    if (remaining <= 0) {{
+      location.replace(target);
+      return;
+    }}
+    remaining -= 1;
+    window.setTimeout(tick, 1000);
   }}
-
-  m = path.match(/^\\/(\d{{4}}-\d{{4}})(?:\\/|$)/);
-  if (m) {{
-    location.replace(isProd ? "/" + m[1] + "/" : "/" + m[1] + "/index.html");
-    return;
-  }}
-
-  if (path.indexOf("/teams/") === 0 || path === "/teams") {{
-    location.replace(isProd ? "/teams/" : "/teams/index.html");
-    return;
-  }}
-
-  if (path.indexOf("/custom-map/") === 0 || path === "/custom-map") {{
-    location.replace(isProd ? "/custom-map/" : "/custom-map/index.html");
-    return;
-  }}
-
-  location.replace(defaultHome);
+  window.setTimeout(tick, 1000);
 }})();"""
     return f"    <script>\n{script}\n    </script>\n"
 
@@ -192,12 +211,13 @@ def get_not_found_html() -> str:
     style_href = "/styles.css" if is_prod else "styles.css"
     page_title = f"Page not found | {BRAND}"
     default_esc = escape(default_home)
+    page_desc = "This page is not on the site. Redirecting to the nearest parent index."
     head_extra = ""
     if is_prod:
         head_extra = (
             f'    <link rel="canonical" href="{escape(BASE_URL + "/")}">\n'
             f'    <meta property="og:title" content="{escape(page_title)}" />\n'
-            f'    <meta property="og:description" content="This page is not on the site. Redirecting to the home page." />\n'
+            f'    <meta property="og:description" content="{escape(page_desc)}" />\n'
             f'    <meta property="og:type" content="website" />\n'
             f'    <meta property="og:url" content="{escape(BASE_URL + "/")}" />\n'
             + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
@@ -211,15 +231,25 @@ def get_not_found_html() -> str:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <meta name="description" content="This page is not on the site. Redirecting to the home page.">
+    <meta name="description" content="{escape(page_desc)}">
+    <meta id="redirect-meta" http-equiv="refresh" content="3;url={default_esc}">
 {head_extra}    <title>{escape(page_title)}</title>
     <link rel="stylesheet" href="{style_href}">
     {get_favicon_html(depth=0)}
     {get_google_analytics_script()}
 {redirect_script}</head>
-<body>
-    <h1>Page not found</h1>
-    <p>That map or address is not on this site. If JavaScript is enabled you will be sent to the nearest index (for example the season page when the path starts with a year). Otherwise open the <a href="{default_esc}">home page</a>.</p>
+<body class="not-found">
+    <main class="not-found-card">
+        <p class="not-found-code" aria-hidden="true">404</p>
+        <h1>Page not found</h1>
+        <p class="not-found-lead">That map or page is not on this site.</p>
+        <p class="not-found-path">Requested URL: <code id="requested-path">{escape(default_home)}</code></p>
+        <p class="not-found-redirect">Redirecting to the parent index in <span id="redirect-countdown">3</span>&nbsp;s&hellip;</p>
+        <div class="not-found-actions">
+            <a id="redirect-target" class="not-found-button" href="{default_esc}">{default_esc}</a>
+            <a class="not-found-link" href="{default_esc}">Home page</a>
+        </div>
+    </main>
 {get_footer_html()}
 </body>
 </html>

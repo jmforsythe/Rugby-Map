@@ -1,201 +1,294 @@
 {
   "league_name": "Midland League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Bridgnorth",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Bridgnorth",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7d/A.F.C._Bridgnorth_logo.png",
       "address": "A.F.C. Bridgnorth",
+      "territory": "England",
+      "wiki_title": "A.F.C._Bridgnorth",
       "level": 10,
       "latitude": 52.539387,
       "longitude": -2.4285646,
-      "formatted_address": "A.F.C. Bridgnorth"
+      "formatted_address": "A.F.C. Bridgnorth",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Allexton & New Parks",
       "url": "https://en.wikipedia.org/wiki/Allexton_%26_New_Parks_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Allexton_%26_New_Parks_F.C._logo.png",
+      "address": "Allexton & New Parks, England",
+      "territory": "England",
+      "wiki_title": "Allexton_&_New_Parks_F.C.",
+      "level": 10,
+      "latitude": 52.639756,
+      "longitude": -1.1898034,
+      "formatted_address": "Allexton Gardens, Kirby Frith, Leicester, City of Leicester, England, LE3 6LA, United Kingdom",
+      "place_id": 278735686,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Bilston Town",
       "url": "https://en.wikipedia.org/wiki/Bilston_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Bilston_Town_F.C._logo.png",
       "address": "Bilston Town F.C.",
+      "territory": "England",
+      "wiki_title": "Bilston_Town_F.C.",
       "level": 10,
       "latitude": 52.566435,
       "longitude": -2.0656255,
-      "formatted_address": "Bilston Town F.C."
+      "formatted_address": "Bilston Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Birstall United",
       "url": "https://en.wikipedia.org/wiki/Birstall_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fa/Birstall_United_F.C._logo.png",
       "address": "Birstall United F.C.",
+      "territory": "England",
+      "wiki_title": "Birstall_United_F.C.",
       "level": 10,
       "latitude": 52.68087778,
       "longitude": -1.11475833,
-      "formatted_address": "Birstall United F.C."
+      "formatted_address": "Birstall United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Chelmsley Town",
       "url": "https://en.wikipedia.org/wiki/Chelmsley_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bf/Chelmsley_Town_logo.png",
       "address": "Chelmsley Town F.C.",
+      "territory": "England",
+      "wiki_title": "Chelmsley_Town_F.C.",
       "level": 10,
       "latitude": 52.482584,
       "longitude": -1.6983975,
-      "formatted_address": "Chelmsley Town F.C."
+      "formatted_address": "Chelmsley Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Coventry Copsewood",
       "url": "https://en.wikipedia.org/wiki/Coventry_Copsewood_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8f/Coventry_Copsewood_F.C._logo.png",
       "address": "Coventry Copsewood F.C.",
+      "territory": "England",
+      "wiki_title": "Coventry_Copsewood_F.C.",
       "level": 10,
       "latitude": 52.39165833,
       "longitude": -1.47168611,
-      "formatted_address": "Coventry Copsewood F.C."
+      "formatted_address": "Coventry Copsewood F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cradley Town",
       "url": "https://en.wikipedia.org/wiki/Cradley_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6e/Cradley_Town_F.C._logo.png",
       "address": "Cradley Town F.C.",
+      "territory": "England",
+      "wiki_title": "Cradley_Town_F.C.",
       "level": 10,
       "latitude": 52.451191,
       "longitude": -2.0895119,
-      "formatted_address": "Cradley Town F.C."
+      "formatted_address": "Cradley Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Gornal Athletic",
       "url": "https://en.wikipedia.org/wiki/Gornal_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c9/GornalAthletic.png",
       "address": "Gornal Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Gornal_Athletic_F.C.",
       "level": 10,
       "latitude": 52.51552222,
       "longitude": -2.12568611,
-      "formatted_address": "Gornal Athletic F.C."
+      "formatted_address": "Gornal Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Heather St John's",
       "url": "https://en.wikipedia.org/wiki/Heather_St_John%27s_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9c/Heather_St_John%27s_F.C.png",
       "address": "Heather St John's F.C.",
+      "territory": "England",
+      "wiki_title": "Heather_St_John's_F.C.",
       "level": 10,
       "latitude": 52.69743056,
       "longitude": -1.42418889,
-      "formatted_address": "Heather St John's F.C."
+      "formatted_address": "Heather St John's F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ingles",
       "url": "https://en.wikipedia.org/wiki/Ingles_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/69/InglesFClogo.png",
       "address": "Ingles F.C.",
+      "territory": "England",
+      "wiki_title": "Ingles_F.C.",
       "level": 10,
       "latitude": 52.769844,
       "longitude": -1.3025934,
-      "formatted_address": "Ingles F.C."
+      "formatted_address": "Ingles F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kirby Muxloe",
       "url": "https://en.wikipedia.org/wiki/Kirby_Muxloe_S.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f8/Kirby_Muxloe_S.C._logo.png",
+      "address": "Kirby Muxloe, England",
+      "territory": "England",
+      "wiki_title": "Kirby_Muxloe_S.C.",
+      "level": 10,
+      "latitude": 52.6287267,
+      "longitude": -1.2340047,
+      "formatted_address": "Kirby Muxloe, Blaby, Leicestershire, England, United Kingdom",
+      "place_id": 279171611,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Knowle",
       "url": "https://en.wikipedia.org/wiki/Knowle_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Knowle_FC.png",
       "address": "Knowle F.C.",
+      "territory": "England",
+      "wiki_title": "Knowle_F.C.",
       "level": 10,
       "latitude": 52.39273056,
       "longitude": -1.73362778,
-      "formatted_address": "Knowle F.C."
+      "formatted_address": "Knowle F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Leicester St. Andrews",
       "url": "https://en.wikipedia.org/wiki/Leicester_St_Andrews_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/09/St_Andrews_F.C._logo.png",
       "address": "St Andrews F.C.",
+      "territory": "England",
+      "wiki_title": "Leicester_St_Andrews_F.C.",
       "level": 10,
       "latitude": 52.6068,
       "longitude": -1.15671,
-      "formatted_address": "St Andrews F.C."
+      "formatted_address": "St Andrews F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lutterworth Athletic",
       "url": "https://en.wikipedia.org/wiki/Lutterworth_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/60/Lutterworth_Athletic_F.C._logo.png",
       "address": "Lutterworth Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Lutterworth_Athletic_F.C.",
       "level": 10,
       "latitude": 52.480139,
       "longitude": -1.201088,
-      "formatted_address": "Lutterworth Athletic F.C."
+      "formatted_address": "Lutterworth Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Nuneaton Griff",
       "url": "https://en.wikipedia.org/wiki/Nuneaton_Griff_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/32/Griff_Badge.png",
       "address": "Nuneaton Griff F.C.",
+      "territory": "England",
+      "wiki_title": "Nuneaton_Griff_F.C.",
       "level": 10,
       "latitude": 52.51574444,
       "longitude": -1.46428611,
-      "formatted_address": "Nuneaton Griff F.C."
+      "formatted_address": "Nuneaton Griff F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "OJM Black Country Rangers",
       "url": "https://en.wikipedia.org/wiki/Black_Country_Rangers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ee/Black_Country_Rangers_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Black_Country_Rangers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Saffron Dynamo",
       "url": "https://en.wikipedia.org/wiki/Saffron_Dynamo_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f6/SaffronDynamo.png",
       "address": "Saffron Dynamo F.C.",
+      "territory": "England",
+      "wiki_title": "Saffron_Dynamo_F.C.",
       "level": 10,
       "latitude": 52.557431,
       "longitude": -1.1894122,
-      "formatted_address": "Saffron Dynamo F.C."
+      "formatted_address": "Saffron Dynamo F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Smethwick Rangers",
       "url": "https://en.wikipedia.org/wiki/Smethwick_Khalsa_Football_Federation_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Smethwickrangersfc.jpg",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Smethwick_Khalsa_Football_Federation_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Stapenhill",
       "url": "https://en.wikipedia.org/wiki/Stapenhill_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/SFC_ClubBadge.png/3840px-SFC_ClubBadge.png",
       "address": "Stapenhill F.C.",
+      "territory": "England",
+      "wiki_title": "Stapenhill_F.C.",
       "level": 10,
       "latitude": 52.7802,
       "longitude": -1.62521,
-      "formatted_address": "Stapenhill F.C."
+      "formatted_address": "Stapenhill F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sutton United (Birmingham)",
       "url": "https://en.wikipedia.org/wiki/Sutton_United_F.C._%28Birmingham%29",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b0/Sutton_United_F.C._%28Birmingham%29_logo.png",
+      "address": "London, England",
+      "territory": "England",
+      "wiki_title": "Sutton_United_F.C._(Birmingham)",
+      "level": 10,
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "formatted_address": "Greater London, England, United Kingdom",
+      "place_id": 281075796,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Wednesfield",
       "url": "https://en.wikipedia.org/wiki/Wednesfield_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/33/WednesfieldFC.png",
       "address": "Wednesfield F.C.",
+      "territory": "England",
+      "wiki_title": "Wednesfield_F.C.",
       "level": 10,
       "latitude": 52.6061,
       "longitude": -2.08362,
-      "formatted_address": "Wednesfield F.C."
+      "formatted_address": "Wednesfield F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 21

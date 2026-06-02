@@ -1,173 +1,240 @@
 {
   "league_name": "Southern Counties East League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Greenwich Borough",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Greenwich_Borough",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/AFC_Greenwich_Borough.webp",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "A.F.C._Greenwich_Borough",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Banstead Athletic",
       "url": "https://en.wikipedia.org/wiki/Banstead_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e1/Banstead_Athletic_F.C._logo.png",
       "address": "Banstead Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Banstead_Athletic_F.C.",
       "level": 10,
       "latitude": 51.303487,
       "longitude": -0.23294717,
-      "formatted_address": "Banstead Athletic F.C."
+      "formatted_address": "Banstead Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bearsted",
       "url": "https://en.wikipedia.org/wiki/Bridon_Ropes_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Bridon_Ropes_F.C._logo.png",
       "address": "Bridon Ropes F.C.",
+      "territory": "England",
+      "wiki_title": "Bridon_Ropes_F.C.",
       "level": 10,
       "latitude": 51.478587,
       "longitude": 0.047646,
-      "formatted_address": "Bridon Ropes F.C."
+      "formatted_address": "Bridon Ropes F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Chessington & Hook United",
       "url": "https://en.wikipedia.org/wiki/Chessington_%26_Hook_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3a/Chessington_%26_Hook_United_F.C._logo.png",
       "address": "Chessington & Hook United F.C.",
+      "territory": "England",
+      "wiki_title": "Chessington_&_Hook_United_F.C.",
       "level": 10,
       "latitude": 51.3503,
       "longitude": -0.309839,
-      "formatted_address": "Chessington & Hook United F.C."
+      "formatted_address": "Chessington & Hook United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Croydon",
       "url": "https://en.wikipedia.org/wiki/Croydon_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6f/Croydon_F.C._logo.png",
       "address": "Croydon F.C.",
+      "territory": "England",
+      "wiki_title": "Croydon_F.C.",
       "level": 10,
       "latitude": 51.39340694,
       "longitude": -0.06060194,
-      "formatted_address": "Croydon F.C."
+      "formatted_address": "Croydon F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "F.C. Elmstead",
       "url": "https://en.wikipedia.org/wiki/F.C._Elmstead",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/41/FCElmsetadlogo.png",
       "address": "F.C. Elmstead",
+      "territory": "England",
+      "wiki_title": "F.C._Elmstead",
       "level": 10,
       "latitude": 51.414302,
       "longitude": 0.198715,
-      "formatted_address": "F.C. Elmstead"
+      "formatted_address": "F.C. Elmstead",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Forest Hill Park",
       "url": "https://en.wikipedia.org/wiki/Forest_Hill_Park_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/ForestHillParkFC.png",
       "address": "Ladywell Arena",
+      "territory": "England",
+      "wiki_title": "Forest_Hill_Park_F.C.",
       "level": 10,
       "latitude": 51.45111111,
       "longitude": -0.02166667,
-      "formatted_address": "Ladywell Arena"
+      "formatted_address": "Ladywell Arena",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Greenways",
       "url": "https://en.wikipedia.org/wiki/Greenways_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e7/Greenways_FC.png",
       "address": "Greenways F.C.",
+      "territory": "England",
+      "wiki_title": "Greenways_F.C.",
       "level": 10,
       "latitude": 51.300905,
       "longitude": 0.45703501,
-      "formatted_address": "Greenways F.C."
+      "formatted_address": "Greenways F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lewisham Borough",
       "url": "https://en.wikipedia.org/wiki/Lewisham_Borough_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f4/Lewisham_Borough_F.C._logo.png",
       "address": "Ladywell Arena",
+      "territory": "England",
+      "wiki_title": "Lewisham_Borough_F.C.",
       "level": 10,
       "latitude": 51.45111111,
       "longitude": -0.02166667,
-      "formatted_address": "Ladywell Arena"
+      "formatted_address": "Ladywell Arena",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lordswood",
       "url": "https://en.wikipedia.org/wiki/Lordswood_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ea/Lordswood_FC_logo.png",
       "address": "Lordswood F.C.",
+      "territory": "England",
+      "wiki_title": "Lordswood_F.C.",
       "level": 10,
       "latitude": 51.34172222,
       "longitude": 0.54700556,
-      "formatted_address": "Lordswood F.C."
+      "formatted_address": "Lordswood F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lydd Town",
       "url": "https://en.wikipedia.org/wiki/Lydd_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/08/LyddTown.png",
       "address": "Lydd Town F.C.",
+      "territory": "England",
+      "wiki_title": "Lydd_Town_F.C.",
       "level": 10,
       "latitude": 50.944378,
       "longitude": 0.908689,
-      "formatted_address": "Lydd Town F.C."
+      "formatted_address": "Lydd Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Rochester United",
       "url": "https://en.wikipedia.org/wiki/Rochester_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9b/Rochester_United_F.C._logo.png",
       "address": "Rochester United F.C.",
+      "territory": "England",
+      "wiki_title": "Rochester_United_F.C.",
       "level": 10,
       "latitude": 51.399139,
       "longitude": 0.467197,
-      "formatted_address": "Rochester United F.C."
+      "formatted_address": "Rochester United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sheppey Sports",
       "url": "https://en.wikipedia.org/wiki/Sheppey_Sports_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/85/Sheppey_Sports_FC_logo.png",
       "address": "APM Contrast F.C.",
+      "territory": "England",
+      "wiki_title": "Sheppey_Sports_F.C.",
       "level": 10,
       "latitude": 51.300905,
       "longitude": 0.45703501,
-      "formatted_address": "APM Contrast F.C."
+      "formatted_address": "APM Contrast F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sporting Club Thamesmead",
       "url": "https://en.wikipedia.org/wiki/Sporting_Club_Thamesmead_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e9/Sporting_Club_Thamesmead_F.C._logo.png",
       "address": "Sporting Club Thamesmead F.C.",
+      "territory": "England",
+      "wiki_title": "Sporting_Club_Thamesmead_F.C.",
       "level": 10,
       "latitude": 51.419018,
       "longitude": 0.109959,
-      "formatted_address": "Sporting Club Thamesmead F.C."
+      "formatted_address": "Sporting Club Thamesmead F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Staplehurst Monarchs",
       "url": "https://en.wikipedia.org/wiki/Staplehurst_Monarchs_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d9/Staplehurst_Monarchs_FC_logo.png",
       "address": "Staplehurst Monarchs F.C.",
+      "territory": "England",
+      "wiki_title": "Staplehurst_Monarchs_F.C.",
       "level": 10,
       "latitude": 51.166408333,
       "longitude": 0.564316666,
-      "formatted_address": "Staplehurst Monarchs F.C."
+      "formatted_address": "Staplehurst Monarchs F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Tooting Bec",
       "url": "https://en.wikipedia.org/wiki/Tooting_Bec_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1b/Tooting_Bec_F.C._logo.png",
       "address": "Imperial Fields",
+      "territory": "England",
+      "wiki_title": "Tooting_Bec_F.C.",
       "level": 10,
       "latitude": 51.393231,
       "longitude": -0.172381,
-      "formatted_address": "Imperial Fields"
+      "formatted_address": "Imperial Fields",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Welling Town",
       "url": "https://en.wikipedia.org/wiki/Welling_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/45/Welling_Town_FC_logo.png",
       "address": "Welling Town F.C.",
+      "territory": "England",
+      "wiki_title": "Welling_Town_F.C.",
       "level": 10,
       "latitude": 51.439721,
       "longitude": 0.2179268,
-      "formatted_address": "Welling Town F.C."
+      "formatted_address": "Welling Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 17

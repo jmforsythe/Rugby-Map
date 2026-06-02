@@ -1,0 +1,250 @@
+{
+  "league_name": "Championship",
+  "league_url": "https://github.com/openfootball/england/blob/master/2024-25/2-championship.txt",
+  "teams": [
+    {
+      "name": "Blackburn Rovers FC",
+      "url": "",
+      "image_url": null,
+      "address": "Ewood Park, Blackburn, England",
+      "latitude": 53.7285283,
+      "longitude": -2.4892251,
+      "formatted_address": "Ewood Park, Nuttall Street, Ewood, Blackburn, Blackburn with Darwen, Lancashire, England, BB2 4JF, United Kingdom",
+      "place_id": 274392393
+    },
+    {
+      "name": "Derby County FC",
+      "url": "",
+      "image_url": null,
+      "address": "iPro Stadium, Derby, England",
+      "geocode_precision": "town",
+      "latitude": 52.9142235,
+      "longitude": -1.4719885,
+      "formatted_address": "Derby, East Midlands, England, United Kingdom",
+      "place_id": 278663002
+    },
+    {
+      "name": "Preston North End FC",
+      "url": "",
+      "image_url": null,
+      "address": "Deepdale, Preston, England",
+      "latitude": 53.7722148,
+      "longitude": -2.6885609,
+      "formatted_address": "Deepdale Stadium, Sir Tom Finney Way, Holme Slack, Deepdale, Preston, Lancashire, England, PR1 6RU, United Kingdom",
+      "place_id": 277395719
+    },
+    {
+      "name": "Sheffield United FC",
+      "url": "",
+      "image_url": null,
+      "address": "Bramall Lane, Sheffield, England",
+      "latitude": 53.3703429,
+      "longitude": -1.4707145,
+      "formatted_address": "Bramall Lane, Moorfoot, Cultural Industries Quarter, Highfield, Sheffield, South Yorkshire, England, S2 4SU, United Kingdom",
+      "place_id": 277928408
+    },
+    {
+      "name": "Cardiff City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Cardiff City Stadium, Cardiff, England",
+      "geocode_precision": "town",
+      "latitude": 51.9896896,
+      "longitude": -2.1357384,
+      "formatted_address": "Walton Cardiff, Ashchurch Rural, Tewkesbury, Gloucestershire, England, GL20 7BL, United Kingdom",
+      "place_id": 292354342
+    },
+    {
+      "name": "Sunderland AFC",
+      "url": "",
+      "image_url": null,
+      "address": "Stadium of Light, Sunderland, England",
+      "latitude": 54.9143953,
+      "longitude": -1.3882579,
+      "formatted_address": "Stadium of Light, Millennium Way, Monkwearmouth, Sunderland, Tyne and Wear, North East, England, SR5 1BW, United Kingdom",
+      "place_id": 274232137
+    },
+    {
+      "name": "Hull City AFC",
+      "url": "",
+      "image_url": null,
+      "address": "KC Stadium, Hull, England",
+      "latitude": 53.7440022,
+      "longitude": -0.3718841,
+      "formatted_address": "KC Stadium, Anlaby Road, Dairycoates, Hull, Kingston upon Hull, Hull and East Yorkshire, England, HU3 6AJ, United Kingdom",
+      "place_id": 278483141
+    },
+    {
+      "name": "Bristol City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Ashton Gate, Bristol, England",
+      "latitude": 51.4398694,
+      "longitude": -2.6203405,
+      "formatted_address": "Ashton Gate Stadium, Ashton Road, Bower Ashton, Ashton Gate, Bristol, City of Bristol, West of England, England, BS3 2EJ, United Kingdom",
+      "place_id": 282608947
+    },
+    {
+      "name": "Leeds United FC",
+      "url": "",
+      "image_url": null,
+      "address": "Elland Road, Leeds, England",
+      "latitude": 53.775653,
+      "longitude": -1.5757248,
+      "formatted_address": "Elland Road, Beeston, Churwell, Leeds, West Yorkshire, England, LS11 0EB, United Kingdom",
+      "place_id": 278908628
+    },
+    {
+      "name": "Portsmouth FC",
+      "url": "",
+      "image_url": null,
+      "address": "Fratton Park, Portsmouth, England",
+      "latitude": 50.7963238,
+      "longitude": -1.0638836,
+      "formatted_address": "Fratton Park, Frogmore Road, Milton, Portsmouth, England, PO4 8RA, United Kingdom",
+      "place_id": 283225504
+    },
+    {
+      "name": "Middlesbrough FC",
+      "url": "",
+      "image_url": null,
+      "address": "Riverside Stadium, Middlesbrough, England",
+      "latitude": 54.5783134,
+      "longitude": -1.2169153,
+      "formatted_address": "Riverside stadium, The Leeway, North Ormesby, Middlesbrough, Tees Valley, England, TS3 6RS, United Kingdom",
+      "place_id": 275063160
+    },
+    {
+      "name": "Swansea City AFC",
+      "url": "",
+      "image_url": null,
+      "address": "Liberty Stadium, Swansea, England",
+      "geocode_precision": "town",
+      "latitude": 52.9502912,
+      "longitude": -1.2716904,
+      "formatted_address": "Swansea Bridge, Trowell Moor, Trowell, Bramcote, Broxtowe, Nottinghamshire, East Midlands, England, NG9 3TG, United Kingdom",
+      "place_id": 278710069
+    },
+    {
+      "name": "Millwall FC",
+      "url": "",
+      "image_url": null,
+      "address": "The Den, London, England",
+      "latitude": 51.4859656,
+      "longitude": -0.0509103,
+      "formatted_address": "The Den, John Berylson Way, South Bermondsey, Bermondsey, London Borough of Lewisham, Greater London, England, SE16 3LA, United Kingdom",
+      "place_id": 281725298
+    },
+    {
+      "name": "Watford FC",
+      "url": "",
+      "image_url": null,
+      "address": "Vicarage Road, Watford, England",
+      "latitude": 51.6479214,
+      "longitude": -0.4073475,
+      "formatted_address": "Vicarage Road, Holywell Estate, Watford, Hertfordshire, England, WD18 0DD, United Kingdom",
+      "place_id": 280054593
+    },
+    {
+      "name": "Oxford United FC",
+      "url": "",
+      "image_url": null,
+      "address": "Kassam Stadium, Oxford, England",
+      "latitude": 51.7164667,
+      "longitude": -1.2076599,
+      "formatted_address": "Kassam Stadium, Grenoble Road, Littlemore, Oxford, Oxfordshire, England, OX4 4XP, United Kingdom",
+      "place_id": 283140947
+    },
+    {
+      "name": "Norwich City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Carrow Road, Norwich, England",
+      "latitude": 52.6220315,
+      "longitude": 1.3093222,
+      "formatted_address": "Carrow Road Stadium, Carrow Road, Thorpe Hamlet, Norwich, Norfolk, England, NR1 1JE, United Kingdom",
+      "place_id": 158971209
+    },
+    {
+      "name": "Queens Park Rangers FC",
+      "url": "",
+      "image_url": null,
+      "address": "Loftus Road, London, England",
+      "latitude": 51.5420329,
+      "longitude": 0.0769471,
+      "formatted_address": "Loftus Road, Thames View, London Borough of Barking and Dagenham, Greater London, England, IG11 8PA, United Kingdom",
+      "place_id": 99751765
+    },
+    {
+      "name": "West Bromwich Albion FC",
+      "url": "",
+      "image_url": null,
+      "address": "The Hawthorns, West Bromwich, England",
+      "latitude": 52.5091654,
+      "longitude": -1.9636621,
+      "formatted_address": "The Hawthorns, Birmingham Road, West Bromwich, Sandwell, West Midlands, England, B71 4LF, United Kingdom",
+      "place_id": 277867911
+    },
+    {
+      "name": "Stoke City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Britannia Stadium, Stoke-on-Trent, England",
+      "latitude": 52.9883401,
+      "longitude": -2.1755919,
+      "formatted_address": "bet365 Stadium, Stanley Matthews Way, Sideway, Fenton, Stoke-on-Trent, England, ST4 4EG, United Kingdom",
+      "place_id": 277631165
+    },
+    {
+      "name": "Coventry City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Ricoh Arena, Coventry, England",
+      "latitude": 52.4481175,
+      "longitude": -1.4956551,
+      "formatted_address": "Coventry Building Society Arena, Rowleys Green Lane, Rowley Green, Coventry, West Midlands, England, CV6 6AQ, United Kingdom",
+      "place_id": 279515512
+    },
+    {
+      "name": "Sheffield Wednesday FC",
+      "url": "",
+      "image_url": null,
+      "address": "Hillsborough, Sheffield, England",
+      "latitude": 53.411379,
+      "longitude": -1.5006311,
+      "formatted_address": "Hillsborough Stadium, Catch Bar Lane, Middlewood, Hillsborough, Sheffield, South Yorkshire, England, S6 1SW, United Kingdom",
+      "place_id": 277747458
+    },
+    {
+      "name": "Plymouth Argyle FC",
+      "url": "",
+      "image_url": null,
+      "address": "Home Park, Plymouth, England",
+      "latitude": 50.3881215,
+      "longitude": -4.1508747,
+      "formatted_address": "Home Park, Jack Leslie Way, Ham, Crownhill, Plymouth, England, PL2 3DQ, United Kingdom",
+      "place_id": 284844156
+    },
+    {
+      "name": "Luton Town FC",
+      "url": "",
+      "image_url": null,
+      "address": "Kenilworth Road, Luton, England",
+      "latitude": 51.8848937,
+      "longitude": -0.4284145,
+      "formatted_address": "Kenilworth Road, Bury Park, Luton, England, LU1 1BT, United Kingdom",
+      "place_id": 279781240
+    },
+    {
+      "name": "Burnley FC",
+      "url": "",
+      "image_url": null,
+      "address": "Turf Moor, Burnley, England",
+      "latitude": 53.7893606,
+      "longitude": -2.2298547,
+      "formatted_address": "Turf Moor, Harry Potts Way, Pike Hill, Fulledge, Burnley, Lancashire, England, BB10 4AX, United Kingdom",
+      "place_id": 277804244
+    }
+  ],
+  "team_count": 24
+}

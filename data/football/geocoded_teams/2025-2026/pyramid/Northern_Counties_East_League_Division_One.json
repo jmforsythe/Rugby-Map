@@ -1,202 +1,307 @@
 {
   "league_name": "Northern Counties East League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Appleby Frodingham",
       "url": "https://en.wikipedia.org/wiki/Appleby_Frodingham_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/79/Appleby_Frodingham_F.C._logo.png",
+      "address": "Appleby Frodingham, England",
+      "territory": "England",
+      "wiki_title": "Appleby_Frodingham_F.C.",
+      "level": 10,
+      "latitude": 53.5866845,
+      "longitude": -0.6224048,
+      "formatted_address": "Appleby, Basic Slag Road, British Steel Ltd (Scunthorpe Steelworks), New Frodingham, Scunthorpe, North Lincolnshire, Greater Lincolnshire, England, DN16 1DN, United Kingdom",
+      "place_id": 278909551,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Armthorpe Welfare",
       "url": "https://en.wikipedia.org/wiki/Armthorpe_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Armthorpe_Welfare_F.C._logo.png",
       "address": "Armthorpe Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Armthorpe_Welfare_F.C.",
       "level": 10,
       "latitude": 53.5347,
       "longitude": -1.05645,
-      "formatted_address": "Armthorpe Welfare F.C."
+      "formatted_address": "Armthorpe Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Athersley Recreation",
       "url": "https://en.wikipedia.org/wiki/Athersley_Recreation_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/96/AthersleyRec.png",
       "address": "Athersley Recreation F.C.",
+      "territory": "England",
+      "wiki_title": "Athersley_Recreation_F.C.",
       "level": 10,
       "latitude": 53.58533194,
       "longitude": -1.473665,
-      "formatted_address": "Athersley Recreation F.C."
+      "formatted_address": "Athersley Recreation F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Brigg Town",
       "url": "https://en.wikipedia.org/wiki/Brigg_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9b/Briggtownfc.png",
       "address": "Brigg Town F.C.",
+      "territory": "England",
+      "wiki_title": "Brigg_Town_F.C.",
       "level": 10,
       "latitude": 53.558,
       "longitude": -0.485086,
-      "formatted_address": "Brigg Town F.C."
+      "formatted_address": "Brigg Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Club Thorne Colliery",
       "url": "https://en.wikipedia.org/wiki/Club_Thorne_Colliery_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/G_odoU4o_400x400.jpg",
       "address": "Thorne Colliery F.C.",
+      "territory": "England",
+      "wiki_title": "Club_Thorne_Colliery_F.C.",
       "level": 10,
       "latitude": 53.6345,
       "longitude": -0.94015,
-      "formatted_address": "Thorne Colliery F.C."
+      "formatted_address": "Thorne Colliery F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Crowle Colts",
       "url": "https://en.wikipedia.org/wiki/Crowle_Colts_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Crowle_Colts_F.C..png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Crowle_Colts_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Dearne & District",
       "url": "https://en.wikipedia.org/wiki/Dearne_%26_District_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/Dearne%26District.png",
+      "address": "Dearne & District, England",
+      "territory": "England",
+      "wiki_title": "Dearne_&_District_F.C.",
+      "level": 10,
+      "latitude": 53.5188149,
+      "longitude": -1.3114857,
+      "formatted_address": "Bolton-upon-Dearne, Lowfield Road, Bolton upon Dearne, Barnsley, South Yorkshire, England, S63 8JB, United Kingdom",
+      "place_id": 278827575,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Doncaster City",
       "url": "https://en.wikipedia.org/wiki/Doncaster_City_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a1/DoncasterCity.png",
+      "address": "Doncaster City, England",
+      "territory": "England",
+      "wiki_title": "Doncaster_City_F.C.",
+      "level": 10,
+      "latitude": 53.5097128,
+      "longitude": -1.0387584,
+      "formatted_address": "Branton St Wilfrid's Church of England Primary School, Conway Drive, Cantley, Branton, Doncaster, South Yorkshire, England, DN3 3NB, United Kingdom",
+      "place_id": 279086019,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Glasshoughton Welfare",
       "url": "https://en.wikipedia.org/wiki/Glasshoughton_Welfare_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Gwfc_crest.png",
       "address": "Glasshoughton Welfare A.F.C.",
+      "territory": "England",
+      "wiki_title": "Glasshoughton_Welfare_A.F.C.",
       "level": 10,
       "latitude": 53.71633611,
       "longitude": -1.34487222,
-      "formatted_address": "Glasshoughton Welfare A.F.C."
+      "formatted_address": "Glasshoughton Welfare A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Goole",
       "url": "https://en.wikipedia.org/wiki/Goole_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a6/Goole_A.F.C._logo.png",
       "address": "Goole A.F.C.",
+      "territory": "England",
+      "wiki_title": "Goole_A.F.C.",
       "level": 10,
       "latitude": 53.7031,
       "longitude": -0.880847,
-      "formatted_address": "Goole A.F.C."
+      "formatted_address": "Goole A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Harrogate Railway Athletic",
       "url": "https://en.wikipedia.org/wiki/Harrogate_Railway_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/96/Harrogate_Railway_Athletic_F.C._logo.png",
       "address": "Harrogate Railway Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Harrogate_Railway_Athletic_F.C.",
       "level": 10,
       "latitude": 54.0006,
       "longitude": -1.50509,
-      "formatted_address": "Harrogate Railway Athletic F.C."
+      "formatted_address": "Harrogate Railway Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ilkley Town",
       "url": "https://en.wikipedia.org/wiki/Ilkley_Town_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7a/Ilkley_Town_AFC_logo.png",
       "address": "Ilkley Town A.F.C.",
+      "territory": "England",
+      "wiki_title": "Ilkley_Town_A.F.C.",
       "level": 10,
       "latitude": 53.928947222,
       "longitude": -1.786441666,
-      "formatted_address": "Ilkley Town A.F.C."
+      "formatted_address": "Ilkley Town A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Leeds UFCA",
       "url": "https://en.wikipedia.org/wiki/Leeds_UFCA_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/97/Leeds_UFCA_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Leeds_UFCA_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Louth Town",
       "url": "https://en.wikipedia.org/wiki/Louth_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/Louth_Town_F.C._logo.png",
       "address": "Louth Town F.C.",
+      "territory": "England",
+      "wiki_title": "Louth_Town_F.C.",
       "level": 10,
       "latitude": 53.378972222,
       "longitude": 0.140944444,
-      "formatted_address": "Louth Town F.C."
+      "formatted_address": "Louth Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Maltby Main",
       "url": "https://en.wikipedia.org/wiki/Maltby_Main_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/48/MaltbyMainFC.png",
       "address": "Maltby Main F.C.",
+      "territory": "England",
+      "wiki_title": "Maltby_Main_F.C.",
       "level": 10,
       "latitude": 53.41682222,
       "longitude": -1.19168889,
-      "formatted_address": "Maltby Main F.C."
+      "formatted_address": "Maltby Main F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Nostell Miners Welfare",
       "url": "https://en.wikipedia.org/wiki/Nostell_Miners_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/NMWFC-White.png/3840px-NMWFC-White.png",
       "address": "Nostell Miners Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Nostell_Miners_Welfare_F.C.",
       "level": 10,
       "latitude": 53.65178056,
       "longitude": -1.411,
-      "formatted_address": "Nostell Miners Welfare F.C."
+      "formatted_address": "Nostell Miners Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Route One Rovers",
       "url": "https://en.wikipedia.org/wiki/Route_One_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/64/Route_One_Rovers_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Route_One_Rovers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Selby Town",
       "url": "https://en.wikipedia.org/wiki/Selby_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Selby_Town_F.C.png",
       "address": "Selby Town F.C.",
+      "territory": "England",
+      "wiki_title": "Selby_Town_F.C.",
       "level": 10,
       "latitude": 53.78476389,
       "longitude": -1.07727778,
-      "formatted_address": "Selby Town F.C."
+      "formatted_address": "Selby Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "South Leeds",
       "url": "https://en.wikipedia.org/wiki/South_Leeds_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/SLFC_Badge_NEW.jpg",
+      "address": "South Leeds, England",
+      "territory": "England",
+      "wiki_title": "South_Leeds_F.C.",
+      "level": 10,
+      "latitude": 53.7642487,
+      "longitude": -1.5419449,
+      "formatted_address": "South Leeds Stadium (Hunslet RLFC), John Charles Approach, Belle Isle, Leeds, West Yorkshire, England, LS11 5DJ, United Kingdom",
+      "place_id": 277819493,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Wakefield",
       "url": "https://en.wikipedia.org/wiki/Wakefield_A.F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d5/Wakefield_A.F.C._logo.png",
+      "address": "Wakefield, England",
+      "territory": "England",
+      "wiki_title": "Wakefield_A.F.C.",
+      "level": 10,
+      "latitude": 53.6829541,
+      "longitude": -1.4967286,
+      "formatted_address": "Wakefield, West Yorkshire, England, WF1 1HG, United Kingdom",
+      "place_id": 278665827,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Winterton Rangers",
       "url": "https://en.wikipedia.org/wiki/Winterton_Rangers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f2/Winterton_Rangers_F.C._logo.png",
       "address": "Winterton Rangers F.C.",
+      "territory": "England",
+      "wiki_title": "Winterton_Rangers_F.C.",
       "level": 10,
       "latitude": 53.6572,
       "longitude": -0.598042,
-      "formatted_address": "Winterton Rangers F.C."
+      "formatted_address": "Winterton Rangers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Worsbrough Bridge Athletic",
       "url": "https://en.wikipedia.org/wiki/Worsbrough_Bridge_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ed/WorsbroughBridgeFC.png",
       "address": "Worsbrough Bridge Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Worsbrough_Bridge_Athletic_F.C.",
       "level": 10,
       "latitude": 53.526,
       "longitude": -1.47177,
-      "formatted_address": "Worsbrough Bridge Athletic F.C."
+      "formatted_address": "Worsbrough Bridge Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 22

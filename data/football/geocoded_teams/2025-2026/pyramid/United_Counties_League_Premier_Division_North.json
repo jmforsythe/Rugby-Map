@@ -1,184 +1,274 @@
 {
   "league_name": "United Counties League Premier Division North",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
+    {
+      "name": "Harrowby United",
+      "url": "https://en.wikipedia.org/wiki/Harrowby_United_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1f/Harrowby_United_logo.png",
+      "address": "Harrowby United F.C.",
+      "territory": "England",
+      "wiki_title": "Harrowby_United_F.C.",
+      "level": 9,
+      "latitude": 52.90576111,
+      "longitude": -0.66676111,
+      "formatted_address": "Harrowby United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
     {
       "name": "A.F.C. Mansfield",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Mansfield",
-      "image_url": null,
-      "address": "A.F.C. Mansfield",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a2/AFCMansfieldlogo.png",
+      "address": "Field Mill, Mansfield, England",
+      "territory": "England",
+      "wiki_title": "A.F.C._Mansfield",
       "level": 9,
-      "latitude": 53.151548,
-      "longitude": -1.1614314,
-      "formatted_address": "A.F.C. Mansfield"
+      "latitude": 53.1380561,
+      "longitude": -1.2009171,
+      "formatted_address": "Field Mill, Quarry Lane, Ladybrook, Mansfield, Nottinghamshire, East Midlands, England, NG18 5DA, United Kingdom",
+      "place_id": 277518988,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Belper United",
       "url": "https://en.wikipedia.org/wiki/Belper_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/71/Belper_United_logo.png",
       "address": "Belper United F.C.",
+      "territory": "England",
+      "wiki_title": "Belper_United_F.C.",
       "level": 9,
       "latitude": 53.027171944,
       "longitude": -1.487325,
-      "formatted_address": "Belper United F.C."
+      "formatted_address": "Belper United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Blackstones",
       "url": "https://en.wikipedia.org/wiki/Blackstones_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fc/Blackstones_F.C._logo.png",
       "address": "Blackstones F.C.",
+      "territory": "England",
+      "wiki_title": "Blackstones_F.C.",
       "level": 9,
       "latitude": 52.66170833,
       "longitude": -0.468925,
-      "formatted_address": "Blackstones F.C."
+      "formatted_address": "Blackstones F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Boston Town",
       "url": "https://en.wikipedia.org/wiki/Boston_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9b/Boston_Town_logo.png",
       "address": "Boston Town F.C.",
+      "territory": "England",
+      "wiki_title": "Boston_Town_F.C.",
       "level": 9,
       "latitude": 52.99165556,
       "longitude": -0.03809444,
-      "formatted_address": "Boston Town F.C."
+      "formatted_address": "Boston Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Clay Cross Town",
       "url": "https://en.wikipedia.org/wiki/Clay_Cross_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/38/ClayCrossTownFC.png",
       "address": "Clay Cross Town F.C.",
+      "territory": "England",
+      "wiki_title": "Clay_Cross_Town_F.C.",
       "level": 9,
       "latitude": 53.172,
       "longitude": -1.432444444,
-      "formatted_address": "Clay Cross Town F.C."
+      "formatted_address": "Clay Cross Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Deeping Rangers",
       "url": "https://en.wikipedia.org/wiki/Deeping_Rangers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a3/Deeping_Rangers_F.C._logo.png",
       "address": "Deeping Rangers F.C.",
+      "territory": "England",
+      "wiki_title": "Deeping_Rangers_F.C.",
       "level": 9,
       "latitude": 52.6886,
       "longitude": -0.305456,
-      "formatted_address": "Deeping Rangers F.C."
+      "formatted_address": "Deeping Rangers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Eastwood",
       "url": "https://en.wikipedia.org/wiki/Eastwood_Community_F.C.",
       "image_url": null,
-      "address": null,
-      "level": 9
+      "address": "Eastwood, England",
+      "territory": "England",
+      "wiki_title": "Eastwood_Community_F.C.",
+      "level": 9,
+      "latitude": 53.0171751,
+      "longitude": -1.30386,
+      "formatted_address": "Eastwood, Broxtowe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 277182049,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Grantham Town",
       "url": "https://en.wikipedia.org/wiki/Grantham_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2f/Grantham_Town_F.C.png",
       "address": "Grantham Town F.C.",
+      "territory": "England",
+      "wiki_title": "Grantham_Town_F.C.",
       "level": 9,
       "latitude": 52.9059,
       "longitude": -0.664844,
-      "formatted_address": "Grantham Town F.C."
+      "formatted_address": "Grantham Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Gresley Rovers",
       "url": "https://en.wikipedia.org/wiki/Gresley_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2f/Gresley_Rovers_logo.png",
       "address": "Gresley F.C.",
+      "territory": "England",
+      "wiki_title": "Gresley_Rovers_F.C.",
       "level": 9,
       "latitude": 52.7618,
       "longitude": -1.56393,
-      "formatted_address": "Gresley F.C."
+      "formatted_address": "Gresley F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Heanor Town",
       "url": "https://en.wikipedia.org/wiki/Heanor_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3e/HeanorTown.png",
       "address": "Town Ground, Heanor",
+      "territory": "England",
+      "wiki_title": "Heanor_Town_F.C.",
       "level": 9,
       "latitude": 53.0112,
       "longitude": -1.35627,
-      "formatted_address": "Town Ground, Heanor"
+      "formatted_address": "Town Ground, Heanor",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Hucknall Town",
       "url": "https://en.wikipedia.org/wiki/Hucknall_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9d/Hucknall_Town_FC_crest.svg",
       "address": "Hucknall Town F.C.",
+      "territory": "England",
+      "wiki_title": "Hucknall_Town_F.C.",
       "level": 9,
       "latitude": 53.028644444,
       "longitude": -1.217411111,
-      "formatted_address": "Hucknall Town F.C."
+      "formatted_address": "Hucknall Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kimberley Miners Welfare",
       "url": "https://en.wikipedia.org/wiki/Kimberley_Miners_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d3/Kimberley_Miners_Welfare_logo.png",
       "address": "Kimberley Miners Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Kimberley_Miners_Welfare_F.C.",
       "level": 9,
       "latitude": 52.996213,
       "longitude": -1.2506041,
-      "formatted_address": "Kimberley Miners Welfare F.C."
+      "formatted_address": "Kimberley Miners Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Melton Town",
       "url": "https://en.wikipedia.org/wiki/Melton_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1f/MeltonMowbray.png",
       "address": "Melton Town F.C.",
+      "territory": "England",
+      "wiki_title": "Melton_Town_F.C.",
       "level": 9,
       "latitude": 52.755393,
       "longitude": -0.87397903,
-      "formatted_address": "Melton Town F.C."
+      "formatted_address": "Melton Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Newark & Sherwood United",
       "url": "https://en.wikipedia.org/wiki/Newark_and_Sherwood_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/38/Newark_and_Sherwood_United_FC_logo.png",
       "address": "Newark Flowserve F.C.",
+      "territory": "England",
+      "wiki_title": "Newark_and_Sherwood_United_F.C.",
       "level": 9,
       "latitude": 53.054527777,
       "longitude": -0.795722222,
-      "formatted_address": "Newark Flowserve F.C."
+      "formatted_address": "Newark Flowserve F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Newark Town",
       "url": "https://en.wikipedia.org/wiki/Newark_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/56/Newark_Town_F.C.png",
       "address": "Newark Town F.C.",
+      "territory": "England",
+      "wiki_title": "Newark_Town_F.C.",
       "level": 9,
       "latitude": 53.14555833,
       "longitude": -0.75597778,
-      "formatted_address": "Newark Town F.C."
+      "formatted_address": "Newark Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sherwood Colliery",
       "url": "https://en.wikipedia.org/wiki/Sherwood_Colliery_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/50/SherwoodCollieryFC.png",
       "address": "Sherwood Colliery F.C.",
+      "territory": "England",
+      "wiki_title": "Sherwood_Colliery_F.C.",
       "level": 9,
       "latitude": 53.161333333,
       "longitude": -1.206222222,
-      "formatted_address": "Sherwood Colliery F.C."
+      "formatted_address": "Sherwood Colliery F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Skegness Town",
       "url": "https://en.wikipedia.org/wiki/Skegness_Town_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Skegness_Town_A.F.C._Logo.png",
       "address": "Skegness Town A.F.C.",
+      "territory": "England",
+      "wiki_title": "Skegness_Town_A.F.C.",
       "level": 9,
       "latitude": 53.15134,
       "longitude": 0.33245,
-      "formatted_address": "Skegness Town A.F.C."
+      "formatted_address": "Skegness Town A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wisbech Town",
       "url": "https://en.wikipedia.org/wiki/Wisbech_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/37/Wisbech_Town_F.C.png",
       "address": "Wisbech Town F.C.",
+      "territory": "England",
+      "wiki_title": "Wisbech_Town_F.C.",
       "level": 9,
       "latitude": 52.6776,
       "longitude": 0.180974,
-      "formatted_address": "Wisbech Town F.C."
+      "formatted_address": "Wisbech Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
-  "team_count": 18
+  "team_count": 19
 }

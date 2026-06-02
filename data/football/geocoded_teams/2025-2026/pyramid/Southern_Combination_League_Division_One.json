@@ -1,150 +1,213 @@
 {
   "league_name": "Southern Combination League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Uckfield Town",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Uckfield_Town",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/A.F.C._Uckfield_logo.png",
       "address": "A.F.C. Uckfield Town",
+      "territory": "England",
+      "wiki_title": "A.F.C._Uckfield_Town",
       "level": 10,
       "latitude": 50.99535833,
       "longitude": 0.088325,
-      "formatted_address": "A.F.C. Uckfield Town"
+      "formatted_address": "A.F.C. Uckfield Town",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "A.F.C. Walcountians",
       "url": "https://en.wikipedia.org/wiki/AFC_Walcountians",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/73/AFC_Walcountians_logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "AFC_Walcountians",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Arundel",
       "url": "https://en.wikipedia.org/wiki/Arundel_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/49/Arundel-FC-Logo.png",
       "address": "Arundel F.C.",
+      "territory": "England",
+      "wiki_title": "Arundel_F.C.",
       "level": 10,
       "latitude": 50.8552,
       "longitude": -0.549522,
-      "formatted_address": "Arundel F.C."
+      "formatted_address": "Arundel F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Billingshurst",
       "url": "https://en.wikipedia.org/wiki/Billingshurst_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/68/BillingshurstFC.png",
       "address": "Billingshurst F.C.",
+      "territory": "England",
+      "wiki_title": "Billingshurst_F.C.",
       "level": 10,
       "latitude": 51.026316,
       "longitude": -0.4586564,
-      "formatted_address": "Billingshurst F.C."
+      "formatted_address": "Billingshurst F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Copthorne",
       "url": "https://en.wikipedia.org/wiki/Copthorne_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/CopthorneFClogo.jpg",
       "address": "Copthorne F.C.",
+      "territory": "England",
+      "wiki_title": "Copthorne_F.C.",
       "level": 10,
       "latitude": 51.046944444,
       "longitude": -0.340555555,
-      "formatted_address": "Copthorne F.C."
+      "formatted_address": "Copthorne F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dorking Wanderers \"B\"",
       "url": "https://en.wikipedia.org/wiki/Dorking_Wanderers_F.C.",
-      "image_url": null,
-      "address": "Meadowbank Stadium, Dorking",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2d/Dorking_Wanderers_FC_crest.svg",
+      "address": "Dorking, England",
+      "territory": "England",
+      "wiki_title": "Dorking_Wanderers_F.C.",
       "level": 10,
-      "latitude": 51.234444444,
-      "longitude": -0.333472222,
-      "formatted_address": "Meadowbank Stadium, Dorking"
+      "latitude": 51.2325184,
+      "longitude": -0.3306724,
+      "formatted_address": "Dorking, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 280755187,
+      "geocode_source": "openfootball"
     },
     {
       "name": "East Preston",
       "url": "https://en.wikipedia.org/wiki/East_Preston_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2a/East_Preston_F.C._logo.png",
       "address": "East Preston F.C.",
+      "territory": "England",
+      "wiki_title": "East_Preston_F.C.",
       "level": 10,
       "latitude": 50.8138,
       "longitude": -0.482425,
-      "formatted_address": "East Preston F.C."
+      "formatted_address": "East Preston F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Godalming Town",
       "url": "https://en.wikipedia.org/wiki/Godalming_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/86/Godalmingtownfc.png",
       "address": "Godalming Town F.C.",
+      "territory": "England",
+      "wiki_title": "Godalming_Town_F.C.",
       "level": 10,
       "latitude": 51.1949,
       "longitude": -0.597569,
-      "formatted_address": "Godalming Town F.C."
+      "formatted_address": "Godalming Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Infinity",
       "url": "https://en.wikipedia.org/wiki/Infinity_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/ff/Infinity_F.C._logo.png",
       "address": "Infinity F.C.",
+      "territory": "England",
+      "wiki_title": "Infinity_F.C.",
       "level": 10,
       "latitude": 50.959062,
       "longitude": -1.3802433,
-      "formatted_address": "Infinity F.C."
+      "formatted_address": "Infinity F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Jarvis Brook",
       "url": "https://en.wikipedia.org/wiki/Jarvis_Brook_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0a/Jarvis_Brook_Football_Club_Logo.png",
+      "address": "Jarvis Brook, England",
+      "territory": "England",
+      "wiki_title": "Jarvis_Brook_F.C.",
+      "level": 10,
+      "latitude": 51.0489909,
+      "longitude": 0.1866803,
+      "formatted_address": "Jarvis Brook, Crowborough, Wealden, East Sussex, England, TN6 2EY, United Kingdom",
+      "place_id": 99964454,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Mile Oak",
       "url": "https://en.wikipedia.org/wiki/Mile_Oak_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/57/Mile_Oak_F.C._logo.png",
       "address": "Mile Oak F.C.",
+      "territory": "England",
+      "wiki_title": "Mile_Oak_F.C.",
       "level": 10,
       "latitude": 50.85272222,
       "longitude": -0.22600278,
-      "formatted_address": "Mile Oak F.C."
+      "formatted_address": "Mile Oak F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Oakwood",
       "url": "https://en.wikipedia.org/wiki/Oakwood_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/Oakwood_F.C._logo.png",
       "address": "Oakwood F.C.",
+      "territory": "England",
+      "wiki_title": "Oakwood_F.C.",
       "level": 10,
       "latitude": 51.12933056,
       "longitude": -0.16305,
-      "formatted_address": "Oakwood F.C."
+      "formatted_address": "Oakwood F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ringmer",
       "url": "https://en.wikipedia.org/wiki/Ringmer_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/19/Ringmer_F.C._logo.png",
       "address": "Ringmer F.C.",
+      "territory": "England",
+      "wiki_title": "Ringmer_F.C.",
       "level": 10,
       "latitude": 50.89185278,
       "longitude": 0.05836111,
-      "formatted_address": "Ringmer F.C."
+      "formatted_address": "Ringmer F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Selsey",
       "url": "https://en.wikipedia.org/wiki/Selsey_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/26/Selsey_F.C._logo.png",
       "address": "Selsey F.C.",
+      "territory": "England",
+      "wiki_title": "Selsey_F.C.",
       "level": 10,
       "latitude": 50.73398611,
       "longitude": -0.7933,
-      "formatted_address": "Selsey F.C."
+      "formatted_address": "Selsey F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Worthing United",
       "url": "https://en.wikipedia.org/wiki/Worthing_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5d/Worthing_United_FC_badge.png",
       "address": "Worthing United F.C.",
+      "territory": "England",
+      "wiki_title": "Worthing_United_F.C.",
       "level": 10,
       "latitude": 50.8377,
       "longitude": -0.367583,
-      "formatted_address": "Worthing United F.C."
+      "formatted_address": "Worthing United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 15

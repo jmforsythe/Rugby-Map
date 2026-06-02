@@ -5,7 +5,7 @@ Reads geocoded team data from football/geocoded_teams/ and produces a
 Folium/Leaflet HTML map using the shared map_builder module, with each
 division as a toggleable layer.
 
-Output: football/maps/{season}/BSLFL_All_Divisions.html
+Output: dist/football/{season}/BSLFL_All_Divisions.html
 """
 
 from __future__ import annotations
@@ -267,7 +267,7 @@ def main() -> None:
     parser.add_argument(
         "--production",
         action="store_true",
-        help="Production mode: output to dist/football/maps/, hide debug layers",
+        help="Production mode: output to dist/football/<season>/, hide debug layers",
     )
     args = parser.parse_args()
 
@@ -292,9 +292,9 @@ def main() -> None:
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
 
     if is_prod:
-        output_dir = DIST_DIR / "football" / "maps" / season
+        output_dir = DIST_DIR / "football" / season
     else:
-        output_dir = _SCRIPT_DIR / "maps" / season
+        output_dir = _SCRIPT_DIR / season
     output_dir.mkdir(parents=True, exist_ok=True)
 
     out = output_dir / "BSLFL_All_Divisions.html"

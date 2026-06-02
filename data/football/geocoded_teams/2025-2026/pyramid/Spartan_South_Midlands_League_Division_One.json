@@ -1,198 +1,308 @@
 {
   "league_name": "Spartan South Midlands League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Ampthill Town",
       "url": "https://en.wikipedia.org/wiki/Ampthill_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/19/Ampthill_Town_F.C._logo.png",
       "address": "Ampthill Town F.C.",
+      "territory": "England",
+      "wiki_title": "Ampthill_Town_F.C.",
       "level": 10,
       "latitude": 52.03271944,
       "longitude": -0.50349167,
-      "formatted_address": "Ampthill Town F.C."
+      "formatted_address": "Ampthill Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Belstone",
       "url": "https://en.wikipedia.org/wiki/Belstone_F.C.",
       "image_url": null,
-      "address": null,
-      "level": 10
+      "address": "Belstone, England",
+      "territory": "England",
+      "wiki_title": "Belstone_F.C.",
+      "level": 10,
+      "latitude": 50.7251852,
+      "longitude": -3.9570494,
+      "formatted_address": "Belstone, West Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 283901657,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Buckingham",
       "url": "https://en.wikipedia.org/wiki/Buckingham_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ac/Buckingham_FC.png",
       "address": "Buckingham Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Buckingham_F.C.",
       "level": 10,
       "latitude": 52.002281,
       "longitude": -0.97897545,
-      "formatted_address": "Buckingham Athletic F.C."
+      "formatted_address": "Buckingham Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cranfield United",
       "url": "https://en.wikipedia.org/wiki/Cranfield_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Cranfield_FC_Badge.gif",
       "address": "Cranfield United F.C.",
+      "territory": "England",
+      "wiki_title": "Cranfield_United_F.C.",
       "level": 10,
       "latitude": 52.080244,
       "longitude": -0.60400128,
-      "formatted_address": "Cranfield United F.C."
+      "formatted_address": "Cranfield United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Desborough Town",
       "url": "https://en.wikipedia.org/wiki/Desborough_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/16/Desborough_Town_F.C._logo.png",
       "address": "Desborough Town F.C.",
+      "territory": "England",
+      "wiki_title": "Desborough_Town_F.C.",
       "level": 10,
       "latitude": 52.44534444,
       "longitude": -0.82924722,
-      "formatted_address": "Desborough Town F.C."
+      "formatted_address": "Desborough Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Eaton Socon",
       "url": "https://en.wikipedia.org/wiki/Eaton_Socon_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b8/Eaton_Socon_FC_logo.png",
       "address": "Eaton Socon F.C.",
+      "territory": "England",
+      "wiki_title": "Eaton_Socon_F.C.",
       "level": 10,
       "latitude": 52.223897222,
       "longitude": -0.278152777,
-      "formatted_address": "Eaton Socon F.C."
+      "formatted_address": "Eaton Socon F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Everett Rovers",
       "url": "https://en.wikipedia.org/wiki/Everett_Rovers_F.C.",
       "image_url": null,
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Everett_Rovers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Holmer Green",
       "url": "https://en.wikipedia.org/wiki/Holmer_Green_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1d/Holmer_Green_F.C._logo.png",
       "address": "Holmer Green F.C.",
+      "territory": "England",
+      "wiki_title": "Holmer_Green_F.C.",
       "level": 10,
       "latitude": 51.66802222,
       "longitude": -0.70343056,
-      "formatted_address": "Holmer Green F.C."
+      "formatted_address": "Holmer Green F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Huntingdon Town",
       "url": "https://en.wikipedia.org/wiki/Huntingdon_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c9/Huntingdon_Town_FC.png",
       "address": "Huntingdon Town F.C.",
+      "territory": "England",
+      "wiki_title": "Huntingdon_Town_F.C.",
       "level": 10,
       "latitude": 52.35840556,
       "longitude": -0.16613056,
-      "formatted_address": "Huntingdon Town F.C."
+      "formatted_address": "Huntingdon Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Irchester United",
       "url": "https://en.wikipedia.org/wiki/Irchester_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/Irchester_United_F.C._logo.png",
       "address": "Irchester United F.C.",
+      "territory": "England",
+      "wiki_title": "Irchester_United_F.C.",
       "level": 10,
       "latitude": 52.281518,
       "longitude": -0.65134361,
-      "formatted_address": "Irchester United F.C."
+      "formatted_address": "Irchester United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Langford",
       "url": "https://en.wikipedia.org/wiki/Langford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/03/Langford_F.C._logo.png",
       "address": "Langford F.C.",
+      "territory": "England",
+      "wiki_title": "Langford_F.C.",
       "level": 10,
       "latitude": 52.044071,
       "longitude": -0.28478086,
-      "formatted_address": "Langford F.C."
+      "formatted_address": "Langford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Leighton Town Reserves",
       "url": "https://en.wikipedia.org/wiki/Leighton_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/62/Leighton_Town_F.C._logo.png",
       "address": "Leighton Town F.C.",
+      "territory": "England",
+      "wiki_title": "Leighton_Town_F.C.",
       "level": 10,
       "latitude": 51.91289167,
       "longitude": -0.65966944,
-      "formatted_address": "Leighton Town F.C."
+      "formatted_address": "Leighton Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Letchworth Garden City Eagles",
       "url": "https://en.wikipedia.org/wiki/Letchworth_Garden_City_Eagles_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/be/Letchworth_Garden_City_Eagles_FC_logo.png",
       "address": "Letchworth Garden City Eagles F.C.",
+      "territory": "England",
+      "wiki_title": "Letchworth_Garden_City_Eagles_F.C.",
       "level": 10,
       "latitude": 51.975402777,
       "longitude": -0.20475,
-      "formatted_address": "Letchworth Garden City Eagles F.C."
+      "formatted_address": "Letchworth Garden City Eagles F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "New Bradwell St Peter",
       "url": "https://en.wikipedia.org/wiki/New_Bradwell_St._Peter_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9e/New_Bradwell_St_Peter_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "New_Bradwell_St._Peter_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Rothwell Corinthians",
       "url": "https://en.wikipedia.org/wiki/Rothwell_Corinthians_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Rothwell_Corinthians_F.C._logo.png",
       "address": "Rothwell Corinthians F.C.",
+      "territory": "England",
+      "wiki_title": "Rothwell_Corinthians_F.C.",
       "level": 10,
       "latitude": 52.42695,
       "longitude": -0.80804722,
-      "formatted_address": "Rothwell Corinthians F.C."
+      "formatted_address": "Rothwell Corinthians F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Royston Town Reserves",
       "url": "https://en.wikipedia.org/wiki/Royston_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/50/Royston_Town_FC_crest.svg",
       "address": "Royston Town F.C.",
+      "territory": "England",
+      "wiki_title": "Royston_Town_F.C.",
       "level": 10,
       "latitude": 52.05266944,
       "longitude": -0.01675556,
-      "formatted_address": "Royston Town F.C."
+      "formatted_address": "Royston Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Rushden & Higham United",
       "url": "https://en.wikipedia.org/wiki/Rushden_%26_Higham_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fd/Rushden_%26_Higham_United_F.C._logo.png",
       "address": "Rushden & Higham United F.C.",
+      "territory": "England",
+      "wiki_title": "Rushden_&_Higham_United_F.C.",
       "level": 10,
       "latitude": 52.29123611,
       "longitude": -0.58731389,
-      "formatted_address": "Rushden & Higham United F.C."
+      "formatted_address": "Rushden & Higham United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Shefford Town & Campton",
       "url": "https://en.wikipedia.org/wiki/Shefford_Town_%26_Campton_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/19/SheffordTownFC.png",
       "address": "Shefford Town & Campton F.C.",
+      "territory": "England",
+      "wiki_title": "Shefford_Town_&_Campton_F.C.",
       "level": 10,
       "latitude": 52.031111111,
       "longitude": -0.325027777,
-      "formatted_address": "Shefford Town & Campton F.C."
+      "formatted_address": "Shefford Town & Campton F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stotfold Reserves",
       "url": "https://en.wikipedia.org/wiki/Stotfold_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1c/Stotfold_FC_crest.svg",
       "address": "Stotfold F.C.",
+      "territory": "England",
+      "wiki_title": "Stotfold_F.C.",
       "level": 10,
       "latitude": 52.0218,
       "longitude": -0.222864,
-      "formatted_address": "Stotfold F.C."
+      "formatted_address": "Stotfold F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wellingborough Whitworth",
       "url": "https://en.wikipedia.org/wiki/Wellingborough_Whitworth_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e5/Wellingborough_Whitworth_F.C._logo.png",
       "address": "Wellingborough Whitworth F.C.",
+      "territory": "England",
+      "wiki_title": "Wellingborough_Whitworth_F.C.",
       "level": 10,
       "latitude": 52.2932,
       "longitude": -0.682225,
-      "formatted_address": "Wellingborough Whitworth F.C."
+      "formatted_address": "Wellingborough Whitworth F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "London Colney",
+      "url": "https://en.wikipedia.org/wiki/London_Colney_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/10/London_Colney_F.C._logo.png",
+      "address": "London Colney F.C.",
+      "territory": "England",
+      "wiki_title": "London_Colney_F.C.",
+      "level": 10,
+      "latitude": 51.72860833,
+      "longitude": -0.30464444,
+      "formatted_address": "London Colney F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Long Buckby",
+      "url": "https://en.wikipedia.org/wiki/Long_Buckby_A.F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b0/Long_Buckby_A.F.C._logo.png",
+      "address": "Long Buckby A.F.C.",
+      "territory": "England",
+      "wiki_title": "Long_Buckby_A.F.C.",
+      "level": 10,
+      "latitude": 52.29910183,
+      "longitude": -1.08202317,
+      "formatted_address": "Long Buckby A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
-  "team_count": 20
+  "team_count": 22
 }

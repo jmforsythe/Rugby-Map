@@ -1,203 +1,282 @@
 {
   "league_name": "Spartan South Midlands League Premier Division",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Welwyn",
       "url": "https://en.wikipedia.org/wiki/AFC_Welwyn",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/42/AFC_Welwyn_badge.png",
       "address": null,
-      "level": 9
+      "territory": "England",
+      "wiki_title": "AFC_Welwyn",
+      "level": 9,
+      "error": "geocoding_failed"
     },
     {
       "name": "Arlesey Town",
       "url": "https://en.wikipedia.org/wiki/Arlesey_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e3/Arlesey_Town_F.C._logo.png",
       "address": "Arlesey Town F.C.",
+      "territory": "England",
+      "wiki_title": "Arlesey_Town_F.C.",
       "level": 9,
       "latitude": 52.0012,
       "longitude": -0.264792,
-      "formatted_address": "Arlesey Town F.C."
+      "formatted_address": "Arlesey Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Aylesbury Vale Dynamos",
       "url": "https://en.wikipedia.org/wiki/Aylesbury_Vale_Dynamos_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e5/Aylesbury_F.C._logo.png",
       "address": "Aylesbury F.C.",
+      "territory": "England",
+      "wiki_title": "Aylesbury_Vale_Dynamos_F.C.",
       "level": 9,
       "latitude": 51.8307,
       "longitude": -0.843878,
-      "formatted_address": "Aylesbury F.C."
+      "formatted_address": "Aylesbury F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Baldock Town",
       "url": "https://en.wikipedia.org/wiki/Baldock_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fa/Baldock_Town_F.C._logo.png",
       "address": "Baldock Town F.C.",
+      "territory": "England",
+      "wiki_title": "Baldock_Town_F.C.",
       "level": 9,
       "latitude": 52.001228055,
       "longitude": -0.264791944,
-      "formatted_address": "Baldock Town F.C."
+      "formatted_address": "Baldock Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Biggleswade United",
       "url": "https://en.wikipedia.org/wiki/Biggleswade_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d4/Biggleswade_United_F.C._logo.png",
       "address": "Biggleswade United F.C.",
+      "territory": "England",
+      "wiki_title": "Biggleswade_United_F.C.",
       "level": 9,
       "latitude": 52.0948,
       "longitude": -0.267619,
-      "formatted_address": "Biggleswade United F.C."
+      "formatted_address": "Biggleswade United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cockfosters",
       "url": "https://en.wikipedia.org/wiki/Cockfosters_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/13/Cockfosters_FC_crest.svg",
       "address": "Cockfosters F.C.",
+      "territory": "England",
+      "wiki_title": "Cockfosters_F.C.",
       "level": 9,
       "latitude": 51.6532,
       "longitude": -0.151881,
-      "formatted_address": "Cockfosters F.C."
+      "formatted_address": "Cockfosters F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Colney Heath",
       "url": "https://en.wikipedia.org/wiki/Colney_Heath_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/cd/Colney_Heath_F.C._logo.png",
       "address": "Colney Heath F.C.",
+      "territory": "England",
+      "wiki_title": "Colney_Heath_F.C.",
       "level": 9,
       "latitude": 51.7417,
       "longitude": -0.260928,
-      "formatted_address": "Colney Heath F.C."
+      "formatted_address": "Colney Heath F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Crawley Green",
       "url": "https://en.wikipedia.org/wiki/Crawley_Green_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/11/Crawley_Green_F.C._logo.png",
       "address": "Crawley Green F.C.",
+      "territory": "England",
+      "wiki_title": "Crawley_Green_F.C.",
       "level": 9,
       "latitude": 51.870996,
       "longitude": -0.40212789,
-      "formatted_address": "Crawley Green F.C."
+      "formatted_address": "Crawley Green F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dunstable Town",
       "url": "https://en.wikipedia.org/wiki/Dunstable_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/61/Dtfc-badge.png",
       "address": "Dunstable Town F.C.",
+      "territory": "England",
+      "wiki_title": "Dunstable_Town_F.C.",
       "level": 9,
       "latitude": 51.89277778,
       "longitude": -0.53916667,
-      "formatted_address": "Dunstable Town F.C."
+      "formatted_address": "Dunstable Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Haringey Borough",
       "url": "https://en.wikipedia.org/wiki/Haringey_Borough_F.C.",
-      "image_url": null,
-      "address": "Haringey Borough F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Boro-300px.png",
+      "address": "London, England",
+      "territory": "England",
+      "wiki_title": "Haringey_Borough_F.C.",
       "level": 9,
-      "latitude": 51.60558889,
-      "longitude": -0.09276944,
-      "formatted_address": "Haringey Borough F.C."
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "formatted_address": "Greater London, England, United Kingdom",
+      "place_id": 281075796,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Harlow Town",
       "url": "https://en.wikipedia.org/wiki/Harlow_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fc/Harlow_Town_FC_crest.svg",
       "address": "Harlow Town F.C.",
+      "territory": "England",
+      "wiki_title": "Harlow_Town_F.C.",
       "level": 9,
       "latitude": 51.771,
       "longitude": 0.0678219,
-      "formatted_address": "Harlow Town F.C."
+      "formatted_address": "Harlow Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Harpenden Town",
       "url": "https://en.wikipedia.org/wiki/Harpenden_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/46/Harpenden_Town_F.C._logo.png",
       "address": "Harpenden Town F.C.",
+      "territory": "England",
+      "wiki_title": "Harpenden_Town_F.C.",
       "level": 9,
       "latitude": 51.81273056,
       "longitude": -0.36068889,
-      "formatted_address": "Harpenden Town F.C."
+      "formatted_address": "Harpenden Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kempston Rovers",
       "url": "https://en.wikipedia.org/wiki/Kempston_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/AFC_Kempston_Rovers_logo.png",
       "address": "A.F.C. Kempston Rovers",
+      "territory": "England",
+      "wiki_title": "Kempston_Rovers_F.C.",
       "level": 9,
       "latitude": 52.12672017,
       "longitude": -0.48995183,
-      "formatted_address": "A.F.C. Kempston Rovers"
+      "formatted_address": "A.F.C. Kempston Rovers",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kings Langley",
       "url": "https://en.wikipedia.org/wiki/Kings_Langley_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b9/Kings_Langley_FC_logo.png",
       "address": "Kings Langley F.C.",
+      "territory": "England",
+      "wiki_title": "Kings_Langley_F.C.",
       "level": 9,
       "latitude": 51.72266111,
       "longitude": -0.45093611,
-      "formatted_address": "Kings Langley F.C."
+      "formatted_address": "Kings Langley F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Potton United",
       "url": "https://en.wikipedia.org/wiki/Potton_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/70/Potton_United_F.C._logo.png",
       "address": "Potton United F.C.",
+      "territory": "England",
+      "wiki_title": "Potton_United_F.C.",
       "level": 9,
       "latitude": 52.12319167,
       "longitude": -0.21716389,
-      "formatted_address": "Potton United F.C."
+      "formatted_address": "Potton United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Risborough Rangers",
       "url": "https://en.wikipedia.org/wiki/Risborough_Rangers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f3/Risborough_Rangers_F.C._logo.png",
       "address": "Risborough Rangers F.C.",
+      "territory": "England",
+      "wiki_title": "Risborough_Rangers_F.C.",
       "level": 9,
       "latitude": 51.71803889,
       "longitude": -0.84642778,
-      "formatted_address": "Risborough Rangers F.C."
+      "formatted_address": "Risborough Rangers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sawbridgeworth Town",
       "url": "https://en.wikipedia.org/wiki/Sawbridgeworth_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2b/Sawbridgeworth_Town_logo.png",
       "address": "Sawbridgeworth Town F.C.",
+      "territory": "England",
+      "wiki_title": "Sawbridgeworth_Town_F.C.",
       "level": 9,
       "latitude": 51.81868333,
       "longitude": 0.14706389,
-      "formatted_address": "Sawbridgeworth Town F.C."
+      "formatted_address": "Sawbridgeworth Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Tring Athletic",
       "url": "https://en.wikipedia.org/wiki/Tring_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ac/Tring_Athletic_F.C._logo.png",
       "address": "Tring Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Tring_Athletic_F.C.",
       "level": 9,
       "latitude": 51.7968,
       "longitude": -0.640203,
-      "formatted_address": "Tring Athletic F.C."
+      "formatted_address": "Tring Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wilslow United",
       "url": "https://en.wikipedia.org/wiki/Winslow_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8e/Winslow_United_F.C._logo.png",
       "address": "Winslow United F.C.",
+      "territory": "England",
+      "wiki_title": "Winslow_United_F.C.",
       "level": 9,
       "latitude": 51.9455,
       "longitude": -0.879972,
-      "formatted_address": "Winslow United F.C."
+      "formatted_address": "Winslow United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wormley Rovers",
       "url": "https://en.wikipedia.org/wiki/Wormley_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b8/Wormley_Rovers_F.C._logo.png",
       "address": "Wormley Rovers F.C.",
+      "territory": "England",
+      "wiki_title": "Wormley_Rovers_F.C.",
       "level": 9,
       "latitude": 51.734432,
       "longitude": -0.029335,
-      "formatted_address": "Wormley Rovers F.C."
+      "formatted_address": "Wormley Rovers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 20

@@ -1,191 +1,284 @@
 {
   "league_name": "Wessex League Premier Division",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Stoneham",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Stoneham",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/A.F.C._Stoneham_logo.png",
       "address": "A.F.C. Stoneham",
+      "territory": "England",
+      "wiki_title": "A.F.C._Stoneham",
       "level": 9,
       "latitude": 50.959062,
       "longitude": -1.3802433,
-      "formatted_address": "A.F.C. Stoneham"
+      "formatted_address": "A.F.C. Stoneham",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Andover New Street",
       "url": "https://en.wikipedia.org/wiki/Andover_New_Street_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/71/Andover_New_Street_F.C._logo.png",
       "address": "Andover New Street F.C.",
+      "territory": "England",
+      "wiki_title": "Andover_New_Street_F.C.",
       "level": 9,
       "latitude": 51.231677,
       "longitude": -1.5009038,
-      "formatted_address": "Andover New Street F.C."
+      "formatted_address": "Andover New Street F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Baffins Milton Rovers",
       "url": "https://en.wikipedia.org/wiki/Baffins_Milton_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/88/BaffinsMiltonRoversFC.png",
       "address": "Baffins Milton Rovers F.C.",
+      "territory": "England",
+      "wiki_title": "Baffins_Milton_Rovers_F.C.",
       "level": 9,
       "latitude": 50.823405,
       "longitude": -1.043504833,
-      "formatted_address": "Baffins Milton Rovers F.C."
+      "formatted_address": "Baffins Milton Rovers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bemerton Heath Harlequins",
       "url": "https://en.wikipedia.org/wiki/Bemerton_Heath_Harlequins_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Bemerton_Heath_Harlequins_F.C._logo.svg/960px-Bemerton_Heath_Harlequins_F.C._logo.svg.png",
       "address": "Bemerton Heath Harlequins F.C.",
+      "territory": "England",
+      "wiki_title": "Bemerton_Heath_Harlequins_F.C.",
       "level": 9,
       "latitude": 51.0811,
       "longitude": -1.83583,
-      "formatted_address": "Bemerton Heath Harlequins F.C."
+      "formatted_address": "Bemerton Heath Harlequins F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bournemouth",
       "url": "https://en.wikipedia.org/wiki/Bournemouth_F.C.",
-      "image_url": null,
-      "address": "Victoria Park, Bournemouth",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4e/Bournemouth_FC_logo.png",
+      "address": "Dean Court, Bournemouth, England",
+      "territory": "England",
+      "wiki_title": "Bournemouth_F.C.",
       "level": 9,
-      "latitude": 50.747027777,
-      "longitude": -1.88675,
-      "formatted_address": "Victoria Park, Bournemouth"
+      "latitude": 50.7351815,
+      "longitude": -1.8383279,
+      "formatted_address": "Vitality Stadium, Middleton Gardens, Littledown, Bournemouth, Bournemouth, Christchurch and Poole, England, BH7 7AF, United Kingdom",
+      "place_id": 283816257,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Brockenhurst",
       "url": "https://en.wikipedia.org/wiki/Brockenhurst_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/85/Brockenhurstfc.png",
       "address": "Brockenhurst F.C.",
+      "territory": "England",
+      "wiki_title": "Brockenhurst_F.C.",
       "level": 9,
       "latitude": 50.8208,
       "longitude": -1.57586,
-      "formatted_address": "Brockenhurst F.C."
+      "formatted_address": "Brockenhurst F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Christchurch",
       "url": "https://en.wikipedia.org/wiki/Christchurch_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Christchurchfc.png",
       "address": "Christchurch F.C.",
+      "territory": "England",
+      "wiki_title": "Christchurch_F.C.",
       "level": 9,
       "latitude": 50.772835,
       "longitude": -1.8176056,
-      "formatted_address": "Christchurch F.C."
+      "formatted_address": "Christchurch F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cowes Sports",
       "url": "https://en.wikipedia.org/wiki/Cowes_Sports_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 9
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/14/Cowes_Sports_F.C._logo.png",
+      "address": "Cowes Sports, England",
+      "territory": "England",
+      "wiki_title": "Cowes_Sports_F.C.",
+      "level": 9,
+      "latitude": 50.758196,
+      "longitude": -1.3092184,
+      "formatted_address": "Cowes Sports FC, Reynolds Close, Cowes, Isle of Wight, England, PO31 7NT, United Kingdom",
+      "place_id": 282484386,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Downton",
       "url": "https://en.wikipedia.org/wiki/Downton_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Downton_F.C._logo.png",
       "address": "Downton F.C.",
+      "territory": "England",
+      "wiki_title": "Downton_F.C.",
       "level": 9,
       "latitude": 50.992385,
       "longitude": -1.762961,
-      "formatted_address": "Downton F.C."
+      "formatted_address": "Downton F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "East Cowes Victoria Athletic",
       "url": "https://en.wikipedia.org/wiki/East_Cowes_Victoria_Athletic_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/32/East_Cowes_Victoria_Athletic_A.F.C._logo.png",
       "address": null,
-      "level": 9
+      "territory": "England",
+      "wiki_title": "East_Cowes_Victoria_Athletic_A.F.C.",
+      "level": 9,
+      "error": "geocoding_failed"
     },
     {
       "name": "Hamble Club",
       "url": "https://en.wikipedia.org/wiki/Hamble_Club_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/HambleClubFC.png",
       "address": "Hamble Club F.C.",
+      "territory": "England",
+      "wiki_title": "Hamble_Club_F.C.",
       "level": 9,
       "latitude": 50.867721,
       "longitude": -1.330378,
-      "formatted_address": "Hamble Club F.C."
+      "formatted_address": "Hamble Club F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Hamworthy Recreation",
       "url": "https://en.wikipedia.org/wiki/Hamworthy_Recreation_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e0/Hamworthy_Recreation_logo.png",
       "address": "Hamworthy Recreation F.C.",
+      "territory": "England",
+      "wiki_title": "Hamworthy_Recreation_F.C.",
       "level": 9,
       "latitude": 50.7805,
       "longitude": -1.948333333,
-      "formatted_address": "Hamworthy Recreation F.C."
+      "formatted_address": "Hamworthy Recreation F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Hythe & Dibden",
       "url": "https://en.wikipedia.org/wiki/Hythe_%26_Dibden_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/17/Hythe_%26_Dibden_F.C._logo.png",
       "address": "Hythe & Dibden F.C.",
+      "territory": "England",
+      "wiki_title": "Hythe_&_Dibden_F.C.",
       "level": 9,
       "latitude": 50.86775,
       "longitude": -1.419944444,
-      "formatted_address": "Hythe & Dibden F.C."
+      "formatted_address": "Hythe & Dibden F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Laverstock & Ford",
       "url": "https://en.wikipedia.org/wiki/Laverstock_%26_Ford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5f/Laverstock_%26_Ford_F.C..png",
       "address": "Laverstock & Ford F.C.",
+      "territory": "England",
+      "wiki_title": "Laverstock_&_Ford_F.C.",
       "level": 9,
       "latitude": 51.079379,
       "longitude": -1.7744489,
-      "formatted_address": "Laverstock & Ford F.C."
+      "formatted_address": "Laverstock & Ford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Millbrook (Hampshire)",
       "url": "https://en.wikipedia.org/wiki/Millbrook_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/Millbrook_F.C._logo.png",
       "address": "Millbrook F.C.",
+      "territory": "England",
+      "wiki_title": "Millbrook_F.C.",
       "level": 9,
       "latitude": 50.930421111,
       "longitude": -1.467646944,
-      "formatted_address": "Millbrook F.C."
+      "formatted_address": "Millbrook F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "New Milton Town",
       "url": "https://en.wikipedia.org/wiki/New_Milton_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b3/New_Milton_Town_F.C.png",
       "address": "New Milton Town F.C.",
+      "territory": "England",
+      "wiki_title": "New_Milton_Town_F.C.",
       "level": 9,
       "latitude": 50.74611944,
       "longitude": -1.67275556,
-      "formatted_address": "New Milton Town F.C."
+      "formatted_address": "New Milton Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Petersfield Town",
+      "url": "https://en.wikipedia.org/wiki/Petersfield_Town_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8b/Petersfield_Town_F.C._logo_2017.png",
+      "address": "Petersfield Town F.C.",
+      "territory": "England",
+      "wiki_title": "Petersfield_Town_F.C.",
+      "level": 9,
+      "latitude": 51.007291666,
+      "longitude": -0.927430555,
+      "formatted_address": "Petersfield Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Portland United",
       "url": "https://en.wikipedia.org/wiki/Portland_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c2/Portland_United_Dorset_FC.png",
       "address": "Portland United F.C.",
+      "territory": "England",
+      "wiki_title": "Portland_United_F.C.",
       "level": 9,
       "latitude": 50.551025,
       "longitude": -2.43121667,
-      "formatted_address": "Portland United F.C."
+      "formatted_address": "Portland United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sherborne Town",
       "url": "https://en.wikipedia.org/wiki/Sherborne_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7f/Shertwn_badge.png",
       "address": "Sherborne Town F.C.",
+      "territory": "England",
+      "wiki_title": "Sherborne_Town_F.C.",
       "level": 9,
       "latitude": 50.94036667,
       "longitude": -2.51000278,
-      "formatted_address": "Sherborne Town F.C."
+      "formatted_address": "Sherborne Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wincanton Town",
       "url": "https://en.wikipedia.org/wiki/Wincanton_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8d/Wincanton_Town_logo.png",
       "address": "Wincanton Town F.C.",
+      "territory": "England",
+      "wiki_title": "Wincanton_Town_F.C.",
       "level": 9,
       "latitude": 51.048217,
       "longitude": -2.402974,
-      "formatted_address": "Wincanton Town F.C."
+      "formatted_address": "Wincanton Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
-  "team_count": 19
+  "team_count": 20
 }

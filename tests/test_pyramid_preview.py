@@ -78,6 +78,24 @@ def test_effective_preview_raster_scale() -> None:
     assert pi._effective_preview_raster_scale(1520, 760) == 0.5
 
 
+def test_write_pyramid_preview_png_accepts_large_football_labels_size(tmp_path: Path) -> None:
+    """Regression: scale-2 football Labels PNG exceeds Pillow's default bomb limit."""
+    full = tmp_path / "pyramid_Labels.png"
+    preview = tmp_path / "pyramid_Labels.preview.png"
+    # 9000×5500 ≈ 49.5 MP — below our 512 MP policy but above default ~89 MP limit
+    Image.new("RGB", (9000, 5500), color=(200, 200, 200)).save(full)
+
+    assert pi.write_pyramid_preview_png(full, preview, max_width=760) is True
+    assert preview.is_file()
+    with Image.open(preview) as im:
+        assert im.size[0] == 760
+
+
+def test_football_labels_estimated_pixels_use_svg_preview() -> None:
+    w, h = 8934, 2764
+    assert w * 2 * h * 2 >= pi.PYRAMID_PREVIEW_FROM_SVG_PIXEL_THRESHOLD
+
+
 def test_preview_html_links_svg_and_swaps_png_on_contextmenu() -> None:
     html = _build_pyramid_diagram_preview_html(
         thumb_src="pyramid.preview.png",

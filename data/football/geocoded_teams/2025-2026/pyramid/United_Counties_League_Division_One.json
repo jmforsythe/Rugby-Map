@@ -1,221 +1,331 @@
 {
   "league_name": "United Counties League Division One",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Clifton All Whites",
       "url": "https://en.wikipedia.org/wiki/Clifton_All_Whites_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/CliftonAllWhites.png",
       "address": "Clifton F.C.",
+      "territory": "England",
+      "wiki_title": "Clifton_All_Whites_F.C.",
       "level": 10,
       "latitude": 52.900222222,
       "longitude": -1.166722222,
-      "formatted_address": "Clifton F.C."
+      "formatted_address": "Clifton F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Clipstone",
       "url": "https://en.wikipedia.org/wiki/Clipstone_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6c/Clipstone_F.C._logo.png",
       "address": "Clipstone F.C.",
+      "territory": "England",
+      "wiki_title": "Clipstone_F.C.",
       "level": 10,
       "latitude": 53.15955278,
       "longitude": -1.12993333,
-      "formatted_address": "Clipstone F.C."
+      "formatted_address": "Clipstone F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Coalville Town",
       "url": "https://en.wikipedia.org/wiki/Coalville_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/03/Coalville_Town_F.C._logo.png",
       "address": "Coalville Town F.C.",
+      "territory": "England",
+      "wiki_title": "Coalville_Town_F.C.",
       "level": 10,
       "latitude": 52.723,
       "longitude": -1.38179,
-      "formatted_address": "Coalville Town F.C."
+      "formatted_address": "Coalville Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dronfield Town",
       "url": "https://en.wikipedia.org/wiki/Dronfield_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/Dronfield_Town_F.C._logo.png",
       "address": "Dronfield Town F.C.",
+      "territory": "England",
+      "wiki_title": "Dronfield_Town_F.C.",
       "level": 10,
       "latitude": 53.302486,
       "longitude": -1.4570108,
-      "formatted_address": "Dronfield Town F.C."
+      "formatted_address": "Dronfield Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dunkirk",
       "url": "https://en.wikipedia.org/wiki/Dunkirk_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Dunkirk_F.C._logo.png",
       "address": "Dunkirk F.C.",
+      "territory": "England",
+      "wiki_title": "Dunkirk_F.C.",
       "level": 10,
       "latitude": 52.9239,
       "longitude": -1.17072,
-      "formatted_address": "Dunkirk F.C."
+      "formatted_address": "Dunkirk F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "FCV Grace Dieu",
+      "url": "https://en.wikipedia.org/wiki/FCV_Grace_Dieu",
+      "image_url": null,
+      "address": "FCV Grace Dieu",
+      "territory": "England",
+      "wiki_title": "FCV_Grace_Dieu",
+      "level": 10,
+      "latitude": 52.7576,
+      "longitude": -1.3523,
+      "formatted_address": "FCV Grace Dieu",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Gedling Miners Welfare",
       "url": "https://en.wikipedia.org/wiki/Gedling_Miners_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c9/Gedling_Miners_Welfare_F.C._logo.png",
       "address": "Gedling Miners Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Gedling_Miners_Welfare_F.C.",
       "level": 10,
       "latitude": 52.98908889,
       "longitude": -1.11265,
-      "formatted_address": "Gedling Miners Welfare F.C."
+      "formatted_address": "Gedling Miners Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Holwell Sports",
       "url": "https://en.wikipedia.org/wiki/Holwell_Sports_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ee/Holwell_Sports_F.C._logo.png",
       "address": "Holwell Sports F.C.",
+      "territory": "England",
+      "wiki_title": "Holwell_Sports_F.C.",
       "level": 10,
       "latitude": 52.76831944,
       "longitude": -0.92593611,
-      "formatted_address": "Holwell Sports F.C."
+      "formatted_address": "Holwell Sports F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Pinchbeck United",
       "url": "https://en.wikipedia.org/wiki/Pinchbeck_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7a/PinchbeckFC.png",
       "address": "Pinchbeck United F.C.",
+      "territory": "England",
+      "wiki_title": "Pinchbeck_United_F.C.",
       "level": 10,
       "latitude": 52.790013055,
       "longitude": -0.152535,
-      "formatted_address": "Pinchbeck United F.C."
+      "formatted_address": "Pinchbeck United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Pinxton",
       "url": "https://en.wikipedia.org/wiki/Pinxton_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d3/PinxtonFClogo.gif",
+      "address": "Pinxton, England",
+      "territory": "England",
+      "wiki_title": "Pinxton_F.C.",
+      "level": 10,
+      "latitude": 53.0948693,
+      "longitude": -1.3242259,
+      "formatted_address": "Pinxton, Bolsover, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 278877291,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Radford",
       "url": "https://en.wikipedia.org/wiki/Radford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/86/Radford_F.C._logo.png",
       "address": "Radford F.C.",
+      "territory": "England",
+      "wiki_title": "Radford_F.C.",
       "level": 10,
       "latitude": 52.96783333,
       "longitude": -1.17399444,
-      "formatted_address": "Radford F.C."
+      "formatted_address": "Radford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Rainworth Miners Welfare",
       "url": "https://en.wikipedia.org/wiki/Rainworth_Miners_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/79/Rainworth_Miners_Welfare_FC_logo.png",
       "address": "Rainworth Miners Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Rainworth_Miners_Welfare_F.C.",
       "level": 10,
       "latitude": 53.12001111,
       "longitude": -1.11515833,
-      "formatted_address": "Rainworth Miners Welfare F.C."
+      "formatted_address": "Rainworth Miners Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Retford",
       "url": "https://en.wikipedia.org/wiki/Retford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/79/RetfordFClogo.png",
       "address": "Retford F.C.",
+      "territory": "England",
+      "wiki_title": "Retford_F.C.",
       "level": 10,
       "latitude": 53.322055555,
       "longitude": -0.958027777,
-      "formatted_address": "Retford F.C."
+      "formatted_address": "Retford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Retford United",
       "url": "https://en.wikipedia.org/wiki/Retford_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/7d/Retford_United_F.C._logo.png",
       "address": "Retford United F.C.",
+      "territory": "England",
+      "wiki_title": "Retford_United_F.C.",
       "level": 10,
       "latitude": 53.3245,
       "longitude": -0.918108,
-      "formatted_address": "Retford United F.C."
+      "formatted_address": "Retford United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sandiacre Town",
       "url": "https://en.wikipedia.org/wiki/Sandiacre_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/03/Sandiacre_Town_F.C._logo.png",
       "address": "Sandiacre Town F.C.",
+      "territory": "England",
+      "wiki_title": "Sandiacre_Town_F.C.",
       "level": 10,
       "latitude": 52.93049444,
       "longitude": -1.28953611,
-      "formatted_address": "Sandiacre Town F.C."
+      "formatted_address": "Sandiacre Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Shirebrook Town",
       "url": "https://en.wikipedia.org/wiki/Shirebrook_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5b/Shirebrook_Town_F.C._logo.png",
       "address": "Shirebrook Town F.C.",
+      "territory": "England",
+      "wiki_title": "Shirebrook_Town_F.C.",
       "level": 10,
       "latitude": 53.207075,
       "longitude": -1.20629167,
-      "formatted_address": "Shirebrook Town F.C."
+      "formatted_address": "Shirebrook Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sleaford Town",
       "url": "https://en.wikipedia.org/wiki/Sleaford_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/51/Sleaford_Town_F.C._logo.png",
       "address": "Sleaford Town F.C.",
+      "territory": "England",
+      "wiki_title": "Sleaford_Town_F.C.",
       "level": 10,
       "latitude": 53.00013333,
       "longitude": -0.38978333,
-      "formatted_address": "Sleaford Town F.C."
+      "formatted_address": "Sleaford Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "South Normanton Athletic",
       "url": "https://en.wikipedia.org/wiki/South_Normanton_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f2/South_Normanton_Athletic_logo.png",
       "address": "South Normanton Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "South_Normanton_Athletic_F.C.",
       "level": 10,
       "latitude": 53.106276,
       "longitude": -1.346972833,
-      "formatted_address": "South Normanton Athletic F.C."
+      "formatted_address": "South Normanton Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Southwell City",
       "url": "https://en.wikipedia.org/wiki/Southwell_City_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fc/Southwell_City_FC_logo.png",
       "address": "Southwell City F.C.",
+      "territory": "England",
+      "wiki_title": "Southwell_City_F.C.",
       "level": 10,
       "latitude": 53.065475,
       "longitude": -0.921827777,
-      "formatted_address": "Southwell City F.C."
+      "formatted_address": "Southwell City F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stapleford Town",
       "url": "https://en.wikipedia.org/wiki/Stapleford_Town_F.C.",
       "image_url": null,
-      "address": null,
-      "level": 10
+      "address": "Stapleford Town, England",
+      "territory": "England",
+      "wiki_title": "Stapleford_Town_F.C.",
+      "level": 10,
+      "latitude": 52.9327342,
+      "longitude": -1.2678733,
+      "formatted_address": "Stapleford, Broxtowe, Nottinghamshire, East Midlands, England, United Kingdom",
+      "place_id": 278596193,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Staveley Miners Welfare",
       "url": "https://en.wikipedia.org/wiki/Staveley_Miners_Welfare_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/83/Staveley_Miners_Welfare_F.C._logo.png",
       "address": "Staveley Miners Welfare F.C.",
+      "territory": "England",
+      "wiki_title": "Staveley_Miners_Welfare_F.C.",
       "level": 10,
       "latitude": 53.2638,
       "longitude": -1.35446,
-      "formatted_address": "Staveley Miners Welfare F.C."
+      "formatted_address": "Staveley Miners Welfare F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Swallownest",
       "url": "https://en.wikipedia.org/wiki/Swallownest_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/SwallownestFClogo.png",
       "address": "Swallownest F.C.",
+      "territory": "England",
+      "wiki_title": "Swallownest_F.C.",
       "level": 10,
       "latitude": 53.585331944,
       "longitude": -1.473665,
-      "formatted_address": "Swallownest F.C."
+      "formatted_address": "Swallownest F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "West Bridgford",
       "url": "https://en.wikipedia.org/wiki/West_Bridgford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/35/WestBridgfordFC.png",
       "address": "West Bridgford F.C.",
+      "territory": "England",
+      "wiki_title": "West_Bridgford_F.C.",
       "level": 10,
       "latitude": 52.933305555,
       "longitude": -1.10675,
-      "formatted_address": "West Bridgford F.C."
+      "formatted_address": "West Bridgford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
-  "team_count": 22
+  "team_count": 23
 }

@@ -1,18 +1,33 @@
 """
-Fetch English football pyramid data for a given season.
+Fetch the full English football pyramid (levels 1-10) for map generation.
 
-Combines two data sources:
-1. Wikipedia "List of football clubs in England" — club-to-league mappings
-   (levels 1–10 for the current season).
-2. Wikidata SPARQL — home-ground coordinates for each club.
+Hybrid pipeline:
+  1. Wikipedia "List of football clubs in England" -- club-to-league-to-level
+     membership for the *current* season, including National League North/South,
+     Isthmian, Southern, NPL, and county/regional leagues down to step 6.
+  2. OpenFootball ``eng.clubs.txt`` + ``wal.clubs.txt`` -- canonical club names,
+     aliases, and home-ground/town strings for geocoding where available.
+  3. Wikidata SPARQL -- ground coordinates for the long tail of lower-tier clubs
+     not in the OpenFootball clubs file (~240 clubs vs ~1,000+ in the pyramid).
+  4. OpenStreetMap Nominatim (via ``rugby.geocode``) -- geocoding OpenFootball
+     addresses, and a last-resort ``"{club name}, England"`` name search.
 
-Outputs geocoded_teams JSON files ready for map generation, one file per
-division, stored under football/geocoded_teams/{season}/pyramid/.
+OpenFootball's ``england`` repo only covers levels 1-5; Wikipedia is the only
+practical open-data source for division membership at steps 6+.
+
+Output:
+  data/football/team_addresses/<season>/pyramid/<Division>.json
+  data/football/geocoded_teams/<season>/pyramid/<Division>.json
+
+Run:
+  python -m football.fetch_pyramid --season 2025-2026
+  python -m football.fetch_pyramid --season 2025-2026 --min-level 6
+  python -m football.fetch_pyramid --season 2025-2026 --skip-geocode
 """
 
 from __future__ import annotations
 
-import json
+import argparse
 import logging
 import re
 import sys
@@ -24,59 +39,68 @@ from bs4 import BeautifulSoup
 from core import setup_logging
 from core.config import REPO_ROOT
 from football import DATA_DIR
+from football.clubs_data import (
+    flush_cache,
+    geocode_pyramid_league,
+    infer_territory_from_team,
+    load_cache,
+    load_clubs_lookup,
+    match_club,
+    write_json,
+)
+from football.league_names import canonical_league_name
+from football.wikidata_coords import load_wikidata_coords
+from football.wikipedia_logos import apply_logos_to_league, resolve_logos
 
 logger = logging.getLogger(__name__)
 
 _WIKI_URL = "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England"
-_WIKIDATA_SPARQL = "https://query.wikidata.org/sparql"
-_CACHE_FILE = DATA_DIR / "pyramid_cache.json"
+_USER_AGENT = "RugbyMappingProject/1.0 (https://github.com/jmforsythe/Rugby-Map)"
 
-_SPARQL_QUERY = """\
-SELECT ?club ?clubLabel ?article ?ground ?groundLabel ?coord WHERE {
-  VALUES ?type { wd:Q476028 wd:Q15944511 }
-  ?club wdt:P31 ?type .
-  ?club wdt:P17 wd:Q145 .
-  ?club wdt:P115 ?ground .
-  ?ground wdt:P625 ?coord .
-  ?article schema:about ?club ;
-           schema:isPartOf <https://en.wikipedia.org/> .
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-}
-"""
+# Flag-icon links in the Wikipedia table point at country articles, not clubs.
+_COUNTRY_TITLES = frozenset(
+    {
+        "Wales",
+        "Jersey",
+        "Guernsey",
+        "Isle_of_Man",
+        "England",
+        "Scotland",
+        "Northern_Ireland",
+    }
+)
 
-# Some clubs on the Wikipedia list don't have a Wikidata ground with coords,
-# but DO have coords on the club entity itself.  This secondary query picks
-# those up.
-_SPARQL_CLUB_COORDS = """\
-SELECT ?club ?clubLabel ?article ?coord WHERE {
-  VALUES ?type { wd:Q476028 wd:Q15944511 }
-  ?club wdt:P31 ?type .
-  ?club wdt:P17 wd:Q145 .
-  ?club wdt:P625 ?coord .
-  ?article schema:about ?club ;
-           schema:isPartOf <https://en.wikipedia.org/> .
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
-}
-"""
+_SEASON_RE = re.compile(r"^\d{4}-\d{4}$")
 
 
-# ---------------------------------------------------------------------------
-# Wikipedia parsing
-# ---------------------------------------------------------------------------
+def _sanitize_filename(name: str) -> str:
+    s = name.replace(" ", "_").replace("/", "_").replace("&", "and")
+    s = re.sub(r"[^\w\-()]", "_", s)
+    return re.sub(r"_+", "_", s).strip("_")
 
 
-def _wiki_article_title(url: str) -> str:
-    """Extract the article title from a Wikipedia URL, unquoted."""
-    path = urllib.parse.urlparse(url).path
-    return urllib.parse.unquote(path.split("/wiki/")[-1])
+def _extract_club_from_cell(club_cell) -> tuple[str, str] | None:
+    """Return (display_name, wiki_title), skipping flag/country icon links."""
+    best: tuple[str, str] | None = None
+
+    for link in club_cell.find_all("a", href=True):
+        href = link["href"]
+        if not href.startswith("/wiki/"):
+            continue
+        title = urllib.parse.unquote(href.split("/wiki/")[-1])
+        if title in _COUNTRY_TITLES or title.startswith(("File:", "Category:")):
+            continue
+        name = link.get_text(strip=True)
+        if not name:
+            continue
+        if best is None or len(name) > len(best[0]):
+            best = (name, title)
+
+    return best
 
 
-def _parse_wikipedia_clubs(html: str) -> list[dict]:
-    """Parse the alphabetical club tables from the Wikipedia page.
-
-    Returns a list of dicts with keys:
-        name, wiki_title, league, league_wiki_title, level
-    """
+def parse_wikipedia_clubs(html: str) -> list[dict]:
+    """Parse club-to-league mappings from the Wikipedia list page."""
     soup = BeautifulSoup(html, "html.parser")
     clubs: list[dict] = []
 
@@ -89,7 +113,6 @@ def _parse_wikipedia_clubs(html: str) -> list[dict]:
         club_idx = col_map.get("club", -1)
         league_idx = col_map.get("league/division", col_map.get("league", -1))
         lvl_idx = col_map.get("lvl", -1)
-
         if club_idx < 0 or league_idx < 0 or lvl_idx < 0:
             continue
 
@@ -98,32 +121,21 @@ def _parse_wikipedia_clubs(html: str) -> list[dict]:
             if len(cells) <= max(club_idx, league_idx, lvl_idx):
                 continue
 
-            club_cell = cells[club_idx]
+            extracted = _extract_club_from_cell(cells[club_idx])
+            if not extracted:
+                continue
+            club_name, wiki_title = extracted
+
             league_cell = cells[league_idx]
-            lvl_cell = cells[lvl_idx]
-
-            club_link = club_cell.find("a", href=True)
-            if not club_link:
-                continue
-
-            club_name = club_link.get_text(strip=True)
-            club_href = club_link["href"]
-            if not club_href.startswith("/wiki/"):
-                continue
-            wiki_title = urllib.parse.unquote(club_href.split("/wiki/")[-1])
-
             league_link = league_cell.find("a", href=True)
             league_name = (
                 league_link.get_text(strip=True)
                 if league_link
                 else league_cell.get_text(strip=True)
             )
-            league_wiki = ""
-            if league_link and league_link["href"].startswith("/wiki/"):
-                league_wiki = urllib.parse.unquote(league_link["href"].split("/wiki/")[-1])
 
             try:
-                level = int(lvl_cell.get_text(strip=True))
+                level = int(cells[lvl_idx].get_text(strip=True))
             except ValueError:
                 continue
 
@@ -132,7 +144,6 @@ def _parse_wikipedia_clubs(html: str) -> list[dict]:
                     "name": club_name,
                     "wiki_title": wiki_title,
                     "league": league_name,
-                    "league_wiki": league_wiki,
                     "level": level,
                 }
             )
@@ -141,225 +152,203 @@ def _parse_wikipedia_clubs(html: str) -> list[dict]:
     return clubs
 
 
-# ---------------------------------------------------------------------------
-# Wikidata SPARQL
-# ---------------------------------------------------------------------------
+def build_leagues(
+    wiki_clubs: list[dict],
+    lookup: dict[str, dict],
+    *,
+    min_level: int = 1,
+    max_level: int = 10,
+) -> tuple[dict[str, dict], list[str]]:
+    """Group Wikipedia clubs into AddressLeague dicts keyed by sanitised filename."""
+    leagues: dict[str, dict] = {}
+    unmatched: list[str] = []
 
-
-def _parse_coord(wkt: str) -> tuple[float, float]:
-    """Parse 'Point(lon lat)' WKT literal into (lat, lon)."""
-    m = re.match(r"Point\(([^ ]+) ([^ ]+)\)", wkt)
-    if not m:
-        raise ValueError(f"Cannot parse WKT coordinate: {wkt}")
-    lon, lat = float(m.group(1)), float(m.group(2))
-    return lat, lon
-
-
-def _run_sparql(query: str) -> list[dict]:
-    """Execute a SPARQL query against the Wikidata endpoint."""
-    headers = {
-        "Accept": "application/sparql-results+json",
-        "User-Agent": "RugbyMappingBot/1.0 (https://github.com/jmforsythe/Rugby-Map)",
-    }
-    resp = requests.get(
-        _WIKIDATA_SPARQL,
-        params={"query": query},
-        headers=headers,
-        timeout=120,
-    )
-    resp.raise_for_status()
-    return resp.json()["results"]["bindings"]
-
-
-def _fetch_wikidata_coords() -> dict[str, dict]:
-    """Query Wikidata for football club ground coordinates.
-
-    Returns a dict keyed by Wikipedia article title with values:
-        {ground_name, latitude, longitude}
-    """
-    coords: dict[str, dict] = {}
-
-    logger.info("Querying Wikidata for club ground coordinates …")
-    for row in _run_sparql(_SPARQL_QUERY):
-        article_url = row["article"]["value"]
-        title = _wiki_article_title(article_url)
-        lat, lon = _parse_coord(row["coord"]["value"])
-        coords[title] = {
-            "ground": row["groundLabel"]["value"],
-            "latitude": lat,
-            "longitude": lon,
-        }
-
-    ground_count = len(coords)
-    logger.info("  Got %d clubs with ground coordinates", ground_count)
-
-    logger.info("Querying Wikidata for club-level coordinates (fallback) …")
-    for row in _run_sparql(_SPARQL_CLUB_COORDS):
-        article_url = row["article"]["value"]
-        title = _wiki_article_title(article_url)
-        if title in coords:
+    for club in wiki_clubs:
+        level = club["level"]
+        if level < min_level or level > max_level:
             continue
-        lat, lon = _parse_coord(row["coord"]["value"])
-        coords[title] = {
-            "ground": row["clubLabel"]["value"],
-            "latitude": lat,
-            "longitude": lon,
-        }
 
-    logger.info(
-        "  Got %d additional clubs from club-level coords (total: %d)",
-        len(coords) - ground_count,
-        len(coords),
-    )
-    return coords
-
-
-# ---------------------------------------------------------------------------
-# Combine and output
-# ---------------------------------------------------------------------------
-
-
-def _sanitize_filename(name: str) -> str:
-    """Convert a league/division name to a filesystem-safe string."""
-    s = name.replace(" ", "_").replace("/", "_").replace("&", "and")
-    s = re.sub(r"[^\w\-()]", "_", s)
-    return re.sub(r"_+", "_", s).strip("_")
-
-
-def _build_geocoded_teams(
-    clubs: list[dict],
-    coords: dict[str, dict],
-) -> dict[str, dict]:
-    """Group clubs by league and build geocoded_teams JSON structures.
-
-    Returns dict mapping sanitized league filename -> GeocodedLeague dict.
-    """
-    leagues: dict[str, list[dict]] = {}
-    matched = 0
-    unmatched_names: list[str] = []
-
-    for club in clubs:
-        wiki_title = club["wiki_title"]
-        coord = coords.get(wiki_title)
+        matched = match_club(club["name"], lookup)
+        wiki_url = f"https://en.wikipedia.org/wiki/{urllib.parse.quote(club['wiki_title'])}"
+        territory = (
+            matched["territory"]
+            if matched
+            else infer_territory_from_team(club["name"], club["wiki_title"])
+        )
 
         team: dict = {
             "name": club["name"],
-            "url": f"https://en.wikipedia.org/wiki/{urllib.parse.quote(wiki_title)}",
+            "url": wiki_url,
             "image_url": None,
-            "address": coord["ground"] if coord else None,
-            "level": club["level"],
+            "address": matched["address"] if matched else None,
+            "territory": territory,
+            "wiki_title": club["wiki_title"],
+            "level": level,
         }
 
-        if coord:
-            team["latitude"] = coord["latitude"]
-            team["longitude"] = coord["longitude"]
-            team["formatted_address"] = coord["ground"]
-            matched += 1
-        else:
-            unmatched_names.append(f"  {club['name']} ({wiki_title})")
+        if not matched:
+            unmatched.append(f"{club['name']} (no OpenFootball club match)")
+        elif not matched["address"]:
+            unmatched.append(f"{club['name']} (no address in clubs file)")
 
-        league_key = club["league"]
-        leagues.setdefault(league_key, []).append(team)
-
-    logger.info(
-        "Matched %d / %d clubs with coordinates (%.0f%%)",
-        matched,
-        len(clubs),
-        100 * matched / max(len(clubs), 1),
-    )
-    if unmatched_names:
-        logger.info(
-            "%d clubs without coordinates:\n%s",
-            len(unmatched_names),
-            "\n".join(sorted(unmatched_names)[:50]),
-        )
-        if len(unmatched_names) > 50:
-            logger.info("  … and %d more", len(unmatched_names) - 50)
-
-    result: dict[str, dict] = {}
-    for league_name, teams in sorted(leagues.items()):
+        league_name = canonical_league_name(club["league"])
         filename = _sanitize_filename(league_name)
-        result[filename] = {
-            "league_name": league_name,
-            "league_url": "",
-            "teams": teams,
-            "team_count": len(teams),
-        }
+        if filename not in leagues:
+            leagues[filename] = {
+                "league_name": league_name,
+                "league_url": _WIKI_URL,
+                "teams": [],
+            }
+        leagues[filename]["teams"].append(team)
 
-    return result
+    for data in leagues.values():
+        data["team_count"] = len(data["teams"])
+
+    return leagues, unmatched
 
 
 def main() -> None:
-    import argparse
-
-    parser = argparse.ArgumentParser(description="Fetch English football pyramid data")
-    parser.add_argument("--season", default="2025-2026")
+    parser = argparse.ArgumentParser(
+        description="Fetch full English football pyramid (levels 1-10) for mapping"
+    )
+    parser.add_argument("--season", default="2025-2026", help="Season label, e.g. 2025-2026")
     parser.add_argument(
-        "--no-cache",
+        "--min-level",
+        type=int,
+        default=1,
+        help="Lowest pyramid level to include (default: 1)",
+    )
+    parser.add_argument(
+        "--max-level",
+        type=int,
+        default=10,
+        help="Highest pyramid level to include (default: 10)",
+    )
+    parser.add_argument(
+        "--refresh-wikidata",
         action="store_true",
-        help="Ignore cached Wikidata results",
+        help="Re-fetch Wikidata coordinates instead of using cache",
+    )
+    parser.add_argument(
+        "--skip-geocode",
+        action="store_true",
+        help="Only write team_addresses; skip Nominatim geocoding",
+    )
+    parser.add_argument(
+        "--refresh-logos",
+        action="store_true",
+        help="Re-fetch Wikipedia crest URLs instead of using cache",
+    )
+    parser.add_argument(
+        "--skip-logos",
+        action="store_true",
+        help="Do not fetch Wikipedia crest URLs",
     )
     args = parser.parse_args()
 
     setup_logging()
 
-    # --- 1. Fetch & parse Wikipedia ---
-    logger.info("Fetching Wikipedia club list …")
-    resp = requests.get(
-        _WIKI_URL,
-        headers={"User-Agent": "RugbyMappingBot/1.0 (https://github.com/jmforsythe/Rugby-Map)"},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    clubs = _parse_wikipedia_clubs(resp.text)
+    if not _SEASON_RE.match(args.season):
+        parser.error("--season must look like 2025-2026")
+    if args.min_level < 1 or args.max_level > 10 or args.min_level > args.max_level:
+        parser.error("--min-level/--max-level must be between 1 and 10")
 
-    if not clubs:
+    season = args.season
+    logger.info(
+        "Building pyramid for %s (levels %d-%d)",
+        season,
+        args.min_level,
+        args.max_level,
+    )
+
+    logger.info("Fetching Wikipedia club list …")
+    resp = requests.get(_WIKI_URL, headers={"User-Agent": _USER_AGENT}, timeout=30)
+    resp.raise_for_status()
+    wiki_clubs = parse_wikipedia_clubs(resp.text)
+    if not wiki_clubs:
         logger.error("No clubs parsed from Wikipedia — aborting")
         sys.exit(1)
 
-    # --- 2. Fetch Wikidata coordinates (with cache) ---
-    if _CACHE_FILE.exists() and not args.no_cache:
-        logger.info("Loading cached Wikidata coordinates from %s", _CACHE_FILE.name)
-        with open(_CACHE_FILE, encoding="utf-8") as f:
-            coords = json.load(f)
-    else:
-        coords = _fetch_wikidata_coords()
-        _CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with open(_CACHE_FILE, "w", encoding="utf-8") as f:
-            json.dump(coords, f, indent=2, ensure_ascii=False)
-        logger.info("Saved Wikidata cache to %s", _CACHE_FILE.name)
+    lookup = load_clubs_lookup()
+    wikidata_coords: dict[str, dict] = {}
+    if not args.skip_geocode:
+        wikidata_coords = load_wikidata_coords(refresh=args.refresh_wikidata)
 
-    # --- 3. Combine and write output ---
-    geocoded = _build_geocoded_teams(clubs, coords)
-
-    out_dir = DATA_DIR / "geocoded_teams" / args.season / "pyramid"
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    for filename, data in geocoded.items():
-        out_path = out_dir / f"{filename}.json"
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-
-    logger.info(
-        "Wrote %d league files to %s",
-        len(geocoded),
-        out_dir.relative_to(REPO_ROOT),
+    leagues, unmatched = build_leagues(
+        wiki_clubs,
+        lookup,
+        min_level=args.min_level,
+        max_level=args.max_level,
     )
 
-    # Summary by level
-    level_counts: dict[int, int] = {}
-    level_matched: dict[int, int] = {}
-    for club in clubs:
-        lvl = club["level"]
-        level_counts[lvl] = level_counts.get(lvl, 0) + 1
-        if club["wiki_title"] in coords:
-            level_matched[lvl] = level_matched.get(lvl, 0) + 1
+    if not leagues:
+        logger.error("No leagues in requested level range")
+        sys.exit(1)
 
-    logger.info("Coverage by level:")
-    for lvl in sorted(level_counts):
-        total = level_counts[lvl]
-        have = level_matched.get(lvl, 0)
-        logger.info("  Level %2d: %3d / %3d (%.0f%%)", lvl, have, total, 100 * have / total)
+    logos: dict[str, str | None] = {}
+    if not args.skip_logos:
+        wiki_titles = sorted(
+            {
+                team["wiki_title"]
+                for data in leagues.values()
+                for team in data["teams"]
+                if team.get("wiki_title")
+            }
+        )
+        logos = resolve_logos(wiki_titles, refresh=args.refresh_logos)
+        logo_count = sum(1 for url in logos.values() if url)
+        logger.info("Wikipedia logos: %d/%d clubs", logo_count, len(wiki_titles))
+        for data in leagues.values():
+            apply_logos_to_league(data, logos)
+
+    if not args.skip_geocode:
+        load_cache()
+
+    addr_dir = DATA_DIR / "team_addresses" / season / "pyramid"
+    geo_dir = DATA_DIR / "geocoded_teams" / season / "pyramid"
+
+    total_teams = 0
+    total_geocoded = 0
+
+    for filename, address_league in sorted(leagues.items()):
+        logger.info("=" * 70)
+        logger.info("%s (%d teams)", address_league["league_name"], address_league["team_count"])
+        total_teams += address_league["team_count"]
+
+        write_json(addr_dir / f"{filename}.json", address_league)
+
+        if args.skip_geocode:
+            continue
+
+        geocoded = geocode_pyramid_league(address_league, wikidata_coords)
+        total_geocoded += sum(1 for t in geocoded["teams"] if "error" not in t)
+        write_json(geo_dir / f"{filename}.json", geocoded)
+        flush_cache()
+
+    if not args.skip_geocode:
+        flush_cache(force=True)
+
+    logger.info("=" * 70)
+    logger.info(
+        "Wrote %d division files to %s",
+        len(leagues),
+        (geo_dir if not args.skip_geocode else addr_dir).relative_to(REPO_ROOT),
+    )
+    logger.info("Total teams: %d", total_teams)
+    if not args.skip_geocode:
+        logger.info(
+            "Total geocoded: %d/%d (%.0f%%)",
+            total_geocoded,
+            total_teams,
+            100 * total_geocoded / max(total_teams, 1),
+        )
+
+    if unmatched:
+        logger.info("Unmatched / address-less (%d):", len(unmatched))
+        for item in sorted(unmatched)[:40]:
+            logger.info("  %s", item)
+        if len(unmatched) > 40:
+            logger.info("  … and %d more", len(unmatched) - 40)
 
 
 if __name__ == "__main__":

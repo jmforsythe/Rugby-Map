@@ -8707,6 +8707,10 @@ def rasterise_svg_to_png(
 
 
 PYRAMID_PREVIEW_MAX_WIDTH = 760
+# Wide national / football pyramids: sharper index thumbnails than the default 760px cap.
+PYRAMID_PREVIEW_MAX_WIDTH_WIDE = 1520
+# Above this estimated full-PNG pixel count, build ``*.preview.png`` from SVG (not the full PNG).
+PYRAMID_PREVIEW_FROM_SVG_PIXEL_THRESHOLD = 80_000_000
 
 _FULL_PNG_STEMS = frozenset(
     {
@@ -8734,6 +8738,30 @@ def _preview_png_path(png_path: Path) -> Path:
     return png_path.with_name(f"{png_path.stem}.preview.png")
 
 
+def _preview_png_max_width(stem: str, full_png_width: int) -> int:
+    """Thumbnail width cap for season-index pyramid previews."""
+    if stem in _FULL_PNG_STEMS and full_png_width > PYRAMID_PREVIEW_MAX_WIDTH * 2:
+        return min(full_png_width, PYRAMID_PREVIEW_MAX_WIDTH_WIDE)
+    return PYRAMID_PREVIEW_MAX_WIDTH
+
+
+@contextlib.contextmanager
+def _trusted_large_pyramid_image_policy():
+    """Allow opening our own very large stitched pyramid PNGs for preview downscaling."""
+    try:
+        from PIL import Image
+    except ImportError:
+        yield
+        return
+    old = Image.MAX_IMAGE_PIXELS
+    # ~512 MP — football ``pyramid_Labels`` at ``--png-scale`` 3 is ~200 MP.
+    Image.MAX_IMAGE_PIXELS = 512 * 1024 * 1024
+    try:
+        yield
+    finally:
+        Image.MAX_IMAGE_PIXELS = old
+
+
 def write_pyramid_preview_png(
     full_png_path: Path,
     preview_path: Path,
@@ -8750,7 +8778,7 @@ def write_pyramid_preview_png(
         logger.warning("Pillow not installed — skipping preview PNG for %s", full_png_path.name)
         return False
 
-    with Image.open(full_png_path) as im:
+    with _trusted_large_pyramid_image_policy(), Image.open(full_png_path) as im:
         if im.mode in ("RGBA", "LA"):
             background = Image.new("RGB", im.size, (255, 255, 255))
             background.paste(im, mask=im.split()[-1])
@@ -8871,11 +8899,36 @@ def _write_pyramid_svg_and_png(
             )
             logger.info("Wrote %s", png_path)
             if not args.no_png_preview:
-                write_pyramid_preview_png(
-                    png_path,
-                    preview_path,
-                    max_width=args.png_preview_max_width,
+                svg_w, svg_h = _parse_svg_dimensions(svg)
+                full_est_px = int(svg_w * args.png_scale) * int(svg_h * args.png_scale)
+                preview_max_w = _preview_png_max_width(
+                    png_path.stem,
+                    int(svg_w * args.png_scale),
                 )
+                thumb_max_w = (
+                    preview_max_w
+                    if args.png_preview_max_width == PYRAMID_PREVIEW_MAX_WIDTH
+                    else args.png_preview_max_width
+                )
+                if full_est_px >= PYRAMID_PREVIEW_FROM_SVG_PIXEL_THRESHOLD:
+                    logger.info(
+                        "Rasterising %s to preview PNG (max width %d px; full export ~%d MP) …",
+                        svg_path.name,
+                        thumb_max_w,
+                        full_est_px // 1_000_000,
+                    )
+                    rasterise_svg_to_preview_png(
+                        svg_path,
+                        preview_path,
+                        max_width=thumb_max_w,
+                        image_poll_timeout_ms=args.png_image_timeout_ms,
+                    )
+                else:
+                    write_pyramid_preview_png(
+                        png_path,
+                        preview_path,
+                        max_width=thumb_max_w,
+                    )
         else:
             logger.info(
                 "Rasterising %s to preview PNG only (max width %d px) …",

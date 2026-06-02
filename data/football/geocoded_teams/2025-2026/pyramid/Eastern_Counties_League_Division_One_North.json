@@ -1,215 +1,291 @@
 {
   "league_name": "Eastern Counties League Division One North",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "A.F.C. Sudbury Reserves",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Sudbury",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/49/AFC_Sudbury_Logo.png",
       "address": "A.F.C. Sudbury",
+      "territory": "England",
+      "wiki_title": "A.F.C._Sudbury",
       "level": 10,
       "latitude": 52.04014806,
       "longitude": 0.71616111,
-      "formatted_address": "A.F.C. Sudbury"
+      "formatted_address": "A.F.C. Sudbury",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Diss Town",
       "url": "https://en.wikipedia.org/wiki/Diss_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/01/Diss_Town_F.C._logo.png",
       "address": "Diss Town F.C.",
+      "territory": "England",
+      "wiki_title": "Diss_Town_F.C.",
       "level": 10,
       "latitude": 52.38084444,
       "longitude": 1.09716944,
-      "formatted_address": "Diss Town F.C."
+      "formatted_address": "Diss Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dussindale & Hellesdon Rovers",
       "url": "https://en.wikipedia.org/wiki/Dussindale_%26_Hellesdon_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/02/Dussindale_%26_Hellesdon_Rovers_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Dussindale_&_Hellesdon_Rovers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "F.C. Clacton",
       "url": "https://en.wikipedia.org/wiki/F.C._Clacton",
-      "image_url": null,
-      "address": "F.C. Clacton",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/df/F.C._Clacton_logo.png",
+      "address": null,
+      "territory": "England",
+      "wiki_title": "F.C._Clacton",
       "level": 10,
-      "latitude": 51.79313611,
-      "longitude": 1.12633056,
-      "formatted_address": "F.C. Clacton"
+      "error": "geocoding_failed"
     },
     {
       "name": "F.C. Parson Drove",
       "url": "https://en.wikipedia.org/wiki/FC_Parson_Drove",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/26/Parson_Drove_F.C..png",
       "address": "Parson Drove F.C.",
+      "territory": "England",
+      "wiki_title": "FC_Parson_Drove",
       "level": 10,
       "latitude": 52.659675,
       "longitude": 0.032442659,
-      "formatted_address": "Parson Drove F.C."
+      "formatted_address": "Parson Drove F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "F.C. Peterborough",
       "url": "https://en.wikipedia.org/wiki/F.C._Peterborough",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f1/F.C._Peterborough_logo.png",
+      "address": "Abax Stadium, Peterborough, England",
+      "territory": "England",
+      "wiki_title": "F.C._Peterborough",
+      "level": 10,
+      "geocode_precision": "town",
+      "latitude": 52.5725769,
+      "longitude": -0.2427336,
+      "formatted_address": "Peterborough, Cambridgeshire, Cambridgeshire and Peterborough, England, PE1 1XH, United Kingdom",
+      "place_id": 280127880,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Framlingham Town",
       "url": "https://en.wikipedia.org/wiki/Framlingham_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/Framlingham_Town_FC.PNG",
       "address": "Framlingham Town F.C.",
+      "territory": "England",
+      "wiki_title": "Framlingham_Town_F.C.",
       "level": 10,
       "latitude": 52.22352,
       "longitude": 1.35181,
-      "formatted_address": "Framlingham Town F.C."
+      "formatted_address": "Framlingham Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Gorleston Reserves",
       "url": "https://en.wikipedia.org/wiki/Gorleston_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0c/Gorleston_FC.PNG",
       "address": "Gorleston F.C.",
+      "territory": "England",
+      "wiki_title": "Gorleston_F.C.",
       "level": 10,
       "latitude": 52.56592778,
       "longitude": 1.70829444,
-      "formatted_address": "Gorleston F.C."
+      "formatted_address": "Gorleston F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Halesworth Town",
       "url": "https://en.wikipedia.org/wiki/Halesworth_Town_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f1/Halesworth_Town_F.C._logo.png",
+      "address": "Halesworth Town, England",
+      "territory": "England",
+      "wiki_title": "Halesworth_Town_F.C.",
+      "level": 10,
+      "latitude": 52.3470217,
+      "longitude": 1.5093634,
+      "formatted_address": "Halesworth Town FC, Dairy Hill, Halesworth, East Suffolk, Suffolk, England, IP19 8ES, United Kingdom",
+      "place_id": 159200824,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Haverhill Borough",
       "url": "https://en.wikipedia.org/wiki/Haverhill_Borough_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f7/Haverhill_Borough_logo.png",
       "address": "Haverhill Borough F.C.",
+      "territory": "England",
+      "wiki_title": "Haverhill_Borough_F.C.",
       "level": 10,
       "latitude": 52.086402,
       "longitude": 0.449141,
-      "formatted_address": "Haverhill Borough F.C."
+      "formatted_address": "Haverhill Borough F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Haverhill Rovers",
       "url": "https://en.wikipedia.org/wiki/Haverhill_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4f/Haverhill_Rovers_logo.png",
       "address": "Haverhill Rovers F.C.",
+      "territory": "England",
+      "wiki_title": "Haverhill_Rovers_F.C.",
       "level": 10,
       "latitude": 52.086402,
       "longitude": 0.449141,
-      "formatted_address": "Haverhill Rovers F.C."
+      "formatted_address": "Haverhill Rovers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Holbeach United",
       "url": "https://en.wikipedia.org/wiki/Holbeach_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/Holbeach_United.PNG",
       "address": "Holbeach United F.C.",
+      "territory": "England",
+      "wiki_title": "Holbeach_United_F.C.",
       "level": 10,
       "latitude": 52.80686389,
       "longitude": 0.01627778,
-      "formatted_address": "Holbeach United F.C."
+      "formatted_address": "Holbeach United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Holland",
       "url": "https://en.wikipedia.org/wiki/Holland_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Holland_F.C._logo.png",
       "address": "Holland F.C.",
+      "territory": "England",
+      "wiki_title": "Holland_F.C.",
       "level": 10,
       "latitude": 51.79313611,
       "longitude": 1.12633056,
-      "formatted_address": "Holland F.C."
+      "formatted_address": "Holland F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kings Park Rangers",
       "url": "https://en.wikipedia.org/wiki/Kings_Park_Rangers_F.C.",
       "image_url": null,
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Kings_Park_Rangers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Leiston Reserves",
       "url": "https://en.wikipedia.org/wiki/Leiston_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/73/Leistonfc.png",
       "address": "Leiston F.C.",
+      "territory": "England",
+      "wiki_title": "Leiston_F.C.",
       "level": 10,
       "latitude": 52.2044,
       "longitude": 1.571425,
-      "formatted_address": "Leiston F.C."
-    },
-    {
-      "name": "Leiston U23s",
-      "url": "https://en.wikipedia.org/wiki/Leiston_F.C.",
-      "image_url": null,
-      "address": "Leiston F.C.",
-      "level": 10,
-      "latitude": 52.2044,
-      "longitude": 1.571425,
-      "formatted_address": "Leiston F.C."
+      "formatted_address": "Leiston F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Long Melford",
       "url": "https://en.wikipedia.org/wiki/Long_Melford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d5/Long_Melford_FC.PNG",
       "address": "Long Melford F.C.",
+      "territory": "England",
+      "wiki_title": "Long_Melford_F.C.",
       "level": 10,
       "latitude": 52.07606667,
       "longitude": 0.71275,
-      "formatted_address": "Long Melford F.C."
+      "formatted_address": "Long Melford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Needham Market Under 23s",
       "url": "https://en.wikipedia.org/wiki/Needham_Market_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/72/Needham_Market_FC_crest.svg",
       "address": "Needham Market F.C.",
+      "territory": "England",
+      "wiki_title": "Needham_Market_F.C.",
       "level": 10,
       "latitude": 52.15073333,
       "longitude": 1.04464444,
-      "formatted_address": "Needham Market F.C."
+      "formatted_address": "Needham Market F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stanway Pegasus",
       "url": "https://en.wikipedia.org/wiki/Stanway_Pegasus_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c1/Stanway_Pegasus_FC_logo.png",
       "address": "Stanway Pegasus F.C.",
+      "territory": "England",
+      "wiki_title": "Stanway_Pegasus_F.C.",
       "level": 10,
       "latitude": 51.881480555,
       "longitude": 0.841038888,
-      "formatted_address": "Stanway Pegasus F.C."
+      "formatted_address": "Stanway Pegasus F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Whittlesey Athletic",
       "url": "https://en.wikipedia.org/wiki/Whittlesey_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/WhittleseyAthletic.png",
       "address": "Whittlesey Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Whittlesey_Athletic_F.C.",
       "level": 10,
       "latitude": 52.56157,
       "longitude": -0.10686323,
-      "formatted_address": "Whittlesey Athletic F.C."
+      "formatted_address": "Whittlesey Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wivenhoe Town",
       "url": "https://en.wikipedia.org/wiki/Wivenhoe_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ac/Wivenhoe_Town_F.C._logo.png",
       "address": "Wivenhoe Town F.C.",
+      "territory": "England",
+      "wiki_title": "Wivenhoe_Town_F.C.",
       "level": 10,
       "latitude": 51.8739,
       "longitude": 0.970303,
-      "formatted_address": "Wivenhoe Town F.C."
+      "formatted_address": "Wivenhoe Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wroxham Res",
       "url": "https://en.wikipedia.org/wiki/Wroxham_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Wroxham.png",
       "address": "Wroxham F.C.",
+      "territory": "England",
+      "wiki_title": "Wroxham_F.C.",
       "level": 10,
       "latitude": 52.7009,
       "longitude": 1.39708,
-      "formatted_address": "Wroxham F.C."
+      "formatted_address": "Wroxham F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
-  "team_count": 22
+  "team_count": 21
 }

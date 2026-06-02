@@ -1,176 +1,244 @@
 {
   "league_name": "Eastern Counties League Premier Division",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Cornard United",
       "url": "https://en.wikipedia.org/wiki/Cornard_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0f/Cornard_United_F.C._logo.png",
       "address": "Cornard United F.C.",
+      "territory": "England",
+      "wiki_title": "Cornard_United_F.C.",
       "level": 9,
       "latitude": 52.02186944,
       "longitude": 0.75365,
-      "formatted_address": "Cornard United F.C."
+      "formatted_address": "Cornard United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dereham Town",
       "url": "https://en.wikipedia.org/wiki/Dereham_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Dereham_Town_FC.PNG",
       "address": "Dereham Town F.C.",
+      "territory": "England",
+      "wiki_title": "Dereham_Town_F.C.",
       "level": 9,
       "latitude": 52.68241111,
       "longitude": 0.97248056,
-      "formatted_address": "Dereham Town F.C."
+      "formatted_address": "Dereham Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ely City",
       "url": "https://en.wikipedia.org/wiki/Ely_City_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6a/Ely_City_logo.png",
       "address": "Ely City F.C.",
+      "territory": "England",
+      "wiki_title": "Ely_City_F.C.",
       "level": 9,
       "latitude": 52.41026111,
       "longitude": 0.24695833,
-      "formatted_address": "Ely City F.C."
+      "formatted_address": "Ely City F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Fakenham Town",
       "url": "https://en.wikipedia.org/wiki/Fakenham_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/ff/Fakenham_Town_FC.PNG",
       "address": "Fakenham Town F.C.",
+      "territory": "England",
+      "wiki_title": "Fakenham_Town_F.C.",
       "level": 9,
       "latitude": 52.83998889,
       "longitude": 0.87263056,
-      "formatted_address": "Fakenham Town F.C."
+      "formatted_address": "Fakenham Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Great Yarmouth Town",
       "url": "https://en.wikipedia.org/wiki/Great_Yarmouth_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Gytown_fc.png",
       "address": "Great Yarmouth Town F.C.",
+      "territory": "England",
+      "wiki_title": "Great_Yarmouth_Town_F.C.",
       "level": 9,
       "latitude": 52.61257778,
       "longitude": 1.73616389,
-      "formatted_address": "Great Yarmouth Town F.C."
+      "formatted_address": "Great Yarmouth Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Hadleigh United",
       "url": "https://en.wikipedia.org/wiki/Hadleigh_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bc/Hadleigh_United_FC.PNG",
       "address": "Hadleigh United F.C.",
+      "territory": "England",
+      "wiki_title": "Hadleigh_United_F.C.",
       "level": 9,
       "latitude": 52.03889722,
       "longitude": 0.95429444,
-      "formatted_address": "Hadleigh United F.C."
+      "formatted_address": "Hadleigh United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Harleston Town",
       "url": "https://en.wikipedia.org/wiki/Harleston_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/93/Harleston_Town_FC.png",
       "address": "Harleston Town F.C.",
+      "territory": "England",
+      "wiki_title": "Harleston_Town_F.C.",
       "level": 9,
       "latitude": 52.402395,
       "longitude": 1.2956747,
-      "formatted_address": "Harleston Town F.C."
+      "formatted_address": "Harleston Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Heacham",
       "url": "https://en.wikipedia.org/wiki/Heacham_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/cc/Heacham_FC_logo.png",
       "address": "Heacham F.C.",
+      "territory": "England",
+      "wiki_title": "Heacham_F.C.",
       "level": 9,
       "latitude": 52.911238888,
       "longitude": 0.490733333,
-      "formatted_address": "Heacham F.C."
+      "formatted_address": "Heacham F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ipswich Wanderers",
       "url": "https://en.wikipedia.org/wiki/Ipswich_Wanderers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/62/IpsWand.png",
       "address": "Ipswich Wanderers F.C.",
+      "territory": "England",
+      "wiki_title": "Ipswich_Wanderers_F.C.",
       "level": 9,
       "latitude": 52.065025,
       "longitude": 1.20748056,
-      "formatted_address": "Ipswich Wanderers F.C."
+      "formatted_address": "Ipswich Wanderers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Kirkley & Pakefield",
       "url": "https://en.wikipedia.org/wiki/Kirkley_%26_Pakefield_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/07/Kirkley_%26_Pakefield_FC.PNG",
       "address": "Kirkley & Pakefield F.C.",
+      "territory": "England",
+      "wiki_title": "Kirkley_&_Pakefield_F.C.",
       "level": 9,
       "latitude": 52.45623611,
       "longitude": 1.72651667,
-      "formatted_address": "Kirkley & Pakefield F.C."
+      "formatted_address": "Kirkley & Pakefield F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lakenheath",
       "url": "https://en.wikipedia.org/wiki/Lakenheath_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c7/LakenheathFC.png",
       "address": "Lakenheath F.C.",
+      "territory": "England",
+      "wiki_title": "Lakenheath_F.C.",
       "level": 9,
       "latitude": 52.418133,
       "longitude": 0.52176891,
-      "formatted_address": "Lakenheath F.C."
+      "formatted_address": "Lakenheath F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Mulbarton Wanderers",
       "url": "https://en.wikipedia.org/wiki/Mulbarton_Wanderers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/MulbartonFC.png",
       "address": "Mulbarton Wanderers F.C.",
+      "territory": "England",
+      "wiki_title": "Mulbarton_Wanderers_F.C.",
       "level": 9,
       "latitude": 52.562004,
       "longitude": 1.238397,
-      "formatted_address": "Mulbarton Wanderers F.C."
+      "formatted_address": "Mulbarton Wanderers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Soham Town Rangers",
       "url": "https://en.wikipedia.org/wiki/Soham_Town_Rangers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4b/Soham_Town_Rangers_F.C._logo.png",
       "address": "Soham Town Rangers F.C.",
+      "territory": "England",
+      "wiki_title": "Soham_Town_Rangers_F.C.",
       "level": 9,
       "latitude": 52.3394,
       "longitude": 0.33021944,
-      "formatted_address": "Soham Town Rangers F.C."
+      "formatted_address": "Soham Town Rangers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stowmarket Town",
       "url": "https://en.wikipedia.org/wiki/Stowmarket_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Stowmarket_Town_FC.PNG",
       "address": "Stowmarket Town F.C.",
+      "territory": "England",
+      "wiki_title": "Stowmarket_Town_F.C.",
       "level": 9,
       "latitude": 52.196594444,
       "longitude": 0.992652777,
-      "formatted_address": "Stowmarket Town F.C."
+      "formatted_address": "Stowmarket Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Thetford Town",
       "url": "https://en.wikipedia.org/wiki/Thetford_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/27/Thetford_Town_FC.png",
       "address": "Thetford Town F.C.",
+      "territory": "England",
+      "wiki_title": "Thetford_Town_F.C.",
       "level": 9,
       "latitude": 52.4208,
       "longitude": 0.746964,
-      "formatted_address": "Thetford Town F.C."
+      "formatted_address": "Thetford Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Walsham-le-Willows",
       "url": "https://en.wikipedia.org/wiki/Walsham-le-Willows_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a9/Walsham-le-Willows_FC.PNG",
       "address": "Walsham-le-Willows F.C.",
+      "territory": "England",
+      "wiki_title": "Walsham-le-Willows_F.C.",
       "level": 9,
       "latitude": 52.3078,
       "longitude": 0.930975,
-      "formatted_address": "Walsham-le-Willows F.C."
+      "formatted_address": "Walsham-le-Willows F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Woodbridge Town",
       "url": "https://en.wikipedia.org/wiki/Woodbridge_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/57/Woodbridge_Town_FC.PNG",
       "address": "Woodbridge Town F.C.",
+      "territory": "England",
+      "wiki_title": "Woodbridge_Town_F.C.",
       "level": 9,
       "latitude": 52.0855,
       "longitude": 1.29096,
-      "formatted_address": "Woodbridge Town F.C."
+      "formatted_address": "Woodbridge Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 17

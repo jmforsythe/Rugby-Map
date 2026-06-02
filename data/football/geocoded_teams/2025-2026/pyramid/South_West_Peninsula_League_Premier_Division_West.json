@@ -1,160 +1,232 @@
 {
   "league_name": "South West Peninsula League Premier Division West",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Bude Town",
       "url": "https://en.wikipedia.org/wiki/Bude_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/Bude_Town_FC_logo.png",
       "address": "Bude Town F.C.",
+      "territory": "England",
+      "wiki_title": "Bude_Town_F.C.",
       "level": 10,
       "latitude": 50.830180555,
       "longitude": -4.535388888,
-      "formatted_address": "Bude Town F.C."
+      "formatted_address": "Bude Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Callington Town",
       "url": "https://en.wikipedia.org/wiki/Callington_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f4/Callington_Town_FC.png",
       "address": "Callington Town F.C.",
+      "territory": "England",
+      "wiki_title": "Callington_Town_F.C.",
       "level": 10,
       "latitude": 50.500658,
       "longitude": -4.3156569,
-      "formatted_address": "Callington Town F.C."
+      "formatted_address": "Callington Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Camelford",
       "url": "https://en.wikipedia.org/wiki/Camelford_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/37/Camelford_F.C._logo.png",
       "address": "Camelford F.C.",
+      "territory": "England",
+      "wiki_title": "Camelford_F.C.",
       "level": 10,
       "latitude": 50.628138888,
       "longitude": -4.669888888,
-      "formatted_address": "Camelford F.C."
+      "formatted_address": "Camelford F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dobwalls",
       "url": "https://en.wikipedia.org/wiki/Dobwalls_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Dobwalls_FC_logo.png",
       "address": "Dobwalls F.C.",
+      "territory": "England",
+      "wiki_title": "Dobwalls_F.C.",
       "level": 10,
       "latitude": 50.454166666,
       "longitude": -4.509888888,
-      "formatted_address": "Dobwalls F.C."
+      "formatted_address": "Dobwalls F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Elburton Villa",
       "url": "https://en.wikipedia.org/wiki/Elburton_Villa_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2b/Elburton_Villa_F.C._logo.png",
       "address": "Elburton Villa F.C.",
+      "territory": "England",
+      "wiki_title": "Elburton_Villa_F.C.",
       "level": 10,
       "latitude": 50.362775,
       "longitude": -4.066925,
-      "formatted_address": "Elburton Villa F.C."
+      "formatted_address": "Elburton Villa F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Falmouth Town Reserves",
       "url": "https://en.wikipedia.org/wiki/Falmouth_Town_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/57/Falmouth_town_afc_2023.png",
       "address": "Falmouth Town A.F.C.",
+      "territory": "England",
+      "wiki_title": "Falmouth_Town_A.F.C.",
       "level": 10,
       "latitude": 50.15604444,
       "longitude": -5.09859722,
-      "formatted_address": "Falmouth Town A.F.C."
+      "formatted_address": "Falmouth Town A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Holsworthy",
       "url": "https://en.wikipedia.org/wiki/Holsworthy_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d7/Holsworthy_A.F.C._logo.png",
       "address": "Holsworthy A.F.C.",
+      "territory": "England",
+      "wiki_title": "Holsworthy_A.F.C.",
       "level": 10,
       "latitude": 50.81424167,
       "longitude": -4.35179167,
-      "formatted_address": "Holsworthy A.F.C."
+      "formatted_address": "Holsworthy A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Launceston",
       "url": "https://en.wikipedia.org/wiki/Launceston_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/de/Launceston_F.C._logo.png",
       "address": "Launceston F.C.",
+      "territory": "England",
+      "wiki_title": "Launceston_F.C.",
       "level": 10,
       "latitude": 50.62734722,
       "longitude": -4.37421944,
-      "formatted_address": "Launceston F.C."
+      "formatted_address": "Launceston F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Liskeard Athletic",
       "url": "https://en.wikipedia.org/wiki/Liskeard_Athletic_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e2/Liskeard_Athletic_F.C._logo.png",
       "address": "Liskeard Athletic F.C.",
+      "territory": "England",
+      "wiki_title": "Liskeard_Athletic_F.C.",
       "level": 10,
       "latitude": 50.46160833,
       "longitude": -4.46351111,
-      "formatted_address": "Liskeard Athletic F.C."
+      "formatted_address": "Liskeard Athletic F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Millbrook (Cornwall)",
       "url": "https://en.wikipedia.org/wiki/Millbrook_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8b/Millbrook_A.F.C._logo.png",
       "address": "Millbrook A.F.C.",
+      "territory": "England",
+      "wiki_title": "Millbrook_A.F.C.",
       "level": 10,
       "latitude": 50.35132778,
       "longitude": -4.21101667,
-      "formatted_address": "Millbrook A.F.C."
+      "formatted_address": "Millbrook A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Penzance",
       "url": "https://en.wikipedia.org/wiki/Penzance_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/30/Penzance_AFC.png",
       "address": "Penzance A.F.C.",
+      "territory": "England",
+      "wiki_title": "Penzance_A.F.C.",
       "level": 10,
       "latitude": 50.11531667,
       "longitude": -5.54183056,
-      "formatted_address": "Penzance A.F.C."
+      "formatted_address": "Penzance A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "St Day",
       "url": "https://en.wikipedia.org/wiki/St_Day_A.F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/68/St_Day_A.F.C._logo.png",
+      "address": "St Day, England",
+      "territory": "England",
+      "wiki_title": "St_Day_A.F.C.",
+      "level": 10,
+      "latitude": 50.2392986,
+      "longitude": -5.1848837,
+      "formatted_address": "St. Day, Cornwall, England, United Kingdom",
+      "place_id": 283696432,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Sticker",
       "url": "https://en.wikipedia.org/wiki/Sticker_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3e/StickerAFClogo.png",
+      "address": "Sticker, England",
+      "territory": "England",
+      "wiki_title": "Sticker_F.C.",
+      "level": 10,
+      "latitude": 50.3177597,
+      "longitude": -4.8386237,
+      "formatted_address": "Sticker, Cornwall, England, PL26 7HH, United Kingdom",
+      "place_id": 286440230,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Truro City Reserves",
       "url": "https://en.wikipedia.org/wiki/Truro_City_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/00/Truro_City_FC_crest.svg",
       "address": "Bolitho Park",
+      "territory": "England",
+      "wiki_title": "Truro_City_F.C.",
       "level": 10,
       "latitude": 50.408357,
       "longitude": -4.146996,
-      "formatted_address": "Bolitho Park"
+      "formatted_address": "Bolitho Park",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wadebridge Town",
       "url": "https://en.wikipedia.org/wiki/Wadebridge_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Wadebridge_Town_F.C..png",
       "address": "Wadebridge Town F.C.",
+      "territory": "England",
+      "wiki_title": "Wadebridge_Town_F.C.",
       "level": 10,
       "latitude": 50.5225,
       "longitude": -4.82684,
-      "formatted_address": "Wadebridge Town F.C."
+      "formatted_address": "Wadebridge Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wendron United",
       "url": "https://en.wikipedia.org/wiki/Wendron_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/91/Wendron_United_F.C._logo.png",
       "address": "Wendron United F.C.",
+      "territory": "England",
+      "wiki_title": "Wendron_United_F.C.",
       "level": 10,
       "latitude": 50.163,
       "longitude": -5.1925,
-      "formatted_address": "Wendron United F.C."
+      "formatted_address": "Wendron United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 16

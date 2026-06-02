@@ -1,186 +1,258 @@
 {
   "league_name": "Midland League Premier Division",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "1874 Northwich",
       "url": "https://en.wikipedia.org/wiki/1874_Northwich_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8d/1874_Northwich_FC_badge_%28new%29.png",
       "address": "1874 Northwich F.C.",
+      "territory": "England",
+      "wiki_title": "1874_Northwich_F.C.",
       "level": 9,
       "latitude": 53.274185726,
       "longitude": -2.547431028,
-      "formatted_address": "1874 Northwich F.C."
+      "formatted_address": "1874 Northwich F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "A.F.C. Wolverhampton City",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Wolverhampton_City",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/ca/A.F.C._Wulfrunians_logo.png",
       "address": "A.F.C. Wulfrunians",
+      "territory": "England",
+      "wiki_title": "A.F.C._Wolverhampton_City",
       "level": 9,
       "latitude": 52.57532889,
       "longitude": -2.18923,
-      "formatted_address": "A.F.C. Wulfrunians"
+      "formatted_address": "A.F.C. Wulfrunians",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Abbey Hulton United",
       "url": "https://en.wikipedia.org/wiki/Abbey_Hulton_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/58/AbbeyHultonUnitedFC.png",
       "address": "Abbey Hulton United F.C.",
+      "territory": "England",
+      "wiki_title": "Abbey_Hulton_United_F.C.",
       "level": 9,
       "latitude": 53.040378,
       "longitude": -2.1485648,
-      "formatted_address": "Abbey Hulton United F.C."
+      "formatted_address": "Abbey Hulton United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Brocton",
       "url": "https://en.wikipedia.org/wiki/Brocton_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b7/Brocton_F.C._logo.png",
       "address": "Brocton F.C.",
+      "territory": "England",
+      "wiki_title": "Brocton_F.C.",
       "level": 9,
       "latitude": 52.7904,
       "longitude": -2.09892,
-      "formatted_address": "Brocton F.C."
+      "formatted_address": "Brocton F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Coton Green",
       "url": "https://en.wikipedia.org/wiki/Coton_Green_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1a/CotonGreenFC.png",
       "address": "Coton Green F.C.",
+      "territory": "England",
+      "wiki_title": "Coton_Green_F.C.",
       "level": 9,
       "latitude": 52.610029,
       "longitude": -1.6976599,
-      "formatted_address": "Coton Green F.C."
+      "formatted_address": "Coton Green F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Dudley Town",
       "url": "https://en.wikipedia.org/wiki/Dudley_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/46/Dudley_Town_F.C._logo.png",
       "address": "Dudley Town F.C.",
+      "territory": "England",
+      "wiki_title": "Dudley_Town_F.C.",
       "level": 9,
       "latitude": 52.4898,
       "longitude": -2.1352,
-      "formatted_address": "Dudley Town F.C."
+      "formatted_address": "Dudley Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Hanley Town",
       "url": "https://en.wikipedia.org/wiki/Hanley_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/de/Hanley_Town_FC_logo.png",
       "address": "Hanley Town F.C.",
+      "territory": "England",
+      "wiki_title": "Hanley_Town_F.C.",
       "level": 9,
       "latitude": 53.02845556,
       "longitude": -2.14857222,
-      "formatted_address": "Hanley Town F.C."
+      "formatted_address": "Hanley Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Highgate United",
       "url": "https://en.wikipedia.org/wiki/Highgate_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/86/Highgate_United_FC_logo.svg",
       "address": "Highgate United F.C.",
+      "territory": "England",
+      "wiki_title": "Highgate_United_F.C.",
       "level": 9,
       "latitude": 52.38903333,
       "longitude": -1.84583611,
-      "formatted_address": "Highgate United F.C."
+      "formatted_address": "Highgate United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Lye Town",
       "url": "https://en.wikipedia.org/wiki/Lye_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e1/Lye_Town_F.C._logo.png",
       "address": "Lye Town F.C.",
+      "territory": "England",
+      "wiki_title": "Lye_Town_F.C.",
       "level": 9,
       "latitude": 52.45665,
       "longitude": -2.12006944,
-      "formatted_address": "Lye Town F.C."
+      "formatted_address": "Lye Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Northwich Victoria",
       "url": "https://en.wikipedia.org/wiki/Northwich_Victoria_F.C.",
-      "image_url": null,
-      "address": "Marston Road",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/59/Northwich_Victoria_F.C._logo.svg",
+      "address": "Northwich, England",
+      "territory": "England",
+      "wiki_title": "Northwich_Victoria_F.C.",
       "level": 9,
-      "latitude": 52.818542,
-      "longitude": -2.116858,
-      "formatted_address": "Marston Road"
+      "latitude": 53.2602539,
+      "longitude": -2.5145104,
+      "formatted_address": "Northwich, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 277303289,
+      "geocode_source": "openfootball"
     },
     {
       "name": "Romulus",
       "url": "https://en.wikipedia.org/wiki/Romulus_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/72/Romulus_F.C.png",
       "address": "Romulus F.C.",
+      "territory": "England",
+      "wiki_title": "Romulus_F.C.",
       "level": 9,
       "latitude": 52.55670833,
       "longitude": -1.81865833,
-      "formatted_address": "Romulus F.C."
+      "formatted_address": "Romulus F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stone Old Alleynians",
       "url": "https://en.wikipedia.org/wiki/Stone_Old_Alleynians_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/Stone_Old_Alleynians_F.C._logo.png",
       "address": "Stone Old Alleynians F.C.",
+      "territory": "England",
+      "wiki_title": "Stone_Old_Alleynians_F.C.",
       "level": 9,
       "latitude": 52.89128,
       "longitude": -2.19311,
-      "formatted_address": "Stone Old Alleynians F.C."
+      "formatted_address": "Stone Old Alleynians F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stourport Swifts",
       "url": "https://en.wikipedia.org/wiki/Stourport_Swifts_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/Stourport_Swifts_F.C.png",
       "address": "Stourport Swifts F.C.",
+      "territory": "England",
+      "wiki_title": "Stourport_Swifts_F.C.",
       "level": 9,
       "latitude": 52.335427777,
       "longitude": -2.280725,
-      "formatted_address": "Stourport Swifts F.C."
+      "formatted_address": "Stourport Swifts F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Studley",
       "url": "https://en.wikipedia.org/wiki/Studley_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/97/Studley_F.C.png",
       "address": "Studley F.C.",
+      "territory": "England",
+      "wiki_title": "Studley_F.C.",
       "level": 9,
       "latitude": 52.2823,
       "longitude": -1.89322,
-      "formatted_address": "Studley F.C."
+      "formatted_address": "Studley F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Tividale",
       "url": "https://en.wikipedia.org/wiki/Tividale_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/Tividale_Logo.png",
       "address": "Tividale F.C.",
+      "territory": "England",
+      "wiki_title": "Tividale_F.C.",
       "level": 9,
       "latitude": 52.5107,
       "longitude": -2.05018,
-      "formatted_address": "Tividale F.C."
+      "formatted_address": "Tividale F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Uttoxeter Town",
       "url": "https://en.wikipedia.org/wiki/Uttoxeter_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/70/Uttoxeter_Town_F.C._logo.png",
       "address": "Uttoxeter Town F.C.",
+      "territory": "England",
+      "wiki_title": "Uttoxeter_Town_F.C.",
       "level": 9,
       "latitude": 52.899888888,
       "longitude": -1.874638888,
-      "formatted_address": "Uttoxeter Town F.C."
+      "formatted_address": "Uttoxeter Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Whitchurch Alport",
       "url": "https://en.wikipedia.org/wiki/Whitchurch_Alport_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/26/WhitchurchAlport.png",
       "address": "Whitchurch Alport F.C.",
+      "territory": "England",
+      "wiki_title": "Whitchurch_Alport_F.C.",
       "level": 9,
       "latitude": 52.9724,
       "longitude": -2.6725,
-      "formatted_address": "Whitchurch Alport F.C."
+      "formatted_address": "Whitchurch Alport F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Winsford United",
       "url": "https://en.wikipedia.org/wiki/Winsford_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1b/Winsford_United_Crest.png",
       "address": "Winsford United F.C.",
+      "territory": "England",
+      "wiki_title": "Winsford_United_F.C.",
       "level": 9,
       "latitude": 53.1924,
       "longitude": -2.51232,
-      "formatted_address": "Winsford United F.C."
+      "formatted_address": "Winsford United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 18

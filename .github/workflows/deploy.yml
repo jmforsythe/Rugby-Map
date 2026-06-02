@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       seasons_json: ${{ steps.seasons.outputs.seasons_json }}
+      football_seasons_json: ${{ steps.football-seasons.outputs.football_seasons_json }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +60,26 @@ jobs:
           cat "$list"
           json="$(jq -Rs 'split("\n") | map(select(length > 0))' < "$list" | jq -c .)"
           echo "seasons_json=$json" >> "$GITHUB_OUTPUT"
+
+      - name: Discover football pyramid seasons
+        id: football-seasons
+        run: |
+          set -eo pipefail
+          list="${RUNNER_TEMP}/football-ci-seasons.txt"
+          : > "$list"
+          for pyramid_dir in data/football/geocoded_teams/*/pyramid; do
+            [ -d "$pyramid_dir" ] || continue
+            basename "$(dirname "$pyramid_dir")" >> "$list"
+          done
+          sort -ru -o "$list" "$list"
+          echo "Football pyramid season count: $(wc -l < "$list" | tr -d ' ')"
+          cat "$list"
+          if [ ! -s "$list" ]; then
+            echo 'football_seasons_json=[]' >> "$GITHUB_OUTPUT"
+          else
+            json="$(jq -Rs 'split("\n") | map(select(length > 0))' < "$list" | jq -c .)"
+            echo "football_seasons_json=$json" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Emit dist/shared (boundaries bundle for Tier + match-day maps)
         run: |
@@ -209,9 +230,122 @@ jobs:
           path: rugby-season-${{ matrix.season }}.tar.zst
           retention-days: 3
 
+  football-season:
+    needs: prepare
+    if: ${{ needs.prepare.outputs.football_seasons_json != '[]' }}
+    runs-on: ubuntu-latest
+    env:
+      GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        season: ${{ fromJSON(needs.prepare.outputs.football_seasons_json) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-py3.12-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Playwright for pyramid PNG export
+        run: |
+          pip install "playwright>=1.40"
+          python -m playwright install chromium --with-deps
+
+      - name: Restore boundary GeoJSON cache
+        uses: actions/download-artifact@v4
+        with:
+          name: rugby-boundaries-data
+          path: .
+
+      - name: Extract boundaries into workspace
+        run: tar --zstd -xf rugby-boundaries.tar.zst
+
+      - name: Download dist/shared tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: rugby-dist-shared
+          path: .
+
+      - name: Extract dist/shared into workspace
+        run: mkdir -p dist && tar --zstd -xf rugby-dist-shared.tar.zst -C dist
+
+      - name: Football pyramid raster cache digest
+        id: football-pyramid-cache-digest
+        env:
+          SEASON: ${{ matrix.season }}
+        run: echo "digest=$(python -m football.pyramid_ci_cache digest "$SEASON")" >> "$GITHUB_OUTPUT"
+
+      - name: Restore football pyramid raster cache
+        uses: actions/cache@v4
+        id: football-pyramid-raster-cache
+        with:
+          path: _football_pyramid_raster_cache/${{ matrix.season }}
+          key: football-pyramid-raster-${{ matrix.season }}-${{ steps.football-pyramid-cache-digest.outputs.digest }}
+          restore-keys: |
+            football-pyramid-raster-${{ matrix.season }}-
+
+      - name: Restore cached football pyramid artifacts into dist
+        env:
+          SEASON: ${{ matrix.season }}
+        run: |
+          set -eo pipefail
+          mkdir -p "dist/football/${SEASON}"
+          if python -m football.pyramid_ci_cache check "$SEASON"; then
+            python -m football.pyramid_ci_cache restore "$SEASON"
+            echo "FOOTBALL_PYRAMID_RASTER_CACHE_RESTORED=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Football — pyramid maps and diagram raster
+        env:
+          SEASON: ${{ matrix.season }}
+        run: |
+          bash scripts/ci_football_season.sh "$SEASON"
+
+      - name: Save football pyramid raster cache
+        if: env.FOOTBALL_PYRAMID_RASTER_CACHE_RESTORED != '1'
+        env:
+          SEASON: ${{ matrix.season }}
+        run: python -m football.pyramid_ci_cache save "$SEASON"
+
+      - name: Pack football season output tarball
+        env:
+          SEASON: ${{ matrix.season }}
+        run: |
+          set -eo pipefail
+          tar --zstd -cf "football-season-${SEASON}.tar.zst" "dist/football/${SEASON}"
+
+      - name: Upload dist/football/<season> tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-dist-season-${{ matrix.season }}
+          path: football-season-${{ matrix.season }}.tar.zst
+          retention-days: 3
+
   assemble:
     runs-on: ubuntu-latest
-    needs: [prepare, rugby-season]
+    needs: [prepare, rugby-season, football-season]
+    if: >-
+      always() &&
+      needs.prepare.result == 'success' &&
+      needs.rugby-season.result == 'success' &&
+      (needs.football-season.result == 'success' || needs.football-season.result == 'skipped')
     env:
       GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
 
@@ -257,6 +391,13 @@ jobs:
           pattern: rugby-dist-season-*
           path: _incoming
 
+      - name: Download football season tarball artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: football-dist-season-*
+          path: _incoming
+          merge-multiple: true
+
       - name: Extract all seasons (maps + distance caches)
         run: |
           set -eo pipefail
@@ -275,6 +416,20 @@ jobs:
             esac
           done < <(find _incoming -type f \( -name 'rugby-season-*.tar.zst' -o -name 'rugby-season-*.tar.gz' \) -print0)
 
+      - name: Extract football season tarballs
+        run: |
+          set -eo pipefail
+          fb=$(find _incoming -type f \( -name 'football-season-*.tar.zst' -o -name 'football-season-*.tar.gz' \) | wc -l)
+          echo "Football season tarballs: ${fb}"
+          while IFS= read -r -d '' tg; do
+            echo "Unpack $tg"
+            case "$tg" in
+              *.tar.zst) tar --zstd -xf "$tg" ;;
+              *.tar.gz) tar xzf "$tg" ;;
+              *) echo "Unknown archive: $tg"; exit 1 ;;
+            esac
+          done < <(find _incoming -type f \( -name 'football-season-*.tar.zst' -o -name 'football-season-*.tar.gz' \) -print0)
+
       - name: Verify per-season distance caches for custom map
         run: |
           set -eo pipefail
@@ -285,18 +440,21 @@ jobs:
             exit 1
           fi
 
-      - name: Generate rugby, custom map, and football outputs (parallel)
+      - name: Generate rugby and custom map outputs (parallel)
         run: |
           set -eo pipefail
           pids=()
           python -m rugby.team_pages --production & pids+=($!)
           python -m rugby.custom_map --production & pids+=($!)
-          python -m football.maps --production & pids+=($!)
           fail=0
           for pid in "${pids[@]}"; do
             wait "$pid" || fail=1
           done
           exit "$fail"
+
+      - name: Football — season indexes & site landing pages
+        run: |
+          python -m football.webpages --production
 
       - name: Rugby — season indexes & site landing pages
         run: |

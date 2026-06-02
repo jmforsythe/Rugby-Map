@@ -1,184 +1,271 @@
 {
   "league_name": "North West Counties League Division One South",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Allscott Heath",
       "url": "https://en.wikipedia.org/wiki/Allscott_Heath_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/db/Allscott_Heath_F.C._logo.png",
+      "address": "Allscott Heath, England",
+      "territory": "England",
+      "wiki_title": "Allscott_Heath_F.C.",
+      "level": 10,
+      "latitude": 52.7099971,
+      "longitude": -2.5882532,
+      "formatted_address": "Allscott Heath Cricket Club, Isombridge, Allscott Meads, Telford, Telford and Wrekin, England, TF6 5EQ, United Kingdom",
+      "place_id": 276095848,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Alsager Town",
       "url": "https://en.wikipedia.org/wiki/Alsager_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2d/Alsagertownfc.png",
       "address": "Alsager Town F.C.",
+      "territory": "England",
+      "wiki_title": "Alsager_Town_F.C.",
       "level": 10,
       "latitude": 53.10194444,
       "longitude": -2.3,
-      "formatted_address": "Alsager Town F.C."
+      "formatted_address": "Alsager Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ashville",
       "url": "https://en.wikipedia.org/wiki/Ashville_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0f/Ashville_F.C._logo.png",
       "address": "Ashville F.C.",
+      "territory": "England",
+      "wiki_title": "Ashville_F.C.",
       "level": 10,
       "latitude": 53.419325,
       "longitude": -3.071455555,
-      "formatted_address": "Ashville F.C."
+      "formatted_address": "Ashville F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Barnton",
       "url": "https://en.wikipedia.org/wiki/Barnton_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e7/Barnton_FC_Logo.png",
       "address": "Barnton F.C.",
+      "territory": "England",
+      "wiki_title": "Barnton_F.C.",
       "level": 10,
       "latitude": 53.2746,
       "longitude": -2.5465,
-      "formatted_address": "Barnton F.C."
+      "formatted_address": "Barnton F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cammell Laird 1907",
       "url": "https://en.wikipedia.org/wiki/Cammell_Laird_1907_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c4/Cammell_Laird_FC_logo.png",
+      "address": "Cammell Laird 1907, England",
+      "territory": "England",
+      "wiki_title": "Cammell_Laird_1907_F.C.",
+      "level": 10,
+      "latitude": 53.3855921,
+      "longitude": -3.0099678,
+      "formatted_address": "Cammell Laird, Lower Tranmere, Birkenhead, Wirral, Liverpool City Region, England, CH41 9BP, United Kingdom",
+      "place_id": 276924990,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Eccleshall",
       "url": "https://en.wikipedia.org/wiki/Eccleshall_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/14/Eccleshall_FC_logo.png",
       "address": "Eccleshall F.C.",
+      "territory": "England",
+      "wiki_title": "Eccleshall_F.C.",
       "level": 10,
       "latitude": 52.86828889,
       "longitude": -2.27513056,
-      "formatted_address": "Eccleshall F.C."
+      "formatted_address": "Eccleshall F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Foley Meir",
       "url": "https://en.wikipedia.org/wiki/Foley_Meir_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Foley_Meir_FC_logo.png",
       "address": "Foley Meir F.C.",
+      "territory": "England",
+      "wiki_title": "Foley_Meir_F.C.",
       "level": 10,
       "latitude": 52.984408333,
       "longitude": -2.103836111,
-      "formatted_address": "Foley Meir F.C."
+      "formatted_address": "Foley Meir F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Haughmond",
       "url": "https://en.wikipedia.org/wiki/Haughmond_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/14/Haughmond_F.C._logo.png",
       "address": "Haughmond F.C.",
+      "territory": "England",
+      "wiki_title": "Haughmond_F.C.",
       "level": 10,
       "latitude": 52.726737833,
       "longitude": -2.718427,
-      "formatted_address": "Haughmond F.C."
+      "formatted_address": "Haughmond F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "MSL Woolton",
       "url": "https://en.wikipedia.org/wiki/MSB_Woolton_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/MSB_Woolton_F.C._logo.png",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "MSB_Woolton_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Market Drayton Town",
       "url": "https://en.wikipedia.org/wiki/Market_Drayton_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/db/MDraytonFC.png",
       "address": "Market Drayton Town F.C.",
+      "territory": "England",
+      "wiki_title": "Market_Drayton_Town_F.C.",
       "level": 10,
       "latitude": 52.90995,
       "longitude": -2.49628056,
-      "formatted_address": "Market Drayton Town F.C."
+      "formatted_address": "Market Drayton Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "New Mills",
       "url": "https://en.wikipedia.org/wiki/New_Mills_A.F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/80/New_Mills_FC_badge.png",
+      "address": "New Mills, England",
+      "territory": "England",
+      "wiki_title": "New_Mills_A.F.C.",
+      "level": 10,
+      "latitude": 53.365432,
+      "longitude": -2.0012794,
+      "formatted_address": "New Mills, Hague Bar, High Peak, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 277784006,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Runcorn Town",
       "url": "https://en.wikipedia.org/wiki/Runcorn_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/83/Runcorn_Town_F.C._logo.png",
       "address": "Runcorn Town F.C.",
+      "territory": "England",
+      "wiki_title": "Runcorn_Town_F.C.",
       "level": 10,
       "latitude": 53.329848,
       "longitude": -2.751357,
-      "formatted_address": "Runcorn Town F.C."
+      "formatted_address": "Runcorn Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Sandbach United",
       "url": "https://en.wikipedia.org/wiki/Sandbach_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/31/Sandbach_United_F.C._logo.png",
       "address": "Sandbach United F.C.",
+      "territory": "England",
+      "wiki_title": "Sandbach_United_F.C.",
       "level": 10,
       "latitude": 53.1383,
       "longitude": -2.3872,
-      "formatted_address": "Sandbach United F.C."
+      "formatted_address": "Sandbach United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Shawbury United",
       "url": "https://en.wikipedia.org/wiki/Shawbury_United_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/Shawbury_United_F.C._logo.png",
       "address": "Shawbury United F.C.",
+      "territory": "England",
+      "wiki_title": "Shawbury_United_F.C.",
       "level": 10,
       "latitude": 52.38027,
       "longitude": -2.73211,
-      "formatted_address": "Shawbury United F.C."
+      "formatted_address": "Shawbury United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stafford Town",
       "url": "https://en.wikipedia.org/wiki/Stafford_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9b/Stafford_Town_F.C._logo.png",
       "address": "Stafford Town F.C.",
+      "territory": "England",
+      "wiki_title": "Stafford_Town_F.C.",
       "level": 10,
       "latitude": 52.794,
       "longitude": -2.12361,
-      "formatted_address": "Stafford Town F.C."
+      "formatted_address": "Stafford Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stockport Georgians",
       "url": "https://en.wikipedia.org/wiki/Stockport_Georgians_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/Stockport_Georgians_AFC_logo.png",
       "address": "Stockport Georgians A.F.C.",
+      "territory": "England",
+      "wiki_title": "Stockport_Georgians_A.F.C.",
       "level": 10,
       "latitude": 53.381444444,
       "longitude": -2.148533333,
-      "formatted_address": "Stockport Georgians A.F.C."
+      "formatted_address": "Stockport Georgians A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Telford Town",
       "url": "https://en.wikipedia.org/wiki/Telford_Town_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/TTFC_OfficialCrest.jpg",
       "address": "Telford Town F.C.",
+      "territory": "England",
+      "wiki_title": "Telford_Town_F.C.",
       "level": 10,
       "latitude": 52.6946,
       "longitude": -2.46,
-      "formatted_address": "Telford Town F.C."
+      "formatted_address": "Telford Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wolverhampton Casuals",
       "url": "https://en.wikipedia.org/wiki/Wolverhampton_Casuals_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/Wolverhampton_Casuals_Logo.png",
       "address": "Wolverhampton Casuals F.C.",
+      "territory": "England",
+      "wiki_title": "Wolverhampton_Casuals_F.C.",
       "level": 10,
       "latitude": 52.6452,
       "longitude": -2.12531,
-      "formatted_address": "Wolverhampton Casuals F.C."
+      "formatted_address": "Wolverhampton Casuals F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Wolverhampton Sporting",
       "url": "https://en.wikipedia.org/wiki/Wolverhampton_Sporting_C.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Wolverhampton_Sporting_Community_F.C._logo.png",
       "address": "Wolverhampton Sporting Community F.C.",
+      "territory": "England",
+      "wiki_title": "Wolverhampton_Sporting_C.F.C.",
       "level": 10,
       "latitude": 52.661,
       "longitude": -2.008166666,
-      "formatted_address": "Wolverhampton Sporting Community F.C."
+      "formatted_address": "Wolverhampton Sporting Community F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 19

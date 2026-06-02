@@ -1,0 +1,208 @@
+{
+  "league_name": "Premier League",
+  "league_url": "https://github.com/openfootball/england/blob/master/2024-25/1-premierleague.txt",
+  "teams": [
+    {
+      "name": "Manchester United FC",
+      "url": "",
+      "image_url": null,
+      "address": "Old Trafford, Manchester, England",
+      "latitude": 53.4631096,
+      "longitude": -2.2913865,
+      "formatted_address": "Old Trafford, Sir Matt Busby Way, Wharfside, Stretford, Trafford, Greater Manchester, England, M16 0RA, United Kingdom",
+      "place_id": 277074037
+    },
+    {
+      "name": "Fulham FC",
+      "url": "",
+      "image_url": null,
+      "address": "Craven Cottage, London, England",
+      "latitude": 51.4749218,
+      "longitude": -0.2217448,
+      "formatted_address": "Craven Cottage, Stevenage Road, Fulham, London Borough of Hammersmith and Fulham, Greater London, England, SW6 6HH, United Kingdom",
+      "place_id": 279137273
+    },
+    {
+      "name": "Ipswich Town FC",
+      "url": "",
+      "image_url": null,
+      "address": "Portman Road, Ipswich, England",
+      "latitude": 52.0595004,
+      "longitude": 1.1461461,
+      "formatted_address": "Portman Road, The Dales, Ipswich, Suffolk, England, IP1 2ES, United Kingdom",
+      "place_id": 159891470
+    },
+    {
+      "name": "Liverpool FC",
+      "url": "",
+      "image_url": null,
+      "address": "Anfield, Liverpool, England",
+      "latitude": 53.4309011,
+      "longitude": -2.9609719,
+      "formatted_address": "Anfield, Anfield Road, Anfield, Liverpool, Liverpool City Region, England, L4 0TH, United Kingdom",
+      "place_id": 287658463
+    },
+    {
+      "name": "Arsenal FC",
+      "url": "",
+      "image_url": null,
+      "address": "Emirates Stadium, London, England",
+      "latitude": 51.5550404,
+      "longitude": -0.1083997,
+      "formatted_address": "Emirates Stadium, 75, Drayton Park, Finsbury Park, London Borough of Islington, Greater London, England, N5 1BU, United Kingdom",
+      "place_id": 278426036
+    },
+    {
+      "name": "Wolverhampton Wanderers FC",
+      "url": "",
+      "image_url": null,
+      "address": "Molineux, Wolverhampton, England",
+      "latitude": 52.5902723,
+      "longitude": -2.1304079,
+      "formatted_address": "Molineux Stadium, Waterloo Road, Springfield, Heath Town, Park Village, Wolverhampton, West Midlands, England, WV1 4QR, United Kingdom",
+      "place_id": 276236621
+    },
+    {
+      "name": "Everton FC",
+      "url": "",
+      "image_url": null,
+      "address": "Goodison Park, Liverpool, England",
+      "latitude": 53.4386898,
+      "longitude": -2.9664193,
+      "formatted_address": "Goodison Park, Goodison Road, Walton, Liverpool, Liverpool City Region, England, L4 4EL, United Kingdom",
+      "place_id": 277724764
+    },
+    {
+      "name": "Brighton & Hove Albion FC",
+      "url": "",
+      "image_url": null,
+      "address": "American Express Stadium, Falmer, England",
+      "latitude": 50.8615471,
+      "longitude": -0.0836931,
+      "formatted_address": "American Express Stadium, Village Way, Coldean, Brighton, Brighton and Hove, England, BN1 9BL, United Kingdom",
+      "place_id": 283026903
+    },
+    {
+      "name": "Newcastle United FC",
+      "url": "",
+      "image_url": null,
+      "address": "St James' Park, Newcastle upon Tyne, England",
+      "latitude": 54.9754693,
+      "longitude": -1.6218737,
+      "formatted_address": "St. James' Park, Barrack Road, Grainger Town, Newcastle upon Tyne, Tyne and Wear, North East, England, NE1 4ST, United Kingdom",
+      "place_id": 275462324
+    },
+    {
+      "name": "Southampton FC",
+      "url": "",
+      "image_url": null,
+      "address": "St Mary's Stadium, Southampton, England",
+      "latitude": 50.9058615,
+      "longitude": -1.3908774,
+      "formatted_address": "St. Mary's Stadium, Britannia Road, Belvidere, Northam, Southampton, England, SO14 5FP, United Kingdom",
+      "place_id": 280963174
+    },
+    {
+      "name": "Nottingham Forest FC",
+      "url": "",
+      "image_url": null,
+      "address": "City Ground, West Bridgford, England",
+      "latitude": 52.9399387,
+      "longitude": -1.1328954,
+      "formatted_address": "The City Ground, Pavilion Road, Lady Bay, West Bridgford, City of Nottingham, Nottinghamshire, East Midlands, England, NG2 5FJ, United Kingdom",
+      "place_id": 278821213
+    },
+    {
+      "name": "AFC Bournemouth",
+      "url": "",
+      "image_url": null,
+      "address": "Dean Court, Bournemouth, England",
+      "latitude": 50.7351815,
+      "longitude": -1.8383279,
+      "formatted_address": "Vitality Stadium, Middleton Gardens, Littledown, Bournemouth, Bournemouth, Christchurch and Poole, England, BH7 7AF, United Kingdom",
+      "place_id": 283816257
+    },
+    {
+      "name": "West Ham United FC",
+      "url": "",
+      "image_url": null,
+      "address": "Boleyn Ground, London, England",
+      "geocode_precision": "town",
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "formatted_address": "Greater London, England, United Kingdom",
+      "place_id": 281075796
+    },
+    {
+      "name": "Aston Villa FC",
+      "url": "",
+      "image_url": null,
+      "address": "Villa Park, Birmingham, England",
+      "latitude": 52.5091264,
+      "longitude": -1.8850354,
+      "formatted_address": "Villa Park, Trinity Road, Aston, Birmingham, West Midlands, England, B6 6HE, United Kingdom",
+      "place_id": 278696083
+    },
+    {
+      "name": "Brentford FC",
+      "url": "",
+      "image_url": null,
+      "address": "Griffin Park, London, England",
+      "latitude": 51.4881454,
+      "longitude": -0.3025798,
+      "formatted_address": "Griffin Park, Brentford, Greater London, England, TW8 0NT, United Kingdom",
+      "place_id": 280858342
+    },
+    {
+      "name": "Crystal Palace FC",
+      "url": "",
+      "image_url": null,
+      "address": "Selhurst Park, London, England",
+      "latitude": 51.3982429,
+      "longitude": -0.0852551,
+      "formatted_address": "Selhurst Park, Whitehorse Lane, Thornton Heath, London Borough of Croydon, Greater London, England, SE25 6PU, United Kingdom",
+      "place_id": 281550777
+    },
+    {
+      "name": "Chelsea FC",
+      "url": "",
+      "image_url": null,
+      "address": "Stamford Bridge, London, England",
+      "latitude": 51.4816869,
+      "longitude": -0.1910336,
+      "formatted_address": "Stamford Bridge, Britannia Gate, Walham Green, Fulham, London Borough of Hammersmith and Fulham, Greater London, England, SW6 1HD, United Kingdom",
+      "place_id": 280836130
+    },
+    {
+      "name": "Manchester City FC",
+      "url": "",
+      "image_url": null,
+      "address": "Etihad Stadium, Manchester, England",
+      "latitude": 53.4831448,
+      "longitude": -2.2005273,
+      "formatted_address": "Etihad Stadium, Joe Mercer Way, Bradford, Manchester, Greater Manchester, England, M11 3FF, United Kingdom",
+      "place_id": 278092291
+    },
+    {
+      "name": "Leicester City FC",
+      "url": "",
+      "image_url": null,
+      "address": "King Power Stadium, Leicester, England",
+      "latitude": 52.620397,
+      "longitude": -1.1423352,
+      "formatted_address": "King Power Stadium, Filbert Way, Bede Island, Leicester, City of Leicester, England, LE2 7FL, United Kingdom",
+      "place_id": 280085221
+    },
+    {
+      "name": "Tottenham Hotspur FC",
+      "url": "",
+      "image_url": null,
+      "address": "White Hart Lane, London, England",
+      "latitude": 51.604157,
+      "longitude": -0.0662604,
+      "formatted_address": "Tottenham Hotspur Stadium, Paxton Place, London Borough of Haringey, Greater London, England, N17 0FH, United Kingdom",
+      "place_id": 279871790
+    }
+  ],
+  "team_count": 20
+}

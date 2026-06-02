@@ -1,154 +1,224 @@
 {
   "league_name": "South West Peninsula League Premier Division East",
-  "league_url": "",
+  "league_url": "https://en.wikipedia.org/wiki/List_of_football_clubs_in_England",
   "teams": [
     {
       "name": "Axminster Town",
       "url": "https://en.wikipedia.org/wiki/Axminster_Town_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/AxminsterTown.jpg",
       "address": "Axminster Town A.F.C.",
+      "territory": "England",
+      "wiki_title": "Axminster_Town_A.F.C.",
       "level": 10,
       "latitude": 50.790816,
       "longitude": -2.9916944,
-      "formatted_address": "Axminster Town A.F.C."
+      "formatted_address": "Axminster Town A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bishops Lydeard",
       "url": "https://en.wikipedia.org/wiki/Bishops_Lydeard_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/5/56/BishopsLydeardFC.png",
       "address": "Bishops Lydeard A.F.C.",
+      "territory": "England",
+      "wiki_title": "Bishops_Lydeard_A.F.C.",
       "level": 10,
       "latitude": 51.067068,
       "longitude": -3.184289,
-      "formatted_address": "Bishops Lydeard A.F.C."
+      "formatted_address": "Bishops Lydeard A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bovey Tracey",
       "url": "https://en.wikipedia.org/wiki/Bovey_Tracey_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a6/Bovey_Tracey_A.F.C._logo.png",
       "address": "Bovey Tracey A.F.C.",
+      "territory": "England",
+      "wiki_title": "Bovey_Tracey_A.F.C.",
       "level": 10,
       "latitude": 50.593999,
       "longitude": -3.6801986,
-      "formatted_address": "Bovey Tracey A.F.C."
+      "formatted_address": "Bovey Tracey A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Bridport",
       "url": "https://en.wikipedia.org/wiki/Bridport_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Bridport_F.C._logo.png",
       "address": "Bridport F.C.",
+      "territory": "England",
+      "wiki_title": "Bridport_F.C.",
       "level": 10,
       "latitude": 50.728,
       "longitude": -2.76089,
-      "formatted_address": "Bridport F.C."
+      "formatted_address": "Bridport F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Crediton United",
       "url": "https://en.wikipedia.org/wiki/Crediton_United_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/6/66/Crediton_United_A.F.C._logo.png",
       "address": "Crediton United A.F.C.",
+      "territory": "England",
+      "wiki_title": "Crediton_United_A.F.C.",
       "level": 10,
       "latitude": 50.79214722,
       "longitude": -3.64187778,
-      "formatted_address": "Crediton United A.F.C."
+      "formatted_address": "Crediton United A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Cullompton Rangers",
       "url": "https://en.wikipedia.org/wiki/Cullompton_Rangers_A.F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/83/Cullompton_Rangers_F.C._logo.png",
+      "address": "Cullompton Rangers, England",
+      "territory": "England",
+      "wiki_title": "Cullompton_Rangers_A.F.C.",
+      "level": 10,
+      "latitude": 50.8546565,
+      "longitude": -3.3865644,
+      "formatted_address": "Cullompton Rangers Football Club, Cullompton, Mid Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 282646773,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Honiton Town",
       "url": "https://en.wikipedia.org/wiki/Honiton_Town_F.C.",
-      "image_url": null,
-      "address": null,
-      "level": 10
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d7/Honiton_Town_FC_logo.jpg",
+      "address": "Honiton Town, England",
+      "territory": "England",
+      "wiki_title": "Honiton_Town_F.C.",
+      "level": 10,
+      "latitude": 53.7899615,
+      "longitude": -0.3267365,
+      "formatted_address": "Honiton Road, Bransholme, Hull, Kingston upon Hull, Hull and East Yorkshire, England, HU7 4JG, United Kingdom",
+      "place_id": 278683154,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Ilfracombe Town",
       "url": "https://en.wikipedia.org/wiki/Ilfracombe_Town_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a7/Ilfracombe_town_logo.png",
       "address": "Ilfracombe Town F.C.",
+      "territory": "England",
+      "wiki_title": "Ilfracombe_Town_A.F.C.",
       "level": 10,
       "latitude": 51.20250833,
       "longitude": -4.11556667,
-      "formatted_address": "Ilfracombe Town F.C."
+      "formatted_address": "Ilfracombe Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Ilminster Town",
       "url": "https://en.wikipedia.org/wiki/Ilminster_Town_F.C.",
       "image_url": null,
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Ilminster_Town_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Middlezoy Rovers",
       "url": "https://en.wikipedia.org/wiki/Middlezoy_Rovers_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/1/11/Middlezoy_Rovers_logo.jpg",
       "address": null,
-      "level": 10
+      "territory": "England",
+      "wiki_title": "Middlezoy_Rovers_F.C.",
+      "level": 10,
+      "error": "geocoding_failed"
     },
     {
       "name": "Newton Abbot Spurs",
       "url": "https://en.wikipedia.org/wiki/Newton_Abbot_Spurs_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f6/Newton_Abbot_Spurs_A.F.C._logo.png",
       "address": "Newton Abbot Spurs A.F.C.",
+      "territory": "England",
+      "wiki_title": "Newton_Abbot_Spurs_A.F.C.",
       "level": 10,
       "latitude": 50.53321111,
       "longitude": -3.604525,
-      "formatted_address": "Newton Abbot Spurs A.F.C."
+      "formatted_address": "Newton Abbot Spurs A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Okehampton Argyle",
       "url": "https://en.wikipedia.org/wiki/Okehampton_Argyle_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c7/Okehampton_Argyle_FC_logo.svg",
       "address": "Okehampton Argyle F.C.",
+      "territory": "England",
+      "wiki_title": "Okehampton_Argyle_F.C.",
       "level": 10,
       "latitude": 50.733819444,
       "longitude": -3.996383333,
-      "formatted_address": "Okehampton Argyle F.C."
+      "formatted_address": "Okehampton Argyle F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Stoke Gabriel & Torbay Police",
       "url": "https://en.wikipedia.org/wiki/Stoke_Gabriel_%26_Torbay_Police_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Stoke_Gabriel_%26_Torbay_Police_FC.png",
       "address": "Stoke Gabriel A.F.C.",
+      "territory": "England",
+      "wiki_title": "Stoke_Gabriel_&_Torbay_Police_F.C.",
       "level": 10,
       "latitude": 50.414138888,
       "longitude": -3.617444444,
-      "formatted_address": "Stoke Gabriel A.F.C."
+      "formatted_address": "Stoke Gabriel A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Teignmouth",
       "url": "https://en.wikipedia.org/wiki/Teignmouth_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/99/Teignmouth_AFC_logo.png",
       "address": "Teignmouth A.F.C.",
+      "territory": "England",
+      "wiki_title": "Teignmouth_A.F.C.",
       "level": 10,
       "latitude": 50.555477777,
       "longitude": -3.510427777,
-      "formatted_address": "Teignmouth A.F.C."
+      "formatted_address": "Teignmouth A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Torridgeside",
       "url": "https://en.wikipedia.org/wiki/Torridgeside_A.F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/Torridgeside_AFC_logo.jpg",
       "address": "Torridgeside A.F.C.",
+      "territory": "England",
+      "wiki_title": "Torridgeside_A.F.C.",
       "level": 10,
       "latitude": 50.953277777,
       "longitude": -4.125083333,
-      "formatted_address": "Torridgeside A.F.C."
+      "formatted_address": "Torridgeside A.F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     },
     {
       "name": "Torrington",
       "url": "https://en.wikipedia.org/wiki/Torrington_F.C.",
-      "image_url": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e6/Torrington_F.C.png",
       "address": "Torrington F.C.",
+      "territory": "England",
+      "wiki_title": "Torrington_F.C.",
       "level": 10,
       "latitude": 50.953777777,
       "longitude": -4.143138888,
-      "formatted_address": "Torrington F.C."
+      "formatted_address": "Torrington F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
     }
   ],
   "team_count": 16

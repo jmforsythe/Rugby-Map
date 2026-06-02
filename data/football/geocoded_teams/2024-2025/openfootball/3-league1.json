@@ -1,0 +1,251 @@
+{
+  "league_name": "League One",
+  "league_url": "https://github.com/openfootball/england/blob/master/2024-25/3-league1.txt",
+  "teams": [
+    {
+      "name": "Barnsley FC",
+      "url": "",
+      "image_url": null,
+      "address": "Oakwell, Barnsley, England",
+      "latitude": 53.5521795,
+      "longitude": -1.4721952,
+      "formatted_address": "Oakwell, Kendray, Cudworth, Barnsley, South Yorkshire, England, S71 1EN, United Kingdom",
+      "place_id": 276725450
+    },
+    {
+      "name": "Mansfield Town",
+      "url": "",
+      "image_url": null,
+      "address": "Field Mill, Mansfield, England",
+      "latitude": 53.1380561,
+      "longitude": -1.2009171,
+      "formatted_address": "Field Mill, Quarry Lane, Ladybrook, Mansfield, Nottinghamshire, East Midlands, England, NG18 5DA, United Kingdom",
+      "place_id": 277518988
+    },
+    {
+      "name": "Birmingham City",
+      "url": "",
+      "image_url": null,
+      "address": "St Andrew's, Birmingham, England",
+      "latitude": 52.4755671,
+      "longitude": -1.868041,
+      "formatted_address": "St. Andrew's, Cattell Road, Bordesley, Sparkbrook, Birmingham, West Midlands, England, B9 4NH, United Kingdom",
+      "place_id": 279014619
+    },
+    {
+      "name": "Reading FC",
+      "url": "",
+      "image_url": null,
+      "address": "Madejski Stadium, Reading, England",
+      "latitude": 51.4223346,
+      "longitude": -0.9831238,
+      "formatted_address": "Select Car Leasing Stadium, Shooters Way, Green Park, Whitley Wood, Reading, England, RG2 0FL, United Kingdom",
+      "place_id": 279487646
+    },
+    {
+      "name": "Bristol Rovers",
+      "url": "",
+      "image_url": null,
+      "address": "Memorial Stadium, Bristol, England",
+      "latitude": 51.4862591,
+      "longitude": -2.5831844,
+      "formatted_address": "Memorial Stadium, Filton Avenue, Manor Farm, Horfield, Bristol, City of Bristol, West of England, England, BS7 0BF, United Kingdom",
+      "place_id": 283392315
+    },
+    {
+      "name": "Northampton Town",
+      "url": "",
+      "image_url": null,
+      "address": "Sixfields Stadium, Northampton, England",
+      "latitude": 52.2352633,
+      "longitude": -0.9335741,
+      "formatted_address": "Sixfields Stadium, Walter Tull Way, Briar Hill, Northampton, West Northamptonshire, England, NN5 5QA, United Kingdom",
+      "place_id": 279798366
+    },
+    {
+      "name": "Burton Albion",
+      "url": "",
+      "image_url": null,
+      "address": "Pirelli Stadium, Burton upon Trent, England",
+      "geocode_precision": "town",
+      "latitude": 52.802742,
+      "longitude": -1.629917,
+      "formatted_address": "Burton upon Trent, East Staffordshire, Staffordshire, England, DE14 1JG, United Kingdom",
+      "place_id": 279025422
+    },
+    {
+      "name": "Lincoln City",
+      "url": "",
+      "image_url": null,
+      "address": "Lincoln, England",
+      "latitude": 53.2293545,
+      "longitude": -0.5404819,
+      "formatted_address": "Lincoln, Lincolnshire, Greater Lincolnshire, England, LN2 1DA, United Kingdom",
+      "place_id": 279602169
+    },
+    {
+      "name": "Crawley Town",
+      "url": "",
+      "image_url": null,
+      "address": "Broadfield Stadium, Crawley, England",
+      "latitude": 51.0995727,
+      "longitude": -0.1947428,
+      "formatted_address": "Broadfield Stadium, Winfield Way, Southgate, Crawley, West Sussex, England, RH11 9RX, United Kingdom",
+      "place_id": 281260908
+    },
+    {
+      "name": "Blackpool FC",
+      "url": "",
+      "image_url": null,
+      "address": "Bloomfield Road, Blackpool, England",
+      "latitude": 53.8036335,
+      "longitude": -3.0504639,
+      "formatted_address": "Bloomfield Road, South Shore, Blackpool, Lancashire, England, FY1 6DW, United Kingdom",
+      "place_id": 277137203
+    },
+    {
+      "name": "Exeter City",
+      "url": "",
+      "image_url": null,
+      "address": "St James Park, Exeter, England",
+      "latitude": 50.7307252,
+      "longitude": -3.5211247,
+      "formatted_address": "St James' Park, Well Street, Newtown, Exeter, Devon, Devon and Torbay, England, EX4 6QA, United Kingdom",
+      "place_id": 282617743
+    },
+    {
+      "name": "Rotherham United",
+      "url": "",
+      "image_url": null,
+      "address": "New York Stadium, Rotherham, England",
+      "latitude": 53.4267854,
+      "longitude": -1.362678,
+      "formatted_address": "AESSEAL New York Stadium, New York Way, Masbrough, Rawmarsh, Rotherham, South Yorkshire, England, S60 1FJ, United Kingdom",
+      "place_id": 275946905
+    },
+    {
+      "name": "Leyton Orient",
+      "url": "",
+      "image_url": null,
+      "address": "Brisbane Road, London, England",
+      "latitude": 51.5600713,
+      "longitude": -0.0125999,
+      "formatted_address": "Brisbane Road, Leyton, London Borough of Waltham Forest, Greater London, England, E10 5NF, United Kingdom",
+      "place_id": 280173754
+    },
+    {
+      "name": "Bolton Wanderers",
+      "url": "",
+      "image_url": null,
+      "address": "Macron Stadium, Bolton, England",
+      "geocode_precision": "town",
+      "latitude": 53.5782863,
+      "longitude": -2.4300367,
+      "formatted_address": "Bolton, Greater Manchester, England, BL1 1RU, United Kingdom",
+      "place_id": 277749925
+    },
+    {
+      "name": "Peterborough United",
+      "url": "",
+      "image_url": null,
+      "address": "Abax Stadium, Peterborough, England",
+      "geocode_precision": "town",
+      "latitude": 52.5725769,
+      "longitude": -0.2427336,
+      "formatted_address": "Peterborough, Cambridgeshire, Cambridgeshire and Peterborough, England, PE1 1XH, United Kingdom",
+      "place_id": 280127880
+    },
+    {
+      "name": "Huddersfield Town",
+      "url": "",
+      "image_url": null,
+      "address": "John Smith's Stadium, Huddersfield, England",
+      "latitude": 53.6543494,
+      "longitude": -1.7682999,
+      "formatted_address": "Accu Stadium, Stadium Way, Aspley, Huddersfield, Kirklees, West Yorkshire, England, HD1 6PG, United Kingdom",
+      "place_id": 278823831
+    },
+    {
+      "name": "Stevenage FC",
+      "url": "",
+      "image_url": null,
+      "address": "Broadhall Way, Stevenage, England",
+      "latitude": 51.8896479,
+      "longitude": -0.1937405,
+      "formatted_address": "Stevenage Football Club, Broadhall Way, Roebuck, Stevenage, Hertfordshire, England, SG2 8RH, United Kingdom",
+      "place_id": 277921305
+    },
+    {
+      "name": "Shrewsbury Town",
+      "url": "",
+      "image_url": null,
+      "address": "New Meadow, Shrewsbury, England",
+      "latitude": 52.688616,
+      "longitude": -2.7493565,
+      "formatted_address": "New Meadow, Oteley Road, Reabrook Estate, Shrewsbury, Shropshire, England, SY2 6ST, United Kingdom",
+      "place_id": 276479686
+    },
+    {
+      "name": "Stockport County",
+      "url": "",
+      "image_url": null,
+      "address": "Stockport, England",
+      "latitude": 53.407901,
+      "longitude": -2.160243,
+      "formatted_address": "Stockport, Greater Manchester, England, SK1 3FZ, United Kingdom",
+      "place_id": 276151806
+    },
+    {
+      "name": "Cambridge United",
+      "url": "",
+      "image_url": null,
+      "address": "Abbey Stadium, Cambridge, England",
+      "latitude": 52.2120297,
+      "longitude": 0.1541831,
+      "formatted_address": "Cledara Abbey Stadium, Newmarket Road, Barnwell, Cambridge, Cambridgeshire, Cambridgeshire and Peterborough, England, CB5 8LN, United Kingdom",
+      "place_id": 159520662
+    },
+    {
+      "name": "Wigan Athletic",
+      "url": "",
+      "image_url": null,
+      "address": "DW Stadium, Wigan, England",
+      "geocode_precision": "town",
+      "latitude": 53.546215,
+      "longitude": -2.6319112,
+      "formatted_address": "Wigan, Greater Manchester, England, WN1 1NR, United Kingdom",
+      "place_id": 277303204
+    },
+    {
+      "name": "Charlton Athletic",
+      "url": "",
+      "image_url": null,
+      "address": "The Valley, London, England",
+      "latitude": 51.4863915,
+      "longitude": 0.0361585,
+      "formatted_address": "The Valley, Floyd Road, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 8BL, United Kingdom",
+      "place_id": 100652641
+    },
+    {
+      "name": "Wrexham AFC",
+      "url": "",
+      "image_url": null,
+      "address": "Wrexham, England",
+      "latitude": 52.5820765,
+      "longitude": -2.021199,
+      "formatted_address": "Wrexham Avenue Allotments, Bentley, Darlaston, Walsall, West Midlands, England, United Kingdom",
+      "place_id": 273331500
+    },
+    {
+      "name": "Wycombe Wanderers",
+      "url": "",
+      "image_url": null,
+      "address": "Adams Park, High Wycombe, England",
+      "latitude": 51.6304108,
+      "longitude": -0.8002826,
+      "formatted_address": "Adams Park, Hillbottom Road, Sands, High Wycombe Community Board, High Wycombe, Buckinghamshire, England, HP12 4HJ, United Kingdom",
+      "place_id": 279580531
+    }
+  ],
+  "team_count": 24
+}

@@ -1,0 +1,247 @@
+{
+  "league_name": "National League",
+  "league_url": "https://github.com/openfootball/england/blob/master/2024-25/5-nationalleague.txt",
+  "teams": [
+    {
+      "name": "AFC Fylde",
+      "url": "",
+      "image_url": null,
+      "address": "Wesham, England",
+      "latitude": 53.7893432,
+      "longitude": -2.8857422,
+      "formatted_address": "Wesham, Fylde, Lancashire, England, PR4 3DE, United Kingdom",
+      "place_id": 277651584
+    },
+    {
+      "name": "Solihull Moors",
+      "url": "",
+      "image_url": null,
+      "address": "Solihull, England",
+      "latitude": 52.4130189,
+      "longitude": -1.7768935,
+      "formatted_address": "Solihull, West Midlands, England, B91 3AX, United Kingdom",
+      "place_id": 279587717
+    },
+    {
+      "name": "Aldershot Town",
+      "url": "",
+      "image_url": null,
+      "address": "Aldershot, England",
+      "latitude": 51.2494169,
+      "longitude": -0.7630148,
+      "formatted_address": "Aldershot, Rushmoor, Hampshire, England, GU11 1BX, United Kingdom",
+      "place_id": 281485326
+    },
+    {
+      "name": "Forest Green Rovers",
+      "url": "",
+      "image_url": null,
+      "address": "Nailsworth, England",
+      "latitude": 51.6952392,
+      "longitude": -2.2185599,
+      "formatted_address": "Nailsworth, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 281524486
+    },
+    {
+      "name": "Altrincham FC",
+      "url": "",
+      "image_url": null,
+      "address": "Altrincham, England",
+      "latitude": 53.3839662,
+      "longitude": -2.3525463,
+      "formatted_address": "Altrincham, Trafford, Greater Manchester, England, WA14 2DW, United Kingdom",
+      "place_id": 277830473
+    },
+    {
+      "name": "Woking FC",
+      "url": "",
+      "image_url": null,
+      "address": "Woking, England",
+      "latitude": 51.3201891,
+      "longitude": -0.5564726,
+      "formatted_address": "Woking, Surrey, England, GU21 6HX, United Kingdom",
+      "place_id": 281041544
+    },
+    {
+      "name": "Boston United",
+      "url": "",
+      "image_url": null,
+      "address": "Boston, England",
+      "latitude": 52.9776561,
+      "longitude": -0.0237985,
+      "formatted_address": "Boston, Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 278173312
+    },
+    {
+      "name": "Rochdale AFC",
+      "url": "",
+      "image_url": null,
+      "address": "Spotland Stadium, Rochdale, England",
+      "latitude": 53.6207953,
+      "longitude": -2.1799129,
+      "formatted_address": "Crown Oil Arena, Sandy Lane, Spotland Bridge, Rochdale, Greater Manchester, England, OL11 5DY, United Kingdom",
+      "place_id": 277182512
+    },
+    {
+      "name": "Dagenham & Redbridge",
+      "url": "",
+      "image_url": null,
+      "address": "Victoria Road, London, England",
+      "latitude": 51.5475442,
+      "longitude": 0.1598273,
+      "formatted_address": "Victoria Road, Bury Road, Dagenham, London Borough of Barking and Dagenham, Greater London, England, RM10 7XR, United Kingdom",
+      "place_id": 100024826
+    },
+    {
+      "name": "Wealdstone FC",
+      "url": "",
+      "image_url": null,
+      "address": "London, England",
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "formatted_address": "Greater London, England, United Kingdom",
+      "place_id": 281075796
+    },
+    {
+      "name": "Halifax Town",
+      "url": "",
+      "image_url": null,
+      "address": "Halifax, England",
+      "latitude": 53.7229229,
+      "longitude": -1.8604874,
+      "formatted_address": "Halifax, Calderdale, West Yorkshire, England, HX1 1TH, United Kingdom",
+      "place_id": 278805657
+    },
+    {
+      "name": "Barnet FC",
+      "url": "",
+      "image_url": null,
+      "address": "The Hive Stadium, London, England",
+      "latitude": 51.6026364,
+      "longitude": -0.2917085,
+      "formatted_address": "The Hive Stadium, Aldridge Avenue, South Stanmore, Stanmore, London Borough of Harrow, Greater London, England, HA7 1DB, United Kingdom",
+      "place_id": 279805349
+    },
+    {
+      "name": "Gateshead FC",
+      "url": "",
+      "image_url": null,
+      "address": "Gateshead, England",
+      "latitude": 54.9625789,
+      "longitude": -1.6019294,
+      "formatted_address": "Gateshead, Tyne and Wear, North East, England, NE8 1AG, United Kingdom",
+      "place_id": 275302102
+    },
+    {
+      "name": "Ebbsfleet United",
+      "url": "",
+      "image_url": null,
+      "address": "Northfleet, England",
+      "latitude": 51.4432285,
+      "longitude": 0.3363286,
+      "formatted_address": "Northfleet, Gravesham, Kent, England, United Kingdom",
+      "place_id": 99561587
+    },
+    {
+      "name": "Maidenhead United",
+      "url": "",
+      "image_url": null,
+      "address": "Maidenhead, England",
+      "latitude": 51.522743,
+      "longitude": -0.7197368,
+      "formatted_address": "Maidenhead, Windsor and Maidenhead, England, SL6 1QB, United Kingdom",
+      "place_id": 279617607
+    },
+    {
+      "name": "Eastleigh FC",
+      "url": "",
+      "image_url": null,
+      "address": "Eastleigh, England",
+      "latitude": 50.9691736,
+      "longitude": -1.3517331,
+      "formatted_address": "Eastleigh, Bishopstoke, Eastleigh, Hampshire, England, United Kingdom",
+      "place_id": 279778905
+    },
+    {
+      "name": "Oldham Athletic",
+      "url": "",
+      "image_url": null,
+      "address": "Boundary Park, Oldham, England",
+      "latitude": 53.5552236,
+      "longitude": -2.1283398,
+      "formatted_address": "Boundary Park, Furtherwood Road, Cowlishaw, Holden Fold, Oldham, Greater Manchester, England, OL1 2PB, United Kingdom",
+      "place_id": 276745703
+    },
+    {
+      "name": "Braintree Town",
+      "url": "",
+      "image_url": null,
+      "address": "Braintree, England",
+      "latitude": 51.8780637,
+      "longitude": 0.5537161,
+      "formatted_address": "Braintree, Essex, England, CM7 3YL, United Kingdom",
+      "place_id": 100392830
+    },
+    {
+      "name": "Southend United",
+      "url": "",
+      "image_url": null,
+      "address": "Roots Hall, Southend-on-Sea, England",
+      "latitude": 51.5490442,
+      "longitude": 0.7015486,
+      "formatted_address": "Roots Hall Stadium, Roots Hall West Stand, Prittlewell, Leigh on Sea, Southend-on-Sea, Essex, England, SS0 9AB, United Kingdom",
+      "place_id": 100693775
+    },
+    {
+      "name": "York City",
+      "url": "",
+      "image_url": null,
+      "address": "Bootham Crescent, York, England",
+      "latitude": 53.9695218,
+      "longitude": -1.0880814,
+      "formatted_address": "Bootham Crescent (Persimmon Homes), Clifton, York, York and North Yorkshire, England, YO30 7AQ, United Kingdom",
+      "place_id": 277107067
+    },
+    {
+      "name": "Tamworth FC",
+      "url": "",
+      "image_url": null,
+      "address": "Tamworth, England",
+      "latitude": 52.6345819,
+      "longitude": -1.6948438,
+      "formatted_address": "Tamworth, Staffordshire, England, United Kingdom",
+      "place_id": 278705232
+    },
+    {
+      "name": "Sutton United",
+      "url": "",
+      "image_url": null,
+      "address": "London, England",
+      "latitude": 51.5074456,
+      "longitude": -0.1277653,
+      "formatted_address": "Greater London, England, United Kingdom",
+      "place_id": 281075796
+    },
+    {
+      "name": "Yeovil Town",
+      "url": "",
+      "image_url": null,
+      "address": "Huish Park, Yeovil, England",
+      "latitude": 50.9502102,
+      "longitude": -2.6740629,
+      "formatted_address": "Huish Park, Lufton Way, Brympton, Somerset, England, BA22 8YF, United Kingdom",
+      "place_id": 283600056
+    },
+    {
+      "name": "Hartlepool United",
+      "url": "",
+      "image_url": null,
+      "address": "Victoria Park, Hartlepool, England",
+      "latitude": 54.6890602,
+      "longitude": -1.2126565,
+      "formatted_address": "Victoria Park, Clarence Road, Stranton, Hartlepool, Tees Valley, England, TS24 8BZ, United Kingdom",
+      "place_id": 275301330
+    }
+  ],
+  "team_count": 24
+}

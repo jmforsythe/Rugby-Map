@@ -6579,6 +6579,8 @@ def render_pyramid_svg(
     mens_merge_merit_leagues: bool = False,
     labels_under_valid_crests: bool = False,
     labels_under_layout_height_scale: float | None = None,
+    diagram_main_title: str | None = None,
+    diagram_subtitle: str | None = None,
 ) -> str:
     """Render the full pyramid: tiers 1–6 taper plus integrated Counties stem (tier 7–11).
 
@@ -6853,18 +6855,24 @@ def render_pyramid_svg(
             subtitle_y = PAGE_MARGIN_TOP + TITLE_STRIP_HEIGHT / 2 + 18
             page_bg = PAGE_BG_WOMENS if gender == "womens" else PAGE_BG
             subtitle_fill = SUBTITLE_FILL_WOMENS if gender == "womens" else SUBTITLE_FILL_MENS
-            if is_merit:
+            if diagram_main_title is not None:
+                main_title = diagram_main_title
+            elif is_merit:
                 comp_display = (merit_competition or "").replace("_", " ")
                 main_title = f"{comp_display.upper()} MERIT PYRAMID".strip()
-                subtitle_text = f"{comp_display}, {short_season(season)}"
             else:
                 main_title = "ENGLISH RUGBY PYRAMID"
-                if gender == "womens":
-                    subtitle_text = f"Women's leagues, {short_season(season)}"
-                elif mens_merge_merit_leagues:
-                    subtitle_text = f"Men's pyramid + merit leagues, {short_season(season)}"
-                else:
-                    subtitle_text = f"Men's leagues, {short_season(season)}"
+            if diagram_subtitle is not None:
+                subtitle_text = diagram_subtitle
+            elif is_merit:
+                comp_display = (merit_competition or "").replace("_", " ")
+                subtitle_text = f"{comp_display}, {short_season(season)}"
+            elif gender == "womens":
+                subtitle_text = f"Women's leagues, {short_season(season)}"
+            elif mens_merge_merit_leagues:
+                subtitle_text = f"Men's pyramid + merit leagues, {short_season(season)}"
+            else:
+                subtitle_text = f"Men's leagues, {short_season(season)}"
             export_w = int(canvas_w)
             merit_crop_tx = 0.0
             if is_merit:

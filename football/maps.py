@@ -13,13 +13,15 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+from dataclasses import replace
 from html import escape
 from pathlib import Path
 
 from core import setup_logging
 from core.config import BOUNDARIES_DIR, DIST_DIR
-from core.map_builder import MapConfig, MarkerItem, generate_multi_group_map, load_itl_hierarchy
+from core.map_builder import MarkerItem, generate_multi_group_map, load_itl_hierarchy
 from football import DATA_DIR
+from football.map_common import build_map_config, prepare_map_context, short_season
 
 logger = logging.getLogger(__name__)
 
@@ -97,11 +99,12 @@ def _render_popup_html(
     )
 
     return (
-        f'<div style="font-family: Arial; width: 220px;">'
-        f'<h4 style="margin: 0;">{name_esc}</h4>'
-        f'<hr style="margin: 5px 0;">'
-        f'<p style="margin: 2px 0;"><b>Division:</b> {league_esc}</p>'
-        f'<p style="margin: 2px 0;"><b>Ground:</b> {address_esc}</p>'
+        f'<div class="rugby-popup">'
+        f'<h4 class="popup-title">{name_esc}</h4>'
+        f"<hr>"
+        f'<p><span class="popup-label">Division:</span> {league_esc}</p>'
+        f'<p><span class="popup-label">Ground:</span> {address_esc}</p>'
+        f"__ITL_REGIONS__"
         f"{team_link}{league_link}"
         f"</div>"
     )
@@ -151,25 +154,6 @@ def _load_marker_items(geocoded_dir: Path) -> list[MarkerItem]:
 
 _SCRIPT_DIR = Path(__file__).parent
 _SHARED_BOUNDARIES = str(_SCRIPT_DIR / "maps" / "shared" / "boundaries.json")
-
-
-def _build_config(title: str, season: str, *, is_production: bool = False) -> MapConfig:
-    header_elements: list[str] = []
-    if is_production:
-        header_elements.append('<meta name="robots" content="noindex, follow" />')
-    return MapConfig(
-        title=f"BSLFL {title} {season}",
-        center=(51.42, 0.05),
-        zoom=11,
-        show_debug=not is_production,
-        default_tier_entry_level="itl3",
-        default_tier_floor_level="lad",
-        use_inline_boundaries=True,
-        inline_boundaries_file=_SHARED_BOUNDARIES,
-        fallback_icon_url=None,
-        color_palette=COLOR_PALETTE,
-        header_elements=header_elements,
-    )
 
 
 def _export_england_boundaries(boundaries_path: Path) -> None:
@@ -274,6 +258,7 @@ def main() -> None:
     setup_logging()
     season = args.season
     is_prod = args.production
+    prepare_map_context(production=is_prod, show_debug=not is_prod)
 
     logger.info("Generating BSLFL map for season: %s (production=%s)", season, is_prod)
 
@@ -298,7 +283,30 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     out = output_dir / "BSLFL_All_Divisions.html"
-    config = _build_config("All Divisions", season, is_production=is_prod)
+    config = build_map_config(
+        "BSLFL All Divisions",
+        season,
+        show_debug=not is_prod,
+        production=is_prod,
+    )
+    extra_headers: list[str] = []
+    if is_prod:
+        extra_headers.append('<meta name="robots" content="noindex, follow" />')
+    config = replace(
+        config,
+        title=f"BSLFL All Divisions {short_season(season)}",
+        center=(51.42, 0.05),
+        zoom=11,
+        default_tier_entry_level="itl3",
+        default_tier_floor_level="lad",
+        tier_entry_level={},
+        tier_floor_level={},
+        use_inline_boundaries=True,
+        inline_boundaries_file=_SHARED_BOUNDARIES,
+        shared_boundaries_path=config.shared_boundaries_path,
+        color_palette=COLOR_PALETTE,
+        header_elements=[*config.header_elements, *extra_headers],
+    )
     generate_multi_group_map(items, out, itl_hierarchy, config)
 
     logger.info("Map saved to %s", out)

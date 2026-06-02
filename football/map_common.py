@@ -6,7 +6,12 @@ import json
 from html import escape
 from pathlib import Path
 
-from core import get_favicon_html, get_google_analytics_script, set_config
+from core import (
+    get_favicon_html,
+    get_google_analytics_script,
+    get_service_worker_registration_script,
+    set_config,
+)
 from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.map_builder import MapConfig, MarkerItem, export_shared_boundaries, load_itl_hierarchy
 
@@ -118,11 +123,12 @@ def _render_popup_html(
         else ""
     )
     return (
-        f'<div style="font-family: Arial; width: 220px;">'
-        f'<h4 style="margin: 0;">{name_esc}</h4>'
-        f'<hr style="margin: 5px 0;">'
-        f'<p style="margin: 2px 0;"><b>Division:</b> {league_esc}</p>'
-        f'<p style="margin: 2px 0;"><b>Ground:</b> {address_esc}</p>'
+        f'<div class="rugby-popup">'
+        f'<h4 class="popup-title">{name_esc}</h4>'
+        f"<hr>"
+        f'<p><span class="popup-label">Division:</span> {league_esc}</p>'
+        f'<p><span class="popup-label">Ground:</span> {address_esc}</p>'
+        f"__ITL_REGIONS__"
         f"{team_link}{league_link}"
         f"</div>"
     )
@@ -187,6 +193,173 @@ def output_path(output_dir: Path, name: str, *, production: bool) -> Path:
     return output_dir / f"{name}.html"
 
 
+def tier_sibling_links(
+    tier_order: list[str], items_by_tier: dict[str, list[MarkerItem]], *, production: bool
+) -> list[tuple[str, str]]:
+    """Build (display name, href) pairs for the level dropdown in map chrome."""
+    links: list[tuple[str, str]] = []
+    for tier_name in tier_order:
+        tier_num = items_by_tier[tier_name][0].tier_num
+        slug = tier_file_slug(tier_num)
+        href = f"../{slug}/" if production else f"{slug}.html"
+        links.append((tier_name, href))
+    return links
+
+
+def header_bar_html(
+    season: str,
+    title: str,
+    *,
+    production: bool,
+    sibling_tiers: list[tuple[str, str]] | None = None,
+    current_tier: str | None = None,
+) -> str:
+    """Fixed map chrome: Football › season › title (or level dropdown), plus appearance."""
+    if production:
+        home_href = "../../"
+        season_href = "../"
+    else:
+        home_href = "../index.html"
+        season_href = "index.html"
+
+    if sibling_tiers and len(sibling_tiers) > 1:
+        options = []
+        for tier_display, tier_href in sibling_tiers:
+            selected = " selected" if tier_display == current_tier else ""
+            options.append(
+                f'<option value="{escape(tier_href)}"{selected}>' f"{escape(tier_display)}</option>"
+            )
+        title_html = (
+            f'<select class="map-header__select" '
+            f'onchange="if(this.value)window.location.href=this.value">'
+            f"{''.join(options)}</select>"
+        )
+    else:
+        title_html = f'<span class="map-header__title">{escape(title)}</span>'
+
+    season_esc = escape(season)
+    return f"""
+    <div class="map-header-wrap" id="mapHeaderWrap">
+    <div class="map-header" id="mapHeader">
+        <a class="map-header__crumb" href="{escape(home_href)}">Football</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        <a class="map-header__crumb" href="{escape(season_href)}">{season_esc}</a>
+        <span class="map-header__sep">&rsaquo;</span>
+        {title_html}
+        <span class="map-header__theme">
+        <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
+        <select id="rugbyMapThemeSelect" class="map-header__theme-select"
+            aria-label="Map color theme">
+            <option value="light">Light</option>
+            <option value="system" selected>System</option>
+            <option value="dark">Dark</option>
+        </select>
+        </span>
+    </div>
+    </div>
+    <style>
+    .map-header-wrap {{
+        position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+        background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+        border-bottom: 1px solid #e0e0e0;
+    }}
+    html[data-rugby-effective="dark"] .map-header-wrap {{
+        background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a;
+    }}
+    .map-header {{
+        position: static;
+        display: flex; align-items: center; gap: 0.4em;
+        padding: 6px 12px;
+        border-bottom: none;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 14px;
+    }}
+    .map-header__crumb {{
+        text-decoration: none; color: #0066cc; white-space: nowrap;
+    }}
+    html[data-rugby-effective="dark"] .map-header__crumb {{
+        color: #4da6ff;
+    }}
+    .map-header__crumb:hover {{ text-decoration: underline; }}
+    .map-header__sep {{ color: #999; font-size: 0.9em; }}
+    html[data-rugby-effective="dark"] .map-header__sep {{
+        color: #666;
+    }}
+    .map-header__title {{
+        font-weight: 600; color: #2c3e50; white-space: nowrap;
+        overflow: hidden; text-overflow: ellipsis;
+        flex: 1 1 auto; min-width: 0;
+    }}
+    html[data-rugby-effective="dark"] .map-header__title {{
+        color: #e0e8f0;
+    }}
+    .map-header__select {{
+        padding: 3px 8px; border: 1px solid #ccc; border-radius: 4px;
+        font-size: 13px; background: white; color: #333;
+        max-width: 260px; cursor: pointer;
+    }}
+    html[data-rugby-effective="dark"] .map-header__select {{
+        background: #1e2a45; color: #e0e0e0; border-color: #2a2a4a;
+    }}
+    .map-header__theme {{
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        flex-shrink: 0;
+    }}
+    .map-header__theme-label {{
+        font-size: 12px;
+        font-weight: 500;
+        color: #444;
+        white-space: nowrap;
+    }}
+    html[data-rugby-effective="dark"] .map-header__theme-label {{
+        color: #aab8d8;
+    }}
+    .map-header__theme-select {{
+        padding: 3px 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 12px;
+        background: #fff;
+        color: #333;
+        cursor: pointer;
+        max-width: 118px;
+    }}
+    html[data-rugby-effective="dark"] .map-header__theme-select {{
+        background: #1e2a45;
+        color: #e0e0e0;
+        border-color: #2a2a4a;
+    }}
+    .leaflet-top {{
+        top: var(--rugby-map-chrome-top, 56px) !important;
+    }}
+    @media (max-width: 480px) {{
+        .map-header {{ font-size: 12px; }}
+        .map-header__select {{ max-width: 140px; font-size: 11px; }}
+        .map-header__theme-label {{ display: none; }}
+        .map-header__theme-select {{ max-width: 100px; font-size: 11px; }}
+    }}
+    </style>
+    <script>
+    (function () {{
+        function syncRugbyMapChromeTop() {{
+            var el = document.getElementById("mapHeaderWrap");
+            var px = el && el.offsetHeight ? String(el.offsetHeight) + "px" : "56px";
+            document.documentElement.style.setProperty("--rugby-map-chrome-top", px);
+        }}
+        syncRugbyMapChromeTop();
+        window.addEventListener("resize", syncRugbyMapChromeTop);
+        var wrap = document.getElementById("mapHeaderWrap");
+        if (wrap && window.ResizeObserver) {{
+            new ResizeObserver(syncRugbyMapChromeTop).observe(wrap);
+        }}
+    }})();
+    </script>
+    """
+
+
 def build_map_config(
     title: str,
     season: str,
@@ -194,6 +367,8 @@ def build_map_config(
     show_debug: bool,
     palette: list[str] | None = None,
     production: bool = False,
+    sibling_tiers: list[tuple[str, str]] | None = None,
+    current_tier: str | None = None,
 ) -> MapConfig:
     season_short = short_season(season)
     html_title = f"{title} | {season_short} | {FOOTBALL_BRAND}"
@@ -202,6 +377,16 @@ def build_map_config(
         f"with league territory shading."
     )
     shared_path = "/shared" if production else "../../shared"
+    header_elements = [
+        get_favicon_html(depth=2),
+        f'<meta name="description" content="{escape(meta_desc)}">',
+        f'<meta property="og:title" content="{escape(html_title)}" />',
+        f'<meta property="og:description" content="{escape(meta_desc)}" />',
+        '<meta property="og:type" content="website" />',
+        get_google_analytics_script(),
+    ]
+    if production:
+        header_elements.append(get_service_worker_registration_script())
     return MapConfig(
         title=f"{season_short} {title}",
         html_title=html_title,
@@ -216,13 +401,15 @@ def build_map_config(
         shared_boundaries_path=shared_path,
         fallback_icon_url=None,
         color_palette=palette or COLOR_PALETTE,
-        header_elements=[
-            get_favicon_html(depth=1),
-            f'<meta name="description" content="{escape(meta_desc)}">',
-            f'<meta property="og:title" content="{escape(html_title)}" />',
-            f'<meta property="og:description" content="{escape(meta_desc)}" />',
-            '<meta property="og:type" content="website" />',
-            get_google_analytics_script(),
+        header_elements=header_elements,
+        body_elements=[
+            header_bar_html(
+                season,
+                title,
+                production=production,
+                sibling_tiers=sibling_tiers,
+                current_tier=current_tier,
+            )
         ],
     )
 

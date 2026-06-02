@@ -25,6 +25,7 @@ from football.map_common import (
     prepare_map_context,
     rotated_palette,
     tier_file_slug,
+    tier_sibling_links,
 )
 
 logger = logging.getLogger(__name__)
@@ -60,6 +61,8 @@ def main() -> None:
 
     preassign_itl_regions(items, itl_hierarchy)
 
+    level_links = tier_sibling_links(tier_order, by_tier, production=production)
+
     for tier_name in tier_order:
         tier_items = by_tier[tier_name]
         tier_num = tier_items[0].tier_num
@@ -71,6 +74,8 @@ def main() -> None:
             show_debug=show_debug,
             palette=rotated_palette(tier_num),
             production=production,
+            sibling_tiers=level_links,
+            current_tier=tier_name,
         )
         logger.info(
             "Creating %s (%d teams, %d divisions)",
@@ -81,7 +86,14 @@ def main() -> None:
         generate_single_group_map(tier_items, out, itl_hierarchy, config, territory_cache)
 
     all_out = output_path(output_dir, "All_Tiers", production=production)
-    all_config = build_map_config("All Tiers", season, show_debug=show_debug, production=production)
+    all_config = build_map_config(
+        "All Tiers",
+        season,
+        show_debug=show_debug,
+        production=production,
+        sibling_tiers=level_links,
+        current_tier="All Tiers",
+    )
     logger.info("Creating combined all-tiers map (%d teams)", len(items))
     generate_multi_group_map(items, all_out, itl_hierarchy, all_config, territory_cache)
 

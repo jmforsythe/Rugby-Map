@@ -3,7 +3,7 @@ Scrape BSLFL league tables from FA Full-Time and generate team_addresses files.
 
 Reads https://www.bslfl.co.uk/league-tables for the Full-Time division URLs,
 then scrapes each division's league table for the team roster.  Teams are
-matched against the club address cache (club_addresses.json) produced by
+matched against the club address cache (``club_address_cache.json``) produced by
 scrape_bslfl.py to produce team_addresses files ready for geocoding.
 
 Output: football/team_addresses/{season}/BSLFL/{division}.json
@@ -25,7 +25,7 @@ _BASE_URL = "https://www.bslfl.co.uk"
 _LEAGUE_TABLES_URL = f"{_BASE_URL}/league-tables"
 _FULLTIME_BASE = "https://fulltime.thefa.com"
 
-_ADDRESS_CACHE_FILE = DATA_DIR / "club_addresses.json"
+_ADDRESS_CACHE_FILE = DATA_DIR / "club_address_cache.json"
 
 _RESERVE_SUFFIXES = re.compile(
     r"\s*(?:Reserves|2nd\s*Team|2ND|Development)\s*$",
@@ -153,7 +153,7 @@ def _clean_filename(text: str) -> str:
     return text.strip("_")
 
 
-def process_season(season: str) -> None:
+def process_season(season: str, *, force: bool = False) -> None:
     """Scrape all BSLFL divisions and generate team_addresses files."""
     clubs = _load_address_cache()
     lookup = _build_club_lookup(clubs)
@@ -169,7 +169,7 @@ def process_season(season: str) -> None:
         filename = _clean_filename(div_name) + ".json"
         output_file = output_base / filename
 
-        if output_file.exists():
+        if output_file.exists() and not force:
             print(f"Skipping {div_name} (already exists)")
             continue
 
@@ -238,10 +238,15 @@ def main() -> None:
         default="2025-2026",
         help="Season label (e.g. 2025-2026). Default: 2025-2026",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-scrape divisions even if team_addresses files already exist",
+    )
     args = parser.parse_args()
 
     print(f"Scraping BSLFL league data for season: {args.season}")
-    process_season(args.season)
+    process_season(args.season, force=args.force)
 
 
 if __name__ == "__main__":

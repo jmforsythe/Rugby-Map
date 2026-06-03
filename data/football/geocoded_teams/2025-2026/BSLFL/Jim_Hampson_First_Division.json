@@ -10,37 +10,17 @@
       "latitude": 51.4203453,
       "longitude": 0.1109875,
       "formatted_address": "DA14 6LW, London Borough of Bexley, Greater London, England, United Kingdom",
-      "place_id": 351244844
+      "place_id": 378429218
     },
     {
       "name": "FC Dynamo",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=613745841",
       "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/FC+Dynamo-1920w.jpg",
       "address": "LA Sports Club, St Dunstans Lane, Beckenham, Kent, BR3 3SS",
-      "latitude": 51.3899255,
-      "longitude": -0.0156311,
+      "latitude": 51.3899254,
+      "longitude": -0.015631,
       "formatted_address": "BR3 3SS, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 350504206
-    },
-    {
-      "name": "Langley Park Athletic",
-      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=844159111",
-      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/LP+Athletic-1920w.jpg",
-      "address": "Club Langley, 2 Hawksbrook Lane, Beckenham, Kent, BR3 3SR",
-      "latitude": 51.38858,
-      "longitude": -0.0231322,
-      "formatted_address": "BR3 3SR, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 351012099
-    },
-    {
-      "name": "Eltham Eagles FC",
-      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=669994554",
-      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Eltham+Eagles-1920w.jpg",
-      "address": "Loring Sports Ground, 4 Water Lane, Sidcup, Kent, DA14 5EJ",
-      "latitude": 51.4313919,
-      "longitude": 0.1393641,
-      "formatted_address": "DA14 5EJ, London Borough of Bexley, Greater London, England, United Kingdom",
-      "place_id": 351138649
+      "place_id": 380084621
     },
     {
       "name": "Beckenham United",
@@ -50,27 +30,47 @@
       "latitude": 51.37955,
       "longitude": -0.00314,
       "formatted_address": "BR4 0AU, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 351688161
+      "place_id": 380848790
     },
     {
-      "name": "Beckenham FC",
-      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=553235068",
-      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Beckenham+FC-1920w.png",
-      "address": "Chinbrook Meadows, Amblecote Road, London, SE12 9QL",
-      "latitude": 51.431814,
-      "longitude": 0.0298258,
-      "formatted_address": "SE12 9QL, London Borough of Lewisham, Greater London, England, United Kingdom",
-      "place_id": 350808816
+      "name": "Langley Park Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=844159111",
+      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/LP+Athletic-1920w.jpg",
+      "address": "Club Langley, 2 Hawksbrook Lane, Beckenham, Kent, BR3 3SR",
+      "latitude": 51.38858,
+      "longitude": -0.0231323,
+      "formatted_address": "BR3 3SR, London Borough of Bromley, Greater London, England, United Kingdom",
+      "place_id": 380084620
+    },
+    {
+      "name": "Eltham Eagles FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=669994554",
+      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Eltham+Eagles-1920w.jpg",
+      "address": "Loring Sports Ground, 4 Water Lane, Sidcup, Kent, DA14 5EJ",
+      "latitude": 51.4313919,
+      "longitude": 0.1393641,
+      "formatted_address": "DA14 5EJ, London Borough of Bexley, Greater London, England, United Kingdom",
+      "place_id": 379175963
     },
     {
       "name": "Thamesmead FC",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=381290531",
       "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Thamesmead+Tigers-1920w.jpg",
       "address": "Harris Garrard Academy, Yarnton Way, Thamesmead, Kent, DA18 4DW",
-      "latitude": 51.4960258,
-      "longitude": 0.1403305,
+      "latitude": 51.4960257,
+      "longitude": 0.1403306,
       "formatted_address": "DA18 4DW, London Borough of Bexley, Greater London, England, United Kingdom",
-      "place_id": 350570718
+      "place_id": 380179478
+    },
+    {
+      "name": "Beckenham FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=540798543&teamID=553235068",
+      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Beckenham+FC-1920w.png",
+      "address": "Chinbrook Meadows, Amblecote Road, London, SE12 9QL",
+      "latitude": 51.4318033,
+      "longitude": 0.02993,
+      "formatted_address": "SE12 9QL, London Borough of Lewisham, Greater London, England, United Kingdom",
+      "place_id": 379594407
     },
     {
       "name": "Next Level FC",
@@ -78,9 +78,9 @@
       "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Next+Level-1920w.jpeg",
       "address": "Sparrows Farm, Sparrows Lane, London, SE9 2BP",
       "latitude": 51.4409128,
-      "longitude": 0.0749966,
+      "longitude": 0.0749967,
       "formatted_address": "SE9 2BP, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 350812243
+      "place_id": 380610993
     }
   ],
   "team_count": 8

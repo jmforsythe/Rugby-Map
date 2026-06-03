@@ -7,7 +7,7 @@ Fetches https://www.bslfl.co.uk/clubs to collect:
 Then visits each club's page to extract the home ground address.
 
 Output: football/club_directory_cache.json  (club index with images)
-        football/club_addresses.json        (club data with addresses)
+        football/club_address_cache.json    (club data with addresses)
 """
 
 from __future__ import annotations

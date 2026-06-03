@@ -5,15 +5,11 @@ Hybrid pipeline:
   1. Wikipedia "List of football clubs in England" -- club-to-league-to-level
      membership for the *current* season, including National League North/South,
      Isthmian, Southern, NPL, and county/regional leagues down to step 6.
-  2. OpenFootball ``eng.clubs.txt`` + ``wal.clubs.txt`` -- canonical club names,
-     aliases, and home-ground/town strings for geocoding where available.
-  3. Wikidata SPARQL -- ground coordinates for the long tail of lower-tier clubs
-     not in the OpenFootball clubs file (~240 clubs vs ~1,000+ in the pyramid).
-  4. OpenStreetMap Nominatim (via ``rugby.geocode``) -- geocoding OpenFootball
-     addresses, and a last-resort ``"{club name}, England"`` name search.
-
-OpenFootball's ``england`` repo only covers levels 1-5; Wikipedia is the only
-practical open-data source for division membership at steps 6+.
+  2. Each club's Wikipedia article infobox -- ``| ground =`` / ``| stadium =``
+     field for a geocodable home-ground string.
+  3. Wikidata SPARQL -- ground coordinates when the infobox has no usable ground.
+  4. OpenStreetMap Nominatim (via ``rugby.geocode``) -- geocoding Wikipedia
+     ground strings, and a last-resort ``"{club name}, England"`` name search.
 
 Output:
   data/football/team_addresses/<season>/pyramid/<Division>.json
@@ -42,14 +38,14 @@ from football import DATA_DIR
 from football.clubs_data import (
     flush_cache,
     geocode_pyramid_league,
+    infer_territory_from_location,
     infer_territory_from_team,
     load_cache,
-    load_clubs_lookup,
-    match_club,
     write_json,
 )
 from football.league_names import canonical_league_name
 from football.wikidata_coords import load_wikidata_coords
+from football.wikipedia_grounds import resolve_grounds
 from football.wikipedia_logos import apply_logos_to_league, resolve_logos
 
 logger = logging.getLogger(__name__)
@@ -77,6 +73,14 @@ def _sanitize_filename(name: str) -> str:
     s = name.replace(" ", "_").replace("/", "_").replace("&", "and")
     s = re.sub(r"[^\w\-()]", "_", s)
     return re.sub(r"_+", "_", s).strip("_")
+
+
+def _wiki_article_url(link) -> str | None:
+    """Return a full Wikipedia URL from an ``<a href="/wiki/...">`` tag."""
+    href = link.get("href", "")
+    if not href.startswith("/wiki/"):
+        return None
+    return f"https://en.wikipedia.org{href}"
 
 
 def _extract_club_from_cell(club_cell) -> tuple[str, str] | None:
@@ -133,6 +137,7 @@ def parse_wikipedia_clubs(html: str) -> list[dict]:
                 if league_link
                 else league_cell.get_text(strip=True)
             )
+            league_url = _wiki_article_url(league_link) if league_link else None
 
             try:
                 level = int(cells[lvl_idx].get_text(strip=True))
@@ -144,6 +149,7 @@ def parse_wikipedia_clubs(html: str) -> list[dict]:
                     "name": club_name,
                     "wiki_title": wiki_title,
                     "league": league_name,
+                    "league_url": league_url,
                     "level": level,
                 }
             )
@@ -154,7 +160,7 @@ def parse_wikipedia_clubs(html: str) -> list[dict]:
 
 def build_leagues(
     wiki_clubs: list[dict],
-    lookup: dict[str, dict],
+    wiki_grounds: dict[str, str | None],
     *,
     min_level: int = 1,
     max_level: int = 10,
@@ -168,37 +174,40 @@ def build_leagues(
         if level < min_level or level > max_level:
             continue
 
-        matched = match_club(club["name"], lookup)
         wiki_url = f"https://en.wikipedia.org/wiki/{urllib.parse.quote(club['wiki_title'])}"
+        ground = wiki_grounds.get(club["wiki_title"])
+        default_territory = infer_territory_from_team(club["name"], club["wiki_title"])
         territory = (
-            matched["territory"]
-            if matched
-            else infer_territory_from_team(club["name"], club["wiki_title"])
+            infer_territory_from_location(ground, default_territory)
+            if ground
+            else default_territory
         )
 
         team: dict = {
             "name": club["name"],
             "url": wiki_url,
             "image_url": None,
-            "address": matched["address"] if matched else None,
+            "address": ground,
             "territory": territory,
             "wiki_title": club["wiki_title"],
             "level": level,
         }
+        if ground:
+            team["address_source"] = "wikipedia"
 
-        if not matched:
-            unmatched.append(f"{club['name']} (no OpenFootball club match)")
-        elif not matched["address"]:
-            unmatched.append(f"{club['name']} (no address in clubs file)")
+        if not ground:
+            unmatched.append(f"{club['name']} (no Wikipedia infobox ground)")
 
         league_name = canonical_league_name(club["league"])
         filename = _sanitize_filename(league_name)
         if filename not in leagues:
             leagues[filename] = {
                 "league_name": league_name,
-                "league_url": _WIKI_URL,
+                "league_url": club.get("league_url") or _WIKI_URL,
                 "teams": [],
             }
+        elif club.get("league_url") and leagues[filename]["league_url"] == _WIKI_URL:
+            leagues[filename]["league_url"] = club["league_url"]
         leagues[filename]["teams"].append(team)
 
     for data in leagues.values():
@@ -235,6 +244,11 @@ def main() -> None:
         help="Only write team_addresses; skip Nominatim geocoding",
     )
     parser.add_argument(
+        "--refresh-grounds",
+        action="store_true",
+        help="Re-fetch Wikipedia infobox grounds instead of using cache",
+    )
+    parser.add_argument(
         "--refresh-logos",
         action="store_true",
         help="Re-fetch Wikipedia crest URLs instead of using cache",
@@ -269,14 +283,18 @@ def main() -> None:
         logger.error("No clubs parsed from Wikipedia — aborting")
         sys.exit(1)
 
-    lookup = load_clubs_lookup()
+    wiki_titles = sorted({c["wiki_title"] for c in wiki_clubs if c.get("wiki_title")})
+    wiki_grounds = resolve_grounds(wiki_titles, refresh=args.refresh_grounds)
+    ground_count = sum(1 for g in wiki_grounds.values() if g)
+    logger.info("Wikipedia infobox grounds: %d/%d clubs", ground_count, len(wiki_titles))
+
     wikidata_coords: dict[str, dict] = {}
     if not args.skip_geocode:
         wikidata_coords = load_wikidata_coords(refresh=args.refresh_wikidata)
 
     leagues, unmatched = build_leagues(
         wiki_clubs,
-        lookup,
+        wiki_grounds,
         min_level=args.min_level,
         max_level=args.max_level,
     )

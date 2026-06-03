@@ -10,7 +10,7 @@
       "latitude": 51.45794,
       "longitude": 0.17102,
       "formatted_address": "DA7 6JT, London Borough of Bexley, Greater London, England, United Kingdom",
-      "place_id": 351817016
+      "place_id": 379191022
     },
     {
       "name": "Hayden Youth Association",
@@ -20,7 +20,7 @@
       "latitude": 51.4299,
       "longitude": 0.18197,
       "formatted_address": "DA2 7AN, Wilmington, Dartford, Kent, England, United Kingdom",
-      "place_id": 350689035
+      "place_id": 380949674
     },
     {
       "name": "Athenlay",
@@ -30,7 +30,17 @@
       "latitude": 51.44743,
       "longitude": -0.07614,
       "formatted_address": "SE21 7EB, London Borough of Southwark, Greater London, England, United Kingdom",
-      "place_id": 351899102
+      "place_id": 379775171
+    },
+    {
+      "name": "Peckham Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=199983003&teamID=162115218",
+      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Peckham+Town-1920w.jpeg",
+      "address": "St Paul’s Academy, 51 Finchdale Road, Abbeywood, Kent, SE2 9PX",
+      "latitude": 51.4928161,
+      "longitude": 0.105811,
+      "formatted_address": "SE2 9PX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
+      "place_id": 378849224
     },
     {
       "name": "Beckenham Town Junior",
@@ -38,19 +48,9 @@
       "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/150x150xlogo1.png.pagespeed.ic.gjEn3HUFvd-1920w.jpg",
       "address": "Club Langley, 2 Hawksbrook Lane, Beckenham, Kent, BR3 3SR",
       "latitude": 51.38858,
-      "longitude": -0.0231322,
+      "longitude": -0.0231323,
       "formatted_address": "BR3 3SR, London Borough of Bromley, Greater London, England, United Kingdom",
-      "place_id": 351012099
-    },
-    {
-      "name": "Peckham Town Reserves",
-      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=199983003&teamID=162115218",
-      "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Peckham+Town-1920w.jpeg",
-      "address": "St Paul’s Academy, 51 Finchdale Road, Abbeywood, Kent, SE2 9PX",
-      "latitude": 51.4923189,
-      "longitude": 0.106375,
-      "formatted_address": "SE2 9PX, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 350811343
+      "place_id": 380084620
     },
     {
       "name": "Roehampton FC",
@@ -67,7 +67,7 @@
       "latitude": 51.4789557,
       "longitude": 0.0466401,
       "formatted_address": "Meridian Sports & Social Club, Charlton Park Lane, Charlton, Royal Borough of Greenwich, Greater London, England, SE7 8PJ, United Kingdom",
-      "place_id": 90826744
+      "place_id": 99993218
     },
     {
       "name": "Union Latina Sporting Club",
@@ -77,7 +77,7 @@
       "latitude": 51.4563579,
       "longitude": 0.013415,
       "formatted_address": "SE12 8ES, Royal Borough of Greenwich, Greater London, England, United Kingdom",
-      "place_id": 351892162
+      "place_id": 379594266
     },
     {
       "name": "Orpington Town 2nd Team",
@@ -85,9 +85,9 @@
       "image_url": "https://lirp.cdn-website.com/d32ebd6b/dms3rep/multi/opt/Orpington+Town-1920w.jpeg",
       "address": "Ski Gems Stadium, 156 Lowfield Street, Dartford, Kent, DA1 1JB",
       "latitude": 51.4396423,
-      "longitude": 0.2165626,
+      "longitude": 0.2165627,
       "formatted_address": "DA1 1JB, Dartford, Kent, England, United Kingdom",
-      "place_id": 350569570
+      "place_id": 380177912
     }
   ],
   "team_count": 9

@@ -14,7 +14,10 @@
       "formatted_address": "Holt United FC, Petersham Lane, Hinton, Gaunts Common, Dorset, England, BH21 4JH, United Kingdom",
       "place_id": 283892589,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 242.53,
+      "centroid_distance_z": 8.79
     },
     {
       "name": "Thetford Rovers",
@@ -161,7 +164,10 @@
       "formatted_address": "Royal Tunbridge Wells, Tunbridge Wells, Kent, England, TN1 2DL, United Kingdom",
       "place_id": 100685003,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 124.3,
+      "centroid_distance_z": 3.25
     },
     {
       "name": "Brandon Town",
@@ -192,5 +198,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 52.213841,
+    "centroid_longitude": 0.75232,
+    "mean_distance_km": 54.91,
+    "stdev_distance_km": 21.33,
+    "threshold_km": 97.58,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

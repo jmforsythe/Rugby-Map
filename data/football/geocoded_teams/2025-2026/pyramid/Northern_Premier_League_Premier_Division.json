@@ -36,16 +36,17 @@
       "name": "Cleethorpes Town",
       "url": "https://en.wikipedia.org/wiki/Cleethorpes_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/CleeTownFC.png",
-      "address": "Cleethorpes Town F.C.",
+      "address": "Cleethorpes Town, England",
       "territory": "England",
       "wiki_title": "Cleethorpes_Town_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 53.5476,
-      "longitude": -0.122754,
-      "formatted_address": "Cleethorpes Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.5572068,
+      "longitude": -0.0289969,
+      "formatted_address": "Cleethorpes, North East Lincolnshire, Greater Lincolnshire, England, DN35 8HT, United Kingdom",
+      "place_id": 278534843,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "F.C. United of Manchester",
@@ -96,16 +97,20 @@
       "name": "Hebburn Town",
       "url": "https://en.wikipedia.org/wiki/Hebburn_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/Hebburn_Town_FC_crest.svg",
-      "address": "Hebburn Town F.C.",
+      "address": "Hebburn Town, England",
       "territory": "England",
       "wiki_title": "Hebburn_Town_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 54.96855833,
-      "longitude": -1.52397778,
-      "formatted_address": "Hebburn Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.9726376,
+      "longitude": -1.5173449,
+      "formatted_address": "Hebburn, South Tyneside, Tyne and Wear, North East, England, NE31 1LB, United Kingdom",
+      "place_id": 272495604,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 145.03,
+      "centroid_distance_z": 2.92
     },
     {
       "name": "Hednesford Town",
@@ -186,16 +191,20 @@
       "name": "Morpeth Town",
       "url": "https://en.wikipedia.org/wiki/Morpeth_Town_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/cf/Morpeth_Town_F.C._logo.png",
-      "address": "Morpeth Town A.F.C.",
+      "address": "Morpeth Town, England",
       "territory": "England",
       "wiki_title": "Morpeth_Town_A.F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 55.15601944,
-      "longitude": -1.70861389,
-      "formatted_address": "Morpeth Town A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 55.1646711,
+      "longitude": -1.6909228,
+      "formatted_address": "Morpeth Town Council, Elliott Footbridge, High Stanners, Morpeth, Northumberland, North East, England, NE61 1PR, United Kingdom",
+      "place_id": 273737061,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 165.37,
+      "centroid_distance_z": 3.62
     },
     {
       "name": "Prescot Cables",
@@ -225,22 +234,29 @@
       "longitude": -1.9513403,
       "formatted_address": "Dales Lane, Daw End, Coal Pool, Rushall, Walsall, West Midlands, England, WS9 8EU, United Kingdom",
       "place_id": 280053552,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 120.24,
+      "centroid_distance_z": 2.07
     },
     {
       "name": "Stamford",
       "url": "https://en.wikipedia.org/wiki/Stamford_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/24/Stamford_A.F.C._logo.svg",
-      "address": "Stamford A.F.C.",
+      "address": "Stamford, England",
       "territory": "England",
       "wiki_title": "Stamford_A.F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 52.6472,
-      "longitude": -0.479444,
-      "formatted_address": "Stamford A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.6519973,
+      "longitude": -0.4804579,
+      "formatted_address": "Stamford, South Kesteven, Lincolnshire, Greater Lincolnshire, England, PE9 2AJ, United Kingdom",
+      "place_id": 276724928,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 144.12,
+      "centroid_distance_z": 2.89
     },
     {
       "name": "Stocksbridge Park Steels",
@@ -276,16 +292,12 @@
       "name": "Warrington Rylands 1906",
       "url": "https://en.wikipedia.org/wiki/Warrington_Rylands_1906_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5f/RylandsFC.png",
-      "address": "Warrington Rylands 1906 F.C.",
+      "address": "The Quickline Arena",
       "territory": "England",
       "wiki_title": "Warrington_Rylands_1906_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 53.400407,
-      "longitude": -2.575607,
-      "formatted_address": "Warrington Rylands 1906 F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Warrington Town",
@@ -306,7 +318,7 @@
       "name": "Whitby Town",
       "url": "https://en.wikipedia.org/wiki/Whitby_Town_F.C.",
       "image_url": null,
-      "address": "[http://stable.toolserver.org/geohack/geohack.php?pagename=Turnbull_Ground&params=54_29_23.92_N_0_37_39.05_W_region:GB_type:landmark Turnbull Ground], Whitby, North Yorkshire",
+      "address": "Whitby, North Yorkshire",
       "territory": "England",
       "wiki_title": "Whitby_Town_F.C.",
       "level": 7,
@@ -316,7 +328,10 @@
       "longitude": -0.6135315,
       "formatted_address": "Whitby, North Yorkshire, York and North Yorkshire, England, United Kingdom",
       "place_id": 274198663,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 118.56,
+      "centroid_distance_z": 2.01
     },
     {
       "name": "Workington",
@@ -331,8 +346,20 @@
       "longitude": -3.55105,
       "formatted_address": "Borough Park",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 156.93,
+      "centroid_distance_z": 3.33
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 53.678827,
+    "centroid_longitude": -1.79979,
+    "mean_distance_km": 60.26,
+    "stdev_distance_km": 29.0,
+    "threshold_km": 118.26,
+    "sigma": 2.0,
+    "outlier_count": 6
+  }
 }

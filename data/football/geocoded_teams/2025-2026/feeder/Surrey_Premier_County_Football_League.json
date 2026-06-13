@@ -38,16 +38,16 @@
       "name": "CB Hounslow & Abbots",
       "url": "https://en.wikipedia.org/wiki/CB_Hounslow_%26_Abbots_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/CB_Hounslow_United_F.C._logo.png",
-      "address": "CB Hounslow United F.C.",
+      "address": "Green Lane, Hounslow",
       "territory": "England",
       "level": 11,
       "wiki_title": "CB_Hounslow_&_Abbots_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.467928,
-      "longitude": -0.403938,
-      "formatted_address": "CB Hounslow United F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.4648733,
+      "longitude": -0.3971024,
+      "formatted_address": "Green Lane, Beavers, Hounslow West, London Borough of Hounslow, Greater London, England, TW4 6BT, United Kingdom",
+      "place_id": 277627986,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Cranleigh",
@@ -61,7 +61,10 @@
       "formatted_address": "Cranleigh, Waverley, Surrey, England, United Kingdom",
       "place_id": 280690453,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 25.03,
+      "centroid_distance_z": 3.0
     },
     {
       "name": "FC Battersea Ironsides",
@@ -108,31 +111,35 @@
       "name": "Richmond & Kew",
       "url": "https://en.wikipedia.org/wiki/Richmond_%26_Kew_F.C.",
       "image_url": null,
-      "address": "Kew Association F.C.",
+      "address": "Richmond & Kew, England",
       "territory": "England",
       "level": 11,
       "wiki_title": "Richmond_&_Kew_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.441569444,
-      "longitude": -0.319719444,
-      "formatted_address": "Kew Association F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.4810887,
+      "longitude": -0.2855548,
+      "formatted_address": "The King's Church of England Primary School, Cumberland Road, Kew, London Borough of Richmond upon Thames, Greater London, England, TW9 3HJ, United Kingdom",
+      "place_id": 281055340,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Tongham",
       "url": "https://en.wikipedia.org/wiki/Tongham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/78/Tongham_F.C._logo.jpg",
-      "address": "Tongham F.C.",
+      "address": "Recreation Ground, Tongham",
       "territory": "England",
       "level": 11,
       "wiki_title": "Tongham_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.2333,
-      "longitude": -0.727036,
-      "formatted_address": "Tongham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.2486788,
+      "longitude": -0.7276462,
+      "formatted_address": "Shawfield Recreation Ground, Shawfield Road, Shawfield, Ash, Guildford, Surrey, England, GU12 6PA, United Kingdom",
+      "place_id": 282222555,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 25.28,
+      "centroid_distance_z": 3.05
     },
     {
       "name": "Tooting & Mitcham United U23s",
@@ -146,8 +153,11 @@
       "latitude": 51.393231,
       "longitude": -0.172381,
       "formatted_address": "Imperial Fields",
+      "place_id": 275565254,
+      "geocode_source": "wikidata",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_recalculated": true,
+      "geocode_replaced_source": "wikipedia"
     },
     {
       "name": "Wimbledon Casuals",
@@ -162,17 +172,27 @@
       "name": "Worcester Park",
       "url": "https://en.wikipedia.org/wiki/Worcester_Park_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d8/Worcester_Park_F.C._logo.png",
-      "address": "Worcester Park F.C.",
+      "address": "Worcester Park, England",
       "territory": "England",
       "level": 11,
       "wiki_title": "Worcester_Park_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.3817,
-      "longitude": -0.243772,
-      "formatted_address": "Worcester Park F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.3785033,
+      "longitude": -0.2416597,
+      "formatted_address": "Worcester Park, London Borough of Sutton, Greater London, England, KT4 8DP, United Kingdom",
+      "place_id": 280898671,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 14
+  "team_count": 14,
+  "location_sanity": {
+    "centroid_latitude": 51.360894,
+    "centroid_longitude": -0.411346,
+    "mean_distance_km": 11.61,
+    "stdev_distance_km": 4.48,
+    "threshold_km": 20.57,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

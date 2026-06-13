@@ -41,7 +41,10 @@
       "formatted_address": "Ashbourne CP, Derbyshire Dales, Derbyshire, East Midlands, England, United Kingdom",
       "place_id": 277498598,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 25.65,
+      "centroid_distance_z": 3.75
     },
     {
       "name": "Audley & District",
@@ -197,7 +200,10 @@
       "longitude": -1.8359893,
       "formatted_address": "Mill Street, Rocester, East Staffordshire, Staffordshire, England, ST14 5NZ, United Kingdom",
       "place_id": 279926265,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 20.96,
+      "centroid_distance_z": 2.7
     },
     {
       "name": "Silverdale Athletic",
@@ -228,5 +234,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 18
+  "team_count": 18,
+  "location_sanity": {
+    "centroid_latitude": 53.034089,
+    "centroid_longitude": -2.116718,
+    "mean_distance_km": 8.87,
+    "stdev_distance_km": 4.47,
+    "threshold_km": 17.82,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

@@ -6,16 +6,12 @@
       "name": "A.F.C. Totton",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Totton",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/81/AFC_Totton_2024_crest.svg",
-      "address": "A.F.C. Totton",
+      "address": "Testwood Stadium, Totton",
       "territory": "England",
       "wiki_title": "A.F.C._Totton",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 50.933875,
-      "longitude": -1.50994183,
-      "formatted_address": "A.F.C. Totton",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Bath City",
@@ -30,7 +26,10 @@
       "longitude": -2.3951,
       "formatted_address": "Twerton Park",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 124.64,
+      "centroid_distance_z": 2.95
     },
     {
       "name": "Chelmsford City",
@@ -76,7 +75,10 @@
       "longitude": -2.1315479,
       "formatted_address": "Hardenhuish Park, Hardenhuish, Sheldon, Chippenham, Wiltshire, England, United Kingdom",
       "place_id": 381357285,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 107.23,
+      "centroid_distance_z": 2.25
     },
     {
       "name": "Dagenham & Redbridge",
@@ -120,7 +122,10 @@
       "longitude": 1.284883,
       "formatted_address": "Crabble Athletic Ground",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 133.04,
+      "centroid_distance_z": 3.28
     },
     {
       "name": "Eastbourne Borough",
@@ -200,15 +205,16 @@
       "name": "Hemel Hempstead Town",
       "url": "https://en.wikipedia.org/wiki/Hemel_Hempstead_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/60/Hemel_Hempstead_Town_FC_crest.svg",
-      "address": "Hemel Hempstead Town F.C.",
+      "address": "Hemel Hempstead Town, England",
       "territory": "England",
       "wiki_title": "Hemel_Hempstead_Town_F.C.",
       "level": 6,
-      "latitude": 51.75387778,
-      "longitude": -0.44442222,
-      "formatted_address": "Hemel Hempstead Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.7511784,
+      "longitude": -0.472528,
+      "formatted_address": "Hemel Hempstead, Dacorum, Hertfordshire, England, HP1 1BA, United Kingdom",
+      "place_id": 280169991,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Hornchurch",
@@ -229,16 +235,17 @@
       "name": "Horsham",
       "url": "https://en.wikipedia.org/wiki/Horsham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e9/Horsham_F.C._logo.svg",
-      "address": "Horsham F.C.",
+      "address": "Horsham, England",
       "territory": "England",
       "wiki_title": "Horsham_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 51.05766667,
-      "longitude": -0.32391111,
-      "formatted_address": "Horsham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.0630273,
+      "longitude": -0.3295028,
+      "formatted_address": "Horsham, West Sussex, England, RH12 1HQ, United Kingdom",
+      "place_id": 280893004,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Maidenhead United",
@@ -328,22 +335,29 @@
       "longitude": -3.5241429,
       "formatted_address": "Plainmoor, Warbro Road, Ellacombe, Torquay, Torbay, Devon and Torbay, England, TQ1 3PT, United Kingdom",
       "place_id": 282578273,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 225.58,
+      "centroid_distance_z": 6.99
     },
     {
       "name": "Weston-super-Mare",
       "url": "https://en.wikipedia.org/wiki/Weston-super-Mare_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bc/Weston-super-Mare_AFC_logo.svg",
-      "address": "Weston-super-Mare A.F.C.",
+      "address": "Weston-super-Mare, England",
       "territory": "England",
       "wiki_title": "Weston-super-Mare_A.F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 51.3307,
-      "longitude": -2.95603,
-      "formatted_address": "Weston-super-Mare A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.3471927,
+      "longitude": -2.9778916,
+      "formatted_address": "Weston-super-Mare, North Somerset, England, United Kingdom",
+      "place_id": 283069178,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 165.04,
+      "centroid_distance_z": 4.56
     },
     {
       "name": "Worthing",
@@ -361,5 +375,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 24
+  "team_count": 24,
+  "location_sanity": {
+    "centroid_latitude": 51.325441,
+    "centroid_longitude": -0.602304,
+    "mean_distance_km": 51.09,
+    "stdev_distance_km": 24.97,
+    "threshold_km": 101.03,
+    "sigma": 2.0,
+    "outlier_count": 5
+  }
 }

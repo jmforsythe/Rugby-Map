@@ -11,86 +11,89 @@
       "wiki_title": "Aldershot_Town_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.248386,
-      "longitude": -0.754789,
-      "formatted_address": "Recreation Ground",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.5397945,
+      "longitude": -3.584062,
+      "formatted_address": "Recreation Ground, Coach Road, Corkickle, Whitehaven, Cumberland, England, CA28 9DD, United Kingdom",
+      "place_id": 273422259,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 252.35,
+      "centroid_distance_z": 2.09
     },
     {
       "name": "Altrincham",
       "url": "https://en.wikipedia.org/wiki/Altrincham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/Altrincham_FC_crest.svg",
-      "address": "Moss Lane",
+      "address": "Moss Lane, Altrincham",
       "territory": "England",
       "wiki_title": "Altrincham_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 53.383436,
-      "longitude": -2.335158,
-      "formatted_address": "Moss Lane",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.3833838,
+      "longitude": -2.3352283,
+      "formatted_address": "Moss Lane, Hale, Altrincham, Trafford, Greater Manchester, England, WA15 8AP, United Kingdom",
+      "place_id": 277224186,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Boreham Wood",
       "url": "https://en.wikipedia.org/wiki/Boreham_Wood_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Boreham_Wood_FC_logo.svg/960px-Boreham_Wood_FC_logo.svg.png",
-      "address": "Meadow Park",
+      "address": "Meadow Park, Borehamwood",
       "territory": "England",
       "wiki_title": "Boreham_Wood_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.661944,
-      "longitude": -0.272222,
-      "formatted_address": "Meadow Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.6620315,
+      "longitude": -0.2724395,
+      "formatted_address": "Meadow Park, Broughinge Road, Elstree and Borehamwood, Borehamwood, Hertsmere, Hertfordshire, England, WD6 5AL, United Kingdom",
+      "place_id": 280444713,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Boston United",
       "url": "https://en.wikipedia.org/wiki/Boston_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/53/Boston_United_FC_logo.svg",
-      "address": "York Street",
+      "address": "Boston Community Stadium",
       "territory": "England",
       "wiki_title": "Boston_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 52.976786,
-      "longitude": -0.019117,
-      "formatted_address": "York Street",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.9562277,
+      "longitude": -0.0286799,
+      "formatted_address": "The Jakemans Community Stadium, Pilgrim Way, Bunker's Hill, Wyberton CP, Wyberton, Boston, Lincolnshire, Greater Lincolnshire, England, PE21 7NE, United Kingdom",
+      "place_id": 278213103,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Brackley Town",
       "url": "https://en.wikipedia.org/wiki/Brackley_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/08/BrackleyTownFCBadge.png",
-      "address": "Brackley Town F.C.",
+      "address": "St James Park, Brackley",
       "territory": "England",
       "wiki_title": "Brackley_Town_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 52.0246,
-      "longitude": -1.14407,
-      "formatted_address": "Brackley Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.0244301,
+      "longitude": -1.1441646,
+      "formatted_address": "St James Park, Churchill Way, Brackley, West Northamptonshire, England, NN13 7EJ, United Kingdom",
+      "place_id": 277574793,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Braintree Town",
       "url": "https://en.wikipedia.org/wiki/Braintree_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/Braintree_Town_FC_crest.svg",
-      "address": "Cressing Road",
+      "address": "Cressing Road, Braintree",
       "territory": "England",
       "wiki_title": "Braintree_Town_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.875322,
-      "longitude": 0.572956,
-      "formatted_address": "Cressing Road",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.8733676,
+      "longitude": 0.5775333,
+      "formatted_address": "Cressing Road, Stubbs Lane, The Fairveiw, Braintree, Essex, England, CM7 3PQ, United Kingdom",
+      "place_id": 100682304,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Carlisle United",
@@ -101,11 +104,14 @@
       "wiki_title": "Carlisle_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 54.89556,
-      "longitude": -2.91365,
-      "formatted_address": "Brunton Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.8955532,
+      "longitude": -2.9136003,
+      "formatted_address": "Brunton Park, Warwick Road, Kingfisher Park, Garlands, Botcherby, Carlisle, Cumberland, England, CA1 1LL, United Kingdom",
+      "place_id": 274503603,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 265.97,
+      "centroid_distance_z": 2.34
     },
     {
       "name": "Eastleigh",
@@ -116,11 +122,11 @@
       "wiki_title": "Eastleigh_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 50.95229444,
-      "longitude": -1.37176944,
-      "formatted_address": "Ten Acres",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.2822367,
+      "longitude": 0.6446959,
+      "formatted_address": "Ten Acres, Hollingbourne, Maidstone, Kent, England, United Kingdom",
+      "place_id": 99826063,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "F.C. Halifax Town",
@@ -141,11 +147,11 @@
       "wiki_title": "Forest_Green_Rovers_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.6984,
-      "longitude": -2.233233,
-      "formatted_address": "The New Lawn",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.6989868,
+      "longitude": -2.2377653,
+      "formatted_address": "The New Lawn, Another Way, Forest Green, Nailsworth, Inchbrook, Stroud, Gloucestershire, England, GL6 0FG, United Kingdom",
+      "place_id": 281598721,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Gateshead",
@@ -156,11 +162,14 @@
       "wiki_title": "Gateshead_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 54.961111111,
-      "longitude": -1.579722222,
-      "formatted_address": "Gateshead International Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.960946,
+      "longitude": -1.5798031,
+      "formatted_address": "Gateshead International Stadium, Neilson Road, Mount Pleasant, Gateshead, Tyne and Wear, North East, England, NE10 0EF, United Kingdom",
+      "place_id": 275952754,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 254.18,
+      "centroid_distance_z": 2.13
     },
     {
       "name": "Hartlepool United",
@@ -171,11 +180,11 @@
       "wiki_title": "Hartlepool_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 54.689139,
-      "longitude": -1.212722,
-      "formatted_address": "Victoria Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.6890602,
+      "longitude": -1.2126565,
+      "formatted_address": "Victoria Park, Clarence Road, Stranton, Hartlepool, Tees Valley, England, TS24 8BZ, United Kingdom",
+      "place_id": 275301330,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Morecambe",
@@ -201,11 +210,11 @@
       "wiki_title": "Rochdale_A.F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 53.620833,
-      "longitude": -2.18,
-      "formatted_address": "Spotland Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.6207953,
+      "longitude": -2.1799129,
+      "formatted_address": "Crown Oil Arena, Sandy Lane, Spotland Bridge, Rochdale, Greater Manchester, England, OL11 5DY, United Kingdom",
+      "place_id": 277182512,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Scunthorpe United",
@@ -216,11 +225,11 @@
       "wiki_title": "Scunthorpe_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 53.586722,
-      "longitude": -0.69525,
-      "formatted_address": "Glanford Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.5868129,
+      "longitude": -0.6953255,
+      "formatted_address": "Glanford Park, KFC Drivethru, Scunthorpe, North Lincolnshire, Greater Lincolnshire, England, DN15 8TD, United Kingdom",
+      "place_id": 279142600,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Solihull Moors",
@@ -231,11 +240,11 @@
       "wiki_title": "Solihull_Moors_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 52.4389,
-      "longitude": -1.75724,
-      "formatted_address": "Damson Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.5896551,
+      "longitude": -2.2591485,
+      "formatted_address": "Damson Park, Edgefield, Pattingham and Patshull, Pattingham, South Staffordshire, Staffordshire, England, WV6 7AY, United Kingdom",
+      "place_id": 274875486,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Southend United",
@@ -246,41 +255,41 @@
       "wiki_title": "Southend_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.549,
-      "longitude": 0.701556,
-      "formatted_address": "Roots Hall",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.5490442,
+      "longitude": 0.7015486,
+      "formatted_address": "Roots Hall Stadium, Roots Hall Drive, Prittlewell, Leigh on Sea, Southend-on-Sea, Essex, England, SS2 6HF, United Kingdom",
+      "place_id": 100563488,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Sutton United",
       "url": "https://en.wikipedia.org/wiki/Sutton_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/Sutton_United_FC_crest.svg",
-      "address": "Gander Green Lane",
+      "address": "Gander Green Lane, Sutton",
       "territory": "England",
       "wiki_title": "Sutton_United_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.3675,
-      "longitude": -0.204444444,
-      "formatted_address": "Gander Green Lane",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.3641973,
+      "longitude": -0.2062369,
+      "formatted_address": "Gander Green Lane, Benhilton, London Borough of Sutton, Greater London, England, SM1 2EP, United Kingdom",
+      "place_id": 279682410,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Tamworth",
       "url": "https://en.wikipedia.org/wiki/Tamworth_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/Tamworth_FC.svg",
-      "address": "The Lamb Ground",
+      "address": "The Lamb Ground, Tamworth",
       "territory": "England",
       "wiki_title": "Tamworth_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 52.628403,
-      "longitude": -1.688925,
-      "formatted_address": "The Lamb Ground",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.6286125,
+      "longitude": -1.6890311,
+      "formatted_address": "Tamworth FC, The Lamb Ground, Tamworth, Staffordshire, England, B77 1AA, United Kingdom",
+      "place_id": 277372589,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Truro City",
@@ -295,22 +304,25 @@
       "longitude": -4.146996,
       "formatted_address": "Bolitho Park",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 315.91,
+      "centroid_distance_z": 3.26
     },
     {
       "name": "Wealdstone",
       "url": "https://en.wikipedia.org/wiki/Wealdstone_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Wealdstone_FC_crest.svg",
-      "address": "Wealdstone F.C.",
+      "address": "Grosvenor Vale",
       "territory": "England",
       "wiki_title": "Wealdstone_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.569402777,
-      "longitude": -0.416638888,
-      "formatted_address": "Wealdstone F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.5688568,
+      "longitude": -0.4194557,
+      "formatted_address": "Grosvenor Vale, London Borough of Hillingdon, Greater London, England, HA4 6JJ, United Kingdom",
+      "place_id": 280884625,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Woking",
@@ -321,11 +333,11 @@
       "wiki_title": "Woking_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 51.306333,
-      "longitude": -0.558811,
-      "formatted_address": "Kingfield Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.3063222,
+      "longitude": -0.5588831,
+      "formatted_address": "The Laithwaite Community Stadium, Westfield Avenue, Mount Hermon, Westfield, Woking, Surrey, England, GU22 9AA, United Kingdom",
+      "place_id": 280992246,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Yeovil Town",
@@ -336,11 +348,11 @@
       "wiki_title": "Yeovil_Town_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 50.950278,
-      "longitude": -2.674881,
-      "formatted_address": "Huish Park",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.9502102,
+      "longitude": -2.6740629,
+      "formatted_address": "Huish Park, Lufton Way, Brympton, Somerset, England, BA22 8YF, United Kingdom",
+      "place_id": 282210148,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "York City",
@@ -351,12 +363,21 @@
       "wiki_title": "York_City_F.C.",
       "level": 5,
       "address_source": "wikipedia",
-      "latitude": 53.984347636,
-      "longitude": -1.052935385,
-      "formatted_address": "York Community Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.984291,
+      "longitude": -1.052743,
+      "formatted_address": "LNER Community Stadium, Kathryn Avenue, Huntington, York, York and North Yorkshire, England, YO32 9AF, United Kingdom",
+      "place_id": 279266508,
+      "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 24
+  "team_count": 24,
+  "location_sanity": {
+    "centroid_latitude": 52.677594,
+    "centroid_longitude": -1.397112,
+    "mean_distance_km": 138.69,
+    "stdev_distance_km": 54.32,
+    "threshold_km": 247.33,
+    "sigma": 2.0,
+    "outlier_count": 4
+  }
 }

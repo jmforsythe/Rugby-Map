@@ -6,16 +6,12 @@
       "name": "A.F.C. Sudbury",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Sudbury",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/4/49/AFC_Sudbury_Logo.png",
-      "address": "A.F.C. Sudbury",
+      "address": "The Elite Travel Stadium, Sudbury",
       "territory": "England",
       "wiki_title": "A.F.C._Sudbury",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 52.04014806,
-      "longitude": 0.71616111,
-      "formatted_address": "A.F.C. Sudbury",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Alvechurch",
@@ -90,7 +86,10 @@
       "longitude": -2.1820036,
       "formatted_address": "Victoria Park, Shelton, Stoke, Stoke-on-Trent, England, United Kingdom",
       "place_id": 276658540,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 117.48,
+      "centroid_distance_z": 2.39
     },
     {
       "name": "Bury Town",
@@ -156,46 +155,52 @@
       "name": "Needham Market",
       "url": "https://en.wikipedia.org/wiki/Needham_Market_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/72/Needham_Market_FC_crest.svg",
-      "address": "Needham Market F.C.",
+      "address": "Needham Market, England",
       "territory": "England",
       "wiki_title": "Needham_Market_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 52.15073333,
-      "longitude": 1.04464444,
-      "formatted_address": "Needham Market F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.1528468,
+      "longitude": 1.0528347,
+      "formatted_address": "Needham Market, Mid Suffolk, Suffolk, England, United Kingdom",
+      "place_id": 159192975,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 131.31,
+      "centroid_distance_z": 2.95
     },
     {
       "name": "Quorn",
       "url": "https://en.wikipedia.org/wiki/Quorn_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/4/40/Quorn_FC_crest.svg",
-      "address": "Quorn F.C.",
+      "address": "Quorn, England",
       "territory": "England",
       "wiki_title": "Quorn_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 52.7488,
-      "longitude": -1.18028,
-      "formatted_address": "Quorn F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.7429049,
+      "longitude": -1.1700468,
+      "formatted_address": "Quorn, Charnwood, Leicestershire, England, LE12 8ET, United Kingdom",
+      "place_id": 279475759,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Real Bedford",
       "url": "https://en.wikipedia.org/wiki/Real_Bedford_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b6/Real_Bedford_FC_crest.svg",
-      "address": "Real Bedford F.C.",
+      "address": "Real Bedford, England",
       "territory": "England",
       "wiki_title": "Real_Bedford_F.C.",
       "level": 7,
       "address_source": "wikipedia",
-      "latitude": 52.12779167,
-      "longitude": -0.41508056,
-      "formatted_address": "Real Bedford F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.1277993,
+      "longitude": -0.4150851,
+      "formatted_address": "Real Bedford Pitch, Bedford Southern Bypass, Cardington, Bedford, England, MK44 3DN, United Kingdom",
+      "place_id": 280042924,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Redditch United",
@@ -210,7 +215,10 @@
       "longitude": 0.035632,
       "formatted_address": "The Valley",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 110.4,
+      "centroid_distance_z": 2.11
     },
     {
       "name": "Royston Town",
@@ -276,7 +284,7 @@
       "name": "Stratford Town",
       "url": "https://en.wikipedia.org/wiki/Stratford_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b9/Stratford-Town-FC-2021.png",
-      "address": "The Arden Garages Stadium, Knights Lane, Tiddington",
+      "address": "Knights Lane, Tiddington",
       "territory": "England",
       "wiki_title": "Stratford_Town_F.C.",
       "level": 7,
@@ -304,5 +312,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 52.313406,
+    "centroid_longitude": -0.857513,
+    "mean_distance_km": 58.36,
+    "stdev_distance_km": 24.71,
+    "threshold_km": 107.77,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

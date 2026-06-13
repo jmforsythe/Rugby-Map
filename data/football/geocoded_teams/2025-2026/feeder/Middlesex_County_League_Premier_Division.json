@@ -173,7 +173,10 @@
       "formatted_address": "Stonewall, Beckton, London Borough of Newham, Greater London, England, E6 5NT, United Kingdom",
       "place_id": 100424825,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 21.97,
+      "centroid_distance_z": 3.54
     },
     {
       "name": "Wood Lane",
@@ -190,5 +193,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 18
+  "team_count": 18,
+  "location_sanity": {
+    "centroid_latitude": 51.521219,
+    "centroid_longitude": -0.255219,
+    "mean_distance_km": 8.04,
+    "stdev_distance_km": 3.94,
+    "threshold_km": 15.92,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

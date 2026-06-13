@@ -120,7 +120,10 @@
       "formatted_address": "Elmore, Stroud, Gloucestershire, England, United Kingdom",
       "place_id": 281258044,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 125.95,
+      "centroid_distance_z": 3.94
     },
     {
       "name": "Ottery St Mary AFC 1st",
@@ -198,8 +201,20 @@
       "formatted_address": "Newtown, Isle of Wight, England, PO30 4PA, United Kingdom",
       "place_id": 280462378,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 132.98,
+      "centroid_distance_z": 4.27
     }
   ],
-  "team_count": 17
+  "team_count": 17,
+  "location_sanity": {
+    "centroid_latitude": 50.873239,
+    "centroid_longitude": -3.277452,
+    "mean_distance_km": 41.45,
+    "stdev_distance_km": 21.42,
+    "threshold_km": 84.29,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

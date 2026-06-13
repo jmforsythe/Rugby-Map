@@ -37,7 +37,10 @@
       "formatted_address": "Shelley, Babergh, Suffolk, England, United Kingdom",
       "place_id": 159429922,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 215.22,
+      "centroid_distance_z": 92.81
     },
     {
       "name": "Leeds U.F.C.A",
@@ -159,5 +162,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 14
+  "team_count": 14,
+  "location_sanity": {
+    "centroid_latitude": 53.436235,
+    "centroid_longitude": -1.19787,
+    "mean_distance_km": 43.53,
+    "stdev_distance_km": 1.85,
+    "threshold_km": 47.23,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

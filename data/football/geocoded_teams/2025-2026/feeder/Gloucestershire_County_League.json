@@ -78,7 +78,10 @@
       "formatted_address": "Wick, Wychavon, Worcestershire, England, United Kingdom",
       "place_id": 273196504,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 42.2,
+      "centroid_distance_z": 3.01
     },
     {
       "name": "Chalford",
@@ -165,7 +168,10 @@
       "formatted_address": "Totterdown United FC, Beechwood Close, Hengrove, Bristol, City of Bristol, West of England, England, BS14 8BQ, United Kingdom",
       "place_id": 283324628,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 40.93,
+      "centroid_distance_z": 2.85
     },
     {
       "name": "Cribbs Reserves",
@@ -186,5 +192,14 @@
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 17
+  "team_count": 17,
+  "location_sanity": {
+    "centroid_latitude": 51.761267,
+    "centroid_longitude": -2.312682,
+    "mean_distance_km": 18.25,
+    "stdev_distance_km": 7.96,
+    "threshold_km": 34.17,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

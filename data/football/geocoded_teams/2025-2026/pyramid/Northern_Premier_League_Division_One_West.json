@@ -66,7 +66,7 @@
       "name": "Chasetown",
       "url": "https://en.wikipedia.org/wiki/Chasetown_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b9/Chasetown_F.C.png",
-      "address": "The Scholars Ground, Chasetown, Burntwood",
+      "address": "Chasetown, Burntwood",
       "territory": "England",
       "wiki_title": "Chasetown_F.C.",
       "level": 8,
@@ -76,37 +76,45 @@
       "longitude": -1.9154621,
       "formatted_address": "Burntwood, Chasetown, Lichfield, Staffordshire, England, United Kingdom",
       "place_id": 279194566,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 70.75,
+      "centroid_distance_z": 3.85
     },
     {
       "name": "Clitheroe",
       "url": "https://en.wikipedia.org/wiki/Clitheroe_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Clitheroe_FC_ground%2C_2009.JPG",
-      "address": "Clitheroe F.C.",
+      "address": "Clitheroe, England",
       "territory": "England",
       "wiki_title": "Clitheroe_F.C.",
       "level": 8,
       "address_source": "wikipedia",
-      "latitude": 53.8717,
-      "longitude": -2.38544,
-      "formatted_address": "Clitheroe F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.8717465,
+      "longitude": -2.3926783,
+      "formatted_address": "Clitheroe, Waddington, Ribble Valley, Lancashire, England, United Kingdom",
+      "place_id": 277186173,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 68.43,
+      "centroid_distance_z": 3.64
     },
     {
       "name": "Congleton Town",
       "url": "https://en.wikipedia.org/wiki/Congleton_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Congleton_Town_F.C._badge.png",
-      "address": "Congleton Town F.C.",
+      "address": "Congleton Town, England",
       "territory": "England",
       "wiki_title": "Congleton_Town_F.C.",
       "level": 8,
       "address_source": "wikipedia",
-      "latitude": 53.16174444,
-      "longitude": -2.22083611,
-      "formatted_address": "Congleton Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.1620447,
+      "longitude": -2.1932394,
+      "formatted_address": "Congleton Town, Parnell Square, Hightown, Congleton, Cheshire East, England, CW12 3EJ, United Kingdom",
+      "place_id": 279957195,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Darlaston Town (1874)",
@@ -121,7 +129,10 @@
       "formatted_address": "Darlaston, Walsall, West Midlands, England, WS10 8UY, United Kingdom",
       "place_id": 276477712,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 79.02,
+      "centroid_distance_z": 4.61
     },
     {
       "name": "Kidsgrove Athletic",
@@ -172,16 +183,17 @@
       "name": "Nantwich Town",
       "url": "https://en.wikipedia.org/wiki/Nantwich_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/Nantwich_Town.png",
-      "address": "Nantwich Town F.C.",
+      "address": "Nantwich Town, England",
       "territory": "England",
       "wiki_title": "Nantwich_Town_F.C.",
       "level": 8,
       "address_source": "wikipedia",
-      "latitude": 53.07273056,
-      "longitude": -2.52841944,
-      "formatted_address": "Nantwich Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.0726511,
+      "longitude": -2.5284278,
+      "formatted_address": "Nantwich Town Weaver Stadium, Water Lode, Kingsbourne, Nantwich, Cheshire East, England, CW5 5BS, United Kingdom",
+      "place_id": 277133069,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Newcastle Town",
@@ -217,7 +229,7 @@
       "name": "Shifnal Town",
       "url": "https://en.wikipedia.org/wiki/Shifnal_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b0/Shifnal_Town_F.C.png",
-      "address": "Acoustafoam Stadium, Shifnal, Shropshire",
+      "address": "Shifnal, Shropshire",
       "territory": "England",
       "wiki_title": "Shifnal_Town_F.C.",
       "level": 8,
@@ -227,22 +239,21 @@
       "longitude": -2.3729864,
       "formatted_address": "Shifnal, Shropshire, England, United Kingdom",
       "place_id": 277885963,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 65.51,
+      "centroid_distance_z": 3.38
     },
     {
       "name": "Sporting Khalsa",
       "url": "https://en.wikipedia.org/wiki/Sporting_Khalsa_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8c/Sporting_Khalsa_FC_crest.png",
-      "address": "Sporting Khalsa F.C.",
+      "address": "Guardian Warehousing Arena, Willenhall",
       "territory": "England",
       "wiki_title": "Sporting_Khalsa_F.C.",
       "level": 8,
       "address_source": "wikipedia",
-      "latitude": 52.5919,
-      "longitude": -2.0659,
-      "formatted_address": "Sporting Khalsa F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Stafford Rangers",
@@ -257,7 +268,10 @@
       "longitude": -2.1188258,
       "formatted_address": "Marston Road, Astonfields, Stafford, Staffordshire, England, ST16 3BU, United Kingdom",
       "place_id": 275560725,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 51.53,
+      "centroid_distance_z": 2.1
     },
     {
       "name": "Stalybridge Celtic",
@@ -293,22 +307,23 @@
       "name": "Vauxhall Motors",
       "url": "https://en.wikipedia.org/wiki/Vauxhall_Motors_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/aa/Vauxhall_Motors_F.C._logo.png",
-      "address": "Vauxhall Motors F.C.",
+      "address": "Vauxhall Motors, England",
       "territory": "England",
       "wiki_title": "Vauxhall_Motors_F.C.",
       "level": 8,
       "address_source": "wikipedia",
-      "latitude": 53.2963,
-      "longitude": -2.94016,
-      "formatted_address": "Vauxhall Motors F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.5542943,
+      "longitude": -2.7752051,
+      "formatted_address": "Vauxhall Motors, Inchfield, Town Centre, Skelmersdale, West Lancashire, Lancashire, England, WN8 6LP, United Kingdom",
+      "place_id": 276670763,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Witton Albion",
       "url": "https://en.wikipedia.org/wiki/Witton_Albion_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/84/Wittonalbionfc.png",
-      "address": "Wincham Park, Wincham,, Northwich",
+      "address": "Wincham, Northwich",
       "territory": "England",
       "wiki_title": "Witton_Albion_F.C.",
       "level": 8,
@@ -336,5 +351,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 53.256709,
+    "centroid_longitude": -2.358857,
+    "mean_distance_km": 28.46,
+    "stdev_distance_km": 10.98,
+    "threshold_km": 50.41,
+    "sigma": 2.0,
+    "outlier_count": 5
+  }
 }

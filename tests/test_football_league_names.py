@@ -72,6 +72,26 @@ def test_football_league_family_parts() -> None:
     assert football_league_family_parts("Premier League") == ("Premier League", "")
 
 
+def test_league_geographic_name() -> None:
+    from football.league_names import league_geographic_name
+
+    assert league_geographic_name("Cheshire League Premier Division") == "Cheshire"
+    assert league_geographic_name("Spartan South Midlands League Division Two") == (
+        "Spartan South Midlands"
+    )
+    assert league_geographic_name("Eastern Counties League Division One South") == (
+        "Eastern Counties South"
+    )
+    assert league_geographic_name("West Yorkshire League Premier Division") == "West Yorkshire"
+
+
+def test_league_search_geography_aliases() -> None:
+    from football.league_names import league_search_geography
+
+    assert league_search_geography("Anglian Combination Premier Division") == "Norfolk"
+    assert league_search_geography("Cheshire League Premier Division") == "Cheshire"
+
+
 def test_find_football_parent_name() -> None:
     from football.league_names import find_football_parent_name
 

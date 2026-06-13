@@ -15,15 +15,15 @@
       "name": "Long Stratton",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=858482967",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/93729.jpg",
-      "address": "Long Stratton, England",
+      "address": "Long Stratton Norfolk FC, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.4878256,
       "longitude": 1.233093,
       "formatted_address": "Long Stratton, South Norfolk, Norfolk, England, United Kingdom",
       "place_id": 159000595,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Mutford & Wrentham",
@@ -37,35 +37,41 @@
       "formatted_address": "Mutford & Wrentham FC, Wrentham, East Suffolk, Suffolk, England, United Kingdom",
       "place_id": 159454971,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 33.72,
+      "centroid_distance_z": 5.46
     },
     {
       "name": "Sprowston",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=718367674",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/77153.jpg",
-      "address": "Sprowston, England",
+      "address": "Sprowston Norfolk FC, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.657665,
       "longitude": 1.3211436,
       "formatted_address": "Sprowston, Broadland, Norfolk, England, United Kingdom",
       "place_id": 158367266,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Aylsham",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=49937228",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/29187.jpg",
-      "address": "Aylsham, England",
+      "address": "Aylsham, Norfolk, England",
       "territory": "England",
       "level": 11,
-      "latitude": 52.7950031,
-      "longitude": 1.2511895,
-      "formatted_address": "Aylsham, Broadland, Norfolk, England, United Kingdom",
-      "place_id": 159496131,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 52.7910589,
+      "longitude": 1.2554227,
+      "formatted_address": "Aylsham, Buxton Road, Aylsham, Broadland, Norfolk, England, NR11 6JD, United Kingdom",
+      "place_id": 158036668,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club",
+      "location_outlier": true,
+      "centroid_distance_km": 23.72,
+      "centroid_distance_z": 3.17
     },
     {
       "name": "Beccles Town",
@@ -79,7 +85,10 @@
       "formatted_address": "Beccles Town Hall, The Walk, Beccles, East Suffolk, Suffolk, England, NR34 9AJ, United Kingdom",
       "place_id": 159714572,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 22.99,
+      "centroid_distance_z": 3.0
     },
     {
       "name": "Castle Acre Swifts",
@@ -94,15 +103,15 @@
       "name": "Norwich CEYMS",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=318385034",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/45279.jpg",
-      "address": "Norwich CEYMS, England",
+      "address": "Norwich CEYMS, Norfolk, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.626771,
       "longitude": 1.2935731,
       "formatted_address": "Norwich CEYMS, 3, Brigg Street, Heigham Grove, Norwich, Norfolk, England, NR2 1QN, United Kingdom",
-      "place_id": 158945477,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 158066070,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Scole United",
@@ -135,58 +144,70 @@
       "name": "Bungay Town",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=787601506",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/88212.jpg",
-      "address": "Bungay Town, England",
+      "address": "Bungay Town FC Norfolk, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.4620135,
       "longitude": 1.4449908,
       "formatted_address": "Bungay Town FC, Pirnhow Street, Ditchingham, South Norfolk, Norfolk, England, NR35 2SA, United Kingdom",
-      "place_id": 158964512,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 158234348,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "UEA",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=399718168",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/53149.jpg",
-      "address": "UEA, England",
+      "address": "UEA, Norfolk, England",
       "territory": "England",
       "level": 11,
-      "latitude": 52.6215212,
-      "longitude": 1.231743,
-      "formatted_address": "UEA, Norfolk Road, Earlham, Norwich, Norfolk, England, NR4 7TQ, United Kingdom",
-      "place_id": 159630316,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 52.6197394,
+      "longitude": 1.2457386,
+      "formatted_address": "Our Campus meadows are changing - to benefit people and wildlife, Bluebell Road, Earlham, Norwich, Norfolk, England, NR4 7LQ, United Kingdom",
+      "place_id": 158032819,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Easton",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=900312628",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league4780817/22925.jpg",
-      "address": "Easton, England",
+      "address": "Easton Norfolk FC, England",
       "territory": "England",
       "level": 11,
-      "latitude": 52.3239273,
-      "longitude": -0.3324586,
-      "formatted_address": "Easton, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
-      "place_id": 279251350,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 52.6533294,
+      "longitude": 1.1573613,
+      "formatted_address": "Easton, South Norfolk, Norfolk, England, United Kingdom",
+      "place_id": 158959469,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Swaffham Town",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=597578400&teamID=316474888",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Swaffham Town, England",
+      "address": "Swaffham Town, Norfolk, England",
       "territory": "England",
       "level": 11,
-      "latitude": 52.6464894,
-      "longitude": 0.6822328,
-      "formatted_address": "Swaffham Town Bowls Club, Myers Playing Field, Swaffham, Breckland, Norfolk, England, PE37 7NT, United Kingdom",
-      "place_id": 158667468,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 52.6484845,
+      "longitude": 0.6867968,
+      "formatted_address": "Swaffham Town Sign, Market Place, Swaffham, Breckland, Norfolk, England, PE37 7LA, United Kingdom",
+      "place_id": 159498695,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club",
+      "location_outlier": true,
+      "centroid_distance_km": 41.22,
+      "centroid_distance_z": 7.19
     }
   ],
-  "team_count": 15
+  "team_count": 15,
+  "location_sanity": {
+    "centroid_latitude": 52.578552,
+    "centroid_longitude": 1.286419,
+    "mean_distance_km": 9.9,
+    "stdev_distance_km": 4.36,
+    "threshold_km": 18.62,
+    "sigma": 2.0,
+    "outlier_count": 4
+  }
 }

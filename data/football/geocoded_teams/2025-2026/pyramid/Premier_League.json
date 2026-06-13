@@ -225,7 +225,10 @@
       "longitude": -1.6218737,
       "formatted_address": "St. James' Park, Barrack Road, Grainger Town, Newcastle upon Tyne, Tyne and Wear, North East, England, NE1 4ST, United Kingdom",
       "place_id": 274389953,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 271.23,
+      "centroid_distance_z": 3.08
     },
     {
       "name": "Nottingham Forest",
@@ -240,7 +243,10 @@
       "longitude": -5.9331609,
       "formatted_address": "Ground, 42, Queen Street, Smithfield, Linen Quarter, Sandy Row, County Borough of Belfast, Belfast City District, County Antrim, Northern Ireland / Tuaisceart Éireann, BT1 6HL, United Kingdom",
       "place_id": 273634503,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 375.14,
+      "centroid_distance_z": 5.46
     },
     {
       "name": "Sunderland",
@@ -255,7 +261,10 @@
       "longitude": -1.3882579,
       "formatted_address": "Stadium of Light, Vaux Brewery Way, Millfield, Sunderland, Tyne and Wear, North East, England, SR5 1SU, United Kingdom",
       "place_id": 274200892,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 264.16,
+      "centroid_distance_z": 2.91
     },
     {
       "name": "Tottenham Hotspur",
@@ -303,5 +312,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 52.538848,
+    "centroid_longitude": -1.429938,
+    "mean_distance_km": 136.93,
+    "stdev_distance_km": 43.65,
+    "threshold_km": 224.24,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

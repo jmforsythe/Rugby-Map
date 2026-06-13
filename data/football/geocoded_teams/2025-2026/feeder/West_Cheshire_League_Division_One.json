@@ -6,29 +6,29 @@
       "name": "Helsby",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=974832917",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/78426.jpg",
-      "address": "Helsby, England",
+      "address": "Helsby West Cheshire FC, England",
       "territory": "England",
       "level": 11,
-      "latitude": 53.275305,
-      "longitude": -2.7660541,
-      "formatted_address": "Helsby, Cheshire West and Chester, England, United Kingdom",
-      "place_id": 277210778,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 53.2734406,
+      "longitude": -2.7598867,
+      "formatted_address": "Helsby, Cheshire West and Chester, England, WA6 9AH, United Kingdom",
+      "place_id": 277613697,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Newton",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=557835702",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/93299.jpg",
-      "address": "Newton, England",
+      "address": "Newton, West Cheshire, England",
       "territory": "England",
       "level": 11,
-      "latitude": 54.3140934,
-      "longitude": -0.7594421,
-      "formatted_address": "Newton, North Yorkshire, York and North Yorkshire, England, United Kingdom",
-      "place_id": 274160104,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 53.2781325,
+      "longitude": -2.7022831,
+      "formatted_address": "Newton Hall Nursing Home, Kingsley Road, Bradley, Overton, Frodsham, Cheshire West and Chester, England, WA6 6YD, United Kingdom",
+      "place_id": 277033839,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "FC Bootle",
@@ -65,7 +65,10 @@
       "formatted_address": "Kirkby, North Yorkshire, York and North Yorkshire, England, United Kingdom",
       "place_id": 274068886,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 139.12,
+      "centroid_distance_z": 17.49
     },
     {
       "name": "Chester Nomads",
@@ -111,7 +114,10 @@
       "formatted_address": "Rainhill Road, Avenues, Hull, Kingston upon Hull, Hull and East Yorkshire, England, HU5 4HY, United Kingdom",
       "place_id": 279376037,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 142.87,
+      "centroid_distance_z": 18.1
     },
     {
       "name": "South Liverpool Res",
@@ -140,29 +146,29 @@
       "name": "Heswall",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=37785711",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/76124.jpg",
-      "address": "Heswall, England",
+      "address": "Heswall West Cheshire FC, England",
       "territory": "England",
       "level": 11,
-      "latitude": 53.3283218,
-      "longitude": -3.1002176,
-      "formatted_address": "Heswall, Wirral, Liverpool City Region, England, CH60 4RJ, United Kingdom",
-      "place_id": 276222414,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 53.2749414,
+      "longitude": -2.9352911,
+      "formatted_address": "Heswall Road, Great Sutton, Ellesmere Port, Cheshire West and Chester, England, CH66 4RZ, United Kingdom",
+      "place_id": 278208080,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Capenhurst Villa",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=737752671",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/70965.jpg",
-      "address": "Capenhurst Villa, England",
+      "address": "Capenhurst Villa FC West Cheshire, England",
       "territory": "England",
       "level": 11,
       "latitude": 53.2566284,
       "longitude": -2.9511736,
       "formatted_address": "Capenhurst, Cheshire West and Chester, England, CH1 6HJ, United Kingdom",
-      "place_id": 277970855,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 275957781,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Litherland Remyca Res",
@@ -177,30 +183,39 @@
       "name": "Ellesmere Port Town",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=833149153",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/29489.jpg",
-      "address": "Ellesmere Port Town, England",
+      "address": "Ellesmere Port Town FC West Cheshire, England",
       "territory": "England",
       "level": 11,
       "latitude": 53.2789347,
       "longitude": -2.9022507,
       "formatted_address": "Ellesmere Port, Cheshire West and Chester, England, CH65 8DE, United Kingdom",
-      "place_id": 277112517,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 278226291,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Marshalls",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=645134342&teamID=600186227",
       "image_url": "https://resources.thefa.com/images/ftimages/data/league9014877/29540.jpg",
-      "address": "Marshalls, England",
+      "address": "Marshalls, West Cheshire, England",
       "territory": "England",
       "level": 11,
-      "latitude": 51.5766336,
-      "longitude": -0.3485631,
-      "formatted_address": "Marshalls, Rayners Lane, London Borough of Harrow, Greater London, England, United Kingdom",
-      "place_id": 280944889,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 53.2716739,
+      "longitude": -2.5203285,
+      "formatted_address": "Marshalls Wood, Anderton with Marbury, Anderton, Cheshire West and Chester, England, United Kingdom",
+      "place_id": 275446729,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 53.460366,
+    "centroid_longitude": -2.480021,
+    "mean_distance_km": 31.88,
+    "stdev_distance_km": 6.13,
+    "threshold_km": 44.14,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

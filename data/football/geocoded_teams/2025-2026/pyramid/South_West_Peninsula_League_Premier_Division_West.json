@@ -6,31 +6,33 @@
       "name": "Bude Town",
       "url": "https://en.wikipedia.org/wiki/Bude_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/Bude_Town_FC_logo.png",
-      "address": "Bude Town F.C.",
+      "address": "Bude Town, England",
       "territory": "England",
       "wiki_title": "Bude_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.830180555,
-      "longitude": -4.535388888,
-      "formatted_address": "Bude Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.8285252,
+      "longitude": -4.5469361,
+      "formatted_address": "Bude, Cornwall, England, EX23 8LD, United Kingdom",
+      "place_id": 284974142,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Callington Town",
       "url": "https://en.wikipedia.org/wiki/Callington_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f4/Callington_Town_FC.png",
-      "address": "Callington Town F.C.",
+      "address": "Callington Town, England",
       "territory": "England",
       "wiki_title": "Callington_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.500658,
-      "longitude": -4.3156569,
-      "formatted_address": "Callington Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.5025663,
+      "longitude": -4.3133635,
+      "formatted_address": "Callington, Cornwall, England, PL17 7BB, United Kingdom",
+      "place_id": 285906711,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Camelford",
@@ -51,16 +53,17 @@
       "name": "Dobwalls",
       "url": "https://en.wikipedia.org/wiki/Dobwalls_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Dobwalls_FC_logo.png",
-      "address": "Dobwalls F.C.",
+      "address": "Dobwalls, England",
       "territory": "England",
       "wiki_title": "Dobwalls_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.454166666,
-      "longitude": -4.509888888,
-      "formatted_address": "Dobwalls F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.4575196,
+      "longitude": -4.5170701,
+      "formatted_address": "Dobwalls, Cornwall, England, United Kingdom",
+      "place_id": 286143761,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Elburton Villa",
@@ -96,16 +99,17 @@
       "name": "Holsworthy",
       "url": "https://en.wikipedia.org/wiki/Holsworthy_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d7/Holsworthy_A.F.C._logo.png",
-      "address": "Holsworthy A.F.C.",
+      "address": "Holsworthy, England",
       "territory": "England",
       "wiki_title": "Holsworthy_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.81424167,
-      "longitude": -4.35179167,
-      "formatted_address": "Holsworthy A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.8123783,
+      "longitude": -4.3526341,
+      "formatted_address": "Holsworthy, Torridge, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 284812160,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Launceston",
@@ -141,16 +145,17 @@
       "name": "Millbrook (Cornwall)",
       "url": "https://en.wikipedia.org/wiki/Millbrook_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/8b/Millbrook_A.F.C._logo.png",
-      "address": "Millbrook A.F.C.",
+      "address": "Millbrook (Cornwall), England",
       "territory": "England",
       "wiki_title": "Millbrook_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.35132778,
-      "longitude": -4.21101667,
-      "formatted_address": "Millbrook A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.3539327,
+      "longitude": -4.2167628,
+      "formatted_address": "Millbrook, Cornwall, England, United Kingdom",
+      "place_id": 284547740,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Penzance",
@@ -165,7 +170,10 @@
       "longitude": -5.5416956,
       "formatted_address": "Penlee Park, Wherrytown, Newlyn, Penzance, Cornwall, England, TR18 4HE, United Kingdom",
       "place_id": 285922149,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 76.02,
+      "centroid_distance_z": 4.15
     },
     {
       "name": "St Day",
@@ -232,17 +240,22 @@
       "name": "Wendron United",
       "url": "https://en.wikipedia.org/wiki/Wendron_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/91/Wendron_United_F.C._logo.png",
-      "address": "Wendron United F.C.",
+      "address": "The Underlane, Wendron",
       "territory": "England",
       "wiki_title": "Wendron_United_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.163,
-      "longitude": -5.1925,
-      "formatted_address": "Wendron United F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 50.453276,
+    "centroid_longitude": -4.611002,
+    "mean_distance_km": 26.07,
+    "stdev_distance_km": 12.03,
+    "threshold_km": 50.13,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

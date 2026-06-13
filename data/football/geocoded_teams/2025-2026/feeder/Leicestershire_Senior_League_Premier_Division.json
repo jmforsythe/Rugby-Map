@@ -23,7 +23,10 @@
       "formatted_address": "Anstey Residential, 13, Bellevue Road, Bellevue, Bevois Town, Southampton, England, SO15 2AT, United Kingdom",
       "place_id": 279675642,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 175.18,
+      "centroid_distance_z": 17.42
     },
     {
       "name": "Aylestone Park Reserves",
@@ -87,7 +90,10 @@
       "formatted_address": "73, Orchard Close, Great Hale, Little Hale, North Kesteven, Lincolnshire, Greater Lincolnshire, England, NG34 9JA, United Kingdom",
       "place_id": 276784835,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 78.29,
+      "centroid_distance_z": 6.12
     },
     {
       "name": "Hathern FC",
@@ -182,5 +188,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 52.477958,
+    "centroid_longitude": -1.121383,
+    "mean_distance_km": 25.81,
+    "stdev_distance_km": 8.58,
+    "threshold_km": 42.96,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

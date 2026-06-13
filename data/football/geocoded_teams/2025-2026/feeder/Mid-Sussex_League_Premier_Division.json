@@ -14,21 +14,24 @@
       "formatted_address": "Westfield, Ariel Way, Shepherd's Bush, London Borough of Hammersmith and Fulham, Greater London, England, W12 7SL, United Kingdom",
       "place_id": 280775594,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 44.59,
+      "centroid_distance_z": 5.3
     },
     {
       "name": "Crowhurst",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=327649493&teamID=681338823",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Crowhurst, England",
+      "address": "Crowhurst, Mid-Sussex, England",
       "territory": "England",
       "level": 11,
-      "latitude": 50.8805705,
-      "longitude": 0.4969876,
-      "formatted_address": "Crowhurst, Rother, East Sussex, England, United Kingdom",
-      "place_id": 100030316,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 51.0145712,
+      "longitude": -0.1087737,
+      "formatted_address": "Crowhurst, 24, Balcombe Road, Penlands Green, Haywards Heath, Mid Sussex, West Sussex, England, RH16 1PF, United Kingdom",
+      "place_id": 281066963,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Holland Sports",
@@ -42,21 +45,24 @@
       "formatted_address": "Holland Park Sports Field, Kensington, Royal Borough of Kensington and Chelsea, Greater London, England, United Kingdom",
       "place_id": 278499659,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 43.56,
+      "centroid_distance_z": 5.12
     },
     {
       "name": "Balcombe",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=327649493&teamID=162854490",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Balcombe, England",
+      "address": "Balcombe Mid-Sussex FC, England",
       "territory": "England",
       "level": 11,
       "latitude": 51.0602662,
       "longitude": -0.132918,
       "formatted_address": "Balcombe, Mid Sussex, West Sussex, England, United Kingdom",
       "place_id": 280986553,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Hollington United",
@@ -89,15 +95,15 @@
       "name": "Lindfield",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=327649493&teamID=611450094",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Lindfield, England",
+      "address": "Lindfield Mid-Sussex FC, England",
       "territory": "England",
       "level": 11,
       "latitude": 51.01295,
       "longitude": -0.080769,
       "formatted_address": "Lindfield, Mid Sussex, West Sussex, England, United Kingdom",
-      "place_id": 291575893,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 281235353,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Rotherfield",
@@ -139,7 +145,10 @@
       "formatted_address": "Polegate, Wealden, East Sussex, England, BN26 6BE, United Kingdom",
       "place_id": 100163817,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 39.92,
+      "centroid_distance_z": 4.5
     },
     {
       "name": "Shoreham II",
@@ -153,8 +162,20 @@
       "formatted_address": "Shoreham-by-Sea, Adur, West Sussex, England, BN43 5ZE, United Kingdom",
       "place_id": 283244016,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 34.29,
+      "centroid_distance_z": 3.53
     }
   ],
-  "team_count": 12
+  "team_count": 12,
+  "location_sanity": {
+    "centroid_latitude": 51.116194,
+    "centroid_longitude": -0.083845,
+    "mean_distance_km": 13.65,
+    "stdev_distance_km": 5.84,
+    "threshold_km": 25.34,
+    "sigma": 2.0,
+    "outlier_count": 4
+  }
 }

@@ -15,7 +15,10 @@
       "longitude": -1.206646,
       "formatted_address": "Phoenix Park, Millennium Way East, Phoenix Business Park, Bell's Lane Estate, Bulwell, City of Nottingham, East Midlands, England, NG8 6AL, United Kingdom",
       "place_id": 278783558,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 163.92,
+      "centroid_distance_z": 17.44
     },
     {
       "name": "Darlington R.A. Seniors",
@@ -162,15 +165,18 @@
       "name": "T.I.B.S FC",
       "url": "",
       "image_url": null,
-      "address": "T.I.B.S FC, England",
+      "address": "T.I.B.S FC, North Riding, England",
       "territory": "England",
       "level": 11,
-      "latitude": 52.5310214,
-      "longitude": -1.2649062,
-      "formatted_address": "England, United Kingdom",
-      "place_id": 276125781,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "latitude": 55.2529235,
+      "longitude": -2.0891912,
+      "formatted_address": "North Riding, Elsdon, Northumberland, North East, England, United Kingdom",
+      "place_id": 274405998,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club",
+      "location_outlier": true,
+      "centroid_distance_km": 105.5,
+      "centroid_distance_z": 10.27
     },
     {
       "name": "Yarm & Eaglescliffe Reserves",
@@ -188,5 +194,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 14
+  "team_count": 14,
+  "location_sanity": {
+    "centroid_latitude": 54.462845,
+    "centroid_longitude": -1.17652,
+    "mean_distance_km": 21.78,
+    "stdev_distance_km": 8.15,
+    "threshold_km": 38.08,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

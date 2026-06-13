@@ -101,7 +101,10 @@
       "formatted_address": "Richmond, Greater London, England, TW9 1DY, United Kingdom",
       "place_id": 280862689,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 305.7,
+      "centroid_distance_z": 15.28
     },
     {
       "name": "Shildon AFC Reserves",
@@ -142,7 +145,10 @@
       "formatted_address": "Windscale, Beckermet, Calder Bridge, Cumberland, England, United Kingdom",
       "place_id": 275493003,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 128.41,
+      "centroid_distance_z": 3.97
     },
     {
       "name": "Wolviston",
@@ -159,5 +165,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 14
+  "team_count": 14,
+  "location_sanity": {
+    "centroid_latitude": 54.096394,
+    "centroid_longitude": -1.600287,
+    "mean_distance_km": 66.23,
+    "stdev_distance_km": 15.67,
+    "threshold_km": 97.58,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

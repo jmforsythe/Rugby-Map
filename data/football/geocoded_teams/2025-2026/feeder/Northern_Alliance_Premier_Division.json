@@ -6,16 +6,16 @@
       "name": "Bedlington Terriers",
       "url": "https://en.wikipedia.org/wiki/Bedlington_Terriers_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/ce/Bedlington_Terriers_F.C._logo.png",
-      "address": "Bedlington Terriers F.C.",
+      "address": "Welfare Park, Bedlington",
       "territory": "England",
       "level": 11,
       "wiki_title": "Bedlington_Terriers_F.C.",
       "address_source": "wikipedia",
-      "latitude": 55.1306,
-      "longitude": -1.58647,
-      "formatted_address": "Bedlington Terriers F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 55.1305813,
+      "longitude": -1.5866089,
+      "formatted_address": "Welfare Park, Cornwell Crescent, East Bedlington, Bebside, Bedlington, Northumberland, North East, England, NE22 5AP, United Kingdom",
+      "place_id": 273663753,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Burradon & New Fordley",
@@ -75,31 +75,23 @@
       "name": "Heaton Stannington 'A'",
       "url": "https://en.wikipedia.org/wiki/Heaton_Stannington_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/02/Heaton_Stannington_F.C.png",
-      "address": "Heaton Stannington F.C.",
+      "address": "Grounsell Park, High Heaton",
       "territory": "England",
       "level": 11,
       "wiki_title": "Heaton_Stannington_F.C.",
       "address_source": "wikipedia",
-      "latitude": 54.999027777,
-      "longitude": -1.590472222,
-      "formatted_address": "Heaton Stannington F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Hebburn Town Reserves",
       "url": "https://en.wikipedia.org/wiki/Hebburn_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/Hebburn_Town_FC_crest.svg",
-      "address": "Hebburn Town F.C.",
+      "address": "Hebburn Sports & Social Ground, Hebburn",
       "territory": "England",
       "level": 11,
       "wiki_title": "Hebburn_Town_F.C.",
       "address_source": "wikipedia",
-      "latitude": 54.96855833,
-      "longitude": -1.52397778,
-      "formatted_address": "Hebburn Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Newcastle Chemfica",
@@ -149,16 +141,16 @@
       "name": "Ponteland United",
       "url": "https://en.wikipedia.org/wiki/Ponteland_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/Ponteland_United_F.C.png",
-      "address": "Ponteland United F.C.",
+      "address": "Ponteland Leisure Centre, Ponteland",
       "territory": "England",
       "level": 11,
       "wiki_title": "Ponteland_United_F.C.",
       "address_source": "wikipedia",
-      "latitude": 55.04763611,
-      "longitude": -1.74074444,
-      "formatted_address": "Ponteland United F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 55.0464426,
+      "longitude": -1.7398598,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Darras Hall, Prestwick, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 274083092,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Seaton Delaval AFC",
@@ -181,7 +173,10 @@
       "formatted_address": "Wallington, North Hertfordshire, Hertfordshire, England, United Kingdom",
       "place_id": 282195499,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 264.07,
+      "centroid_distance_z": 13.03
     },
     {
       "name": "West Moor & Jesmond",
@@ -193,5 +188,14 @@
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 17
+  "team_count": 17,
+  "location_sanity": {
+    "centroid_latitude": 54.270651,
+    "centroid_longitude": -1.207415,
+    "mean_distance_km": 88.13,
+    "stdev_distance_km": 13.5,
+    "threshold_km": 115.14,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

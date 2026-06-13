@@ -6,16 +6,17 @@
       "name": "Ampthill Town",
       "url": "https://en.wikipedia.org/wiki/Ampthill_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/19/Ampthill_Town_F.C._logo.png",
-      "address": "Ampthill Town F.C.",
+      "address": "Ampthill Town, Bedfordshire, England",
       "territory": "England",
       "wiki_title": "Ampthill_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.03271944,
-      "longitude": -0.50349167,
-      "formatted_address": "Ampthill Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.033149,
+      "longitude": -0.5064093,
+      "formatted_address": "Ampthill Town Cricket Club, Woburn Road, Ampthill, Central Bedfordshire, England, MK45 2HX, United Kingdom",
+      "place_id": 276880790,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Belstone",
@@ -30,7 +31,10 @@
       "longitude": -0.3082788,
       "formatted_address": "The Medburn Ground, Watling Street, Aldenham, Radlett, Hertsmere, Hertfordshire, England, WD6 3AB, United Kingdom",
       "place_id": 279982589,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 48.22,
+      "centroid_distance_z": 3.05
     },
     {
       "name": "Buckingham",
@@ -66,16 +70,20 @@
       "name": "Desborough Town",
       "url": "https://en.wikipedia.org/wiki/Desborough_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/16/Desborough_Town_F.C._logo.png",
-      "address": "Desborough Town F.C.",
+      "address": "Desborough Town, England",
       "territory": "England",
       "wiki_title": "Desborough_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.44534444,
-      "longitude": -0.82924722,
-      "formatted_address": "Desborough Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.4409161,
+      "longitude": -0.8145324,
+      "formatted_address": "Desborough Town Bowling Club, Dunkirk Avenue, Desborough, North Northamptonshire, England, NN14 2PN, United Kingdom",
+      "place_id": 276928959,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 45.22,
+      "centroid_distance_z": 2.72
     },
     {
       "name": "Eaton Socon",
@@ -116,7 +124,10 @@
       "longitude": -0.7040184,
       "formatted_address": "Watchet Lane, Little Missenden, Missendens Community Board, Holmer Green, Buckinghamshire, England, HP15 6UF, United Kingdom",
       "place_id": 279578428,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 47.9,
+      "centroid_distance_z": 3.01
     },
     {
       "name": "Huntingdon Town",
@@ -131,7 +142,10 @@
       "longitude": -0.1633813,
       "formatted_address": "Jubilee Park (Football Pitches), Sapley, Huntingdon, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
       "place_id": 280943133,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 39.08,
+      "centroid_distance_z": 2.04
     },
     {
       "name": "Irchester United",
@@ -182,30 +196,30 @@
       "name": "Letchworth Garden City Eagles",
       "url": "https://en.wikipedia.org/wiki/Letchworth_Garden_City_Eagles_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/be/Letchworth_Garden_City_Eagles_FC_logo.png",
-      "address": "Letchworth Garden City Eagles F.C.",
+      "address": "Pixmore Pitches, Letchworth",
       "territory": "England",
       "wiki_title": "Letchworth_Garden_City_Eagles_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.975402777,
-      "longitude": -0.20475,
-      "formatted_address": "Letchworth Garden City Eagles F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "London Colney",
       "url": "https://en.wikipedia.org/wiki/London_Colney_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/10/London_Colney_F.C._logo.png",
-      "address": "London Colney F.C.",
+      "address": "London Colney, England",
       "territory": "England",
       "wiki_title": "London_Colney_F.C.",
       "level": 10,
-      "latitude": 51.72860833,
-      "longitude": -0.30464444,
-      "formatted_address": "London Colney F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.7238759,
+      "longitude": -0.2956639,
+      "formatted_address": "London Colney, St Albans, Hertfordshire, England, United Kingdom",
+      "place_id": 281180155,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 42.17,
+      "centroid_distance_z": 2.38
     },
     {
       "name": "Long Buckby",
@@ -220,7 +234,10 @@
       "longitude": -1.0872162,
       "formatted_address": "Station Road, Long Buckby, Long Buckby Wharf, Long Buckby, West Northamptonshire, England, NN6 7PF, United Kingdom",
       "place_id": 278804494,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 46.01,
+      "centroid_distance_z": 2.81
     },
     {
       "name": "New Bradwell St Peter",
@@ -236,15 +253,11 @@
       "name": "Rothwell Corinthians",
       "url": "https://en.wikipedia.org/wiki/Rothwell_Corinthians_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Rothwell_Corinthians_F.C._logo.png",
-      "address": "Rothwell Corinthians F.C.",
+      "address": null,
       "territory": "England",
       "wiki_title": "Rothwell_Corinthians_F.C.",
       "level": 10,
-      "latitude": 52.42695,
-      "longitude": -0.80804722,
-      "formatted_address": "Rothwell Corinthians F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Royston Town Reserves",
@@ -280,7 +293,7 @@
       "name": "Shefford Town & Campton",
       "url": "https://en.wikipedia.org/wiki/Shefford_Town_%26_Campton_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/19/SheffordTownFC.png",
-      "address": "Shefford Sports Club, Shefford, Bedfordshire",
+      "address": "Shefford, Bedfordshire",
       "territory": "England",
       "wiki_title": "Shefford_Town_&_Campton_F.C.",
       "level": 10,
@@ -296,7 +309,7 @@
       "name": "Stotfold Reserves",
       "url": "https://en.wikipedia.org/wiki/Stotfold_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1c/Stotfold_FC_crest.svg",
-      "address": "The JSJ Stadium, New Roker Park, Arlesey Road, Stotfold",
+      "address": "Arlesey Road, Stotfold",
       "territory": "England",
       "wiki_title": "Stotfold_F.C.",
       "level": 10,
@@ -324,5 +337,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 52.079022,
+    "centroid_longitude": -0.511341,
+    "mean_distance_km": 20.54,
+    "stdev_distance_km": 9.08,
+    "threshold_km": 38.69,
+    "sigma": 2.0,
+    "outlier_count": 6
+  }
 }

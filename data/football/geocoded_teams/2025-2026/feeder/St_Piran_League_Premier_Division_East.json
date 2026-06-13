@@ -120,7 +120,10 @@
       "formatted_address": "Millbrook, Central Bedfordshire, England, United Kingdom",
       "place_id": 280634893,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 297.12,
+      "centroid_distance_z": 15.2
     },
     {
       "name": "Sticker 2nd",
@@ -197,5 +200,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 50.666838,
+    "centroid_longitude": -4.199476,
+    "mean_distance_km": 38.37,
+    "stdev_distance_km": 17.02,
+    "threshold_km": 72.42,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

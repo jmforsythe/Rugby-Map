@@ -156,8 +156,20 @@
       "formatted_address": "Jubilee Sports, Snow Hill, Melton Mowbray, Melton, Leicestershire, England, LE13 1ND, United Kingdom",
       "place_id": 279492688,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 75.43,
+      "centroid_distance_z": 5.52
     }
   ],
-  "team_count": 14
+  "team_count": 14,
+  "location_sanity": {
+    "centroid_latitude": 53.387317,
+    "centroid_longitude": -1.344497,
+    "mean_distance_km": 21.01,
+    "stdev_distance_km": 9.87,
+    "threshold_km": 40.74,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

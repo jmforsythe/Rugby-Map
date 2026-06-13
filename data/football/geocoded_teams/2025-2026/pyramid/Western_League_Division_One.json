@@ -6,16 +6,12 @@
       "name": "AEK Boco",
       "url": "https://en.wikipedia.org/wiki/AEK_Boco_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ee/AEK_Boco_FC_logo.png",
-      "address": "AEK Boco F.C.",
+      "address": "Shield Pavillion Greenbank Road, Bristol",
       "territory": "England",
       "wiki_title": "AEK_Boco_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.448777777,
-      "longitude": -2.506063888,
-      "formatted_address": "AEK Boco F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Almondsbury",
@@ -36,7 +32,7 @@
       "name": "Avonmouth",
       "url": "https://en.wikipedia.org/wiki/Avonmouth_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/24/Avonmouth_F.C._logo.png",
-      "address": "King George V Recreation Ground, Avonmouth Road, Avonmouth, Bristol",
+      "address": "Avonmouth, Bristol",
       "territory": "England",
       "wiki_title": "Avonmouth_F.C.",
       "level": 10,
@@ -52,16 +48,17 @@
       "name": "Bitton",
       "url": "https://en.wikipedia.org/wiki/Bitton_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/3/34/AFC_Bitton_logo.png",
-      "address": "Bitton A.F.C.",
+      "address": "Bitton, England",
       "territory": "England",
       "wiki_title": "Bitton_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.4282,
-      "longitude": -2.47173,
-      "formatted_address": "Bitton A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.4352177,
+      "longitude": -2.4406753,
+      "formatted_address": "Bitton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 282782346,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Bristol Telephones",
@@ -82,16 +79,17 @@
       "name": "Cadbury Heath",
       "url": "https://en.wikipedia.org/wiki/Cadbury_Heath_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/Cadbury_Heath_F.C._logo.png",
-      "address": "Cadbury Heath F.C.",
+      "address": "Cadbury Heath, England",
       "territory": "England",
       "wiki_title": "Cadbury_Heath_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.4512,
-      "longitude": -2.48124,
-      "formatted_address": "Cadbury Heath F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.4507611,
+      "longitude": -2.4853429,
+      "formatted_address": "Cadbury Heath, South Gloucestershire, West of England, England, BS30 8BE, United Kingdom",
+      "place_id": 281171744,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Calne Town",
@@ -106,7 +104,10 @@
       "longitude": -2.0099233,
       "formatted_address": "Bremhill View, Calne, Wiltshire, England, SN11 9EE, United Kingdom",
       "place_id": 283685726,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 32.75,
+      "centroid_distance_z": 2.68
     },
     {
       "name": "Cheddar",
@@ -137,7 +138,10 @@
       "formatted_address": "Devizes Town Hall, St. John's Street, Devizes, Wiltshire, England, SN10 1BU, United Kingdom",
       "place_id": 280902899,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 32.32,
+      "centroid_distance_z": 2.62
     },
     {
       "name": "Hengrove Athletic",
@@ -158,37 +162,34 @@
       "name": "Keynsham Town",
       "url": "https://en.wikipedia.org/wiki/Keynsham_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d2/Keynsham_Town_Logo.png",
-      "address": "Keynsham Town F.C.",
+      "address": "Keynsham Town, England",
       "territory": "England",
       "wiki_title": "Keynsham_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.41948611,
-      "longitude": -2.50733056,
-      "formatted_address": "Keynsham Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.4194314,
+      "longitude": -2.5073791,
+      "formatted_address": "Keynsham Town Football Club, Queen Charlton, Keynsham, Bath and North East Somerset, West of England, England, BS31 2BE, United Kingdom",
+      "place_id": 284892977,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Longwell Green Sports",
       "url": "https://en.wikipedia.org/wiki/Longwell_Green_Sports_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/74/Longwell_Green_Sports_F.C._logo.png",
-      "address": "Longwell Green Sports F.C.",
+      "address": "Longwell Green Community Stadium, Longwell Green",
       "territory": "England",
       "wiki_title": "Longwell_Green_Sports_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.43811111,
-      "longitude": -2.49085556,
-      "formatted_address": "Longwell Green Sports F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Mendip Broadwalk",
       "url": "https://en.wikipedia.org/wiki/Mendip_Broadwalk_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Mendip_Broadwalk_F.C._logo.png",
-      "address": "Filwood Fields, Creswicke Road, Bristol",
+      "address": "Creswicke Road, Bristol",
       "territory": "England",
       "wiki_title": "Mendip_Broadwalk_F.C.",
       "level": 10,
@@ -219,16 +220,17 @@
       "name": "Radstock Town",
       "url": "https://en.wikipedia.org/wiki/Radstock_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ee/Radstock_Town_F.C._logo.png",
-      "address": "Radstock Town F.C.",
+      "address": "Radstock Town, England",
       "territory": "England",
       "wiki_title": "Radstock_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.28964444,
-      "longitude": -2.44018611,
-      "formatted_address": "Radstock Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.2892884,
+      "longitude": -2.4407023,
+      "formatted_address": "Radstock Town FC And Social Club, Carlingford Terrace Road, Southfield, Clandown, Radstock, Bath and North East Somerset, West of England, England, BA3 3NZ, United Kingdom",
+      "place_id": 282708654,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Shirehampton",
@@ -249,16 +251,20 @@
       "name": "Sturminster Newton United",
       "url": "https://en.wikipedia.org/wiki/Sturminster_Newton_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/77/Sturminster_Newton_United_F.C._logo.png",
-      "address": "Sturminster Newton United F.C.",
+      "address": "Sturminster Newton United, England",
       "territory": "England",
       "wiki_title": "Sturminster_Newton_United_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.9357,
-      "longitude": -2.30143,
-      "formatted_address": "Sturminster Newton United F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.9357222,
+      "longitude": -2.3013902,
+      "formatted_address": "Sturminster Newton United FC, North Fields, Sturminster Newton, Dorset, England, DT10 1GD, United Kingdom",
+      "place_id": 284088112,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 48.16,
+      "centroid_distance_z": 4.82
     },
     {
       "name": "Warminster Town",
@@ -306,5 +312,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 51.357205,
+    "centroid_longitude": -2.460038,
+    "mean_distance_km": 13.49,
+    "stdev_distance_km": 7.19,
+    "threshold_km": 27.88,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

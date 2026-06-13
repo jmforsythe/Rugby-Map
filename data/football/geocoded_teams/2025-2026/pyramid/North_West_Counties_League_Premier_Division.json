@@ -60,22 +60,26 @@
       "longitude": -2.1694065,
       "formatted_address": "Greenberfield Lane, Barnoldswick, Earby, Pendle, Lancashire, England, BB18 6JG, United Kingdom",
       "place_id": 276481751,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 48.67,
+      "centroid_distance_z": 2.63
     },
     {
       "name": "Burscough",
       "url": "https://en.wikipedia.org/wiki/Burscough_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/Burscoughafc.png",
-      "address": "Burscough F.C.",
+      "address": "Burscough, England",
       "territory": "England",
       "wiki_title": "Burscough_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 53.60458056,
-      "longitude": -2.8453,
-      "formatted_address": "Burscough F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.6100822,
+      "longitude": -2.859432,
+      "formatted_address": "Burscough, West Lancashire, Lancashire, England, United Kingdom",
+      "place_id": 273631555,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Chadderton",
@@ -126,16 +130,17 @@
       "name": "City of Liverpool",
       "url": "https://en.wikipedia.org/wiki/City_of_Liverpool_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/City_Of_Liverpool_Emblem.png",
-      "address": "City of Liverpool F.C.",
+      "address": "City of Liverpool, England",
       "territory": "England",
       "wiki_title": "City_of_Liverpool_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 53.47133889,
-      "longitude": -2.96058611,
-      "formatted_address": "City of Liverpool F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.4039817,
+      "longitude": -2.9926547,
+      "formatted_address": "city bike - Port of Liverpool Building, Temporary cycle path, Waterfront, Vauxhall, Liverpool, Liverpool City Region, England, L1 8AR, United Kingdom",
+      "place_id": 277112379,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Euxton Villa",
@@ -165,7 +170,10 @@
       "longitude": -4.5012875,
       "formatted_address": "The Bowl, Douglas, Middle, Isle of Man",
       "place_id": 275305303,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 141.96,
+      "centroid_distance_z": 12.95
     },
     {
       "name": "F.C. St Helens",
@@ -195,7 +203,10 @@
       "longitude": -1.9581453,
       "formatted_address": "Surrey Street, Whitfield, Glossop, High Peak, Derbyshire, East Midlands, England, SK13 8GG, United Kingdom",
       "place_id": 278876406,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 43.13,
+      "centroid_distance_z": 2.01
     },
     {
       "name": "Irlam",
@@ -246,16 +257,17 @@
       "name": "Padiham",
       "url": "https://en.wikipedia.org/wiki/Padiham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2f/Padiham_FC_logo.png",
-      "address": "Padiham F.C.",
+      "address": "Padiham, England",
       "territory": "England",
       "wiki_title": "Padiham_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 53.80242222,
-      "longitude": -2.32134167,
-      "formatted_address": "Padiham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.8011227,
+      "longitude": -2.3200869,
+      "formatted_address": "Padiham, Burnley, Lancashire, England, United Kingdom",
+      "place_id": 276598399,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Pilkington",
@@ -276,16 +288,17 @@
       "name": "Prestwich Heys",
       "url": "https://en.wikipedia.org/wiki/Prestwich_Heys_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Prestwich_Heys.png",
-      "address": "Prestwich Heys A.F.C.",
+      "address": "Prestwich Heys, England",
       "territory": "England",
       "wiki_title": "Prestwich_Heys_A.F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 53.54444444,
-      "longitude": -2.27305556,
-      "formatted_address": "Prestwich Heys A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.5347027,
+      "longitude": -2.2767869,
+      "formatted_address": "The Heys School, Heys Road, Heaton Park, Prestwich, Bury, Greater Manchester, England, M25 1JZ, United Kingdom",
+      "place_id": 277899826,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Ramsbottom United",
@@ -336,7 +349,7 @@
       "name": "West Didsbury & Chorlton",
       "url": "https://en.wikipedia.org/wiki/West_Didsbury_%26_Chorlton_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/17/West_Didsbury_Chorlton_logo.png",
-      "address": "Recreation Ground, Brookburn Road, Chorlton",
+      "address": "Brookburn Road, Chorlton",
       "territory": "England",
       "wiki_title": "West_Didsbury_&_Chorlton_A.F.C.",
       "level": 9,
@@ -364,5 +377,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 24
+  "team_count": 24,
+  "location_sanity": {
+    "centroid_latitude": 53.565081,
+    "centroid_longitude": -2.578748,
+    "mean_distance_km": 24.92,
+    "stdev_distance_km": 9.04,
+    "threshold_km": 43.0,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

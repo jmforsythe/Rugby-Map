@@ -109,6 +109,79 @@ def extract_uk_postcode(address: str) -> str | None:
     return None
 
 
+def _nominatim_cache_key(address: str, limit: int) -> str:
+    return address if limit == 1 else f"{address}\0limit={limit}"
+
+
+def _parse_nominatim_hits(data: list, fallback_address: str) -> list[GeocodeResult]:
+    return [
+        {
+            "latitude": float(item["lat"]),
+            "longitude": float(item["lon"]),
+            "formatted_address": item.get("display_name", fallback_address),
+            "place_id": item.get("place_id", ""),
+        }
+        for item in data
+    ]
+
+
+def search_nominatim(
+    address: str,
+    *,
+    limit: int = 5,
+    max_retries: int = 3,
+    backoff_base_seconds: float = 1.0,
+) -> list[GeocodeResult]:
+    """Return up to ``limit`` Nominatim search hits for ``address`` (cached)."""
+    if limit < 1:
+        return []
+
+    cache_key = _nominatim_cache_key(address, limit)
+    with _cache_lock:
+        cached = geocode_cache.get(cache_key)
+    if cached is not None:
+        if limit == 1:
+            return [cached] if isinstance(cached, dict) else list(cached)
+        return list(cached) if isinstance(cached, list) else [cached]
+
+    base_url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": address,
+        "format": "json",
+        "limit": limit,
+        "countrycodes": "gb,im,je,gg",
+        "addressdetails": 1,
+    }
+    headers = {"User-Agent": "RugbyMappingProject/1.0 (https://github.com/jmforsythe/Rugby-Map)"}
+    retry_statuses = {503, 429}
+
+    for attempt in range(max_retries + 1):
+        try:
+            wait_for_rate_limit(1.0)
+            response = requests.get(base_url, params=params, headers=headers, timeout=10)
+            if response.status_code == 200:
+                results = _parse_nominatim_hits(response.json(), address)
+                with _cache_lock:
+                    geocode_cache[cache_key] = results[0] if limit == 1 and results else results
+                _mark_address_cache_dirty()
+                return results
+
+            if response.status_code in retry_statuses and attempt < max_retries:
+                time.sleep(backoff_base_seconds * (2**attempt))
+                continue
+            return []
+
+        except KeyboardInterrupt:
+            raise
+        except Exception:
+            if attempt < max_retries:
+                time.sleep(backoff_base_seconds * (2**attempt))
+                continue
+            return []
+
+    return []
+
+
 def geocode_with_nominatim(
     address: str,
     max_retries: int = 3,

@@ -15,22 +15,29 @@
       "longitude": -1.5106805,
       "formatted_address": "Newbiggin Sailing Club, 1, Bridge Street, Newbiggin by the Sea, Northumberland, North East, England, NE64 6EG, United Kingdom",
       "place_id": 273875703,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 60.43,
+      "centroid_distance_z": 3.61
     },
     {
       "name": "Alnwick Town",
       "url": "https://en.wikipedia.org/wiki/Alnwick_Town_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/98/Alnwick_Town_F.C._logo.png",
-      "address": "Alnwick Town F.C.",
+      "address": "Alnwick Town, England",
       "territory": "England",
       "wiki_title": "Alnwick_Town_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 55.40313333,
-      "longitude": -1.699675,
-      "formatted_address": "Alnwick Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 55.4133985,
+      "longitude": -1.7076505,
+      "formatted_address": "Borough of Alnwick Town Hall, Market Place, Alnwick, Northumberland, North East, England, NE66 1HS, United Kingdom",
+      "place_id": 272212352,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 87.68,
+      "centroid_distance_z": 6.2
     },
     {
       "name": "Billingham Synthonia",
@@ -106,16 +113,17 @@
       "name": "Darlington Town",
       "url": "https://en.wikipedia.org/wiki/Darlington_Town_F.C.",
       "image_url": null,
-      "address": "Darlington Town F.C.",
+      "address": "Darlington Town, England",
       "territory": "England",
       "wiki_title": "Darlington_Town_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 54.764461111,
-      "longitude": -1.317188888,
-      "formatted_address": "Darlington Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.5242081,
+      "longitude": -1.5555812,
+      "formatted_address": "Darlington, Tees Valley, England, DL1 5PW, United Kingdom",
+      "place_id": 273827394,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Durham United",
@@ -130,22 +138,26 @@
       "longitude": 0.2187874,
       "formatted_address": "Capacity, Temple Hill, Dartford, Kent, England, DA1 5XA, United Kingdom",
       "place_id": 100615441,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 370.92,
+      "centroid_distance_z": 33.1
     },
     {
       "name": "Esh Winning",
       "url": "https://en.wikipedia.org/wiki/Esh_Winning_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c7/Esh_Winning_F.C._logo.png",
-      "address": "Esh Winning F.C.",
+      "address": "Esh Winning, England",
       "territory": "England",
       "wiki_title": "Esh_Winning_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 54.76239167,
-      "longitude": -1.720825,
-      "formatted_address": "Esh Winning F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.7702824,
+      "longitude": -1.7021243,
+      "formatted_address": "Esh Winning, County Durham, North East, England, DH7 9PE, United Kingdom",
+      "place_id": 274024072,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "F.C. Hartlepool",
@@ -193,31 +205,28 @@
       "name": "Newcastle University",
       "url": "https://en.wikipedia.org/wiki/Newcastle_University_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/3/32/NUAFC.png",
-      "address": "Newcastle University F.C.",
+      "address": "Newcastle University, England",
       "territory": "England",
       "wiki_title": "Newcastle_University_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 54.966738888,
-      "longitude": -1.83355,
-      "formatted_address": "Newcastle University F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.9801751,
+      "longitude": -1.6146802,
+      "formatted_address": "Newcastle University, Spring Garden Lane, Arthur's Hill, Newcastle upon Tyne, Tyne and Wear, North East, England, NE4 5TD, United Kingdom",
+      "place_id": 274147849,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Prudhoe Youth Club",
       "url": "https://en.wikipedia.org/wiki/Prudhoe_Youth_Club_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6f/Prudhoe_Youth_Club_FC_logo.png",
-      "address": "Prudhoe Youth Club F.C.",
+      "address": "Essity Park, Prudhoe",
       "territory": "England",
       "wiki_title": "Prudhoe_Youth_Club_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 54.966738888,
-      "longitude": -1.83355,
-      "formatted_address": "Prudhoe Youth Club F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Redcar Town",
@@ -247,36 +256,36 @@
       "longitude": -1.79142,
       "formatted_address": "NE40 3SN, Gateshead, North East, England, United Kingdom",
       "place_id": 380320675,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 44.49,
+      "centroid_distance_z": 2.1
     },
     {
       "name": "Seaham Red Star",
       "url": "https://en.wikipedia.org/wiki/Seaham_Red_Star_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Seaham_Red_Star_F.C._logo.png",
-      "address": "Seaham Red Star F.C.",
+      "address": "Seaham Red Star, England",
       "territory": "England",
       "wiki_title": "Seaham_Red_Star_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 54.84346944,
-      "longitude": -1.36388611,
-      "formatted_address": "Seaham Red Star F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.8438452,
+      "longitude": -1.3642238,
+      "formatted_address": "Seaham Red Star Football Club, B1285, Eastlea, Seaham, County Durham, North East, England, SR7 0JB, United Kingdom",
+      "place_id": 273882699,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Sunderland Ryhope CA",
       "url": "https://en.wikipedia.org/wiki/Sunderland_Ryhope_Community_Association_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/00/Sunderland_Ryhope_Community_Association_F.C._logo.png",
-      "address": "Sunderland Ryhope Community Association F.C.",
+      "address": null,
       "territory": "England",
       "wiki_title": "Sunderland_Ryhope_Community_Association_F.C.",
       "level": 10,
-      "latitude": 54.8673,
-      "longitude": -1.36836,
-      "formatted_address": "Sunderland Ryhope Community Association F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Sunderland West End",
@@ -324,5 +333,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 54.646112,
+    "centroid_longitude": -1.390576,
+    "mean_distance_km": 22.42,
+    "stdev_distance_km": 10.53,
+    "threshold_km": 43.48,
+    "sigma": 2.0,
+    "outlier_count": 4
+  }
 }

@@ -37,7 +37,10 @@
       "formatted_address": "Risborough Rangers FC., Horsenden Lane, Bledlow-cum-Saunderton, Horsenden, Princes Risborough, Buckinghamshire, England, HP27 9NE, United Kingdom",
       "place_id": 280046603,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 40.1,
+      "centroid_distance_z": 2.23
     },
     {
       "name": "Cockfosters FC",
@@ -71,15 +74,15 @@
       "name": "Biggleswade United",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=407251207&teamID=679867138",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Biggleswade United, England",
+      "address": "Biggleswade United, Bedfordshire, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.0875437,
       "longitude": -0.2635234,
       "formatted_address": "Biggleswade United Working Mens Club, 10, Church Street, Biggleswade, Central Bedfordshire, England, SG18 0JS, United Kingdom",
-      "place_id": 280546065,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 277040795,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Tring Athletic",
@@ -122,15 +125,15 @@
       "name": "Arlesey Town",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=407251207&teamID=129120521",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Arlesey Town, England",
+      "address": "Arlesey Town FC Bedfordshire, England",
       "territory": "England",
       "level": 11,
       "latitude": 52.0141448,
       "longitude": -0.2604595,
       "formatted_address": "Arlesey, Central Bedfordshire, England, United Kingdom",
-      "place_id": 280920621,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "place_id": 280180408,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Wormley Rovers",
@@ -205,15 +208,15 @@
       "name": "Dunstable Town",
       "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=407251207&teamID=558974821",
       "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
-      "address": "Dunstable Town, England",
+      "address": "Dunstable Town, Bedfordshire, England",
       "territory": "England",
       "level": 11,
       "latitude": 51.8883864,
       "longitude": -0.5238157,
       "formatted_address": "Dunstable Town Council, 76, High Street North, Dunstable, Central Bedfordshire, England, LU6 1NF, United Kingdom",
       "place_id": 279440592,
-      "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
     },
     {
       "name": "Potton United",
@@ -236,7 +239,10 @@
       "formatted_address": "AFC Kempston Rovers Football Club, Hillgrounds Road, Kempston, Bedford, England, MK42 8QG, United Kingdom",
       "place_id": 279889864,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 40.46,
+      "centroid_distance_z": 2.27
     },
     {
       "name": "Crawley Green",
@@ -250,8 +256,20 @@
       "formatted_address": "St Andrew's Church of England Primary School, Weald Drive, Worth, Furnace Green, Crawley, West Sussex, England, RH10 6NU, United Kingdom",
       "place_id": 280710084,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 75.89,
+      "centroid_distance_z": 6.31
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 51.787779,
+    "centroid_longitude": -0.275233,
+    "mean_distance_km": 20.49,
+    "stdev_distance_km": 8.79,
+    "threshold_km": 38.06,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

@@ -47,16 +47,12 @@
       "name": "Frenford Development",
       "url": "https://en.wikipedia.org/wiki/Frenford_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c1/Frenford_F.C._logo.png",
-      "address": "Frenford F.C.",
+      "address": "The Jack Carter Centre, Ilford",
       "territory": "England",
       "level": 11,
       "wiki_title": "Frenford_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.573374,
-      "longitude": 0.057408,
-      "formatted_address": "Frenford F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Greengate District",
@@ -70,22 +66,25 @@
       "formatted_address": "Greengate, Trunnah, Thornton, Wyre, Lancashire, England, FY5 4FR, United Kingdom",
       "place_id": 276439135,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 288.15,
+      "centroid_distance_z": 22.61
     },
     {
       "name": "Haringey Borough U23",
       "url": "https://en.wikipedia.org/wiki/Haringey_Borough_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Boro-300px.png",
-      "address": "Haringey Borough F.C.",
+      "address": "Coles Park, Tottenham",
       "territory": "England",
       "level": 11,
       "wiki_title": "Haringey_Borough_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.60558889,
-      "longitude": -0.09276944,
-      "formatted_address": "Haringey Borough F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.6054675,
+      "longitude": -0.0934807,
+      "formatted_address": "Clockwise Bikes, Coles Park, White Hart Lane, Hornsey, London Borough of Haringey, Greater London, England, N17 7JP, United Kingdom",
+      "place_id": 286851706,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Kulture Klub",
@@ -151,16 +150,16 @@
       "name": "Sporting Bengal United Reserves",
       "url": "https://en.wikipedia.org/wiki/Sporting_Bengal_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Sporting_Bengal_logo.png",
-      "address": "Mile End Stadium",
+      "address": "Mile End Stadium, London",
       "territory": "England",
       "level": 11,
       "wiki_title": "Sporting_Bengal_United_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.519011111,
-      "longitude": -0.033422222,
-      "formatted_address": "Mile End Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.5190214,
+      "longitude": -0.0334207,
+      "formatted_address": "Mile End Stadium, 190, Burdett Road, Bromley-by-Bow, Mile End, London Borough of Tower Hamlets, Greater London, England, E3 4HL, United Kingdom",
+      "place_id": 280149749,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Waltham Forest Borough",
@@ -180,32 +179,41 @@
       "name": "Walthamstow Reserves",
       "url": "https://en.wikipedia.org/wiki/Walthamstow_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fa/Walthamstow_FC_logo_transparent.png",
-      "address": "Walthamstow F.C.",
+      "address": "Wadham Lodge, Walthamstow",
       "territory": "England",
       "level": 11,
       "wiki_title": "Walthamstow_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.5974,
-      "longitude": -0.008996,
-      "formatted_address": "Walthamstow F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.5983643,
+      "longitude": -0.0100079,
+      "formatted_address": "Wadham Lodge Sports Ground, Brookscroft Road, Chapel End, Hale End, London Borough of Waltham Forest, Greater London, England, E17 4JP, United Kingdom",
+      "place_id": 279834082,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Woodford Town U23",
       "url": "https://en.wikipedia.org/wiki/Woodford_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a8/Woodford_Town_FC_crest.svg",
-      "address": "Haringey & Waltham Development F.C.",
+      "address": "Ashton Playing Fields, Woodford",
       "territory": "England",
       "level": 11,
       "wiki_title": "Woodford_Town_F.C.",
       "address_source": "wikipedia",
-      "latitude": 51.59739167,
-      "longitude": -0.00903056,
-      "formatted_address": "Haringey & Waltham Development F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.6053288,
+      "longitude": 0.0496945,
+      "formatted_address": "Ashton Playing Fields, Chigwell Road, Woodford Bridge, London Borough of Redbridge, Greater London, England, IG8 8HU, United Kingdom",
+      "place_id": 100139464,
+      "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 51.840462,
+    "centroid_longitude": -0.341206,
+    "mean_distance_km": 33.51,
+    "stdev_distance_km": 11.26,
+    "threshold_km": 56.03,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

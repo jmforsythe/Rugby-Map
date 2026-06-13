@@ -6,76 +6,81 @@
       "name": "A.F.C. Fylde",
       "url": "https://en.wikipedia.org/wiki/AFC_Fylde",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/AFC_Fylde_%282014%29.svg",
-      "address": "AFC Fylde",
+      "address": "Mill Farm, Wesham",
       "territory": "England",
       "wiki_title": "AFC_Fylde",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.75814,
-      "longitude": -2.9017,
-      "formatted_address": "AFC Fylde",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.7973998,
+      "longitude": -2.8897122,
+      "formatted_address": "Mill Farm, Coronation Way, Medlar-with-Wesham, Wesham, Preston, Lancashire, England, PR4 3JZ, United Kingdom",
+      "place_id": 276451341,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "A.F.C. Telford United",
       "url": "https://en.wikipedia.org/wiki/AFC_Telford_United",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e9/AFC_Telford_United_logo.svg",
-      "address": "SEAH Stadium",
+      "address": "New Bucks Head, Telford",
       "territory": "England",
       "wiki_title": "AFC_Telford_United",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 52.697272,
-      "longitude": -2.501336,
-      "formatted_address": "SEAH Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.6973242,
+      "longitude": -2.5015496,
+      "formatted_address": "New Bucks Head, Watling Street, Arleston, Wellington, Telford and Wrekin, England, TF1 2NJ, United Kingdom",
+      "place_id": 273296731,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Alfreton Town",
       "url": "https://en.wikipedia.org/wiki/Alfreton_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/52/Alfreton_Town_FC_logo.svg",
-      "address": "North Street",
+      "address": "North Street, Alfreton",
       "territory": "England",
       "wiki_title": "Alfreton_Town_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.0945,
-      "longitude": -1.3813,
-      "formatted_address": "North Street",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.0942121,
+      "longitude": -1.3792828,
+      "formatted_address": "North Street, Alfreton CP, Leabrooks, Amber Valley, Derbyshire, East Midlands, England, DE55 7GB, United Kingdom",
+      "place_id": 277553775,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Bedford Town",
       "url": "https://en.wikipedia.org/wiki/Bedford_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a1/Bedford_Town_F.C._logo.svg",
-      "address": "Bedford Town F.C.",
+      "address": "Cardington, Bedford",
       "territory": "England",
       "wiki_title": "Bedford_Town_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 52.12876667,
-      "longitude": -0.413875,
-      "formatted_address": "Bedford Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_precision": "town",
+      "latitude": 52.1179428,
+      "longitude": -0.4137868,
+      "formatted_address": "Cardington, Bedford, England, United Kingdom",
+      "place_id": 277893695,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 144.22,
+      "centroid_distance_z": 2.32
     },
     {
       "name": "Buxton",
       "url": "https://en.wikipedia.org/wiki/Buxton_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b2/Buxton_FC_crest.svg",
-      "address": "Buxton F.C.",
+      "address": "Buxton, England",
       "territory": "England",
       "wiki_title": "Buxton_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.2566,
-      "longitude": -1.90661389,
-      "formatted_address": "Buxton F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.2593422,
+      "longitude": -1.9100768,
+      "formatted_address": "Buxton, High Peak, Derbyshire, East Midlands, England, United Kingdom",
+      "place_id": 277612861,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Chester",
@@ -86,56 +91,59 @@
       "wiki_title": "Chester_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.189181,
-      "longitude": -2.923814,
-      "formatted_address": "Deva Stadium",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.1892245,
+      "longitude": -2.923472,
+      "formatted_address": "Deva Stadium, Bumpers Lane, Sealand, Chester, Flintshire, Cymru / Wales, CH1 4LT, United Kingdom",
+      "place_id": 277313633,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Chorley",
       "url": "https://en.wikipedia.org/wiki/Chorley_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/72/Chorley_FC_crest.svg",
-      "address": "Victory Park, Chorley",
+      "address": "Victory Park",
       "territory": "England",
       "wiki_title": "Chorley_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.6455,
-      "longitude": -2.62921,
-      "formatted_address": "Victory Park, Chorley",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.6460264,
+      "longitude": -2.6294423,
+      "formatted_address": "Victory Park, Duke Street, Chorley Moor, Chorley, Lancashire, England, PR7 3DU, United Kingdom",
+      "place_id": 277604069,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Curzon Ashton",
       "url": "https://en.wikipedia.org/wiki/Curzon_Ashton_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/8/83/Curzon_Ashton_F.C._logo.svg",
-      "address": "Curzon Ashton F.C.",
+      "address": "Tameside Stadium",
       "territory": "England",
       "wiki_title": "Curzon_Ashton_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 53.49307194,
-      "longitude": -2.11560806,
-      "formatted_address": "Curzon Ashton F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.4942466,
+      "longitude": -2.1152425,
+      "formatted_address": "Tameside Stadium, Back Lane, Littlemoss, Ashton-under-Lyne, Tameside, Greater Manchester, England, OL7 9SQ, United Kingdom",
+      "place_id": 276777119,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Darlington",
       "url": "https://en.wikipedia.org/wiki/Darlington_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ad/Darlington_FC_crest.svg",
-      "address": "Blackwell Meadows",
+      "address": "Blackwell Meadows, Darlington",
       "territory": "England",
       "wiki_title": "Darlington_F.C.",
       "level": 6,
       "address_source": "wikipedia",
-      "latitude": 54.638,
-      "longitude": -1.69271,
-      "formatted_address": "Blackwell Meadows",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.5092757,
+      "longitude": -1.5646902,
+      "formatted_address": "Blackwell Meadows, Skerne Park, Darlington, Tees Valley, England, DL1 5NR, United Kingdom",
+      "place_id": 276329812,
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 164.21,
+      "centroid_distance_z": 2.98
     },
     {
       "name": "Hereford",
@@ -180,21 +188,25 @@
       "longitude": 0.4058321,
       "formatted_address": "The Walks, Gaywood, King's Lynn, King's Lynn and West Norfolk, Norfolk, England, PE30 1NT, United Kingdom",
       "place_id": 157379348,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 158.42,
+      "centroid_distance_z": 2.79
     },
     {
       "name": "Leamington",
       "url": "https://en.wikipedia.org/wiki/Leamington_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/17/Leamington_FC_crest.svg",
-      "address": "Leamington F.C.",
+      "address": "Leamington, England",
       "territory": "England",
       "wiki_title": "Leamington_F.C.",
       "level": 6,
-      "latitude": 52.244444444,
-      "longitude": -1.502777777,
-      "formatted_address": "Leamington F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.2913394,
+      "longitude": -1.536404,
+      "formatted_address": "Royal Leamington Spa, Warwick, Warwickshire, England, United Kingdom",
+      "place_id": 279811227,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Macclesfield",
@@ -239,13 +251,16 @@
       "formatted_address": "Merthyr Tydfil, Cymru / Wales, CF47 8BS, United Kingdom",
       "place_id": 281465392,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 175.83,
+      "centroid_distance_z": 3.36
     },
     {
       "name": "Oxford City",
       "url": "https://en.wikipedia.org/wiki/Oxford_City_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/fb/Oxford_City_FC_crest.svg",
-      "address": "The MGroup Stadium, Court Place Farm, Marsh Lane, Marston",
+      "address": "Marsh Lane, Marston",
       "territory": "England",
       "wiki_title": "Oxford_City_F.C.",
       "level": 6,
@@ -255,7 +270,10 @@
       "longitude": -1.2284803,
       "formatted_address": "Marsh Lane, Marston, Oxford, Oxfordshire, England, OX3 9RH, United Kingdom",
       "place_id": 281401797,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 148.59,
+      "centroid_distance_z": 2.47
     },
     {
       "name": "Peterborough Sports",
@@ -300,7 +318,10 @@
       "longitude": -0.41372222,
       "formatted_address": "Flamingo Land Stadium",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 167.79,
+      "centroid_distance_z": 3.09
     },
     {
       "name": "South Shields",
@@ -315,7 +336,10 @@
       "longitude": -2.7857844,
       "formatted_address": "Mariners Park, West Hill, North Weston, Portishead, North Somerset, England, United Kingdom",
       "place_id": 281876416,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 183.75,
+      "centroid_distance_z": 3.62
     },
     {
       "name": "Southport",
@@ -345,7 +369,10 @@
       "longitude": -1.5991581,
       "formatted_address": "The Brewery Field, Tees Crescent, Tudhoe Grange, Tudhoe, Spennymoor, County Durham, North East, England, DL16 6JN, United Kingdom",
       "place_id": 274987520,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 185.48,
+      "centroid_distance_z": 3.67
     },
     {
       "name": "Worksop Town",
@@ -363,5 +390,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 24
+  "team_count": 24,
+  "location_sanity": {
+    "centroid_latitude": 53.046256,
+    "centroid_longitude": -1.904673,
+    "mean_distance_km": 73.13,
+    "stdev_distance_km": 30.6,
+    "threshold_km": 134.32,
+    "sigma": 2.0,
+    "outlier_count": 8
+  }
 }

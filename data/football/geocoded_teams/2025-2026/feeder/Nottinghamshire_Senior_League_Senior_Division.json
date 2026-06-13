@@ -37,7 +37,10 @@
       "formatted_address": "Bingham Close, Gadebridge, Piccotts End, Dacorum, Hertfordshire, England, HP1 3TU, United Kingdom",
       "place_id": 279496519,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 141.23,
+      "centroid_distance_z": 25.14
     },
     {
       "name": "Woodthorpe Park Rangers FC",
@@ -110,7 +113,10 @@
       "formatted_address": "Collingham, Leeds, West Yorkshire, England, United Kingdom",
       "place_id": 278249948,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 108.32,
+      "centroid_distance_z": 18.71
     },
     {
       "name": "Notts Olympic FC",
@@ -147,7 +153,10 @@
       "formatted_address": "Beeston, Cheshire West and Chester, England, United Kingdom",
       "place_id": 278570126,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 94.86,
+      "centroid_distance_z": 16.08
     },
     {
       "name": "Dunkirk AFC",
@@ -191,5 +200,14 @@
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 17
+  "team_count": 17,
+  "location_sanity": {
+    "centroid_latitude": 52.935777,
+    "centroid_longitude": -1.303209,
+    "mean_distance_km": 12.56,
+    "stdev_distance_km": 5.12,
+    "threshold_km": 22.79,
+    "sigma": 2.0,
+    "outlier_count": 3
+  }
 }

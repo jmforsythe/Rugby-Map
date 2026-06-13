@@ -42,7 +42,10 @@
       "formatted_address": "Hardwick, Buckinghamshire, England, United Kingdom",
       "place_id": 279564168,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 69.94,
+      "centroid_distance_z": 7.87
     },
     {
       "name": "Over Sports",
@@ -161,7 +164,10 @@
       "formatted_address": "Wisbech St. Mary, Fenland, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
       "place_id": 157281770,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 47.01,
+      "centroid_distance_z": 4.6
     },
     {
       "name": "Orwell",
@@ -187,5 +193,14 @@
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 52.208114,
+    "centroid_longitude": 0.010832,
+    "mean_distance_km": 14.71,
+    "stdev_distance_km": 7.02,
+    "threshold_km": 28.74,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

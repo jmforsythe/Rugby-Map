@@ -55,7 +55,10 @@
       "formatted_address": "Deane's Drop, Hadleigh, Castle Point, Essex, England, SS7 2QH, United Kingdom",
       "place_id": 100355611,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 187.58,
+      "centroid_distance_z": 26.42
     },
     {
       "name": "Dudley Athletic",
@@ -205,5 +208,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 18
+  "team_count": 18,
+  "location_sanity": {
+    "centroid_latitude": 52.405632,
+    "centroid_longitude": -1.762761,
+    "mean_distance_km": 27.05,
+    "stdev_distance_km": 6.07,
+    "threshold_km": 39.2,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

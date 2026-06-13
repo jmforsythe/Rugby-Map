@@ -121,6 +121,37 @@ def football_league_family_parts(name: str) -> tuple[str, str]:
     return n, ""
 
 
+def league_geographic_name(league_name: str) -> str | None:
+    """Return a regional search hint extracted from a league/division title."""
+    stem, geo = football_league_family_parts(league_name)
+    region = stem
+    if region.casefold().endswith(" league"):
+        region = region[: -len(" League")].strip()
+    parts: list[str] = []
+    if region:
+        parts.append(region)
+    if geo and geo.casefold() not in region.casefold():
+        parts.append(geo)
+    if not parts:
+        return None
+    return " ".join(parts)
+
+
+# League stems that are competition names, not places Nominatim understands.
+_LEAGUE_GEO_SEARCH_ALIASES: dict[str, str] = {
+    "Anglian Combination": "Norfolk",
+    "Spartan South Midlands": "Bedfordshire",
+}
+
+
+def league_search_geography(league_name: str) -> str | None:
+    """Return a Nominatim-friendly regional hint for club-name geocoding."""
+    geo = league_geographic_name(league_name)
+    if not geo:
+        return None
+    return _LEAGUE_GEO_SEARCH_ALIASES.get(geo, geo)
+
+
 def _football_prefix_parent_name(child_name: str, parent_names: list[str]) -> str | None:
     """Longest parent whose full title is a prefix of ``child_name``."""
     child_cf = _clean_league_name(child_name).casefold()

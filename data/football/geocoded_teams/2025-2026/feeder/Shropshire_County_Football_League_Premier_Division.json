@@ -51,7 +51,10 @@
       "formatted_address": "Nations Hill, Abbots Worthy, Kings Worthy, Winchester, Hampshire, England, SO23 7GW, United Kingdom",
       "place_id": 281096620,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 163.63,
+      "centroid_distance_z": 5.92
     },
     {
       "name": "Wrockwardine Wood",
@@ -129,7 +132,10 @@
       "formatted_address": "United Downs Deep Geothermal Power Project, Crofthandy, Gwennap, Cornwall, England, United Kingdom",
       "place_id": 285969644,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 278.81,
+      "centroid_distance_z": 12.53
     },
     {
       "name": "Prees United",
@@ -178,5 +184,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 15
+  "team_count": 15,
+  "location_sanity": {
+    "centroid_latitude": 52.244221,
+    "centroid_longitude": -2.780204,
+    "mean_distance_km": 60.4,
+    "stdev_distance_km": 17.43,
+    "threshold_km": 95.27,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

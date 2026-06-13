@@ -69,7 +69,10 @@
       "formatted_address": "Marlow Road United Reform Church, Marlowe Road, Liscard, Wallasey, Wirral, Liverpool City Region, England, CH44 3BU, United Kingdom",
       "place_id": 273547856,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 229.09,
+      "centroid_distance_z": 24.3
     },
     {
       "name": "Bramley United",
@@ -146,5 +149,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 12
+  "team_count": 12,
+  "location_sanity": {
+    "centroid_latitude": 51.722717,
+    "centroid_longitude": -1.122579,
+    "mean_distance_km": 42.56,
+    "stdev_distance_km": 7.68,
+    "threshold_km": 57.91,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

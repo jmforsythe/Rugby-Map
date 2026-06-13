@@ -6,16 +6,17 @@
       "name": "Axminster Town",
       "url": "https://en.wikipedia.org/wiki/Axminster_Town_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/AxminsterTown.jpg",
-      "address": "Axminster Town A.F.C.",
+      "address": "Axminster Town, England",
       "territory": "England",
       "wiki_title": "Axminster_Town_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.790816,
-      "longitude": -2.9916944,
-      "formatted_address": "Axminster Town A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.7867137,
+      "longitude": -2.9877912,
+      "formatted_address": "Axminster Town Council Cemetery, Weycroft, Axminster, East Devon, Devon, Devon and Torbay, England, United Kingdom",
+      "place_id": 279801786,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Bishops Lydeard",
@@ -111,16 +112,20 @@
       "name": "Ilfracombe Town",
       "url": "https://en.wikipedia.org/wiki/Ilfracombe_Town_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a7/Ilfracombe_town_logo.png",
-      "address": "Ilfracombe Town F.C.",
+      "address": "Ilfracombe Town, England",
       "territory": "England",
       "wiki_title": "Ilfracombe_Town_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.20250833,
-      "longitude": -4.11556667,
-      "formatted_address": "Ilfracombe Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.202513,
+      "longitude": -4.1155676,
+      "formatted_address": "Ilfracombe Town Football Club, Marlborough Road, Slade, Ilfracombe, North Devon, Devon, Devon and Torbay, England, EX34 8JR, United Kingdom",
+      "place_id": 284803851,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 83.55,
+      "centroid_distance_z": 3.16
     },
     {
       "name": "Ilminster Town",
@@ -148,15 +153,11 @@
       "name": "Newton Abbot Spurs",
       "url": "https://en.wikipedia.org/wiki/Newton_Abbot_Spurs_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f6/Newton_Abbot_Spurs_A.F.C._logo.png",
-      "address": "Newton Abbot Spurs A.F.C.",
+      "address": null,
       "territory": "England",
       "wiki_title": "Newton_Abbot_Spurs_A.F.C.",
       "level": 10,
-      "latitude": 50.53321111,
-      "longitude": -3.604525,
-      "formatted_address": "Newton Abbot Spurs A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Okehampton Argyle",
@@ -207,16 +208,12 @@
       "name": "Torridgeside",
       "url": "https://en.wikipedia.org/wiki/Torridgeside_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/Torridgeside_AFC_logo.jpg",
-      "address": "Torridgeside A.F.C.",
+      "address": "Donnacroft, Great Torrington",
       "territory": "England",
       "wiki_title": "Torridgeside_A.F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 50.953277777,
-      "longitude": -4.125083333,
-      "formatted_address": "Torridgeside A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Torrington",
@@ -231,8 +228,20 @@
       "longitude": 0.8749994,
       "formatted_address": "Vicarage Field, Repton Park South, South Ashford, Ashford, Kent, England, United Kingdom",
       "place_id": 100193726,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 280.92,
+      "centroid_distance_z": 14.85
     }
   ],
-  "team_count": 16
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 50.806205,
+    "centroid_longitude": -3.101113,
+    "mean_distance_km": 30.3,
+    "stdev_distance_km": 16.88,
+    "threshold_km": 64.05,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

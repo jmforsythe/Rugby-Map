@@ -78,7 +78,10 @@
       "formatted_address": "Pewsey Vale, Martin's Heron, Chavey Down, Winkfield, Bracknell Forest, England, RG12 9YA, United Kingdom",
       "place_id": 280990942,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 85.97,
+      "centroid_distance_z": 7.45
     },
     {
       "name": "Royal W Bassett Town FC Dev",
@@ -110,7 +113,10 @@
       "formatted_address": "Trowbridge, Wiltshire, England, BA14 8EY, United Kingdom",
       "place_id": 280579466,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 50.38,
+      "centroid_distance_z": 3.46
     },
     {
       "name": "Faringdon Town FC",
@@ -138,7 +144,10 @@
       "formatted_address": "Tiber Park - Kingsley United FC, Ritson Street, Canning / Georgian Quarter, Edge Hill, Liverpool, Liverpool City Region, England, L8 0UF, United Kingdom",
       "place_id": 277183337,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 200.4,
+      "centroid_distance_z": 20.27
     },
     {
       "name": "Down Ampney FC",
@@ -166,7 +175,10 @@
       "formatted_address": "Purton Road, Redland, Bristol, City of Bristol, West of England, England, BS7 8DB, United Kingdom",
       "place_id": 283862797,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 57.63,
+      "centroid_distance_z": 4.28
     },
     {
       "name": "Wroughton FC",
@@ -215,5 +227,14 @@
       "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 18
+  "team_count": 18,
+  "location_sanity": {
+    "centroid_latitude": 51.717808,
+    "centroid_longitude": -1.859494,
+    "mean_distance_km": 19.46,
+    "stdev_distance_km": 8.93,
+    "threshold_km": 37.32,
+    "sigma": 2.0,
+    "outlier_count": 4
+  }
 }

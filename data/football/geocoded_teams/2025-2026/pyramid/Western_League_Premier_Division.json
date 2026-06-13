@@ -15,7 +15,10 @@
       "longitude": -4.7861717,
       "formatted_address": "Poltair Park, Boscoppa, St. Austell, Cornwall, England, PL25 4LR, United Kingdom",
       "place_id": 287592317,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 125.92,
+      "centroid_distance_z": 2.96
     },
     {
       "name": "Barnstaple Town",
@@ -36,15 +39,19 @@
       "name": "Bradford Town",
       "url": "https://en.wikipedia.org/wiki/Bradford_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f4/Bradford_Town_F.C._logo.png",
-      "address": "Bradford Town F.C.",
+      "address": "Bradford Town, England",
       "territory": "England",
       "wiki_title": "Bradford_Town_F.C.",
       "level": 9,
-      "latitude": 51.3394,
-      "longitude": -2.24383,
-      "formatted_address": "Bradford Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.4884809,
+      "longitude": -2.2072628,
+      "formatted_address": "Holt Town, Bradford Road / opposite Saxon Street, Bradford Road, Bradford, Manchester, Greater Manchester, England, M40 7XJ, United Kingdom",
+      "place_id": 277089174,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 277.33,
+      "centroid_distance_z": 9.83
     },
     {
       "name": "Bridgwater Town",
@@ -120,7 +127,10 @@
       "longitude": -5.2652221,
       "formatted_address": "Kellaway Park, Helston, Cornwall, England, TR13 8QU, United Kingdom",
       "place_id": 284721743,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 168.91,
+      "centroid_distance_z": 4.91
     },
     {
       "name": "Ivybridge Town",
@@ -141,16 +151,12 @@
       "name": "Nailsea & Tickenham",
       "url": "https://en.wikipedia.org/wiki/Nailsea_%26_Tickenham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/ce/Nailsea_%26_Tickenham_FC_logo.png",
-      "address": "Nailsea & Tickenham F.C.",
+      "address": "JLC Ground, Nailsea",
       "territory": "England",
       "wiki_title": "Nailsea_&_Tickenham_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 51.435713888,
-      "longitude": -2.776452777,
-      "formatted_address": "Nailsea & Tickenham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Newquay",
@@ -165,28 +171,27 @@
       "formatted_address": "Newquay, Cornwall, England, United Kingdom",
       "place_id": 285809621,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 136.95,
+      "centroid_distance_z": 3.46
     },
     {
       "name": "Oldland Abbotonians",
       "url": "https://en.wikipedia.org/wiki/Oldland_Abbotonians_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d5/Oldland_Abbotonians_F.C._logo.png",
-      "address": "Oldland Abbotonians F.C.",
+      "address": "Aitchison Playing Field, Oldland Common",
       "territory": "England",
       "wiki_title": "Oldland_Abbotonians_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 51.44057778,
-      "longitude": -2.46637222,
-      "formatted_address": "Oldland Abbotonians F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Paulton Rovers",
       "url": "https://en.wikipedia.org/wiki/Paulton_Rovers_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/52/Paulton_Rovers_FC_crest.svg",
-      "address": "First 4 Pools Stadium, Winterfield Road,, Paulton",
+      "address": "Winterfield Road, Paulton",
       "territory": "England",
       "wiki_title": "Paulton_Rovers_F.C.",
       "level": 9,
@@ -217,16 +222,17 @@
       "name": "Shepton Mallet",
       "url": "https://en.wikipedia.org/wiki/Shepton_Mallet_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9e/Shepton_Mallet_F.C._logo.png",
-      "address": "Shepton Mallet F.C.",
+      "address": "Shepton Mallet, England",
       "territory": "England",
       "wiki_title": "Shepton_Mallet_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 51.18647222,
-      "longitude": -2.55936667,
-      "formatted_address": "Shepton Mallet F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 51.1909451,
+      "longitude": -2.5461298,
+      "formatted_address": "Shepton Mallet, Somerset, England, United Kingdom",
+      "place_id": 282289906,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Sidmouth Town",
@@ -247,16 +253,20 @@
       "name": "St Blazey",
       "url": "https://en.wikipedia.org/wiki/St_Blazey_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/2f/StBlazey.png",
-      "address": "St Blazey A.F.C.",
+      "address": "St Blazey, England",
       "territory": "England",
       "wiki_title": "St_Blazey_A.F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 50.3614,
-      "longitude": -4.71449,
-      "formatted_address": "St Blazey A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.3630055,
+      "longitude": -4.7156518,
+      "formatted_address": "St Blazey, Cornwall, England, PL24 2AX, United Kingdom",
+      "place_id": 286467093,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 120.58,
+      "centroid_distance_z": 2.71
     },
     {
       "name": "Street",
@@ -271,7 +281,10 @@
       "longitude": -1.5635589,
       "formatted_address": "The Tannery, Cavendish Street, Little Woodhouse, Hyde Park, Leeds, West Yorkshire, England, LS3 1LT, United Kingdom",
       "place_id": 277996665,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 325.21,
+      "centroid_distance_z": 12.0
     },
     {
       "name": "Torpoint Athletic",
@@ -287,17 +300,27 @@
       "name": "Wellington (Somerset)",
       "url": "https://en.wikipedia.org/wiki/Wellington_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/0f/Wellington_AFC_Logo.png",
-      "address": "Wellington A.F.C.",
+      "address": "Wellington (Somerset), England",
       "territory": "England",
       "wiki_title": "Wellington_A.F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 50.9782,
-      "longitude": -3.23123,
-      "formatted_address": "Wellington A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.9770604,
+      "longitude": -3.2463697,
+      "formatted_address": "Rockwell Green Church of England Primary School, Brooklands Road, Westford, Rockwell Green, Wellington, Somerset, England, TA21 9DJ, United Kingdom",
+      "place_id": 282453635,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 51.120847,
+    "centroid_longitude": -3.489976,
+    "mean_distance_km": 60.77,
+    "stdev_distance_km": 22.04,
+    "threshold_km": 104.84,
+    "sigma": 2.0,
+    "outlier_count": 6
+  }
 }

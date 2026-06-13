@@ -15,7 +15,10 @@
       "longitude": -0.4365701,
       "formatted_address": "Marsh Lane, Barton Waterside, Barton-upon-Humber, North Lincolnshire, Greater Lincolnshire, England, DN18 5HB, United Kingdom",
       "place_id": 278138109,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 45.24,
+      "centroid_distance_z": 2.61
     },
     {
       "name": "Cleethorpes Town Reserves",
@@ -191,8 +194,20 @@
       "formatted_address": "Wyberton, Boston, Lincolnshire, Greater Lincolnshire, England, PE21 7BA, United Kingdom",
       "place_id": 278479294,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 40.78,
+      "centroid_distance_z": 2.1
     }
   ],
-  "team_count": 15
+  "team_count": 15,
+  "location_sanity": {
+    "centroid_latitude": 53.28859,
+    "centroid_longitude": -0.293051,
+    "mean_distance_km": 22.39,
+    "stdev_distance_km": 8.77,
+    "threshold_km": 39.92,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

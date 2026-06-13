@@ -6,16 +6,17 @@
       "name": "Birtley Town",
       "url": "https://en.wikipedia.org/wiki/Birtley_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/f/f3/Birtley_Town_F.C._logo.png",
-      "address": "Birtley Town F.C.",
+      "address": "Birtley Town, England",
       "territory": "England",
       "wiki_title": "Birtley_Town_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.887861111,
-      "longitude": -1.580722222,
-      "formatted_address": "Birtley Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.8985648,
+      "longitude": -1.5795659,
+      "formatted_address": "Birtley, Gateshead, Tyne and Wear, North East, England, DH3 1ER, United Kingdom",
+      "place_id": 276832302,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Boro Rangers",
@@ -30,22 +31,29 @@
       "longitude": -1.206646,
       "formatted_address": "Phoenix Park, Millennium Way East, Phoenix Business Park, Bell's Lane Estate, Bulwell, City of Nottingham, East Midlands, England, NG8 6AL, United Kingdom",
       "place_id": 278783558,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 197.96,
+      "centroid_distance_z": 12.47
     },
     {
       "name": "Carlisle City",
       "url": "https://en.wikipedia.org/wiki/Carlisle_City_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/bc/CarlisleCity.png",
-      "address": "Carlisle City F.C.",
+      "address": "Carlisle City, England",
       "territory": "England",
       "wiki_title": "Carlisle_City_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.8772,
-      "longitude": -2.9161,
-      "formatted_address": "Carlisle City F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.8948478,
+      "longitude": -2.9362311,
+      "formatted_address": "Carlisle, Cumberland, England, United Kingdom",
+      "place_id": 274202359,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 75.38,
+      "centroid_distance_z": 3.3
     },
     {
       "name": "Crook Town",
@@ -66,31 +74,28 @@
       "name": "Easington Colliery",
       "url": "https://en.wikipedia.org/wiki/Easington_Colliery_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Easington_Colliery_F.C._logo.png",
-      "address": "Easington Colliery A.F.C.",
+      "address": "Easington Colliery, England",
       "territory": "England",
       "wiki_title": "Easington_Colliery_A.F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.784364,
-      "longitude": -1.3283667,
-      "formatted_address": "Easington Colliery A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.7875781,
+      "longitude": -1.3237999,
+      "formatted_address": "Easington Colliery, County Durham, North East, England, United Kingdom",
+      "place_id": 274535670,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Guisborough Town",
       "url": "https://en.wikipedia.org/wiki/Guisborough_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/54/GuisboroughTown.png",
-      "address": "Guisborough Town F.C.",
+      "address": "King George V Stadium, Guisborough",
       "territory": "England",
       "wiki_title": "Guisborough_Town_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.538275,
-      "longitude": -1.06423611,
-      "formatted_address": "Guisborough Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Horden Community Welfare",
@@ -105,7 +110,10 @@
       "longitude": -3.0654413,
       "formatted_address": "Welfare Park, Newbattle, Newtongrange, Midlothian, Alba / Scotland, United Kingdom",
       "place_id": 274916385,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 149.56,
+      "centroid_distance_z": 8.85
     },
     {
       "name": "Kendal Town",
@@ -120,7 +128,10 @@
       "longitude": -2.7271297,
       "formatted_address": "Parkside Road, Netherfield, Kendal, Westmorland and Furness, England, LA9 7LG, United Kingdom",
       "place_id": 274129015,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 75.78,
+      "centroid_distance_z": 3.33
     },
     {
       "name": "Marske United",
@@ -141,7 +152,7 @@
       "name": "Newcastle Benfield",
       "url": "https://en.wikipedia.org/wiki/Newcastle_Benfield_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/e/ea/NewcastleBenfieldFCBadge.png",
-      "address": "Sam Smith's Park, Walkergate, Newcastle upon Tyne",
+      "address": "Walkergate, Newcastle upon Tyne",
       "territory": "England",
       "wiki_title": "Newcastle_Benfield_F.C.",
       "level": 9,
@@ -172,31 +183,33 @@
       "name": "North Shields",
       "url": "https://en.wikipedia.org/wiki/North_Shields_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/70/North_shields_fc_badge.png",
-      "address": "North Shields F.C.",
+      "address": "North Shields, England",
       "territory": "England",
       "wiki_title": "North_Shields_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 55.005277777,
-      "longitude": -1.459166666,
-      "formatted_address": "North Shields F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 55.0087655,
+      "longitude": -1.4471035,
+      "formatted_address": "North Shields, North Tyneside, Tyne and Wear, North East, England, NE29 0SZ, United Kingdom",
+      "place_id": 275001296,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Northallerton Town",
       "url": "https://en.wikipedia.org/wiki/Northallerton_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/55/Northallerton_Town_F.C._logo.png",
-      "address": "Northallerton Town F.C.",
+      "address": "Northallerton Town, England",
       "territory": "England",
       "wiki_title": "Northallerton_Town_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.32773889,
-      "longitude": -1.45401111,
-      "formatted_address": "Northallerton Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.3401675,
+      "longitude": -1.4344796,
+      "formatted_address": "Northallerton Town Hall, High Street, Northallerton, North Yorkshire, York and North Yorkshire, England, DL7 8PS, United Kingdom",
+      "place_id": 271419491,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Penrith",
@@ -211,7 +224,10 @@
       "formatted_address": "Penrith, Westmorland and Furness, England, United Kingdom",
       "place_id": 275018897,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 62.17,
+      "centroid_distance_z": 2.32
     },
     {
       "name": "Shildon",
@@ -232,7 +248,7 @@
       "name": "Thornaby",
       "url": "https://en.wikipedia.org/wiki/Thornaby_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Thornaby_26_badge.png",
-      "address": "Teesdale Park , Thornaby-on-Tees, North Yorkshire",
+      "address": "Thornaby-on-Tees, North Yorkshire",
       "territory": "England",
       "wiki_title": "Thornaby_F.C.",
       "level": 9,
@@ -263,31 +279,28 @@
       "name": "West Auckland Town",
       "url": "https://en.wikipedia.org/wiki/West_Auckland_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/ba/West_auckland_fc_logo.png",
-      "address": "West Auckland Town F.C.",
+      "address": "The Northern Metal Recycling stadium (Darlington Road), West Auckland",
       "territory": "England",
       "wiki_title": "West_Auckland_Town_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.6292,
-      "longitude": -1.71955,
-      "formatted_address": "West Auckland Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Whickham",
       "url": "https://en.wikipedia.org/wiki/Whickham_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Whickham_F.C._logo.png",
-      "address": "Whickham F.C.",
+      "address": "Whickham, England",
       "territory": "England",
       "wiki_title": "Whickham_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 54.9437,
-      "longitude": -1.68023,
-      "formatted_address": "Whickham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 54.9458464,
+      "longitude": -1.6761605,
+      "formatted_address": "Whickham, Gateshead, Tyne and Wear, North East, England, NE16 4DT, United Kingdom",
+      "place_id": 274281718,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Whitley Bay",
@@ -305,5 +318,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 20
+  "team_count": 20,
+  "location_sanity": {
+    "centroid_latitude": 54.735245,
+    "centroid_longitude": -1.792797,
+    "mean_distance_km": 31.21,
+    "stdev_distance_km": 13.37,
+    "threshold_km": 57.95,
+    "sigma": 2.0,
+    "outlier_count": 5
+  }
 }

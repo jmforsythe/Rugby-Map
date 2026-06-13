@@ -43,16 +43,17 @@
       "name": "Mullion",
       "url": "https://en.wikipedia.org/wiki/Mullion_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/1/1c/Mullion_FC_logo.png",
-      "address": "Mullion F.C.",
+      "address": "Mullion, England",
       "territory": "England",
       "level": 11,
       "wiki_title": "Mullion_F.C.",
       "address_source": "wikipedia",
-      "latitude": 50.022777777,
-      "longitude": -5.250944444,
-      "formatted_address": "Mullion F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.0069965,
+      "longitude": -5.2421309,
+      "formatted_address": "Mullion, Cornwall, England, United Kingdom",
+      "place_id": 284624840,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Pendeen Rovers",
@@ -72,16 +73,16 @@
       "name": "Penryn Athletic",
       "url": "https://en.wikipedia.org/wiki/Penryn_Athletic_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/7/76/Penryn_Athletic_F.C._logo.png",
-      "address": "Penryn Athletic F.C.",
+      "address": "Kernick Road, Penryn",
       "territory": "England",
       "level": 11,
       "wiki_title": "Penryn_Athletic_F.C.",
       "address_source": "wikipedia",
-      "latitude": 50.16340278,
-      "longitude": -5.11673889,
-      "formatted_address": "Penryn Athletic F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.1655987,
+      "longitude": -5.1162614,
+      "formatted_address": "Kernick Road, Penryn, Cornwall, England, TR10 8PD, United Kingdom",
+      "place_id": 281637845,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Perranwell",
@@ -101,16 +102,16 @@
       "name": "Porthleven",
       "url": "https://en.wikipedia.org/wiki/Porthleven_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/4/49/Porthleven_F.C._logo.png",
-      "address": "Porthleven F.C.",
+      "address": "Gala Parc, Porthleven",
       "territory": "England",
       "level": 11,
       "wiki_title": "Porthleven_F.C.",
       "address_source": "wikipedia",
-      "latitude": 50.08809722,
-      "longitude": -5.31805278,
-      "formatted_address": "Porthleven F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 50.0884155,
+      "longitude": -5.3181342,
+      "formatted_address": "Gala Parc - Home of Porthleven A.F.C., Porthleven, Cornwall, England, United Kingdom",
+      "place_id": 283571442,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Praze-an-Beeble",
@@ -172,7 +173,10 @@
       "formatted_address": "Ives Street, Hans Town, Chelsea, Royal Borough of Kensington and Chelsea, Greater London, England, SW3 2ND, United Kingdom",
       "place_id": 281573605,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 357.29,
+      "centroid_distance_z": 25.43
     },
     {
       "name": "St Just",
@@ -192,17 +196,22 @@
       "name": "Wendron United Reserves",
       "url": "https://en.wikipedia.org/wiki/Wendron_United_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/91/Wendron_United_F.C._logo.png",
-      "address": "Wendron United F.C.",
+      "address": "The Underlane, Wendron",
       "territory": "England",
       "level": 11,
       "wiki_title": "Wendron_United_F.C.",
       "address_source": "wikipedia",
-      "latitude": 50.163,
-      "longitude": -5.1925,
-      "formatted_address": "Wendron United F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     }
   ],
-  "team_count": 15
+  "team_count": 15,
+  "location_sanity": {
+    "centroid_latitude": 50.278546,
+    "centroid_longitude": -4.882734,
+    "mean_distance_km": 34.7,
+    "stdev_distance_km": 12.69,
+    "threshold_km": 60.07,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

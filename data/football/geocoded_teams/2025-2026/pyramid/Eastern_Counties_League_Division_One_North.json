@@ -29,9 +29,8 @@
       "latitude": 52.3794908,
       "longitude": 1.097453,
       "formatted_address": "Brewers Green Lane, Diss, South Norfolk, Norfolk, England, IP22 4QP, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 159646161
+      "place_id": 159646161,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Dussindale & Hellesdon Rovers",
@@ -70,9 +69,11 @@
       "latitude": 52.656591,
       "longitude": 0.0237718,
       "formatted_address": "Main Road, Parson Drove, Murrow, Fenland, Cambridgeshire, Cambridgeshire and Peterborough, England, PE13 4JG, United Kingdom",
-      "geocode_precision": "wikidata",
+      "place_id": 157294363,
       "geocode_source": "wikipedia",
-      "place_id": 157294363
+      "location_outlier": true,
+      "centroid_distance_km": 74.53,
+      "centroid_distance_z": 2.9
     },
     {
       "name": "F.C. Peterborough",
@@ -102,9 +103,8 @@
       "latitude": 52.2290543,
       "longitude": 1.357895,
       "formatted_address": "Badingham Road, Framlingham, East Suffolk, Suffolk, England, IP13 9HX, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 159300185
+      "place_id": 159300185,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Gorleston Reserves",
@@ -115,11 +115,6 @@
       "wiki_title": "Gorleston_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.56592778,
-      "longitude": 1.70829444,
-      "formatted_address": "Gorleston F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     },
     {
@@ -149,9 +144,8 @@
       "latitude": 52.086511,
       "longitude": 0.4491795,
       "formatted_address": "New Croft, Chalkstone Way, Haverhill, West Suffolk, Suffolk, England, CB9 0AW, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 159149041
+      "place_id": 159149041,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Haverhill Rovers",
@@ -162,11 +156,6 @@
       "wiki_title": "Haverhill_Rovers_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.086402,
-      "longitude": 0.449141,
-      "formatted_address": "Haverhill Rovers F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     },
     {
@@ -181,9 +170,11 @@
       "latitude": 52.805874,
       "longitude": 0.0157207,
       "formatted_address": "Carters Park, Cackle Hill, Holbeach CP, Saracen's Head, South Holland, Lincolnshire, Greater Lincolnshire, England, PE12 7EE, United Kingdom",
-      "geocode_precision": "wikidata",
+      "place_id": 160103317,
       "geocode_source": "wikipedia",
-      "place_id": 160103317
+      "location_outlier": true,
+      "centroid_distance_km": 86.13,
+      "centroid_distance_z": 3.84
     },
     {
       "name": "Holland",
@@ -197,9 +188,8 @@
       "latitude": 51.7999944,
       "longitude": 1.1842678,
       "formatted_address": "Dulwich Road, Holland-on-Sea, Clacton-on-Sea, Tendring, Essex, England, CO15 5EU, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 100262188
+      "place_id": 100262188,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Kings Park Rangers",
@@ -228,9 +218,8 @@
       "latitude": 52.2056584,
       "longitude": 1.573264,
       "formatted_address": "Victory Road, Leiston, Aldringham, East Suffolk, Suffolk, England, IP16 4DQ, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 158094077
+      "place_id": 158094077,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Leiston U23s",
@@ -244,9 +233,8 @@
       "latitude": 52.2056584,
       "longitude": 1.573264,
       "formatted_address": "Victory Road, Leiston, Aldringham, East Suffolk, Suffolk, England, IP16 4DQ, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 158094077
+      "place_id": 158094077,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Long Melford",
@@ -260,9 +248,8 @@
       "latitude": 52.0760721,
       "longitude": 0.7127856,
       "formatted_address": "Long Melford F.C. (Stoneylands), Meeting Field, Long Melford, Sudbury, Babergh, Suffolk, England, CO10 9JZ, United Kingdom",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikipedia",
-      "place_id": 159382447
+      "place_id": 159382447,
+      "geocode_source": "wikipedia"
     },
     {
       "name": "Needham Market Under 23s",
@@ -273,11 +260,6 @@
       "wiki_title": "Needham_Market_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.15073333,
-      "longitude": 1.04464444,
-      "formatted_address": "Needham Market F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     },
     {
@@ -289,11 +271,6 @@
       "wiki_title": "Stanway_Pegasus_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 51.881480555,
-      "longitude": 0.841038888,
-      "formatted_address": "Stanway Pegasus F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     },
     {
@@ -305,11 +282,6 @@
       "wiki_title": "Whittlesey_Athletic_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.56157,
-      "longitude": -0.10686323,
-      "formatted_address": "Whittlesey Athletic F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     },
     {
@@ -323,10 +295,10 @@
       "address_source": "wikipedia",
       "latitude": 51.86545,
       "longitude": 0.95668,
-      "formatted_address": "CO7 9QT, Wivenhoe, Colchester, Essex, England, United Kingdom",
-      "geocode_precision": "ground_override",
-      "geocode_source": "ground_override",
-      "place_id": 379901872
+      "formatted_address": "CO7 9QT, Wivenhoe, Rowhedge, Colchester, Essex, England, United Kingdom",
+      "place_id": 379150776,
+      "geocode_precision": "region",
+      "geocode_source": "ground_override"
     },
     {
       "name": "Wroxham Res",
@@ -337,13 +309,17 @@
       "wiki_title": "Wroxham_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 52.7009,
-      "longitude": 1.39708,
-      "formatted_address": "Wroxham F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata",
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 52.240588,
+    "centroid_longitude": 0.88611,
+    "mean_distance_km": 38.56,
+    "stdev_distance_km": 12.38,
+    "threshold_km": 63.33,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

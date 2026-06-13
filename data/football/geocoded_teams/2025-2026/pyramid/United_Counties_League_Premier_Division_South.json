@@ -6,16 +6,17 @@
       "name": "Ashby Ivanhoe",
       "url": "https://en.wikipedia.org/wiki/Ashby_Ivanhoe_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Ashby_Ivanhoe_logo.png",
-      "address": "Ashby Ivanhoe F.C.",
+      "address": "Ashby Ivanhoe, England",
       "territory": "England",
       "wiki_title": "Ashby_Ivanhoe_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.737396,
-      "longitude": -1.4671442,
-      "formatted_address": "Ashby Ivanhoe F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.7378109,
+      "longitude": -1.4670365,
+      "formatted_address": "Ashby Ivanhoe Football Club, Ashby-de-la-Zouch, North West Leicestershire, Leicestershire, England, United Kingdom",
+      "place_id": 279009828,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Atherstone Town",
@@ -51,16 +52,12 @@
       "name": "Bugbrooke St Michaels",
       "url": "https://en.wikipedia.org/wiki/Bugbrooke_St_Michaels_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Bugbrooke_St_Michaels_F.C._logo.png",
-      "address": "Bugbrooke St Michaels F.C.",
+      "address": "Birds Close, Bugbrooke",
       "territory": "England",
       "wiki_title": "Bugbrooke_St_Michaels_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.205828,
-      "longitude": -1.002827,
-      "formatted_address": "Bugbrooke St Michaels F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Cogenhoe United",
@@ -126,59 +123,48 @@
       "name": "Eynesbury Rovers",
       "url": "https://en.wikipedia.org/wiki/Eynesbury_Rovers_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/ac/Eynesbury_Rovers_FC.png",
-      "address": "Eynesbury Rovers F.C.",
+      "address": "Alfred Hall Memorial Ground, Eynesbury",
       "territory": "England",
       "wiki_title": "Eynesbury_Rovers_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.21759722,
-      "longitude": -0.26886944,
-      "formatted_address": "Eynesbury Rovers F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "GNG Oadby Town",
       "url": "https://en.wikipedia.org/wiki/GNG_Oadby_Town_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/25/Oadby_Town_F.C._logo.png",
-      "address": "Oadby Town F.C.",
+      "address": "Riverside / GNG FC Football Grounds, Leicester",
       "territory": "England",
       "wiki_title": "GNG_Oadby_Town_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.59383889,
-      "longitude": -1.08758611,
-      "formatted_address": "Oadby Town F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Godmanchester Rovers",
       "url": "https://en.wikipedia.org/wiki/Godmanchester_Rovers_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Godmanchester_Rovers_FC.PNG",
-      "address": "Godmanchester Rovers F.C.",
+      "address": "Godmanchester Rovers, England",
       "territory": "England",
       "wiki_title": "Godmanchester_Rovers_F.C.",
       "level": 9,
-      "latitude": 52.30915278,
-      "longitude": -0.16048889,
-      "formatted_address": "Godmanchester Rovers F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 52.3091705,
+      "longitude": -0.160455,
+      "formatted_address": "Godmanchester Rovers Football Pitch, Bearscroft Lane, Romans' Edge, Godmanchester, Huntingdonshire, Cambridgeshire, Cambridgeshire and Peterborough, England, PE29 2NE, United Kingdom",
+      "place_id": 279363339,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Hinckley AFC",
       "url": "https://en.wikipedia.org/wiki/Hinckley_A.F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/2/25/Hinckley_A.F.C._logo.svg",
-      "address": "Hinckley A.F.C.",
+      "address": null,
       "territory": "England",
       "wiki_title": "Hinckley_A.F.C.",
       "level": 9,
-      "latitude": 52.572696944,
-      "longitude": -1.3412,
-      "formatted_address": "Hinckley A.F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Histon",
@@ -192,7 +178,10 @@
       "longitude": 0.114258,
       "formatted_address": "Bridge Road",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 71.78,
+      "centroid_distance_z": 2.78
     },
     {
       "name": "Leicester Nirvana",
@@ -237,7 +226,10 @@
       "longitude": 0.086,
       "formatted_address": "GER Sports Ground",
       "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "geocode_source": "wikidata",
+      "location_outlier": true,
+      "centroid_distance_km": 69.21,
+      "centroid_distance_z": 2.58
     },
     {
       "name": "Moulton",
@@ -273,31 +265,23 @@
       "name": "Northampton ON Chenecks",
       "url": "https://en.wikipedia.org/wiki/Northampton_ON_Chenecks_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/a/a7/Northampton_ON_Chenecks_F.C._logo.svg",
-      "address": "Northampton ON Chenecks F.C.",
+      "address": "The Old Northamptonians Sports Ground, Northampton",
       "territory": "England",
       "wiki_title": "Northampton_ON_Chenecks_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.24040556,
-      "longitude": -0.86478889,
-      "formatted_address": "Northampton ON Chenecks F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Northampton Sileby Rangers",
       "url": "https://en.wikipedia.org/wiki/Northampton_Sileby_Rangers_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/5/59/Northampton_Sileby_Rangers_F.C._logo.png",
-      "address": "Northampton Sileby Rangers F.C.",
+      "address": "Fernie Fields, Northampton",
       "territory": "England",
       "wiki_title": "Northampton_Sileby_Rangers_F.C.",
       "level": 9,
       "address_source": "wikipedia",
-      "latitude": 52.27556111,
-      "longitude": -0.85231667,
-      "formatted_address": "Northampton Sileby Rangers F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "error": "geocoding_failed"
     },
     {
       "name": "Nuneaton Town",
@@ -330,5 +314,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 22
+  "team_count": 22,
+  "location_sanity": {
+    "centroid_latitude": 52.40683,
+    "centroid_longitude": -0.906978,
+    "mean_distance_km": 36.08,
+    "stdev_distance_km": 12.84,
+    "threshold_km": 61.75,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

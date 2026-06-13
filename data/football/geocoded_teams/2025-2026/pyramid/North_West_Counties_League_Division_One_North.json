@@ -6,7 +6,7 @@
       "name": "A.F.C. Blackpool",
       "url": "https://en.wikipedia.org/wiki/A.F.C._Blackpool",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/9/99/Afc-blackpool-logo.png",
-      "address": "The Mechanics, Jepson Way, Blackpool",
+      "address": "Jepson Way, Blackpool",
       "territory": "England",
       "wiki_title": "A.F.C._Blackpool",
       "level": 10,
@@ -22,16 +22,17 @@
       "name": "Ashton Athletic",
       "url": "https://en.wikipedia.org/wiki/Ashton_Athletic_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b8/Ashton_Athletic_FC_logo.png",
-      "address": "Ashton Athletic F.C.",
+      "address": "Ashton Athletic, England",
       "territory": "England",
       "wiki_title": "Ashton_Athletic_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 53.5038,
-      "longitude": -2.66471,
-      "formatted_address": "Ashton Athletic F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.503636,
+      "longitude": -2.665394,
+      "formatted_address": "Ashton Athletic Football Club, Bryn Spur, Highfield, North Ashton, Wigan, Greater Manchester, England, WN4 0JA, United Kingdom",
+      "place_id": 276799712,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Ashton Town",
@@ -52,16 +53,17 @@
       "name": "Bacup Borough",
       "url": "https://en.wikipedia.org/wiki/Bacup_Borough_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/0/09/Bacup_Borough_FC_logo.png",
-      "address": "Bacup Borough F.C.",
+      "address": "Bacup Borough, England",
       "territory": "England",
       "wiki_title": "Bacup_Borough_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 53.708231,
-      "longitude": -2.1998271,
-      "formatted_address": "Bacup Borough F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.7024932,
+      "longitude": -2.201046,
+      "formatted_address": "Bacup, Rossendale, Lancashire, England, OL13 8EZ, United Kingdom",
+      "place_id": 283249465,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Cheadle Heath Nomads",
@@ -97,16 +99,17 @@
       "name": "Daisy Hill",
       "url": "https://en.wikipedia.org/wiki/Daisy_Hill_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Daisy_Hill_FC_badge.png",
-      "address": "Daisy Hill F.C.",
+      "address": "Daisy Hill, England",
       "territory": "England",
       "wiki_title": "Daisy_Hill_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 53.53205278,
-      "longitude": -2.51804167,
-      "formatted_address": "Daisy Hill F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.539359,
+      "longitude": -2.5151778,
+      "formatted_address": "Daisy Hill, Leigh Road, Westhoughton, Daisy Hill, Bolton, Greater Manchester, England, BL5 2GS, United Kingdom",
+      "place_id": 275072747,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Darwen F.C.",
@@ -148,16 +151,17 @@
       "name": "Garstang",
       "url": "https://en.wikipedia.org/wiki/Garstang_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b3/GarstangFC.png",
-      "address": "Garstang F.C.",
+      "address": "Garstang, England",
       "territory": "England",
       "wiki_title": "Garstang_F.C.",
       "level": 10,
       "address_source": "wikipedia",
-      "latitude": 53.903152,
-      "longitude": -2.77117,
-      "formatted_address": "Garstang F.C.",
-      "geocode_precision": "wikidata",
-      "geocode_source": "wikidata"
+      "latitude": 53.9015756,
+      "longitude": -2.7734763,
+      "formatted_address": "Garstang, Wyre, Lancashire, England, United Kingdom",
+      "place_id": 276682643,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
     },
     {
       "name": "Holker Old Boys",
@@ -172,13 +176,16 @@
       "formatted_address": "Holker Old Boys A.F.C., Hawcoat, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
       "place_id": 274376874,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 65.79,
+      "centroid_distance_z": 5.53
     },
     {
       "name": "Maghull",
       "url": "https://en.wikipedia.org/wiki/Maghull_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/Maghull_F.C._logo.png",
-      "address": "DT Hughes Community Stadium, Hall Lane, Maghull",
+      "address": "Hall Lane, Maghull",
       "territory": "England",
       "wiki_title": "Maghull_F.C.",
       "level": 10,
@@ -224,7 +231,7 @@
       "name": "Squires Gate",
       "url": "https://en.wikipedia.org/wiki/Squires_Gate_F.C.",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6e/Squires_Gate_FC_logo.png",
-      "address": "The Skiddle Community Stadium, Squires Gate, Blackpool",
+      "address": "Squires Gate, Blackpool",
       "territory": "England",
       "wiki_title": "Squires_Gate_F.C.",
       "level": 10,
@@ -249,7 +256,10 @@
       "longitude": -1.8822981,
       "formatted_address": "Marley Road, Thwaites, Keighley, Riddlesden, Bradford, West Yorkshire, England, BD21 4LZ, United Kingdom",
       "place_id": 276841920,
-      "geocode_source": "wikipedia"
+      "geocode_source": "wikipedia",
+      "location_outlier": true,
+      "centroid_distance_km": 48.55,
+      "centroid_distance_z": 2.89
     },
     {
       "name": "Thornton Cleveleys",
@@ -267,5 +277,14 @@
       "geocode_source": "wikipedia"
     }
   ],
-  "team_count": 18
+  "team_count": 18,
+  "location_sanity": {
+    "centroid_latitude": 53.695096,
+    "centroid_longitude": -2.559029,
+    "mean_distance_km": 29.74,
+    "stdev_distance_km": 6.51,
+    "threshold_km": 42.77,
+    "sigma": 2.0,
+    "outlier_count": 2
+  }
 }

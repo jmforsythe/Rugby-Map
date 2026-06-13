@@ -59,7 +59,10 @@
       "formatted_address": "Imperial Hotel, 2,4,6,8,10, First Avenue, Brunswick, Portslade by Sea, Hove, Brighton and Hove, England, BN3 2FE, United Kingdom",
       "place_id": 283261081,
       "geocode_precision": "name",
-      "geocode_source": "nominatim_name"
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 47.37,
+      "centroid_distance_z": 8.13
     },
     {
       "name": "Winscombe First",
@@ -158,5 +161,14 @@
       "error": "geocoding_failed"
     }
   ],
-  "team_count": 15
+  "team_count": 15,
+  "location_sanity": {
+    "centroid_latitude": 51.012405,
+    "centroid_longitude": -0.772684,
+    "mean_distance_km": 24.79,
+    "stdev_distance_km": 2.78,
+    "threshold_km": 30.35,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
 }

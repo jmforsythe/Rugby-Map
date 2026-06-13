@@ -1,0 +1,163 @@
+{
+  "league_name": "Wearside League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=605365759&selectedSeason=304741995&selectedDivision=0&selectedCompetition=0&selectedFixtureGroupKey=1_233418884",
+  "teams": [
+    {
+      "name": "Annfield Plain",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=406209266",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Annfield Plain, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.8578249,
+      "longitude": -1.7374865,
+      "formatted_address": "Annfield Plain, Stanley, County Durham, North East, England, DH9 7XT, United Kingdom",
+      "place_id": 274576425,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Darlington RA",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=978624090",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Darlington Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=673517120",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Darlington Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.5242081,
+      "longitude": -1.5555812,
+      "formatted_address": "Darlington, Tees Valley, England, DL1 5PW, United Kingdom",
+      "place_id": 273827394,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Durham United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=254102882",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Farringdon Detached",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=141355555",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gateshead Leam Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=895412214",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hartlepool",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=671869875",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Hartlepool, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.6857276,
+      "longitude": -1.2093696,
+      "formatted_address": "Hartlepool, Tees Valley, England, TS24 7EQ, United Kingdom",
+      "place_id": 272990727,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Norton Stockton Ancients, Norton Complex",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=772031585",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Richmond Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=785212621",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Richmond Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.4613531,
+      "longitude": -0.3032767,
+      "formatted_address": "Richmond, Greater London, England, TW9 1DY, United Kingdom",
+      "place_id": 280862689,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Shildon AFC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=718669834",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Silksworth Colliery Welfare",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=591340469",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "South Moor AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=234851876",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Windscale",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=896897052",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Windscale, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.4245201,
+      "longitude": -3.4959529,
+      "formatted_address": "Windscale, Beckermet, Calder Bridge, Cumberland, England, United Kingdom",
+      "place_id": 275493003,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Wolviston",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=233418884&teamID=279081227",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Wolviston, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.62473,
+      "longitude": -1.3000545,
+      "formatted_address": "Wolviston, Stockton-on-Tees, Tees Valley, England, United Kingdom",
+      "place_id": 273931514,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 14
+}

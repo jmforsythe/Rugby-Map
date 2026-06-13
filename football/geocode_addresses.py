@@ -7,6 +7,7 @@ calls Nominatim for the long tail without Wikidata coverage.
 
 Run:
   python -m football.geocode_addresses --season 2025-2026 --subdir pyramid
+  python -m football.geocode_addresses --season 2025-2026 --subdir feeder
   python -m football.geocode_addresses --season 2025-2026 --subdir BSLFL
 """
 
@@ -43,7 +44,7 @@ def geocode_address_dir(
         raise FileNotFoundError(f"Address directory not found: {address_dir}")
 
     geo_dir = DATA_DIR / "geocoded_teams" / season / subdir
-    use_pyramid = subdir == "pyramid"
+    use_pyramid = subdir in ("pyramid", "feeder")
     wikidata_coords = load_wikidata_coords(refresh=refresh_wikidata) if use_pyramid else {}
 
     total = 0

@@ -18,10 +18,10 @@ from html import escape
 from pathlib import Path
 
 from core import setup_logging
-from core.config import BOUNDARIES_DIR, DIST_DIR
+from core.config import BOUNDARIES_DIR
 from core.map_builder import MarkerItem, generate_multi_group_map, load_itl_hierarchy
 from football import DATA_DIR
-from football.map_common import build_map_config, prepare_map_context, short_season
+from football.map_common import build_map_config, dist_season_dir, prepare_map_context, short_season
 
 logger = logging.getLogger(__name__)
 
@@ -276,10 +276,7 @@ def main() -> None:
 
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
 
-    if is_prod:
-        output_dir = DIST_DIR / "football" / season
-    else:
-        output_dir = _SCRIPT_DIR / season
+    output_dir = dist_season_dir(season, production=is_prod) if is_prod else _SCRIPT_DIR / season
     output_dir.mkdir(parents=True, exist_ok=True)
 
     out = output_dir / "BSLFL_All_Divisions.html"

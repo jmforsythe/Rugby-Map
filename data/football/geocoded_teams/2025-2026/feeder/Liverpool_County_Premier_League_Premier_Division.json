@@ -1,0 +1,153 @@
+{
+  "league_name": "Liverpool County Premier League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=4075038&selectedSeason=721928468&selectedDivision=603222834&selectedCompetition=0&selectedFixtureGroupKey=1_271961614",
+  "teams": [
+    {
+      "name": "The Grenadier",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=317622493",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/49645.jpg",
+      "address": "The Grenadier, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.5014537,
+      "longitude": -0.1549077,
+      "formatted_address": "The Grenadier, 18, Wilton Row, Belgravia, City of Westminster, Greater London, England, SW1X 7NR, United Kingdom",
+      "place_id": 281493110,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "East Villa Rail",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=664693807",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Liverpool NALGO",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=644856418",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/1932.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sefton Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=326514434",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/65095.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Halewood Apollo",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=606062105",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/69995.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Waterloo Dock",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=657634483",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/2653.jpg",
+      "address": "Waterloo Dock, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.413991,
+      "longitude": -3.0004304,
+      "formatted_address": "East Waterloo Dock, Pride Quarter, Vauxhall, Liverpool, Liverpool City Region, England, United Kingdom",
+      "place_id": 276505382,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Liver Academy",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=851072316",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/69524.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Granby Toxteth Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=981496235",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/34228.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Joey Orr's FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=273958004",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/78778.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "River Football Club",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=677927552",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "MSB Woolton Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=850450395",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/54574.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Skelmersdale United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=870045218",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "FC King Harry",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=407671818",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/76580.jpg",
+      "address": "FC King Harry, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.7438739,
+      "longitude": -0.3570704,
+      "formatted_address": "King Harry Park, St Stephens, St Albans, Hertfordshire, England, AL3 4GJ, United Kingdom",
+      "place_id": 281069335,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Deysbrook FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=271961614&teamID=465331541",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4075038/84138.jpg",
+      "address": "Deysbrook FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.4352327,
+      "longitude": -2.8901691,
+      "formatted_address": "Deysbrook, Dovecot, Liverpool, Liverpool City Region, England, L12 4YF, United Kingdom",
+      "place_id": 277459991,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 14
+}

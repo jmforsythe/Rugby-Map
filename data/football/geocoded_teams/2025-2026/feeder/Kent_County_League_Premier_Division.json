@@ -1,0 +1,148 @@
+{
+  "league_name": "Kent County League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=3130670&selectedSeason=212622028&selectedDivision=394511877&selectedCompetition=0&selectedFixtureGroupKey=1_600611189",
+  "teams": [
+    {
+      "name": "AMG Ballerz",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=422242810",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/85898.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Equinoccial FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=458139524",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/17776.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Peckham Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=724706025",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/12937.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Otford United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=490127296",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/70331.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "South East Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=896995360",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/42609.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ide Hill",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=140091528",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/93136.jpg",
+      "address": "Ide Hill, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.2468457,
+      "longitude": 0.1262685,
+      "formatted_address": "Ide Hill, Sevenoaks, Kent, England, TN14 6JT, United Kingdom",
+      "place_id": 100648010,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Greenwich All Stars",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=378058413",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bermondsey Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=916808211",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/47097.jpg",
+      "address": "Bermondsey Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.7536408,
+      "longitude": -0.3885168,
+      "formatted_address": "Bermondsey Drive, East Ella, Hull, Kingston upon Hull, Hull and East Yorkshire, England, HU5 5EQ, United Kingdom",
+      "place_id": 278192965,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Orpington",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=524799089",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Orpington, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.3796373,
+      "longitude": 0.1053732,
+      "formatted_address": "Orpington, Greater London, England, BR6 0GE, United Kingdom",
+      "place_id": 100408896,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Stansfeld (Oxford & Bermondsey) Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=85964205",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/78367.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Parkwood Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=996886061",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/94903.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Langley Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=789127316",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bromleians",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=808779241",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/19915.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Farnborough Old Boys Guild",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=395443324&teamID=185819765",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3130670/95299.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 14
+}

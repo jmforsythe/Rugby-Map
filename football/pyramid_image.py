@@ -48,13 +48,21 @@ def _valid_football_crest_url(url: object) -> bool:
 
 
 def load_football_pyramid_leagues(season: str) -> list[LeagueData]:
-    """Load pyramid division JSON into :class:`LeagueData` for the shared renderer."""
-    pyramid_dir = DATA_DIR / "geocoded_teams" / season / "pyramid"
-    if not pyramid_dir.is_dir():
-        raise FileNotFoundError(f"No pyramid data at {pyramid_dir}")
+    """Load pyramid and feeder division JSON into :class:`LeagueData` for the renderer."""
+    data_dirs = [
+        DATA_DIR / "geocoded_teams" / season / "pyramid",
+        DATA_DIR / "geocoded_teams" / season / "feeder",
+    ]
+    if not any(d.is_dir() for d in data_dirs):
+        raise FileNotFoundError(f"No pyramid/feeder data for season {season}")
 
     leagues: list[LeagueData] = []
-    for filepath in sorted(pyramid_dir.glob("*.json")):
+    paths: list[Path] = []
+    for data_dir in data_dirs:
+        if data_dir.is_dir():
+            paths.extend(sorted(data_dir.glob("*.json")))
+
+    for filepath in paths:
         with open(filepath, encoding="utf-8") as f:
             data = json.load(f)
 

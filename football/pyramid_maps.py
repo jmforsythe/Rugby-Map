@@ -1,7 +1,8 @@
 """
-Generate interactive pyramid maps for English football (levels 1-10).
+Generate interactive pyramid maps for English football (levels 1-11).
 
-Reads ``data/football/geocoded_teams/<season>/pyramid/`` and writes:
+Reads ``data/football/geocoded_teams/<season>/pyramid/`` and ``.../feeder/``
+and writes:
   - One map per pyramid level (divisions as toggleable layers)
   - Combined all-levels map
 
@@ -43,10 +44,15 @@ def main() -> None:
     production = args.production
     show_debug = not args.no_debug
 
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season / "pyramid"
-    items = load_pyramid_items(geocoded_dir)
+    geocoded_pyramid = DATA_DIR / "geocoded_teams" / season / "pyramid"
+    geocoded_feeder = DATA_DIR / "geocoded_teams" / season / "feeder"
+    items = load_pyramid_items(geocoded_pyramid, geocoded_feeder)
     if not items:
-        logger.error("No geocoded pyramid items in %s", geocoded_dir)
+        logger.error(
+            "No geocoded pyramid/feeder items in %s or %s",
+            geocoded_pyramid,
+            geocoded_feeder,
+        )
         return
 
     by_tier, tier_order = group_by_tier(items)

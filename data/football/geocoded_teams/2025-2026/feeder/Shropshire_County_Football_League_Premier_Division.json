@@ -1,0 +1,182 @@
+{
+  "league_name": "Shropshire County Football League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=666448062&selectedSeason=881975041&selectedDivision=966329469&selectedCompetition=0&selectedFixtureGroupKey=1_638347128",
+  "teams": [
+    {
+      "name": "Dawley Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=160081658",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Dawley Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.6638156,
+      "longitude": -2.4651923,
+      "formatted_address": "Dawley, Telford and Wrekin, England, TF4 2TL, United Kingdom",
+      "place_id": 277325847,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Church Stretton Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=679531510",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Church Stretton Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.5390088,
+      "longitude": -2.8056568,
+      "formatted_address": "Church Stretton Beaumont Road, Beaumont Road, Church Stretton town centre, Hazler, All Stretton, Church Stretton, Shropshire, England, SY6 6DT, United Kingdom",
+      "place_id": 273704686,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Ellesmere Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=131721324",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "FC Nations",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=607846542",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "FC Nations, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.0934963,
+      "longitude": -1.3011268,
+      "formatted_address": "Nations Hill, Abbots Worthy, Kings Worthy, Winchester, Hampshire, England, SO23 7GW, United Kingdom",
+      "place_id": 281096620,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Wrockwardine Wood",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=846469240",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Wrockwardine Wood, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.7023241,
+      "longitude": -2.4427661,
+      "formatted_address": "Wrockwardine Wood, Wrockwardine Wood and Trench, Telford, Telford and Wrekin, England, United Kingdom",
+      "place_id": 277420563,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bridgnorth Spartans",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=773781085",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Shrewsbury Up & Comers Adult",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=327646609",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gobowen Celtic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=823655095",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Shifnal Town 1964",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=585592123",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Whitchurch Alport 1946",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=829115527",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Whitchurch Alport 1946, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.9723652,
+      "longitude": -2.6725363,
+      "formatted_address": "Whitchurch Alport Football Club, Black Park Road, Waymills, Whitchurch Urban, Whitchurch, Shropshire, England, SY13 1PF, United Kingdom",
+      "place_id": 276707367,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "NC United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=492317065",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "NC United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.2297277,
+      "longitude": -5.165589,
+      "formatted_address": "United Downs Deep Geothermal Power Project, Crofthandy, Gwennap, Cornwall, England, United Kingdom",
+      "place_id": 285969644,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Prees United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=753271150",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Prees United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.8973977,
+      "longitude": -2.6646518,
+      "formatted_address": "Prees Methodist and United Reformed Church, 5-6, Church Street, Prees Lower Heath, Prees, Shropshire, England, SY13 2DQ, United Kingdom",
+      "place_id": 276378123,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Telford Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=210839558",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Llanymynech Adults",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=868498799",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wem Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=638347128&teamID=197836751",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Wem Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.8556312,
+      "longitude": -2.7241167,
+      "formatted_address": "Wem, Shropshire, England, SY4 5DG, United Kingdom",
+      "place_id": 276691432,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 15
+}

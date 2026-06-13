@@ -1,0 +1,197 @@
+{
+  "league_name": "Northern Alliance Premier Division",
+  "league_url": "https://en.wikipedia.org/wiki/Northern_Football_Alliance",
+  "teams": [
+    {
+      "name": "Bedlington Terriers",
+      "url": "https://en.wikipedia.org/wiki/Bedlington_Terriers_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/ce/Bedlington_Terriers_F.C._logo.png",
+      "address": "Bedlington Terriers F.C.",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Bedlington_Terriers_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 55.1306,
+      "longitude": -1.58647,
+      "formatted_address": "Bedlington Terriers F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Burradon & New Fordley",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cramlington United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gateshead Rutherford",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gosforth Bohemians",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Haltwhistle Jubilee",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hazlerigg Victory",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Heaton Stannington 'A'",
+      "url": "https://en.wikipedia.org/wiki/Heaton_Stannington_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/02/Heaton_Stannington_F.C.png",
+      "address": "Heaton Stannington F.C.",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Heaton_Stannington_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 54.999027777,
+      "longitude": -1.590472222,
+      "formatted_address": "Heaton Stannington F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Hebburn Town Reserves",
+      "url": "https://en.wikipedia.org/wiki/Hebburn_Town_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/Hebburn_Town_FC_crest.svg",
+      "address": "Hebburn Town F.C.",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Hebburn_Town_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 54.96855833,
+      "longitude": -1.52397778,
+      "formatted_address": "Hebburn Town F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Newcastle Chemfica",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Newcastle East End",
+      "url": "https://en.wikipedia.org/wiki/Newcastle_East_End_F.C.",
+      "image_url": null,
+      "address": "Newcastle East End, England",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Newcastle_East_End_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 54.9183418,
+      "longitude": -1.3841279,
+      "formatted_address": "Newcastle Road, Fulwell, Sunderland, Tyne and Wear, North East, England, SR5 1JB, United Kingdom",
+      "place_id": 273894598,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Newcastle Independent",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "North Shields Athletic",
+      "url": "https://en.wikipedia.org/wiki/North_Shields_Athletic",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/70/North_shields_fc_badge.png",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "North_Shields_Athletic",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ponteland United",
+      "url": "https://en.wikipedia.org/wiki/Ponteland_United_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/Ponteland_United_F.C.png",
+      "address": "Ponteland United F.C.",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Ponteland_United_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 55.04763611,
+      "longitude": -1.74074444,
+      "formatted_address": "Ponteland United F.C.",
+      "geocode_precision": "wikidata",
+      "geocode_source": "wikidata"
+    },
+    {
+      "name": "Seaton Delaval AFC",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wallington",
+      "url": "",
+      "image_url": null,
+      "address": "Wallington, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.9872386,
+      "longitude": -0.1190634,
+      "formatted_address": "Wallington, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 282195499,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "West Moor & Jesmond",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 17
+}

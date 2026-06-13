@@ -1,0 +1,163 @@
+{
+  "league_name": "Yorkshire Amateur League Supreme Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=7058382&selectedSeason=743452094&selectedDivision=972054550&selectedCompetition=0&selectedFixtureGroupKey=1_744981080",
+  "teams": [
+    {
+      "name": "Leeds Modernians",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=173115360",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/42168.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "South Leeds",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=867129523",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/46308.jpg",
+      "address": "South Leeds, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.7642487,
+      "longitude": -1.5419449,
+      "formatted_address": "South Leeds Stadium (Hunslet RLFC), John Charles Approach, Belle Isle, Leeds, West Yorkshire, England, LS11 5DJ, United Kingdom",
+      "place_id": 277819493,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Shelley",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=754788256",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Shelley, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.0071487,
+      "longitude": 0.9577423,
+      "formatted_address": "Shelley, Babergh, Suffolk, England, United Kingdom",
+      "place_id": 159429922,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Leeds U.F.C.A",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=140879824",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Norristhorpe",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=536860009",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/77946.jpg",
+      "address": "Norristhorpe, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.7004344,
+      "longitude": -1.6834916,
+      "formatted_address": "Norristhorpe, Kirklees, West Yorkshire, England, WF15 7AP, United Kingdom",
+      "place_id": 276814071,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Newsome",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=483827912",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/97397.jpg",
+      "address": "Newsome, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.6287076,
+      "longitude": -1.7823048,
+      "formatted_address": "Newsome, Huddersfield, Kirklees, West Yorkshire, England, HD4 6LR, United Kingdom",
+      "place_id": 278249419,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Route One Rovers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=281809537",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/7273.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Shelf United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=492580192",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/93825.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ryburn United Res",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=167601777",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/11756.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Leeds City",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=474947014",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/30604.jpeg",
+      "address": "Leeds City, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.794414,
+      "longitude": -1.548621,
+      "formatted_address": "Leeds, Sandford Street, Warehouse Hill, Arena Quarter, Lovell Park, Leeds, West Yorkshire, England, LS1 4EN, United Kingdom",
+      "place_id": 278373165,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Shire Academics",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=95472283",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/6560.jpeg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Leeds Medics & Dentists Res",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=958853766",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/6218.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Morley Town AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=581144541",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/92130.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Woodkirk Valley",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=847826671&teamID=189085427",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7058382/46967.jpg",
+      "address": "Woodkirk Valley, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.7224571,
+      "longitude": -1.5885996,
+      "formatted_address": "Woodkirk Valley Country Club, 1172, Dewsbury Road, Upper Green, Morley, Woodkirk, Leeds, West Yorkshire, England, WF12 7JL, United Kingdom",
+      "place_id": 278738501,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 14
+}

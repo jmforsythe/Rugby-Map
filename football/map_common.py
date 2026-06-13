@@ -134,43 +134,43 @@ def _render_popup_html(
     )
 
 
-def load_pyramid_items(geocoded_dir: Path) -> list[MarkerItem]:
-    """Load MarkerItems from ``geocoded_teams/<season>/pyramid/*.json``."""
-    if not geocoded_dir.is_dir():
-        return []
-
+def load_pyramid_items(*geocoded_dirs: Path) -> list[MarkerItem]:
+    """Load MarkerItems from ``geocoded_teams/<season>/pyramid/`` and/or ``.../feeder/``."""
     items: list[MarkerItem] = []
-    for filepath in sorted(geocoded_dir.glob("*.json")):
-        with open(filepath, encoding="utf-8") as f:
-            data = json.load(f)
+    for geocoded_dir in geocoded_dirs:
+        if not geocoded_dir.is_dir():
+            continue
+        for filepath in sorted(geocoded_dir.glob("*.json")):
+            with open(filepath, encoding="utf-8") as f:
+                data = json.load(f)
 
-        league_name = data.get("league_name", filepath.stem.replace("_", " "))
-        league_url = data.get("league_url", "")
+            league_name = data.get("league_name", filepath.stem.replace("_", " "))
+            league_url = data.get("league_url", "")
 
-        for team in data.get("teams", []):
-            if "latitude" not in team or "longitude" not in team:
-                continue
-            level = int(team.get("level", 0))
-            if level < 1:
-                continue
-            items.append(
-                MarkerItem(
-                    name=team["name"],
-                    latitude=team["latitude"],
-                    longitude=team["longitude"],
-                    group=league_name,
-                    tier=tier_display_name(level),
-                    tier_num=level,
-                    icon_url=team.get("image_url"),
-                    popup_html=_render_popup_html(
-                        team["name"],
-                        league_name,
-                        league_url,
-                        team.get("url", ""),
-                        team.get("formatted_address") or team.get("address") or "",
-                    ),
+            for team in data.get("teams", []):
+                if "latitude" not in team or "longitude" not in team:
+                    continue
+                level = int(team.get("level", 0))
+                if level < 1:
+                    continue
+                items.append(
+                    MarkerItem(
+                        name=team["name"],
+                        latitude=team["latitude"],
+                        longitude=team["longitude"],
+                        group=league_name,
+                        tier=tier_display_name(level),
+                        tier_num=level,
+                        icon_url=team.get("image_url"),
+                        popup_html=_render_popup_html(
+                            team["name"],
+                            league_name,
+                            league_url,
+                            team.get("url", ""),
+                            team.get("formatted_address") or team.get("address") or "",
+                        ),
+                    )
                 )
-            )
     return items
 
 

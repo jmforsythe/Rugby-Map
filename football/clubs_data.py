@@ -54,6 +54,7 @@ def infer_territory_from_team(name: str, wiki_title: str = "") -> str:
 _GROUND_OVERRIDES: dict[str, str] = {
     "jersey bulls": "Springfield Stadium, St Helier, Jersey",
     "isle of man": "The Bowl, Douglas, Isle of Man",
+    "wivenhoe town": "Broad Lane, Wivenhoe CO7 9QT, Essex, England",
 }
 
 
@@ -79,20 +80,49 @@ def _town_fallback(address: str) -> str | None:
     return address
 
 
+def _wikidata_ground_is_venue(ground: str, team: dict) -> bool:
+    """False when Wikidata's ground label is just the club name, not a stadium address."""
+    text = ground.strip()
+    if not text:
+        return False
+    label = text.casefold()
+    name = (team.get("name") or "").casefold().strip()
+    if label == name:
+        return False
+    if label.rstrip(".") in {f"{name} f.c.", f"{name} fc", f"{name} football club"}:
+        return False
+    if re.search(r"\bf\.?c\.?\s*$", label):
+        return False
+    return True
+
+
+def _nominatim_candidates(address: str, team: dict) -> list[str]:
+    """Build ordered Nominatim query strings for a Wikipedia infobox ground."""
+    candidates = [address]
+    territory = team.get("territory") or "England"
+    if territory == "England" and address.count(",") < 2:
+        candidates.append(f"{address}, England")
+    fallback = _town_fallback(address)
+    if fallback and fallback not in candidates:
+        candidates.append(fallback)
+    return candidates
+
+
 def geocode_team(team: dict) -> dict:
     """Geocode a single team dict that has an ``address`` field."""
     result = dict(team)
     address = team.get("address")
-    fallback = _town_fallback(address) if address else None
-
     coords = None
     if address:
-        coords, _ = geocode_with_nominatim(address)
-
-    if not coords and fallback and fallback != address:
-        coords, _ = geocode_with_nominatim(fallback)
-        if coords:
-            result["geocode_precision"] = "town"
+        for query in _nominatim_candidates(address, team):
+            coords, _ = geocode_with_nominatim(query)
+            if coords:
+                if query != address:
+                    result["address"] = query
+                    result["geocode_precision"] = (
+                        "town" if query == _town_fallback(address) else "region"
+                    )
+                break
 
     if coords:
         result.update(coords)
@@ -106,11 +136,18 @@ def geocode_team(team: dict) -> dict:
 
 
 def geocode_pyramid_team(team: dict, wikidata_coords: dict[str, dict]) -> dict:
-    """Geocode a pyramid team using Wikidata, Wikipedia ground, then name fallback."""
+    """Geocode a pyramid team using Wikipedia ground, then Wikidata, then name fallback."""
     wiki_title = team.get("wiki_title", "")
-
     wikidata = wikidata_coords.get(wiki_title)
-    if wikidata:
+
+    if team.get("address"):
+        result = geocode_team(team)
+        if "error" not in result:
+            if team.get("address_source"):
+                result["geocode_source"] = team["address_source"]
+            return result
+
+    if wikidata and _wikidata_ground_is_venue(wikidata.get("ground") or "", team):
         result = dict(team)
         ground = wikidata.get("ground") or team.get("address")
         result["address"] = ground
@@ -120,11 +157,6 @@ def geocode_pyramid_team(team: dict, wikidata_coords: dict[str, dict]) -> dict:
         result["geocode_precision"] = "wikidata"
         result["geocode_source"] = "wikidata"
         return result
-
-    if team.get("address"):
-        result = geocode_team(team)
-        if "error" not in result:
-            return result
 
     name = team.get("name", "")
     override = ground_override_address(name)
@@ -173,7 +205,6 @@ def geocode_pyramid_league(address_league: dict, wikidata_coords: dict[str, dict
         len(geocoded_teams),
         address_league["league_name"],
     )
-
     return {
         "league_name": address_league["league_name"],
         "league_url": address_league["league_url"],
@@ -199,7 +230,6 @@ def geocode_league(address_league: dict) -> dict:
         len(geocoded_teams),
         address_league["league_name"],
     )
-
     return {
         "league_name": address_league["league_name"],
         "league_url": address_league["league_url"],

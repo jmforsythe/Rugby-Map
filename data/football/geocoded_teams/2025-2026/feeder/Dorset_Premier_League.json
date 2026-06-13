@@ -1,0 +1,189 @@
+{
+  "league_name": "Dorset Premier League",
+  "league_url": "https://fulltime.thefa.com/table.html?league=6392495&selectedSeason=473759228&selectedDivision=0&selectedCompetition=0&selectedFixtureGroupKey=1_887236468",
+  "teams": [
+    {
+      "name": "Blandford United FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=691289111",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/71033.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cobham Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=7197104",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/40184.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bournemouth Electric FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=318029946",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/6988.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Swanage Town & Herston FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=851674687",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/26439.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Dorchester Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=664348971",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/54807.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Holt United FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=193371876",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/48399.jpg",
+      "address": "Holt United FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.8414834,
+      "longitude": -1.973095,
+      "formatted_address": "Holt United FC, Petersham Lane, Hinton, Gaunts Common, Dorset, England, BH21 4JH, United Kingdom",
+      "place_id": 281063787,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bournemouth Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=788300712",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/627.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sherborne Town FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=770632598",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/72612.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hamworthy Recreation FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=103529626",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/93477.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Westland Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=197259412",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/51135.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wimborne Town FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=307161743",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/25026.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Balti Sports FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=535763280",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/50895.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hamworthy United FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=614182301",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/26651.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Portland United FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=375450045",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/90944.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Verwood Town FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=554650571",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/90976.jpg",
+      "address": "Verwood Town FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.5818703,
+      "longitude": -2.0787192,
+      "formatted_address": "Verwood Close, The Lunt, Bilston, Wolverhampton, West Midlands, England, WV13 3QQ, United Kingdom",
+      "place_id": 276088890,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Gillingham Town FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=59252628",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/75491.jpg",
+      "address": "Gillingham Town FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.3871701,
+      "longitude": 0.5461611,
+      "formatted_address": "Gillingham, Medway, England, United Kingdom",
+      "place_id": 100060169,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bridport FC Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=292328118",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/61185.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Poole Borough FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=887236468&teamID=974994126",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league6392495/47992.jpg",
+      "address": "Poole Borough FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.0943832,
+      "longitude": -2.5374421,
+      "formatted_address": "Poole, Worleston, Cheshire East, England, United Kingdom",
+      "place_id": 277470990,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 18
+}

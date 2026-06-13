@@ -1,0 +1,150 @@
+{
+  "league_name": "Thames Valley Premier League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=6151604&selectedSeason=292532599&selectedDivision=919922629&selectedCompetition=0&selectedFixtureGroupKey=1_828127973",
+  "teams": [
+    {
+      "name": "Cookham Dean",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=504139936",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Cookham Dean, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.5614551,
+      "longitude": -0.7461153,
+      "formatted_address": "Cookham Dean, Cookham, Windsor and Maidenhead, England, SL6 9PA, United Kingdom",
+      "place_id": 280532868,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Allied Community Elite",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=543256202",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Rotherfield United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=246549436",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wraysbury",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=691499313",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Wraysbury, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.4574568,
+      "longitude": -0.5606471,
+      "formatted_address": "Wraysbury, Windsor and Maidenhead, England, United Kingdom",
+      "place_id": 281242154,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Caversham United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=626975354",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Marlow United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=209274007",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Marlow United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.4174405,
+      "longitude": -3.0506963,
+      "formatted_address": "Marlow Road United Reform Church, Marlowe Road, Liscard, Wallasey, Wirral, Liverpool City Region, England, CH44 3BU, United Kingdom",
+      "place_id": 273547856,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bramley United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=292413922",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Bramley United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.3283979,
+      "longitude": -1.0676668,
+      "formatted_address": "Bramley United Football Ground, Bramley, Basingstoke and Deane, Hampshire, England, United Kingdom",
+      "place_id": 282493509,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Hype Train",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=776482578",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Chalfont Wasps",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=971572243",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Chalfont Wasps, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.6263455,
+      "longitude": -0.5726279,
+      "formatted_address": "Chalfont Wasps Clubhouse, Crossleys, Dibden Hill, Chalfont St Giles, Denham, Gerrards Cross and Chalfonts Community Board, Jordans, Buckinghamshire, England, HP8 4QT, United Kingdom",
+      "place_id": 279678967,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Fleet Spurs",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=419822011",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Fleet Spurs, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.2908482,
+      "longitude": -0.7998067,
+      "formatted_address": "Fleet Spurs Football Club, Summit Avenue, Southwood, Farnborough, Rushmoor, Hampshire, England, GU14 0FB, United Kingdom",
+      "place_id": 282170725,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "AFC Reading",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=516871914",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Mortimer",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=406710052&teamID=974642659",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Mortimer, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.3770755,
+      "longitude": -1.0604931,
+      "formatted_address": "Mortimer, Stratfield Mortimer, West Berkshire, England, RG7 3RD, United Kingdom",
+      "place_id": 281549524,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 12
+}

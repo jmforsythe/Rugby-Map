@@ -1,0 +1,148 @@
+{
+  "league_name": "Oxfordshire Senior League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=5277609&selectedSeason=255128945&selectedDivision=243254617&selectedCompetition=0&selectedFixtureGroupKey=1_449663334",
+  "teams": [
+    {
+      "name": "Witney Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=382193230",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/59207.jpg",
+      "address": "Witney Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.783843,
+      "longitude": -1.4852857,
+      "formatted_address": "witney town hall, Market Square, Cogges, Witney, Ducklington, West Oxfordshire, Oxfordshire, England, OX28 6AG, United Kingdom",
+      "place_id": 281386873,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Shipston Excelsior First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=330930409",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/48065.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Thame United A",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=520361463",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/34612.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Oakley United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=143522330",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/93495.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hanwell United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=226467648",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/72921.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sporting Headington Academicals",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=491478157",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/19702.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bletchington First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=308448703",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/60896.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Yarnton Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=935956235",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/37905.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Summertown Stars First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=78558790",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/75245.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Graven Hill",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=891943669",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/43330.jpg",
+      "address": "Graven Hill, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.8789941,
+      "longitude": -1.1460515,
+      "formatted_address": "Graven Hill, Cherwell, Oxfordshire, England, OX25 2BD, United Kingdom",
+      "place_id": 281158517,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Cropredy",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=85276066",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/49328.jpg",
+      "address": "Cropredy, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.122826,
+      "longitude": -1.3280951,
+      "formatted_address": "Cropredy, Cherwell, Oxfordshire, England, United Kingdom",
+      "place_id": 279234304,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Kidlington Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=844479963",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/85649.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Charlton United First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=437090005",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/47451.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Long Crendon Development",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=300918713&teamID=641503183",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5277609/25807.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 14
+}

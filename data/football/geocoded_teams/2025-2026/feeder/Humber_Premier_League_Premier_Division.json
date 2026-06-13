@@ -1,0 +1,152 @@
+{
+  "league_name": "Humber Premier League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=5360640&selectedSeason=893777580&selectedDivision=0&selectedCompetition=0&selectedFixtureGroupKey=1_514172893",
+  "teams": [
+    {
+      "name": "Hessle Sporting Club",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=513497226",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/17790.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "LIV Supplies",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=614122492",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/64998.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Great Driffield AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=208666752",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/86890.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sculcoates Amateurs",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=18667678",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/57524.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "South Cave United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=500961220",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/53572.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hedon Rangers FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=716145308",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/33300.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hornsea Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=562512971",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/10819.jpg",
+      "address": "Hornsea Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9119862,
+      "longitude": -0.1679515,
+      "formatted_address": "Hornsea Town Hall, 75a, Newbegin, Hornsea, East Riding of Yorkshire, Hull and East Yorkshire, England, HU18 1PA, United Kingdom",
+      "place_id": 278650115,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Reckitts AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=152360086",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/82742.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Goole United AFC First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=140370895",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/51990.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Scarborough Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=629062743",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/4609.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Brandesburton AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=189717325",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/34490.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bridlington Town FC            Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=426892399",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/9774.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hull United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=801588884",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/40055.jpg",
+      "address": "Hull United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.7686457,
+      "longitude": -0.2974779,
+      "formatted_address": "East Hull United Reformed Church, Clifford Avenue, Sutton Ings, Garden Village, Hull, Kingston upon Hull, Hull and East Yorkshire, England, HU8 0FL, United Kingdom",
+      "place_id": 278631728,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Beverley Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=470589610",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/58683.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hessle Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=514172893&teamID=762785015",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5360640/66392.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 15
+}

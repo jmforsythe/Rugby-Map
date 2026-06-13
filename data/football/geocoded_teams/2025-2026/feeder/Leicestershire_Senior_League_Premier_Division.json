@@ -1,0 +1,186 @@
+{
+  "league_name": "Leicestershire Senior League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=651281&selectedSeason=322753137&selectedDivision=497158193&selectedCompetition=0&selectedFixtureGroupKey=1_53978027",
+  "teams": [
+    {
+      "name": "Loughborough Students Development",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=938745204",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/21510.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Anstey Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=855993924",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/17126.jpg",
+      "address": "Anstey Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.9121639,
+      "longitude": -1.4018969,
+      "formatted_address": "Anstey Residential, 13, Bellevue Road, Bellevue, Bevois Town, Southampton, England, SO15 2AT, United Kingdom",
+      "place_id": 279675642,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Aylestone Park Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=521513635",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/31103.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Leicester Atletico",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=857849848",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/32219.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sileby Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=807087550",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/48625.jpg",
+      "address": "Sileby Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.7294433,
+      "longitude": -1.1208146,
+      "formatted_address": "Sileby Town Cricket Club, Sileby, Mountsorrel, Charnwood, Leicestershire, England, LE12 7NF, United Kingdom",
+      "place_id": 279627220,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Lutterworth Athletic Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=831451380",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/98797.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cottesmore AFC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=128394384",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/52759.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Magna 73",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=38563614",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/16108.jpg",
+      "address": "Magna 73, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.9689985,
+      "longitude": -0.2883265,
+      "formatted_address": "73, Orchard Close, Great Hale, Little Hale, North Kesteven, Lincolnshire, Greater Lincolnshire, England, NG34 9JA, United Kingdom",
+      "place_id": 276784835,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Hathern FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=735521339",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/67626.jpg",
+      "address": "Hathern FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.7975361,
+      "longitude": -1.2543321,
+      "formatted_address": "Hathern, Charnwood, Leicestershire, England, United Kingdom",
+      "place_id": 279898424,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Highfield Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=605728040",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/51544.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "FC Khalsa GAD",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=377415818",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/28323.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Friar Lane & Epworth",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=204841719",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/98487.jpg",
+      "address": "Friar Lane & Epworth, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.6081198,
+      "longitude": -1.1310968,
+      "formatted_address": "Friar Lane and Epworth Football Club, Knighton Lane East, Knighton Fields, Leicester, City of Leicester, England, LE2 6DA, United Kingdom",
+      "place_id": 278769316,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Burbage & Huncote",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=309877702",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/9550.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Thurnby Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=746443227",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/57333.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ellistown FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=397020128",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/42539.jpg",
+      "address": "Ellistown FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.6985855,
+      "longitude": -1.3660083,
+      "formatted_address": "Ellistown, North West Leicestershire, Leicestershire, England, LE67 1DW, United Kingdom",
+      "place_id": 279391977,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Desford FC",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=53978027&teamID=550273715",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league651281/46714.jpg",
+      "address": "Desford FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.6308603,
+      "longitude": -1.2872035,
+      "formatted_address": "Desford, Hinckley and Bosworth, Leicestershire, England, United Kingdom",
+      "place_id": 279968687,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 16
+}

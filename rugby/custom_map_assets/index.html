@@ -1679,7 +1679,11 @@
       let tileLayer;
 
       function initMap() {
-        map = L.map("map", { zoomControl: true }).setView([52.5, -1.5], 7);
+        map = L.map("map", {
+          zoomControl: true,
+          zoomSnap: 0,
+          zoomDelta: 0.25,
+        }).setView([52.5, -1.5], 7);
         applyRugbyMapThemeUI();
         const isDark = isRugbyMapAppearanceDark();
         tileLayer = L.tileLayer(

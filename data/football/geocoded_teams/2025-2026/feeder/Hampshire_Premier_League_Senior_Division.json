@@ -1,0 +1,186 @@
+{
+  "league_name": "Hampshire Premier League Senior Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=3845322&selectedSeason=867360472&selectedDivision=371901643&selectedCompetition=0&selectedFixtureGroupKey=1_39997000",
+  "teams": [
+    {
+      "name": "Locks Heath",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=952109463",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/24820.jpg",
+      "address": "Locks Heath, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.8617456,
+      "longitude": -1.2717234,
+      "formatted_address": "Locks Heath, Park Gate, Fareham, Hampshire, England, SO31 6NQ, United Kingdom",
+      "place_id": 283110184,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Hedge End Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=892112337",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/50256.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "AFC Shirley",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=711682257",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/92641.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Crofton Saints",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=776856556",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/47524.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hook",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=100424730",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/95632.jpg",
+      "address": "Hook, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.3678984,
+      "longitude": -0.3071453,
+      "formatted_address": "Hook, Royal Borough of Kingston upon Thames, Greater London, England, KT9 1NY, United Kingdom",
+      "place_id": 280479294,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Liss Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=836316428",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/11245.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bishops Waltham Dynamos",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=86569826",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/93.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Denmead",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=751614203",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/8478.jpg",
+      "address": "Denmead, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.9067747,
+      "longitude": -1.0857583,
+      "formatted_address": "Denmead, Winchester, Hampshire, England, United Kingdom",
+      "place_id": 282642790,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Whitehill and Bordon",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=978389694",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/70670.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Moneyfields Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=571456218",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/80272.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Broughton",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=889361018",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/62461.jpg",
+      "address": "Broughton, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.565614,
+      "longitude": -0.5539235,
+      "formatted_address": "Broughton, North Lincolnshire, Greater Lincolnshire, England, United Kingdom",
+      "place_id": 278138326,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Liphook United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=712268960",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/83518.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Meon Milton",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=512300373",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/41116.jpg",
+      "address": "Meon Milton, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.795713,
+      "longitude": -1.0558438,
+      "formatted_address": "Meon Road, Milton, Portsmouth, England, PO4 8NL, United Kingdom",
+      "place_id": 283293905,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Southsea Sports",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=588339538",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/73779.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Stockbridge",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=608883575",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/19249.jpg",
+      "address": "Stockbridge, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.1140854,
+      "longitude": -1.4929702,
+      "formatted_address": "Stockbridge, Test Valley, Hampshire, England, United Kingdom",
+      "place_id": 281098109,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Andover Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=39997000&teamID=262970136",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3845322/69221.jpg",
+      "address": "Andover Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.2050417,
+      "longitude": -1.4840461,
+      "formatted_address": "9th Andover (Town), Suffolk Road, Rooksbury Mill, Andover, Anna Valley, Test Valley, Hampshire, England, SP10 2JD, United Kingdom",
+      "place_id": 282358868,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    }
+  ],
+  "team_count": 16
+}

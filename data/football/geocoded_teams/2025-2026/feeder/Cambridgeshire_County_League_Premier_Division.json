@@ -1,0 +1,191 @@
+{
+  "league_name": "Cambridgeshire County League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=7984801&selectedSeason=865844880&selectedDivision=0&selectedCompetition=0&selectedFixtureGroupKey=1_154246772",
+  "teams": [
+    {
+      "name": "Great Shelford",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=950718139",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/16750.jpg",
+      "address": "Great Shelford, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.1469253,
+      "longitude": 0.13534,
+      "formatted_address": "Great Shelford, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 159281651,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "West Wratting",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=137501152",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/38409.jpg",
+      "address": "West Wratting, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.1461829,
+      "longitude": 0.3413608,
+      "formatted_address": "West Wratting, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 159229848,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Hardwick",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=813750468",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/92200.jpg",
+      "address": "Hardwick, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.8623915,
+      "longitude": -0.8433467,
+      "formatted_address": "Hardwick, Buckinghamshire, England, United Kingdom",
+      "place_id": 279564168,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Over Sports",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=372718997",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/22142.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Newmarket Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=494495586",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/77337.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ely City Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=683676728",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/31874.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Milton",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=141534540",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/72274.jpg",
+      "address": "Milton, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.2422961,
+      "longitude": 0.1604726,
+      "formatted_address": "Milton, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 157172651,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Hemingfords United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=534053176",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/52701.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Witchford 96",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=120659909",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/49022.jpg",
+      "address": "Witchford 96, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.3861804,
+      "longitude": 0.204553,
+      "formatted_address": "Witchford, East Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 159483686,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Soham Town Rangers Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=608687037",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cambridge City Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=331099980",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Foxton",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=287049617",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/28986.jpg",
+      "address": "Foxton, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.1153649,
+      "longitude": 0.0615741,
+      "formatted_address": "Foxton, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 159483876,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Comberton United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=498229054",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/90705.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wisbech St Mary",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=941001403",
+      "image_url": "https://fulltime.thefa.com/assets/images/icons/icon-club.svg",
+      "address": "Wisbech St Mary, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.6305584,
+      "longitude": 0.0390895,
+      "formatted_address": "Wisbech St. Mary, Fenland, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 157281770,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Orwell",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=737162290",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/60882.jpg",
+      "address": "Orwell, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.1350159,
+      "longitude": -0.0123877,
+      "formatted_address": "Orwell, South Cambridgeshire, Cambridgeshire, Cambridgeshire and Peterborough, England, United Kingdom",
+      "place_id": 279877728,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Isleham United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=154246772&teamID=522110168",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league7984801/46187.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 16
+}

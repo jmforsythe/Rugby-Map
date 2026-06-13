@@ -1,0 +1,120 @@
+{
+  "league_name": "Hertfordshire Senior County League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=20290514&selectedSeason=420009553&selectedDivision=346607985&selectedCompetition=0&selectedFixtureGroupKey=1_813565277",
+  "teams": [
+    {
+      "name": "Everett Rovers Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=781154631",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/78290.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "AFC Turnford First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=931987345",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/75191.jpeg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Norsemen First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=32374535",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/35717.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ware United First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=365388568",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/28965.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Letchworth Garden City Eagles Under 23",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=516811971",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/64139.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Oxhey First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=133308565",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/23260.jpg",
+      "address": "Oxhey First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.120015,
+      "longitude": -2.1588645,
+      "formatted_address": "Oxhey First School, Pennine Way, Knowle Style, Biddulph, Biddulph Moor, Stoke-on-Trent, Staffordshire, England, ST8 7EB, United Kingdom",
+      "place_id": 278618971,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Baldock Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=238178184",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/18471.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hatfield United First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=906761370",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/10775.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Codicote Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=513890156",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/44613.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Buntingford Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=629018429",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/2531.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sandridge Rovers First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=446513562",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/96682.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Totteridge & Whetstone FC First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=890987353&teamID=930482994",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league20290514/47327.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 12
+}

@@ -1,0 +1,162 @@
+{
+  "league_name": "Somerset County League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=3894227&selectedSeason=860825575&selectedDivision=574039866&selectedCompetition=0&selectedFixtureGroupKey=1_916999148",
+  "teams": [
+    {
+      "name": "Combe St Nicholas First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=193888487",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/51729.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Portishead Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=528705957",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/69435.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Sporting Weston First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=164061030",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/486.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ashcott First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=333089308",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/56213.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Peasedown Miners Welfare First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=127598106",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/59442.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Imperial First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=397498702",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/71140.jpg",
+      "address": "Imperial First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.8248304,
+      "longitude": -0.1658973,
+      "formatted_address": "Imperial Hotel, 2,4,6,8,10, First Avenue, Brunswick, Portslade by Sea, Hove, Brighton and Hove, England, BN3 2FE, United Kingdom",
+      "place_id": 283261081,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Winscombe First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=117145244",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/74849.jpg",
+      "address": "Winscombe First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.8928195,
+      "longitude": -1.0154362,
+      "formatted_address": "Winscombe Avenue, Cowplain, Havant, Hampshire, England, PO8 8DX, United Kingdom",
+      "place_id": 282660860,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Westfield First Team",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=694133627",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/23533.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Burnham United First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=721143597",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/95998.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Minehead AFC Mens First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=435646470",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/40218.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wrington Redhill First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=103806490",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/24432.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Clutton First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=733139054",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/64335.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Glastonbury First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=488121246",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/12546.jpg",
+      "address": "Glastonbury First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.2480301,
+      "longitude": -0.77393,
+      "formatted_address": "Glastonbury, 28, Cambridge Road, Cargate, Aldershot, Rushmoor, Hampshire, England, GU11 3JY, United Kingdom",
+      "place_id": 280851932,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bishop Sutton First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=532604681",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/64447.jpeg",
+      "address": "Bishop Sutton First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.0839386,
+      "longitude": -1.1354721,
+      "formatted_address": "Bishop's Sutton, Winchester, Hampshire, England, SO24 0AG, United Kingdom",
+      "place_id": 281449677,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Keynsham Town Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=188815004&teamID=305811665",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league3894227/59071.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 15
+}

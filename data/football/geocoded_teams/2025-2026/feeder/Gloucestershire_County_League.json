@@ -1,0 +1,190 @@
+{
+  "league_name": "Gloucestershire County League",
+  "league_url": "https://fulltime.thefa.com/table.html?league=5545575&selectedSeason=811178313&selectedDivision=0&selectedCompetition=0&selectedFixtureGroupKey=1_370184496",
+  "teams": [
+    {
+      "name": "Sharpness",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=115936024",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/43696.jpg",
+      "address": "Sharpness, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.71663,
+      "longitude": -2.470734,
+      "formatted_address": "Sharpness, Stroud, Gloucestershire, England, GL13 9PE, United Kingdom",
+      "place_id": 281816256,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Filton Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=916774462",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/21837.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Tewkesbury Town",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=35683634",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/4689.jpg",
+      "address": "Tewkesbury Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.9938645,
+      "longitude": -2.1573968,
+      "formatted_address": "Tewkesbury Town Hall, 18, High Street, Mythe, Tewkesbury, Gloucestershire, England, GL20 5AL, United Kingdom",
+      "place_id": 281689866,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Frampton United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=112245227",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/63368.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bishops Cleeve Development",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=667605692",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/11078.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Quedgeley Wanderers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=848810564",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/99865.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wick",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=790179346",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/2308.jpg",
+      "address": "Wick, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 52.1066735,
+      "longitude": -2.0575599,
+      "formatted_address": "Wick, Wychavon, Worcestershire, England, United Kingdom",
+      "place_id": 273196504,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Chalford",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=974584347",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/62646.jpg",
+      "address": "Chalford, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.727065,
+      "longitude": -2.1546482,
+      "formatted_address": "Chalford, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 281828665,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Broadwell Amateurs",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=220386782",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/4285.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Tytherington Rocks",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=331318650",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/77604.jpg",
+      "address": "Tytherington Rocks, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.5978817,
+      "longitude": -2.4803123,
+      "formatted_address": "Tytherington Rocks FC, Baden Hill, Tytherington, South Gloucestershire, West of England, England, GL12 8UJ, United Kingdom",
+      "place_id": 279090550,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Bromley Heath United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=915582200",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/57879.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Henbury & Rockleaze",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=626680033",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/83803.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Stoke Gifford SGS United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=743823285",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/88762.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ruardean Hill Rangers",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=960342497",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/58481.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Totterdown United",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=434535768",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/87612.jpg",
+      "address": "Totterdown United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.425487,
+      "longitude": -2.5554421,
+      "formatted_address": "Totterdown United FC, Beechwood Close, Hengrove, Bristol, City of Bristol, West of England, England, BS14 8BQ, United Kingdom",
+      "place_id": 283324628,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Cribbs Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=550251172",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/21023.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hanham Athletic",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=370184496&teamID=92564872",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league5545575/54912.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 17
+}

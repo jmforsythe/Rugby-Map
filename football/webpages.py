@@ -35,7 +35,7 @@ def _link(name: str, *, production: bool) -> str:
 def detect_levels(season_dir: Path, *, production: bool) -> list[tuple[str, str]]:
     """Return (display name, href) pairs for available level maps."""
     found: list[tuple[int, str, str]] = []
-    for level in range(1, 11):
+    for level in range(1, 12):
         slug = tier_file_slug(level)
         href = _link(slug, production=production)
         if production:
@@ -77,7 +77,7 @@ def season_index_html(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="English football pyramid maps for {escape(season_short)} — levels 1–10 with interactive territory maps.">
+    <meta name="description" content="English football pyramid maps for {escape(season_short)} — levels 1–11 with interactive territory maps.">
     <title>{escape(season_short)} | {escape(FOOTBALL_BRAND)}</title>
     <link rel="stylesheet" href="{styles_href}">
     {get_favicon_html(depth=2)}
@@ -118,7 +118,7 @@ def top_index_html(seasons: list[str], *, production: bool) -> str:
 </head>
 <body>
     <h1>{escape(FOOTBALL_BRAND)}</h1>
-    <p>Interactive territory maps for the English football league pyramid (levels 1–10).</p>
+    <p>Interactive territory maps for the English football league pyramid (levels 1–11).</p>
     <h2>Seasons</h2>
     <ul>
 {season_links}

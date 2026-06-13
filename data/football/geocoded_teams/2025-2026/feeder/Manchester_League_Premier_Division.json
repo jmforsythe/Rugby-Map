@@ -1,0 +1,161 @@
+{
+  "league_name": "Manchester League Premier Division",
+  "league_url": "https://fulltime.thefa.com/table.html?league=4856192&selectedSeason=868607129&selectedDivision=892512871&selectedCompetition=0&selectedFixtureGroupKey=1_864758362",
+  "teams": [
+    {
+      "name": "Dukinfield Town  First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=652874172",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/16308.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Uppermill FC 1st XI",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=538317716",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/51208.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Rochdale Sacred Heart Senior First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=274466410",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/54902.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Manchester Corinthians First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=999638298",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/1386.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Elton Vale First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=170970480",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/15566.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hindsford AFC First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=937229001",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/93793.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Moorside Rangers First Team",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=354145209",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/6755.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Royton Town First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=713706246",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/1996.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Walshaw Sports Club (Seniors) First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=323423905",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/19929.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Atherton Town First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=866996203",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/3423.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Pennington First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=411577499",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/18246.jpg",
+      "address": "Pennington First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.75448,
+      "longitude": -1.5593377,
+      "formatted_address": "Pennington Church of England Primary School, Priestlands Road, Highfield, Lymington and Pennington, Pennington, New Forest, Hampshire, England, SO41 8HX, United Kingdom",
+      "place_id": 282570021,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Govan & University of Manchester FC 1st",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=140427466",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/49272.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "De La Salle First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=543032317",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/15257.jpg",
+      "address": "De La Salle First, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.0286969,
+      "longitude": -0.8772425,
+      "formatted_address": "Clayton Court (De La Salle Brothers), Rogate Road, Rogate, Hill Brow, Chichester, West Sussex, England, GU33 7QP, United Kingdom",
+      "place_id": 281218837,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Stockport Georgians Reserves",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=854906018",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/52724.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Tintwistle Athletic First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=262617867",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/76725.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Springhead First",
+      "url": "https://fulltime.thefa.com/displayTeam.html?divisionseason=864758362&teamID=945569995",
+      "image_url": "https://resources.thefa.com/images/ftimages/data/league4856192/45107.jpg",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 16
+}

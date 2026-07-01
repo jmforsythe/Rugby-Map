@@ -918,6 +918,148 @@ def test_page_watermark_x_between_corner_and_pyramid_top_right() -> None:
     assert min(corner_x, top_right_x) < x < max(corner_x, top_right_x)
 
 
+def test_warn_pyramid_leagues_without_parent_logs_missing_tier6(caplog) -> None:
+    import logging
+
+    from rugby.pyramid_image import LeagueData, _warn_pyramid_leagues_without_parent
+
+    orphan = LeagueData(6, "x", "Regional 2 Orphan", [], 12)
+    other = LeagueData(5, "y", "Regional 1 Other", [], 12)
+    leagues_by_tier = {5: [other], 6: [orphan]}
+
+    with caplog.at_level(logging.WARNING):
+        _warn_pyramid_leagues_without_parent(
+            leagues_by_tier,
+            "2026-2027",
+            gender="mens",
+            parent_overrides={},
+        )
+
+    assert "Regional 2 Orphan" in caplog.text
+    assert "no parent given or inferred" in caplog.text
+
+
+def test_warn_pyramid_leagues_without_parent_skips_explicit_unlinked(caplog) -> None:
+    import logging
+
+    from rugby.pyramid_image import LeagueData, _warn_pyramid_leagues_without_parent
+
+    league = LeagueData(6, "x", "Regional 2 Explicit", [], 12)
+    leagues_by_tier = {6: [league]}
+
+    with caplog.at_level(logging.WARNING):
+        _warn_pyramid_leagues_without_parent(
+            leagues_by_tier,
+            "2026-2027",
+            gender="mens",
+            parent_overrides={(6, "Regional 2 Explicit"): ()},
+        )
+
+    assert "Regional 2 Explicit" not in caplog.text
+
+
+def test_national_stem_skip_level_parent_resolution() -> None:
+    """Tier 10 child may link to tier 8 parent when tier 9 is empty (Counties stem)."""
+    from rugby.pyramid_image import LeagueData, _resolve_stem_parents
+
+    parent_t8 = LeagueData(8, "L8", "Counties 3 Midlands West (North)", [], 8)
+    child_t10 = LeagueData(10, "L10", "Counties 4 Midlands West (Central)", [], 6)
+    leagues_by_tier = {8: [parent_t8], 10: [child_t10]}
+    overrides = {(10, "Counties 4 Midlands West (Central)"): ("Counties 3 Midlands West (North)",)}
+
+    resolved = _resolve_stem_parents(
+        child_t10,
+        [],
+        "2026-2027",
+        overrides,
+        leagues_by_tier=leagues_by_tier,
+    )
+    assert len(resolved) == 1
+    assert resolved[0].tier_num == 8
+    assert resolved[0].league_name == "Counties 3 Midlands West (North)"
+
+
+def test_interactive_on_warnings_enabled_respects_tty_and_flag(monkeypatch) -> None:
+    import argparse
+
+    from rugby.pyramid_image import _interactive_on_warnings_enabled
+
+    args = argparse.Namespace(no_interactive_on_warnings=False)
+    monkeypatch.setattr("sys.stdin.isatty", lambda: True)
+    assert _interactive_on_warnings_enabled(args)
+
+    args_off = argparse.Namespace(no_interactive_on_warnings=True)
+    assert not _interactive_on_warnings_enabled(args_off)
+
+    monkeypatch.setattr("sys.stdin.isatty", lambda: False)
+    assert not _interactive_on_warnings_enabled(args)
+
+
+def test_maybe_interactive_skips_when_no_missing_parents(monkeypatch) -> None:
+    import argparse
+    from unittest.mock import MagicMock
+
+    import rugby.pyramid_image as pi
+
+    args = argparse.Namespace(
+        no_interactive_on_warnings=False,
+        ignore_saved_stem_parent_overrides=False,
+        interactive_stem_orphans=False,
+    )
+    monkeypatch.setattr("sys.stdin.isatty", lambda: True)
+    monkeypatch.setattr(pi, "stem_interactive_parent_overrides", MagicMock())
+
+    leagues_by_tier = {
+        6: [pi.LeagueData(6, "x", "Regional 2 Linked", [], 12)],
+    }
+    parent_overrides = {(6, "Regional 2 Linked"): ("Regional 1 Parent",)}
+
+    out, _, _ = pi._maybe_interactive_resolve_missing_parents(
+        args=args,
+        season="2026-2027",
+        gender="mens",
+        leagues_by_tier=leagues_by_tier,
+        parent_overrides=parent_overrides,
+    )
+    assert out is parent_overrides
+    pi.stem_interactive_parent_overrides.assert_not_called()
+
+
+def test_maybe_interactive_on_warnings_skips_tier7_column_order(monkeypatch) -> None:
+    import argparse
+    from unittest.mock import MagicMock
+
+    import rugby.pyramid_image as pi
+
+    args = argparse.Namespace(
+        no_interactive_on_warnings=False,
+        ignore_saved_stem_parent_overrides=False,
+        interactive_stem_orphans=False,
+    )
+    monkeypatch.setattr("sys.stdin.isatty", lambda: True)
+    mock_linker = MagicMock(return_value={})
+    monkeypatch.setattr(pi, "stem_interactive_parent_overrides", mock_linker)
+    monkeypatch.setattr(pi, "stem_parent_overrides_save", MagicMock())
+    monkeypatch.setattr(
+        pi,
+        "stem_parent_overrides_load_merged",
+        MagicMock(return_value={}),
+    )
+
+    orphan = pi.LeagueData(10, "L10", "Counties 4 Orphan", [], 8)
+    leagues_by_tier = {10: [orphan]}
+
+    pi._maybe_interactive_resolve_missing_parents(
+        args=args,
+        season="2026-2027",
+        gender="mens",
+        leagues_by_tier=leagues_by_tier,
+        parent_overrides={},
+    )
+    mock_linker.assert_called_once()
+    assert mock_linker.call_args.kwargs.get("skip_tier7_column_order") is True
+
+
 def test_order_tier_mappings_payload_top_level_key_order() -> None:
     from rugby.pyramid_image import TIER7_COLUMN_ORDER_JSON_KEY, order_tier_mappings_payload
 

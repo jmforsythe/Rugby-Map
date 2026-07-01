@@ -4,6 +4,7 @@ Re-exports all public symbols so callers can use ``from core import ...``.
 """
 
 from core.config import (
+    CURRENT_SEASON,
     DIST_DIR,
     AppConfig,
     get_config,
@@ -36,6 +37,7 @@ from core.types import (
 )
 
 __all__ = [
+    "CURRENT_SEASON",
     "DIST_DIR",
     "AddressLeague",
     "AddressTeam",

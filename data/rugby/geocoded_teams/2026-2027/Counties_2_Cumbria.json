@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 2 Cumbria",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1623&season=2026-2027&division=75807#tables",
+  "teams": [
+    {
+      "name": "Ambleside",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=578",
+      "image_url": "https://images.englandrugby.com/club_images/578.png",
+      "address": "Galava Park Borrans Road Ambleside Cumbria LA22 0EN United Kingdom",
+      "latitude": 54.4245681,
+      "longitude": -2.967795,
+      "formatted_address": "LA22 0EN, Lakes, Elterwater, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350679064
+    },
+    {
+      "name": "Creighton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=5852",
+      "image_url": "https://images.englandrugby.com/club_images/5852.png",
+      "address": "Sycamore Lane Parkland Carlisle CUMBRIA CA1 3SR UNITED KINGDOM",
+      "latitude": 54.8755644,
+      "longitude": -2.8871217,
+      "formatted_address": "CA1 3SR, St Cuthbert Without, Durdar, Cumberland, England, United Kingdom",
+      "place_id": 350527740
+    },
+    {
+      "name": "Furness",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=8419",
+      "image_url": "https://images.englandrugby.com/club_images/8419.png",
+      "address": "Furness R.U.F.C. The Strawberry Grounds Croslands Park Road Barrow-in-Furness CUMBRIA LA13 9LA UNITED KINGDOM",
+      "latitude": 54.12984,
+      "longitude": -3.20967,
+      "formatted_address": "LA13 9LA, Barrow, Barrow-in-Furness, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351460684
+    },
+    {
+      "name": "Keswick II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=11330",
+      "image_url": "https://images.englandrugby.com/club_images/11330.png",
+      "address": "Davidson Park, Crow Park Road, Keswick, Cumbria, CA12 5EG, United Kingdom",
+      "latitude": 54.6006588,
+      "longitude": -3.1439604,
+      "formatted_address": "CA12 5EG, Keswick, Cumberland, England, United Kingdom",
+      "place_id": 350527467
+    },
+    {
+      "name": "Millom",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=13890",
+      "image_url": "https://images.englandrugby.com/club_images/13890.png",
+      "address": "Wilson Park Haverigg Millom CUMBRIA LA18 4ES ENGLAND",
+      "latitude": 54.19591,
+      "longitude": -3.28845,
+      "formatted_address": "LA18 4ES, Millom, Cumberland, England, United Kingdom",
+      "place_id": 351462135
+    },
+    {
+      "name": "Penrith II",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=16687",
+      "image_url": "https://images.englandrugby.com/club_images/16687.png",
+      "address": "Penrith Rufc, Winters Park, Penrith, Cumbria, CA11 8RQ, United Kingdom",
+      "latitude": 54.6586627,
+      "longitude": -2.7324676,
+      "formatted_address": "CA11 8RQ, Carleton Farm, Penrith, Westmorland and Furness, England, United Kingdom",
+      "place_id": 350527237
+    },
+    {
+      "name": "Windermere",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=25596",
+      "image_url": "https://images.englandrugby.com/club_images/25596.png",
+      "address": "Clubhouse Dawes Meadow Longlands Bowness on Windermere CUMBRIA LA23 3AS UNITED KINGDOM",
+      "latitude": 54.3672221,
+      "longitude": -2.9176134,
+      "formatted_address": "LA23 3AS, Windermere, Bowness on Windermere, Westmorland and Furness, England, United Kingdom",
+      "place_id": 351354688
+    },
+    {
+      "name": "Workington",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?division=75807&competition=1623&season=2026-2027&team=26096",
+      "image_url": "https://images.englandrugby.com/club_images/26096.png",
+      "address": "Ellis Sports Ground Moss Bay Road Workington Cumbria CA14 3XZ United Kingdom",
+      "latitude": 54.63476,
+      "longitude": -3.561,
+      "formatted_address": "CA14 3XZ, Workington, Cumberland, England, United Kingdom",
+      "place_id": 351028366
+    }
+  ],
+  "team_count": 8
+}

@@ -1,4 +1,4 @@
-SEASON ?= 2025-2026
+SEASON ?= 2026-2027
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 

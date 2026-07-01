@@ -11,13 +11,15 @@ DATA_DIR = REPO_ROOT / "data"
 BOUNDARIES_DIR = DATA_DIR / "boundaries"
 CACHE_DIR = DATA_DIR / "caches"
 
+CURRENT_SEASON = "2026-2027"
+
 
 @dataclass
 class AppConfig:
     """Shared configuration for the mapping pipeline."""
 
     is_production: bool = False
-    season: str = "2025-2026"
+    season: str = CURRENT_SEASON
     show_debug: bool = True
 
 
@@ -30,7 +32,7 @@ def get_config() -> AppConfig:
 
 
 def set_config(
-    *, is_production: bool = False, season: str = "2025-2026", show_debug: bool = True
+    *, is_production: bool = False, season: str = CURRENT_SEASON, show_debug: bool = True
 ) -> None:
     """Set global application config values."""
     _config.is_production = is_production

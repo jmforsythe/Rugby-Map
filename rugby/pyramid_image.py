@@ -24,16 +24,17 @@ down this file for the exact JSON schema and how each entry feeds layout.
 Usage::
 
     python -m rugby.pyramid_image
-    python -m rugby.pyramid_image --season 2024-2025
+    python -m rugby.pyramid_image --season 2026-2027
     python -m rugby.pyramid_image --png
     python -m rugby.pyramid_image --transparent-white-crest-backgrounds
     python -m rugby.pyramid_image --png --png-image-timeout-ms 45000
     python -m rugby.pyramid_image --output some/path.svg --png-output some/path.png
     python -m rugby.pyramid_image --interactive-stem-orphans
+    # TTY: auto-prompt when leagues lack parents (use --no-interactive-on-warnings to disable)
     python -m rugby.pyramid_image --ignore-saved-stem-parent-overrides
     python -m rugby.pyramid_image --ignore-stem-slot-strips
     python -m rugby.pyramid_image --womens
-    python -m rugby.pyramid_image --womens --season 2024-2025 --png
+    python -m rugby.pyramid_image --womens --season 2026-2027 --png
     python -m rugby.pyramid_image --womens --interactive-stem-orphans  # TTY: bands 2–4 feeders
     python -m rugby.pyramid_image --labels-under-valid-crests --labels-under-layout-height-scale 1.22
 """
@@ -66,7 +67,7 @@ from urllib.request import Request, urlopen
 from xml.sax.saxutils import escape as xml_escape
 
 from core import setup_logging
-from core.config import CACHE_DIR, DIST_DIR
+from core.config import CACHE_DIR, CURRENT_SEASON, DIST_DIR
 from core.http import get_headers
 from rugby import DATA_DIR, short_season
 from rugby.addresses import team_name_to_club_name
@@ -1828,6 +1829,40 @@ def _find_merged_merit_counties_anchor_parent(
     return min(tied, key=lambda lg: len(lg.league_name))
 
 
+def _national_stem_ancestor_candidate_pool(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    child: LeagueData,
+) -> list[LeagueData]:
+    """National (non-merit) leagues on tiers 7 .. child-1 for skip-a-level stem links."""
+    if child.tier_num < 8:
+        return []
+    out: list[LeagueData] = []
+    for t in range(7, child.tier_num):
+        for lg in leagues_by_tier.get(t, ()):
+            if lg.merit_geocoded_competition is not None:
+                continue
+            if getattr(lg, "merit_chain_placeholder", False):
+                continue
+            out.append(lg)
+    return out
+
+
+def _match_parent_override_in_ancestor_pool(
+    pool: list[LeagueData],
+    want_raw: str,
+    season: str,
+    child_tier_num: int,
+) -> LeagueData | None:
+    """Match a parent label against any ancestor league below *child_tier_num*."""
+    return _match_parent_override_in_merit_ancestor_pool(
+        pool,
+        want_raw,
+        season,
+        child_tier_num,
+        child_merit_competition=None,
+    )
+
+
 def _parent_override_specs_for_child(
     child: LeagueData,
     season: str,
@@ -1916,6 +1951,20 @@ def _resolve_stem_parents(
                     child.tier_num,
                     child_merit_competition=child_comp,
                 )
+            if (
+                p is None
+                and leagues_by_tier is not None
+                and child.merit_geocoded_competition is None
+                and child.tier_num >= 8
+            ):
+                national_pool = _national_stem_ancestor_candidate_pool(leagues_by_tier, child)
+                if national_pool:
+                    p = _match_parent_override_in_ancestor_pool(
+                        national_pool,
+                        want_raw,
+                        season,
+                        child.tier_num,
+                    )
             if p is None:
                 logger.warning(
                     "Stem parent override %r for %r does not match tier-%d or same-competition "
@@ -2545,6 +2594,260 @@ def _parents_for_child_tier(
     return out
 
 
+def _pyramid_league_lacks_parent(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    season: str,
+    lg: LeagueData,
+    *,
+    gender: Gender,
+    parent_overrides: StemParentOverrides,
+    womens_parent_overrides: StemParentOverrides,
+    merit_competition: str | None,
+) -> bool:
+    """True when *lg* has no explicit/inferred/heuristic parent for pyramid layout."""
+    if gender == "womens":
+        tier = lg.tier_num
+        if tier < 2 or tier > 4:
+            return False
+        key = (tier, lg.league_name)
+        if key in womens_parent_overrides and not womens_parent_overrides[key]:
+            return False
+        return not _resolve_womens_feeder_parents(lg, leagues_by_tier, womens_parent_overrides)
+
+    if merit_competition is not None:
+        if lg.merit_local_tier is not None and lg.merit_local_tier <= 1:
+            return False
+        key = (lg.tier_num, lg.league_name)
+        if key in parent_overrides and not parent_overrides[key]:
+            return False
+        parents_ld = leagues_by_tier.get(lg.tier_num - 1, []) if lg.tier_num > 1 else []
+        return not _resolve_stem_parents(
+            lg,
+            parents_ld,
+            season,
+            parent_overrides,
+            merit_competition=merit_competition,
+            leagues_by_tier=leagues_by_tier,
+        )
+
+    if lg.merit_geocoded_competition is not None:
+        return False
+
+    key = (lg.tier_num, lg.league_name)
+    if key in parent_overrides:
+        return not parent_overrides[key]
+
+    if lg.tier_num in (5, 6):
+        return True
+
+    if lg.tier_num >= 8:
+        parents_ld = leagues_by_tier.get(lg.tier_num - 1, [])
+        return not _resolve_stem_parents(
+            lg,
+            parents_ld,
+            season,
+            parent_overrides,
+            merit_competition=None,
+            leagues_by_tier=leagues_by_tier,
+        )
+
+    return False
+
+
+def _count_pyramid_missing_parents(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    season: str,
+    *,
+    gender: Gender,
+    parent_overrides: StemParentOverrides | None = None,
+    womens_parent_overrides: StemParentOverrides | None = None,
+    merit_competition: str | None = None,
+) -> int:
+    ovs = parent_overrides or {}
+    wovs = womens_parent_overrides or {}
+    n = 0
+    if gender == "womens":
+        tiers = range(2, 5)
+    elif merit_competition is not None:
+        tiers = sorted(leagues_by_tier)
+    else:
+        tiers = sorted({*(5, 6), *(t for t in leagues_by_tier if t >= 8)})
+    for tier in tiers:
+        for lg in leagues_by_tier.get(tier, ()):
+            if _pyramid_league_lacks_parent(
+                leagues_by_tier,
+                season,
+                lg,
+                gender=gender,
+                parent_overrides=ovs,
+                womens_parent_overrides=wovs,
+                merit_competition=merit_competition,
+            ):
+                n += 1
+    return n
+
+
+def _warn_pyramid_leagues_without_parent(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    season: str,
+    *,
+    gender: Gender,
+    parent_overrides: StemParentOverrides | None = None,
+    womens_parent_overrides: StemParentOverrides | None = None,
+    merit_competition: str | None = None,
+) -> None:
+    """Log when a league has no parent in tier_mappings and none could be inferred/heuristic."""
+    ovs = parent_overrides or {}
+    wovs = womens_parent_overrides or {}
+
+    if gender == "womens":
+        for tier in range(2, 5):
+            for lg in leagues_by_tier.get(tier, ()):
+                if not _pyramid_league_lacks_parent(
+                    leagues_by_tier,
+                    season,
+                    lg,
+                    gender=gender,
+                    parent_overrides=ovs,
+                    womens_parent_overrides=wovs,
+                    merit_competition=None,
+                ):
+                    continue
+                logger.warning(
+                    "Women's pyramid: no feeder parent given or inferred for %r (band %d).",
+                    lg.league_name,
+                    tier,
+                )
+        return
+
+    if merit_competition is not None:
+        for tier in sorted(leagues_by_tier):
+            for lg in leagues_by_tier.get(tier, ()):
+                if not _pyramid_league_lacks_parent(
+                    leagues_by_tier,
+                    season,
+                    lg,
+                    gender=gender,
+                    parent_overrides=ovs,
+                    womens_parent_overrides=wovs,
+                    merit_competition=merit_competition,
+                ):
+                    continue
+                logger.warning(
+                    "Merit %s: no parent given or inferred for %r (local tier %s).",
+                    merit_competition,
+                    lg.league_name,
+                    lg.merit_local_tier,
+                )
+        return
+
+    for tier in sorted({*(5, 6), *(t for t in leagues_by_tier if t >= 8)}):
+        for lg in leagues_by_tier.get(tier, ()):
+            if not _pyramid_league_lacks_parent(
+                leagues_by_tier,
+                season,
+                lg,
+                gender=gender,
+                parent_overrides=ovs,
+                womens_parent_overrides=wovs,
+                merit_competition=None,
+            ):
+                continue
+            if tier in (5, 6):
+                logger.warning(
+                    "Tier %d league %r has no parent given or inferred in tier_mappings; "
+                    "feeder nesting may be wrong.",
+                    tier,
+                    lg.league_name,
+                )
+            else:
+                logger.warning(
+                    "Stem tier %d league %r has no parent given or inferred; "
+                    "appending as orphan row.",
+                    tier,
+                    lg.league_name,
+                )
+
+
+def _interactive_on_warnings_enabled(args: argparse.Namespace) -> bool:
+    return sys.stdin.isatty() and not getattr(args, "no_interactive_on_warnings", False)
+
+
+def _maybe_interactive_resolve_missing_parents(
+    *,
+    args: argparse.Namespace,
+    season: str,
+    gender: Gender,
+    leagues_by_tier: dict[int, list[LeagueData]],
+    parent_overrides: StemParentOverrides | None,
+    womens_parent_overrides: StemParentOverrides | None = None,
+    merit_competition: str | None = None,
+    leagues_by_local_tier: dict[int, list[LeagueData]] | None = None,
+    already_interactive: bool = False,
+) -> tuple[StemParentOverrides | None, StemParentOverrides | None, StemParentOverrides | None]:
+    """TTY: run the parent linker when leagues lack mappings; return updated override dicts."""
+    if already_interactive or not _interactive_on_warnings_enabled(args):
+        return parent_overrides, womens_parent_overrides, None
+
+    missing = _count_pyramid_missing_parents(
+        leagues_by_tier,
+        season,
+        gender=gender,
+        parent_overrides=parent_overrides,
+        womens_parent_overrides=womens_parent_overrides,
+        merit_competition=merit_competition,
+    )
+    if missing <= 0:
+        return parent_overrides, womens_parent_overrides, None
+
+    logger.info(
+        "%d league(s) lack parent mappings — starting interactive linker "
+        "(parents may skip levels on the Counties stem).",
+        missing,
+    )
+
+    if merit_competition is not None and leagues_by_local_tier is not None:
+        seed_local: StemParentOverrides | None = None
+        if not args.ignore_saved_stem_parent_overrides:
+            base_local = merit_parent_overrides_load(season, merit_competition) or {}
+            seed_local = merit_parent_overrides_merge_cross_season(
+                season, merit_competition, leagues_by_local_tier, dict(base_local)
+            )
+        overrides_local = merit_interactive_feeder_overrides(
+            leagues_by_local_tier,
+            merit_competition,
+            season,
+            seed_overrides_local=seed_local,
+        )
+        merit_parent_overrides_save(season, merit_competition, overrides_local)
+        return parent_overrides, womens_parent_overrides, overrides_local
+
+    if gender == "womens":
+        seed_w: StemParentOverrides | None = None
+        if not args.ignore_saved_stem_parent_overrides:
+            base_w = womens_parent_overrides_load(season) or {}
+            merged_w = womens_parent_overrides_merge_cross_season(season, leagues_by_tier, base_w)
+            seed_w = merged_w if merged_w else None
+        womens_out = womens_interactive_feeder_overrides(leagues_by_tier, seed_overrides=seed_w)
+        womens_parent_overrides_save(season, womens_out)
+        return parent_overrides, womens_out, None
+
+    seed: StemParentOverrides | None = None
+    if not args.ignore_saved_stem_parent_overrides:
+        merged_seed = stem_parent_overrides_load_merged(season, leagues_by_tier)
+        seed = merged_seed if merged_seed else None
+    parent_out = stem_interactive_parent_overrides(
+        leagues_by_tier,
+        season,
+        seed_overrides=seed,
+        skip_tier7_column_order=True,
+    )
+    stem_parent_overrides_save(season, parent_out)
+    if args.ignore_saved_stem_parent_overrides:
+        return parent_out, womens_parent_overrides, None
+    return stem_parent_overrides_load_merged(season, leagues_by_tier), womens_parent_overrides, None
+
+
 def _leagues_by_feeder_key(leagues: list[LeagueData]) -> dict[str, LeagueData]:
     """Map sponsor-normalised names to leagues (last wins on duplicate keys)."""
     out: dict[str, LeagueData] = {}
@@ -2611,11 +2914,6 @@ def order_pyramid_leaves(
     # Catch any tier 6 leagues that weren't reachable through the feeder map.
     for lg in leagues_by_tier.get(6, []):
         if lg.league_name not in seen:
-            logger.warning(
-                "Tier 6 league %r has no parent mapping in tier_mappings JSON; "
-                "appending at end of pyramid leaves.",
-                lg.league_name,
-            )
             ordered.append(lg)
 
     return ordered
@@ -3175,7 +3473,8 @@ def compute_nested_tier56_layout(
     all_t6 = {lg.league_name for lg in leagues_by_tier.get(6, [])}
     if mapped_t6_names != all_t6:
         logger.warning(
-            "Tier 6 leagues missing from tier_mappings JSON %s — using equal-width pyramid.",
+            "Tier 6 leagues with no parent given or inferred in tier_mappings %s — "
+            "using equal-width pyramid.",
             sorted(all_t6 - mapped_t6_names),
         )
         return None
@@ -3190,7 +3489,8 @@ def compute_nested_tier56_layout(
     all_t5 = {lg.league_name for lg in leagues_by_tier.get(5, [])}
     if mapped_t5_names != all_t5:
         logger.warning(
-            "Tier 5 leagues missing from tier_mappings JSON %s — using equal-width pyramid.",
+            "Tier 5 leagues with no parent given or inferred in tier_mappings %s — "
+            "using equal-width pyramid.",
             sorted(all_t5 - mapped_t5_names),
         )
         return None
@@ -3616,11 +3916,6 @@ def compute_womens_nested_layout(
         for lg in leagues_by_tier.get(tier, ()):
             plist = _resolve_womens_feeder_parents(lg, leagues_by_tier, womens_overrides)
             if not plist:
-                logger.warning(
-                    "Women's pyramid: no feeder parent for %r (band %d) — using equal-width layout.",
-                    lg.league_name,
-                    tier,
-                )
                 return None
             parent_map[(tier, lg.league_name)] = tuple(plist)
 
@@ -5614,8 +5909,9 @@ def _build_stem_forest(
                 orphan_node = StemTreeNode(lg)
                 orphans.setdefault(t, []).append(orphan_node)
                 if log_unlinked:
-                    logger.info(
-                        "Stem tier %d: no tier-%d parent for %r — extra layout row.",
+                    logger.warning(
+                        "Stem tier %d: no tier-%d parent given or inferred for %r — "
+                        "extra layout row.",
                         t,
                         t - 1,
                         lg.league_name,
@@ -5630,8 +5926,9 @@ def _build_stem_forest(
             if not parent_nodes:
                 orphans.setdefault(t, []).append(StemTreeNode(lg))
                 if log_unlinked:
-                    logger.info(
-                        "Stem tier %d: parent tier-%d league missing from stem data for %r — extra layout row.",
+                    logger.warning(
+                        "Stem tier %d: parent tier-%d league missing from stem data for %r — "
+                        "extra layout row.",
                         t,
                         t - 1,
                         lg.league_name,
@@ -6649,6 +6946,15 @@ def render_pyramid_svg(
         merit_max_tier = max((t for t, ls in leagues_by_tier.items() if ls), default=0)
 
     stem_forest_prebuilt: tuple[list[StemTreeNode], dict[int, list[StemTreeNode]]] | None = None
+    _warn_pyramid_leagues_without_parent(
+        leagues_by_tier,
+        season,
+        gender=gender,
+        parent_overrides=parent_overrides,
+        womens_parent_overrides=womens_parent_overrides,
+        merit_competition=merit_competition,
+    )
+
     if gender == "mens":
         stem_tiers_chk = sorted(t for t in leagues_by_tier if t >= 7)
         if stem_tiers_chk and any(leagues_by_tier.get(t) for t in stem_tiers_chk):
@@ -6656,7 +6962,7 @@ def render_pyramid_svg(
                 leagues_by_tier,
                 season,
                 parent_overrides=parent_overrides,
-                log_unlinked=parent_overrides is None,
+                log_unlinked=False,
                 merit_competition=None,
             )
 
@@ -6712,13 +7018,12 @@ def render_pyramid_svg(
                     "Men's pyramid + merit: national tiers 4–6 use feeder/nested layout; "
                     "merged merit rows add equal-width strip columns per band."
                 )
-                log_stem_orphans = parent_overrides is None
                 stem_layout = _stem_build_layout(
                     leagues_by_tier,
                     season,
                     parent_overrides=parent_overrides,
                     stem_slot_strips=stem_slot_strips,
-                    log_stem_orphans=log_stem_orphans,
+                    log_stem_orphans=False,
                     merit_competition=None,
                     stem_forest=stem_forest_prebuilt,
                 )
@@ -6734,13 +7039,12 @@ def render_pyramid_svg(
                     leagues_by_tier, slots, parent_overrides=parent_overrides
                 )
 
-                log_stem_orphans = parent_overrides is None
                 stem_layout = _stem_build_layout(
                     leagues_by_tier,
                     season,
                     parent_overrides=parent_overrides,
                     stem_slot_strips=stem_slot_strips,
-                    log_stem_orphans=log_stem_orphans,
+                    log_stem_orphans=False,
                     merit_competition=None,
                     stem_forest=stem_forest_prebuilt,
                 )
@@ -6982,6 +7286,7 @@ def stem_interactive_parent_overrides(
     season: str,
     *,
     seed_overrides: StemParentOverrides | None = None,
+    skip_tier7_column_order: bool = False,
 ) -> StemParentOverrides:
     """TTY-only: prompt for missing tier 5→4 and tier 6→5 mappings, then Counties stem orphans.
 
@@ -6990,6 +7295,9 @@ def stem_interactive_parent_overrides(
 
     ``seed_overrides`` (e.g. from ``data/rugby/tier_mappings/<season>.json``) is copied
     and updated so multi-session linking does not drop earlier choices.
+
+    When ``skip_tier7_column_order`` is set (interactive-on-warnings), tier-7 column-order
+    feeders are not prompted — they are layout metadata, not stem orphan links.
     """
     if not sys.stdin.isatty():
         raise RuntimeError(
@@ -6998,22 +7306,35 @@ def stem_interactive_parent_overrides(
 
     overrides: StemParentOverrides = dict(seed_overrides) if seed_overrides else {}
     n_t7_pending = _count_missing_tier7_sort_parents(leagues_by_tier, overrides)
-    print(
-        "\nInteractive parent linker (men's pyramid)\n"
-        "  — First: tier 5 (Regional 1) → tier 4 (NL2), then tier 6 (Regional 2) → tier 5\n"
-        "  — Then: tier 7 / Counties 1 column order → feeder parent in tiers 1–6 (postfix list)\n"
-        f"    ({n_t7_pending} tier-7 league(s) still need a column-order parent this run)\n"
-        "  — Then: Counties stem orphans (tier 8+)\n"
-        "  blank or 0 — leave this league without a parent mapping (explicit unlinked)\n"
-        "  number — single parent from the list below\n"
-        "  comma-separated numbers — multiple parents (e.g. 1,2 stretches one stem cell)\n"
-        "  s / stop — stop prompting (remaining work unchanged)\n"
+    banner_lines = [
+        "\nInteractive parent linker (men's pyramid)\n",
+        "  — First: tier 5 (Regional 1) → tier 4 (NL2), then tier 6 (Regional 2) → tier 5\n",
+    ]
+    if skip_tier7_column_order:
+        banner_lines.append(
+            "  — Then: Counties stem orphans (tier 8+) only "
+            "(tier-7 column order skipped — edit tier7_column_order in JSON)\n"
+        )
+    else:
+        banner_lines.append(
+            "  — Then: tier 7 / Counties 1 column order → feeder parent in tiers 1–6 (postfix list)\n"
+            f"    ({n_t7_pending} tier-7 league(s) still need a column-order parent this run)\n"
+            "  — Then: Counties stem orphans (tier 8+)\n"
+        )
+    banner_lines.extend(
+        [
+            "  blank or 0 — leave this league without a parent mapping (explicit unlinked)\n",
+            "  number — single parent from the list below\n",
+            "  comma-separated numbers — multiple parents (e.g. 1,2 stretches one stem cell)\n",
+            "  s / stop — stop prompting (remaining work unchanged)\n",
+        ]
     )
+    print("".join(banner_lines))
 
     tier7_phase_announced = False
     while True:
         nxt = _interactive_next_missing_pyramid_feeder_prompt(leagues_by_tier, overrides)
-        if nxt is None:
+        if nxt is None and not skip_tier7_column_order:
             nxt = _interactive_next_missing_tier7_sort_parent_prompt(leagues_by_tier, overrides)
             if nxt is not None and not tier7_phase_announced:
                 tier7_phase_announced = True
@@ -7362,6 +7683,44 @@ def _interactive_next_missing_tier7_sort_parent_prompt(
     return None
 
 
+def _stem_interactive_parent_candidates(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    child: LeagueData,
+    season: str,
+    parent_overrides: StemParentOverrides,
+) -> list[LeagueData]:
+    """Leagues offered as parent picks in the interactive linker (skip-a-level allowed on stem)."""
+    t = child.tier_num
+    if t == 7:
+        return _tier7_sort_parent_candidates(leagues_by_tier, parent_overrides)
+    if t <= 6:
+        return list(
+            _sorted_stem_leagues_at_tier(
+                t - 1,
+                leagues_by_tier.get(t - 1, []),
+                season,
+                leagues_by_tier=leagues_by_tier,
+                parent_overrides=parent_overrides,
+            )
+        )
+    merged: list[LeagueData] = []
+    seen: set[str] = set()
+    for pt in range(t - 1, 6, -1):
+        for lg in _sorted_stem_leagues_at_tier(
+            pt,
+            leagues_by_tier.get(pt, []),
+            season,
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+        ):
+            if lg.merit_geocoded_competition is not None:
+                continue
+            if lg.league_name not in seen:
+                seen.add(lg.league_name)
+                merged.append(lg)
+    return merged
+
+
 def _stem_next_orphan_for_prompt(
     leagues_by_tier: dict[int, list[LeagueData]],
     season: str,
@@ -7375,19 +7734,18 @@ def _stem_next_orphan_for_prompt(
     )[1]
     flat: list[tuple[int, LeagueData, list[LeagueData]]] = []
     for t in sorted(orphans.keys()):
-        plist = list(
-            _sorted_stem_leagues_at_tier(
-                t - 1,
-                leagues_by_tier.get(t - 1, []),
-                season,
-                leagues_by_tier=leagues_by_tier,
-                parent_overrides=overrides,
-            )
-        )
         for sn in sorted(
             orphans[t], key=lambda n: _stem_sort_key_league_name(n.league.league_name)
         ):
-            flat.append((t, sn.league, plist))
+            flat.append(
+                (
+                    t,
+                    sn.league,
+                    _stem_interactive_parent_candidates(
+                        leagues_by_tier, sn.league, season, overrides
+                    ),
+                )
+            )
     return flat[0] if flat else None
 
 
@@ -7422,12 +7780,17 @@ def _stem_prompt_parent_pick(
     elif tier <= 6:
         heading = "Pyramid feeder — assign Regional / NL2 parent"
     else:
-        heading = "Counties stem — assign parent"
+        heading = "Counties stem — assign parent (may skip levels)"
     if pick_instruction is None:
         if tier == 7:
             instr_line = (
                 "    Pick the most appropriate feeder parent from tiers 1–6 "
                 "(listed in postfix tree order):\n"
+            )
+        elif tier >= 8:
+            instr_line = (
+                f"    Pick a parent from tiers 7–{tier - 1} "
+                "(nearest tier listed first; skip-a-level links are OK):\n"
             )
         else:
             instr_line = f"    Pick pyramid tier-{tier_parent_show} parent(s):\n"
@@ -7459,7 +7822,7 @@ def _stem_prompt_parent_pick(
         if show_candidate_merit_local_tier:
             lt = p.merit_local_tier if p.merit_local_tier is not None else p.tier_num
             print(f"  [{i:2d}] (merit local {lt}) {display}", flush=True)
-        elif tier == 7:
+        elif tier == 7 or (tier >= 8 and p.tier_num < tier - 1):
             print(f"  [{i:2d}] (tier {p.tier_num}) {display}", flush=True)
         else:
             print(f"  [{i:2d}] {display}", flush=True)
@@ -7519,7 +7882,7 @@ def _stem_prompt_parent_pick(
 #
 #   {
 #     "schema_version": 2,
-#     "season": "2025-2026",
+#     "season": "2026-2027",
 #     "men": {
 #       "5": {"<child>": "<parent>" | ["<p1>", "<p2>"] | "-"},
 #       "6": {...},
@@ -8136,6 +8499,17 @@ def stem_parent_overrides_merge_cross_season(
                     season,
                     eff_foreign,
                 )
+                if parent_here is None and t_child >= 8:
+                    national_pool = _national_stem_ancestor_candidate_pool(
+                        leagues_by_tier, child_here
+                    )
+                    if national_pool:
+                        parent_here = _match_parent_override_in_ancestor_pool(
+                            national_pool,
+                            pf,
+                            season,
+                            t_child,
+                        )
                 if parent_here is None:
                     continue
                 nm = parent_here.league_name
@@ -9060,6 +9434,15 @@ def _render_mens_standard_pyramid(
                         len(parent_overrides),
                     )
 
+    parent_overrides, _, _ = _maybe_interactive_resolve_missing_parents(
+        args=args,
+        season=season,
+        gender="mens",
+        leagues_by_tier=national_by_tier,
+        parent_overrides=parent_overrides,
+        already_interactive=args.interactive_stem_orphans,
+    )
+
     if all_leagues:
         parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
             season, dict(parent_overrides or {})
@@ -9222,6 +9605,22 @@ def _render_one_merit_pyramid(
                     len(overrides_local),
                 )
 
+    leagues_by_visible: dict[int, list[LeagueData]] = {}
+    for lg in leagues_visible:
+        leagues_by_visible.setdefault(lg.tier_num, []).append(lg)
+    _, _, overrides_from_prompt = _maybe_interactive_resolve_missing_parents(
+        args=args,
+        season=season,
+        gender="mens",
+        leagues_by_tier=leagues_by_visible,
+        parent_overrides=None,
+        merit_competition=competition,
+        leagues_by_local_tier=leagues_by_local_tier,
+        already_interactive=args.interactive_stem_orphans,
+    )
+    if overrides_from_prompt is not None:
+        overrides_local = overrides_from_prompt
+
     overrides_visible: StemParentOverrides | None = None
     if overrides_local:
         overrides_visible = merit_overrides_local_to_visible(overrides_local, offset)
@@ -9283,8 +9682,8 @@ def main() -> int:
     parser.add_argument(
         "--season",
         type=_validate_season,
-        default="2025-2026",
-        help="Season to render (e.g. 2025-2026).",
+        default=CURRENT_SEASON,
+        help=f"Season to render (e.g. {CURRENT_SEASON}).",
     )
     parser.add_argument(
         "--womens",
@@ -9430,6 +9829,16 @@ def main() -> int:
             "With --labels-under-valid-crests only: stretches pyramid tiers 1–6 and Counties stem "
             f"rows/gaps vertically by FACTOR (default {LEAGUE_LABELS_UNDER_VERTICAL_HEIGHT_SCALE:g}; "
             "1 = no stretch). Ignored when crest labels are off."
+        ),
+    )
+    parser.add_argument(
+        "--no-interactive-on-warnings",
+        action="store_true",
+        help=(
+            "When pyramid leagues lack parent mappings, the default on an interactive "
+            "terminal is to launch the parent linker automatically (Counties stem tier 8+ "
+            "and tier 5/6 feeders only — not tier-7 column order). Pass this flag to "
+            "log warnings only (same as non-TTY runs)."
         ),
     )
     parser.add_argument(
@@ -9599,6 +10008,15 @@ def main() -> int:
                 len(stem_slot_strips),
                 stem_parent_overrides_store_path(season),
             )
+
+        parent_overrides, _, _ = _maybe_interactive_resolve_missing_parents(
+            args=args,
+            season=season,
+            gender="mens",
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+            already_interactive=args.interactive_stem_orphans,
+        )
     else:
         if args.interactive_stem_orphans:
             seed_w: StemParentOverrides | None = None
@@ -9648,6 +10066,16 @@ def main() -> int:
                         )
         if args.ignore_stem_slot_strips:
             logger.info("--ignore-stem-slot-strips has no effect with --womens.")
+
+        _, womens_parent_overrides, _ = _maybe_interactive_resolve_missing_parents(
+            args=args,
+            season=season,
+            gender="womens",
+            leagues_by_tier=leagues_by_tier,
+            parent_overrides=parent_overrides,
+            womens_parent_overrides=womens_parent_overrides,
+            already_interactive=args.interactive_stem_orphans,
+        )
 
     render_kwargs: dict[str, object] = {
         "gender": gender,

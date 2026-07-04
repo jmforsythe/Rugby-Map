@@ -36,13 +36,6 @@ from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
 
-# Men's Premiership, men's Championship, and Women's Premiership: show "Current" for the
-# latest season row instead of ordinal position until those competitions finish publicly.
-# All other leagues (including women's Championship tiers, merit, Counties, etc.) show
-# league position on the latest season once the pyramid season is complete for that level.
-_POSITION_PENDING_TOP_TIERS = frozenset({"Premiership", "Women's Premiership"})
-
-
 def _parse_rfu_team_id(url: str | None) -> int | None:
     """Numeric id from ``team=`` in an RFU team profile URL, if present."""
     if not url:
@@ -794,7 +787,7 @@ def get_team_page_html(
                 n_in_league: int = entry["league_team_count"]
 
                 suppress_position_latest = (
-                    season == all_seasons[0] and league in _POSITION_PENDING_TOP_TIERS
+                    season == all_seasons[0]
                 )
                 if suppress_position_latest:
                     position_display = '<span class="address">Current</span>'

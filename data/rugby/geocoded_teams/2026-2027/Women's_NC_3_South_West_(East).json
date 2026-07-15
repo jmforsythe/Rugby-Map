@@ -1,0 +1,67 @@
+{
+  "league_name": "Women's NC 3 South West (East)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227#tables",
+  "teams": [
+    {
+      "name": "Fairford Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=123323",
+      "image_url": "https://images.englandrugby.com/club_images/123323.png",
+      "address": "Fairford R.f.c. Leafield Road Fairford Gloucestershire GL7 4JQ United Kingdom",
+      "latitude": 51.714672,
+      "longitude": -1.779741,
+      "formatted_address": "GL7 4JQ, Fairford, Cotswold, Gloucestershire, England, United Kingdom",
+      "place_id": 350187487
+    },
+    {
+      "name": "Kingswood Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=129361",
+      "image_url": "https://images.englandrugby.com/club_images/129361.png",
+      "address": "Kingswood Rfc Grimsbury Road Playing Fields Grimsbury Road Kingswood Bristol BS15 9RA England",
+      "latitude": 51.459969,
+      "longitude": -2.487031,
+      "formatted_address": "BS15 9RA, Kingswood, Warmley, Kingswood, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350056778
+    },
+    {
+      "name": "North Bristol  Ladies III",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=130264",
+      "image_url": "https://images.englandrugby.com/club_images/130264.png",
+      "address": "North Bristol RFC Oaklands Gloucester Road Gloucester Road Almondsbury AVON BS32 4AG UNITED KINGDOM",
+      "latitude": 51.548128,
+      "longitude": -2.5712177,
+      "formatted_address": "BS32 4AG, Almondsbury, Easter Compton, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 378350309
+    },
+    {
+      "name": "Royal Wootton Bassett Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=130088",
+      "image_url": "https://images.englandrugby.com/club_images/130088.png",
+      "address": "Royal Wootton Bassett RFC Ballards Ash Sports Ground Malmesbury Road Royal Wootton Bassett WILTSHIRE SN4 8DS UNITED KINGDOM",
+      "latitude": 51.5545357,
+      "longitude": -1.9004106,
+      "formatted_address": "SN4 8DS, Royal Wootton Bassett, Wiltshire, England, United Kingdom",
+      "place_id": 350825006
+    },
+    {
+      "name": "Trowbridge Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=124598",
+      "image_url": "https://images.englandrugby.com/club_images/124598.png",
+      "address": "Paxcroft Hilperton Trowbridge WILTSHIRE BA14 6JB UNITED KINGDOM",
+      "latitude": 51.332386,
+      "longitude": -2.169566,
+      "formatted_address": "Paxcroft Mead, Trowbridge, Hilperton, Wiltshire, England, BA14 7WQ, United Kingdom",
+      "place_id": 260663007
+    },
+    {
+      "name": "Yate Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76227&team=127916",
+      "image_url": "https://images.englandrugby.com/club_images/127916.png",
+      "address": "Yate Outdoor Sports Complex Broad Lane Yate BS37 7LB England",
+      "latitude": 51.551765,
+      "longitude": -2.426917,
+      "formatted_address": "BS37 7LB, Yate, South Gloucestershire, West of England, England, United Kingdom",
+      "place_id": 350066174
+    }
+  ],
+  "team_count": 6
+}

@@ -24,6 +24,11 @@ from core import (
 )
 from core.config import CACHE_DIR
 from rugby import DATA_DIR
+from rugby.sync_rfu_coordinates import (
+    RFU_COORD_CACHE_FILE,
+    apply_rfu_coords_from_cache,
+    load_rfu_coord_cache,
+)
 
 _cache_lock = threading.RLock()
 _cache_dirty_lock = threading.Lock()
@@ -321,7 +326,12 @@ def geocode_with_nominatim(
     return None, log_lines
 
 
-def process_team(team: AddressTeam, api_retries: int = 3) -> tuple[GeocodedTeam, str]:
+def process_team(
+    team: AddressTeam,
+    api_retries: int = 3,
+    *,
+    rfu_cache: dict[str, list[float] | None] | None = None,
+) -> tuple[GeocodedTeam, str]:
     """Process a single team: geocode the address.
 
     Args:
@@ -361,6 +371,10 @@ def process_team(team: AddressTeam, api_retries: int = 3) -> tuple[GeocodedTeam,
         result["error"] = "geocoding_failed"  # type: ignore
         log_lines.append("    ✗ Geocoding failed")
 
+    if rfu_cache and apply_rfu_coords_from_cache(result, rfu_cache):
+        log_lines.append(f"    ✓ RFU pin override: {result['latitude']}, {result['longitude']}")
+        result.pop("error", None)
+
     return result, "\n".join(log_lines)
 
 
@@ -372,6 +386,7 @@ def process_address_file(
     api_retries: int = 3,
     *,
     force: bool = False,
+    rfu_cache: dict[str, list[float] | None] | None = None,
 ) -> None:
     """Process a single address JSON file and geocode all teams."""
     global teams_without_geocodes
@@ -402,7 +417,7 @@ def process_address_file(
         futures_to_idx: dict[concurrent.futures.Future, int] = {}
 
         for idx, team in enumerate(teams):
-            future = executor.submit(process_team, team, api_retries)
+            future = executor.submit(process_team, team, api_retries, rfu_cache=rfu_cache)
             futures_to_idx[future] = idx
 
         try:
@@ -490,6 +505,12 @@ def main() -> None:
     print(f"Processing season: {season}")
 
     load_cache()
+    rfu_cache = load_rfu_coord_cache(RFU_COORD_CACHE_FILE)
+    if rfu_cache:
+        ok = sum(1 for v in rfu_cache.values() if v is not None)
+        print(f"Loaded {ok} RFU club pins from cache ({len(rfu_cache)} entries)")
+    else:
+        print("No RFU club coord cache — Nominatim coords only (run sync_rfu_coordinates later)")
 
     address_dir = DATA_DIR / "team_addresses" / season
     if not address_dir.exists():
@@ -529,6 +550,7 @@ def main() -> None:
                 max_workers=args.workers,
                 api_retries=args.api_retries,
                 force=args.force,
+                rfu_cache=rfu_cache,
             )
         except KeyboardInterrupt:
             print("\n\n✗ Interrupted by user")

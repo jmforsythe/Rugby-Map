@@ -191,6 +191,45 @@ def fetch_rfu_coordinates(
     return None, "\n".join(log_lines)
 
 
+def rfu_coords_for_team(
+    team: dict[str, Any],
+    rfu_cache: dict[str, list[float] | None],
+) -> tuple[float, float] | None:
+    """Return cached RFU pin for *team*'s club, or ``None`` if unavailable."""
+    team_name = team.get("name") or ""
+    if isinstance(team_name, str) and (
+        team_name.startswith("To be arranged") or team_name.startswith("TBC")
+    ):
+        return None
+    url = team.get("url") or ""
+    if "englandrugby.com" not in url:
+        return None
+    club = team_name_to_club_name(team_name if isinstance(team_name, str) else "")
+    if not club.strip():
+        return None
+    row = rfu_cache.get(club)
+    if isinstance(row, list) and len(row) == 2:
+        return float(row[0]), float(row[1])
+    return None
+
+
+def apply_rfu_coords_from_cache(
+    team: dict[str, Any],
+    rfu_cache: dict[str, list[float] | None],
+    *,
+    allow_large_coordinate_jump: bool = False,
+) -> bool:
+    """Override *team* lat/lng from ``rfu_club_coords_cache.json`` when present."""
+    canonical = rfu_coords_for_team(team, rfu_cache)
+    if canonical is None:
+        return False
+    return apply_coords_to_team(
+        team,
+        canonical,
+        allow_large_coordinate_jump=allow_large_coordinate_jump,
+    )
+
+
 def apply_coords_to_team(
     team: dict[str, Any],
     canonical: tuple[float, float],
@@ -517,13 +556,9 @@ def main() -> None:
             url = team.get("url") or ""
             if "englandrugby.com" not in url:
                 continue
-            club = team_name_to_club_name(team_name if isinstance(team_name, str) else "")
-            if not club.strip() or club not in club_coords:
-                continue
-            canonical = club_coords[club]
-            if not apply_coords_to_team(
+            if not apply_rfu_coords_from_cache(
                 team,
-                canonical,
+                rfu_cache,
                 allow_large_coordinate_jump=allow_large_jump,
             ):
                 continue

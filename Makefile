@@ -13,7 +13,7 @@ help:
 	@echo "  boundaries   Download ONS boundary data"
 	@echo "  scrape       Scrape league/team data from RFU"
 	@echo "  addresses    Fetch team addresses from RFU"
-	@echo "  geocode      Geocode team addresses"
+	@echo "  geocode      Geocode team addresses (Nominatim + RFU pin cache)"
 	@echo "  distances    Calculate team travel distances (uses routed cache if present)"
 	@echo "  routed-distances  Build the global OSRM routed distance/duration matrix"
 	@echo "                    (one-off; requires osrm-routed running on :5000)"
@@ -50,6 +50,7 @@ addresses:
 
 geocode:
 	python -m rugby.geocode --season $(SEASON) $(FORCE_FLAG)
+	python -m rugby.sync_rfu_coordinates --skip-fetch
 
 distances:
 	python -m rugby.distances --season $(SEASON)

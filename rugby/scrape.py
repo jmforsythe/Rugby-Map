@@ -59,7 +59,7 @@ def get_merit_meta_league_urls(season: str) -> list[str]:
 
 
 PREM_MAP = {
-    "2026-2027": "68225",
+    "2026-2027": "",
     "2025-2026": "68225",
     "2024-2025": "67686",
     "2023-2024": "51168",
@@ -89,7 +89,7 @@ PREM_MAP = {
 }
 
 CHAMP_MAP = {
-    "2026-2027": "67198",
+    "2026-2027": "76143",
     "2025-2026": "67198",
     "2024-2025": "57597",
     "2023-2024": "47253",
@@ -121,18 +121,27 @@ CHAMP_MAP = {
 
 def get_leagues(season: str) -> list[LeagueInfo]:
     """Get initial league list for the given season."""
-    return [
-        {
-            "name": "Premiership",
-            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division={PREM_MAP[season]}&season={season}",
-            "parent_url": "https://www.englandrugby.com/fixtures-and-results",
-        },
-        {
-            "name": "Championship",
-            "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division={CHAMP_MAP[season]}&season={season}",
-            "parent_url": "https://www.englandrugby.com/fixtures-and-results",
-        },
-    ]
+    leagues: list[LeagueInfo] = []
+    parent_url = "https://www.englandrugby.com/fixtures-and-results"
+    prem_div = PREM_MAP.get(season, "")
+    if prem_div:
+        leagues.append(
+            {
+                "name": "Premiership",
+                "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=5&division={prem_div}&season={season}",
+                "parent_url": parent_url,
+            }
+        )
+    champ_div = CHAMP_MAP.get(season, "")
+    if champ_div:
+        leagues.append(
+            {
+                "name": "Championship",
+                "url": f"https://www.englandrugby.com/fixtures-and-results/search-results?competition=173&division={champ_div}&season={season}",
+                "parent_url": parent_url,
+            }
+        )
+    return leagues
 
 
 def get_womens_meta_league_urls(season: str) -> list[str]:

@@ -1,0 +1,77 @@
+{
+  "league_name": "Women's NC 1 South East (South)",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186#tables",
+  "teams": [
+    {
+      "name": "Aylesford Bulls Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=94090",
+      "image_url": "https://images.englandrugby.com/club_images/94090.png",
+      "address": "The Jack Williams Ground, Hall Road, Hall Road, Aylesford, Kent, ME20 7DS, United Kingdom",
+      "latitude": 51.299315,
+      "longitude": 0.47952,
+      "formatted_address": "ME20 7DS, Aylesford, Tonbridge and Malling, Kent, England, United Kingdom",
+      "place_id": 351573177
+    },
+    {
+      "name": "Canterbury Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=4133",
+      "image_url": "https://images.englandrugby.com/club_images/4133.png",
+      "address": "The Marine Travel Ground, Merton Lane (north), Nackington Road, Canterbury, Kent, CT4 7DZ, United Kingdom",
+      "latitude": 51.257576,
+      "longitude": 1.08301,
+      "formatted_address": "CT4 7DZ, Canterbury, Kent, England, United Kingdom",
+      "place_id": 351107399
+    },
+    {
+      "name": "Dorking Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=6612",
+      "image_url": "https://images.englandrugby.com/club_images/6612.png",
+      "address": "The Pavilion, The Big Field, Brockham, Betchworth, Surrey, RH3 7LZ, United Kingdom",
+      "latitude": 51.23507,
+      "longitude": -0.285457,
+      "formatted_address": "RH3 7LZ, Brockham, Mole Valley, Surrey, England, United Kingdom",
+      "place_id": 351827752
+    },
+    {
+      "name": "Jersey Rugby Football Club Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=11100",
+      "image_url": "https://images.englandrugby.com/club_images/11100.png",
+      "address": "Jersey Rugby Football Club, Rue Des Landes, St Peter, JE3 7BG, Jersey",
+      "latitude": 49.215619,
+      "longitude": -2.224016,
+      "formatted_address": "Jersey Rugby Football Club, Rue des Landes, La Vingtaine du Douet, St Peter, JE3 7BF, Jersey",
+      "place_id": 263626983
+    },
+    {
+      "name": "Lordswood Valkyries Ladies",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=12811",
+      "image_url": "https://images.englandrugby.com/club_images/12811.png",
+      "address": "Lordswood R.F.C. Lordswood sports &social club Lordswood chatham KENT ME5 8YE UNITED KINGDOM ",
+      "latitude": 51.340352,
+      "longitude": 0.54579,
+      "formatted_address": "ME5 8YE, Medway, England, United Kingdom",
+      "place_id": 350701886
+    },
+    {
+      "name": "Medway Women",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=13599",
+      "image_url": "https://images.englandrugby.com/club_images/13599.png",
+      "address": "Medway RFC Priestfields  Rochester KENT ME1 3AD UNITED KINGDOM ",
+      "latitude": 51.373581,
+      "longitude": 0.49573,
+      "formatted_address": "ME1 3AD, Rochester, Medway, England, United Kingdom",
+      "place_id": 351563999
+    },
+    {
+      "name": "Seaford Scarlets",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&season=2026-2027&division=76186&team=18874",
+      "image_url": "https://images.englandrugby.com/club_images/18874.png",
+      "address": "The Clubhouse, Salts Recreation Ground, Richmond Road (off Dane Road), Seaford, East Sussex, BN25 1DR, United Kingdom",
+      "latitude": 50.772457,
+      "longitude": 0.097506,
+      "formatted_address": "BN25 1DR, Seaford, Lewes, East Sussex, England, United Kingdom",
+      "place_id": 350501863
+    }
+  ],
+  "team_count": 7
+}

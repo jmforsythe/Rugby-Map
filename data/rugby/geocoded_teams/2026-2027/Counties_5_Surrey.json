@@ -1,0 +1,87 @@
+{
+  "league_name": "Counties 5 Surrey",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715#tables",
+  "teams": [
+    {
+      "name": "Egham Hollowegians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=7405",
+      "image_url": "https://images.englandrugby.com/club_images/7405.png",
+      "address": "Hox Park, Cooper's Hill Lane, Englefield Green, Surrey , TW20 0GP, England",
+      "latitude": 51.429814,
+      "longitude": -0.587562,
+      "formatted_address": "Hox Park, Cooper's Hill Lane, Englefield Green, Runnymede, Surrey, England, TW20 0LF, United Kingdom",
+      "place_id": 260325893
+    },
+    {
+      "name": "Feltham",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=8061",
+      "image_url": "https://images.englandrugby.com/club_images/8061.png",
+      "address": "Feltham Rfc Clubhouse, Hanworth Air Park, Park Road, Hanworth, Middlesex, TW13 6PP, United Kingdom",
+      "latitude": 51.435608,
+      "longitude": -0.392913,
+      "formatted_address": "TW13 6PP, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352094850
+    },
+    {
+      "name": "Guildfordians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=9083",
+      "image_url": "https://images.englandrugby.com/club_images/9083.png",
+      "address": "The Pavilion, London Road, Guildford, Surrey, GU1 1TU, United Kingdom",
+      "latitude": 51.247903,
+      "longitude": -0.556089,
+      "formatted_address": "The Pavilion, Old Guildfordians Club, London Road, Abbotswood, Guildford, Surrey, England, GU1 1TU, United Kingdom",
+      "place_id": 260456310
+    },
+    {
+      "name": "Harlequin Amateurs",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=9393",
+      "image_url": "https://images.englandrugby.com/club_images/9393.png",
+      "address": "Hampton Wick Royals Cricket Club, Bushy Park, Park Road, Bushy Park, Park Rd, , Hampton Wick, Kingston, Middlesex, KT1 4AZ, United Kingdom",
+      "latitude": 51.412011,
+      "longitude": -0.317226,
+      "formatted_address": "KT1 4AZ, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350670305
+    },
+    {
+      "name": "London French",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=12521",
+      "image_url": "https://images.englandrugby.com/club_images/12521.png",
+      "address": "Barn Elms Playing Fields, Queen Elizabeth Walk, Rocks Lane, London, SW13 9WT, United Kingdom",
+      "latitude": 51.477207,
+      "longitude": -0.235929,
+      "formatted_address": "SW13 9WT, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350838989
+    },
+    {
+      "name": "Merton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=13763",
+      "image_url": "https://images.englandrugby.com/club_images/13763.png",
+      "address": "Morden Recreation Ground, 25 Faversham Road, Morden, Surrey , SM4 6RE, United Kingdom",
+      "latitude": 51.391202,
+      "longitude": -0.191159,
+      "formatted_address": "SM4 6RE, London Borough of Merton, Greater London, England, United Kingdom",
+      "place_id": 351937994
+    },
+    {
+      "name": "Mitcham & Carshalton",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=14023",
+      "image_url": "https://images.englandrugby.com/club_images/14023.png",
+      "address": "Dewsbury Cottage, Poulter Park, Peterborough Road, Carshalton, Surrey, SM5 1EE, United Kingdom",
+      "latitude": 51.390746,
+      "longitude": -0.174461,
+      "formatted_address": "SM5 1EE, London Borough of Sutton, Greater London, England, United Kingdom",
+      "place_id": 351938087
+    },
+    {
+      "name": "Wandsworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=261&season=2026-2027&division=76715&team=24237",
+      "image_url": "https://images.englandrugby.com/club_images/24237.png",
+      "address": "Imber Court, Ember Lane, East Molesey, Surrey , KT8 0BT, United Kingdom",
+      "latitude": 51.390751,
+      "longitude": -0.35003,
+      "formatted_address": "KT8 0BT, Elmbridge, Surrey, England, United Kingdom",
+      "place_id": 351430023
+    }
+  ],
+  "team_count": 8
+}

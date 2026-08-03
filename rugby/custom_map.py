@@ -37,6 +37,7 @@ from core import (
     set_config,
     setup_logging,
 )
+from core.asset_utils import rewrite_cdn_urls_in_html
 from core.basemap_tiles import (
     CARTO_THEME_MARK_DARK,
     CARTO_THEME_MARK_LIGHT,
@@ -773,6 +774,7 @@ def _build_page() -> None:
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
+    rewrite_cdn_urls_in_html(output_path)
     logger.info("Wrote %s", output_path)
 
 

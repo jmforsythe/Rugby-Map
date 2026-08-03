@@ -27,6 +27,7 @@ from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 from shapely.prepared import PreparedGeometry, prep
 
+from core.asset_utils import rewrite_cdn_urls_in_html
 from core.basemap_tiles import (
     CARTO_THEME_MARK_DARK,
     CARTO_THEME_MARK_LIGHT,
@@ -2399,6 +2400,7 @@ def generate_single_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
+    rewrite_cdn_urls_in_html(output_path)
     logger.info("Saved %s map with %d items to: %s", config.title, len(all_placed), output_path)
 
 
@@ -2502,4 +2504,5 @@ def generate_multi_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
+    rewrite_cdn_urls_in_html(output_path)
     logger.info("Saved %s map with %d items to: %s", config.title, num_items, output_path)

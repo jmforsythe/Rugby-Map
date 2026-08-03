@@ -88,6 +88,13 @@ jobs:
           if [ -z "$FIRST" ]; then echo "No geocoded season dirs"; exit 1; fi
           python -m rugby.maps --production --season="$FIRST" --no-debug --emit-shared-boundaries-only
 
+      # Self-hosted Leaflet/MarkerCluster/etc — fetched once here so it's part of
+      # the dist/shared tarball every downstream matrix job + assemble extract,
+      # letting core.asset_utils.rewrite_cdn_urls_in_html swap CDN URLs for
+      # local copies wherever maps get built.
+      - name: Fetch self-hosted vendor JS/CSS
+        run: python scripts/fetch_vendor_assets.py
+
       # upload-artifact strips parent dirs when uploading a folder alone; downstream expects data/boundaries/*.geojson.
       - name: Pack boundary GeoJSON for artifact
         run: tar --zstd -cf rugby-boundaries.tar.zst data/boundaries

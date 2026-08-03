@@ -44,6 +44,7 @@ from core import (
     set_config,
     setup_logging,
 )
+from core.asset_utils import rewrite_cdn_urls_in_html
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
 from core.map_builder import DARK_MODE_JS, POPUP_CSS, LayerControlHook
@@ -1210,6 +1211,7 @@ def build_match_day_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
+    rewrite_cdn_urls_in_html(output_path)
 
     data_dir = output_path.parent / "data"
     data_dir.mkdir(parents=True, exist_ok=True)

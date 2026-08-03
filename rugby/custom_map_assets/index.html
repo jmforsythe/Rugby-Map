@@ -3513,11 +3513,22 @@
         addBoundaryOutlines();
         if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
       }
+      function loadBoundaries() {
+        fetch(INFO_PREFIX + "shared/boundaries-custom.json")
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            window.BOUNDARIES = data;
+            onBoundariesLoaded();
+          })
+          .catch(function (e) { console.warn("Could not load boundaries:", e); });
+      }
     </script>
     <script src="bonus_imports.js"></script>
     <script src="season_imports.js"></script>
     <script src="distances.js" onload="decodeRoutedDistances()"></script>
     <script src="teams.js" onload="onTeamsLoaded()"></script>
-    <script src="boundaries.js" onload="onBoundariesLoaded()"></script>
+    <script>
+      loadBoundaries();
+    </script>
   </body>
 </html>

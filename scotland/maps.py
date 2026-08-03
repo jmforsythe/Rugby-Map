@@ -18,6 +18,7 @@ from pathlib import Path
 
 from core import setup_logging
 from core.config import BOUNDARIES_DIR, DIST_DIR
+from core.json_utils import write_compact_json
 from core.map_builder import (
     MapConfig,
     MarkerItem,
@@ -191,9 +192,7 @@ def _export_scotland_boundaries(boundaries_path: Path) -> None:
             }
             logger.info("  %s: %d Scottish regions", level, len(scottish_feats))
 
-    boundaries_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(boundaries_path, "w") as fout:
-        json.dump(boundary_data, fout, separators=(",", ":"))
+    write_compact_json(boundaries_path, boundary_data)
     logger.info("Exported Scotland boundaries to %s", boundaries_path)
 
 

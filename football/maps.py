@@ -19,6 +19,7 @@ from pathlib import Path
 
 from core import setup_logging
 from core.config import BOUNDARIES_DIR
+from core.json_utils import write_compact_json
 from core.map_builder import MarkerItem, generate_multi_group_map, load_itl_hierarchy
 from football import DATA_DIR
 from football.map_common import build_map_config, dist_season_dir, prepare_map_context, short_season
@@ -234,9 +235,7 @@ def _export_england_boundaries(boundaries_path: Path) -> None:
             }
             logger.info("  %s: %d regions", level, len(feats))
 
-    boundaries_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(boundaries_path, "w") as fout:
-        json.dump(boundary_data, fout, separators=(",", ":"))
+    write_compact_json(boundaries_path, boundary_data)
     logger.info("Exported England boundaries to %s", boundaries_path)
 
 

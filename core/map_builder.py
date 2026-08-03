@@ -34,6 +34,7 @@ from core.basemap_tiles import (
     CARTO_TILE_URL_LIGHT,
     folium_carto_attribution,
 )
+from core.json_utils import write_compact_json
 
 logger = logging.getLogger(__name__)
 
@@ -742,8 +743,7 @@ def export_shared_boundaries(
                 ],
             }
 
-    with open(output_path, "w") as fout:
-        json.dump(boundary_data, fout, separators=(",", ":"))
+    write_compact_json(output_path, boundary_data)
 
     logger.debug("Exported shared boundary data to: %s", output_path)
 
@@ -1251,8 +1251,7 @@ def _write_territories_sidecar(
 ) -> None:
     """Write the collected territory export data as JSON beside *output_path*."""
     sidecar_path = output_path.parent / sidecar_name
-    sidecar_path.parent.mkdir(parents=True, exist_ok=True)
-    sidecar_path.write_text(json.dumps(layers, separators=(",", ":")), encoding="utf-8")
+    write_compact_json(sidecar_path, layers)
 
 
 def _get_territory_loader_script(sidecar_name: str) -> str:

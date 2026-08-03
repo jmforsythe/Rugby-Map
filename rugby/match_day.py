@@ -47,6 +47,7 @@ from core import (
 from core.asset_utils import rewrite_cdn_urls_in_html
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
+from core.json_utils import write_compact_json
 from core.map_builder import DARK_MODE_JS, POPUP_CSS, LayerControlHook
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
@@ -1214,11 +1215,8 @@ def build_match_day_map(
     rewrite_cdn_urls_in_html(output_path)
 
     data_dir = output_path.parent / "data"
-    data_dir.mkdir(parents=True, exist_ok=True)
     for date_iso, payload in date_json_data.items():
-        (data_dir / f"{date_iso}.json").write_text(
-            json.dumps(payload, separators=(",", ":")), encoding="utf-8"
-        )
+        write_compact_json(data_dir / f"{date_iso}.json", payload)
 
     total_placed = sum(total for _, total, _ in date_meta)
     logger.info(

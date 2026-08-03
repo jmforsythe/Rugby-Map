@@ -46,6 +46,7 @@ from core.basemap_tiles import (
     custom_map_basemap_html_attribution,
 )
 from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
+from core.json_utils import write_compact_json
 from rugby import DATA_DIR
 from rugby.custom_map_imports import write_bonus_imports_js
 from rugby.custom_map_season_imports import write_season_imports_js
@@ -598,11 +599,8 @@ def _export_boundaries_custom(
     }
 
     shared_dir = DIST_DIR / "shared"
-    shared_dir.mkdir(parents=True, exist_ok=True)
     output_path = shared_dir / "boundaries-custom.json"
-    payload = json.dumps(bd, separators=(",", ":"), ensure_ascii=False)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(payload)
+    write_compact_json(output_path, bd)
 
     size_mb = output_path.stat().st_size / 1024 / 1024
     logger.info(

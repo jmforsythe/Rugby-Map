@@ -1072,9 +1072,30 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-    <script src="https://unpkg.com/@turf/turf@7/turf.min.js"></script>
     <script>
       "use strict";
+
+      // Turf.js (~300 KB) is only needed for territory shading (renderTerritories)
+      // and boundary hierarchy prep (prepareBoundaryItl0, both gated on
+      // boundariesReady) — load it off the critical rendering path, in parallel
+      // with the boundaries-custom.json fetch, instead of a blocking <script src>.
+      let turfLoadPromise = null;
+      function ensureTurfLoaded() {
+        if (typeof turf !== "undefined") return Promise.resolve();
+        if (turfLoadPromise) return turfLoadPromise;
+        turfLoadPromise = new Promise(function (resolve, reject) {
+          const s = document.createElement("script");
+          s.src = "https://unpkg.com/@turf/turf@7/turf.min.js";
+          s.onload = function () {
+            resolve();
+          };
+          s.onerror = function () {
+            reject(new Error("Failed to load turf.js"));
+          };
+          document.head.appendChild(s);
+        });
+        return turfLoadPromise;
+      }
 
       const BASEMAP_TILE_URL_LIGHT = {{BASEMAP_TILE_URL_LIGHT_JSON}};
       const BASEMAP_TILE_URL_DARK = {{BASEMAP_TILE_URL_DARK_JSON}};
@@ -1763,6 +1784,16 @@
       function renderMarkers() {
         markersGroup.clearLayers();
         cachedAllPlaced = [];
+
+        if (
+          !distancesRequested &&
+          leagues.some(function (l) { return l.teams.length >= 2; })
+        ) {
+          distancesRequested = true;
+          ensureDistancesLoaded().then(function () {
+            renderMap();
+          });
+        }
 
         for (const league of leagues) {
           const stats = calcLeagueStats(league);
@@ -3005,9 +3036,11 @@
 
       function openImportModal() {
         document.getElementById("importSearch").value = "";
-        renderImportList("");
         document.getElementById("importModal").classList.add("open");
         document.getElementById("importSearch").focus();
+        ensureImportsLoaded().then(function () {
+          renderImportList("");
+        });
       }
 
       function closeImportModal() {
@@ -3514,18 +3547,71 @@
         if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
       }
       function loadBoundaries() {
-        fetch(INFO_PREFIX + "shared/boundaries-custom.json")
-          .then(function (r) { return r.json(); })
-          .then(function (data) {
-            window.BOUNDARIES = data;
+        Promise.all([
+          fetch(INFO_PREFIX + "shared/boundaries-custom.json").then(function (r) {
+            return r.json();
+          }),
+          ensureTurfLoaded(),
+        ])
+          .then(function (results) {
+            window.BOUNDARIES = results[0];
             onBoundariesLoaded();
           })
           .catch(function (e) { console.warn("Could not load boundaries:", e); });
       }
+
+      // distances.js (~8-9 MB) is only needed once a league has 2+ teams to
+      // compare — load it lazily on first such occurrence instead of blocking
+      // page load, then re-render once to upgrade Haversine estimates to the
+      // routed-road figures. calcLeagueStats()/routedKm()/routedMin() already
+      // fall back to Haversine when ROUTED_DISTANCES is unset, so this is safe
+      // at any point in the app's lifecycle.
+      let distancesLoadPromise = null;
+      let distancesRequested = false;
+      function ensureDistancesLoaded() {
+        if (distancesLoadPromise) return distancesLoadPromise;
+        distancesLoadPromise = new Promise(function (resolve) {
+          const s = document.createElement("script");
+          s.src="distances.js";
+          s.onload = function () {
+            decodeRoutedDistances();
+            resolve();
+          };
+          s.onerror = function () {
+            window.ROUTED_DISTANCES = null;
+            resolve();
+          };
+          document.body.appendChild(s);
+        });
+        return distancesLoadPromise;
+      }
+
+      // season_imports.js + bonus_imports.js (pyramid/merit/bonus tier catalogues)
+      // are only used by the "Import teams" modal — load them lazily the first
+      // time it's opened instead of blocking page load.
+      let importsLoadPromise = null;
+      function ensureImportsLoaded() {
+        if (importsLoadPromise) return importsLoadPromise;
+        const seasonPromise = new Promise(function (resolve) {
+          const s = document.createElement("script");
+          s.src="season_imports.js";
+          s.onload = resolve;
+          s.onerror = resolve;
+          document.body.appendChild(s);
+        });
+        const bonusPromise = new Promise(function (resolve) {
+          const s = document.createElement("script");
+          s.src="bonus_imports.js";
+          s.onload = resolve;
+          s.onerror = resolve;
+          document.body.appendChild(s);
+        });
+        importsLoadPromise = Promise.all([seasonPromise, bonusPromise]).then(function () {
+          buildImportCatalog();
+        });
+        return importsLoadPromise;
+      }
     </script>
-    <script src="bonus_imports.js"></script>
-    <script src="season_imports.js"></script>
-    <script src="distances.js" onload="decodeRoutedDistances()"></script>
     <script src="teams.js" onload="onTeamsLoaded()"></script>
     <script>
       loadBoundaries();

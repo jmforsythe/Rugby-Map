@@ -469,7 +469,7 @@ jobs:
 
       - name: Rugby — sitemap & robots.txt
         run: |
-          python -m rugby.seo
+          python -m rugby.seo --production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

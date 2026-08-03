@@ -210,9 +210,45 @@ def generate_robots() -> str:
     return "User-agent: *\n" "Allow: /\n" f"\nSitemap: {BASE_URL}/sitemap.xml\n"
 
 
+# Comments and insignificant whitespace only -- no attempt to shorten colours,
+# merge rules, or otherwise change semantics. Safe for hand-written stylesheets
+# that don't rely on significant whitespace inside string values (checked
+# against dist/styles.css: its only quoted content: "..." values are short,
+# single-line glyphs with no embedded braces/comment markers).
+_CSS_COMMENT_RE = re.compile(r"/\*.*?\*/", re.DOTALL)
+_CSS_WHITESPACE_RE = re.compile(r"\s+")
+_CSS_PUNCTUATION_WHITESPACE_RE = re.compile(r"\s*([{}:;,])\s*")
+
+
+def minify_css(css: str) -> str:
+    """Strip comments and collapse insignificant whitespace in *css*."""
+    css = _CSS_COMMENT_RE.sub("", css)
+    css = _CSS_WHITESPACE_RE.sub(" ", css)
+    css = _CSS_PUNCTUATION_WHITESPACE_RE.sub(r"\1", css)
+    return css.replace(";}", "}").strip()
+
+
+def minify_styles_css(dist_dir: Path) -> None:
+    """Minify dist/styles.css in place (production builds only -- this file is
+    git-tracked and hand-edited, so leave it readable for local development).
+    """
+    styles_path = dist_dir / "styles.css"
+    if not styles_path.is_file():
+        return
+    original = styles_path.read_text(encoding="utf-8")
+    minified = minify_css(original)
+    styles_path.write_text(minified, encoding="utf-8")
+    print(f"Minified {styles_path} ({len(original)} -> {len(minified)} bytes)")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate SEO files for the rugby maps site.")
-    parser.parse_args()
+    parser.add_argument(
+        "--production",
+        action="store_true",
+        help="Also minify dist/styles.css (skipped locally to keep it readable/editable)",
+    )
+    args = parser.parse_args()
 
     dist_dir = DIST_DIR
     if not dist_dir.exists():
@@ -220,6 +256,9 @@ def main() -> None:
         return
 
     copy_share_image(dist_dir)
+
+    if args.production:
+        minify_styles_css(dist_dir)
 
     sitemap = generate_sitemap(dist_dir)
     sitemap_path = dist_dir / "sitemap.xml"

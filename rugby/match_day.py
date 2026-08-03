@@ -26,9 +26,10 @@ from collections import defaultdict
 from datetime import date, datetime
 from html import escape
 from pathlib import Path
+from typing import Any
 
 import folium
-from folium.plugins import FeatureGroupSubGroup, MarkerCluster
+from folium.plugins import MarkerCluster
 
 from core import (
     Fixture,
@@ -161,7 +162,8 @@ _MATCHDAY_WIDGET_HTML = """
     var allDates = @@ALL_DATES_JSON@@;
     var tierProxyVars = @@TIER_PROXY_VARS_JSON@@;
     var tierLabels = @@TIER_LABEL_JSON@@;
-    var subgroupsByDate = @@SUBGROUPS_BY_DATE_JSON@@;
+    var dataBaseUrl = @@DATA_BASE_URL_JSON@@;
+    var parentClusterVar = @@PARENT_CLUSTER_VAR_JSON@@;
     var historicSeason = @@HISTORIC_ARCHIVE_JS@@;
     var mapObj = null;
     var tierProxies = {};
@@ -169,6 +171,7 @@ _MATCHDAY_WIDGET_HTML = """
     var tierUserVisible = {};
     var matchdayInitDone = false;
     var matchdaySuppressEvents = false;
+    var dateDataCache = {};
 
     function getMap() {
         if (mapObj) return mapObj;
@@ -252,10 +255,34 @@ _MATCHDAY_WIDGET_HTML = """
         }
     }
 
-    function rebindLayerControlForDate(date) {
+    function loadDateData(date) {
+        if (dateDataCache[date]) return Promise.resolve(dateDataCache[date]);
+        return fetch(dataBaseUrl + date + '.json').then(function(r) { return r.json(); }).then(function(d) {
+            dateDataCache[date] = d;
+            return d;
+        });
+    }
+
+    function buildSubgroupForTier(markersData) {
+        var markers = markersData.map(function(md) {
+            var icon = L.divIcon({ html: md.icon, iconSize: md.iconSize, iconAnchor: md.iconAnchor });
+            var marker = L.marker([md.lat, md.lng], {
+                icon: icon,
+                imageUrl: md.imageUrl,
+                itemName: md.itemName,
+                tierOrder: md.tierOrder
+            });
+            marker.bindPopup(md.popup, { maxWidth: 320 });
+            if (md.tooltip) marker.bindTooltip(md.tooltip);
+            return marker;
+        });
+        return L.featureGroup.subGroup(window[parentClusterVar], markers);
+    }
+
+    function rebindLayerControlForDate(date, data) {
         var map = getMap();
         if (!map || !window.layerControl) return;
-        var avail = subgroupsByDate[date] || {};
+        var tiersData = (data && data.tiers) || {};
         matchdaySuppressEvents = true;
         var tierKeys = Object.keys(tierProxies).sort(function(a, b) {
             return parseInt(a, 10) - parseInt(b, 10);
@@ -264,10 +291,9 @@ _MATCHDAY_WIDGET_HTML = """
             var k = tierKeys[xi];
             var proxy = tierProxies[k];
             if (typeof proxy.clearLayers === 'function') proxy.clearLayers();
-            var subVar = avail[k];
-            if (subVar) {
-                var sub = window[subVar];
-                if (sub) proxy.addLayer(sub);
+            var markersData = tiersData[k];
+            if (markersData && markersData.length) {
+                proxy.addLayer(buildSubgroupForTier(markersData));
                 if (tierUserVisible[k] !== false) {
                     if (!map.hasLayer(proxy)) map.addLayer(proxy);
                 } else {
@@ -325,7 +351,11 @@ _MATCHDAY_WIDGET_HTML = """
             setTimeout(function() { switchMatchDay(selectedDate); }, 50);
             return;
         }
-        rebindLayerControlForDate(selectedDate);
+        loadDateData(selectedDate).then(function(data) {
+            rebindLayerControlForDate(selectedDate, data);
+        }).catch(function(e) {
+            console.warn('Could not load match day data for', selectedDate, e);
+        });
     }
 
     window.addEventListener('load', function() {
@@ -373,7 +403,8 @@ def build_matchday_control_html(
     all_dates_json: str,
     tier_proxy_vars_json: str,
     tier_label_json: str,
-    subgroups_by_date_json: str,
+    data_base_url_json: str,
+    parent_cluster_var_json: str,
     historic_archive_js: str,
 ) -> str:
     """Dropdown + scripts for date switching and tier overlay rebinding."""
@@ -384,7 +415,8 @@ def build_matchday_control_html(
         .replace("@@ALL_DATES_JSON@@", all_dates_json)
         .replace("@@TIER_PROXY_VARS_JSON@@", tier_proxy_vars_json)
         .replace("@@TIER_LABEL_JSON@@", tier_label_json)
-        .replace("@@SUBGROUPS_BY_DATE_JSON@@", subgroups_by_date_json)
+        .replace("@@DATA_BASE_URL_JSON@@", data_base_url_json)
+        .replace("@@PARENT_CLUSTER_VAR_JSON@@", parent_cluster_var_json)
         .replace("@@HISTORIC_ARCHIVE_JS@@", historic_archive_js)
     )
 
@@ -952,7 +984,11 @@ def build_match_day_map(
         tier_proxies[tier_num] = proxy
 
     date_meta: list[tuple[str, int, int]] = []  # (date_iso, total_count, result_count)
-    subgroups_by_date: dict[str, dict[int, str]] = {}
+    # Per-date marker data is written to data/{date}.json and fetched on demand by the
+    # client (see loadDateData / buildSubgroupForTier) instead of being embedded as
+    # Folium FeatureGroupSubGroup + Marker objects for every date up front, which
+    # previously produced a single multi-tens-of-MB HTML file.
+    date_json_data: dict[str, dict[str, dict[str, list[dict[str, Any]]]]] = {}
 
     for date_iso in sorted_dates:
         resolved = resolved_per_date.get(date_iso)
@@ -973,14 +1009,9 @@ def build_match_day_map(
         for row in resolved:
             by_tier_num[row[2]].append(row)
 
-        date_subs: dict[int, str] = {}
+        tiers_payload: dict[str, list[dict[str, Any]]] = {}
         for tier_num in sorted(by_tier_num.keys()):
-            sub = FeatureGroupSubGroup(
-                parent_cluster, name=None, overlay=True, control=False, show=False
-            )
-            m.add_child(sub)
-            date_subs[tier_num] = sub.get_name()
-
+            markers_payload: list[dict[str, Any]] = []
             for fixture, league_name, _tn, tname, home_team, away_team in by_tier_num[tier_num]:
                 lat = home_team.get("latitude")
                 lng = home_team.get("longitude")
@@ -1006,11 +1037,6 @@ def build_match_day_map(
                     f'onerror="{onerror}">'
                     f"</div>"
                 )
-                icon = folium.DivIcon(
-                    html=icon_html,
-                    icon_size=(total_w, crest),
-                    icon_anchor=(total_w // 2, crest // 2),
-                )
 
                 home_score = fixture.get("home_score")
                 away_score = fixture.get("away_score")
@@ -1022,22 +1048,29 @@ def build_match_day_map(
                 else:
                     tooltip_detail = fixture["time"] or ""
 
-                marker = folium.Marker(
-                    location=[lat, lng],
-                    popup=folium.Popup(popup_html, max_width=320),
-                    tooltip=(
-                        f"{home_name} vs {away_name} ({tooltip_detail})"
-                        if tooltip_detail
-                        else f"{home_name} vs {away_name}"
-                    ),
-                    icon=icon,
+                markers_payload.append(
+                    {
+                        "lat": lat,
+                        "lng": lng,
+                        "icon": icon_html,
+                        "iconSize": [total_w, crest],
+                        "iconAnchor": [total_w // 2, crest // 2],
+                        "popup": popup_html,
+                        "tooltip": (
+                            f"{home_name} vs {away_name} ({tooltip_detail})"
+                            if tooltip_detail
+                            else f"{home_name} vs {away_name}"
+                        ),
+                        "imageUrl": home_icon_url,
+                        "itemName": f"{home_name} vs {away_name}",
+                        "tierOrder": tier_num,
+                    }
                 )
-                marker.options["imageUrl"] = home_icon_url  # type: ignore[index]
-                marker.options["itemName"] = f"{home_name} vs {away_name}"  # type: ignore[index]
-                marker.options["tierOrder"] = tier_num  # type: ignore[index]
-                marker.add_to(sub)
+            if markers_payload:
+                tiers_payload[str(tier_num)] = markers_payload
 
-        subgroups_by_date[date_iso] = date_subs
+        if tiers_payload:
+            date_json_data[date_iso] = {"tiers": tiers_payload}
 
     if not date_meta:
         logger.warning("No fixtures could be placed on the map")
@@ -1068,12 +1101,8 @@ def build_match_day_map(
         {str(tn): proxy.get_name() for tn, proxy in tier_proxies.items()}
     )
     tier_label_json = json.dumps({str(tn): tier_label_by_num[tn] for tn in sorted_tier_nums})
-    subgroups_by_date_json = json.dumps(
-        {
-            date: {str(tn): name for tn, name in subs.items()}
-            for date, subs in subgroups_by_date.items()
-        }
-    )
+    data_base_url_json = json.dumps("data/")
+    parent_cluster_var_json = json.dumps(parent_cluster.get_name())
 
     updated_display = f"{generated_at.day} {generated_at.strftime('%b %Y')}"
 
@@ -1084,7 +1113,8 @@ def build_match_day_map(
         all_dates_json=all_dates_json,
         tier_proxy_vars_json=tier_proxy_vars_json,
         tier_label_json=tier_label_json,
-        subgroups_by_date_json=subgroups_by_date_json,
+        data_base_url_json=data_base_url_json,
+        parent_cluster_var_json=parent_cluster_var_json,
         historic_archive_js="true" if historic_archive else "false",
     )
     html_el = m.get_root().html  # type: ignore[attr-defined]
@@ -1159,7 +1189,20 @@ def build_match_day_map(
     """
     html_el.add_child(folium.Element(boundary_script))
 
-    head_tail = [get_favicon_html(depth=2), get_google_analytics_script()]
+    # populateDateMarkers()/buildSubgroupForTier() call L.featureGroup.subGroup(...)
+    # client-side; Folium only injects this plugin's <script> when a
+    # FeatureGroupSubGroup object is constructed server-side, which no longer
+    # happens now that subgroups are built lazily per date in JS. Inject it
+    # manually (same version Folium itself pins).
+    subgroup_plugin_script = (
+        '<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2'
+        '/dist/leaflet.featuregroup.subgroup.js"></script>'
+    )
+    head_tail = [
+        get_favicon_html(depth=2),
+        subgroup_plugin_script,
+        get_google_analytics_script(),
+    ]
     if is_prod:
         head_tail.append(get_service_worker_registration_script())
     extra_head = "\n".join(part for part in head_tail if part)
@@ -1167,13 +1210,22 @@ def build_match_day_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
+
+    data_dir = output_path.parent / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    for date_iso, payload in date_json_data.items():
+        (data_dir / f"{date_iso}.json").write_text(
+            json.dumps(payload, separators=(",", ":")), encoding="utf-8"
+        )
+
     total_placed = sum(total for _, total, _ in date_meta)
     logger.info(
-        "Map saved to %s (%d matches across %d dates, %d tiers)",
+        "Map saved to %s (%d matches across %d dates, %d tiers, %d date files)",
         output_path,
         total_placed,
         len(date_meta),
         len(tier_proxies),
+        len(date_json_data),
     )
 
 

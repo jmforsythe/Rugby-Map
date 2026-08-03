@@ -39,6 +39,7 @@ from core import (
     get_config,
     get_favicon_html,
     get_google_analytics_script,
+    get_resource_hints_html,
     get_service_worker_registration_script,
     get_twitter_card_meta,
     set_config,
@@ -812,6 +813,7 @@ def build_match_day_map(
         control=False,
     ).add_to(m)
     header = m.get_root().header  # type: ignore[attr-defined]
+    header.add_child(folium.Element(get_resource_hints_html()))
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
     header.add_child(folium.Element(_match_day_seo_head(season, historic_archive=historic_archive)))

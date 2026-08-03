@@ -45,7 +45,13 @@ from core.basemap_tiles import (
     CARTO_TILE_URL_LIGHT,
     custom_map_basemap_html_attribution,
 )
-from core.config import BOUNDARIES_DIR, DIST_DIR, get_favicon_html, get_google_analytics_script
+from core.config import (
+    BOUNDARIES_DIR,
+    DIST_DIR,
+    get_favicon_html,
+    get_google_analytics_script,
+    get_resource_hints_html,
+)
 from core.json_utils import write_compact_json
 from rugby import DATA_DIR
 from rugby.custom_map_imports import write_bonus_imports_js
@@ -745,6 +751,7 @@ def _build_page() -> None:
     replacements = {
         "{{GA_SCRIPT}}": get_google_analytics_script(),
         "{{FAVICON_HTML}}": get_favicon_html(depth=1),
+        "{{RESOURCE_HINTS_HTML}}": get_resource_hints_html(),
         "{{HOME_LINK_HTML}}": home_link_html,
         "{{INFO_PREFIX}}": info_prefix,
         "{{SEO_EXTRA}}": seo_extra,

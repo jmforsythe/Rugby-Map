@@ -34,6 +34,7 @@ from core.basemap_tiles import (
     CARTO_TILE_URL_LIGHT,
     folium_carto_attribution,
 )
+from core.config import get_resource_hints_html
 from core.json_utils import write_compact_json
 
 logger = logging.getLogger(__name__)
@@ -1749,6 +1750,7 @@ def _build_base_map(config: MapConfig) -> folium.Map:
         control=False,
     ).add_to(m)
     header = m.get_root().header  # type: ignore[attr-defined]
+    header.add_child(folium.Element(get_resource_hints_html()))
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
     return m

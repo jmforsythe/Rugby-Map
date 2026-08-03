@@ -24,6 +24,7 @@ from core import (
     team_name_to_filepath,
 )
 from core.config import DIST_DIR
+from core.json_utils import write_compact_json
 from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
 from rugby.distance_lookup import DistanceLookup
@@ -35,6 +36,7 @@ from rugby.travel_display import format_team_travel_distance_km, format_team_tra
 from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
+
 
 def _parse_rfu_team_id(url: str | None) -> int | None:
     """Numeric id from ``team=`` in an RFU team profile URL, if present."""
@@ -786,9 +788,7 @@ def get_team_page_html(
                 position: int = entry["position"]
                 n_in_league: int = entry["league_team_count"]
 
-                suppress_position_latest = (
-                    season == all_seasons[0]
-                )
+                suppress_position_latest = season == all_seasons[0]
                 if suppress_position_latest:
                     position_display = '<span class="address">Current</span>'
                 else:
@@ -990,10 +990,10 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         ),
     )
 
-    teams_js = ",\n            ".join(
-        f'{{file: "{escape(t["file"])}", name: "{escape(t["name"])}", img: "{escape(t["image_url"])}"}}'
-        for t in teams_list
-    )
+    teams_payload = [
+        {"file": t["file"], "name": t["name"], "img": t["image_url"]} for t in teams_list
+    ]
+    write_compact_json(teams_dir / "teams.json", teams_payload)
 
     teams_page_title = f"All Teams | {BRAND}"
     teams_page_desc = (
@@ -1117,14 +1117,18 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
     </div>
 
     <script>
-        const teams = [
-            {teams_js}
-        ];
+        let teams = [];
 
         const teamsGrid = document.getElementById('teamsGrid');
         const searchInput = document.getElementById('searchInput');
         const visibleCount = document.getElementById('visibleCount');
         const noResults = document.getElementById('noResults');
+
+        function escapeHtml(value) {{
+            const div = document.createElement('div');
+            div.textContent = value == null ? '' : String(value);
+            return div.innerHTML;
+        }}
 
         function displayTeams(filteredTeams) {{
             teamsGrid.innerHTML = '';
@@ -1140,7 +1144,10 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
                     const card = document.createElement('div');
                     card.className = 'card team-card';
                     const fallback = '{RFU_FALLBACK_ICON}';
-                    card.innerHTML = `<a href="${{team.file}}"><img src="${{team.img}}" class="team-card__logo" loading="lazy" onerror="this.onerror=null;this.src='${{fallback}}'">${{team.name}}</a>`;
+                    const file = escapeHtml(team.file);
+                    const img = escapeHtml(team.img);
+                    const name = escapeHtml(team.name);
+                    card.innerHTML = `<a href="${{file}}"><img src="${{img}}" class="team-card__logo" loading="lazy" onerror="this.onerror=null;this.src='${{fallback}}'">${{name}}</a>`;
                     teamsGrid.appendChild(card);
                 }});
             }}
@@ -1158,8 +1165,17 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
 
         searchInput.addEventListener('input', filterTeams);
 
-        // Initial display
-        displayTeams(teams);
+        fetch('teams.json')
+            .then(r => r.json())
+            .then(data => {{
+                teams = data;
+                displayTeams(teams);
+            }})
+            .catch(err => {{
+                console.error('Failed to load teams.json', err);
+                noResults.textContent = 'Failed to load teams. Please refresh the page.';
+                noResults.style.display = 'block';
+            }});
     </script>
 </body>
 </html>

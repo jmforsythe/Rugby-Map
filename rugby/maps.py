@@ -588,6 +588,7 @@ def _build_config(
         default_tier_floor_level="itl3",
         use_inline_boundaries=not is_prod,
         shared_boundaries_path=shared_path,
+        external_territories=is_prod,
         fallback_icon_url=RFU_FALLBACK_ICON,
         color_palette=palette or COLOR_PALETTE,
         header_elements=header_elements,

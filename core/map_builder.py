@@ -96,6 +96,11 @@ class MapConfig:
     use_inline_boundaries: bool = True
     inline_boundaries_file: str = "dist/shared/boundaries.json"
     shared_boundaries_path: str = "../shared"
+    # When True, territory shading GeoJSON is written to a per-map sidecar file
+    # (territories_sidecar_name, saved alongside output_path) and fetched on
+    # demand instead of being embedded inline in the map HTML.
+    external_territories: bool = False
+    territories_sidecar_name: str = "territories.json"
     fallback_icon_url: str | None = None
     header_elements: list[str] = field(default_factory=list)
     body_elements: list[str] = field(default_factory=list)
@@ -1220,6 +1225,68 @@ def _render_territories(
         folium.GeoJson(geojson_dict, style_function=style_fn).add_to(feature_group)
 
 
+def _collect_territory_export(
+    feature_group: folium.FeatureGroup,
+    merged_geojson: _TerritoryMerged,
+    group_colors: dict[str, str],
+) -> tuple[str, dict[str, Any]] | None:
+    """Return (folium JS variable name, {group: {geometry, color}}) for *feature_group*.
+
+    Used instead of :func:`_render_territories` when ``MapConfig.external_territories``
+    is set, so the caller can write the data to a sidecar file rather than embedding it.
+    Returns ``None`` when there is nothing to export (empty shading group).
+    """
+    if not merged_geojson:
+        return None
+    groups = {
+        grp: {"geometry": geojson_dict, "color": group_colors[grp]}
+        for grp, geojson_dict in merged_geojson.items()
+    }
+    return feature_group.get_name(), {"groups": groups}
+
+
+def _write_territories_sidecar(
+    output_path: Path, sidecar_name: str, layers: dict[str, Any]
+) -> None:
+    """Write the collected territory export data as JSON beside *output_path*."""
+    sidecar_path = output_path.parent / sidecar_name
+    sidecar_path.parent.mkdir(parents=True, exist_ok=True)
+    sidecar_path.write_text(json.dumps(layers, separators=(",", ":")), encoding="utf-8")
+
+
+def _get_territory_loader_script(sidecar_name: str) -> str:
+    """Client-side loader that fetches the territories sidecar and populates
+    the (already-created, empty) territory FeatureGroups by their Folium JS
+    variable name, matching the ``_get_boundary_loader_script`` pattern."""
+    return f"""
+    <script>
+    (function() {{
+        function addTerritories() {{
+            var el = document.querySelector('.folium-map');
+            if (!el || !el._leaflet_id) {{ setTimeout(addTerritories, 100); return; }}
+            fetch('{sidecar_name}').then(r => r.json()).then(function(layers) {{
+                Object.keys(layers).forEach(function(varName) {{
+                    var fg = window[varName];
+                    if (!fg) return;
+                    var groups = layers[varName].groups || {{}};
+                    Object.keys(groups).forEach(function(grp) {{
+                        var color = groups[grp].color;
+                        L.geoJson(groups[grp].geometry, {{
+                            style: function() {{
+                                return {{ fillColor: color, color: color, weight: 1, fillOpacity: 0.6, opacity: 0.6 }};
+                            }}
+                        }}).addTo(fg);
+                    }});
+                }});
+            }}).catch(e => console.warn('Could not load territories:', e));
+        }}
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addTerritories);
+        else addTerritories();
+    }})();
+    </script>
+    """
+
+
 # ---------------------------------------------------------------------------
 # Folium map components
 # ---------------------------------------------------------------------------
@@ -2285,8 +2352,16 @@ def generate_single_group_map(
         merged_all = _merge_territories(geoms)
         if territory_cache is not None and cache_key is not None:
             territory_cache[cache_key] = merged_all
+    territory_export: dict[str, Any] = {}
     for grp, fg in shading_groups.items():
-        _render_territories(fg, {grp: merged_all[grp]} if grp in merged_all else {}, group_colors)
+        entry = {grp: merged_all[grp]} if grp in merged_all else {}
+        if config.external_territories:
+            exported = _collect_territory_export(fg, entry, group_colors)
+            if exported is not None:
+                var_name, data = exported
+                territory_export[var_name] = data
+        else:
+            _render_territories(fg, entry, group_colors)
 
     for it in all_placed:
         _add_marker(
@@ -2303,6 +2378,10 @@ def generate_single_group_map(
     html_el.add_child(folium.Element(_get_boundary_loader_script(config)))
     if config.show_debug:
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
+    if territory_export:
+        html_el.add_child(
+            folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+        )
 
     html_el.add_child(
         _legend(
@@ -2318,6 +2397,8 @@ def generate_single_group_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(output_path)
+    if territory_export:
+        _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
     logger.info("Saved %s map with %d items to: %s", config.title, len(all_placed), output_path)
 
 
@@ -2367,6 +2448,7 @@ def generate_multi_group_map(
         m.add_child(territory_groups[tier])
         m.add_child(marker_groups[tier])
 
+    territory_export: dict[str, Any] = {}
     for tier, placed in sorted(items_by_tier.items()):
         cache_key = _territory_cache_key(placed, config) if territory_cache is not None else None
         if cache_key is not None and cache_key in territory_cache:  # type: ignore[operator]
@@ -2378,7 +2460,13 @@ def generate_multi_group_map(
             merged = _merge_territories(geoms)
             if territory_cache is not None and cache_key is not None:
                 territory_cache[cache_key] = merged
-        _render_territories(territory_groups[tier], merged, group_colors)
+        if config.external_territories:
+            exported = _collect_territory_export(territory_groups[tier], merged, group_colors)
+            if exported is not None:
+                var_name, data = exported
+                territory_export[var_name] = data
+        else:
+            _render_territories(territory_groups[tier], merged, group_colors)
 
     tier_order_map = {tier: idx for idx, tier in enumerate(sorted_tier_names)}
     num_items = 0
@@ -2398,6 +2486,10 @@ def generate_multi_group_map(
     html_el.add_child(folium.Element(_get_boundary_loader_script(config)))
     if config.show_debug:
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
+    if territory_export:
+        html_el.add_child(
+            folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+        )
 
     html_el.add_child(
         _legend(f"{config.title} - {num_items}", items_by_tier, sorted_tiers, group_colors)
@@ -2408,4 +2500,6 @@ def generate_multi_group_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(output_path)
+    if territory_export:
+        _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
     logger.info("Saved %s map with %d items to: %s", config.title, num_items, output_path)

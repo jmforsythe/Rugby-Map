@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import urllib.parse
 from collections import defaultdict
 from datetime import date, datetime
@@ -45,7 +46,7 @@ from core import (
     set_config,
     setup_logging,
 )
-from core.asset_utils import rewrite_cdn_urls_in_html
+from core.asset_utils import CDN_TO_VENDOR, rewrite_cdn_urls_in_html
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
 from core.json_utils import write_compact_json
@@ -266,16 +267,30 @@ _MATCHDAY_WIDGET_HTML = """
         });
     }
 
+    function bindMatchdayPopup(marker, html) {
+        // Match Folium's Popup rendering: parse HTML into a DOM node (jQuery) and
+        // attach via L.popup().setContent(), same wrapper Folium emits.
+        var popup = L.popup({ maxWidth: 320 });
+        var el = $('<div style="width: 100.0%; height: 100.0%;"></div>').html(html)[0];
+        popup.setContent(el);
+        marker.bindPopup(popup);
+    }
+
     function buildSubgroupForTier(markersData) {
         var markers = markersData.map(function(md) {
-            var icon = L.divIcon({ html: md.icon, iconSize: md.iconSize, iconAnchor: md.iconAnchor });
+            var icon = L.divIcon({
+                html: md.icon,
+                iconSize: md.iconSize,
+                iconAnchor: md.iconAnchor,
+                className: 'empty'
+            });
             var marker = L.marker([md.lat, md.lng], {
                 icon: icon,
                 imageUrl: md.imageUrl,
                 itemName: md.itemName,
                 tierOrder: md.tierOrder
             });
-            marker.bindPopup(md.popup, { maxWidth: 320 });
+            bindMatchdayPopup(marker, md.popup);
             if (md.tooltip) marker.bindTooltip(md.tooltip);
             return marker;
         });
@@ -777,6 +792,45 @@ def _resolve_matches(
     return resolved
 
 
+_SUBGROUP_CDN = (
+    "https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2" "/dist/leaflet.featuregroup.subgroup.js"
+)
+_MARKERCLUSTER_SCRIPT_RE = re.compile(
+    r'<script src="[^"]*leaflet\.markercluster[^"]*\.js"></script>',
+    re.IGNORECASE,
+)
+_SUBGROUP_SCRIPT_RE = re.compile(
+    r'\s*<script src="[^"]*leaflet\.featuregroup\.subgroup[^"]*\.js"></script>\s*',
+    re.IGNORECASE,
+)
+
+
+def inject_subgroup_plugin_script(html_path: Path) -> bool:
+    """Ensure FeatureGroup.SubGroup loads after Leaflet and MarkerCluster.
+
+    Match-day builds subgroups lazily in client JS, so Folium never emits this
+    plugin. It must run after both Leaflet and MarkerCluster; injecting it in
+    ``<head>`` via folium.Element runs too early and ``L.featureGroup.subGroup``
+    stays undefined.
+    """
+    text = html_path.read_text(encoding="utf-8")
+    text = _SUBGROUP_SCRIPT_RE.sub("\n", text)
+    match = _MARKERCLUSTER_SCRIPT_RE.search(text)
+    if not match:
+        return False
+    from core.config import DIST_DIR
+
+    vendor_path = CDN_TO_VENDOR[_SUBGROUP_CDN]
+    local = DIST_DIR / "shared" / "vendor" / Path(vendor_path).name
+    src = vendor_path if local.is_file() else _SUBGROUP_CDN
+    tag = f'<script src="{src}"></script>'
+    if tag not in text:
+        insert_at = match.end()
+        text = text[:insert_at] + "\n    " + tag + text[insert_at:]
+    html_path.write_text(text, encoding="utf-8")
+    return True
+
+
 def build_match_day_map(
     fixtures_by_date: dict[str, list[tuple[Fixture, str, str]]],
     team_index: dict[int, GeocodedTeam],
@@ -1126,7 +1180,6 @@ def build_match_day_map(
 
     is_prod = get_config().is_production
     shared_path = "/shared" if is_prod else "../../shared"
-    boundaries_file = str(DIST_DIR / "shared" / "boundaries.json")
 
     boundary_preamble = """
         var _countryLayers = [], _itlLayers = [];
@@ -1150,8 +1203,10 @@ def build_match_day_map(
             ['itl_1','itl_2','itl_3'].forEach(lv => { if (bd[lv]) { var ly = L.geoJson(bd[lv], {style:bs}); ly.addTo(map); _itlLayers.push(ly); } });
     """
 
-    if is_prod:
-        boundary_script = f"""
+    # Always fetch boundaries.json — match-day already fetches per-date fixture
+    # JSON client-side, so file:// never worked anyway. Inlining the 20 MB bundle
+    # into HTML (the old dev path) made first load take ~20 s to parse.
+    boundary_script = f"""
     <script>
     (function() {{
         {boundary_preamble}
@@ -1169,42 +1224,14 @@ def build_match_day_map(
     }})();
     </script>
     """
-    else:
-        bd_json = "{}"
-        bp = Path(boundaries_file)
-        if bp.exists():
-            bd_json = bp.read_text()
-        boundary_script = f"""
-    <script>
-    (function() {{
-        {boundary_preamble}
-        function addBoundaries() {{
-            var el = document.querySelector('.folium-map');
-            if (!el || !el._leaflet_id) {{ setTimeout(addBoundaries, 100); return; }}
-            var map = window[Object.keys(window).find(k => k.startsWith('map_') && window[k] instanceof L.Map)];
-            if (!map) {{ setTimeout(addBoundaries, 100); return; }}
-            var bd = {bd_json};
-                {boundary_load_body}
-        }}
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
-        else addBoundaries();
-    }})();
-    </script>
-    """
     html_el.add_child(folium.Element(boundary_script))
 
     # populateDateMarkers()/buildSubgroupForTier() call L.featureGroup.subGroup(...)
-    # client-side; Folium only injects this plugin's <script> when a
-    # FeatureGroupSubGroup object is constructed server-side, which no longer
-    # happens now that subgroups are built lazily per date in JS. Inject it
-    # manually (same version Folium itself pins).
-    subgroup_plugin_script = (
-        '<script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2'
-        '/dist/leaflet.featuregroup.subgroup.js"></script>'
-    )
+    # client-side; Folium only injects this plugin when a FeatureGroupSubGroup is
+    # constructed server-side, which no longer happens. inject_subgroup_plugin_script()
+    # adds the script after MarkerCluster once the HTML is saved.
     head_tail = [
         get_favicon_html(depth=2),
-        subgroup_plugin_script,
         get_google_analytics_script(),
     ]
     if is_prod:
@@ -1215,6 +1242,8 @@ def build_match_day_map(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
     rewrite_cdn_urls_in_html(output_path)
+    if not inject_subgroup_plugin_script(output_path):
+        logger.warning("Could not inject subgroup plugin script into %s", output_path)
 
     data_dir = output_path.parent / "data"
     for date_iso, payload in date_json_data.items():

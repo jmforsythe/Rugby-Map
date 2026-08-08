@@ -10,6 +10,7 @@ that copy has actually been fetched (see ``scripts/fetch_vendor_assets.py``).
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 # CDN URL -> root-relative vendor path (populated by scripts/fetch_vendor_assets.py).
@@ -79,13 +80,40 @@ CDN_TO_VENDOR: dict[str, str] = {
 }
 
 
-def rewrite_cdn_urls_in_html(html_path: Path, vendor_dir: Path | None = None) -> bool:
-    """Replace known CDN URLs with ``/shared/vendor/`` paths when vendor files exist.
+def vendor_url_for_html(
+    html_path: Path,
+    vendor_filename: str,
+    *,
+    vendor_dir: Path,
+    root_relative: bool,
+) -> str:
+    """Return the vendor asset URL to embed in *html_path*.
+
+    Production builds use root-relative ``/shared/vendor/…`` (GitHub Pages).
+    Local builds use a path relative to the HTML file so pages work over both
+    ``file://`` and ``http://localhost`` without a site-root server.
+    """
+    if root_relative:
+        return f"/shared/vendor/{vendor_filename}"
+    rel = os.path.relpath(vendor_dir / vendor_filename, html_path.parent)
+    return Path(rel).as_posix()
+
+
+def rewrite_cdn_urls_in_html(
+    html_path: Path,
+    vendor_dir: Path | None = None,
+    *,
+    root_relative: bool = True,
+) -> bool:
+    """Replace known CDN URLs with local vendor paths when vendor files exist.
 
     *vendor_dir* should be an absolute path to ``dist/shared/vendor``. When omitted,
     it is resolved from :data:`core.config.DIST_DIR` rather than guessed from
     *html_path*'s depth, since map pages are nested at varying depths under ``dist/``
     (e.g. ``dist/<season>/<tier>/index.html`` vs ``dist/<season>/merit/<comp>/<tier>/index.html``).
+
+    *root_relative* selects ``/shared/vendor/…`` (deployed site) vs a path relative
+    to *html_path* (local ``file://`` preview).
 
     Returns ``True`` if any URL was rewritten (i.e. the file was modified).
     """
@@ -98,9 +126,21 @@ def rewrite_cdn_urls_in_html(html_path: Path, vendor_dir: Path | None = None) ->
     text = html_path.read_text(encoding="utf-8")
     changed = False
     for cdn_url, vendor_path in CDN_TO_VENDOR.items():
-        local = vendor_dir / Path(vendor_path).name
-        if local.is_file() and cdn_url in text:
-            text = text.replace(cdn_url, vendor_path)
+        filename = Path(vendor_path).name
+        local = vendor_dir / filename
+        if not local.is_file():
+            continue
+        replacement = vendor_url_for_html(
+            html_path,
+            filename,
+            vendor_dir=vendor_dir,
+            root_relative=root_relative,
+        )
+        if cdn_url in text:
+            text = text.replace(cdn_url, replacement)
+            changed = True
+        elif not root_relative and vendor_path in text:
+            text = text.replace(vendor_path, replacement)
             changed = True
     if changed:
         html_path.write_text(text, encoding="utf-8")

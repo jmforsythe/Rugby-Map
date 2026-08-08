@@ -7,10 +7,13 @@ import re
 import urllib.parse
 from collections import defaultdict
 from collections.abc import Callable, Iterable
+from datetime import date, datetime
 from html import escape
-from typing import Any, TypedDict
+from typing import Any, NotRequired, TypedDict
 
 from core import (
+    Fixture,
+    FixtureLeague,
     GeocodedLeague,
     TeamTravelDistances,
     TravelDistances,
@@ -23,7 +26,7 @@ from core import (
     setup_logging,
     team_name_to_filepath,
 )
-from core.config import DIST_DIR
+from core.config import CURRENT_SEASON, DIST_DIR
 from core.json_utils import write_compact_json
 from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
@@ -191,9 +194,32 @@ class TeamData(TypedDict):
     longitude: float | None
     formatted_address: str | None
     league_history: list[LeagueHistoryEntry]
+    # RFU ``team=`` ids observed for this aggregated profile (renames / renumbers).
+    team_ids: set[int]
     # Display name → set of seasons that name was observed in. Used to render
     # the "Previously known as" line when an aggregated team has been renamed.
     name_seasons: dict[str, set[str]]
+
+
+class TeamFixtureEntry(TypedDict):
+    """One fixture row for a team page (home or away)."""
+
+    season: str
+    league_name: str
+    date: str
+    time: str
+    is_home: bool
+    opponent_id: int
+    match_url: str
+    home_score: NotRequired[int | None]
+    away_score: NotRequired[int | None]
+    status: NotRequired[str]
+
+
+_FIXTURE_STATUS_LABELS: dict[str, str] = {
+    "HWO": "Home walkover",
+    "AWO": "Away walkover",
+}
 
 
 class TeamListEntry(TypedDict):
@@ -252,6 +278,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
             longitude=None,
             formatted_address=None,
             league_history=[],
+            team_ids=set(),
             name_seasons={},
         )
     )
@@ -274,6 +301,9 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 teams_data[page_key]["name"] = team_name
                 teams_data[page_key]["url"] = team_url
                 teams_data[page_key]["image_url"] = team.get("image_url")
+                tid = _parse_rfu_team_id(team_url)
+                if tid is not None:
+                    teams_data[page_key]["team_ids"].add(tid)
                 teams_data[page_key]["name_seasons"].setdefault(team_name, set()).add(season)
 
                 addr = team.get("address")
@@ -417,6 +447,273 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     return club_index
 
 
+def build_id_to_page_key(all_teams: dict[str, TeamData]) -> dict[int, str]:
+    """Map RFU team id → canonical team page key."""
+    lookup: dict[int, str] = {}
+    for page_key, data in all_teams.items():
+        for tid in data.get("team_ids") or set():
+            lookup[tid] = page_key
+    return lookup
+
+
+def build_team_id_name_lookup() -> dict[int, str]:
+    """Latest display name per RFU team id from geocoded data (chronological walk)."""
+    geocoded_dir = DATA_DIR / "geocoded_teams"
+    if not geocoded_dir.exists():
+        return {}
+
+    season_dirs = [
+        d for d in sorted(geocoded_dir.iterdir()) if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+    ]
+    names: dict[int, str] = {}
+    for season_dir in season_dirs:
+        for league_file in season_dir.rglob("*.json"):
+            with open(league_file, encoding="utf-8") as f:
+                league_data: GeocodedLeague = json.load(f)
+            for team in league_data.get("teams", []):
+                tid = _parse_rfu_team_id(team.get("url"))
+                if tid is not None:
+                    names[tid] = team["name"]
+    return names
+
+
+def collect_team_fixtures(id_to_page_key: dict[int, str]) -> dict[str, list[TeamFixtureEntry]]:
+    """Load committed fixture JSON and group rows by canonical team page key."""
+    fixture_root = DATA_DIR / "fixture_data"
+    if not fixture_root.exists() or not id_to_page_key:
+        return {}
+
+    by_page_key: dict[str, list[TeamFixtureEntry]] = defaultdict(list)
+    seen: set[tuple[str, str]] = set()
+
+    season_dirs = [
+        d for d in sorted(fixture_root.iterdir()) if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+    ]
+    for season_dir in season_dirs:
+        season = season_dir.name
+        for json_file in sorted(season_dir.rglob("*.json")):
+            with open(json_file, encoding="utf-8") as f:
+                data: FixtureLeague = json.load(f)
+            league_name = data.get("league_name") or json_file.stem.replace("_", " ")
+            for fixture in data.get("fixtures", []):
+                _append_fixture_rows(
+                    fixture,
+                    season,
+                    league_name,
+                    id_to_page_key,
+                    by_page_key,
+                    seen,
+                )
+
+    result: dict[str, list[TeamFixtureEntry]] = {}
+    for page_key, rows in by_page_key.items():
+        upcoming = sorted(
+            (r for r in rows if _fixture_is_upcoming(r)),
+            key=lambda r: (r["date"], r["match_url"]),
+        )
+        past = sorted(
+            (r for r in rows if not _fixture_is_upcoming(r)),
+            key=lambda r: (r["date"], r["match_url"]),
+            reverse=True,
+        )
+        result[page_key] = upcoming + past
+    return result
+
+
+def _fixture_is_upcoming(entry: TeamFixtureEntry) -> bool:
+    try:
+        return date.fromisoformat(entry["date"]) >= date.today()
+    except ValueError:
+        return False
+
+
+def _append_fixture_rows(
+    fixture: Fixture,
+    season: str,
+    league_name: str,
+    id_to_page_key: dict[int, str],
+    by_page_key: dict[str, list[TeamFixtureEntry]],
+    seen: set[tuple[str, str]],
+) -> None:
+    """Add home/away rows when either side maps to a team page."""
+    ds = fixture.get("date")
+    if not isinstance(ds, str) or not ds:
+        return
+    match_url = fixture.get("match_url") or ""
+
+    for is_home, team_id, opponent_id in (
+        (True, fixture["home_team_id"], fixture["away_team_id"]),
+        (False, fixture["away_team_id"], fixture["home_team_id"]),
+    ):
+        page_key = id_to_page_key.get(team_id)
+        if not page_key:
+            continue
+        dedupe_key = (page_key, match_url or f"{ds}:{team_id}:{opponent_id}")
+        if dedupe_key in seen:
+            continue
+        seen.add(dedupe_key)
+        row = TeamFixtureEntry(
+            season=season,
+            league_name=league_name,
+            date=ds,
+            time=fixture.get("time") or "",
+            is_home=is_home,
+            opponent_id=opponent_id,
+            match_url=match_url,
+        )
+        if "home_score" in fixture:
+            row["home_score"] = fixture.get("home_score")
+        if "away_score" in fixture:
+            row["away_score"] = fixture.get("away_score")
+        if "status" in fixture:
+            row["status"] = fixture.get("status")
+        by_page_key[page_key].append(row)
+
+
+def _format_fixture_date(iso_date: str) -> str:
+    try:
+        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+        return f"{dt.strftime('%a')} {dt.day} {dt.strftime('%b %Y')}"
+    except ValueError:
+        return iso_date
+
+
+def _format_fixture_result(entry: TeamFixtureEntry) -> str:
+    status = entry.get("status")
+    if status:
+        label = _FIXTURE_STATUS_LABELS.get(status, status)
+        return f'<span title="{escape(label)}">{escape(status)}</span>'
+    home_score = entry.get("home_score")
+    away_score = entry.get("away_score")
+    if home_score is not None and away_score is not None:
+        if entry["is_home"]:
+            return f"{home_score} – {away_score}"
+        return f"{away_score} – {home_score}"
+    time_text = entry.get("time") or ""
+    return escape(time_text) if time_text else "—"
+
+
+def _opponent_page_link(
+    opponent_id: int,
+    opponent_name: str,
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    page_key = id_to_page_key.get(opponent_id)
+    if page_key and page_key in all_teams:
+        fn = _team_page_output_filename(all_teams[page_key], ambiguous_display_names)
+        return f'<a href="{escape(fn)}" class="card-link">{escape(opponent_name)}</a>'
+    return escape(opponent_name)
+
+
+def _sort_season_fixtures(rows: list[TeamFixtureEntry]) -> list[TeamFixtureEntry]:
+    """Within one season: upcoming fixtures first, then past results (newest first)."""
+    upcoming = sorted(
+        (r for r in rows if _fixture_is_upcoming(r)),
+        key=lambda r: (r["date"], r["match_url"]),
+    )
+    past = sorted(
+        (r for r in rows if not _fixture_is_upcoming(r)),
+        key=lambda r: (r["date"], r["match_url"]),
+        reverse=True,
+    )
+    return upcoming + past
+
+
+def _render_fixture_table_rows(
+    rows: list[TeamFixtureEntry],
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    html = ""
+    for entry in rows:
+        opponent_name = team_id_names.get(entry["opponent_id"], f"Team {entry['opponent_id']}")
+        venue = "Home" if entry["is_home"] else "Away"
+        opponent_html = _opponent_page_link(
+            entry["opponent_id"],
+            opponent_name,
+            all_teams,
+            id_to_page_key,
+            ambiguous_display_names,
+        )
+        result_html = _format_fixture_result(entry)
+        match_link = ""
+        if entry.get("match_url"):
+            match_link = (
+                f'<a href="{escape(entry["match_url"])}" target="_blank" '
+                f'title="View on England Rugby">↗</a>'
+            )
+        html += f"""                <tr>
+                    <td>{escape(_format_fixture_date(entry["date"]))}</td>
+                    <td><span class="fixture-venue">{escape(venue)}</span> {opponent_html}</td>
+                    <td class="distance-cell">{result_html}</td>
+                    <td>{escape(entry["league_name"])}</td>
+                    <td class="map-cell">{match_link}</td>
+                </tr>
+"""
+    return html
+
+
+def _render_fixtures_section(
+    fixtures: list[TeamFixtureEntry],
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    if not fixtures:
+        return ""
+
+    by_season: defaultdict[str, list[TeamFixtureEntry]] = defaultdict(list)
+    for entry in fixtures:
+        by_season[entry["season"]].append(entry)
+
+    seasons = sorted(by_season.keys(), reverse=True)
+    current_season = CURRENT_SEASON
+
+    html = """    <div class="info-section fixtures-section">
+        <h2>Fixtures & Results</h2>
+"""
+    for season in seasons:
+        rows = _sort_season_fixtures(by_season[season])
+        count = len(rows)
+        match_word = "fixture" if count == 1 else "fixtures"
+        open_attr = " open" if season == current_season else ""
+        html += f"""        <details class="fixtures-season"{open_attr}>
+            <summary>{escape(season)} ({count} {match_word})</summary>
+            <div class="table-wrapper">
+            <table class="league-history-table fixtures-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Opponent</th>
+                        <th>Result / time</th>
+                        <th>League</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+"""
+        html += _render_fixture_table_rows(
+            rows,
+            all_teams,
+            id_to_page_key,
+            team_id_names,
+            ambiguous_display_names,
+        )
+        html += """                </tbody>
+            </table>
+            </div>
+        </details>
+"""
+    html += """    </div>
+"""
+    return html
+
+
 def _team_page_structured_data(
     team_name: str,
     team_data: TeamData,
@@ -461,6 +758,9 @@ def get_team_page_html(
     travel_distances_by_season: dict[str, TravelDistances],
     all_seasons: list[str],
     ambiguous_display_names: set[str],
+    team_fixtures: list[TeamFixtureEntry],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
 ) -> str:
     """Generate HTML content for a team's individual page."""
 
@@ -642,6 +942,54 @@ def get_team_page_html(
         .address {{
             color: var(--text-muted);
             font-style: italic;
+        }}
+        .fixture-venue {{
+            display: inline-block;
+            min-width: 3.2em;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }}
+        .fixtures-section {{
+            margin-top: 2em;
+        }}
+        .fixtures-season {{
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 0.75em 0;
+            background: var(--bg-card);
+            overflow: hidden;
+        }}
+        .fixtures-season[open] {{
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }}
+        .fixtures-season summary {{
+            cursor: pointer;
+            padding: 0.85em 1em;
+            font-weight: 600;
+            color: var(--text-heading);
+            list-style: none;
+            user-select: none;
+        }}
+        .fixtures-season summary::-webkit-details-marker {{
+            display: none;
+        }}
+        .fixtures-season summary::after {{
+            content: "+";
+            float: right;
+            font-weight: 700;
+            color: var(--accent);
+        }}
+        .fixtures-season[open] summary::after {{
+            content: "−";
+        }}
+        .fixtures-season summary:hover {{
+            background: var(--bg-card-alt);
+        }}
+        .fixtures-season .table-wrapper {{
+            padding: 0 0.5em 0.75em;
         }}
         .distance-header-full {{
             display: inline;
@@ -836,6 +1184,16 @@ def get_team_page_html(
     </div>
 """
 
+    fixtures_html = _render_fixtures_section(
+        team_fixtures,
+        all_teams,
+        id_to_page_key,
+        team_id_names,
+        ambiguous_display_names,
+    )
+    if fixtures_html:
+        html += fixtures_html
+
     # Footer
     html += f"""
 {get_footer_html()}
@@ -898,6 +1256,12 @@ def generate_team_pages() -> dict[str, TeamData]:
     logger.info("  Building club index...")
     club_index = build_club_index(all_teams)
 
+    logger.info("  Loading fixtures...")
+    id_to_page_key = build_id_to_page_key(all_teams)
+    team_id_names = build_team_id_name_lookup()
+    fixtures_by_page_key = collect_team_fixtures(id_to_page_key)
+    logger.info("  Loaded fixtures for %d teams", len(fixtures_by_page_key))
+
     # Create teams directory
     teams_dir = DIST_DIR / "teams"
     teams_dir.mkdir(parents=True, exist_ok=True)
@@ -916,6 +1280,9 @@ def generate_team_pages() -> dict[str, TeamData]:
                 travel_distances_by_season,
                 all_seasons,
                 ambiguous,
+                fixtures_by_page_key.get(page_key, []),
+                id_to_page_key,
+                team_id_names,
             )
 
             filename = _team_page_output_filename(team_data, ambiguous)

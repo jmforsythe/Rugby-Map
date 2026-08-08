@@ -779,7 +779,7 @@ def _build_page() -> None:
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    rewrite_cdn_urls_in_html(output_path)
+    rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Wrote %s", output_path)
 
 

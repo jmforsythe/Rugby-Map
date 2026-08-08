@@ -34,7 +34,7 @@ from core.basemap_tiles import (
     CARTO_TILE_URL_LIGHT,
     folium_carto_attribution,
 )
-from core.config import get_resource_hints_html
+from core.config import get_config, get_resource_hints_html
 from core.json_utils import write_compact_json
 
 logger = logging.getLogger(__name__)
@@ -2401,7 +2401,7 @@ def generate_single_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
-    rewrite_cdn_urls_in_html(output_path)
+    rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, len(all_placed), output_path)
 
 
@@ -2505,5 +2505,5 @@ def generate_multi_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
-    rewrite_cdn_urls_in_html(output_path)
+    rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, num_items, output_path)

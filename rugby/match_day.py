@@ -1241,7 +1241,7 @@ def build_match_day_map(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     m.save(str(output_path))
-    rewrite_cdn_urls_in_html(output_path)
+    rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     if not inject_subgroup_plugin_script(output_path):
         logger.warning("Could not inject subgroup plugin script into %s", output_path)
 

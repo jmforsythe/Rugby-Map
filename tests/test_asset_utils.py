@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from core.asset_utils import rewrite_cdn_urls_in_html
+from core.asset_utils import rewrite_cdn_urls_in_html, vendor_url_for_html
 
 
 def test_rewrite_cdn_urls_replaces_only_when_vendor_file_exists(tmp_path: Path) -> None:
@@ -89,3 +89,38 @@ def test_rewrite_cdn_urls_multiple_pinned_versions_stay_distinct(tmp_path: Path)
     text = html_path.read_text(encoding="utf-8")
     assert "/shared/vendor/leaflet-1.9.4.js" in text
     assert "leaflet-1.9.3.js" not in text
+
+
+def test_rewrite_cdn_urls_local_build_uses_relative_paths(tmp_path: Path) -> None:
+    vendor_dir = tmp_path / "dist" / "shared" / "vendor"
+    vendor_dir.mkdir(parents=True)
+    (vendor_dir / "leaflet-1.9.3.js").write_text("/* leaflet */", encoding="utf-8")
+
+    html_path = tmp_path / "dist" / "2026-2027" / "Counties_1.html"
+    html_path.parent.mkdir(parents=True)
+    html_path.write_text(
+        '<script src="/shared/vendor/leaflet-1.9.3.js"></script>',
+        encoding="utf-8",
+    )
+
+    changed = rewrite_cdn_urls_in_html(html_path, vendor_dir=vendor_dir, root_relative=False)
+
+    assert changed is True
+    assert html_path.read_text(encoding="utf-8") == (
+        '<script src="../shared/vendor/leaflet-1.9.3.js"></script>'
+    )
+
+
+def test_vendor_url_for_html_deeply_nested_merit_map(tmp_path: Path) -> None:
+    vendor_dir = tmp_path / "dist" / "shared" / "vendor"
+    vendor_dir.mkdir(parents=True)
+    html_path = tmp_path / "dist" / "2026-2027" / "merit" / "Sussex" / "All_Tiers" / "index.html"
+    html_path.parent.mkdir(parents=True)
+
+    url = vendor_url_for_html(
+        html_path,
+        "leaflet-1.9.3.js",
+        vendor_dir=vendor_dir,
+        root_relative=False,
+    )
+    assert url == "../../../../shared/vendor/leaflet-1.9.3.js"

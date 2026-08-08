@@ -1468,11 +1468,11 @@ html[data-rugby-effective="dark"] .rugby-theme-float select {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .folium-map:not(.rugby-map-dark) .leaflet-control-layers-toggle {
-  background: #fff;
+  background-color: #fff;
   border: 1px solid #ddd;
 }
 .folium-map:not(.rugby-map-dark) .leaflet-control-layers-toggle:hover {
-  background: #f5f8fc;
+  background-color: #f5f8fc;
 }
 .folium-map .leaflet-control-layers-expanded {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

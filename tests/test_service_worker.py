@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from core.asset_utils import CDN_TO_VENDOR
+from core.asset_utils import CDN_TO_VENDOR, LEAFLET_VENDOR_IMAGE_PATHS
 
 _SW_PATH = Path(__file__).resolve().parent.parent / "dist" / "service-worker.js"
 
@@ -35,7 +35,8 @@ def test_cache_names_are_versioned_and_consistent() -> None:
 def test_every_vendor_asset_is_precached() -> None:
     """Every self-hosted CDN replacement path should be in VENDOR_ASSETS."""
     text = _read_sw()
-    for vendor_path in CDN_TO_VENDOR.values():
+    vendor_paths = (*CDN_TO_VENDOR.values(), *LEAFLET_VENDOR_IMAGE_PATHS)
+    for vendor_path in vendor_paths:
         # asset_utils paths are root-relative (e.g. "/shared/vendor/x.js");
         # the service worker precache list uses the same paths without the
         # leading slash (relative to the site root where it's registered).

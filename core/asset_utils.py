@@ -79,6 +79,23 @@ CDN_TO_VENDOR: dict[str, str] = {
     "https://unpkg.com/@turf/turf@7/turf.min.js": "/shared/vendor/turf.min.js",
 }
 
+# Leaflet CSS references these with relative ``url(images/…)`` paths. When the CSS
+# is self-hosted under ``/shared/vendor/``, the images must live in
+# ``/shared/vendor/images/`` (same layout as the upstream leaflet dist bundle).
+LEAFLET_IMAGE_SOURCES: dict[str, str] = {
+    "layers.png": "https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/images/layers.png",
+    "layers-2x.png": "https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/images/layers-2x.png",
+    "marker-icon.png": "https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/images/marker-icon.png",
+    "marker-icon-2x.png": (
+        "https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/images/marker-icon-2x.png"
+    ),
+    "marker-shadow.png": "https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/images/marker-shadow.png",
+}
+
+LEAFLET_VENDOR_IMAGE_PATHS: tuple[str, ...] = tuple(
+    f"/shared/vendor/images/{name}" for name in LEAFLET_IMAGE_SOURCES
+)
+
 
 def vendor_url_for_html(
     html_path: Path,

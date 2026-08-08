@@ -16,7 +16,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from core.asset_utils import CDN_TO_VENDOR  # noqa: E402
+from core.asset_utils import CDN_TO_VENDOR, LEAFLET_IMAGE_SOURCES  # noqa: E402
 from core.config import DIST_DIR  # noqa: E402
 
 VENDOR_DIR = DIST_DIR / "shared" / "vendor"
@@ -40,6 +40,8 @@ def main() -> None:
     VENDOR_DIR.mkdir(parents=True, exist_ok=True)
     for cdn_url, vendor_path in CDN_TO_VENDOR.items():
         fetch_url(cdn_url, VENDOR_DIR / Path(vendor_path).name)
+    for filename, image_url in LEAFLET_IMAGE_SOURCES.items():
+        fetch_url(image_url, VENDOR_DIR / "images" / filename)
 
 
 if __name__ == "__main__":

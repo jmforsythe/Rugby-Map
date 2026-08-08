@@ -29,6 +29,11 @@ const VENDOR_ASSETS = [
   "shared/vendor/MarkerCluster.Default-1.5.3.css",
   "shared/vendor/leaflet.featuregroup.subgroup.js",
   "shared/vendor/turf.min.js",
+  "shared/vendor/images/layers.png",
+  "shared/vendor/images/layers-2x.png",
+  "shared/vendor/images/marker-icon.png",
+  "shared/vendor/images/marker-icon-2x.png",
+  "shared/vendor/images/marker-shadow.png",
 ];
 
 // Install event - cache static resources. Each asset is cached individually

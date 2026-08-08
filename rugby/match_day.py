@@ -50,7 +50,13 @@ from core.asset_utils import CDN_TO_VENDOR, rewrite_cdn_urls_in_html
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
 from core.config import DIST_DIR
 from core.json_utils import write_compact_json
-from core.map_builder import DARK_MODE_JS, POPUP_CSS, LayerControlHook
+from core.map_builder import (
+    DARK_MODE_JS,
+    MAP_ZOOM_DELTA,
+    MAP_ZOOM_SNAP,
+    POPUP_CSS,
+    LayerControlHook,
+)
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import (
@@ -860,6 +866,9 @@ def build_match_day_map(
         location=[52.5, -1.5],
         zoom_start=7,
         tiles=None,
+        zoom_control=False,
+        zoom_snap=MAP_ZOOM_SNAP,
+        zoom_delta=MAP_ZOOM_DELTA,
     )
     folium.TileLayer(
         tiles=CARTO_TILE_URL_LIGHT,

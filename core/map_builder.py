@@ -39,6 +39,10 @@ from core.json_utils import write_compact_json
 
 logger = logging.getLogger(__name__)
 
+# Leaflet zoom granularity: quarter steps via init options + runtime patch + stepper UI.
+MAP_ZOOM_SNAP = 0.25
+MAP_ZOOM_DELTA = 0.25
+
 
 def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Great-circle distance in km (WGS84 sphere, R=6371)."""
@@ -1581,6 +1585,99 @@ html[data-rugby-effective="dark"] .rugby-theme-float select {
   color: #9eb6d8;
 }
 
+/* ── Zoom stepper (top-left; replaces Leaflet +/- control) ── */
+.folium-map .leaflet-control-zoom {
+  display: none !important;
+}
+.rugby-zoom-stepper {
+  position: fixed;
+  top: var(--rugby-map-chrome-top, 56px);
+  left: 10px;
+  margin-top: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+html[data-rugby-effective="dark"] .rugby-zoom-stepper {
+  background: rgba(22, 33, 62, 0.92);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #e0e0e0;
+}
+.rugby-zoom-stepper__btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.rugby-zoom-stepper__btn:last-child {
+  border-bottom: none;
+}
+.rugby-zoom-stepper__btn:hover {
+  background: #f4f4f4;
+}
+html[data-rugby-effective="dark"] .rugby-zoom-stepper__btn {
+  border-bottom-color: #3a4a66;
+  background: #1e2a45;
+  color: #e0e8f0;
+}
+html[data-rugby-effective="dark"] .rugby-zoom-stepper__btn:hover {
+  background: #243049;
+}
+.rugby-zoom-stepper__label {
+  width: 30px;
+  padding: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 30px;
+  user-select: none;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  box-sizing: border-box;
+}
+html[data-rugby-effective="dark"] .rugby-zoom-stepper__label {
+  border-bottom-color: #3a4a66;
+  background: #1e2a45;
+}
+@media (max-width: 480px) {
+  .rugby-zoom-stepper {
+    left: 10px;
+  }
+  .rugby-zoom-stepper__btn {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  .rugby-zoom-stepper__label {
+    width: 28px;
+    line-height: 28px;
+    font-size: 10px;
+  }
+}
+
 </style>
 """
 
@@ -1610,6 +1707,8 @@ DARK_MODE_JS = """
         return mq.matches;
     }
 
+    var RUGBY_ZOOM_STEP = __RUGBY_ZOOM_STEP__;
+
     function findMap() {
         var el = document.querySelector(".folium-map");
         if (!el || !el._leaflet_id) {
@@ -1619,6 +1718,89 @@ DARK_MODE_JS = """
             return k.startsWith("map_") && window[k] instanceof L.Map;
         })];
         return map || null;
+    }
+
+    function rugbyLimitZoom(map, zoom) {
+        var min = map.getMinZoom();
+        var max = map.getMaxZoom();
+        var snap = RUGBY_ZOOM_STEP;
+        if (snap) {
+            zoom = Math.round(zoom / snap) * snap;
+        }
+        return Math.max(min, Math.min(max, zoom));
+    }
+
+    function applyMapZoomOptions(map) {
+        if (!map || !map.options) {
+            return;
+        }
+        map.options.zoomSnap = RUGBY_ZOOM_STEP;
+        map.options.zoomDelta = RUGBY_ZOOM_STEP;
+    }
+
+    function formatRugbyZoom(zoom) {
+        var rounded = Math.round(zoom * 100) / 100;
+        var text = rounded.toFixed(2);
+        return text.replace(/\\.?0+$/, "") + "x";
+    }
+
+    function updateZoomStepperLabel(map) {
+        var label = document.getElementById("rugbyZoomStepperLabel");
+        if (label && map) {
+            label.textContent = formatRugbyZoom(map.getZoom());
+        }
+    }
+
+    function rugbyStepZoom(delta) {
+        var map = findMap();
+        if (!map) {
+            return;
+        }
+        applyMapZoomOptions(map);
+        map.setZoom(rugbyLimitZoom(map, map.getZoom() + delta));
+        updateZoomStepperLabel(map);
+    }
+
+    function ensureZoomStepper() {
+        if (document.getElementById("rugbyZoomStepper")) {
+            return;
+        }
+        var wrap = document.createElement("div");
+        wrap.id = "rugbyZoomStepper";
+        wrap.className = "rugby-zoom-stepper";
+        wrap.setAttribute("role", "group");
+        wrap.setAttribute("aria-label", "Map zoom");
+        wrap.innerHTML =
+            '<button type="button" class="rugby-zoom-stepper__btn" id="rugbyZoomIn" ' +
+            'title="Zoom in" aria-label="Zoom in">+</button>' +
+            '<span class="rugby-zoom-stepper__label" id="rugbyZoomStepperLabel">7x</span>' +
+            '<button type="button" class="rugby-zoom-stepper__btn" id="rugbyZoomOut" ' +
+            'title="Zoom out" aria-label="Zoom out">&minus;</button>';
+        document.body.appendChild(wrap);
+        document.getElementById("rugbyZoomIn").addEventListener("click", function() {
+            rugbyStepZoom(RUGBY_ZOOM_STEP);
+        });
+        document.getElementById("rugbyZoomOut").addEventListener("click", function() {
+            rugbyStepZoom(-RUGBY_ZOOM_STEP);
+        });
+    }
+
+    function initZoomStepper() {
+        var map = findMap();
+        if (!map) {
+            setTimeout(initZoomStepper, 100);
+            return;
+        }
+        applyMapZoomOptions(map);
+        ensureZoomStepper();
+        updateZoomStepperLabel(map);
+        if (map.__rugbyZoomStepperHooked) {
+            return;
+        }
+        map.__rugbyZoomStepperHooked = true;
+        map.on("zoomend", function() {
+            updateZoomStepperLabel(map);
+        });
     }
 
     function setMapDarkClass(dark) {
@@ -1641,6 +1823,7 @@ DARK_MODE_JS = """
             setTimeout(applyBasemapTheme, 100);
             return;
         }
+        applyMapZoomOptions(map);
         map.eachLayer(function(layer) {
             if (!layer._url) {
                 return;
@@ -1713,9 +1896,11 @@ DARK_MODE_JS = """
         ensureFloatingThemeToggle();
         bindThemeSelectOnce();
         syncThemeSelect();
+        initZoomStepper();
     }
 
     applyBasemapTheme();
+    initZoomStepper();
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initChrome);
     } else {
@@ -1737,13 +1922,22 @@ DARK_MODE_JS = """
 </script>
 """
 
-DARK_MODE_JS = DARK_MODE_JS.replace("__JM_LIGHT__", CARTO_THEME_MARK_LIGHT).replace(
-    "__JM_DARK__", CARTO_THEME_MARK_DARK
+DARK_MODE_JS = (
+    DARK_MODE_JS.replace("__JM_LIGHT__", CARTO_THEME_MARK_LIGHT)
+    .replace("__JM_DARK__", CARTO_THEME_MARK_DARK)
+    .replace("__RUGBY_ZOOM_STEP__", repr(MAP_ZOOM_SNAP))
 )
 
 
 def _build_base_map(config: MapConfig) -> folium.Map:
-    m = folium.Map(location=list(config.center), zoom_start=config.zoom, tiles=None)
+    m = folium.Map(
+        location=list(config.center),
+        zoom_start=config.zoom,
+        tiles=None,
+        zoom_control=False,
+        zoom_snap=MAP_ZOOM_SNAP,
+        zoom_delta=MAP_ZOOM_DELTA,
+    )
     folium.TileLayer(
         tiles=CARTO_TILE_URL_LIGHT,
         attr=folium_carto_attribution(),

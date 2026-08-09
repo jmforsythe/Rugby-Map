@@ -50,7 +50,10 @@
       "Counties 3 Midlands East (South North)": "Counties 2 Midlands East (South)",
       "Counties 3 Midlands East (South South)": "Counties 2 Midlands East (South)",
       "Counties 3 Midlands West (North)": "Counties 2 Midlands West (West)",
-      "Counties 3 Midlands West (South)": "Counties 2 Midlands West (West)",
+      "Counties 3 Midlands West (South)": [
+        "Counties 2 Midlands West (West)",
+        "Counties 2 Midlands West (East)"
+      ],
       "Counties 3 Tribute Ale Berks Bucks & Oxon North": "Counties 2 Tribute Ale Berks/Bucks & Oxon West",
       "Counties 3 Tribute Ale Berks Bucks & Oxon South": "Counties 2 Tribute Ale Berks/Bucks & Oxon East",
       "Counties 3 Tribute Ale Dorset & Wilts Central": [

@@ -1087,8 +1087,26 @@ def _collect_group_geometries(
                     ]
                     if children_with:
                         narrow: list[dict[str, Any]] = []
+                        child_regions_narrow = regions_by_level[child_level_check]
+                        all_child_keys = [
+                            ck
+                            for ck in child_map_by_level.get(level, {}).get(region_key, [])
+                            if ck in child_regions_narrow
+                        ]
                         for ck in children_with:
                             narrow.extend(split_region(child_level_check, ck, items_here))
+                        for eck in all_child_keys:
+                            if filtered[child_level_check].get(eck):
+                                continue
+                            fb = closest_group(items_here, child_regions_narrow[eck]["centroid"])
+                            if fb:
+                                narrow.append(
+                                    {
+                                        "geom": child_regions_narrow[eck]["simplified"],
+                                        "group": fb,
+                                        "color": group_colors[fb],
+                                    }
+                                )
                         return narrow
             return [{"geom": region["simplified"], "group": grp, "color": group_colors[grp]}]
 

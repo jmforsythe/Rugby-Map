@@ -4,6 +4,7 @@ from pathlib import Path
 
 import numpy as np
 from shapely.geometry import GeometryCollection, LineString, Polygon
+from shapely.ops import unary_union
 
 from core.config import CURRENT_SEASON
 from core.map_builder import MarkerItem, load_itl_hierarchy, preassign_itl_regions
@@ -104,6 +105,24 @@ def test_every_league_is_shaded_at_level_7() -> None:
     )
     for league, colour in colours.items():
         assert f'fill="{colour}"' in svg, f"{league} has no shading in the SVG"
+
+
+def test_empty_sibling_itl3_is_shaded_at_level_10() -> None:
+    """Regression: York ITL3 has no clubs but sits beside North Yorkshire in one league."""
+    season = CURRENT_SEASON
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
+    tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
+    assert tier10_items, "expected tier 10 pyramid teams in geocoded data"
+
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(tier10_items, itl)
+    territories, _colours = compute_tier_territories(tier10_items, itl)
+
+    york_geom = itl["itl3_regions"]["York"]["simplified"]
+    merged = unary_union(list(territories.values()))
+    coverage = merged.intersection(york_geom).area / york_geom.area
+    assert coverage > 0.95, f"York ITL3 should be shaded, got {coverage:.1%} coverage"
 
 
 def test_auto_badge_diameter_tracks_club_spacing() -> None:

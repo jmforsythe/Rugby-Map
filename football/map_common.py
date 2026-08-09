@@ -12,34 +12,12 @@ from core import (
     get_service_worker_registration_script,
     set_config,
 )
+from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.map_builder import MapConfig, MarkerItem, export_shared_boundaries, load_itl_hierarchy
 
 FOOTBALL_DIST = DIST_DIR / "football"
 FOOTBALL_BRAND = "English Football Pyramid Maps"
-
-COLOR_PALETTE = [
-    "#e6194b",
-    "#3cb44b",
-    "#0082c8",
-    "#f58231",
-    "#911eb4",
-    "#46f0f0",
-    "#f032e6",
-    "#6a8f00",
-    "#fabebe",
-    "#008080",
-    "#e6beff",
-    "#aa6e28",
-    "#fffac8",
-    "#800000",
-    "#008f5a",
-    "#808000",
-    "#ffd8b1",
-    "#000080",
-    "#808080",
-    "#ffe119",
-]
 
 TIER_ENTRY_LEVELS: dict[int, str] = dict.fromkeys(range(1, 11), "itl0")
 

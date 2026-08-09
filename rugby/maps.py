@@ -25,6 +25,7 @@ from core import (
     setup_logging,
     team_name_to_filepath,
 )
+from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.map_builder import (
     MapConfig,
@@ -65,57 +66,6 @@ def _absolute_map_url(dist_path_parent_posix: str) -> str:
     site_path = "/" + "/".join(p for p in dist_path_parent_posix.split("/") if p) + "/"
     return absolute_url(site_path)
 
-
-COLOR_PALETTE = [
-    "#e6194b",
-    "#3cb44b",
-    "#ffe119",
-    "#0082c8",
-    "#f58231",
-    "#911eb4",
-    "#46f0f0",
-    "#f032e6",
-    "#6a8f00",
-    "#fabebe",
-    "#008080",
-    "#e6beff",
-    "#aa6e28",
-    "#fffac8",
-    "#800000",
-    "#008f5a",
-    "#808000",
-    "#ffd8b1",
-    "#000080",
-    "#808080",
-    "#ff6b6b",
-    "#4ecdc4",
-    "#95e1d3",
-    "#f38181",
-    "#aa96da",
-    "#fcbad3",
-    "#a8d8ea",
-    "#ffcfd2",
-    "#5b2c6f",
-    "#1a5276",
-    "#b9441e",
-    "#117a65",
-    "#7d3c98",
-    "#2e4053",
-    "#c0392b",
-    "#1f618d",
-    "#884ea0",
-    "#239b56",
-    "#b7950b",
-    "#6c3483",
-    "#2874a6",
-    "#ca6f1e",
-    "#148f77",
-    "#a04000",
-    "#1b4f72",
-    "#7b241c",
-]
-
-UNASSIGNED_COLOR = "#cccccc"
 
 # If a region at this level contains items in multiple child regions, everything in this region will
 # be shaded.

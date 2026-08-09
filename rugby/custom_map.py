@@ -45,6 +45,7 @@ from core.basemap_tiles import (
     CARTO_TILE_URL_LIGHT,
     custom_map_basemap_html_attribution,
 )
+from core.colors import COLOR_PALETTE, UNASSIGNED_COLOR
 from core.config import (
     BOUNDARIES_DIR,
     DIST_DIR,
@@ -760,6 +761,8 @@ def _build_page() -> None:
         "{{BASEMAP_MARK_LIGHT_JSON}}": json.dumps(CARTO_THEME_MARK_LIGHT),
         "{{BASEMAP_MARK_DARK_JSON}}": json.dumps(CARTO_THEME_MARK_DARK),
         "{{BASEMAP_TILE_ATTR_JSON}}": json.dumps(custom_map_basemap_html_attribution()),
+        "{{COLOR_PALETTE_JSON}}": json.dumps(COLOR_PALETTE),
+        "{{UNASSIGNED_COLOR_JSON}}": json.dumps(UNASSIGNED_COLOR),
     }
     html = template
     for token, value in replacements.items():

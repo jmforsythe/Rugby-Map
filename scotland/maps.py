@@ -17,6 +17,7 @@ from html import escape
 from pathlib import Path
 
 from core import setup_logging
+from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.json_utils import write_compact_json
 from core.map_builder import (
@@ -73,29 +74,6 @@ _TIER_MAP_WOMENS: dict[str, tuple[int, str]] = {
 }
 
 _BORDER_TIER: tuple[int, str] = (9, "Border Leagues")
-
-COLOR_PALETTE = [
-    "#e6194b",
-    "#3cb44b",
-    "#ffe119",
-    "#0082c8",
-    "#f58231",
-    "#911eb4",
-    "#46f0f0",
-    "#f032e6",
-    "#6a8f00",
-    "#fabebe",
-    "#008080",
-    "#e6beff",
-    "#aa6e28",
-    "#fffac8",
-    "#800000",
-    "#008f5a",
-    "#808000",
-    "#ffd8b1",
-    "#000080",
-    "#808080",
-]
 
 BOUNDARY_PATHS = {
     "itl3": str(BOUNDARIES_DIR / "ITL_3.geojson"),

@@ -16,6 +16,7 @@ Detail levels available:
 import argparse
 import enum
 import json
+import logging
 import time
 from pathlib import Path
 
@@ -26,6 +27,11 @@ from urllib3.util.retry import Retry
 from core.config import BOUNDARIES_DIR
 
 VALID_DETAIL_LEVELS = ("BFE", "BFC", "BGC", "BSC", "BUC")
+
+# Finest → coarsest; used to pick the nearest level when a layer is missing.
+DETAIL_LEVEL_ORDER = ("BFE", "BFC", "BGC", "BUC", "BSC")
+
+logger = logging.getLogger(__name__)
 
 _SESSION: requests.Session | None = None
 
@@ -253,6 +259,80 @@ def get_boundary_services(detail_level: DetailLevel) -> dict[str, str | None]:
         "wards.geojson": wards_url(detail_level),
         "countries.geojson": countries_url(detail_level),
     }
+
+
+def _boundary_filename_url(filename: str, detail_level: DetailLevel) -> str | None:
+    url_by_filename = {
+        "countries.geojson": countries_url,
+        "ITL_1.geojson": itl1_url,
+        "ITL_2.geojson": itl2_url,
+        "ITL_3.geojson": itl3_url,
+        "local_authority_districts.geojson": lads_url,
+        "wards.geojson": wards_url,
+    }
+    url_fn = url_by_filename.get(filename)
+    if url_fn is None:
+        return None
+    return url_fn(detail_level)
+
+
+def _detail_level_distance(left: str, right: str) -> int:
+    return abs(DETAIL_LEVEL_ORDER.index(left.upper()) - DETAIL_LEVEL_ORDER.index(right.upper()))
+
+
+def _fallback_levels_for_layer(filename: str, requested: str) -> list[str]:
+    """Detail levels to try for *filename*, nearest to *requested* first."""
+    requested = requested.upper()
+    available = [
+        level
+        for level in DETAIL_LEVEL_ORDER
+        if _boundary_filename_url(filename, DetailLevel(level)) is not None
+    ]
+    if not available:
+        return [requested]
+
+    def sort_key(level: str) -> tuple[int, int]:
+        return (_detail_level_distance(level, requested), DETAIL_LEVEL_ORDER.index(level))
+
+    if requested in available:
+        rest = sorted((level for level in available if level != requested), key=sort_key)
+        return [requested, *rest]
+    return sorted(available, key=sort_key)
+
+
+def _storage_dir_for_level(code: str) -> Path:
+    """Directory where GeoJSON for *code* is stored (without requiring every layer)."""
+    code = code.upper()
+    sub = BOUNDARIES_DIR / code
+    if code == "BGC":
+        if (sub / "countries.geojson").is_file():
+            return sub
+        if (BOUNDARIES_DIR / "countries.geojson").is_file():
+            return BOUNDARIES_DIR
+        return sub
+    return sub
+
+
+def resolve_boundary_file(detail: str | None, filename: str) -> Path:
+    """Resolve a boundary GeoJSON file when loading maps.
+
+    Tries the requested ONS detail level first, then the nearest level that
+    publishes the layer (e.g. BUC maps use BGC wards). Download is unchanged —
+    each ``--detail`` run only fetches layers ONS provides at that level.
+    """
+    requested = (detail or "BGC").upper()
+    for level in _fallback_levels_for_layer(filename, requested):
+        path = _storage_dir_for_level(level) / filename
+        if path.is_file():
+            if level != requested:
+                logger.info(
+                    "Boundary %s not at %s; using %s",
+                    filename,
+                    requested,
+                    level,
+                )
+            return path
+    return _storage_dir_for_level(requested) / filename
 
 
 def download_arcgis_layer(
@@ -493,10 +573,9 @@ def boundary_dir_for_detail(detail: str | None) -> Path:
 
 def boundary_paths_for_detail(detail: str | None = None) -> dict[str, str]:
     """Path map for :func:`core.map_builder.load_itl_hierarchy` at a given ONS detail level."""
-    base = boundary_dir_for_detail(detail)
-
-    def _path(name: str) -> str:
-        return str(base / name)
+    boundary_dir_for_detail(detail)
+    requested = (detail or "BGC").upper()
+    base = _storage_dir_for_level(requested)
 
     def _lookup(name: str) -> str:
         preferred = base / name
@@ -505,12 +584,12 @@ def boundary_paths_for_detail(detail: str | None = None) -> dict[str, str]:
         return str(BOUNDARIES_DIR / name)
 
     return {
-        "itl3": _path("ITL_3.geojson"),
-        "itl2": _path("ITL_2.geojson"),
-        "itl1": _path("ITL_1.geojson"),
-        "countries": _path("countries.geojson"),
-        "lad": _path("local_authority_districts.geojson"),
-        "wards": _path("wards.geojson"),
+        "itl3": str(resolve_boundary_file(detail, "ITL_3.geojson")),
+        "itl2": str(resolve_boundary_file(detail, "ITL_2.geojson")),
+        "itl1": str(resolve_boundary_file(detail, "ITL_1.geojson")),
+        "countries": str(resolve_boundary_file(detail, "countries.geojson")),
+        "lad": str(resolve_boundary_file(detail, "local_authority_districts.geojson")),
+        "wards": str(resolve_boundary_file(detail, "wards.geojson")),
         "lad_to_itl_lookup": _lookup("lad_to_itl.json"),
         "ward_to_lad_lookup": _lookup("ward_to_lad.json"),
     }

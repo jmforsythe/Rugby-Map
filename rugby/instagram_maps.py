@@ -70,6 +70,8 @@ OUTPUT_ROOT = REPO_ROOT / "output" / "instagram"
 # 3:4 portrait — Instagram feed friendly.
 IMAGE_WIDTH = 1080
 IMAGE_HEIGHT = 1440
+# Playwright device_scale_factor for PNG export (1080×1440 SVG → 3240×4320 px at 3×).
+PNG_SCALE_DEFAULT = 3.0
 
 # Fraction of the frame kept clear around the landmass. England + IoM + Channel
 # Islands in Web Mercator is naturally ~3:4, so the map fills the canvas and the
@@ -90,8 +92,14 @@ BADGE_FILL = "#ffffff"
 # county tiers stay at the floor. Isolated clubs reach this size; clubs in dense
 # clusters shrink toward BADGE_MIN_DIAMETER_RATIO of it.
 BADGE_AUTO_SPACING_FACTOR = 1.5
-BADGE_DIAMETER_FLOOR = 30
-BADGE_DIAMETER_CEILING = 80
+BADGE_DIAMETER_FLOOR = 26
+# Tier 1–3 (Premiership → National 2): sparse national leagues.
+BADGE_UPPER_TIER_MAX = 3
+BADGE_DIAMETER_CEILING_UPPER = 60
+# Tier 4+ (Regional 1 downward): spacing-derived, capped lower — level 4 sits here
+# with level 5, not with the sparse upper group despite wider club spacing.
+BADGE_DIAMETER_CEILING_LOWER = 50
+BADGE_DIAMETER_CEILING = max(BADGE_DIAMETER_CEILING_UPPER, BADGE_DIAMETER_CEILING_LOWER)
 BADGE_MIN_DIAMETER_RATIO = 0.4
 BADGE_RING_WIDTH = 2.0
 # Badge radius as a fraction of the distance to the nearest other club. At 0.5
@@ -194,29 +202,41 @@ def build_crest_href_map(
             return url, None
 
     result: dict[str, str] = {}
+    skipped = 0
     with ThreadPoolExecutor(max_workers=max(1, min(max_workers, 32))) as pool:
         for url, href in pool.map(worker, uniq):
             if href is not None:
                 result[url] = href
+            else:
+                skipped += 1
 
     logger.info(
-        "Inlined %d of %d unique crests (cache %s)",
+        "Inlined %d of %d unique crests (%d unavailable; those badges show club names)",
         len(result),
         len(uniq),
-        CACHE_DIR / CREST_CACHE_SUBDIR,
+        skipped,
     )
     return result
 
 
-def _auto_badge_diameter(positions: np.ndarray) -> float:
+def _badge_diameter_ceiling(tier_num: int) -> float:
+    """Largest badge diameter allowed for a pyramid level."""
+    if tier_num <= BADGE_UPPER_TIER_MAX:
+        return float(BADGE_DIAMETER_CEILING_UPPER)
+    return float(BADGE_DIAMETER_CEILING_LOWER)
+
+
+def _auto_badge_diameter(positions: np.ndarray, *, tier_num: int) -> float:
     """Pick a badge size for one tier from the typical gap between its clubs.
 
     Median nearest-neighbour distance falls steadily down the pyramid (roughly
     94px at National League 1 against 13px at Counties 3), so scaling by it gives
     the sparse upper tiers bold badges without swamping the crowded lower ones.
+    Tier 4 uses the lower-tier ceiling even though its clubs are more spread out.
     """
+    ceiling = _badge_diameter_ceiling(tier_num)
     if len(positions) < 2:
-        return float(BADGE_DIAMETER_CEILING)
+        return ceiling
 
     distances, _ = cKDTree(positions).query(positions, k=2)
     median_spacing = float(np.median(distances[:, 1]))
@@ -224,7 +244,7 @@ def _auto_badge_diameter(positions: np.ndarray) -> float:
         np.clip(
             median_spacing * BADGE_AUTO_SPACING_FACTOR,
             BADGE_DIAMETER_FLOOR,
-            BADGE_DIAMETER_CEILING,
+            ceiling,
         )
     )
 
@@ -432,6 +452,7 @@ def _render_badges(
     project: Callable[[float, float], tuple[float, float]],
     crest_hrefs: dict[str, str],
     *,
+    tier_num: int,
     diameter: float | None = None,
     min_diameter: float | None = None,
 ) -> str:
@@ -445,8 +466,10 @@ def _render_badges(
 
     projected = np.array([project(it.longitude, it.latitude) for it in items], dtype=float)
     if diameter is None:
-        diameter = _auto_badge_diameter(projected)
-        logger.debug("Auto badge diameter for %d clubs: %.1fpx", len(items), diameter)
+        diameter = _auto_badge_diameter(projected, tier_num=tier_num)
+        logger.debug(
+            "Auto badge diameter for tier %d (%d clubs): %.1fpx", tier_num, len(items), diameter
+        )
 
     max_radius = diameter / 2
     min_radius = (
@@ -468,14 +491,13 @@ def _render_badges(
         scale = radii[index] / max_radius
         ring = escape(colours.get(item.group, OUTLINE_STROKE))
         icon_url = item.icon_url or ""
-        if _usable_crest_url(icon_url):
-            href = escape(crest_hrefs.get(icon_url, icon_url), quote=True)
+        inline_href = crest_hrefs.get(icon_url) if _usable_crest_url(icon_url) else None
+        if inline_href:
+            href = escape(inline_href, quote=True)
             badge_inner = (
                 f'<image x="{-inner:.2f}" y="{-inner:.2f}" width="{inner * 2:.2f}" '
                 f'height="{inner * 2:.2f}" href="{href}" preserveAspectRatio="xMidYMid meet" '
                 f'clip-path="url(#crestClip)"/>'
-                if href
-                else _badge_name_label_svg(item.name, inner_radius=inner)
             )
         else:
             badge_inner = _badge_name_label_svg(item.name, inner_radius=inner)
@@ -722,7 +744,7 @@ def rasterise_svg_to_png(
     svg_path: Path,
     png_path: Path,
     *,
-    scale: float = 2.0,
+    scale: float = PNG_SCALE_DEFAULT,
     crest_timeout_ms: float = 30_000.0,
 ) -> None:
     """Render an SVG file to PNG using Playwright (Chromium)."""
@@ -804,6 +826,7 @@ def render_tier_svg(
         colours,
         project,
         crest_hrefs or {},
+        tier_num=tier_num,
         diameter=badge_diameter,
         min_diameter=badge_min_diameter,
     )
@@ -851,7 +874,7 @@ def generate_tier_graphics(
     *,
     tier_nums: list[int] | None = None,
     write_png: bool = False,
-    png_scale: float = 2.0,
+    png_scale: float = PNG_SCALE_DEFAULT,
     badge_diameter: float | None = None,
     badge_min_diameter: float | None = None,
     boundary_detail: str | None = None,
@@ -959,8 +982,11 @@ def main() -> None:
     parser.add_argument(
         "--png-scale",
         type=float,
-        default=2.0,
-        help="Device scale factor for PNG output (default: 2.0, giving 2160x2880 px)",
+        default=PNG_SCALE_DEFAULT,
+        help=(
+            f"Device scale factor for PNG output (default: {PNG_SCALE_DEFAULT:g}, "
+            f"giving {int(IMAGE_WIDTH * PNG_SCALE_DEFAULT)}x{int(IMAGE_HEIGHT * PNG_SCALE_DEFAULT)} px)"
+        ),
     )
     parser.add_argument(
         "--badge-size",
@@ -970,8 +996,9 @@ def main() -> None:
         help=(
             f"Largest club crest diameter in canvas px at {IMAGE_WIDTH}px wide. "
             f"Default derives it per level from club spacing "
-            f"({BADGE_DIAMETER_FLOOR}-{BADGE_DIAMETER_CEILING}px), so sparse upper "
-            f"levels get bigger badges. Use 0 to omit crests."
+            f"({BADGE_DIAMETER_FLOOR}-{BADGE_DIAMETER_CEILING_UPPER}px for levels "
+            f"1-{BADGE_UPPER_TIER_MAX}, {BADGE_DIAMETER_FLOOR}-{BADGE_DIAMETER_CEILING_LOWER}px "
+            f"from level {BADGE_UPPER_TIER_MAX + 1} down). Use 0 to omit crests."
         ),
     )
     parser.add_argument(

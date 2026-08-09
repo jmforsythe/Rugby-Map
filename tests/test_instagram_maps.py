@@ -9,10 +9,12 @@ from core.config import CURRENT_SEASON
 from core.map_builder import MarkerItem, load_itl_hierarchy, preassign_itl_regions
 from rugby import DATA_DIR
 from rugby.instagram_maps import (
-    BADGE_DIAMETER_CEILING,
+    BADGE_DIAMETER_CEILING_LOWER,
+    BADGE_DIAMETER_CEILING_UPPER,
     BADGE_DIAMETER_FLOOR,
     BADGE_MAX_SHIFT_RADII,
     BADGE_RELAX_ITERATIONS,
+    BADGE_UPPER_TIER_MAX,
     IMAGE_HEIGHT,
     IMAGE_WIDTH,
     _auto_badge_diameter,
@@ -110,10 +112,14 @@ def test_auto_badge_diameter_tracks_club_spacing() -> None:
     crowded = np.array([[float(i) * 8.0, 0.0] for i in range(200)])
     moderate = np.array([[float(i) * 26.0, 0.0] for i in range(60)])
 
-    assert _auto_badge_diameter(sparse) == BADGE_DIAMETER_CEILING
-    assert _auto_badge_diameter(crowded) == BADGE_DIAMETER_FLOOR
-    assert BADGE_DIAMETER_FLOOR < _auto_badge_diameter(moderate) < BADGE_DIAMETER_CEILING
-    assert _auto_badge_diameter(sparse) > _auto_badge_diameter(crowded)
+    assert _auto_badge_diameter(sparse, tier_num=1) == BADGE_DIAMETER_CEILING_UPPER
+    assert _auto_badge_diameter(crowded, tier_num=7) == BADGE_DIAMETER_FLOOR
+    assert (
+        BADGE_DIAMETER_FLOOR
+        < _auto_badge_diameter(moderate, tier_num=5)
+        < BADGE_DIAMETER_CEILING_LOWER
+    )
+    assert _auto_badge_diameter(sparse, tier_num=1) > _auto_badge_diameter(crowded, tier_num=7)
 
 
 def test_auto_badge_sizing_across_real_levels() -> None:
@@ -128,9 +134,14 @@ def test_auto_badge_sizing_across_real_levels() -> None:
     def diameter_for(tier_num: int) -> float:
         items = [it for it in loaded.pyramid if it.tier_num == tier_num]
         assert items, f"expected clubs at tier {tier_num}"
-        return _auto_badge_diameter(np.array([project(it.longitude, it.latitude) for it in items]))
+        return _auto_badge_diameter(
+            np.array([project(it.longitude, it.latitude) for it in items]),
+            tier_num=tier_num,
+        )
 
-    assert diameter_for(3) > diameter_for(5) > diameter_for(6) >= diameter_for(9)
+    assert diameter_for(3) > diameter_for(BADGE_UPPER_TIER_MAX + 1)
+    assert diameter_for(BADGE_UPPER_TIER_MAX + 1) <= BADGE_DIAMETER_CEILING_LOWER + 1e-6
+    assert diameter_for(5) > diameter_for(6) >= diameter_for(9)
     assert diameter_for(9) == BADGE_DIAMETER_FLOOR
 
 
@@ -217,7 +228,7 @@ def _sample_badge_item(*, icon_url: str | None) -> MarkerItem:
 def test_crest_inline_px_matches_badge_display_at_png_scale() -> None:
     """Crest cache must cover badge inner size × PNG scale to avoid upscaling blur."""
     assert _crest_inline_px(badge_diameter=80.0, png_scale=2.0) == 154
-    assert _crest_inline_px(badge_diameter=None, png_scale=1.0) == 77
+    assert _crest_inline_px(badge_diameter=None, png_scale=1.0) == 64
 
 
 def test_render_badges_shows_name_when_no_crest() -> None:
@@ -226,6 +237,7 @@ def test_render_badges_shows_name_when_no_crest() -> None:
         {"Test League": "#e6194b"},
         lambda lon, lat: (100.0, 100.0),
         {},
+        tier_num=7,
         diameter=40.0,
     )
     assert "Example Rugby" in svg
@@ -239,6 +251,7 @@ def test_render_badges_treats_rfu_fallback_as_missing_crest() -> None:
         {"Test League": "#e6194b"},
         lambda lon, lat: (100.0, 100.0),
         {},
+        tier_num=7,
         diameter=40.0,
     )
     assert "Example Rugby" in svg
@@ -255,7 +268,24 @@ def test_render_badges_renders_crest_when_available() -> None:
         {"Test League": "#e6194b"},
         lambda lon, lat: (100.0, 100.0),
         {crest_url: href},
+        tier_num=7,
         diameter=40.0,
     )
     assert f'href="{href}"' in svg
     assert "Example Rugby Club" not in svg
+
+
+def test_render_badges_name_when_crest_not_inlined() -> None:
+    """Blocked or unreadable crest URLs must not fall back to a remote SVG image."""
+    crest_url = "https://images.englandrugby.com/club_images/16502.png"
+    svg = _render_badges(
+        [_sample_badge_item(icon_url=crest_url)],
+        {"Test League": "#e6194b"},
+        lambda lon, lat: (100.0, 100.0),
+        {},
+        tier_num=9,
+        diameter=40.0,
+    )
+    assert "Example Rugby" in svg
+    assert crest_url not in svg
+    assert "<image" not in svg

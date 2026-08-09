@@ -6,7 +6,7 @@ import numpy as np
 from shapely.geometry import GeometryCollection, LineString, Polygon
 
 from core.config import CURRENT_SEASON
-from core.map_builder import load_itl_hierarchy, preassign_itl_regions
+from core.map_builder import MarkerItem, load_itl_hierarchy, preassign_itl_regions
 from rugby import DATA_DIR
 from rugby.instagram_maps import (
     BADGE_DIAMETER_CEILING,
@@ -18,17 +18,19 @@ from rugby.instagram_maps import (
     _auto_badge_diameter,
     _country_bounds,
     _country_mask,
+    _crest_inline_px,
     _geom_to_svg_path,
     _layout_badges,
     _make_projector,
     _nearest_neighbour_radii,
     _polygonal_only,
     _relax_positions,
+    _render_badges,
     compute_tier_territories,
     generate_tier_graphics,
     render_tier_svg,
 )
-from rugby.maps import BOUNDARY_PATHS, _load_marker_items
+from rugby.maps import BOUNDARY_PATHS, RFU_FALLBACK_ICON, _load_marker_items
 
 
 def test_render_tier7_svg_contains_labels() -> None:
@@ -197,3 +199,63 @@ def test_country_mask_covers_england() -> None:
     minx, miny, maxx, maxy = mask.bounds
     assert minx < -6 and maxx > 1.5
     assert miny < 49.2 and maxy > 55.5
+
+
+def _sample_badge_item(*, icon_url: str | None) -> MarkerItem:
+    return MarkerItem(
+        name="Example Rugby Club",
+        latitude=51.5,
+        longitude=-1.0,
+        group="Test League",
+        tier="Counties 1",
+        tier_num=7,
+        icon_url=icon_url,
+        popup_html=None,
+    )
+
+
+def test_crest_inline_px_matches_badge_display_at_png_scale() -> None:
+    """Crest cache must cover badge inner size × PNG scale to avoid upscaling blur."""
+    assert _crest_inline_px(badge_diameter=80.0, png_scale=2.0) == 154
+    assert _crest_inline_px(badge_diameter=None, png_scale=1.0) == 77
+
+
+def test_render_badges_shows_name_when_no_crest() -> None:
+    svg = _render_badges(
+        [_sample_badge_item(icon_url=None)],
+        {"Test League": "#e6194b"},
+        lambda lon, lat: (100.0, 100.0),
+        {},
+        diameter=40.0,
+    )
+    assert "Example Rugby" in svg
+    assert "Club" in svg
+    assert "<image" not in svg
+
+
+def test_render_badges_treats_rfu_fallback_as_missing_crest() -> None:
+    svg = _render_badges(
+        [_sample_badge_item(icon_url=RFU_FALLBACK_ICON)],
+        {"Test League": "#e6194b"},
+        lambda lon, lat: (100.0, 100.0),
+        {},
+        diameter=40.0,
+    )
+    assert "Example Rugby" in svg
+    assert "Club" in svg
+    assert RFU_FALLBACK_ICON not in svg
+    assert "<image" not in svg
+
+
+def test_render_badges_renders_crest_when_available() -> None:
+    crest_url = "https://images.englandrugby.com/clubs/example.png"
+    href = "data:image/png;base64,abc"
+    svg = _render_badges(
+        [_sample_badge_item(icon_url=crest_url)],
+        {"Test League": "#e6194b"},
+        lambda lon, lat: (100.0, 100.0),
+        {crest_url: href},
+        diameter=40.0,
+    )
+    assert f'href="{href}"' in svg
+    assert "Example Rugby Club" not in svg

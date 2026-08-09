@@ -53,13 +53,14 @@ from rugby.maps import (
     BOUNDARY_PATHS,
     COLOR_PALETTE,
     COUNTRY_OUTLINES,
+    RFU_FALLBACK_ICON,
     TIER_ENTRY_LEVELS,
     TIER_FLOOR_LEVELS,
     _group_by_tier,
     _load_marker_items,
     _rotated_palette,
 )
-from rugby.pyramid_image import _rfu_crest_get_bytes
+from rugby.pyramid_image import _rfu_crest_get_bytes, _valid_image_url
 from rugby.tiers import mens_current_tier_name
 
 logger = logging.getLogger(__name__)
@@ -105,9 +106,9 @@ BADGE_MAX_SHIFT_RADII = 1.5
 BADGE_FIT_ROUNDS = 10
 BADGE_GROWTH_STEP = 1.2
 BADGE_FIT_TOLERANCE = 0.05
-# Cached crests are downscaled to this many pixels before being inlined, which
-# keeps the SVG a few MB rather than tens of MB.
-CREST_CACHE_PX = 64
+# Cached crests are rasterised at the on-canvas display size (× PNG scale when
+# exporting) so badges are not upscaled from a tiny inline bitmap.
+CREST_CACHE_PX_MIN = 64
 CREST_CACHE_SUBDIR = "boundary_graphic_crests_v1"
 
 FONT_HEADING = "Oswald, system-ui, -apple-system, Segoe UI, sans-serif"
@@ -123,6 +124,17 @@ CAPTION_Y_RATIO = 0.36
 def _crest_cache_path(url: str, px: int) -> Path:
     digest = hashlib.sha256(url.encode("utf-8")).hexdigest()
     return CACHE_DIR / CREST_CACHE_SUBDIR / f"{digest}_{px}.png"
+
+
+def _crest_inline_px(*, badge_diameter: float | None, png_scale: float = 1.0) -> int:
+    """Raster size for inlined crests — matches badge inner diameter × export scale."""
+    badge = (
+        float(badge_diameter)
+        if badge_diameter is not None and badge_diameter > 0
+        else float(BADGE_DIAMETER_CEILING)
+    )
+    display = badge - BADGE_RING_WIDTH * 1.5
+    return max(CREST_CACHE_PX_MIN, int(math.ceil(display * max(1.0, png_scale))))
 
 
 def _downscaled_crest_png(raw: bytes, px: int) -> bytes | None:
@@ -147,7 +159,9 @@ def _downscaled_crest_png(raw: bytes, px: int) -> bytes | None:
 def build_crest_href_map(
     urls: list[str],
     *,
-    px: int = CREST_CACHE_PX,
+    px: int | None = None,
+    badge_diameter: float | None = None,
+    png_scale: float = 1.0,
     max_workers: int = 12,
 ) -> dict[str, str]:
     """Map crest URL -> inline ``data:image/png;base64`` URI, cached on disk.
@@ -155,6 +169,8 @@ def build_crest_href_map(
     URLs that cannot be downscaled locally are omitted; callers fall back to the
     remote URL so the crest still renders when the browser fetches it.
     """
+    if px is None:
+        px = _crest_inline_px(badge_diameter=badge_diameter, png_scale=png_scale)
     uniq = sorted({u for u in urls if u})
     if not uniq:
         return {}
@@ -360,6 +376,55 @@ def _relax_positions(
     return current
 
 
+def _usable_crest_url(url: str | None) -> bool:
+    """True when *url* is a club crest we should embed (not the generic RFU fallback)."""
+    return bool(url) and url != RFU_FALLBACK_ICON and _valid_image_url(url)
+
+
+def _split_badge_label(name: str, *, max_lines: int = 2) -> list[str]:
+    label = (name or "?").strip() or "?"
+    words = label.split()
+    if len(words) <= 1 or max_lines <= 1 or len(label) <= 14:
+        return [label]
+    mid = (len(words) + 1) // 2
+    return [" ".join(words[:mid]), " ".join(words[mid:])]
+
+
+def _badge_name_label_svg(name: str, *, inner_radius: float) -> str:
+    """Centre the club name inside a badge circle when no crest is available."""
+    lines = _split_badge_label(name)
+    inner_d = inner_radius * 2
+    longest = max(len(line) for line in lines)
+    font_size = inner_d * 0.22
+    if longest > 16:
+        font_size *= 0.72
+    elif longest > 12:
+        font_size *= 0.85
+    if len(lines) > 1:
+        font_size *= 0.88
+    font_size = max(4.0, min(font_size, inner_d * 0.28))
+
+    if len(lines) == 1:
+        return (
+            f'<text text-anchor="middle" dominant-baseline="central" x="0" y="0" '
+            f'fill="#1c232e" font-family="Barlow,sans-serif" font-weight="600" '
+            f'font-size="{font_size:.2f}">{escape(lines[0])}</text>'
+        )
+
+    line_height = font_size * 1.12
+    first_dy = -line_height * (len(lines) - 1) / 2
+    tspans: list[str] = []
+    for index, line in enumerate(lines):
+        if index == 0:
+            tspans.append(f'<tspan x="0" dy="{first_dy:.2f}">{escape(line)}</tspan>')
+        else:
+            tspans.append(f'<tspan x="0" dy="{line_height:.2f}">{escape(line)}</tspan>')
+    return (
+        f'<text text-anchor="middle" fill="#1c232e" font-family="Barlow,sans-serif" '
+        f'font-weight="600" font-size="{font_size:.2f}">{"".join(tspans)}</text>'
+    )
+
+
 def _render_badges(
     items: list[MarkerItem],
     colours: dict[str, str],
@@ -401,19 +466,23 @@ def _render_badges(
         x, y = positions[index]
         scale = radii[index] / max_radius
         ring = escape(colours.get(item.group, OUTLINE_STROKE))
-        href = escape(crest_hrefs.get(item.icon_url or "", item.icon_url or ""), quote=True)
-        crest = (
-            f'<image x="{-inner:.2f}" y="{-inner:.2f}" width="{inner * 2:.2f}" '
-            f'height="{inner * 2:.2f}" href="{href}" preserveAspectRatio="xMidYMid meet" '
-            f'clip-path="url(#crestClip)"/>'
-            if href
-            else ""
-        )
+        icon_url = item.icon_url or ""
+        if _usable_crest_url(icon_url):
+            href = escape(crest_hrefs.get(icon_url, icon_url), quote=True)
+            badge_inner = (
+                f'<image x="{-inner:.2f}" y="{-inner:.2f}" width="{inner * 2:.2f}" '
+                f'height="{inner * 2:.2f}" href="{href}" preserveAspectRatio="xMidYMid meet" '
+                f'clip-path="url(#crestClip)"/>'
+                if href
+                else _badge_name_label_svg(item.name, inner_radius=inner)
+            )
+        else:
+            badge_inner = _badge_name_label_svg(item.name, inner_radius=inner)
         parts.append(
             f'<g transform="translate({x:.2f},{y:.2f}) scale({scale:.4f})">'
             f'<circle r="{max_radius:.2f}" fill="{BADGE_FILL}" stroke="{ring}" '
             f'stroke-width="{BADGE_RING_WIDTH}"/>'
-            f"{crest}"
+            f"{badge_inner}"
             f"</g>"
         )
     return "".join(parts)
@@ -804,9 +873,15 @@ def generate_tier_graphics(
     crest_hrefs: dict[str, str] = {}
     if badge_diameter is None or badge_diameter > 0:
         wanted_tiers = {by_tier[t][0].tier_num for t in tier_order}
-        crest_hrefs = build_crest_href_map(
-            [it.icon_url or "" for it in mens_pyramid if it.tier_num in wanted_tiers]
+        crest_px = _crest_inline_px(
+            badge_diameter=badge_diameter,
+            png_scale=png_scale if write_png else 1.0,
         )
+        crest_hrefs = build_crest_href_map(
+            [it.icon_url or "" for it in mens_pyramid if it.tier_num in wanted_tiers],
+            px=crest_px,
+        )
+        logger.info("Inlining crests at %d px", crest_px)
 
     for tier_label in tier_order:
         tier_items = by_tier[tier_label]

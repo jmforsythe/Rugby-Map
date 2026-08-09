@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from core.colors import COLOR_PALETTE
 from rugby.analysis.convert_projected_import import convert_markdown
 from rugby.custom_map_imports import (
     IMPORTS_DIR,
@@ -16,7 +17,6 @@ from rugby.custom_map_imports import (
     validate_import_spec,
     write_bonus_imports_js,
 )
-from rugby.maps import COLOR_PALETTE
 
 FIXTURE_MD = Path(__file__).parent / "fixtures" / "projected_tier_sample.md"
 

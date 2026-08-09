@@ -17,9 +17,9 @@ import argparse
 import re
 from urllib.parse import quote
 
+from core.colors import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby import DATA_DIR
 from rugby.analysis.promotion_relegation import _PROMOTION_MAP
-from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 
 PROJECTED_PATH = DATA_DIR / "projected_2026-2027.md"
 

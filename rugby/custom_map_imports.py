@@ -13,9 +13,9 @@ import re
 from pathlib import Path
 from typing import Any
 
+from core.colors import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import normalize_import_spec_leagues, normalize_parsed_tiers
-from rugby.maps import COLOR_PALETTE, UNASSIGNED_COLOR
 from rugby.tiers import mens_current_tier_name
 
 logger = logging.getLogger(__name__)

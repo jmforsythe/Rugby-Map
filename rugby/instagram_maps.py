@@ -35,6 +35,7 @@ from shapely.geometry import MultiPolygon, Polygon, shape
 from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 
+from core.boundaries import VALID_DETAIL_LEVELS, boundary_paths_for_detail
 from core.config import CACHE_DIR, CURRENT_SEASON, REPO_ROOT, setup_logging
 from core.map_builder import (
     ITLHierarchy,
@@ -50,7 +51,6 @@ from core.map_builder import (
 )
 from rugby import DATA_DIR
 from rugby.maps import (
-    BOUNDARY_PATHS,
     COLOR_PALETTE,
     COUNTRY_OUTLINES,
     RFU_FALLBACK_ICON,
@@ -79,6 +79,7 @@ MAP_MARGIN = 0.02
 SEA_BG = "#0d1117"
 LAND_BG = "#1c232e"
 OUTLINE_STROKE = "#39445a"
+COUNTRY_OUTLINE_WIDTH = 1.0
 TERRITORY_STROKE = "#0d1117"
 TEXT_PRIMARY = "#ffffff"
 TEXT_MUTED = "#8ea3c4"
@@ -795,7 +796,7 @@ def render_tier_svg(
     if outline_d:
         outline_svg = (
             f'<path d="{outline_d}" fill="{LAND_BG}" stroke="{OUTLINE_STROKE}" '
-            f'stroke-width="2" fill-rule="evenodd"/>'
+            f'stroke-width="{COUNTRY_OUTLINE_WIDTH}" fill-rule="evenodd"/>'
         )
 
     badges_svg = _render_badges(
@@ -853,13 +854,21 @@ def generate_tier_graphics(
     png_scale: float = 2.0,
     badge_diameter: float | None = None,
     badge_min_diameter: float | None = None,
+    boundary_detail: str | None = None,
 ) -> list[Path]:
     """Generate an Instagram map for each requested men's pyramid tier."""
     geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]
 
-    itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
+    boundary_paths = boundary_paths_for_detail(boundary_detail)
+    if boundary_detail:
+        logger.info(
+            "Using ONS boundary detail %s from %s",
+            boundary_detail.upper(),
+            boundary_paths["countries"],
+        )
+    itl_hierarchy = load_itl_hierarchy(boundary_paths)
     preassign_itl_regions(mens_pyramid, itl_hierarchy)
 
     by_tier, tier_order = _group_by_tier(mens_pyramid)
@@ -975,6 +984,17 @@ def main() -> None:
             f"(default: {BADGE_MIN_DIAMETER_RATIO:g}x the badge size)."
         ),
     )
+    parser.add_argument(
+        "--boundary-detail",
+        choices=list(VALID_DETAIL_LEVELS),
+        default=None,
+        metavar="LEVEL",
+        help=(
+            "ONS boundary generalisation (BFE/BFC/BGC/BUC). "
+            "Default uses data/boundaries/ (BGC). "
+            "Coarser levels remove estuary/river coastline detail."
+        ),
+    )
     args = parser.parse_args()
 
     setup_logging()
@@ -987,6 +1007,7 @@ def main() -> None:
         png_scale=args.png_scale,
         badge_diameter=args.badge_size,
         badge_min_diameter=args.badge_min_size,
+        boundary_detail=args.boundary_detail,
     )
 
 

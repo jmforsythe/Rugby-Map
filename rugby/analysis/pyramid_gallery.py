@@ -86,7 +86,18 @@ def collect_slides(
     return slides
 
 
-def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid gallery") -> str:
+def build_html(
+    slides: list[dict[str, str]],
+    *,
+    page_title: str = "Pyramid gallery",
+    image_alt: str = "Pyramid",
+    empty_message: str = "No pyramid images — run pyramid_image first.",
+    footer_note: str = (
+        "Open from <code>dist/</code> (paths are relative). SVG slides use "
+        "<code>&lt;object&gt;</code> so crest tiles render "
+        "(<code>&lt;img&gt;</code> skips <code>foreignObject</code>)."
+    ),
+) -> str:
     data_json = json.dumps(slides)
     # json.dumps yields ASCII-safe escapes; safe to embed verbatim in JS.
     return f"""<!DOCTYPE html>
@@ -203,8 +214,8 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
       <span id="zoomPct" style="opacity:.9;min-width:3.5rem">100%</span>
     </div>
   </header>
-  <div id="stage"><div id="frame"><img id="view" alt="Pyramid" decoding="async"/><object id="viewSvg" class="slide-svg" type="image/svg+xml" data="" aria-label="Pyramid (SVG)" style="display:none"></object></div></div>
-  <footer>Open from <code>dist/</code> (paths are relative). SVG slides use <code>&lt;object&gt;</code> so crest tiles render (<code>&lt;img&gt;</code> skips <code>foreignObject</code>).</footer>
+  <div id="stage"><div id="frame"><img id="view" alt="{image_alt}" decoding="async"/><object id="viewSvg" class="slide-svg" type="image/svg+xml" data="" aria-label="{image_alt} (SVG)" style="display:none"></object></div></div>
+  <footer>{footer_note}</footer>
   <script>
     const slides = {data_json};
     let idx = 0;
@@ -251,7 +262,7 @@ def build_html(slides: list[dict[str, str]], *, page_title: str = "Pyramid galle
       const img = document.getElementById("view");
       const obj = document.getElementById("viewSvg");
       if (!slides.length) {{
-        cap.textContent = "No pyramid images — run pyramid_image first.";
+        cap.textContent = {json.dumps(empty_message)};
         img.style.display = "none";
         img.removeAttribute("src");
         obj.style.display = "none";

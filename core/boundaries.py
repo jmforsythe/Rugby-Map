@@ -25,6 +25,8 @@ from urllib3.util.retry import Retry
 
 from core.config import BOUNDARIES_DIR
 
+VALID_DETAIL_LEVELS = ("BFE", "BFC", "BGC", "BSC", "BUC")
+
 _SESSION: requests.Session | None = None
 
 
@@ -457,6 +459,11 @@ def download_extras(
         feature["properties"]["WD25CD"] = feature["properties"]["GID_0"]
     for path in file_paths_to_add_to:
         output_path = Path(output_dir) / path
+        if not output_path.is_file():
+            print(
+                f"  Skipping {name} injection into {output_path} (not downloaded at this detail level)"
+            )
+            continue
         print(f"  Injecting {name} data into {output_path}...")
         with open(output_path, "r+", encoding="utf-8") as f:
             data = json.load(f)
@@ -465,6 +472,48 @@ def download_extras(
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.truncate()
         print(f"  [OK] Saved to {output_path}")
+
+
+def boundary_dir_for_detail(detail: str | None) -> Path:
+    """Directory holding GeoJSON for an ONS detail level (``None`` → default flat layout)."""
+    if detail is None:
+        return BOUNDARIES_DIR
+    code = detail.upper()
+    sub = BOUNDARIES_DIR / code
+    if (sub / "countries.geojson").is_file():
+        return sub
+    # Legacy: default BGC download lives directly under data/boundaries/.
+    if code == "BGC" and (BOUNDARIES_DIR / "countries.geojson").is_file():
+        return BOUNDARIES_DIR
+    raise FileNotFoundError(
+        f"No boundaries for detail {code} under {sub}. "
+        f"Run: python -m core.boundaries --detail {code} --output-dir {sub}"
+    )
+
+
+def boundary_paths_for_detail(detail: str | None = None) -> dict[str, str]:
+    """Path map for :func:`core.map_builder.load_itl_hierarchy` at a given ONS detail level."""
+    base = boundary_dir_for_detail(detail)
+
+    def _path(name: str) -> str:
+        return str(base / name)
+
+    def _lookup(name: str) -> str:
+        preferred = base / name
+        if preferred.is_file():
+            return str(preferred)
+        return str(BOUNDARIES_DIR / name)
+
+    return {
+        "itl3": _path("ITL_3.geojson"),
+        "itl2": _path("ITL_2.geojson"),
+        "itl1": _path("ITL_1.geojson"),
+        "countries": _path("countries.geojson"),
+        "lad": _path("local_authority_districts.geojson"),
+        "wards": _path("wards.geojson"),
+        "lad_to_itl_lookup": _lookup("lad_to_itl.json"),
+        "ward_to_lad_lookup": _lookup("ward_to_lad.json"),
+    }
 
 
 def main() -> None:
@@ -483,9 +532,15 @@ Detail levels:
     )
     parser.add_argument(
         "--detail",
-        choices=["BFE", "BFC", "BGC", "BSC", "BUC"],
+        choices=list(VALID_DETAIL_LEVELS),
         default="BGC",
         help="Boundary detail level (default: BGC for smaller file sizes)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Directory for GeoJSON output (default: data/boundaries/)",
     )
     args = parser.parse_args()
 
@@ -494,39 +549,44 @@ Detail levels:
         return
 
     detail = DetailLevel(args.detail)
+    output_dir = args.output_dir or BOUNDARIES_DIR
 
     boundary_services = get_boundary_services(detail)
 
     print("Downloading boundary files from ONS Open Geography portal")
     print(f"Detail level: {detail.value}")
+    print(f"Output directory: {output_dir}")
     print("=" * 60)
 
     for filename, service_url in boundary_services.items():
         if service_url is None:
             print(f"Skipping {filename} (not available in {detail.value} level)")
             continue
-        download_arcgis_layer(service_url, filename)
+        download_arcgis_layer(service_url, filename, output_dir=str(output_dir))
         print()
 
     print("Downloading ONS lookup tables for LAD<->ITL and Ward<->LAD...")
     for filename, (service_url, fields) in get_lookup_services().items():
-        download_arcgis_table(service_url, filename, fields)
+        download_arcgis_table(service_url, filename, fields, output_dir=str(output_dir))
         print()
 
     download_extras(
         "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_IMN_0.json",
         "Isle of Man",
         list(boundary_services.keys()),
+        output_dir=str(output_dir),
     )
     download_extras(
         "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_JEY_0.json",
         "Jersey",
         list(boundary_services.keys()),
+        output_dir=str(output_dir),
     )
     download_extras(
         "https://geodata.ucdavis.edu/gadm/gadm4.1/json/gadm41_GGY_0.json",
         "Guernsey",
         list(boundary_services.keys()),
+        output_dir=str(output_dir),
     )
 
     print("=" * 60)

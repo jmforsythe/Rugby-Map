@@ -300,7 +300,8 @@ def _header_bar_html(
         color: #666;
     }}
     .map-header__title {{
-        font-weight: 600; color: #2c3e50; white-space: nowrap;
+        font-family: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 600; letter-spacing: 0.01em; color: #2c3e50; white-space: nowrap;
         overflow: hidden; text-overflow: ellipsis;
         flex: 1 1 auto; min-width: 0;
     }}

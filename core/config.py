@@ -110,8 +110,26 @@ def get_twitter_card_meta() -> str:
     return '<meta name="twitter:card" content="summary_large_image" />'
 
 
+#: Brand typography: Oswald for headings (condensed, athletic), Barlow for body
+#: text. Loaded from Google Fonts on every generated page; see dist/styles.css
+#: for the corresponding --font-heading / --font-body variables.
+FONT_STYLESHEET_URL = (
+    "https://fonts.googleapis.com/css2?"
+    "family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap"
+)
+
+
+def get_font_html() -> str:
+    """Return <link> tags that preconnect to and load the brand Google Fonts."""
+    return (
+        '    <link rel="preconnect" href="https://fonts.googleapis.com">\n'
+        '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+        f'    <link href="{FONT_STYLESHEET_URL}" rel="stylesheet">'
+    )
+
+
 def get_favicon_html(depth: int = 0) -> str:
-    """Return <link> tags for favicon and manifest.
+    """Return <link> tags for favicon, manifest, and brand fonts.
 
     Args:
         depth: directory depth relative to dist/ root (0 = top-level, 1 = season, etc.)
@@ -123,5 +141,6 @@ def get_favicon_html(depth: int = 0) -> str:
     return (
         f'    <link rel="icon" href="{prefix}favicon.ico" sizes="any">\n'
         f'    <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml">\n'
-        f'    <link rel="manifest" href="{prefix}manifest.json">'
+        f'    <link rel="manifest" href="{prefix}manifest.json">\n'
+        f"{get_font_html()}"
     )

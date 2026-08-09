@@ -511,6 +511,13 @@ def _build_womens_pyramid_tier_colors_from_mens(hue_shift: float) -> dict[int, t
 WOMENS_HSV_HUE_SHIFT = 0.55
 WOMENS_TIER_COLORS = _build_womens_pyramid_tier_colors_from_mens(WOMENS_HSV_HUE_SHIFT)
 
+# Brand typography: Oswald (condensed, athletic) for titles/tier labels/league
+# names; Barlow for everything else (crest captions, stat lines). Loaded via
+# Google Fonts inside the SVG itself (see ``_font_import_style_svg``) so both
+# raw SVG viewing and Playwright rasterisation render identically.
+FONT_HEADING = "'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+FONT_BODY = "'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+
 # Background colour for the surrounding page.
 PAGE_BG = "#0e1726"
 PAGE_BG_WOMENS = _mens_hex_to_womens_hsv_shifted(PAGE_BG, WOMENS_HSV_HUE_SHIFT)
@@ -4128,6 +4135,21 @@ def _page_watermark_svg(
     ]
 
 
+def _font_import_style_svg() -> str:
+    """``<style>`` importing the brand Google Fonts (Oswald + Barlow) for SVG text.
+
+    Works both when the SVG is opened directly in a browser and when rasterised
+    to PNG via Playwright/Chromium (see :func:`rasterise_svg_to_png`) — both are
+    real browser engines that resolve the ``@import`` over the network, the same
+    way remote crest ``<image>`` URLs are already resolved in this diagram.
+    """
+    return (
+        "<style>@import url("
+        "'https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700"
+        "&amp;family=Barlow:wght@400;500;600&amp;display=swap');</style>"
+    )
+
+
 def _svg_text(
     text: str,
     x: float,
@@ -4137,7 +4159,7 @@ def _svg_text(
     size: float = 14.0,
     weight: str = "normal",
     anchor: str = "start",
-    family: str = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    family: str = FONT_BODY,
 ) -> str:
     return (
         f'<text x="{x:.2f}" y="{y:.2f}" '
@@ -4155,7 +4177,7 @@ def _svg_text_tspans(
     size: float = 14.0,
     weight: str = "normal",
     anchor: str = "start",
-    family: str = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    family: str = FONT_BODY,
 ) -> str:
     """One SVG ``<text>`` containing ``<tspan fill="…">…</tspan>`` runs."""
     tspans = "".join(
@@ -4178,7 +4200,7 @@ def _svg_rotated_centred_text(
     fill: str = TIER_LABEL_TEXT,
     size: float = 16.0,
     weight: str = "600",
-    family: str = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    family: str = FONT_HEADING,
 ) -> str:
     esc = xml_escape(text)
     return (
@@ -4402,7 +4424,7 @@ def _svg_crest_foreign_object_slot(
         "align-content:center;align-items:center;display:flex;flex-wrap:wrap;justify-content:center;"
         "text-align:center;line-height:1.12;pointer-events:none;"
         f"color:{text_fill};font-size:{fz_fb}px;font-weight:600;"
-        "font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:visible;"
+        "font-family:'Barlow',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:visible;"
         'word-wrap:break-word;hyphens:auto;padding:4px;">'
         f"{name_body}</div>"
     )
@@ -4445,7 +4467,7 @@ def _svg_crest_foreign_object_slot(
             f"max-width:{crest_img_px:.2f}px;min-height:{caption_min_h:.2f}px;"
             "align-items:flex-start;justify-content:center;text-align:center;flex-wrap:wrap;"
             f"overflow:visible;line-height:{lh:.2f}px;color:{text_fill};"
-            f"font-size:{int(cap_fz)}px;font-weight:600;font-family:system-ui,-apple-system,"
+            f"font-size:{int(cap_fz)}px;font-weight:600;font-family:'Barlow',system-ui,-apple-system,"
             "Segoe UI,Roboto,sans-serif;word-wrap:break-word;hyphens:auto;"
         )
         inner_stack = (
@@ -4480,40 +4502,154 @@ def _shorten(text: str, max_chars: int) -> str:
     return text[: max_chars - 1].rstrip() + "\u2026"
 
 
+# Common English place-name suffixes (longest / most specific first so a
+# meaningful morpheme boundary wins when more than one technically matches).
+# Used to hyphenate oversized county/place words at a natural break — e.g.
+# "Gloucestershire" → "Gloucester-" / "shire" — rather than an arbitrary
+# fixed-width character chop.
+_PLACE_NAME_SUFFIXES = (
+    "borough",
+    "chester",
+    "cester",
+    "worth",
+    "field",
+    "shire",
+    "wood",
+    "mouth",
+    "bury",
+    "town",
+    "gate",
+    "side",
+    "dale",
+    "moor",
+    "ford",
+    "land",
+    "ham",
+    "ton",
+    "ley",
+)
+
+
+def _suffix_split_point(token: str, max_chars_per_line: int) -> int | None:
+    """Index to split ``token`` right before a recognised suffix, if any fits.
+
+    Only returns a split where the prefix fits within ``max_chars_per_line``
+    and both sides are non-trivial (≥3 chars); picks the suffix giving the
+    longest usable prefix. Returns ``None`` when no suffix boundary applies,
+    so the caller falls back to an even character split.
+    """
+    lower = token.lower()
+    best_idx: int | None = None
+    for suffix in _PLACE_NAME_SUFFIXES:
+        idx = len(token) - len(suffix)
+        if idx < 3 or not lower.endswith(suffix):
+            continue
+        if idx > max_chars_per_line:
+            continue
+        if best_idx is None or idx > best_idx:
+            best_idx = idx
+    return best_idx
+
+
 def _split_oversized_token(token: str, max_chars_per_line: int) -> list[str]:
+    """Split a too-long word into balanced chunks.
+
+    Prefers breaking right before a recognised place-name suffix (see
+    :data:`_PLACE_NAME_SUFFIXES`) so the break reads naturally. Otherwise
+    distributes the word evenly across the minimum number of chunks needed —
+    a naive fixed-width chop (``token[i:i+max_chars_per_line]``) can leave a
+    tiny orphan remainder on words that only slightly exceed the budget
+    (e.g. "Gloucestershire" at max_chars=14 → "Gloucestershir" + "e"), and
+    that orphan then reads as nonsense once glued to the next word by the
+    caller (see :func:`_wrap_league_title_lines`).
+    """
     if max_chars_per_line < 1:
         max_chars_per_line = 1
     if len(token) <= max_chars_per_line:
         return [token]
-    return [token[i : i + max_chars_per_line] for i in range(0, len(token), max_chars_per_line)]
+    split_idx = _suffix_split_point(token, max_chars_per_line)
+    if split_idx is not None:
+        prefix, suffix = token[:split_idx], token[split_idx:]
+        if len(suffix) <= max_chars_per_line:
+            return [prefix, suffix]
+    n_chunks = -(-len(token) // max_chars_per_line)  # ceil division
+    chunk_len = -(-len(token) // n_chunks)  # ceil division, evenly sized
+    return [token[i : i + chunk_len] for i in range(0, len(token), chunk_len)]
+
+
+def _has_oversized_word(text: str, max_width_px: float, font_size: float) -> bool:
+    """True if any single word in ``text`` is too long to fit one line at ``font_size``."""
+    char_w = max(font_size * LEAGUE_TITLE_CHAR_WIDTH_EM, 2.5)
+    max_chars = max(4, int(max_width_px / char_w))
+    return any(len(w) > max_chars for w in text.split())
 
 
 def _wrap_league_title_lines(text: str, max_width_px: float, font_size: float) -> list[str]:
-    """Greedy word-wrap; splits long tokens so each line stays within estimated width."""
+    """Greedy word-wrap; splits long tokens so each line stays within estimated width.
+
+    Words too long for one line are hyphenated across their own line(s); only
+    the final chunk of a split word re-enters the normal wrap stream so it can
+    still share a line with the word that follows (standard hyphenated
+    line-break behaviour), e.g. "Gloucestershire North" → "Gloucester-" /
+    "shire North" rather than splitting mid-word with no indication of the
+    break and no wrapping.
+    """
     char_w = max(font_size * LEAGUE_TITLE_CHAR_WIDTH_EM, 2.5)
     max_chars = max(4, int(max_width_px / char_w))
 
-    segments: list[str] = []
-    for w in text.split():
-        if len(w) <= max_chars:
-            segments.append(w)
-        else:
-            segments.extend(_split_oversized_token(w, max_chars))
-
     lines: list[str] = []
     current: list[str] = []
-    for seg in segments:
-        trial = " ".join(current + [seg]) if current else seg
-        if current and len(trial) * char_w > max_width_px:
+
+    def flush_current() -> None:
+        if current:
             lines.append(" ".join(current))
-            current = [seg]
-        elif current:
-            current.append(seg)
+            current.clear()
+
+    for w in text.split():
+        if len(w) <= max_chars:
+            trial = " ".join(current + [w]) if current else w
+            if current and len(trial) * char_w > max_width_px:
+                flush_current()
+            current.append(w)
         else:
-            current = [seg]
-    if current:
-        lines.append(" ".join(current))
+            flush_current()
+            chunks = _split_oversized_token(w, max_chars)
+            for chunk in chunks[:-1]:
+                lines.append(f"{chunk}-")
+            current.append(chunks[-1])
+    flush_current()
     return lines
+
+
+def _pick_league_title_font_and_lines(
+    short_name: str, inner_w_title: float, max_title_px: float
+) -> tuple[float, list[str]]:
+    """Shrink-to-fit the league title font, preferring sizes that never hyphenate a word.
+
+    Walks font sizes from :data:`LEAGUE_TITLE_FONT_MAX` down to
+    :data:`LEAGUE_TITLE_FONT_MIN`. A size that fits the line budget *and*
+    needs no mid-word split wins outright — a slightly smaller, unsplit title
+    reads better than a larger one broken mid-word (e.g. "Gloucestershire"
+    should shrink to fit whole before it gets hyphenated). If no such size
+    exists anywhere in the range, falls back to the largest size that merely
+    fits the line budget, splitting the offending word if needed.
+    """
+    best_fit: tuple[float, list[str]] | None = None
+    font_sz = LEAGUE_TITLE_FONT_MAX
+    while font_sz >= LEAGUE_TITLE_FONT_MIN - 1e-9:
+        line_h_try = font_sz * LEAGUE_TITLE_LINE_HEIGHT_RATIO
+        max_lines_allowed = max(1, int(max_title_px / line_h_try))
+        lines = _wrap_league_title_lines(short_name, inner_w_title, font_sz)
+        if len(lines) <= max_lines_allowed:
+            if best_fit is None:
+                best_fit = (font_sz, lines)
+            if not _has_oversized_word(short_name, inner_w_title, font_sz):
+                return font_sz, lines
+        font_sz -= 1.0
+    if best_fit is not None:
+        return best_fit
+    font_sz = LEAGUE_TITLE_FONT_MIN
+    return font_sz, _wrap_league_title_lines(short_name, inner_w_title, font_sz)
 
 
 def _crest_slot_fallback_name_svg(
@@ -4664,15 +4800,7 @@ def _render_league_cell(
             min(h - LEAGUE_CELL_PADDING_Y - min_logo_reserve, h * 0.62),
         )
 
-        font_sz = LEAGUE_TITLE_FONT_MAX
-        lines = _wrap_league_title_lines(short_name, inner_w_title, font_sz)
-        for _ in range(int(LEAGUE_TITLE_FONT_MAX - LEAGUE_TITLE_FONT_MIN) + 1):
-            line_h_try = font_sz * LEAGUE_TITLE_LINE_HEIGHT_RATIO
-            max_lines_allowed = max(1, int(max_title_px / line_h_try))
-            lines = _wrap_league_title_lines(short_name, inner_w_title, font_sz)
-            if len(lines) <= max_lines_allowed:
-                break
-            font_sz -= 1.0
+        font_sz, lines = _pick_league_title_font_and_lines(short_name, inner_w_title, max_title_px)
 
         line_h = font_sz * LEAGUE_TITLE_LINE_HEIGHT_RATIO
         max_lines_allowed = max(1, int(max_title_px / line_h))
@@ -4699,6 +4827,7 @@ def _render_league_cell(
                     size=font_sz,
                     weight="600",
                     anchor="middle",
+                    family=FONT_HEADING,
                 )
             )
 
@@ -4967,6 +5096,7 @@ def _tier_margin_label_svg(
                 fill=stats_fill,
                 size=stat_sz,
                 weight="500",
+                family=FONT_BODY,
             )
         )
 
@@ -7247,8 +7377,9 @@ def render_pyramid_svg(
                     title_y,
                     fill=TITLE_TEXT,
                     size=34.0,
-                    weight="800",
+                    weight="700",
                     anchor="middle",
+                    family=FONT_HEADING,
                 ),
                 subtitle_el,
             ]
@@ -7263,6 +7394,7 @@ def render_pyramid_svg(
                 f'xmlns:xlink="http://www.w3.org/1999/xlink" '
                 f'viewBox="0 0 {export_w} {image_height}" '
                 f'width="{export_w}" height="{image_height}">\n'
+                f"{_font_import_style_svg()}\n"
                 f'<rect x="0" y="0" width="{export_w}" height="{image_height}" fill="{page_bg}"/>\n'
                 f"{watermark_el}\n"
                 f"{body}\n"

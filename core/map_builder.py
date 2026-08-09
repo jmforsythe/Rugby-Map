@@ -1095,9 +1095,15 @@ def _collect_group_geometries(
                         ]
                         for ck in children_with:
                             narrow.extend(split_region(child_level_check, ck, items_here))
-                        for eck in all_child_keys:
-                            if filtered[child_level_check].get(eck):
-                                continue
+                        # Fill a lone empty sibling only when every other child at this
+                        # level already has teams (e.g. York beside North Yorkshire).
+                        # Skip when multiple empty siblings exist (e.g. Swindon +
+                        # Wiltshire beside Gloucestershire CC).
+                        empty_siblings = [
+                            ck for ck in all_child_keys if not filtered[child_level_check].get(ck)
+                        ]
+                        if len(empty_siblings) == 1:
+                            eck = empty_siblings[0]
                             fb = closest_group(items_here, child_regions_narrow[eck]["centroid"])
                             if fb:
                                 narrow.append(

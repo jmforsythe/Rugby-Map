@@ -7,7 +7,8 @@ league territory shading (same algorithm as interactive maps), and bold left-pan
     Rugby Union
     2026-2027
     Level 7
-    (Counties 1)
+    Counties 1
+    rugbyunionmap.uk
 
 Outputs SVG by default; pass ``--png`` to rasterise via Playwright (see requirements-dev.txt).
 """
@@ -24,7 +25,7 @@ import re
 import time
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
-from functools import partial
+from functools import lru_cache, partial
 from html import escape
 from pathlib import Path
 from urllib.error import URLError
@@ -36,7 +37,7 @@ from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 
 from core.boundaries import VALID_DETAIL_LEVELS, boundary_paths_for_detail
-from core.config import CACHE_DIR, CURRENT_SEASON, REPO_ROOT, setup_logging
+from core.config import CACHE_DIR, CURRENT_SEASON, DIST_DIR, REPO_ROOT, setup_logging
 from core.map_builder import (
     ITLHierarchy,
     MapConfig,
@@ -61,6 +62,7 @@ from rugby.maps import (
     _rotated_palette,
 )
 from rugby.pyramid_image import _rfu_crest_get_bytes, _valid_image_url
+from rugby.seo import BASE_URL
 from rugby.tiers import mens_current_tier_name
 
 logger = logging.getLogger(__name__)
@@ -128,6 +130,19 @@ SVG_SIMPLIFY_TOLERANCE = 0.003
 # England (Irish Sea / Wales / Atlantic), which is empty at every level.
 CAPTION_X_RATIO = 0.05
 CAPTION_Y_RATIO = 0.36
+SITE_LOGO_SIZE = 30
+SITE_URL_FONT_SIZE = 32
+SITE_URL_GAP = 8
+# Gap below the tier-name line to the site URL row.
+SITE_URL_BELOW_TIER = 62
+SITE_HOST = BASE_URL.removeprefix("https://").removeprefix("http://")
+
+
+@lru_cache(maxsize=1)
+def _site_logo_href() -> str:
+    """Inline ``dist/favicon.svg`` so PNG export does not depend on network fetches."""
+    raw = (DIST_DIR / "favicon.svg").read_bytes()
+    return "data:image/svg+xml;base64," + base64.standard_b64encode(raw).decode("ascii")
 
 
 def _crest_cache_path(url: str, px: int) -> Path:
@@ -838,6 +853,11 @@ def render_tier_svg(
     # A white halo keeps the caption legible if a territory reaches under it.
     halo = f'paint-order="stroke" stroke="{SEA_BG}" stroke-width="8" stroke-linejoin="round"'
 
+    site_line_y = text_y0 + 248 + SITE_URL_BELOW_TIER
+    site_logo_y = site_line_y - SITE_LOGO_SIZE / 2
+    site_text_x = text_x + SITE_LOGO_SIZE + SITE_URL_GAP
+    logo_href = escape(_site_logo_href(), quote=True)
+
     text_lines = f"""
     <text x="{text_x}" y="{text_y0}" font-family="{FONT_HEADING}" font-size="54"
           font-weight="600" fill="{TEXT_PRIMARY}" {halo}>Rugby Union</text>
@@ -846,7 +866,12 @@ def render_tier_svg(
     <text x="{text_x}" y="{text_y0 + 190}" font-family="{FONT_HEADING}" font-size="108"
           font-weight="700" fill="{TEXT_PRIMARY}" {halo}>Level {tier_num}</text>
     <text x="{text_x}" y="{text_y0 + 248}" font-family="{FONT_BODY}" font-size="42"
-          font-weight="500" fill="{TEXT_MUTED}" {halo}>({escape(tier_name)})</text>
+          font-weight="500" fill="{TEXT_MUTED}" {halo}>{escape(tier_name)}</text>
+    <image x="{text_x}" y="{site_logo_y:.2f}" width="{SITE_LOGO_SIZE}" height="{SITE_LOGO_SIZE}"
+           href="{logo_href}"/>
+    <text x="{site_text_x}" y="{site_line_y}" font-family="{FONT_BODY}"
+          font-size="{SITE_URL_FONT_SIZE}" font-weight="500" fill="{TEXT_MUTED}"
+          dominant-baseline="central" {halo}>{escape(SITE_HOST)}</text>
     """
 
     return (

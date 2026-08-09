@@ -55,9 +55,11 @@ def test_render_tier7_svg_contains_labels() -> None:
         itl_hierarchy=itl,
     )
     assert "Rugby Union" in svg
+    assert "rugbyunionmap.uk" in svg
+    assert 'href="data:image/svg+xml;base64,' in svg
     assert season in svg
     assert "Level 7" in svg
-    assert "(Counties 1)" in svg
+    assert "Counties 1" in svg
     assert f'width="{IMAGE_WIDTH}"' in svg
     assert f'height="{IMAGE_HEIGHT}"' in svg
     assert len(territories) >= 10
@@ -70,7 +72,7 @@ def test_generate_single_level(tmp_path: Path) -> None:
     assert paths[0].name == "level_01_premiership.svg"
     text = paths[0].read_text(encoding="utf-8")
     assert "Level 1" in text
-    assert "(Premiership)" in text
+    assert "Premiership" in text
 
 
 def test_geometry_collection_renders_as_path() -> None:
@@ -123,6 +125,25 @@ def test_empty_sibling_itl3_is_shaded_at_level_10() -> None:
     merged = unary_union(list(territories.values()))
     coverage = merged.intersection(york_geom).area / york_geom.area
     assert coverage > 0.95, f"York ITL3 should be shaded, got {coverage:.1%} coverage"
+
+
+def test_multiple_empty_sibling_itl3_regions_are_not_filled() -> None:
+    """Swindon and Wiltshire are empty ITL3 siblings; neither should be shaded."""
+    season = CURRENT_SEASON
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
+    tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(tier10_items, itl)
+    territories, _colours = compute_tier_territories(tier10_items, itl)
+
+    north = "Counties 4 Tribute Ale Gloucestershire North"
+    assert north in territories
+    north_geom = territories[north]
+    for name in ("Swindon", "Wiltshire"):
+        sibling = itl["itl3_regions"][name]["simplified"]
+        overlap = north_geom.intersection(sibling).area / sibling.area
+        assert overlap < 0.05, f"{name} should stay unshaded, got {overlap:.1%} North overlap"
 
 
 def test_level_10_known_colour_collisions_are_separated() -> None:

@@ -1,0 +1,199 @@
+"""Tests for rugby.instagram_maps."""
+
+from pathlib import Path
+
+import numpy as np
+from shapely.geometry import GeometryCollection, LineString, Polygon
+
+from core.config import CURRENT_SEASON
+from core.map_builder import load_itl_hierarchy, preassign_itl_regions
+from rugby import DATA_DIR
+from rugby.instagram_maps import (
+    BADGE_DIAMETER_CEILING,
+    BADGE_DIAMETER_FLOOR,
+    BADGE_MAX_SHIFT_RADII,
+    BADGE_RELAX_ITERATIONS,
+    IMAGE_HEIGHT,
+    IMAGE_WIDTH,
+    _auto_badge_diameter,
+    _country_bounds,
+    _country_mask,
+    _geom_to_svg_path,
+    _layout_badges,
+    _make_projector,
+    _nearest_neighbour_radii,
+    _polygonal_only,
+    _relax_positions,
+    compute_tier_territories,
+    generate_tier_graphics,
+    render_tier_svg,
+)
+from rugby.maps import BOUNDARY_PATHS, _load_marker_items
+
+
+def test_render_tier7_svg_contains_labels() -> None:
+    season = CURRENT_SEASON
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
+    tier7_items = [it for it in loaded.pyramid if it.tier_num == 7]
+    assert tier7_items, "expected tier 7 pyramid teams in geocoded data"
+
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(tier7_items, itl)
+    territories, colours = compute_tier_territories(tier7_items, itl)
+
+    svg = render_tier_svg(
+        season=season,
+        tier_num=7,
+        territories=territories,
+        colours=colours,
+        itl_hierarchy=itl,
+    )
+    assert "Rugby Union" in svg
+    assert season in svg
+    assert "Level 7" in svg
+    assert "(Counties 1)" in svg
+    assert f'width="{IMAGE_WIDTH}"' in svg
+    assert f'height="{IMAGE_HEIGHT}"' in svg
+    assert len(territories) >= 10
+
+
+def test_generate_single_level(tmp_path: Path) -> None:
+    out = tmp_path / "graphics"
+    paths = generate_tier_graphics(CURRENT_SEASON, out, tier_nums=[1])
+    assert len(paths) == 1
+    assert paths[0].name == "level_01_premiership.svg"
+    text = paths[0].read_text(encoding="utf-8")
+    assert "Level 1" in text
+    assert "(Premiership)" in text
+
+
+def test_geometry_collection_renders_as_path() -> None:
+    """Regression: make_valid/intersection return GeometryCollections that were dropped."""
+    poly = Polygon([(0, 0), (1, 0), (1, 1), (0, 1)])
+    collection = GeometryCollection([poly, LineString([(0, 0), (2, 2)])])
+
+    assert _geom_to_svg_path(collection, lambda lon, lat: (lon, lat))
+    assert _polygonal_only(collection).geom_type == "Polygon"
+
+
+def test_every_league_is_shaded_at_level_7() -> None:
+    """All 19 Counties 1 leagues must produce a fill, not just a territory geometry."""
+    season = CURRENT_SEASON
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
+    tier7_items = [it for it in loaded.pyramid if it.tier_num == 7]
+
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(tier7_items, itl)
+    territories, colours = compute_tier_territories(tier7_items, itl)
+
+    leagues = {it.group for it in tier7_items}
+    assert set(territories) == leagues
+
+    svg = render_tier_svg(
+        season=season,
+        tier_num=7,
+        territories=territories,
+        colours=colours,
+        itl_hierarchy=itl,
+    )
+    for league, colour in colours.items():
+        assert f'fill="{colour}"' in svg, f"{league} has no shading in the SVG"
+
+
+def test_auto_badge_diameter_tracks_club_spacing() -> None:
+    """Sparse levels should get bigger badges than crowded ones, within the clamps."""
+    sparse = np.array([[float(i) * 200.0, 0.0] for i in range(10)])
+    crowded = np.array([[float(i) * 8.0, 0.0] for i in range(200)])
+    moderate = np.array([[float(i) * 26.0, 0.0] for i in range(60)])
+
+    assert _auto_badge_diameter(sparse) == BADGE_DIAMETER_CEILING
+    assert _auto_badge_diameter(crowded) == BADGE_DIAMETER_FLOOR
+    assert BADGE_DIAMETER_FLOOR < _auto_badge_diameter(moderate) < BADGE_DIAMETER_CEILING
+    assert _auto_badge_diameter(sparse) > _auto_badge_diameter(crowded)
+
+
+def test_auto_badge_sizing_across_real_levels() -> None:
+    """Level 3 clubs are far apart and level 9 clubs are not; badges should reflect that."""
+    season = CURRENT_SEASON
+    loaded = _load_marker_items(
+        str(DATA_DIR / "geocoded_teams" / season), season, travel_distances=None
+    )
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    project = _make_projector(_country_bounds(_country_mask(itl)), IMAGE_WIDTH, IMAGE_HEIGHT)
+
+    def diameter_for(tier_num: int) -> float:
+        items = [it for it in loaded.pyramid if it.tier_num == tier_num]
+        assert items, f"expected clubs at tier {tier_num}"
+        return _auto_badge_diameter(np.array([project(it.longitude, it.latitude) for it in items]))
+
+    assert diameter_for(3) > diameter_for(5) > diameter_for(6) >= diameter_for(9)
+    assert diameter_for(9) == BADGE_DIAMETER_FLOOR
+
+
+def test_badge_radius_shrinks_in_crowded_areas() -> None:
+    positions = np.array([[0.0, 0.0], [500.0, 500.0], [505.0, 500.0]])
+    radii = _nearest_neighbour_radii(positions, max_radius=15.0, min_radius=6.0)
+
+    assert radii[0] == 15.0, "isolated club should keep the full badge size"
+    assert radii[1] == radii[2] == 6.0, "clustered clubs should shrink to the minimum"
+
+
+def test_relaxation_separates_and_limits_drift() -> None:
+    """Clubs sharing a ground must fan out without wandering off it."""
+    positions = np.zeros((4, 2))
+    radii = np.full(4, 8.0)
+
+    relaxed = _relax_positions(positions, radii, gap=1.0, iterations=BADGE_RELAX_ITERATIONS)
+
+    separations = [
+        float(np.linalg.norm(relaxed[i] - relaxed[j])) for i in range(4) for j in range(i + 1, 4)
+    ]
+    assert min(separations) > 0.0
+
+    drift = np.linalg.norm(relaxed - positions, axis=1)
+    assert drift.max() <= 8.0 * BADGE_MAX_SHIFT_RADII + 1e-6
+
+
+def test_layout_regrows_badges_after_spacing() -> None:
+    """Spacing should buy back size that the initial crowding estimate gave away."""
+    positions = np.array([[float(i) * 20.0, 0.0] for i in range(8)])
+
+    shrunk = _nearest_neighbour_radii(positions, max_radius=15.0, min_radius=6.0)
+    _, radii = _layout_badges(positions, max_radius=15.0, min_radius=6.0)
+
+    assert radii.mean() > shrunk.mean()
+    assert radii.max() <= 15.0 + 1e-6
+    assert radii.min() >= 6.0 - 1e-6
+
+
+def test_layout_respects_the_size_ceiling_and_is_deterministic() -> None:
+    positions = np.array([[0.0, 0.0], [0.0, 0.0], [4.0, 3.0], [300.0, 400.0]])
+
+    first_pos, first_radii = _layout_badges(positions, max_radius=12.0, min_radius=5.0)
+    second_pos, second_radii = _layout_badges(positions, max_radius=12.0, min_radius=5.0)
+
+    assert np.allclose(first_pos, second_pos)
+    assert np.allclose(first_radii, second_radii)
+    assert first_radii.max() <= 12.0 + 1e-6
+    # The remote club is unconstrained, so it should reach full size.
+    assert first_radii[3] == 12.0
+
+
+def test_relaxation_leaves_spaced_badges_alone() -> None:
+    positions = np.array([[0.0, 0.0], [200.0, 0.0]])
+    radii = np.full(2, 10.0)
+
+    relaxed = _relax_positions(positions, radii, gap=1.0, iterations=10)
+
+    assert np.allclose(relaxed, positions)
+
+
+def test_country_mask_covers_england() -> None:
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    mask = _country_mask(itl)
+    assert not mask.is_empty
+    minx, miny, maxx, maxy = mask.bounds
+    assert minx < -6 and maxx > 1.5
+    assert miny < 49.2 and maxy > 55.5

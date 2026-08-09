@@ -125,6 +125,40 @@ def test_empty_sibling_itl3_is_shaded_at_level_10() -> None:
     assert coverage > 0.95, f"York ITL3 should be shaded, got {coverage:.1%} coverage"
 
 
+def test_level_10_known_colour_collisions_are_separated() -> None:
+    """Adjacent L10 league pairs that collided should stay perceptually distinct."""
+    from rugby.analysis.palette_distances import delta_e
+
+    season = CURRENT_SEASON
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
+    tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
+    assert tier10_items
+
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(tier10_items, itl)
+    _territories, colours = compute_tier_territories(tier10_items, itl)
+
+    collision_pairs = [
+        ("Counties 4 Hampshire", "Counties 4 Surrey"),
+        (
+            "Counties 4 Tribute Ale Gloucestershire South",
+            "Counties 4 Tribute Ale Somerset North",
+        ),
+        (
+            "Counties 4 Tribute Ale Gloucestershire North",
+            "Counties 4 Tribute Ale Somerset South",
+        ),
+        ("Counties 4 Tribute Ale Somerset North", "Counties 4 Yorkshire C"),
+    ]
+    min_delta_e = 25.0
+    for league_a, league_b in collision_pairs:
+        distance = delta_e(colours[league_a], colours[league_b])
+        assert (
+            distance >= min_delta_e
+        ), f"{league_a} vs {league_b}: Delta E {distance:.1f} < {min_delta_e}"
+
+
 def test_auto_badge_diameter_tracks_club_spacing() -> None:
     """Sparse levels should get bigger badges than crowded ones, within the clamps."""
     sparse = np.array([[float(i) * 200.0, 0.0] for i in range(10)])

@@ -11,6 +11,10 @@ league territory shading (same algorithm as interactive maps), and bold left-pan
     19 leagues · 234 teams
     rugbyunionmap.uk
 
+County merit ladders are drawn alongside the national ones at the level they
+feed, filled with diagonal two-tone stripes so they read as merit at a glance;
+pass ``--no-merit`` for pyramid-only images.
+
 Outputs SVG by default; pass ``--png`` to rasterise via Playwright (see requirements-dev.txt).
 """
 
@@ -24,8 +28,9 @@ import logging
 import math
 import re
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from functools import lru_cache, partial
 from html import escape
 from pathlib import Path
@@ -38,6 +43,7 @@ from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
 
 from core.boundaries import VALID_DETAIL_LEVELS, boundary_paths_for_detail
+from core.colors import UNASSIGNED_COLOR, contrasting_shade
 from core.config import CACHE_DIR, CURRENT_SEASON, DIST_DIR, REPO_ROOT, setup_logging
 from core.map_builder import (
     ITLHierarchy,
@@ -55,16 +61,17 @@ from rugby import DATA_DIR
 from rugby.maps import (
     COLOR_PALETTE,
     COUNTRY_OUTLINES,
+    PYRAMID_CATEGORY,
     RFU_FALLBACK_ICON,
     TIER_ENTRY_LEVELS,
     TIER_FLOOR_LEVELS,
-    _group_by_tier,
+    LoadedItems,
     _load_marker_items,
     _rotated_palette,
 )
 from rugby.pyramid_image import _rfu_crest_get_bytes, _valid_image_url
 from rugby.seo import BASE_URL
-from rugby.tiers import mens_current_tier_name
+from rugby.tiers import get_competition_offset, mens_current_tier_name
 
 logger = logging.getLogger(__name__)
 
@@ -88,6 +95,18 @@ COUNTRY_OUTLINE_WIDTH = 1.0
 TERRITORY_STROKE = "#0d1117"
 TEXT_PRIMARY = "#ffffff"
 TEXT_MUTED = "#8ea3c4"
+
+# County merit ladders run alongside the national pyramid at the same level, so
+# they are drawn in diagonal two-tone stripes: the league keeps its own palette
+# colour and gains a second, contrasting band that marks it as merit at a glance.
+MERIT_STRIPE_PERIOD = 12.0
+MERIT_STRIPE_ANGLE = 45.0
+MERIT_STRIPE_CONTRAST = 0.42
+MERIT_LEGEND_SWATCH = 26
+MERIT_LEGEND_GAP = 10
+MERIT_LEGEND_BELOW_STATS = 46
+MERIT_LEGEND_FONT_SIZE = 26
+MERIT_LEGEND_TEXT = "Striped = merit leagues"
 
 BADGE_FILL = "#ffffff"
 # Largest crest diameter in canvas px at IMAGE_WIDTH, derived per tier from how
@@ -162,6 +181,47 @@ def _tier_stats_line(league_count: int, total_teams: int) -> str:
     lw = "league" if league_count == 1 else "leagues"
     tw = "team" if total_teams == 1 else "teams"
     return f"{league_count} {lw} · {total_teams} {tw}"
+
+
+def merit_items_at_pyramid_levels(loaded: LoadedItems, season: str) -> list[MarkerItem]:
+    """Copy merit clubs onto the absolute pyramid level their competition feeds."""
+    items: list[MarkerItem] = []
+    for comp_key, comp_items in loaded.merit.items():
+        offset = get_competition_offset(comp_key, season)
+        for item in comp_items:
+            level = item.tier_num + offset
+            items.append(replace(item, tier_num=level, tier=mens_current_tier_name(level, season)))
+    return items
+
+
+def load_levels(season: str, *, include_merit: bool = True) -> dict[int, list[MarkerItem]]:
+    """Men's clubs for *season*, keyed by absolute pyramid level.
+
+    Merit clubs sit beside the national ladder at the level their competition
+    feeds, which is also what puts the merit-only levels below Counties 5 on the
+    map at all.
+    """
+    loaded = _load_marker_items(
+        str(DATA_DIR / "geocoded_teams" / season), season, travel_distances=None
+    )
+    items = [it for it in loaded.pyramid if it.tier_num < 100]
+    if include_merit:
+        items += [it for it in merit_items_at_pyramid_levels(loaded, season) if it.tier_num < 100]
+
+    by_level: dict[int, list[MarkerItem]] = {}
+    for item in items:
+        by_level.setdefault(item.tier_num, []).append(item)
+    return by_level
+
+
+def is_merit(item: MarkerItem) -> bool:
+    """True for a club from a county merit competition rather than the pyramid."""
+    return item.category is not None and item.category != PYRAMID_CATEGORY
+
+
+def merit_group_names(items: Iterable[MarkerItem]) -> set[str]:
+    """League names among *items* that belong to merit competitions."""
+    return {item.group for item in items if is_merit(item)}
 
 
 @lru_cache(maxsize=1)
@@ -754,6 +814,55 @@ def compute_tier_territories(
     return territories, colours
 
 
+def _stripe_pattern_svg(pattern_id: str, colour: str) -> str:
+    """A 45-degree two-tone stripe pattern built from *colour* and a contrasting shade."""
+    second = contrasting_shade(colour, MERIT_STRIPE_CONTRAST)
+    period = MERIT_STRIPE_PERIOD
+    return (
+        f'<pattern id="{pattern_id}" patternUnits="userSpaceOnUse" '
+        f'width="{period:g}" height="{period:g}" '
+        f'patternTransform="rotate({MERIT_STRIPE_ANGLE:g})">'
+        f'<rect width="{period:g}" height="{period:g}" fill="{escape(colour, quote=True)}"/>'
+        f'<rect width="{period / 2:g}" height="{period:g}" fill="{escape(second, quote=True)}"/>'
+        f"</pattern>"
+    )
+
+
+def _territory_fills(colours: dict[str, str], merit_groups: set[str]) -> tuple[str, dict[str, str]]:
+    """Return ``(defs markup, group -> SVG fill value)``.
+
+    Pyramid leagues fill flat; merit leagues fill with their own stripe pattern.
+    """
+    defs: list[str] = []
+    fills: dict[str, str] = {}
+    for index, group in enumerate(sorted(colours)):
+        colour = colours[group]
+        if group not in merit_groups:
+            fills[group] = escape(colour, quote=True)
+            continue
+        pattern_id = f"meritStripe{index}"
+        defs.append(_stripe_pattern_svg(pattern_id, colour))
+        fills[group] = f"url(#{pattern_id})"
+    return (f"<defs>{''.join(defs)}</defs>" if defs else ""), fills
+
+
+def _merit_legend_svg(x: float, y: float) -> str:
+    """Swatch and caption explaining what the striped territories are."""
+    pattern = _stripe_pattern_svg("meritLegendSwatch", TEXT_MUTED)
+    swatch_y = y - MERIT_LEGEND_SWATCH / 2
+    text_x = x + MERIT_LEGEND_SWATCH + MERIT_LEGEND_GAP
+    return (
+        f"<defs>{pattern}</defs>"
+        f'<rect x="{x:.2f}" y="{swatch_y:.2f}" width="{MERIT_LEGEND_SWATCH}" '
+        f'height="{MERIT_LEGEND_SWATCH}" rx="4" fill="url(#meritLegendSwatch)" '
+        f'stroke="{SEA_BG}" stroke-width="2"/>'
+        f'<text x="{text_x:.2f}" y="{y:.2f}" font-family="{FONT_BODY}" '
+        f'font-size="{MERIT_LEGEND_FONT_SIZE}" font-weight="500" fill="{TEXT_MUTED}" '
+        f'dominant-baseline="central" paint-order="stroke" stroke="{SEA_BG}" '
+        f'stroke-width="8" stroke-linejoin="round">{escape(MERIT_LEGEND_TEXT)}</text>'
+    )
+
+
 def _parse_svg_dimensions(svg_text: str) -> tuple[int, int]:
     m = re.search(r'width="(\d+(?:\.\d+)?)"\s+height="(\d+(?:\.\d+)?)"', svg_text)
     if not m:
@@ -824,6 +933,7 @@ def render_tier_svg(
     colours: dict[str, str],
     itl_hierarchy: ITLHierarchy,
     items: list[MarkerItem] | None = None,
+    merit_groups: set[str] | None = None,
     crest_hrefs: dict[str, str] | None = None,
     badge_diameter: float | None = None,
     badge_min_diameter: float | None = None,
@@ -835,6 +945,9 @@ def render_tier_svg(
     bounds = _country_bounds(country_geom)
     project = _make_projector(bounds, width, height)
 
+    striped = (merit_groups or set()) & set(territories)
+    stripe_defs, fills = _territory_fills(colours, striped)
+
     # Draw larger leagues first so smaller ones stay visible on top.
     sorted_groups = sorted(
         territories.keys(),
@@ -842,15 +955,15 @@ def render_tier_svg(
         reverse=True,
     )
 
-    territory_paths: list[str] = []
+    territory_paths: list[str] = [stripe_defs]
     for grp in sorted_groups:
         geom = territories[grp]
         path_d = _geom_to_svg_path(geom, project)
         if not path_d:
             continue
-        colour = escape(colours.get(grp, "#cccccc"))
+        fill = fills.get(grp, escape(UNASSIGNED_COLOR, quote=True))
         territory_paths.append(
-            f'<path d="{path_d}" fill="{colour}" stroke="{TERRITORY_STROKE}" '
+            f'<path d="{path_d}" fill="{fill}" stroke="{TERRITORY_STROKE}" '
             f'stroke-width="0.8" stroke-linejoin="round"/>'
         )
 
@@ -879,7 +992,13 @@ def render_tier_svg(
     tier_name_y = text_y0 + TIER_NAME_Y_OFFSET
     stats_y = tier_name_y + TIER_STATS_BELOW_NAME
     stats_line = _tier_stats_line(len(territories), len(items or []))
-    site_line_y = stats_y + SITE_URL_BELOW_STATS
+
+    legend_svg = ""
+    legend_drop = 0
+    if striped:
+        legend_svg = _merit_legend_svg(text_x, stats_y + MERIT_LEGEND_BELOW_STATS)
+        legend_drop = MERIT_LEGEND_BELOW_STATS
+    site_line_y = stats_y + legend_drop + SITE_URL_BELOW_STATS
 
     # A white halo keeps the caption legible if a territory reaches under it.
     halo = f'paint-order="stroke" stroke="{SEA_BG}" stroke-width="8" stroke-linejoin="round"'
@@ -900,6 +1019,7 @@ def render_tier_svg(
     <text x="{text_x}" y="{stats_y}" font-family="{FONT_BODY}"
           font-size="{TIER_STATS_FONT_SIZE}" font-weight="500" fill="{TEXT_MUTED}" {halo}>
           {escape(stats_line)}</text>
+    {legend_svg}
     <image x="{text_x}" y="{site_logo_y:.2f}" width="{SITE_LOGO_SIZE}" height="{SITE_LOGO_SIZE}"
            href="{logo_href}"/>
     <text x="{site_text_x}" y="{site_line_y}" font-family="{FONT_BODY}"
@@ -922,8 +1042,12 @@ def render_tier_svg(
 
 
 def _tier_slug(tier_num: int, season: str) -> str:
-    name = mens_current_tier_name(tier_num, season).replace(" ", "_").lower()
-    return f"level_{tier_num:02d}_{name}"
+    stem = f"level_{tier_num:02d}"
+    name = mens_current_tier_name(tier_num, season)
+    # Merit-only levels have no pyramid name, so the suffix would just repeat the number.
+    if name == f"Level {tier_num}":
+        return stem
+    return f"{stem}_{name.replace(' ', '_').lower()}"
 
 
 def generate_tier_graphics(
@@ -936,11 +1060,14 @@ def generate_tier_graphics(
     badge_diameter: float | None = None,
     badge_min_diameter: float | None = None,
     boundary_detail: str | None = None,
+    include_merit: bool = True,
 ) -> list[Path]:
-    """Generate an Instagram map for each requested men's pyramid tier."""
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
-    loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
-    mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]
+    """Generate an Instagram map for each requested men's pyramid tier.
+
+    With *include_merit* the county merit ladders are drawn alongside the
+    national ones at the level they feed, shaded in diagonal stripes.
+    """
+    by_level = load_levels(season, include_merit=include_merit)
 
     boundary_paths = boundary_paths_for_detail(boundary_detail)
     if boundary_detail:
@@ -950,37 +1077,36 @@ def generate_tier_graphics(
             boundary_paths["countries"],
         )
     itl_hierarchy = load_itl_hierarchy(boundary_paths)
-    preassign_itl_regions(mens_pyramid, itl_hierarchy)
+    all_items = [it for items in by_level.values() for it in items]
+    preassign_itl_regions(all_items, itl_hierarchy)
 
-    by_tier, tier_order = _group_by_tier(mens_pyramid)
+    levels = sorted(by_level)
     if tier_nums is not None:
         wanted = frozenset(tier_nums)
-        tier_order = [t for t in tier_order if by_tier[t][0].tier_num in wanted]
+        levels = [level for level in levels if level in wanted]
 
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
 
     crest_hrefs: dict[str, str] = {}
     if badge_diameter is None or badge_diameter > 0:
-        wanted_tiers = {by_tier[t][0].tier_num for t in tier_order}
         crest_px = _crest_inline_px(
             badge_diameter=badge_diameter,
             png_scale=png_scale if write_png else 1.0,
         )
         crest_hrefs = build_crest_href_map(
-            [it.icon_url or "" for it in mens_pyramid if it.tier_num in wanted_tiers],
+            [it.icon_url or "" for level in levels for it in by_level[level]],
             px=crest_px,
         )
         logger.info("Inlining crests at %d px", crest_px)
 
-    for tier_label in tier_order:
-        tier_items = by_tier[tier_label]
-        tier_num = tier_items[0].tier_num
+    for tier_num in levels:
+        tier_items = by_level[tier_num]
         palette = _rotated_palette(tier_num)
 
         territories, colours = compute_tier_territories(tier_items, itl_hierarchy, palette=palette)
         if not territories:
-            logger.warning("No territories for tier %d (%s), skipping", tier_num, tier_label)
+            logger.warning("No territories for tier %d, skipping", tier_num)
             continue
 
         svg_text = render_tier_svg(
@@ -990,6 +1116,7 @@ def generate_tier_graphics(
             colours=colours,
             itl_hierarchy=itl_hierarchy,
             items=tier_items,
+            merit_groups=merit_group_names(tier_items),
             crest_hrefs=crest_hrefs,
             badge_diameter=badge_diameter,
             badge_min_diameter=badge_min_diameter,
@@ -1070,6 +1197,15 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--no-merit",
+        dest="merit",
+        action="store_false",
+        help=(
+            "Draw only the national pyramid. By default county merit ladders are "
+            "included at the level they feed, shaded in diagonal stripes."
+        ),
+    )
+    parser.add_argument(
         "--boundary-detail",
         choices=list(VALID_DETAIL_LEVELS),
         default=None,
@@ -1093,6 +1229,7 @@ def main() -> None:
         badge_diameter=args.badge_size,
         badge_min_diameter=args.badge_min_size,
         boundary_detail=args.boundary_detail,
+        include_merit=args.merit,
     )
     from rugby.analysis.instagram_gallery import write_season_carousel
 

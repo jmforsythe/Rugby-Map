@@ -53,3 +53,38 @@ COLOR_PALETTE: list[str] = [
 ]
 
 UNASSIGNED_COLOR = "#cccccc"
+
+
+def _rgb(color: str) -> tuple[int, int, int]:
+    value = color.lstrip("#")
+    if len(value) == 3:
+        value = "".join(channel * 2 for channel in value)
+    if len(value) != 6:
+        raise ValueError(f"Expected a #rrggbb colour, got {color!r}")
+    return int(value[0:2], 16), int(value[2:4], 16), int(value[4:6], 16)
+
+
+def _perceived_brightness(color: str) -> float:
+    """0-1 brightness weighted for how the eye reads each channel (ITU-R BT.601)."""
+    red, green, blue = _rgb(color)
+    return (0.299 * red + 0.587 * green + 0.114 * blue) / 255.0
+
+
+def mix_hex(color: str, target: str, amount: float) -> str:
+    """Blend *color* toward *target*; 0 leaves it alone, 1 returns *target*."""
+    weight = min(max(amount, 0.0), 1.0)
+    blended = (
+        round(start + (end - start) * weight)
+        for start, end in zip(_rgb(color), _rgb(target), strict=True)
+    )
+    return "#" + "".join(f"{channel:02x}" for channel in blended)
+
+
+def contrasting_shade(color: str, amount: float = 0.45) -> str:
+    """A visibly different sibling of *color*, for two-tone fills.
+
+    Light hues darken and dark hues lighten, because always darkening turns the
+    navy and maroon entries of the palette into indistinguishable black.
+    """
+    target = "#000000" if _perceived_brightness(color) > 0.45 else "#ffffff"
+    return mix_hex(color, target, amount)

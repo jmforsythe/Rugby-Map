@@ -18,6 +18,7 @@ from rugby.instagram_maps import (
     BADGE_UPPER_TIER_MAX,
     IMAGE_HEIGHT,
     IMAGE_WIDTH,
+    MERIT_LEGEND_TEXT,
     _auto_badge_diameter,
     _country_bounds,
     _country_mask,
@@ -30,9 +31,13 @@ from rugby.instagram_maps import (
     _polygonal_only,
     _relax_positions,
     _render_badges,
+    _territory_fills,
+    _tier_slug,
     _tier_stats_line,
     compute_tier_territories,
     generate_tier_graphics,
+    load_levels,
+    merit_group_names,
     render_tier_svg,
 )
 from rugby.maps import BOUNDARY_PATHS, RFU_FALLBACK_ICON, _load_marker_items
@@ -106,6 +111,87 @@ def test_instagram_tier_name_line_reserved_when_blank(tmp_path: Path) -> None:
     assert "Level 7" in svg
     assert "Counties 1" not in svg
     assert _tier_stats_line(len(territories), len(tier7_items)) in svg
+
+
+def test_merit_leagues_join_the_level_they_feed() -> None:
+    """Merit ladders are folded onto absolute levels, and reach below Counties 5."""
+    with_merit = load_levels(CURRENT_SEASON)
+    pyramid_only = load_levels(CURRENT_SEASON, include_merit=False)
+
+    assert set(pyramid_only) < set(with_merit)
+    merit_only_levels = set(with_merit) - set(pyramid_only)
+    assert merit_only_levels, "expected levels that only merit competitions reach"
+    for level in merit_only_levels:
+        assert merit_group_names(with_merit[level]) == {it.group for it in with_merit[level]}
+
+    shared = next(lvl for lvl in pyramid_only if merit_group_names(with_merit[lvl]))
+    assert len(with_merit[shared]) > len(pyramid_only[shared])
+
+
+def test_territory_fills_stripe_only_merit_leagues() -> None:
+    colours = {"Counties 3 Kent": "#e6194b", "Sussex Merit 1": "#0082c8"}
+    defs, fills = _territory_fills(colours, {"Sussex Merit 1"})
+
+    assert fills["Counties 3 Kent"] == "#e6194b"
+    assert fills["Sussex Merit 1"].startswith("url(#meritStripe")
+    assert "<pattern" in defs
+    assert 'patternTransform="rotate(45)"' in defs
+    # Both tones of the stripe, the league colour and its contrasting shade.
+    assert 'fill="#0082c8"' in defs
+    assert defs.count("<rect") == 2
+
+
+def test_merit_territories_render_striped_with_a_legend() -> None:
+    season = CURRENT_SEASON
+    by_level = load_levels(season)
+    level = next(lvl for lvl in sorted(by_level) if merit_group_names(by_level[lvl]))
+    items = by_level[level]
+
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(items, itl)
+    territories, colours = compute_tier_territories(items, itl)
+    merit = merit_group_names(items)
+    assert merit & set(territories), "expected at least one shaded merit territory"
+
+    svg = render_tier_svg(
+        season=season,
+        tier_num=level,
+        territories=territories,
+        colours=colours,
+        itl_hierarchy=itl,
+        items=items,
+        merit_groups=merit,
+    )
+    assert MERIT_LEGEND_TEXT in svg
+    for group in merit & set(territories):
+        assert f'fill="url(#meritStripe{sorted(colours).index(group)})"' in svg
+    for group in set(territories) - merit:
+        assert f'fill="{colours[group]}"' in svg
+
+
+def test_pyramid_only_level_has_no_stripes_or_legend() -> None:
+    season = CURRENT_SEASON
+    items = load_levels(season)[1]
+    itl = load_itl_hierarchy(BOUNDARY_PATHS)
+    preassign_itl_regions(items, itl)
+    territories, colours = compute_tier_territories(items, itl)
+
+    svg = render_tier_svg(
+        season=season,
+        tier_num=1,
+        territories=territories,
+        colours=colours,
+        itl_hierarchy=itl,
+        items=items,
+        merit_groups=merit_group_names(items),
+    )
+    assert MERIT_LEGEND_TEXT not in svg
+    assert "meritStripe" not in svg
+
+
+def test_tier_slug_drops_the_name_when_it_only_repeats_the_level() -> None:
+    assert _tier_slug(7, CURRENT_SEASON) == "level_07_counties_1"
+    assert _tier_slug(12, CURRENT_SEASON) == "level_12"
 
 
 def test_geometry_collection_renders_as_path() -> None:

@@ -60,6 +60,10 @@ logger = logging.getLogger(__name__)
 
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
 
+#: ``MarkerItem.category`` for national ladder clubs. Merit clubs carry their
+#: competition name instead, which is how callers tell the two apart.
+PYRAMID_CATEGORY = "Pyramid"
+
 
 def _absolute_map_url(dist_path_parent_posix: str) -> str:
     """Public HTTPS URL for a directory under dist/ (the folder that contains index.html)."""
@@ -191,7 +195,7 @@ def _header_bar_html(
         for tier_display, tier_href in sibling_tiers:
             selected = " selected" if tier_display == current_tier else ""
             options.append(
-                f'<option value="{escape(tier_href)}"{selected}>' f"{escape(tier_display)}</option>"
+                f'<option value="{escape(tier_href)}"{selected}>{escape(tier_display)}</option>'
             )
         title_html = (
             f'<select class="map-header__select" '
@@ -393,7 +397,7 @@ def _load_marker_items(
                 team_name, league_name, league_url, team_url, address, travel_distances
             )
 
-            category = comp_key.replace("_", " ") if is_merit else "Pyramid"
+            category = comp_key.replace("_", " ") if is_merit else PYRAMID_CATEGORY
             item = MarkerItem(
                 name=team_name,
                 latitude=team["latitude"],

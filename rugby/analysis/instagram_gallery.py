@@ -31,7 +31,8 @@ from rugby.instagram_maps import OUTPUT_ROOT
 from rugby.tiers import mens_current_tier_name
 
 _SEASON_DIR_RE = re.compile(r"^[12]\d{3}-[12]\d{3}$")
-_LEVEL_STEM_RE = re.compile(r"^level_(\d+)_(.+)$")
+# The name suffix is dropped for merit-only levels, whose only name is "Level N".
+_LEVEL_STEM_RE = re.compile(r"^level_(\d+)(?:_(.+))?$")
 _LEGACY_STEM_RE = re.compile(r"^(\d{2})_(.+)$")
 
 DEFAULT_OUTPUT = OUTPUT_ROOT / "instagram-gallery.html"

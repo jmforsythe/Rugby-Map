@@ -36,12 +36,26 @@ from core.basemap_tiles import (
 )
 from core.config import get_config, get_resource_hints_html
 from core.json_utils import write_compact_json
+from core.patterns import stripe_css_gradient, stripe_pattern_svg
 
 logger = logging.getLogger(__name__)
 
 # Leaflet zoom granularity: quarter steps via init options + runtime patch + stepper UI.
 MAP_ZOOM_SNAP = 0.25
 MAP_ZOOM_DELTA = 0.25
+
+PRIMARY_STRUCTURE = "primary"
+"""Structure name for items that belong to the main league pyramid."""
+
+TERRITORY_FILL_OPACITY = 0.6
+HATCHED_FILL_OPACITY = 0.8
+"""Stripes carry less ink than a solid fill, so they need a touch more opacity
+to read at the same weight as the structure beneath them."""
+
+HATCH_PANE = "territoryHatch"
+HATCH_PANE_Z_INDEX = 450
+"""Above Leaflet's overlayPane (400) and below its markerPane (600), so hatched
+territories always stay on top of solid ones however the user toggles layers."""
 
 
 def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -81,6 +95,10 @@ class MarkerItem:
     itl3: str | None = None
     lad: str | None = None
     ward: str | None = None
+    # Which parallel league structure this item belongs to. Territory shading is
+    # computed independently per structure, so leagues in different structures
+    # are allowed to cover the same ground instead of carving it up.
+    structure: str = PRIMARY_STRUCTURE
 
 
 @dataclass
@@ -111,6 +129,9 @@ class MapConfig:
     fallback_icon_url: str | None = None
     header_elements: list[str] = field(default_factory=list)
     body_elements: list[str] = field(default_factory=list)
+    # Structures drawn as diagonal stripes over the solid ones, for maps showing
+    # two league structures that run in parallel over the same territory.
+    hatched_structures: tuple[str, ...] = ()
 
 
 # ---------------------------------------------------------------------------
@@ -130,6 +151,7 @@ class _PlacedItem(TypedDict):
     icon_url: str | None
     popup_html: str | None
     category: str | None
+    structure: str
     itl0: str | None
     itl1: str | None
     itl2: str | None
@@ -776,6 +798,7 @@ def _items_to_placed(
             "icon_url": item.icon_url,
             "popup_html": item.popup_html,
             "category": item.category,
+            "structure": item.structure,
             "itl0": item.itl0,
             "itl1": item.itl1,
             "itl2": item.itl2,
@@ -1240,27 +1263,88 @@ def _merge_territories(
     return result
 
 
+_TerritoryStyle = dict[str, Any]
+"""Leaflet path options for one group, plus an optional ``pane`` layer option."""
+
+
+def _territory_styles(
+    group_colors: dict[str, str], hatched_groups: set[str]
+) -> tuple[str, dict[str, _TerritoryStyle]]:
+    """Return (inline SVG pattern definitions, per-group Leaflet options).
+
+    Hatched groups fill with a stripe pattern whose gaps are transparent, so the
+    structure shaded beneath them still reads through between the bands.
+    """
+    patterns: list[str] = []
+    styles: dict[str, _TerritoryStyle] = {}
+    for index, grp in enumerate(sorted(group_colors)):
+        color = group_colors[grp]
+        if grp not in hatched_groups:
+            styles[grp] = {
+                "fillColor": color,
+                "color": color,
+                "weight": 1,
+                "fillOpacity": TERRITORY_FILL_OPACITY,
+                "opacity": TERRITORY_FILL_OPACITY,
+            }
+            continue
+        pattern_id = f"{HATCH_PANE}{index}"
+        patterns.append(stripe_pattern_svg(pattern_id, stripe=color))
+        styles[grp] = {
+            "fillColor": f"url(#{pattern_id})",
+            "color": color,
+            "weight": 1.5,
+            "fillOpacity": HATCHED_FILL_OPACITY,
+            "opacity": 0.9,
+            "pane": HATCH_PANE,
+        }
+    return _hatch_defs_html(patterns), styles
+
+
+def _hatch_defs_html(patterns: list[str]) -> str:
+    """A zero-size inline SVG holding *patterns*.
+
+    Leaflet builds its own SVG for the overlay pane, but a fragment-only
+    ``url(#id)`` fill resolves against the whole document, so the definitions can
+    sit anywhere in the body.
+    """
+    if not patterns:
+        return ""
+    return (
+        '<svg aria-hidden="true" width="0" height="0" '
+        'style="position:absolute; width:0; height:0; overflow:hidden;">'
+        f"<defs>{''.join(patterns)}</defs>"
+        "</svg>"
+    )
+
+
+def _split_pane(style: _TerritoryStyle) -> tuple[dict[str, Any], str | None]:
+    """Leaflet takes ``pane`` as a layer option rather than a path style property."""
+    return {k: v for k, v in style.items() if k != "pane"}, style.get("pane")
+
+
 def _render_territories(
     feature_group: folium.FeatureGroup,
     merged_geojson: _TerritoryMerged,
-    group_colors: dict[str, str],
+    styles: dict[str, _TerritoryStyle],
 ) -> None:
     """Add pre-merged GeoJSON territory layers to *feature_group*."""
     for grp, geojson_dict in merged_geojson.items():
-        color = group_colors[grp]
+        path_style, pane = _split_pane(styles[grp])
 
-        def style_fn(feature: Any, c: str = color) -> dict[str, Any]:
-            return {"fillColor": c, "color": c, "weight": 1, "fillOpacity": 0.6, "opacity": 0.6}
+        def style_fn(feature: Any, s: dict[str, Any] = path_style) -> dict[str, Any]:
+            return s
 
-        folium.GeoJson(geojson_dict, style_function=style_fn).add_to(feature_group)
+        pane_kwargs = {"pane": pane} if pane else {}
+        folium.GeoJson(geojson_dict, style_function=style_fn, **pane_kwargs).add_to(feature_group)
 
 
 def _collect_territory_export(
     feature_group: folium.FeatureGroup,
     merged_geojson: _TerritoryMerged,
-    group_colors: dict[str, str],
+    styles: dict[str, _TerritoryStyle],
 ) -> tuple[str, dict[str, Any]] | None:
-    """Return (folium JS variable name, {group: {geometry, color}}) for *feature_group*.
+    """Return (folium JS variable name, {group: {geometry, style, pane}}) for *feature_group*.
 
     Used instead of :func:`_render_territories` when ``MapConfig.external_territories``
     is set, so the caller can write the data to a sidecar file rather than embedding it.
@@ -1268,10 +1352,13 @@ def _collect_territory_export(
     """
     if not merged_geojson:
         return None
-    groups = {
-        grp: {"geometry": geojson_dict, "color": group_colors[grp]}
-        for grp, geojson_dict in merged_geojson.items()
-    }
+    groups: dict[str, Any] = {}
+    for grp, geojson_dict in merged_geojson.items():
+        path_style, pane = _split_pane(styles[grp])
+        entry: dict[str, Any] = {"geometry": geojson_dict, "style": path_style}
+        if pane:
+            entry["pane"] = pane
+        groups[grp] = entry
     return feature_group.get_name(), {"groups": groups}
 
 
@@ -1300,12 +1387,10 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                     if (!fg) return;
                     var groups = layers[varName].groups || {{}};
                     Object.keys(groups).forEach(function(grp) {{
-                        var color = groups[grp].color;
-                        L.geoJson(groups[grp].geometry, {{
-                            style: function() {{
-                                return {{ fillColor: color, color: color, weight: 1, fillOpacity: 0.6, opacity: 0.6 }};
-                            }}
-                        }}).addTo(fg);
+                        var style = groups[grp].style || {{}};
+                        var opts = {{ style: function() {{ return style; }} }};
+                        if (groups[grp].pane) opts.pane = groups[grp].pane;
+                        L.geoJson(groups[grp].geometry, opts).addTo(fg);
                     }});
                 }});
             }}).catch(function(e) {{
@@ -1965,6 +2050,28 @@ DARK_MODE_JS = (
 )
 
 
+_HATCH_PANE_JS = f"""
+    {{{{ this._parent.get_name() }}}}.createPane('{HATCH_PANE}');
+    {{{{ this._parent.get_name() }}}}.getPane('{HATCH_PANE}').style.zIndex = {HATCH_PANE_Z_INDEX};
+"""
+
+
+class HatchPane(MacroElement):
+    """Creates the Leaflet pane that hatched territories draw into.
+
+    Added while the map is being built so the pane exists before any layer names
+    it; Leaflet resolves a layer's pane the moment it is added to the map.
+    """
+
+    _template = FoliumTemplate(
+        "{% macro script(this, kwargs) %}" + _HATCH_PANE_JS + "{% endmacro %}"
+    )
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._name = "HatchPane"
+
+
 def _build_base_map(config: MapConfig) -> folium.Map:
     m = folium.Map(
         location=list(config.center),
@@ -1974,6 +2081,7 @@ def _build_base_map(config: MapConfig) -> folium.Map:
         zoom_snap=MAP_ZOOM_SNAP,
         zoom_delta=MAP_ZOOM_DELTA,
     )
+    m.add_child(HatchPane())
     folium.TileLayer(
         tiles=CARTO_TILE_URL_LIGHT,
         attr=folium_carto_attribution(),
@@ -2121,6 +2229,7 @@ def _legend(
     items_by_tier: dict[str, list[_PlacedItem]],
     tier_order: list[str],
     group_colors: dict[str, str],
+    hatched_groups: set[str] | None = None,
 ) -> folium.Element:
     html = f"""
     <style>
@@ -2179,10 +2288,12 @@ def _legend(
             indent = "23px" if show_sub else "15px"
             for grp in sorted({it["group"] for it in cat_items}):
                 color = group_colors[grp]
+                # Match the map: striped swatch for structures drawn as an overlay.
+                swatch = stripe_css_gradient(color) if grp in (hatched_groups or set()) else color
                 count = sum(1 for it in cat_items if it["group"] == grp)
                 html += (
                     f'<p style="margin:2px 0 2px {indent};">'
-                    f'<i style="background:{color}; width:16px; height:16px; '
+                    f'<i style="background:{swatch}; width:16px; height:16px; '
                     f'display:inline-block; border-radius:50%; border:1px solid black;"></i> '
                     f"{escape(grp)} ({count})</p>"
                 )
@@ -2560,8 +2671,16 @@ def generate_single_group_map(
     for elem in config.header_elements:
         header.add_child(folium.Element(elem))
 
-    group_names = sorted({it["group"] for it in all_placed})
+    hatched_structures = set(config.hatched_structures)
+    structure_of_group = {it["group"]: it["structure"] for it in all_placed}
+    # Solid structures first, so they take the leading palette entries and head
+    # the layer list, with any overlaid structures grouped after them.
+    group_names = sorted(
+        structure_of_group, key=lambda g: (structure_of_group[g] in hatched_structures, g)
+    )
     group_colors = {grp: _pick_color(config.color_palette, j) for j, grp in enumerate(group_names)}
+    hatched_groups = {g for g in group_names if structure_of_group[g] in hatched_structures}
+    hatch_defs_html, territory_styles = _territory_styles(group_colors, hatched_groups)
 
     parent_cluster = _add_marker_cluster(m, fallback_icon_url=config.fallback_icon_url)
     shading_groups: dict[str, folium.FeatureGroup] = {}
@@ -2574,26 +2693,38 @@ def generate_single_group_map(
         m.add_child(shading_groups[grp])
         m.add_child(marker_groups[grp])
 
-    cache_key = _territory_cache_key(all_placed, config) if territory_cache is not None else None
-    if cache_key is not None and cache_key in territory_cache:  # type: ignore[operator]
-        merged_all = territory_cache[cache_key]  # type: ignore[index]
-    else:
-        geoms = _collect_group_geometries(
-            all_placed, region_to_items, itl_hierarchy, group_colors, config
+    # One partition per structure. Leagues in parallel structures genuinely share
+    # ground, so shading them together would force the splitter to award every
+    # region to just one of them.
+    merged_all: _TerritoryMerged = {}
+    for structure in sorted(
+        {it["structure"] for it in all_placed}, key=lambda s: (s in hatched_structures, s)
+    ):
+        structure_placed = [it for it in all_placed if it["structure"] == structure]
+        cache_key = (
+            _territory_cache_key(structure_placed, config) if territory_cache is not None else None
         )
-        merged_all = _merge_territories(geoms)
+        if cache_key is not None and cache_key in territory_cache:  # type: ignore[operator]
+            merged_all.update(territory_cache[cache_key])  # type: ignore[index]
+            continue
+        geoms = _collect_group_geometries(
+            structure_placed, region_to_items, itl_hierarchy, group_colors, config
+        )
+        merged = _merge_territories(geoms)
         if territory_cache is not None and cache_key is not None:
-            territory_cache[cache_key] = merged_all
+            territory_cache[cache_key] = merged
+        merged_all.update(merged)
+
     territory_export: dict[str, Any] = {}
     for grp, fg in shading_groups.items():
         entry = {grp: merged_all[grp]} if grp in merged_all else {}
         if config.external_territories:
-            exported = _collect_territory_export(fg, entry, group_colors)
+            exported = _collect_territory_export(fg, entry, territory_styles)
             if exported is not None:
                 var_name, data = exported
                 territory_export[var_name] = data
         else:
-            _render_territories(fg, entry, group_colors)
+            _render_territories(fg, entry, territory_styles)
 
     for it in all_placed:
         _add_marker(
@@ -2615,12 +2746,16 @@ def generate_single_group_map(
             folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
         )
 
+    if hatch_defs_html:
+        html_el.add_child(folium.Element(hatch_defs_html))
+
     html_el.add_child(
         _legend(
             f"{config.title} - {len(all_placed)}",
             items_by_tier,
             list(items_by_tier.keys()),
             group_colors,
+            hatched_groups,
         )
     )
 
@@ -2667,6 +2802,7 @@ def generate_multi_group_map(
     for tier_idx, tier in enumerate(sorted_tier_names):
         for j, grp in enumerate(sorted(groups_by_tier.get(tier, set()))):
             group_colors[grp] = _pick_color(config.color_palette, tier_idx + j)
+    _, territory_styles = _territory_styles(group_colors, set())
 
     territory_groups: dict[str, folium.FeatureGroup] = {}
     marker_groups: dict[str, FeatureGroupSubGroup] = {}
@@ -2694,12 +2830,12 @@ def generate_multi_group_map(
             if territory_cache is not None and cache_key is not None:
                 territory_cache[cache_key] = merged
         if config.external_territories:
-            exported = _collect_territory_export(territory_groups[tier], merged, group_colors)
+            exported = _collect_territory_export(territory_groups[tier], merged, territory_styles)
             if exported is not None:
                 var_name, data = exported
                 territory_export[var_name] = data
         else:
-            _render_territories(territory_groups[tier], merged, group_colors)
+            _render_territories(territory_groups[tier], merged, territory_styles)
 
     tier_order_map = {tier: idx for idx, tier in enumerate(sorted_tier_names)}
     num_items = 0

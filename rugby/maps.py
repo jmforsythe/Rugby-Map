@@ -64,6 +64,11 @@ RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.
 #: competition name instead, which is how callers tell the two apart.
 PYRAMID_CATEGORY = "Pyramid"
 
+#: ``MarkerItem.structure`` for county merit clubs. Merit ladders run in parallel
+#: with the national pyramid over the same ground, so maps showing both shade
+#: each structure separately and stripe this one over the top.
+MERIT_STRUCTURE = "merit"
+
 
 def _absolute_map_url(dist_path_parent_posix: str) -> str:
     """Public HTTPS URL for a directory under dist/ (the folder that contains index.html)."""
@@ -457,6 +462,7 @@ def _build_config(
     sibling_tiers: list[tuple[str, str]] | None = None,
     current_tier: str | None = None,
     output_file: Path | None = None,
+    hatched_structures: tuple[str, ...] = (),
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
@@ -475,6 +481,10 @@ def _build_config(
     *output_file* is the target HTML path passed to ``generate_*_map``. In
     production builds, canonical and Open Graph URLs are derived from its path
     under ``dist/``.
+
+    *hatched_structures* names the ``MarkerItem.structure`` values to shade as
+    striped overlays; pass ``(MERIT_STRUCTURE,)`` on maps that show merit
+    ladders alongside the pyramid.
     """
     is_prod = get_config().is_production
 
@@ -552,6 +562,7 @@ def _build_config(
         color_palette=palette or COLOR_PALETTE,
         header_elements=header_elements,
         body_elements=body_elements,
+        hatched_structures=hatched_structures,
     )
 
 
@@ -771,7 +782,12 @@ def main() -> None:
         for it in comp_items:
             abs_tier = it.tier_num + offset
             adjusted_merit.append(
-                replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier, season))
+                replace(
+                    it,
+                    tier_num=abs_tier,
+                    tier=mens_current_tier_name(abs_tier, season),
+                    structure=MERIT_STRUCTURE,
+                )
             )
 
     merit_header_tier_nums = {it.tier_num for it in adjusted_merit}
@@ -865,6 +881,7 @@ def main() -> None:
                         sibling_tiers=mens_header_tier_links,
                         current_tier=f"{tier_name} + Merit",
                         output_file=out,
+                        hatched_structures=(MERIT_STRUCTURE,),
                     )
                     generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
 

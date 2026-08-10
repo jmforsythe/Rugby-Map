@@ -57,6 +57,7 @@ from core.map_builder import (
     load_itl_hierarchy,
     preassign_itl_regions,
 )
+from core.patterns import stripe_pattern_svg
 from rugby import DATA_DIR
 from rugby.maps import (
     COLOR_PALETTE,
@@ -815,16 +816,17 @@ def compute_tier_territories(
 
 
 def _stripe_pattern_svg(pattern_id: str, colour: str) -> str:
-    """A 45-degree two-tone stripe pattern built from *colour* and a contrasting shade."""
-    second = contrasting_shade(colour, MERIT_STRIPE_CONTRAST)
-    period = MERIT_STRIPE_PERIOD
-    return (
-        f'<pattern id="{pattern_id}" patternUnits="userSpaceOnUse" '
-        f'width="{period:g}" height="{period:g}" '
-        f'patternTransform="rotate({MERIT_STRIPE_ANGLE:g})">'
-        f'<rect width="{period:g}" height="{period:g}" fill="{escape(colour, quote=True)}"/>'
-        f'<rect width="{period / 2:g}" height="{period:g}" fill="{escape(second, quote=True)}"/>'
-        f"</pattern>"
+    """A 45-degree two-tone stripe pattern built from *colour* and a contrasting shade.
+
+    Opaque both sides, unlike the interactive maps' overlay stripes: a static
+    image has nothing underneath for transparent gaps to reveal.
+    """
+    return stripe_pattern_svg(
+        pattern_id,
+        stripe=contrasting_shade(colour, MERIT_STRIPE_CONTRAST),
+        background=colour,
+        period=MERIT_STRIPE_PERIOD,
+        angle=MERIT_STRIPE_ANGLE,
     )
 
 

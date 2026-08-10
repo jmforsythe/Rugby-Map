@@ -559,12 +559,14 @@ def test_merit_absolute_tier_apex_east_midlands_nottinghamshire_2008_2009() -> N
     """Bombardier (East Midlands) is absolute tier 11 with offset 10 through 2010-2011.
 
     Nottinghamshire Group 1 is absolute 11 with offset 10 whenever apex feeds Midlands 5 East
-    (North) (2008-2009–2019-2020 in tier_mappings).
+    (North). From 2018-2019 that league is gone, so the apex stems to Midlands 4 East (North)
+    (tier 9) and sits at absolute 10 with offset 9.
     """
     for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert merit_pyramid_absolute_child_tier("East_Midlands", 1, season) == 11
-    for season in ("2008-2009", "2009-2010", "2010-2011", "2019-2020"):
+    for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, season) == 11
+    assert merit_pyramid_absolute_child_tier("Nottinghamshire", 1, "2019-2020") == 10
 
 
 def test_east_midlands_pyramid_preserves_sponsor_in_title() -> None:

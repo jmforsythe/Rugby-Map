@@ -113,7 +113,7 @@
   },
   "CANDY": {
     "1": {
-      "CANDY 1": "Counties 3 Durham & Northumberland"
+      "CANDY 1": "Counties 1 Durham & Northumberland"
     },
     "2": {
       "CANDY 2 North": "CANDY 1",
@@ -130,15 +130,15 @@
   },
   "Devon": {
     "1": {
-      "Devon Merit Table NE": "Counties 3 Tribute Ale Devon North & East",
-      "Devon Merit Table SW": "Counties 3 Tribute Ale Devon South & West"
+      "Devon Merit Table NE": "Counties 2 Tribute Ale Devon",
+      "Devon Merit Table SW": "Counties 2 Tribute Ale Devon"
     }
   },
   "East_Midlands": {
     "2": {
-      "East Midlands 2 - Bedfordshire (North)": "Counties 3 Midlands East (South South)",
-      "East Midlands 2 - Bedfordshire (South)": "Counties 3 Midlands East (South South)",
-      "East Midlands 2 - Northants A": "Counties 3 Midlands East (South South)"
+      "East Midlands 2 - Bedfordshire (North)": "Counties 2 Midlands East (South)",
+      "East Midlands 2 - Bedfordshire (South)": "Counties 2 Midlands East (South)",
+      "East Midlands 2 - Northants A": "Counties 2 Midlands East (South)"
     },
     "3": {
       "East Midlands 2 - Northants B": "East Midlands 2 - Northants A"
@@ -158,7 +158,7 @@
   },
   "Essex": {
     "1": {
-      "Division 1": "Counties 2 Essex"
+      "Division 1": "Counties 1 Essex"
     },
     "2": {
       "Division 2": "Division 1"
@@ -173,8 +173,8 @@
   },
   "GRFU_District": {
     "1": {
-      "Bristol & District 1": "Counties 4 Tribute Ale Gloucestershire South",
-      "Gloucester & District 1": "Counties 4 Tribute Ale Gloucestershire South"
+      "Bristol & District 1": "Counties 3 Tribute Ale Gloucestershire North",
+      "Gloucester & District 1": "Counties 3 Tribute Ale Gloucestershire North"
     },
     "2": {
       "Bristol & District 2": "Bristol & District 1",
@@ -196,7 +196,7 @@
   },
   "Herts_Middlesex": {
     "1": {
-      "Table 1": "Counties 3 Herts"
+      "Table 1": "Counties 2 Herts"
     },
     "2": {
       "Table 2": "Table 1"
@@ -207,7 +207,7 @@
   },
   "Leicestershire": {
     "1": {
-      "Leicestershire Merit A": "Counties 3 Midlands East (South North)"
+      "Leicestershire Merit A": "Counties 2 Midlands East (North)"
     },
     "2": {
       "Leicestershire Merit B": "Leicestershire Merit A"
@@ -215,7 +215,7 @@
   },
   "Middlesex": {
     "1": {
-      "Premier Division": "Counties 2 Middx"
+      "Premier Division": "Counties 1 Middx"
     },
     "2": {
       "Division 1": "Premier Division"
@@ -229,7 +229,7 @@
   },
   "NOWIRUL": {
     "1": {
-      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 3 adm Lancashire & Cheshire"
+      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 2 adm Lancashire & Cheshire"
     },
     "2": {
       "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL BATHTIME PREMIER LEAGUE"
@@ -261,7 +261,7 @@
   },
   "Rural_Kent": {
     "1": {
-      "Kent A Rural": "Counties 5 Kent"
+      "Kent A Rural": "Counties 2 Kent"
     },
     "2": {
       "Kent B Rural": "Kent A Rural"
@@ -272,7 +272,7 @@
   },
   "Surrey": {
     "1": {
-      "London Counties & South Coast Premiership": "Counties 5 Surrey"
+      "London Counties & South Coast Premiership": "Counties 1 Surrey/Sussex"
     },
     "2": {
       "Surrey Championship 2025-2026": "London Counties & South Coast Premiership"

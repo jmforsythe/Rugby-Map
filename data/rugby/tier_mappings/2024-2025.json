@@ -109,7 +109,7 @@
   },
   "CANDY": {
     "1": {
-      "Division One": "Counties 3 Durham & Northumberland"
+      "Division One": "Counties 1 Durham & Northumberland"
     },
     "2": {
       "Division Two North": "Division One",
@@ -145,7 +145,7 @@
   },
   "Essex": {
     "1": {
-      "Division 1": "Counties 2 Essex"
+      "Division 1": "Counties 1 Essex"
     },
     "2": {
       "Division 2": "Division 1"
@@ -161,8 +161,8 @@
   },
   "GRFU_District": {
     "1": {
-      "Bristol & District 1": "Counties 4 Tribute Gloucestershire",
-      "Gloucester & District 1": "Counties 4 Tribute Gloucestershire"
+      "Bristol & District 1": "Counties 3 Tribute Gloucestershire North",
+      "Gloucester & District 1": "Counties 3 Tribute Gloucestershire North"
     },
     "2": {
       "Bristol & District 2": "Bristol & District 1",
@@ -180,8 +180,8 @@
   },
   "Herts_Middlesex": {
     "1": {
-      "Merit Championship North": "Counties 3 Herts/Middx",
-      "Merit Championship South": "Counties 3 Herts/Middx"
+      "Merit Championship North": "Counties 2 Herts/Middx",
+      "Merit Championship South": "Counties 2 Herts/Middx"
     },
     "2": {
       "Merit North 1": "Merit Championship North",
@@ -193,7 +193,7 @@
   },
   "Leicestershire": {
     "1": {
-      "Leicestershire Merit A": "Counties 2 Midlands East (North)"
+      "Leicestershire Merit A": "Counties 1 Midlands East (North)"
     },
     "2": {
       "Leicestershire Merit B": "Leicestershire Merit A"
@@ -204,7 +204,7 @@
   },
   "Middlesex": {
     "1": {
-      "Premier Division": "Counties 3 Herts/Middx"
+      "Premier Division": "Counties 1 Herts/Middx"
     },
     "2": {
       "Division 1": "Premier Division"
@@ -218,7 +218,7 @@
   },
   "NOWIRUL": {
     "1": {
-      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 3 adm Lancashire & Cheshire"
+      "NOWIRUL BATHTIME PREMIER LEAGUE": "Counties 2 adm Lancashire & Cheshire"
     },
     "2": {
       "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL BATHTIME PREMIER LEAGUE"
@@ -250,7 +250,7 @@
   },
   "Rural_Kent": {
     "1": {
-      "Kent A Rural": "Counties 5 Kent"
+      "Kent A Rural": "Counties 2 Kent"
     },
     "2": {
       "Kent B Rural": "Kent A Rural"
@@ -261,7 +261,7 @@
   },
   "Surrey": {
     "1": {
-      "London Counties & South Coast Premiership": "Counties 5 Surrey"
+      "London Counties & South Coast Premiership": "Counties 1 Surrey/Sussex"
     },
     "2": {
       "Surrey Championship 2024-2025": "London Counties & South Coast Premiership"

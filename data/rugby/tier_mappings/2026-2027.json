@@ -109,7 +109,18 @@
       "Women's NC 1 South West (West)": "Women's Championship South West 2"
     }
   },
+  "East_Midlands": {
+    "2": {
+      "East Midlands Merit A": "Counties 2 Midlands East (South)"
+    },
+    "3": {
+      "East Midlands Merit B1": "East Midlands Merit A"
+    }
+  },
   "NOWIRUL": {
+    "1": {
+      "NOWIRUL Bathtime Premier League": "Counties 1 adm Lancashire & Cheshire"
+    },
     "2": {
       "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL Bathtime Premier League"
     },
@@ -128,6 +139,15 @@
     "5": {
       "NOWIRUL County Couriers Division 4 North/Central": "NOWIRUL Rainford Electrical Services Division 3 North/Central",
       "NOWIRUL Division 4 West": "NOWIRUL Trevolution Ltd Division 3 West"
+    }
+  },
+  "Sussex": {
+    "3": {
+      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
+    },
+    "4": {
+      "Harvey's Wharf IPA Counties 4 Sussex East": "Harvey's Brewery Counties 3 Sussex",
+      "Harvey's Wharf IPA Counties 4 Sussex West": "Harvey's Brewery Counties 3 Sussex"
     }
   }
 }

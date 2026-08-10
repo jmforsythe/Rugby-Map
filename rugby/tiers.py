@@ -49,13 +49,18 @@ COMPETITION_OFFSETS: dict[str, int] = {
 # Empty end_season means open-ended (all subsequent seasons).
 # Checked before COMPETITION_OFFSETS when a season is provided.
 _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
+    # Modern-era merit ladders below are anchored one tier under their own county's highest
+    # Counties league, lowered only where reserve-XV ordering forces it and never so deep
+    # that the apex loses a same-county parent.  See rugby.analysis.merit_pyramid_crossovers.
     "CANDY": [
-        ("2022-2023", "", 9),
+        ("2022-2023", "", 7),
     ],
     "Devon": [
         ("2009-2010", "2009-2010", 8),
         ("2012-2013", "2013-2014", 10),
         ("2017-2018", "2017-2018", 10),
+        # Apex under Counties 2 Devon (tier 8) at abs 9.
+        ("2022-2023", "", 8),
     ],
     "East_Midlands": [
         # Apex merit row aligns below Midlands 5 East (tier 10) once Midlands 6 / feeder naming
@@ -63,24 +68,35 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         # Bombardier local 1 → absolute 11.  Same offset through 2010-2011 (Bombardier parents
         # Midlands 3 East North/South in tier_mappings).
         ("2008-2009", "2010-2011", 10),
+        # Apex under Counties 1 Midlands East (North) (tier 7) at abs 8, dropping to abs 9
+        # under Counties 2 in 2024-2025 where reserve-XV ordering demands it.
+        ("2022-2023", "2023-2024", 7),
+        ("2024-2025", "2024-2025", 8),
+        ("2025-2026", "", 7),
     ],
     "Essex": [
         ("2008-2009", "2008-2009", 11),
         ("2010-2011", "2013-2014", 10),
-        # 2022-2023 only: apex one band higher than 2014-2015 .. 2021-2022 (offset 9).
-        ("2022-2023", "2022-2023", 8),
+        # Apex under Counties 1 Essex (tier 7) at abs 8.
+        ("2022-2023", "", 7),
         ("2014-2015", "2021-2022", 9),
     ],
     "GRFU_District": [
         ("2010-2011", "2011-2012", 11),
         ("2012-2013", "2015-2016", 12),
         ("2016-2017", "2019-2020", 11),
-        ("2021-2022", "", 10),
+        ("2021-2022", "2021-2022", 10),
+        # Gloucestershire's district ladder is a reserve competition; apex under Counties 3
+        # Gloucestershire North (tier 9) at abs 10.
+        ("2022-2023", "", 9),
     ],
     "Hampshire": [
         ("2008-2009", "2008-2009", 7),
         # 2016-2017 drops geographic splits; Solent apex moves to local 6 → default offset 5 (abs 11).
         ("2009-2010", "2015-2016", 6),
+        # Hampshire files genuine Counties-named rungs under merit, so the local number
+        # already carries the pyramid tier: offset 6 keeps Counties 4/5 Hampshire at their
+        # own absolute 10/11.  The reserve-XV re-anchoring deliberately skips this ladder.
         ("2022-2023", "2022-2023", 6),
         ("2025-2026", "2025-2026", 6),
     ],
@@ -90,14 +106,21 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2011-2012", "2013-2014", 11),
         ("2017-2018", "2019-2020", 10),
         ("2021-2022", "2021-2022", 10),
-        ("2023-2024", "2023-2024", 10),
+        # Apex under Counties 1 Herts/Middx (tier 7) at abs 8, easing to abs 9 under
+        # Counties 2 from 2023-2024 where reserve-XV ordering demands it.
+        ("2022-2023", "2022-2023", 7),
+        ("2023-2024", "", 8),
     ],
     "Leicestershire": [
         ("2009-2010", "2009-2010", 11),
         # Apex to Midlands 4 East (South) in tier_mappings (national tier 9): local 1 → absolute 10.
         ("2010-2011", "2014-2015", 9),
-        ("2023-2024", "2023-2024", 7),
-        ("2025-2026", "2025-2026", 9),
+        # Apex under Counties 1 Midlands East (North) (tier 7) at abs 8; the local apex rung
+        # moves between seasons, so the offset tracks it.  Default offset 8 holds abs 9 under
+        # Counties 2 from 2025-2026, where reserve-XV ordering forces the drop.
+        ("2022-2023", "2022-2023", 7),
+        ("2023-2024", "2023-2024", 6),
+        ("2024-2025", "2024-2025", 7),
     ],
     # Lancashire county merit: apex sits immediately above NOWIRUL (offset −1 per era).
     "Lancashire": [
@@ -110,13 +133,16 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2024-2025", "2025-2026", 8),
     ],
     "Middlesex": [
-        ("2025-2026", "2025-2026", 8),
+        # Apex under Counties 1 Herts/Middx (tier 7) at abs 8.
+        ("2022-2023", "", 7),
     ],
     # 2011-2012 geographic apex feeds Midlands 5 West (abs 10); local 1 → 11 under nationals.
     # 2013-2014+ West / Midlands Reserve apex feeds Midlands 5 West (North/South).
     "Midlands_Reserve": [
         ("2011-2012", "2011-2012", 10),
         ("2013-2014", "2019-2020", 10),
+        # Apex under Counties 1 Midlands West (North) (tier 7) at abs 8.
+        ("2022-2023", "", 7),
     ],
     "NOWIRUL": [
         ("2010-2011", "2014-2015", 9),
@@ -126,9 +152,13 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         # 2019-2020: apex at Lancs/Cheshire Division One (national tier 8).
         ("2019-2020", "2019-2020", 7),
         ("2021-2022", "2021-2022", 7),
-        # Local tiers 3–8 (gaps at 1–2 for removed Championship/Conference); offset 8 → abs 11–16.
-        ("2022-2023", "2023-2024", 8),
-        ("2024-2025", "2025-2026", 9),
+        # Local tiers 3–8 (gaps at 1–2 for removed Championship/Conference), so offset 7 puts
+        # the apex at abs 10 under Counties 3 adm Lancashire & Cheshire.
+        ("2022-2023", "2023-2024", 7),
+        # Bathtime Premier returns at local 1; abs 9 under Counties 2 while reserve-XV ordering
+        # requires it, lifting to abs 8 under Counties 1 in 2026-2027.
+        ("2024-2025", "2025-2026", 8),
+        ("2026-2027", "", 7),
     ],
     "Nottinghamshire": [
         # Offset 10 while apex feeds Midlands 5 East (North) in tier_mappings: local 1 → abs 11.
@@ -145,8 +175,9 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2013-2014", "2018-2019", 9),
         ("2019-2020", "2019-2020", 8),
         ("2021-2022", "2021-2022", 8),
-        ("2022-2023", "2022-2023", 10),
-        ("2023-2024", "", 11),
+        # Rural Kent is ~73% reserve XVs, so it runs alongside the Kent ladder rather than
+        # below its foot: apex under Counties 2 Kent (tier 8) at abs 9.
+        ("2022-2023", "", 8),
     ],
     "Surrey": [
         # Nine-rung Premier ladder (2010-2012): local 1 apex → abs 13 below Surrey 4 (tier 12).
@@ -154,11 +185,23 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         # Four-conference / Championship ladders (2013-2015): apex at local 3 → abs 13.
         ("2013-2014", "2014-2015", 10),
         ("2015-2016", "2017-2018", 11),
-        ("2018-2019", "2019-2020", 10),
+        # 2018-2019 apex is the Championship at local 3 → abs 13, below Surrey 4 (tier 12).
+        ("2018-2019", "2018-2019", 10),
+        # 2019-2020 adds a Premiership rung above the Championship at local 2; offset 11 keeps
+        # that apex at abs 13 under Surrey 4 (tier 12) instead of colliding with it.
+        ("2019-2020", "2019-2020", 11),
         ("2021-2022", "2021-2022", 12),
-        ("2022-2023", "", 11),
+        # The Surrey ladder is ~85% second and third XVs, so it is not the pyramid carrying on
+        # below Counties 5 — those clubs are already in the pyramid with their principal XV.
+        # Apex sits one level under the highest Surrey-named pyramid league (Counties 1
+        # Surrey/Sussex, tier 7) at abs 8, which is also the highest anchor the reserve-XV
+        # ordering rule permits.
+        ("2022-2023", "", 7),
     ],
     "Sussex": [
+        # The Sussex merit folder holds Harvey's-sponsored Counties 3/4 Sussex, which are
+        # pyramid rungs in all but filing, so offset 6 keeps Counties 3 Sussex at its own
+        # absolute 9 under Counties 2 Sussex.  Skipped by the reserve-XV re-anchoring.
         ("2022-2023", "", 6),
     ],
 }
@@ -426,14 +469,20 @@ _EAST_MIDLANDS_TIERS: dict[str, dict[str, int]] = {
         "East_Midlands_2_-_Northants_A": 2,
         "East_Midlands_2_-_Northants_B": 3,
     },
-    # 2025-2026: no East_Midlands_1 file; the three "EM 2 - X" branches have
-    # no shared-club links between them, so all sit at tier 1; only Northants
-    # B is confirmed below Northants A.
+    # 2025-2026: no East_Midlands_1 file; the three "EM 2 - X" branches have no shared-club
+    # links between them, so all tie; only Northants B is confirmed below Northants A. They
+    # stay at local 2 (as in 2024-2025) because the apex stems to Counties 3 Midlands East
+    # (South South) at tier 9 — local 1 would place them alongside their own parent.
     "2025-2026": {
-        "East_Midlands_2_-_Bedfordshire_(North)": 1,
-        "East_Midlands_2_-_Bedfordshire_(South)": 1,
-        "East_Midlands_2_-_Northants_A": 1,
-        "East_Midlands_2_-_Northants_B": 2,
+        "East_Midlands_2_-_Bedfordshire_(North)": 2,
+        "East_Midlands_2_-_Bedfordshire_(South)": 2,
+        "East_Midlands_2_-_Northants_A": 2,
+        "East_Midlands_2_-_Northants_B": 3,
+    },
+    # 2026-2027 renames the ladder to Merit A / Merit B1, keeping the 2025-2026 anchor.
+    "2026-2027": {
+        "East_Midlands_Merit_A": 2,
+        "East_Midlands_Merit_B1": 3,
     },
 }
 

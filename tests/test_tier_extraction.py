@@ -411,7 +411,12 @@ class TestExtractTierMeritPath:
         assert result == (2, "NOWIRUL 2")
 
     def test_nowirul_2023_2024_no_championship_gap(self):
-        """2022-2024: locals 3–8 (reserved 1–2) with offset 8 → abs 11–16."""
+        """2022-2024: locals 3–8 (reserved 1–2) with offset 7 → abs 10–15.
+
+        NOWIRUL is ~92% reserve XVs, so the apex is anchored alongside the Lancashire &
+        Cheshire ladder — under Counties 3 adm Lancashire & Cheshire at absolute 10 —
+        rather than below the foot of the pyramid.
+        """
         assert extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2023-2024") == (
             3,
             "NOWIRUL 3",
@@ -422,7 +427,7 @@ class TestExtractTierMeritPath:
         assert extract_tier(
             "merit/NOWIRUL/NOWIRUL_Wayne_Lord_Plumbing_Division_2_North.json", "2023-2024"
         ) == (5, "NOWIRUL 5")
-        assert get_competition_offset("NOWIRUL", "2023-2024") == 8
+        assert get_competition_offset("NOWIRUL", "2023-2024") == 7
 
     def test_nowirul_old_conference(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Conference_A.json", "2013-2014")
@@ -449,21 +454,23 @@ class TestExtractTierMeritPath:
         assert result == (3, "Sussex 3")
 
     def test_east_midlands_numbered(self):
-        """2025-2026: no East_Midlands_1 file; the three EM 2 branches all sit at local 1.
+        """2025-2026: no East_Midlands_1 file; the three EM 2 branches all sit at local 2.
 
         Shared-club analysis (see ``rugby.analysis.east_midlands_hierarchy``) finds no
-        observations linking the Bedfordshire (North/South) and Northants A divisions
-        in either direction, so they tie at tier 1.
+        observations linking the Bedfordshire (North/South) and Northants A divisions in
+        either direction, so they tie. They hold the local 2 they had in 2024-2025 rather
+        than moving up: the apex stems to Counties 3 Midlands East (South South) at tier 9,
+        and local 1 (offset 8) would put them level with that parent.
         """
         result = extract_tier(
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
-        assert result == (1, "East Midlands 1")
+        assert result == (2, "East Midlands 2")
 
     def test_east_midlands_b_variant(self):
         """Northants B is the only league confirmed below the EM 2 cluster in 2025-2026."""
         result = extract_tier("merit/East_Midlands/East_Midlands_2_-_Northants_B.json", "2025-2026")
-        assert result == (2, "East Midlands 2")
+        assert result == (3, "East Midlands 3")
 
     def test_east_midlands_sponsor_named(self):
         result = extract_tier("merit/East_Midlands/Bombardier_League.json", "2013-2014")
@@ -740,13 +747,13 @@ class TestNamedMeritLeagues:
     def test_numbered_format_routed_through_per_season_table(self):
         """Post-2021 numbered format is matched by the per-season EM table.
 
-        2025-2026 has no East_Midlands_1 file; the three EM 2 branches all sit at tier 1
-        (no shared-club observations separate them).
+        2025-2026 has no East_Midlands_1 file; the three EM 2 branches all sit at tier 2
+        (no shared-club observations separate them, and they keep their 2024-2025 anchor).
         """
         result = extract_tier(
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
-        assert result == (1, "East Midlands 1")
+        assert result == (2, "East Midlands 2")
 
     def test_middlesex_ordinal_divisions(self):
         """Ordinal-named divisions should get distinct local tiers."""

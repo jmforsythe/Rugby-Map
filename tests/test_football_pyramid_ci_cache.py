@@ -7,6 +7,14 @@ from pathlib import Path
 from football import pyramid_ci_cache as cache
 
 
+def _stub_code_paths(tmp_path: Path) -> None:
+    """Give the digest stable code inputs, refusing to touch anything outside ``tmp_path``."""
+    for code in cache.pyramid_code_paths():
+        assert tmp_path in code.parents, f"would write to real source file {code}"
+        code.parent.mkdir(parents=True, exist_ok=True)
+        code.write_text("# stub\n", encoding="utf-8")
+
+
 def test_football_digest_changes_when_geocoded_data_changes(tmp_path: Path, monkeypatch) -> None:
     season = "2099-2099"
     geo = tmp_path / "data" / "football" / "geocoded_teams" / season / "pyramid"
@@ -19,9 +27,7 @@ def test_football_digest_changes_when_geocoded_data_changes(tmp_path: Path, monk
     monkeypatch.setattr(
         cache, "FOOTBALL_PYRAMID_RASTER_CACHE_ROOT", tmp_path / "_football_pyramid_raster_cache"
     )
-    for code in cache._PYRAMID_CODE_PATHS:
-        code.parent.mkdir(parents=True, exist_ok=True)
-        code.write_text("# stub\n", encoding="utf-8")
+    _stub_code_paths(tmp_path)
 
     d1 = cache.pyramid_raster_inputs_digest(season)
     league.write_text('{"league_name": "y", "teams": []}', encoding="utf-8")
@@ -36,9 +42,7 @@ def test_football_save_restore_round_trip(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr(
         cache, "FOOTBALL_PYRAMID_RASTER_CACHE_ROOT", tmp_path / "_football_pyramid_raster_cache"
     )
-    for code in cache._PYRAMID_CODE_PATHS:
-        code.parent.mkdir(parents=True, exist_ok=True)
-        code.write_text("# stub\n", encoding="utf-8")
+    _stub_code_paths(tmp_path)
 
     geo = tmp_path / "data" / "football" / "geocoded_teams" / season / "pyramid"
     geo.mkdir(parents=True)

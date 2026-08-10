@@ -19,13 +19,22 @@ logger = logging.getLogger(__name__)
 
 FOOTBALL_PYRAMID_RASTER_CACHE_ROOT = REPO_ROOT / "_football_pyramid_raster_cache"
 
-_PYRAMID_CODE_PATHS: tuple[Path, ...] = (
-    REPO_ROOT / "rugby" / "pyramid_image.py",
-    REPO_ROOT / "football" / "pyramid_image.py",
-    REPO_ROOT / "football" / "pyramid_parents.py",
-    REPO_ROOT / "football" / "league_names.py",
-    REPO_ROOT / "football" / "map_common.py",
+_PYRAMID_CODE_RELPATHS: tuple[str, ...] = (
+    "rugby/pyramid_image.py",
+    "football/pyramid_image.py",
+    "football/pyramid_parents.py",
+    "football/league_names.py",
+    "football/map_common.py",
 )
+
+
+def pyramid_code_paths() -> tuple[Path, ...]:
+    """Source files whose contents invalidate the cache.
+
+    Resolved on each call so a patched ``REPO_ROOT`` is honoured.
+    """
+    return tuple(REPO_ROOT / rel for rel in _PYRAMID_CODE_RELPATHS)
+
 
 _PYRAMID_GLOB_PATTERNS: tuple[str, ...] = (
     "pyramid*.svg",
@@ -43,7 +52,7 @@ def _hash_file(hasher: hashlib._Hash, path: Path) -> None:
 def pyramid_raster_inputs_digest(season: str) -> str:
     """Stable digest of inputs that affect football pyramid diagrams for ``season``."""
     hasher = hashlib.sha256()
-    for code_path in _PYRAMID_CODE_PATHS:
+    for code_path in pyramid_code_paths():
         if code_path.is_file():
             _hash_file(hasher, code_path)
     geocoded = REPO_ROOT / "data" / "football" / "geocoded_teams" / season / "pyramid"

@@ -442,13 +442,10 @@ def _build_pyramid_section(
     html += "    <tbody>\n"
 
     # "All" row
-    merit_cell = ""
-    if has_merit_col and all_leagues_href:
-        merit_cell = f'<a href="{all_leagues_href}">All Leagues</a>'
     html += "    <tr>\n"
     html += f'        <td><a class="tier-link tier-link--primary" href="{all_tiers_href}">All Tiers</a></td>\n'
     if has_merit_col:
-        if merit_cell:
+        if all_leagues_href:
             html += f'        <td><a class="tier-link tier-link--primary" href="{all_leagues_href}">All Leagues</a></td>\n'
         else:
             html += "        <td></td>\n"
@@ -829,17 +826,33 @@ def detect_tier_files(season_dir: Path) -> dict:
 
     has_all_leagues = (season_dir / _link("All_Leagues")).exists()
 
+    display_to_stem = dict(mens_candidates)
+    pyramid_stems = {
+        display_to_stem[display] for display, _ in mens_tiers if display in display_to_stem
+    }
+
     # Detect per-tier pyramid+merit variants (e.g. Counties_1_All_Leagues)
     tier_plus_merit: dict[str, str] = {}
     for display, name in mens_candidates:
+        if name not in pyramid_stems:
+            continue
         combined_name = f"{name}_All_Leagues"
         href = _link(combined_name)
         if (season_dir / href).exists():
             tier_plus_merit[display] = href
 
-    # Detect merit-only tiers below the pyramid (e.g. Level_12_All_Leagues)
+    # Detect merit-only tiers below the pyramid (e.g. Level_12_All_Leagues).
+    # Skip levels that already have a pyramid map or a pyramid+merit combined map —
+    # those use the same filename but are listed under "+ Merit", not "(Merit)".
     merit_only_candidates = [(f"Level {i}", f"Level_{i}_All_Leagues") for i in range(5, 25)]
     merit_only_tiers = _detect_existing(season_dir, merit_only_candidates)
+    pyramid_tier_names = {display for display, _ in mens_tiers}
+    combined_tier_names = set(tier_plus_merit)
+    merit_only_tiers = [
+        (display, href)
+        for display, href in merit_only_tiers
+        if display not in pyramid_tier_names and display not in combined_tier_names
+    ]
 
     # Detect merit competitions
     merit_dir = season_dir / "merit"

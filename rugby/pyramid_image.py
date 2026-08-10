@@ -2776,6 +2776,55 @@ def _warn_pyramid_leagues_without_parent(
                 )
 
 
+def _warn_merged_merit_stem_orphans(
+    leagues_by_tier: dict[int, list[LeagueData]],
+    season: str,
+    parent_overrides: StemParentOverrides | None,
+    stem_forest: tuple[list[StemTreeNode], dict[int, list[StemTreeNode]]],
+) -> None:
+    """Log when merged merit rows in ``pyramid_All_Leagues`` land in full-width orphan bands.
+
+    National missing-parent checks skip merit leagues; without this pass a broken apex link
+    (e.g. Eagle IPA → Midlands 4 East in tier_mappings at the wrong local tier) silently
+    stretches every downstream merit row across the Counties stem chord.
+    """
+    _, orphans = stem_forest
+    for tier in sorted(orphans):
+        parents_ld = leagues_by_tier.get(tier - 1, [])
+        for node in orphans[tier]:
+            lg = node.league
+            comp = lg.merit_geocoded_competition
+            if comp is None:
+                continue
+            comp_display = comp.replace("_", " ")
+            parent_lds = _resolve_stem_parents(
+                lg,
+                parents_ld,
+                season,
+                parent_overrides,
+                merit_competition=None,
+                leagues_by_tier=leagues_by_tier,
+            )
+            if not parent_lds:
+                logger.warning(
+                    "All Leagues merit %s: no parent given or inferred for %r (tier %d) — "
+                    "full-width orphan row; check tier_mappings %r section.",
+                    comp_display,
+                    lg.league_name,
+                    tier,
+                    comp,
+                )
+                continue
+            logger.warning(
+                "All Leagues merit %s: parent %r for %r (tier %d) is not in the stem tree — "
+                "full-width orphan row (fix the upstream parent link first).",
+                comp_display,
+                parent_lds[0].league_name,
+                lg.league_name,
+                tier,
+            )
+
+
 def _interactive_on_warnings_enabled(args: argparse.Namespace) -> bool:
     return sys.stdin.isatty() and not getattr(args, "no_interactive_on_warnings", False)
 
@@ -7004,6 +7053,7 @@ def render_pyramid_svg(
     merit_competition: str | None = None,
     merit_local_offset: int = 0,
     mens_merge_merit_leagues: bool = False,
+    warn_merged_merit_stem_orphans: bool = True,
     labels_under_valid_crests: bool = False,
     labels_under_layout_height_scale: float | None = None,
     diagram_main_title: str | None = None,
@@ -7095,6 +7145,13 @@ def render_pyramid_svg(
                 log_unlinked=False,
                 merit_competition=None,
             )
+            if mens_merge_merit_leagues and not is_merit and warn_merged_merit_stem_orphans:
+                _warn_merged_merit_stem_orphans(
+                    leagues_by_tier,
+                    season,
+                    parent_overrides,
+                    stem_forest_prebuilt,
+                )
 
     canvas_horizontal_weight = _canvas_horizontal_weight(
         leagues_by_tier, stem_forest_prebuilt, is_merit=is_merit
@@ -9481,6 +9538,7 @@ def _write_labelled_pyramid_sibling(
         leagues,
         labels_under_valid_crests=True,
         labels_under_layout_height_scale=_labels_under_layout_scale(args),
+        warn_merged_merit_stem_orphans=False,
         **render_kwargs,
     )
     return _write_pyramid_svg_and_png(svg_labels, labels_svg_path, labels_png_path, args)

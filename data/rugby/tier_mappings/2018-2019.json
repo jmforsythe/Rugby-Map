@@ -115,7 +115,8 @@
   },
   "East_Midlands": {
     "1": {
-      "Bombardier Merit Table": "Midlands 3 East (North)"
+      "Bombardier Merit Table": "Midlands 3 East (North)",
+      "Youngs London Gold Merit Table": "Midlands 3 East (North)"
     },
     "2": {
       "Directors Merit Table": "Bombardier Merit Table",
@@ -123,12 +124,6 @@
     },
     "3": {
       "Estrella Damm Merit Table": "Directors Merit Table"
-    },
-    "4": {
-      "Youngs London Gold Merit Table": "Estrella Damm Merit Table"
-    },
-    "5": {
-      "Banana Bread Beer Merit Table": "Youngs London Gold Merit Table"
     }
   },
   "Eastern_Counties": {

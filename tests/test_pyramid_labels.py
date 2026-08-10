@@ -958,6 +958,76 @@ def test_warn_pyramid_leagues_without_parent_skips_explicit_unlinked(caplog) -> 
     assert "Regional 2 Explicit" not in caplog.text
 
 
+def test_warn_merged_merit_stem_orphans_logs_missing_apex(caplog) -> None:
+    import logging
+
+    from rugby.pyramid_image import LeagueData, _build_stem_forest, _warn_merged_merit_stem_orphans
+
+    apex = LeagueData(
+        9,
+        "L9",
+        "Eagle IPA League",
+        [],
+        0,
+        merit_geocoded_competition="East_Midlands",
+        merit_local_tier=1,
+    )
+    child = LeagueData(
+        10,
+        "L10",
+        "Courage Best League",
+        [],
+        0,
+        merit_geocoded_competition="East_Midlands",
+        merit_local_tier=2,
+    )
+    leagues_by_tier = {9: [apex], 10: [child]}
+    forest = _build_stem_forest(leagues_by_tier, "2012-2013", {}, log_unlinked=False)
+
+    with caplog.at_level(logging.WARNING):
+        _warn_merged_merit_stem_orphans(leagues_by_tier, "2012-2013", {}, forest)
+
+    assert "Eagle IPA League" in caplog.text
+    assert "full-width orphan row" in caplog.text
+    assert "Courage Best League" in caplog.text
+    assert "upstream parent" in caplog.text
+
+
+def test_warn_merged_merit_stem_orphans_east_midlands_2012_2013(caplog) -> None:
+    import logging
+    from collections import defaultdict
+
+    from rugby.pyramid_image import (
+        _build_stem_forest,
+        _warn_merged_merit_stem_orphans,
+        load_pyramid_leagues,
+        load_pyramid_leagues_with_merit,
+        stem_parent_overrides_load_merged,
+        stem_parent_overrides_merge_merit_sections_for_absolute_tiers,
+    )
+
+    season = "2012-2013"
+    national = load_pyramid_leagues(season)
+    national_by_tier: dict[int, list] = defaultdict(list)
+    for lg in national:
+        national_by_tier[lg.tier_num].append(lg)
+    parent_overrides = stem_parent_overrides_load_merged(season, national_by_tier) or {}
+    parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+        season, dict(parent_overrides)
+    )
+    all_lg = load_pyramid_leagues_with_merit(season)
+    by_tier: dict[int, list] = defaultdict(list)
+    for lg in all_lg:
+        by_tier[lg.tier_num].append(lg)
+    forest = _build_stem_forest(by_tier, season, parent_overrides, log_unlinked=False)
+
+    with caplog.at_level(logging.WARNING):
+        _warn_merged_merit_stem_orphans(by_tier, season, parent_overrides, forest)
+
+    assert "All Leagues merit East Midlands" not in caplog.text
+    assert "full-width orphan row" not in caplog.text
+
+
 def test_national_stem_skip_level_parent_resolution() -> None:
     """Tier 10 child may link to tier 8 parent when tier 9 is empty (Counties stem)."""
     from rugby.pyramid_image import LeagueData, _resolve_stem_parents

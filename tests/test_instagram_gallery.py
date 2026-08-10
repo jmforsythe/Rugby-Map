@@ -3,7 +3,13 @@
 from pathlib import Path
 
 from core.config import CURRENT_SEASON
-from rugby.analysis.instagram_gallery import collect_legacy_slides, collect_level_slides
+from rugby.analysis.instagram_gallery import (
+    SEASON_CAROUSEL_NAME,
+    collect_legacy_slides,
+    collect_level_slides,
+    collect_season_slides,
+    write_season_carousel,
+)
 from rugby.analysis.pyramid_gallery import build_html
 
 
@@ -50,6 +56,32 @@ def test_collect_legacy_slides_skips_level_files(tmp_path: Path) -> None:
 
     assert len(slides) == 1
     assert slides[0]["href"] == f"{CURRENT_SEASON}/01_tiers1-4_1of3.png"
+
+
+def test_collect_season_slides_uses_local_hrefs(tmp_path: Path) -> None:
+    season_dir = tmp_path / CURRENT_SEASON
+    season_dir.mkdir(parents=True)
+    (season_dir / "level_01_premiership.png").write_bytes(b"png")
+    (season_dir / "level_02_championship.svg").write_text("<svg/>", encoding="utf-8")
+
+    slides = collect_season_slides(season_dir, CURRENT_SEASON)
+
+    assert len(slides) == 2
+    assert slides[0]["href"] == "level_01_premiership.png"
+    assert slides[1]["href"] == "level_02_championship.svg"
+
+
+def test_write_season_carousel_uses_default_zoom(tmp_path: Path) -> None:
+    season_dir = tmp_path / CURRENT_SEASON
+    season_dir.mkdir(parents=True)
+    (season_dir / "level_01_premiership.png").write_bytes(b"png")
+
+    out = write_season_carousel(season_dir, CURRENT_SEASON)
+    assert out == season_dir / SEASON_CAROUSEL_NAME
+
+    html = out.read_text(encoding="utf-8")
+    assert "let zoom = 0.3;" in html
+    assert ">30%</span>" in html
 
 
 def test_build_gallery_html_from_slides(tmp_path: Path) -> None:

@@ -2,7 +2,7 @@ SEASON ?= 2026-2027
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-gallery test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -30,8 +30,9 @@ help:
 	@echo "  pyramid-gallery HTML carousel for dist/<season>/pyramid* sanity checks"
 	@echo "  pyramid-all-leagues-gallery carousel for pyramid_All_Leagues across seasons"
 	@echo "  pyramid-merit-all-seasons regen merit + pyramid_All_Leagues SVGs (all seasons)"
-	@echo "  instagram-maps  Per-level league maps for Instagram, PNG/SVG (3:4)"
-	@echo "  instagram-gallery HTML carousel for output/instagram/<season>/ level maps"
+	@echo "  instagram-maps  Per-level league maps for Instagram, PNG/SVG (3:4, BUC boundaries)"
+	@echo "  instagram-maps-all-seasons  instagram-maps for every geocoded season"
+	@echo "  instagram-gallery HTML carousel for output/instagram/maps/ (+ gallery.html per season)"
 	@echo "  lint         Run linters"
 	@echo "  clean        Remove generated output files"
 
@@ -98,7 +99,10 @@ pyramid-merit-all-seasons:
 	bash scripts/pyramid_merit_all_seasons.sh
 
 instagram-maps:
-	python -m rugby.instagram_maps --season $(SEASON) --png
+	python -m rugby.instagram_maps --season $(SEASON) --png --boundary-detail BUC
+
+instagram-maps-all-seasons:
+	bash scripts/instagram_maps_all_seasons.sh
 
 instagram-gallery:
 	python -m rugby.analysis.instagram_gallery

@@ -8,6 +8,7 @@ league territory shading (same algorithm as interactive maps), and bold left-pan
     2026-2027
     Level 7
     Counties 1
+    19 leagues · 234 teams
     rugbyunionmap.uk
 
 Outputs SVG by default; pass ``--png`` to rasterise via Playwright (see requirements-dev.txt).
@@ -67,7 +68,7 @@ from rugby.tiers import mens_current_tier_name
 
 logger = logging.getLogger(__name__)
 
-OUTPUT_ROOT = REPO_ROOT / "output" / "instagram"
+OUTPUT_ROOT = REPO_ROOT / "output" / "instagram" / "maps"
 
 # 3:4 portrait — Instagram feed friendly.
 IMAGE_WIDTH = 1080
@@ -133,9 +134,34 @@ CAPTION_Y_RATIO = 0.36
 SITE_LOGO_SIZE = 30
 SITE_URL_FONT_SIZE = 32
 SITE_URL_GAP = 8
-# Gap below the tier-name line to the site URL row.
-SITE_URL_BELOW_TIER = 62
+TIER_NAME_Y_OFFSET = 248
+TIER_STATS_BELOW_NAME = 48
+TIER_STATS_FONT_SIZE = 32
+SITE_URL_BELOW_STATS = 62
 SITE_HOST = BASE_URL.removeprefix("https://").removeprefix("http://")
+
+
+def _season_start_year(season: str) -> int:
+    return int(season.split("-", maxsplit=1)[0])
+
+
+def _instagram_tier_name(tier_num: int, season: str) -> str:
+    """Subtitle under ``Level N``; blank when it would repeat the heading (pyramid margin rule)."""
+    if tier_num == 1 and season and season < "2009-2010":
+        return "Championship"
+    if season and _season_start_year(season) <= 2021 and tier_num >= 5:
+        return ""
+    name = mens_current_tier_name(tier_num, season)
+    if not name or name == f"Level {tier_num}":
+        return ""
+    return name
+
+
+def _tier_stats_line(league_count: int, total_teams: int) -> str:
+    """Match :func:`rugby.pyramid_image._tier_band_stats_line` wording."""
+    lw = "league" if league_count == 1 else "leagues"
+    tw = "team" if total_teams == 1 else "teams"
+    return f"{league_count} {lw} · {total_teams} {tw}"
 
 
 @lru_cache(maxsize=1)
@@ -846,14 +872,18 @@ def render_tier_svg(
         min_diameter=badge_min_diameter,
     )
 
-    tier_name = mens_current_tier_name(tier_num, season)
     text_x = round(width * CAPTION_X_RATIO)
     text_y0 = round(height * CAPTION_Y_RATIO)
+
+    tier_name = _instagram_tier_name(tier_num, season)
+    tier_name_y = text_y0 + TIER_NAME_Y_OFFSET
+    stats_y = tier_name_y + TIER_STATS_BELOW_NAME
+    stats_line = _tier_stats_line(len(territories), len(items or []))
+    site_line_y = stats_y + SITE_URL_BELOW_STATS
 
     # A white halo keeps the caption legible if a territory reaches under it.
     halo = f'paint-order="stroke" stroke="{SEA_BG}" stroke-width="8" stroke-linejoin="round"'
 
-    site_line_y = text_y0 + 248 + SITE_URL_BELOW_TIER
     site_logo_y = site_line_y - SITE_LOGO_SIZE / 2
     site_text_x = text_x + SITE_LOGO_SIZE + SITE_URL_GAP
     logo_href = escape(_site_logo_href(), quote=True)
@@ -865,8 +895,11 @@ def render_tier_svg(
           font-weight="500" fill="{TEXT_MUTED}" {halo}>{escape(season)}</text>
     <text x="{text_x}" y="{text_y0 + 190}" font-family="{FONT_HEADING}" font-size="108"
           font-weight="700" fill="{TEXT_PRIMARY}" {halo}>Level {tier_num}</text>
-    <text x="{text_x}" y="{text_y0 + 248}" font-family="{FONT_BODY}" font-size="42"
+    <text x="{text_x}" y="{tier_name_y}" font-family="{FONT_BODY}" font-size="42"
           font-weight="500" fill="{TEXT_MUTED}" {halo}>{escape(tier_name)}</text>
+    <text x="{text_x}" y="{stats_y}" font-family="{FONT_BODY}"
+          font-size="{TIER_STATS_FONT_SIZE}" font-weight="500" fill="{TEXT_MUTED}" {halo}>
+          {escape(stats_line)}</text>
     <image x="{text_x}" y="{site_logo_y:.2f}" width="{SITE_LOGO_SIZE}" height="{SITE_LOGO_SIZE}"
            href="{logo_href}"/>
     <text x="{site_text_x}" y="{site_line_y}" font-family="{FONT_BODY}"
@@ -990,7 +1023,7 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=None,
-        help="Output directory (default: output/instagram/<season>/)",
+        help="Output directory (default: output/instagram/maps/<season>/)",
     )
     parser.add_argument(
         "--levels",
@@ -1061,6 +1094,15 @@ def main() -> None:
         badge_min_diameter=args.badge_min_size,
         boundary_detail=args.boundary_detail,
     )
+    from rugby.analysis.instagram_gallery import write_season_carousel
+
+    carousel = write_season_carousel(
+        output_dir,
+        args.season,
+        boundary_detail=args.boundary_detail,
+    )
+    if carousel is not None:
+        logger.info("Wrote season carousel %s", carousel)
 
 
 if __name__ == "__main__":

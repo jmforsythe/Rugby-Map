@@ -97,8 +97,10 @@ def build_html(
         "<code>&lt;object&gt;</code> so crest tiles render "
         "(<code>&lt;img&gt;</code> skips <code>foreignObject</code>)."
     ),
+    default_zoom: float = 1.0,
 ) -> str:
     data_json = json.dumps(slides)
+    initial_zoom_pct = round(100 * default_zoom)
     # json.dumps yields ASCII-safe escapes; safe to embed verbatim in JS.
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -211,7 +213,7 @@ def build_html(
       <button type="button" id="zoomOut" aria-label="Zoom out">Zoom −</button>
       <button type="button" id="zoomReset" aria-label="Zoom 100%">100%</button>
       <button type="button" id="zoomIn" aria-label="Zoom in">Zoom +</button>
-      <span id="zoomPct" style="opacity:.9;min-width:3.5rem">100%</span>
+      <span id="zoomPct" style="opacity:.9;min-width:3.5rem">{initial_zoom_pct}%</span>
     </div>
   </header>
   <div id="stage"><div id="frame"><img id="view" alt="{image_alt}" decoding="async"/><object id="viewSvg" class="slide-svg" type="image/svg+xml" data="" aria-label="{image_alt} (SVG)" style="display:none"></object></div></div>
@@ -222,7 +224,7 @@ def build_html(
     const ZOOM_MIN = 0.2;
     const ZOOM_MAX = 3;
     const ZOOM_STEP = 0.1;
-    let zoom = 1;
+    let zoom = {default_zoom};
 
     function clamp(n) {{
       if (!slides.length) return 0;

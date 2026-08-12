@@ -193,6 +193,10 @@ def _header_bar_html(
     if sibling_tiers and len(sibling_tiers) > 1:
         options = []
         for tier_display, tier_href in sibling_tiers:
+            if not tier_href:
+                # Non-navigable separator row (see SIBLING_DIVIDER).
+                options.append(f'<option value="" disabled>{escape(tier_display)}</option>')
+                continue
             selected = " selected" if tier_display == current_tier else ""
             options.append(
                 f'<option value="{escape(tier_href)}"{selected}>{escape(tier_display)}</option>'
@@ -567,18 +571,56 @@ def _group_by_tier(
     return by_tier, order
 
 
+#: Sentinel entry for :func:`_header_bar_html`: an empty href renders a disabled
+#: separator row rather than a navigable option.
+SIBLING_DIVIDER = ("─" * 12, "")
+
+
+def _sibling_href(file_name: str, is_prod: bool, prefix: str = "") -> str:
+    """Href for a sibling map at the same directory depth as the current page."""
+    return f"{prefix}../{file_name}/" if is_prod else f"{prefix}{file_name}.html"
+
+
 def _tier_sibling_links(
     tier_order: list[str],
     is_prod: bool,
     prefix: str = "",
 ) -> list[tuple[str, str]]:
     """Build (display_name, href) pairs for all tiers in a group."""
-    links: list[tuple[str, str]] = []
-    for tier_name in tier_order:
-        file_name = tier_name.replace(" ", "_")
-        href = f"{prefix}../{file_name}/" if is_prod else f"{prefix}{file_name}.html"
-        links.append((tier_name, href))
-    return links
+    return [
+        (tier_name, _sibling_href(tier_name.replace(" ", "_"), is_prod, prefix))
+        for tier_name in tier_order
+    ]
+
+
+def _mens_sibling_links(
+    pyramid_tier_order: list[str],
+    pyramid_tier_nums: dict[str, int],
+    merit_tier_nums: set[int],
+    season: str,
+    is_prod: bool,
+) -> list[tuple[str, str]]:
+    """Header dropdown entries for the men's season maps.
+
+    Pyramid tier maps first, then a divider, then the ``*_All_Leagues`` maps in
+    tier order — ``"<tier> + Merit"`` where a pyramid tier exists at that level
+    and ``"<tier> (Merit)"`` where merit leagues stand alone. Display names must
+    match the titles used when the maps are generated, so the current page shows
+    up as the selected option.
+    """
+    links = _tier_sibling_links(pyramid_tier_order, is_prod)
+    if not merit_tier_nums:
+        return links
+
+    pyramid_name_by_num = {num: name for name, num in pyramid_tier_nums.items()}
+    merit_links: list[tuple[str, str]] = []
+    for tier_num in sorted(merit_tier_nums):
+        pyramid_name = pyramid_name_by_num.get(tier_num)
+        tier_name = pyramid_name or mens_current_tier_name(tier_num, season)
+        display = f"{tier_name} + Merit" if pyramid_name else f"{tier_name} (Merit)"
+        file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+        merit_links.append((display, _sibling_href(file_name, is_prod)))
+    return links + [SIBLING_DIVIDER] + merit_links
 
 
 def _output_path(output_dir: Path, name: str, is_prod: bool) -> Path:
@@ -696,8 +738,12 @@ def main() -> None:
     mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]
     womens_pyramid = [it for it in loaded.pyramid if it.tier_num >= 100]
 
-    _, mens_tier_order_for_header = _group_by_tier(mens_pyramid)
+    mens_by_tier_for_header, mens_tier_order_for_header = _group_by_tier(mens_pyramid)
     _, womens_tier_order_for_header = _group_by_tier(womens_pyramid)
+    # Header links list every map of the season, so they ignore --tiers filtering.
+    mens_header_tier_nums = {
+        tier_name: items[0].tier_num for tier_name, items in mens_by_tier_for_header.items()
+    }
 
     if args.tiers:
         mens_pyramid = [it for it in mens_pyramid if it.tier in args.tiers]
@@ -728,6 +774,8 @@ def main() -> None:
                 replace(it, tier_num=abs_tier, tier=mens_current_tier_name(abs_tier, season))
             )
 
+    merit_header_tier_nums = {it.tier_num for it in adjusted_merit}
+
     if args.tiers:
         tier_sel = frozenset(args.tiers)
         before_merit = len(adjusted_merit)
@@ -749,7 +797,13 @@ def main() -> None:
 
     output_dir = DIST_DIR / season
     is_prod = get_config().is_production
-    mens_header_tier_links = _tier_sibling_links(mens_tier_order_for_header, is_prod)
+    mens_header_tier_links = _mens_sibling_links(
+        mens_tier_order_for_header,
+        mens_header_tier_nums,
+        merit_header_tier_nums,
+        season,
+        is_prod,
+    )
     womens_header_tier_links = _tier_sibling_links(womens_tier_order_for_header, is_prod)
     territory_cache: TerritoryCache = {}
 
@@ -808,6 +862,8 @@ def main() -> None:
                         season,
                         show_debug,
                         _rotated_palette(tier_num),
+                        sibling_tiers=mens_header_tier_links,
+                        current_tier=f"{tier_name} + Merit",
                         output_file=out,
                     )
                     generate_single_group_map(combined, out, itl_hierarchy, config, territory_cache)
@@ -833,6 +889,8 @@ def main() -> None:
                     season,
                     show_debug,
                     _rotated_palette(tier_num),
+                    sibling_tiers=mens_header_tier_links,
+                    current_tier=f"{tier_name} (Merit)",
                     output_file=out,
                 )
                 generate_single_group_map(merit_items, out, itl_hierarchy, config, territory_cache)

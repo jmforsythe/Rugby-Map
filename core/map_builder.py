@@ -1290,10 +1290,11 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
     return f"""
     <script>
     (function() {{
-        function addTerritories() {{
-            var el = document.querySelector('.folium-map');
-            if (!el || !el._leaflet_id) {{ setTimeout(addTerritories, 100); return; }}
-            fetch('{sidecar_name}').then(r => r.json()).then(function(layers) {{
+        function fetchTerritories(attempt) {{
+            fetch('{sidecar_name}', {{ cache: 'no-store' }}).then(function(r) {{
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            }}).then(function(layers) {{
                 Object.keys(layers).forEach(function(varName) {{
                     var fg = window[varName];
                     if (!fg) return;
@@ -1307,7 +1308,18 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                         }}).addTo(fg);
                     }});
                 }});
-            }}).catch(e => console.warn('Could not load territories:', e));
+            }}).catch(function(e) {{
+                if (attempt < 3) {{
+                    setTimeout(function() {{ fetchTerritories(attempt + 1); }}, 500 * Math.pow(2, attempt));
+                }} else {{
+                    console.warn('Could not load territories:', e);
+                }}
+            }});
+        }}
+        function addTerritories() {{
+            var el = document.querySelector('.folium-map');
+            if (!el || !el._leaflet_id) {{ setTimeout(addTerritories, 100); return; }}
+            fetchTerritories(0);
         }}
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addTerritories);
         else addTerritories();

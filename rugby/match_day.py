@@ -190,6 +190,24 @@ _MATCHDAY_WIDGET_HTML = """
         return mapObj;
     }
 
+    function getDateFromQuery() {
+        try {
+            return new URLSearchParams(window.location.search).get('date');
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function updateDateQueryString(dateIso) {
+        try {
+            var url = new URL(window.location.href);
+            url.searchParams.set('date', dateIso);
+            window.history.replaceState(null, '', url.toString());
+        } catch (e) {
+            /* no-op: URL/URLSearchParams unsupported */
+        }
+    }
+
     function tierKeyForLayer(layer) {
         for (var k in tierProxies) {
             if (tierProxies[k] === layer) return k;
@@ -367,6 +385,7 @@ _MATCHDAY_WIDGET_HTML = """
     }
 
     function switchMatchDay(selectedDate) {
+        updateDateQueryString(selectedDate);
         var info = dateInfo[selectedDate];
         if (info) {
             document.getElementById('matchday-info').innerHTML = info.display + ' &mdash; ' + info.label;
@@ -383,6 +402,14 @@ _MATCHDAY_WIDGET_HTML = """
     }
 
     function initMatchdayDefaultDate() {
+        var queryDate = getDateFromQuery();
+        if (queryDate && dateInfo[queryDate]) {
+            var qsel = document.getElementById('matchday-select');
+            if (qsel) { qsel.value = queryDate; }
+            switchMatchDay(queryDate);
+            return;
+        }
+
         var today = new Date().toISOString().slice(0, 10);
         var defaultDate = allDates.length ? allDates[allDates.length - 1] : '';
 

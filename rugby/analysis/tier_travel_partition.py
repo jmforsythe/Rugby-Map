@@ -26,6 +26,7 @@ from pathlib import Path
 
 import numpy as np
 
+from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.analysis.projected_urls import BASE_URL as CUSTOM_MAP_BASE_URL
 from rugby.analysis.projected_urls import build_tier_url
@@ -472,7 +473,7 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
+        default=CURRENT_SEASON,
         help="Standings season + geocoded_teams/<season>/ (default: %(default)s)",
     )
     parser.add_argument(

@@ -22,7 +22,7 @@ import json
 import logging
 
 from core import setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 from football.clubs_data import (
     flush_cache,
@@ -146,7 +146,7 @@ def recalc_outliers_in_geocoded_dir(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Geocode football team_addresses JSON files")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--subdir",
         default="pyramid",

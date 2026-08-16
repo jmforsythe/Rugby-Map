@@ -11,6 +11,7 @@ from pathlib import Path
 import requests
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from football import DATA_DIR
 from football.fetch_pyramid import _sanitize_filename
 from football.fulltime import fetch_league_index, list_division_options, pick_division_id
@@ -349,7 +350,7 @@ def discover_catalog(season: str, *, refresh: bool = False) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build level-11 feeder league catalog")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--refresh",
         action="store_true",

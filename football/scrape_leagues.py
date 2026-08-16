@@ -19,6 +19,7 @@ import sys
 from bs4 import BeautifulSoup, Tag
 
 from core import make_request
+from core.config import CURRENT_SEASON
 from football import DATA_DIR
 
 _BASE_URL = "https://www.bslfl.co.uk"
@@ -235,8 +236,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season label (e.g. 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season label (e.g. 2025-2026). Default: {CURRENT_SEASON}",
     )
     parser.add_argument(
         "--force",

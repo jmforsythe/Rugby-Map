@@ -6,6 +6,7 @@ import argparse
 import logging
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from football import DATA_DIR
 from football.league_names import consolidate_pyramid_season
 
@@ -16,7 +17,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Consolidate duplicate football pyramid division files"
     )
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     args = parser.parse_args()
 
     setup_logging()

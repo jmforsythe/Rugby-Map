@@ -14,6 +14,7 @@ from html import escape
 from pathlib import Path
 
 from core import get_favicon_html, get_google_analytics_script, set_config
+from core.config import CURRENT_SEASON
 from football.map_common import (
     FOOTBALL_BRAND,
     FOOTBALL_DIST,
@@ -140,7 +141,7 @@ def _list_seasons(root: Path) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate football map index pages")
     parser.add_argument("--production", action="store_true")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     args = parser.parse_args()
 
     if args.production:

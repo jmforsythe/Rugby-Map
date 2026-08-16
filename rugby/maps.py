@@ -26,7 +26,7 @@ from core import (
     team_name_to_filepath,
 )
 from core.colors import COLOR_PALETTE
-from core.config import BOUNDARIES_DIR, DIST_DIR
+from core.config import BOUNDARIES_DIR, CURRENT_SEASON, DIST_DIR
 from core.map_builder import (
     MapConfig,
     MarkerItem,
@@ -639,8 +639,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to process (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to process (e.g., 2024-2025, 2025-2026). Default: {CURRENT_SEASON}",
     )
     parser.add_argument("--no-debug", action="store_true", help="Disable debug boundary layers")
     parser.add_argument(

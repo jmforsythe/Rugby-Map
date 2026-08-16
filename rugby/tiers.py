@@ -10,6 +10,8 @@ Use :func:`get_competition_offset` to translate back to absolute pyramid positio
 import logging
 from pathlib import Path
 
+from core.config import CURRENT_SEASON
+
 logger = logging.getLogger(__name__)
 
 MENS_CURRENT_TIER_NAMES: dict[int, str] = {
@@ -678,7 +680,7 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     return None
 
 
-def extract_tier(path_or_filename: str, season: str = "2025-2026") -> tuple[int, str]:
+def extract_tier(path_or_filename: str, season: str = CURRENT_SEASON) -> tuple[int, str]:
     """Extract tier from a league path or filename.
 
     Accepts either a bare filename (``"Premiership.json"``) or a relative path

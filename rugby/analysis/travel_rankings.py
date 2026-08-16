@@ -20,12 +20,13 @@ from dataclasses import dataclass
 from itertools import combinations
 
 from core import GeocodedLeague, GeocodedTeam
+from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import league_average, league_display_name, team_average
 from rugby.offshore_travel import AVG_UK_DRIVE_KMH, classify_region
 
-DEFAULT_SEASON = "2025-2026"
+DEFAULT_SEASON = CURRENT_SEASON
 DEFAULT_TOP = 10
 
 

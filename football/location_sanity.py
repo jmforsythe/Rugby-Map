@@ -9,7 +9,7 @@ import statistics
 from pathlib import Path
 from typing import Any
 
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 from rugby.distances import distance as haversine_km
 
@@ -256,7 +256,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Flag football teams whose coordinates are outliers for their league"
     )
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--subdir",
         default="",

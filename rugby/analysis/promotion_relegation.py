@@ -58,6 +58,7 @@ from typing import Any
 from bs4 import BeautifulSoup
 
 from core import make_request
+from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, mens_current_tier_name
 
@@ -1734,7 +1735,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--season",
-        default="2025-2026",
+        default=CURRENT_SEASON,
         help="Season (default: %(default)s)",
     )
     parser.add_argument(

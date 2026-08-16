@@ -22,7 +22,7 @@ from core import (
     GeocodeResult,
     print_block,
 )
-from core.config import CACHE_DIR
+from core.config import CACHE_DIR, CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.sync_rfu_coordinates import (
     RFU_COORD_CACHE_FILE,
@@ -484,8 +484,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to process (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to process (e.g., 2024-2025, 2025-2026). Default: {CURRENT_SEASON}",
     )
     parser.add_argument(
         "--workers", type=int, default=10, help="Max concurrent geocoding requests (default: 10)"

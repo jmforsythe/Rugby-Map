@@ -23,6 +23,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from football import DATA_DIR
 from football.map_common import dist_season_dir, football_pyramid_band_label, short_season
 from football.pyramid_parents import resolve_parent_overrides
@@ -140,7 +141,7 @@ def _write_labelled_sibling(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate English football pyramid diagram")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument("--production", action="store_true")
     parser.add_argument(
         "--png", action="store_true", help="Also rasterise SVG to PNG via Playwright"

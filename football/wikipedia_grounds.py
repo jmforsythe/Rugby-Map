@@ -22,7 +22,7 @@ from pathlib import Path
 import requests
 
 from core import setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 
 logger = logging.getLogger(__name__)
@@ -218,7 +218,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Fetch Wikipedia infobox grounds for football clubs"
     )
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--refresh", action="store_true", help="Ignore cache and re-fetch all grounds"
     )

@@ -48,7 +48,7 @@ from core import (
 )
 from core.asset_utils import CDN_TO_VENDOR, rewrite_cdn_urls_in_html
 from core.basemap_tiles import CARTO_TILE_URL_LIGHT, folium_carto_attribution
-from core.config import DIST_DIR
+from core.config import CURRENT_SEASON, DIST_DIR
 from core.json_utils import write_compact_json
 from core.map_builder import (
     DARK_MODE_JS,
@@ -1280,8 +1280,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season (default: 2025-2026)",
+        default=CURRENT_SEASON,
+        help=f"Season (default: {CURRENT_SEASON})",
     )
     parser.add_argument(
         "--output",

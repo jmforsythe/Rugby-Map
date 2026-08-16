@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 
+from core.config import CURRENT_SEASON
 from rugby.geocode import geocode_with_nominatim
 from scotland import DATA_DIR
 from scotland.addresses import ClubInfo, build_club_lookup, fetch_club_directory, match_team_to_club
@@ -140,8 +141,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to process (e.g. 2024-2025). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to process (e.g. 2024-2025). Default: {CURRENT_SEASON}",
     )
     args = parser.parse_args()
 

@@ -36,7 +36,7 @@ from pathlib import Path
 from PIL import Image
 
 from core import setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 
 logger = logging.getLogger(__name__)
 
@@ -214,7 +214,7 @@ def main() -> int:
         description="Screenshot a Folium rugby map HTML (default Counties 1) to example PNG size.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument("--season", type=_validate_season, default="2025-2026")
+    parser.add_argument("--season", type=_validate_season, default=CURRENT_SEASON)
     parser.add_argument("--map-file", type=_validate_map_file, default="Counties_1.html")
     parser.add_argument("--output", type=str, default=None)
     parser.add_argument(

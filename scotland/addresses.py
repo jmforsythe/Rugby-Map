@@ -16,6 +16,7 @@ import contextlib
 import json
 import re
 
+from core.config import CURRENT_SEASON
 from scotland import DATA_DIR
 
 _FIND_A_CLUB_URL = "https://scottishrugby.org/find-a-club/"
@@ -388,8 +389,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to process (e.g. 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to process (e.g. 2025-2026). Default: {CURRENT_SEASON}",
     )
     parser.add_argument(
         "--refresh-clubs",

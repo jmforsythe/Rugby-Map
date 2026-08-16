@@ -20,6 +20,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from core.map_builder import ITLHierarchy, MarkerItem, load_itl_hierarchy, preassign_itl_regions
 from rugby import DATA_DIR
 from rugby.maps import BOUNDARY_PATHS
@@ -174,8 +175,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to inspect (default: 2025-2026). Ignored when --all-seasons is set.",
+        default=CURRENT_SEASON,
+        help=f"Season to inspect (default: {CURRENT_SEASON}). Ignored when --all-seasons is set.",
     )
     parser.add_argument(
         "--all-seasons",

@@ -33,7 +33,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core import setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 from football.clubs_data import (
     flush_cache,
@@ -220,7 +220,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Fetch full English football pyramid (levels 1-10) for mapping"
     )
-    parser.add_argument("--season", default="2025-2026", help="Season label, e.g. 2025-2026")
+    parser.add_argument(
+        "--season", default=CURRENT_SEASON, help=f"Season label, e.g. {CURRENT_SEASON}"
+    )
     parser.add_argument(
         "--min-level",
         type=int,

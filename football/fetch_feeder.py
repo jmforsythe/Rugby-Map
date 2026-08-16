@@ -26,7 +26,7 @@ import urllib.parse
 import requests
 
 from core import setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 from football.clubs_data import (
     flush_cache,
@@ -186,7 +186,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Fetch English football Regional Feeder leagues (level 11)"
     )
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--discover-catalog",
         action="store_true",

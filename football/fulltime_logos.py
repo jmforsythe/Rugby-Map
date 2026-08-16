@@ -22,7 +22,7 @@ from urllib.parse import parse_qs, urlparse
 from bs4 import BeautifulSoup, Tag
 
 from core import make_request, setup_logging
-from core.config import REPO_ROOT
+from core.config import CURRENT_SEASON, REPO_ROOT
 from football import DATA_DIR
 
 logger = logging.getLogger(__name__)
@@ -219,7 +219,7 @@ def enrich_season_logos(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch FA Full-Time crest URLs for football clubs")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--subdir",
         action="append",

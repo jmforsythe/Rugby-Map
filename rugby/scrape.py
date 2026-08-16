@@ -9,6 +9,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 from core import AntiBotDetectedError, League, LeagueInfo, Team, make_request
+from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 
 _PYRAMID_COMPETITIONS = [
@@ -648,8 +649,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to scrape (e.g., 2024-2025, 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to scrape (e.g., 2024-2025, 2025-2026). Default: {CURRENT_SEASON}",
     )
     parser.add_argument(
         "--force",

@@ -17,6 +17,7 @@ from typing import TypedDict
 from bs4 import BeautifulSoup, Tag
 
 from core import make_request
+from core.config import CURRENT_SEASON
 from scotland import DATA_DIR
 
 _BASE = "https://fixtures.scottishrugby.org/club-rugby"
@@ -233,8 +234,8 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default="2025-2026",
-        help="Season to scrape (e.g. 2025-2026). Default: 2025-2026",
+        default=CURRENT_SEASON,
+        help=f"Season to scrape (e.g. 2025-2026). Default: {CURRENT_SEASON}",
     )
     args = parser.parse_args()
 

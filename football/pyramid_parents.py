@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from football import DATA_DIR
 from football.league_names import find_football_parent_name
 from rugby.pyramid_image import (
@@ -317,7 +318,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Assign parent links for English football pyramid column nesting"
     )
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument(
         "--interactive",
         "--interactive-stem-orphans",

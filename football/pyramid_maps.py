@@ -15,6 +15,7 @@ import argparse
 import logging
 
 from core import setup_logging
+from core.config import CURRENT_SEASON
 from core.map_builder import TerritoryCache, generate_multi_group_map, generate_single_group_map
 from football import DATA_DIR
 from football.map_common import (
@@ -34,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate English football pyramid maps")
-    parser.add_argument("--season", default="2025-2026")
+    parser.add_argument("--season", default=CURRENT_SEASON)
     parser.add_argument("--production", action="store_true")
     parser.add_argument("--no-debug", action="store_true")
     args = parser.parse_args()

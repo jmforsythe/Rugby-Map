@@ -382,7 +382,7 @@ _MATCHDAY_WIDGET_HTML = """
         });
     }
 
-    window.addEventListener('load', function() {
+    function initMatchdayDefaultDate() {
         var today = new Date().toISOString().slice(0, 10);
         var defaultDate = allDates.length ? allDates[allDates.length - 1] : '';
 
@@ -415,7 +415,16 @@ _MATCHDAY_WIDGET_HTML = """
         var sel = document.getElementById('matchday-select');
         if (sel && defaultDate) { sel.value = defaultDate; }
         if (defaultDate) { switchMatchDay(defaultDate); }
-    });
+    }
+
+    // DOMContentLoaded (not 'load') so the essential per-date fixture JSON starts
+    // fetching as soon as the map/layer-control are wired up, in parallel with
+    // tile images and other subresources still finishing — not queued behind them.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMatchdayDefaultDate);
+    } else {
+        initMatchdayDefaultDate();
+    }
     </script>"""
 
 
@@ -1194,9 +1203,10 @@ def build_match_day_map(
             ['itl_1','itl_2','itl_3'].forEach(lv => { if (bd[lv]) { var ly = L.geoJson(bd[lv], {style:bs}); ly.addTo(map); _itlLayers.push(ly); } });
     """
 
-    # Always fetch boundaries.json — match-day already fetches per-date fixture
-    # JSON client-side, so file:// never worked anyway. Inlining the 20 MB bundle
-    # into HTML (the old dev path) made first load take ~20 s to parse.
+    # Boundaries are cosmetic country/ITL shading, not essential to match-day —
+    # defer the 20 MB fetch until the page has finished loading (and the browser
+    # is idle) so it never competes for bandwidth/CPU with the essential map
+    # tiles and per-date fixture JSON, which fetch as soon as the DOM is ready.
     boundary_script = f"""
     <script>
     (function() {{
@@ -1210,8 +1220,15 @@ def build_match_day_map(
                 {boundary_load_body}
             }}).catch(e => console.warn('Could not load boundaries:', e));
         }}
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBoundaries);
-        else addBoundaries();
+        function scheduleBoundaries() {{
+            if ('requestIdleCallback' in window) {{
+                requestIdleCallback(addBoundaries, {{timeout: 3000}});
+            }} else {{
+                setTimeout(addBoundaries, 1000);
+            }}
+        }}
+        if (document.readyState === 'complete') scheduleBoundaries();
+        else window.addEventListener('load', scheduleBoundaries);
     }})();
     </script>
     """

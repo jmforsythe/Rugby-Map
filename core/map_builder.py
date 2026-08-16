@@ -1350,7 +1350,7 @@ POPUP_CSS = """
   color: #555;
 }
 .folium-map .rugby-popup {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   width: 220px;
   font-size: 13px;
 }
@@ -1455,7 +1455,7 @@ POPUP_CSS = """
   gap: 6px;
   padding: 4px 8px;
   border-radius: 6px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid #e0e0e0;
@@ -1515,7 +1515,7 @@ html[data-rugby-effective="dark"] .rugby-theme-float select {
   background-color: #f5f8fc;
 }
 .folium-map .leaflet-control-layers-expanded {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13px;
   line-height: 1.35;
 }
@@ -1638,7 +1638,7 @@ html[data-rugby-effective="dark"] .rugby-theme-float select {
   padding: 0;
   border-radius: 4px;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 13px;
   background: rgba(255, 255, 255, 0.92);
   border: 2px solid rgba(0, 0, 0, 0.2);

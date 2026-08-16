@@ -120,7 +120,7 @@ _MATCHDAY_WIDGET_HTML = """
     .matchday-control {
         position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
         background:white; padding:8px 16px; border-radius:8px;
-        border:1px solid #e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        border:1px solid #e0e0e0; font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
         text-align:center;
         box-shadow:0 2px 10px rgba(0,0,0,0.1);
     }
@@ -937,7 +937,7 @@ def build_match_day_map(
         display: flex; align-items: center; gap: 0.4em;
         padding: 6px 12px;
         border-bottom: none;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
     }}
     .map-header__crumb {{

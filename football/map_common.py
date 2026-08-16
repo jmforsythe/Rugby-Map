@@ -249,7 +249,7 @@ def header_bar_html(
         display: flex; align-items: center; gap: 0.4em;
         padding: 6px 12px;
         border-bottom: none;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
     }}
     .map-header__crumb {{

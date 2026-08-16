@@ -586,9 +586,21 @@ def _format_fixture_result(entry: TeamFixtureEntry) -> str:
     home_score = entry.get("home_score")
     away_score = entry.get("away_score")
     if home_score is not None and away_score is not None:
-        if entry["is_home"]:
-            return f"{home_score} – {away_score}"
-        return f"{away_score} – {home_score}"
+        is_home = entry["is_home"]
+        own_score = home_score if is_home else away_score
+        opponent_score = away_score if is_home else home_score
+        if own_score > opponent_score:
+            badge_class, badge_label = "result-win", "W"
+        elif own_score < opponent_score:
+            badge_class, badge_label = "result-loss", "L"
+        else:
+            badge_class, badge_label = "result-draw", "D"
+        home_html = f'<span class="own-score">{home_score}</span>' if is_home else str(home_score)
+        away_html = (
+            f'<span class="own-score">{away_score}</span>' if not is_home else str(away_score)
+        )
+        badge_html = f'<span class="result-badge {badge_class}">{badge_label}</span>'
+        return f"{home_html} – {away_html} {badge_html}"
     time_text = entry.get("time") or ""
     return escape(time_text) if time_text else "—"
 
@@ -951,6 +963,34 @@ def get_team_page_html(
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.03em;
+        }}
+        .own-score {{
+            display: inline-block;
+            padding: 0 0.35em;
+            border: 1px dashed var(--accent);
+            border-radius: 4px;
+        }}
+        .result-badge {{
+            display: inline-block;
+            min-width: 1.4em;
+            margin-left: 0.4em;
+            padding: 0 0.3em;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 4px;
+        }}
+        .result-badge.result-win {{
+            background: rgba(34, 197, 94, 0.18);
+            color: #1f9d55;
+        }}
+        .result-badge.result-draw {{
+            background: rgba(148, 163, 184, 0.22);
+            color: var(--text-muted);
+        }}
+        .result-badge.result-loss {{
+            background: rgba(239, 68, 68, 0.18);
+            color: #d64545;
         }}
         .fixtures-section {{
             margin-top: 2em;

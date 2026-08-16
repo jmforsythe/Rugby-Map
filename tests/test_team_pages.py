@@ -130,7 +130,10 @@ class TestFixtureHelpers:
             "home_score": 24,
             "away_score": 17,
         }
-        assert _format_fixture_result(entry) == "24 – 17"
+        assert _format_fixture_result(entry) == (
+            '<span class="own-score">24</span> – 17 '
+            '<span class="result-badge result-win">W</span>'
+        )
 
     def test_format_fixture_result_score_away(self):
         entry: TeamFixtureEntry = {
@@ -144,7 +147,27 @@ class TestFixtureHelpers:
             "home_score": 24,
             "away_score": 17,
         }
-        assert _format_fixture_result(entry) == "17 – 24"
+        assert _format_fixture_result(entry) == (
+            '24 – <span class="own-score">17</span> '
+            '<span class="result-badge result-loss">L</span>'
+        )
+
+    def test_format_fixture_result_draw(self):
+        entry: TeamFixtureEntry = {
+            "season": "2026-2027",
+            "league_name": "Premiership",
+            "date": "2026-09-25",
+            "time": "19:45",
+            "is_home": True,
+            "opponent_id": 42,
+            "match_url": "https://example.com/match",
+            "home_score": 20,
+            "away_score": 20,
+        }
+        assert _format_fixture_result(entry) == (
+            '<span class="own-score">20</span> – 20 '
+            '<span class="result-badge result-draw">D</span>'
+        )
 
     def test_format_fixture_result_kickoff(self):
         entry: TeamFixtureEntry = {

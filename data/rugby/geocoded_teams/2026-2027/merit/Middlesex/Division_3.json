@@ -1,0 +1,97 @@
+{
+  "league_name": "Division 3",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728#tables",
+  "teams": [
+    {
+      "name": "Belsize Park Bulls",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=1943",
+      "image_url": "https://images.englandrugby.com/club_images/1943.png",
+      "address": "Coram's Fields 93 Guilford Street London WC1N 1DN United Kingdom",
+      "latitude": 51.523542,
+      "longitude": -0.120085,
+      "formatted_address": "WC1N 1DN, London Borough of Camden, Greater London, England, United Kingdom",
+      "place_id": 351682702
+    },
+    {
+      "name": "Ealing Trailfinders 1871 3rd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=127812",
+      "image_url": "https://images.englandrugby.com/club_images/127812.png",
+      "address": "Trailfinders Sports Club Vallis Way Ealing London W13 0DD UNITED KINGDOM",
+      "latitude": 51.52449,
+      "longitude": -0.326301,
+      "formatted_address": "W13 0DD, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422821
+    },
+    {
+      "name": "Finsbury Park 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=8120",
+      "image_url": "https://images.englandrugby.com/club_images/8120.png",
+      "address": "Downhills Park, Downhills Park Road, London, Middlesex, N17 6PE, England",
+      "latitude": 51.589011,
+      "longitude": -0.085235,
+      "formatted_address": "N17 6PE, London Borough of Haringey, Greater London, England, United Kingdom",
+      "place_id": 351606737
+    },
+    {
+      "name": "Hanwell",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=9346",
+      "image_url": "https://images.englandrugby.com/club_images/9346.png",
+      "address": "Twyford Ave Sports Ground Sports Ground Twyford Avenue London W3 9QA United Kingdom",
+      "latitude": 51.509996,
+      "longitude": -0.280963,
+      "formatted_address": "W3 9QA, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 352119428
+    },
+    {
+      "name": "Harrow 2nd XV",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=9525",
+      "image_url": "https://images.englandrugby.com/club_images/9525.png",
+      "address": "Grove Field Wood Lane Stanmore MIDDLESEX HA7 4LF UNITED KINGDOM ",
+      "latitude": 51.627524,
+      "longitude": -0.315087,
+      "formatted_address": "HA7 4LF, London Borough of Harrow, Greater London, England, United Kingdom",
+      "place_id": 351342893
+    },
+    {
+      "name": "Northolt",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=14975",
+      "image_url": "https://images.englandrugby.com/club_images/14975.png",
+      "address": "Cayton Sports & Social Club Cayton Green Park Cayton Road Cayton Road Greenford MIDDLESEX UB6 8BJ UNITED KINGDOM",
+      "latitude": 51.535589,
+      "longitude": -0.338467,
+      "formatted_address": "UB6 8BJ, London Borough of Ealing, Greater London, England, United Kingdom",
+      "place_id": 350422177
+    },
+    {
+      "name": "Old Isleworthians",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=15781",
+      "image_url": "https://images.englandrugby.com/club_images/15781.png",
+      "address": "The Memorial Ground 22a Wood Lane Isleworth Middlesex TW7 5ED United Kingdom",
+      "latitude": 51.477887,
+      "longitude": -0.334085,
+      "formatted_address": "TW7 5ED, London Borough of Hounslow, Greater London, England, United Kingdom",
+      "place_id": 352100703
+    },
+    {
+      "name": "Southgate",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=19753",
+      "image_url": "https://images.englandrugby.com/club_images/19753.png",
+      "address": "Southgate RFC Walker Cricket Ground Waterfall Road Southgate London MIDDLESEX N14 7JZ UNITED KINGDOM",
+      "latitude": 51.625827,
+      "longitude": -0.130438,
+      "formatted_address": "N14 7JZ, London Borough of Enfield, Greater London, England, United Kingdom",
+      "place_id": 351604854
+    },
+    {
+      "name": "Whitton Lions",
+      "url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&season=2026-2027&division=77728&team=25338",
+      "image_url": "https://images.englandrugby.com/club_images/25338.png",
+      "address": "Whitton Park Sports Association 190 Wills Crescent Hounslow TW3 2JD United Kingdom",
+      "latitude": 51.454832,
+      "longitude": -0.366792,
+      "formatted_address": "TW3 2JD, London Borough of Richmond upon Thames, Greater London, England, United Kingdom",
+      "place_id": 350871759
+    }
+  ],
+  "team_count": 9
+}

@@ -36,19 +36,19 @@ fi
 if [[ "${PYRAMID_RASTER_CACHE_RESTORED:-0}" == "1" ]]; then
   echo "Pyramid raster cache hit for ${SEASON} — skipping Playwright export"
 else
-  run_pyramid python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2
-  run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2
+  run_pyramid python -m rugby.pyramid_image --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
+  run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
 
   merit_comps=()
   if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
     mapfile -t merit_comps < <(
-      python -c "from rugby.pyramid_image import discover_merit_competitions as d; print('\n'.join(d('${SEASON}')))"
+      python -c "from rugby.pyramid_image import discover_merit_competitions as d; print('\n'.join(d('${SEASON}')))" | tr -d '\r'
     )
     for comp in "${merit_comps[@]}"; do
       [[ -n "$comp" ]] || continue
-      run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2
+      run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
     done
-    run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2
+    run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
   fi
 fi
 

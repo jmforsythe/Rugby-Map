@@ -2,6 +2,7 @@
 
 from core import TeamTravelDistances
 from rugby.team_pages import (
+    TeamData,
     TeamFixtureEntry,
     _format_fixture_date,
     _format_fixture_result,
@@ -9,8 +10,27 @@ from rugby.team_pages import (
     build_club_index,
     build_id_to_page_key,
     collect_team_fixtures,
+    get_team_page_html,
 )
 from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
+
+
+def _minimal_team_data(**overrides) -> TeamData:
+    team_data: TeamData = {
+        "name": "Barnes",
+        "url": None,
+        "image_url": None,
+        "address": None,
+        "latitude": None,
+        "longitude": None,
+        "formatted_address": None,
+        "constituent_body": None,
+        "league_history": [],
+        "team_ids": set(),
+        "name_seasons": {},
+    }
+    team_data.update(overrides)
+    return team_data
 
 
 class TestFormatTravelCells:
@@ -131,8 +151,7 @@ class TestFixtureHelpers:
             "away_score": 17,
         }
         assert _format_fixture_result(entry) == (
-            '<span class="own-score">24</span> – 17 '
-            '<span class="result-badge result-win">W</span>'
+            '<span class="own-score">24</span> – 17 <span class="result-badge result-win">W</span>'
         )
 
     def test_format_fixture_result_score_away(self):
@@ -148,8 +167,7 @@ class TestFixtureHelpers:
             "away_score": 17,
         }
         assert _format_fixture_result(entry) == (
-            '24 – <span class="own-score">17</span> '
-            '<span class="result-badge result-loss">L</span>'
+            '24 – <span class="own-score">17</span> <span class="result-badge result-loss">L</span>'
         )
 
     def test_format_fixture_result_draw(self):
@@ -165,8 +183,7 @@ class TestFixtureHelpers:
             "away_score": 20,
         }
         assert _format_fixture_result(entry) == (
-            '<span class="own-score">20</span> – 20 '
-            '<span class="result-badge result-draw">D</span>'
+            '<span class="own-score">20</span> – 20 <span class="result-badge result-draw">D</span>'
         )
 
     def test_format_fixture_result_kickoff(self):
@@ -260,3 +277,38 @@ class TestRenderFixturesSection:
         assert html.index("2026-2027") < html.index("2025-2026")
         assert html.count('<details class="fixtures-season"') == 2
         assert "Fixtures & Results" in html
+
+
+class TestGetTeamPageHtml:
+    def test_renders_constituent_body_row_when_known(self):
+        team_data = _minimal_team_data(constituent_body="Surrey Rugby")
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert "Constituent Body:" in html
+        assert "Surrey Rugby" in html
+
+    def test_omits_constituent_body_row_when_unknown(self):
+        team_data = _minimal_team_data(constituent_body=None)
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert "Constituent Body:" not in html

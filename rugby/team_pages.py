@@ -30,6 +30,7 @@ from core.config import CURRENT_SEASON, DIST_DIR
 from core.json_utils import write_compact_json
 from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
 from rugby.seo import BASE_URL as SITE_BASE_URL
@@ -193,6 +194,10 @@ class TeamData(TypedDict):
     latitude: float | None
     longitude: float | None
     formatted_address: str | None
+    # RFU Constituent Body (county union / services body) the club is
+    # affiliated to, e.g. "Surrey Rugby". None when no confident match was
+    # found in the club/CB export (see rugby.constituent_bodies).
+    constituent_body: str | None
     league_history: list[LeagueHistoryEntry]
     # RFU ``team=`` ids observed for this aggregated profile (renames / renumbers).
     team_ids: set[int]
@@ -277,6 +282,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
             latitude=None,
             longitude=None,
             formatted_address=None,
+            constituent_body=None,
             league_history=[],
             team_ids=set(),
             name_seasons={},
@@ -301,6 +307,11 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 teams_data[page_key]["name"] = team_name
                 teams_data[page_key]["url"] = team_url
                 teams_data[page_key]["image_url"] = team.get("image_url")
+                # Keep the most recent successful match rather than blanking it
+                # out if a later season's display name happens not to match.
+                cb = get_constituent_body(team_name)
+                if cb is not None:
+                    teams_data[page_key]["constituent_body"] = cb
                 tid = _parse_rfu_team_id(team_url)
                 if tid is not None:
                     teams_data[page_key]["team_ids"].add(tid)
@@ -759,6 +770,9 @@ def _team_page_structured_data(
     addr = team_data.get("formatted_address") or team_data.get("address")
     if addr:
         payload["address"] = {"@type": "PostalAddress", "streetAddress": addr}
+    constituent_body = team_data.get("constituent_body")
+    if constituent_body:
+        payload["memberOf"] = {"@type": "SportsOrganization", "name": constituent_body}
     return json.dumps(payload, ensure_ascii=True)
 
 
@@ -1108,6 +1122,10 @@ def get_team_page_html(
     if team_data.get("formatted_address") or team_data.get("address"):
         address = team_data.get("formatted_address") or team_data.get("address")
         html += f'        <div class="info-row"><span class="info-label">Address:</span> <span class="address">{escape(address or "")}</span></div>\n'
+
+    constituent_body = team_data.get("constituent_body")
+    if constituent_body:
+        html += f'        <div class="info-row"><span class="info-label">Constituent Body:</span> <span class="address">{escape(constituent_body)}</span></div>\n'
 
     previous_names_html = _format_previous_names(team_data)
     if previous_names_html:

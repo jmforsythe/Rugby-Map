@@ -160,14 +160,19 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2024-2025", "2025-2026", 8),
         ("2026-2027", "", 7),
     ],
+    # Nottinghamshire is 90%+ reserve XVs (discontinued after 2021-2022): those clubs already
+    # sit in the pyramid with their principal XV via the Notts, Lincs & Derbyshire CB's shared
+    # "Midlands East (North)" leagues, so the apex is re-anchored one tier under whichever of
+    # those leagues the clubs' principal XVs actually play in that season (2013-2014 and
+    # 2017-2018 have no Nottinghamshire merit data; their entries are unused placeholders).
     "Nottinghamshire": [
-        # Offset 10 while apex feeds Midlands 5 East (North) in tier_mappings: local 1 → abs 11.
-        # 2008-2009–2017-2018 / 2019-2020 (with East_Midlands, 2008-2010; Notts stem aligned to M5 from 2010-2011).
-        # 2018-2019: no Midlands 5 East — apex at tier 10, stem to Midlands 4 East (North) (offset 9).
-        # Default 9 from :data:`COMPETITION_OFFSETS` when apex uses Midlands 4 naming (2021-2022+).
-        ("2008-2009", "2017-2018", 10),
-        # 2018-2019 / 2019-2020: no Midlands 5 East — apex at tier 10, stem to Midlands 4 East (North).
-        ("2018-2019", "2019-2020", 9),
+        ("2008-2009", "2008-2009", 8),
+        ("2009-2010", "2010-2011", 7),
+        ("2011-2012", "2013-2014", 8),
+        ("2014-2015", "2015-2016", 7),
+        ("2016-2017", "2017-2018", 8),
+        ("2018-2019", "2018-2019", 7),
+        ("2019-2020", "2021-2022", 8),
     ],
     "Rural_Kent": [
         ("2008-2009", "2010-2011", 10),

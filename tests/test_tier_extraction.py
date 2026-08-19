@@ -19,19 +19,23 @@ from rugby.tiers import (
 def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
     """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8).
 
-    Nottinghamshire offset 10 while tier_mappings apex is Midlands 5 East (North) (2008-2009–2017-2018);
-    offset 9 when no Midlands 5 East (2018-2019–2019-2020) or Midlands 4 stem naming (2021-2022+).
+    Nottinghamshire is reserve-XV heavy (Notts, Lincs & Derbyshire CB): its apex is re-anchored
+    one tier under whichever "Midlands East (North)" league its principal XVs actually feed,
+    which shifts between offset 7 and 8 as that league's own tier moves season to season.
     """
     for season in ("2008-2009", "2009-2010", "2010-2011"):
         assert get_competition_offset("East_Midlands", season) == 10
-    for season in ("2008-2009", "2009-2010", "2010-2011", "2011-2012"):
-        assert get_competition_offset("Nottinghamshire", season) == 10
-    for season in ("2018-2019", "2019-2020"):
-        assert get_competition_offset("Nottinghamshire", season) == 9
+    assert get_competition_offset("Nottinghamshire", "2008-2009") == 8
+    for season in ("2009-2010", "2010-2011"):
+        assert get_competition_offset("Nottinghamshire", season) == 7
+    for season in ("2011-2012", "2012-2013"):
+        assert get_competition_offset("Nottinghamshire", season) == 8
+    assert get_competition_offset("Nottinghamshire", "2018-2019") == 7
+    assert get_competition_offset("Nottinghamshire", "2019-2020") == 8
     assert get_competition_offset("East_Midlands", "2007-2008") == 8
     assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
     assert get_competition_offset("East_Midlands", "2011-2012") == 8
-    assert get_competition_offset("Nottinghamshire", "2021-2022") == 9
+    assert get_competition_offset("Nottinghamshire", "2021-2022") == 8
 
 
 class TestExtractTierMenCurrent:

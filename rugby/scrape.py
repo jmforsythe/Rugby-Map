@@ -509,6 +509,8 @@ _BANNED_FILENAMES = [
     "Counties_6_South.json",
     "Leicestershire_U18_League.json",
     "Leicestershire_U17_League.json",
+    "Midlands_East_(South)_A.json",
+    "Midlands_East_(South)_B.json",
 ]
 
 

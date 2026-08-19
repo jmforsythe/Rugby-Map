@@ -1735,7 +1735,7 @@ def _merit_ancestor_candidate_pool(
     if comp is None:
         return []
     ct = child.tier_num
-    lo = 7 if ct >= 7 else 1
+    lo = 7 if ct >= 7 else 0
     out: list[LeagueData] = []
     for t in range(lo, ct):
         for lg in leagues_by_tier.get(t, ()):
@@ -2622,12 +2622,18 @@ def _pyramid_league_lacks_parent(
         return not _resolve_womens_feeder_parents(lg, leagues_by_tier, womens_parent_overrides)
 
     if merit_competition is not None:
-        if lg.merit_local_tier is not None and lg.merit_local_tier <= 1:
+        # ``leagues_by_tier`` is scoped to this one competition's own (visible-renumbered)
+        # rows, so its lowest populated tier is this competition's apex — regardless of
+        # what its *local* tier number happens to be (some competitions' merit folders
+        # skip local tiers 1-2, so the apex's local tier isn't always 1). The apex's real
+        # parent is a men's pyramid league outside this scope, so it can never resolve here.
+        apex_tier = min(leagues_by_tier, default=None)
+        if lg.tier_num == apex_tier:
             return False
         key = (lg.tier_num, lg.league_name)
         if key in parent_overrides and not parent_overrides[key]:
             return False
-        parents_ld = leagues_by_tier.get(lg.tier_num - 1, []) if lg.tier_num > 1 else []
+        parents_ld = leagues_by_tier.get(lg.tier_num - 1, [])
         return not _resolve_stem_parents(
             lg,
             parents_ld,

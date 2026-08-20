@@ -2324,6 +2324,7 @@ def _legend(
 # ``L.Control.Layers`` prototype hook never applies and bulk buttons never appear.
 _LAYER_CONTROL_HOOK_JS = r"""
 (function() {
+    window.RUGBY_MERIT_GROUPS = {{ this.merit_groups_json }};
     /** Matches ``FeatureGroup`` names from ``generate_*_group_map`` (territory shading vs crest markers). */
     function rugbyLayerEntryName(ent) {
         return typeof ent.name === 'string' ? ent.name : '';
@@ -2333,6 +2334,19 @@ _LAYER_CONTROL_HOOK_JS = r"""
     }
     function rugbyIsMarkersOverlay(ent) {
         return rugbyLayerEntryName(ent).indexOf(' - Markers') !== -1;
+    }
+    /** Group name with the trailing ``ent - Territory``/``ent - Markers`` suffix stripped. */
+    function rugbyGroupNameFromEntry(ent) {
+        var name = rugbyLayerEntryName(ent);
+        return name.replace(/ - (Territory|Markers)$/, '');
+    }
+    function rugbyIsMeritOverlay(ent) {
+        return window.RUGBY_MERIT_GROUPS
+            ? window.RUGBY_MERIT_GROUPS.indexOf(rugbyGroupNameFromEntry(ent)) !== -1
+            : false;
+    }
+    function rugbyIsNonMeritOverlay(ent) {
+        return (rugbyIsTerritoryOverlay(ent) || rugbyIsMarkersOverlay(ent)) && !rugbyIsMeritOverlay(ent);
     }
     function rugbyHasTerritoryMarkerSplit(ctrl) {
         if (!ctrl || typeof ctrl._layers !== 'object') {
@@ -2347,6 +2361,21 @@ _LAYER_CONTROL_HOOK_JS = r"""
             if (rugbyIsMarkersOverlay(ent)) hasM = true;
         }
         return hasT && hasM;
+    }
+    function rugbyHasMeritSplit(ctrl) {
+        if (!ctrl || typeof ctrl._layers !== 'object' || !window.RUGBY_MERIT_GROUPS ||
+            !window.RUGBY_MERIT_GROUPS.length) {
+            return false;
+        }
+        var hasMerit = false, hasNonMerit = false, lid;
+        for (lid in ctrl._layers) {
+            if (!Object.prototype.hasOwnProperty.call(ctrl._layers, lid)) continue;
+            var ent = ctrl._layers[lid];
+            if (!ent || !ent.overlay) continue;
+            if (rugbyIsMeritOverlay(ent)) hasMerit = true;
+            else if (rugbyIsNonMeritOverlay(ent)) hasNonMerit = true;
+        }
+        return hasMerit && hasNonMerit;
     }
     function rugbyApplyOverlayBulkFiltered(map, enable, predicate) {
         var ctrl = window.layerControl;
@@ -2381,6 +2410,7 @@ _LAYER_CONTROL_HOOK_JS = r"""
         var overlaySec = panel.querySelector(".leaflet-control-layers-overlays");
         if (!overlaySec) return false;
         var hasSplit = rugbyHasTerritoryMarkerSplit(ctrl);
+        var hasMeritSplit = rugbyHasMeritSplit(ctrl);
         var globalRow =
             '<div class="rugby-layers-bulk-row rugby-layers-bulk-row--global">' +
             '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="all-on">All on</button>' +
@@ -2403,10 +2433,28 @@ _LAYER_CONTROL_HOOK_JS = r"""
                 '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="mrk-off">' +
                 'All off</button></div></div>';
         }
+        var meritBlock = '';
+        if (hasMeritSplit) {
+            meritBlock =
+                '<div class="rugby-layers-bulk-split">' +
+                '<div class="rugby-layers-bulk-subrow">' +
+                '<span class="rugby-layers-bulk-tag">Merit</span>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="merit-on">' +
+                'All on</button>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="merit-off">' +
+                'All off</button></div>' +
+                '<div class="rugby-layers-bulk-subrow">' +
+                '<span class="rugby-layers-bulk-tag">Non-merit</span>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="nonmerit-on">' +
+                'All on</button>' +
+                '<button type="button" class="rugby-layers-bulk-btn" data-rugby-bulk-act="nonmerit-off">' +
+                'All off</button></div></div>';
+        }
         var wrapper = document.createElement('div');
         wrapper.className = 'rugby-layers-bulk-row-wrap';
         wrapper.innerHTML =
-            '<div class="rugby-layers-bulk-hint">Overlay layers</div>' + globalRow + splitBlock;
+            '<div class="rugby-layers-bulk-hint">Overlay layers</div>' + globalRow + splitBlock +
+            meritBlock;
         overlaySec.parentNode.insertBefore(wrapper, overlaySec);
         panel.dataset.rugbyBulkBar = "1";
         wrapper.addEventListener(
@@ -2425,6 +2473,10 @@ _LAYER_CONTROL_HOOK_JS = r"""
                 else if (act === 'terr-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsTerritoryOverlay);
                 else if (act === 'mrk-on') rugbyApplyOverlayBulkFiltered(mapInst, true, rugbyIsMarkersOverlay);
                 else if (act === 'mrk-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsMarkersOverlay);
+                else if (act === 'merit-on') rugbyApplyOverlayBulkFiltered(mapInst, true, rugbyIsMeritOverlay);
+                else if (act === 'merit-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsMeritOverlay);
+                else if (act === 'nonmerit-on') rugbyApplyOverlayBulkFiltered(mapInst, true, rugbyIsNonMeritOverlay);
+                else if (act === 'nonmerit-off') rugbyApplyOverlayBulkFiltered(mapInst, false, rugbyIsNonMeritOverlay);
             },
             true,
         );
@@ -2467,13 +2519,14 @@ class LayerControlHook(MacroElement):
         "{% macro script(this, kwargs) %}" + _LAYER_CONTROL_HOOK_JS + "{% endmacro %}"
     )
 
-    def __init__(self) -> None:
+    def __init__(self, merit_groups: set[str] | None = None) -> None:
         super().__init__()
         self._name = "LayerControlHook"
+        self.merit_groups_json = json.dumps(sorted(merit_groups or ()))
 
 
-def _add_layer_control(m: folium.Map) -> None:
-    m.add_child(LayerControlHook())
+def _add_layer_control(m: folium.Map, merit_groups: set[str] | None = None) -> None:
+    m.add_child(LayerControlHook(merit_groups))
     folium.LayerControl().add_to(m)
 
 
@@ -2736,7 +2789,7 @@ def generate_single_group_map(
             league_border=True,
         )
 
-    _add_layer_control(m)
+    _add_layer_control(m, hatched_groups)
 
     html_el.add_child(folium.Element(_get_boundary_loader_script(config)))
     if config.show_debug:

@@ -2,7 +2,7 @@ SEASON ?= 2026-2027
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages custom-map-data constituent-map all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -25,6 +25,7 @@ help:
 	@echo "  scrape-fixtures  Scrape fixtures from RFU (local only)"
 	@echo "  match-day    Generate match-day map with date dropdown"
 	@echo "  custom-map-data  Export team catalogue for custom map builder"
+	@echo "  constituent-map  Generate the standalone Constituent Bodies map"
 	@echo "  test         Run unit tests"
 	@echo "  review-screenshots  PNG snapshots under dist/ -> screenshots/review/"
 	@echo "  pyramid-gallery HTML carousel for dist/<season>/pyramid* sanity checks"
@@ -78,7 +79,10 @@ webpages:
 custom-map-data:
 	python -m rugby.custom_map
 
-all: scrape addresses geocode distances maps pages webpages custom-map-data
+constituent-map:
+	python -m rugby.maps --season $(SEASON) --constituent-bodies-only
+
+all: scrape addresses geocode distances maps pages webpages custom-map-data constituent-map
 
 scrape-fixtures:
 	python -m rugby.fixtures --season $(SEASON)

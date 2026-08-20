@@ -453,6 +453,7 @@ jobs:
           pids=()
           python -m rugby.team_pages --production & pids+=($!)
           python -m rugby.custom_map --production & pids+=($!)
+          python -m rugby.maps --production --constituent-bodies-only & pids+=($!)
           fail=0
           for pid in "${pids[@]}"; do
             wait "$pid" || fail=1

@@ -142,7 +142,7 @@ def _priority_for_site_path(site_path: str, *, latest_season: str = "") -> float
         return 1.0
     if latest_season and site_path in (f"/{latest_season}/", f"/{latest_season}/match_day/"):
         return 0.9
-    if site_path == "/teams/" or site_path == "/custom-map/":
+    if site_path in ("/teams/", "/custom-map/", "/constituent-bodies/"):
         return 0.85
     if _SEASON_ROOT_INDEX.fullmatch(site_path) or _MATCH_DAY_INDEX.fullmatch(site_path):
         return 0.85

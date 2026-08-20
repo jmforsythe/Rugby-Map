@@ -38,6 +38,7 @@ from core.map_builder import (
     preassign_itl_regions,
 )
 from rugby import BRAND, DATA_DIR, short_season
+from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
 from rugby.seo import (
@@ -179,16 +180,27 @@ def _render_popup_html(
 
 
 def _header_bar_html(
-    season: str,
+    season: str | None,
     title: str,
     subdirectory_depth: int = 0,
     sibling_tiers: list[tuple[str, str]] | None = None,
     current_tier: str | None = None,
 ) -> str:
-    """Fixed map chrome: Home › season › title (or tier dropdown), plus appearance."""
+    """Fixed map chrome: Home › season › title (or tier dropdown), plus appearance.
+
+    ``season=None`` renders a standalone top-level page (Home › title only,
+    no season crumb) — for maps that aren't scoped to a season, e.g. the
+    Constituent Body map.
+    """
     is_prod = get_config().is_production
 
-    if is_prod:
+    if season is None:
+        # Root-level pages always live in their own directory (dist/<slug>/index.html)
+        # in both dev and production, so both need the same number of "../" hops.
+        root_depth = "../" * (1 + subdirectory_depth)
+        home_href = root_depth if is_prod else root_depth + "index.html"
+        season_href = None
+    elif is_prod:
         home_href = "../" * (2 + subdirectory_depth)
         season_href = "../" * (1 + subdirectory_depth)
     else:
@@ -214,15 +226,18 @@ def _header_bar_html(
     else:
         title_html = f'<span class="map-header__title">{escape(title)}</span>'
 
-    season_esc = escape(season)
+    season_crumb = ""
+    if season is not None:
+        season_crumb = (
+            f'<a class="map-header__crumb" href="{escape(season_href)}">{escape(season)}</a>\n'
+            f'        <span class="map-header__sep">&rsaquo;</span>\n        '
+        )
     return f"""
     <div class="map-header-wrap" id="mapHeaderWrap">
     <div class="map-header" id="mapHeader">
         <a class="map-header__crumb" href="{escape(home_href)}">Home</a>
         <span class="map-header__sep">&rsaquo;</span>
-        <a class="map-header__crumb" href="{escape(season_href)}">{season_esc}</a>
-        <span class="map-header__sep">&rsaquo;</span>
-        {title_html}
+        {season_crumb}{title_html}
         <span class="map-header__theme">
         <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
         <select id="rugbyMapThemeSelect" class="map-header__theme-select"
@@ -466,8 +481,15 @@ def _build_config(
 ) -> MapConfig:
     """Build a MapConfig with rugby-specific settings.
 
+    *season* is ``None`` for standalone maps that don't belong to any season
+    (e.g. the Constituent Body map) — the header drops the season crumb, and
+    the output is expected to live in its own top-level ``dist/<slug>/``
+    directory (same layout in dev and production, like ``rugby.custom_map``)
+    rather than under a season folder.
+
     *subdirectory_depth* is how many extra directory levels deep the output is
-    relative to the season folder (0 for top-level maps, 2 for
+    relative to the season folder, or relative to ``dist/`` itself when
+    *season* is ``None`` (0 for top-level maps, 2 for
     ``merit/<Competition>/``).
 
     *tier_entry_level* overrides the default pyramid tier-to-ITL mapping.
@@ -489,12 +511,19 @@ def _build_config(
     is_prod = get_config().is_production
 
     favicon_depth = 1 + subdirectory_depth
-    season_short = short_season(season)
-    meta_desc = (
-        f"{title}, {season_short}: interactive map of every club—crests at each ground, "
-        f"league territory shading, and travel distances. English rugby union from RFU data."
-    )
-    html_title = f"{title} | {season_short} | {BRAND}"
+    if season is None:
+        meta_desc = (
+            f"{title}: interactive map of every club—crests at each ground, territory "
+            f"shading, and travel distances. English rugby union from RFU data."
+        )
+        html_title = f"{title} | {BRAND}"
+    else:
+        season_short = short_season(season)
+        meta_desc = (
+            f"{title}, {season_short}: interactive map of every club—crests at each ground, "
+            f"league territory shading, and travel distances. English rugby union from RFU data."
+        )
+        html_title = f"{title} | {season_short} | {BRAND}"
     header_elements = [
         get_favicon_html(depth=favicon_depth),
         f'<meta name="description" content="{escape(meta_desc)}">',
@@ -511,20 +540,17 @@ def _build_config(
         if rel_parent:
             page_url = _absolute_map_url(rel_parent)
             cu = escape(page_url)
+            crumbs = [("Home", f"{BASE_URL}/")]
+            if season is not None:
+                crumbs.append((season, f"{BASE_URL}/{season}/"))
+            crumbs.append((title, page_url))
             header_elements.extend(
                 [
                     f'<link rel="canonical" href="{cu}">',
                     f'<meta property="og:url" content="{cu}" />',
                     og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent=""),
                     get_twitter_card_meta(),
-                    breadcrumb_ld_script(
-                        [
-                            ("Home", f"{BASE_URL}/"),
-                            (season, f"{BASE_URL}/{season}/"),
-                            (title, page_url),
-                        ],
-                        indent="",
-                    ),
+                    breadcrumb_ld_script(crumbs, indent=""),
                 ]
             )
     if is_prod:
@@ -546,7 +572,7 @@ def _build_config(
         shared_path = "../" * (1 + subdirectory_depth) + "shared"
 
     return MapConfig(
-        title=f"{season} {title}",
+        title=title if season is None else f"{season} {title}",
         html_title=html_title,
         center=(52.5, -1.5),
         zoom=7,
@@ -580,6 +606,30 @@ def _group_by_tier(
         by_tier.setdefault(it.tier, []).append(it)
     order = sorted(by_tier.keys(), key=lambda t: by_tier[t][0].tier_num)
     return by_tier, order
+
+
+#: Placeholder tier for the Constituent Body map: every club is folded into a
+#: single flat "league" (one partition, no per-tier splitting) so the
+#: territory algorithm draws one region per CB instead of one per pyramid tier.
+CONSTITUENT_BODY_TIER = "Constituent Bodies"
+
+
+def _group_by_constituent_body(items: list[MarkerItem]) -> list[MarkerItem]:
+    """Collapse items into one CB-per-club "league", dropping unmatched clubs.
+
+    Original tier/tier_num/category are cleared to a shared constant so the
+    single-group-map renderer treats every club as one flat competition (all
+    clubs, grouped only by CB) rather than re-splitting territory by each
+    club's actual pyramid tier or competition.
+    """
+    result = []
+    for it in items:
+        cb = get_constituent_body(it.name)
+        if cb:
+            result.append(
+                replace(it, group=cb, tier=CONSTITUENT_BODY_TIER, tier_num=0, category=None)
+            )
+    return result
 
 
 #: Sentinel entry for :func:`_header_bar_html`: an empty href renders a disabled
@@ -640,6 +690,47 @@ def _output_path(output_dir: Path, name: str, is_prod: bool) -> Path:
     return output_dir / f"{name}.html"
 
 
+def generate_constituent_body_map(season: str, show_debug: bool) -> None:
+    """Build the standalone, season-independent map of every club shaded by its
+    RFU Constituent Body, using ``season``'s geocoded club data as the club list.
+
+    Lives at ``dist/constituent-bodies/`` (same layout in dev and production,
+    like ``rugby.custom_map``) rather than under a season folder, since CB
+    affiliation doesn't change from one season to the next.
+    """
+    logger.info("Generating constituent body map from %s data...", season)
+
+    travel_distance_path = DATA_DIR / "distance_cache" / f"{season}.json"
+    travel_distances: TravelDistances | None = None
+    if travel_distance_path.exists():
+        travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
+        travel_distances = enrich_island_excl_stats(travel_distances, season, DistanceLookup.load())
+
+    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    loaded = _load_marker_items(geocoded_dir, season, travel_distances)
+
+    itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
+    all_items = loaded.pyramid + [it for items in loaded.merit.values() for it in items]
+    preassign_itl_regions(all_items, itl_hierarchy)
+
+    cb_items = _group_by_constituent_body(_resolve_info_links(all_items))
+    if not cb_items:
+        logger.warning("No clubs matched to a Constituent Body; skipping constituent body map")
+        return
+
+    out = DIST_DIR / "constituent-bodies" / "index.html"
+    config = _build_config(
+        "Constituent Bodies",
+        None,
+        show_debug,
+        tier_entry_level={},
+        tier_floor_level={},
+        output_file=out,
+    )
+    generate_single_group_map(cb_items, out, itl_hierarchy, config, {})
+    logger.info("Constituent body map created at %s", out)
+
+
 # ---------------------------------------------------------------------------
 # CLI and main
 # ---------------------------------------------------------------------------
@@ -690,6 +781,14 @@ def main() -> None:
             "Uses the same geometry sources as tier maps — run once before parallel per-season CI jobs."
         ),
     )
+    parser.add_argument(
+        "--constituent-bodies-only",
+        action="store_true",
+        help=(
+            "Generate the standalone, season-independent map of all clubs grouped by RFU "
+            "Constituent Body (dist/constituent-bodies/) and exit. Run once, not per season."
+        ),
+    )
     args = parser.parse_args()
 
     set_config(is_production=args.production, season=args.season, show_debug=not args.no_debug)
@@ -705,6 +804,10 @@ def main() -> None:
             skip_if_exists=False,
             itl_hierarchy=itl_hierarchy,
         )
+        return
+
+    if args.constituent_bodies_only:
+        generate_constituent_body_map(args.season, show_debug=not args.no_debug)
         return
 
     season = args.season

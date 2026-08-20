@@ -42,8 +42,10 @@ _HOME_PAGE_FAQ: tuple[dict[str, str | None], ...] = (
     {
         "question": "What about leagues outside the RFU?",
         "answer_plain": (
-            '"Merit" leagues organised by the local county bodies are included, but the '
-            '"levels" assigned to them are somewhat arbitrary.'
+            '"Merit" leagues organised by the local county bodies are included. We\'ve tried to '
+            "intelligently determine whether a given merit league belongs below all other leagues "
+            'in its region or alongside them, but the "levels" assigned to them are somewhat '
+            "arbitrary."
         ),
         "answer_html": None,
     },
@@ -74,6 +76,19 @@ _HOME_PAGE_FAQ: tuple[dict[str, str | None], ...] = (
         "answer_html": None,
     },
     {
+        "question": "How are the clubs organised?",
+        "answer_plain": (
+            "Clubs belong to RFU Constituent Bodies, primarily county unions (plus a few "
+            "services bodies) - see the map of Constituent Bodies."
+        ),
+        "answer_html": (
+            "Clubs belong to "
+            '<a href="https://help.rfu.com/support/solutions/articles/103000063985-how-do-i-find-my-constituent-body-cb-" '
+            'target="_blank">RFU Constituent Bodies</a>, primarily county unions (plus a few '
+            'services bodies) &mdash; see the <a href="%CB_MAP_HREF%">map here</a>.'
+        ),
+    },
+    {
         "question": "I found an error. How can I report it?",
         "answer_plain": (
             "Please open an issue on our GitHub repository with details about the error you found."
@@ -86,14 +101,14 @@ _HOME_PAGE_FAQ: tuple[dict[str, str | None], ...] = (
 )
 
 
-def _home_page_faq_html() -> str:
+def _home_page_faq_html(cb_map_href: str) -> str:
     """Visible FAQ section (aligned with JSON-LD entries)."""
     blocks: list[str] = []
     for item in _HOME_PAGE_FAQ:
         q = escape(str(item["question"]))
         raw_html = item.get("answer_html")
         if raw_html:
-            a = str(raw_html)
+            a = str(raw_html).replace("%CB_MAP_HREF%", cb_map_href)
         else:
             a = escape(str(item["answer_plain"]))
         blocks.append(f"""        <div class="faq-item">
@@ -696,6 +711,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     teams_href = "./teams/" if is_prod else "./teams/index.html"
     match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
+    cb_map_href = "./constituent-bodies/" if is_prod else "./constituent-bodies/index.html"
 
     home_title = f"{BRAND} \u2013 English Rugby Club & League Maps"
     home_desc = (
@@ -766,7 +782,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     <div class="faq">
         <h2>FAQ</h2>
 
-{_home_page_faq_html()}
+{_home_page_faq_html(cb_map_href)}
     </div>
 
     <script>

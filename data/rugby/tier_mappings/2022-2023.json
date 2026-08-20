@@ -87,15 +87,24 @@
     }
   },
   "CANDY": {
+    "1": {
+      "Division One": "Counties 1 Durham & Northumberland"
+    },
     "2": {
       "Division Two North": "Division One",
       "Division Two South": "Division One"
-    },
+    }
+  },
+  "Devon": {
     "1": {
-      "Division One": "Counties 1 Durham & Northumberland"
+      "Devon Merit Table 1 NE": "Counties 2 Tribute Devon",
+      "Devon Merit Table 1 SW": "Counties 2 Tribute Devon"
     }
   },
   "East_Midlands": {
+    "1": {
+      "East Midlands 1": "Counties 2 Midlands East (South)"
+    },
     "2": {
       "East Midlands 3 South": "East Midlands 1",
       "East Midlands 3 West": "East Midlands 1"
@@ -103,26 +112,26 @@
     "3": {
       "East Midlands 3 South": "East Midlands 1",
       "East Midlands 3 West": "East Midlands 1"
-    },
-    "1": {
-      "East Midlands 1": "Counties 2 Midlands East (South)"
     }
   },
   "Eastern_Counties": {
+    "1": {
+      "Eastern Counties Greene King Division One North": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One South": "Counties 2 Eastern Counties",
+      "Eastern Counties Greene King Division One West": "Counties 2 Eastern Counties"
+    },
     "2": {
       "Eastern Counties Greene King Division Two South": "Eastern Counties Greene King Division One South",
       "Eastern Counties Greene King Division Two North": "Eastern Counties Greene King Division One North"
     },
     "3": {
       "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North"
-    },
-    "1": {
-      "Eastern Counties Greene King Division One North": "Counties 2 Eastern Counties",
-      "Eastern Counties Greene King Division One South": "Counties 2 Eastern Counties",
-      "Eastern Counties Greene King Division One West": "Counties 3 Midlands East (South)"
     }
   },
   "Essex": {
+    "1": {
+      "Premier Division": "Counties 3 Herts/Middx"
+    },
     "2": {
       "Division 2": "Premier Division"
     },
@@ -138,32 +147,32 @@
     "6": {
       "Division 6 East": "Division 5",
       "Division 6 West": "Division 5"
-    },
-    "1": {
-      "Premier Division": "Counties 3 Herts/Middx"
     }
   },
   "GRFU_District": {
-    "2": {
-      "Bristol & District 2": "Bristol & District 1",
-      "Gloucester & District 2": "Gloucester & District 1"
-    },
     "1": {
       "Bristol & District 1": "Counties 4 Tribute Gloucestershire South",
       "Gloucester & District 1": "Counties 4 Tribute Gloucestershire North"
+    },
+    "2": {
+      "Bristol & District 2": "Bristol & District 1",
+      "Gloucester & District 2": "Gloucester & District 1"
     }
   },
   "Hampshire": {
+    "4": {
+      "Counties 4 Hampshire": "Counties 5 Surrey"
+    },
     "5": {
       "Counties 5 Hampshire North": "Counties 4 Hampshire",
       "Counties 5 Hampshire South East": "Counties 4 Hampshire",
       "Counties 5 Hampshire South West": "Counties 4 Hampshire"
-    },
-    "4": {
-      "Counties 4 Hampshire": "Counties 5 Surrey"
     }
   },
   "Herts_Middlesex": {
+    "1": {
+      "Merit 1": "Counties 1 Herts/Middx"
+    },
     "2": {
       "Merit 2": "Merit 1"
     },
@@ -179,23 +188,23 @@
         "Merit 4 North",
         "Merit 4 South"
       ]
-    },
-    "1": {
-      "Merit 1": "Counties 1 Herts/Middx"
     }
   },
   "Leicestershire": {
+    "1": {
+      "Leicestershire Merit A": "Counties 4 adm Lancashire & Cheshire"
+    },
     "2": {
       "Leicestershire Merit B": "Leicestershire Merit A"
     },
     "4": {
       "Leicestershire Merit D": "Leicestershire Merit B"
-    },
-    "1": {
-      "Leicestershire Merit A": "Counties 4 adm Lancashire & Cheshire"
     }
   },
   "Middlesex": {
+    "1": {
+      "Premier Division": "Counties 1 Herts/Middx"
+    },
     "2": {
       "Division 1": "Premier Division"
     },
@@ -207,23 +216,23 @@
     },
     "5": {
       "Division 4": "Division 3"
-    },
-    "1": {
-      "Premier Division": "Counties 1 Herts/Middx"
     }
   },
   "Midlands_Reserve": {
-    "2": {
-      "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
-    },
     "1": {
       "Midlands Reserve League Div 1": [
         "Counties 4 Midlands West (North)",
         "Counties 4 Midlands West (South)"
       ]
+    },
+    "2": {
+      "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
     }
   },
   "NOWIRUL": {
+    "3": {
+      "NOWIRUL COTTON TRADERS PREMIER LEAGUE": "Counties 1 adm Lancashire & Cheshire"
+    },
     "4": {
       "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL COTTON TRADERS PREMIER LEAGUE"
     },
@@ -250,24 +259,24 @@
     "8": {
       "NOWIRUL Division 5 East": "NOWIRUL Division 4 East",
       "NOWIRUL MAS Optimal Division 5 West": "NOWIRUL Division 4 West"
-    },
-    "3": {
-      "NOWIRUL COTTON TRADERS PREMIER LEAGUE": "Counties 1 adm Lancashire & Cheshire"
     }
   },
   "Rural_Kent": {
+    "1": {
+      "Kent A Rural": "Counties 2 Kent"
+    },
     "2": {
       "Kent B Rural": "Kent A Rural"
     },
     "3": {
       "Kent C Rural East": "Kent B Rural",
       "Kent C Rural West": "Kent B Rural"
-    },
-    "1": {
-      "Kent A Rural": "Counties 2 Kent"
     }
   },
   "Surrey": {
+    "1": {
+      "Surrey Premiership League 1 2022-2023": "Counties 2 Surrey"
+    },
     "2": {
       "Surrey Championship League 2 2022-2023": "Surrey Premiership League 1 2022-2023"
     },
@@ -286,27 +295,18 @@
     "7": {
       "Surrey Foundation A League 7 2022-2023": "Surrey Combination 2 League 6 2022-2023",
       "Surrey Foundation B league 7 2022-2023": "Surrey Combination 2 League 6 2022-2023"
-    },
-    "1": {
-      "Surrey Premiership League 1 2022-2023": "Counties 2 Surrey"
     }
   },
   "Sussex": {
+    "3": {
+      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
+    },
     "4": {
       "Harvey's Wharf IPA Counties 4 Sussex": "Harvey's Brewery Counties 3 Sussex"
     },
     "5": {
       "Harvey's Olympia Counties 5 Sussex East": "Harvey's Wharf IPA Counties 4 Sussex",
       "Harvey's Olympia Counties 5 Sussex West": "Harvey's Wharf IPA Counties 4 Sussex"
-    },
-    "3": {
-      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
-    }
-  },
-  "Devon": {
-    "1": {
-      "Devon Merit Table 1 NE": "Counties 2 Tribute Devon",
-      "Devon Merit Table 1 SW": "Counties 2 Tribute Devon"
     }
   }
 }

@@ -2648,7 +2648,9 @@ def _pyramid_league_lacks_parent(
 
     key = (lg.tier_num, lg.league_name)
     if key in parent_overrides:
-        return not parent_overrides[key]
+        # An explicit unlink (empty override) is a deliberate "no parent" decision,
+        # same as merit/womens branches above — not a missing mapping to warn about.
+        return False
 
     if lg.tier_num in (5, 6):
         return True

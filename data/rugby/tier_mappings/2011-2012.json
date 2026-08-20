@@ -245,6 +245,12 @@
       "First Division": "Herts/Middlesex 1"
     }
   },
+  "Midlands_Reserve": {
+    "1": {
+      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
+      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
+    }
+  },
   "NOWIRUL": {
     "2": {
       "University of Salford Division 1": "Bateman BMW Premier League"
@@ -341,12 +347,6 @@
     },
     "1": {
       "Surrey Premier": "Surrey 1"
-    }
-  },
-  "Midlands_Reserve": {
-    "1": {
-      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
-      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
     }
   }
 }

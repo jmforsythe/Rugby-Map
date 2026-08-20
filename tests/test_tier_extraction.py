@@ -17,25 +17,31 @@ from rugby.tiers import (
 
 
 def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> None:
-    """East Midlands apex maps under nationals via offset 10 through 2010-2011 (then base offset 8).
+    """East Midlands apex offset tracks its recorded apex parent's actual absolute tier each
+    season: 7 in 2008-2009 and 2010-2011 through 2021-2022, 8 in 2009-2010 (then base offset 8
+    from 2022-2023).
 
-    Nottinghamshire is reserve-XV heavy (Notts, Lincs & Derbyshire CB): its apex is re-anchored
-    one tier under whichever "Midlands East (North)" league its principal XVs actually feed,
-    which shifts between offset 7 and 8 as that league's own tier moves season to season.
+    Nottinghamshire is reserve-XV heavy (Notts, Lincs & Derbyshire CB): its apex parent
+    (Midlands 2/3 East (North), as literally recorded in tier_mappings) sits at tier 7 in every
+    season from 2008-2009 through 2021-2022, so its offset is a uniform 7 throughout.
     """
-    for season in ("2008-2009", "2009-2010", "2010-2011"):
-        assert get_competition_offset("East_Midlands", season) == 10
-    assert get_competition_offset("Nottinghamshire", "2008-2009") == 8
-    for season in ("2009-2010", "2010-2011"):
+    assert get_competition_offset("East_Midlands", "2008-2009") == 7
+    assert get_competition_offset("East_Midlands", "2009-2010") == 8
+    assert get_competition_offset("East_Midlands", "2010-2011") == 7
+    for season in (
+        "2008-2009",
+        "2009-2010",
+        "2010-2011",
+        "2011-2012",
+        "2012-2013",
+        "2018-2019",
+        "2019-2020",
+        "2021-2022",
+    ):
         assert get_competition_offset("Nottinghamshire", season) == 7
-    for season in ("2011-2012", "2012-2013"):
-        assert get_competition_offset("Nottinghamshire", season) == 8
-    assert get_competition_offset("Nottinghamshire", "2018-2019") == 7
-    assert get_competition_offset("Nottinghamshire", "2019-2020") == 8
     assert get_competition_offset("East_Midlands", "2007-2008") == 8
     assert get_competition_offset("Nottinghamshire", "2007-2008") == 9
-    assert get_competition_offset("East_Midlands", "2011-2012") == 8
-    assert get_competition_offset("Nottinghamshire", "2021-2022") == 8
+    assert get_competition_offset("East_Midlands", "2011-2012") == 7
 
 
 class TestExtractTierMenCurrent:
@@ -376,10 +382,12 @@ class TestExtractTierMeritPath:
         assert result == (2, "Leicestershire 2")
 
     def test_leicestershire_offset_when_apex_midlands_4_east_south(self) -> None:
-        """Premiership/LRU apex feeds Midlands 4 East (South) in tier_mappings (2010-2011–2014-2015)."""
+        """Premiership/LRU apex parent (Midlands 2 East (South), as literally recorded in
+        tier_mappings) sits at tier 7 in every season from 2010-2011 through 2021-2022, so the
+        offset is a uniform 7 throughout."""
         for season in ("2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015"):
-            assert get_competition_offset("Leicestershire", season) == 9
-        assert get_competition_offset("Leicestershire", "2015-2016") == 8
+            assert get_competition_offset("Leicestershire", season) == 7
+        assert get_competition_offset("Leicestershire", "2015-2016") == 7
 
     def test_middlesex_premier_division(self):
         result = extract_tier("merit/Middlesex/Premier_Division.json", "2025-2026")
@@ -415,11 +423,11 @@ class TestExtractTierMeritPath:
         assert result == (2, "NOWIRUL 2")
 
     def test_nowirul_2023_2024_no_championship_gap(self):
-        """2022-2024: locals 3–8 (reserved 1–2) with offset 7 → abs 10–15.
+        """2022-2024: locals 3–8 (reserved 1–2) with offset 5 → abs 8–13.
 
         NOWIRUL is ~92% reserve XVs, so the apex is anchored alongside the Lancashire &
-        Cheshire ladder — under Counties 3 adm Lancashire & Cheshire at absolute 10 —
-        rather than below the foot of the pyramid.
+        Cheshire ladder — under Counties 1 adm Lancashire & Cheshire (tier 7, its literally
+        recorded apex parent) at absolute 8 — rather than below the foot of the pyramid.
         """
         assert extract_tier("merit/NOWIRUL/NOWIRUL_BATHTIME_PREMIER_LEAGUE.json", "2023-2024") == (
             3,
@@ -431,7 +439,7 @@ class TestExtractTierMeritPath:
         assert extract_tier(
             "merit/NOWIRUL/NOWIRUL_Wayne_Lord_Plumbing_Division_2_North.json", "2023-2024"
         ) == (5, "NOWIRUL 5")
-        assert get_competition_offset("NOWIRUL", "2023-2024") == 7
+        assert get_competition_offset("NOWIRUL", "2023-2024") == 5
 
     def test_nowirul_old_conference(self):
         result = extract_tier("merit/NOWIRUL/Bateman_BMW_Conference_A.json", "2013-2014")
@@ -569,9 +577,9 @@ class TestExtractTierMeritPath:
             10,
             "Surrey 10",
         )
-        assert get_competition_offset("Surrey", "2011-2012") == 12
-        assert get_competition_offset("Surrey", "2013-2014") == 10
-        assert get_competition_offset("Surrey", "2014-2015") == 10
+        assert get_competition_offset("Surrey", "2011-2012") == 9
+        assert get_competition_offset("Surrey", "2013-2014") == 7
+        assert get_competition_offset("Surrey", "2014-2015") == 7
         assert extract_tier("merit/Surrey/Surrey_Championship.json", "2015-2016") == (
             2,
             "Surrey 2",
@@ -657,8 +665,8 @@ class TestExtractTierMeritPath:
             5,
             "Hampshire 5",
         )
-        assert get_competition_offset("Hampshire", "2015-2016") == 6
-        assert get_competition_offset("Hampshire", "2016-2017") == 5
+        assert get_competition_offset("Hampshire", "2015-2016") == 5
+        assert get_competition_offset("Hampshire", "2016-2017") == 4
 
     def test_five_grain_sponsor_stripped(self):
         """Five_Grain_ sponsor prefix is stripped so 'Five' is not parsed as 5."""

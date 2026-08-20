@@ -1,6 +1,6 @@
 // Service Worker for caching external resources (especially RFU images)
 // and the self-hosted vendor JS/CSS bundles introduced to cut CDN round-trips.
-const CACHE_NAME = "rugby-maps-v2";
+const CACHE_NAME = "rugby-maps-v3";
 const IMAGE_CACHE = "rugby-images-v2";
 const VENDOR_CACHE = "rugby-vendor-v2";
 const CURRENT_CACHES = [CACHE_NAME, IMAGE_CACHE, VENDOR_CACHE];
@@ -140,7 +140,13 @@ self.addEventListener("fetch", (event) => {
         return cache.match(event.request).then((response) => {
           const fetchPromise = fetch(event.request)
             .then((networkResponse) => {
-              cache.put(event.request, networkResponse.clone());
+              // Only cache successful responses - a transient 404/5xx during
+              // a deploy must never poison the cache, or stale-while-revalidate
+              // will keep serving that same failure on every future load
+              // instead of retrying the network.
+              if (networkResponse && networkResponse.ok) {
+                cache.put(event.request, networkResponse.clone());
+              }
               return networkResponse;
             })
             .catch(() => response);

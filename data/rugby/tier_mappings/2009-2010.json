@@ -78,17 +78,17 @@
     "Yorkshire Division One": "North One East"
   },
   "Devon": {
-    "2": {
-      "Devon Merit Table 2": "Tribute Devon One"
-    },
     "3": {
       "Devon Merit Table 3NE": "Devon Merit Table 2"
+    },
+    "2": {
+      "Devon Merit Table 2": [
+        "Tribute Devon One",
+        "Tribute Devon One South & West"
+      ]
     }
   },
   "East_Midlands": {
-    "1": {
-      "Bombardier League": "Midlands 5 East (North)"
-    },
     "2": {
       "Eagle IPA League": "Bombardier League"
     },
@@ -100,12 +100,12 @@
     },
     "5": {
       "Winter Warmer League": "Waggledance League"
+    },
+    "1": {
+      "Bombardier League": "Midlands 3 East (South)"
     }
   },
   "Hampshire": {
-    "5": {
-      "Hampshire Senior Merit": "Hampshire 2"
-    },
     "6": {
       "Hampshire Merit One": "Hampshire Senior Merit"
     },
@@ -114,12 +114,12 @@
     },
     "8": {
       "Hampshire Merit Three": "Hampshire Merit Two"
+    },
+    "5": {
+      "Hampshire Senior Merit": "Hampshire 1"
     }
   },
   "Herts_Middlesex": {
-    "1": {
-      "Merit Table 1": "Herts/Middlesex 4"
-    },
     "2": {
       "Merit Table 2": "Merit Table 1"
     },
@@ -137,15 +137,12 @@
     },
     "7": {
       "Merit Table 7": "Merit Table 6"
+    },
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 1"
     }
   },
   "Leicestershire": {
-    "1": {
-      "LRU Conference": [
-        "Midlands East (South) A",
-        "Midlands East (South) B"
-      ]
-    },
     "2": {
       "LRU Division 1": "LRU Conference"
     },
@@ -160,12 +157,12 @@
     },
     "8": {
       "LRU Division 7": "LRU Division 6"
+    },
+    "1": {
+      "LRU Conference": "Midlands 5 East (South)"
     }
   },
   "Middlesex": {
-    "1": {
-      "First Division": "Herts/Middlesex 1"
-    },
     "2": {
       "Second Division": "First Division"
     },
@@ -177,12 +174,12 @@
     },
     "5": {
       "Fifth Division": "Fourth Division"
+    },
+    "1": {
+      "First Division": "Herts/Middlesex 1"
     }
   },
   "Nottinghamshire": {
-    "1": {
-      "Group 1": "Midlands 5 East (North)"
-    },
     "3": {
       "Group 3": "Group 1"
     },
@@ -194,24 +191,24 @@
     },
     "6": {
       "Group 6": "Group 5"
+    },
+    "1": {
+      "Group 1": "Midlands 2 East (North)"
     }
   },
   "Rural_Kent": {
-    "1": {
-      "Division A": "Shepherd Neame Kent 2"
-    },
     "2": {
       "Division B": "Division A"
     },
     "3": {
       "Division C": "Division B",
       "Invicta 3": "Division B"
+    },
+    "1": {
+      "Division A": "Shepherd Neame Kent 2"
     }
   },
   "Surrey": {
-    "1": {
-      "Surrey JONAP Premier": "Surrey 4"
-    },
     "2": {
       "Surrey JONAP Alliance": "Surrey JONAP Premier"
     },
@@ -235,6 +232,9 @@
     },
     "9": {
       "Surrey JONAP Foundation League": "Surrey JONAP Combination 3"
+    },
+    "1": {
+      "Surrey JONAP Premier": "Surrey 1"
     }
   }
 }

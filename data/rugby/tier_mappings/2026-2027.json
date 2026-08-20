@@ -115,12 +115,57 @@
     },
     "3": {
       "East Midlands Merit B1": "East Midlands Merit A"
+    },
+    "0": {
+      "East Midlands Merit B2": "Counties 2 Midlands East (South)"
+    }
+  },
+  "Eastern_Counties": {
+    "2": {
+      "Eastern Counties Division Two North": "Eastern Counties Division One North",
+      "Eastern Counties Division Two South": "Eastern Counties Division One South",
+      "Eastern Counties Division Two West": "Eastern Counties Division One West"
+    },
+    "1": {
+      "Eastern Counties Division One North": "Counties 2 Eastern Counties",
+      "Eastern Counties Division One South": "Counties 2 Eastern Counties",
+      "Eastern Counties Division One West": "Counties 2 Eastern Counties"
+    }
+  },
+  "Essex": {
+    "2": {
+      "Division 2": "Division 1"
+    },
+    "3": {
+      "Division 3": "Division 2"
+    },
+    "1": {
+      "Division 1": "Counties 1 Essex"
+    }
+  },
+  "Leicestershire": {
+    "2": {
+      "Leicestershire Merit B": "Leicestershire Merit A"
+    },
+    "1": {
+      "Leicestershire Merit A": "Counties 2 Midlands East (South)"
+    }
+  },
+  "Middlesex": {
+    "2": {
+      "Division 1": "Premier Division"
+    },
+    "3": {
+      "Division 2": "Division 1"
+    },
+    "4": {
+      "Division 3": "Division 2"
+    },
+    "1": {
+      "Premier Division": "Counties 1 Middx"
     }
   },
   "NOWIRUL": {
-    "1": {
-      "NOWIRUL Bathtime Premier League": "Counties 1 adm Lancashire & Cheshire"
-    },
     "2": {
       "NOWIRUL BAINES PLUMBING DIVISION 1": "NOWIRUL Bathtime Premier League"
     },
@@ -138,16 +183,36 @@
     },
     "5": {
       "NOWIRUL County Couriers Division 4 North/Central": "NOWIRUL Rainford Electrical Services Division 3 North/Central",
-      "NOWIRUL Division 4 West": "NOWIRUL Trevolution Ltd Division 3 West"
+      "NOWIRUL Division 4 West": "NOWIRUL Trevolution Ltd Division 3 West",
+      "NOWIRUL  Division 4 East": [
+        "NOWIRUL Alchemi Professional Solutions  Division 3 South",
+        "NOWIRUL Rainford Electrical Services Division 3 North/Central"
+      ]
+    },
+    "6": {
+      "NOWIRUL The Last Drop Division 5 West": "NOWIRUL Division 4 West",
+      "NOWIRUL The Last Drop Division 5 East": "NOWIRUL  Division 4 East"
+    },
+    "1": {
+      "NOWIRUL Bathtime Premier League": "Counties 1 adm Lancashire & Cheshire"
+    }
+  },
+  "Rural_Kent": {
+    "2": {
+      "Kent B Rural - East": "Kent A Rural",
+      "Kent Rural B - West": "Kent A Rural"
+    },
+    "1": {
+      "Kent A Rural": "Counties 2 Kent"
     }
   },
   "Sussex": {
-    "3": {
-      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
-    },
     "4": {
       "Harvey's Wharf IPA Counties 4 Sussex East": "Harvey's Brewery Counties 3 Sussex",
       "Harvey's Wharf IPA Counties 4 Sussex West": "Harvey's Brewery Counties 3 Sussex"
+    },
+    "3": {
+      "Harvey's Brewery Counties 3 Sussex": "Counties 2 Sussex"
     }
   }
 }

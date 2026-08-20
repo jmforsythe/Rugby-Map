@@ -92,31 +92,18 @@ def cb_votes_for_clubs(teams: list[str]) -> Counter:
     return votes
 
 
-def build_pyramid_cb_index(placements: list) -> dict[str, list]:
-    """Map CB name -> sorted list of (abs_tier, league_name) pyramid leagues that season.
+def build_pyramid_league_cb_votes(placements: list) -> dict[tuple[int, str], Counter]:
+    """Map (abs_tier, league_name) -> full CB vote breakdown among that league's own clubs.
 
-    A pyramid league's CB is the majority vote of its own member clubs.
+    Kept as the whole distribution (not just the top CB) so a league that a relevant
+    CB merely has a presence in -- without being that league's own dominant CB --
+    still surfaces as a candidate, and its full CB makeup can be shown.
     """
     by_league: dict[tuple[int, str], list[str]] = defaultdict(list)
     for p in placements:
         if not p.is_merit:
             by_league[(p.abs_tier, p.league)].append(p.team)
-
-    index: dict[str, list] = defaultdict(list)
-    seen: set[tuple[int, str]] = set()
-    for (abs_tier, league), teams in by_league.items():
-        if (abs_tier, league) in seen:
-            continue
-        seen.add((abs_tier, league))
-        votes = cb_votes_for_clubs(teams)
-        if not votes:
-            continue
-        top_cb, _ = votes.most_common(1)[0]
-        index[top_cb].append((abs_tier, league))
-
-    for cb in index:
-        index[cb].sort()
-    return index
+    return {key: cb_votes_for_clubs(teams) for key, teams in by_league.items()}
 
 
 def prompt_choice(prompt: str) -> str:
@@ -124,6 +111,10 @@ def prompt_choice(prompt: str) -> str:
         return input(prompt).strip()
     except EOFError:
         return "q"
+
+
+class _QuitError(Exception):
+    """Raised to unwind out of the review loop(s) on the [q] command."""
 
 
 def main() -> int:
@@ -136,6 +127,12 @@ def main() -> int:
         "--redo",
         action="store_true",
         help="Re-visit pairs that already have a tier-1 parent set (default: auto-skip them)",
+    )
+    parser.add_argument(
+        "--auto-accept-suggestions",
+        action="store_true",
+        help="When a carried-forward suggestion is found, write it immediately instead of "
+        "prompting (equivalent to always picking [0]). Pairs with no suggestion still prompt.",
     )
     args = parser.parse_args()
 
@@ -199,11 +196,23 @@ def main() -> int:
             all_mappings[season] = json.loads(path.read_text(encoding="utf-8"))
 
     def carried_forward_parent(
-        season: str, comp: str, apex_leagues: list[str]
+        season: str,
+        comp: str,
+        apex_leagues: list[str],
+        relevant_cbs: set[str],
+        league_cb_votes: dict[tuple[int, str], Counter],
     ) -> tuple[str, str | list[str]] | None:
-        """Nearest other season's apex parent for *comp*, if its league name(s) still
-        exist as real pyramid leagues this season (this also keeps it from ever
-        suggesting a pre-restructure name across a naming-era boundary).
+        """Nearest other season's apex parent for *comp*, if it (or an equivalent
+        league) can be identified as still existing this season.
+
+        Tried in order:
+        1. Exact name match -- the parent league's name(s) haven't changed at all.
+        2. Same absolute tier + same Constituent Body -- pyramid league names churn
+           constantly (sponsor prefixes, "One" vs "1", "Prem" vs "Premier", ...) so
+           exact-name matching alone almost never survives a season boundary. A CB's
+           own league at a given absolute tier is a much more stable identity than
+           its display name. Only used when it resolves to exactly one league this
+           season, to avoid guessing wrong when a tier split into multiple leagues.
 
         The other season's apex tier key isn't necessarily "1" -- some competitions'
         merit folders skip low local tiers -- so it's read as that season's own lowest
@@ -228,42 +237,88 @@ def main() -> int:
                 names = parent if isinstance(parent, list) else [parent]
                 if all(n in this_season_leagues for n in names):
                     return other, parent
+                if len(names) == 1:
+                    other_abs_tier = pyramid_league_tiers_by_season.get(other, {}).get(names[0])
+                    if other_abs_tier is not None:
+                        same_tier_cb_matches = sorted(
+                            {
+                                league
+                                for (abs_tier, league), votes in league_cb_votes.items()
+                                if abs_tier == other_abs_tier and relevant_cbs & set(votes)
+                            }
+                        )
+                        if len(same_tier_cb_matches) == 1:
+                            return other, same_tier_cb_matches[0]
         return None
 
-    for i, (season, comp) in enumerate(items, 1):
-        key = f"{season}|{comp}"
-        if key in done and not args.redo:
-            continue
+    # Computed once per season (not once per competition-season pair): building this
+    # calls get_constituent_body over every pyramid club that season, which is the same
+    # work regardless of which merit competition is currently being reviewed. Redoing
+    # it for every one of a season's ~8-17 competitions was what made a full run crawl.
+    pyramid_cb_cache: dict[str, dict[tuple[int, str], Counter]] = {}
 
-        placements = ds.placements[season]
-        members = [p for p in placements if p.is_merit and p.comp == comp]
-        if not members:
-            continue
-        apex_local_tier = min(p.local_tier for p in members)
-        apex_placements = [p for p in members if p.local_tier == apex_local_tier]
-        apex_leagues = sorted({p.league for p in apex_placements})
+    def pyramid_league_cb_votes(season: str) -> dict[tuple[int, str], Counter]:
+        if season not in pyramid_cb_cache:
+            pyramid_cb_cache[season] = build_pyramid_league_cb_votes(ds.placements.get(season, []))
+        return pyramid_cb_cache[season]
 
-        mapping_path = TIER_MAPPINGS_DIR / f"{season}.json"
-        mapping_data = json.loads(mapping_path.read_text(encoding="utf-8"))
-        current_section = mapping_data.get(comp, {}).get(str(apex_local_tier), {})
+    def apply_suggestion(
+        season: str, comp: str, apex_local_tier: int, apex_leagues: list[str], suggestion: tuple
+    ) -> None:
+        other_season, other_parent = suggestion
+        for apex_league in apex_leagues:
+            all_mappings[season] = write_tier_mappings_parent(
+                season, comp, apex_local_tier, apex_league, other_parent
+            )
+        parent_tiers = pyramid_league_tiers_by_season.get(season, {})
+        names = other_parent if isinstance(other_parent, list) else [other_parent]
+        anchor_tier = min(parent_tiers[n] for n in names)
+        new_offset = anchor_tier + 1 - apex_local_tier
+        append_offset_record(
+            {
+                "season": season,
+                "comp": comp,
+                "apex_local_tier": apex_local_tier,
+                "parent_league": other_parent,
+                "parent_abs_tier": anchor_tier,
+                "new_offset": new_offset,
+            }
+        )
+        print(
+            f"  -> wrote parent(s) {other_parent!r} carried forward from {other_season} (offset {new_offset})."
+        )
 
+    def review_one(
+        label: str,
+        season: str,
+        comp: str,
+        apex_local_tier: int,
+        target_leagues: list[str],
+        source_members: list,
+        current_section: dict,
+        key: str,
+    ) -> None:
+        """Review a single apex-tier league (or, for legacy single-league pairs, the
+        whole apex tier at once). Raises _QuitError on [q]."""
         already_set = current_section and all(
-            a in current_section and current_section[a] for a in apex_leagues
+            a in current_section and current_section[a] for a in target_leagues
         )
         if already_set and not args.redo:
             done.add(key)
             save_state(done)
-            print(f"[{i}/{len(items)}] {season} -- {comp}: parent already set, skipping.")
-            continue
+            print(
+                f"{label} {season} -- {comp} -- {', '.join(target_leagues)}: parent already set, skipping."
+            )
+            return
 
-        cb_votes = cb_votes_for_clubs([p.team for p in members])
-        n_members = len(members)
+        cb_votes = cb_votes_for_clubs([p.team for p in source_members])
+        n_members = len(source_members)
         n_matched = sum(cb_votes.values())
         n_unmatched = n_members - n_matched
         current_offset = get_competition_offset(comp, season)
 
         print("=" * 78)
-        print(f"[{i}/{len(items)}] {season} -- {comp}")
+        print(f"{label} {season} -- {comp} -- {', '.join(target_leagues)}")
         if cb_votes:
             cb_desc = ", ".join(
                 f"{cb} ({n}/{n_members}, {n / n_members:.0%})" for cb, n in cb_votes.most_common()
@@ -273,34 +328,50 @@ def main() -> int:
                 print(f"  Unmatched: {n_unmatched}/{n_members} ({n_unmatched / n_members:.0%})")
         else:
             print("  CB votes: none matched")
-        print(f"  Apex (local tier {apex_local_tier}): {apex_leagues}")
+        print(f"  Apex (local tier {apex_local_tier}): {target_leagues}")
         print(f"  Current offset: {current_offset} -> abs {apex_local_tier + current_offset}")
-        if current_section:
-            print(f"  Current tier_mappings parent(s): {current_section}")
+        league_current = {a: current_section[a] for a in target_leagues if a in current_section}
+        if league_current:
+            print(f"  Current tier_mappings parent(s): {league_current}")
         else:
             print("  Current tier_mappings parent: (none set)")
 
-        cb_pyramid = build_pyramid_cb_index(placements)
         primary_cb = cb_votes.most_common(1)[0][0] if cb_votes else None
-        candidates: list[tuple[int, str, str]] = []  # (abs_tier, league, cb)
-        for cb, _n in cb_votes.most_common():
-            for abs_tier, league in cb_pyramid.get(cb, []):
-                candidates.append((abs_tier, league, cb))
+        relevant_cbs = set(cb_votes)
+        league_cb_votes = pyramid_league_cb_votes(season)
+        # Any pyramid league with *any* presence from a relevant CB is offered, not just
+        # ones that CB happens to dominate -- a CB can have real clubs in a league another
+        # CB numerically owns, especially near a border.
+        candidates: list[tuple[int, str, Counter]] = (
+            []
+        )  # (abs_tier, league, that league's own CB votes)
+        for (abs_tier, league), votes in league_cb_votes.items():
+            if relevant_cbs & set(votes):
+                candidates.append((abs_tier, league, votes))
+        candidates.sort(key=lambda c: (primary_cb not in c[2], c[0], c[1]))
 
-        suggestion = carried_forward_parent(season, comp, apex_leagues)
+        suggestion = carried_forward_parent(
+            season, comp, target_leagues, relevant_cbs, league_cb_votes
+        )
         if suggestion:
             other_season, other_parent = suggestion
             print(
                 f"  Suggestion: same as {other_season} -> {other_parent!r} (still exists this season)"
             )
+            if args.auto_accept_suggestions:
+                apply_suggestion(season, comp, apex_local_tier, target_leagues, suggestion)
+                done.add(key)
+                save_state(done)
+                return
 
         print("-" * 78)
         if not candidates:
             print("  (no candidate pyramid leagues found for these CBs)")
-        for idx, (abs_tier, league, cb) in enumerate(candidates, 1):
-            marker = " *" if cb == primary_cb else "  "
-            cb_pct = cb_votes[cb] / n_members if n_members else 0.0
-            print(f"  {idx:>2}){marker} tier {abs_tier:>2}  {league}   [{cb}, {cb_pct:.0%}]")
+        for idx, (abs_tier, league, votes) in enumerate(candidates, 1):
+            marker = " *" if primary_cb in votes else "  "
+            league_total = sum(votes.values())
+            cb_desc = ", ".join(f"{cb} {n / league_total:.0%}" for cb, n in votes.most_common())
+            print(f"  {idx:>2}){marker} tier {abs_tier:>2}  {league}   [{cb_desc}]")
         print("-" * 78)
         lines = ["  [number] pick candidate   [n1,n2,...] pick multiple parents"]
         if suggestion:
@@ -315,67 +386,45 @@ def main() -> int:
 
         if choice.lower() == "q":
             save_state(done)
-            print(f"\nSaved. Reviewed {len(done)} pairs so far.")
-            return 0
+            raise _QuitError()
 
         if choice == "":
             done.add(key)
             save_state(done)
-            continue
+            return
 
         if choice == "0" and suggestion:
-            other_season, other_parent = suggestion
-            for apex_league in apex_leagues:
-                all_mappings[season] = write_tier_mappings_parent(
-                    season, comp, apex_local_tier, apex_league, other_parent
-                )
-            parent_tiers = pyramid_league_tiers_by_season.get(season, {})
-            names = other_parent if isinstance(other_parent, list) else [other_parent]
-            anchor_tier = min(parent_tiers[n] for n in names)
-            new_offset = anchor_tier + 1 - apex_local_tier
-            append_offset_record(
-                {
-                    "season": season,
-                    "comp": comp,
-                    "apex_local_tier": apex_local_tier,
-                    "parent_league": other_parent,
-                    "parent_abs_tier": anchor_tier,
-                    "new_offset": new_offset,
-                }
-            )
-            print(
-                f"  -> wrote parent(s) {other_parent!r} carried forward from {other_season} (offset {new_offset})."
-            )
+            apply_suggestion(season, comp, apex_local_tier, target_leagues, suggestion)
             done.add(key)
             save_state(done)
-            continue
+            return
 
         if choice.lower() == "k":
-            for apex_league in apex_leagues:
+            for apex_league in target_leagues:
                 all_mappings[season] = write_tier_mappings_parent(
                     season, comp, apex_local_tier, apex_league, ""
                 )
             done.add(key)
             save_state(done)
             print("  -> marked unlinked.")
-            continue
+            return
 
         if choice.lower() == "c":
             custom = prompt_choice("  enter parent league name: ")
             if custom:
-                for apex_league in apex_leagues:
+                for apex_league in target_leagues:
                     all_mappings[season] = write_tier_mappings_parent(
                         season, comp, apex_local_tier, apex_league, custom
                     )
                 print(f"  -> wrote custom parent {custom!r}.")
             done.add(key)
             save_state(done)
-            continue
+            return
 
         picks = [p.strip() for p in choice.split(",") if p.strip()]
         if picks and all(p.isdigit() and 1 <= int(p) <= len(candidates) for p in picks):
             selected = [candidates[int(p) - 1] for p in picks]
-            abs_tiers = {abs_tier for abs_tier, _league, _cb in selected}
+            abs_tiers = {abs_tier for abs_tier, _league, _votes in selected}
             if len(abs_tiers) > 1:
                 print(
                     f"  Note: selected parents span tiers {sorted(abs_tiers)}; "
@@ -383,9 +432,9 @@ def main() -> int:
                 )
             anchor_tier = min(abs_tiers)
             new_offset = anchor_tier + 1 - apex_local_tier
-            leagues = [league for _abs_tier, league, _cb in selected]
+            leagues = [league for _abs_tier, league, _votes in selected]
             parent_value: str | list[str] = leagues[0] if len(leagues) == 1 else leagues
-            for apex_league in apex_leagues:
+            for apex_league in target_leagues:
                 all_mappings[season] = write_tier_mappings_parent(
                     season, comp, apex_local_tier, apex_league, parent_value
                 )
@@ -402,9 +451,63 @@ def main() -> int:
             print(f"  -> wrote parent(s) {parent_value!r} (offset {new_offset}).")
             done.add(key)
             save_state(done)
-            continue
+            return
 
         print("  (not understood, skipping without marking reviewed)")
+
+    try:
+        for i, (season, comp) in enumerate(items, 1):
+            key = f"{season}|{comp}"
+            if key in done and not args.redo:
+                continue
+
+            placements = ds.placements[season]
+            members = [p for p in placements if p.is_merit and p.comp == comp]
+            if not members:
+                continue
+            apex_local_tier = min(p.local_tier for p in members)
+            apex_placements = [p for p in members if p.local_tier == apex_local_tier]
+            apex_leagues = sorted({p.league for p in apex_placements})
+
+            mapping_path = TIER_MAPPINGS_DIR / f"{season}.json"
+            mapping_data = json.loads(mapping_path.read_text(encoding="utf-8"))
+            current_section = mapping_data.get(comp, {}).get(str(apex_local_tier), {})
+
+            label = f"[{i}/{len(items)}]"
+            if len(apex_leagues) == 1:
+                review_one(
+                    label,
+                    season,
+                    comp,
+                    apex_local_tier,
+                    apex_leagues,
+                    members,
+                    current_section,
+                    key,
+                )
+            else:
+                # Multiple leagues share the apex tier -- typically a regional split
+                # (e.g. "North - West ..." / "South - West ..."). Each can feed a
+                # different branch of the CB pyramid, so review and write them
+                # independently instead of forcing the same parent onto all of them.
+                for league in apex_leagues:
+                    league_key = f"{key}|{league}"
+                    if league_key in done and not args.redo:
+                        continue
+                    league_members = [p for p in apex_placements if p.league == league]
+                    review_one(
+                        label,
+                        season,
+                        comp,
+                        apex_local_tier,
+                        [league],
+                        league_members,
+                        current_section,
+                        league_key,
+                    )
+    except _QuitError:
+        print(f"\nSaved. Reviewed {len(done)} pairs so far.")
+        return 0
 
     save_state(done)
     print(

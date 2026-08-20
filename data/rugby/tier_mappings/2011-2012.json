@@ -94,17 +94,14 @@
     }
   },
   "CANDY": {
-    "1": {
-      "UBS Candy League D1": "Durham/Northumberland Division Two"
-    },
     "2": {
       "UBS Candy League D2": "UBS Candy League D1"
+    },
+    "1": {
+      "UBS Candy League D1": "Durham/Northumberland Division One"
     }
   },
   "East_Midlands": {
-    "1": {
-      "Bombardier League": "Midlands 3 East (North)"
-    },
     "2": {
       "Eagle IPA League": "Bombardier League"
     },
@@ -122,12 +119,12 @@
     },
     "7": {
       "Red Stripe": "Winter Warmer League"
+    },
+    "1": {
+      "Bombardier League": "Midlands 2 East (South)"
     }
   },
   "Essex": {
-    "1": {
-      "Division One": "Yorkshire Division Four"
-    },
     "2": {
       "Division Two": "Division One"
     },
@@ -151,12 +148,12 @@
     },
     "9": {
       "Division Nine": "Division Eight"
+    },
+    "1": {
+      "Division One": "Essex (Canterbury Jack) League 1"
     }
   },
   "GRFU_District": {
-    "1": {
-      "South 1": "Tribute Somerset 3 South"
-    },
     "2": {
       "South 2": "South 1"
     },
@@ -166,12 +163,12 @@
     },
     "4": {
       "North 4": "North 3"
+    },
+    "1": {
+      "South 1": "Gloucester Premier"
     }
   },
   "Hampshire": {
-    "5": {
-      "Hampshire Senior Merit": "Snows Group Hampshire 2"
-    },
     "6": {
       "Hampshire Merit One": "Hampshire Senior Merit"
     },
@@ -180,12 +177,12 @@
     },
     "8": {
       "Hampshire Merit Three": "Hampshire Merit Two"
+    },
+    "5": {
+      "Hampshire Senior Merit": "Snows Group Hampshire 1"
     }
   },
   "Herts_Middlesex": {
-    "1": {
-      "Merit Table 1": "Herts/Middlesex 3"
-    },
     "2": {
       "Merit Table 2": "Merit Table 1"
     },
@@ -203,12 +200,12 @@
     },
     "7": {
       "Merit Table 7": "Merit Table 6"
+    },
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 1"
     }
   },
   "Leicestershire": {
-    "1": {
-      "LRU Premier": "Midlands 4 East (South)"
-    },
     "2": {
       "LRU Division 1": "LRU Premier"
     },
@@ -223,12 +220,12 @@
     },
     "6": {
       "LRU Division 5": "LRU Division 4"
+    },
+    "1": {
+      "LRU Premier": "Midlands 2 East (South)"
     }
   },
   "Middlesex": {
-    "1": {
-      "First Division": "Herts/Middlesex 1"
-    },
     "2": {
       "Second Division": "First Division"
     },
@@ -243,21 +240,12 @@
     },
     "6": {
       "Sixth Division": "Fifth Division"
-    }
-  },
-  "Midlands_Reserve": {
+    },
     "1": {
-      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
-      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
+      "First Division": "Herts/Middlesex 1"
     }
   },
   "NOWIRUL": {
-    "1": {
-      "Bateman BMW Premier League": [
-        "North Lancashire Division Two",
-        "South Lancs/Cheshire Division Three"
-      ]
-    },
     "2": {
       "University of Salford Division 1": "Bateman BMW Premier League"
     },
@@ -286,12 +274,15 @@
       "University of Salford Division 5 North": "University of Salford Division 4 North",
       "University of Salford Division 5 South": "University of Salford Division 4 South",
       "University of Salford Division 5 West": "University of Salford Division 4 West"
+    },
+    "1": {
+      "Bateman BMW Premier League": [
+        "North Lancs/Cumbria",
+        "South Lancs/Cheshire Division One"
+      ]
     }
   },
   "Nottinghamshire": {
-    "1": {
-      "Group 1": "Midlands 5 East (North)"
-    },
     "2": {
       "Group 2": "Group 1"
     },
@@ -303,12 +294,12 @@
     },
     "5": {
       "Group 5": "Group 4"
+    },
+    "1": {
+      "Group 1": "Midlands 2 East (North)"
     }
   },
   "Rural_Kent": {
-    "3": {
-      "Invicta Three East": "Shepherd Neame Kent 2"
-    },
     "4": {
       "Late Red 4": "Invicta Three East"
     },
@@ -318,12 +309,12 @@
     "6": {
       "Early Bird 6 East": "Dragon Fire 5",
       "Early Bird 6 West": "Dragon Fire 5"
+    },
+    "3": {
+      "Invicta Three East": "Shepherd Neame Kent 1"
     }
   },
   "Surrey": {
-    "1": {
-      "Surrey Premier": "Surrey 4"
-    },
     "2": {
       "Surrey Alliance": "Surrey Premier"
     },
@@ -347,6 +338,15 @@
     },
     "9": {
       "Surrey Foundation League": "Surrey Combination 3"
+    },
+    "1": {
+      "Surrey Premier": "Surrey 1"
+    }
+  },
+  "Midlands_Reserve": {
+    "1": {
+      "North - West Midlands Reserve Team League": "Midlands 5 West (North)",
+      "South - West Midlands Reserve Team League": "Midlands 5 West (South)"
     }
   }
 }

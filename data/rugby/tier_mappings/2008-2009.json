@@ -85,9 +85,6 @@
     "Yorkshire 1": "North 2 East"
   },
   "East_Midlands": {
-    "1": {
-      "Bombardier League": "Midlands 6 East (NE)"
-    },
     "2": {
       "Eagle IPA League": "Bombardier League"
     },
@@ -102,12 +99,12 @@
     },
     "6": {
       "Winter Warmer League": "Waggledance League"
+    },
+    "1": {
+      "Bombardier League": "Midlands 3 East (South)"
     }
   },
   "Essex": {
-    "1": {
-      "Essex BL Office Centre Merit Table Division 1": "Essex (Oranjeboom) League 3"
-    },
     "2": {
       "Essex BL Office Centre Merit Table Division 2": "Essex BL Office Centre Merit Table Division 1"
     },
@@ -128,6 +125,9 @@
     },
     "8": {
       "Essex BL Office Centre Merit Table Division 8": "Essex BL Office Centre Merit Table Division 7"
+    },
+    "1": {
+      "Essex BL Office Centre Merit Table Division 1": "London 4 North East"
     }
   },
   "Hampshire": {
@@ -145,9 +145,6 @@
     }
   },
   "Herts_Middlesex": {
-    "1": {
-      "Merit Table 1": "Herts/Middlesex 4"
-    },
     "2": {
       "Merit Table 2": "Merit Table 1"
     },
@@ -162,6 +159,9 @@
     },
     "6": {
       "Merit Table 6": "Merit Table 5"
+    },
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 1"
     }
   },
   "Leicestershire": {
@@ -170,9 +170,6 @@
     }
   },
   "Middlesex": {
-    "1": {
-      "First Division": "Herts/Middlesex 1"
-    },
     "2": {
       "Second Division": "First Division"
     },
@@ -187,15 +184,12 @@
     },
     "6": {
       "Sixth Division": "Fifth Division"
+    },
+    "1": {
+      "First Division": "Herts/Middlesex 1"
     }
   },
   "Nottinghamshire": {
-    "1": {
-      "Group 1": [
-        "Midlands 6 East (NE)",
-        "Midlands 6 East (NW)"
-      ]
-    },
     "3": {
       "Group 3": "Group 1"
     },
@@ -204,17 +198,20 @@
     },
     "5": {
       "Group 5": "Group 4"
+    },
+    "1": {
+      "Group 1": "Midlands 3 East (North)"
     }
   },
   "Rural_Kent": {
-    "1": {
-      "Division A": "Kent 2"
-    },
     "2": {
       "Division B": "Division A"
     },
     "3": {
       "Division C": "Division B"
+    },
+    "1": {
+      "Division A": "Kent 1"
     }
   }
 }

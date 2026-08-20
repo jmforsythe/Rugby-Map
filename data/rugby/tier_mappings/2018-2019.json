@@ -97,50 +97,47 @@
     }
   },
   "CANDY": {
-    "1": {
-      "Division One": "Durham/Northumberland Division Two"
-    },
     "2": {
       "Division Two North": "Division One",
       "Division Two South": "Division One"
+    },
+    "1": {
+      "Division One": "Durham/Northumberland Division One"
     }
   },
   "Devon": {
-    "1": {
-      "Devon Merit Table 1": "Tribute Devon 1"
-    },
     "2": {
       "Devon Merit Table 2SW": "Devon Merit Table 1"
+    },
+    "1": {
+      "Devon Merit Table 1": "Tribute Devon 1"
     }
   },
   "East_Midlands": {
-    "1": {
-      "Bombardier Merit Table": "Midlands 3 East (North)",
-      "Youngs London Gold Merit Table": "Midlands 3 East (North)"
-    },
     "2": {
       "Directors Merit Table": "Bombardier Merit Table",
       "Banana Bread Beer Merit Table": "Bombardier Merit Table"
     },
     "3": {
       "Estrella Damm Merit Table": "Directors Merit Table"
+    },
+    "1": {
+      "Bombardier Merit Table": "Midlands 2 East (South)",
+      "Youngs London Gold Merit Table": "Midlands 2 East (South)"
     }
   },
   "Eastern_Counties": {
-    "2": {
-      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1 North",
-      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1 South",
-      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1 West"
-    },
     "3": {
       "Eastern Counties Greene King Division Three South": "Eastern Counties Greene King Division Two South",
       "Eastern Counties Greene King Division Three North": "Eastern Counties Greene King Division Two North"
+    },
+    "2": {
+      "Eastern Counties Greene King Division Two North": "Greene King IPA Eastern Counties 1 North",
+      "Eastern Counties Greene King Division Two South": "Greene King IPA Eastern Counties 1 North",
+      "Eastern Counties Greene King Division Two West": "Greene King IPA Eastern Counties 1 North"
     }
   },
   "Essex": {
-    "1": {
-      "Division 1": "Essex (Canterbury Jack) 1"
-    },
     "2": {
       "Division 2": "Division 1"
     },
@@ -156,15 +153,12 @@
     "6": {
       "Division 6 East": "Division 5",
       "Division 6 West": "Division 5"
+    },
+    "1": {
+      "Division 1": "London 3 Eastern Counties"
     }
   },
   "GRFU_District": {
-    "0": {
-      "Wadworth 6X District Premier": [
-        "Wadworth 6X Gloucestershire 2 North",
-        "Wadworth 6X Gloucestershire 2 South"
-      ]
-    },
     "1": {
       "Wadworth 6X Bristol & District 1": "Wadworth 6X District Premier",
       "Wadworth 6X Gloucester & District 1": "Wadworth 6X District Premier"
@@ -176,20 +170,20 @@
     "3": {
       "Wadworth 6X Gloucester & District 3": "Wadworth 6X Gloucester & District 2",
       "Wadworth 6X Bristol & District 3": "Wadworth 6X Bristol & District 2"
+    },
+    "0": {
+      "Wadworth 6X District Premier": "Wadworth 6X Gloucester Premier"
     }
   },
   "Hampshire": {
-    "7": {
-      "Hampshire 3": "Hampshire 2"
-    },
     "8": {
       "Hampshire 4": "Hampshire 3"
+    },
+    "7": {
+      "Hampshire 3": "Hampshire 2"
     }
   },
   "Herts_Middlesex": {
-    "1": {
-      "Merit Table 1": "Herts/Middlesex 2"
-    },
     "2": {
       "Merit Table 2": "Merit Table 1"
     },
@@ -203,6 +197,9 @@
     "5": {
       "Merit Table 5 SW": "Merit Table 4SW",
       "Merit Table 5NE": "Merit Table 4 NE"
+    },
+    "1": {
+      "Merit Table 1": "Herts/Middlesex 1"
     }
   },
   "Lancashire": {
@@ -214,20 +211,17 @@
     }
   },
   "Leicestershire": {
-    "1": {
-      "Leicestershire Merit A": "Midlands 3 East (North)"
-    },
     "2": {
       "Leicestershire Merit B": "Leicestershire Merit A"
     },
     "3": {
       "Leicestershire Merit C": "Leicestershire Merit B"
+    },
+    "1": {
+      "Leicestershire Merit A": "Midlands 2 East (South)"
     }
   },
   "Middlesex": {
-    "0": {
-      "Premier Division": "London 3 North West"
-    },
     "1": {
       "Division 1": "Premier Division"
     },
@@ -242,20 +236,20 @@
     },
     "5": {
       "Division 5": "Division 4"
+    },
+    "0": {
+      "Premier Division": "Herts/Middlesex 1"
     }
   },
   "Midlands_Reserve": {
-    "1": {
-      "Midlands Reserve League Div 1": [
-        "Midlands 5 West (North)",
-        "Midlands 5 West (South)"
-      ]
-    },
     "2": {
       "Midlands Reserve League Div 2": "Midlands Reserve League Div 1"
     },
     "3": {
       "Midlands Reserve League Div 3": "Midlands Reserve League Div 2"
+    },
+    "1": {
+      "Midlands Reserve League Div 1": "Midlands 5 West (North)"
     }
   },
   "NOWIRUL": {
@@ -289,9 +283,6 @@
     }
   },
   "Nottinghamshire": {
-    "1": {
-      "Security Plus Pennant Group 1": "Midlands 4 East (North)"
-    },
     "2": {
       "Security Plus Pennant Group 2": "Security Plus Pennant Group 1"
     },
@@ -301,24 +292,24 @@
     "4": {
       "Security Plus Pennant Group 4 North": "Security Plus Pennant Group 3",
       "Security Plus Pennant Group 4 South": "Security Plus Pennant Group 3"
+    },
+    "1": {
+      "Security Plus Pennant Group 1": "Midlands 2 East (North)"
     }
   },
   "Rural_Kent": {
-    "2": {
-      "Premier 2 East": "Shepherd Neame Kent 2"
-    },
     "3": {
       "Late Red 3": "Premier 2 East"
     },
     "4": {
       "Five Grain 4 East": "Late Red 3",
       "Five Grain 4 West": "Late Red 3"
+    },
+    "2": {
+      "Premier 2 East": "Shepherd Neame Kent 1"
     }
   },
   "Surrey": {
-    "3": {
-      "Surrey Championship": "Surrey 4"
-    },
     "4": {
       "Surrey Conference North": "Surrey Championship",
       "Surrey Conference South": "Surrey Championship"
@@ -335,13 +326,12 @@
     },
     "7": {
       "Surrey Foundation": "Surrey Combination 2"
+    },
+    "3": {
+      "Surrey Championship": "Surrey 1"
     }
   },
   "Sussex": {
-    "5": {
-      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
-      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
-    },
     "6": {
       "Sussex 3 EAST Bonfire Boy": "Sussex 2 'Armada Ale'",
       "Sussex 3 WEST 'Forwards Choice'": "Sussex 2 Reserves 'Olympia Ale'"
@@ -349,6 +339,10 @@
     "7": {
       "Sussex 4 EAST Albion Ale'": "Sussex 3 EAST Bonfire Boy",
       "Sussex 4 WEST 'Wild Hop'": "Sussex 3 WEST 'Forwards Choice'"
+    },
+    "5": {
+      "Sussex 2 'Armada Ale'": "Harvey's of Sussex 1",
+      "Sussex 2 Reserves 'Olympia Ale'": "Harvey's of Sussex 1"
     }
   }
 }

@@ -1387,10 +1387,17 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                     if (!fg) return;
                     var groups = layers[varName].groups || {{}};
                     Object.keys(groups).forEach(function(grp) {{
-                        var style = groups[grp].style || {{}};
-                        var opts = {{ style: function() {{ return style; }} }};
-                        if (groups[grp].pane) opts.pane = groups[grp].pane;
-                        L.geoJson(groups[grp].geometry, opts).addTo(fg);
+                        try {{
+                            var style = groups[grp].style || {{}};
+                            var opts = {{ style: function() {{ return style; }} }};
+                            if (groups[grp].pane) opts.pane = groups[grp].pane;
+                            L.geoJson(groups[grp].geometry, opts).addTo(fg);
+                        }} catch (e) {{
+                            // A single bad group (malformed geometry, missing pane)
+                            // must not abort the rest -- and it's a rendering bug,
+                            // not a fetch failure, so it shouldn't trigger a retry.
+                            console.warn('Could not render territory group', varName, grp, e);
+                        }}
                     }});
                 }});
             }}).catch(function(e) {{

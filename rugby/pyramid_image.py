@@ -10145,7 +10145,11 @@ def main() -> int:
     png_path: Path = args.png_output or _default_png_path(season, gender)
 
     logger.info("Loading league_data leagues for season %s (%s pyramid) …", season, gender)
-    leagues = load_pyramid_leagues(season, gender=gender)
+    try:
+        leagues = load_pyramid_leagues(season, gender=gender)
+    except FileNotFoundError:
+        logger.error("league_data/%s/ not found; skipping %s pyramid render", season, gender)
+        return 0
     if gender == "womens":
         logger.info("Loaded %d women's pyramid leagues across tiers 1–6", len(leagues))
     else:

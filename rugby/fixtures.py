@@ -1,9 +1,9 @@
 """
 Scrape upcoming and past fixtures from RFU league pages.
 
-Reads league URLs from geocoded_teams/<season>/ and scrapes the fixtures view
+Reads league URLs from league_data/<season>/ and scrapes the fixtures view
 of each league page. Outputs one JSON file per league to fixture_data/<season>/,
-mirroring the geocoded_teams/ directory structure.
+mirroring the league_data/ directory structure.
 
 Run locally: python scrape_fixtures.py --season 2025-2026
 """
@@ -20,14 +20,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from core import (
-    AntiBotDetectedError,
-    Fixture,
-    FixtureLeague,
-    GeocodedLeague,
-    make_request,
-    setup_logging,
-)
+from core import AntiBotDetectedError, Fixture, FixtureLeague, League, make_request, setup_logging
 from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.scrape import clean_filename
@@ -36,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 _RFU_BASE = "https://www.englandrugby.com"
 
-# RFU fixture views that are not represented under geocoded_teams/ (e.g. playoff
+# RFU fixture views that are not represented under league_data/ (e.g. playoff
 # aggregations). Division IDs and ``season=`` query values change each RFU season — list full
 # URLs per season, or use ``{season}`` in the query string and it will be substituted.
 #
@@ -353,16 +346,23 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
 
 
 def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
-    """Read geocoded_teams/<season>/ to get (league_name, league_url, relative_output_path) tuples."""
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season
-    if not geocoded_dir.exists():
-        logger.error("Geocoded teams directory not found: %s", geocoded_dir)
+    """Read league_data/<season>/ to get (league_name, league_url, relative_output_path) tuples.
+
+    Only league_name/league_url are needed here, so this reads the thin
+    league_data records directly rather than going through
+    rugby.clubs.load_geocoded_league (no address/geocode join required).
+    """
+    league_dir = DATA_DIR / "league_data" / season
+    if not league_dir.exists():
+        logger.error("League data directory not found: %s", league_dir)
         return []
 
     leagues: list[tuple[str, str, Path]] = []
-    for json_file in sorted(geocoded_dir.rglob("*.json")):
+    for json_file in sorted(league_dir.rglob("*.json")):
+        if json_file.name.startswith("_"):
+            continue
         with open(json_file, encoding="utf-8") as f:
-            data: GeocodedLeague = json.load(f)
+            data: League = json.load(f)
 
         league_name = data["league_name"]
         league_url = data.get("league_url", "")
@@ -376,7 +376,7 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
             )
             continue
 
-        relative = json_file.relative_to(geocoded_dir)
+        relative = json_file.relative_to(league_dir)
         leagues.append((league_name, league_url, relative))
 
     return leagues
@@ -410,7 +410,7 @@ def main() -> None:
     logger.info("Scraping fixtures for season: %s", season)
 
     leagues = _discover_leagues(season)
-    logger.info("Found %d leagues in geocoded_teams/%s/", len(leagues), season)
+    logger.info("Found %d leagues in league_data/%s/", len(leagues), season)
 
     output_dir = DATA_DIR / "fixture_data" / season
     error_log_path = output_dir / "scrape_errors.log"

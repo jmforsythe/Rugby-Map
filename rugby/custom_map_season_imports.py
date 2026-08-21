@@ -1,4 +1,8 @@
-"""Build pyramid / all-leagues / merit import trees from the latest geocoded season."""
+"""Build pyramid / all-leagues / merit import trees from the latest league_data season.
+
+Only team names are needed here (no address/geocode fields), so this reads
+league_data/ directly rather than joining club data via rugby.clubs.
+"""
 
 from __future__ import annotations
 
@@ -8,21 +12,21 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-from core.types import GeocodedLeague
+from core.types import League
 from rugby import DATA_DIR
 from rugby.custom_map_imports import assign_all_leagues_colors, assign_league_colors
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 
 
-def latest_geocoded_season() -> str | None:
+def latest_league_data_season() -> str | None:
     """Return the lexicographically last season directory name, or *None*."""
-    if not GEOCODED_DIR.is_dir():
+    if not LEAGUE_DATA_DIR.is_dir():
         return None
-    seasons = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir())
+    seasons = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir())
     return seasons[-1] if seasons else None
 
 
@@ -31,14 +35,14 @@ def _tier_bucket() -> dict[str, Any]:
 
 
 def build_season_imports(season: str | None = None) -> dict[str, Any]:
-    """Scan one geocoded season and build import structures for the custom map."""
-    resolved_season = season or latest_geocoded_season()
+    """Scan one league_data season and build import structures for the custom map."""
+    resolved_season = season or latest_league_data_season()
     if not resolved_season:
         return {"season": "", "pyramid": [], "allLeagues": [], "merit": []}
 
-    season_dir = GEOCODED_DIR / resolved_season
+    season_dir = LEAGUE_DATA_DIR / resolved_season
     if not season_dir.is_dir():
-        logger.warning("Geocoded season directory not found: %s", season_dir)
+        logger.warning("League data season directory not found: %s", season_dir)
         return {"season": resolved_season, "pyramid": [], "allLeagues": [], "merit": []}
 
     pyramid: dict[int, dict[str, Any]] = {}
@@ -46,7 +50,7 @@ def build_season_imports(season: str | None = None) -> dict[str, Any]:
     merit: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     merit_abs_tiers: set[int] = set()
 
-    for json_path in sorted(season_dir.rglob("*.json")):
+    for json_path in sorted(p for p in season_dir.rglob("*.json") if not p.name.startswith("_")):
         rel_path = json_path.relative_to(season_dir).as_posix()
         rel_parts = list(json_path.relative_to(season_dir).parts)
         is_merit = len(rel_parts) >= 3 and rel_parts[0] == "merit"
@@ -67,7 +71,7 @@ def build_season_imports(season: str | None = None) -> dict[str, Any]:
 
         try:
             with open(json_path, encoding="utf-8") as f:
-                league: GeocodedLeague = json.load(f)
+                league: League = json.load(f)
         except (json.JSONDecodeError, OSError) as exc:
             logger.warning("Skipping %s: %s", json_path, exc)
             continue
@@ -77,7 +81,11 @@ def build_season_imports(season: str | None = None) -> dict[str, Any]:
             continue
 
         team_names = sorted(
-            (team["name"] for team in league.get("teams", []) if team.get("name")),
+            (
+                team["name"]
+                for team in league.get("teams", [])
+                if team.get("name") and not team["name"].startswith(("To be arranged", "TBC"))
+            ),
             key=str.casefold,
         )
         if not team_names:

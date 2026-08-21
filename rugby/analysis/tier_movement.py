@@ -1,7 +1,7 @@
 """
 Analyse league/tier movement of every team across all seasons.
 
-Loads geocoded team data for every available season, tracks each team's tier
+Loads league team data for every available season, tracks each team's tier
 over time, and flags outliers that may indicate incorrect tier assignments.
 """
 
@@ -21,8 +21,8 @@ from rugby.tiers import extract_tier, get_competition_offset
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
-SEASONS = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
+SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
 
 WOMENS_MIN_TIER = 100
 
@@ -77,8 +77,8 @@ def load_all_seasons() -> TeamHistory:
     team_history: TeamHistory = defaultdict(lambda: defaultdict(list))
 
     for season in SEASONS:
-        season_dir = GEOCODED_DIR / season
-        for filepath in sorted(season_dir.rglob("*.json")):
+        season_dir = LEAGUE_DATA_DIR / season
+        for filepath in sorted(p for p in season_dir.rglob("*.json") if not p.name.startswith("_")):
             rel = filepath.relative_to(season_dir).as_posix()
             tier_num, tier_name = extract_tier(rel, season)
 

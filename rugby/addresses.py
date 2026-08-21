@@ -25,6 +25,7 @@ from core import (
     get_headers,
     get_session,
     print_block,
+    setup_logging,
 )
 from core.config import CACHE_DIR, CURRENT_SEASON
 from rugby import DATA_DIR
@@ -34,6 +35,12 @@ _cache_lock = threading.RLock()
 # Cache for club -> address data
 club_cache: dict[str, str | None] = {}
 CLUB_CACHE_FILE = str(CACHE_DIR / "club_address_cache.json")
+
+# Cache for derived club_name -> ground-truth club name (from RFU's own
+# "c036-club-details-heading" element), keyed the same way as club_cache so
+# the two caches can be joined directly.
+club_name_cache: dict[str, str] = {}
+CLUB_NAME_CACHE_FILE = str(CACHE_DIR / "club_canonical_name_cache.json")
 
 # Track clubs without addresses
 clubs_without_addresses: list[tuple[str, str]] = []  # (club_name, team_url)
@@ -52,6 +59,21 @@ def save_cache() -> None:
     """Save club address cache to file."""
     with open(CLUB_CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(club_cache, f, indent=2, ensure_ascii=False)
+
+
+def load_name_cache() -> None:
+    """Load canonical club name cache from file."""
+    global club_name_cache
+    if Path(CLUB_NAME_CACHE_FILE).exists():
+        with open(CLUB_NAME_CACHE_FILE, encoding="utf-8") as f:
+            club_name_cache = json.load(f)
+        print(f"Loaded {len(club_name_cache)} cached canonical club names")
+
+
+def save_name_cache() -> None:
+    """Save canonical club name cache to file."""
+    with open(CLUB_NAME_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(club_name_cache, f, indent=2, ensure_ascii=False, sort_keys=True)
 
 
 def extract_address_from_maps_url(maps_url: str) -> str | None:
@@ -120,6 +142,27 @@ def extract_address_from_soup(soup: BeautifulSoup) -> str | None:
     return None
 
 
+def extract_club_name_from_soup(soup: BeautifulSoup) -> str | None:
+    """Extract the ground-truth club name from the c036-club-details-heading element.
+
+    This is the RFU's own name for the club (e.g. "Tamworth RUFC"), independent
+    of any per-team display name, so it doesn't depend on ``team_name_to_club_name``
+    correctly stripping a "II"/"3rd XV"/etc. suffix.
+
+    Args:
+        soup: BeautifulSoup object of the parsed page
+
+    Returns:
+        Club name text or None if not found
+    """
+    heading_elem = soup.find(class_="c036-club-details-heading")
+    if heading_elem:
+        name_text = heading_elem.get_text(strip=True)
+        name_text = " ".join(name_text.split())  # Clean whitespace
+        return name_text or None
+    return None
+
+
 def sleep_before_rfu_request(delay_seconds: float) -> None:
     """Pacing before hitting RFU (matches historical scripts: delay + small jitter)."""
     if delay_seconds and delay_seconds > 0:
@@ -182,6 +225,54 @@ def handle_rfu_antibot_with_backoff(
     raise AntiBotDetectedError(f"{response.status_code} code", log_text="\n".join(log_lines))
 
 
+def _fetch_rfu_page_with_retries(
+    team_url: str, log_lines: list[str], delay_seconds: float, max_retries: int
+) -> BeautifulSoup | None:
+    """Fetch and parse an RFU team page, handling anti-bot backoff and retries.
+
+    Returns:
+        Parsed soup, or None if all retries were exhausted on non-antibot errors.
+
+    Raises:
+        AntiBotDetectedError: If anti-bot detection persists through the final retry.
+    """
+    for attempt in range(max_retries):
+        try:
+            sleep_before_rfu_request(delay_seconds)
+
+            response = get_rfu_team_page_response(team_url, timeout=10)
+            if handle_rfu_antibot_with_backoff(response, log_lines, attempt, max_retries):
+                continue
+
+            response.raise_for_status()
+            return BeautifulSoup(response.content, "html.parser")
+
+        except AntiBotDetectedError:
+            raise
+        except Exception as e:
+            if attempt < max_retries - 1:
+                log_lines.append(f"    ! Attempt {attempt + 1} failed: {e} - retrying...")
+                time.sleep(1.0 * (attempt + 1))  # Exponential backoff
+            else:
+                log_lines.append(f"    ✗ All {max_retries} attempts failed: {e}")
+    return None
+
+
+def _cache_canonical_name_from_soup(
+    club_name: str, soup: BeautifulSoup, log_lines: list[str]
+) -> None:
+    """Extract the RFU club heading from an already-fetched page and cache it.
+
+    Piggybacks on address-fetch requests so the canonical name cache stays
+    populated at zero extra request cost.
+    """
+    canonical_name = extract_club_name_from_soup(soup)
+    if canonical_name:
+        with _cache_lock:
+            club_name_cache.setdefault(club_name, canonical_name)
+        log_lines.append(f"    Canonical name: {canonical_name}")
+
+
 def fetch_club_address(
     club_name: str, team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
 ) -> tuple[str | None, str]:
@@ -199,51 +290,32 @@ def fetch_club_address(
     log_lines: list[str] = [f"  Fetching: {club_name}", f"    URL: {team_url}"]
 
     # Fetch the page once and try both extraction methods
-    for attempt in range(max_retries):
-        try:
-            sleep_before_rfu_request(delay_seconds)
+    soup = _fetch_rfu_page_with_retries(team_url, log_lines, delay_seconds, max_retries)
+    if soup is not None:
+        _cache_canonical_name_from_soup(club_name, soup, log_lines)
 
-            response = get_rfu_team_page_response(team_url, timeout=10)
-            if handle_rfu_antibot_with_backoff(response, log_lines, attempt, max_retries):
-                continue
+        # Method 1: Try getting address directly from page text
+        address_text = extract_address_from_soup(soup)
+        if address_text:
+            log_lines.append(f"    Address: {address_text}")
+            log_lines.append("    ✓ Address extracted from page text")
+            return (address_text, "\n".join(log_lines))
+        else:
+            log_lines.append("    ! No address text found on page")
 
-            response.raise_for_status()
-            soup = BeautifulSoup(response.content, "html.parser")
+        # Method 2: Try getting address from Google Maps URL
+        maps_url = extract_maps_url_from_soup(soup)
+        if maps_url:
+            address = extract_address_from_maps_url(maps_url)
 
-            # Method 1: Try getting address directly from page text
-            address_text = extract_address_from_soup(soup)
-            if address_text:
-                log_lines.append(f"    Address: {address_text}")
-                log_lines.append("    ✓ Address extracted from page text")
-                return (address_text, "\n".join(log_lines))
+            if address:
+                log_lines.append(f"    Address: {address}")
+                log_lines.append("    ✓ Address extracted from Maps URL")
+                return (address, "\n".join(log_lines))
             else:
-                log_lines.append("    ! No address text found on page")
-
-            # Method 2: Try getting address from Google Maps URL
-            maps_url = extract_maps_url_from_soup(soup)
-            if maps_url:
-                address = extract_address_from_maps_url(maps_url)
-
-                if address:
-                    log_lines.append(f"    Address: {address}")
-                    log_lines.append("    ✓ Address extracted from Maps URL")
-                    return (address, "\n".join(log_lines))
-                else:
-                    log_lines.append("    ! Could not extract address from Maps URL")
-            else:
-                log_lines.append("    ! No Maps URL found")
-
-            # Both methods failed on this page fetch
-            break
-
-        except AntiBotDetectedError:
-            raise
-        except Exception as e:
-            if attempt < max_retries - 1:
-                log_lines.append(f"    ! Attempt {attempt + 1} failed: {e} - retrying...")
-                time.sleep(1.0 * (attempt + 1))  # Exponential backoff
-            else:
-                log_lines.append(f"    ✗ All {max_retries} attempts failed: {e}")
+                log_lines.append("    ! Could not extract address from Maps URL")
+        else:
+            log_lines.append("    ! No Maps URL found")
 
     # If no methods worked, try modifying club name and retry once more
     possible_modifiers = ["women's", "ladies"]
@@ -271,6 +343,39 @@ def fetch_club_address(
 
     log_lines.append("    ✗ No address found using any method")
     return None, "\n".join(log_lines)
+
+
+def fetch_club_canonical_name(
+    club_name: str, team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
+) -> tuple[str | None, str]:
+    """Fetch the ground-truth club name from an RFU team page's details heading.
+
+    Used to backfill ``club_name_cache`` for clubs that already have a cached
+    address (so ``fetch_club_address``'s piggybacked extraction never ran).
+
+    Args:
+        club_name: Derived club name (cache key), used only for logging.
+        team_url: URL to any team page for this club.
+        delay_seconds: Delay between requests.
+        max_retries: Maximum retry attempts.
+
+    Returns:
+        Tuple of (canonical club name, log_text) for thread-safe printing.
+    """
+    log_lines: list[str] = [f"  Fetching: {club_name}", f"    URL: {team_url}"]
+
+    soup = _fetch_rfu_page_with_retries(team_url, log_lines, delay_seconds, max_retries)
+    if soup is None:
+        log_lines.append("    ✗ No canonical name found (page fetch failed)")
+        return None, "\n".join(log_lines)
+
+    canonical_name = extract_club_name_from_soup(soup)
+    if canonical_name:
+        log_lines.append(f"    Canonical name: {canonical_name}")
+        log_lines.append("    ✓ Canonical name extracted")
+    else:
+        log_lines.append("    ! No canonical name found on page")
+    return canonical_name, "\n".join(log_lines)
 
 
 def process_league_file(
@@ -376,6 +481,7 @@ def process_league_file(
                     print("Aborting processing to avoid being blocked")
                     print(f"{"="*80}")
                     save_cache()
+                    save_name_cache()
                     raise
                 except Exception as e:
                     print_block(f"  Processing: {club_name}\n    ✗ Error: {e}")
@@ -396,6 +502,7 @@ def process_league_file(
 
         finally:
             save_cache()
+            save_name_cache()
 
     teams_with_addresses: list[AddressTeam] = [r for r in team_results if r]
 
@@ -446,10 +553,13 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    setup_logging()
+
     season = args.season
     print(f"Processing season: {season}")
 
     load_cache()
+    load_name_cache()
 
     league_dir = DATA_DIR / "league_data" / season
     if not league_dir.exists():
@@ -495,6 +605,7 @@ def main() -> None:
             print("\n✗ Anti-bot detection triggered")
             print("Please wait before running the script again.")
             save_cache()
+            save_name_cache()
             return
         except Exception as e:
             print(f"\n✗ Error processing {league_file.name}: {e}")
@@ -502,10 +613,12 @@ def main() -> None:
 
             traceback.print_exc()
             save_cache()
+            save_name_cache()
 
     print(f"{"="*80}")
     print('Complete! Addresses saved to "team_addresses" directory')
     print(f"Club cache size: {len(club_cache)}")
+    print(f"Canonical name cache size: {len(club_name_cache)}")
     print(f"{"="*80}")
 
     # Print clubs without addresses

@@ -43,8 +43,8 @@ def test_build_rankings_from_fixture_league(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     season = "2099-2100"
-    geocoded_dir = tmp_path / "geocoded_teams" / season
-    geocoded_dir.mkdir(parents=True)
+    league_dir = tmp_path / "league_data" / season
+    league_dir.mkdir(parents=True)
 
     league: GeocodedLeague = {
         "league_name": "Test League",
@@ -56,9 +56,21 @@ def test_build_rankings_from_fixture_league(
             _team("Charlie", 53.50, -2.20),
         ],
     }
-    (geocoded_dir / "Test_League.json").write_text(json.dumps(league), encoding="utf-8")
+    (league_dir / "Test_League.json").write_text(json.dumps(league), encoding="utf-8")
 
     monkeypatch.setattr("rugby.analysis.travel_rankings.DATA_DIR", tmp_path)
+
+    # The fixture teams already carry latitude/longitude (as if pre-joined), so
+    # bypass the real club-map join and hand iter_geocoded_leagues' output straight
+    # through, keeping this test independent of the committed club map JSON files.
+    def _fake_iter_geocoded_leagues(season_dir: Path):
+        for json_file in sorted(season_dir.rglob("*.json")):
+            with json_file.open(encoding="utf-8") as f:
+                yield json_file, json.load(f)
+
+    monkeypatch.setattr(
+        "rugby.analysis.travel_rankings.iter_geocoded_leagues", _fake_iter_geocoded_leagues
+    )
 
     lookup = DistanceLookup()
     league_rows, team_rows, fixture_rows = build_rankings(season, lookup)

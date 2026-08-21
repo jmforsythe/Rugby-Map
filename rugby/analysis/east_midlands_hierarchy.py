@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parents[2]))
 
 from rugby.tiers import _SPONSOR_PREFIXES  # noqa: E402, PLC2701
 
-GEOCODED_DIR = Path(__file__).parents[2] / "data" / "rugby" / "geocoded_teams"
+LEAGUE_DATA_DIR = Path(__file__).parents[2] / "data" / "rugby" / "league_data"
 
 _YEAR_LIKE = re.compile(r"^\d{4}$")
 
@@ -79,7 +79,7 @@ def extract_team_rank(name: str) -> tuple[str, int]:
 
 def load_season(season: str) -> dict[str, list[tuple[str, int]]]:
     """Return {league_stem: [(club_name, rank), ...]} for one season."""
-    em_dir = GEOCODED_DIR / season / "merit" / "East_Midlands"
+    em_dir = LEAGUE_DATA_DIR / season / "merit" / "East_Midlands"
     if not em_dir.is_dir():
         return {}
     leagues: dict[str, list[tuple[str, int]]] = {}
@@ -122,7 +122,7 @@ def find_season_relationships(
 def main() -> None:
     seasons = sorted(
         d.name
-        for d in GEOCODED_DIR.iterdir()
+        for d in LEAGUE_DATA_DIR.iterdir()
         if d.is_dir() and (d / "merit" / "East_Midlands").is_dir()
     )
 

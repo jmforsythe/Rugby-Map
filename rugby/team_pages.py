@@ -14,7 +14,7 @@ from typing import Any, NotRequired, TypedDict
 from core import (
     Fixture,
     FixtureLeague,
-    GeocodedLeague,
+    League,
     TeamTravelDistances,
     TravelDistances,
     get_config,
@@ -30,6 +30,7 @@ from core.config import CURRENT_SEASON, DIST_DIR
 from core.json_utils import write_compact_json
 from rugby import BRAND, DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.clubs import iter_geocoded_leagues, load_team_club_map, resolve_club_name
 from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
@@ -237,7 +238,8 @@ class TeamListEntry(TypedDict):
 
 def collect_all_teams_data() -> dict[str, TeamData]:
     """
-    Collect all team data from geocoded files across all seasons.
+    Collect all team data from league_data, joined with club address/geocode
+    data via rugby.clubs, across all seasons.
 
     Two observations are merged into one aggregated team row when they share
     either a display name or an RFU ``team=`` id (transitively). This catches
@@ -251,13 +253,15 @@ def collect_all_teams_data() -> dict[str, TeamData]:
         overwrite scalar fields, so name/url/image/address reflect the most
         recent appearance for the merged team.
     """
-    geocoded_dir = DATA_DIR / "geocoded_teams"
+    league_data_dir = DATA_DIR / "league_data"
 
-    if not geocoded_dir.exists():
+    if not league_data_dir.exists():
         return {}
 
     season_dirs = [
-        d for d in sorted(geocoded_dir.iterdir()) if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        d
+        for d in sorted(league_data_dir.iterdir())
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
     ]
 
     # First pass: gather every (display_name, team_id) pair so we can build
@@ -265,9 +269,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
     # league file twice rather than holding all parsed JSON in memory.
     name_id_pairs: set[tuple[str, int | None]] = set()
     for season_dir in season_dirs:
-        for league_file in season_dir.rglob("*.json"):
-            with open(league_file, encoding="utf-8") as f:
-                league_data: GeocodedLeague = json.load(f)
+        for _league_file, league_data in iter_geocoded_leagues(season_dir):
             for team in league_data["teams"]:
                 name_id_pairs.add((team["name"], _parse_rfu_team_id(team.get("url"))))
 
@@ -292,10 +294,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
     for season_dir in season_dirs:
         season = season_dir.name
 
-        for league_file in season_dir.rglob("*.json"):
-            with open(league_file, encoding="utf-8") as f:
-                league_data = json.load(f)
-
+        for league_file, league_data in iter_geocoded_leagues(season_dir):
             league_name = league_data["league_name"]
             league_team_count = len(league_data["teams"])
 
@@ -359,14 +358,14 @@ def collect_all_teams_data() -> dict[str, TeamData]:
 
 
 def get_all_seasons() -> list[str]:
-    """Get all available seasons from geocoded team data directories."""
-    geocoded_dir = DATA_DIR / "geocoded_teams"
-    if not geocoded_dir.exists():
+    """Get all available seasons from league_data directories."""
+    league_data_dir = DATA_DIR / "league_data"
+    if not league_data_dir.exists():
         return []
 
     seasons = [
         season_dir.name
-        for season_dir in geocoded_dir.iterdir()
+        for season_dir in league_data_dir.iterdir()
         if season_dir.is_dir() and re.match(r"\d{4}-\d{4}", season_dir.name)
     ]
     return sorted(seasons, reverse=True)
@@ -421,41 +420,74 @@ def _format_previous_names(team_data: TeamData) -> str:
 def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     """Pre-build an index of co-located teams for fast club lookups.
 
-    Groups teams by address and coordinates, then builds a mapping from
-    each page key to sibling page keys at the same location.
+    Unions teams into connected components across three independent
+    signals: shared address string, shared (lat, lon), and shared canonical
+    club name (``rugby.clubs.resolve_club_name``, backed by
+    ``data/rugby/club_names.json``). No single signal is reliable alone —
+    address strings can differ by cosmetic formatting between scrapes,
+    coordinates can drift by float precision between geocoding passes, and
+    the canonical-name backfill doesn't cover every derived name yet — so a
+    pair of teams is treated as siblings if *any* signal links them,
+    transitively (via union-find, matching the pattern already used by
+    ``_build_canonical_page_key_lookup`` above).
 
     Returns:
-        Dictionary mapping page key -> sorted list of other page keys at same location
+        Dictionary mapping page key -> sorted list of other page keys at the same club
     """
-    address_groups: defaultdict[str, list[str]] = defaultdict(list)
-    coord_groups: defaultdict[tuple[float, float], list[str]] = defaultdict(list)
+    team_club_map = load_team_club_map()
+
+    parent: dict[str, str] = {}
+
+    def find(node: str) -> str:
+        parent.setdefault(node, node)
+        root = node
+        while parent[root] != root:
+            root = parent[root]
+        cur = node
+        while parent[cur] != root:
+            nxt = parent[cur]
+            parent[cur] = root
+            cur = nxt
+        return root
+
+    def union(a: str, b: str) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    first_member_for_signal: dict[tuple[str, object], str] = {}
 
     for page_key, data in all_teams.items():
+        find(page_key)  # ensure every team has its own component even with no signals
+
         addr = data.get("address")
         lat = data.get("latitude")
         lon = data.get("longitude")
+        name = data.get("name") or ""
+        club = resolve_club_name(name, team_club_map) if name else ""
+
+        signals: list[tuple[str, object]] = []
         if addr:
-            address_groups[addr].append(page_key)
+            signals.append(("addr", addr))
         if lat is not None and lon is not None:
-            coord_groups[(lat, lon)].append(page_key)
+            signals.append(("coord", (lat, lon)))
+        if club:
+            signals.append(("club", club))
 
-    club_index: dict[str, list[str]] = {}
+        for signal in signals:
+            if signal in first_member_for_signal:
+                union(page_key, first_member_for_signal[signal])
+            else:
+                first_member_for_signal[signal] = page_key
+
+    components: defaultdict[str, list[str]] = defaultdict(list)
     for page_key in all_teams:
-        siblings: set[str] = set()
-        data = all_teams[page_key]
-        addr = data.get("address")
-        lat = data.get("latitude")
-        lon = data.get("longitude")
-        if addr and addr in address_groups:
-            siblings.update(address_groups[addr])
-        if lat is not None and lon is not None:
-            key = (lat, lon)
-            if key in coord_groups:
-                siblings.update(coord_groups[key])
-        siblings.discard(page_key)
-        club_index[page_key] = sorted(siblings)
+        components[find(page_key)].append(page_key)
 
-    return club_index
+    return {
+        page_key: sorted(k for k in components[find(page_key)] if k != page_key)
+        for page_key in all_teams
+    }
 
 
 def build_id_to_page_key(all_teams: dict[str, TeamData]) -> dict[int, str]:
@@ -468,19 +500,27 @@ def build_id_to_page_key(all_teams: dict[str, TeamData]) -> dict[int, str]:
 
 
 def build_team_id_name_lookup() -> dict[int, str]:
-    """Latest display name per RFU team id from geocoded data (chronological walk)."""
-    geocoded_dir = DATA_DIR / "geocoded_teams"
-    if not geocoded_dir.exists():
+    """Latest display name per RFU team id from league_data (chronological walk).
+
+    Only ``name``/``url`` are needed, so this reads ``league_data/`` directly
+    rather than joining club address/geocode data.
+    """
+    league_data_dir = DATA_DIR / "league_data"
+    if not league_data_dir.exists():
         return {}
 
     season_dirs = [
-        d for d in sorted(geocoded_dir.iterdir()) if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        d
+        for d in sorted(league_data_dir.iterdir())
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
     ]
     names: dict[int, str] = {}
     for season_dir in season_dirs:
         for league_file in season_dir.rglob("*.json"):
+            if league_file.name.startswith("_"):
+                continue
             with open(league_file, encoding="utf-8") as f:
-                league_data: GeocodedLeague = json.load(f)
+                league_data: League = json.load(f)
             for team in league_data.get("teams", []):
                 tid = _parse_rfu_team_id(team.get("url"))
                 if tid is not None:

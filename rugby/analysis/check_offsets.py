@@ -53,6 +53,8 @@ def _find_pyramid_bottom(season_dir: Path, season: str, comp: str) -> int | None
         return None
     tiers: set[int] = set()
     for f in season_dir.glob("*.json"):
+        if f.name.startswith("_"):
+            continue
         tier_num, _ = extract_tier(f.name, season)
         if tier_num >= 100 or tier_num == 999:
             continue
@@ -162,10 +164,10 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    geocoded = DATA_DIR / "geocoded_teams"
+    league_data = DATA_DIR / "league_data"
     all_results: list[dict] = []
 
-    for season_dir in sorted(geocoded.iterdir()):
+    for season_dir in sorted(league_data.iterdir()):
         if not season_dir.is_dir():
             continue
         season = season_dir.name

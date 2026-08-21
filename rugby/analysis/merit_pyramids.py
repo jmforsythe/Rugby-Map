@@ -1,6 +1,6 @@
 """Analyse merit competition pyramids for tier extraction issues.
 
-Scans geocoded_teams/<season>/merit/ and reports:
+Scans league_data/<season>/merit/ and reports:
 - Competitions missing level 1 (no top-tier league)
 - Files where the filename number doesn't match the computed local tier
 - Gaps in the local tier sequence within a competition
@@ -20,12 +20,12 @@ from rugby.tiers import (
     get_number_from_tier_name,
 )
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 
 
 def get_seasons() -> list[str]:
-    """Discover available seasons from geocoded_teams/ subdirectories."""
-    return sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+    """Discover available seasons from league_data/ subdirectories."""
+    return sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
 
 
 @dataclass
@@ -135,7 +135,7 @@ def main() -> None:
     issue_comps = 0
 
     for season in seasons:
-        season_dir = GEOCODED_DIR / season
+        season_dir = LEAGUE_DATA_DIR / season
         merit_dir = season_dir / "merit"
         if not merit_dir.is_dir():
             continue

@@ -1,6 +1,6 @@
 """Per-season CI cache for pyramid SVG/PNG raster outputs.
 
-Rebuild when geocoded data, tier_mappings, or :mod:`rugby.pyramid_image` change.
+Rebuild when league_data, tier_mappings, or :mod:`rugby.pyramid_image` change.
 """
 
 from __future__ import annotations
@@ -51,9 +51,9 @@ def pyramid_raster_inputs_digest(season: str) -> str:
     for code_path in pyramid_code_paths():
         if code_path.is_file():
             _hash_file(hasher, code_path)
-    geocoded = REPO_ROOT / "data" / "rugby" / "geocoded_teams" / season
-    if geocoded.is_dir():
-        for fp in sorted(geocoded.rglob("*")):
+    league_data = REPO_ROOT / "data" / "rugby" / "league_data" / season
+    if league_data.is_dir():
+        for fp in sorted(league_data.rglob("*")):
             if fp.is_file():
                 _hash_file(hasher, fp)
     tier_mappings = REPO_ROOT / "data" / "rugby" / "tier_mappings" / f"{season}.json"

@@ -71,6 +71,7 @@ from core.config import CACHE_DIR, CURRENT_SEASON, DIST_DIR
 from core.http import get_headers
 from rugby import DATA_DIR, short_season
 from rugby.addresses import team_name_to_club_name
+from rugby.clubs import load_geocoded_league
 from rugby.tiers import (
     LEAGUE_TITLE_SPONSOR_PHRASES,
     _strip_sponsor_prefix,
@@ -126,7 +127,7 @@ class StemSlotStrip:
     bands: tuple[StemSlotBand, ...]
 
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 TIER_MAPPINGS_DIR = DATA_DIR / "tier_mappings"
 
 _SEASON_RE = re.compile(r"^[12]\d{3}-[12]\d{3}$")
@@ -2208,10 +2209,10 @@ def merit_augment_skipped_parent_chains_for_pyramid(
 
 
 # ---------------------------------------------------------------------------
-# Data loading (geocoded league JSON -> LeagueData)
+# Data loading (league_data league JSON -> LeagueData)
 # ---------------------------------------------------------------------------
 #
-# Each league JSON in ``data/rugby/geocoded_teams/<season>/`` is loaded into a
+# Each league JSON in ``data/rugby/league_data/<season>/`` is loaded into a
 # :class:`LeagueData` (men's tiers 1-11 or women's visual bands 1-6 from absolute tiers
 # 101-106). Files that resolve to the other gender's pyramid are silently skipped so the
 # same loader can handle both modes by switching the ``gender`` argument.
@@ -2224,7 +2225,7 @@ def _load_league_file(
     gender: Gender = DEFAULT_GENDER,
     extract_rel: str | None = None,
 ) -> LeagueData | None:
-    """Load a single geocoded league JSON, returning None for files outside this gender's pyramid.
+    """Load a single league_data JSON, returning None for files outside this gender's pyramid.
 
     For ``gender == "womens"`` the absolute women's tier (101+) is **re-stamped down** to a
     visual band number (1..6) so the rest of the layout pipeline can treat both pyramids
@@ -2259,8 +2260,10 @@ def _load_league_file(
             return None
         tier_num = visual_tier
 
-    with filepath.open(encoding="utf-8") as fh:
-        data = json.load(fh)
+    # Joins in club address/geocode data (unused here) and — critically — filters out
+    # "To be arranged"/"TBC" placeholder teams exactly as the old committed geocoded_teams
+    # tree did, so team counts/rosters match what used to be read from that tree.
+    data = load_geocoded_league(filepath)
 
     teams_raw = data.get("teams") or []
     teams: list[TeamLogo] = []
@@ -2294,7 +2297,7 @@ def load_pyramid_leagues(
     gender: Gender = DEFAULT_GENDER,
     omit_top_level_filepath: Callable[[Path], bool] | None = None,
 ) -> list[LeagueData]:
-    """Load this gender's pyramid leagues from the geocoded_teams directory.
+    """Load this gender's pyramid leagues from the league_data directory.
 
     Men's: tiers 1–11. Tiers 1–6 occupy the tapered section; tiers 7–11 continue in an
     integrated stem beneath tier 6. Women's leagues, merit competitions, and the county
@@ -2307,9 +2310,9 @@ def load_pyramid_leagues(
     True skips loading that league (used by merged pyramid+merit when Lancashire merit
     subsumes duplicate NW Counties ladders).
     """
-    season_dir = GEOCODED_DIR / season
+    season_dir = LEAGUE_DATA_DIR / season
     if not season_dir.is_dir():
-        raise FileNotFoundError(f"No geocoded_teams data for season {season} at {season_dir}")
+        raise FileNotFoundError(f"No league_data for season {season} at {season_dir}")
 
     leagues: list[LeagueData] = []
     # Only top-level files — merit/, county_championship/, etc. are skipped.
@@ -2335,9 +2338,9 @@ def load_merit_pyramid_leagues_raw(season: str, competition: str) -> list[League
 
     Files that resolve to tier ``999`` (unknown) are skipped silently.
     """
-    season_dir = GEOCODED_DIR / season
+    season_dir = LEAGUE_DATA_DIR / season
     if not season_dir.is_dir():
-        raise FileNotFoundError(f"No geocoded_teams data for season {season} at {season_dir}")
+        raise FileNotFoundError(f"No league_data for season {season} at {season_dir}")
     comp_dir = season_dir / "merit" / competition
     if not comp_dir.is_dir():
         raise FileNotFoundError(
@@ -2493,7 +2496,7 @@ def discover_merit_competitions(season: str) -> list[str]:
     Used by ``--merit`` (without an explicit competition) to iterate every competition's
     pyramid in a single CLI invocation.
     """
-    season_dir = GEOCODED_DIR / season / "merit"
+    season_dir = LEAGUE_DATA_DIR / season / "merit"
     if not season_dir.is_dir():
         return []
     out: list[str] = []
@@ -2519,7 +2522,7 @@ def load_pyramid_leagues_with_merit(season: str) -> list[LeagueData]:
     some seasons — matching top-level pyramid files are omitted so duplicated NW ladders do not
     appear beside ``merit/Lancashire``.
     """
-    geo_root = GEOCODED_DIR / season
+    geo_root = LEAGUE_DATA_DIR / season
 
     def _omit_duplicate_lancashire_pyramid(filepath: Path) -> bool:
         return lancashire_merit_geocoded_nonempty(
@@ -8588,7 +8591,7 @@ def stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
     stored with *local* tier numbers; without this pass, :func:`_resolve_stem_parents` relies on
     heuristics and unrelated leagues (e.g. another county's ``Division 1``) can become the parent.
 
-    Each competition is only merged when it appears under ``data/rugby/geocoded_teams`` for
+    Each competition is only merged when it appears under ``data/rugby/league_data`` for
     ``season`` and :func:`rugby.tiers.get_competition_offset` returns a positive offset. Existing
     ``base`` entries are never overwritten.
     """
@@ -9914,7 +9917,7 @@ def main() -> int:
             "Render one or more merit competition pyramids. Pass a competition name "
             "(e.g. --merit Hampshire) to render just that competition, or --merit with "
             "no value to iterate every merit competition under "
-            "data/rugby/geocoded_teams/<season>/merit/. Outputs default to "
+            "data/rugby/league_data/<season>/merit/. Outputs default to "
             "dist/<season>/pyramid_merit_<Competition>.{svg,png}. Mutually exclusive "
             "with --womens. The per-merit section in tier_mappings JSON is read / "
             "written using the competition name as the key; --interactive-stem-orphans "
@@ -10111,7 +10114,7 @@ def main() -> int:
             comps = discover_merit_competitions(season)
             if not comps:
                 logger.warning(
-                    "No merit competitions under data/rugby/geocoded_teams/%s/merit/; "
+                    "No merit competitions under data/rugby/league_data/%s/merit/; "
                     "skipping merit SVGs - pyramid_All_Leagues will use national tiers only.",
                     season,
                 )
@@ -10141,7 +10144,7 @@ def main() -> int:
     svg_path: Path = args.output or _default_svg_path(season, gender)
     png_path: Path = args.png_output or _default_png_path(season, gender)
 
-    logger.info("Loading geocoded leagues for season %s (%s pyramid) …", season, gender)
+    logger.info("Loading league_data leagues for season %s (%s pyramid) …", season, gender)
     leagues = load_pyramid_leagues(season, gender=gender)
     if gender == "womens":
         logger.info("Loaded %d women's pyramid leagues across tiers 1–6", len(leagues))

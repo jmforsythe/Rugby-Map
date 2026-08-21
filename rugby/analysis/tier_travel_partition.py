@@ -34,8 +34,9 @@ from rugby.analysis.promotion_relegation import (
     parse_bpr_teams_from_projected_md,
     projected_markdown_path,
 )
+from rugby.clubs import iter_geocoded_leagues
 
-GEOCODED_ROOT = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_ROOT = DATA_DIR / "league_data"
 
 TIER_MIN = 4
 TIER_MAX = 6
@@ -128,13 +129,11 @@ def load_projected_tier_teams(
 
 
 def index_coordinates_for_season(season: str) -> dict[str, tuple[float, float]]:
-    base = GEOCODED_ROOT / season
+    base = LEAGUE_DATA_ROOT / season
     if not base.is_dir():
-        raise FileNotFoundError(f"No geocoded dir: {base}")
+        raise FileNotFoundError(f"No league_data dir: {base}")
     out: dict[str, tuple[float, float]] = {}
-    for json_path in sorted(base.rglob("*.json")):
-        with open(json_path, encoding="utf-8") as f:
-            data = json.load(f)
+    for _json_path, data in iter_geocoded_leagues(base):
         for t in data.get("teams", []):
             name = t.get("name")
             lat = t.get("latitude")
@@ -474,7 +473,7 @@ def main() -> None:
         "--season",
         type=str,
         default=CURRENT_SEASON,
-        help="Standings season + geocoded_teams/<season>/ (default: %(default)s)",
+        help="Standings season + league_data/<season>/ (default: %(default)s)",
     )
     parser.add_argument(
         "--teams-file",
@@ -485,7 +484,7 @@ def main() -> None:
     parser.add_argument(
         "--no-cache",
         action="store_true",
-        help="Fetch table order from RFU instead of geocoded_teams JSON",
+        help="Fetch table order from RFU instead of league_data JSON",
     )
     parser.add_argument(
         "--bpr",

@@ -50,11 +50,12 @@ from pathlib import Path
 from core import setup_logging
 from rugby import DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.clubs import iter_geocoded_leagues
 from rugby.tiers import extract_tier, get_competition_offset
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 TIER_MAPPINGS_DIR = DATA_DIR / "tier_mappings"
-SEASONS = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
 WOMENS_MIN = 100
 
 # Keys in tier_mappings/<season>.json that are not merit competitions.
@@ -161,7 +162,7 @@ def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
 
 
 def _parse_league_file(
-    season: str, filepath: Path, season_dir: Path
+    season: str, filepath: Path, season_dir: Path, data: dict
 ) -> tuple[LeagueGeo | None, list[Placement]]:
     rel = filepath.relative_to(season_dir).as_posix()
     parts = rel.split("/")
@@ -175,8 +176,6 @@ def _parse_league_file(
         local_tier + get_competition_offset(comp, season) if is_merit and comp else local_tier
     )
 
-    with open(filepath, encoding="utf-8") as f:
-        data = json.load(f)
     league_name = data.get("league_name", filepath.stem)
 
     placements: list[Placement] = []
@@ -214,7 +213,8 @@ def _parse_league_file(
 
 @dataclass
 class Dataset:
-    """Everything loaded from ``geocoded_teams`` needed by the analyses."""
+    """Everything loaded from ``league_data`` (joined with club address/geocode data)
+    needed by the analyses."""
 
     by_club: dict[str, dict[str, list[Placement]]]
     leagues: dict[str, list[LeagueGeo]]
@@ -236,13 +236,13 @@ def load_dataset(seasons: list[str] | None = None) -> Dataset:
     principal_tier: dict[str, dict[str, int]] = {}
 
     for season in target:
-        season_dir = GEOCODED_DIR / season
+        season_dir = LEAGUE_DATA_DIR / season
         if not season_dir.is_dir():
             continue
         season_leagues: list[LeagueGeo] = []
         season_placements: list[Placement] = []
-        for filepath in sorted(season_dir.rglob("*.json")):
-            geo, parsed = _parse_league_file(season, filepath, season_dir)
+        for filepath, data in iter_geocoded_leagues(season_dir):
+            geo, parsed = _parse_league_file(season, filepath, season_dir, data)
             if geo is not None:
                 season_leagues.append(geo)
             for placement in parsed:

@@ -16,7 +16,7 @@ from collections import defaultdict
 import pytest
 
 from rugby.pyramid_image import (
-    GEOCODED_DIR,
+    LEAGUE_DATA_DIR,
     BandLayout,
     LeagueData,
     _apply_interior_column_gaps,
@@ -178,7 +178,7 @@ def test_merit_parent_aligned_placements_many_children_in_one_narrow_column() ->
 
 
 def _available_seasons() -> list[str]:
-    return sorted(p.name for p in GEOCODED_DIR.iterdir() if p.is_dir())
+    return sorted(p.name for p in LEAGUE_DATA_DIR.iterdir() if p.is_dir())
 
 
 def test_mens_nested_tier456_layout_real_seasons_no_overlap_or_degenerate() -> None:

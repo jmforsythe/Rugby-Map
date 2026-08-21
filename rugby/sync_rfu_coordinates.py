@@ -1,11 +1,18 @@
 """
-Fetch canonical lat/lng from RFU team pages (Static Maps marker URL) and apply
-them across committed ``geocoded_teams`` JSON.
+Fetch canonical lat/lng from RFU team pages (Static Maps marker URL) and
+maintain the ``data/caches/rfu_club_coords_cache.json`` override cache.
 
-Caches RFU lookups in ``data/caches/rfu_club_coords_cache.json`` only. The
-original Nominatim cache (``data/caches/geocode_cache.json``) is intentionally
-left untouched: that file stores Nominatim's address->coord answers and should
-not be polluted with RFU-sourced pins, which can disagree with the geocoded
+That cache is applied on top of ``data/rugby/club_geocodes.json`` at read
+time by ``rugby.clubs.build_geocoded_team`` — there is no committed
+``geocoded_teams`` tree left to patch in place, so this module only ever
+fetches RFU pins and updates the override cache; club discovery reads
+``data/rugby/league_data/`` (only ``name``/``url`` are needed, no
+address/geocode fields).
+
+The original Nominatim cache (``data/rugby/club_geocodes.json``, and its
+predecessor ``data/caches/geocode_cache.json``) is intentionally left
+untouched: it stores Nominatim's address->coord answers and should not be
+polluted with RFU-sourced pins, which can disagree with the geocoded
 address.
 
 Uses ``rugby.addresses`` for RFU HTTP pacing, GET + curl fallback, anti-bot
@@ -18,7 +25,7 @@ Usage:
     python -m rugby.sync_rfu_coordinates --skip-fetch
     python -m rugby.sync_rfu_coordinates --coords-json ./rfu_export.json
 
-After repairing Wikipedia-era ``team=`` ids in geocoded JSON, refetch RFU map pins
+After repairing Wikipedia-era ``team=`` ids in league_data, refetch RFU map pins
 for affected clubs (and allow large lat/lng corrections)::
 
     python -m rugby.sync_rfu_coordinates --invalidate-wikipedia-cache
@@ -48,7 +55,7 @@ from rugby.addresses import (
     team_name_to_club_name,
 )
 
-GEOCODED_ROOT = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_ROOT = DATA_DIR / "league_data"
 RFU_COORD_CACHE_FILE = CACHE_DIR / "rfu_club_coords_cache.json"
 RFU_CACHE_SAVE_EVERY = 5
 
@@ -58,9 +65,9 @@ def _is_wikipedia_league_url(league_url: object) -> bool:
 
 
 def clubs_touching_wikipedia_geocoded_leagues() -> set[str]:
-    """Normalized club names appearing under a Wikipedia ``league_url`` in geocoded_teams."""
+    """Normalized club names appearing under a Wikipedia ``league_url`` in league_data."""
     clubs: set[str] = set()
-    for path in sorted(GEOCODED_ROOT.rglob("*.json")):
+    for path in sorted(LEAGUE_DATA_ROOT.rglob("*.json")):
         if path.name.startswith("_"):
             continue
         try:
@@ -288,6 +295,35 @@ def save_rfu_coord_cache(path: Path, data: dict[str, list[float] | None]) -> Non
     _atomic_write_json(path, data)
 
 
+def promote_confirmed_rfu_coords(club_coords: dict[str, tuple[float, float]]) -> int:
+    """Bake explicitly-confirmed large corrections into ``club_geocodes.json``.
+
+    ``apply_rfu_coords_from_cache`` rejects overrides that jump more than
+    ``_MAX_DELTA_KM`` from the existing geocode, as a guard against bad
+    HTML/parsing. That check used to only matter once, when this script
+    patched the committed ``geocoded_teams`` files — after that the file
+    just held the corrected value. Now the join happens fresh on every read
+    (``rugby.clubs.build_geocoded_team``), so a confirmed large jump (via
+    ``--fresh``/``--invalidate-wikipedia-cache``) would otherwise be
+    rejected by the sanity check forever. Overwriting the Nominatim baseline
+    here makes the correction permanent, the same way it used to be.
+    """
+    path = DATA_DIR / "club_geocodes.json"
+    data: dict[str, dict[str, Any]] = (
+        json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    )
+    changed = 0
+    for club, (lat, lon) in club_coords.items():
+        entry = data.get(club) or {}
+        if entry.get("latitude") == lat and entry.get("longitude") == lon:
+            continue
+        data[club] = {**entry, "latitude": lat, "longitude": lon}
+        changed += 1
+    if changed:
+        _atomic_write_json(path, data)
+    return changed
+
+
 def load_rfu_coord_cache(path: Path) -> dict[str, list[float] | None]:
     """Load club-name keyed cache: ``{ "Club Name": [lat, lon] | null }``."""
     if not path.exists():
@@ -311,7 +347,7 @@ def discover_clubs_and_rep_team_ids() -> tuple[dict[str, str], int]:
     club_ids: dict[str, set[str]] = {}
     skipped = 0
 
-    for path in sorted(GEOCODED_ROOT.rglob("*.json")):
+    for path in sorted(LEAGUE_DATA_ROOT.rglob("*.json")):
         if path.name.startswith("_"):
             continue
         try:
@@ -410,7 +446,7 @@ def main() -> None:
         action="store_true",
         help=(
             "Drop ``rfu_club_coords_cache.json`` entries for clubs that appear in "
-            "geocoded_teams leagues with a Wikipedia ``league_url``, then refetch "
+            "league_data leagues with a Wikipedia ``league_url``, then refetch "
             f"those clubs (for corrected ``team=`` ids). Also allows >{int(_MAX_DELTA_KM)}km coordinate "
             "changes when applying."
         ),
@@ -528,55 +564,18 @@ def main() -> None:
 
     print(f"Resolved coordinates for {len(club_coords)}/{len(club_names_ordered)} clubs")
     print(f"No usable coords for {len(clubs_failed)} clubs")
-
-    files_touched = 0
-    teams_updated = 0
-
-    for path in sorted(GEOCODED_ROOT.rglob("*.json")):
-        if path.name.startswith("_"):
-            continue
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-
-        dirty = False
-        teams = data.get("teams")
-        if not isinstance(teams, list):
-            continue
-
-        for team in teams:
-            if not isinstance(team, dict):
-                continue
-            team_name = team.get("name") or ""
-            if isinstance(team_name, str) and (
-                team_name.startswith("To be arranged") or team_name.startswith("TBC")
-            ):
-                continue
-            url = team.get("url") or ""
-            if "englandrugby.com" not in url:
-                continue
-            if not apply_rfu_coords_from_cache(
-                team,
-                rfu_cache,
-                allow_large_coordinate_jump=allow_large_jump,
-            ):
-                continue
-
-            dirty = True
-            teams_updated += 1
-
-        if dirty:
-            files_touched += 1
-            if not args.dry_run:
-                with open(path, "w", encoding="utf-8") as f:
-                    json.dump(data, f, indent=2, ensure_ascii=False)
-
-    print(f"Files with team updates: {files_touched}; teams updated: {teams_updated}")
+    print(
+        "RFU coord cache updated — overrides apply automatically at read time via "
+        "rugby.clubs.build_geocoded_team (no committed geocoded_teams tree to patch)."
+    )
 
     if args.dry_run:
-        print("Dry run: no files written.")
+        print("Dry run: RFU coord cache not written.")
         return
+
+    if allow_large_jump:
+        promoted = promote_confirmed_rfu_coords(club_coords)
+        print(f"Promoted {promoted} confirmed large correction(s) into club_geocodes.json")
 
 
 if __name__ == "__main__":

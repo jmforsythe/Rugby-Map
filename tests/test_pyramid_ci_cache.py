@@ -15,9 +15,9 @@ def _stub_code_paths(tmp_path: Path) -> None:
         code.write_text("# stub\n", encoding="utf-8")
 
 
-def test_digest_changes_when_geocoded_data_changes(tmp_path: Path, monkeypatch) -> None:
+def test_digest_changes_when_league_data_changes(tmp_path: Path, monkeypatch) -> None:
     season = "2099-2099"
-    geo = tmp_path / "data" / "rugby" / "geocoded_teams" / season
+    geo = tmp_path / "data" / "rugby" / "league_data" / season
     geo.mkdir(parents=True)
     league = geo / "National_1.json"
     league.write_text('{"league_name": "x", "teams": []}', encoding="utf-8")
@@ -40,7 +40,7 @@ def test_save_restore_round_trip(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr(cache, "PYRAMID_RASTER_CACHE_ROOT", tmp_path / "_pyramid_raster_cache")
     _stub_code_paths(tmp_path)
 
-    geo = tmp_path / "data" / "rugby" / "geocoded_teams" / season
+    geo = tmp_path / "data" / "rugby" / "league_data" / season
     geo.mkdir(parents=True)
     (geo / "National_1.json").write_text("{}", encoding="utf-8")
 

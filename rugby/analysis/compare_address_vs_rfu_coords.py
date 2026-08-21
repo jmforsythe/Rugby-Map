@@ -9,7 +9,7 @@ Run: ``python -m rugby.analysis.compare_address_vs_rfu_coords``
 
 Use ``--list-above-m`` to print clubs whose great-circle distance exceeds a metre
 threshold (default lists none; set e.g. ``500`` for half-kilometre outliers). Each
-line includes a representative RFU ``team_url`` (from ``geocoded_teams``, same
+line includes a representative RFU ``team_url`` (from ``league_data``, same
 club dedup as ``rugby.addresses``), the scraped address, Nominatim
 ``formatted_address``, and both coordinate pairs.
 """
@@ -31,7 +31,7 @@ from rugby.distances import distance as haversine_km
 CLUB_ADDRESS_CACHE = CACHE_DIR / "club_address_cache.json"
 GEOCODE_CACHE = CACHE_DIR / "geocode_cache.json"
 RFU_CLUB_COORDS_CACHE = CACHE_DIR / "rfu_club_coords_cache.json"
-GEOCODED_ROOT = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_ROOT = DATA_DIR / "league_data"
 
 
 def _load_json(path: Path) -> dict:
@@ -66,7 +66,7 @@ def discover_club_rep_team_url() -> dict[str, str]:
     """Map normalized club name -> one ``team`` URL (min numeric RFU team id)."""
     club_tid_url: dict[str, list[tuple[int, str]]] = defaultdict(list)
 
-    for path in sorted(GEOCODED_ROOT.rglob("*.json")):
+    for path in sorted(LEAGUE_DATA_ROOT.rglob("*.json")):
         if path.name.startswith("_"):
             continue
         try:
@@ -204,7 +204,7 @@ def main() -> None:
             print(f"  {m:,.1f} m  {club}")
             print(
                 "    team_url:          "
-                f"{team_url if team_url else '(not found in geocoded_teams)'}"
+                f"{team_url if team_url else '(not found in league_data)'}"
             )
             print(f"    address:           {addr_s}")
             print(

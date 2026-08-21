@@ -30,7 +30,7 @@ from rugby.tiers import extract_tier, get_competition_offset
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 
 WOMENS_MIN_TIER = 100
 UNKNOWN_TIER = 999
@@ -64,14 +64,14 @@ class PairResult(NamedTuple):
 
 def load_season(season: str) -> dict[str, list[LeagueInfo]]:
     """Return {team_name: [LeagueInfo, ...]} for a single season."""
-    season_dir = GEOCODED_DIR / season
+    season_dir = LEAGUE_DATA_DIR / season
     if not season_dir.is_dir():
         logger.error("Season directory not found: %s", season_dir)
         sys.exit(1)
 
     teams: dict[str, list[LeagueInfo]] = defaultdict(list)
 
-    for filepath in sorted(season_dir.rglob("*.json")):
+    for filepath in sorted(p for p in season_dir.rglob("*.json") if not p.name.startswith("_")):
         rel = filepath.relative_to(season_dir).as_posix()
         tier_num, tier_name = extract_tier(rel, season)
 
@@ -247,9 +247,9 @@ def infer_tiers(adj: dict[str, dict[str, int]], season: str) -> dict[str, tuple[
 
 def get_available_seasons() -> list[str]:
     """Return sorted list of available season directories."""
-    if not GEOCODED_DIR.is_dir():
+    if not LEAGUE_DATA_DIR.is_dir():
         return []
-    return sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+    return sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
 
 
 def _collect_file_tiers(

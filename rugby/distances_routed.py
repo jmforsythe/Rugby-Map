@@ -1,7 +1,8 @@
 """Routed (road) distance & duration matrix via self-hosted OSRM.
 
-Walks every ``data/rugby/geocoded_teams/<season>/`` directory (men's pyramid +
-merit + women's, every season), dedupes to distinct points (rounded to
+Walks every ``data/rugby/league_data/<season>/`` directory (men's pyramid +
+merit + women's, every season), joining in club address/geocode data via
+``rugby.clubs``, dedupes to distinct points (rounded to
 ``GEOCODE_DECIMALS`` dp), and calls a self-hosted OSRM ``/table`` endpoint in
 chunks for the full N x N matrix.
 
@@ -55,8 +56,9 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from core import json_load_cache, setup_logging
+from core import setup_logging
 from rugby import DATA_DIR
+from rugby.clubs import iter_geocoded_leagues
 from rugby.offshore_travel import augment_coord_meta_for_routing_waypoints
 
 logger = logging.getLogger(__name__)
@@ -77,8 +79,8 @@ def _round_coord(lat: float, lon: float) -> tuple[float, float]:
 
 
 def _iter_season_dirs() -> list[Path]:
-    """All available season directories under ``geocoded_teams/`` (sorted)."""
-    root = DATA_DIR / "geocoded_teams"
+    """All available season directories under ``league_data/`` (sorted)."""
+    root = DATA_DIR / "league_data"
     if not root.is_dir():
         return []
     return sorted(d for d in root.iterdir() if d.is_dir())
@@ -93,9 +95,10 @@ def collect_geocodes(
 ]:
     """Return (sorted unique coords, coord -> team metadata, seasons covered).
 
-    Walks every season under ``data/rugby/geocoded_teams/`` (pyramid + merit +
-    women's combined; routing is gender/competition-agnostic). If ``seasons`` is
-    given, only those subdirs are scanned.
+    Walks every season under ``data/rugby/league_data/`` (pyramid + merit +
+    women's combined; routing is gender/competition-agnostic), joining in
+    club address/geocode data via ``rugby.clubs``. If ``seasons`` is given,
+    only those subdirs are scanned.
 
     Club locations are static across seasons, so a single cache built from all
     historical + current seasons covers every map / popup / stats use.
@@ -103,16 +106,15 @@ def collect_geocodes(
     if seasons is None:
         season_dirs = _iter_season_dirs()
     else:
-        season_dirs = [DATA_DIR / "geocoded_teams" / s for s in seasons]
+        season_dirs = [DATA_DIR / "league_data" / s for s in seasons]
     season_dirs = [d for d in season_dirs if d.is_dir()]
     if not season_dirs:
-        raise SystemExit(f"no season directories under {DATA_DIR / 'geocoded_teams'}")
+        raise SystemExit(f"no season directories under {DATA_DIR / 'league_data'}")
 
     coord_meta: dict[tuple[float, float], list[dict[str, str]]] = defaultdict(list)
     seen_team_keys: set[tuple[tuple[float, float], str, str]] = set()
     for season_dir in season_dirs:
-        for filepath in sorted(season_dir.rglob("*.json")):
-            league = json_load_cache(str(filepath))
+        for _filepath, league in iter_geocoded_leagues(season_dir):
             league_name = league.get("league_name", "")
             for team in league.get("teams", []):
                 lat = team.get("latitude")
@@ -340,7 +342,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
             "Build the global routed distance/duration matrix via OSRM. "
-            "Walks every season under data/rugby/geocoded_teams/ by default."
+            "Walks every season under data/rugby/league_data/ by default."
         )
     )
     parser.add_argument(

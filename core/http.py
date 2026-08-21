@@ -1,12 +1,46 @@
 """HTTP client helpers: sessions, request wrappers, and anti-bot handling."""
 
+import functools
 import logging
+import os
+import sys
 import threading
 import time
 
 import requests
 
 logger = logging.getLogger(__name__)
+
+
+@functools.cache
+def _resolve_curl_path() -> str:
+    """Find a curl binary that isn't Windows' bundled System32\\curl.exe.
+
+    On Windows, ``subprocess.run(["curl", ...])`` resolves ``curl`` via
+    ``CreateProcess``'s search order, which checks ``System32`` before the
+    user's ``PATH`` entries. That bundled curl build (distinct from e.g. Git
+    for Windows' mingw64 curl) reliably gets a Cloudflare challenge (202)
+    on every request to englandrugby.com, even though a request with
+    identical headers/args from a curl on ``PATH`` succeeds — so prefer any
+    non-System32 curl found on ``PATH`` before falling back to the bare name.
+    """
+    if sys.platform != "win32":
+        return "curl"
+
+    default_root = r"C:\Windows"
+    system_root = os.environ.get("SystemRoot", default_root)  # noqa: SIM112
+    skip_dirs = {
+        os.path.normcase(os.path.join(system_root, "System32")),
+        os.path.normcase(os.path.join(system_root, "SysWOW64")),
+    }
+    for directory in os.environ.get("PATH", "").split(os.pathsep):
+        if not directory or os.path.normcase(directory) in skip_dirs:
+            continue
+        candidate = os.path.join(directory, "curl.exe")
+        if os.path.isfile(candidate):
+            return candidate
+
+    return "curl"
 
 
 class AntiBotDetectedError(Exception):
@@ -57,7 +91,7 @@ def _curl_fallback(url: str, referer: str | None, timeout: int) -> requests.Resp
     import subprocess
 
     cmd = [
-        "curl",
+        _resolve_curl_path(),
         "-s",
         "-w",
         "\n%{http_code}",

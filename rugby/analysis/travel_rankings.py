@@ -15,13 +15,13 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
 from dataclasses import dataclass
 from itertools import combinations
 
 from core import GeocodedLeague, GeocodedTeam
 from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
+from rugby.clubs import iter_geocoded_leagues
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import league_average, league_display_name, team_average
 from rugby.offshore_travel import AVG_UK_DRIVE_KMH, classify_region
@@ -100,15 +100,13 @@ def _team_avg_km_min(
 
 
 def load_season_leagues(season: str) -> list[tuple[str, GeocodedLeague]]:
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season
-    if not geocoded_dir.is_dir():
-        raise FileNotFoundError(f"geocoded_teams directory not found for season {season!r}")
+    league_dir = DATA_DIR / "league_data" / season
+    if not league_dir.is_dir():
+        raise FileNotFoundError(f"league_data directory not found for season {season!r}")
 
     leagues: list[tuple[str, GeocodedLeague]] = []
-    for json_file in sorted(geocoded_dir.rglob("*.json")):
-        with json_file.open(encoding="utf-8") as f:
-            league_data: GeocodedLeague = json.load(f)
-        league_name = league_display_name(json_file, geocoded_dir, league_data)
+    for json_file, league_data in iter_geocoded_leagues(league_dir):
+        league_name = league_display_name(json_file, league_dir, league_data)
         leagues.append((league_name, league_data))
     return leagues
 
@@ -268,7 +266,7 @@ def main() -> None:
     parser.add_argument(
         "--season",
         default=DEFAULT_SEASON,
-        help=f"Season under geocoded_teams/ (default: {DEFAULT_SEASON})",
+        help=f"Season under league_data/ (default: {DEFAULT_SEASON})",
     )
     parser.add_argument(
         "--top",

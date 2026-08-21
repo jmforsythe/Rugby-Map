@@ -1,6 +1,6 @@
 """Project next-season tier assignments from league table order.
 
-Reads tiers 2-8 from ``data/rugby/geocoded_teams/<season>/``: team order in each
+Reads tiers 2-8 from ``data/rugby/league_data/<season>/``: team order in each
 league JSON is taken as the table order. Optionally ``--scrape-standings`` can
 fetch live RFU pages instead (no disk cache).
 
@@ -62,7 +62,7 @@ from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, mens_current_tier_name
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 FIXTURE_DIR = DATA_DIR / "fixture_data"
 
 _BPR_LINE_FRAGMENT = "promoted via Best Playing Record are "
@@ -656,7 +656,7 @@ _R2_MIDLANDS_NO_C1_LEAGUES: frozenset[str] = frozenset(
 )
 
 # Extra Counties 1 → Counties 2 relegations (after auto-promotions / BPR), by table bottom
-# within each division. Names must match ``league_name`` in geocoded_teams Counties 1 JSON.
+# within each division. Names must match ``league_name`` in league_data Counties 1 JSON.
 _COUNTIES_ONE_SCHEDULED_DOWNS: dict[str, int] = {
     # 3 down
     "Counties 1 Tribute Ale Western North": 3,
@@ -749,13 +749,13 @@ def _team_id_from_rfu_url(url: str) -> int | None:
 
 def load_team_id_lookup(season: str) -> dict[int, tuple[str, str, int]]:
     """Build ``{team_id: (team_name, league_name, tier_num)}`` for every men's pyramid team
-    in ``data/rugby/geocoded_teams/<season>/`` (top-level files only; merit leagues skipped).
+    in ``data/rugby/league_data/<season>/`` (top-level files only; merit leagues skipped).
     """
-    season_dir = GEOCODED_DIR / season
+    season_dir = LEAGUE_DATA_DIR / season
     out: dict[int, tuple[str, str, int]] = {}
     if not season_dir.is_dir():
         return out
-    for path in sorted(season_dir.glob("*.json")):
+    for path in sorted(p for p in season_dir.glob("*.json") if not p.name.startswith("_")):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
         tier_num, _ = extract_tier(path.name, season)
@@ -948,10 +948,10 @@ def apply_playoff_overrides(
 
 
 def load_tier_leagues(season: str) -> list[dict]:
-    """Load geocoded league files for tiers 2-8 (men's Counties 2 and tiers 2-7 pyramid)."""
-    season_dir = GEOCODED_DIR / season
+    """Load league_data files for tiers 2-8 (men's Counties 2 and tiers 2-7 pyramid)."""
+    season_dir = LEAGUE_DATA_DIR / season
     leagues: list[dict] = []
-    for path in sorted(season_dir.glob("*.json")):
+    for path in sorted(p for p in season_dir.glob("*.json") if not p.name.startswith("_")):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
         tier_num, tier_name = extract_tier(path.name, season)
@@ -976,8 +976,8 @@ def load_tier_leagues(season: str) -> list[dict]:
 
 
 def load_standings_order_from_geocoded(season: str, league_filename: str) -> list[str]:
-    """Return team names in table order from a geocoded league JSON file."""
-    path = GEOCODED_DIR / season / league_filename
+    """Return team names in table order from a league_data league JSON file."""
+    path = LEAGUE_DATA_DIR / season / league_filename
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
     teams = data.get("teams") or []
@@ -1355,7 +1355,7 @@ def build_markdown(
     lines.append("")
     lines.append(
         f"Generated automatically from {season} league table order in "
-        "`data/rugby/geocoded_teams/` (same order as teams in each league JSON)."
+        "`data/rugby/league_data/` (same order as teams in each league JSON)."
     )
     lines.append("Rules applied from `tier_assignment_rules.md`.")
     lines.append("")
@@ -1741,7 +1741,7 @@ def main() -> None:
     parser.add_argument(
         "--scrape-standings",
         action="store_true",
-        help="Fetch table order from RFU website instead of geocoded_teams JSON",
+        help="Fetch table order from RFU website instead of league_data JSON",
     )
     parser.add_argument(
         "--no-cache",
@@ -1859,7 +1859,7 @@ def main() -> None:
         print(f"  Tier {tier}: {len(tier_leagues)} league(s)")
 
     print(
-        f"\nTable order: {'RFU scrape' if scrape_standings else 'geocoded_teams'} + "
+        f"\nTable order: {'RFU scrape' if scrape_standings else 'league_data'} + "
         f"promotion/relegation rules for {season}..."
     )
     survival_swaps = _SEASON_SURVIVAL_SWAPS.get(season)

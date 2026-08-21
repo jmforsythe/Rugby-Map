@@ -21,6 +21,7 @@ from core import (
 )
 from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
+from rugby.clubs import iter_geocoded_leagues
 from rugby.distance_lookup import DistanceLookup
 from rugby.offshore_travel import OffshoreRegion, classify_region
 
@@ -185,17 +186,17 @@ def league_average(
 _DEFAULT_LOOKUP: DistanceLookup = DistanceLookup()
 
 
-def _season_names_under_geocoded_teams() -> list[str]:
-    root = DATA_DIR / "geocoded_teams"
+def _season_names_under_league_data() -> list[str]:
+    root = DATA_DIR / "league_data"
     if not root.is_dir():
         return []
     return sorted(d.name for d in root.iterdir() if d.is_dir())
 
 
-def league_display_name(json_file: Path, geocoded_dir: Path, league_data: GeocodedLeague) -> str:
+def league_display_name(json_file: Path, league_dir: Path, league_data: GeocodedLeague) -> str:
     """Canonical league label matching ``run_for_season`` / distance cache keys."""
     league_name = league_data["league_name"]
-    rel_parts = json_file.relative_to(geocoded_dir).parts
+    rel_parts = json_file.relative_to(league_dir).parts
     if len(rel_parts) >= 3 and rel_parts[0] == "merit":
         comp_name = rel_parts[1].replace("_", " ")
         if comp_name.lower() not in league_name.lower():
@@ -228,8 +229,8 @@ def enrich_island_excl_stats(
     lookup: DistanceLookup | None = None,
 ) -> TravelDistances:
     """Add missing ``excl_*`` stats when distance cache predates island splits."""
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season
-    if not geocoded_dir.exists():
+    league_dir = DATA_DIR / "league_data" / season
+    if not league_dir.exists():
         return travel
 
     lk = lookup or DistanceLookup.load()
@@ -241,11 +242,8 @@ def enrich_island_excl_stats(
     leagues: dict[str, LeagueTravelDistances] = dict(travel.get("leagues", {}))
     patched = False
 
-    for json_file in sorted(geocoded_dir.rglob("*.json")):
-        with open(json_file, encoding="utf-8") as f:
-            league_data: GeocodedLeague = json.load(f)
-
-        league_name = league_display_name(json_file, geocoded_dir, league_data)
+    for json_file, league_data in iter_geocoded_leagues(league_dir):
+        league_name = league_display_name(json_file, league_dir, league_data)
         valid_teams = [
             team for team in league_data["teams"] if "latitude" in team and "longitude" in team
         ]
@@ -293,9 +291,9 @@ def run_for_season(
     """
     global _DEFAULT_LOOKUP
 
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season
-    if not geocoded_dir.exists():
-        print(f"Error: geocoded_teams directory not found for season {season!r}")
+    league_dir = DATA_DIR / "league_data" / season
+    if not league_dir.exists():
+        print(f"Error: league_data directory not found for season {season!r}")
         return None
 
     _DEFAULT_LOOKUP = lookup
@@ -304,11 +302,8 @@ def run_for_season(
     league_stats: dict[str, LeagueTravelDistances] = {}
     missing_routed: list[tuple[str, float, float]] = []
 
-    for json_file in sorted(geocoded_dir.rglob("*.json")):
-        with open(json_file, encoding="utf-8") as f:
-            league_data: GeocodedLeague = json.load(f)
-
-        league_name = league_display_name(json_file, geocoded_dir, league_data)
+    for json_file, league_data in iter_geocoded_leagues(league_dir):
+        league_name = league_display_name(json_file, league_dir, league_data)
 
         if lookup.has_routed:
             for team in league_data.get("teams", []):
@@ -448,14 +443,14 @@ def main() -> None:
     parser.add_argument(
         "--all-seasons",
         action="store_true",
-        help="Rebuild distance_cache/*.json for every season under geocoded_teams/",
+        help="Rebuild distance_cache/*.json for every season under league_data/",
     )
     args = parser.parse_args()
 
     if args.all_seasons:
-        names = _season_names_under_geocoded_teams()
+        names = _season_names_under_league_data()
         if not names:
-            print("Error: no season directories under geocoded_teams")
+            print("Error: no season directories under league_data")
             return
         lookup = DistanceLookup.load()
         print("Calculating team and league travel distances (all seasons)...")

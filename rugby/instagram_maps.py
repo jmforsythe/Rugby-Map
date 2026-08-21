@@ -203,7 +203,7 @@ def load_levels(season: str, *, include_merit: bool = True) -> dict[int, list[Ma
     map at all.
     """
     loaded = _load_marker_items(
-        str(DATA_DIR / "geocoded_teams" / season), season, travel_distances=None
+        str(DATA_DIR / "league_data" / season), season, travel_distances=None
     )
     items = [it for it in loaded.pyramid if it.tier_num < 100]
     if include_merit:

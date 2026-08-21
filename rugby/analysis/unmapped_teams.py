@@ -14,7 +14,6 @@ Usage::
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 from collections import defaultdict
 from dataclasses import dataclass
@@ -23,11 +22,12 @@ from core import setup_logging
 from core.config import CURRENT_SEASON
 from core.map_builder import ITLHierarchy, MarkerItem, load_itl_hierarchy, preassign_itl_regions
 from rugby import DATA_DIR
+from rugby.clubs import iter_geocoded_leagues
 from rugby.maps import BOUNDARY_PATHS
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 
 
 @dataclass
@@ -54,15 +54,13 @@ def _collect_marker_items(season: str) -> list[tuple[MarkerItem, str, str]]:
     Uses MarkerItem so we can call the same ``preassign_itl_regions`` the map
     pipeline uses, ensuring assignments match exactly.
     """
-    season_dir = GEOCODED_DIR / season
+    season_dir = LEAGUE_DATA_DIR / season
     out: list[tuple[MarkerItem, str, str]] = []
     if not season_dir.is_dir():
         return out
 
-    for filepath in sorted(season_dir.rglob("*.json")):
+    for filepath, data in iter_geocoded_leagues(season_dir):
         rel_path = filepath.relative_to(season_dir).as_posix()
-        with open(filepath, encoding="utf-8") as f:
-            data = json.load(f)
         league_name = data.get("league_name", filepath.stem)
         for team in data.get("teams", []):
             if "latitude" not in team or "longitude" not in team:
@@ -181,7 +179,7 @@ def main() -> None:
     parser.add_argument(
         "--all-seasons",
         action="store_true",
-        help="Inspect every season under data/rugby/geocoded_teams/.",
+        help="Inspect every season under data/rugby/league_data/.",
     )
     parser.add_argument(
         "--missing",
@@ -197,7 +195,7 @@ def main() -> None:
     setup_logging()
 
     if args.all_seasons:
-        seasons = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+        seasons = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
     else:
         seasons = [args.season]
 
@@ -207,7 +205,7 @@ def main() -> None:
 
     all_records: list[TeamRecord] = []
     for season in seasons:
-        season_path = GEOCODED_DIR / season
+        season_path = LEAGUE_DATA_DIR / season
         if not season_path.is_dir():
             logger.warning("No geocoded data for season %s, skipping", season)
             continue

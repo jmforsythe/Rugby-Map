@@ -1,8 +1,10 @@
 """List all leagues at each absolute tier level per season, grouped by competition.
 
-Scans geocoded team data and prints a structured view of which leagues exist
-at each pyramid level for every season, separated into pyramid and merit
-competitions.  Useful for verifying tier extraction assignments.
+Scans league_data and prints a structured view of which leagues exist at
+each pyramid level for every season, separated into pyramid and merit
+competitions. Useful for verifying tier extraction assignments. Only
+league_name/league_url/team_count are needed, so this reads the thin
+league_data records directly rather than the geocoded/address-enriched data.
 """
 
 from __future__ import annotations
@@ -18,8 +20,8 @@ from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
-SEASONS = sorted(d.name for d in GEOCODED_DIR.iterdir() if d.is_dir() and "-" in d.name)
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
+SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
 
 PYRAMID_KEY = "(pyramid)"
 
@@ -89,10 +91,10 @@ def load_league_data() -> dict[str, dict[str, list[LeagueRecord]]]:
     result: dict[str, dict[str, list[LeagueRecord]]] = {}
 
     for season in SEASONS:
-        season_dir = GEOCODED_DIR / season
+        season_dir = LEAGUE_DATA_DIR / season
         comp_map: dict[str, list[LeagueRecord]] = defaultdict(list)
 
-        for filepath in sorted(season_dir.rglob("*.json")):
+        for filepath in sorted(f for f in season_dir.rglob("*.json") if not f.name.startswith("_")):
             rel = filepath.relative_to(season_dir).as_posix()
             local_tier, tier_name = extract_tier(rel, season)
 

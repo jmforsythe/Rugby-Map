@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import rugby.pyramid_image as pyramid_image  # noqa: E402
 from rugby.pyramid_image import discover_merit_competitions  # noqa: E402
 
-GEO = Path("data/rugby/geocoded_teams")
+GEO = Path("data/rugby/league_data")
 
 MISSING_RE = re.compile(
     r"no parent given or inferred for ['\"](?P<league>.+)['\"] \(local tier (?P<tier>\d+)\)"

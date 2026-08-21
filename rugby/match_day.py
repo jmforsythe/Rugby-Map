@@ -1,7 +1,8 @@
 """
 Generate one interactive ``match_day`` Folium map per season with a calendar-date dropdown.
 
-Reads committed fixture_data/<season>/ and geocoded_teams/<season>/ to show
+Reads committed fixture_data/<season>/ and joins league_data/<season>/ with
+club address/geocode data (rugby.clubs) to show
 match venues and results. The dropdown selects the fixture day; tier filters use the
 native Leaflet ``L.control.layers`` widget at top-right (same chrome as the
 All Leagues map). Overlays are **one row per absolute pyramid tier**, grouped under **Men's**
@@ -35,7 +36,6 @@ from folium.plugins import MarkerCluster
 from core import (
     Fixture,
     FixtureLeague,
-    GeocodedLeague,
     GeocodedTeam,
     get_config,
     get_favicon_html,
@@ -58,6 +58,7 @@ from core.map_builder import (
     LayerControlHook,
 )
 from rugby import BRAND, DATA_DIR, short_season
+from rugby.clubs import iter_geocoded_leagues
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.tiers import (
     extract_tier,
@@ -561,16 +562,14 @@ def _parse_team_id(url: str) -> int | None:
 
 
 def build_team_index(season: str) -> dict[int, GeocodedTeam]:
-    """Build team-ID -> GeocodedTeam lookup from geocoded_teams/<season>/."""
-    geocoded_dir = DATA_DIR / "geocoded_teams" / season
+    """Build team-ID -> GeocodedTeam lookup, joining league_data/<season>/ with club data."""
+    league_dir = DATA_DIR / "league_data" / season
     index: dict[int, GeocodedTeam] = {}
-    if not geocoded_dir.exists():
-        logger.error("geocoded_teams/%s/ not found", season)
+    if not league_dir.exists():
+        logger.error("league_data/%s/ not found", season)
         return index
 
-    for json_file in geocoded_dir.rglob("*.json"):
-        with open(json_file, encoding="utf-8") as f:
-            data: GeocodedLeague = json.load(f)
+    for _json_file, data in iter_geocoded_leagues(league_dir):
         for team in data.get("teams", []):
             team_id = _parse_team_id(team.get("url", ""))
             if team_id is not None and "latitude" in team and "longitude" in team:

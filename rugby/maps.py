@@ -38,6 +38,7 @@ from core.map_builder import (
     preassign_itl_regions,
 )
 from rugby import BRAND, DATA_DIR, short_season
+from rugby.clubs import iter_geocoded_leagues
 from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
@@ -367,23 +368,24 @@ class LoadedItems:
 
 
 def _load_marker_items(
-    geocoded_teams_dir: str,
+    league_data_dir: str,
     season: str,
     travel_distances: TravelDistances | None,
 ) -> LoadedItems:
-    """Scan geocoded JSON files and build MarkerItem objects.
+    """Join league_data JSON files with club address/geocode data and build
+    MarkerItem objects.
 
     Returns pyramid items in one list and merit items grouped by competition.
     """
-    geocoded_path = Path(geocoded_teams_dir)
-    if not geocoded_path.is_dir():
+    league_path = Path(league_data_dir)
+    if not league_path.is_dir():
         return LoadedItems()
 
-    subsume_lancs = lancashire_merit_geocoded_nonempty(geocoded_path)
+    subsume_lancs = lancashire_merit_geocoded_nonempty(league_path)
 
     result = LoadedItems()
-    for filepath in geocoded_path.rglob("*.json"):
-        rel_parts_early = filepath.relative_to(geocoded_path).parts
+    for filepath, data in iter_geocoded_leagues(league_path):
+        rel_parts_early = filepath.relative_to(league_path).parts
         is_root_pyramid = len(rel_parts_early) == 1
         if (
             subsume_lancs
@@ -392,13 +394,11 @@ def _load_marker_items(
         ):
             continue
 
-        rel_path = filepath.relative_to(geocoded_path).as_posix()
+        rel_path = filepath.relative_to(league_path).as_posix()
         tier_num, tier_name = extract_tier(rel_path, season)
 
-        data = json_load_cache(str(filepath))
-
         league_name = data.get("league_name", "Unknown League")
-        rel_parts = list(filepath.relative_to(geocoded_path).parts)
+        rel_parts = list(filepath.relative_to(league_path).parts)
         is_merit = len(rel_parts) >= 3 and rel_parts[0] == "merit"
         comp_key = rel_parts[1] if is_merit else ""
         if is_merit:
@@ -706,8 +706,8 @@ def generate_constituent_body_map(season: str, show_debug: bool) -> None:
         travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
         travel_distances = enrich_island_excl_stats(travel_distances, season, DistanceLookup.load())
 
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
-    loaded = _load_marker_items(geocoded_dir, season, travel_distances)
+    league_dir = str(DATA_DIR / "league_data" / season)
+    loaded = _load_marker_items(league_dir, season, travel_distances)
 
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
     all_items = loaded.pyramid + [it for items in loaded.merit.values() for it in items]
@@ -843,10 +843,10 @@ def main() -> None:
     else:
         logger.debug("  No travel distance data found")
 
-    # Build MarkerItem objects from geocoded files
-    logger.debug("Loading marker items from geocoded files...")
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
-    loaded = _load_marker_items(geocoded_dir, season, travel_distances)
+    # Build MarkerItem objects, joining league_data with club address/geocode data
+    logger.debug("Loading marker items from league_data + club maps...")
+    league_dir = str(DATA_DIR / "league_data" / season)
+    loaded = _load_marker_items(league_dir, season, travel_distances)
 
     # Split pyramid items by gender
     mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]

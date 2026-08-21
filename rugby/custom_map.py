@@ -2,16 +2,17 @@
 Export a deduplicated team catalogue, boundary data, and assembled HTML page
 for the custom map builder.
 
-Walks all seasons under data/rugby/geocoded_teams/, keeps the most recently
-seen version of each team (by season sort order) with valid lat/lng, runs
-point-in-polygon to assign ITL2/ITL3/LAD regions to each team, and writes:
+Walks all seasons under data/rugby/league_data/, joining in club address/
+geocode data via rugby.clubs, keeps the most recently seen version of each
+team (by season sort order) with valid lat/lng, runs point-in-polygon to
+assign ITL2/ITL3/LAD regions to each team, and writes:
 
 - teams.js       — team catalogue with pre-computed region assignments
 - dist/shared/boundaries-custom.json — England-only simplified boundary
   geometries + hierarchy, fetched client-side (shared across rebuilds)
 - index.html     — assembled SPA from rugby/custom_map_assets/ template
 - bonus_imports.js — optional tier packs from data/rugby/custom_map_imports/
-- season_imports.js — pyramid / all-leagues / merit trees from latest geocoded season
+- season_imports.js — pyramid / all-leagues / merit trees from latest league_data season
 
 League order in the UI and shareable URL hash is always alphabetical by league
 name (see custom_map_assets/index.html).
@@ -29,14 +30,7 @@ import numpy as np
 from shapely.geometry import Point, mapping, shape
 from shapely.prepared import prep
 
-from core import (
-    GeocodedLeague,
-    TravelDistances,
-    get_config,
-    get_twitter_card_meta,
-    set_config,
-    setup_logging,
-)
+from core import TravelDistances, get_config, get_twitter_card_meta, set_config, setup_logging
 from core.asset_utils import rewrite_cdn_urls_in_html
 from core.basemap_tiles import (
     CARTO_THEME_MARK_DARK,
@@ -55,6 +49,7 @@ from core.config import (
 )
 from core.json_utils import write_compact_json
 from rugby import DATA_DIR
+from rugby.clubs import iter_geocoded_leagues
 from rugby.custom_map_imports import write_bonus_imports_js
 from rugby.custom_map_season_imports import write_season_imports_js
 from rugby.distance_lookup import DistanceLookup
@@ -65,7 +60,7 @@ from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_
 
 logger = logging.getLogger(__name__)
 
-GEOCODED_DIR = DATA_DIR / "geocoded_teams"
+LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 DISTANCE_CACHE_DIR = DATA_DIR / "distance_cache"
 OUTPUT_DIR = DIST_DIR / "custom-map"
 TEMPLATE_DIR = Path(__file__).resolve().parent / "custom_map_assets"
@@ -345,7 +340,7 @@ def _collect_teams(
 ) -> list[dict]:
     """Walk every season and return deduplicated teams (latest season wins)."""
     seasons = sorted(
-        [d.name for d in GEOCODED_DIR.iterdir() if d.is_dir()],
+        [d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir()],
     )
 
     dist_teams = {}
@@ -358,11 +353,11 @@ def _collect_teams(
     missing_rid_in_latest: set[tuple[str, float, float]] = set()
 
     for season in seasons:
-        season_dir = GEOCODED_DIR / season
+        season_dir = LEAGUE_DATA_DIR / season
         season_travel = (distances_by_season or {}).get(season, {})
         dist_teams = season_travel.get("teams", {})
         dist_leagues = season_travel.get("leagues", {})
-        for json_path in sorted(season_dir.rglob("*.json")):
+        for json_path, league in iter_geocoded_leagues(season_dir):
             rel_path = json_path.relative_to(season_dir).as_posix()
             rel_parts = list(json_path.relative_to(season_dir).parts)
             is_merit = len(rel_parts) >= 3 and rel_parts[0] == "merit"
@@ -379,13 +374,6 @@ def _collect_teams(
                 local_tier_name = ""
                 abs_tier = local_tier_num
                 abs_tier_name = extract_tier(rel_path, season)[1]
-
-            try:
-                with open(json_path, encoding="utf-8") as f:
-                    league: GeocodedLeague = json.load(f)
-            except (json.JSONDecodeError, OSError) as exc:
-                logger.warning("Skipping %s: %s", json_path, exc)
-                continue
 
             for team in league.get("teams", []):
                 lat = team.get("latitude")
@@ -820,8 +808,8 @@ def main() -> None:
     setup_logging()
     _prune_stale_outputs()
 
-    if not GEOCODED_DIR.exists():
-        logger.error("Geocoded data directory not found: %s", GEOCODED_DIR)
+    if not LEAGUE_DATA_DIR.exists():
+        logger.error("League data directory not found: %s", LEAGUE_DATA_DIR)
         return
 
     core_boundary_keys = ("itl1", "itl2", "itl3", "lad")
@@ -875,7 +863,7 @@ def main() -> None:
             ward_to_lad,
         )
 
-    logger.info("Scanning geocoded teams in %s", GEOCODED_DIR)
+    logger.info("Scanning league_data teams in %s", LEAGUE_DATA_DIR)
     distances_by_season = _load_distances_by_season()
 
     routed_lookup = DistanceLookup.load()
@@ -929,7 +917,7 @@ def main() -> None:
     size_kb = output_path.stat().st_size / 1024
     logger.info("Wrote %s (%.1f KB, %d teams)", output_path, size_kb, len(teams))
 
-    # Write season_imports.js (pyramid / merit from latest geocoded season)
+    # Write season_imports.js (pyramid / merit from latest league_data season)
     write_season_imports_js(OUTPUT_DIR)
 
     # Write bonus_imports.js (projected / manual import packs)

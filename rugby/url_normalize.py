@@ -7,6 +7,11 @@ Historical convention (through 2024-2025):
 
 Later scrapes emitted full verbose team links including competition and division.
 This module rewrote those back to the short forms for a season tree.
+
+Only normalizes ``league_data/`` — ``team_addresses``/``geocoded_teams`` no
+longer exist as committed trees; ``rugby.clubs.load_geocoded_league`` joins
+address/geocode data onto ``league_data`` at read time and carries the team
+``url`` field through unchanged, so normalizing it once here is sufficient.
 """
 
 from __future__ import annotations
@@ -140,7 +145,7 @@ def process_directory(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Normalize RFU search-results URLs in league/address/geocode JSON.",
+        description="Normalize RFU search-results URLs in league_data JSON.",
     )
     parser.add_argument(
         "--season",
@@ -157,8 +162,6 @@ def main() -> None:
 
     dirs: list[tuple[str, Path]] = [
         ("league_data", DATA_DIR / "league_data" / season),
-        ("team_addresses", DATA_DIR / "team_addresses" / season),
-        ("geocoded_teams", DATA_DIR / "geocoded_teams" / season),
     ]
 
     write = not args.dry_run

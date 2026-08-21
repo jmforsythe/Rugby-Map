@@ -15,7 +15,7 @@ def _write_league(path: Path, league_name: str, teams: list[str]) -> None:
 
 
 def test_build_season_imports_pyramid_only(tmp_path, monkeypatch) -> None:
-    geocoded = tmp_path / "geocoded_teams"
+    geocoded = tmp_path / "league_data"
     season = geocoded / "2025-2026"
     _write_league(
         season / "Regional_1_South_East.json",
@@ -28,7 +28,7 @@ def test_build_season_imports_pyramid_only(tmp_path, monkeypatch) -> None:
         ["Jersey"],
     )
 
-    monkeypatch.setattr("rugby.custom_map_season_imports.GEOCODED_DIR", geocoded)
+    monkeypatch.setattr("rugby.custom_map_season_imports.LEAGUE_DATA_DIR", geocoded)
 
     payload = build_season_imports("2025-2026")
     assert payload["season"] == "2025-2026"
@@ -45,11 +45,11 @@ def test_counties_1_southern_north_matches_pyramid_map_grey(monkeypatch) -> None
 
     from rugby.custom_map_season_imports import build_season_imports
 
-    geocoded = Path(__file__).resolve().parents[1] / "data" / "rugby" / "geocoded_teams"
+    geocoded = Path(__file__).resolve().parents[1] / "data" / "rugby" / "league_data"
     if not (geocoded / "2025-2026").is_dir():
         return
 
-    monkeypatch.setattr("rugby.custom_map_season_imports.GEOCODED_DIR", geocoded)
+    monkeypatch.setattr("rugby.custom_map_season_imports.LEAGUE_DATA_DIR", geocoded)
     tier = next(t for t in build_season_imports("2025-2026")["pyramid"] if t["num"] == 7)
     southern = next(lg for lg in tier["leagues"] if "Southern North" in lg["name"])
     assert southern["color"] == "#808080"

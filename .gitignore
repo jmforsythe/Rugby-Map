@@ -19,7 +19,6 @@ dist/*
 # Data directories
 data/boundaries/
 data/caches/
-data/rugby/league_data/
 data/rugby/team_addresses/
 # Ignore everything in distance_cache except the global routed cache below.
 # (Glob form, not directory form, so we can re-include specific files.)

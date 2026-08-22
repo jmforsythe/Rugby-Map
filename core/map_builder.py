@@ -2270,6 +2270,22 @@ def _build_base_map(config: MapConfig) -> folium.Map:
         zoom_control=False,
         zoom_snap=MAP_ZOOM_SNAP,
         zoom_delta=MAP_ZOOM_DELTA,
+        # Canvas repaints the whole territory layer as one bitmap instead of
+        # patching hundreds of individual SVG <path> nodes, so it keeps up
+        # during fast pans/zooms instead of leaving unrendered gaps until the
+        # browser catches up on DOM updates.
+        prefer_canvas=True,
+    )
+    # Leaflet's vector renderer only paints the current viewport plus a small
+    # buffer (10% of the map's size by default) and repaints on `moveend` --
+    # so panning/zooming faster than that redraw can leave territories
+    # unpainted until the gesture settles and the buffer catches up. Widening
+    # the buffer to several viewports makes that far less likely to be
+    # visible. Must run after leaflet.js loads (head) but before any
+    # GeoJson/territory layer is added (body), which is where this script
+    # child lands relative to the ones queued below.
+    m.get_root().script.add_child(  # type: ignore[attr-defined]
+        folium.Element("L.SVG.mergeOptions({padding: 3}); L.Canvas.mergeOptions({padding: 3});")
     )
     m.add_child(HatchPane())
     folium.TileLayer(

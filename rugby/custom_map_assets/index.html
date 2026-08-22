@@ -1653,10 +1653,21 @@
       let tileLayer;
 
       function initMap() {
+        // Leaflet's vector renderer only paints the viewport plus a small
+        // buffer (10% of the map size by default) and repaints on
+        // "moveend" -- so panning/zooming faster than that redraw leaves
+        // territories unpainted until the gesture settles. Widen the
+        // buffer to several viewports so that's far less likely to show.
+        L.SVG.mergeOptions({ padding: 3 });
+        L.Canvas.mergeOptions({ padding: 3 });
         map = L.map("map", {
           zoomControl: true,
           zoomSnap: 0,
           zoomDelta: 0.25,
+          // Canvas repaints territory shading as one bitmap instead of
+          // patching many SVG <path> nodes, so fast pans/zooms don't leave
+          // territories unrendered until the browser catches up.
+          preferCanvas: true,
         }).setView([52.5, -1.5], 7);
         applyRugbyMapThemeUI();
         const isDark = isRugbyMapAppearanceDark();

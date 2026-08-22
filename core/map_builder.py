@@ -132,6 +132,17 @@ class MapConfig:
     # Structures drawn as diagonal stripes over the solid ones, for maps showing
     # two league structures that run in parallel over the same territory.
     hatched_structures: tuple[str, ...] = ()
+    # Whether the marker layer starts toggled on. Maps whose main draw is the
+    # territory shading (e.g. the Constituent Body map) start with markers
+    # hidden so the shading reads clearly; per-item detail is still a click away.
+    markers_shown_by_default: bool = True
+    # Draw each territory's group name as a text label at its centroid. Suited
+    # to maps with few, large regions (e.g. Constituent Bodies) -- would be
+    # unreadable clutter on maps with many small tier/league territories.
+    label_territories: bool = False
+    # Append "- <item count>" to the legend title. Off for maps where the raw
+    # club count isn't a meaningful headline figure (e.g. Constituent Bodies).
+    show_legend_item_count: bool = True
 
 
 # ---------------------------------------------------------------------------
@@ -1337,6 +1348,29 @@ def _render_territories(
 
         pane_kwargs = {"pane": pane} if pane else {}
         folium.GeoJson(geojson_dict, style_function=style_fn, **pane_kwargs).add_to(feature_group)
+
+
+def _add_territory_labels(
+    shading_groups: dict[str, folium.FeatureGroup],
+    merged_geojson: _TerritoryMerged,
+) -> None:
+    """Add a text label at each territory's centroid, into its own shading group
+    so it toggles on and off with that territory's shading."""
+    for grp, fg in shading_groups.items():
+        geojson_dict = merged_geojson.get(grp)
+        if geojson_dict is None:
+            continue
+        point = shape(geojson_dict).representative_point()
+        label_html = (
+            '<div style="transform:translate(-50%,-50%); white-space:nowrap; '
+            "font-weight:bold; font-size:12px; color:#000; text-shadow:"
+            "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; "
+            f'pointer-events:none;">{escape(grp)}</div>'
+        )
+        folium.Marker(
+            location=[point.y, point.x],
+            icon=folium.DivIcon(html=label_html, icon_size=(0, 0), icon_anchor=(0, 0)),
+        ).add_to(fg)
 
 
 def _collect_territory_export(
@@ -2748,7 +2782,7 @@ def generate_single_group_map(
     for grp in group_names:
         shading_groups[grp] = folium.FeatureGroup(name=f"{grp} - Territory", show=True)
         marker_groups[grp] = FeatureGroupSubGroup(
-            parent_cluster, name=f"{grp} - Markers", show=True
+            parent_cluster, name=f"{grp} - Markers", show=config.markers_shown_by_default
         )
         m.add_child(shading_groups[grp])
         m.add_child(marker_groups[grp])
@@ -2786,6 +2820,9 @@ def generate_single_group_map(
         else:
             _render_territories(fg, entry, territory_styles)
 
+    if config.label_territories:
+        _add_territory_labels(shading_groups, merged_all)
+
     for it in all_placed:
         _add_marker(
             marker_groups[it["group"]],
@@ -2809,9 +2846,12 @@ def generate_single_group_map(
     if hatch_defs_html:
         html_el.add_child(folium.Element(hatch_defs_html))
 
+    legend_title = (
+        f"{config.title} - {len(all_placed)}" if config.show_legend_item_count else config.title
+    )
     html_el.add_child(
         _legend(
-            f"{config.title} - {len(all_placed)}",
+            legend_title,
             items_by_tier,
             list(items_by_tier.keys()),
             group_colors,

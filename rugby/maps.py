@@ -613,9 +613,26 @@ def _group_by_tier(
 #: territory algorithm draws one region per CB instead of one per pyramid tier.
 CONSTITUENT_BODY_TIER = "Constituent Bodies"
 
+#: Constituent Bodies that aren't a geographic county union -- the armed
+#: services and university unions draw members nationally rather than from a
+#: home area, so folding them into the territory split would carve chunks out
+#: of whichever county union happens to border their scattered clubs.
+NON_GEOGRAPHIC_CONSTITUENT_BODIES = frozenset(
+    {
+        "Army Rugby Union",
+        "Royal Navy Rugby Union",
+        "Royal Air Force Rugby Union",
+        "Cambridge University RFU",
+        "Oxford University RFU",
+        "Students' Rugby Football Union",
+    }
+)
+
 
 def _group_by_constituent_body(items: list[MarkerItem]) -> list[MarkerItem]:
-    """Collapse items into one CB-per-club "league", dropping unmatched clubs.
+    """Collapse items into one CB-per-club "league", dropping unmatched clubs
+    and clubs affiliated to a non-geographic CB (see
+    ``NON_GEOGRAPHIC_CONSTITUENT_BODIES``).
 
     Original tier/tier_num/category are cleared to a shared constant so the
     single-group-map renderer treats every club as one flat competition (all
@@ -625,7 +642,7 @@ def _group_by_constituent_body(items: list[MarkerItem]) -> list[MarkerItem]:
     result = []
     for it in items:
         cb = get_constituent_body(it.name)
-        if cb:
+        if cb and cb not in NON_GEOGRAPHIC_CONSTITUENT_BODIES:
             result.append(
                 replace(it, group=cb, tier=CONSTITUENT_BODY_TIER, tier_num=0, category=None)
             )
@@ -726,6 +743,15 @@ def generate_constituent_body_map(season: str, show_debug: bool) -> None:
         tier_entry_level={},
         tier_floor_level={},
         output_file=out,
+    )
+    # This map is about the territory shading, not individual clubs, so start
+    # with markers off, label each region with its CB's name, and skip the
+    # raw club count in the legend title.
+    config = replace(
+        config,
+        markers_shown_by_default=False,
+        label_territories=True,
+        show_legend_item_count=False,
     )
     generate_single_group_map(cb_items, out, itl_hierarchy, config, {})
     logger.info("Constituent body map created at %s", out)

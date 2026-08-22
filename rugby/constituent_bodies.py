@@ -25,6 +25,7 @@ from functools import lru_cache
 
 from rugby import DATA_DIR
 from rugby.addresses import team_name_to_club_name
+from rugby.clubs import CLUB_NAMES_FILE, load_team_club_map, resolve_club_name
 
 CLUB_CB_MAPPING_PATH = DATA_DIR / "club_cb_mapping.json"
 
@@ -106,6 +107,13 @@ def _strip_club_type_suffix(name: str) -> str:
         if stripped == name:
             return name
         name = stripped
+
+
+@lru_cache(maxsize=1)
+def _load_team_club_map() -> dict[str, str]:
+    if not CLUB_NAMES_FILE.exists():
+        return {}
+    return load_team_club_map(CLUB_NAMES_FILE)
 
 
 @lru_cache(maxsize=1)
@@ -191,15 +199,23 @@ def _longest_prefix_match(team_name: str, club_cb_map: dict[str, str]) -> str | 
 def get_constituent_body(team_name: str) -> str | None:
     """The Constituent Body a team's club is affiliated to, or ``None`` if unknown.
 
-    Tries the full (normalized) team name first, then progressively strips
-    trailing team-number/gender/suffix words (e.g. "Barnes Women II" ->
-    "Barnes Women" -> "Barnes") until a club match is found. Failing that,
-    falls back to the longest known club name prefixing the team name (see
-    ``_longest_prefix_match``).
+    Tries the ``club_names.json`` canonical club name first -- unlike the
+    generic normalization below, this preserves disambiguating parentheticals
+    like "Leigh (Kent)" that distinguish same-named clubs in different
+    counties, rather than stripping them as if they were a squad-tier
+    annotation. Then tries the full (normalized) team name, then
+    progressively strips trailing team-number/gender/suffix words (e.g.
+    "Barnes Women II" -> "Barnes Women" -> "Barnes") until a club match is
+    found. Failing that, falls back to the longest known club name prefixing
+    the team name (see ``_longest_prefix_match``).
     """
     club_cb_map = _load_normalized_club_cb_map()
     if not club_cb_map:
         return None
+    canonical = resolve_club_name(team_name, _load_team_club_map())
+    canonical_key = _strip_club_type_suffix(_normalize(canonical))
+    if canonical_key in club_cb_map:
+        return club_cb_map[canonical_key]
     for candidate in _lookup_candidates(team_name):
         if candidate in club_cb_map:
             return club_cb_map[candidate]

@@ -1445,6 +1445,14 @@ def _add_territory_labels(
 
         max_width_px = max(30, round(side_px * 0.9))
         font_size_px = max(8, min(16, round(side_px / 5)))
+        # Words never break mid-word, so a single long word (e.g.
+        # "Buckinghamshire") can still overflow max-width at this font size
+        # even though the territory has plenty of room overall -- widen the
+        # box to fit that word rather than shrinking type to the point of
+        # being unreadable while still overflowing anyway.
+        longest_word = max(grp.split(), key=len, default=grp)
+        needed_width_px = math.ceil(len(longest_word) * font_size_px * 0.62)
+        max_width_px = max(max_width_px, needed_width_px)
 
         label_html = (
             f'<div class="rugby-territory-label" data-base-zoom="{zoom}" '

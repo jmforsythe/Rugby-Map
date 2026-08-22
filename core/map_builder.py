@@ -22,6 +22,7 @@ from branca.element import MacroElement
 from folium.plugins import FeatureGroupSubGroup, MarkerCluster
 from folium.template import Template as FoliumTemplate
 from scipy.spatial import Voronoi
+from shapely.affinity import scale as affine_scale
 from shapely.geometry import MultiPolygon, Point, Polygon, mapping, shape
 from shapely.geometry.base import BaseGeometry
 from shapely.ops import unary_union
@@ -1351,10 +1352,62 @@ def _render_territories(
 
 
 #: Web Mercator meters-per-pixel at zoom 0, halving with each zoom level. Used
-#: to size territory labels to roughly fit their region at the map's initial
-#: (unzoomed) view -- labels are fixed-size HTML, so this can't track zoom.
+#: to convert a territory's real-world footprint into a label size in pixels.
 _WEB_MERCATOR_BASE_METERS_PER_PIXEL = 156_543.03392
 _METERS_PER_DEGREE_LAT = 111_320
+
+#: Simplification tolerance (degrees, ~1km) used only when sizing/placing a
+#: territory's label -- far coarser than ``_SIMPLIFY_TOLERANCE``, which
+#: preserves the shape actually drawn on the map. A territory can be a union
+#: of thousands of ITL-boundary vertices, and the repeated erosion below
+#: (``buffer(-x)``, run in a binary search) gets dramatically slower as vertex
+#: count grows; label sizing doesn't need anywhere near that precision.
+_LABEL_SIMPLIFY_TOLERANCE = 0.01
+
+#: Morphological "closing" distance (degrees, ~1.7km) applied before sizing a
+#: label: dilate then erode by this much to fill in narrow notches -- a river
+#: mouth, an estuary, a boundary that hugs a river -- that would otherwise
+#: pinch off the inscribed circle without meaningfully changing the
+#: territory's overall shape. Labels are fine sitting over that kind of
+#: feature, so it shouldn't count against the space available to them.
+_LABEL_CLOSING_TOLERANCE = 0.015
+
+
+def _largest_inscribed_square(geom: BaseGeometry, iterations: int = 12) -> tuple[Point, float]:
+    """A well-centered anchor point inside *geom*, and the half-diagonal (in
+    meters) of the largest square that roughly fits inside it.
+
+    Approximated via binary search on inward-buffering ("erosion"): the
+    largest distance *geom* can be shrunk by before it disappears is the
+    radius of its largest inscribed circle, and the point that survives
+    longest is a point deep inside the shape rather than merely its
+    bounding-box or centroid (which can fall in a bay or outside a concave
+    territory like a merged county shape). Longitude is rescaled by
+    cos(latitude) first so a degree of x and a degree of y cover roughly the
+    same real-world distance -- otherwise erosion would eat north-south
+    faster than east-west at this latitude, biasing the inscribed circle.
+    """
+    geom = geom.simplify(_LABEL_SIMPLIFY_TOLERANCE, preserve_topology=True)
+    geom = geom.buffer(_LABEL_CLOSING_TOLERANCE).buffer(-_LABEL_CLOSING_TOLERANCE)
+    lat0 = geom.centroid.y
+    lon_scale = math.cos(math.radians(lat0)) or 1e-9
+    scaled = affine_scale(geom, xfact=lon_scale, yfact=1.0, origin=(0, 0))
+
+    minx, miny, maxx, maxy = scaled.bounds
+    lo, hi = 0.0, math.hypot(maxx - minx, maxy - miny) / 2
+    best_center = scaled.representative_point()
+    for _ in range(iterations):
+        mid = (lo + hi) / 2
+        eroded = scaled.buffer(-mid)
+        if not eroded.is_empty:
+            lo = mid
+            best_center = eroded.representative_point()
+        else:
+            hi = mid
+
+    anchor = Point(best_center.x / lon_scale, best_center.y)
+    radius_m = lo * _METERS_PER_DEGREE_LAT
+    return anchor, radius_m * math.sqrt(2)
 
 
 def _add_territory_labels(
@@ -1366,42 +1419,99 @@ def _add_territory_labels(
     so it toggles on and off with that territory's shading.
 
     The label box is sized (both max-width and font-size) to roughly fit
-    within the territory's footprint at the map's initial zoom, and centered
-    on its anchor point via a CSS transform -- which requires the box to be
-    ``inline-block`` so its width shrinks to fit the (possibly wrapped) text
-    rather than stretching to fill its zero-size marker parent, which would
-    make the ``-50%`` centering offset zero and leave the label hanging off
-    to the right of its anchor point instead of centered on it.
+    the largest square that fits inside the territory's footprint (see
+    ``_largest_inscribed_square``), and centered on its anchor point via a
+    CSS transform -- which requires the box to be ``inline-block`` so its
+    width shrinks to fit the (possibly wrapped) text rather than stretching
+    to fill its zero-size marker parent, which would make the ``-50%``
+    centering offset zero and leave the label hanging off to the right of
+    its anchor point instead of centered on it.
+
+    Sizes are computed for *zoom* (the map's initial zoom) and marked up with
+    ``data-base-*`` attributes; ``_get_territory_label_zoom_script`` rescales
+    them to match on every subsequent zoom change, since plain HTML/CSS text
+    doesn't grow or shrink with the map like the territory shading itself does.
     """
     for grp, fg in shading_groups.items():
         geojson_dict = merged_geojson.get(grp)
         if geojson_dict is None:
             continue
         geom = shape(geojson_dict)
-        point = geom.representative_point()
-        minx, miny, maxx, maxy = geom.bounds
+        anchor, half_diagonal_m = _largest_inscribed_square(geom)
         meters_per_pixel = (
-            _WEB_MERCATOR_BASE_METERS_PER_PIXEL * math.cos(math.radians(point.y)) / (2**zoom)
+            _WEB_MERCATOR_BASE_METERS_PER_PIXEL * math.cos(math.radians(anchor.y)) / (2**zoom)
         )
-        width_px = (maxx - minx) * math.cos(math.radians(point.y)) * _METERS_PER_DEGREE_LAT
-        width_px /= meters_per_pixel
-        height_px = (maxy - miny) * _METERS_PER_DEGREE_LAT / meters_per_pixel
+        side_px = half_diagonal_m / meters_per_pixel
 
-        max_width_px = max(30, round(width_px * 0.85))
-        font_size_px = max(8, min(14, round(min(width_px, height_px) / 5)))
+        max_width_px = max(30, round(side_px * 0.9))
+        font_size_px = max(8, min(16, round(side_px / 5)))
 
         label_html = (
-            f'<div style="display:inline-block; max-width:{max_width_px}px; '
+            f'<div class="rugby-territory-label" data-base-zoom="{zoom}" '
+            f'data-base-font="{font_size_px}" data-base-width="{max_width_px}" '
+            f'style="display:inline-block; max-width:{max_width_px}px; '
             "white-space:normal; text-align:center; line-height:1.15; "
             "transform:translate(-50%,-50%); "
+            # Matches Leaflet's own .leaflet-zoom-anim transform transition
+            # (duration and easing), so the label resizes in step with the
+            # territory shading's zoom animation instead of jumping to the
+            # new size only once the animation has already finished.
+            "transition: font-size 0.25s cubic-bezier(0,0,0.25,1), "
+            "max-width 0.25s cubic-bezier(0,0,0.25,1); "
             f"font-weight:bold; font-size:{font_size_px}px; color:#000; text-shadow:"
             "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; "
             f'pointer-events:none;">{escape(grp)}</div>'
         )
         folium.Marker(
-            location=[point.y, point.x],
+            location=[anchor.y, anchor.x],
             icon=folium.DivIcon(html=label_html, icon_size=(0, 0), icon_anchor=(0, 0)),
         ).add_to(fg)
+
+
+def _get_territory_label_zoom_script() -> str:
+    """Rescale ``.rugby-territory-label`` font-size/max-width to track zoom.
+
+    They're plain HTML text sized in pixels for one reference zoom (see
+    ``_add_territory_labels``), so without this they'd stay a fixed on-screen
+    size while the territory shading beneath them grows and shrinks.
+
+    Resizing is triggered on Leaflet's ``zoomanim`` event -- fired with the
+    *target* zoom right as the zoom transform animation starts -- rather than
+    ``zoomend``, combined with the CSS transition on the label (matching
+    Leaflet's own ``.leaflet-zoom-anim`` transition timing) so the label
+    resizes smoothly in step with the shading's zoom animation instead of
+    sitting frozen for its whole duration and then snapping to size.
+    ``zoomend`` is also hooked as a resync, since large zoom jumps and
+    non-animated zooms don't fire ``zoomanim``.
+    """
+    return """
+    <script>
+    (function() {
+        function rescale() {
+            var mapKey = Object.keys(window).find(function (k) {
+                return k.indexOf('map_') === 0 && window[k] instanceof L.Map;
+            });
+            var map = mapKey ? window[mapKey] : null;
+            if (!map) { setTimeout(rescale, 100); return; }
+            function apply(z) {
+                document.querySelectorAll('.rugby-territory-label').forEach(function (el) {
+                    var baseZoom = parseFloat(el.dataset.baseZoom);
+                    var baseFont = parseFloat(el.dataset.baseFont);
+                    var baseWidth = parseFloat(el.dataset.baseWidth);
+                    var scale = Math.pow(2, z - baseZoom);
+                    el.style.fontSize = (baseFont * scale) + 'px';
+                    el.style.maxWidth = (baseWidth * scale) + 'px';
+                });
+            }
+            map.on('zoomanim', function (e) { apply(e.zoom); });
+            map.on('zoomend', function () { apply(map.getZoom()); });
+            apply(map.getZoom());
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rescale);
+        else rescale();
+    })();
+    </script>
+    """
 
 
 def _collect_territory_export(
@@ -2853,6 +2963,7 @@ def generate_single_group_map(
 
     if config.label_territories:
         _add_territory_labels(shading_groups, merged_all, config.zoom)
+        html_el.add_child(folium.Element(_get_territory_label_zoom_script()))
 
     for it in all_placed:
         _add_marker(

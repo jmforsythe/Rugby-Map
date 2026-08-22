@@ -1350,20 +1350,51 @@ def _render_territories(
         folium.GeoJson(geojson_dict, style_function=style_fn, **pane_kwargs).add_to(feature_group)
 
 
+#: Web Mercator meters-per-pixel at zoom 0, halving with each zoom level. Used
+#: to size territory labels to roughly fit their region at the map's initial
+#: (unzoomed) view -- labels are fixed-size HTML, so this can't track zoom.
+_WEB_MERCATOR_BASE_METERS_PER_PIXEL = 156_543.03392
+_METERS_PER_DEGREE_LAT = 111_320
+
+
 def _add_territory_labels(
     shading_groups: dict[str, folium.FeatureGroup],
     merged_geojson: _TerritoryMerged,
+    zoom: int,
 ) -> None:
     """Add a text label at each territory's centroid, into its own shading group
-    so it toggles on and off with that territory's shading."""
+    so it toggles on and off with that territory's shading.
+
+    The label box is sized (both max-width and font-size) to roughly fit
+    within the territory's footprint at the map's initial zoom, and centered
+    on its anchor point via a CSS transform -- which requires the box to be
+    ``inline-block`` so its width shrinks to fit the (possibly wrapped) text
+    rather than stretching to fill its zero-size marker parent, which would
+    make the ``-50%`` centering offset zero and leave the label hanging off
+    to the right of its anchor point instead of centered on it.
+    """
     for grp, fg in shading_groups.items():
         geojson_dict = merged_geojson.get(grp)
         if geojson_dict is None:
             continue
-        point = shape(geojson_dict).representative_point()
+        geom = shape(geojson_dict)
+        point = geom.representative_point()
+        minx, miny, maxx, maxy = geom.bounds
+        meters_per_pixel = (
+            _WEB_MERCATOR_BASE_METERS_PER_PIXEL * math.cos(math.radians(point.y)) / (2**zoom)
+        )
+        width_px = (maxx - minx) * math.cos(math.radians(point.y)) * _METERS_PER_DEGREE_LAT
+        width_px /= meters_per_pixel
+        height_px = (maxy - miny) * _METERS_PER_DEGREE_LAT / meters_per_pixel
+
+        max_width_px = max(30, round(width_px * 0.85))
+        font_size_px = max(8, min(14, round(min(width_px, height_px) / 5)))
+
         label_html = (
-            '<div style="transform:translate(-50%,-50%); white-space:nowrap; '
-            "font-weight:bold; font-size:12px; color:#000; text-shadow:"
+            f'<div style="display:inline-block; max-width:{max_width_px}px; '
+            "white-space:normal; text-align:center; line-height:1.15; "
+            "transform:translate(-50%,-50%); "
+            f"font-weight:bold; font-size:{font_size_px}px; color:#000; text-shadow:"
             "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; "
             f'pointer-events:none;">{escape(grp)}</div>'
         )
@@ -2821,7 +2852,7 @@ def generate_single_group_map(
             _render_territories(fg, entry, territory_styles)
 
     if config.label_territories:
-        _add_territory_labels(shading_groups, merged_all)
+        _add_territory_labels(shading_groups, merged_all, config.zoom)
 
     for it in all_placed:
         _add_marker(

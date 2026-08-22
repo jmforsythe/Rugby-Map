@@ -28,7 +28,7 @@ from core import (
 )
 from core.config import CURRENT_SEASON, DIST_DIR
 from core.json_utils import write_compact_json
-from rugby import BRAND, DATA_DIR
+from rugby import BRAND, DATA_DIR, rfu_team_only_url
 from rugby.addresses import team_name_to_club_name
 from rugby.clubs import iter_geocoded_leagues, load_team_club_map, resolve_club_name
 from rugby.constituent_bodies import get_constituent_body
@@ -1173,7 +1173,7 @@ def get_team_page_html(
 
     team_url = team_data.get("url")
     if team_url:
-        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(team_url)}" target="_blank">View on England Rugby</a></div>\n'
+        html += f'        <div class="info-row"><span class="info-label">RFU Profile:</span> <a href="{escape(rfu_team_only_url(team_url))}" target="_blank">View on England Rugby</a></div>\n'
 
     html += """    </div>
 """

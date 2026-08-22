@@ -37,7 +37,7 @@ from core.map_builder import (
     load_itl_hierarchy,
     preassign_itl_regions,
 )
-from rugby import BRAND, DATA_DIR, short_season
+from rugby import BRAND, DATA_DIR, rfu_team_only_url, short_season
 from rugby.clubs import iter_geocoded_leagues
 from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
@@ -132,8 +132,16 @@ def _render_popup_html(
     team_url: str,
     address: str | None,
     travel_distances: TravelDistances | None,
+    include_league_link: bool = True,
+    strip_team_url_to_team_only: bool = False,
 ) -> str:
-    """Build the popup HTML for a rugby team marker."""
+    """Build the popup HTML for a rugby team marker.
+
+    *include_league_link* and *strip_team_url_to_team_only* are off for the
+    Constituent Body map: it has no single league to link to, and the RFU team
+    URL's competition/division/season params are tied to a specific league
+    context that map doesn't have.
+    """
     name_esc = escape(team_name)
     league_esc = escape(league_name)
     address_esc = escape(address or "")
@@ -146,14 +154,15 @@ def _render_popup_html(
             source = str(travel_distances.get("summary", {}).get("distance_source", "haversine"))
             distance_html = render_popup_travel_html(team_dist, league_dist, distance_source=source)
 
+    display_team_url = rfu_team_only_url(team_url) if strip_team_url_to_team_only else team_url
     team_link = (
-        f'<p><a href="{escape(team_url)}" target="_blank">View Team Page</a></p>'
-        if team_url
+        f'<p><a href="{escape(display_team_url)}" target="_blank">View Team Page</a></p>'
+        if display_team_url
         else ""
     )
     league_link = (
         f'<p><a href="{escape(league_url)}" target="_blank">View League Page</a></p>'
-        if league_url
+        if league_url and include_league_link
         else ""
     )
     info_link = (
@@ -371,11 +380,15 @@ def _load_marker_items(
     league_data_dir: str,
     season: str,
     travel_distances: TravelDistances | None,
+    include_league_link: bool = True,
+    strip_team_url_to_team_only: bool = False,
 ) -> LoadedItems:
     """Join league_data JSON files with club address/geocode data and build
     MarkerItem objects.
 
     Returns pyramid items in one list and merit items grouped by competition.
+    *include_league_link* and *strip_team_url_to_team_only* are forwarded to
+    ``_render_popup_html`` -- see there for when to turn them off.
     """
     league_path = Path(league_data_dir)
     if not league_path.is_dir():
@@ -418,7 +431,14 @@ def _load_marker_items(
             icon_url = team.get("image_url") or RFU_FALLBACK_ICON
 
             popup = _render_popup_html(
-                team_name, league_name, league_url, team_url, address, travel_distances
+                team_name,
+                league_name,
+                league_url,
+                team_url,
+                address,
+                travel_distances,
+                include_league_link=include_league_link,
+                strip_team_url_to_team_only=strip_team_url_to_team_only,
             )
 
             category = comp_key.replace("_", " ") if is_merit else PYRAMID_CATEGORY
@@ -717,14 +737,16 @@ def generate_constituent_body_map(season: str, show_debug: bool) -> None:
     """
     logger.info("Generating constituent body map from %s data...", season)
 
-    travel_distance_path = DATA_DIR / "distance_cache" / f"{season}.json"
-    travel_distances: TravelDistances | None = None
-    if travel_distance_path.exists():
-        travel_distances = cast(TravelDistances, json_load_cache(travel_distance_path))
-        travel_distances = enrich_island_excl_stats(travel_distances, season, DistanceLookup.load())
-
+    # No travel distances or league page link: there's no single league on this
+    # map, so neither is meaningful here (see _render_popup_html).
     league_dir = str(DATA_DIR / "league_data" / season)
-    loaded = _load_marker_items(league_dir, season, travel_distances)
+    loaded = _load_marker_items(
+        league_dir,
+        season,
+        travel_distances=None,
+        include_league_link=False,
+        strip_team_url_to_team_only=True,
+    )
 
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
     all_items = loaded.pyramid + [it for items in loaded.merit.values() for it in items]

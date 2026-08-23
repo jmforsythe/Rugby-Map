@@ -654,10 +654,10 @@ a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
   color: var(--merit-link-hover);
 }
 
-/* Hero links (current season, match day, teams, custom map) */
+/* Hero links (current season, match day, teams, custom map, stats) */
 .hero-links {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1em;
   margin-bottom: 2em;
 }

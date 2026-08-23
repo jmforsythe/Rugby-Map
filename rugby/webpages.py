@@ -712,6 +712,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
     cb_map_href = "./constituent-bodies/" if is_prod else "./constituent-bodies/index.html"
+    stats_href = "./stats/" if is_prod else "./stats/index.html"
 
     home_title = f"{BRAND} \u2013 English Rugby Club & League Maps"
     home_desc = (
@@ -764,6 +765,10 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         <a class="hero-card" href="{custom_map_href}">
             <span class="hero-card__label">Build</span>
             <span class="hero-card__title">Custom Map</span>
+        </a>
+        <a class="hero-card" href="{stats_href}">
+            <span class="hero-card__label">Explore</span>
+            <span class="hero-card__title">Stats</span>
         </a>
     </div>
 """

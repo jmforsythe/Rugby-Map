@@ -23,8 +23,10 @@ from rugby.pyramid_image import (
     _apply_interior_column_gaps,
     _divide_span_into_cells,
     _divide_span_weighted,
+    _iter_stem_forest,
     _merit_parent_aligned_band_placements,
     _outer_span_for_cell,
+    _stem_build_layout,
     cell_horizontal_extent,
     compute_band_layout,
     compute_league_slots,
@@ -284,3 +286,66 @@ def test_mens_all_leagues_real_seasons_no_orphan_span_crest_conflicts() -> None:
             "distinct nested league's cell in the same tier band"
         )
     assert checked > 0, "no season produced a pyramid_All_Leagues render to validate"
+
+
+def _all_leagues_stem_layout(season: str):
+    """Build the same ``leagues_by_tier``/overrides ``render_pyramid_svg`` uses, then run the
+    stem layout directly (not the SVG) so tree-level attributes like
+    ``layout_span_union_parent_names`` survive for inspection."""
+    try:
+        national_leagues = load_pyramid_leagues(season, gender="mens")
+        leagues = load_pyramid_leagues_with_merit(season)
+    except FileNotFoundError:
+        return None
+    if not leagues:
+        return None
+    national_by_tier: dict[int, list[LeagueData]] = defaultdict(list)
+    for lg in national_leagues:
+        national_by_tier[lg.tier_num].append(lg)
+    parent_overrides = stem_parent_overrides_load_merged(season, national_by_tier)
+    parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+        season, dict(parent_overrides or {})
+    )
+    leagues_by_tier: dict[int, list[LeagueData]] = defaultdict(list)
+    for lg in leagues:
+        leagues_by_tier[lg.tier_num].append(lg)
+    return _stem_build_layout(
+        leagues_by_tier,
+        season,
+        parent_overrides or None,
+        stem_slot_strips=stem_slot_strips_load(season),
+        log_stem_orphans=False,
+    )
+
+
+def test_mens_all_leagues_real_seasons_multi_parent_spans_are_not_orphaned() -> None:
+    """A league linked to 2+ parents (``layout_span_union_parent_names``) has real linkage data
+    and should nest under the union of those parents' bands — not fall back to a full-width
+    "no parent" orphan row. Demoting it there to dodge a layout collision (see
+    ``_stem_apply_multi_parent_span_layouts``) drops correct topology from the diagram even
+    though it stops the cells from overlapping, and that regression is invisible to
+    ``test_mens_all_leagues_real_seasons_no_orphan_span_crest_conflicts`` above, which only
+    checks for overlap, not for which leagues ended up parentless.
+    """
+    checked = 0
+    orphaned_spans: list[str] = []
+    for season in _available_seasons():
+        layout = _all_leagues_stem_layout(season)
+        if layout is None:
+            continue
+        checked += 1
+        span_league_names = {
+            n.league.league_name
+            for n in _iter_stem_forest(layout.roots)
+            if n.layout_span_union_parent_names
+        }
+        orphaned_names = {
+            lg.league_name for row in layout.orphan_row_positions.values() for lg, _x, _w in row
+        }
+        for name in sorted(span_league_names & orphaned_names):
+            orphaned_spans.append(f"{season}: {name!r}")
+    assert checked > 0, "no season produced a men's All Leagues stem layout to validate"
+    assert not orphaned_spans, (
+        "multi-parent-span league(s) demoted to a full-width orphan row instead of nesting "
+        f"under their real parents: {orphaned_spans}"
+    )

@@ -109,6 +109,7 @@ def _collect_league_shapes(
     in_clip_path: bool,
     stroke_ok: frozenset[str],
     out: list[LeagueShape],
+    crests: list[LeagueShape] | None = None,
 ) -> None:
     tag = _local_tag(el.tag)
     ch_clip = in_clip_path
@@ -140,8 +141,16 @@ def _collect_league_shapes(
                 if (x1 - x0) >= MIN_LEAGUE_W and (y1 - y0) >= MIN_LEAGUE_H:
                     out.append(LeagueShape("poly", x0, y0, x1, y1))
 
+    if not ch_clip and tag == "foreignObject" and crests is not None:
+        w = float(el.get("width", "0"))
+        h = float(el.get("height", "0"))
+        if w > 0 and h > 0:
+            x = float(el.get("x", "0")) + nx
+            y = float(el.get("y", "0")) + ny
+            crests.append(LeagueShape("crest", x, y, x + w, y + h))
+
     for ch in el:
-        _collect_league_shapes(ch, nx, ny, ch_clip, stroke_ok, out)
+        _collect_league_shapes(ch, nx, ny, ch_clip, stroke_ok, out, crests)
 
 
 def _overlap_area(a: LeagueShape, b: LeagueShape) -> float:
@@ -187,22 +196,68 @@ def _dedupe_shapes(shapes: list[LeagueShape]) -> list[LeagueShape]:
     return out
 
 
-def scan_svg_overlaps(
-    path: Path,
+def _crest_center_in(shape: LeagueShape, box: LeagueShape) -> bool:
+    cx = (shape.x0 + shape.x1) / 2.0
+    cy = (shape.y0 + shape.y1) / 2.0
+    return box.x0 - CONTAIN_EPS <= cx <= box.x1 + CONTAIN_EPS and (
+        box.y0 - CONTAIN_EPS <= cy <= box.y1 + CONTAIN_EPS
+    )
+
+
+def _find_orphan_span_crest_conflicts(
+    shapes: list[LeagueShape], crests: list[LeagueShape]
+) -> list[tuple[LeagueShape, LeagueShape]]:
+    """Flag crests that belong to a *spanning* cell rather than one of its nested children.
+
+    ``pyramid_All_Leagues`` legitimately draws a wide "union" background rect behind several
+    narrower league cells (a merit competition or multi-parent span sharing a tier band). That
+    pattern alone is benign (see :func:`scan_svg_overlaps`'s containment bucket) *provided* the
+    outer rect is pure background. If the outer rect also owns its own team-crest tiles that sit
+    outside every nested child's bounds, two different leagues are being drawn into the same
+    physical rectangle — a real layout conflict invisible to plain rect/rect overlap checks
+    because crest ``foreignObject`` elements intentionally overflow their slot for label text
+    (see ``_render_league_cell``) and are excluded from the stroke-based scan.
+    """
+    conflicts: list[tuple[LeagueShape, LeagueShape]] = []
+    for outer in shapes:
+        inners = [
+            inner
+            for inner in shapes
+            if inner is not outer
+            and _a_contains_b(outer, inner)
+            and min(_bbox_area(outer), _bbox_area(inner)) / max(_bbox_area(outer), 1e-9) < 0.92
+        ]
+        if not inners:
+            continue
+        for crest in crests:
+            if not _crest_center_in(crest, outer):
+                continue
+            if any(_crest_center_in(crest, inner) for inner in inners):
+                continue
+            conflicts.append((outer, crest))
+    return conflicts
+
+
+def scan_svg_overlaps_text(
+    text: str,
 ) -> tuple[
-    list[tuple[LeagueShape, LeagueShape, float, str]], list[tuple[LeagueShape, LeagueShape]]
+    list[tuple[LeagueShape, LeagueShape, float, str]],
+    list[tuple[LeagueShape, LeagueShape]],
+    list[tuple[LeagueShape, LeagueShape]],
 ]:
-    """Return (partial_overlaps_with_area, containment_pairs).
+    """Return (partial_overlaps_with_area, containment_pairs, orphan_span_crest_conflicts).
 
     Containment (one league outline strictly inside another) is reported separately: it usually
     means a spanning cell plus column cells in ``pyramid_All_Leagues`` stem rows, not two
-    unrelated polygons on the taper.
+    unrelated polygons on the taper — unless the spanning cell has crests of its own that fall
+    outside every nested child (``orphan_span_crest_conflicts``), which means two different
+    leagues were placed in the same rectangle.
     """
     stroke_ok = frozenset({LEAGUE_CELL_STROKE_MENS.lower(), LEAGUE_CELL_STROKE_WOMENS.lower()})
-    text = path.read_text(encoding="utf-8")
     root = ElementTree.fromstring(text)
     shapes: list[LeagueShape] = []
-    _collect_league_shapes(root, 0.0, 0.0, False, stroke_ok, shapes)
+    crests: list[LeagueShape] = []
+    _collect_league_shapes(root, 0.0, 0.0, False, stroke_ok, shapes, crests)
     shapes = _dedupe_shapes(shapes)
     partial: list[tuple[LeagueShape, LeagueShape, float, str]] = []
     containment: list[tuple[LeagueShape, LeagueShape]] = []
@@ -223,7 +278,19 @@ def scan_svg_overlaps(
             # Partial overlap: neither contains the other
             iou = ar / (aa + ab - ar)
             partial.append((sa, sb, ar, f"IoU={iou:.2f}"))
-    return partial, containment
+    orphan_span_conflicts = _find_orphan_span_crest_conflicts(shapes, crests)
+    return partial, containment, orphan_span_conflicts
+
+
+def scan_svg_overlaps(
+    path: Path,
+) -> tuple[
+    list[tuple[LeagueShape, LeagueShape, float, str]],
+    list[tuple[LeagueShape, LeagueShape]],
+    list[tuple[LeagueShape, LeagueShape]],
+]:
+    """``scan_svg_overlaps_text`` for an on-disk SVG file."""
+    return scan_svg_overlaps_text(path.read_text(encoding="utf-8"))
 
 
 def _leagues_by_tier(leagues: Iterable[LeagueData]) -> dict[int, list[LeagueData]]:
@@ -464,12 +531,15 @@ def main() -> int:
 
     partial_by_file: list[tuple[Path, list[tuple[LeagueShape, LeagueShape, float, str]]]] = []
     contain_by_file: list[tuple[Path, list[tuple[LeagueShape, LeagueShape]]]] = []
+    orphan_span_by_file: list[tuple[Path, list[tuple[LeagueShape, LeagueShape]]]] = []
     for p in svg_paths:
-        part, cont = scan_svg_overlaps(p)
+        part, cont, orphan_span = scan_svg_overlaps(p)
         if part:
             partial_by_file.append((p, part))
         if cont:
             contain_by_file.append((p, cont))
+        if orphan_span:
+            orphan_span_by_file.append((p, orphan_span))
 
     if args.purge_orphan_json:
         print("=== Purge orphan stem mappings (tier_mappings JSON) ===\n")
@@ -522,6 +592,23 @@ def main() -> int:
             print(f"{p.relative_to(dist)}: {len(pairs)} containment pair(s)")
         print()
 
+    if orphan_span_by_file:
+        print(
+            "=== Orphan-span crest conflicts (spanning cell has its own team crests outside "
+            "every nested child - two leagues drawn into the same rectangle; real draw bugs) ==="
+        )
+        for p, pairs in orphan_span_by_file:
+            print(f"{p.relative_to(dist)}: {len(pairs)} conflict(s)")
+            for outer, crest in pairs:
+                print(
+                    f"    span({outer.x0:.0f},{outer.y0:.0f})-({outer.x1:.0f},{outer.y1:.0f})"
+                    f" owns crest({crest.x0:.0f},{crest.y0:.0f})-({crest.x1:.0f},{crest.y1:.0f})"
+                    " outside all nested cells"
+                )
+        print()
+    else:
+        print("=== Orphan-span crest conflicts === none detected\n")
+
     seasons = sorted({p.parent.name for p in svg_paths})
     orphan_sections: list[str] = []
     for season in seasons:
@@ -553,7 +640,7 @@ def main() -> int:
     else:
         print("=== Stem orphan rows === none (no unattached stem roots in layout replay)\n")
 
-    if partial_by_file:
+    if partial_by_file or orphan_span_by_file:
         return 2
     return 0
 

@@ -15,6 +15,7 @@ from collections import defaultdict
 
 import pytest
 
+from rugby.analysis.inspect_pyramid_svgs import scan_svg_overlaps_text
 from rugby.pyramid_image import (
     LEAGUE_DATA_DIR,
     BandLayout,
@@ -30,8 +31,12 @@ from rugby.pyramid_image import (
     compute_nested_tier56_layout,
     compute_womens_nested_layout,
     load_pyramid_leagues,
+    load_pyramid_leagues_with_merit,
     order_pyramid_leaves,
+    render_pyramid_svg,
     stem_parent_overrides_load_merged,
+    stem_parent_overrides_merge_merit_sections_for_absolute_tiers,
+    stem_slot_strips_load,
     womens_parent_overrides_load,
 )
 
@@ -219,3 +224,63 @@ def test_womens_nested_layout_real_seasons_no_overlap_or_degenerate() -> None:
         for tier_num, rects in nested.tier_rects.items():
             _assert_no_overlap_and_not_degenerate(rects, context=f"{season} women's tier{tier_num}")
     assert checked > 0, "no season produced a women's nested layout to validate"
+
+
+# ---------------------------------------------------------------------------
+# Men's ``pyramid_All_Leagues`` (national + merit merge) — full SVG render.
+#
+# Some conflicts here don't show up as league-cell rect overlap at all: a merit competition
+# can get merged into the same tier band as national leagues and draw its own team crests
+# (SVG ``foreignObject`` tiles) inside a "spanning" background rect that already nests one or
+# more *other* leagues' cells. The rects never collide, so the plain rect-overlap check above
+# can't see it — only rendering the real SVG and checking crest placement against nested cells
+# catches it. See ``rugby.analysis.inspect_pyramid_svgs._find_orphan_span_crest_conflicts``.
+# ---------------------------------------------------------------------------
+
+
+def _render_all_leagues_svg(season: str) -> str | None:
+    """Mirror ``rugby.pyramid_image._render_mens_standard_pyramid(all_leagues=True)``."""
+    try:
+        national_leagues = load_pyramid_leagues(season, gender="mens")
+        leagues = load_pyramid_leagues_with_merit(season)
+    except FileNotFoundError:
+        return None
+    if not leagues:
+        return None
+    national_by_tier: dict[int, list[LeagueData]] = defaultdict(list)
+    for lg in national_leagues:
+        national_by_tier[lg.tier_num].append(lg)
+    parent_overrides = stem_parent_overrides_load_merged(season, national_by_tier)
+    parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
+        season, dict(parent_overrides or {})
+    )
+    return render_pyramid_svg(
+        season,
+        leagues,
+        gender="mens",
+        parent_overrides=parent_overrides or None,
+        womens_parent_overrides=None,
+        stem_slot_strips=stem_slot_strips_load(season),
+        transparent_white_crest_backgrounds=False,
+        crest_transparency_workers=1,
+        mens_merge_merit_leagues=True,
+    )
+
+
+def test_mens_all_leagues_real_seasons_no_orphan_span_crest_conflicts() -> None:
+    checked = 0
+    for season in _available_seasons():
+        svg = _render_all_leagues_svg(season)
+        if svg is None:
+            continue
+        checked += 1
+        partial, _containment, orphan_span = scan_svg_overlaps_text(svg)
+        assert (
+            not partial
+        ), f"{season} pyramid_All_Leagues: {len(partial)} partial rect overlap(s): {partial}"
+        assert not orphan_span, (
+            f"{season} pyramid_All_Leagues: {len(orphan_span)} orphan-span crest conflict(s) — "
+            "a merit competition (or multi-parent span) drew its own team crests over a "
+            "distinct nested league's cell in the same tier band"
+        )
+    assert checked > 0, "no season produced a pyramid_All_Leagues render to validate"

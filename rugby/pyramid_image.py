@@ -6522,24 +6522,46 @@ def _stem_apply_multi_parent_span_layouts(
 
 def _stem_autolayout_two_into_two_dual_spans(
     pairs: list[tuple[StemTreeNode, StemTreeNode, StemTreeNode, StemTreeNode]],
+    roots: list[StemTreeNode],
     *,
     equal_weight_pairs: set[frozenset[int]],
-) -> None:
+) -> list[tuple[StemTreeNode, StemTreeNode, float, float]]:
     """Split the union of two parent bands evenly between two sibling dual-span leagues.
 
     Used when overrides give **two** tier-*N* leagues the **same** ``[parent₁, parent₂]`` span so
     both draw from the same Counties pair (e.g. Midlands West East/West each → North+South): draw
     them as **two columns** instead of stacking two full-width spans.
+
+    Only safe when that union isn't already occupied by *other* real children under either named
+    parent (e.g. besides the dual-span pair, each parent also has its own single-parent child) —
+    otherwise the pair's 50/50 split lands exactly on top of those unrelated siblings' cells, since
+    each half is sized to one parent's own column width. Collided pairs are returned as
+    ``(c_left, c_right, x0, width)`` so the caller can demote them together (their real combined
+    union geometry, not each independently) the same way a lone collided span is demoted.
     """
     if not pairs:
-        return
+        return []
     gap = STEM_CHILD_GAP_PX
+    collided: list[tuple[StemTreeNode, StemTreeNode, float, float]] = []
     for c_left, c_right, p_left, p_right in pairs:
         union_x0 = min(p_left.layout_x, p_right.layout_x)
         union_x1 = max(
             p_left.layout_x + p_left.layout_w,
             p_right.layout_x + p_right.layout_w,
         )
+        tier = c_left.league.tier_num
+        siblings_at_tier = (
+            sn
+            for sn in _iter_stem_forest(roots)
+            if sn is not c_left and sn is not c_right and sn.league.tier_num == tier
+        )
+        collides = any(
+            sn.layout_x < union_x1 - 1e-6 and union_x0 < sn.layout_x + sn.layout_w - 1e-6
+            for sn in siblings_at_tier
+        )
+        if collides:
+            collided.append((c_left, c_right, union_x0, max(1e-6, union_x1 - union_x0)))
+            continue
         band_w = max(1e-6, union_x1 - union_x0)
         inner = max(0.0, band_w - gap)
         if inner <= 0:
@@ -6559,12 +6581,14 @@ def _stem_autolayout_two_into_two_dual_spans(
             p_left.league.league_name,
             p_right.league.league_name,
         )
+    return collided
 
 
 def _stem_autolayout_spanning_middle_three_feeders(
     roots: list[StemTreeNode],
     *,
     equal_weight_pairs: set[frozenset[int]],
+    dual_span_skip_ids: frozenset[int] = frozenset(),
 ) -> None:
     """Place one row under two parents when exactly three children exist: two single-parent + one span.
 
@@ -6580,6 +6604,14 @@ def _stem_autolayout_spanning_middle_three_feeders(
     Horizontal space is the union of the two parent bands. Lower-row widths use
     ``w_left, (w_left + w_right) / 2, w_right`` (equal parents ⇒ equal thirds).
     Optional ``stem_slot_strips`` run later and may override.
+
+    ``dual_span_skip_ids`` excludes nodes already positioned by
+    :func:`_stem_autolayout_two_into_two_dual_spans` — a span child that shares its exact
+    two-parent link with a sibling span child (the 2-into-2 case) still independently satisfies
+    ``_stem_three_under_two_try_match``'s "exactly one non-span child per parent" test (it only
+    excludes *itself*, not the sibling span), so without this exclusion this pass repositions
+    both dual-span siblings to the same "middle" slot right after the dual-span pass correctly
+    split them into two columns.
     """
     index = _stem_build_stem_node_index(roots)
     parent_map = _stem_child_parent_map(roots)
@@ -6588,7 +6620,9 @@ def _stem_autolayout_spanning_middle_three_feeders(
     span_nodes = [
         n
         for n in _iter_stem_forest(roots)
-        if n.layout_span_union_parent_names and len(n.layout_span_union_parent_names) == 2
+        if n.layout_span_union_parent_names
+        and len(n.layout_span_union_parent_names) == 2
+        and id(n) not in dual_span_skip_ids
     ]
     span_nodes.sort(key=lambda sn: sn.league.tier_num, reverse=True)
 
@@ -6847,6 +6881,16 @@ def _stem_build_layout(
     collided_spans = _stem_apply_multi_parent_span_layouts(
         roots, equal_weight_pairs=eq_pairs, dual_span_skip_ids=dual_skip
     )
+    collided_dual_pairs = _stem_autolayout_two_into_two_dual_spans(
+        two_into_two, roots, equal_weight_pairs=eq_pairs
+    )
+    if collided_dual_pairs:
+        gap = STEM_CHILD_GAP_PX
+        for c_left, c_right, x0, w in collided_dual_pairs:
+            inner = max(0.0, w - gap)
+            w_half = inner / 2.0 if inner > 0 else max(1e-6, w / 2.0)
+            collided_spans.append((c_left, x0, max(1e-6, w_half)))
+            collided_spans.append((c_right, x0 + w_half + gap, max(1e-6, w - w_half - gap)))
     # ``roots``/``orphans`` may be a prebuilt stem forest shared across multiple
     # ``_stem_build_layout`` calls (e.g. the primary render and its ``_Labels`` sibling) —
     # never mutate the shared tree structure. Collision detection is deterministic (layout_x/w
@@ -6866,8 +6910,9 @@ def _stem_build_layout(
                 node.league.tier_num,
                 node.league.league_name,
             )
-    _stem_autolayout_two_into_two_dual_spans(two_into_two, equal_weight_pairs=eq_pairs)
-    _stem_autolayout_spanning_middle_three_feeders(roots, equal_weight_pairs=eq_pairs)
+    _stem_autolayout_spanning_middle_three_feeders(
+        roots, equal_weight_pairs=eq_pairs, dual_span_skip_ids=dual_skip
+    )
     _stem_apply_slot_strips(roots, stem_slot_strips, equal_weight_pairs=eq_pairs)
 
     pure_tree_placements = _stem_collect_hierarchical_placements(roots)

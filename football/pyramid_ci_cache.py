@@ -108,9 +108,14 @@ def cache_is_valid(season: str, *, digest: str | None = None) -> bool:
     return True
 
 
-def save_pyramid_raster_cache(season: str) -> int:
-    """Copy ``dist/football/<season>/pyramid*`` into the cache slot for Actions to persist."""
-    digest = pyramid_raster_inputs_digest(season)
+def save_pyramid_raster_cache(season: str, *, digest: str | None = None) -> int:
+    """Copy ``dist/football/<season>/pyramid*`` into the cache slot for Actions to persist.
+
+    Accepts a precomputed ``digest`` (see :func:`restore_pyramid_raster_cache`)
+    so the manifest written here can't drift from the key ``actions/cache`` saved
+    the slot under.
+    """
+    digest = digest if digest is not None else pyramid_raster_inputs_digest(season)
     src = _season_dist_dir(season)
     artifacts = list_pyramid_artifacts(src)
     if not artifacts:
@@ -133,9 +138,15 @@ def save_pyramid_raster_cache(season: str) -> int:
     return 0
 
 
-def restore_pyramid_raster_cache(season: str) -> int:
-    """Restore cached pyramid artifacts into ``dist/football/<season>/`` when valid."""
-    digest = pyramid_raster_inputs_digest(season)
+def restore_pyramid_raster_cache(season: str, *, digest: str | None = None) -> int:
+    """Restore cached pyramid artifacts into ``dist/football/<season>/`` when valid.
+
+    Accepts a precomputed ``digest`` so callers that already paid for the hash
+    (e.g. the CI cache-key step) don't pay for it twice in the same job --
+    recomputing independently opened a window where the two computations could
+    disagree and silently fall back to a full rebuild on an exact cache hit.
+    """
+    digest = digest if digest is not None else pyramid_raster_inputs_digest(season)
     if not cache_is_valid(season, digest=digest):
         logger.info("Football pyramid raster cache miss for %s (digest %s)", season, digest)
         return 1
@@ -160,12 +171,17 @@ def _cli() -> int:
 
     save_p = sub.add_parser("save", help="Save dist pyramid outputs to cache slot")
     save_p.add_argument("season")
+    save_p.add_argument("--digest", help="Reuse a previously computed digest instead of rehashing")
 
     restore_p = sub.add_parser("restore", help="Restore cache into dist/football/<season>/")
     restore_p.add_argument("season")
+    restore_p.add_argument(
+        "--digest", help="Reuse a previously computed digest instead of rehashing"
+    )
 
     check_p = sub.add_parser("check", help="Exit 0 if cache slot is valid")
     check_p.add_argument("season")
+    check_p.add_argument("--digest", help="Reuse a previously computed digest instead of rehashing")
 
     args = parser.parse_args()
     season: str = args.season
@@ -173,11 +189,11 @@ def _cli() -> int:
         print(pyramid_raster_inputs_digest(season))
         return 0
     if args.command == "save":
-        return save_pyramid_raster_cache(season)
+        return save_pyramid_raster_cache(season, digest=args.digest)
     if args.command == "restore":
-        return 0 if restore_pyramid_raster_cache(season) == 0 else 1
+        return 0 if restore_pyramid_raster_cache(season, digest=args.digest) == 0 else 1
     if args.command == "check":
-        return 0 if cache_is_valid(season) else 1
+        return 0 if cache_is_valid(season, digest=args.digest) else 1
     return 1
 
 

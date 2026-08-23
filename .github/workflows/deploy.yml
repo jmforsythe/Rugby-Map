@@ -192,11 +192,12 @@ jobs:
       - name: Restore cached pyramid artifacts into dist
         env:
           SEASON: ${{ matrix.season }}
+          DIGEST: ${{ steps.pyramid-cache-digest.outputs.digest }}
         run: |
           set -eo pipefail
           mkdir -p "dist/${SEASON}"
-          if python -m rugby.pyramid_ci_cache check "$SEASON"; then
-            python -m rugby.pyramid_ci_cache restore "$SEASON"
+          if python -m rugby.pyramid_ci_cache check "$SEASON" --digest "$DIGEST"; then
+            python -m rugby.pyramid_ci_cache restore "$SEASON" --digest "$DIGEST"
             echo "PYRAMID_RASTER_CACHE_RESTORED=1" >> "$GITHUB_ENV"
           fi
 
@@ -210,7 +211,8 @@ jobs:
         if: env.PYRAMID_RASTER_CACHE_RESTORED != '1'
         env:
           SEASON: ${{ matrix.season }}
-        run: python -m rugby.pyramid_ci_cache save "$SEASON"
+          DIGEST: ${{ steps.pyramid-cache-digest.outputs.digest }}
+        run: python -m rugby.pyramid_ci_cache save "$SEASON" --digest "$DIGEST"
 
       # Tarball layout: dist/<season>/… plus data/rugby/distance_cache/<season>.json
       # (official league travel stats for custom-map teams.js — routed km/min when
@@ -311,11 +313,12 @@ jobs:
       - name: Restore cached football pyramid artifacts into dist
         env:
           SEASON: ${{ matrix.season }}
+          DIGEST: ${{ steps.football-pyramid-cache-digest.outputs.digest }}
         run: |
           set -eo pipefail
           mkdir -p "dist/football/${SEASON}"
-          if python -m football.pyramid_ci_cache check "$SEASON"; then
-            python -m football.pyramid_ci_cache restore "$SEASON"
+          if python -m football.pyramid_ci_cache check "$SEASON" --digest "$DIGEST"; then
+            python -m football.pyramid_ci_cache restore "$SEASON" --digest "$DIGEST"
             echo "FOOTBALL_PYRAMID_RASTER_CACHE_RESTORED=1" >> "$GITHUB_ENV"
           fi
 
@@ -329,7 +332,8 @@ jobs:
         if: env.FOOTBALL_PYRAMID_RASTER_CACHE_RESTORED != '1'
         env:
           SEASON: ${{ matrix.season }}
-        run: python -m football.pyramid_ci_cache save "$SEASON"
+          DIGEST: ${{ steps.football-pyramid-cache-digest.outputs.digest }}
+        run: python -m football.pyramid_ci_cache save "$SEASON" --digest "$DIGEST"
 
       - name: Pack football season output tarball
         env:

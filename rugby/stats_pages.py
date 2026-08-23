@@ -34,10 +34,16 @@ from core import (
     set_config,
     setup_logging,
 )
-from core.config import DIST_DIR
+from core.config import CURRENT_SEASON, DIST_DIR
 from rugby import BRAND, DATA_DIR
 from rugby.clubs import iter_geocoded_leagues, load_team_club_map, resolve_club_name
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+from rugby.tiers import (
+    extract_tier,
+    get_competition_offset,
+    mens_current_tier_name,
+    womens_current_tier_name,
+)
 from rugby.webpages import get_footer_html
 
 logger = logging.getLogger(__name__)
@@ -186,6 +192,155 @@ def compute_season_stats(league_data_dir: Path | None = None) -> list[SeasonStat
             strict=True,
         )
     ]
+
+
+class ClubTeamPoint(TypedDict):
+    """One team's finish in one season, for the club timeline chart's hover popup.
+
+    ``level`` is the raw absolute tier (women's tiers are 101+, per ``rugby.tiers``);
+    the client subtracts 100 off women's levels before plotting/labelling so both
+    genders read on the same 1-based scale once the gender toggle filters to one.
+    """
+
+    level: float
+    league: str
+    position: int | None
+    team_count: int
+    is_merit: bool
+    gender: str
+
+
+class ClubTeamLevels(TypedDict):
+    """One team's playing-level series for a club, aligned to ``ClubTimelines.seasons``.
+
+    ``None`` marks a season the team was not fielded (a gap in its line).
+    """
+
+    team: str
+    points: list[ClubTeamPoint | None]
+
+
+class ClubTimeline(TypedDict):
+    """A club's teams and their level series, most recently-departed team last."""
+
+    club: str
+    teams: list[ClubTeamLevels]
+
+
+class ClubTimelines(TypedDict):
+    """Season list plus one ``ClubTimeline`` per club observed in ``league_data``."""
+
+    seasons: list[str]
+    clubs: list[ClubTimeline]
+
+
+# extract_tier's sentinel for a filename/path it doesn't recognize (e.g. representative
+# county_championship fixtures or pre-2008 oddball county filenames) -- not a real pyramid
+# position, so leagues resolving to this must be excluded rather than plotted as tier 999.
+_UNKNOWN_TIER = 999
+
+
+def _league_absolute_tier(rel_path: str, season: str) -> int | None:
+    """Absolute pyramid tier for a league file, or ``None`` if it isn't a recognized tier."""
+    parts = rel_path.split("/")
+    is_merit = len(parts) >= 2 and parts[0] == "merit"
+    local_tier, _local_name = extract_tier(rel_path, season)
+    if local_tier == _UNKNOWN_TIER:
+        return None
+    return local_tier + get_competition_offset(parts[1], season) if is_merit else local_tier
+
+
+def _team_level(
+    *, abs_tier: int, position: int, team_count: int, season: str, current_season: str
+) -> float:
+    """Playing level for one team's finish in a league already resolved to ``abs_tier``.
+
+    Offsets the tier by final league position: 1st place sits at the top of the
+    tier (fraction 0), last place sits near the bottom (fraction approaching 1,
+    i.e. just short of the tier below). Lower is always a higher standard of
+    rugby. The current (in-progress) season has no final position yet, so it
+    reports the bare tier with no fraction.
+    """
+    if season == current_season or team_count <= 0:
+        return float(abs_tier)
+    return abs_tier + (position - 1) / team_count
+
+
+def compute_club_timelines(
+    league_data_dir: Path | None = None, current_season: str = CURRENT_SEASON
+) -> ClubTimelines:
+    """Per-club, per-team playing-level series across every season in ``league_data``.
+
+    Each distinct team display name observed for a club (e.g. "Alpha RFC",
+    "Alpha RFC II") gets its own series -- a club fielding 3 teams in a season
+    shows 3 lines. See :func:`_team_level` for how a season's finish becomes a
+    single ``level`` number.
+    """
+    base = league_data_dir if league_data_dir is not None else DATA_DIR / "league_data"
+    if not base.exists():
+        return ClubTimelines(seasons=[], clubs=[])
+
+    season_dirs = sorted(
+        d for d in base.iterdir() if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+    )
+    seasons = [d.name for d in season_dirs]
+
+    team_club_map = load_team_club_map()
+    # club -> team display name -> season -> point
+    points: dict[str, dict[str, dict[str, ClubTeamPoint]]] = defaultdict(lambda: defaultdict(dict))
+
+    for season_dir in season_dirs:
+        season = season_dir.name
+        for league_file, league_data in iter_geocoded_leagues(
+            season_dir, team_club_map=team_club_map
+        ):
+            rel_path = league_file.relative_to(season_dir).as_posix()
+            abs_tier = _league_absolute_tier(rel_path, season)
+            if abs_tier is None:
+                continue
+            is_merit = rel_path.startswith("merit/")
+            filename = rel_path.rsplit("/", 1)[-1]
+            gender = GENDER_WOMEN if filename.startswith(_WOMENS_FILENAME_PREFIX) else GENDER_MEN
+
+            teams = league_data["teams"]
+            team_count = len(teams)
+            is_current = season == current_season
+            for position, team in enumerate(teams, start=1):
+                name = team["name"]
+                club = resolve_club_name(name, team_club_map)
+                level = _team_level(
+                    abs_tier=abs_tier,
+                    position=position,
+                    team_count=team_count,
+                    season=season,
+                    current_season=current_season,
+                )
+                point = ClubTeamPoint(
+                    level=level,
+                    league=league_data["league_name"],
+                    position=None if is_current else position,
+                    team_count=team_count,
+                    is_merit=is_merit,
+                    gender=gender,
+                )
+                # A team appearing in more than one league file the same season
+                # (shouldn't normally happen) keeps its best (lowest) level.
+                existing = points[club][name].get(season)
+                if existing is None or level < existing["level"]:
+                    points[club][name][season] = point
+
+    clubs: list[ClubTimeline] = []
+    for club in sorted(points):
+        team_series = [
+            ClubTeamLevels(
+                team=team,
+                points=[season_points.get(season) for season in seasons],
+            )
+            for team, season_points in sorted(points[club].items())
+        ]
+        clubs.append(ClubTimeline(club=club, teams=team_series))
+
+    return ClubTimelines(seasons=seasons, clubs=clubs)
 
 
 def _stat_tile(value_id: str, label_id: str) -> str:
@@ -557,6 +712,289 @@ _CHART_SCRIPT = """    <script>
     </script>
 """
 
+# Multi-line "club timeline" chart: one line per team a club has fielded, plotting
+# absolute pyramid level (lower = better) across every season. Kept as a separate
+# script/dataset from _CHART_SCRIPT because it plots several series at once with a
+# club search box driving which club's teams are shown, rather than a single
+# series behind a competition/gender filter.
+_CLUB_TIMELINE_SCRIPT = """    <script>
+        (function () {
+            var datasetNode = document.getElementById('club-timeline-dataset');
+            var searchInput = document.getElementById('club-timeline-search');
+            var svg = document.getElementById('club-timeline-chart-svg');
+            var legendEl = document.getElementById('club-timeline-legend');
+            var noteEl = document.getElementById('club-timeline-note');
+            var tooltip = document.getElementById('club-timeline-tooltip');
+            var genderButtons = document.querySelectorAll('.gender-toggle__btn');
+            if (!datasetNode || !searchInput || !svg) {
+                return;
+            }
+            var dataset = JSON.parse(datasetNode.textContent);
+            var seasons = dataset.seasons;
+            var tierLabels = dataset.tierLabels || {};
+            var clubsByName = {};
+            dataset.clubs.forEach(function (c) { clubsByName[c.club.toLowerCase()] = c; });
+
+            var VIEW_W = 760, VIEW_H = 280;
+            var MARGIN_LEFT = 34, MARGIN_RIGHT = 12, MARGIN_TOP = 16, MARGIN_BOTTOM = 28;
+            var MAX_X_LABELS = 8;
+            var SVGNS = 'http://www.w3.org/2000/svg';
+            var COLORS = [
+                '#4C6FFF', '#FF6B6B', '#2EC4B6', '#FFA630', '#8338EC', '#06A77D', '#E85D75', '#5C7AEA'
+            ];
+
+            var state = { club: null, gender: 'men' };
+
+            function shortSeason(season) {
+                var parts = season.split('-');
+                if (parts.length === 2 && parts[0].length === 4 && parts[1].length === 4) {
+                    return parts[0] + '-' + parts[1].slice(2);
+                }
+                return season;
+            }
+
+            function ordinal(n) {
+                var rem100 = n % 100;
+                if (rem100 >= 11 && rem100 <= 13) { return n + 'th'; }
+                switch (n % 10) {
+                    case 1: return n + 'st';
+                    case 2: return n + 'nd';
+                    case 3: return n + 'rd';
+                    default: return n + 'th';
+                }
+            }
+
+            // Women's tiers are stored as absolute pyramid numbers (101+); rebase to the
+            // same 1-based scale as men's once the toggle has filtered to one gender.
+            function displayLevel(point) {
+                return state.gender === 'women' ? point.level - 100 : point.level;
+            }
+
+            function tierLabel(value) {
+                var rounded = Math.round(value);
+                var labels = tierLabels[state.gender] || {};
+                return labels[String(rounded)] || ('Tier ' + rounded);
+            }
+
+            function svgEl(tag, attrs) {
+                var node = document.createElementNS(SVGNS, tag);
+                Object.keys(attrs || {}).forEach(function (key) {
+                    node.setAttribute(key, attrs[key]);
+                });
+                return node;
+            }
+
+            function hideTooltip() {
+                if (tooltip) { tooltip.style.opacity = '0'; }
+            }
+
+            function showTooltip(team, seasonIdx, point, cx, cy) {
+                if (!tooltip) { return; }
+                var teamEl = tooltip.querySelector('.chart-tooltip__team');
+                var seasonEl = tooltip.querySelector('.chart-tooltip__season');
+                var valueEl = tooltip.querySelector('.chart-tooltip__value');
+                var leagueEl = tooltip.querySelector('.chart-tooltip__league');
+                var noteEl2 = tooltip.querySelector('.chart-tooltip__note');
+                teamEl.textContent = team;
+                seasonEl.textContent = shortSeason(seasons[seasonIdx]);
+                valueEl.textContent = tierLabel(displayLevel(point));
+                var positionText = point.position === null
+                    ? 'Position: ongoing'
+                    : 'Position: ' + ordinal(point.position) + ' of ' + point.team_count;
+                leagueEl.textContent = point.league + ' — ' + positionText;
+                if (point.is_merit) {
+                    noteEl2.textContent = 'Merit competition: pyramid level shown is approximate.';
+                    noteEl2.hidden = false;
+                } else {
+                    noteEl2.hidden = true;
+                }
+                tooltip.style.left = ((cx / VIEW_W) * 100) + '%';
+                tooltip.style.top = ((cy / VIEW_H) * 100) + '%';
+                tooltip.style.opacity = '1';
+            }
+
+            function teamHasGender(t, gender) {
+                return t.points.some(function (p) { return p && p.gender === gender; });
+            }
+
+            function clubHasGender(club, gender) {
+                return club.teams.some(function (t) { return teamHasGender(t, gender); });
+            }
+
+            function renderClub(club) {
+                while (svg.firstChild) {
+                    svg.removeChild(svg.firstChild);
+                }
+                legendEl.innerHTML = '';
+                hideTooltip();
+
+                genderButtons.forEach(function (btn) {
+                    var has = clubHasGender(club, btn.dataset.gender);
+                    btn.disabled = !has;
+                    btn.classList.toggle('is-active', btn.dataset.gender === state.gender);
+                });
+
+                var teamsInView = club.teams.filter(function (t) { return teamHasGender(t, state.gender); });
+                var allValues = [];
+                teamsInView.forEach(function (t) {
+                    t.points.forEach(function (p) {
+                        if (p && p.gender === state.gender) { allValues.push(displayLevel(p)); }
+                    });
+                });
+                if (!allValues.length) {
+                    noteEl.textContent = 'No ' + state.gender + "'s level data for this club.";
+                    noteEl.hidden = false;
+                    return;
+                }
+                noteEl.hidden = true;
+
+                // Lower tier number is a higher standard, so the axis is inverted:
+                // the best level a team reached sits at the top of the chart.
+                var min = Math.min.apply(null, allValues);
+                var max = Math.max.apply(null, allValues);
+                var loBound = Math.max(1, Math.floor(min) - 0.5);
+                var hiBound = Math.ceil(max) + 0.5;
+                var range = hiBound - loBound || 1;
+
+                var plotX0 = MARGIN_LEFT, plotX1 = VIEW_W - MARGIN_RIGHT;
+                var plotY0 = MARGIN_TOP, plotY1 = VIEW_H - MARGIN_BOTTOM;
+                var plotW = plotX1 - plotX0, plotH = plotY1 - plotY0;
+                var n = seasons.length;
+
+                function xAt(i) {
+                    return n <= 1 ? plotX0 + plotW / 2 : plotX0 + (plotW * i) / (n - 1);
+                }
+                function yAt(v) {
+                    return plotY0 + ((v - loBound) / range) * plotH;
+                }
+
+                var gridGroup = svgEl('g', { class: 'chart-grid' });
+                var MAX_Y_TICKS = 8;
+                var tickLo = Math.ceil(loBound), tickHi = Math.floor(hiBound);
+                var tickStep = Math.max(1, Math.ceil((tickHi - tickLo) / MAX_Y_TICKS));
+                for (var tier = tickLo; tier <= tickHi; tier += tickStep) {
+                    var gy = yAt(tier);
+                    gridGroup.appendChild(svgEl('line', {
+                        class: 'chart-gridline',
+                        x1: plotX0, x2: plotX1, y1: gy.toFixed(1), y2: gy.toFixed(1),
+                    }));
+                    var label = svgEl('text', {
+                        class: 'chart-axis-label chart-axis-label--y',
+                        x: plotX0 - 8, y: gy.toFixed(1),
+                        'text-anchor': 'end', 'dominant-baseline': 'middle',
+                    });
+                    label.textContent = tierLabel(tier);
+                    gridGroup.appendChild(label);
+                }
+                svg.appendChild(gridGroup);
+
+                var axisGroup = svgEl('g', { class: 'chart-axis' });
+                if (n) {
+                    var step = Math.max(1, Math.ceil(n / MAX_X_LABELS));
+                    var labelIdx = {};
+                    labelIdx[0] = true;
+                    labelIdx[n - 1] = true;
+                    for (var li = 0; li < n; li += step) { labelIdx[li] = true; }
+                    Object.keys(labelIdx)
+                        .map(Number)
+                        .sort(function (a, b) { return a - b; })
+                        .forEach(function (i) {
+                            var t = svgEl('text', {
+                                class: 'chart-axis-label',
+                                x: xAt(i).toFixed(1), y: VIEW_H - 8, 'text-anchor': 'middle',
+                            });
+                            t.textContent = shortSeason(seasons[i]);
+                            axisGroup.appendChild(t);
+                        });
+                }
+                svg.appendChild(axisGroup);
+
+                teamsInView.forEach(function (t, idx) {
+                    var color = COLORS[idx % COLORS.length];
+                    var pts = t.points.map(function (p, i) {
+                        if (!p || p.gender !== state.gender) { return null; }
+                        return { i: i, x: xAt(i), y: yAt(displayLevel(p)), point: p };
+                    });
+
+                    // Draw each edge between adjacent seasons individually (rather than one
+                    // path) so a merit-competition leg can be dashed on its own -- a team's
+                    // history can cross in and out of merit competitions season to season.
+                    for (var i = 0; i < pts.length - 1; i++) {
+                        if (!pts[i] || !pts[i + 1]) { continue; }
+                        var isMeritEdge = pts[i].point.is_merit || pts[i + 1].point.is_merit;
+                        svg.appendChild(svgEl('line', {
+                            class: 'chart-line' + (isMeritEdge ? ' chart-line--merit' : ''),
+                            style: 'stroke:' + color,
+                            x1: pts[i].x.toFixed(1), y1: pts[i].y.toFixed(1),
+                            x2: pts[i + 1].x.toFixed(1), y2: pts[i + 1].y.toFixed(1),
+                        }));
+                    }
+
+                    pts.forEach(function (p) {
+                        if (!p) { return; }
+                        var dot = svgEl('circle', {
+                            cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 4, style: 'fill:' + color,
+                        });
+                        dot.addEventListener('pointerenter', function () {
+                            showTooltip(t.team, p.i, p.point, p.x, p.y);
+                        });
+                        dot.addEventListener('pointerleave', hideTooltip);
+                        svg.appendChild(dot);
+                    });
+
+                    var legendItem = document.createElement('div');
+                    legendItem.className = 'chart-legend__item';
+                    var swatch = document.createElement('span');
+                    swatch.className = 'chart-legend__swatch';
+                    swatch.style.background = color;
+                    legendItem.appendChild(swatch);
+                    legendItem.appendChild(document.createTextNode(t.team));
+                    legendEl.appendChild(legendItem);
+                });
+            }
+
+            function selectClub(club) {
+                state.club = club;
+                if (!clubHasGender(club, state.gender)) {
+                    state.gender = clubHasGender(club, 'men') ? 'men' : 'women';
+                }
+                renderClub(club);
+            }
+
+            var optionsList = document.getElementById('club-timeline-options');
+            if (optionsList) {
+                dataset.clubs.forEach(function (c) {
+                    var opt = document.createElement('option');
+                    opt.value = c.club;
+                    optionsList.appendChild(opt);
+                });
+            }
+
+            function applySearch() {
+                var club = clubsByName[searchInput.value.trim().toLowerCase()];
+                if (club) {
+                    selectClub(club);
+                }
+            }
+            searchInput.addEventListener('change', applySearch);
+            searchInput.addEventListener('input', applySearch);
+
+            genderButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    if (btn.disabled || !state.club) { return; }
+                    state.gender = btn.dataset.gender;
+                    renderClub(state.club);
+                });
+            });
+
+            if (dataset.clubs.length) {
+                searchInput.value = dataset.clubs[0].club;
+                selectClub(dataset.clubs[0]);
+            }
+        })();
+    </script>
+"""
+
 _CHART_STYLE = """    <style>
         .chart-card-header {
             display: flex;
@@ -771,11 +1209,117 @@ _CHART_STYLE = """    <style>
             color: var(--text-heading);
             font-size: 1.05em;
         }
+        .chart-tooltip--wide {
+            white-space: normal;
+            max-width: 220px;
+            text-align: left;
+        }
+        .chart-tooltip__team {
+            font-weight: 700;
+            color: var(--text-heading);
+            font-size: 0.95em;
+        }
+        .chart-tooltip__league {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            margin-top: 0.2em;
+        }
+        .chart-tooltip__note {
+            font-size: 0.78em;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 0.35em;
+            border-top: 1px solid var(--border-light);
+            padding-top: 0.35em;
+        }
+        .club-timeline-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75em;
+            margin-bottom: 0.75em;
+        }
+        .club-search {
+            width: 100%;
+            max-width: 360px;
+            padding: 0.5em 0.75em;
+            font-size: 0.95em;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text);
+        }
+        .club-search:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .gender-toggle {
+            display: inline-flex;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .gender-toggle__btn {
+            padding: 0.5em 0.9em;
+            font-size: 0.88em;
+            border: none;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .gender-toggle__btn + .gender-toggle__btn {
+            border-left: 1px solid var(--border);
+        }
+        .gender-toggle__btn.is-active {
+            background: var(--accent);
+            color: var(--bg-card);
+            font-weight: 600;
+        }
+        .gender-toggle__btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .chart-line--merit {
+            stroke-dasharray: 5 4;
+        }
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6em 1.2em;
+            margin: 0.6em 0 0;
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+        .chart-legend__item {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+        }
+        .chart-legend__swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
     </style>
 """
 
 
-def get_stats_index_html(breakdown: StatsBreakdown) -> str:
+def _axis_tier_labels_men(current_season: str = CURRENT_SEASON) -> dict[str, str]:
+    """Men's tier number (as a string key) -> display name, for chart y-axis gridlines."""
+    return {str(tier): mens_current_tier_name(tier, current_season) for tier in range(1, 15)}
+
+
+def _axis_tier_labels_women() -> dict[str, str]:
+    """Women's tier number *rebased to start at 1* (100 subtracted) -> display name.
+
+    Rebased so the women's axis reads on the same 1-based scale as the men's axis
+    once the club timeline's gender toggle filters the chart to one gender.
+    """
+    return {str(tier): womens_current_tier_name(tier + 100) for tier in range(1, 10)}
+
+
+def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimelines) -> str:
     """Generate HTML content for the stats dashboard page."""
     is_prod = get_config().is_production
     home_href = "../" if is_prod else "../index.html"
@@ -810,6 +1354,16 @@ def get_stats_index_html(breakdown: StatsBreakdown) -> str:
                 {"key": key, "label": GENDER_LABELS[key]}
                 for key in (GENDER_ALL, GENDER_MEN, GENDER_WOMEN)
             ],
+        }
+    )
+    club_timeline_json = json.dumps(
+        {
+            "seasons": club_timelines["seasons"],
+            "clubs": club_timelines["clubs"],
+            "tierLabels": {
+                GENDER_MEN: _axis_tier_labels_men(),
+                GENDER_WOMEN: _axis_tier_labels_women(),
+            },
         }
     )
 
@@ -876,8 +1430,37 @@ def get_stats_index_html(breakdown: StatsBreakdown) -> str:
         </div>
     </div>
 
+    <div class="info-section">
+        <div class="chart-card-header">
+            <h2>Club timeline</h2>
+        </div>
+        <p class="chart-card-subtitle">Playing level of each of a club's teams across every season (1st XV, 2nds, 3rds, etc. each get their own line). Lower is a higher standard of rugby. Dashed segments are merit competitions, where the pyramid level shown is an approximation.</p>
+        <div class="club-timeline-controls">
+            <input type="text" id="club-timeline-search" class="club-search" list="club-timeline-options" placeholder="Search for a club&hellip;" autocomplete="off">
+            <datalist id="club-timeline-options"></datalist>
+            <div class="gender-toggle" role="radiogroup" aria-label="Gender">
+                <button type="button" class="gender-toggle__btn" data-gender="men">Men's</button>
+                <button type="button" class="gender-toggle__btn" data-gender="women">Women's</button>
+            </div>
+        </div>
+        <p class="chart-note" id="club-timeline-note" hidden></p>
+        <div class="chart-wrapper">
+            <svg id="club-timeline-chart-svg" class="chart-svg" viewBox="0 0 760 280" role="img" aria-label="Club timeline line chart"></svg>
+            <div id="club-timeline-tooltip" class="chart-tooltip chart-tooltip--wide" role="status" aria-live="polite">
+                <div class="chart-tooltip__team"></div>
+                <div class="chart-tooltip__season"></div>
+                <div class="chart-tooltip__value"></div>
+                <div class="chart-tooltip__league"></div>
+                <div class="chart-tooltip__note" hidden></div>
+            </div>
+        </div>
+        <div class="chart-legend" id="club-timeline-legend"></div>
+    </div>
+
     <script type="application/json" id="stats-dataset">{dataset_json}</script>
 {_CHART_SCRIPT}
+    <script type="application/json" id="club-timeline-dataset">{club_timeline_json}</script>
+{_CLUB_TIMELINE_SCRIPT}
 {get_footer_html()}
 </body>
 </html>
@@ -892,10 +1475,12 @@ def generate_stats_page() -> None:
         logger.warning("No season data found; skipping stats page")
         return
 
+    club_timelines = compute_club_timelines()
+
     stats_dir = DIST_DIR / "stats"
     stats_dir.mkdir(parents=True, exist_ok=True)
 
-    html_content = get_stats_index_html(breakdown)
+    html_content = get_stats_index_html(breakdown, club_timelines)
     index_path = stats_dir / "index.html"
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_content)

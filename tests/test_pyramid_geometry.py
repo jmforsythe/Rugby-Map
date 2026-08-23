@@ -12,6 +12,7 @@ Two invariants matter for every set of league cells that share a tier band:
 from __future__ import annotations
 
 from collections import defaultdict
+from functools import cache
 
 import pytest
 
@@ -20,6 +21,7 @@ from rugby.pyramid_image import (
     LEAGUE_DATA_DIR,
     BandLayout,
     LeagueData,
+    StemParentOverrides,
     _apply_interior_column_gaps,
     _divide_span_into_cells,
     _divide_span_weighted,
@@ -240,8 +242,16 @@ def test_womens_nested_layout_real_seasons_no_overlap_or_degenerate() -> None:
 # ---------------------------------------------------------------------------
 
 
-def _render_all_leagues_svg(season: str) -> str | None:
-    """Mirror ``rugby.pyramid_image._render_mens_standard_pyramid(all_leagues=True)``."""
+@cache
+def _all_leagues_prepared(
+    season: str,
+) -> tuple[list[LeagueData], StemParentOverrides | None] | None:
+    """Load leagues + resolve real parent overrides for one season's ``All Leagues`` merge.
+
+    This is the expensive step (``stem_parent_overrides_load_merged`` backfills missing links
+    by scanning *other* seasons) — cached so the render-based overlap test and the SVG-free
+    orphan test below don't each pay it separately for every season.
+    """
     try:
         national_leagues = load_pyramid_leagues(season, gender="mens")
         leagues = load_pyramid_leagues_with_merit(season)
@@ -256,11 +266,20 @@ def _render_all_leagues_svg(season: str) -> str | None:
     parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
         season, dict(parent_overrides or {})
     )
+    return leagues, (parent_overrides or None)
+
+
+def _render_all_leagues_svg(season: str) -> str | None:
+    """Mirror ``rugby.pyramid_image._render_mens_standard_pyramid(all_leagues=True)``."""
+    prepared = _all_leagues_prepared(season)
+    if prepared is None:
+        return None
+    leagues, parent_overrides = prepared
     return render_pyramid_svg(
         season,
         leagues,
         gender="mens",
-        parent_overrides=parent_overrides or None,
+        parent_overrides=parent_overrides,
         womens_parent_overrides=None,
         stem_slot_strips=stem_slot_strips_load(season),
         transparent_white_crest_backgrounds=False,
@@ -289,30 +308,19 @@ def test_mens_all_leagues_real_seasons_no_orphan_span_crest_conflicts() -> None:
 
 
 def _all_leagues_stem_layout(season: str):
-    """Build the same ``leagues_by_tier``/overrides ``render_pyramid_svg`` uses, then run the
-    stem layout directly (not the SVG) so tree-level attributes like
+    """Run the stem layout directly (no SVG) so tree-level attributes like
     ``layout_span_union_parent_names`` survive for inspection."""
-    try:
-        national_leagues = load_pyramid_leagues(season, gender="mens")
-        leagues = load_pyramid_leagues_with_merit(season)
-    except FileNotFoundError:
+    prepared = _all_leagues_prepared(season)
+    if prepared is None:
         return None
-    if not leagues:
-        return None
-    national_by_tier: dict[int, list[LeagueData]] = defaultdict(list)
-    for lg in national_leagues:
-        national_by_tier[lg.tier_num].append(lg)
-    parent_overrides = stem_parent_overrides_load_merged(season, national_by_tier)
-    parent_overrides = stem_parent_overrides_merge_merit_sections_for_absolute_tiers(
-        season, dict(parent_overrides or {})
-    )
+    leagues, parent_overrides = prepared
     leagues_by_tier: dict[int, list[LeagueData]] = defaultdict(list)
     for lg in leagues:
         leagues_by_tier[lg.tier_num].append(lg)
     return _stem_build_layout(
         leagues_by_tier,
         season,
-        parent_overrides or None,
+        parent_overrides,
         stem_slot_strips=stem_slot_strips_load(season),
         log_stem_orphans=False,
     )

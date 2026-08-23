@@ -1556,10 +1556,29 @@ def _write_territories_sidecar(
 def _get_territory_loader_script(sidecar_name: str) -> str:
     """Client-side loader that fetches the territories sidecar and populates
     the (already-created, empty) territory FeatureGroups by their Folium JS
-    variable name, matching the ``_get_boundary_loader_script`` pattern."""
+    variable name, matching the ``_get_boundary_loader_script`` pattern.
+
+    Retries the fetch on failure (a transient network blip or cold CDN edge
+    can take longer than a couple of seconds to clear) and, if a controlling
+    service worker is present, also asks it to precache the sidecar in the
+    background -- so a *second* tab/reload hitting the same cold edge has a
+    cached copy to fall back on instead of racing the network again.
+    """
     return f"""
     <script>
     (function() {{
+        // 500ms, 1s, 2s, 4s, 8s, 16s between attempts -- ~31s of total
+        // budget, generous enough to ride out a cold CDN edge without
+        // retrying forever.
+        var MAX_ATTEMPTS = 6;
+        function requestPrecache() {{
+            if (navigator.serviceWorker && navigator.serviceWorker.controller) {{
+                navigator.serviceWorker.controller.postMessage({{
+                    type: 'PRECACHE_JSON',
+                    url: '{sidecar_name}',
+                }});
+            }}
+        }}
         function fetchTerritories(attempt) {{
             fetch('{sidecar_name}', {{ cache: 'no-store' }}).then(function(r) {{
                 if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -1584,7 +1603,7 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                     }});
                 }});
             }}).catch(function(e) {{
-                if (attempt < 3) {{
+                if (attempt < MAX_ATTEMPTS) {{
                     setTimeout(function() {{ fetchTerritories(attempt + 1); }}, 500 * Math.pow(2, attempt));
                 }} else {{
                     console.warn('Could not load territories:', e);
@@ -1594,6 +1613,7 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
         function addTerritories() {{
             var el = document.querySelector('.folium-map');
             if (!el || !el._leaflet_id) {{ setTimeout(addTerritories, 100); return; }}
+            requestPrecache();
             fetchTerritories(0);
         }}
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addTerritories);

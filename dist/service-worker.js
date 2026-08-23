@@ -160,3 +160,29 @@ self.addEventListener("fetch", (event) => {
   // Default: network-first for everything else
   event.respondWith(fetch(event.request));
 });
+
+// A page can ask us to warm the cache for its own JSON sidecar (e.g.
+// territories.json) in the background. This doesn't help the very first
+// load of a given map (nothing to serve yet, same cold-CDN-edge risk as the
+// page's own fetch), but it means a second tab or a soon-after reload of the
+// same page has a cached copy to fall back on instead of racing the network
+// again -- exactly the "just refresh and it works" case this is meant to
+// avoid needing.
+self.addEventListener("message", (event) => {
+  if (!event.data || event.data.type !== "PRECACHE_JSON" || typeof event.data.url !== "string") {
+    return;
+  }
+  const url = event.data.url;
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.match(url).then((existing) => {
+        if (existing) return;
+        return fetch(url, { cache: "no-store" })
+          .then((response) => {
+            if (response && response.ok) return cache.put(url, response.clone());
+          })
+          .catch(() => {});
+      }),
+    ),
+  );
+});

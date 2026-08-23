@@ -6471,24 +6471,25 @@ def _stem_apply_multi_parent_span_layouts(
     *,
     equal_weight_pairs: set[frozenset[int]],
     dual_span_skip_ids: frozenset[int] = frozenset(),
-) -> list[StemTreeNode]:
+) -> list[tuple[StemTreeNode, float, float]]:
     """Stretch nodes with multi-parent overrides across the union of parent tier bands.
 
     Only safe when nothing else at that tier already occupies the union: a multi-parent child
     that is one of *several* children under either named parent (e.g. a merit competition
     linked to two Counties parents that also have their own regular single-parent children)
     would otherwise be stretched straight over those unrelated siblings' cells — two different
-    leagues drawn into the same rectangle. Return those nodes uncstretched so the caller can
-    demote them to an orphan row instead (their own row below the linked one, like any other
-    league with no clean single-parent slot) rather than leaving them at the near-zero-width
-    placeholder :func:`_stem_partition_subtree` gives every spanning child up front.
+    leagues drawn into the same rectangle. Return those nodes unstretched (with the union
+    ``(x0, width)`` they *should* have occupied) so the caller can demote them to their own row
+    below the linked one instead — using that real geometry rather than an arbitrary equal
+    share of the whole canvas — rather than leaving them at the near-zero-width placeholder
+    :func:`_stem_partition_subtree` gives every spanning child up front.
     """
 
     index = _stem_build_stem_node_index(roots)
     span_nodes = [n for n in _iter_stem_forest(roots) if n.layout_span_union_parent_names]
     span_nodes.sort(key=lambda sn: sn.league.tier_num, reverse=True)
 
-    collided: list[StemTreeNode] = []
+    collided: list[tuple[StemTreeNode, float, float]] = []
     for n in span_nodes:
         if id(n) in dual_span_skip_ids:
             continue
@@ -6513,7 +6514,7 @@ def _stem_apply_multi_parent_span_layouts(
             for sn in siblings_at_tier
         )
         if collides:
-            collided.append(n)
+            collided.append((n, x0, max(1e-6, x1 - x0)))
             continue
         _stem_partition_subtree(n, x0, max(1e-6, x1 - x0), equal_weight_pairs=equal_weight_pairs)
     return collided
@@ -6851,20 +6852,20 @@ def _stem_build_layout(
     # never mutate the shared tree structure. Collision detection is deterministic (layout_x/w
     # are reset fresh every call), so demoting collided spans to an orphan row is done purely
     # via local dicts scoped to this call.
-    collided_by_tier: dict[int, list[StemTreeNode]] = defaultdict(list)
-    for node in collided_spans:
-        collided_by_tier[node.league.tier_num].append(node)
+    #
+    # Unlike a true orphan (no parent link at all, so no natural geometry), a collided span
+    # *does* have real, meaningful geometry — the union of its named parents' bands — so give it
+    # that directly instead of an arbitrary equal share of the whole canvas.
+    for node, x0, w in collided_spans:
+        _stem_partition_subtree(node, x0, w, equal_weight_pairs=eq_pairs)
         if log_stem_orphans:
             logger.warning(
                 "Stem tier %d: %r spans multiple parents already covered by other "
-                "leagues at this tier — demoted to its own orphan row.",
+                "leagues at this tier — demoted to its own row using its real parent-union "
+                "geometry.",
                 node.league.tier_num,
                 node.league.league_name,
             )
-    if collided_by_tier:
-        orphans = {t: [*ns, *collided_by_tier.get(t, ())] for t, ns in orphans.items()} | {
-            t: ns for t, ns in collided_by_tier.items() if t not in orphans
-        }
     _stem_autolayout_two_into_two_dual_spans(two_into_two, equal_weight_pairs=eq_pairs)
     _stem_autolayout_spanning_middle_three_feeders(roots, equal_weight_pairs=eq_pairs)
     _stem_apply_slot_strips(roots, stem_slot_strips, equal_weight_pairs=eq_pairs)
@@ -6875,7 +6876,7 @@ def _stem_build_layout(
         # they're still attached to the tree with the pre-collision degenerate placeholder width,
         # so drop that stale entry rather than double-drawing a near-invisible sliver.
         demoted_league_ids = {
-            id(desc.league) for n in collided_spans for desc in _iter_stem_subtree(n)
+            id(desc.league) for n, _x0, _w in collided_spans for desc in _iter_stem_subtree(n)
         }
         for t, cells in list(pure_tree_placements.items()):
             filtered = [c for c in cells if id(c[0]) not in demoted_league_ids]
@@ -6884,25 +6885,42 @@ def _stem_build_layout(
             else:
                 del pure_tree_placements[t]
 
-    # An orphan root (e.g. a collided multi-parent span demoted above) may itself have real tree
-    # children at deeper tiers. Bucket every node reachable from any orphan root by *its own*
-    # tier first, then give each tier one flat equal-width division — rather than recursively
-    # sub-dividing each root's allotted width independently, which can hand two unrelated orphan
-    # roots at the *same* tier (one native to that tier, one a descendant of a shallower demoted
-    # root) each a share of the *full* row, overlapping each other.
-    orphan_nodes_by_tier: dict[int, list[StemTreeNode]] = defaultdict(list)
+    # Bucket every node reachable from a true orphan root, or from a demoted span (which already
+    # has real ``(layout_x, layout_w)`` geometry set above), by its *own* tier — tagging which
+    # family it came from. A collided span's real geometry is only safe to use as-is when it's
+    # the only thing landing on that tier; if a true orphan's descendant or a second, unrelated
+    # demoted span also lands there, fall back to one flat equal-width division across everyone
+    # at that tier so nothing overlaps (the same safety net as before, now only paid when two
+    # independent things genuinely compete for one row instead of on every demotion).
+    orphan_nodes_by_tier: dict[int, list[tuple[bool, StemTreeNode]]] = defaultdict(list)
     for root_list in orphans.values():
         for root in root_list:
             for desc in _iter_stem_subtree(root):
-                orphan_nodes_by_tier[desc.league.tier_num].append(desc)
+                orphan_nodes_by_tier[desc.league.tier_num].append((False, desc))
+    for node, _x0, _w in collided_spans:
+        for desc in _iter_stem_subtree(node):
+            orphan_nodes_by_tier[desc.league.tier_num].append((True, desc))
 
     orphan_row_positions: dict[int, list[tuple[LeagueData, float, float]]] = {}
-    for t, nodes in orphan_nodes_by_tier.items():
+    for t, tagged in orphan_nodes_by_tier.items():
+        has_true_orphan = any(not has_real_geometry for has_real_geometry, _n in tagged)
+        demoted_nodes = [n for has_real_geometry, n in tagged if has_real_geometry]
+        overlaps_another_demoted = any(
+            a.layout_x < b.layout_x + b.layout_w - 1e-6
+            and b.layout_x < a.layout_x + a.layout_w - 1e-6
+            for i, a in enumerate(demoted_nodes)
+            for b in demoted_nodes[i + 1 :]
+        )
         row: list[tuple[LeagueData, float, float]] = []
-        for node, lx, lw in _stem_orphan_root_geometry(nodes, stem_inner_w):
-            node.layout_x = lx
-            node.layout_w = lw
-            row.append((node.league, lx, lw))
+        if has_true_orphan or overlaps_another_demoted:
+            nodes = [n for _has_real_geometry, n in tagged]
+            for node, lx, lw in _stem_orphan_root_geometry(nodes, stem_inner_w):
+                node.layout_x = lx
+                node.layout_w = lw
+                row.append((node.league, lx, lw))
+        else:
+            for _has_real_geometry, node in tagged:
+                row.append((node.league, node.layout_x, node.layout_w))
         row.sort(key=lambda r: r[1])
         orphan_row_positions[t] = row
 

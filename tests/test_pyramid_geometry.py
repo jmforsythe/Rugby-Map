@@ -357,3 +357,40 @@ def test_mens_all_leagues_real_seasons_multi_parent_spans_are_not_orphaned() -> 
         "multi-parent-span league(s) demoted to a full-width orphan row instead of nesting "
         f"under their real parents: {orphaned_spans}"
     )
+
+
+def test_mens_all_leagues_real_seasons_stem_tiers_no_overlap_or_degenerate() -> None:
+    """Overlap check on the internal (``LeagueData``, x, width) layout data itself, not the
+    rendered SVG.
+
+    ``test_mens_all_leagues_real_seasons_no_orphan_span_crest_conflicts`` scans the rendered SVG
+    for overlapping stroked rects, but its shape collector deliberately treats two geometrically
+    *identical* rects as "already deduped" — assumed to be the same cell drawn twice, e.g. once
+    for a background fill and once for the stroke. That assumption breaks when two *different*
+    leagues are (bugfully) assigned the exact same rect: their crests differ, but the outline
+    scan sees one shape and has nothing to compare against, so it reports no conflict at all.
+    This happened for real (University of Salford Division 4 East/West landing exactly on top
+    of Division 4 North/South) and was invisible to the SVG scan.
+
+    Checking ``pure_tree_placements``/``orphan_row_positions`` directly sidesteps that: these are
+    real, distinct ``LeagueData`` objects with explicit ``(x, width)`` geometry, so there's no
+    "is this a duplicate shape" ambiguity — any x-overlap between two different leagues at the
+    same tier is unambiguously a bug. It's also far cheaper: no SVG string ever gets built.
+    """
+    checked = 0
+    for season in _available_seasons():
+        layout = _all_leagues_stem_layout(season)
+        if layout is None:
+            continue
+        checked += 1
+        for tier, cells in layout.pure_tree_placements.items():
+            rects = {f"{i}:{lg.league_name}": (x, w) for i, (lg, x, w) in enumerate(cells)}
+            _assert_no_overlap_and_not_degenerate(
+                rects, context=f"{season} men's All Leagues stem tier {tier} (linked row)"
+            )
+        for tier, cells in layout.orphan_row_positions.items():
+            rects = {f"{i}:{lg.league_name}": (x, w) for i, (lg, x, w) in enumerate(cells)}
+            _assert_no_overlap_and_not_degenerate(
+                rects, context=f"{season} men's All Leagues stem tier {tier} (orphan row)"
+            )
+    assert checked > 0, "no season produced a men's All Leagues stem layout to validate"

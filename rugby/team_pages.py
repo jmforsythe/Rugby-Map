@@ -942,21 +942,25 @@ def get_team_page_html(
         .league-history-table {{
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.85em;
             /* Never force the table wider than its card: min-width 760px caused a horizontal
                scrollbar on common viewport widths (section padding shrinks the inner width). */
             min-width: min(100%, 760px);
         }}
         .league-history-table th {{
             background: var(--bg-card-alt);
-            padding: 0.8em;
+            padding: 0.5em 0.6em;
             text-align: left;
             font-weight: 600;
             color: var(--text-heading);
             border-bottom: 2px solid var(--accent);
         }}
         .league-history-table td {{
-            padding: 0.8em;
+            padding: 0.5em 0.6em;
             border-bottom: 1px solid var(--border);
+        }}
+        .league-history-table .season-cell {{
+            white-space: nowrap;
         }}
         .league-history-table tr:hover {{
             background: var(--bg-card-alt);
@@ -965,6 +969,7 @@ def get_team_page_html(
             font-variant-numeric: tabular-nums;
             color: var(--text-muted);
             line-height: 1.45;
+            white-space: nowrap;
         }}
         .island-stat-group {{
             display: block;
@@ -990,8 +995,9 @@ def get_team_page_html(
         }}
         .league-history-table .league-link {{
             display: inline-block;
-            padding: 0.4em 0.6em;
+            padding: 0.3em 0.5em;
             font-size: 0.95em;
+            white-space: nowrap;
         }}
         .league-history-table .map-cell {{
             width: 2.5em;
@@ -1103,22 +1109,22 @@ def get_team_page_html(
         @media (max-width: 768px) {{
             .league-history-table {{
                 min-width: 500px;
-                font-size: 0.9em;
+                font-size: 0.8em;
             }}
             .league-history-table th,
             .league-history-table td {{
-                padding: 0.6em 0.4em;
+                padding: 0.45em 0.4em;
             }}
         }}
 
         @media (max-width: 480px) {{
             .league-history-table {{
                 min-width: 450px;
-                font-size: 0.85em;
+                font-size: 0.75em;
             }}
             .league-history-table th,
             .league-history-table td {{
-                padding: 0.5em 0.3em;
+                padding: 0.4em 0.3em;
             }}
             .distance-header-full {{
                 display: none;
@@ -1219,7 +1225,7 @@ def get_team_page_html(
             # If team has no league for this season, render a blank row.
             if not season_entries:
                 html += f"""                <tr>
-                    <td>{season}</td>
+                    <td class="season-cell">{season}</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td class="distance-cell">&nbsp;</td>
@@ -1267,7 +1273,7 @@ def get_team_page_html(
                 )
 
                 html += f"""                <tr>
-                    <td>{season}</td>
+                    <td class="season-cell">{season}</td>
                     <td>{league_link}</td>
                     <td>{position_display}</td>
                     <td class="distance-cell">{travel_km}</td>

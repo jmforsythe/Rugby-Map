@@ -14,7 +14,7 @@ from collections import defaultdict
 from collections.abc import Callable, Sequence
 from typing import NamedTuple, TypeVar
 
-from core import setup_logging
+from core import EARLIEST_SEASON, setup_logging
 from rugby import DATA_DIR
 from rugby.addresses import team_name_to_club_name
 from rugby.tiers import extract_tier, get_competition_offset
@@ -22,7 +22,11 @@ from rugby.tiers import extract_tier, get_competition_offset
 logger = logging.getLogger(__name__)
 
 LEAGUE_DATA_DIR = DATA_DIR / "league_data"
-SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+SEASONS = sorted(
+    d.name
+    for d in LEAGUE_DATA_DIR.iterdir()
+    if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+)
 
 WOMENS_MIN_TIER = 100
 
@@ -80,6 +84,8 @@ def load_all_seasons() -> TeamHistory:
         season_dir = LEAGUE_DATA_DIR / season
         for filepath in sorted(p for p in season_dir.rglob("*.json") if not p.name.startswith("_")):
             rel = filepath.relative_to(season_dir).as_posix()
+            if rel.startswith("county_championship/"):
+                continue
             tier_num, tier_name = extract_tier(rel, season)
 
             # Merit tiers are local to their competition; convert to absolute

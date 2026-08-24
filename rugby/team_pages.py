@@ -26,7 +26,7 @@ from core import (
     setup_logging,
     team_name_to_filepath,
 )
-from core.config import CURRENT_SEASON, DIST_DIR
+from core.config import CURRENT_SEASON, DIST_DIR, EARLIEST_SEASON
 from core.json_utils import write_compact_json
 from rugby import BRAND, DATA_DIR, rfu_team_only_url
 from rugby.addresses import team_name_to_club_name
@@ -261,7 +261,7 @@ def collect_all_teams_data() -> dict[str, TeamData]:
     season_dirs = [
         d
         for d in sorted(league_data_dir.iterdir())
-        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name) and d.name >= EARLIEST_SEASON
     ]
 
     # First pass: gather every (display_name, team_id) pair so we can build
@@ -295,6 +295,10 @@ def collect_all_teams_data() -> dict[str, TeamData]:
         season = season_dir.name
 
         for league_file, league_data in iter_geocoded_leagues(season_dir):
+            rel_path = league_file.relative_to(season_dir).as_posix()
+            if rel_path.startswith("county_championship/"):
+                # Representative county sides, not club pyramid/merit teams.
+                continue
             league_name = league_data["league_name"]
             league_team_count = len(league_data["teams"])
 
@@ -329,7 +333,6 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 if fmt_addr:
                     teams_data[page_key]["formatted_address"] = fmt_addr
 
-                rel_path = league_file.relative_to(season_dir).as_posix()
                 tier = extract_tier(rel_path, season)
                 is_merit = rel_path.startswith("merit/")
                 comp_key = ""
@@ -366,7 +369,9 @@ def get_all_seasons() -> list[str]:
     seasons = [
         season_dir.name
         for season_dir in league_data_dir.iterdir()
-        if season_dir.is_dir() and re.match(r"\d{4}-\d{4}", season_dir.name)
+        if season_dir.is_dir()
+        and re.match(r"\d{4}-\d{4}", season_dir.name)
+        and season_dir.name >= EARLIEST_SEASON
     ]
     return sorted(seasons, reverse=True)
 
@@ -512,7 +517,7 @@ def build_team_id_name_lookup() -> dict[int, str]:
     season_dirs = [
         d
         for d in sorted(league_data_dir.iterdir())
-        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name) and d.name >= EARLIEST_SEASON
     ]
     names: dict[int, str] = {}
     for season_dir in season_dirs:

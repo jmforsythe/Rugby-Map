@@ -16,6 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import rugby.pyramid_image as pyramid_image  # noqa: E402
+from core import EARLIEST_SEASON  # noqa: E402
 from rugby.pyramid_image import discover_merit_competitions  # noqa: E402
 
 GEO = Path("data/rugby/league_data")
@@ -39,7 +40,9 @@ class _CaptureHandler(logging.Handler):
 
 
 def all_seasons() -> list[str]:
-    return sorted(d.name for d in GEO.iterdir() if d.is_dir() and "-" in d.name)
+    return sorted(
+        d.name for d in GEO.iterdir() if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+    )
 
 
 def main() -> None:

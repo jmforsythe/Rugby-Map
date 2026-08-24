@@ -13,6 +13,12 @@ CACHE_DIR = DATA_DIR / "caches"
 
 CURRENT_SEASON = "2026-2027"
 
+#: Earliest season with usable tier/fixture/geocoding data. 1999-2000 has raw
+#: league_data but predates tier_mappings, fixture_data, and geocoded_teams
+#: coverage, so anything that walks league_data across all seasons should
+#: start here instead.
+EARLIEST_SEASON = "2000-2001"
+
 
 @dataclass
 class AppConfig:

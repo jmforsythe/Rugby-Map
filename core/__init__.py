@@ -6,6 +6,7 @@ Re-exports all public symbols so callers can use ``from core import ...``.
 from core.config import (
     CURRENT_SEASON,
     DIST_DIR,
+    EARLIEST_SEASON,
     AppConfig,
     get_config,
     get_favicon_html,
@@ -41,6 +42,7 @@ from core.types import (
 __all__ = [
     "CURRENT_SEASON",
     "DIST_DIR",
+    "EARLIEST_SEASON",
     "AddressLeague",
     "AddressTeam",
     "AntiBotDetectedError",

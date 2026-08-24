@@ -11,6 +11,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+from core import EARLIEST_SEASON
 from rugby import DATA_DIR
 from rugby.tiers import (
     _match_named_merit_leagues,
@@ -25,7 +26,11 @@ LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 
 def get_seasons() -> list[str]:
     """Discover available seasons from league_data/ subdirectories."""
-    return sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+    return sorted(
+        d.name
+        for d in LEAGUE_DATA_DIR.iterdir()
+        if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+    )
 
 
 @dataclass

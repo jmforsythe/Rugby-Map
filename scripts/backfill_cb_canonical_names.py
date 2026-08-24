@@ -38,7 +38,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from core import AntiBotDetectedError  # noqa: E402
+from core import EARLIEST_SEASON, AntiBotDetectedError  # noqa: E402
 from rugby import DATA_DIR  # noqa: E402
 from rugby.addresses import fetch_club_canonical_name, team_name_to_club_name  # noqa: E402
 from rugby.constituent_bodies import get_constituent_body  # noqa: E402
@@ -76,7 +76,10 @@ def build_club_url_index(club_names: dict[str, str]) -> dict[str, tuple[str, str
     most likely to still be live.
     """
     index: dict[str, tuple[str, str]] = {}
-    season_dirs = sorted((d for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir()), reverse=True)
+    season_dirs = sorted(
+        (d for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and d.name >= EARLIEST_SEASON),
+        reverse=True,
+    )
     for season_dir in season_dirs:
         for league_file in season_dir.rglob("*.json"):
             if league_file.name.startswith("_"):

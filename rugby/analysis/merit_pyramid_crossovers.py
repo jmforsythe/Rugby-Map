@@ -47,7 +47,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
-from core import setup_logging
+from core import EARLIEST_SEASON, setup_logging
 from rugby import DATA_DIR
 from rugby.addresses import team_name_to_club_name
 from rugby.clubs import iter_geocoded_leagues
@@ -55,7 +55,11 @@ from rugby.tiers import extract_tier, get_competition_offset
 
 LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 TIER_MAPPINGS_DIR = DATA_DIR / "tier_mappings"
-SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+SEASONS = sorted(
+    d.name
+    for d in LEAGUE_DATA_DIR.iterdir()
+    if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+)
 WOMENS_MIN = 100
 
 # Keys in tier_mappings/<season>.json that are not merit competitions.

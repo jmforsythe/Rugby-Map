@@ -16,6 +16,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+from core import EARLIEST_SEASON
 from rugby import DATA_DIR
 from rugby.tiers import (
     _strip_sponsor_prefix,
@@ -171,6 +172,8 @@ def main() -> None:
         if not season_dir.is_dir():
             continue
         season = season_dir.name
+        if season < EARLIEST_SEASON:
+            continue
         if args.season and season != args.season:
             continue
         all_results.extend(analyse_season(season_dir, season, args.comp))

@@ -14,14 +14,18 @@ import logging
 from collections import defaultdict
 from urllib.parse import parse_qs, urlparse
 
-from core import setup_logging
+from core import EARLIEST_SEASON, setup_logging
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, get_competition_offset, mens_current_tier_name
 
 logger = logging.getLogger(__name__)
 
 LEAGUE_DATA_DIR = DATA_DIR / "league_data"
-SEASONS = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+SEASONS = sorted(
+    d.name
+    for d in LEAGUE_DATA_DIR.iterdir()
+    if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+)
 
 PYRAMID_KEY = "(pyramid)"
 
@@ -96,6 +100,8 @@ def load_league_data() -> dict[str, dict[str, list[LeagueRecord]]]:
 
         for filepath in sorted(f for f in season_dir.rglob("*.json") if not f.name.startswith("_")):
             rel = filepath.relative_to(season_dir).as_posix()
+            if rel.startswith("county_championship/"):
+                continue
             local_tier, tier_name = extract_tier(rel, season)
 
             parts = rel.split("/")

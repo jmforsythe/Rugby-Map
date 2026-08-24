@@ -27,6 +27,7 @@ from pathlib import Path
 from typing import TypedDict
 
 from core import (
+    EARLIEST_SEASON,
     get_config,
     get_favicon_html,
     get_google_analytics_script,
@@ -114,7 +115,9 @@ def compute_competition_breakdown(league_data_dir: Path | None = None) -> StatsB
         return StatsBreakdown(seasons=[], competitions=[])
 
     season_dirs = sorted(
-        d for d in base.iterdir() if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        d
+        for d in base.iterdir()
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name) and d.name >= EARLIEST_SEASON
     )
     seasons = [d.name for d in season_dirs]
 
@@ -133,6 +136,9 @@ def compute_competition_breakdown(league_data_dir: Path | None = None) -> StatsB
             season_dir, team_club_map=team_club_map
         ):
             rel_path = league_file.relative_to(season_dir).as_posix()
+            if rel_path.startswith("county_championship/"):
+                # Representative county sides, not club pyramid/merit teams.
+                continue
             is_merit = rel_path.startswith("merit/")
             comp_key = rel_path.split("/")[1] if is_merit else PYRAMID_KEY
             if is_merit and comp_key not in merit_labels:
@@ -281,7 +287,9 @@ def compute_club_timelines(
         return ClubTimelines(seasons=[], clubs=[])
 
     season_dirs = sorted(
-        d for d in base.iterdir() if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name)
+        d
+        for d in base.iterdir()
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name) and d.name >= EARLIEST_SEASON
     )
     seasons = [d.name for d in season_dirs]
 

@@ -43,6 +43,7 @@ from core.colors import COLOR_PALETTE, UNASSIGNED_COLOR
 from core.config import (
     BOUNDARIES_DIR,
     DIST_DIR,
+    EARLIEST_SEASON,
     get_favicon_html,
     get_google_analytics_script,
     get_resource_hints_html,
@@ -340,7 +341,7 @@ def _collect_teams(
 ) -> list[dict]:
     """Walk every season and return deduplicated teams (latest season wins)."""
     seasons = sorted(
-        [d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir()],
+        d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and d.name >= EARLIEST_SEASON
     )
 
     dist_teams = {}

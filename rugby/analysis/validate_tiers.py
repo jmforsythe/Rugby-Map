@@ -24,7 +24,7 @@ import sys
 from collections import defaultdict, deque
 from typing import NamedTuple
 
-from core import setup_logging
+from core import EARLIEST_SEASON, setup_logging
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, get_competition_offset
 
@@ -73,6 +73,8 @@ def load_season(season: str) -> dict[str, list[LeagueInfo]]:
 
     for filepath in sorted(p for p in season_dir.rglob("*.json") if not p.name.startswith("_")):
         rel = filepath.relative_to(season_dir).as_posix()
+        if rel.startswith("county_championship/"):
+            continue
         tier_num, tier_name = extract_tier(rel, season)
 
         parts = rel.split("/")
@@ -249,7 +251,11 @@ def get_available_seasons() -> list[str]:
     """Return sorted list of available season directories."""
     if not LEAGUE_DATA_DIR.is_dir():
         return []
-    return sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+    return sorted(
+        d.name
+        for d in LEAGUE_DATA_DIR.iterdir()
+        if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+    )
 
 
 def _collect_file_tiers(

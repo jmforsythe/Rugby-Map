@@ -19,7 +19,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 
 from core import setup_logging
-from core.config import CURRENT_SEASON
+from core.config import CURRENT_SEASON, EARLIEST_SEASON
 from core.map_builder import ITLHierarchy, MarkerItem, load_itl_hierarchy, preassign_itl_regions
 from rugby import DATA_DIR
 from rugby.clubs import iter_geocoded_leagues
@@ -195,7 +195,11 @@ def main() -> None:
     setup_logging()
 
     if args.all_seasons:
-        seasons = sorted(d.name for d in LEAGUE_DATA_DIR.iterdir() if d.is_dir() and "-" in d.name)
+        seasons = sorted(
+            d.name
+            for d in LEAGUE_DATA_DIR.iterdir()
+            if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+        )
     else:
         seasons = [args.season]
 

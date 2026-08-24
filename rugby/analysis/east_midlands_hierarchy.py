@@ -15,6 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[2]))
 
+from core import EARLIEST_SEASON  # noqa: E402
 from rugby.tiers import _SPONSOR_PREFIXES  # noqa: E402, PLC2701
 
 LEAGUE_DATA_DIR = Path(__file__).parents[2] / "data" / "rugby" / "league_data"
@@ -123,7 +124,7 @@ def main() -> None:
     seasons = sorted(
         d.name
         for d in LEAGUE_DATA_DIR.iterdir()
-        if d.is_dir() and (d / "merit" / "East_Midlands").is_dir()
+        if d.is_dir() and d.name >= EARLIEST_SEASON and (d / "merit" / "East_Midlands").is_dir()
     )
 
     print(f"Seasons with East Midlands data: {seasons[0]} to {seasons[-1]} ({len(seasons)} total)")

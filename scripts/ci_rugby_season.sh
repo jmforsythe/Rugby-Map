@@ -6,6 +6,9 @@
 # Parallel pyramid_image --png launches multiple Chromium instances and causes runner
 # OOM / Playwright screenshot timeouts (especially pyramid_All_Leagues).
 # Full PNGs: pyramid + pyramid_All_Leagues (+ *_Labels). Other stems: *.preview.png only.
+# --skip-all-leagues-regen on the per-competition loop avoids re-rasterising the (large,
+# slow) All Leagues diagram once per merit competition; the --pyramid-all-leagues-only
+# pass below does that once, after every competition has been rendered.
 # Set PYRAMID_RASTER_CACHE_RESTORED=1 (deploy.yml) to skip raster when cache is valid.
 set -euo pipefail
 
@@ -46,7 +49,7 @@ else
     )
     for comp in "${merit_comps[@]}"; do
       [[ -n "$comp" ]] || continue
-      run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
+      run_pyramid python -m rugby.pyramid_image --merit "$comp" --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings --skip-all-leagues-regen
     done
     run_pyramid python -m rugby.pyramid_image --pyramid-all-leagues-only --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
   fi

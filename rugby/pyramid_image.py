@@ -10054,10 +10054,19 @@ def main() -> int:
             "SVGs are written, the men's merged pyramid (national + merit at absolute tiers) "
             "is regenerated at "
             "dist/<season>/pyramid_All_Leagues.{svg,png} (default paths; --output/--png-output "
-            "apply only to merit outputs). If that merit directory is missing or has no leagues, "
-            "merit pyramids are skipped and only this merged diagram is produced (national only). "
-            "Run without --merit for "
+            "apply only to merit outputs) unless --skip-all-leagues-regen is set. If that merit "
+            "directory is missing or has no leagues, merit pyramids are skipped and only this "
+            "merged diagram is produced (national only). Run without --merit for "
             "dist/<season>/pyramid.{svg,png}."
+        ),
+    )
+    parser.add_argument(
+        "--skip-all-leagues-regen",
+        action="store_true",
+        help=(
+            "With --merit, skip the trailing pyramid_All_Leagues regeneration. For CI calling "
+            "--merit COMP once per competition in a loop, where a single --pyramid-all-leagues-only "
+            "pass afterwards already produces the merged diagram once instead of once per competition."
         ),
     )
     parser.add_argument(
@@ -10264,6 +10273,8 @@ def main() -> int:
             r = _render_one_merit_pyramid(season, comp, args, cw)
             if r != 0:
                 rc = r
+        if args.skip_all_leagues_regen:
+            return rc
         rm = _render_mens_standard_pyramid(season, args, cw, all_leagues=True)
         if rm != 0:
             rc = rm

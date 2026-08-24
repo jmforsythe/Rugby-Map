@@ -472,6 +472,10 @@ jobs:
         run: |
           python -m rugby.webpages --production
 
+      - name: Rugby — stats dashboard page
+        run: |
+          python -m rugby.stats_pages --production
+
       - name: Rugby — sitemap & robots.txt
         run: |
           python -m rugby.seo --production

@@ -6917,6 +6917,25 @@ def _stem_build_layout(
 
     pure_tree_placements = _stem_collect_hierarchical_placements(roots)
     if collided_spans:
+        # The collision that got a span onto this list was detected *before* the reflow passes
+        # above (``_stem_autolayout_spanning_middle_three_feeders`` et al.) ran — and those passes
+        # can resolve it, e.g. by narrowing the span's two named parents' lone non-span children to
+        # make room. Re-check with each node's now-final geometry before demoting: only nodes that
+        # *still* overlap another final placement at their tier actually lose their real linkage.
+        final_by_tier: dict[int, list[StemTreeNode]] = defaultdict(list)
+        for node in _iter_stem_forest(roots):
+            final_by_tier[node.league.tier_num].append(node)
+        collided_spans = [
+            (n, x0, w)
+            for n, x0, w in collided_spans
+            if any(
+                sn is not n
+                and sn.layout_x < n.layout_x + n.layout_w - 1e-6
+                and n.layout_x < sn.layout_x + sn.layout_w - 1e-6
+                for sn in final_by_tier.get(n.league.tier_num, ())
+            )
+        ]
+    if collided_spans:
         # These (and their own descendants) render from ``orphan_row_positions`` below instead —
         # they're still attached to the tree with the pre-collision degenerate placeholder width,
         # so drop that stale entry rather than double-drawing a near-invisible sliver.

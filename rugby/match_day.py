@@ -6,7 +6,9 @@ club address/geocode data (rugby.clubs) to show
 match venues and results. The dropdown selects the fixture day; tier filters use the
 native Leaflet ``L.control.layers`` widget at top-right (same chrome as the
 All Leagues map). Overlays are **one row per absolute pyramid tier**, grouped under **Men's**
-(tier &lt; 101), **Women's** (101+), and **Other** (unknown). Only tiers
+(tier &lt; 101), **Women's** (101+), and **Other** (unknown), plus **one row per merit
+competition** (grouped under **Merit**, with its own "Toggle all" control) — merit fixtures
+no longer share a toggle with the pyramid tier they're offset against. Only overlays
 with fixtures on the selected date appear. Once built, maps run fully offline.
 
 Archived seasons whose last scraped fixture falls before today's date default the dropdown to the
@@ -134,6 +136,7 @@ _MATCHDAY_WIDGET_HTML = """
     .folium-map .leaflet-control-layers-overlays .matchday-lc-heading {
         font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
         color:#555; padding:8px 8px 4px 6px; margin:0; border-top:1px solid #e0e0e0;
+        display:flex; align-items:center; justify-content:space-between; gap:8px;
     }
     .folium-map .leaflet-control-layers-overlays .matchday-lc-heading:first-child {
         border-top:0; padding-top:4px;
@@ -141,6 +144,15 @@ _MATCHDAY_WIDGET_HTML = """
     html[data-rugby-effective="dark"] .folium-map .leaflet-control-layers-overlays .matchday-lc-heading,
     .folium-map.rugby-map-dark .leaflet-control-layers-overlays .matchday-lc-heading {
         color:#aab8d8; border-top-color:#2a2a4a;
+    }
+    .matchday-merit-toggle {
+        font-size:10px; font-weight:500; text-transform:none; letter-spacing:0;
+        color:#0066cc; cursor:pointer; text-decoration:none;
+    }
+    .matchday-merit-toggle:hover { text-decoration:underline; }
+    html[data-rugby-effective="dark"] .matchday-merit-toggle,
+    .folium-map.rugby-map-dark .matchday-merit-toggle {
+        color:#4da6ff;
     }
     @media only screen and (max-width: 768px) {
         .matchday-control { width:90%; max-width:360px; padding:6px 10px; }
@@ -229,8 +241,13 @@ _MATCHDAY_WIDGET_HTML = """
         return null;
     }
 
+    function matchdayIsMeritKey(k) {
+        return typeof k === 'string' && k.indexOf('merit:') === 0;
+    }
+
     function matchdayTierCategory(k) {
         if (k === null) return 'other';
+        if (matchdayIsMeritKey(k)) return 'merit';
         var n = parseInt(k, 10);
         if (isNaN(n) || n === 999) return 'other';
         if (n >= 101) return 'womens';
@@ -242,14 +259,21 @@ _MATCHDAY_WIDGET_HTML = """
         if (!section) return;
         section.querySelectorAll('.matchday-lc-heading').forEach(function(h) { h.remove(); });
         var labels = Array.prototype.slice.call(section.querySelectorAll('label'));
-        function orderForName(name) {
+        function numericOrder(name) {
             var kk = matchdayTierKeyForLabelText(name);
-            if (kk === null) return 99999;
+            if (kk === null || matchdayIsMeritKey(kk)) return null;
             var n = parseInt(kk, 10);
-            return isNaN(n) ? 99999 : n;
+            return isNaN(n) ? null : n;
         }
         labels.sort(function(a, b) {
-            return orderForName(matchdayOverlayLabelName(a)) - orderForName(matchdayOverlayLabelName(b));
+            var nameA = matchdayOverlayLabelName(a);
+            var nameB = matchdayOverlayLabelName(b);
+            var oa = numericOrder(nameA);
+            var ob = numericOrder(nameB);
+            if (oa !== null && ob !== null) return oa - ob;
+            if (oa !== null) return -1;
+            if (ob !== null) return 1;
+            return nameA.localeCompare(nameB);
         });
         labels.forEach(function(el) { section.appendChild(el); });
     }
@@ -260,8 +284,8 @@ _MATCHDAY_WIDGET_HTML = """
         section.querySelectorAll('.matchday-lc-heading').forEach(function(h) { h.remove(); });
         var labels = Array.prototype.slice.call(section.querySelectorAll('label'));
         if (labels.length === 0) return;
-        var catOrder = ['mens', 'womens', 'other'];
-        var catTitle = { mens: "Men's", womens: "Women's", other: 'Other' };
+        var catOrder = ['mens', 'womens', 'merit', 'other'];
+        var catTitle = { mens: "Men's", womens: "Women's", merit: 'Merit', other: 'Other' };
         while (section.firstChild) {
             section.removeChild(section.firstChild);
         }
@@ -276,13 +300,53 @@ _MATCHDAY_WIDGET_HTML = """
             var hd = document.createElement('div');
             hd.className = 'matchday-lc-heading';
             hd.setAttribute('role', 'presentation');
-            hd.textContent = catTitle[cat];
+            if (cat === 'merit') {
+                var titleSpan = document.createElement('span');
+                titleSpan.textContent = catTitle[cat];
+                var toggleLink = document.createElement('a');
+                toggleLink.href = '#';
+                toggleLink.className = 'matchday-merit-toggle';
+                toggleLink.textContent = 'Toggle all';
+                hd.appendChild(titleSpan);
+                hd.appendChild(toggleLink);
+            } else {
+                hd.textContent = catTitle[cat];
+            }
             section.appendChild(hd);
             for (var bi = 0; bi < block.length; bi++) {
                 section.appendChild(block[bi]);
             }
         }
     }
+
+    function toggleAllMerit() {
+        var map = getMap();
+        if (!map) return;
+        var meritKeys = Object.keys(tierProxies).filter(matchdayIsMeritKey);
+        if (meritKeys.length === 0) return;
+        var anyOn = meritKeys.some(function(k) { return tierUserVisible[k] !== false; });
+        var turnOn = !anyOn;
+        matchdaySuppressEvents = true;
+        meritKeys.forEach(function(k) {
+            tierUserVisible[k] = turnOn;
+            if (!tierInControl[k]) return;
+            var proxy = tierProxies[k];
+            if (turnOn) {
+                if (!map.hasLayer(proxy)) map.addLayer(proxy);
+            } else {
+                if (map.hasLayer(proxy)) map.removeLayer(proxy);
+            }
+        });
+        matchdaySuppressEvents = false;
+    }
+
+    document.addEventListener('click', function(e) {
+        var t = e.target;
+        if (t && t.classList && t.classList.contains('matchday-merit-toggle')) {
+            e.preventDefault();
+            toggleAllMerit();
+        }
+    });
 
     function loadDateData(date) {
         if (dateDataCache[date]) return Promise.resolve(dateDataCache[date]);
@@ -787,18 +851,34 @@ def _date_short(iso_date: str) -> str:
         return iso_date
 
 
+def _matchday_group_key_and_label(tier_num: int, rel_path: str, season: str) -> tuple[str, str]:
+    """Return the layer-control ``(group_key, group_label)`` for a resolved match.
+
+    Merit fixtures group **by competition** (e.g. ``merit:East_Midlands`` -> "East
+    Midlands Merit") — one toggle per competition, independent of the pyramid tier
+    they're offset against. Pyramid fixtures group by absolute tier number, as before.
+    """
+    norm_path = rel_path.replace("\\", "/")
+    if tier_num != 999 and norm_path.startswith("merit/"):
+        comp_key = norm_path.split("/")[1]
+        return f"merit:{comp_key}", f"{comp_key.replace('_', ' ')} Merit"
+    return str(tier_num), _matchday_layer_label(tier_num, season)
+
+
 def _resolve_matches(
     matches: list[tuple[Fixture, str, str]],
     team_index: dict[int, GeocodedTeam],
     season: str,
-) -> list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]:
+) -> list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None, str, str]]:
     """Resolve team IDs to geocoded teams, dropping unresolvable ones.
 
     The returned ``tier_num`` is the **absolute** pyramid tier:
     merit-league local tiers are shifted by their competition offset so
     e.g. CANDY local tier 1 (offset 7) becomes absolute tier 8 — the same
-    convention the All Leagues map uses. The ``tier_name`` is left as the
-    competition-qualified label from ``extract_tier`` (e.g. "CANDY 1").
+    convention the All Leagues map uses (used only to rank cluster-icon priority).
+    The ``tier_name`` is left as the competition-qualified label from ``extract_tier``
+    (e.g. "CANDY 1"). ``group_key``/``group_label`` are the layer-control overlay this
+    fixture belongs to — see ``_matchday_group_key_and_label``.
     """
     resolved = []
     for fixture, league_name, rel_path in matches:
@@ -810,7 +890,19 @@ def _resolve_matches(
         if tier_num != 999 and rel_path.replace("\\", "/").startswith("merit/"):
             comp_key = rel_path.replace("\\", "/").split("/")[1]
             tier_num += get_competition_offset(comp_key, season)
-        resolved.append((fixture, league_name, tier_num, tier_name, home_team, away_team))
+        group_key, group_label = _matchday_group_key_and_label(tier_num, rel_path, season)
+        resolved.append(
+            (
+                fixture,
+                league_name,
+                tier_num,
+                tier_name,
+                home_team,
+                away_team,
+                group_key,
+                group_label,
+            )
+        )
     return resolved
 
 
@@ -1023,22 +1115,31 @@ def build_match_day_map(
     total_w = crest * 2 + 2
 
     resolved_per_date: dict[
-        str, list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]
+        str,
+        list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None, str, str]],
     ] = {}
-    tier_nums_seen: set[int] = set()
+    group_keys_seen: set[str] = set()
+    group_label_by_key: dict[str, str] = {}
     for date_iso in sorted_dates:
         resolved = _resolve_matches(fixtures_by_date[date_iso], team_index, season)
         if not resolved:
             continue
         resolved_per_date[date_iso] = resolved
         for row in resolved:
-            tier_nums_seen.add(row[2])
+            group_keys_seen.add(row[6])
+            group_label_by_key[row[6]] = row[7]
 
     if not resolved_per_date:
         logger.warning("No fixtures could be placed on the map")
         return
 
-    sorted_tier_nums = sorted(tier_nums_seen)
+    def _group_sort_key(key: str) -> tuple[int, str, int]:
+        """Pyramid tiers first (numeric ascending), then merit competitions alphabetically."""
+        if key.startswith("merit:"):
+            return (1, group_label_by_key[key], 0)
+        return (0, "", int(key))
+
+    sorted_group_keys = sorted(group_keys_seen, key=_group_sort_key)
 
     parent_cluster = MarkerCluster(
         control=False,
@@ -1056,16 +1157,12 @@ def build_match_day_map(
     )
     m.add_child(parent_cluster)
 
-    tier_label_by_num: dict[int, str] = {
-        tn: _matchday_layer_label(tn, season) for tn in sorted_tier_nums
-    }
-
-    tier_proxies: dict[int, folium.FeatureGroup] = {}
-    for tier_num in sorted_tier_nums:
-        label = tier_label_by_num[tier_num]
+    tier_proxies: dict[str, folium.FeatureGroup] = {}
+    for group_key in sorted_group_keys:
+        label = group_label_by_key[group_key]
         proxy = folium.FeatureGroup(name=label, overlay=True, control=True, show=True)
         proxy.add_to(m)
-        tier_proxies[tier_num] = proxy
+        tier_proxies[group_key] = proxy
 
     date_meta: list[tuple[str, int, int]] = []  # (date_iso, total_count, result_count)
     # Per-date marker data is written to data/{date}.json and fetched on demand by the
@@ -1087,16 +1184,26 @@ def build_match_day_map(
         )
         date_meta.append((date_iso, len(resolved), result_count))
 
-        by_tier_num: dict[
-            int, list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None]]
+        by_group_key: dict[
+            str,
+            list[tuple[Fixture, str, int, str, GeocodedTeam, GeocodedTeam | None, str, str]],
         ] = defaultdict(list)
         for row in resolved:
-            by_tier_num[row[2]].append(row)
+            by_group_key[row[6]].append(row)
 
         tiers_payload: dict[str, list[dict[str, Any]]] = {}
-        for tier_num in sorted(by_tier_num.keys()):
+        for group_key in sorted(by_group_key.keys(), key=_group_sort_key):
             markers_payload: list[dict[str, Any]] = []
-            for fixture, league_name, _tn, tname, home_team, away_team in by_tier_num[tier_num]:
+            for (
+                fixture,
+                league_name,
+                tier_num,
+                tname,
+                home_team,
+                away_team,
+                _gk,
+                _gl,
+            ) in by_group_key[group_key]:
                 lat = home_team.get("latitude")
                 lng = home_team.get("longitude")
                 if lat is None or lng is None:
@@ -1151,7 +1258,7 @@ def build_match_day_map(
                     }
                 )
             if markers_payload:
-                tiers_payload[str(tier_num)] = markers_payload
+                tiers_payload[group_key] = markers_payload
 
         if tiers_payload:
             date_json_data[date_iso] = {"tiers": tiers_payload}
@@ -1181,10 +1288,8 @@ def build_match_day_map(
     )
     all_dates_json = json.dumps([d for d, _, _ in date_meta])
 
-    tier_proxy_vars_json = json.dumps(
-        {str(tn): proxy.get_name() for tn, proxy in tier_proxies.items()}
-    )
-    tier_label_json = json.dumps({str(tn): tier_label_by_num[tn] for tn in sorted_tier_nums})
+    tier_proxy_vars_json = json.dumps({gk: proxy.get_name() for gk, proxy in tier_proxies.items()})
+    tier_label_json = json.dumps({gk: group_label_by_key[gk] for gk in sorted_group_keys})
     data_base_url_json = json.dumps("data/")
     parent_cluster_var_json = json.dumps(parent_cluster.get_name())
 

@@ -6195,67 +6195,98 @@ def _stem_build_stem_node_index(roots: list[StemTreeNode]) -> dict[tuple[int, st
     return {(n.league.tier_num, n.league.league_name): n for n in _iter_stem_forest(roots)}
 
 
-def _stem_three_under_two_try_match(
-    span_child: StemTreeNode,
-    index: dict[tuple[int, str], StemTreeNode],
-    child_parent: dict[int, StemTreeNode | None],
-) -> tuple[StemTreeNode, StemTreeNode, StemTreeNode, StemTreeNode] | None:
-    """If ``span_child`` is the middle of a 3→2 row, return ``(p_a, p_b, child_under_a, child_under_b)``.
-
-    ``child_under_a`` / ``child_under_b`` are the sole non-span tier-``tc`` children under ``p_a`` /
-    ``p_b``. Callers map these onto ``layout_x``-sorted parents for left/middle/right columns.
-
-    ``p_a`` and ``p_b`` need not share an immediate parent (e.g. Berks Counties 3 North/South hang
-    under different Counties 2 leagues); they must share the **same grandparent** stem node so both
-    divisions belong to one regional column under the pyramid.
+def _stem_two_parent_grandparent_ok(
+    pa: StemTreeNode, pb: StemTreeNode, child_parent: dict[int, StemTreeNode | None]
+) -> bool:
+    """True when ``pa``/``pb`` belong to one regional column: same immediate parent, same
+    grandparent (e.g. Berks Counties 3 North/South hang under different Counties 2 leagues but
+    share a Counties 1 grandparent), or both are stem roots with no parent at all — two Counties 1
+    (or equivalent) leagues sitting directly adjacent in the forest.
     """
-    names = span_child.layout_span_union_parent_names
-    if not names or len(names) != 2:
-        return None
-    tc = span_child.league.tier_num
-    tp = tc - 1
-    span_names = frozenset(names)
-    if len(span_names) != 2:
-        return None
-
-    pnodes: list[StemTreeNode] = []
-    for pname in names:
-        pn = index.get((tp, pname))
-        if pn is None:
-            return None
-        pnodes.append(pn)
-
-    pa, pb = pnodes[0], pnodes[1]
     parent_pa = child_parent.get(id(pa))
     parent_pb = child_parent.get(id(pb))
+    if parent_pa is None and parent_pb is None:
+        return True
     if parent_pa is None or parent_pb is None:
-        return None
-    if parent_pa is not parent_pb:
-        grand_pa = child_parent.get(id(parent_pa))
-        grand_pb = child_parent.get(id(parent_pb))
-        if grand_pa is None or grand_pa is not grand_pb:
-            return None
+        return False
+    if parent_pa is parent_pb:
+        return True
+    grand_pa = child_parent.get(id(parent_pa))
+    grand_pb = child_parent.get(id(parent_pb))
+    return grand_pa is not None and grand_pa is grand_pb
 
-    want = frozenset({pa.league.league_name, pb.league.league_name})
-    if span_names != want:
-        return None
 
-    def singles_at(parent: StemTreeNode, child_tier: int = tc) -> list[StemTreeNode]:
-        return [
-            ch
-            for ch in parent.children
-            if ch.league.tier_num == child_tier and not ch.layout_span_union_parent_names
-        ]
+def _stem_collect_two_parent_siblings(
+    pa: StemTreeNode, pb: StemTreeNode, tc: int
+) -> tuple[list[StemTreeNode], list[StemTreeNode]]:
+    """Non-span tier-``tc`` children of ``pa`` / ``pb``, sorted left-to-right by ``layout_x``."""
 
-    sa = singles_at(pa)
-    sb = singles_at(pb)
-    if len(sa) != 1 or len(sb) != 1:
-        return None
+    def singles_at(parent: StemTreeNode) -> list[StemTreeNode]:
+        return sorted(
+            (
+                ch
+                for ch in parent.children
+                if ch.league.tier_num == tc and not ch.layout_span_union_parent_names
+            ),
+            key=lambda ch: ch.layout_x,
+        )
 
-    if not (span_child in pa.children) ^ (span_child in pb.children):
-        return None
+    return singles_at(pa), singles_at(pb)
 
-    return (pa, pb, sa[0], sb[0])
+
+def _stem_layout_span_collision_row(
+    pa: StemTreeNode,
+    pb: StemTreeNode,
+    span_nodes: list[StemTreeNode],
+    *,
+    equal_weight_pairs: set[frozenset[int]],
+) -> None:
+    """Lay ``span_nodes`` (real children spanning exactly ``{pa, pb}``) out in one row alongside
+    ``pa``'s / ``pb``'s own non-span children at the same tier, instead of demoting them to a
+    full-width orphan row that throws away their real linkage.
+
+    Generalizes the old "exactly one single per parent" (3-under-2) and "exactly two co-spanning
+    siblings" (2-into-2) special cases to any number of each: columns run left singles (in their
+    existing x-order), then the span node(s) (alphabetically, for determinism), then right
+    singles — each weighted by its own existing width, so a lone single (which already inherited
+    its full parent band) reduces to the original 3-under-2 math, and an empty side just omits
+    itself from the row.
+    """
+    tc = span_nodes[0].league.tier_num
+    left_singles, right_singles = _stem_collect_two_parent_siblings(pa, pb, tc)
+    columns = [*left_singles, *span_nodes, *right_singles]
+    n = len(columns)
+    if n < 2:
+        return
+    span_ids = frozenset(id(sn) for sn in span_nodes)
+    p_left, p_right = sorted((pa, pb), key=lambda p: p.layout_x)
+    union_x0 = min(p_left.layout_x, p_right.layout_x)
+    union_x1 = max(p_left.layout_x + p_left.layout_w, p_right.layout_x + p_right.layout_w)
+    band_w = max(1e-6, union_x1 - union_x0)
+    gap = STEM_CHILD_GAP_PX
+    inner = max(0.0, band_w - gap * (n - 1))
+    if inner <= 0:
+        return
+    single_weights = [c.layout_w for c in (*left_singles, *right_singles)]
+    span_weight = (sum(single_weights) / len(single_weights)) if single_weights else band_w / n
+    weights = [span_weight if id(c) in span_ids else c.layout_w for c in columns]
+    tw = sum(weights) or 1.0
+    pos = union_x0
+    for i, (node, wgt) in enumerate(zip(columns, weights, strict=False)):
+        if i == n - 1:
+            cw = max(1e-6, union_x0 + band_w - pos)
+        else:
+            cw = max(1e-6, inner * (wgt / tw))
+        _stem_partition_subtree(node, pos, cw, equal_weight_pairs=equal_weight_pairs)
+        pos += cw + gap
+    logger.debug(
+        "Stem auto %d-under-2 layout tier %d: %r under %r / %r",
+        n,
+        tc,
+        [c.league.league_name for c in columns],
+        p_left.league.league_name,
+        p_right.league.league_name,
+    )
 
 
 def _stem_dual_parent_equal_band_pairs(roots: list[StemTreeNode]) -> set[frozenset[int]]:
@@ -6532,12 +6563,13 @@ def _stem_autolayout_two_into_two_dual_spans(
     both draw from the same Counties pair (e.g. Midlands West East/West each → North+South): draw
     them as **two columns** instead of stacking two full-width spans.
 
-    Only safe when that union isn't already occupied by *other* real children under either named
-    parent (e.g. besides the dual-span pair, each parent also has its own single-parent child) —
-    otherwise the pair's 50/50 split lands exactly on top of those unrelated siblings' cells, since
-    each half is sized to one parent's own column width. Collided pairs are returned as
-    ``(c_left, c_right, x0, width)`` so the caller can demote them together (their real combined
-    union geometry, not each independently) the same way a lone collided span is demoted.
+    Only safe as a flat 50/50 split when that union isn't already occupied by *other* real
+    children under either named parent (e.g. besides the dual-span pair, each parent also has its
+    own single-parent child) — otherwise the pair's 50/50 split lands exactly on top of those
+    unrelated siblings' cells, since each half is sized to one parent's own column width. Collided
+    pairs are instead handed to :func:`_stem_layout_span_collision_row`, which lays the pair out
+    alongside those real siblings in one row rather than demoting them. Always returns an empty
+    list now (kept for call-site compatibility) — every pair is fully resolved here.
     """
     if not pairs:
         return []
@@ -6560,7 +6592,9 @@ def _stem_autolayout_two_into_two_dual_spans(
             for sn in siblings_at_tier
         )
         if collides:
-            collided.append((c_left, c_right, union_x0, max(1e-6, union_x1 - union_x0)))
+            _stem_layout_span_collision_row(
+                p_left, p_right, [c_left, c_right], equal_weight_pairs=equal_weight_pairs
+            )
             continue
         band_w = max(1e-6, union_x1 - union_x0)
         inner = max(0.0, band_w - gap)
@@ -6590,32 +6624,26 @@ def _stem_autolayout_spanning_middle_three_feeders(
     equal_weight_pairs: set[frozenset[int]],
     dual_span_skip_ids: frozenset[int] = frozenset(),
 ) -> None:
-    """Place one row under two parents when exactly three children exist: two single-parent + one span.
+    """Place a lone two-parent span in a row alongside its parents' own non-span children.
 
-    Structural pattern (child tier ``tc``, parents at ``tc - 1``):
-
-    * One league lists two parents (``layout_span_union_parent_names``) — drawn **between** the outers.
-    * Exactly one **non-span** child under each parent at ``tc``.
+    Structural pattern (child tier ``tc``, parents at ``tc - 1``): one league lists two parents
+    (``layout_span_union_parent_names``) and is a real tree child of exactly one of them. Any
+    number of non-span children (zero or more, not just exactly one) may sit under either parent —
+    see :func:`_stem_layout_span_collision_row` for how they're all laid out together.
 
     The two parent columns use **equal sibling weights** during :func:`_stem_partition_roots` (see
     :func:`_stem_dual_parent_equal_band_pairs`) so the spanning league, stored under only one
-    parent in the tree, does not inflate that parent's column.
-
-    Horizontal space is the union of the two parent bands. Lower-row widths use
-    ``w_left, (w_left + w_right) / 2, w_right`` (equal parents ⇒ equal thirds).
-    Optional ``stem_slot_strips`` run later and may override.
+    parent in the tree, does not inflate that parent's column. Optional ``stem_slot_strips`` run
+    later and may override.
 
     ``dual_span_skip_ids`` excludes nodes already positioned by
     :func:`_stem_autolayout_two_into_two_dual_spans` — a span child that shares its exact
-    two-parent link with a sibling span child (the 2-into-2 case) still independently satisfies
-    ``_stem_three_under_two_try_match``'s "exactly one non-span child per parent" test (it only
-    excludes *itself*, not the sibling span), so without this exclusion this pass repositions
-    both dual-span siblings to the same "middle" slot right after the dual-span pass correctly
-    split them into two columns.
+    two-parent link with a sibling span child (the 2-into-2 case) is handled there as a pair
+    instead of independently here, which would otherwise reposition both siblings to the same
+    slot right after the dual-span pass correctly split them into two columns.
     """
     index = _stem_build_stem_node_index(roots)
-    parent_map = _stem_child_parent_map(roots)
-    gap = STEM_CHILD_GAP_PX
+    child_parent = _stem_child_parent_map(roots)
 
     span_nodes = [
         n
@@ -6627,47 +6655,19 @@ def _stem_autolayout_spanning_middle_three_feeders(
     span_nodes.sort(key=lambda sn: sn.league.tier_num, reverse=True)
 
     for span_child in span_nodes:
-        tc = span_child.league.tier_num
-        m = _stem_three_under_two_try_match(span_child, index, parent_map)
-        if m is None:
+        names = span_child.layout_span_union_parent_names
+        tp = span_child.league.tier_num - 1
+        pnodes = [index.get((tp, pname)) for pname in names]
+        if any(pn is None for pn in pnodes):
             continue
-        pa, pb, l_node, r_node = m
-        p_left, p_right = sorted((pa, pb), key=lambda p: p.layout_x)
-        union_x0 = min(p_left.layout_x, p_right.layout_x)
-        union_x1 = max(
-            p_left.layout_x + p_left.layout_w,
-            p_right.layout_x + p_right.layout_w,
-        )
-        band_w = max(1e-6, union_x1 - union_x0)
-
-        inner = max(0.0, band_w - gap * 2.0)
-        wl = float(p_left.layout_w)
-        wr = float(p_right.layout_w)
-        wm = (wl + wr) / 2.0
-        tw = wl + wm + wr
-        if tw <= 0 or inner <= 0:
+        pa, pb = pnodes
+        if frozenset(names) != frozenset({pa.league.league_name, pb.league.league_name}):
             continue
-
-        w_l = inner * (wl / tw)
-        w_m = inner * (wm / tw)
-
-        pos = union_x0
-        _stem_partition_subtree(l_node, pos, w_l, equal_weight_pairs=equal_weight_pairs)
-        pos += w_l + gap
-        _stem_partition_subtree(span_child, pos, w_m, equal_weight_pairs=equal_weight_pairs)
-        pos += w_m + gap
-        w_r_tail = max(1e-6, union_x0 + band_w - pos)
-        _stem_partition_subtree(r_node, pos, w_r_tail, equal_weight_pairs=equal_weight_pairs)
-
-        logger.debug(
-            "Stem auto 3→2 layout tier %d: %r | %r | %r under %r / %r",
-            tc,
-            l_node.league.league_name,
-            span_child.league.league_name,
-            r_node.league.league_name,
-            p_left.league.league_name,
-            p_right.league.league_name,
-        )
+        if not _stem_two_parent_grandparent_ok(pa, pb, child_parent):
+            continue
+        if not ((span_child in pa.children) ^ (span_child in pb.children)):
+            continue
+        _stem_layout_span_collision_row(pa, pb, [span_child], equal_weight_pairs=equal_weight_pairs)
 
 
 def _stem_apply_slot_strips(

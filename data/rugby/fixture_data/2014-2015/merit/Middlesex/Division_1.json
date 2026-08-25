@@ -1,5 +1,510 @@
 {
   "league_name": "Division 1",
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1596&division=8557&season=2014-2015#tables",
-  "fixtures": []
+  "fixtures": [
+    {
+      "date": "2014-09-13",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448385"
+    },
+    {
+      "date": "2014-09-13",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448386"
+    },
+    {
+      "date": "2014-09-13",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448387"
+    },
+    {
+      "date": "2014-09-13",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448384"
+    },
+    {
+      "date": "2014-09-20",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448390"
+    },
+    {
+      "date": "2014-09-20",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448388"
+    },
+    {
+      "date": "2014-09-20",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448391"
+    },
+    {
+      "date": "2014-09-20",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448392"
+    },
+    {
+      "date": "2014-09-27",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448393"
+    },
+    {
+      "date": "2014-09-27",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448397"
+    },
+    {
+      "date": "2014-09-27",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448395"
+    },
+    {
+      "date": "2014-09-27",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448396"
+    },
+    {
+      "date": "2014-10-11",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448401"
+    },
+    {
+      "date": "2014-10-11",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448398"
+    },
+    {
+      "date": "2014-10-11",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448402"
+    },
+    {
+      "date": "2014-10-11",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448400"
+    },
+    {
+      "date": "2014-10-18",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448406"
+    },
+    {
+      "date": "2014-10-18",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448407"
+    },
+    {
+      "date": "2014-10-18",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448403"
+    },
+    {
+      "date": "2014-10-18",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448405"
+    },
+    {
+      "date": "2014-10-25",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448410"
+    },
+    {
+      "date": "2014-10-25",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448408"
+    },
+    {
+      "date": "2014-10-25",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448412"
+    },
+    {
+      "date": "2014-10-25",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448411"
+    },
+    {
+      "date": "2014-11-01",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448413"
+    },
+    {
+      "date": "2014-11-01",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448415"
+    },
+    {
+      "date": "2014-11-01",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448416"
+    },
+    {
+      "date": "2014-11-01",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448417"
+    },
+    {
+      "date": "2014-11-22",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448421"
+    },
+    {
+      "date": "2014-11-22",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448422"
+    },
+    {
+      "date": "2014-11-22",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448418"
+    },
+    {
+      "date": "2014-11-22",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448420"
+    },
+    {
+      "date": "2014-12-06",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448427"
+    },
+    {
+      "date": "2014-12-06",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448425"
+    },
+    {
+      "date": "2014-12-06",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448423"
+    },
+    {
+      "date": "2014-12-06",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448426"
+    },
+    {
+      "date": "2014-12-13",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448430"
+    },
+    {
+      "date": "2014-12-13",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448428"
+    },
+    {
+      "date": "2014-12-13",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448431"
+    },
+    {
+      "date": "2014-12-13",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448432"
+    },
+    {
+      "date": "2014-12-20",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448437"
+    },
+    {
+      "date": "2014-12-20",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448436"
+    },
+    {
+      "date": "2014-12-20",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448435"
+    },
+    {
+      "date": "2014-12-20",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448433"
+    },
+    {
+      "date": "2015-01-10",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448441"
+    },
+    {
+      "date": "2015-01-10",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448438"
+    },
+    {
+      "date": "2015-01-10",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448440"
+    },
+    {
+      "date": "2015-01-10",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448442"
+    },
+    {
+      "date": "2015-01-17",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448443"
+    },
+    {
+      "date": "2015-01-17",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448446"
+    },
+    {
+      "date": "2015-01-17",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448445"
+    },
+    {
+      "date": "2015-01-17",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448447"
+    },
+    {
+      "date": "2015-01-31",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448450"
+    },
+    {
+      "date": "2015-01-31",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448448"
+    },
+    {
+      "date": "2015-01-31",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448452"
+    },
+    {
+      "date": "2015-01-31",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448451"
+    },
+    {
+      "date": "2015-02-07",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448457"
+    },
+    {
+      "date": "2015-02-07",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 18040,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448456"
+    },
+    {
+      "date": "2015-02-07",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448453"
+    },
+    {
+      "date": "2015-02-07",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448455"
+    },
+    {
+      "date": "2015-02-21",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448461"
+    },
+    {
+      "date": "2015-02-21",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448459"
+    },
+    {
+      "date": "2015-02-21",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448460"
+    },
+    {
+      "date": "2015-02-21",
+      "time": "",
+      "home_team_id": 22905,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448462"
+    },
+    {
+      "date": "2015-02-28",
+      "time": "",
+      "home_team_id": 4931,
+      "away_team_id": 22905,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448466"
+    },
+    {
+      "date": "2015-02-28",
+      "time": "",
+      "home_team_id": 8854,
+      "away_team_id": 15924,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448465"
+    },
+    {
+      "date": "2015-02-28",
+      "time": "",
+      "home_team_id": 9259,
+      "away_team_id": 18367,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448463"
+    },
+    {
+      "date": "2015-02-28",
+      "time": "",
+      "home_team_id": 12510,
+      "away_team_id": 9141,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448467"
+    },
+    {
+      "date": "2015-03-07",
+      "time": "",
+      "home_team_id": 9141,
+      "away_team_id": 4931,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448471"
+    },
+    {
+      "date": "2015-03-07",
+      "time": "",
+      "home_team_id": 15924,
+      "away_team_id": 12510,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448470"
+    },
+    {
+      "date": "2015-03-07",
+      "time": "",
+      "home_team_id": 18040,
+      "away_team_id": 9259,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448468"
+    },
+    {
+      "date": "2015-03-07",
+      "time": "",
+      "home_team_id": 18367,
+      "away_team_id": 8854,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=448472"
+    }
+  ]
 }

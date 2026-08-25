@@ -287,7 +287,9 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     time_link = time_el if isinstance(time_el, Tag) else None
     home_score, away_score, score_match_url, status = _parse_score_links(score_div)
     vs_el = (
-        score_div.find("div", attrs={"class": "coh-style-comp-versace"}) if not time_link else None
+        score_div.find(["div", "span"], attrs={"class": "coh-style-comp-versace"})
+        if not time_link
+        else None
     )
     vs_div = vs_el if isinstance(vs_el, Tag) else None
 

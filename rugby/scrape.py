@@ -363,7 +363,6 @@ _BANNED_WORDS = [
     "colts",
     "play-offs",
     "scrapped",
-    "u18",
     "waterfall",
     "archived",
     "friendlies",
@@ -374,6 +373,15 @@ _BANNED_WORDS = [
     "gold",
     "silver",
 ]
+
+_JUNIOR_LEAGUE_RE = re.compile(r"(?ix)(?<![a-z0-9])(?:u\d{1,2}|under[\s-]*\d{1,2})(?![a-z0-9])")
+
+
+def _is_junior_league(name: str) -> bool:
+    """Return whether a league name identifies an age-grade competition."""
+    words = {word.strip("()[],-") for word in name.lower().split()}
+    return bool(_JUNIOR_LEAGUE_RE.search(name)) or bool(words & {"junior", "youth"})
+
 
 _BANNED_DIVISION_IDS = {
     # NOWIRUL Conference A/B/C — umbrella sub-splits of Premier/Championship League
@@ -495,20 +503,11 @@ _BANNED_FILENAMES = [
     "Yorkshire_Division_Four_Premier.json",
     "Pilot_League.json",
     "Tribute_Duchy_League.json",
-    "MRL3_Play_Off_1-8.json",
-    "MRL3_Play_Off_9-13.json",
-    "National_League_Play_Offs.json",
     "Social_Rugby_Group.json",
-    "Solent_1_Play_Off.json",
-    "London_and_SE_Division_Play-Offs.json",
     "Area_2_Merit_League.json",
     "Bombardier___Eagle_2017.json",
     "Bristol_&_District_3-4.json",
     "Gloucester_&_District_3-4.json",
-    "Counties_6_North.json",
-    "Counties_6_South.json",
-    "Leicestershire_U18_League.json",
-    "Leicestershire_U17_League.json",
     "Midlands_East_(South)_A.json",
     "Midlands_East_(South)_B.json",
 ]
@@ -553,19 +552,33 @@ def _scrape_league_list(
     *,
     use_competition_subdirs: bool = False,
     force: bool = False,
-) -> list[LeagueInfo]:
-    """Scrape teams for each league and save to output_dir. Returns skipped leagues.
+) -> tuple[list[LeagueInfo], list[LeagueInfo]]:
+    """Scrape teams for each league and save to output_dir.
+
+    Returns ``(skipped, fixture_only)``. *skipped* is every league not written
+    to league_data, for any reason. *fixture_only* is the subset skipped only
+    because of a duplicate/split-league ban (``_BANNED_DIVISION_IDS`` or
+    ``_BANNED_FILENAMES``) — these still represent real, distinct matches (e.g.
+    a geographic North/South half later replaced by a performance A/B half),
+    so ``rugby.fixtures`` still scrapes fixtures for them even though they're
+    excluded from league_data (see ``_fixture_only_leagues.json``).
 
     When use_competition_subdirs is True, files are saved into subdirectories
     named after the competition (e.g. merit/Hampshire/Counties_6_South.json).
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     skipped: list[LeagueInfo] = []
+    fixture_only: list[LeagueInfo] = []
 
     for league in leagues:
         league_name = league["name"]
         league_url = league["url"]
         parent_url = league["parent_url"]
+
+        if _is_junior_league(league_name):
+            print(f"Skipping {league_name} (junior league)")
+            skipped.append(league)
+            continue
 
         name_words = [w.strip("()") for w in league_name.lower().split()]
         if any(word in name_words for word in _BANNED_WORDS):
@@ -573,15 +586,37 @@ def _scrape_league_list(
             skipped.append(league)
             continue
 
-        parsed_league = urllib.parse.urlparse(league_url)
-        league_params = urllib.parse.parse_qs(parsed_league.query)
-        division_ids = league_params.get("division", [])
+        parsed_url = urllib.parse.urlparse(league_url)
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        if "season" not in query_params:
+            query_params["season"] = [season]
+        new_query = urllib.parse.urlencode(query_params, doseq=True)
+        normalized_url = urllib.parse.urlunparse(
+            (
+                parsed_url.scheme,
+                parsed_url.netloc,
+                parsed_url.path,
+                parsed_url.params,
+                new_query,
+                "tables",
+            )
+        )
+
+        division_ids = query_params.get("division", [])
+        filename = clean_filename(league_name) + ".json"
+
         if division_ids and int(division_ids[0]) in _BANNED_DIVISION_IDS:
             print(f"Skipping {league_name} (banned division ID {division_ids[0]})")
             skipped.append(league)
+            fixture_only.append({**league, "url": normalized_url})
             continue
 
-        filename = clean_filename(league_name) + ".json"
+        if filename in _BANNED_FILENAMES:
+            print(f"Skipping {league_name} (known bad filename)")
+            skipped.append(league)
+            fixture_only.append({**league, "url": normalized_url})
+            continue
+
         if use_competition_subdirs:
             comp_name = _competition_prefix(parent_url)
             if comp_name:
@@ -593,30 +628,11 @@ def _scrape_league_list(
         else:
             output_path = output_dir / filename
 
-        if output_path.name in _BANNED_FILENAMES:
-            print(f"Skipping {league_name} (known bad filename)")
-            skipped.append(league)
-            continue
-
         if output_path.exists() and not force:
             print(f"Skipping {league_name} (already exists)")
             continue
 
-        parsed_url = urllib.parse.urlparse(league_url)
-        query_params = urllib.parse.parse_qs(parsed_url.query)
-        if "season" not in query_params:
-            query_params["season"] = [season]
-        new_query = urllib.parse.urlencode(query_params, doseq=True)
-        league_url = urllib.parse.urlunparse(
-            (
-                parsed_url.scheme,
-                parsed_url.netloc,
-                parsed_url.path,
-                parsed_url.params,
-                new_query,
-                "tables",
-            )
-        )
+        league_url = normalized_url
 
         try:
             teams = scrape_teams_from_league(league_url, league_name, season, referer=parent_url)
@@ -639,11 +655,11 @@ def _scrape_league_list(
             print(f"    Saved to: {output_path}")
 
         except AntiBotDetectedError:
-            print(f"\n✗ Anti-bot detection triggered while scraping {league_name}")
+            print(f"\nAnti-bot detection triggered while scraping {league_name}")
             print("Please wait before running the script again.")
             raise
 
-    return skipped
+    return skipped, fixture_only
 
 
 def main() -> None:
@@ -695,19 +711,35 @@ def main() -> None:
         return
 
     skipped_leagues: list[LeagueInfo] = []
+    fixture_only_leagues: list[LeagueInfo] = []
     try:
-        skipped_leagues += _scrape_league_list(
+        skipped, fixture_only = _scrape_league_list(
             leagues + womens_leagues, base_dir, season, force=args.force
         )
-        skipped_leagues += _scrape_league_list(
+        skipped_leagues += skipped
+        fixture_only_leagues += fixture_only
+        skipped, fixture_only = _scrape_league_list(
             merit_leagues, merit_dir, season, use_competition_subdirs=True, force=args.force
         )
+        skipped_leagues += skipped
+        fixture_only_leagues += fixture_only
     except AntiBotDetectedError:
         return
 
     print(f'\nComplete! League data saved to "{base_dir}" directory')
     for skipped in skipped_leagues:
         print(f"Skipped league {skipped["name"]}: {skipped["url"]}")
+
+    fixture_only_path = base_dir / "_fixture_only_leagues.json"
+    if fixture_only_leagues:
+        fixture_only_path.write_text(
+            json.dumps(fixture_only_leagues, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        print(
+            f"Wrote {len(fixture_only_leagues)} fixture-only leagues "
+            f"(excluded from league_data as duplicate/split leagues) to {fixture_only_path}"
+        )
 
 
 if __name__ == "__main__":

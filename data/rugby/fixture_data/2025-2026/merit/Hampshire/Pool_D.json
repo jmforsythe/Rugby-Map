@@ -1,0 +1,50 @@
+{
+  "league_name": "Pool D",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=72671&season=2025-2026#tables",
+  "fixtures": [
+    {
+      "date": "2025-11-01",
+      "time": "",
+      "home_team_id": 94200,
+      "away_team_id": 127434,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261502"
+    },
+    {
+      "date": "2025-11-01",
+      "time": "",
+      "home_team_id": 127456,
+      "away_team_id": 129551,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261501",
+      "home_score": 21,
+      "away_score": 51
+    },
+    {
+      "date": "2026-02-07",
+      "time": "",
+      "home_team_id": 127434,
+      "away_team_id": 127456,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261503"
+    },
+    {
+      "date": "2026-02-07",
+      "time": "",
+      "home_team_id": 129551,
+      "away_team_id": 94200,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261504"
+    },
+    {
+      "date": "2026-03-14",
+      "time": "",
+      "home_team_id": 94200,
+      "away_team_id": 127456,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261506"
+    },
+    {
+      "date": "2026-03-14",
+      "time": "",
+      "home_team_id": 129551,
+      "away_team_id": 127434,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261505"
+    }
+  ]
+}

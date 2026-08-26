@@ -1,0 +1,27 @@
+{
+  "league_name": "Pool C",
+  "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=202&division=72670&season=2025-2026#tables",
+  "fixtures": [
+    {
+      "date": "2025-11-01",
+      "time": "",
+      "home_team_id": 9704,
+      "away_team_id": 129550,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261498"
+    },
+    {
+      "date": "2026-02-07",
+      "time": "",
+      "home_team_id": 130391,
+      "away_team_id": 9704,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261499"
+    },
+    {
+      "date": "2026-03-14",
+      "time": "",
+      "home_team_id": 129550,
+      "away_team_id": 130391,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1261500"
+    }
+  ]
+}

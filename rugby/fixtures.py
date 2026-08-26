@@ -230,6 +230,14 @@ _WALKOVER_PATTERNS: dict[str, str] = {
     "A/W": "AWO",
 }
 
+_JUNIOR_LEAGUE_RE = re.compile(r"(?ix)(?<![a-z0-9])(?:u\d{1,2}|under[\s-]*\d{1,2})(?![a-z0-9])")
+
+
+def _is_junior_league(name: str) -> bool:
+    """Return whether a league name identifies an age-grade competition."""
+    words = {word.strip("()[],-") for word in name.lower().split()}
+    return bool(_JUNIOR_LEAGUE_RE.search(name)) or bool(words & {"junior", "youth"})
+
 
 def _parse_score_links(
     score_div: Tag,
@@ -347,12 +355,47 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     return fixture
 
 
+def _discover_fixture_only_leagues(league_dir: Path) -> list[tuple[str, str, Path]]:
+    """Read ``_fixture_only_leagues.json`` for leagues excluded from league_data.
+
+    These are duplicate/split-league candidates (e.g. a geographic North/South
+    half later replaced by a performance A/B half) that ``rugby.scrape``
+    deliberately excludes from league_data to avoid double-counting teams —
+    but each still represents real, distinct matches, so fixtures are pulled
+    for them separately here. See ``_BANNED_DIVISION_IDS`` / ``_BANNED_FILENAMES``
+    in ``rugby.scrape``.
+    """
+    sidecar_path = league_dir / "_fixture_only_leagues.json"
+    if not sidecar_path.exists():
+        return []
+
+    with open(sidecar_path, encoding="utf-8") as f:
+        entries = json.load(f)
+
+    leagues: list[tuple[str, str, Path]] = []
+    for entry in entries:
+        league_name = entry["name"]
+        if _is_junior_league(league_name):
+            continue
+        league_url = entry.get("url", "")
+        if not league_url or "englandrugby.com" not in league_url.lower():
+            continue
+        relative = Path(clean_filename(league_name) + ".json")
+        leagues.append((league_name, league_url, relative))
+
+    return leagues
+
+
 def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
     """Read league_data/<season>/ to get (league_name, league_url, relative_output_path) tuples.
 
     Only league_name/league_url are needed here, so this reads the thin
     league_data records directly rather than going through
     rugby.clubs.load_geocoded_league (no address/geocode join required).
+
+    Also includes leagues from ``_fixture_only_leagues.json`` — duplicate/split
+    leagues intentionally excluded from league_data itself (see
+    ``_discover_fixture_only_leagues``).
     """
     league_dir = DATA_DIR / "league_data" / season
     if not league_dir.exists():
@@ -367,6 +410,8 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
             data: League = json.load(f)
 
         league_name = data["league_name"]
+        if _is_junior_league(league_name):
+            continue
         league_url = data.get("league_url", "")
         if not league_url:
             continue
@@ -380,6 +425,13 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
 
         relative = json_file.relative_to(league_dir)
         leagues.append((league_name, league_url, relative))
+
+    existing_urls = {league_url for _, league_url, _ in leagues}
+    leagues.extend(
+        league
+        for league in _discover_fixture_only_leagues(league_dir)
+        if league[1] not in existing_urls
+    )
 
     return leagues
 

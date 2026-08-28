@@ -42,6 +42,10 @@ data/scotland/*
 
 .cursor/*
 
+.env.local
+.env.*
+!.env.example
+
 # Local review screenshots (see scripts/capture_review_screenshots.py)
 screenshots/review/
 

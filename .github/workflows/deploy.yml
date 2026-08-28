@@ -124,6 +124,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+      CARTO_API_KEY: ${{ vars.CARTO_API_KEY }}
     strategy:
       fail-fast: false
       max-parallel: 26
@@ -245,6 +246,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+      CARTO_API_KEY: ${{ vars.CARTO_API_KEY }}
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -359,6 +361,7 @@ jobs:
       (needs.football-season.result == 'success' || needs.football-season.result == 'skipped')
     env:
       GA_TRACKING_ID: ${{ vars.GA_TRACKING_ID }}
+      CARTO_API_KEY: ${{ vars.CARTO_API_KEY }}
 
     steps:
       - name: Checkout

@@ -94,20 +94,14 @@ def get_service_worker_registration_script() -> str:
 
 def get_resource_hints_html() -> str:
     """Preconnect/dns-prefetch hints for the CARTO tile server used by every
-    map page (tier maps, match-day, custom-map). Tiles start loading dozens of
-    small requests to this origin the instant the map paints, so warming up
-    DNS/TCP/TLS ahead of the first tile request measurably shortens time-to-first-tile.
-
-    Leaflet's default TileLayer ``subdomains`` is ``"abc"``, and none of our
-    TileLayer calls override it (see core/basemap_tiles.py), so only
-    a/b/c.basemaps.cartocdn.com are ever actually requested.
+    map page (tier maps, match-day, custom-map). We now use the single shared
+    origin for the Voyager raster tiles, so there is only one warm-up target.
     """
-    subdomains = "abc"
-    lines = []
-    for sub in subdomains:
-        origin = f"https://{sub}.basemaps.cartocdn.com"
-        lines.append(f'    <link rel="preconnect" href="{origin}">')
-        lines.append(f'    <link rel="dns-prefetch" href="{origin}">')
+    origin = "https://basemaps.cartocdn.com"
+    lines = [
+        f'    <link rel="preconnect" href="{origin}">',
+        f'    <link rel="dns-prefetch" href="{origin}">',
+    ]
     return "\n".join(lines)
 
 

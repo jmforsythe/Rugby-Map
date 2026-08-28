@@ -234,6 +234,7 @@ make test
 ## Configuration
 
 - **GA_TRACKING_ID**: Set this environment variable to enable Google Analytics on generated pages. Leave unset to disable tracking.
+- **CARTO_API_KEY**: Set this environment variable to the CARTO raster tiles API key used for the Voyager basemap. This is required for local builds and for the GitHub Pages deployment workflow.
 
 ## File Structure
 

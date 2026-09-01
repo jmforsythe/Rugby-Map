@@ -75,15 +75,17 @@ def test_map_markers_defer_real_team_images_until_after_render() -> None:
         m.save(out)
         html = out.read_text(encoding="utf-8")
 
-    assert "data-real-src" in html
-    assert 'querySelectorAll("img[data-real-src]")' in html
-    assert "batchSize = 12" in html
+    assert "data-crest-url" in html
+    assert 'querySelectorAll("[data-crest-url]:not([data-crest-ready])")' in html
+    assert "batchSize = 16" in html
     assert "requestAnimationFrame" in html
-    assert 'img.loading = "lazy"' in html
     assert "rugby-map-presentation-ready" in html
     assert "rugbyLoadedCrests" in html
     assert "rugbyCrestClusterInner" in html
-    assert 'setAttribute("src", src)' in html
+    assert "rugbyCrestsEnabled" in html
+    assert "rugbyRefreshMarkerClusters" in html
+    assert "rugbyClusterIconCache" in html
+    assert "rugby-crest-marker" in html
 
 
 def test_custom_map_template_defers_team_images_until_after_render() -> None:
@@ -92,14 +94,16 @@ def test_custom_map_template_defers_team_images_until_after_render() -> None:
     )
     html = custom_map_path.read_text(encoding="utf-8")
 
-    assert "data-real-src" in html
-    assert 'querySelectorAll("img[data-real-src]")' in html
-    assert "const batchSize = 12" in html
+    assert "data-crest-url" in html
+    assert 'querySelectorAll("[data-crest-url]:not([data-crest-ready])")' in html
+    assert "const batchSize = 16" in html
     assert "requestAnimationFrame" in html
-    assert 'img.loading = "lazy"' in html
     assert "rugby-map-presentation-ready" in html
     assert "rugbyLoadedCrests" in html
-    assert 'setAttribute("src", src)' in html
+    assert "rugbyCrestsEnabled" in html
+    assert "rugbyRefreshMarkerClusters" in html
+    assert "rugbyClusterIconCache" in html
+    assert "rugby-crest-marker" in html
     assert "renderTerritories(cachedAllPlaced, finishMapPresentation)" in html
     assert "mapPresentationPending" in html
     assert "PRESENTATION_FALLBACK_MS" in html

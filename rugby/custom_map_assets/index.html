@@ -408,8 +408,10 @@
         width: 100%;
         height: 100%;
       }
-      .marker-cluster-custom img[data-real-src] {
-        opacity: 0;
+      .rugby-crest-marker,
+      .rugby-crest-cluster {
+        backface-visibility: hidden;
+        transform: translateZ(0);
       }
 
       /* Popup styling — matches standard maps (core/map_builder.py POPUP_CSS) */
@@ -1116,12 +1118,16 @@
       window.RUGBY_CREST_PLACEHOLDER = PLACEHOLDER_IMAGE;
       window.rugbyLoadedCrests = window.rugbyLoadedCrests || new Set();
       window.rugbyCrestWarm = window.rugbyCrestWarm || {};
+      window.rugbyClusterIconCache = window.rugbyClusterIconCache || {};
+      window.rugbyCrestsEnabled = false;
       const INFO_PREFIX = "{{INFO_PREFIX}}";
 
       function warmCrest(url) {
         if (!url || window.rugbyCrestWarm[url]) return;
         const img = new Image();
+        img.decoding = "async";
         img.src = url;
+        img.onload = () => window.rugbyLoadedCrests.add(url);
         window.rugbyCrestWarm[url] = img;
       }
 
@@ -1131,85 +1137,74 @@
         warmCrest(src);
       }
 
-      function rugbyCrestClusterInner(imageUrl, onerrorJs) {
+      function rugbyCrestClusterInner(imageUrl) {
         if (!imageUrl) return "";
-        if (window.rugbyLoadedCrests.has(imageUrl)) {
-          const esc = imageUrl.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+        const attr = imageUrl.replace(/"/g, "&quot;");
+        const baseStyle = "width:30px;height:30px;border-radius:50%;";
+        if (!window.rugbyCrestsEnabled) {
           return (
-            "<div style=\"width:30px;height:30px;border-radius:50%;background:url('" +
-            esc +
-            "') center/cover no-repeat\"></div>"
+            '<div class="rugby-crest-cluster" data-crest-url="' +
+            attr +
+            '" style="' +
+            baseStyle +
+            'background-color:rgba(0,0,0,0.06);"></div>'
           );
         }
-        const attr = imageUrl.replace(/"/g, "&quot;");
+        warmCrest(imageUrl);
+        const esc = imageUrl.replace(/'/g, "%27");
         return (
-          '<img data-real-src="' +
-          attr +
-          '" src="' +
-          PLACEHOLDER_IMAGE +
-          '" style="width:30px;height:30px;border-radius:50%" onerror="' +
-          onerrorJs +
-          '">'
+          '<div class="rugby-crest-cluster" style="' +
+          baseStyle +
+          "background:url('" +
+          esc +
+          "') center/cover no-repeat\"></div>"
         );
       }
 
-      function promoteCrestToBackground(img, src) {
-        if (!img || !img.parentNode || !src) return;
-        const box = document.createElement("div");
-        box.style.cssText = img.style.cssText;
-        box.style.background =
-          "url('" + src.replace(/'/g, "%27") + "') center/cover no-repeat";
-        img.parentNode.replaceChild(box, img);
+      function rugbyRefreshMarkerClusters() {
+        for (const key of Object.keys(window)) {
+          if (!key.startsWith("marker_cluster_")) continue;
+          const cluster = window[key];
+          if (cluster && typeof cluster.refreshClusters === "function") {
+            cluster.refreshClusters();
+          }
+        }
       }
+      window.rugbyRefreshMarkerClusters = rugbyRefreshMarkerClusters;
 
-      function activateOne(img) {
-        const src = img.getAttribute("data-real-src");
-        if (!src) return;
-        const inCluster = img.closest && img.closest(".marker-cluster-custom");
-        if (inCluster) {
-          img.loading = "eager";
-          if ("decoding" in img) {
-            img.decoding = "sync";
-          }
-        } else {
-          img.loading = "lazy";
-          img.decoding = "async";
-          if ("fetchPriority" in img) {
-            img.fetchPriority = "low";
-          }
-        }
-        function finish() {
-          markCrestLoaded(src);
-          promoteCrestToBackground(img, src);
-        }
-        img.addEventListener("load", finish, { once: true });
-        img.setAttribute("src", src);
-        img.removeAttribute("data-real-src");
-        if (img.complete && img.naturalWidth > 0) {
-          finish();
-        }
+      function activateCrestEl(el) {
+        const url = el.getAttribute("data-crest-url");
+        if (!url || el.getAttribute("data-crest-ready") === "1") return;
+        const esc = url.replace(/'/g, "%27");
+        el.style.background = "url('" + esc + "') center/cover no-repeat";
+        el.setAttribute("data-crest-ready", "1");
+        markCrestLoaded(url);
       }
 
       function activateDeferredImages() {
-        const images = Array.from(document.querySelectorAll("img[data-real-src]"));
-        if (!images.length) return;
+        const els = Array.from(
+          document.querySelectorAll("[data-crest-url]:not([data-crest-ready])"),
+        );
+        if (!els.length) return;
 
-        const batchSize = 12;
+        const batchSize = 16;
         let index = 0;
 
         function flushBatch() {
-          const batch = images.slice(index, index + batchSize);
+          const batch = els.slice(index, index + batchSize);
           if (!batch.length) return;
-          for (const img of batch) {
-            activateOne(img);
+          for (const el of batch) {
+            activateCrestEl(el);
           }
           index += batch.length;
-          if (index < images.length) {
+          if (index < els.length) {
             if (window.requestAnimationFrame) {
               window.requestAnimationFrame(flushBatch);
             } else {
               setTimeout(flushBatch, 16);
             }
+          } else {
+            rugbyRefreshMarkerClusters();
           }
         }
 
@@ -1229,6 +1224,7 @@
       function startDeferredImageObserver() {
         if (!window.MutationObserver || !document.body) return;
         const observer = new MutationObserver(function () {
+          if (!window.rugbyCrestsEnabled) return;
           if (window.requestAnimationFrame) {
             window.requestAnimationFrame(activateDeferredImages);
           } else {
@@ -1241,6 +1237,7 @@
       function startDeferredImages() {
         if (deferredImagesStarted) return;
         deferredImagesStarted = true;
+        window.rugbyCrestsEnabled = true;
         scheduleDeferredImages();
         startDeferredImageObserver();
       }
@@ -1950,11 +1947,12 @@
                 }
               }
               if (bestImg) {
-                const crestInner = rugbyCrestClusterInner(
-                  bestImg,
-                  "this.style.display='none'",
-                );
-                return L.divIcon({
+                const cacheKey = bestImg + "|" + count;
+                if (window.rugbyClusterIconCache[cacheKey]) {
+                  return window.rugbyClusterIconCache[cacheKey];
+                }
+                const crestInner = rugbyCrestClusterInner(bestImg);
+                const clusterIcon = L.divIcon({
                   html:
                     "<div style='text-align:center;position:relative'>" +
                     crestInner +
@@ -1967,6 +1965,8 @@
                   iconSize: [30, 30],
                   iconAnchor: [15, 15],
                 });
+                window.rugbyClusterIconCache[cacheKey] = clusterIcon;
+                return clusterIcon;
               }
               return L.divIcon({
                 html:
@@ -2207,15 +2207,11 @@
               ? L.divIcon({
                   html:
                     "<div style='text-align:center'>" +
-                    "<img data-real-src='" +
+                    "<div class='rugby-crest-marker' data-crest-url='" +
                     escAttr(team.img) +
-                    "' src='" +
-                    PLACEHOLDER_IMAGE +
                     "' style='width:30px;height:30px;border-radius:50%;border:2px solid " +
                     league.color +
-                    ";box-shadow:0 0 3px rgba(0,0,0,0.3)' onerror=\"this.onerror=null;this.src='" +
-                    FALLBACK_ICON +
-                    "'\">" +
+                    ";box-shadow:0 0 3px rgba(0,0,0,0.3);background-color:rgba(0,0,0,0.06)'></div>" +
                     "</div>",
                   className: "",
                   iconSize: [30, 30],

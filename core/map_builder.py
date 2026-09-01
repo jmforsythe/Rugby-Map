@@ -58,6 +58,13 @@ HATCH_PANE_Z_INDEX = 450
 """Above Leaflet's overlayPane (400) and below its markerPane (600), so hatched
 territories always stay on top of solid ones however the user toggles layers."""
 
+CREST_PLACEHOLDER_SRC = (
+    "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 "
+    "width=%2730%27 height=%2730%27 viewBox=%270 0 30 30%27/%3E"
+)
+PRESENTATION_READY_FALLBACK_MS = 15_000
+"""Unblock deferred crest loading if territory fetch/render never completes."""
+
 
 def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Great-circle distance in km (WGS84 sphere, R=6371)."""
@@ -1553,10 +1560,73 @@ def _write_territories_sidecar(
     write_compact_json(sidecar_path, layers)
 
 
+def _inject_territory_boot_hook(output_path: Path) -> None:
+    """Inject a call to apply territory shading after Folium feature groups exist.
+
+    Folium emits empty territory ``FeatureGroup`` layers, then builds every
+    marker cluster. Booting territory apply in between lets shading paint while
+    marker DOM is still being constructed instead of after the full script.
+    """
+    text = output_path.read_text(encoding="utf-8")
+    hook = "if (window.rugbyTryApplyTerritories) window.rugbyTryApplyTerritories();"
+    if hook in text:
+        return
+    pos = text.find("var marker_cluster_")
+    if pos == -1:
+        pos = text.find("L.markerClusterGroup(")
+    if pos == -1:
+        return
+    output_path.write_text(text[:pos] + hook + "\n            " + text[pos:], encoding="utf-8")
+
+
+def _inject_presentation_ready_hook(output_path: Path) -> None:
+    """Append presentation-ready dispatch at the end of Folium's boot script.
+
+    ``root.script`` children are emitted at the *start* of that block, which
+    runs before inline territory GeoJSON is added — so post-save injection is
+    required for maps that embed territories in the HTML.
+    """
+    text = output_path.read_text(encoding="utf-8")
+    hook = _signal_presentation_ready_script()
+    if hook in text:
+        return
+    pos = text.rfind("</script>")
+    if pos == -1:
+        return
+    output_path.write_text(
+        text[:pos] + "\n            " + hook + "\n" + text[pos:], encoding="utf-8"
+    )
+
+
+def _finalize_map_html(output_path: Path, *, territory_export: bool) -> None:
+    """Post-save hooks that must run after Folium has written the page."""
+    if territory_export:
+        _inject_territory_boot_hook(output_path)
+    else:
+        _inject_presentation_ready_hook(output_path)
+
+
+def _get_territories_preload_link(sidecar_name: str) -> str:
+    """Hint the browser to fetch territory GeoJSON in parallel with page parse."""
+    return f'<link rel="preload" href="{escape(sidecar_name)}" as="fetch">'
+
+
+def _signal_presentation_ready_script() -> str:
+    """Notify deferred crest loading that territory shading has been painted."""
+    return "document.dispatchEvent(new Event('rugby-map-presentation-ready'));"
+
+
 def _get_territory_loader_script(sidecar_name: str) -> str:
     """Client-side loader that fetches the territories sidecar and populates
     the (already-created, empty) territory FeatureGroups by their Folium JS
     variable name, matching the ``_get_boundary_loader_script`` pattern.
+
+    Fetch starts in ``<head>`` so it runs in parallel with Folium's boot
+    script. :func:`_inject_territory_boot_hook` calls
+    ``rugbyTryApplyTerritories()`` after feature groups are created but
+    before marker clusters, so shading can paint without waiting for every
+    marker. Groups are added progressively across animation frames rather
+    than in one blocking batch.
 
     Retries the fetch on failure (a transient network blip or cold CDN edge
     can take longer than a couple of seconds to clear) and, if a controlling
@@ -1567,10 +1637,14 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
     return f"""
     <script>
     (function() {{
-        // 500ms, 1s, 2s, 4s, 8s, 16s between attempts -- ~31s of total
-        // budget, generous enough to ride out a cold CDN edge without
-        // retrying forever.
         var MAX_ATTEMPTS = 6;
+        var MAX_RENDER_ATTEMPTS = 60;
+        var GROUPS_PER_FRAME = 2;
+        var PRESENTATION_FALLBACK_MS = {PRESENTATION_READY_FALLBACK_MS};
+        var territoryDataPromise = null;
+        var cachedLayers = null;
+        var territoryApplyStarted = false;
+        var presentationReadySent = false;
         function requestPrecache() {{
             if (navigator.serviceWorker && navigator.serviceWorker.controller) {{
                 navigator.serviceWorker.controller.postMessage({{
@@ -1579,45 +1653,119 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                 }});
             }}
         }}
-        function fetchTerritories(attempt) {{
-            fetch('{sidecar_name}', {{ cache: 'no-store' }}).then(function(r) {{
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            }}).then(function(layers) {{
-                Object.keys(layers).forEach(function(varName) {{
-                    var fg = window[varName];
-                    if (!fg) return;
-                    var groups = layers[varName].groups || {{}};
-                    Object.keys(groups).forEach(function(grp) {{
-                        try {{
-                            var style = groups[grp].style || {{}};
-                            var opts = {{ style: function() {{ return style; }} }};
-                            if (groups[grp].pane) opts.pane = groups[grp].pane;
-                            L.geoJson(groups[grp].geometry, opts).addTo(fg);
-                        }} catch (e) {{
-                            // A single bad group (malformed geometry, missing pane)
-                            // must not abort the rest -- and it's a rendering bug,
-                            // not a fetch failure, so it shouldn't trigger a retry.
-                            console.warn('Could not render territory group', varName, grp, e);
-                        }}
-                    }});
+        function signalPresentationReady() {{
+            if (presentationReadySent) return;
+            presentationReadySent = true;
+            document.dispatchEvent(new Event('rugby-map-presentation-ready'));
+        }}
+        function finishPresentationReady() {{
+            if (window.requestAnimationFrame) {{
+                window.requestAnimationFrame(signalPresentationReady);
+            }} else {{
+                setTimeout(signalPresentationReady, 0);
+            }}
+        }}
+        function layersReady(layers) {{
+            var varNames = Object.keys(layers);
+            if (!varNames.length) return false;
+            return varNames.every(function(varName) {{ return window[varName]; }});
+        }}
+        function buildRenderQueue(layers) {{
+            var queue = [];
+            Object.keys(layers).forEach(function(varName) {{
+                var groups = layers[varName].groups || {{}};
+                Object.keys(groups).forEach(function(grp) {{
+                    queue.push({{ varName: varName, grp: grp, data: groups[grp] }});
                 }});
-            }}).catch(function(e) {{
-                if (attempt < MAX_ATTEMPTS) {{
-                    setTimeout(function() {{ fetchTerritories(attempt + 1); }}, 500 * Math.pow(2, attempt));
-                }} else {{
-                    console.warn('Could not load territories:', e);
+            }});
+            return queue;
+        }}
+        function renderQueueItem(item) {{
+            var fg = window[item.varName];
+            if (!fg) return false;
+            try {{
+                var style = item.data.style || {{}};
+                var opts = {{ style: function() {{ return style; }} }};
+                if (item.data.pane) opts.pane = item.data.pane;
+                L.geoJson(item.data.geometry, opts).addTo(fg);
+                return true;
+            }} catch (e) {{
+                console.warn('Could not render territory group', item.varName, item.grp, e);
+                return false;
+            }}
+        }}
+        function applyTerritoriesProgressive(layers, attempt) {{
+            if (territoryApplyStarted) return;
+            if (!layersReady(layers)) {{
+                if (attempt < MAX_RENDER_ATTEMPTS) {{
+                    setTimeout(function() {{ applyTerritoriesProgressive(layers, attempt + 1); }}, 50);
+                    return;
                 }}
+                console.warn('Territory layer variables were not ready in time');
+                finishPresentationReady();
+                return;
+            }}
+            territoryApplyStarted = true;
+            var queue = buildRenderQueue(layers);
+            if (!queue.length) {{
+                finishPresentationReady();
+                return;
+            }}
+            var index = 0;
+            function flushFrame() {{
+                var end = Math.min(index + GROUPS_PER_FRAME, queue.length);
+                for (; index < end; index++) {{
+                    renderQueueItem(queue[index]);
+                }}
+                if (index < queue.length) {{
+                    if (window.requestAnimationFrame) {{
+                        window.requestAnimationFrame(flushFrame);
+                    }} else {{
+                        setTimeout(flushFrame, 16);
+                    }}
+                }} else {{
+                    finishPresentationReady();
+                }}
+            }}
+            flushFrame();
+        }}
+        function scheduleTerritoryRender() {{
+            if (!cachedLayers) return;
+            applyTerritoriesProgressive(cachedLayers, 0);
+        }}
+        window.rugbyTryApplyTerritories = scheduleTerritoryRender;
+        function fetchTerritories(attempt) {{
+            if (!territoryDataPromise) {{
+                territoryDataPromise = fetch('{sidecar_name}', {{ cache: 'no-store' }}).then(function(r) {{
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                }});
+            }}
+            return territoryDataPromise.catch(function(e) {{
+                if (attempt < MAX_ATTEMPTS) {{
+                    territoryDataPromise = null;
+                    return new Promise(function(resolve) {{
+                        setTimeout(function() {{ resolve(fetchTerritories(attempt + 1)); }}, 500 * Math.pow(2, attempt));
+                    }});
+                }}
+                console.warn('Could not load territories:', e);
+                finishPresentationReady();
+                return null;
             }});
         }}
-        function addTerritories() {{
-            var el = document.querySelector('.folium-map');
-            if (!el || !el._leaflet_id) {{ setTimeout(addTerritories, 100); return; }}
-            requestPrecache();
-            fetchTerritories(0);
+        function onTerritoryData(layers) {{
+            if (!layers) return;
+            cachedLayers = layers;
+            scheduleTerritoryRender();
         }}
-        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addTerritories);
-        else addTerritories();
+        requestPrecache();
+        fetchTerritories(0).then(onTerritoryData);
+        setTimeout(function() {{
+            if (!presentationReadySent) {{
+                console.warn('Territory presentation timed out; loading crest images anyway');
+                finishPresentationReady();
+            }}
+        }}, PRESENTATION_FALLBACK_MS);
     }})();
     </script>
     """
@@ -1630,7 +1778,10 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
 
 POPUP_CSS = """
 <style>
-/* Scope under .folium-map so rules win over Leaflet defaults (load order). */
+/* Hide cluster crest placeholders until the real image has loaded. */
+.folium-map .marker-cluster-custom img[data-real-src] {
+  opacity: 0;
+}
 .folium-map .leaflet-popup-content {
   margin: 6px 10px !important;
   line-height: 1.3;
@@ -2282,6 +2433,133 @@ class HatchPane(MacroElement):
         self._name = "HatchPane"
 
 
+def _deferred_image_loader_script() -> str:
+    """Swap in real crest URLs after territory shading has painted.
+
+    Using a neutral placeholder first prevents the browser from blocking on a
+    long list of remote team logos while the map is still being built and
+    displayed. Crest fetches are intentionally held until
+    ``rugby-map-presentation-ready`` so they do not compete with territory
+    GeoJSON on the network or main thread.
+
+    Loaded URLs are tracked in ``rugbyLoadedCrests`` so MarkerCluster can reuse
+    cached ``src`` values when it rebuilds cluster icons on zoom instead of
+    re-queueing every crest through ``data-real-src``.
+    """
+    return f"""
+    <script>
+    (function() {{
+        window.RUGBY_CREST_PLACEHOLDER = "{CREST_PLACEHOLDER_SRC}";
+        window.rugbyLoadedCrests = window.rugbyLoadedCrests || new Set();
+        window.rugbyCrestWarm = window.rugbyCrestWarm || {{}};
+        var deferredImagesStarted = false;
+        function warmCrest(url) {{
+            if (!url || window.rugbyCrestWarm[url]) return;
+            var img = new Image();
+            img.src = url;
+            window.rugbyCrestWarm[url] = img;
+        }}
+        function markCrestLoaded(src) {{
+            if (!src) return;
+            window.rugbyLoadedCrests.add(src);
+            warmCrest(src);
+        }}
+        window.rugbyCrestClusterInner = function(imageUrl, onerrorJs) {{
+            if (!imageUrl) return "";
+            if (window.rugbyLoadedCrests.has(imageUrl)) {{
+                var esc = imageUrl.replace(/\\\\/g, "\\\\\\\\").replace(/'/g, "\\\\'");
+                return '<div style="width:30px;height:30px;border-radius:50%;background:url(\\'' + esc + '\\') center/cover no-repeat"></div>';
+            }}
+            var ph = window.RUGBY_CREST_PLACEHOLDER;
+            var attr = imageUrl.replace(/"/g, "&quot;");
+            return '<img data-real-src="' + attr + '" src="' + ph + '" style="width:30px;height:30px;border-radius:50%;" onerror="' + onerrorJs + '">';
+        }};
+        function promoteCrestToBackground(img, src) {{
+            if (!img || !img.parentNode || !src) return;
+            var box = document.createElement("div");
+            box.style.cssText = img.style.cssText;
+            box.style.background = "url('" + src.replace(/'/g, "%27") + "') center/cover no-repeat";
+            img.parentNode.replaceChild(box, img);
+        }}
+        function activateOne(img) {{
+            var src = img.getAttribute("data-real-src");
+            if (!src) return;
+            var inCluster = img.closest && img.closest(".marker-cluster-custom");
+            if (inCluster) {{
+                img.loading = "eager";
+                if ("decoding" in img) {{
+                    img.decoding = "sync";
+                }}
+            }} else {{
+                img.loading = "lazy";
+                img.decoding = "async";
+                if ("fetchPriority" in img) {{
+                    img.fetchPriority = "low";
+                }}
+            }}
+            function finish() {{
+                markCrestLoaded(src);
+                promoteCrestToBackground(img, src);
+            }}
+            img.addEventListener("load", finish, {{ once: true }});
+            img.setAttribute("src", src);
+            img.removeAttribute("data-real-src");
+            if (img.complete && img.naturalWidth > 0) {{
+                finish();
+            }}
+        }}
+        function activateDeferredImages() {{
+            var images = Array.from(document.querySelectorAll("img[data-real-src]"));
+            if (!images.length) return;
+            var batchSize = 12;
+            var index = 0;
+            function flushBatch() {{
+                var batch = images.slice(index, index + batchSize);
+                if (!batch.length) return;
+                for (var i = 0; i < batch.length; i++) {{
+                    activateOne(batch[i]);
+                }}
+                index += batch.length;
+                if (index < images.length) {{
+                    if (window.requestAnimationFrame) {{
+                        window.requestAnimationFrame(flushBatch);
+                    }} else {{
+                        setTimeout(flushBatch, 16);
+                    }}
+                }}
+            }}
+            flushBatch();
+        }}
+        function scheduleDeferredImages() {{
+            if (window.requestAnimationFrame) {{
+                window.requestAnimationFrame(activateDeferredImages);
+                return;
+            }}
+            setTimeout(activateDeferredImages, 50);
+        }}
+        function startObserver() {{
+            if (!window.MutationObserver || !document.body) return;
+            var observer = new MutationObserver(function() {{
+                if (window.requestAnimationFrame) {{
+                    window.requestAnimationFrame(activateDeferredImages);
+                }} else {{
+                    setTimeout(activateDeferredImages, 50);
+                }}
+            }});
+            observer.observe(document.body, {{ childList: true, subtree: true }});
+        }}
+        function startDeferredImages() {{
+            if (deferredImagesStarted) return;
+            deferredImagesStarted = true;
+            scheduleDeferredImages();
+            startObserver();
+        }}
+        document.addEventListener("rugby-map-presentation-ready", startDeferredImages);
+    }})();
+    </script>
+    """
+
+
 def _build_base_map(config: MapConfig) -> folium.Map:
     m = folium.Map(
         location=list(config.center),
@@ -2317,6 +2595,7 @@ def _build_base_map(config: MapConfig) -> folium.Map:
     header.add_child(folium.Element(get_resource_hints_html()))
     header.add_child(folium.Element(POPUP_CSS))
     header.add_child(folium.Element(DARK_MODE_JS))
+    header.add_child(folium.Element(_deferred_image_loader_script()))
     return m
 
 
@@ -2359,9 +2638,9 @@ def _add_marker(
             onerror = "this.style.display='none'"
         icon_html = (
             f'<div style="text-align: center;">'
-            f'<img src="{escape(icon_url)}" '
+            f'<img data-real-src="{escape(icon_url)}" src="{CREST_PLACEHOLDER_SRC}" '
             f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
-            f'{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3);" '
+            f'{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3); opacity: 0.9;" '
             f'onerror="{onerror}">'
             f"</div>"
         )
@@ -2413,9 +2692,12 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
         var count = cluster.getChildCount();
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' items';
         if (imageUrl) {{
+            var crestInner = window.rugbyCrestClusterInner
+                ? window.rugbyCrestClusterInner(imageUrl, "{onerror_js}")
+                : ('<img data-real-src="' + imageUrl + '" src="' + (window.RUGBY_CREST_PLACEHOLDER || '{CREST_PLACEHOLDER_SRC}') + '" style="width:30px;height:30px;border-radius:50%;" onerror="{onerror_js}">');
             return L.divIcon({{
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                      '<img src="' + imageUrl + '" style="width:30px;height:30px;border-radius:50%;" onerror="{onerror_js}">' +
+                      crestInner +
                       '<span style="position:absolute;bottom:-5px;right:-5px;background:#333;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center;">' + count + '</span></div>',
                 className: 'marker-cluster-custom',
                 iconSize: L.point(30, 30),
@@ -3025,8 +3307,11 @@ def generate_single_group_map(
     if config.show_debug:
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
     if territory_export:
-        html_el.add_child(
+        header.add_child(
             folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+        )
+        header.add_child(
+            folium.Element(_get_territories_preload_link(config.territories_sidecar_name))
         )
 
     if hatch_defs_html:
@@ -3052,6 +3337,7 @@ def generate_single_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
+    _finalize_map_html(output_path, territory_export=bool(territory_export))
     rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, len(all_placed), output_path)
 
@@ -3142,8 +3428,11 @@ def generate_multi_group_map(
     if config.show_debug:
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
     if territory_export:
-        html_el.add_child(
+        header.add_child(
             folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+        )
+        header.add_child(
+            folium.Element(_get_territories_preload_link(config.territories_sidecar_name))
         )
 
     html_el.add_child(
@@ -3157,5 +3446,6 @@ def generate_multi_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
+    _finalize_map_html(output_path, territory_export=bool(territory_export))
     rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, num_items, output_path)

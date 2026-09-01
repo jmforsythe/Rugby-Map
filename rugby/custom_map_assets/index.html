@@ -408,6 +408,9 @@
         width: 100%;
         height: 100%;
       }
+      .marker-cluster-custom img[data-real-src] {
+        opacity: 0;
+      }
 
       /* Popup styling — matches standard maps (core/map_builder.py POPUP_CSS) */
       .leaflet-popup-content {
@@ -1108,7 +1111,162 @@
 
       const FALLBACK_ICON =
         "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg";
+      const PLACEHOLDER_IMAGE =
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'/%3E";
+      window.RUGBY_CREST_PLACEHOLDER = PLACEHOLDER_IMAGE;
+      window.rugbyLoadedCrests = window.rugbyLoadedCrests || new Set();
+      window.rugbyCrestWarm = window.rugbyCrestWarm || {};
       const INFO_PREFIX = "{{INFO_PREFIX}}";
+
+      function warmCrest(url) {
+        if (!url || window.rugbyCrestWarm[url]) return;
+        const img = new Image();
+        img.src = url;
+        window.rugbyCrestWarm[url] = img;
+      }
+
+      function markCrestLoaded(src) {
+        if (!src) return;
+        window.rugbyLoadedCrests.add(src);
+        warmCrest(src);
+      }
+
+      function rugbyCrestClusterInner(imageUrl, onerrorJs) {
+        if (!imageUrl) return "";
+        if (window.rugbyLoadedCrests.has(imageUrl)) {
+          const esc = imageUrl.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+          return (
+            "<div style=\"width:30px;height:30px;border-radius:50%;background:url('" +
+            esc +
+            "') center/cover no-repeat\"></div>"
+          );
+        }
+        const attr = imageUrl.replace(/"/g, "&quot;");
+        return (
+          '<img data-real-src="' +
+          attr +
+          '" src="' +
+          PLACEHOLDER_IMAGE +
+          '" style="width:30px;height:30px;border-radius:50%" onerror="' +
+          onerrorJs +
+          '">'
+        );
+      }
+
+      function promoteCrestToBackground(img, src) {
+        if (!img || !img.parentNode || !src) return;
+        const box = document.createElement("div");
+        box.style.cssText = img.style.cssText;
+        box.style.background =
+          "url('" + src.replace(/'/g, "%27") + "') center/cover no-repeat";
+        img.parentNode.replaceChild(box, img);
+      }
+
+      function activateOne(img) {
+        const src = img.getAttribute("data-real-src");
+        if (!src) return;
+        const inCluster = img.closest && img.closest(".marker-cluster-custom");
+        if (inCluster) {
+          img.loading = "eager";
+          if ("decoding" in img) {
+            img.decoding = "sync";
+          }
+        } else {
+          img.loading = "lazy";
+          img.decoding = "async";
+          if ("fetchPriority" in img) {
+            img.fetchPriority = "low";
+          }
+        }
+        function finish() {
+          markCrestLoaded(src);
+          promoteCrestToBackground(img, src);
+        }
+        img.addEventListener("load", finish, { once: true });
+        img.setAttribute("src", src);
+        img.removeAttribute("data-real-src");
+        if (img.complete && img.naturalWidth > 0) {
+          finish();
+        }
+      }
+
+      function activateDeferredImages() {
+        const images = Array.from(document.querySelectorAll("img[data-real-src]"));
+        if (!images.length) return;
+
+        const batchSize = 12;
+        let index = 0;
+
+        function flushBatch() {
+          const batch = images.slice(index, index + batchSize);
+          if (!batch.length) return;
+          for (const img of batch) {
+            activateOne(img);
+          }
+          index += batch.length;
+          if (index < images.length) {
+            if (window.requestAnimationFrame) {
+              window.requestAnimationFrame(flushBatch);
+            } else {
+              setTimeout(flushBatch, 16);
+            }
+          }
+        }
+
+        flushBatch();
+      }
+
+      let deferredImagesStarted = false;
+
+      function scheduleDeferredImages() {
+        if (window.requestAnimationFrame) {
+          window.requestAnimationFrame(activateDeferredImages);
+          return;
+        }
+        setTimeout(activateDeferredImages, 50);
+      }
+
+      function startDeferredImageObserver() {
+        if (!window.MutationObserver || !document.body) return;
+        const observer = new MutationObserver(function () {
+          if (window.requestAnimationFrame) {
+            window.requestAnimationFrame(activateDeferredImages);
+          } else {
+            setTimeout(activateDeferredImages, 50);
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+
+      function startDeferredImages() {
+        if (deferredImagesStarted) return;
+        deferredImagesStarted = true;
+        scheduleDeferredImages();
+        startDeferredImageObserver();
+      }
+
+      function signalPresentationReady() {
+        if (presentationReadySent) return;
+        presentationReadySent = true;
+        document.dispatchEvent(new Event("rugby-map-presentation-ready"));
+      }
+
+      function finishMapPresentation() {
+        if (!mapPresentationPending) return;
+        mapPresentationPending = false;
+        signalPresentationReady();
+        renderMarkers();
+        renderStats();
+      }
+
+      setTimeout(function () {
+        if (mapPresentationPending) {
+          console.warn("Territory presentation timed out; loading crest images anyway");
+          finishMapPresentation();
+        }
+      }, PRESENTATION_FALLBACK_MS);
+
+      document.addEventListener("rugby-map-presentation-ready", startDeferredImages);
 
       function sanitizeTeamName(name) {
         var s = name.replace(/ /g, "_").replace(/\//g, "_").replace(/&/g, "and").replace(/\|/g, "_");
@@ -1146,6 +1304,9 @@
       let territoriesVisible = true;
       let boundariesReady = false;
       let cachedAllPlaced = [];
+      let mapPresentationPending = false;
+      let presentationReadySent = false;
+      const PRESENTATION_FALLBACK_MS = 15000;
 
       const RUGBY_THEME_STORAGE_KEY = "rugbyMapTheme";
       const colorSchemeMediaQuery = window.matchMedia(
@@ -1745,9 +1906,19 @@
       syncRugbyThemeSelect();
 
       // ── Rendering ──────────────────────────────────────────────
+      function rebuildPlacedItems() {
+        cachedAllPlaced = [];
+        for (const league of leagues) {
+          const stats = calcLeagueStats(league);
+          league._stats = stats;
+          for (const team of league.teams) {
+            cachedAllPlaced.push({ team, league });
+          }
+        }
+      }
+
       function renderMarkers() {
         markersGroup.clearLayers();
-        cachedAllPlaced = [];
 
         if (
           !distancesRequested &&
@@ -1760,8 +1931,6 @@
         }
 
         for (const league of leagues) {
-          const stats = calcLeagueStats(league);
-          league._stats = stats;
           const cluster = L.markerClusterGroup({
             maxClusterRadius: 1,
             showCoverageOnHover: false,
@@ -1781,12 +1950,14 @@
                 }
               }
               if (bestImg) {
+                const crestInner = rugbyCrestClusterInner(
+                  bestImg,
+                  "this.style.display='none'",
+                );
                 return L.divIcon({
                   html:
                     "<div style='text-align:center;position:relative'>" +
-                    "<img src='" +
-                    bestImg +
-                    "' style='width:30px;height:30px;border-radius:50%' onerror=\"this.style.display='none'\">" +
+                    crestInner +
                     "<span style='position:absolute;bottom:-5px;right:-5px;background:" +
                     league.color +
                     ";color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center'>" +
@@ -1812,7 +1983,7 @@
           });
 
           for (const team of league.teams) {
-            const ts = stats.teams.find((s) => s.name === team.n);
+            const ts = league._stats.teams.find((s) => s.name === team.n);
 
             function popupTravelBlock(
               including,
@@ -2036,8 +2207,10 @@
               ? L.divIcon({
                   html:
                     "<div style='text-align:center'>" +
-                    "<img src='" +
+                    "<img data-real-src='" +
                     escAttr(team.img) +
+                    "' src='" +
+                    PLACEHOLDER_IMAGE +
                     "' style='width:30px;height:30px;border-radius:50%;border:2px solid " +
                     league.color +
                     ";box-shadow:0 0 3px rgba(0,0,0,0.3)' onerror=\"this.onerror=null;this.src='" +
@@ -2067,16 +2240,15 @@
               imageUrl: team.img || "",
             }).bindPopup(popup, { maxWidth: 250 });
             cluster.addLayer(marker);
-            cachedAllPlaced.push({ team, league });
           }
           markersGroup.addLayer(cluster);
         }
       }
 
       function renderMap() {
-        renderMarkers();
-        renderTerritories(cachedAllPlaced);
-        renderStats();
+        rebuildPlacedItems();
+        mapPresentationPending = true;
+        renderTerritories(cachedAllPlaced, finishMapPresentation);
       }
 
       function restyleTerritories() {
@@ -2397,11 +2569,22 @@
         }).addTo(territoryLayer);
       }
 
-      function renderTerritories(allPlaced) {
+      function renderTerritories(allPlaced, onComplete) {
         territoryLayer.clearLayers();
-        if (!territoriesVisible || allPlaced.length < 1) return;
+        if (!territoriesVisible || allPlaced.length < 1) {
+          if (onComplete) {
+            if (window.requestAnimationFrame) {
+              window.requestAnimationFrame(onComplete);
+            } else {
+              setTimeout(onComplete, 0);
+            }
+          }
+          return;
+        }
 
-        if (!boundariesReady || typeof BOUNDARIES === "undefined") return;
+        if (!boundariesReady || typeof BOUNDARIES === "undefined") {
+          return;
+        }
 
         const regionIdx = buildRegionIndex(allPlaced);
         const allCells = [];
@@ -2417,9 +2600,40 @@
           allCells.push(...cells);
         }
 
-        for (const cell of mergeCellsByColor(allCells)) {
-          addTerritoryCell(cell.geom, cell.color);
+        const mergedCells = mergeCellsByColor(allCells);
+        if (!mergedCells.length) {
+          if (onComplete) {
+            if (window.requestAnimationFrame) {
+              window.requestAnimationFrame(onComplete);
+            } else {
+              setTimeout(onComplete, 0);
+            }
+          }
+          return;
         }
+
+        const batchSize = 3;
+        let index = 0;
+        function flushTerritoryBatch() {
+          const end = Math.min(index + batchSize, mergedCells.length);
+          for (; index < end; index++) {
+            addTerritoryCell(mergedCells[index].geom, mergedCells[index].color);
+          }
+          if (index < mergedCells.length) {
+            if (window.requestAnimationFrame) {
+              window.requestAnimationFrame(flushTerritoryBatch);
+            } else {
+              setTimeout(flushTerritoryBatch, 16);
+            }
+          } else if (onComplete) {
+            if (window.requestAnimationFrame) {
+              window.requestAnimationFrame(onComplete);
+            } else {
+              setTimeout(onComplete, 0);
+            }
+          }
+        }
+        flushTerritoryBatch();
       }
 
       function renderStats() {
@@ -3508,7 +3722,13 @@
         prepareBoundaryItl0();
         assignCountryToTeams();
         addBoundaryOutlines();
-        if (cachedAllPlaced.length > 0) renderTerritories(cachedAllPlaced);
+        if (cachedAllPlaced.length > 0) {
+          if (mapPresentationPending) {
+            renderTerritories(cachedAllPlaced, finishMapPresentation);
+          } else {
+            renderTerritories(cachedAllPlaced);
+          }
+        }
       }
       function loadBoundaries() {
         Promise.all([

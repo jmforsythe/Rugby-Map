@@ -38,6 +38,7 @@ from core.map_builder import (
     preassign_itl_regions,
 )
 from rugby import BRAND, DATA_DIR, rfu_team_only_url, short_season
+from rugby.addresses import team_lower_xv_roman
 from rugby.clubs import iter_geocoded_leagues
 from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
@@ -457,6 +458,7 @@ def _load_marker_items(
                 icon_url=icon_url,
                 popup_html=popup,
                 category=category,
+                crest_badge=team_lower_xv_roman(team_name),
             )
 
             if is_merit:

@@ -128,6 +128,19 @@ def get_font_html() -> str:
     )
 
 
+def get_stylesheet_href(depth: int = 0, *, filename: str = "styles.css") -> str:
+    """Return the href for a stylesheet under ``dist/`` from a page at *depth*.
+
+    Production builds use root-absolute paths (e.g. ``/styles.css``) so nested
+    ``index.html`` pages (e.g. ``teams/{slug}/``) resolve correctly.
+    Local dev builds use relative paths (``../`` per depth level).
+    """
+    if get_config().is_production:
+        return f"/{filename}"
+    prefix = "../" * depth if depth > 0 else ""
+    return f"{prefix}{filename}"
+
+
 def get_favicon_html(depth: int = 0) -> str:
     """Return <link> tags for favicon, manifest, and brand fonts.
 

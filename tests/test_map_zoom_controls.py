@@ -85,6 +85,8 @@ def test_map_markers_defer_real_team_images_until_after_render() -> None:
     assert "rugbyCrestsEnabled" in html
     assert "rugbyRefreshMarkerClusters" in html
     assert "rugbyClusterIconCache" in html
+    assert "clusterRefreshPending" in html
+    assert "rugbyReapplyKnownCrests" in html
     assert "rugby-crest-marker" in html
 
 
@@ -185,6 +187,7 @@ def test_inject_presentation_ready_hook_appends_to_saved_map() -> None:
             "icon_url": "https://example.com/crest.png",
             "popup_html": None,
             "category": None,
+            "crest_badge": None,
             "structure": "pyramid",
             "itl0": None,
             "itl1": None,
@@ -231,6 +234,51 @@ def test_layer_control_hook_refreshes_overlay_panel_after_update() -> None:
     assert "window.rugbyRefreshOverlayPanel" in _LAYER_CONTROL_HOOK_JS
     assert "L.Control.Layers.prototype._update" in _LAYER_CONTROL_HOOK_JS
     assert "rugbyApplyOverlayBulkFiltered(mapInst, true, null)" in _LAYER_CONTROL_HOOK_JS
+
+
+def test_add_marker_renders_reserve_xv_crest_badge() -> None:
+    from folium.plugins import FeatureGroupSubGroup
+
+    from core.map_builder import _add_marker, _add_marker_cluster, _finalize_map_html
+
+    config = MapConfig(
+        title="Reserve badge",
+        color_palette=["#336699"],
+        fallback_icon_url="https://example.com/fallback.svg",
+    )
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "reserve.html"
+        m = _build_base_map(config)
+        cluster = _add_marker_cluster(m, fallback_icon_url=config.fallback_icon_url)
+        fg_m = FeatureGroupSubGroup(cluster, name="League - Markers", show=True)
+        m.add_child(fg_m)
+        item = {
+            "name": "Avon RFC II",
+            "latitude": 51.5,
+            "longitude": -1.0,
+            "group": "League",
+            "tier": "T",
+            "tier_num": 5,
+            "icon_url": "https://example.com/crest.png",
+            "popup_html": None,
+            "category": None,
+            "crest_badge": "II",
+            "structure": "pyramid",
+            "itl0": None,
+            "itl1": None,
+            "itl2": None,
+            "itl3": None,
+            "lad": None,
+            "ward": None,
+        }
+        _add_marker(fg_m, item, "#336699", fallback_icon_url=config.fallback_icon_url)
+        m.save(out)
+        _finalize_map_html(out, territory_export=False)
+        html = out.read_text(encoding="utf-8")
+
+    assert "rugby-crest-badge" in html
+    assert "II" in html
+    assert "crestBadge" in html
 
 
 def test_match_day_registers_overlay_panel_refresh_callback() -> None:

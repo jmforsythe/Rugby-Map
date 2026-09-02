@@ -255,17 +255,23 @@ def minify_css(css: str) -> str:
     return css.replace(";}", "}").strip()
 
 
+_DIST_CSS_FILES = ("styles.css", "team-pages.css")
+
+
 def minify_styles_css(dist_dir: Path) -> None:
-    """Minify dist/styles.css in place (production builds only -- this file is
-    git-tracked and hand-edited, so leave it readable for local development).
+    """Minify git-tracked CSS under *dist_dir* in place (production builds only).
+
+    Source files are hand-edited and kept readable locally; minification runs
+    as part of the production SEO step.
     """
-    styles_path = dist_dir / "styles.css"
-    if not styles_path.is_file():
-        return
-    original = styles_path.read_text(encoding="utf-8")
-    minified = minify_css(original)
-    styles_path.write_text(minified, encoding="utf-8")
-    print(f"Minified {styles_path} ({len(original)} -> {len(minified)} bytes)")
+    for name in _DIST_CSS_FILES:
+        styles_path = dist_dir / name
+        if not styles_path.is_file():
+            continue
+        original = styles_path.read_text(encoding="utf-8")
+        minified = minify_css(original)
+        styles_path.write_text(minified, encoding="utf-8")
+        print(f"Minified {styles_path} ({len(original)} -> {len(minified)} bytes)")
 
 
 def main() -> None:

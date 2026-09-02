@@ -95,6 +95,8 @@ class MarkerItem:
     tier_num: int
     icon_url: str | None = None
     popup_html: str | None = None
+    # Optional overlay on the crest marker (e.g. Roman "II" for reserve XVs).
+    crest_badge: str | None = None
     category: str | None = None
     extra: dict[str, Any] | None = None
     itl0: str | None = None
@@ -169,6 +171,7 @@ class _PlacedItem(TypedDict):
     tier_num: int
     icon_url: str | None
     popup_html: str | None
+    crest_badge: str | None
     category: str | None
     structure: str
     itl0: str | None
@@ -816,6 +819,7 @@ def _items_to_placed(
             "tier_num": item.tier_num,
             "icon_url": item.icon_url,
             "popup_html": item.popup_html,
+            "crest_badge": item.crest_badge,
             "category": item.category,
             "structure": item.structure,
             "itl0": item.itl0,
@@ -1784,6 +1788,27 @@ POPUP_CSS = """
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+.folium-map .rugby-crest-wrap {
+  position: relative;
+  display: inline-block;
+}
+.folium-map .rugby-crest-badge {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: #1a2330;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 3px #fff;
+  pointer-events: none;
+}
 .folium-map .leaflet-popup-content {
   margin: 6px 10px !important;
   line-height: 1.3;
@@ -2451,6 +2476,34 @@ def _deferred_image_loader_script() -> str:
         window.rugbyClusterIconCache = window.rugbyClusterIconCache || {{}};
         window.rugbyCrestsEnabled = false;
         var deferredImagesStarted = false;
+        var clusterRefreshPending = false;
+        var activateDeferredScheduled = false;
+        var initialCrestLoadDone = false;
+        var crestObserver = null;
+        var crestStyleEl = null;
+        var crestStyleRules = {{}};
+        function crestStyleClass(url) {{
+            var h = 0;
+            for (var i = 0; i < url.length; i++) {{
+                h = ((h << 5) - h + url.charCodeAt(i)) | 0;
+            }}
+            return "rugby-crest-src-" + (h >>> 0).toString(36);
+        }}
+        function ensureCrestStyleRule(url) {{
+            var cls = crestStyleClass(url);
+            if (crestStyleRules[cls]) return cls;
+            if (!crestStyleEl) {{
+                crestStyleEl = document.createElement("style");
+                crestStyleEl.id = "rugby-crest-src-styles";
+                document.head.appendChild(crestStyleEl);
+            }}
+            var esc = url.replace(/\\\\/g, "\\\\\\\\").replace(/'/g, "\\\\'");
+            crestStyleEl.textContent +=
+                ".folium-map ." + cls +
+                "{{background:url('" + esc + "') center/cover no-repeat !important;}}";
+            crestStyleRules[cls] = true;
+            return cls;
+        }}
         function warmCrest(url) {{
             if (!url || window.rugbyCrestWarm[url]) return;
             var img = new Image();
@@ -2464,16 +2517,22 @@ def _deferred_image_loader_script() -> str:
             window.rugbyLoadedCrests.add(src);
             warmCrest(src);
         }}
-        window.rugbyCrestClusterInner = function(imageUrl) {{
+        window.rugbyCrestClusterInner = function(imageUrl, crestBadge) {{
             if (!imageUrl) return "";
             var attr = imageUrl.replace(/"/g, "&quot;");
             var baseStyle = "width:30px;height:30px;border-radius:50%;";
+            var crestDiv;
             if (!window.rugbyCrestsEnabled) {{
-                return '<div class="rugby-crest-cluster" data-crest-url="' + attr + '" style="' + baseStyle + 'background-color:rgba(0,0,0,0.06);"></div>';
+                crestDiv = '<div class="rugby-crest-cluster" data-crest-url="' + attr + '" style="' + baseStyle + 'background-color:rgba(0,0,0,0.06);"></div>';
+            }} else {{
+                warmCrest(imageUrl);
+                var esc = imageUrl.replace(/'/g, "%27");
+                crestDiv = '<div class="rugby-crest-cluster" style="' + baseStyle + 'background:url(\\'' + esc + '\\') center/cover no-repeat"></div>';
             }}
-            warmCrest(imageUrl);
-            var esc = imageUrl.replace(/'/g, "%27");
-            return '<div class="rugby-crest-cluster" style="' + baseStyle + 'background:url(\\'' + esc + '\\') center/cover no-repeat"></div>';
+            var badge = crestBadge
+                ? '<span class="rugby-crest-badge" aria-hidden="true">' + crestBadge + '</span>'
+                : '';
+            return '<div class="rugby-crest-wrap" style="width:30px;height:30px;">' + crestDiv + badge + '</div>';
         }};
         function rugbyRefreshMarkerClusters() {{
             var key;
@@ -2490,14 +2549,64 @@ def _deferred_image_loader_script() -> str:
         function activateCrestEl(el) {{
             var url = el.getAttribute("data-crest-url");
             if (!url || el.getAttribute("data-crest-ready") === "1") return;
-            var esc = url.replace(/'/g, "%27");
-            el.style.background = "url('" + esc + "') center/cover no-repeat";
+            el.classList.add(ensureCrestStyleRule(url));
             el.setAttribute("data-crest-ready", "1");
             markCrestLoaded(url);
         }}
+        function reapplyKnownCrests() {{
+            if (!window.rugbyCrestsEnabled) return;
+            var els = document.querySelectorAll("[data-crest-url]:not([data-crest-ready])");
+            for (var i = 0; i < els.length; i++) {{
+                var el = els[i];
+                var url = el.getAttribute("data-crest-url");
+                if (!url) continue;
+                if (window.rugbyLoadedCrests.has(url) || crestStyleRules[crestStyleClass(url)]) {{
+                    activateCrestEl(el);
+                }}
+            }}
+        }}
+        window.rugbyReapplyKnownCrests = reapplyKnownCrests;
+        function hookCrestResync() {{
+            var key;
+            for (key in window) {{
+                if (!Object.prototype.hasOwnProperty.call(window, key)) continue;
+                if (key.indexOf("map_") === 0) {{
+                    var map = window[key];
+                    if (map && typeof map.on === "function") {{
+                        map.on("zoomstart", reapplyKnownCrests);
+                        map.on("zoomanim", reapplyKnownCrests);
+                    }}
+                }}
+                if (key.indexOf("marker_cluster_") === 0) {{
+                    var cluster = window[key];
+                    if (cluster && typeof cluster.on === "function") {{
+                        cluster.on("spiderfied", reapplyKnownCrests);
+                        cluster.on("unspiderfied", reapplyKnownCrests);
+                    }}
+                }}
+            }}
+        }}
+        function finishInitialCrestLoad() {{
+            if (initialCrestLoadDone) return;
+            initialCrestLoadDone = true;
+            if (crestObserver) {{
+                crestObserver.disconnect();
+                crestObserver = null;
+            }}
+            hookCrestResync();
+            reapplyKnownCrests();
+        }}
         function activateDeferredImages() {{
             var els = Array.from(document.querySelectorAll("[data-crest-url]:not([data-crest-ready])"));
-            if (!els.length) return;
+            if (!els.length) {{
+                if (clusterRefreshPending) {{
+                    clusterRefreshPending = false;
+                    rugbyRefreshMarkerClusters();
+                    return;
+                }}
+                finishInitialCrestLoad();
+                return;
+            }}
             var batchSize = 16;
             var index = 0;
             function flushBatch() {{
@@ -2513,35 +2622,45 @@ def _deferred_image_loader_script() -> str:
                     }} else {{
                         setTimeout(flushBatch, 16);
                     }}
-                }} else {{
+                }} else if (clusterRefreshPending) {{
+                    clusterRefreshPending = false;
                     rugbyRefreshMarkerClusters();
+                }} else {{
+                    finishInitialCrestLoad();
                 }}
             }}
             flushBatch();
         }}
-        function scheduleDeferredImages() {{
+        function scheduleActivateDeferredImages() {{
+            if (activateDeferredScheduled) return;
+            activateDeferredScheduled = true;
+            var run = function() {{
+                activateDeferredScheduled = false;
+                activateDeferredImages();
+            }};
             if (window.requestAnimationFrame) {{
-                window.requestAnimationFrame(activateDeferredImages);
-                return;
+                window.requestAnimationFrame(run);
+            }} else {{
+                setTimeout(run, 50);
             }}
-            setTimeout(activateDeferredImages, 50);
+        }}
+        function scheduleDeferredImages() {{
+            scheduleActivateDeferredImages();
         }}
         function startObserver() {{
-            if (!window.MutationObserver || !document.body) return;
-            var observer = new MutationObserver(function() {{
-                if (!window.rugbyCrestsEnabled) return;
-                if (window.requestAnimationFrame) {{
-                    window.requestAnimationFrame(activateDeferredImages);
-                }} else {{
-                    setTimeout(activateDeferredImages, 50);
-                }}
+            if (!window.MutationObserver || !document.body || crestObserver) return;
+            crestObserver = new MutationObserver(function() {{
+                if (!window.rugbyCrestsEnabled || initialCrestLoadDone) return;
+                scheduleActivateDeferredImages();
             }});
-            observer.observe(document.body, {{ childList: true, subtree: true }});
+            crestObserver.observe(document.body, {{ childList: true, subtree: true }});
         }}
         function startDeferredImages() {{
             if (deferredImagesStarted) return;
             deferredImagesStarted = true;
             window.rugbyCrestsEnabled = true;
+            window.rugbyClusterIconCache = {{}};
+            clusterRefreshPending = true;
             scheduleDeferredImages();
             startObserver();
         }}
@@ -2590,6 +2709,42 @@ def _build_base_map(config: MapConfig) -> folium.Map:
     return m
 
 
+def _crest_badge_html(badge: str | None) -> str:
+    if not badge:
+        return ""
+    return f'<span class="rugby-crest-badge" aria-hidden="true">{escape(badge)}</span>'
+
+
+def _crest_icon_html(
+    *,
+    icon_url: str | None,
+    icon_size: int,
+    color: str,
+    border_css: str,
+    crest_badge: str | None,
+) -> str:
+    badge_html = _crest_badge_html(crest_badge)
+    wrap_style = f"width: {icon_size}px; height: {icon_size}px;"
+    if icon_url:
+        inner = (
+            f'<div class="rugby-crest-marker" data-crest-url="{escape(icon_url)}" '
+            f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
+            f"{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3); opacity: 0.9; "
+            f'background-color: rgba(0,0,0,0.06);"></div>'
+        )
+    else:
+        inner = (
+            f'<div style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
+            f"background: {color}; border: 2px solid white; "
+            f'box-shadow: 0 0 3px rgba(0,0,0,0.3);"></div>'
+        )
+    return (
+        f'<div style="text-align: center;">'
+        f'<div class="rugby-crest-wrap" style="{wrap_style}">{inner}{badge_html}</div>'
+        f"</div>"
+    )
+
+
 def _add_marker(
     marker_group: FeatureGroupSubGroup | folium.FeatureGroup,
     item: _PlacedItem,
@@ -2622,23 +2777,13 @@ def _add_marker(
     icon_size = 30
     icon_url = item.get("icon_url")
     border_css = f"border: 2px solid {color}; " if league_border else ""
-    if icon_url:
-        icon_html = (
-            f'<div style="text-align: center;">'
-            f'<div class="rugby-crest-marker" data-crest-url="{escape(icon_url)}" '
-            f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
-            f"{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3); opacity: 0.9; "
-            f'background-color: rgba(0,0,0,0.06);"></div>'
-            f"</div>"
-        )
-    else:
-        icon_html = (
-            f'<div style="text-align: center;">'
-            f'<div style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
-            f"background: {color}; border: 2px solid white; "
-            f'box-shadow: 0 0 3px rgba(0,0,0,0.3);"></div>'
-            f"</div>"
-        )
+    icon_html = _crest_icon_html(
+        icon_url=icon_url,
+        icon_size=icon_size,
+        color=color,
+        border_css=border_css,
+        crest_badge=item.get("crest_badge"),
+    )
 
     icon = folium.DivIcon(html=icon_html, icon_size=(icon_size, icon_size), icon_anchor=(15, 15))
 
@@ -2651,6 +2796,7 @@ def _add_marker(
     marker.options["tierOrder"] = tier_order  # type: ignore[index]
     marker.options["imageUrl"] = icon_url or ""  # type: ignore[index]
     marker.options["itemName"] = item["name"]  # type: ignore[index]
+    marker.options["crestBadge"] = item.get("crest_badge") or ""  # type: ignore[index]
     marker.add_to(marker_group)
 
 
@@ -2670,17 +2816,21 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
             if (mk.options.itemName) { names.push(mk.options.itemName); }
         }
         names.sort();
-        var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
         var count = cluster.getChildCount();
+        var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
+        var crestBadge = '';
+        if (count === 1 && bestMarker && bestMarker.options.crestBadge) {
+            crestBadge = bestMarker.options.crestBadge;
+        }
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' items';
         if (imageUrl) {
-            var cacheKey = imageUrl + '|' + count;
+            var cacheKey = imageUrl + '|' + count + '|' + crestBadge + '|' + (window.rugbyCrestsEnabled ? '1' : '0');
             if (window.rugbyClusterIconCache && window.rugbyClusterIconCache[cacheKey]) {
                 return window.rugbyClusterIconCache[cacheKey];
             }
             var crestInner = window.rugbyCrestClusterInner
-                ? window.rugbyCrestClusterInner(imageUrl)
-                : ('<div class="rugby-crest-cluster" data-crest-url="' + imageUrl.replace(/"/g, '&quot;') + '" style="width:30px;height:30px;border-radius:50%;background-color:rgba(0,0,0,0.06);"></div>');
+                ? window.rugbyCrestClusterInner(imageUrl, crestBadge)
+                : ('<div class="rugby-crest-wrap" style="width:30px;height:30px;"><div class="rugby-crest-cluster" data-crest-url="' + imageUrl.replace(/"/g, '&quot;') + '" style="width:30px;height:30px;border-radius:50%;background-color:rgba(0,0,0,0.06);"></div></div>');
             var clusterIcon = L.divIcon({
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
                       crestInner +

@@ -1,6 +1,6 @@
 """Tests for team pages logic."""
 
-from core import TeamTravelDistances
+from core import TeamTravelDistances, get_config
 from rugby.team_pages import (
     TeamData,
     TeamFixtureEntry,
@@ -325,6 +325,42 @@ class TestRenderFixturesSection:
 
 
 class TestGetTeamPageHtml:
+    def test_stylesheet_href_is_root_absolute_in_production(self, monkeypatch):
+        monkeypatch.setattr(get_config(), "is_production", True)
+        team_data = _minimal_team_data()
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert 'href="/styles.css"' in html
+        assert 'href="/team-pages.css"' in html
+
+    def test_stylesheet_href_is_relative_one_level_in_dev(self, monkeypatch):
+        monkeypatch.setattr(get_config(), "is_production", False)
+        team_data = _minimal_team_data()
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert 'href="../styles.css"' in html
+        assert 'href="../team-pages.css"' in html
+
     def test_renders_constituent_body_row_when_known(self):
         team_data = _minimal_team_data(constituent_body="Surrey Rugby")
         html = get_team_page_html(

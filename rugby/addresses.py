@@ -109,6 +109,31 @@ def team_name_to_club_name(team_name: str) -> str:
     return team_name
 
 
+def team_lower_xv_roman(team_name: str) -> str | None:
+    """Roman ordinal for reserve XVs (RFU ``II`` / ``2nd XV`` style); ``None`` for principal sides."""
+    raw = (team_name or "").strip()
+    if not raw:
+        return None
+    parts = raw.split()
+    if len(parts) < 2:
+        return None
+    last = parts[-1]
+    if last in ("II", "III", "IV", "V"):
+        return last
+    last_two = f"{parts[-2]} {parts[-1]}"
+    if last_two == "2nd XV":
+        return "II"
+    if last_two == "3rd XV":
+        return "III"
+    if last_two == "4th XV":
+        return "IV"
+    if last_two == "5th XV":
+        return "V"
+    if last_two == "6th XV":
+        return "VI"
+    return None
+
+
 def extract_maps_url_from_soup(soup: BeautifulSoup) -> str | None:
     """Extract Google Maps URL from club details button.
 

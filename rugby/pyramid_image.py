@@ -79,7 +79,7 @@ from core.slugs import (
 )
 from core.slugs import stem_wants_full_png as _stem_wants_full_png
 from rugby import DATA_DIR, short_season
-from rugby.addresses import team_name_to_club_name
+from rugby.addresses import team_lower_xv_roman, team_name_to_club_name
 from rugby.clubs import load_geocoded_league
 from rugby.tiers import (
     LEAGUE_TITLE_SPONSOR_PHRASES,
@@ -4323,31 +4323,6 @@ def _crest_club_label(team_name: str) -> str:
     return cand or raw
 
 
-def _team_lower_xv_roman(team_name: str) -> str | None:
-    """Roman ordinal for reserve XVs (RFU ``II`` / ``2nd XV`` style); ``None`` for principal sides."""
-    raw = (team_name or "").strip()
-    if not raw:
-        return None
-    parts = raw.split()
-    if len(parts) < 2:
-        return None
-    last = parts[-1]
-    if last in ("II", "III", "IV", "V"):
-        return last
-    last_two = f"{parts[-2]} {parts[-1]}"
-    if last_two == "2nd XV":
-        return "II"
-    if last_two == "3rd XV":
-        return "III"
-    if last_two == "4th XV":
-        return "IV"
-    if last_two == "5th XV":
-        return "V"
-    if last_two == "6th XV":
-        return "VI"
-    return None
-
-
 def _svg_lower_xv_roman_corner(
     roman: str,
     bx: float,
@@ -5000,7 +4975,7 @@ def _render_league_cell(
                         wrap_width_px=crest_wrap_w,
                     )
                 )
-            roman_badge = _team_lower_xv_roman(tm.name)
+            roman_badge = team_lower_xv_roman(tm.name)
             if roman_badge:
                 roman_left_x = crest_col_x if tm.image_url else bx
                 crest_parts.append(

@@ -74,6 +74,21 @@ def test_minify_styles_css_writes_smaller_file_in_place(tmp_path: Path) -> None:
     assert minified == ".a{color:red}"
 
 
+def test_minify_styles_css_minifies_team_pages_css(tmp_path: Path) -> None:
+    dist_dir = tmp_path / "dist"
+    dist_dir.mkdir()
+    team_pages_path = dist_dir / "team-pages.css"
+    team_pages_path.write_text(
+        "/* team pages */\n.league-history-table {\n  width: 100%;\n}\n",
+        encoding="utf-8",
+    )
+
+    minify_styles_css(dist_dir)
+
+    minified = team_pages_path.read_text(encoding="utf-8")
+    assert minified == ".league-history-table{width:100%}"
+
+
 def test_minify_styles_css_noop_when_file_missing(tmp_path: Path) -> None:
     dist_dir = tmp_path / "dist"
     dist_dir.mkdir()

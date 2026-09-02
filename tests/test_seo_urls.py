@@ -7,6 +7,8 @@ from pathlib import Path
 from rugby.maps import _render_popup_html
 from rugby.redirects import (
     _redirect_target_url,
+    discover_apostrophe_tier_redirects,
+    discover_feature_rename_redirects,
     generate_legacy_redirects,
     resolve_not_found_redirect,
     resolve_redirect_target,
@@ -15,8 +17,8 @@ from rugby.seo import absolute_url, encode_url_path, generate_sitemap
 from rugby.team_pages import discover_team_rename_redirects, team_info_page_filename
 
 
-def test_encode_url_path_keeps_apostrophe() -> None:
-    path = "/2017-2018/Premiership_Women's/"
+def test_encode_url_path_keeps_apostrophe_in_team_paths() -> None:
+    path = "/teams/Bishop's_Stortford.html"
     assert encode_url_path(path) == path
     assert absolute_url(path) == f"https://rugbyunionmap.uk{path}"
 
@@ -135,3 +137,42 @@ def test_redirect_target_url_prefers_explicit_rename(tmp_path: Path) -> None:
         explicit,
     )
     assert target == absolute_url("/teams/Middlesbrough_III.html")
+
+
+def test_discover_feature_rename_redirects_match_day_to_fixtures(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    season = dist / "2026-2027"
+    (season / "fixtures").mkdir(parents=True)
+    (season / "fixtures" / "index.html").write_text("<html></html>", encoding="utf-8")
+    pairs = dict(discover_feature_rename_redirects(dist))
+    assert pairs["/2026-2027/match_day/"] == "/2026-2027/fixtures/"
+
+
+def test_discover_apostrophe_tier_redirects(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    season = dist / "2024-2025"
+    (season / "Premiership_Women").mkdir(parents=True)
+    (season / "Premiership_Women" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (season / "Premiership_Women's").mkdir(parents=True)
+    pairs = dict(discover_apostrophe_tier_redirects(dist))
+    assert pairs["/2024-2025/Premiership_Women's/"] == "/2024-2025/Premiership_Women/"
+
+
+def test_sitemap_skips_flat_tier_html_when_directory_exists(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    season = dist / "2026-2027"
+    tier = season / "Counties_1"
+    tier.mkdir(parents=True)
+    (tier / "index.html").write_text("<html></html>", encoding="utf-8")
+    (season / "Counties_1.html").write_text("<html></html>", encoding="utf-8")
+    sitemap = generate_sitemap(dist)
+    assert "Counties_1/" in sitemap
+    assert "Counties_1.html" not in sitemap
+
+
+def test_sitemap_omits_404_html(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    dist.mkdir()
+    (dist / "404.html").write_text("<html></html>", encoding="utf-8")
+    sitemap = generate_sitemap(dist)
+    assert "404.html" not in sitemap

@@ -52,12 +52,15 @@ def test_stitch_png_tiles(tmp_path: Path) -> None:
 
 def test_stem_wants_full_png_only_national_and_all_leagues() -> None:
     assert pi.stem_wants_full_png(Path("pyramid.png"))
+    assert pi.stem_wants_full_png(Path("pyramid-labels.png"))
+    assert pi.stem_wants_full_png(Path("pyramid-all-leagues.png"))
+    assert pi.stem_wants_full_png(Path("pyramid-all-leagues-labels.png"))
     assert pi.stem_wants_full_png(Path("pyramid_Labels.png"))
     assert pi.stem_wants_full_png(Path("pyramid_All_Leagues.png"))
-    assert pi.stem_wants_full_png(Path("pyramid_All_Leagues_Labels.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid-women.png"))
     assert not pi.stem_wants_full_png(Path("pyramid_womens.png"))
-    assert not pi.stem_wants_full_png(Path("pyramid_merit_Hampshire.png"))
-    assert not pi.stem_wants_full_png(Path("pyramid_merit_Hampshire_Labels.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid-merit-hampshire.png"))
+    assert not pi.stem_wants_full_png(Path("pyramid-merit-hampshire-labels.png"))
 
 
 def test_pyramid_png_output_mode_preview_only_for_merit() -> None:

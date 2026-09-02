@@ -227,10 +227,10 @@ def scrape_meta_leagues(
 
 def clean_filename(text: str) -> str:
     """Convert text to a safe filename"""
-    # Remove or replace invalid filename characters
-    text = re.sub(r'[<>:"/\\|?*]', "_", text)
-    text = re.sub(r"\s+", "_", text)
-    return text.strip("_")
+    from core.slugs import slugify_content
+
+    text = re.sub(r'[<>:"/\\|?*]', " ", text)
+    return slugify_content(text)
 
 
 def _is_all_zero_row(row: Tag, team_cell: Tag) -> bool:

@@ -36,6 +36,7 @@ import folium
 from folium.plugins import MarkerCluster
 
 from core import (
+    FEATURE_FIXTURES,
     Fixture,
     FixtureLeague,
     GeocodedTeam,
@@ -584,7 +585,7 @@ def _today_inside_season_calendar(season: str, *, today: date | None = None) -> 
 def _match_day_seo_head(season: str, *, historic_archive: bool) -> str:
     """Return <head> elements for document title, viewport, and Open Graph (match day)."""
     season_short = short_season(season)
-    page_title = f"Match Day | {season_short} | {BRAND}"
+    page_title = f"Fixtures & Results | {season_short} | {BRAND}"
     if historic_archive:
         desc = (
             f"Historical {season_short} English rugby union fixtures mapped by match Saturday—clubs, "
@@ -604,7 +605,7 @@ def _match_day_seo_head(season: str, *, historic_archive: bool) -> str:
         '    <meta property="og:type" content="website" />',
     ]
     if get_config().is_production:
-        url = f"{BASE_URL}/{season}/match_day/"
+        url = f"{BASE_URL}/{season}/{FEATURE_FIXTURES}/"
         lines.append(f'    <link rel="canonical" href="{escape(url)}">')
         lines.append(f'    <meta property="og:url" content="{escape(url)}" />')
         lines.extend(og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ").split("\n"))
@@ -614,7 +615,7 @@ def _match_day_seo_head(season: str, *, historic_archive: bool) -> str:
                 [
                     ("Home", f"{BASE_URL}/"),
                     (season, f"{BASE_URL}/{season}/"),
-                    ("Match Day", url),
+                    ("Fixtures & Results", url),
                 ],
                 indent="    ",
             )
@@ -1014,7 +1015,7 @@ def build_match_day_map(
         <span class="map-header__sep">&rsaquo;</span>
         <a class="map-header__crumb" href="{season_h_e}">{season_esc}</a>
         <span class="map-header__sep">&rsaquo;</span>
-        <span class="map-header__title">Match Day</span>
+        <span class="map-header__title">Fixtures &amp; Results</span>
         <span class="map-header__theme">
         <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
         <select id="rugbyMapThemeSelect" class="map-header__theme-select" aria-label="Map color theme">
@@ -1429,7 +1430,7 @@ def main() -> None:
         "--output",
         type=str,
         default=None,
-        help="Output file (default: dist/<season>/match_day/index.html)",
+        help=f"Output file (default: dist/<season>/{FEATURE_FIXTURES}/index.html)",
     )
     parser.add_argument(
         "--production",
@@ -1443,7 +1444,7 @@ def main() -> None:
     season: str = args.season
 
     output_path = (
-        Path(args.output) if args.output else DIST_DIR / season / "match_day" / "index.html"
+        Path(args.output) if args.output else DIST_DIR / season / FEATURE_FIXTURES / "index.html"
     )
 
     team_index = build_team_index(season)

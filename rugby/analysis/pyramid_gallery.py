@@ -26,16 +26,24 @@ import sys
 from pathlib import Path
 
 from core.config import DIST_DIR, REPO_ROOT
+from core.slugs import (
+    LEGACY_PYRAMID_STEM_MAP,
+    PYRAMID_ALL_LEAGUES_GALLERY_HTML,
+    PYRAMID_GALLERY_HTML,
+    PYRAMID_STEM,
+    PYRAMID_STEM_ALL_LEAGUES,
+    PYRAMID_STEM_WOMEN,
+)
 
 _SEASON_DIR_RE = re.compile(r"^[12]\d{3}-[12]\d{3}$")
 
-STEM_NATIONAL = "pyramid"
-STEM_ALL_LEAGUES = "pyramid_All_Leagues"
-STEM_WOMENS = "pyramid_womens"
+STEM_NATIONAL = PYRAMID_STEM
+STEM_ALL_LEAGUES = PYRAMID_STEM_ALL_LEAGUES
+STEM_WOMENS = PYRAMID_STEM_WOMEN
 
 DEFAULT_OUTPUT_BY_STEM: dict[str, str] = {
-    STEM_NATIONAL: "pyramid-gallery.html",
-    STEM_ALL_LEAGUES: "pyramid-all-leagues-gallery.html",
+    STEM_NATIONAL: PYRAMID_GALLERY_HTML,
+    STEM_ALL_LEAGUES: PYRAMID_ALL_LEAGUES_GALLERY_HTML,
 }
 
 
@@ -48,12 +56,17 @@ def _season_sort_key(folder_name: str) -> tuple[int, int]:
 
 
 def _pick_image(season_dir: Path, stem: str) -> str | None:
-    png = season_dir / f"{stem}.png"
-    if png.is_file():
-        return f"{season_dir.name}/{stem}.png"
-    svg = season_dir / f"{stem}.svg"
-    if svg.is_file():
-        return f"{season_dir.name}/{stem}.svg"
+    candidates = [stem]
+    for legacy, current in LEGACY_PYRAMID_STEM_MAP.items():
+        if current == stem and legacy not in candidates:
+            candidates.append(legacy)
+    for candidate in candidates:
+        png = season_dir / f"{candidate}.png"
+        if png.is_file():
+            return f"{season_dir.name}/{candidate}.png"
+        svg = season_dir / f"{candidate}.svg"
+        if svg.is_file():
+            return f"{season_dir.name}/{candidate}.svg"
     return None
 
 

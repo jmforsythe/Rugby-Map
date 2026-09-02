@@ -69,6 +69,15 @@ from xml.sax.saxutils import escape as xml_escape
 from core import setup_logging
 from core.config import CACHE_DIR, CURRENT_SEASON, DIST_DIR
 from core.http import get_headers
+from core.slugs import (
+    PYRAMID_STEM,
+    PYRAMID_STEM_ALL_LEAGUES,
+    PYRAMID_STEM_WOMEN,
+    pyramid_labels_stem,
+    pyramid_merit_stem,
+    resolve_pyramid_stem,
+)
+from core.slugs import stem_wants_full_png as _stem_wants_full_png
 from rugby import DATA_DIR, short_season
 from rugby.addresses import team_name_to_club_name
 from rugby.clubs import load_geocoded_league
@@ -9444,17 +9453,17 @@ PYRAMID_PREVIEW_FROM_SVG_PIXEL_THRESHOLD = 80_000_000
 
 _FULL_PNG_STEMS = frozenset(
     {
-        "pyramid",
-        "pyramid_Labels",
-        "pyramid_All_Leagues",
-        "pyramid_All_Leagues_Labels",
+        PYRAMID_STEM,
+        pyramid_labels_stem(PYRAMID_STEM),
+        PYRAMID_STEM_ALL_LEAGUES,
+        pyramid_labels_stem(PYRAMID_STEM_ALL_LEAGUES),
     }
 )
 
 
 def stem_wants_full_png(png_path: Path) -> bool:
     """True when ``png_path`` should get a full ``--png-scale`` raster, not preview-only."""
-    return png_path.stem in _FULL_PNG_STEMS
+    return _stem_wants_full_png(resolve_pyramid_stem(png_path.stem))
 
 
 def _effective_preview_raster_scale(svg_width: int, max_width: int) -> float:
@@ -9470,7 +9479,10 @@ def _preview_png_path(png_path: Path) -> Path:
 
 def _preview_png_max_width(stem: str, full_png_width: int) -> int:
     """Thumbnail width cap for season-index pyramid previews."""
-    if stem in _FULL_PNG_STEMS and full_png_width > PYRAMID_PREVIEW_MAX_WIDTH * 2:
+    if (
+        _stem_wants_full_png(resolve_pyramid_stem(stem))
+        and full_png_width > PYRAMID_PREVIEW_MAX_WIDTH * 2
+    ):
         return min(full_png_width, PYRAMID_PREVIEW_MAX_WIDTH_WIDE)
     return PYRAMID_PREVIEW_MAX_WIDTH
 
@@ -9576,8 +9588,9 @@ def _validate_season(value: str) -> str:
 
 
 def _pyramid_labels_path(path: Path) -> Path:
-    """Sibling path for club-name-labelled variant (``pyramid.svg`` → ``pyramid_Labels.svg``)."""
-    return path.with_name(f"{path.stem}_Labels{path.suffix}")
+    """Sibling path for club-name-labelled variant (``pyramid.svg`` → ``pyramid-labels.svg``)."""
+    labels = pyramid_labels_stem(resolve_pyramid_stem(path.stem))
+    return path.with_name(f"{labels}{path.suffix}")
 
 
 def _labels_under_layout_scale(args: argparse.Namespace) -> float | None:
@@ -9710,8 +9723,8 @@ def _default_svg_path(
     merit_competition: str | None = None,
 ) -> Path:
     if merit_competition is not None:
-        return DIST_DIR / season / f"pyramid_merit_{merit_competition}.svg"
-    stem = "pyramid_womens" if gender == "womens" else "pyramid"
+        return DIST_DIR / season / f"{pyramid_merit_stem(merit_competition)}.svg"
+    stem = PYRAMID_STEM_WOMEN if gender == "womens" else PYRAMID_STEM
     return DIST_DIR / season / f"{stem}.svg"
 
 
@@ -9722,8 +9735,8 @@ def _default_png_path(
     merit_competition: str | None = None,
 ) -> Path:
     if merit_competition is not None:
-        return DIST_DIR / season / f"pyramid_merit_{merit_competition}.png"
-    stem = "pyramid_womens" if gender == "womens" else "pyramid"
+        return DIST_DIR / season / f"{pyramid_merit_stem(merit_competition)}.png"
+    stem = PYRAMID_STEM_WOMEN if gender == "womens" else PYRAMID_STEM
     return DIST_DIR / season / f"{stem}.png"
 
 
@@ -9739,7 +9752,7 @@ def _render_mens_standard_pyramid(
     Ignores ``--output`` / ``--png-output`` so merit-specific paths are untouched.
     """
     gender: Gender = "mens"
-    stem = "pyramid_All_Leagues" if all_leagues else "pyramid"
+    stem = PYRAMID_STEM_ALL_LEAGUES if all_leagues else PYRAMID_STEM
     svg_path = DIST_DIR / season / f"{stem}.svg"
     png_path = DIST_DIR / season / f"{stem}.png"
 

@@ -14,6 +14,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 from core.config import DIST_DIR, REPO_ROOT
+from core.slugs import FEATURE_FIXTURES, LEGACY_FEATURE_MATCH_DAY, legacy_apostrophe_tier_slug
 from rugby.seo import absolute_url
 from rugby.team_pages import discover_team_rename_redirects
 
@@ -169,6 +170,67 @@ def discover_legacy_tier_html_redirects(dist_dir: Path) -> list[tuple[str, str]]
     return pairs
 
 
+def discover_apostrophe_tier_redirects(dist_dir: Path) -> list[tuple[str, str]]:
+    """``/season/Premiership_Women's/`` → ``/season/Premiership_Women/`` when canonical exists."""
+    pairs: list[tuple[str, str]] = []
+    for season_dir in sorted(dist_dir.iterdir()):
+        if not season_dir.is_dir() or not _SEASON_DIR.fullmatch(season_dir.name):
+            continue
+        for tier_dir in sorted(season_dir.iterdir()):
+            if not tier_dir.is_dir():
+                continue
+            canonical = legacy_apostrophe_tier_slug(tier_dir.name)
+            if not canonical:
+                continue
+            canonical_index = season_dir / canonical / "index.html"
+            if canonical_index.is_file():
+                pairs.append(
+                    (
+                        f"/{season_dir.name}/{tier_dir.name}/",
+                        f"/{season_dir.name}/{canonical}/",
+                    )
+                )
+    return pairs
+
+
+def discover_feature_rename_redirects(dist_dir: Path) -> list[tuple[str, str]]:
+    """Legacy feature paths (``match_day``) → canonical names (``fixtures``)."""
+    pairs: list[tuple[str, str]] = []
+    for season_dir in sorted(dist_dir.iterdir()):
+        if not season_dir.is_dir() or not _SEASON_DIR.fullmatch(season_dir.name):
+            continue
+        fixtures_index = season_dir / FEATURE_FIXTURES / "index.html"
+        if not fixtures_index.is_file():
+            continue
+        season = season_dir.name
+        pairs.extend(
+            [
+                (f"/{season}/{LEGACY_FEATURE_MATCH_DAY}/", f"/{season}/{FEATURE_FIXTURES}/"),
+                (
+                    f"/{season}/{LEGACY_FEATURE_MATCH_DAY}/index.html",
+                    f"/{season}/{FEATURE_FIXTURES}/",
+                ),
+            ]
+        )
+    legacy_root = dist_dir / LEGACY_FEATURE_MATCH_DAY / "index.html"
+    if legacy_root.is_file():
+        latest = sorted(
+            (d.name for d in dist_dir.iterdir() if d.is_dir() and _SEASON_DIR.fullmatch(d.name)),
+            reverse=True,
+        )
+        for season in latest:
+            if (dist_dir / season / FEATURE_FIXTURES / "index.html").is_file():
+                pairs.append((f"/{LEGACY_FEATURE_MATCH_DAY}/", f"/{season}/{FEATURE_FIXTURES}/"))
+                pairs.append(
+                    (
+                        f"/{LEGACY_FEATURE_MATCH_DAY}/index.html",
+                        f"/{season}/{FEATURE_FIXTURES}/",
+                    )
+                )
+                break
+    return pairs
+
+
 def _is_redirect_stub(path: Path) -> bool:
     try:
         return _REDIRECT_MARKER in path.read_text(encoding="utf-8", errors="replace")[:800]
@@ -185,6 +247,14 @@ def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str]]:
             if line and not line.startswith("#"):
                 paths.add(_normalize_site_path(line))
     for src, dest in discover_legacy_tier_html_redirects(dist_dir):
+        src_path = _normalize_site_path(src)
+        paths.add(src_path)
+        explicit[src_path] = _normalize_site_path(dest)
+    for src, dest in discover_apostrophe_tier_redirects(dist_dir):
+        src_path = _normalize_site_path(src)
+        paths.add(src_path)
+        explicit[src_path] = _normalize_site_path(dest)
+    for src, dest in discover_feature_rename_redirects(dist_dir):
         src_path = _normalize_site_path(src)
         paths.add(src_path)
         explicit[src_path] = _normalize_site_path(dest)

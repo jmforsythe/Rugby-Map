@@ -11,11 +11,11 @@ from pathlib import Path
 from urllib.parse import quote
 
 from core.config import DIST_DIR, REPO_ROOT
+from core.slugs import FEATURE_FIXTURES, LEGACY_FEATURE_MATCH_DAY
 
 BASE_URL = "https://rugbyunionmap.uk"
 
-# Encode each path segment for URLs; keep apostrophe literal to match on-disk names
-# (e.g. Premiership_Women's/) and avoid canonical/sitemap mismatches with %27.
+# Encode each path segment for URLs; keep apostrophe literal for legacy team pages.
 _PATH_SEGMENT_SAFE = "'"
 
 
@@ -108,8 +108,10 @@ def _lastmod_utc_date(path: Path) -> str:
 # Path on site (pathname + query is empty): "/2025-2026/", "/teams/foo.html".
 # Relative sitemap hints only; crawlers mostly use these weakly versus internal links.
 _SEASON_ROOT_INDEX = re.compile(r"^/\d{4}-\d{4}/$")
-_MATCH_DAY_INDEX = re.compile(r"^/\d{4}-\d{4}/match_day/$")
+_FIXTURES_INDEX = re.compile(rf"^/\d{{4}}-\d{{4}}/{FEATURE_FIXTURES}/$")
+_LEGACY_MATCH_DAY_INDEX = re.compile(rf"^/\d{{4}}-\d{{4}}/{LEGACY_FEATURE_MATCH_DAY}/$")
 _SEASON_DIR_NAME = re.compile(r"^\d{4}-\d{4}$")
+_SITEMAP_SKIP_HTML = frozenset({"404.html"})
 
 
 def _is_redirect_stub(html_file: Path) -> bool:
@@ -140,13 +142,38 @@ def _priority_for_site_path(site_path: str, *, latest_season: str = "") -> float
     """
     if site_path == "/":
         return 1.0
-    if latest_season and site_path in (f"/{latest_season}/", f"/{latest_season}/match_day/"):
+    if latest_season and site_path in (
+        f"/{latest_season}/",
+        f"/{latest_season}/{FEATURE_FIXTURES}/",
+    ):
         return 0.9
-    if site_path in ("/teams/", "/custom-map/", "/constituent-bodies/"):
+    if site_path in ("/teams/", "/custom-map/", "/constituent-bodies/", "/stats/"):
         return 0.85
-    if _SEASON_ROOT_INDEX.fullmatch(site_path) or _MATCH_DAY_INDEX.fullmatch(site_path):
+    if (
+        _SEASON_ROOT_INDEX.fullmatch(site_path)
+        or _FIXTURES_INDEX.fullmatch(site_path)
+        or _LEGACY_MATCH_DAY_INDEX.fullmatch(site_path)
+    ):
         return 0.85
     return 0.5
+
+
+def _skip_sitemap_html(dist_dir: Path, html_file: Path, rel_path: Path) -> bool:
+    """True when *html_file* should not appear in the sitemap."""
+    if rel_path.name in _SITEMAP_SKIP_HTML:
+        return True
+    if rel_path.parts and rel_path.parts[0] == "football":
+        return True
+    if _is_redirect_stub(html_file):
+        return True
+    # Dev flat tier pages when a production directory URL exists for the same tier.
+    if rel_path.suffix == ".html" and rel_path.name != "index.html":
+        parts = rel_path.parts
+        if len(parts) == 2 and _SEASON_DIR_NAME.fullmatch(parts[0]):
+            tier_dir_index = dist_dir / parts[0] / rel_path.stem / "index.html"
+            if tier_dir_index.is_file():
+                return True
+    return False
 
 
 def generate_sitemap(dist_dir: Path) -> str:
@@ -167,12 +194,8 @@ def generate_sitemap(dist_dir: Path) -> str:
             rel_path = html_file.relative_to(dist_dir)
         except ValueError:
             continue
-        # Experimental football maps are not linked from the rugby site; omit from sitemap.
-        if rel_path.parts and rel_path.parts[0] == "football":
-            continue
 
-        # Redirect stubs for legacy URLs are noindex and must not be re-submitted.
-        if _is_redirect_stub(html_file):
+        if _skip_sitemap_html(dist_dir, html_file, rel_path):
             continue
 
         loc = absolute_url_for_dist_file(dist_dir, html_file)

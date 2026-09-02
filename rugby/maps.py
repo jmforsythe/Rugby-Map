@@ -23,6 +23,7 @@ from core import (
     json_load_cache,
     set_config,
     setup_logging,
+    slugify_content,
 )
 from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, CURRENT_SEASON, DIST_DIR
@@ -690,7 +691,7 @@ def _tier_sibling_links(
 ) -> list[tuple[str, str]]:
     """Build (display_name, href) pairs for all tiers in a group."""
     return [
-        (tier_name, _sibling_href(tier_name.replace(" ", "_"), is_prod, prefix))
+        (tier_name, _sibling_href(slugify_content(tier_name), is_prod, prefix))
         for tier_name in tier_order
     ]
 
@@ -720,7 +721,7 @@ def _mens_sibling_links(
         pyramid_name = pyramid_name_by_num.get(tier_num)
         tier_name = pyramid_name or mens_current_tier_name(tier_num, season)
         display = f"{tier_name} + Merit" if pyramid_name else f"{tier_name} (Merit)"
-        file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+        file_name = slugify_content(tier_name) + "_All_Leagues"
         merit_links.append((display, _sibling_href(file_name, is_prod)))
     return links + [SIBLING_DIVIDER] + merit_links
 
@@ -1015,7 +1016,7 @@ def main() -> None:
             for tier_name in mens_tier_order_r:
                 tier_items = mens_by_tier_r[tier_name]
                 tier_num = tier_items[0].tier_num
-                out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
+                out = _output_path(output_dir, slugify_content(tier_name), is_prod)
                 config = _build_config(
                     tier_name,
                     season,
@@ -1031,7 +1032,7 @@ def main() -> None:
                 merit_at_level = merit_by_tier_num.get(tier_num, [])
                 if merit_at_level:
                     combined = tier_items + merit_at_level
-                    file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+                    file_name = slugify_content(tier_name) + "_All_Leagues"
                     out = _output_path(output_dir, file_name, is_prod)
                     config = _build_config(
                         f"{tier_name} + Merit",
@@ -1059,7 +1060,7 @@ def main() -> None:
                     merit_only_emitted = True
                 merit_items = merit_by_tier_num[tier_num]
                 tier_name = mens_current_tier_name(tier_num, season)
-                file_name = tier_name.replace(" ", "_") + "_All_Leagues"
+                file_name = slugify_content(tier_name) + "_All_Leagues"
                 out = _output_path(output_dir, file_name, is_prod)
                 config = _build_config(
                     f"{tier_name} (Merit)",
@@ -1078,7 +1079,7 @@ def main() -> None:
         for tier_name in womens_tier_order_r:
             tier_items = womens_by_tier_r[tier_name]
             tier_num = tier_items[0].tier_num
-            out = _output_path(output_dir, tier_name.replace(" ", "_"), is_prod)
+            out = _output_path(output_dir, slugify_content(tier_name), is_prod)
             config = _build_config(
                 tier_name,
                 season,
@@ -1175,7 +1176,7 @@ def main() -> None:
             for tier_name in comp_tier_order:
                 tier_items = comp_by_tier[tier_name]
                 local_tier = tier_items[0].tier_num
-                file_name = tier_name.replace(" ", "_")
+                file_name = slugify_content(tier_name)
                 out = _output_path(comp_dir, file_name, is_prod)
                 config = _build_config(
                     f"{comp_display} {tier_name}",

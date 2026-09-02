@@ -2,7 +2,6 @@
 
 import functools
 import json
-import re
 from typing import NotRequired, TypedDict
 
 # Stage 1: League scraping
@@ -171,11 +170,13 @@ def json_load_cache(filename: str) -> dict:
 
 def sanitize_team_name(team_name: str) -> str:
     """Convert team name to URL-safe format."""
-    sanitized = team_name.replace(" ", "_").replace("/", "_").replace("&", "and").replace("|", "_")
-    sanitized = re.sub(r"[\s_-]+", "_", sanitized)
-    return sanitized.strip("_")
+    from core.slugs import sanitize_team_name as _sanitize_team_name
+
+    return _sanitize_team_name(team_name)
 
 
 def team_name_to_filepath(team_name: str) -> str:
     """Convert team name to corresponding HTML filename."""
-    return sanitize_team_name(team_name) + ".html"
+    from core.slugs import team_name_to_filepath as _team_name_to_filepath
+
+    return _team_name_to_filepath(team_name)

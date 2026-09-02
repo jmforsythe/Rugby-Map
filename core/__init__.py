@@ -19,6 +19,19 @@ from core.config import (
     setup_logging,
 )
 from core.http import AntiBotDetectedError, get_headers, get_session, make_request, print_block
+from core.slugs import (
+    FEATURE_FIXTURES,
+    PYRAMID_STEM,
+    PYRAMID_STEM_ALL_LEAGUES,
+    PYRAMID_STEM_WOMEN,
+    legacy_apostrophe_tier_slug,
+    pyramid_labels_stem,
+    pyramid_merit_stem,
+    resolve_pyramid_stem,
+    slugify_content,
+    slugify_path,
+    stem_wants_full_png,
+)
 from core.types import (
     AddressLeague,
     AddressTeam,
@@ -40,6 +53,10 @@ from core.types import (
 )
 
 __all__ = [
+    "FEATURE_FIXTURES",
+    "PYRAMID_STEM",
+    "PYRAMID_STEM_ALL_LEAGUES",
+    "PYRAMID_STEM_WOMEN",
     "CURRENT_SEASON",
     "DIST_DIR",
     "EARLIEST_SEASON",
@@ -71,8 +88,15 @@ __all__ = [
     "json_load_cache",
     "make_request",
     "print_block",
+    "legacy_apostrophe_tier_slug",
+    "pyramid_labels_stem",
+    "pyramid_merit_stem",
+    "resolve_pyramid_stem",
     "sanitize_team_name",
     "set_config",
+    "slugify_content",
+    "slugify_path",
+    "stem_wants_full_png",
     "setup_logging",
     "team_name_to_filepath",
 ]

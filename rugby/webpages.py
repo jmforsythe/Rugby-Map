@@ -12,11 +12,19 @@ from html import escape
 from pathlib import Path
 
 from core import (
+    FEATURE_FIXTURES,
+    PYRAMID_STEM,
+    PYRAMID_STEM_ALL_LEAGUES,
+    PYRAMID_STEM_WOMEN,
     get_config,
     get_favicon_html,
     get_google_analytics_script,
     get_twitter_card_meta,
+    pyramid_labels_stem,
+    pyramid_merit_stem,
+    resolve_pyramid_stem,
     set_config,
+    slugify_content,
 )
 from core.config import DIST_DIR
 from rugby import BRAND, short_season
@@ -324,18 +332,60 @@ def _pyramid_preview_thumb_src(season_dir: Path, stem: str) -> str | None:
     return _pyramid_diagram_full_href(season_dir, stem)
 
 
+def _resolve_on_disk_pyramid_stem(
+    season_dir: Path, stem: str, legacy_alternates: list[str]
+) -> str | None:
+    """Return the stem whose diagram files exist (prefer canonical *stem*)."""
+    for candidate in (stem, *legacy_alternates):
+        if (
+            _pyramid_diagram_full_href(season_dir, candidate)
+            or (season_dir / f"{candidate}.preview.png").is_file()
+        ):
+            return candidate
+    return None
+
+
+def _resolve_on_disk_labels_stem(season_dir: Path, on_disk_stem: str) -> str:
+    """Labelled variant for an on-disk pyramid stem (new or legacy naming)."""
+    canonical = resolve_pyramid_stem(on_disk_stem)
+    candidates = [pyramid_labels_stem(canonical), f"{on_disk_stem}_Labels"]
+    for labels_stem in candidates:
+        if labels_stem != on_disk_stem and (
+            _pyramid_diagram_full_href(season_dir, labels_stem)
+            or (season_dir / f"{labels_stem}.preview.png").is_file()
+        ):
+            return labels_stem
+    return pyramid_labels_stem(canonical)
+
+
 def _pyramid_labels_stem(stem: str) -> str:
-    """Labelled variant stem (``pyramid`` → ``pyramid_Labels``)."""
-    return f"{stem}_Labels"
+    """Labelled variant stem (``pyramid`` → ``pyramid-labels``)."""
+    return pyramid_labels_stem(resolve_pyramid_stem(stem))
 
 
-def _detect_pyramid_diagram_pair(season_dir: Path, stem: str) -> dict[str, str | None]:
+def _detect_pyramid_diagram_pair(
+    season_dir: Path,
+    stem: str,
+    *,
+    legacy_alternates: list[str] | None = None,
+) -> dict[str, str | None]:
     """Unlabelled and labelled pyramid preview + full (SVG) + full PNG hrefs."""
-    full_href = _pyramid_diagram_full_href(season_dir, stem)
-    thumb_src = _pyramid_preview_thumb_src(season_dir, stem)
-    full_png_href = _pyramid_full_png_href(season_dir, stem)
+    on_disk = _resolve_on_disk_pyramid_stem(season_dir, stem, legacy_alternates or [])
+    if on_disk is None:
+        return {
+            "thumb_src": None,
+            "full_href": None,
+            "full_png_href": None,
+            "labels_thumb_src": None,
+            "labels_full_href": None,
+            "labels_full_png_href": None,
+        }
 
-    labels_stem = _pyramid_labels_stem(stem)
+    full_href = _pyramid_diagram_full_href(season_dir, on_disk)
+    thumb_src = _pyramid_preview_thumb_src(season_dir, on_disk)
+    full_png_href = _pyramid_full_png_href(season_dir, on_disk)
+
+    labels_stem = _resolve_on_disk_labels_stem(season_dir, on_disk)
     labels_full = _pyramid_diagram_full_href(season_dir, labels_stem)
     labels_thumb = _pyramid_preview_thumb_src(season_dir, labels_stem)
     labels_full_png = _pyramid_full_png_href(season_dir, labels_stem)
@@ -574,7 +624,7 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     mens_tiers: list[tuple[str, str]] = tier_files.get("mens", [])
     womens_tiers: list[tuple[str, str]] = tier_files.get("womens", [])
     has_all_leagues = tier_files.get("has_all_leagues", False)
-    has_match_day = tier_files.get("has_match_day", False)
+    has_fixtures = tier_files.get("has_fixtures", False)
     merit_competitions: list[tuple[str, str, list[tuple[str, str]], dict[str, str | None]]] = (
         tier_files.get("merit", [])
     )
@@ -587,15 +637,19 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     all_seasons_href = f"../{'' if get_config().is_production else 'index.html'}"
 
     top_nav_html: str
-    if has_match_day:
-        match_day_href = "match_day/" if get_config().is_production else "match_day/index.html"
+    if has_fixtures:
+        fixtures_href = (
+            f"{FEATURE_FIXTURES}/"
+            if get_config().is_production
+            else f"{FEATURE_FIXTURES}/index.html"
+        )
         top_nav_html = (
             '    <nav class="season-top-nav" aria-label="Season">\n'
             '    <div class="back-link">\n'
             f'        <a href="{all_seasons_href}">← All Seasons</a>\n'
             "    </div>\n"
             '    <div class="back-link">\n'
-            f'        <a href="{match_day_href}">Fixtures &amp; Results →</a>\n'
+            f'        <a href="{fixtures_href}">Fixtures &amp; Results →</a>\n'
             "    </div>\n"
             "    </nav>\n"
         )
@@ -716,7 +770,11 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         return f"{s}/" if is_prod else f"{s}/index.html"
 
     teams_href = "./teams/" if is_prod else "./teams/index.html"
-    match_day_href = f"./{latest}/match_day/" if is_prod else f"./{latest}/match_day/index.html"
+    fixtures_href = (
+        f"./{latest}/{FEATURE_FIXTURES}/"
+        if is_prod
+        else f"./{latest}/{FEATURE_FIXTURES}/index.html"
+    )
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
     cb_map_href = "./constituent-bodies/" if is_prod else "./constituent-bodies/index.html"
     stats_href = "./stats/" if is_prod else "./stats/index.html"
@@ -761,9 +819,9 @@ def get_top_level_index_html(seasons: list[str]) -> str:
             <span class="hero-card__label">Current Season</span>
             <span class="hero-card__title">{latest}</span>
         </a>
-        <a class="hero-card" href="{match_day_href}">
+        <a class="hero-card" href="{fixtures_href}">
             <span class="hero-card__label">This Week</span>
-            <span class="hero-card__title">Match Day</span>
+            <span class="hero-card__title">Fixtures &amp; Results</span>
         </a>
         <a class="hero-card" href="{teams_href}">
             <span class="hero-card__label">Browse</span>
@@ -817,14 +875,17 @@ def get_top_level_index_html(seasons: list[str]) -> str:
 
 def _detect_existing(
     season_dir: Path,
-    candidates: list[tuple[str, str]],
+    candidates: list[tuple[str, str | tuple[str, ...]]],
 ) -> list[tuple[str, str]]:
     """Return only the (display_name, href) pairs whose files actually exist."""
     found = []
     for display, name in candidates:
-        href = _link(name)
-        if (season_dir / href).exists():
-            found.append((display, href))
+        names = (name,) if isinstance(name, str) else name
+        for candidate in names:
+            href = _link(candidate)
+            if (season_dir / href).exists():
+                found.append((display, href))
+                break
     return found
 
 
@@ -841,7 +902,7 @@ def detect_tier_files(season_dir: Path) -> dict:
     ]
 
     womens_candidates = [
-        ("Premiership", "Premiership_Women's"),
+        ("Premiership", (slugify_content("Premiership Women's"), "Premiership_Women's")),
         ("Championship 1", "Championship_1"),
         ("Championship 2", "Championship_2"),
         ("National Challenge 1", "National_Challenge_1"),
@@ -902,17 +963,29 @@ def detect_tier_files(season_dir: Path) -> dict:
             prefix = f"merit/{comp_dir.name}/"
             comp_tiers = [(name, prefix + href) for name, href in comp_tiers_raw]
             comp_pyramid = _detect_pyramid_diagram_pair(
-                season_dir, f"pyramid_merit_{comp_dir.name}"
+                season_dir,
+                pyramid_merit_stem(comp_dir.name),
+                legacy_alternates=[f"pyramid_merit_{comp_dir.name}"],
             )
             merit_competitions.append((comp_display, all_tiers_href, comp_tiers, comp_pyramid))
 
-    has_match_day = (season_dir / "match_day" / "index.html").exists() or (
-        season_dir / "match_day.html"
-    ).exists()
+    has_fixtures = (
+        (season_dir / FEATURE_FIXTURES / "index.html").exists()
+        or (season_dir / f"{FEATURE_FIXTURES}.html").exists()
+        or (season_dir / "match_day" / "index.html").exists()
+    )
 
-    mens_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid")
-    all_leagues_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid_All_Leagues")
-    womens_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, "pyramid_womens")
+    mens_pyramid_diagrams = _detect_pyramid_diagram_pair(season_dir, PYRAMID_STEM)
+    all_leagues_pyramid_diagrams = _detect_pyramid_diagram_pair(
+        season_dir,
+        PYRAMID_STEM_ALL_LEAGUES,
+        legacy_alternates=["pyramid_All_Leagues"],
+    )
+    womens_pyramid_diagrams = _detect_pyramid_diagram_pair(
+        season_dir,
+        PYRAMID_STEM_WOMEN,
+        legacy_alternates=["pyramid_womens"],
+    )
 
     return {
         "mens": mens_tiers,
@@ -921,7 +994,7 @@ def detect_tier_files(season_dir: Path) -> dict:
         "merit": merit_competitions,
         "tier_plus_merit": tier_plus_merit,
         "merit_only_tiers": merit_only_tiers,
-        "has_match_day": has_match_day,
+        "has_fixtures": has_fixtures,
         "mens_pyramid_diagrams": mens_pyramid_diagrams,
         "all_leagues_pyramid_diagrams": all_leagues_pyramid_diagrams,
         "womens_pyramid_diagrams": womens_pyramid_diagrams,

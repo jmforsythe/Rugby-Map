@@ -5,8 +5,8 @@
 #   --interactive-stem-orphans requires an interactive terminal (stdin is not a TTY).
 #
 # Usage (from repo root):
-#   bash scripts/pyramid_interactive_seasons_womens.sh              # SVG only
-#   bash scripts/pyramid_interactive_seasons_womens.sh --png      # also rasterise (Playwright)
+#   bash scripts/batch/pyramid_interactive_seasons_womens.sh              # SVG only
+#   bash scripts/batch/pyramid_interactive_seasons_womens.sh --png      # also rasterise (Playwright)
 #
 # Seasons run newest-first (same span as the men's interactive script).
 #
@@ -20,7 +20,7 @@
 #              (men's overrides_by_tier and stem_slot_strips are preserved when present).
 
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 PNG_ARGS=()

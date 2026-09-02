@@ -2,12 +2,12 @@
 # Generate Instagram league maps (PNG + SVG) for every season with geocoded data.
 #
 # Usage (from repo root):
-#   bash scripts/instagram_maps_all_seasons.sh
-#   bash scripts/instagram_maps_all_seasons.sh --season 2026-2027
+#   bash scripts/batch/instagram_maps_all_seasons.sh
+#   bash scripts/batch/instagram_maps_all_seasons.sh --season 2026-2027
 #   make instagram-maps-all-seasons
 
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 GEO_ROOT="data/rugby/geocoded_teams"
@@ -23,7 +23,7 @@ while (($#)); do
       ;;
     *)
       echo "Unknown argument: $1" >&2
-      echo "Usage: bash scripts/instagram_maps_all_seasons.sh [--season YYYY-YYYY]" >&2
+      echo "Usage: bash scripts/batch/instagram_maps_all_seasons.sh [--season YYYY-YYYY]" >&2
       exit 1
       ;;
   esac

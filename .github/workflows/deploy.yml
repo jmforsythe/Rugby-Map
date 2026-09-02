@@ -206,7 +206,7 @@ jobs:
         env:
           SEASON: ${{ matrix.season }}
         run: |
-          bash scripts/ci_rugby_season.sh "$SEASON"
+          bash scripts/ci/ci_rugby_season.sh "$SEASON"
 
       - name: Save pyramid raster cache
         if: env.PYRAMID_RASTER_CACHE_RESTORED != '1'
@@ -328,7 +328,7 @@ jobs:
         env:
           SEASON: ${{ matrix.season }}
         run: |
-          bash scripts/ci_football_season.sh "$SEASON"
+          bash scripts/ci/ci_football_season.sh "$SEASON"
 
       - name: Save football pyramid raster cache
         if: env.FOOTBALL_PYRAMID_RASTER_CACHE_RESTORED != '1'

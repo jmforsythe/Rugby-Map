@@ -35,7 +35,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 from rugby import DATA_DIR  # noqa: E402
 from rugby.analysis.merit_pyramid_crossovers import SEASONS, load_dataset  # noqa: E402

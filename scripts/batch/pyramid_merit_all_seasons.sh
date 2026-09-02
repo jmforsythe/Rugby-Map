@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Regenerate every merit competition pyramid and pyramid_All_Leagues for all seasons.
 # Uses saved tier_mappings JSON only (no TTY prompts). For interactive parent linking,
-# use scripts/pyramid_interactive_seasons.sh --merit instead.
+# use scripts/batch/pyramid_interactive_seasons.sh --merit instead.
 #
 # Usage (from repo root):
-#   bash scripts/pyramid_merit_all_seasons.sh
-#   bash scripts/pyramid_merit_all_seasons.sh --png
+#   bash scripts/batch/pyramid_merit_all_seasons.sh
+#   bash scripts/batch/pyramid_merit_all_seasons.sh --png
 
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 PNG_ARGS=()
@@ -20,7 +20,7 @@ while (($#)); do
       ;;
     *)
       echo "Unknown argument: $1" >&2
-      echo "Usage: bash scripts/pyramid_merit_all_seasons.sh [--png]" >&2
+      echo "Usage: bash scripts/batch/pyramid_merit_all_seasons.sh [--png]" >&2
       exit 1
       ;;
   esac

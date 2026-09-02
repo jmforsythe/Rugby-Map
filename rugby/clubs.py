@@ -9,7 +9,7 @@ commit under ``data/rugby/geocoded_teams/``.
 The three normalized files are keyed by *canonical* club name (the RFU
 ground-truth name, falling back to the derived ``team_name_to_club_name``
 result when no canonical name has been scraped yet — see
-``scripts/migrate_geocoded_to_club_maps.py``), so fixing one club's address
+``scripts/maintenance/migrate_geocoded_to_club_maps.py``), so fixing one club's address
 or coordinates only ever requires a one-line edit in one file.
 """
 

@@ -31,7 +31,7 @@ import time
 from collections import defaultdict
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -166,7 +166,7 @@ def assign_canonical(
 
     Returns an error string when ``new_canonical`` already exists with a
     materially different address (different postcode) — same guard as
-    ``scripts/backfill_cb_canonical_names.py``.
+    ``scripts/maintenance/backfill_cb_canonical_names.py``.
     """
     old_addr = club_addresses.get(old_canonical)
     new_addr = club_addresses.get(new_canonical)

@@ -4,11 +4,11 @@
 # club-name-labelled sibling (*_Labels.{svg,png}).
 #
 # Usage (from repo root):
-#   bash scripts/pyramid_all_seasons.sh
-#   bash scripts/pyramid_all_seasons.sh --png
+#   bash scripts/batch/pyramid_all_seasons.sh
+#   bash scripts/batch/pyramid_all_seasons.sh --png
 
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 PNG_ARGS=()
@@ -20,7 +20,7 @@ while (($#)); do
       ;;
     *)
       echo "Unknown argument: $1" >&2
-      echo "Usage: bash scripts/pyramid_all_seasons.sh [--png]" >&2
+      echo "Usage: bash scripts/batch/pyramid_all_seasons.sh [--png]" >&2
       exit 1
       ;;
   esac

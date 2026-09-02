@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Interactive parent linker for historical men's pyramid seasons (tiers 5–6, tier 7 order, stem).
-# Women's equivalent: scripts/pyramid_interactive_seasons_womens.sh (--womens bands 2–4 feeders).
+# Women's equivalent: scripts/batch/pyramid_interactive_seasons_womens.sh (--womens bands 2–4 feeders).
 #
 # Requires a real interactive terminal (TTY). Cursor/agent terminals will fail with:
 #   --interactive-stem-orphans requires an interactive terminal (stdin is not a TTY).
 #
 # Usage (from repo root):
-#   bash scripts/pyramid_interactive_seasons.sh                    # men's pyramid SVG only
-#   bash scripts/pyramid_interactive_seasons.sh --png              # also rasterise (needs Playwright)
-#   bash scripts/pyramid_interactive_seasons.sh --merit                 # merit pyramids + pyramid_All_Leagues (national+merit)
-#   bash scripts/pyramid_interactive_seasons.sh --merit Hampshire --png # flags can be combined; order-free
+#   bash scripts/batch/pyramid_interactive_seasons.sh                    # men's pyramid SVG only
+#   bash scripts/batch/pyramid_interactive_seasons.sh --png              # also rasterise (needs Playwright)
+#   bash scripts/batch/pyramid_interactive_seasons.sh --merit                 # merit pyramids + pyramid_All_Leagues (national+merit)
+#   bash scripts/batch/pyramid_interactive_seasons.sh --merit Hampshire --png # flags can be combined; order-free
 #
 # Seasons run newest-first between the 2022 and ~2008 restructures:
 #   2021-2022 … 2008-2009
@@ -20,7 +20,7 @@
 #   s / stop  — stop prompting; SVG still writes for that season
 
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 PNG_ARGS=()
@@ -42,7 +42,7 @@ while (($#)); do
       ;;
     *)
       echo "Unknown argument: $1" >&2
-      echo "Usage: bash scripts/pyramid_interactive_seasons.sh [--png] [--merit [COMPETITION]]" >&2
+      echo "Usage: bash scripts/batch/pyramid_interactive_seasons.sh [--png] [--merit [COMPETITION]]" >&2
       exit 1
       ;;
   esac

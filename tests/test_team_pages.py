@@ -181,7 +181,12 @@ class TestFixtureHelpers:
             "away_score": 17,
         }
         assert _format_fixture_result(entry) == (
-            '<span class="own-score">24</span> – 17 <span class="result-badge result-win">W</span>'
+            '<span class="fixture-score">'
+            '<span class="score-home own-score">24</span>'
+            '<span class="score-sep">–</span>'
+            '<span class="score-away">17</span>'
+            '<span class="result-badge result-win">W</span>'
+            "</span>"
         )
 
     def test_format_fixture_result_score_away(self):
@@ -197,7 +202,12 @@ class TestFixtureHelpers:
             "away_score": 17,
         }
         assert _format_fixture_result(entry) == (
-            '24 – <span class="own-score">17</span> <span class="result-badge result-loss">L</span>'
+            '<span class="fixture-score">'
+            '<span class="score-home">24</span>'
+            '<span class="score-sep">–</span>'
+            '<span class="score-away own-score">17</span>'
+            '<span class="result-badge result-loss">L</span>'
+            "</span>"
         )
 
     def test_format_fixture_result_draw(self):
@@ -213,7 +223,12 @@ class TestFixtureHelpers:
             "away_score": 20,
         }
         assert _format_fixture_result(entry) == (
-            '<span class="own-score">20</span> – 20 <span class="result-badge result-draw">D</span>'
+            '<span class="fixture-score">'
+            '<span class="score-home own-score">20</span>'
+            '<span class="score-sep">–</span>'
+            '<span class="score-away">20</span>'
+            '<span class="result-badge result-draw">D</span>'
+            "</span>"
         )
 
     def test_format_fixture_result_kickoff(self):

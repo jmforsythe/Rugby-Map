@@ -721,12 +721,17 @@ def _format_fixture_result(entry: TeamFixtureEntry) -> str:
             badge_class, badge_label = "result-loss", "L"
         else:
             badge_class, badge_label = "result-draw", "D"
-        home_html = f'<span class="own-score">{home_score}</span>' if is_home else str(home_score)
-        away_html = (
-            f'<span class="own-score">{away_score}</span>' if not is_home else str(away_score)
-        )
+        home_class = "score-home own-score" if is_home else "score-home"
+        away_class = "score-away own-score" if not is_home else "score-away"
         badge_html = f'<span class="result-badge {badge_class}">{badge_label}</span>'
-        return f"{home_html} – {away_html} {badge_html}"
+        return (
+            f'<span class="fixture-score">'
+            f'<span class="{home_class}">{home_score}</span>'
+            f'<span class="score-sep">–</span>'
+            f'<span class="{away_class}">{away_score}</span>'
+            f"{badge_html}"
+            f"</span>"
+        )
     time_text = entry.get("time") or ""
     return escape(time_text) if time_text else "—"
 
@@ -742,8 +747,11 @@ def _opponent_page_link(
     if page_key and page_key in all_teams:
         slug = _team_page_slug(all_teams[page_key], ambiguous_display_names)
         href = _team_page_href(slug)
-        return f'<a href="{escape(href)}" class="card-link">{escape(opponent_name)}</a>'
-    return escape(opponent_name)
+        return (
+            f'<a href="{escape(href)}" class="card-link card-inline fixture-opponent-link">'
+            f"{escape(opponent_name)}</a>"
+        )
+    return f'<span class="fixture-opponent-name">{escape(opponent_name)}</span>'
 
 
 def _sort_season_fixtures(rows: list[TeamFixtureEntry]) -> list[TeamFixtureEntry]:
@@ -786,9 +794,14 @@ def _render_fixture_table_rows(
                 f'title="View on England Rugby">↗</a>'
             )
         html += f"""                <tr>
-                    <td>{escape(_format_fixture_date(entry["date"]))}</td>
-                    <td><span class="fixture-venue">{escape(venue)}</span> {opponent_html}</td>
-                    <td class="distance-cell">{result_html}</td>
+                    <td class="fixture-date-cell">{escape(_format_fixture_date(entry["date"]))}</td>
+                    <td class="fixture-opponent-cell">
+                        <div class="fixture-opponent">
+                            <span class="fixture-venue">{escape(venue)}</span>
+                            {opponent_html}
+                        </div>
+                    </td>
+                    <td class="distance-cell fixture-result-cell">{result_html}</td>
                     <td>{escape(entry["league_name"])}</td>
                     <td class="map-cell">{match_link}</td>
                 </tr>
@@ -1091,25 +1104,89 @@ def get_team_page_html(
             color: var(--text-muted);
             font-style: italic;
         }}
+        .fixtures-table {{
+            table-layout: fixed;
+        }}
+        .fixtures-table th:nth-child(1),
+        .fixtures-table td:nth-child(1) {{
+            width: 8.75em;
+        }}
+        .fixtures-table th:nth-child(3),
+        .fixtures-table td:nth-child(3) {{
+            width: 9.5em;
+        }}
+        .fixtures-table th:nth-child(5),
+        .fixtures-table td:nth-child(5) {{
+            width: 2.5em;
+        }}
+        .fixture-date-cell {{
+            white-space: nowrap;
+        }}
+        .fixture-opponent {{
+            display: flex;
+            align-items: center;
+            gap: 0.55em;
+            min-width: 0;
+        }}
         .fixture-venue {{
-            display: inline-block;
-            min-width: 3.2em;
+            flex: 0 0 3.2em;
             font-size: 0.85em;
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.03em;
         }}
-        .own-score {{
+        .fixture-opponent .card-link,
+        .fixture-opponent-link,
+        .fixture-opponent-name {{
             display: inline-block;
-            padding: 0 0.35em;
-            border: 1px dashed var(--accent);
+            min-width: 0;
+            max-width: 100%;
+            padding: 0.25em 0.55em;
+            font-size: 0.95em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+        }}
+        .fixture-opponent .card-link:hover,
+        .fixture-opponent-link:hover {{
+            transform: none;
+        }}
+        .fixture-opponent-name {{
+            border: 1px solid var(--border);
             border-radius: 4px;
+            color: var(--text-heading);
+        }}
+        .fixture-score {{
+            display: inline-grid;
+            grid-template-columns: 2.75em 1.1em 2.75em 1.65em;
+            align-items: center;
+            font-variant-numeric: tabular-nums;
+        }}
+        .score-home,
+        .score-away {{
+            padding: 0 0.25em;
+            border: 1px dashed transparent;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }}
+        .score-home {{
+            text-align: right;
+        }}
+        .score-away {{
+            text-align: left;
+        }}
+        .score-sep {{
+            text-align: center;
+            color: var(--text-muted);
+        }}
+        .own-score {{
+            border-color: var(--accent);
         }}
         .result-badge {{
-            display: inline-block;
+            justify-self: center;
             min-width: 1.4em;
-            margin-left: 0.4em;
             padding: 0 0.3em;
             font-size: 0.8em;
             font-weight: 700;

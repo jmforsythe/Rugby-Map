@@ -222,3 +222,32 @@ def test_finalize_map_html_injects_territory_boot_on_sidecar_maps() -> None:
         text = out.read_text(encoding="utf-8")
         assert "rugbyTryApplyTerritories" in text
         assert text.find("rugbyTryApplyTerritories") < text.find("var marker_cluster_")
+
+
+def test_layer_control_hook_refreshes_overlay_panel_after_update() -> None:
+    from core.map_builder import _LAYER_CONTROL_HOOK_JS
+
+    assert "rugbyNotifyOverlayPanelRefresh" in _LAYER_CONTROL_HOOK_JS
+    assert "window.rugbyRefreshOverlayPanel" in _LAYER_CONTROL_HOOK_JS
+    assert "L.Control.Layers.prototype._update" in _LAYER_CONTROL_HOOK_JS
+    assert "rugbyApplyOverlayBulkFiltered(mapInst, true, null)" in _LAYER_CONTROL_HOOK_JS
+
+
+def test_match_day_registers_overlay_panel_refresh_callback() -> None:
+    from rugby.match_day import build_matchday_control_html
+
+    html = build_matchday_control_html(
+        dropdown_options="<option>2026-09-06</option>",
+        updated_display="1 Sep 2026",
+        date_info_json="{}",
+        all_dates_json="[]",
+        tier_proxy_vars_json="{}",
+        tier_label_json="{}",
+        data_base_url_json='"/data/"',
+        parent_cluster_var_json='"marker_cluster"',
+        historic_archive_js="false",
+    )
+
+    assert "window.rugbyRefreshOverlayPanel = function()" in html
+    assert "applyMatchdayLayerSectionHeadings();" in html
+    assert "rugbyNotifyOverlayPanelRefresh" in html

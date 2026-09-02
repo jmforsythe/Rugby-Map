@@ -338,7 +338,18 @@ _MATCHDAY_WIDGET_HTML = """
             }
         });
         matchdaySuppressEvents = false;
+        if (typeof window.rugbyNotifyOverlayPanelRefresh === 'function') {
+            window.rugbyNotifyOverlayPanelRefresh();
+        } else {
+            sortMatchdayOverlayLabels();
+            applyMatchdayLayerSectionHeadings();
+        }
     }
+
+    window.rugbyRefreshOverlayPanel = function() {
+        sortMatchdayOverlayLabels();
+        applyMatchdayLayerSectionHeadings();
+    };
 
     document.addEventListener('click', function(e) {
         var t = e.target;

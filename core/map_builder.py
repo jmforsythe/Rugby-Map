@@ -2875,6 +2875,19 @@ _LAYER_CONTROL_HOOK_JS = r"""
         }
         return hasMerit && hasNonMerit;
     }
+    var rugbyOverlayRefreshTimer = null;
+    function rugbyNotifyOverlayPanelRefresh() {
+        if (rugbyOverlayRefreshTimer !== null) {
+            clearTimeout(rugbyOverlayRefreshTimer);
+        }
+        rugbyOverlayRefreshTimer = setTimeout(function () {
+            rugbyOverlayRefreshTimer = null;
+            if (typeof window.rugbyRefreshOverlayPanel === 'function') {
+                window.rugbyRefreshOverlayPanel();
+            }
+        }, 0);
+    }
+    window.rugbyNotifyOverlayPanelRefresh = rugbyNotifyOverlayPanelRefresh;
     function rugbyApplyOverlayBulkFiltered(map, enable, predicate) {
         var ctrl = window.layerControl;
         if (!ctrl || !map || typeof ctrl._layers !== 'object') {
@@ -2892,6 +2905,7 @@ _LAYER_CONTROL_HOOK_JS = r"""
                 map.removeLayer(ent.layer);
             }
         }
+        rugbyNotifyOverlayPanelRefresh();
     }
     function rugbyInstallBulkToolbar() {
         var ctrl = window.layerControl;
@@ -2997,11 +3011,17 @@ _LAYER_CONTROL_HOOK_JS = r"""
         }
         if (L.Control.Layers.prototype._layerControlHooked) return;
         L.Control.Layers.prototype._layerControlHooked = true;
-        var orig = L.Control.Layers.prototype.addTo;
+        var origAddTo = L.Control.Layers.prototype.addTo;
         L.Control.Layers.prototype.addTo = function (map) {
-            var ret = orig.call(this, map);
+            var ret = origAddTo.call(this, map);
             window.layerControl = this;
             rugbyScheduleBulkRetries();
+            return ret;
+        };
+        var origUpdate = L.Control.Layers.prototype._update;
+        L.Control.Layers.prototype._update = function () {
+            var ret = origUpdate.apply(this, arguments);
+            rugbyNotifyOverlayPanelRefresh();
             return ret;
         };
     }

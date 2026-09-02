@@ -359,6 +359,40 @@ def test_mens_all_leagues_real_seasons_multi_parent_spans_are_not_orphaned() -> 
     )
 
 
+def test_nowirul_2025_2026_division4_east_not_orphaned() -> None:
+    """Regression for NOWIRUL WMD Division 4 East landing in the orphan row (2025-2026).
+
+    NOWIRUL merit runs two similarly named Division 4 East leagues in the same season
+    (``NOWIRUL WMD Division 4 East`` vs ``NOWIRUL  Division 4 East``). A layout collision
+    once demoted the WMD league to the full-width orphan row despite tier_mappings linking
+    it to Division 3 South — dropping correct parent/child topology from pyramid_All_Leagues.
+    """
+    season = "2025-2026"
+    layout = _all_leagues_stem_layout(season)
+    assert layout is not None
+
+    orphaned_names = {
+        lg.league_name for row in layout.orphan_row_positions.values() for lg, _x, _w in row
+    }
+    span_league_names = {
+        n.league.league_name
+        for n in _iter_stem_forest(layout.roots)
+        if n.layout_span_union_parent_names
+    }
+
+    for name in ("NOWIRUL WMD Division 4 East", "NOWIRUL  Division 4 East"):
+        assert (
+            name not in orphaned_names
+        ), f"{season}: {name!r} must nest under its mapped parent, not the orphan row"
+
+    nowirul_span_orphans = sorted(
+        n for n in span_league_names & orphaned_names if "NOWIRUL" in n and "Division 4" in n
+    )
+    assert (
+        not nowirul_span_orphans
+    ), f"{season}: NOWIRUL Division 4 multi-parent span(s) orphaned: {nowirul_span_orphans}"
+
+
 def test_mens_all_leagues_real_seasons_stem_tiers_no_overlap_or_degenerate() -> None:
     """Overlap check on the internal (``LeagueData``, x, width) layout data itself, not the
     rendered SVG.

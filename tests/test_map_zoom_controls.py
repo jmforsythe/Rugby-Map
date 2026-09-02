@@ -109,6 +109,19 @@ def test_custom_map_template_defers_team_images_until_after_render() -> None:
     assert "PRESENTATION_FALLBACK_MS" in html
 
 
+def test_custom_map_widens_vector_renderer_buffer_for_panning() -> None:
+    custom_map_path = (
+        Path(__file__).resolve().parents[1] / "rugby" / "custom_map_assets" / "index.html"
+    )
+    html = custom_map_path.read_text(encoding="utf-8")
+
+    assert "L.Canvas.mergeOptions({ padding: 3 })" in html
+    assert "vectorRenderer = L.canvas({ padding: 3 })" in html
+    assert "preferCanvas: true" in html
+    assert "renderer: vectorRenderer" in html
+    assert "map._renderer.options.padding = 3" in html
+
+
 def test_territory_loader_prefetches_before_leaflet_init() -> None:
     from core.map_builder import _get_territory_loader_script
 

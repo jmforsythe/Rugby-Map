@@ -1077,6 +1077,14 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Must run immediately after leaflet.js and before any vector layers are
+      // created (same timing as core/map_builder.py). Leaflet's renderer only
+      // paints the viewport plus a small buffer and repaints on moveend, so
+      // fast pans can leave territories blank until the gesture settles.
+      L.SVG.mergeOptions({ padding: 3 });
+      L.Canvas.mergeOptions({ padding: 3 });
+    </script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script>
       "use strict";
@@ -1297,7 +1305,7 @@
           return compareLeagueNames(a.name, b.name);
         });
       }
-      let map, boundaryOutlineLayer, territoryLayer, markersGroup;
+      let map, vectorRenderer, boundaryOutlineLayer, territoryLayer, markersGroup;
       let territoriesVisible = true;
       let boundariesReady = false;
       let cachedAllPlaced = [];
@@ -1811,13 +1819,9 @@
       let tileLayer;
 
       function initMap() {
-        // Leaflet's vector renderer only paints the viewport plus a small
-        // buffer (10% of the map size by default) and repaints on
-        // "moveend" -- so panning/zooming faster than that redraw leaves
-        // territories unpainted until the gesture settles. Widen the
-        // buffer to several viewports so that's far less likely to show.
-        L.SVG.mergeOptions({ padding: 3 });
-        L.Canvas.mergeOptions({ padding: 3 });
+        // One shared canvas renderer for all boundary/territory GeoJSON so every
+        // path uses the widened viewport buffer (see mergeOptions script above).
+        vectorRenderer = L.canvas({ padding: 3 });
         map = L.map("map", {
           zoomControl: true,
           zoomSnap: 0,
@@ -1827,6 +1831,9 @@
           // territories unrendered until the browser catches up.
           preferCanvas: true,
         }).setView([52.5, -1.5], 7);
+        if (map._renderer && map._renderer.options) {
+          map._renderer.options.padding = 3;
+        }
         applyRugbyMapThemeUI();
         const isDark = isRugbyMapAppearanceDark();
         tileLayer = L.tileLayer(
@@ -1855,9 +1862,10 @@
           fillOpacity: 0.1,
         };
         for (const name of Object.keys(bd.countries || {})) {
-          L.geoJSON(bd.countries[name].geom, { style: countryStyle }).addTo(
-            boundaryOutlineLayer,
-          );
+          L.geoJSON(bd.countries[name].geom, {
+            renderer: vectorRenderer,
+            style: countryStyle,
+          }).addTo(boundaryOutlineLayer);
         }
 
         const itlStyle = {
@@ -1869,9 +1877,10 @@
         };
         for (const level of ["itl1", "itl2", "itl3"]) {
           for (const name of Object.keys(bd[level] || {})) {
-            L.geoJSON(bd[level][name].geom, { style: itlStyle }).addTo(
-              boundaryOutlineLayer,
-            );
+            L.geoJSON(bd[level][name].geom, {
+              renderer: vectorRenderer,
+              style: itlStyle,
+            }).addTo(boundaryOutlineLayer);
           }
         }
       }
@@ -2555,6 +2564,7 @@
 
       function addTerritoryCell(geom, color) {
         L.geoJSON(geom, {
+          renderer: vectorRenderer,
           style: {
             fillColor: color,
             fillOpacity: territoryFillOpacity,

@@ -106,8 +106,38 @@ class TestBuildClubIndex:
             },
         }
         index = build_club_index(teams)
-        assert index["Team A"] == ["Team B"]
-        assert index["Team B"] == ["Team A"]
+        assert index["Team A"] == []
+        assert index["Team B"] == []
+
+    def test_same_coords_different_canonical_clubs_not_merged(self, monkeypatch):
+        club_names = {
+            "East London": "East London RFC",
+            "Kings Cross Steelers": "Kings Cross Steelers RFC",
+        }
+        monkeypatch.setattr(
+            "rugby.team_pages.load_team_club_map",
+            lambda: club_names,
+        )
+        lat, lon = 51.528531, 0.008158
+        teams = {
+            "East London": {
+                "name": "East London",
+                "address": "71 Holland Road, West Ham, London, E15 3BP, United Kingdom",
+                "latitude": lat,
+                "longitude": lon,
+                "league_history": [],
+            },
+            "Kings Cross Steelers": {
+                "name": "Kings Cross Steelers",
+                "address": "East London Rugby Club, 71 Holland Road, London, E15 3BP, United Kingdom",
+                "latitude": lat,
+                "longitude": lon,
+                "league_history": [],
+            },
+        }
+        index = build_club_index(teams)
+        assert index["East London"] == []
+        assert index["Kings Cross Steelers"] == []
 
     def test_no_match(self):
         teams = {

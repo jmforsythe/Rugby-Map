@@ -476,13 +476,10 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
     Unions teams into connected components across three independent
     signals: shared address string, shared (lat, lon), and shared canonical
     club name (``rugby.clubs.resolve_club_name``, backed by
-    ``data/rugby/club_names.json``). No single signal is reliable alone —
-    address strings can differ by cosmetic formatting between scrapes,
-    coordinates can drift by float precision between geocoding passes, and
-    the canonical-name backfill doesn't cover every derived name yet — so a
-    pair of teams is treated as siblings if *any* signal links them,
-    transitively (via union-find, matching the pattern already used by
-    ``_build_canonical_page_key_lookup`` above).
+    ``data/rugby/club_names.json``). Address and coordinate signals are
+    scoped per canonical club so distinct clubs sharing a ground (e.g. East
+    London RFC and Kings Cross Steelers RFC at Holland Road) are not merged.
+    The canonical-name signal still links every derived name for the same club.
 
     Returns:
         Dictionary mapping page key -> sorted list of other page keys at the same club
@@ -519,11 +516,13 @@ def build_club_index(all_teams: dict[str, TeamData]) -> dict[str, list[str]]:
         name = data.get("name") or ""
         club = resolve_club_name(name, team_club_map) if name else ""
 
+        canon = resolve_club_name(name, team_club_map) if name else ""
+
         signals: list[tuple[str, object]] = []
         if addr:
-            signals.append(("addr", addr))
+            signals.append(("addr", (addr, canon)))
         if lat is not None and lon is not None:
-            signals.append(("coord", (lat, lon)))
+            signals.append(("coord", ((lat, lon), canon)))
         if club:
             signals.append(("club", club))
 

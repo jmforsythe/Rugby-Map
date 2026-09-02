@@ -1129,6 +1129,7 @@
       window.rugbyClusterIconCache = window.rugbyClusterIconCache || {};
       window.rugbyCrestsEnabled = false;
       const INFO_PREFIX = "{{INFO_PREFIX}}";
+      const TEAM_HREF_SUFFIX = "{{TEAM_HREF_SUFFIX}}";
 
       function warmCrest(url) {
         if (!url || window.rugbyCrestWarm[url]) return;
@@ -2188,7 +2189,7 @@
                 '<p><a href="' + escAttr(team.lu) + '" target="_blank">View League Page</a></p>';
             }
             linksHtml +=
-              '<p><a href="' + INFO_PREFIX + 'teams/' + sanitizeTeamName(team.n) + '.html" target="_blank">View Info page</a></p>';
+              '<p><a href="' + INFO_PREFIX + 'teams/' + sanitizeTeamName(team.n) + TEAM_HREF_SUFFIX + '" target="_blank">View Info page</a></p>';
 
             const popup =
               '<div class="rugby-popup">' +

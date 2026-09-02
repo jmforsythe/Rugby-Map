@@ -51,3 +51,27 @@ def test_generate_teams_index_teams_json_is_compact(tmp_path: Path, monkeypatch)
     text = (teams_dir / "teams.json").read_text(encoding="utf-8")
     assert "\n" not in text
     assert ", " not in text
+
+
+def test_generate_teams_index_production_uses_directory_hrefs(tmp_path: Path, monkeypatch) -> None:
+    from core.config import get_config
+
+    dist_dir = tmp_path / "dist"
+    teams_dir = dist_dir / "teams"
+    (teams_dir / "Bath_Rugby").mkdir(parents=True)
+    (teams_dir / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (teams_dir / "Exeter_Chiefs").mkdir(parents=True)
+    (teams_dir / "Exeter_Chiefs" / "index.html").write_text("<html></html>", encoding="utf-8")
+
+    monkeypatch.setattr(team_pages, "DIST_DIR", dist_dir)
+    monkeypatch.setattr(get_config(), "is_production", True)
+
+    team_pages.generate_teams_index()
+
+    payload = json.loads((teams_dir / "teams.json").read_text(encoding="utf-8"))
+    assert len(payload) == 2
+    for entry in payload:
+        assert entry["file"].endswith("/")
+
+    index_html = (teams_dir / "index.html").read_text(encoding="utf-8")
+    assert "fetch('teams.json')" in index_html

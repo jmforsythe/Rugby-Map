@@ -63,6 +63,7 @@ from core.map_builder import (
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.clubs import iter_geocoded_leagues
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+from rugby.team_pages import build_team_info_page_filenames, team_info_page_filename
 from rugby.tiers import (
     extract_tier,
     get_competition_offset,
@@ -791,12 +792,24 @@ def _format_centre_display(fixture: Fixture) -> str:
     return f'<div style="font-size:18px;font-weight:bold">{escape(time_text)}</div>'
 
 
+def _team_name_link(
+    team_name: str,
+    team_url: str | None,
+    team_info_pages: dict[int, str] | None,
+) -> str:
+    """Team name wrapped in a link to its info page (``fixtures`` maps always live two
+    levels below the site root, at ``season/fixtures/``, in both prod and dev)."""
+    href = team_info_page_filename(team_url, team_name, team_info_pages)
+    return f'<a href="../../teams/{escape(href)}" target="_blank">{escape(team_name)}</a>'
+
+
 def _render_popup(
     fixture: Fixture,
     league_name: str,
     tier_name: str,
     home_team: GeocodedTeam,
     away_team: GeocodedTeam | None,
+    team_info_pages: dict[int, str] | None = None,
 ) -> str:
     home_name = home_team.get("name", "Home")
     home_img = home_team.get("image_url") or RFU_FALLBACK_ICON
@@ -804,6 +817,10 @@ def _render_popup(
     away_img = (away_team.get("image_url") if away_team else None) or RFU_FALLBACK_ICON
     address = home_team.get("formatted_address", home_team.get("address", ""))
     centre_html = _format_centre_display(fixture)
+    home_link = _team_name_link(home_name, home_team.get("url"), team_info_pages)
+    away_link = _team_name_link(
+        away_name, away_team.get("url") if away_team else None, team_info_pages
+    )
 
     return (
         '<div style="min-width:240px;font-family:sans-serif">'
@@ -811,13 +828,13 @@ def _render_popup(
         f'  <div style="text-align:center">'
         f'    <img src="{escape(home_img)}" style="height:40px" '
         f"         onerror=\"this.src='{RFU_FALLBACK_ICON}'\">"
-        f'    <div style="font-weight:bold;font-size:13px">{escape(home_name)}</div>'
+        f'    <div style="font-weight:bold;font-size:13px">{home_link}</div>'
         f"  </div>"
         f'  <div style="text-align:center">{centre_html}</div>'
         f'  <div style="text-align:center">'
         f'    <img src="{escape(away_img)}" style="height:40px" '
         f"         onerror=\"this.src='{RFU_FALLBACK_ICON}'\">"
-        f'    <div style="font-weight:bold;font-size:13px">{escape(away_name)}</div>'
+        f'    <div style="font-weight:bold;font-size:13px">{away_link}</div>'
         f"  </div>"
         f"</div>"
         f"<hr style='margin:4px 0'>"
@@ -968,6 +985,8 @@ def build_match_day_map(
     if not sorted_dates:
         logger.warning("No fixtures to map")
         return
+
+    team_info_pages = build_team_info_page_filenames()
 
     ts_path = DATA_DIR / "fixture_data" / season / "last_updated.txt"
     if ts_path.exists():
@@ -1224,7 +1243,9 @@ def build_match_day_map(
                 away_icon_url = (
                     away_team.get("image_url") if away_team else None
                 ) or RFU_FALLBACK_ICON
-                popup_html = _render_popup(fixture, league_name, tname, home_team, away_team)
+                popup_html = _render_popup(
+                    fixture, league_name, tname, home_team, away_team, team_info_pages
+                )
 
                 home_name = home_team.get("name", "Home")
                 away_name = away_team.get("name", "Away") if away_team else "Away"

@@ -9,6 +9,7 @@ from collections import defaultdict
 from collections.abc import Callable, Iterable
 from datetime import date, datetime
 from html import escape
+from pathlib import Path
 from typing import Any, NotRequired, TypedDict
 
 from core import (
@@ -24,7 +25,6 @@ from core import (
     sanitize_team_name,
     set_config,
     setup_logging,
-    team_name_to_filepath,
 )
 from core.config import CURRENT_SEASON, DIST_DIR, EARLIEST_SEASON
 from core.json_utils import write_compact_json
@@ -127,25 +127,47 @@ def _display_names_with_multiple_profiles(all_teams: dict[str, TeamData]) -> set
     return {n for n, keys in name_to_keys.items() if len(keys) > 1}
 
 
-def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set[str]) -> str:
-    """``dist/teams/*.html`` path; add ``_<team_id>`` when the display name is shared by multiple profiles."""
+def _team_page_slug(team_data: TeamData, ambiguous_display_names: set[str]) -> str:
+    """Bare team-page slug (no extension); ``_<team_id>`` suffix when the display
+    name is shared by multiple profiles."""
     display = team_data.get("name") or ""
     if not display:
-        return "unknown.html"
+        return "unknown"
     if display in ambiguous_display_names:
         tid = _parse_rfu_team_id(team_data.get("url"))
         if tid is not None:
-            return sanitize_team_name(display) + f"_{tid}.html"
-    return team_name_to_filepath(display)
+            return sanitize_team_name(display) + f"_{tid}"
+    return sanitize_team_name(display)
+
+
+def _team_page_output_path(teams_dir: Path, slug: str) -> Path:
+    """``dist/teams/{slug}/index.html`` in production, else ``dist/teams/{slug}.html``."""
+    if get_config().is_production:
+        return teams_dir / slug / "index.html"
+    return teams_dir / f"{slug}.html"
+
+
+def _team_page_href(slug: str) -> str:
+    """Public href for a team page: ``{slug}/`` in production, else ``{slug}.html``."""
+    if get_config().is_production:
+        return f"{slug}/"
+    return f"{slug}.html"
+
+
+def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set[str]) -> str:
+    """``dist/teams/*.html`` filename (dev-mode naming); add ``_<team_id>`` when the
+    display name is shared by multiple profiles."""
+    slug = _team_page_slug(team_data, ambiguous_display_names)
+    return f"{slug}.html"
 
 
 def build_team_info_page_filenames() -> dict[int, str]:
-    """Map RFU ``team=`` id to canonical ``teams/*.html`` filename under dist."""
+    """Map RFU ``team=`` id to canonical team page href under dist (``teams/`` relative)."""
     all_teams = collect_all_teams_data()
     ambiguous = _display_names_with_multiple_profiles(all_teams)
     id_to_page_key = build_id_to_page_key(all_teams)
     by_page_key = {
-        page_key: _team_page_output_filename(team_data, ambiguous)
+        page_key: _team_page_href(_team_page_slug(team_data, ambiguous))
         for page_key, team_data in all_teams.items()
     }
     return {
@@ -160,28 +182,29 @@ def team_info_page_filename(
     team_name: str,
     lookup: dict[int, str] | None = None,
 ) -> str:
-    """Canonical team info page filename, resolving renames via RFU team id."""
+    """Canonical team info page href, resolving renames via RFU team id."""
     pages = lookup if lookup is not None else build_team_info_page_filenames()
     team_id = _parse_rfu_team_id(team_url)
     if team_id is not None and team_id in pages:
         return pages[team_id]
-    return team_name_to_filepath(team_name)
+    return _team_page_href(sanitize_team_name(team_name))
 
 
 def discover_team_rename_redirects() -> list[tuple[str, str]]:
-    """``/teams/old.html`` → ``/teams/current.html`` for every observed rename."""
+    """``/teams/old.html`` → ``/teams/current/`` (or ``.html`` in dev) for every observed rename."""
     all_teams = collect_all_teams_data()
     ambiguous = _display_names_with_multiple_profiles(all_teams)
     pairs: list[tuple[str, str]] = []
     for team_data in all_teams.values():
-        current_file = _team_page_output_filename(team_data, ambiguous)
+        current_slug = _team_page_slug(team_data, ambiguous)
+        current_href = _team_page_href(current_slug)
         current_name = team_data.get("name") or ""
         for old_name in team_data.get("name_seasons") or {}:
             if old_name == current_name:
                 continue
-            old_file = team_name_to_filepath(old_name)
-            if old_file != current_file:
-                pairs.append((f"/teams/{old_file}", f"/teams/{current_file}"))
+            old_slug = sanitize_team_name(old_name)
+            if old_slug != current_slug:
+                pairs.append((f"/teams/{old_slug}.html", f"/teams/{current_href}"))
     return pairs
 
 
@@ -717,8 +740,9 @@ def _opponent_page_link(
 ) -> str:
     page_key = id_to_page_key.get(opponent_id)
     if page_key and page_key in all_teams:
-        fn = _team_page_output_filename(all_teams[page_key], ambiguous_display_names)
-        return f'<a href="{escape(fn)}" class="card-link">{escape(opponent_name)}</a>'
+        slug = _team_page_slug(all_teams[page_key], ambiguous_display_names)
+        href = _team_page_href(slug)
+        return f'<a href="{escape(href)}" class="card-link">{escape(opponent_name)}</a>'
     return escape(opponent_name)
 
 
@@ -919,9 +943,9 @@ def get_team_page_html(
     is_prod = get_config().is_production
     teams_index_href = "./" if is_prod else "./index.html"
 
-    team_file = _team_page_output_filename(team_data, ambiguous_display_names)
+    team_slug = _team_page_slug(team_data, ambiguous_display_names)
     # Canonical URL is only meaningful in production; omit it in local dev builds.
-    canonical_url = absolute_url(f"/teams/{team_file}") if is_prod else ""
+    canonical_url = absolute_url(f"/teams/{team_slug}/") if is_prod else ""
 
     head_extra = ""
     if not league_history:
@@ -1245,8 +1269,8 @@ def get_team_page_html(
         for sibling_key in club_teams:
             sib = all_teams[sibling_key]
             sib_name = sib.get("name") or sibling_key
-            sib_file = _team_page_output_filename(sib, ambiguous_display_names)
-            html += f'            <li><a href="{escape(sib_file)}" class="card-link card-inline">{escape(sib_name)}</a></li>\n'
+            sib_href = _team_page_href(_team_page_slug(sib, ambiguous_display_names))
+            html += f'            <li><a href="{escape(sib_href)}" class="card-link card-inline">{escape(sib_name)}</a></li>\n'
 
         html += """        </ul>
     </div>
@@ -1441,8 +1465,9 @@ def generate_team_pages() -> dict[str, TeamData]:
                 team_id_names,
             )
 
-            filename = _team_page_output_filename(team_data, ambiguous)
-            filepath = teams_dir / filename
+            slug = _team_page_slug(team_data, ambiguous)
+            filepath = _team_page_output_path(teams_dir, slug)
+            filepath.parent.mkdir(parents=True, exist_ok=True)
 
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(html_content)
@@ -1466,9 +1491,13 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         logger.warning("Teams directory doesn't exist")
         return
 
-    team_files = sorted(teams_dir.glob("*.html"))
-    if not team_files:
-        logger.warning("No team HTML files found")
+    is_prod = get_config().is_production
+    flat_team_files = [p for p in teams_dir.glob("*.html") if p.name != "index.html"]
+    dir_team_slugs = [
+        p.name for p in teams_dir.iterdir() if p.is_dir() and (p / "index.html").is_file()
+    ]
+    if not flat_team_files and not dir_team_slugs:
+        logger.warning("No team pages found")
         return
 
     teams_list: list[TeamListEntry] = []
@@ -1478,25 +1507,32 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
             display_name = td.get("name") or ""
             if not display_name:
                 continue
-            fn = _team_page_output_filename(td, ambiguous)
-            if not (teams_dir / fn).exists():
+            slug = _team_page_slug(td, ambiguous)
+            if not _team_page_output_path(teams_dir, slug).exists():
                 continue
             teams_list.append(
                 TeamListEntry(
-                    file=fn,
+                    file=_team_page_href(slug),
                     name=display_name,
                     image_url=td.get("image_url") or RFU_FALLBACK_ICON,
                 )
             )
-    else:
-        for file_path in team_files:
-            if file_path.name == "index.html":
-                continue
-            filename: str = file_path.name[:-5]  # Remove .html
-            display_name: str = filename.replace("_", " ")
-            image_url = RFU_FALLBACK_ICON
+    elif is_prod:
+        for slug in dir_team_slugs:
+            display_name = slug.replace("_", " ")
             teams_list.append(
-                TeamListEntry(file=file_path.name, name=display_name, image_url=image_url)
+                TeamListEntry(
+                    file=_team_page_href(slug), name=display_name, image_url=RFU_FALLBACK_ICON
+                )
+            )
+    else:
+        for file_path in flat_team_files:
+            slug = file_path.name[:-5]  # Remove .html
+            display_name = slug.replace("_", " ")
+            teams_list.append(
+                TeamListEntry(
+                    file=_team_page_href(slug), name=display_name, image_url=RFU_FALLBACK_ICON
+                )
             )
 
     if not teams_list:

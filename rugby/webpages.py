@@ -770,11 +770,7 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         return f"{s}/" if is_prod else f"{s}/index.html"
 
     teams_href = "./teams/" if is_prod else "./teams/index.html"
-    fixtures_href = (
-        f"./{latest}/{FEATURE_FIXTURES}/"
-        if is_prod
-        else f"./{latest}/{FEATURE_FIXTURES}/index.html"
-    )
+    fixtures_href = f"./{FEATURE_FIXTURES}/" if is_prod else f"./{FEATURE_FIXTURES}/index.html"
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
     cb_map_href = "./constituent-bodies/" if is_prod else "./constituent-bodies/index.html"
     stats_href = "./stats/" if is_prod else "./stats/index.html"

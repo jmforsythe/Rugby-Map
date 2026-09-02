@@ -744,6 +744,7 @@ def _build_page() -> None:
         "{{RESOURCE_HINTS_HTML}}": get_resource_hints_html(),
         "{{HOME_LINK_HTML}}": home_link_html,
         "{{INFO_PREFIX}}": info_prefix,
+        "{{TEAM_HREF_SUFFIX}}": "/" if is_prod else ".html",
         "{{SEO_EXTRA}}": seo_extra,
         "{{BASEMAP_TILE_URL_LIGHT_JSON}}": json.dumps(CARTO_TILE_URL_LIGHT),
         "{{BASEMAP_TILE_URL_DARK_JSON}}": json.dumps(CARTO_TILE_URL_DARK),

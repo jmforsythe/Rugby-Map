@@ -36,6 +36,15 @@ def _normalize_site_path(path: str) -> str:
     return p
 
 
+def _normalize_dest_path(path: str) -> str:
+    """Like ``_normalize_site_path`` but keeps a meaningful trailing slash
+    (redirect destinations must preserve directory-style URLs, e.g. ``/teams/Bath_Rugby/``)."""
+    p = unquote(path.strip())
+    if not p.startswith("/"):
+        p = "/" + p
+    return p
+
+
 def resolve_not_found_redirect(pathname: str, *, is_prod: bool) -> str:
     """Next hop for a missing URL: parent directory index, else site home.
 
@@ -122,6 +131,11 @@ def resolve_redirect_target(site_path: str, dist_dir: Path, team_files: set[str]
     if path in ("/merit", "/merit/"):
         return absolute_url("/")
 
+    if path in (f"/{FEATURE_FIXTURES}", f"/{FEATURE_FIXTURES}/index.html"):
+        latest = _latest_season_with_fixtures(dist_dir)
+        if latest:
+            return absolute_url(f"/{latest}/{FEATURE_FIXTURES}/")
+
     m = _MERIT_RE.match(path)
     if m:
         season, comp = m.group(1), m.group(2)
@@ -170,6 +184,21 @@ def discover_legacy_tier_html_redirects(dist_dir: Path) -> list[tuple[str, str]]
     return pairs
 
 
+def discover_legacy_team_html_redirects(dist_dir: Path) -> list[tuple[str, str]]:
+    """``/teams/{slug}.html`` → ``/teams/{slug}/`` when the directory canonical exists."""
+    pairs: list[tuple[str, str]] = []
+    teams_dir = dist_dir / "teams"
+    if not teams_dir.is_dir():
+        return pairs
+    for html in sorted(teams_dir.glob("*.html")):
+        if html.name == "index.html":
+            continue
+        slug = html.stem
+        if (teams_dir / slug / "index.html").is_file():
+            pairs.append((f"/teams/{html.name}", f"/teams/{slug}/"))
+    return pairs
+
+
 def discover_apostrophe_tier_redirects(dist_dir: Path) -> list[tuple[str, str]]:
     """``/season/Premiership_Women's/`` → ``/season/Premiership_Women/`` when canonical exists."""
     pairs: list[tuple[str, str]] = []
@@ -193,6 +222,18 @@ def discover_apostrophe_tier_redirects(dist_dir: Path) -> list[tuple[str, str]]:
     return pairs
 
 
+def _latest_season_with_fixtures(dist_dir: Path) -> str | None:
+    """Highest ``YYYY-YYYY`` season slug with a fixtures map under *dist_dir*."""
+    seasons = sorted(
+        (d.name for d in dist_dir.iterdir() if d.is_dir() and _SEASON_DIR.fullmatch(d.name)),
+        reverse=True,
+    )
+    for season in seasons:
+        if (dist_dir / season / FEATURE_FIXTURES / "index.html").is_file():
+            return season
+    return None
+
+
 def discover_feature_rename_redirects(dist_dir: Path) -> list[tuple[str, str]]:
     """Legacy feature paths (``match_day``) → canonical names (``fixtures``)."""
     pairs: list[tuple[str, str]] = []
@@ -212,22 +253,19 @@ def discover_feature_rename_redirects(dist_dir: Path) -> list[tuple[str, str]]:
                 ),
             ]
         )
-    legacy_root = dist_dir / LEGACY_FEATURE_MATCH_DAY / "index.html"
-    if legacy_root.is_file():
-        latest = sorted(
-            (d.name for d in dist_dir.iterdir() if d.is_dir() and _SEASON_DIR.fullmatch(d.name)),
-            reverse=True,
+    latest = _latest_season_with_fixtures(dist_dir)
+    if latest:
+        latest_fixtures = f"/{latest}/{FEATURE_FIXTURES}/"
+        pairs.extend(
+            [
+                (f"/{FEATURE_FIXTURES}/", latest_fixtures),
+                (f"/{FEATURE_FIXTURES}/index.html", latest_fixtures),
+            ]
         )
-        for season in latest:
-            if (dist_dir / season / FEATURE_FIXTURES / "index.html").is_file():
-                pairs.append((f"/{LEGACY_FEATURE_MATCH_DAY}/", f"/{season}/{FEATURE_FIXTURES}/"))
-                pairs.append(
-                    (
-                        f"/{LEGACY_FEATURE_MATCH_DAY}/index.html",
-                        f"/{season}/{FEATURE_FIXTURES}/",
-                    )
-                )
-                break
+    legacy_root = dist_dir / LEGACY_FEATURE_MATCH_DAY / "index.html"
+    if legacy_root.is_file() and latest:
+        pairs.append((f"/{LEGACY_FEATURE_MATCH_DAY}/", latest_fixtures))
+        pairs.append((f"/{LEGACY_FEATURE_MATCH_DAY}/index.html", latest_fixtures))
     return pairs
 
 
@@ -238,9 +276,10 @@ def _is_redirect_stub(path: Path) -> bool:
         return False
 
 
-def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str]]:
+def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str], set[str]]:
     paths: set[str] = set()
     explicit: dict[str, str] = {}
+    force_overwrite: set[str] = set()
     if GSC_404_PATHS_FILE.is_file():
         for line in GSC_404_PATHS_FILE.read_text(encoding="utf-8").splitlines():
             line = line.strip()
@@ -249,20 +288,26 @@ def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str]]:
     for src, dest in discover_legacy_tier_html_redirects(dist_dir):
         src_path = _normalize_site_path(src)
         paths.add(src_path)
-        explicit[src_path] = _normalize_site_path(dest)
+        explicit[src_path] = _normalize_dest_path(dest)
+        force_overwrite.add(src_path)
+    for src, dest in discover_legacy_team_html_redirects(dist_dir):
+        src_path = _normalize_site_path(src)
+        paths.add(src_path)
+        explicit[src_path] = _normalize_dest_path(dest)
+        force_overwrite.add(src_path)
     for src, dest in discover_apostrophe_tier_redirects(dist_dir):
         src_path = _normalize_site_path(src)
         paths.add(src_path)
-        explicit[src_path] = _normalize_site_path(dest)
+        explicit[src_path] = _normalize_dest_path(dest)
     for src, dest in discover_feature_rename_redirects(dist_dir):
         src_path = _normalize_site_path(src)
         paths.add(src_path)
-        explicit[src_path] = _normalize_site_path(dest)
+        explicit[src_path] = _normalize_dest_path(dest)
     for src, dest in discover_team_rename_redirects():
         src_path = _normalize_site_path(src)
         paths.add(src_path)
-        explicit[src_path] = _normalize_site_path(dest)
-    return paths, explicit
+        explicit[src_path] = _normalize_dest_path(dest)
+    return paths, explicit, force_overwrite
 
 
 def _redirect_target_url(
@@ -283,12 +328,12 @@ def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
         return 0
 
     team_files = _load_team_filenames(root)
-    paths, explicit = _collect_paths(root)
+    paths, explicit, force_overwrite = _collect_paths(root)
     written = 0
 
     for site_path in sorted(paths):
         out = _site_path_to_dist_file(root, site_path)
-        if out.is_file() and not _is_redirect_stub(out):
+        if out.is_file() and not _is_redirect_stub(out) and site_path not in force_overwrite:
             continue
 
         target = _redirect_target_url(site_path, root, team_files, explicit)

@@ -4,11 +4,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from core.config import get_config
 from rugby.maps import _render_popup_html
 from rugby.redirects import (
     _redirect_target_url,
     discover_apostrophe_tier_redirects,
     discover_feature_rename_redirects,
+    discover_legacy_team_html_redirects,
     generate_legacy_redirects,
     resolve_not_found_redirect,
     resolve_redirect_target,
@@ -146,6 +148,17 @@ def test_discover_feature_rename_redirects_match_day_to_fixtures(tmp_path: Path)
     (season / "fixtures" / "index.html").write_text("<html></html>", encoding="utf-8")
     pairs = dict(discover_feature_rename_redirects(dist))
     assert pairs["/2026-2027/match_day/"] == "/2026-2027/fixtures/"
+    assert pairs["/fixtures/"] == "/2026-2027/fixtures/"
+    assert pairs["/fixtures/index.html"] == "/2026-2027/fixtures/"
+
+
+def test_resolve_redirect_target_root_fixtures_to_latest_season(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    season = dist / "2026-2027"
+    (season / "fixtures").mkdir(parents=True)
+    (season / "fixtures" / "index.html").write_text("<html></html>", encoding="utf-8")
+    target = resolve_redirect_target("/fixtures/", dist, set())
+    assert target == "https://rugbyunionmap.uk/2026-2027/fixtures/"
 
 
 def test_discover_apostrophe_tier_redirects(tmp_path: Path) -> None:
@@ -176,3 +189,51 @@ def test_sitemap_omits_404_html(tmp_path: Path) -> None:
     (dist / "404.html").write_text("<html></html>", encoding="utf-8")
     sitemap = generate_sitemap(dist)
     assert "404.html" not in sitemap
+
+
+def test_discover_legacy_team_html_redirects(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    teams = dist / "teams"
+    (teams / "Bath_Rugby").mkdir(parents=True)
+    (teams / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (teams / "Bath_Rugby.html").write_text("<html></html>", encoding="utf-8")
+    # No canonical directory for this one — must not produce a redirect.
+    (teams / "Orphan_Club.html").write_text("<html></html>", encoding="utf-8")
+
+    pairs = dict(discover_legacy_team_html_redirects(dist))
+    assert pairs["/teams/Bath_Rugby.html"] == "/teams/Bath_Rugby/"
+    assert "/teams/Orphan_Club.html" not in pairs
+
+
+def test_generate_legacy_redirects_overwrites_flat_team_html_when_directory_exists(
+    tmp_path: Path,
+) -> None:
+    dist = tmp_path / "dist"
+    teams = dist / "teams"
+    (teams / "Bath_Rugby").mkdir(parents=True)
+    (teams / "Bath_Rugby" / "index.html").write_text(
+        "<html><body>Real team page</body></html>", encoding="utf-8"
+    )
+    (teams / "Bath_Rugby.html").write_text(
+        "<html><body>Old flat team page</body></html>", encoding="utf-8"
+    )
+
+    written = generate_legacy_redirects(dist)
+    assert written >= 1
+
+    stub = teams / "Bath_Rugby.html"
+    text = stub.read_text(encoding="utf-8")
+    assert 'data-rugby-redirect="1"' in text
+    assert "/teams/Bath_Rugby/" in text
+
+
+def test_team_page_href_and_canonical_are_directory_style_in_production(
+    monkeypatch,
+) -> None:
+    monkeypatch.setattr(get_config(), "is_production", True)
+    from rugby.team_pages import _team_page_href, _team_page_output_path
+
+    assert _team_page_href("Bath_Rugby") == "Bath_Rugby/"
+    assert _team_page_output_path(Path("teams"), "Bath_Rugby") == Path(
+        "teams/Bath_Rugby/index.html"
+    )

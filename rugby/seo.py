@@ -166,12 +166,16 @@ def _skip_sitemap_html(dist_dir: Path, html_file: Path, rel_path: Path) -> bool:
         return True
     if _is_redirect_stub(html_file):
         return True
-    # Dev flat tier pages when a production directory URL exists for the same tier.
+    # Dev flat tier/team pages when a production directory URL exists for the same page.
     if rel_path.suffix == ".html" and rel_path.name != "index.html":
         parts = rel_path.parts
         if len(parts) == 2 and _SEASON_DIR_NAME.fullmatch(parts[0]):
             tier_dir_index = dist_dir / parts[0] / rel_path.stem / "index.html"
             if tier_dir_index.is_file():
+                return True
+        if len(parts) == 2 and parts[0] == "teams":
+            team_dir_index = dist_dir / "teams" / rel_path.stem / "index.html"
+            if team_dir_index.is_file():
                 return True
     return False
 

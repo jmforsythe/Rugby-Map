@@ -81,10 +81,11 @@ def extract_address_from_maps_url(maps_url: str) -> str | None:
     parsed = urlparse(maps_url)
     params = parse_qs(parsed.query)
 
-    if "query" in params:
-        address = unquote(params["query"][0])
-        address = address.replace("\n", ", ")
-        return address
+    for key in ("query", "q"):
+        if key in params:
+            address = unquote(params[key][0])
+            address = address.replace("\n", ", ")
+            return address
     return None
 
 
@@ -140,6 +141,40 @@ def extract_address_from_soup(soup: BeautifulSoup) -> str | None:
         address_text = " ".join(address_text.split())  # Clean whitespace
         return address_text
     return None
+
+
+def is_space_separated_address(address: str | None) -> bool:
+    """Return True when ``address`` looks like RFU page text (no comma separators)."""
+    return bool(address and "," not in address)
+
+
+def extract_address_from_rfu_soup(
+    soup: BeautifulSoup, *, prefer_maps: bool = True
+) -> tuple[str | None, str]:
+    """Extract a club address from an RFU team page.
+
+    By default prefers the comma-separated string embedded in the Google Maps
+    link (``c036-club-details-btn``), falling back to the space-separated page
+    text (``c036-club-details-address``).
+
+    Returns:
+        ``(address, source)`` where ``source`` is ``"maps"``, ``"page"``, or ``""``.
+    """
+    page_text = extract_address_from_soup(soup)
+    maps_url = extract_maps_url_from_soup(soup)
+    maps_address = extract_address_from_maps_url(maps_url) if maps_url else None
+
+    if prefer_maps:
+        if maps_address:
+            return maps_address, "maps"
+        if page_text:
+            return page_text, "page"
+    else:
+        if page_text:
+            return page_text, "page"
+        if maps_address:
+            return maps_address, "maps"
+    return None, ""
 
 
 def extract_club_name_from_soup(soup: BeautifulSoup) -> str | None:
@@ -274,7 +309,12 @@ def _cache_canonical_name_from_soup(
 
 
 def fetch_club_address(
-    club_name: str, team_url: str, delay_seconds: float = 2.0, max_retries: int = 3
+    club_name: str,
+    team_url: str,
+    delay_seconds: float = 2.0,
+    max_retries: int = 3,
+    *,
+    prefer_maps: bool = True,
 ) -> tuple[str | None, str]:
     """Fetch address for a club by scraping a team page.
 
@@ -283,6 +323,7 @@ def fetch_club_address(
         team_url: URL to any team page for this club
         delay_seconds: Delay between requests
         max_retries: Maximum retry attempts
+        prefer_maps: When True (default), use the Google Maps URL query first.
 
     Returns:
         Tuple of (address string, log_text) for thread-safe printing.
@@ -294,28 +335,17 @@ def fetch_club_address(
     if soup is not None:
         _cache_canonical_name_from_soup(club_name, soup, log_lines)
 
-        # Method 1: Try getting address directly from page text
-        address_text = extract_address_from_soup(soup)
-        if address_text:
-            log_lines.append(f"    Address: {address_text}")
-            log_lines.append("    ✓ Address extracted from page text")
-            return (address_text, "\n".join(log_lines))
-        else:
-            log_lines.append("    ! No address text found on page")
-
-        # Method 2: Try getting address from Google Maps URL
-        maps_url = extract_maps_url_from_soup(soup)
-        if maps_url:
-            address = extract_address_from_maps_url(maps_url)
-
-            if address:
-                log_lines.append(f"    Address: {address}")
+        address, source = extract_address_from_rfu_soup(soup, prefer_maps=prefer_maps)
+        if address:
+            log_lines.append(f"    Address: {address}")
+            if source == "maps":
                 log_lines.append("    ✓ Address extracted from Maps URL")
-                return (address, "\n".join(log_lines))
-            else:
-                log_lines.append("    ! Could not extract address from Maps URL")
-        else:
-            log_lines.append("    ! No Maps URL found")
+            elif source == "page":
+                log_lines.append("    ✓ Address extracted from page text")
+            return (address, "\n".join(log_lines))
+
+        log_lines.append("    ! No address text found on page")
+        log_lines.append("    ! No Maps URL found")
 
     # If no methods worked, try modifying club name and retry once more
     possible_modifiers = ["women's", "ladies"]
@@ -335,7 +365,11 @@ def fetch_club_address(
 
         log_lines.append(f"    ! Retrying with modified club name: {modified_club_name}")
         modified_club_name_address = fetch_club_address(
-            modified_club_name, team_url, delay_seconds, max_retries
+            modified_club_name,
+            team_url,
+            delay_seconds,
+            max_retries,
+            prefer_maps=prefer_maps,
         )
         if modified_club_name_address[0]:
             log_lines.append(f"    ✓ Address found with modified club name: {modified_club_name}")

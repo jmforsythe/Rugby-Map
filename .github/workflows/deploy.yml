@@ -50,12 +50,12 @@ jobs:
         run: |
           python -m core.boundaries --detail BGC
 
-      - name: Discover seasons (geocoded_teams dirs)
+      - name: Discover seasons (league_data dirs)
         id: seasons
         run: |
           set -eo pipefail
           list="${RUNNER_TEMP}/ci-seasons.txt"
-          ( ls -d data/rugby/geocoded_teams/*/ 2>/dev/null || true ) | xargs -n1 basename | sort -r > "$list"
+          ( ls -d data/rugby/league_data/*/ 2>/dev/null || true ) | xargs -n1 basename | sort -r > "$list"
           echo "Season count: $(wc -l < "$list" | tr -d ' ')"
           cat "$list"
           json="$(jq -Rs 'split("\n") | map(select(length > 0))' < "$list" | jq -c .)"

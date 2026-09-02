@@ -20,6 +20,8 @@ dist/*
 data/boundaries/
 data/caches/
 data/rugby/team_addresses/
+# Local geocode stage output (canonical coords live in club_geocodes.json).
+data/rugby/geocoded_teams/
 # Ignore everything in distance_cache except the global routed cache below.
 # (Glob form, not directory form, so we can re-include specific files.)
 data/rugby/distance_cache/*

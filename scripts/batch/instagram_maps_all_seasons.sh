@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Generate Instagram league maps (PNG + SVG) for every season with geocoded data.
+# Generate Instagram league maps (PNG + SVG) for every season with league data.
 #
 # Usage (from repo root):
 #   bash scripts/batch/instagram_maps_all_seasons.sh
@@ -10,7 +10,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
-GEO_ROOT="data/rugby/geocoded_teams"
+GEO_ROOT="data/rugby/league_data"
 OUT_ROOT="output/instagram/maps"
 BOUNDARY_DETAIL="BUC"
 
@@ -32,7 +32,7 @@ done
 if [[ -n "$SEASON_FILTER" ]]; then
   SEASONS=("$SEASON_FILTER")
 elif [[ ! -d "$GEO_ROOT" ]]; then
-  echo "No geocoded teams directory at $GEO_ROOT" >&2
+  echo "No league data directory at $GEO_ROOT" >&2
   exit 1
 else
   mapfile -t SEASONS < <(ls -1 "$GEO_ROOT" | sort -r)
@@ -45,7 +45,7 @@ fi
 
 for season in "${SEASONS[@]}"; do
   if [[ ! -d "$GEO_ROOT/$season" ]]; then
-    echo "Skipping $season — no geocoded data at $GEO_ROOT/$season" >&2
+    echo "Skipping $season — no league data at $GEO_ROOT/$season" >&2
     continue
   fi
 

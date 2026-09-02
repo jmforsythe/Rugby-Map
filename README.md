@@ -69,7 +69,7 @@ python download_boundaries.py --detail BFC
 
 ## Data Pipeline
 
-Pre-computed geographic data for each league is included in `geocoded_teams/` as getting the data from the RFU can be difficult.
+Pre-computed league and club data is included in `league_data/` and `club_*.json` as getting the data from the RFU can be difficult.
 
 The project follows a multi-stage pipeline to collect and process team data. All commands support a `--season` parameter to specify which season to process (default: 2025-2026).
 
@@ -170,7 +170,7 @@ Rebuild only when geocodes change, e.g.
 
 - a brand-new club appears,
 - an existing club moves grounds,
-- you've added a new historical season under `geocoded_teams/`.
+- you've added a new historical season under `league_data/`.
 
 The build script logs a warning during `make distances` and `make
 custom-map-data` if any current-season team is missing from the cache, so
@@ -198,7 +198,7 @@ make routed-distances                            # uses OSRM_URL=http://localhos
 make routed-distances OSRM_URL=http://other:5000 # override
 ```
 
-This walks every season under `geocoded_teams/`, dedupes to distinct
+This walks every season under `league_data/`, dedupes to distinct
 geocodes (rounded to 6 dp), calls OSRM `/table` in 256-point chunks, and
 writes `data/rugby/distance_cache/routed/all.{npz,json}`. Takes roughly
 40 seconds per ~1300 distinct points.
@@ -264,13 +264,16 @@ mapping/
 │   ├── ITL_2.geojson
 │   ├── ITL_3.geojson
 │   └── countries.geojson
-├── league_data/                   # Scraped league/team data
+├── league_data/                   # Committed team lists per season
 │   └── [season]/
 │       └── [league].json
-├── team_addresses/                # Team addresses from RFU
+├── club_names.json                # Canonical club name map
+├── club_addresses.json            # Canonical club addresses
+├── club_geocodes.json             # Canonical club coordinates
+├── team_addresses/                # Team addresses from RFU (gitignored)
 │   └── [season]/
 │       └── [league].json
-├── geocoded_teams/                # Geocoded team coordinates
+├── geocoded_teams/                # Local geocode stage output (gitignored)
 │   └── [season]/
 │       └── [league].json
 └── tier_maps/                     # Generated HTML maps (gitignored)

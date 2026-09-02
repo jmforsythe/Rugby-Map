@@ -45,7 +45,7 @@ from rugby.maps import BOUNDARY_PATHS, RFU_FALLBACK_ICON, _load_marker_items
 
 def test_render_tier7_svg_contains_labels() -> None:
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier7_items = [it for it in loaded.pyramid if it.tier_num == 7]
     assert tier7_items, "expected tier 7 pyramid teams in geocoded data"
@@ -92,7 +92,7 @@ def test_instagram_tier_name_blank_when_redundant_with_level() -> None:
 
 def test_instagram_tier_name_line_reserved_when_blank(tmp_path: Path) -> None:
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier7_items = [it for it in loaded.pyramid if it.tier_num == 7]
 
@@ -206,7 +206,7 @@ def test_geometry_collection_renders_as_path() -> None:
 def test_every_league_is_shaded_at_level_7() -> None:
     """All 19 Counties 1 leagues must produce a fill, not just a territory geometry."""
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier7_items = [it for it in loaded.pyramid if it.tier_num == 7]
 
@@ -231,7 +231,7 @@ def test_every_league_is_shaded_at_level_7() -> None:
 def test_empty_sibling_itl3_is_shaded_at_level_10() -> None:
     """Regression: York ITL3 has no clubs but sits beside North Yorkshire in one league."""
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
     assert tier10_items, "expected tier 10 pyramid teams in geocoded data"
@@ -249,7 +249,7 @@ def test_empty_sibling_itl3_is_shaded_at_level_10() -> None:
 def test_multiple_empty_sibling_itl3_regions_are_not_filled() -> None:
     """Swindon and Wiltshire are empty ITL3 siblings; neither should be shaded."""
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
     itl = load_itl_hierarchy(BOUNDARY_PATHS)
@@ -270,7 +270,7 @@ def test_level_10_known_colour_collisions_are_separated() -> None:
     from rugby.analysis.palette_distances import delta_e
 
     season = CURRENT_SEASON
-    geocoded_dir = str(DATA_DIR / "geocoded_teams" / season)
+    geocoded_dir = str(DATA_DIR / "league_data" / season)
     loaded = _load_marker_items(geocoded_dir, season, travel_distances=None)
     tier10_items = [it for it in loaded.pyramid if it.tier_num == 10]
     assert tier10_items
@@ -319,7 +319,7 @@ def test_auto_badge_sizing_across_real_levels() -> None:
     """Level 3 clubs are far apart and level 9 clubs are not; badges should reflect that."""
     season = CURRENT_SEASON
     loaded = _load_marker_items(
-        str(DATA_DIR / "geocoded_teams" / season), season, travel_distances=None
+        str(DATA_DIR / "league_data" / season), season, travel_distances=None
     )
     itl = load_itl_hierarchy(BOUNDARY_PATHS)
     project = _make_projector(_country_bounds(_country_mask(itl)), IMAGE_WIDTH, IMAGE_HEIGHT)

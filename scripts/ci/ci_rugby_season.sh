@@ -43,7 +43,7 @@ else
   run_pyramid python -m rugby.pyramid_image --womens --season="$SEASON" --png --png-scale 2 --no-interactive-on-warnings
 
   merit_comps=()
-  if find "data/rugby/geocoded_teams/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
+  if find "data/rugby/league_data/$SEASON/merit" -mindepth 2 -name "*.json" -print -quit 2>/dev/null | grep -q .; then
     mapfile -t merit_comps < <(
       python -c "from rugby.pyramid_image import discover_merit_competitions as d; print('\n'.join(d('${SEASON}')))" | tr -d '\r'
     )

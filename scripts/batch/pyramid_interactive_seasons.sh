@@ -85,7 +85,7 @@ for season in "${SEASONS[@]}"; do
     if ((${#MERIT_OPTS[@]} > 1)); then
       echo "  Merit: single competition (${MERIT_OPTS[1]})"
     else
-      echo "  Merit: every competition under data/rugby/geocoded_teams/${season}/merit/"
+      echo "  Merit: every competition under data/rugby/league_data/${season}/merit/"
     fi
     echo "  Outputs: dist/${season}/pyramid_merit_*.svg, pyramid_All_Leagues.{svg,png} (and .png if --png)"
   else

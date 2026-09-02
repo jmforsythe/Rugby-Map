@@ -172,7 +172,7 @@ def generate_sitemap(dist_dir: Path) -> str:
             continue
 
         # Redirect stubs for legacy URLs are noindex and must not be re-submitted.
-        if html_file.name == "index.html" and _is_redirect_stub(html_file):
+        if _is_redirect_stub(html_file):
             continue
 
         loc = absolute_url_for_dist_file(dist_dir, html_file)

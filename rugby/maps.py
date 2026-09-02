@@ -23,7 +23,6 @@ from core import (
     json_load_cache,
     set_config,
     setup_logging,
-    team_name_to_filepath,
 )
 from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, CURRENT_SEASON, DIST_DIR
@@ -49,6 +48,7 @@ from rugby.seo import (
     breadcrumb_ld_script,
     og_image_meta_html,
 )
+from rugby.team_pages import build_team_info_page_filenames, team_info_page_filename
 from rugby.tiers import (
     extract_tier,
     get_competition_offset,
@@ -134,6 +134,7 @@ def _render_popup_html(
     travel_distances: TravelDistances | None,
     include_league_link: bool = True,
     strip_team_url_to_team_only: bool = False,
+    team_info_pages: dict[int, str] | None = None,
 ) -> str:
     """Build the popup HTML for a rugby team marker.
 
@@ -165,8 +166,9 @@ def _render_popup_html(
         if league_url and include_league_link
         else ""
     )
+    info_page = team_info_page_filename(team_url, team_name, team_info_pages)
     info_link = (
-        f'<p><a href="__INFO_PREFIX__teams/{team_name_to_filepath(team_name)}" target="_blank">View Info page</a></p>'
+        f'<p><a href="__INFO_PREFIX__teams/{info_page}" target="_blank">View Info page</a></p>'
         if league_url
         else ""
     )
@@ -382,6 +384,7 @@ def _load_marker_items(
     travel_distances: TravelDistances | None,
     include_league_link: bool = True,
     strip_team_url_to_team_only: bool = False,
+    team_info_pages: dict[int, str] | None = None,
 ) -> LoadedItems:
     """Join league_data JSON files with club address/geocode data and build
     MarkerItem objects.
@@ -439,6 +442,7 @@ def _load_marker_items(
                 travel_distances,
                 include_league_link=include_league_link,
                 strip_team_url_to_team_only=strip_team_url_to_team_only,
+                team_info_pages=team_info_pages,
             )
 
             category = comp_key.replace("_", " ") if is_merit else PYRAMID_CATEGORY
@@ -740,12 +744,14 @@ def generate_constituent_body_map(season: str, show_debug: bool) -> None:
     # No travel distances or league page link: there's no single league on this
     # map, so neither is meaningful here (see _render_popup_html).
     league_dir = str(DATA_DIR / "league_data" / season)
+    team_info_pages = build_team_info_page_filenames()
     loaded = _load_marker_items(
         league_dir,
         season,
         travel_distances=None,
         include_league_link=False,
         strip_team_url_to_team_only=True,
+        team_info_pages=team_info_pages,
     )
 
     itl_hierarchy = load_itl_hierarchy(BOUNDARY_PATHS)
@@ -894,7 +900,10 @@ def main() -> None:
     # Build MarkerItem objects, joining league_data with club address/geocode data
     logger.debug("Loading marker items from league_data + club maps...")
     league_dir = str(DATA_DIR / "league_data" / season)
-    loaded = _load_marker_items(league_dir, season, travel_distances)
+    team_info_pages = build_team_info_page_filenames()
+    loaded = _load_marker_items(
+        league_dir, season, travel_distances, team_info_pages=team_info_pages
+    )
 
     # Split pyramid items by gender
     mens_pyramid = [it for it in loaded.pyramid if it.tier_num < 100]

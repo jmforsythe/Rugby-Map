@@ -139,6 +139,52 @@ def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set
     return team_name_to_filepath(display)
 
 
+def build_team_info_page_filenames() -> dict[int, str]:
+    """Map RFU ``team=`` id to canonical ``teams/*.html`` filename under dist."""
+    all_teams = collect_all_teams_data()
+    ambiguous = _display_names_with_multiple_profiles(all_teams)
+    id_to_page_key = build_id_to_page_key(all_teams)
+    by_page_key = {
+        page_key: _team_page_output_filename(team_data, ambiguous)
+        for page_key, team_data in all_teams.items()
+    }
+    return {
+        team_id: by_page_key[page_key]
+        for team_id, page_key in id_to_page_key.items()
+        if page_key in by_page_key
+    }
+
+
+def team_info_page_filename(
+    team_url: str | None,
+    team_name: str,
+    lookup: dict[int, str] | None = None,
+) -> str:
+    """Canonical team info page filename, resolving renames via RFU team id."""
+    pages = lookup if lookup is not None else build_team_info_page_filenames()
+    team_id = _parse_rfu_team_id(team_url)
+    if team_id is not None and team_id in pages:
+        return pages[team_id]
+    return team_name_to_filepath(team_name)
+
+
+def discover_team_rename_redirects() -> list[tuple[str, str]]:
+    """``/teams/old.html`` → ``/teams/current.html`` for every observed rename."""
+    all_teams = collect_all_teams_data()
+    ambiguous = _display_names_with_multiple_profiles(all_teams)
+    pairs: list[tuple[str, str]] = []
+    for team_data in all_teams.values():
+        current_file = _team_page_output_filename(team_data, ambiguous)
+        current_name = team_data.get("name") or ""
+        for old_name in team_data.get("name_seasons") or {}:
+            if old_name == current_name:
+                continue
+            old_file = team_name_to_filepath(old_name)
+            if old_file != current_file:
+                pairs.append((f"/teams/{old_file}", f"/teams/{current_file}"))
+    return pairs
+
+
 def _tier_display_number(tier_number: int) -> int:
     """Tier shown in league links; women's pyramid uses 101+ internally — show 1+ instead."""
     if tier_number >= 101:

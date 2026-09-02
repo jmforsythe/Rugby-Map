@@ -15,6 +15,7 @@ from urllib.parse import unquote
 
 from core.config import DIST_DIR, REPO_ROOT
 from rugby.seo import absolute_url
+from rugby.team_pages import discover_team_rename_redirects
 
 GSC_404_PATHS_FILE = REPO_ROOT / "data" / "rugby" / "seo_gsc_404_paths.txt"
 _REDIRECT_MARKER = 'data-rugby-redirect="1"'
@@ -175,16 +176,34 @@ def _is_redirect_stub(path: Path) -> bool:
         return False
 
 
-def _collect_paths(dist_dir: Path) -> set[str]:
+def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str]]:
     paths: set[str] = set()
+    explicit: dict[str, str] = {}
     if GSC_404_PATHS_FILE.is_file():
         for line in GSC_404_PATHS_FILE.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line and not line.startswith("#"):
                 paths.add(_normalize_site_path(line))
-    for src, _dest in discover_legacy_tier_html_redirects(dist_dir):
-        paths.add(_normalize_site_path(src))
-    return paths
+    for src, dest in discover_legacy_tier_html_redirects(dist_dir):
+        src_path = _normalize_site_path(src)
+        paths.add(src_path)
+        explicit[src_path] = _normalize_site_path(dest)
+    for src, dest in discover_team_rename_redirects():
+        src_path = _normalize_site_path(src)
+        paths.add(src_path)
+        explicit[src_path] = _normalize_site_path(dest)
+    return paths, explicit
+
+
+def _redirect_target_url(
+    site_path: str,
+    dist_dir: Path,
+    team_files: set[str],
+    explicit: dict[str, str],
+) -> str:
+    if site_path in explicit:
+        return absolute_url(explicit[site_path])
+    return resolve_redirect_target(site_path, dist_dir, team_files)
 
 
 def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
@@ -194,30 +213,15 @@ def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
         return 0
 
     team_files = _load_team_filenames(root)
-    paths = _collect_paths(root)
+    paths, explicit = _collect_paths(root)
     written = 0
 
     for site_path in sorted(paths):
         out = _site_path_to_dist_file(root, site_path)
-        if out.is_file() and _is_redirect_stub(out):
-            continue
-        if out.is_file():
+        if out.is_file() and not _is_redirect_stub(out):
             continue
 
-        target = resolve_redirect_target(site_path, root, team_files)
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(
-            _redirect_stub_html(target, "Redirecting… | rugbyunionmap.uk"),
-            encoding="utf-8",
-        )
-        written += 1
-
-    for src, dest in discover_legacy_tier_html_redirects(root):
-        site_path = _normalize_site_path(src)
-        out = _site_path_to_dist_file(root, site_path)
-        if out.is_file() and _is_redirect_stub(out):
-            continue
-        target = absolute_url(dest)
+        target = _redirect_target_url(site_path, root, team_files, explicit)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(
             _redirect_stub_html(target, "Redirecting… | rugbyunionmap.uk"),

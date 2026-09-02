@@ -222,37 +222,39 @@ ul.club-teams {
 
 .footer {
   margin-top: 3em;
-  padding-top: 2em;
+  padding: 1.75em 1.5em;
   border-top: 1px solid var(--border);
   font-size: 0.9em;
   color: var(--text-muted);
   text-align: center;
   background: var(--bg-card);
   border-radius: 8px;
-  padding: 1.5em;
   box-shadow: 0 2px 8px var(--shadow);
+}
+
+.footer p {
+  margin: 0.5em 0;
 }
 
 .footer a {
   display: inline;
-  color: var(--accent);
-  font-size: 1em;
   padding: 0;
-  background: none;
-  border: none;
-  border-radius: 0;
+  font-size: inherit;
+  color: var(--accent);
   transition: color 0.2s;
 }
 
 .footer a:hover {
   color: var(--accent-hover);
   text-decoration: underline;
-  transform: none;
-  box-shadow: none;
 }
 
-.footer p {
-  margin: 0.5em 0;
+.footer__sources a + a::before {
+  content: "·";
+  margin: 0 0.55em;
+  color: var(--text-muted);
+  text-decoration: none;
+  pointer-events: none;
 }
 
 .faq {
@@ -660,6 +662,7 @@ a.pyramid-diagram-preview__link:hover .pyramid-diagram-preview__img {
   grid-template-columns: repeat(5, 1fr);
   gap: 1em;
   margin-bottom: 2em;
+  text-align: center;
 }
 
 .hero-card {

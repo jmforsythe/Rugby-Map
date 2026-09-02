@@ -1633,10 +1633,7 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
 
     <div class="no-results" id="noResults">No teams found matching your search.</div>
 
-    <div class="footer">
-        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
-        <p>Data sources: <a href="https://www.englandrugby.com/">England Rugby (RFU)</a> <a href="https://geoportal.statistics.gov.uk/">ONS</a> <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a></p>
-    </div>
+{get_footer_html()}
 
     <script>
         let teams = [];

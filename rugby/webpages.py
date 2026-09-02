@@ -271,16 +271,23 @@ def get_not_found_html() -> str:
 """
 
 
+_FOOTER_GITHUB_URL = "https://github.com/jmforsythe/Rugby-Map"
+_FOOTER_DATA_SOURCES: tuple[tuple[str, str], ...] = (
+    ("England Rugby (RFU)", "https://www.englandrugby.com/"),
+    ("ONS", "https://geoportal.statistics.gov.uk/"),
+    ("OpenStreetMap", "https://nominatim.openstreetmap.org/"),
+    ("GADM", "https://gadm.org/"),
+)
+
+
 def get_footer_html() -> str:
-    """Return common footer HTML."""
-    return """    <div class="footer">
-        <p><a href="https://github.com/jmforsythe/Rugby-Map">View on GitHub</a></p>
-        <p>Data sources:
-            <a href="https://www.englandrugby.com/">England Rugby (RFU)</a>
-            <a href="https://geoportal.statistics.gov.uk/">ONS</a>
-            <a href="https://nominatim.openstreetmap.org/">OpenStreetMap</a>
-            <a href="https://gadm.org/">GADM</a>
-        </p>
+    """Return common footer HTML (GitHub link and data-source attribution)."""
+    source_links = "".join(
+        f' <a href="{escape(url)}">{escape(label)}</a>' for label, url in _FOOTER_DATA_SOURCES
+    )
+    return f"""    <div class="footer">
+        <p><a href="{_FOOTER_GITHUB_URL}">View on GitHub</a></p>
+        <p class="footer__sources">Data sources:{source_links}</p>
     </div>"""
 
 

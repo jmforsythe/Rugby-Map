@@ -6,7 +6,7 @@ pyramid tier those same clubs' *principal* XVs actually occupy (ground truth, fr
 geocoded pyramid data). Compares both against the currently configured offset in
 rugby.tiers to flag anchors that may be wrong.
 
-Usage: python scripts/merit_cb_crossref.py [--json out.json]
+Usage: python -m rugby.analysis.merit_cb_crossref [--json out.json]
 """
 
 from __future__ import annotations
@@ -14,15 +14,12 @@ from __future__ import annotations
 import argparse
 import json
 import statistics
-import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-from rugby.analysis.merit_pyramid_crossovers import SEASONS, load_dataset  # noqa: E402
-from rugby.constituent_bodies import get_constituent_body  # noqa: E402
-from rugby.tiers import get_competition_offset  # noqa: E402
+from rugby.analysis.merit_pyramid_crossovers import SEASONS, load_dataset
+from rugby.constituent_bodies import get_constituent_body
+from rugby.tiers import get_competition_offset
 
 
 def main() -> None:

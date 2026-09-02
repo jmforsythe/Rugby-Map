@@ -1,7 +1,7 @@
 """Run --merit --no-interactive-on-warnings for every merit competition in every season,
 and compile a report of leagues whose pyramid parent is missing or was rejected.
 
-Usage: python scripts/report_merit_parent_gaps.py [--json out.json]
+Usage: python -m rugby.analysis.report_merit_parent_gaps [--json out.json]
 """
 
 from __future__ import annotations
@@ -13,11 +13,9 @@ import re
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-import rugby.pyramid_image as pyramid_image  # noqa: E402
-from core import EARLIEST_SEASON  # noqa: E402
-from rugby.pyramid_image import discover_merit_competitions  # noqa: E402
+import rugby.pyramid_image as pyramid_image
+from core import EARLIEST_SEASON
+from rugby.pyramid_image import discover_merit_competitions
 
 GEO = Path("data/rugby/league_data")
 

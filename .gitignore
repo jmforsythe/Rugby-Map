@@ -49,6 +49,14 @@ data/scotland/*
 # Local review screenshots (see scripts/capture_review_screenshots.py)
 screenshots/review/
 
+# WIP review / migration session state (regenerate locally)
+data/rugby/_*.json
+data/rugby/review/
+
+# Runtime logs
+*.log
+logs/
+
 # WIP Instagram pyramid exports (local PNG/SVG experiments; not for deploy)
 output/instagram/
 

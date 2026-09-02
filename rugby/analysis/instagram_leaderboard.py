@@ -18,11 +18,11 @@ takes plain :class:`LeaderboardEntry` rows so it can be reused for any top-N lis
 
 Usage::
 
-    python -m rugby.instagram_leaderboard
-    python -m rugby.instagram_leaderboard --dataset active --top 10
-    python -m rugby.instagram_leaderboard --dataset ever --top 15 --png
-    python -m rugby.instagram_leaderboard --mode dark
-    python -m rugby.instagram_leaderboard --data-as-of "24 Aug 2026"
+    python -m rugby.analysis.instagram_leaderboard
+    python -m rugby.analysis.instagram_leaderboard --dataset active --top 10
+    python -m rugby.analysis.instagram_leaderboard --dataset ever --top 15 --png
+    python -m rugby.analysis.instagram_leaderboard --mode dark
+    python -m rugby.analysis.instagram_leaderboard --data-as-of "24 Aug 2026"
 """
 
 from __future__ import annotations

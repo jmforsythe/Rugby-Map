@@ -86,7 +86,7 @@ def test_map_markers_defer_real_team_images_until_after_render() -> None:
     assert "rugbyRefreshMarkerClusters" in html
     assert "rugbyClusterIconCache" in html
     assert "clusterRefreshPending" in html
-    assert "rugbyReapplyKnownCrests" in html
+    assert "primeCrestStyleRules" in html
     assert "rugby-crest-marker" in html
 
 
@@ -305,3 +305,22 @@ def test_match_day_registers_overlay_panel_refresh_callback() -> None:
     assert "window.rugbyRefreshOverlayPanel = function()" in html
     assert "applyMatchdayLayerSectionHeadings();" in html
     assert "rugbyNotifyOverlayPanelRefresh" in html
+
+
+def test_matchday_crest_markers_use_inline_background_not_img() -> None:
+    from rugby.match_day import (
+        RFU_FALLBACK_ICON,
+        _matchday_crest_div,
+        matchday_cluster_icon_create_js,
+    )
+
+    div = _matchday_crest_div(RFU_FALLBACK_ICON, 24)
+    assert "rugby-crest-marker" in div
+    assert "background:url(" in div
+    assert RFU_FALLBACK_ICON in div
+    assert "<img" not in div
+
+    cluster_js = matchday_cluster_icon_create_js(32)
+    assert "rugbyClusterIconCache" in cluster_js
+    assert "background:url(" in cluster_js
+    assert "<img" not in cluster_js

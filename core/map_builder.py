@@ -1782,11 +1782,16 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
 
 POPUP_CSS = """
 <style>
-/* Crest tiles: compositor layer reduces flash when Leaflet scales markers on zoom. */
+/* Crest tiles: compositor layer reduces flash when Leaflet scales cluster icons on zoom. */
 .folium-map .rugby-crest-marker,
 .folium-map .rugby-crest-cluster {
   backface-visibility: hidden;
+}
+.folium-map .rugby-crest-cluster {
   transform: translateZ(0);
+}
+.folium-map .rugby-crest-marker[class*="rugby-crest-src-"] {
+  background-color: transparent !important;
 }
 .folium-map .rugby-crest-wrap {
   position: relative;
@@ -2463,9 +2468,10 @@ class HatchPane(MacroElement):
 def _deferred_image_loader_script() -> str:
     """Apply crest backgrounds after territory shading has painted.
 
-    Markers and clusters use ``data-crest-url`` div tiles (never ``<img>``) so
-    MarkerCluster zoom rebuilds do not swap image sources. Cluster icons reuse
-    cached ``L.divIcon`` instances where possible.
+    Solo markers carry a stable ``rugby-crest-src-*`` class (from Python) plus
+    ``data-crest-url``; presentation-ready injects matching CSS rules from the
+    crest URL registry. Cluster icons are built in JS with inline backgrounds
+    and cached ``L.divIcon`` instances so MarkerCluster zoom rebuilds stay stable.
     """
     return f"""
     <script>
@@ -2500,9 +2506,20 @@ def _deferred_image_loader_script() -> str:
             var esc = url.replace(/\\\\/g, "\\\\\\\\").replace(/'/g, "\\\\'");
             crestStyleEl.textContent +=
                 ".folium-map ." + cls +
-                "{{background:url('" + esc + "') center/cover no-repeat !important;}}";
+                "{{background:url('" + esc + "') center/cover no-repeat !important;" +
+                "background-color:transparent !important;}}";
             crestStyleRules[cls] = true;
             return cls;
+        }}
+        function primeCrestStyleRules() {{
+            var node = document.getElementById("rugby-crest-url-registry");
+            if (!node) return;
+            try {{
+                var urls = JSON.parse(node.textContent || "[]");
+                for (var i = 0; i < urls.length; i++) {{
+                    if (urls[i]) ensureCrestStyleRule(urls[i]);
+                }}
+            }} catch (e) {{}}
         }}
         function warmCrest(url) {{
             if (!url || window.rugbyCrestWarm[url]) return;
@@ -2549,42 +2566,9 @@ def _deferred_image_loader_script() -> str:
         function activateCrestEl(el) {{
             var url = el.getAttribute("data-crest-url");
             if (!url || el.getAttribute("data-crest-ready") === "1") return;
-            el.classList.add(ensureCrestStyleRule(url));
+            ensureCrestStyleRule(url);
             el.setAttribute("data-crest-ready", "1");
             markCrestLoaded(url);
-        }}
-        function reapplyKnownCrests() {{
-            if (!window.rugbyCrestsEnabled) return;
-            var els = document.querySelectorAll("[data-crest-url]:not([data-crest-ready])");
-            for (var i = 0; i < els.length; i++) {{
-                var el = els[i];
-                var url = el.getAttribute("data-crest-url");
-                if (!url) continue;
-                if (window.rugbyLoadedCrests.has(url) || crestStyleRules[crestStyleClass(url)]) {{
-                    activateCrestEl(el);
-                }}
-            }}
-        }}
-        window.rugbyReapplyKnownCrests = reapplyKnownCrests;
-        function hookCrestResync() {{
-            var key;
-            for (key in window) {{
-                if (!Object.prototype.hasOwnProperty.call(window, key)) continue;
-                if (key.indexOf("map_") === 0) {{
-                    var map = window[key];
-                    if (map && typeof map.on === "function") {{
-                        map.on("zoomstart", reapplyKnownCrests);
-                        map.on("zoomanim", reapplyKnownCrests);
-                    }}
-                }}
-                if (key.indexOf("marker_cluster_") === 0) {{
-                    var cluster = window[key];
-                    if (cluster && typeof cluster.on === "function") {{
-                        cluster.on("spiderfied", reapplyKnownCrests);
-                        cluster.on("unspiderfied", reapplyKnownCrests);
-                    }}
-                }}
-            }}
         }}
         function finishInitialCrestLoad() {{
             if (initialCrestLoadDone) return;
@@ -2593,8 +2577,6 @@ def _deferred_image_loader_script() -> str:
                 crestObserver.disconnect();
                 crestObserver = null;
             }}
-            hookCrestResync();
-            reapplyKnownCrests();
         }}
         function activateDeferredImages() {{
             var els = Array.from(document.querySelectorAll("[data-crest-url]:not([data-crest-ready])"));
@@ -2661,6 +2643,7 @@ def _deferred_image_loader_script() -> str:
             window.rugbyCrestsEnabled = true;
             window.rugbyClusterIconCache = {{}};
             clusterRefreshPending = true;
+            primeCrestStyleRules();
             scheduleDeferredImages();
             startObserver();
         }}
@@ -2715,6 +2698,40 @@ def _crest_badge_html(badge: str | None) -> str:
     return f'<span class="rugby-crest-badge" aria-hidden="true">{escape(badge)}</span>'
 
 
+def crest_style_class(url: str) -> str:
+    """Stable class name for a crest URL; must match ``crestStyleClass`` in map JS."""
+    h = 0
+    for ch in url:
+        h = ((h << 5) - h + ord(ch)) & 0xFFFFFFFF
+    if h == 0:
+        suffix = "0"
+    else:
+        digits = "0123456789abcdefghijklmnopqrstuvwxyz"
+        parts: list[str] = []
+        n = h
+        while n:
+            n, rem = divmod(n, 36)
+            parts.append(digits[rem])
+        suffix = "".join(reversed(parts))
+    return f"rugby-crest-src-{suffix}"
+
+
+def _collect_marker_crest_urls(items: list[MarkerItem]) -> list[str]:
+    seen: set[str] = set()
+    urls: list[str] = []
+    for item in items:
+        url = item.icon_url
+        if url and url not in seen:
+            seen.add(url)
+            urls.append(url)
+    return urls
+
+
+def _crest_url_registry_element(urls: list[str]) -> str:
+    payload = json.dumps(urls, ensure_ascii=False)
+    return f'<script type="application/json" id="rugby-crest-url-registry">' f"{payload}</script>"
+
+
 def _crest_icon_html(
     *,
     icon_url: str | None,
@@ -2726,10 +2743,11 @@ def _crest_icon_html(
     badge_html = _crest_badge_html(crest_badge)
     wrap_style = f"width: {icon_size}px; height: {icon_size}px;"
     if icon_url:
+        src_class = crest_style_class(icon_url)
         inner = (
-            f'<div class="rugby-crest-marker" data-crest-url="{escape(icon_url)}" '
+            f'<div class="rugby-crest-marker {src_class}" data-crest-url="{escape(icon_url)}" '
             f'style="width: {icon_size}px; height: {icon_size}px; border-radius: 50%; '
-            f"{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3); opacity: 0.9; "
+            f"{border_css}box-shadow: 0 0 3px rgba(0,0,0,0.3); "
             f'background-color: rgba(0,0,0,0.06);"></div>'
         )
     else:
@@ -3389,6 +3407,9 @@ def generate_single_group_map(
     html_el = root.html  # type: ignore[attr-defined]
 
     header.add_child(folium.Element(f"<title>{escape(config.html_title or config.title)}</title>"))
+    crest_urls = _collect_marker_crest_urls(items)
+    if crest_urls:
+        header.add_child(folium.Element(_crest_url_registry_element(crest_urls)))
     for elem in config.header_elements:
         header.add_child(folium.Element(elem))
 
@@ -3524,6 +3545,9 @@ def generate_multi_group_map(
     html_el = root.html  # type: ignore[attr-defined]
 
     header.add_child(folium.Element(f"<title>{escape(config.html_title or config.title)}</title>"))
+    crest_urls = _collect_marker_crest_urls(items)
+    if crest_urls:
+        header.add_child(folium.Element(_crest_url_registry_element(crest_urls)))
     for elem in config.header_elements:
         header.add_child(folium.Element(elem))
 

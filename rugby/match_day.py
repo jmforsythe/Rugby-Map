@@ -76,7 +76,18 @@ logger = logging.getLogger(__name__)
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
 
 
-def matchday_cluster_icon_create_js(icon_size: int, rfu_fallback: str) -> str:
+def _matchday_crest_div(url: str, size: int) -> str:
+    """Div tile with inline background (stable on MarkerCluster zoom rebuilds)."""
+    css_url = url.replace("\\", "\\\\").replace("'", "%27")
+    return (
+        f'<div class="rugby-crest-marker" '
+        f'style="width:{size}px;height:{size}px;border-radius:50%;'
+        f"box-shadow:0 0 3px rgba(0,0,0,0.3);"
+        f"background:url('{css_url}') center/cover no-repeat\"></div>"
+    )
+
+
+def matchday_cluster_icon_create_js(icon_size: int) -> str:
     """Leaflet MarkerCluster `icon_create_function` body (cluster crest + count)."""
     half = icon_size // 2
     return f"""
@@ -99,14 +110,24 @@ def matchday_cluster_icon_create_js(icon_size: int, rfu_fallback: str) -> str:
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' matches';
         var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
         if (imageUrl) {{
-            return L.divIcon({{
+            var cacheKey = imageUrl + '|' + count;
+            if (window.rugbyClusterIconCache && window.rugbyClusterIconCache[cacheKey]) {{
+                return window.rugbyClusterIconCache[cacheKey];
+            }}
+            var esc = imageUrl.replace(/'/g, "%27");
+            var crestInner = '<div class="rugby-crest-cluster" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:url(\\'' + esc + '\\') center/cover no-repeat"></div>';
+            var clusterIcon = L.divIcon({{
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                      '<img src="' + imageUrl + '" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;" onerror="this.onerror=null;this.src=\\'{rfu_fallback}\\'">' +
+                      crestInner +
                       '<span style="position:absolute;bottom:-5px;right:-5px;background:#333;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;line-height:16px;text-align:center;">' + count + '</span></div>',
                 className: 'marker-cluster-custom',
                 iconSize: L.point({icon_size}, {icon_size}),
                 iconAnchor: L.point({half}, {half})
             }});
+            if (window.rugbyClusterIconCache) {{
+                window.rugbyClusterIconCache[cacheKey] = clusterIcon;
+            }}
+            return clusterIcon;
         }} else {{
             return L.divIcon({{
                 html: '<div style="text-align:center;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
@@ -190,6 +211,7 @@ _MATCHDAY_WIDGET_HTML = """
     var dataBaseUrl = @@DATA_BASE_URL_JSON@@;
     var parentClusterVar = @@PARENT_CLUSTER_VAR_JSON@@;
     var historicSeason = @@HISTORIC_ARCHIVE_JS@@;
+    window.rugbyClusterIconCache = window.rugbyClusterIconCache || {};
     var mapObj = null;
     var tierProxies = {};
     var tierInControl = {};
@@ -1184,7 +1206,7 @@ def build_match_day_map(
             "animate": False,
             "animateAddingMarkers": False,
         },
-        icon_create_function=matchday_cluster_icon_create_js(icon_size, RFU_FALLBACK_ICON),
+        icon_create_function=matchday_cluster_icon_create_js(icon_size),
     )
     m.add_child(parent_cluster)
 
@@ -1250,15 +1272,10 @@ def build_match_day_map(
                 home_name = home_team.get("name", "Home")
                 away_name = away_team.get("name", "Away") if away_team else "Away"
 
-                onerror = f"this.onerror=null; this.src='{RFU_FALLBACK_ICON}'"
                 icon_html = (
                     f'<div style="display:flex;align-items:center;gap:2px">'
-                    f'<img src="{escape(home_icon_url)}" '
-                    f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
-                    f'onerror="{onerror}">'
-                    f'<img src="{escape(away_icon_url)}" '
-                    f'style="width:{crest}px;height:{crest}px;border-radius:50%;" '
-                    f'onerror="{onerror}">'
+                    f"{_matchday_crest_div(home_icon_url, crest)}"
+                    f"{_matchday_crest_div(away_icon_url, crest)}"
                     f"</div>"
                 )
 

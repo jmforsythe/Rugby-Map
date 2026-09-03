@@ -109,6 +109,12 @@ def test_custom_map_template_defers_team_images_until_after_render() -> None:
     assert "renderTerritories(cachedAllPlaced, finishMapPresentation)" in html
     assert "mapPresentationPending" in html
     assert "PRESENTATION_FALLBACK_MS" in html
+    const_pos = html.index("const PRESENTATION_FALLBACK_MS")
+    timeout_pos = html.index("}, PRESENTATION_FALLBACK_MS);")
+    assert const_pos != -1 and timeout_pos != -1
+    assert (
+        const_pos < timeout_pos
+    ), "PRESENTATION_FALLBACK_MS must be declared before setTimeout uses it"
 
 
 def test_custom_map_widens_vector_renderer_buffer_for_panning() -> None:

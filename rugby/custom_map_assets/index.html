@@ -14,10 +14,7 @@
       content="Design your own English rugby union map: pick clubs, group them into leagues, and watch territory shading and travel miles update live. Free map builder from RugbyUnionMap."
     />
     <meta property="og:type" content="website" />
-    {{SEO_EXTRA}}
-    {{FAVICON_HTML}}
-    {{RESOURCE_HINTS_HTML}}
-    {{GA_SCRIPT}}
+    {{SEO_EXTRA}} {{FAVICON_HTML}} {{RESOURCE_HINTS_HTML}} {{GA_SCRIPT}}
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -295,7 +292,9 @@
         border-radius: 50%;
         cursor: pointer;
         border: 2px solid transparent;
-        transition: transform 0.1s, border-color 0.1s;
+        transition:
+          transform 0.1s,
+          border-color 0.1s;
       }
       .color-picker-swatch:hover {
         transform: scale(1.2);
@@ -303,7 +302,9 @@
       }
       .color-picker-swatch.active {
         border-color: var(--text);
-        box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 4px var(--text);
+        box-shadow:
+          0 0 0 2px var(--bg-card),
+          0 0 0 4px var(--text);
       }
       .league-name-input {
         flex: 1;
@@ -429,8 +430,8 @@
         color: var(--text-muted) !important;
       }
       .rugby-popup {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         width: 220px;
         font-size: 13px;
       }
@@ -563,7 +564,7 @@
         height: 10px;
         border-radius: 50%;
         flex-shrink: 0;
-        border: 1px solid rgba(0,0,0,0.15);
+        border: 1px solid rgba(0, 0, 0, 0.15);
       }
       .move-dropdown-item .dd-name {
         flex: 1;
@@ -1006,8 +1007,15 @@
           </div>
           <div class="territory-panel-body">
             <div class="tp-row">
-              <label for="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">Broad brush</label>
-              <select id="entryLevel" title="Minimum region size that will always be fully coloured — the broadest brush">
+              <label
+                for="entryLevel"
+                title="Minimum region size that will always be fully coloured — the broadest brush"
+                >Broad brush</label
+              >
+              <select
+                id="entryLevel"
+                title="Minimum region size that will always be fully coloured — the broadest brush"
+              >
                 <option value="itl0" selected>Country</option>
                 <option value="itl1">Region</option>
                 <option value="itl2">Sub-region</option>
@@ -1017,8 +1025,15 @@
               </select>
             </div>
             <div class="tp-row">
-              <label for="floorLevel" title="Smallest region size used to split contested areas — the finest brush">Fine brush</label>
-              <select id="floorLevel" title="Smallest region size used to split contested areas — the finest brush">
+              <label
+                for="floorLevel"
+                title="Smallest region size used to split contested areas — the finest brush"
+                >Fine brush</label
+              >
+              <select
+                id="floorLevel"
+                title="Smallest region size used to split contested areas — the finest brush"
+              >
                 <option value="itl0">Country</option>
                 <option value="itl1" selected>Region</option>
                 <option value="itl2">Sub-region</option>
@@ -1133,37 +1148,8 @@
       let activateDeferredScheduled = false;
       let initialCrestLoadDone = false;
       let crestObserver = null;
-      let crestStyleEl = null;
-      const crestStyleRules = {};
       const INFO_PREFIX = "{{INFO_PREFIX}}";
       const TEAM_HREF_SUFFIX = "{{TEAM_HREF_SUFFIX}}";
-
-      function crestStyleClass(url) {
-        let h = 0;
-        for (let i = 0; i < url.length; i++) {
-          h = ((h << 5) - h + url.charCodeAt(i)) | 0;
-        }
-        return "rugby-crest-src-" + (h >>> 0).toString(36);
-      }
-
-      function ensureCrestStyleRule(url) {
-        const cls = crestStyleClass(url);
-        if (crestStyleRules[cls]) return cls;
-        if (!crestStyleEl) {
-          crestStyleEl = document.createElement("style");
-          crestStyleEl.id = "rugby-crest-src-styles";
-          document.head.appendChild(crestStyleEl);
-        }
-        const esc = url.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
-        crestStyleEl.textContent +=
-          ".folium-map ." +
-          cls +
-          "{background:url('" +
-          esc +
-          "') center/cover no-repeat !important;}";
-        crestStyleRules[cls] = true;
-        return cls;
-      }
 
       function warmCrest(url) {
         if (!url || window.rugbyCrestWarm[url]) return;
@@ -1218,46 +1204,10 @@
       function activateCrestEl(el) {
         const url = el.getAttribute("data-crest-url");
         if (!url || el.getAttribute("data-crest-ready") === "1") return;
-        el.classList.add(ensureCrestStyleRule(url));
+        const esc = url.replace(/'/g, "%27");
+        el.style.background = "url('" + esc + "') center/cover no-repeat";
         el.setAttribute("data-crest-ready", "1");
         markCrestLoaded(url);
-      }
-
-      function reapplyKnownCrests() {
-        if (!window.rugbyCrestsEnabled) return;
-        const els = document.querySelectorAll(
-          "[data-crest-url]:not([data-crest-ready])",
-        );
-        for (const el of els) {
-          const url = el.getAttribute("data-crest-url");
-          if (!url) continue;
-          if (
-            window.rugbyLoadedCrests.has(url) ||
-            crestStyleRules[crestStyleClass(url)]
-          ) {
-            activateCrestEl(el);
-          }
-        }
-      }
-      window.rugbyReapplyKnownCrests = reapplyKnownCrests;
-
-      function hookCrestResync() {
-        for (const key of Object.keys(window)) {
-          if (key.startsWith("map_")) {
-            const map = window[key];
-            if (map && typeof map.on === "function") {
-              map.on("zoomstart", reapplyKnownCrests);
-              map.on("zoomanim", reapplyKnownCrests);
-            }
-          }
-          if (key.startsWith("marker_cluster_")) {
-            const cluster = window[key];
-            if (cluster && typeof cluster.on === "function") {
-              cluster.on("spiderfied", reapplyKnownCrests);
-              cluster.on("unspiderfied", reapplyKnownCrests);
-            }
-          }
-        }
       }
 
       function finishInitialCrestLoad() {
@@ -1267,8 +1217,6 @@
           crestObserver.disconnect();
           crestObserver = null;
         }
-        hookCrestResync();
-        reapplyKnownCrests();
       }
 
       function activateDeferredImages() {
@@ -1355,6 +1303,10 @@
         document.dispatchEvent(new Event("rugby-map-presentation-ready"));
       }
 
+      let mapPresentationPending = false;
+      let presentationReadySent = false;
+      const PRESENTATION_FALLBACK_MS = 15000;
+
       function finishMapPresentation() {
         if (!mapPresentationPending) return;
         mapPresentationPending = false;
@@ -1408,9 +1360,6 @@
       let territoriesVisible = true;
       let boundariesReady = false;
       let cachedAllPlaced = [];
-      let mapPresentationPending = false;
-      let presentationReadySent = false;
-      const PRESENTATION_FALLBACK_MS = 15000;
 
       const RUGBY_THEME_STORAGE_KEY = "rugbyMapTheme";
       const colorSchemeMediaQuery = window.matchMedia(
@@ -3157,6 +3106,7 @@
       //   1. Pyramid tiers (pyramid teams only)
       //   2. All Leagues per tier (pyramid + merit at same absolute level)
       //   3. Merit competitions (per-competition, per-local-tier)
+      //   4. Bonus import packs (optional JSON under data/rugby/custom_map_imports/)
       var importData = {
         pyramid: [],
         allLeagues: [],

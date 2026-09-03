@@ -922,7 +922,7 @@ def main() -> None:
     # Write season_imports.js (pyramid / merit from latest league_data season)
     write_season_imports_js(OUTPUT_DIR)
 
-    # Write bonus_imports.js (projected / manual import packs)
+    # Write bonus_imports.js (optional import packs from custom_map_imports/)
     write_bonus_imports_js(OUTPUT_DIR)
 
     # Write distances.js (routed road distance/duration matrix for JS lookup)

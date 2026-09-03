@@ -45,8 +45,17 @@ def test_resolve_team_to_teams_index(tmp_path: Path) -> None:
     dist = tmp_path / "dist"
     (dist / "teams").mkdir(parents=True)
     (dist / "teams" / "index.html").write_text("<html></html>", encoding="utf-8")
-    target = resolve_redirect_target("/teams/Missing_Club.html", dist, {"Other.html"})
+    target = resolve_redirect_target("/teams/Missing_Club.html", dist, {"Other"})
     assert target == "https://rugbyunionmap.uk/teams/"
+
+
+def test_resolve_team_redirect_to_directory_slug(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    teams = dist / "teams"
+    (teams / "Bath_Rugby").mkdir(parents=True)
+    (teams / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
+    target = resolve_redirect_target("/teams/Bath.html", dist, {"Bath_Rugby"})
+    assert target == "https://rugbyunionmap.uk/teams/Bath_Rugby/"
 
 
 def test_resolve_not_found_redirect_to_parent_index() -> None:
@@ -196,13 +205,32 @@ def test_discover_legacy_team_html_redirects(tmp_path: Path) -> None:
     teams = dist / "teams"
     (teams / "Bath_Rugby").mkdir(parents=True)
     (teams / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
-    (teams / "Bath_Rugby.html").write_text("<html></html>", encoding="utf-8")
-    # No canonical directory for this one — must not produce a redirect.
+    # Flat-only orphan — no directory canonical, must not produce a redirect.
     (teams / "Orphan_Club.html").write_text("<html></html>", encoding="utf-8")
 
     pairs = dict(discover_legacy_team_html_redirects(dist))
     assert pairs["/teams/Bath_Rugby.html"] == "/teams/Bath_Rugby/"
     assert "/teams/Orphan_Club.html" not in pairs
+
+
+def test_generate_legacy_redirects_writes_flat_stub_from_directory_only(
+    tmp_path: Path,
+) -> None:
+    dist = tmp_path / "dist"
+    teams = dist / "teams"
+    (teams / "Bath_Rugby").mkdir(parents=True)
+    (teams / "Bath_Rugby" / "index.html").write_text(
+        "<html><body>Real team page</body></html>", encoding="utf-8"
+    )
+
+    written = generate_legacy_redirects(dist)
+    assert written >= 1
+
+    stub = teams / "Bath_Rugby.html"
+    assert stub.is_file()
+    text = stub.read_text(encoding="utf-8")
+    assert 'data-rugby-redirect="1"' in text
+    assert "/teams/Bath_Rugby/" in text
 
 
 def test_generate_legacy_redirects_overwrites_flat_team_html_when_directory_exists(

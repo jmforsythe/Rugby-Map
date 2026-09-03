@@ -149,10 +149,22 @@ def _team_page_output_path(teams_dir: Path, slug: str) -> Path:
 
 
 def _team_page_href(slug: str) -> str:
-    """Public href for a team page: ``{slug}/`` in production, else ``{slug}.html``."""
+    """Public href for a team page from ``teams/index.html``: ``{slug}/`` in production, else ``{slug}.html``."""
     if get_config().is_production:
         return f"{slug}/"
     return f"{slug}.html"
+
+
+def _team_page_sibling_href(slug: str) -> str:
+    """Relative href from one team page to another under ``dist/teams/``."""
+    if get_config().is_production:
+        return f"../{slug}/"
+    return f"{slug}.html"
+
+
+def _team_page_asset_depth() -> int:
+    """Directory depth of team pages relative to ``dist/`` (1 flat dev, 2 nested prod)."""
+    return 2 if get_config().is_production else 1
 
 
 def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set[str]) -> str:
@@ -747,7 +759,7 @@ def _opponent_page_link(
     page_key = id_to_page_key.get(opponent_id)
     if page_key and page_key in all_teams:
         slug = _team_page_slug(all_teams[page_key], ambiguous_display_names)
-        href = _team_page_href(slug)
+        href = _team_page_sibling_href(slug)
         return (
             f'<a href="{escape(href)}" class="card-link card-inline fixture-opponent-link">'
             f"{escape(opponent_name)}</a>"
@@ -955,7 +967,7 @@ def get_team_page_html(
     page_title = escape(f"{team_name} | League History | {BRAND}")
 
     is_prod = get_config().is_production
-    teams_index_href = "./" if is_prod else "./index.html"
+    teams_index_href = "../" if is_prod else "./index.html"
 
     team_slug = _team_page_slug(team_data, ambiguous_display_names)
     # Canonical URL is only meaningful in production; omit it in local dev builds.
@@ -1001,9 +1013,9 @@ def get_team_page_html(
     <meta property="og:description" content="{meta_desc}" />
     <meta property="og:type" content="website" />
     <title>{page_title}</title>
-{head_extra}    <link rel="stylesheet" href="{get_stylesheet_href(depth=1)}">
-    <link rel="stylesheet" href="{get_stylesheet_href(depth=1, filename="team-pages.css")}">
-    {get_favicon_html(depth=1)}
+{head_extra}    <link rel="stylesheet" href="{get_stylesheet_href(depth=_team_page_asset_depth())}">
+    <link rel="stylesheet" href="{get_stylesheet_href(depth=_team_page_asset_depth(), filename="team-pages.css")}">
+    {get_favicon_html(depth=_team_page_asset_depth())}
     {get_google_analytics_script()}
 </head>
 <body>
@@ -1057,7 +1069,7 @@ def get_team_page_html(
         for sibling_key in club_teams:
             sib = all_teams[sibling_key]
             sib_name = sib.get("name") or sibling_key
-            sib_href = _team_page_href(_team_page_slug(sib, ambiguous_display_names))
+            sib_href = _team_page_sibling_href(_team_page_slug(sib, ambiguous_display_names))
             html += f'            <li><a href="{escape(sib_href)}" class="card-link card-inline">{escape(sib_name)}</a></li>\n'
 
         html += """        </ul>

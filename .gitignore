@@ -11,6 +11,7 @@ _pyramid_raster_cache/
 dist/*
 !dist/service-worker.js
 !dist/styles.css
+!dist/team-pages.css
 !dist/favicon.svg
 !dist/favicon-dark.svg
 !dist/favicon.ico

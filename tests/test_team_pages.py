@@ -7,6 +7,7 @@ from rugby.team_pages import (
     _format_fixture_date,
     _format_fixture_result,
     _render_fixtures_section,
+    _team_page_sibling_href,
     build_club_index,
     build_id_to_page_key,
     collect_team_fixtures,
@@ -360,6 +361,69 @@ class TestGetTeamPageHtml:
         )
         assert 'href="../styles.css"' in html
         assert 'href="../team-pages.css"' in html
+
+    def test_back_link_goes_to_teams_index_not_self(self, monkeypatch) -> None:
+        monkeypatch.setattr(get_config(), "is_production", True)
+        team_data = _minimal_team_data()
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert 'href="../">← All Teams</a>' in html
+        assert 'href="./">← All Teams</a>' not in html
+
+    def test_back_link_dev_mode_uses_index_html(self, monkeypatch) -> None:
+        monkeypatch.setattr(get_config(), "is_production", False)
+        team_data = _minimal_team_data()
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            {"Barnes": team_data},
+            club_index={},
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert 'href="./index.html">← All Teams</a>' in html
+
+    def test_sibling_href_uses_parent_relative_path_in_production(self, monkeypatch) -> None:
+        monkeypatch.setattr(get_config(), "is_production", True)
+        assert _team_page_sibling_href("Bath_Rugby") == "../Bath_Rugby/"
+
+    def test_sibling_href_is_flat_sibling_in_dev(self, monkeypatch) -> None:
+        monkeypatch.setattr(get_config(), "is_production", False)
+        assert _team_page_sibling_href("Bath_Rugby") == "Bath_Rugby.html"
+
+    def test_team_page_links_to_sibling_with_correct_href(self, monkeypatch) -> None:
+        monkeypatch.setattr(get_config(), "is_production", True)
+        team_data = _minimal_team_data(name="Barnes")
+        sibling = _minimal_team_data(name="Barnes II", url="https://example.com?team=99")
+        all_teams = {"Barnes": team_data, "Barnes II": sibling}
+        club_index = {"Barnes": ["Barnes II"], "Barnes II": ["Barnes"]}
+        html = get_team_page_html(
+            "Barnes",
+            team_data,
+            all_teams,
+            club_index,
+            travel_distances_by_season={},
+            all_seasons=[],
+            ambiguous_display_names=set(),
+            team_fixtures=[],
+            id_to_page_key={},
+            team_id_names={},
+        )
+        assert 'href="../Barnes_II/"' in html
 
     def test_renders_constituent_body_row_when_known(self):
         team_data = _minimal_team_data(constituent_body="Surrey Rugby")

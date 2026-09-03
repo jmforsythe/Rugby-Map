@@ -95,36 +95,45 @@ def _site_path_to_dist_file(dist_dir: Path, site_path: str) -> Path:
     return dist_dir / rel / "index.html"
 
 
-def _load_team_filenames(dist_dir: Path) -> set[str]:
+def _load_team_slugs(dist_dir: Path) -> set[str]:
+    """Return canonical team page slugs (flat ``.html`` stems and ``slug/index.html`` dirs)."""
     teams = dist_dir / "teams"
     if not teams.is_dir():
         return set()
-    return {p.name for p in teams.glob("*.html") if p.name != "index.html"}
+    slugs: set[str] = set()
+    for html in teams.glob("*.html"):
+        if html.name != "index.html" and not _is_redirect_stub(html):
+            slugs.add(html.stem)
+    for child in teams.iterdir():
+        if child.is_dir() and (child / "index.html").is_file():
+            slugs.add(child.name)
+    return slugs
 
 
-def _resolve_team_filename(filename: str, existing: set[str]) -> str | None:
-    if filename in existing:
+def _resolve_team_slug(filename: str, existing: set[str]) -> str | None:
+    """Match a legacy ``/teams/{name}.html`` request to a canonical slug, if possible."""
+    stem = filename[:-5] if filename.endswith(".html") else filename
+    if stem in existing:
         return None
 
-    def norm(stem: str) -> str:
-        return stem.lower().replace("_", "").replace("'", "")
+    def norm(name: str) -> str:
+        return name.lower().replace("_", "").replace("'", "")
 
-    stem = filename[:-5] if filename.endswith(".html") else filename
     target_key = norm(stem)
-    for name in existing:
-        if norm(name[:-5]) == target_key:
-            return name
+    for slug in existing:
+        if norm(slug) == target_key:
+            return slug
 
     base = stem.split("_")[0]
     if not base:
         return None
-    matches = [n for n in existing if n.startswith(base + "_") or n.startswith(base + ".")]
+    matches = [s for s in existing if s.startswith(base + "_") or s.startswith(base + ".")]
     if len(matches) == 1:
         return matches[0]
     return None
 
 
-def resolve_redirect_target(site_path: str, dist_dir: Path, team_files: set[str]) -> str:
+def resolve_redirect_target(site_path: str, dist_dir: Path, team_slugs: set[str]) -> str:
     """Choose the canonical destination URL for a legacy *site_path*."""
     path = _normalize_site_path(site_path)
 
@@ -146,9 +155,9 @@ def resolve_redirect_target(site_path: str, dist_dir: Path, team_files: set[str]
 
     m = _TEAM_RE.match(path)
     if m:
-        alt = _resolve_team_filename(m.group(1), team_files)
+        alt = _resolve_team_slug(m.group(1), team_slugs)
         if alt:
-            return absolute_url(f"/teams/{alt}")
+            return absolute_url(f"/teams/{alt}/")
         return absolute_url("/teams/")
 
     m = _SEASON_RE.match(path)
@@ -185,17 +194,18 @@ def discover_legacy_tier_html_redirects(dist_dir: Path) -> list[tuple[str, str]]
 
 
 def discover_legacy_team_html_redirects(dist_dir: Path) -> list[tuple[str, str]]:
-    """``/teams/{slug}.html`` → ``/teams/{slug}/`` when the directory canonical exists."""
+    """``/teams/{slug}.html`` → ``/teams/{slug}/`` for every canonical directory page."""
     pairs: list[tuple[str, str]] = []
     teams_dir = dist_dir / "teams"
     if not teams_dir.is_dir():
         return pairs
-    for html in sorted(teams_dir.glob("*.html")):
-        if html.name == "index.html":
+    for child in sorted(teams_dir.iterdir()):
+        if not child.is_dir():
             continue
-        slug = html.stem
-        if (teams_dir / slug / "index.html").is_file():
-            pairs.append((f"/teams/{html.name}", f"/teams/{slug}/"))
+        if not (child / "index.html").is_file():
+            continue
+        slug = child.name
+        pairs.append((f"/teams/{slug}.html", f"/teams/{slug}/"))
     return pairs
 
 
@@ -313,12 +323,12 @@ def _collect_paths(dist_dir: Path) -> tuple[set[str], dict[str, str], set[str]]:
 def _redirect_target_url(
     site_path: str,
     dist_dir: Path,
-    team_files: set[str],
+    team_slugs: set[str],
     explicit: dict[str, str],
 ) -> str:
     if site_path in explicit:
         return absolute_url(explicit[site_path])
-    return resolve_redirect_target(site_path, dist_dir, team_files)
+    return resolve_redirect_target(site_path, dist_dir, team_slugs)
 
 
 def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
@@ -327,7 +337,7 @@ def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
     if not root.is_dir():
         return 0
 
-    team_files = _load_team_filenames(root)
+    team_slugs = _load_team_slugs(root)
     paths, explicit, force_overwrite = _collect_paths(root)
     written = 0
 
@@ -336,7 +346,7 @@ def generate_legacy_redirects(dist_dir: Path | None = None) -> int:
         if out.is_file() and not _is_redirect_stub(out) and site_path not in force_overwrite:
             continue
 
-        target = _redirect_target_url(site_path, root, team_files, explicit)
+        target = _redirect_target_url(site_path, root, team_slugs, explicit)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(
             _redirect_stub_html(target, "Redirecting… | rugbyunionmap.uk"),

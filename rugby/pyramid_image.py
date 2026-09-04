@@ -2326,6 +2326,8 @@ def load_pyramid_leagues(
     leagues: list[LeagueData] = []
     # Only top-level files — merit/, county_championship/, etc. are skipped.
     for filepath in sorted(season_dir.glob("*.json")):
+        if filepath.name.startswith("_"):
+            continue
         if omit_top_level_filepath is not None and omit_top_level_filepath(filepath):
             continue
         league = _load_league_file(filepath, season, gender=gender)
@@ -2358,6 +2360,8 @@ def load_merit_pyramid_leagues_raw(season: str, competition: str) -> list[League
 
     raw: list[LeagueData] = []
     for filepath in sorted(comp_dir.glob("*.json")):
+        if filepath.name.startswith("_"):
+            continue
         rel = f"merit/{competition}/{filepath.name}"
         # ``gender="mens"`` ensures the women's tier-100+ filter is not applied; merit
         # files always return local tiers below 100 via the merit branch of extract_tier.
@@ -2512,7 +2516,7 @@ def discover_merit_competitions(season: str) -> list[str]:
     for d in sorted(season_dir.iterdir()):
         if not d.is_dir():
             continue
-        if any(d.glob("*.json")):
+        if any(f for f in d.glob("*.json") if not f.name.startswith("_")):
             out.append(d.name)
     return out
 

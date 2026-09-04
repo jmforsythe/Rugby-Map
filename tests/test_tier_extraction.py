@@ -44,6 +44,13 @@ def test_competition_offsets_east_midlands_nottinghamshire_2008_2009_era() -> No
     assert get_competition_offset("East_Midlands", "2011-2012") == 7
 
 
+def test_extract_tier_skips_league_data_sidecars_without_warning(caplog) -> None:
+    """Scrape metadata JSON under league_data/ must not trigger unknown-tier warnings."""
+    for name in ("_fixture_only_leagues.json", "_meta_leagues_cache.json"):
+        assert extract_tier(name, "2026-2027") == (999, "Unknown Tier")
+    assert "Could not extract tier from" not in caplog.text
+
+
 class TestExtractTierMenCurrent:
     """Tests for current men's tier extraction (2022+)."""
 
@@ -354,6 +361,13 @@ class TestExtractTierMeritPath:
 
     def test_grfu_district(self):
         result = extract_tier("merit/GRFU_District/Bristol_&_District_1.json", "2025-2026")
+        assert result == (1, "GRFU District 1")
+
+    def test_grfu_bristol_combination_2026_2027(self):
+        """2026-2027 merges Bristol 1+2 into an unnumbered Combination band (local tier 1)."""
+        result = extract_tier(
+            "merit/GRFU_District/Bristol_and_District_Combination.json", "2026-2027"
+        )
         assert result == (1, "GRFU District 1")
 
     def test_grfu_north_no_pyramid_collision(self):
@@ -775,6 +789,21 @@ class TestNamedMeritLeagues:
             "merit/East_Midlands/East_Midlands_2_-_Bedfordshire_(North).json", "2025-2026"
         )
         assert result == (2, "East Midlands 2")
+
+    def test_east_midlands_merit_abc_2026_2027(self):
+        """2026-2027 renames the ladder to Merit A / B1 / B2; B1 and B2 are siblings below A."""
+        assert extract_tier("merit/East_Midlands/East_Midlands_Merit_A.json", "2026-2027") == (
+            2,
+            "East Midlands 2",
+        )
+        assert extract_tier("merit/East_Midlands/East_Midlands_Merit_B1.json", "2026-2027") == (
+            3,
+            "East Midlands 3",
+        )
+        assert extract_tier("merit/East_Midlands/East_Midlands_Merit_B2.json", "2026-2027") == (
+            3,
+            "East Midlands 3",
+        )
 
     def test_middlesex_ordinal_divisions(self):
         """Ordinal-named divisions should get distinct local tiers."""

@@ -393,6 +393,57 @@ def test_nowirul_2025_2026_division4_east_not_orphaned() -> None:
     ), f"{season}: NOWIRUL Division 4 multi-parent span(s) orphaned: {nowirul_span_orphans}"
 
 
+def _merit_stem_league_keys(season: str) -> dict[tuple[int, str], str]:
+    """Merit leagues on ``pyramid_All_Leagues`` at stem tiers 8+ keyed by ``(tier, name)`` → competition."""
+    try:
+        leagues = load_pyramid_leagues_with_merit(season)
+    except FileNotFoundError:
+        return {}
+    return {
+        (lg.tier_num, lg.league_name): (lg.merit_geocoded_competition or "")
+        for lg in leagues
+        if lg.merit_geocoded_competition and lg.tier_num >= 8
+    }
+
+
+def test_mens_all_leagues_real_seasons_merit_leagues_have_resolvable_parents() -> None:
+    """Every merit league on ``pyramid_All_Leagues`` must nest under a parent, not the orphan band.
+
+    Parent links come from ``data/rugby/tier_mappings/<season>.json`` — the ``men`` section for
+    national stem tiers and per-merit sections (``GRFU_District``, ``NOWIRUL``, …) for local-tier
+    rows, after :func:`stem_parent_overrides_merge_merit_sections_for_absolute_tiers` and optional
+    cross-season backfill. When a link is missing, mis-keyed (wrong local tier), or rejected
+    (parent on the wrong absolute tier), :func:`_build_stem_forest` leaves the league in
+    ``orphan_row_positions`` — the full-width fallback row beneath the linked band.
+
+    Regression: 2026-2027 ``GRFU_District`` was absent from tier_mappings and Bristol &
+    District Combination was misclassified as local tier 0, so all three GRFU leagues orphaned
+    while overlap-only orphan tests still passed.
+    """
+    checked = 0
+    orphaned_merit: list[str] = []
+    for season in _available_seasons():
+        layout = _all_leagues_stem_layout(season)
+        merit_keys = _merit_stem_league_keys(season)
+        if layout is None or not merit_keys:
+            continue
+        checked += 1
+        orphan_keys = {
+            (tier, lg.league_name)
+            for tier, row in layout.orphan_row_positions.items()
+            for lg, _, _ in row
+        }
+        for key in sorted(orphan_keys & merit_keys.keys()):
+            tier, name = key
+            comp = merit_keys[key]
+            orphaned_merit.append(f"{season} {comp}: {name!r} (tier {tier})")
+    assert checked > 0, "no season with merit leagues produced an All Leagues stem layout"
+    assert not orphaned_merit, (
+        "merit league(s) with no resolvable parent in tier_mappings (orphan-row geometry on "
+        f"pyramid_All_Leagues): {orphaned_merit}"
+    )
+
+
 def test_mens_all_leagues_real_seasons_stem_tiers_no_overlap_or_degenerate() -> None:
     """Overlap check on the internal (``LeagueData``, x, width) layout data itself, not the
     rendered SVG.

@@ -114,10 +114,8 @@
       "East Midlands Merit A": "Counties 2 Midlands East (South)"
     },
     "3": {
-      "East Midlands Merit B1": "East Midlands Merit A"
-    },
-    "0": {
-      "East Midlands Merit B2": "Counties 2 Midlands East (South)"
+      "East Midlands Merit B1": "East Midlands Merit A",
+      "East Midlands Merit B2": "East Midlands Merit A"
     }
   },
   "Eastern_Counties": {
@@ -141,6 +139,15 @@
     },
     "1": {
       "Division 1": "Counties 1 Essex"
+    }
+  },
+  "GRFU_District": {
+    "1": {
+      "Bristol & District Combination": "Counties 4 Tribute Ale Gloucestershire North",
+      "Gloucester & District 1": "Counties 4 Tribute Ale Gloucestershire South"
+    },
+    "2": {
+      "Gloucester & District 2": "Gloucester & District 1"
     }
   },
   "Leicestershire": {
@@ -204,6 +211,14 @@
     },
     "1": {
       "Kent A Rural": "Counties 2 Kent"
+    }
+  },
+  "Surrey": {
+    "3": {
+      "Surrey Alliance League 2026-2027": "Surrey Championship 2026-2027"
+    },
+    "4": {
+      "Surrey Conference League 2026-2027": "Surrey Alliance League 2026-2027"
     }
   },
   "Sussex": {

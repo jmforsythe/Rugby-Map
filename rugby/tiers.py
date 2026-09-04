@@ -534,10 +534,11 @@ _EAST_MIDLANDS_TIERS: dict[str, dict[str, int]] = {
         "East_Midlands_2_-_Northants_A": 2,
         "East_Midlands_2_-_Northants_B": 3,
     },
-    # 2026-2027 renames the ladder to Merit A / Merit B1, keeping the 2025-2026 anchor.
+    # 2026-2027 renames the ladder to Merit A / Merit B1 / Merit B2, keeping the 2025-2026 anchor.
     "2026-2027": {
         "East_Midlands_Merit_A": 2,
         "East_Midlands_Merit_B1": 3,
+        "East_Midlands_Merit_B2": 3,
     },
 }
 
@@ -591,6 +592,8 @@ _NAMED_MERIT_LEAGUES: dict[str, int] = {
     "merit/Hampshire/Hampshire_4": 8,
     # Leicestershire (offset 8): Invitation Merit (2)
     "merit/Leicestershire/Leicestershire_Invitation": 2,
+    # GRFU District (2026-2027): Bristol 1+2 merged into one unnumbered Combination band.
+    "merit/GRFU_District/Bristol_and_District_Combination": 1,
     # Surrey (offset 9): Premier (1) > Championship (2) > Alliance (3) >
     # Conference (4) > Combination 1 (5) > Combination 2 (6) >
     # Combination 3 / Foundation (7). 2009-2010 JONAP and 2010-2011..2012-2013 ``Surrey_*`` files
@@ -803,7 +806,13 @@ def extract_tier(path_or_filename: str, season: str = CURRENT_SEASON) -> tuple[i
     For merit paths, the returned tier number is **local** to the competition
     (1-based) and the name is competition-qualified (e.g. ``"Essex 2"``).
     """
-    normalized = normalize_league_filepath(path_or_filename.replace("\\", "/"))
+    raw_path = path_or_filename.replace("\\", "/")
+    raw_filename = raw_path.split("/")[-1]
+    # Scrape sidecars under league_data/ (fixture-only index, meta URL cache, …) are not leagues.
+    if raw_filename.startswith("_"):
+        return (999, "Unknown Tier")
+
+    normalized = normalize_league_filepath(raw_path)
     filename = normalized.split("/")[-1]
 
     override = _filename_override(filename, _WOMENS_FILENAME_OVERRIDES)

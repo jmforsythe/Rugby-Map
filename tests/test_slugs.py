@@ -23,6 +23,15 @@ def test_slugify_content_strips_apostrophes_in_other_words() -> None:
     assert slugify_content("Bishop's Stortford") == "Bishops_Stortford"
 
 
+def test_normalize_filename_stem_matches_slugify_rules() -> None:
+    from core.slugs import normalize_filename_stem
+
+    assert normalize_filename_stem("Durham_N'thm'land_1") == "Durham_Nthmland_1"
+    assert normalize_filename_stem("Berks_Bucks_&_Oxon_Premier") == "Berks_Bucks_and_Oxon_Premier"
+    assert normalize_filename_stem("Women's_NC_2") == "Women_NC_2"
+    assert normalize_filename_stem("Harvey's_Brewery_Counties_3") == "Harveys_Brewery_Counties_3"
+
+
 def test_slugify_path_kebab() -> None:
     assert slugify_path("East_Midlands") == "east-midlands"
     assert slugify_path("custom-map") == "custom-map"

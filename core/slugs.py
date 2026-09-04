@@ -63,6 +63,33 @@ def slugify_content(name: str) -> str:
     return s.strip("_")
 
 
+def normalize_filename_stem(stem: str) -> str:
+    """Apply :func:`slugify_content` punctuation rules to an existing PascalSnake stem."""
+    s = unicodedata.normalize("NFKC", stem)
+    s = _APOSTROPHE_VARIANTS_RE.sub("'", s)
+    s = re.sub(r"Women's_", "Women_", s, flags=re.IGNORECASE)
+    s = s.replace("&", "and").replace("|", "_")
+    s = re.sub(r"Women\+", "Women_Plus", s, flags=re.IGNORECASE)
+    s = _WOMENS_NORMALIZE_RE.sub("Women", s)
+    s = s.replace("'", "")
+    s = s.replace("+", "_Plus")
+    s = re.sub(r"_+", "_", s)
+    return s.strip("_")
+
+
+def normalize_league_filepath(path: str) -> str:
+    """Normalize each segment of a league JSON path for tier/lookup matching."""
+    parts: list[str] = []
+    for part in path.replace("\\", "/").split("/"):
+        if not part:
+            continue
+        if part.endswith(".json"):
+            parts.append(normalize_filename_stem(part[:-5]) + ".json")
+        else:
+            parts.append(normalize_filename_stem(part))
+    return "/".join(parts)
+
+
 def sanitize_team_name(team_name: str) -> str:
     """Convert team display name to a URL slug (PascalSnake, minimal punctuation)."""
     s = unicodedata.normalize("NFKC", team_name)

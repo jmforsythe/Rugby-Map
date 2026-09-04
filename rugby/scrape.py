@@ -201,6 +201,47 @@ def save_meta_cache(season: str, cache: dict[str, list[LeagueInfo]]) -> None:
     print(f"  Meta league cache saved to {path}")
 
 
+def normalize_rfu_league_url(league_url: str, season: str) -> str:
+    """Normalize an RFU league page URL for storage and comparison."""
+    parsed_url = urllib.parse.urlparse(league_url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    if "season" not in query_params:
+        query_params["season"] = [season]
+    new_query = urllib.parse.urlencode(query_params, doseq=True)
+    return urllib.parse.urlunparse(
+        (
+            parsed_url.scheme,
+            parsed_url.netloc,
+            parsed_url.path,
+            parsed_url.params,
+            new_query,
+            "tables",
+        )
+    )
+
+
+def rfu_league_url_key(url: str) -> tuple[str, str, str]:
+    """Return ``(competition, division, season)`` for comparing RFU league URLs."""
+    params = urllib.parse.parse_qs(urllib.parse.urlparse(url).query)
+    return (
+        params.get("competition", [""])[0],
+        params.get("division", [""])[0],
+        params.get("season", [""])[0],
+    )
+
+
+def load_meta_league_urls_by_name(season: str) -> dict[str, str]:
+    """Map league display name to normalized URL from ``_meta_leagues_cache.json``."""
+    cache = load_meta_cache(season)
+    if not cache:
+        return {}
+    by_name: dict[str, str] = {}
+    for leagues in cache.values():
+        for league in leagues:
+            by_name[league["name"]] = normalize_rfu_league_url(league["url"], season)
+    return by_name
+
+
 def scrape_meta_leagues(
     meta_urls: list[str], season: str
 ) -> tuple[list[LeagueInfo], dict[str, list[LeagueInfo]]]:
@@ -506,8 +547,8 @@ _BANNED_FILENAMES = [
     "Social_Rugby_Group.json",
     "Area_2_Merit_League.json",
     "Bombardier___Eagle_2017.json",
-    "Bristol_&_District_3-4.json",
-    "Gloucester_&_District_3-4.json",
+    "Bristol_and_District_3-4.json",
+    "Gloucester_and_District_3-4.json",
     "Midlands_East_(South)_A.json",
     "Midlands_East_(South)_B.json",
 ]
@@ -586,21 +627,9 @@ def _scrape_league_list(
             skipped.append(league)
             continue
 
-        parsed_url = urllib.parse.urlparse(league_url)
+        normalized_url = normalize_rfu_league_url(league_url, season)
+        parsed_url = urllib.parse.urlparse(normalized_url)
         query_params = urllib.parse.parse_qs(parsed_url.query)
-        if "season" not in query_params:
-            query_params["season"] = [season]
-        new_query = urllib.parse.urlencode(query_params, doseq=True)
-        normalized_url = urllib.parse.urlunparse(
-            (
-                parsed_url.scheme,
-                parsed_url.netloc,
-                parsed_url.path,
-                parsed_url.params,
-                new_query,
-                "tables",
-            )
-        )
 
         division_ids = query_params.get("division", [])
         filename = clean_filename(league_name) + ".json"
@@ -629,8 +658,23 @@ def _scrape_league_list(
             output_path = output_dir / filename
 
         if output_path.exists() and not force:
-            print(f"Skipping {league_name} (already exists)")
-            continue
+            existing_url: str | None = None
+            try:
+                with open(output_path, encoding="utf-8") as f:
+                    existing_url = json.load(f).get("league_url")
+            except (json.JSONDecodeError, OSError):
+                existing_url = None
+            url_changed = existing_url is not None and rfu_league_url_key(
+                existing_url
+            ) != rfu_league_url_key(normalized_url)
+            if not url_changed:
+                print(f"Skipping {league_name} (already exists)")
+                continue
+            old_div, new_div = (
+                rfu_league_url_key(existing_url)[1],
+                rfu_league_url_key(normalized_url)[1],
+            )
+            print(f"Re-scraping {league_name} (division {old_div} -> {new_div})")
 
         league_url = normalized_url
 

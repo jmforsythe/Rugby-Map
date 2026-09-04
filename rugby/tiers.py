@@ -11,8 +11,22 @@ import logging
 from pathlib import Path
 
 from core.config import CURRENT_SEASON
+from core.slugs import normalize_filename_stem, normalize_league_filepath
 
 logger = logging.getLogger(__name__)
+
+
+def _tier_startswith(path: str, prefix: str) -> bool:
+    """Prefix match after applying slug filename normalization to both operands."""
+    return normalize_league_filepath(path).startswith(normalize_league_filepath(prefix))
+
+
+def _filename_override(
+    filename: str, overrides: dict[str, tuple[int, str]]
+) -> tuple[int, str] | None:
+    normalized = normalize_league_filepath(filename).split("/")[-1]
+    return overrides.get(normalized) or overrides.get(filename)
+
 
 MENS_CURRENT_TIER_NAMES: dict[int, str] = {
     1: "Premiership",
@@ -335,6 +349,7 @@ _WOMENS_FILENAME_OVERRIDES: dict[str, tuple[int, str]] = {
     "NC_Midlands_Merit.json": (104, "National Challenge 1"),
     "NC_Lancashire_Merit.json": (104, "National Challenge 1"),
     "Eastern_Counties_Women's_Merit_Table.json": (104, "National Challenge 1"),
+    "Eastern_Counties_Women_Merit_Table.json": (104, "National Challenge 1"),
 }
 
 # Men's end-of-season play-off fixture files (RFU competition 2319) under
@@ -539,12 +554,16 @@ def _lookup_east_midlands_tier(path: str, season: str) -> tuple[int, str] | None
     if table is None:
         return None
     prefix = "merit/East_Midlands/"
-    if not path.startswith(prefix):
+    if not _tier_startswith(path, prefix):
         return None
-    filename = path[len(prefix) :]
+    filename = normalize_league_filepath(path)[len(prefix) :]
     stem = _strip_sponsor_prefix(filename)
+    norm_stem = normalize_filename_stem(stem.removesuffix(".json"))
     for key, tier in sorted(table.items(), key=lambda kv: len(kv[0]), reverse=True):
-        if stem.startswith(key) and (len(stem) == len(key) or stem[len(key)] in "._"):
+        norm_key = normalize_filename_stem(key)
+        if norm_stem.startswith(norm_key) and (
+            len(norm_stem) == len(norm_key) or norm_stem[len(norm_key)] in "._"
+        ):
             return (tier, f"Level {tier}")
     return None
 
@@ -706,37 +725,37 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     em_result = _lookup_east_midlands_tier(path, season)
     if em_result is not None:
         return em_result
-    if season == "2009-2010" and path.startswith("merit/Surrey/Surrey_JONAP"):
+    if season == "2009-2010" and _tier_startswith(path, "merit/Surrey/Surrey_JONAP"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_2009_2010:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season == "2010-2011" and path.startswith("merit/Rural_Kent/"):
+    if season == "2010-2011" and _tier_startswith(path, "merit/Rural_Kent/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_RURAL_KENT_2010_2011:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season in _SURREY_NINE_RUNG_PREMIER_SEASONS and path.startswith("merit/Surrey/"):
+    if season in _SURREY_NINE_RUNG_PREMIER_SEASONS and _tier_startswith(path, "merit/Surrey/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_NINE_RUNG:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season in _SURREY_FOUR_CONF_SEASONS and path.startswith("merit/Surrey/"):
+    if season in _SURREY_FOUR_CONF_SEASONS and _tier_startswith(path, "merit/Surrey/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_FOUR_CONF:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season in _SURREY_CHAMP_THREE_CONF_SEASONS and path.startswith("merit/Surrey/"):
+    if season in _SURREY_CHAMP_THREE_CONF_SEASONS and _tier_startswith(path, "merit/Surrey/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_CHAMP_THREE_CONF:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season in _SURREY_CHAMP_EASTWEST_SEASONS and path.startswith("merit/Surrey/"):
+    if season in _SURREY_CHAMP_EASTWEST_SEASONS and _tier_startswith(path, "merit/Surrey/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_CHAMP_EASTWEST:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
-    if season in _SURREY_PREMIER_CHAMP_NS_SEASONS and path.startswith("merit/Surrey/"):
+    if season in _SURREY_PREMIER_CHAMP_NS_SEASONS and _tier_startswith(path, "merit/Surrey/"):
         for prefix, local_tier in _NAMED_MERIT_LEAGUES_SURREY_PREMIER_CHAMP_NS:
-            if path.startswith(prefix):
+            if _tier_startswith(path, prefix):
                 return (local_tier, f"Level {local_tier}")
     # 2022-2023 / 2023-2024: no Championship / Conference rungs; ladder matches 2017-2020 positions
     # (Premier local 3, Division N at 3+N). Visible bands 1–6 after load_merit restamp.
-    if season in ("2022-2023", "2023-2024") and path.startswith("merit/NOWIRUL/"):
+    if season in ("2022-2023", "2023-2024") and _tier_startswith(path, "merit/NOWIRUL/"):
         for stem, local_tier in (
             ("NOWIRUL_BATHTIME", 3),
             ("NOWIRUL_COTTON_TRADERS_PREMIER", 3),
@@ -751,7 +770,7 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     # 2016-2017: unnumbered ``Solent League`` is the merit apex (local 6), like ``Solent 1`` from
     # 2017-2018. Zeroth-map offset 5 + num 0 placed it at local 5 while ``Solent_League_2`` used
     # num 2 → local 7, leaving a gap at local 6.
-    if season == "2016-2017" and path.startswith("merit/Hampshire/Solent_League"):
+    if season == "2016-2017" and _tier_startswith(path, "merit/Hampshire/Solent_League"):
         for suffix, local_tier in (
             ("Solent_League_4", 9),
             ("Solent_League_3", 8),
@@ -759,12 +778,16 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
             ("Solent_League", 6),
         ):
             stem = f"merit/Hampshire/{suffix}"
-            if path.startswith(stem) and (len(path) == len(stem) or path[len(stem)] in "./"):
+            norm_path = normalize_league_filepath(path)
+            norm_stem = normalize_league_filepath(stem)
+            if norm_path.startswith(norm_stem) and (
+                len(norm_path) == len(norm_stem) or norm_path[len(norm_stem)] in "./"
+            ):
                 return (local_tier, f"Level {local_tier}")
     for prefix, local_tier in sorted(
         _NAMED_MERIT_LEAGUES.items(), key=lambda kv: len(kv[0]), reverse=True
     ):
-        if path.startswith(prefix):
+        if _tier_startswith(path, prefix):
             return (local_tier, f"Level {local_tier}")
     return None
 
@@ -780,14 +803,14 @@ def extract_tier(path_or_filename: str, season: str = CURRENT_SEASON) -> tuple[i
     For merit paths, the returned tier number is **local** to the competition
     (1-based) and the name is competition-qualified (e.g. ``"Essex 2"``).
     """
-    normalized = path_or_filename.replace("\\", "/")
+    normalized = normalize_league_filepath(path_or_filename.replace("\\", "/"))
     filename = normalized.split("/")[-1]
 
-    override = _WOMENS_FILENAME_OVERRIDES.get(filename)
+    override = _filename_override(filename, _WOMENS_FILENAME_OVERRIDES)
     if override is not None:
         return override
 
-    playoff = _PLAYOFF_FIXTURE_FILENAME_OVERRIDES.get(filename)
+    playoff = _filename_override(filename, _PLAYOFF_FIXTURE_FILENAME_OVERRIDES)
     if playoff is not None:
         return playoff
 
@@ -839,9 +862,13 @@ def extract_tier_women(filename: str, season: str) -> tuple[int, str] | None:
 
 _SPONSOR_PREFIXES = [
     "Harvey's_Brewery_",
+    "Harveys_Brewery_",
     "Harvey's_Wharf_IPA_",
+    "Harveys_Wharf_IPA_",
     "Harvey's_Olympia_",
+    "Harveys_Olympia_",
     "Harvey's_of_",
+    "Harveys_of_",
     "Harvey\u2019s_Brewery_",
     "Bateman_BMW_",
     "Cotton_Traders_",
@@ -861,6 +888,7 @@ _SPONSOR_PREFIXES = [
     "Sale_Sharks_",
     "County_Courier_Services_",
     "Howell_&_Co_",
+    "Howell_and_Co_",
     "INDEPENDENT_E-NRG_",
     "Waterfall_",
     "Freshnet_",
@@ -899,10 +927,25 @@ LEAGUE_TITLE_SPONSOR_PHRASES = _league_title_sponsor_phrases_longest_first()
 
 def _strip_sponsor_prefix(filename: str) -> str:
     """Remove known sponsor prefixes from league filenames."""
-    for prefix in _SPONSOR_PREFIXES:
-        if filename.startswith(prefix):
-            filename = filename.removeprefix(prefix)
-    return filename
+    if "/" in filename:
+        dir_part, base = filename.rsplit("/", 1)
+        prefix = f"{dir_part}/"
+    else:
+        base = filename
+        prefix = ""
+    suffix = ".json" if base.endswith(".json") else ""
+    stem = base[: -len(suffix)] if suffix else base
+    norm_stem = normalize_filename_stem(stem)
+    for sponsor in _SPONSOR_PREFIXES:
+        norm_sponsor = normalize_filename_stem(sponsor.rstrip("_"))
+        token = f"{norm_sponsor}_"
+        if norm_stem.startswith(token):
+            norm_stem = norm_stem[len(token) :]
+            break
+        if norm_stem == norm_sponsor:
+            norm_stem = ""
+            break
+    return f"{prefix}{norm_stem}{suffix}"
 
 
 def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | None:
@@ -956,7 +999,7 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         "merit/Sussex": 3,
     }
     for prefix, offset in zeroth_tier_map.items():
-        if cleaned.startswith(prefix):
+        if _tier_startswith(cleaned, prefix):
             num = get_number_from_tier_name(cleaned, prefix)
             tier = offset + num
             return (tier, mens_current_tier_name(tier))
@@ -966,16 +1009,17 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
 
 def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2019-2020 onwards filename format."""
-    if filename.startswith("Women's_Premiership"):
+    basename = normalize_league_filepath(filename).split("/")[-1]
+    if _tier_startswith(basename, "Women_Premiership"):
         return (101, "Premiership Women's")
 
     zeroth_tier_map = {
-        "Women's_Championship": 101,
-        "Women's_NC": 103,
+        "Women_Championship": 101,
+        "Women_NC": 103,
     }
     for prefix, offset in zeroth_tier_map.items():
-        if filename.startswith(prefix):
-            num = get_number_from_tier_name(filename, prefix)
+        if _tier_startswith(basename, prefix):
+            num = get_number_from_tier_name(basename, prefix)
             tier = offset + num
             return (tier, womens_current_tier_name(tier))
     return None
@@ -1018,10 +1062,12 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Kent": 8,
         "Surrey": 8,
         "Berks_Bucks_&_Oxon": 8,
+        "Berks_Bucks_and_Oxon": 8,
         "Cornwall_Devon": 8,
         "Cornwall": 8,
         "Devon": 8,
         "Dorset_&_Wilts": 7,
+        "Dorset_and_Wilts": 7,
         "Dorset": 7,
         "Gloucester": 8,
         "Somerset": 8,
@@ -1086,10 +1132,10 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
     if filename.startswith("Championship"):
         return (2, "Championship")
     for prefix, offset in zeroth_tier_map.items():
-        if filename.startswith(prefix):
+        if _tier_startswith(filename, prefix):
             num = get_number_from_tier_name(filename, prefix)
             if (
-                prefix == "Berks_Bucks_&_Oxon"
+                prefix in ("Berks_Bucks_&_Oxon", "Berks_Bucks_and_Oxon")
                 and season < "2004-2005"
                 and "Premier" not in filename
             ):
@@ -1115,15 +1161,16 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
 def extract_tier_women_pre_2018(filename: str, season: str) -> tuple[int, str] | None:
     if season < "2012-2013":
         return extract_tier_women_pre_2012(filename, season)
-    if filename.startswith("Women's_Premiership"):
+    basename = normalize_league_filepath(filename).split("/")[-1]
+    if _tier_startswith(basename, "Women_Premiership"):
         return (101, "Premiership Women's")
-    if filename.startswith("Women's_Championship"):
-        if "2" in filename:
+    if _tier_startswith(basename, "Women_Championship"):
+        if "2" in basename:
             return (103, "Championship 2")
         else:
             return (102, "Championship 1")
-    num = get_number_from_tier_name(filename, "")
-    if filename.startswith("Women") and num != 0:
+    num = get_number_from_tier_name(basename, "")
+    if basename.startswith("Women") and num != 0:
         return (103 + num, f"National Challenge {num}")
     return None
 

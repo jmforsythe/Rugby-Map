@@ -60,10 +60,13 @@ GENDER_LABELS: dict[str, str] = {
     GENDER_MEN: "Men's",
     GENDER_WOMEN: "Women's",
 }
-# Every women's league file (pyramid or merit) is named "Women's_*"; everything
-# else in league_data/ is men's. See rugby.tiers.extract_tier_women, which
-# dispatches on the same prefix.
-_WOMENS_FILENAME_PREFIX = "Women's_"
+# Every women's league file (pyramid or merit) is named ``Women's_*`` or ``Women_*``;
+# everything else in league_data/ is men's. See rugby.tiers.extract_tier_women.
+_WOMENS_FILENAME_PREFIXES = ("Women's_", "Women_")
+
+
+def _is_womens_league_filename(filename: str) -> bool:
+    return filename.startswith(_WOMENS_FILENAME_PREFIXES)
 
 
 class SeasonStats(TypedDict):
@@ -145,9 +148,7 @@ def compute_competition_breakdown(league_data_dir: Path | None = None) -> StatsB
                 merit_labels[comp_key] = comp_key.replace("_", " ")
 
             filename = rel_path.rsplit("/", 1)[-1]
-            gender_key = (
-                GENDER_WOMEN if filename.startswith(_WOMENS_FILENAME_PREFIX) else GENDER_MEN
-            )
+            gender_key = GENDER_WOMEN if _is_womens_league_filename(filename) else GENDER_MEN
 
             for team in league_data["teams"]:
                 name = team["name"]
@@ -308,7 +309,7 @@ def compute_club_timelines(
                 continue
             is_merit = rel_path.startswith("merit/")
             filename = rel_path.rsplit("/", 1)[-1]
-            gender = GENDER_WOMEN if filename.startswith(_WOMENS_FILENAME_PREFIX) else GENDER_MEN
+            gender = GENDER_WOMEN if _is_womens_league_filename(filename) else GENDER_MEN
 
             teams = league_data["teams"]
             team_count = len(teams)

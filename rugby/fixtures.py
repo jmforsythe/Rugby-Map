@@ -23,7 +23,12 @@ from bs4 import BeautifulSoup, Tag
 from core import AntiBotDetectedError, Fixture, FixtureLeague, League, make_request, setup_logging
 from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
-from rugby.scrape import clean_filename
+from rugby.scrape import (
+    _competition_prefix,
+    clean_filename,
+    load_meta_league_urls_by_name,
+    rfu_league_url_key,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -380,7 +385,13 @@ def _discover_fixture_only_leagues(league_dir: Path) -> list[tuple[str, str, Pat
         league_url = entry.get("url", "")
         if not league_url or "englandrugby.com" not in league_url.lower():
             continue
-        relative = Path(clean_filename(league_name) + ".json")
+        filename = clean_filename(league_name) + ".json"
+        parent_url = entry.get("parent_url", "")
+        comp_name = _competition_prefix(parent_url) if parent_url else None
+        if comp_name:
+            relative = Path("merit") / comp_name / filename
+        else:
+            relative = Path(filename)
         leagues.append((league_name, league_url, relative))
 
     return leagues
@@ -403,6 +414,7 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
         return []
 
     leagues: list[tuple[str, str, Path]] = []
+    meta_urls = load_meta_league_urls_by_name(season)
     for json_file in sorted(league_dir.rglob("*.json")):
         if json_file.name.startswith("_"):
             continue
@@ -422,6 +434,17 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
                 league_url,
             )
             continue
+
+        meta_url = meta_urls.get(league_name)
+        if meta_url and rfu_league_url_key(meta_url) != rfu_league_url_key(league_url):
+            logger.info(
+                "Meta cache URL for %s differs from league_data (division %s -> %s); "
+                "using meta cache",
+                league_name,
+                rfu_league_url_key(league_url)[1],
+                rfu_league_url_key(meta_url)[1],
+            )
+            league_url = meta_url
 
         relative = json_file.relative_to(league_dir)
         leagues.append((league_name, league_url, relative))
@@ -455,7 +478,11 @@ def main() -> None:
     parser.add_argument(
         "--force",
         action="store_true",
-        help="Re-scrape leagues even if fixture files already exist.",
+        help=(
+            "Re-scrape leagues even if fixture files already exist. "
+            "URLs come from league_data (with meta-cache overrides when the division "
+            "changed); use ``rugby.scrape --force`` to refresh league_data itself."
+        ),
     )
     args = parser.parse_args()
     season: str = args.season
@@ -476,7 +503,15 @@ def main() -> None:
 
     for league_name, league_url, relative_path in leagues:
         output_path = output_dir / relative_path
+        skip_existing = False
         if output_path.exists() and not args.force:
+            try:
+                existing = json.loads(output_path.read_text(encoding="utf-8"))
+                existing_url = existing.get("league_url", "")
+                skip_existing = rfu_league_url_key(existing_url) == rfu_league_url_key(league_url)
+            except (json.JSONDecodeError, OSError):
+                skip_existing = False
+        if skip_existing:
             logger.info("Skipping %s (already exists)", league_name)
             skipped += 1
             continue

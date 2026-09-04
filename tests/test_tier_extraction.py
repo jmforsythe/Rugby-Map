@@ -176,6 +176,15 @@ class TestExtractTierMenPre2021:
             "Level 9",
         )
 
+    def test_slugified_historical_filenames(self):
+        """Post-slugify basenames still match legacy tier prefix tables."""
+        assert extract_tier("Durham_Nthmland_1.json", "2000-2001") == (6, "Level 6")
+        assert extract_tier("Berks_Bucks_and_Oxon_Premier.json", "2005-2006") == (8, "Level 8")
+        assert extract_tier("Women_NC_2_South_West_(West).json", "2026-2027") == (
+            105,
+            "National Challenge 2",
+        )
+
     def test_bbo_with_premier(self):
         """Once Premier exists (2004+), BB&O Premier is tier 8 (no -1 for county), BB&O 1 is tier 9."""
         assert extract_tier_men_pre_2021("Berks_Bucks_&_Oxon_Premier.json", "2005-2006") == (

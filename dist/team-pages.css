@@ -131,9 +131,19 @@
     width: 8.75em;
 }
 
+.fixtures-table th:nth-child(2),
+.fixtures-table td:nth-child(2) {
+    width: 38%;
+}
+
 .fixtures-table th:nth-child(3),
 .fixtures-table td:nth-child(3) {
     width: 9.5em;
+}
+
+.fixtures-table th:nth-child(4),
+.fixtures-table td:nth-child(4) {
+    width: 22%;
 }
 
 .fixtures-table th:nth-child(5),
@@ -164,6 +174,7 @@
 .fixture-opponent .card-link,
 .fixture-opponent-link,
 .fixture-opponent-name {
+    flex: 1 1 auto;
     display: inline-block;
     min-width: 0;
     max-width: 100%;
@@ -379,6 +390,40 @@
     .league-history-table th,
     .league-history-table td {
         padding: 0.45em 0.4em;
+    }
+
+    /* Fixtures: league name is least important on narrow viewports — give opponent room */
+    .fixtures-table th:nth-child(4),
+    .fixtures-table td:nth-child(4) {
+        display: none;
+    }
+
+    .fixtures-table th:nth-child(2),
+    .fixtures-table td:nth-child(2) {
+        width: auto;
+    }
+
+    .fixture-opponent {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15em;
+    }
+
+    .fixture-venue {
+        flex: none;
+        font-size: 0.75em;
+    }
+
+    .fixture-opponent .card-link,
+    .fixture-opponent-link,
+    .fixture-opponent-name {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: anywhere;
+        font-size: 1em;
+        max-width: none;
+        width: 100%;
     }
 }
 

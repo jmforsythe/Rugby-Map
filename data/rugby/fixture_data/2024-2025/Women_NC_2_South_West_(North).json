@@ -3,6 +3,22 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=62782&season=2024-2025#tables",
   "fixtures": [
     {
+      "date": "2024-09-22",
+      "time": "",
+      "home_team_id": 1086,
+      "away_team_id": 732,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140007",
+      "status": "HWO"
+    },
+    {
+      "date": "2024-09-22",
+      "time": "",
+      "home_team_id": 8971,
+      "away_team_id": 124605,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140008",
+      "status": "AWO"
+    },
+    {
       "date": "2024-10-06",
       "time": "",
       "home_team_id": 4892,
@@ -68,11 +84,41 @@
     {
       "date": "2024-11-10",
       "time": "",
+      "home_team_id": 1086,
+      "away_team_id": 8971,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140027",
+      "status": "HWO"
+    },
+    {
+      "date": "2024-11-10",
+      "time": "",
+      "home_team_id": 7027,
+      "away_team_id": 124605,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140028"
+    },
+    {
+      "date": "2024-11-10",
+      "time": "",
       "home_team_id": 22691,
       "away_team_id": 4892,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140025",
       "home_score": 19,
       "away_score": 45
+    },
+    {
+      "date": "2024-11-24",
+      "time": "",
+      "home_team_id": 732,
+      "away_team_id": 124605,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1164588",
+      "status": "AWO"
+    },
+    {
+      "date": "2024-12-08",
+      "time": "",
+      "home_team_id": 732,
+      "away_team_id": 4892,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140035"
     },
     {
       "date": "2024-12-15",
@@ -102,6 +148,14 @@
       "away_score": 43
     },
     {
+      "date": "2025-01-05",
+      "time": "",
+      "home_team_id": 1086,
+      "away_team_id": 732,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1178816",
+      "status": "HWO"
+    },
+    {
       "date": "2025-01-12",
       "time": "",
       "home_team_id": 1086,
@@ -118,6 +172,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140051",
       "home_score": 10,
       "away_score": 24
+    },
+    {
+      "date": "2025-01-19",
+      "time": "",
+      "home_team_id": 8971,
+      "away_team_id": 4892,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1190468",
+      "status": "HWO"
     },
     {
       "date": "2025-01-26",
@@ -172,6 +234,22 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140067",
       "home_score": 17,
       "away_score": 0
+    },
+    {
+      "date": "2025-02-23",
+      "time": "",
+      "home_team_id": 124605,
+      "away_team_id": 7027,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140069",
+      "status": "HWO"
+    },
+    {
+      "date": "2025-03-02",
+      "time": "",
+      "home_team_id": 124605,
+      "away_team_id": 22691,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1193244",
+      "status": "HWO"
     },
     {
       "date": "2025-03-09",
@@ -262,6 +340,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1193518",
       "home_score": 54,
       "away_score": 12
+    },
+    {
+      "date": "2025-04-20",
+      "time": "",
+      "home_team_id": 1086,
+      "away_team_id": 7027,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1140086",
+      "status": "HWO"
     },
     {
       "date": "2025-04-26",

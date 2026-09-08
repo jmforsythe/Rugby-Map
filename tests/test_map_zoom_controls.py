@@ -88,6 +88,12 @@ def test_map_markers_defer_real_team_images_until_after_render() -> None:
     assert "clusterRefreshPending" in html
     assert "primeCrestStyleRules" in html
     assert "rugby-crest-marker" in html
+    for forbidden in (
+        "rugbyReapplyKnownCrests",
+        "hookCrestResync",
+        "classList.add(ensureCrestStyleRule",
+    ):
+        assert forbidden not in html, f"reintroduced {forbidden!r}"
 
 
 def test_custom_map_template_defers_team_images_until_after_render() -> None:
@@ -320,7 +326,14 @@ def test_matchday_crest_markers_use_inline_background_not_img() -> None:
     assert RFU_FALLBACK_ICON in div
     assert "<img" not in div
 
+    badge_div = _matchday_crest_div(RFU_FALLBACK_ICON, 24, "II")
+    assert "rugby-crest-wrap" in badge_div
+    assert "rugby-crest-badge" in badge_div
+    assert ">II</span>" in badge_div
+
     cluster_js = matchday_cluster_icon_create_js(32)
     assert "rugbyClusterIconCache" in cluster_js
     assert "background:url(" in cluster_js
+    assert "crestBadge" in cluster_js
+    assert "rugby-crest-badge" in cluster_js
     assert "<img" not in cluster_js

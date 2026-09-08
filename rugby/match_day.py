@@ -59,8 +59,10 @@ from core.map_builder import (
     MAP_ZOOM_SNAP,
     POPUP_CSS,
     LayerControlHook,
+    _crest_badge_html,
 )
 from rugby import BRAND, DATA_DIR, short_season
+from rugby.addresses import team_lower_xv_roman
 from rugby.clubs import iter_geocoded_leagues
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.team_pages import build_team_info_page_filenames, team_info_page_filename
@@ -76,15 +78,22 @@ logger = logging.getLogger(__name__)
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
 
 
-def _matchday_crest_div(url: str, size: int) -> str:
+def _matchday_crest_div(url: str, size: int, badge: str | None = None) -> str:
     """Div tile with inline background (stable on MarkerCluster zoom rebuilds)."""
     css_url = url.replace("\\", "\\\\").replace("'", "%27")
-    return (
+    inner = (
         f'<div class="rugby-crest-marker" '
         f'style="width:{size}px;height:{size}px;border-radius:50%;'
         f"box-shadow:0 0 3px rgba(0,0,0,0.3);"
         f"background:url('{css_url}') center/cover no-repeat\"></div>"
     )
+    badge_html = _crest_badge_html(badge)
+    if badge_html:
+        return (
+            f'<div class="rugby-crest-wrap" style="width:{size}px;height:{size}px;">'
+            f"{inner}{badge_html}</div>"
+        )
+    return inner
 
 
 def matchday_cluster_icon_create_js(icon_size: int) -> str:
@@ -110,12 +119,21 @@ def matchday_cluster_icon_create_js(icon_size: int) -> str:
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' matches';
         var imageUrl = bestMarker && bestMarker.options.imageUrl ? bestMarker.options.imageUrl : '';
         if (imageUrl) {{
-            var cacheKey = imageUrl + '|' + count;
+            var crestBadge = '';
+            if (count === 1 && bestMarker && bestMarker.options.crestBadge) {{
+                crestBadge = bestMarker.options.crestBadge;
+            }}
+            var cacheKey = imageUrl + '|' + count + '|' + crestBadge;
             if (window.rugbyClusterIconCache && window.rugbyClusterIconCache[cacheKey]) {{
                 return window.rugbyClusterIconCache[cacheKey];
             }}
             var esc = imageUrl.replace(/'/g, "%27");
-            var crestInner = '<div class="rugby-crest-cluster" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:url(\\'' + esc + '\\') center/cover no-repeat"></div>';
+            var badgeHtml = crestBadge
+                ? '<span class="rugby-crest-badge" aria-hidden="true">' + crestBadge + '</span>'
+                : '';
+            var crestInner = '<div class="rugby-crest-wrap" style="width:{icon_size}px;height:{icon_size}px;">' +
+                '<div class="rugby-crest-cluster" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:url(\\'' + esc + '\\') center/cover no-repeat"></div>' +
+                badgeHtml + '</div>';
             var clusterIcon = L.divIcon({{
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
                       crestInner +
@@ -408,12 +426,13 @@ _MATCHDAY_WIDGET_HTML = """
                 iconAnchor: md.iconAnchor,
                 className: 'empty'
             });
-            var marker = L.marker([md.lat, md.lng], {
+            var marker = L.marker([md.lat, md.lng], {{
                 icon: icon,
                 imageUrl: md.imageUrl,
                 itemName: md.itemName,
-                tierOrder: md.tierOrder
-            });
+                tierOrder: md.tierOrder,
+                crestBadge: md.crestBadge || ''
+            }});
             bindMatchdayPopup(marker, md.popup);
             if (md.tooltip) marker.bindTooltip(md.tooltip);
             return marker;
@@ -1271,11 +1290,13 @@ def build_match_day_map(
 
                 home_name = home_team.get("name", "Home")
                 away_name = away_team.get("name", "Away") if away_team else "Away"
+                home_badge = team_lower_xv_roman(home_name)
+                away_badge = team_lower_xv_roman(away_name)
 
                 icon_html = (
                     f'<div style="display:flex;align-items:center;gap:2px">'
-                    f"{_matchday_crest_div(home_icon_url, crest)}"
-                    f"{_matchday_crest_div(away_icon_url, crest)}"
+                    f"{_matchday_crest_div(home_icon_url, crest, home_badge)}"
+                    f"{_matchday_crest_div(away_icon_url, crest, away_badge)}"
                     f"</div>"
                 )
 
@@ -1303,6 +1324,7 @@ def build_match_day_map(
                             else f"{home_name} vs {away_name}"
                         ),
                         "imageUrl": home_icon_url,
+                        "crestBadge": home_badge or "",
                         "itemName": f"{home_name} vs {away_name}",
                         "tierOrder": tier_num,
                     }

@@ -155,6 +155,15 @@
     white-space: nowrap;
 }
 
+.fixture-opponent-cell {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.fixture-result-cell {
+    white-space: nowrap;
+}
+
 .fixture-opponent {
     display: flex;
     align-items: center;
@@ -393,20 +402,41 @@
     }
 
     /* Fixtures: league name is least important on narrow viewports — give opponent room */
+    .fixtures-table.league-history-table {
+        min-width: 0;
+        width: 100%;
+    }
+
     .fixtures-table th:nth-child(4),
     .fixtures-table td:nth-child(4) {
         display: none;
     }
 
+    .fixtures-table th:nth-child(1),
+    .fixtures-table td:nth-child(1) {
+        width: 29%;
+    }
+
     .fixtures-table th:nth-child(2),
     .fixtures-table td:nth-child(2) {
-        width: auto;
+        width: 38%;
+    }
+
+    .fixtures-table th:nth-child(3),
+    .fixtures-table td:nth-child(3) {
+        width: 28%;
+    }
+
+    .fixtures-table th:nth-child(5),
+    .fixtures-table td:nth-child(5) {
+        width: 5%;
     }
 
     .fixture-opponent {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.15em;
+        max-width: 100%;
     }
 
     .fixture-venue {
@@ -418,12 +448,22 @@
     .fixture-opponent-link,
     .fixture-opponent-name {
         white-space: normal;
-        overflow: visible;
+        overflow: hidden;
         text-overflow: clip;
         overflow-wrap: anywhere;
         font-size: 1em;
-        max-width: none;
-        width: 100%;
+        max-width: 100%;
+        width: auto;
+        box-sizing: border-box;
+    }
+
+    .fixture-score {
+        grid-template-columns: 2em 0.85em 2em 1.35em;
+        font-size: 0.95em;
+    }
+
+    .fixture-result-cell {
+        text-align: right;
     }
 }
 

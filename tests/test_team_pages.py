@@ -244,6 +244,19 @@ class TestFixtureHelpers:
         }
         assert _format_fixture_result(entry) == "15:00"
 
+    def test_format_fixture_result_walkover(self):
+        entry: TeamFixtureEntry = {
+            "season": "2025-2026",
+            "league_name": "Counties 3",
+            "date": "2026-04-25",
+            "time": "",
+            "is_home": True,
+            "opponent_id": 9607,
+            "match_url": "https://example.com/match",
+            "status": "HWO",
+        }
+        assert _format_fixture_result(entry) == ('<span title="Home walkover">HWO</span>')
+
 
 class TestCollectTeamFixtures:
     def test_groups_by_page_key_and_dedupes(self, tmp_path, monkeypatch):

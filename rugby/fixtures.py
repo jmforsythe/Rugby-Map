@@ -17,11 +17,12 @@ import re
 import urllib.parse
 from datetime import datetime
 from pathlib import Path
+from typing import TypedDict
 
 from bs4 import BeautifulSoup, Tag
 
 from core import AntiBotDetectedError, Fixture, FixtureLeague, League, make_request, setup_logging
-from core.config import CURRENT_SEASON
+from core.config import CURRENT_SEASON, EARLIEST_SEASON
 from rugby import DATA_DIR
 from rugby.scrape import (
     _competition_prefix,
@@ -235,6 +236,181 @@ _WALKOVER_PATTERNS: dict[str, str] = {
     "A/W": "AWO",
 }
 
+
+_PLACEHOLDER_TEAM_PREFIXES = ("TBC", "To be arranged")
+
+
+def _is_placeholder_team_name(name: str) -> bool:
+    """Return whether an RFU team label is a placeholder, not a real club."""
+    text = (name or "").strip()
+    return text.startswith(_PLACEHOLDER_TEAM_PREFIXES)
+
+
+def _fixture_dedupe_key(fixture: Fixture) -> tuple[str, int, int]:
+    return fixture["date"], fixture["home_team_id"], fixture["away_team_id"]
+
+
+def _fixture_row_quality(fixture: Fixture) -> int:
+    """Prefer keeping rows with results/status when deduping rearranged RFU cards."""
+    score = 0
+    if fixture.get("status"):
+        score += 4
+    if fixture.get("home_score") is not None and fixture.get("away_score") is not None:
+        score += 2
+    if fixture.get("match_url"):
+        score += 1
+    return score
+
+
+def normalize_fixtures(fixtures: list[Fixture]) -> list[Fixture]:
+    """Drop self-fixtures and dedupe on ``(date, home_team_id, away_team_id)``."""
+    best: dict[tuple[str, int, int], Fixture] = {}
+    for fixture in fixtures:
+        date = fixture.get("date")
+        home_id = fixture.get("home_team_id")
+        away_id = fixture.get("away_team_id")
+        if not isinstance(date, str) or not date:
+            continue
+        if not isinstance(home_id, int) or not isinstance(away_id, int):
+            continue
+        if home_id == away_id:
+            continue
+        key = (date, home_id, away_id)
+        existing = best.get(key)
+        if existing is None or _fixture_row_quality(fixture) > _fixture_row_quality(existing):
+            best[key] = fixture
+    return sorted(best.values(), key=_fixture_sort_key)
+
+
+def _league_team_ids(league: League) -> set[int]:
+    ids: set[int] = set()
+    for team in league.get("teams", []):
+        url = team.get("url") or ""
+        tid = _parse_team_id(url if url.startswith("http") else f"{_RFU_BASE}{url}")
+        if tid is not None:
+            ids.add(tid)
+    return ids
+
+
+def _warn_fixture_team_mismatch(
+    league_name: str,
+    season: str,
+    league_ids: set[int],
+    fixtures: list[Fixture],
+    used_meta_url: bool,
+) -> None:
+    fixture_ids = {f["home_team_id"] for f in fixtures} | {f["away_team_id"] for f in fixtures}
+    extra = sorted(fixture_ids - league_ids)
+    if not extra:
+        return
+    hint = (
+        "Meta cache URL was used; league_data team list may be stale."
+        if used_meta_url
+        else "Try rescraping league_data/meta leagues (python -m rugby.scrape --season "
+        f"{season}) to refresh the division id."
+    )
+    logger.warning(
+        "%s: fixtures reference %d team id(s) absent from league_data, e.g. %s; %s",
+        league_name,
+        len(extra),
+        extra[:5],
+        hint,
+    )
+
+
+def _fixture_sort_key(fixture: Fixture) -> tuple[str, int, int]:
+    """Stable on-disk fixture order: date, then home id, then away id."""
+    return fixture["date"], fixture["home_team_id"], fixture["away_team_id"]
+
+
+class IncompleteFixtureLeague(TypedDict):
+    """League whose committed fixture file count differs from n*(n-1)."""
+
+    season: str
+    relative_path: str
+    league_name: str
+    team_count: int
+    expected_count: int
+    actual_count: int
+    league_url: str
+
+
+def expected_fixture_count(team_count: int) -> int:
+    """Fixture count for a full double round-robin league."""
+    if team_count < 2:
+        return 0
+    return team_count * (team_count - 1)
+
+
+def _league_data_seasons(season: str | None = None) -> list[str]:
+    league_root = DATA_DIR / "league_data"
+    if season is not None:
+        return [season]
+    return sorted(
+        d.name
+        for d in league_root.iterdir()
+        if d.is_dir() and re.match(r"\d{4}-\d{4}", d.name) and d.name >= EARLIEST_SEASON
+    )
+
+
+def find_incomplete_fixture_leagues(season: str | None = None) -> list[IncompleteFixtureLeague]:
+    """Return leagues whose fixture JSON has fewer or more than n*(n-1) rows.
+
+    Compares ``league_data/<season>/`` team counts to ``fixture_data/<season>/``
+    files at the same relative path. Extra playoff URLs scraped outside
+    ``league_data`` are not checked here.
+    """
+    incomplete: list[IncompleteFixtureLeague] = []
+    for season_name in _league_data_seasons(season):
+        league_dir = DATA_DIR / "league_data" / season_name
+        fixture_dir = DATA_DIR / "fixture_data" / season_name
+        if not league_dir.is_dir():
+            continue
+        for json_file in sorted(league_dir.rglob("*.json")):
+            if json_file.name.startswith("_"):
+                continue
+            with open(json_file, encoding="utf-8") as f:
+                data: League = json.load(f)
+            league_name = data["league_name"]
+            if _is_junior_league(league_name):
+                continue
+            team_count = data.get("team_count") or len(data.get("teams", []))
+            expected = expected_fixture_count(team_count)
+            relative = json_file.relative_to(league_dir)
+            fixture_path = fixture_dir / relative
+            actual = 0
+            if fixture_path.is_file():
+                try:
+                    fixture_data = json.loads(fixture_path.read_text(encoding="utf-8"))
+                    actual = len(normalize_fixtures(fixture_data.get("fixtures", [])))
+                except (json.JSONDecodeError, OSError):
+                    actual = 0
+            if actual != expected:
+                incomplete.append(
+                    IncompleteFixtureLeague(
+                        season=season_name,
+                        relative_path=relative.as_posix(),
+                        league_name=league_name,
+                        team_count=team_count,
+                        expected_count=expected,
+                        actual_count=actual,
+                        league_url=data.get("league_url", ""),
+                    )
+                )
+    return incomplete
+
+
+def _print_incomplete_fixture_leagues(rows: list[IncompleteFixtureLeague]) -> None:
+    if not rows:
+        print("All checked leagues have the expected n*(n-1) fixture count.")
+        return
+    for row in rows:
+        print(
+            f"{row['season']}\t{row['actual_count']}/{row['expected_count']}\t"
+            f"{row['relative_path']}\t{row['league_name']}"
+        )
+
+
 _JUNIOR_LEAGUE_RE = re.compile(r"(?ix)(?<![a-z0-9])(?:u\d{1,2}|under[\s-]*\d{1,2})(?![a-z0-9])")
 
 
@@ -283,6 +459,22 @@ def _parse_score_links(
     return home_score, away_score, match_url, ""
 
 
+def _parse_versace_status(score_div: Tag) -> str:
+    """Return normalised walkover status from the centre versace span, or ``\"\"``.
+
+    RFU result cards show ``HWO``/``AWO`` in ``coh-style-comp-versace`` instead of
+    numeric score links. Upcoming fixtures may use the same span for ``VS``.
+    """
+    el = score_div.find(["div", "span"], attrs={"class": "coh-style-comp-versace"})
+    if not isinstance(el, Tag):
+        return ""
+    text = el.get_text(strip=True).upper()
+    for pattern, status in _WALKOVER_PATTERNS.items():
+        if text == pattern.upper():
+            return status
+    return ""
+
+
 def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     """Parse a single fixture or result card div into a Fixture dict."""
     home_div = card.find("div", class_="coh-style-hometeam")
@@ -299,9 +491,12 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     time_el = score_div.find("a", attrs={"class": "coh-style-comp-time"})
     time_link = time_el if isinstance(time_el, Tag) else None
     home_score, away_score, score_match_url, status = _parse_score_links(score_div)
+    versace_status = _parse_versace_status(score_div)
+    if versace_status:
+        status = versace_status
     vs_el = (
         score_div.find(["div", "span"], attrs={"class": "coh-style-comp-versace"})
-        if not time_link
+        if not time_link and not versace_status
         else None
     )
     vs_div = vs_el if isinstance(vs_el, Tag) else None
@@ -329,6 +524,11 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     if not isinstance(home_el, Tag) or not isinstance(away_el, Tag):
         return None
 
+    home_name = home_el.get_text(strip=True)
+    away_name = away_el.get_text(strip=True)
+    if _is_placeholder_team_name(home_name) or _is_placeholder_team_name(away_name):
+        return None
+
     home_href = _tag_attr_str(home_el, "href")
     if home_href.startswith("/"):
         home_href = f"{_RFU_BASE}{home_href}"
@@ -340,9 +540,9 @@ def _parse_fixture_card(card: Tag, date: str) -> Fixture | None:
     away_id = _parse_team_id(away_href)
 
     if home_id is None or away_id is None:
-        home_name = home_el.get_text(strip=True)
-        away_name = away_el.get_text(strip=True)
         logger.warning("Could not parse team IDs for %s vs %s", home_name, away_name)
+        return None
+    if home_id == away_id:
         return None
 
     fixture: Fixture = {
@@ -397,7 +597,7 @@ def _discover_fixture_only_leagues(league_dir: Path) -> list[tuple[str, str, Pat
     return leagues
 
 
-def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
+def _discover_leagues(season: str) -> list[tuple[str, str, Path, bool]]:
     """Read league_data/<season>/ to get (league_name, league_url, relative_output_path) tuples.
 
     Only league_name/league_url are needed here, so this reads the thin
@@ -436,6 +636,7 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
             continue
 
         meta_url = meta_urls.get(league_name)
+        used_meta_override = False
         if meta_url and rfu_league_url_key(meta_url) != rfu_league_url_key(league_url):
             logger.info(
                 "Meta cache URL for %s differs from league_data (division %s -> %s); "
@@ -445,15 +646,18 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path]]:
                 rfu_league_url_key(meta_url)[1],
             )
             league_url = meta_url
+            used_meta_override = True
+        elif meta_url is None:
+            logger.debug("No meta cache URL for %s; using league_data division", league_name)
 
         relative = json_file.relative_to(league_dir)
-        leagues.append((league_name, league_url, relative))
+        leagues.append((league_name, league_url, relative, used_meta_override))
 
-    existing_urls = {league_url for _, league_url, _ in leagues}
+    existing_urls = {league_url for _, league_url, _, _ in leagues}
     leagues.extend(
-        league
-        for league in _discover_fixture_only_leagues(league_dir)
-        if league[1] not in existing_urls
+        (name, url, path, False)
+        for name, url, path in _discover_fixture_only_leagues(league_dir)
+        if url not in existing_urls
     )
 
     return leagues
@@ -472,8 +676,11 @@ def main() -> None:
     parser.add_argument(
         "--season",
         type=str,
-        default=CURRENT_SEASON,
-        help=f"Season to scrape (e.g. 2025-2026). Default: {CURRENT_SEASON}",
+        default=None,
+        help=(
+            f"Season to scrape or filter (e.g. 2025-2026). Defaults to {CURRENT_SEASON} "
+            "when scraping; omit to scan every season with --list-incomplete."
+        ),
     )
     parser.add_argument(
         "--force",
@@ -484,14 +691,45 @@ def main() -> None:
             "changed); use ``rugby.scrape --force`` to refresh league_data itself."
         ),
     )
+    parser.add_argument(
+        "--only-incomplete",
+        action="store_true",
+        help=(
+            "Only scrape leagues whose fixture count is not n*(n-1) for the team list "
+            "in league_data. Implies re-scraping incomplete leagues even when a file "
+            "already exists."
+        ),
+    )
+    parser.add_argument(
+        "--list-incomplete",
+        action="store_true",
+        help=(
+            "Print leagues with fixture counts that differ from n*(n-1) and exit. "
+            "Omit --season to scan every season from EARLIEST_SEASON onward."
+        ),
+    )
     args = parser.parse_args()
-    season: str = args.season
 
     setup_logging()
+
+    if args.list_incomplete:
+        rows = find_incomplete_fixture_leagues(args.season)
+        _print_incomplete_fixture_leagues(rows)
+        return
+
+    season = args.season or CURRENT_SEASON
     logger.info("Scraping fixtures for season: %s", season)
 
     leagues = _discover_leagues(season)
     logger.info("Found %d leagues in league_data/%s/", len(leagues), season)
+
+    incomplete_paths: set[str] = set()
+    if args.only_incomplete:
+        incomplete_paths = {row["relative_path"] for row in find_incomplete_fixture_leagues(season)}
+        logger.info("Found %d incomplete leagues to scrape", len(incomplete_paths))
+        if not incomplete_paths:
+            logger.info("Nothing to do.")
+            return
 
     output_dir = DATA_DIR / "fixture_data" / season
     error_log_path = output_dir / "scrape_errors.log"
@@ -501,10 +739,15 @@ def main() -> None:
     scraped = 0
     skipped = 0
 
-    for league_name, league_url, relative_path in leagues:
+    for league_name, league_url, relative_path, used_meta_override in leagues:
         output_path = output_dir / relative_path
+        rel_posix = relative_path.as_posix()
+        if args.only_incomplete and rel_posix not in incomplete_paths:
+            skipped += 1
+            continue
+
         skip_existing = False
-        if output_path.exists() and not args.force:
+        if output_path.exists() and not args.force and not args.only_incomplete:
             try:
                 existing = json.loads(output_path.read_text(encoding="utf-8"))
                 existing_url = existing.get("league_url", "")
@@ -537,7 +780,18 @@ def main() -> None:
                 sf["date"],
             )
 
-        fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
+        fixtures = normalize_fixtures(fixtures)
+        league_data_path = DATA_DIR / "league_data" / season / relative_path
+        if league_data_path.is_file():
+            with open(league_data_path, encoding="utf-8") as f:
+                league_data: League = json.load(f)
+            _warn_fixture_team_mismatch(
+                league_name,
+                season,
+                _league_team_ids(league_data),
+                fixtures,
+                used_meta_override,
+            )
 
         fixture_league: FixtureLeague = {
             "league_name": league_name,
@@ -574,7 +828,7 @@ def main() -> None:
             errors.append(f"SCRAPE_ERROR | {url}")
             continue
 
-        fixtures.sort(key=lambda f: (f["date"], f["home_team_id"], f["away_team_id"]))
+        fixtures = normalize_fixtures(fixtures)
 
         heading_clean = (page_heading or "").strip()
         display_name = heading_clean if heading_clean else _fallback_extra_league_display_name(url)

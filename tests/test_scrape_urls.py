@@ -81,5 +81,6 @@ def test_discover_leagues_prefers_meta_cache_when_division_differs(tmp_path: Pat
         fixtures_mod.DATA_DIR = original_data_dir
 
     assert len(discovered) == 1
-    _, league_url, _ = discovered[0]
+    _, league_url, _, used_meta = discovered[0]
+    assert used_meta is True
     assert rfu_league_url_key(league_url) == ("104", "79185", "2026-2027")

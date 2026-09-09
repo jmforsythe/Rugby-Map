@@ -464,6 +464,14 @@
     {
       "date": "2009-12-12",
       "time": "",
+      "home_team_id": 19624,
+      "away_team_id": 3532,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=192638",
+      "status": "HWO"
+    },
+    {
+      "date": "2009-12-12",
+      "time": "",
       "home_team_id": 22933,
       "away_team_id": 7761,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=192639",
@@ -518,11 +526,26 @@
     {
       "date": "2010-01-23",
       "time": "",
+      "home_team_id": 7761,
+      "away_team_id": 19624,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=232828"
+    },
+    {
+      "date": "2010-01-23",
+      "time": "",
       "home_team_id": 14794,
       "away_team_id": 14349,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=230434",
       "home_score": 3,
       "away_score": 3
+    },
+    {
+      "date": "2010-01-23",
+      "time": "",
+      "home_team_id": 23001,
+      "away_team_id": 22933,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=232827",
+      "status": "HWO"
     },
     {
       "date": "2010-01-30",

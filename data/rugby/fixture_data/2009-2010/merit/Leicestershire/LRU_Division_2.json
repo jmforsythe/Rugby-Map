@@ -86,6 +86,14 @@
     {
       "date": "2009-10-31",
       "time": "",
+      "home_team_id": 708,
+      "away_team_id": 13351,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215601",
+      "status": "HWO"
+    },
+    {
+      "date": "2009-10-31",
+      "time": "",
       "home_team_id": 13378,
       "away_team_id": 12965,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215600",
@@ -127,6 +135,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215609",
       "home_score": 14,
       "away_score": 17
+    },
+    {
+      "date": "2009-11-28",
+      "time": "",
+      "home_team_id": 13351,
+      "away_team_id": 1184,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215608",
+      "status": "AWO"
     },
     {
       "date": "2009-11-28",
@@ -293,6 +309,14 @@
     {
       "date": "2010-03-27",
       "time": "",
+      "home_team_id": 1184,
+      "away_team_id": 13351,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215636",
+      "status": "HWO"
+    },
+    {
+      "date": "2010-03-27",
+      "time": "",
       "home_team_id": 12965,
       "away_team_id": 12820,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215635",
@@ -318,6 +342,22 @@
       "away_score": 42
     },
     {
+      "date": "2010-04-10",
+      "time": "",
+      "home_team_id": 13351,
+      "away_team_id": 12965,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=215641",
+      "status": "AWO"
+    },
+    {
+      "date": "2010-04-17",
+      "time": "",
+      "home_team_id": 708,
+      "away_team_id": 12965,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=238551",
+      "status": "AWO"
+    },
+    {
       "date": "2010-04-17",
       "time": "",
       "home_team_id": 1184,
@@ -325,6 +365,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=238457",
       "home_score": 42,
       "away_score": 19
+    },
+    {
+      "date": "2010-04-24",
+      "time": "",
+      "home_team_id": 19181,
+      "away_team_id": 708,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=238455",
+      "status": "AWO"
     }
   ]
 }

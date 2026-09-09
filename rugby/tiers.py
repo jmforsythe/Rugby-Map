@@ -7,6 +7,7 @@ Merit competitions return **local** tier numbers (1-based within the competition
 Use :func:`get_competition_offset` to translate back to absolute pyramid positions.
 """
 
+import functools
 import logging
 from pathlib import Path
 
@@ -795,6 +796,7 @@ def _match_named_merit_leagues(path: str, season: str) -> tuple[int, str] | None
     return None
 
 
+@functools.lru_cache(maxsize=8192)
 def extract_tier(path_or_filename: str, season: str = CURRENT_SEASON) -> tuple[int, str]:
     """Extract tier from a league path or filename.
 

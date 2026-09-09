@@ -386,6 +386,16 @@ def collect_all_teams_data() -> dict[str, TeamData]:
             league_name = league_data["league_name"]
             league_team_count = len(league_data["teams"])
 
+            tier = extract_tier(rel_path, season)
+            is_merit = rel_path.startswith("merit/")
+            comp_key = ""
+            if is_merit:
+                comp_key = rel_path.split("/")[1]
+                comp_display = comp_key.replace("_", " ")
+                tier_display = f"{comp_display} {_tier_display_number(tier[0])}"
+            else:
+                tier_display = f"{_tier_display_number(tier[0])}"
+
             for position, team in enumerate(league_data["teams"], start=1):
                 team_name = team["name"]
                 team_url = team.get("url")
@@ -417,15 +427,6 @@ def collect_all_teams_data() -> dict[str, TeamData]:
                 if fmt_addr:
                     teams_data[page_key]["formatted_address"] = fmt_addr
 
-                tier = extract_tier(rel_path, season)
-                is_merit = rel_path.startswith("merit/")
-                comp_key = ""
-                if is_merit:
-                    comp_key = rel_path.split("/")[1]
-                    comp_display = comp_key.replace("_", " ")
-                    tier_display = f"{comp_display} {_tier_display_number(tier[0])}"
-                else:
-                    tier_display = f"{_tier_display_number(tier[0])}"
                 teams_data[page_key]["league_history"].append(
                     LeagueHistoryEntry(
                         season=season,

@@ -401,6 +401,14 @@
     {
       "date": "2022-10-29",
       "time": "",
+      "home_team_id": 11411,
+      "away_team_id": 7088,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=973346",
+      "status": "HWO"
+    },
+    {
+      "date": "2022-10-29",
+      "time": "",
       "home_team_id": 11942,
       "away_team_id": 5736,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=973345",
@@ -1171,6 +1179,13 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1037553",
       "home_score": 54,
       "away_score": 15
+    },
+    {
+      "date": "2023-04-01",
+      "time": "",
+      "home_team_id": 11942,
+      "away_team_id": 15578,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1038893"
     }
   ]
 }

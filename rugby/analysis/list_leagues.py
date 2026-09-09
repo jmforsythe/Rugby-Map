@@ -46,6 +46,7 @@ COMPETITION_NAMES: dict[str, str] = {
     "183": "IMPACT Rugby North West Leagues",
     "230": "Lancashire County Rugby Union Leagues",
     "202": "Hampshire Merit Tables",
+    "2330": "Hampshire Counties 5/6",
     "1600": "Midlands Reserve Team Leagues",
     "252": "Leicestershire Competitions",
     "1694": "Group 1 Automotive Essex Merit League",

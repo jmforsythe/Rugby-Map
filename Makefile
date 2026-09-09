@@ -2,7 +2,7 @@ SEASON ?= 2026-2027
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages stats-page custom-map-data constituent-map all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery audit-fixtures validate-tiers test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages stats-page custom-map-data constituent-map all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery audit-fixtures validate-tiers validate-league-urls test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -37,6 +37,7 @@ help:
 	@echo "  instagram-gallery HTML carousel for output/instagram/maps/ (+ gallery.html per season)"
 	@echo "  audit-fixtures  Sample RFU match venues vs home-team addresses"
 	@echo "  validate-tiers  Check tier extraction across all seasons"
+	@echo "  validate-league-urls  Compare league_data URLs to live RFU listings"
 	@echo "  lint         Run linters"
 	@echo "  clean        Remove generated output files"
 
@@ -122,6 +123,9 @@ audit-fixtures:
 
 validate-tiers:
 	python -m rugby.analysis.validate_tiers --all
+
+validate-league-urls:
+	python -m rugby.analysis.validate_league_urls --season $(SEASON) --check-fixtures
 
 test:
 	python -m pytest tests/ -v

@@ -24,6 +24,7 @@ _MERIT_COMPETITIONS = [
     183,  # 'IMPACT' Rugby North West Leagues
     230,  # Lancashire County Rugby Union Leagues (historical)
     202,  # Hampshire Merit Tables
+    2330,  # Hampshire Counties 5/6 (2026-2027+; live tables moved off comp 202)
     1600,  # Midlands Reserve Team Leagues
     252,  # Leicestershire Competitions
     1694,  # Group 1 Automotive Essex Merit League
@@ -230,6 +231,11 @@ def rfu_league_url_key(url: str) -> tuple[str, str, str]:
     )
 
 
+def rfu_league_lookup_key(url: str, league_name: str) -> tuple[str, str]:
+    """Return ``(competition, league_name)`` for disambiguating generic merit names."""
+    return (rfu_league_url_key(url)[0], league_name)
+
+
 def load_meta_league_urls_by_name(season: str) -> dict[str, str]:
     """Map league display name to normalized URL from ``_meta_leagues_cache.json``."""
     cache = load_meta_cache(season)
@@ -240,6 +246,30 @@ def load_meta_league_urls_by_name(season: str) -> dict[str, str]:
         for league in leagues:
             by_name[league["name"]] = normalize_rfu_league_url(league["url"], season)
     return by_name
+
+
+def fetch_live_leagues(season: str) -> list[LeagueInfo]:
+    """Fetch all RFU league links for *season* by scraping meta pages (no disk cache)."""
+    leagues: list[LeagueInfo] = []
+    leagues.extend(get_leagues(season))
+    leagues.extend(get_womens_leagues(season))
+    meta_urls = (
+        get_meta_league_urls(season)
+        + get_merit_meta_league_urls(season)
+        + get_womens_meta_league_urls(season)
+    )
+    for meta_url in meta_urls:
+        leagues.extend(scrape_leagues_from_page(meta_url))
+    return leagues
+
+
+def fetch_live_league_urls_by_name(season: str) -> dict[tuple[str, str], str]:
+    """Map ``(competition, league_name)`` to normalized URL from a live RFU scrape."""
+    by_key: dict[tuple[str, str], str] = {}
+    for league in fetch_live_leagues(season):
+        url = normalize_rfu_league_url(league["url"], season)
+        by_key[rfu_league_lookup_key(url, league["name"])] = url
+    return by_key
 
 
 def scrape_meta_leagues(
@@ -558,6 +588,7 @@ _COMPETITION_NAMES: dict[str, str] = {
     "183": "NOWIRUL",
     "230": "Lancashire",
     "202": "Hampshire",
+    "2330": "Hampshire",
     "1600": "Midlands_Reserve",
     "252": "Leicestershire",
     "1694": "Essex",

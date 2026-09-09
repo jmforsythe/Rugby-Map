@@ -149,6 +149,14 @@
     {
       "date": "2022-01-09",
       "time": "",
+      "home_team_id": 11802,
+      "away_team_id": 19149,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=901974",
+      "status": "AWO"
+    },
+    {
+      "date": "2022-01-09",
+      "time": "",
       "home_team_id": 26303,
       "away_team_id": 15848,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=949671",
@@ -264,6 +272,30 @@
       "away_score": 37
     },
     {
+      "date": "2022-03-13",
+      "time": "",
+      "home_team_id": 15848,
+      "away_team_id": 18288,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=950741",
+      "status": "HWO"
+    },
+    {
+      "date": "2022-03-19",
+      "time": "",
+      "home_team_id": 18288,
+      "away_team_id": 26303,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=960660",
+      "status": "AWO"
+    },
+    {
+      "date": "2022-03-19",
+      "time": "",
+      "home_team_id": 26303,
+      "away_team_id": 18288,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=922261",
+      "status": "HWO"
+    },
+    {
       "date": "2022-03-20",
       "time": "",
       "home_team_id": 12966,
@@ -273,6 +305,14 @@
       "away_score": 5
     },
     {
+      "date": "2022-03-20",
+      "time": "",
+      "home_team_id": 24850,
+      "away_team_id": 19149,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=901993",
+      "status": "AWO"
+    },
+    {
       "date": "2022-03-26",
       "time": "",
       "home_team_id": 24850,
@@ -280,6 +320,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=960299",
       "home_score": 12,
       "away_score": 27
+    },
+    {
+      "date": "2022-03-27",
+      "time": "",
+      "home_team_id": 11802,
+      "away_team_id": 15848,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=953533",
+      "status": "HWO"
     },
     {
       "date": "2022-04-02",
@@ -316,6 +364,13 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=957052",
       "home_score": 36,
       "away_score": 22
+    },
+    {
+      "date": "2022-05-01",
+      "time": "",
+      "home_team_id": 15848,
+      "away_team_id": 19149,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=964011"
     }
   ]
 }

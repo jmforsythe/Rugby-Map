@@ -35,9 +35,42 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 0.85em;
-    /* Never force the table wider than its card: min-width 760px caused a horizontal
-       scrollbar on common viewport widths (section padding shrinks the inner width). */
-    min-width: min(100%, 760px);
+}
+
+/* League history (not fixtures): fit the card — no forced min-width or nowrap overflow. */
+.league-history-table:not(.fixtures-table) {
+    min-width: 0;
+    table-layout: fixed;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(1),
+.league-history-table:not(.fixtures-table) td:nth-child(1) {
+    width: 15%;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(2),
+.league-history-table:not(.fixtures-table) td:nth-child(2) {
+    width: 32%;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(3),
+.league-history-table:not(.fixtures-table) td:nth-child(3) {
+    width: 10%;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(4),
+.league-history-table:not(.fixtures-table) td:nth-child(4) {
+    width: 18%;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(5),
+.league-history-table:not(.fixtures-table) td:nth-child(5) {
+    width: 18%;
+}
+
+.league-history-table:not(.fixtures-table) th:nth-child(6),
+.league-history-table:not(.fixtures-table) td:nth-child(6) {
+    width: 7%;
 }
 
 .league-history-table th {
@@ -66,7 +99,11 @@
     font-variant-numeric: tabular-nums;
     color: var(--text-muted);
     line-height: 1.45;
-    white-space: nowrap;
+}
+
+.league-history-table:not(.fixtures-table) .distance-cell {
+    white-space: normal;
+    font-size: 0.88em;
 }
 
 .island-stat-group {
@@ -100,7 +137,11 @@
     display: inline-block;
     padding: 0.3em 0.5em;
     font-size: 0.95em;
-    white-space: nowrap;
+}
+
+.league-history-table:not(.fixtures-table) .league-link {
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .league-history-table .map-cell {
@@ -108,8 +149,8 @@
     min-width: 2.25em;
     text-align: center;
     padding-left: 0.5em;
-    padding-right: 1.65em;
-    box-sizing: content-box;
+    padding-right: 0.5em;
+    box-sizing: border-box;
 }
 
 .position {
@@ -124,6 +165,7 @@
 
 .fixtures-table {
     table-layout: fixed;
+    min-width: 0;
 }
 
 .fixtures-table th:nth-child(1),
@@ -161,6 +203,8 @@
 }
 
 .fixture-result-cell {
+    display: flex;
+    justify-content: flex-end;
     white-space: nowrap;
 }
 
@@ -208,7 +252,9 @@
 
 .fixture-score {
     display: inline-grid;
-    grid-template-columns: 2.75em 1.1em 2.75em 1.65em;
+    /* Shared column widths for scores and walkovers so the sep and badge line up. */
+    grid-template-columns: 2.5em 1.85em 2.5em 1.4em;
+    width: 10em;
     align-items: center;
     font-variant-numeric: tabular-nums;
 }
@@ -234,12 +280,20 @@
     color: var(--text-muted);
 }
 
+.fixture-score--walkover .score-walkover {
+    font-size: 0.68em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+}
+
 .own-score {
     border-color: var(--accent);
 }
 
 .result-badge {
     justify-self: center;
+    margin-left: 1.75em;
     min-width: 1.4em;
     padding: 0 0.3em;
     font-size: 0.8em;
@@ -391,8 +445,7 @@
 }
 
 @media (max-width: 768px) {
-    .league-history-table {
-        min-width: 500px;
+    .league-history-table:not(.fixtures-table) {
         font-size: 0.8em;
     }
 
@@ -458,24 +511,30 @@
     }
 
     .fixture-score {
-        grid-template-columns: 2em 0.85em 2em 1.35em;
+        grid-template-columns: 2em 1.35em 2em 1.2em;
+        width: 8.35em;
         font-size: 0.95em;
     }
 
-    .fixture-result-cell {
-        text-align: right;
+    .result-badge {
+        margin-left: 1.75em;
     }
 }
 
 @media (max-width: 480px) {
-    .league-history-table {
-        min-width: 450px;
+    .league-history-table:not(.fixtures-table) {
         font-size: 0.75em;
     }
 
     .league-history-table th,
     .league-history-table td {
         padding: 0.4em 0.3em;
+    }
+
+    /* Travel time is lowest priority on very narrow screens. */
+    .league-history-table:not(.fixtures-table) th:nth-child(5),
+    .league-history-table:not(.fixtures-table) td:nth-child(5) {
+        display: none;
     }
 
     .distance-header-full {

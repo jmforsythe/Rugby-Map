@@ -718,11 +718,31 @@ def _format_fixture_date(iso_date: str) -> str:
         return iso_date
 
 
+def _walkover_badge(entry: TeamFixtureEntry, status: str) -> tuple[str, str]:
+    """Win/loss badge for HWO/AWO from this team page's perspective."""
+    if status == "HWO":
+        return ("result-win", "W") if entry["is_home"] else ("result-loss", "L")
+    if status == "AWO":
+        return ("result-loss", "L") if entry["is_home"] else ("result-win", "W")
+    return ("result-loss", "L")
+
+
 def _format_fixture_result(entry: TeamFixtureEntry) -> str:
     status = entry.get("status")
+    if status in _FIXTURE_STATUS_LABELS:
+        label = _FIXTURE_STATUS_LABELS[status]
+        badge_class, badge_label = _walkover_badge(entry, status)
+        badge_html = f'<span class="result-badge {badge_class}">{badge_label}</span>'
+        return (
+            f'<span class="fixture-score fixture-score--walkover">'
+            f'<span class="score-home">&nbsp;</span>'
+            f'<span class="score-sep score-walkover" title="{escape(label)}">{escape(status)}</span>'
+            f'<span class="score-away">&nbsp;</span>'
+            f"{badge_html}"
+            f"</span>"
+        )
     if status:
-        label = _FIXTURE_STATUS_LABELS.get(status, status)
-        return f'<span title="{escape(label)}">{escape(status)}</span>'
+        return f'<span title="{escape(status)}">{escape(status)}</span>'
     home_score = entry.get("home_score")
     away_score = entry.get("away_score")
     if home_score is not None and away_score is not None:

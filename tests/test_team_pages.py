@@ -244,7 +244,7 @@ class TestFixtureHelpers:
         }
         assert _format_fixture_result(entry) == "15:00"
 
-    def test_format_fixture_result_walkover(self):
+    def test_format_fixture_result_walkover_home(self):
         entry: TeamFixtureEntry = {
             "season": "2025-2026",
             "league_name": "Counties 3",
@@ -255,7 +255,34 @@ class TestFixtureHelpers:
             "match_url": "https://example.com/match",
             "status": "HWO",
         }
-        assert _format_fixture_result(entry) == ('<span title="Home walkover">HWO</span>')
+        assert _format_fixture_result(entry) == (
+            '<span class="fixture-score fixture-score--walkover">'
+            '<span class="score-home">&nbsp;</span>'
+            '<span class="score-sep score-walkover" title="Home walkover">HWO</span>'
+            '<span class="score-away">&nbsp;</span>'
+            '<span class="result-badge result-win">W</span>'
+            "</span>"
+        )
+
+    def test_format_fixture_result_walkover_away(self):
+        entry: TeamFixtureEntry = {
+            "season": "2025-2026",
+            "league_name": "Counties 3",
+            "date": "2026-04-25",
+            "time": "",
+            "is_home": False,
+            "opponent_id": 9607,
+            "match_url": "https://example.com/match",
+            "status": "AWO",
+        }
+        assert _format_fixture_result(entry) == (
+            '<span class="fixture-score fixture-score--walkover">'
+            '<span class="score-home">&nbsp;</span>'
+            '<span class="score-sep score-walkover" title="Away walkover">AWO</span>'
+            '<span class="score-away">&nbsp;</span>'
+            '<span class="result-badge result-win">W</span>'
+            "</span>"
+        )
 
 
 class TestCollectTeamFixtures:

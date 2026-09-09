@@ -779,6 +779,14 @@
     {
       "date": "2006-01-28",
       "time": "",
+      "home_team_id": 14294,
+      "away_team_id": 20199,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=92038",
+      "status": "AWO"
+    },
+    {
+      "date": "2006-01-28",
+      "time": "",
       "home_team_id": 23101,
       "away_team_id": 9861,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=92039",
@@ -1162,6 +1170,20 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=92054",
       "home_score": 17,
       "away_score": 6
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 6246,
+      "away_team_id": 14294,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=92049"
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 23101,
+      "away_team_id": 6246,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=92074"
     }
   ]
 }

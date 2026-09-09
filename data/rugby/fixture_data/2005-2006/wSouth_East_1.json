@@ -41,6 +41,13 @@
     {
       "date": "2005-09-25",
       "time": "",
+      "home_team_id": 25135,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97435"
+    },
+    {
+      "date": "2005-09-25",
+      "time": "",
       "home_team_id": 25706,
       "away_team_id": 25837,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97436",
@@ -102,6 +109,14 @@
       "away_score": 12
     },
     {
+      "date": "2005-10-09",
+      "time": "",
+      "home_team_id": 25837,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97442",
+      "status": "HWO"
+    },
+    {
       "date": "2005-10-16",
       "time": "",
       "home_team_id": 24502,
@@ -131,11 +146,26 @@
     {
       "date": "2005-10-30",
       "time": "",
+      "home_team_id": 24540,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97452",
+      "status": "HWO"
+    },
+    {
+      "date": "2005-10-30",
+      "time": "",
       "home_team_id": 25340,
       "away_team_id": 24502,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97451",
       "home_score": 8,
       "away_score": 15
+    },
+    {
+      "date": "2005-10-30",
+      "time": "",
+      "home_team_id": 25706,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97449"
     },
     {
       "date": "2005-10-30",
@@ -266,11 +296,27 @@
     {
       "date": "2005-12-04",
       "time": "",
+      "home_team_id": 25135,
+      "away_team_id": 24502,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97457",
+      "status": "AWO"
+    },
+    {
+      "date": "2005-12-04",
+      "time": "",
       "home_team_id": 25340,
       "away_team_id": 25706,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97458",
       "home_score": 51,
       "away_score": 10
+    },
+    {
+      "date": "2005-12-11",
+      "time": "",
+      "home_team_id": 24502,
+      "away_team_id": 24547,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97461",
+      "status": "HWO"
     },
     {
       "date": "2005-12-11",
@@ -291,6 +337,14 @@
       "away_score": 5
     },
     {
+      "date": "2005-12-11",
+      "time": "",
+      "home_team_id": 26254,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97463",
+      "status": "HWO"
+    },
+    {
       "date": "2006-01-08",
       "time": "",
       "home_team_id": 24540,
@@ -298,6 +352,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97465",
       "home_score": 0,
       "away_score": 15
+    },
+    {
+      "date": "2006-01-08",
+      "time": "",
+      "home_team_id": 25340,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97468",
+      "status": "HWO"
     },
     {
       "date": "2006-01-08",
@@ -329,11 +391,35 @@
     {
       "date": "2006-01-15",
       "time": "",
+      "home_team_id": 25135,
+      "away_team_id": 25837,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97470",
+      "status": "AWO"
+    },
+    {
+      "date": "2006-01-15",
+      "time": "",
       "home_team_id": 25167,
       "away_team_id": 24547,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97469",
       "home_score": 38,
       "away_score": 10
+    },
+    {
+      "date": "2006-01-15",
+      "time": "",
+      "home_team_id": 26254,
+      "away_team_id": 25340,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97471",
+      "status": "AWO"
+    },
+    {
+      "date": "2006-01-22",
+      "time": "",
+      "home_team_id": 25167,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97475",
+      "status": "HWO"
     },
     {
       "date": "2006-01-22",
@@ -363,6 +449,14 @@
       "away_score": 24
     },
     {
+      "date": "2006-02-05",
+      "time": "",
+      "home_team_id": 26254,
+      "away_team_id": 25167,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97447",
+      "status": "AWO"
+    },
+    {
       "date": "2006-02-12",
       "time": "",
       "home_team_id": 24502,
@@ -381,6 +475,29 @@
       "away_score": 29
     },
     {
+      "date": "2006-02-12",
+      "time": "",
+      "home_team_id": 25135,
+      "away_team_id": 24540,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97480",
+      "status": "AWO"
+    },
+    {
+      "date": "2006-02-12",
+      "time": "",
+      "home_team_id": 26254,
+      "away_team_id": 25706,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97477"
+    },
+    {
+      "date": "2006-02-19",
+      "time": "",
+      "home_team_id": 24540,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97482",
+      "status": "HWO"
+    },
+    {
       "date": "2006-02-19",
       "time": "",
       "home_team_id": 25167,
@@ -397,6 +514,22 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97483",
       "home_score": 14,
       "away_score": 0
+    },
+    {
+      "date": "2006-02-19",
+      "time": "",
+      "home_team_id": 25706,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97484",
+      "status": "HWO"
+    },
+    {
+      "date": "2006-02-25",
+      "time": "",
+      "home_team_id": 24547,
+      "away_team_id": 25706,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97448",
+      "status": "HWO"
     },
     {
       "date": "2006-02-26",
@@ -428,11 +561,27 @@
     {
       "date": "2006-03-05",
       "time": "",
+      "home_team_id": 25135,
+      "away_team_id": 25167,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97494",
+      "status": "AWO"
+    },
+    {
+      "date": "2006-03-05",
+      "time": "",
       "home_team_id": 25837,
       "away_team_id": 25340,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97496",
       "home_score": 15,
       "away_score": 12
+    },
+    {
+      "date": "2006-03-12",
+      "time": "",
+      "home_team_id": 24502,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97497",
+      "status": "HWO"
     },
     {
       "date": "2006-03-12",
@@ -446,11 +595,35 @@
     {
       "date": "2006-03-12",
       "time": "",
+      "home_team_id": 24547,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97500",
+      "status": "HWO"
+    },
+    {
+      "date": "2006-03-12",
+      "time": "",
       "home_team_id": 25340,
       "away_team_id": 25167,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97498",
       "home_score": 67,
       "away_score": 0
+    },
+    {
+      "date": "2006-03-19",
+      "time": "",
+      "home_team_id": 24502,
+      "away_team_id": 25135,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=96855",
+      "status": "HWO"
+    },
+    {
+      "date": "2006-04-09",
+      "time": "",
+      "home_team_id": 25340,
+      "away_team_id": 26254,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=97443",
+      "status": "HWO"
     }
   ]
 }

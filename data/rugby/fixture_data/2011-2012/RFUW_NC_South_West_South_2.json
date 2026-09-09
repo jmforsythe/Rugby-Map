@@ -3,6 +3,22 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1782&division=5666&season=2011-2012#tables",
   "fixtures": [
     {
+      "date": "2011-10-02",
+      "time": "",
+      "home_team_id": 14613,
+      "away_team_id": 14796,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292551",
+      "status": "AWO"
+    },
+    {
+      "date": "2011-10-09",
+      "time": "",
+      "home_team_id": 16709,
+      "away_team_id": 14613,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292553",
+      "status": "HWO"
+    },
+    {
       "date": "2011-10-23",
       "time": "",
       "home_team_id": 14613,
@@ -30,6 +46,14 @@
       "away_score": 24
     },
     {
+      "date": "2011-11-13",
+      "time": "",
+      "home_team_id": 14796,
+      "away_team_id": 14613,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292560",
+      "status": "HWO"
+    },
+    {
       "date": "2011-11-20",
       "time": "",
       "home_team_id": 14613,
@@ -48,6 +72,14 @@
       "away_score": 5
     },
     {
+      "date": "2012-01-08",
+      "time": "",
+      "home_team_id": 2160,
+      "away_team_id": 14613,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292564",
+      "status": "HWO"
+    },
+    {
       "date": "2012-01-15",
       "time": "",
       "home_team_id": 14796,
@@ -64,6 +96,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292568",
       "home_score": 5,
       "away_score": 36
+    },
+    {
+      "date": "2012-01-29",
+      "time": "",
+      "home_team_id": 16709,
+      "away_team_id": 2160,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=292550",
+      "status": "HWO"
     }
   ]
 }

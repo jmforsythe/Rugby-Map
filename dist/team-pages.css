@@ -180,12 +180,14 @@
 
 .fixtures-table th:nth-child(3),
 .fixtures-table td:nth-child(3) {
-    width: 9.5em;
+    width: 11.25em;
+    padding-right: 0.25em;
 }
 
 .fixtures-table th:nth-child(4),
 .fixtures-table td:nth-child(4) {
     width: 22%;
+    padding-left: 0.25em;
 }
 
 .fixtures-table th:nth-child(5),
@@ -203,8 +205,8 @@
 }
 
 .fixture-result-cell {
-    display: flex;
-    justify-content: flex-end;
+    vertical-align: middle;
+    text-align: right;
     white-space: nowrap;
 }
 
@@ -253,8 +255,8 @@
 .fixture-score {
     display: inline-grid;
     /* Shared column widths for scores and walkovers so the sep and badge line up. */
-    grid-template-columns: 2.5em 1.85em 2.5em 1.4em;
-    width: 10em;
+    grid-template-columns: 2.5em 1.85em 2.5em 1em 1.4em;
+    width: 11.25em;
     align-items: center;
     font-variant-numeric: tabular-nums;
 }
@@ -281,9 +283,9 @@
 }
 
 .fixture-score--walkover .score-walkover {
-    font-size: 0.68em;
+    font-size: 0.9em;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     white-space: nowrap;
 }
 
@@ -293,7 +295,6 @@
 
 .result-badge {
     justify-self: center;
-    margin-left: 1.75em;
     min-width: 1.4em;
     padding: 0 0.3em;
     font-size: 0.8em;
@@ -467,17 +468,17 @@
 
     .fixtures-table th:nth-child(1),
     .fixtures-table td:nth-child(1) {
-        width: 29%;
+        width: 27%;
     }
 
     .fixtures-table th:nth-child(2),
     .fixtures-table td:nth-child(2) {
-        width: 38%;
+        width: 35%;
     }
 
     .fixtures-table th:nth-child(3),
     .fixtures-table td:nth-child(3) {
-        width: 28%;
+        width: 33%;
     }
 
     .fixtures-table th:nth-child(5),
@@ -511,13 +512,9 @@
     }
 
     .fixture-score {
-        grid-template-columns: 2em 1.35em 2em 1.2em;
-        width: 8.35em;
+        grid-template-columns: 2em 1.35em 2em 0.85em 1.2em;
+        width: 8.4em;
         font-size: 0.95em;
-    }
-
-    .result-badge {
-        margin-left: 1.75em;
     }
 }
 

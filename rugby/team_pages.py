@@ -311,6 +311,8 @@ _FIXTURE_STATUS_LABELS: dict[str, str] = {
     "AWO": "Away walkover",
 }
 
+_SCORE_BADGE_GAP = '<span class="score-badge-gap" aria-hidden="true"></span>'
+
 
 class TeamListEntry(TypedDict):
     """Entry for team in the searchable index."""
@@ -738,6 +740,7 @@ def _format_fixture_result(entry: TeamFixtureEntry) -> str:
             f'<span class="score-home">&nbsp;</span>'
             f'<span class="score-sep score-walkover" title="{escape(label)}">{escape(status)}</span>'
             f'<span class="score-away">&nbsp;</span>'
+            f"{_SCORE_BADGE_GAP}"
             f"{badge_html}"
             f"</span>"
         )
@@ -763,6 +766,7 @@ def _format_fixture_result(entry: TeamFixtureEntry) -> str:
             f'<span class="{home_class}">{home_score}</span>'
             f'<span class="score-sep">–</span>'
             f'<span class="{away_class}">{away_score}</span>'
+            f"{_SCORE_BADGE_GAP}"
             f"{badge_html}"
             f"</span>"
         )

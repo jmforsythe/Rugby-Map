@@ -186,6 +186,7 @@ class TestFixtureHelpers:
             '<span class="score-home own-score">24</span>'
             '<span class="score-sep">–</span>'
             '<span class="score-away">17</span>'
+            '<span class="score-badge-gap" aria-hidden="true"></span>'
             '<span class="result-badge result-win">W</span>'
             "</span>"
         )
@@ -207,6 +208,7 @@ class TestFixtureHelpers:
             '<span class="score-home">24</span>'
             '<span class="score-sep">–</span>'
             '<span class="score-away own-score">17</span>'
+            '<span class="score-badge-gap" aria-hidden="true"></span>'
             '<span class="result-badge result-loss">L</span>'
             "</span>"
         )
@@ -228,6 +230,7 @@ class TestFixtureHelpers:
             '<span class="score-home own-score">20</span>'
             '<span class="score-sep">–</span>'
             '<span class="score-away">20</span>'
+            '<span class="score-badge-gap" aria-hidden="true"></span>'
             '<span class="result-badge result-draw">D</span>'
             "</span>"
         )
@@ -260,6 +263,7 @@ class TestFixtureHelpers:
             '<span class="score-home">&nbsp;</span>'
             '<span class="score-sep score-walkover" title="Home walkover">HWO</span>'
             '<span class="score-away">&nbsp;</span>'
+            '<span class="score-badge-gap" aria-hidden="true"></span>'
             '<span class="result-badge result-win">W</span>'
             "</span>"
         )
@@ -280,6 +284,7 @@ class TestFixtureHelpers:
             '<span class="score-home">&nbsp;</span>'
             '<span class="score-sep score-walkover" title="Away walkover">AWO</span>'
             '<span class="score-away">&nbsp;</span>'
+            '<span class="score-badge-gap" aria-hidden="true"></span>'
             '<span class="result-badge result-win">W</span>'
             "</span>"
         )

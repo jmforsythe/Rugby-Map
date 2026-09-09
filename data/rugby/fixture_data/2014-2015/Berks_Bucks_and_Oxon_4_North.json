@@ -3,6 +3,14 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=1699&division=8152&season=2014-2015#tables",
   "fixtures": [
     {
+      "date": "2014-09-20",
+      "time": "",
+      "home_team_id": 10698,
+      "away_team_id": 3540,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416226",
+      "status": "HWO"
+    },
+    {
       "date": "2014-09-27",
       "time": "",
       "home_team_id": 2125,
@@ -68,6 +76,14 @@
     {
       "date": "2014-11-15",
       "time": "",
+      "home_team_id": 9608,
+      "away_team_id": 247,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416248",
+      "status": "AWO"
+    },
+    {
+      "date": "2014-11-15",
+      "time": "",
       "home_team_id": 10698,
       "away_team_id": 25190,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416251",
@@ -109,6 +125,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416265",
       "home_score": 8,
       "away_score": 17
+    },
+    {
+      "date": "2014-12-13",
+      "time": "",
+      "home_team_id": 3540,
+      "away_team_id": 9608,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416264",
+      "status": "HWO"
     },
     {
       "date": "2015-01-10",
@@ -217,6 +241,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416306",
       "home_score": 19,
       "away_score": 21
+    },
+    {
+      "date": "2015-03-28",
+      "time": "",
+      "home_team_id": 10698,
+      "away_team_id": 2125,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=416305",
+      "status": "HWO"
     },
     {
       "date": "2015-03-28",

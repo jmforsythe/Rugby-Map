@@ -860,6 +860,14 @@
     {
       "date": "2011-02-12",
       "time": "",
+      "home_team_id": 10084,
+      "away_team_id": 15870,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=246025",
+      "status": "HWO"
+    },
+    {
+      "date": "2011-02-12",
+      "time": "",
       "home_team_id": 14838,
       "away_team_id": 12006,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=246026",
@@ -1378,6 +1386,20 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=246087",
       "home_score": 7,
       "away_score": 20
+    },
+    {
+      "date": "2026-09-09",
+      "time": "",
+      "home_team_id": 9222,
+      "away_team_id": 3008,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=246074"
+    },
+    {
+      "date": "2026-09-09",
+      "time": "",
+      "home_team_id": 9222,
+      "away_team_id": 26466,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=246084"
     }
   ]
 }

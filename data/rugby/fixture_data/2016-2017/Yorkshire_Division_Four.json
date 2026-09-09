@@ -500,6 +500,14 @@
     {
       "date": "2016-12-10",
       "time": "",
+      "home_team_id": 9968,
+      "away_team_id": 10084,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=560293",
+      "status": "HWO"
+    },
+    {
+      "date": "2016-12-10",
+      "time": "",
       "home_team_id": 11989,
       "away_team_id": 10436,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=560296",
@@ -577,6 +585,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=560300",
       "home_score": 0,
       "away_score": 32
+    },
+    {
+      "date": "2017-01-14",
+      "time": "",
+      "home_team_id": 3679,
+      "away_team_id": 10084,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=560304",
+      "status": "HWO"
     },
     {
       "date": "2017-01-14",
@@ -964,6 +980,13 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=573690",
       "home_score": 33,
       "away_score": 5
+    },
+    {
+      "date": "2026-09-09",
+      "time": "",
+      "home_team_id": 3008,
+      "away_team_id": 10436,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=560351"
     }
   ]
 }

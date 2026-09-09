@@ -3,6 +3,29 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=104&division=10322&season=2016-2017#tables",
   "fixtures": [
     {
+      "date": "2016-09-10",
+      "time": "",
+      "home_team_id": 4118,
+      "away_team_id": 25743,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576178"
+    },
+    {
+      "date": "2016-09-10",
+      "time": "",
+      "home_team_id": 13322,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581174",
+      "status": "HWO"
+    },
+    {
+      "date": "2016-09-10",
+      "time": "",
+      "home_team_id": 24703,
+      "away_team_id": 20425,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576179",
+      "status": "AWO"
+    },
+    {
       "date": "2016-09-17",
       "time": "",
       "home_team_id": 19165,
@@ -21,6 +44,14 @@
       "away_score": 22
     },
     {
+      "date": "2016-09-17",
+      "time": "",
+      "home_team_id": 24849,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576180",
+      "status": "HWO"
+    },
+    {
       "date": "2016-09-24",
       "time": "",
       "home_team_id": 4118,
@@ -37,6 +68,22 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581176",
       "home_score": 50,
       "away_score": 12
+    },
+    {
+      "date": "2016-09-24",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 4021,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576185",
+      "status": "AWO"
+    },
+    {
+      "date": "2016-09-24",
+      "time": "",
+      "home_team_id": 19142,
+      "away_team_id": 25743,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576187",
+      "status": "HWO"
     },
     {
       "date": "2016-10-01",
@@ -73,6 +120,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576193",
       "home_score": 43,
       "away_score": 15
+    },
+    {
+      "date": "2016-10-08",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 25743,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576196",
+      "status": "HWO"
     },
     {
       "date": "2016-10-08",
@@ -120,6 +175,14 @@
       "away_score": 20
     },
     {
+      "date": "2016-10-22",
+      "time": "",
+      "home_team_id": 25743,
+      "away_team_id": 24849,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576201",
+      "status": "AWO"
+    },
+    {
       "date": "2016-10-29",
       "time": "",
       "home_team_id": 4021,
@@ -154,6 +217,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576206",
       "home_score": 22,
       "away_score": 22
+    },
+    {
+      "date": "2016-11-05",
+      "time": "",
+      "home_team_id": 4118,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576210",
+      "status": "HWO"
     },
     {
       "date": "2016-11-05",
@@ -230,6 +301,22 @@
     {
       "date": "2016-11-26",
       "time": "",
+      "home_team_id": 19142,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576220",
+      "status": "HWO"
+    },
+    {
+      "date": "2016-11-26",
+      "time": "",
+      "home_team_id": 20425,
+      "away_team_id": 25743,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576224",
+      "status": "HWO"
+    },
+    {
+      "date": "2016-11-26",
+      "time": "",
       "home_team_id": 24703,
       "away_team_id": 19165,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576223",
@@ -293,6 +380,14 @@
     {
       "date": "2017-01-07",
       "time": "",
+      "home_team_id": 4021,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576235",
+      "status": "HWO"
+    },
+    {
+      "date": "2017-01-07",
+      "time": "",
       "home_team_id": 24703,
       "away_team_id": 4118,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576236",
@@ -325,6 +420,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581187",
       "home_score": 23,
       "away_score": 19
+    },
+    {
+      "date": "2017-01-14",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 19165,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576241",
+      "status": "AWO"
     },
     {
       "date": "2017-01-14",
@@ -390,6 +493,29 @@
       "away_score": 87
     },
     {
+      "date": "2017-01-28",
+      "time": "",
+      "home_team_id": 24849,
+      "away_team_id": 19165,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576246",
+      "status": "HWO"
+    },
+    {
+      "date": "2017-01-28",
+      "time": "",
+      "home_team_id": 25743,
+      "away_team_id": 14536,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576245",
+      "status": "HWO"
+    },
+    {
+      "date": "2017-02-04",
+      "time": "",
+      "home_team_id": 19142,
+      "away_team_id": 4021,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=597593"
+    },
+    {
       "date": "2017-02-11",
       "time": "",
       "home_team_id": 4021,
@@ -397,6 +523,22 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576250",
       "home_score": 12,
       "away_score": 13
+    },
+    {
+      "date": "2017-02-11",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 20425,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576252",
+      "status": "AWO"
+    },
+    {
+      "date": "2017-02-11",
+      "time": "",
+      "home_team_id": 19142,
+      "away_team_id": 4118,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576254",
+      "status": "HWO"
     },
     {
       "date": "2017-02-11",
@@ -415,6 +557,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581190",
       "home_score": 19,
       "away_score": 52
+    },
+    {
+      "date": "2017-02-18",
+      "time": "",
+      "home_team_id": 20425,
+      "away_team_id": 24849,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576256",
+      "status": "HWO"
     },
     {
       "date": "2017-02-18",
@@ -446,11 +596,34 @@
     {
       "date": "2017-03-04",
       "time": "",
+      "home_team_id": 13322,
+      "away_team_id": 19142,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581191",
+      "status": "HWO"
+    },
+    {
+      "date": "2017-03-04",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 4118,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576263",
+      "status": "AWO"
+    },
+    {
+      "date": "2017-03-04",
+      "time": "",
       "home_team_id": 19165,
       "away_team_id": 25743,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576260",
       "home_score": 19,
       "away_score": 33
+    },
+    {
+      "date": "2017-03-04",
+      "time": "",
+      "home_team_id": 24849,
+      "away_team_id": 24703,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576262"
     },
     {
       "date": "2017-03-11",
@@ -480,6 +653,14 @@
       "away_score": 12
     },
     {
+      "date": "2017-03-18",
+      "time": "",
+      "home_team_id": 13322,
+      "away_team_id": 4021,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=598601",
+      "status": "HWO"
+    },
+    {
       "date": "2017-03-25",
       "time": "",
       "home_team_id": 4021,
@@ -487,6 +668,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576272",
       "home_score": 0,
       "away_score": 12
+    },
+    {
+      "date": "2017-03-25",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 19142,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576274",
+      "status": "AWO"
     },
     {
       "date": "2017-03-25",
@@ -543,6 +732,13 @@
       "away_score": 17
     },
     {
+      "date": "2017-04-01",
+      "time": "",
+      "home_team_id": 25743,
+      "away_team_id": 4021,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=597757"
+    },
+    {
       "date": "2017-04-08",
       "time": "",
       "home_team_id": 4021,
@@ -550,6 +746,29 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576283",
       "home_score": 82,
       "away_score": 26
+    },
+    {
+      "date": "2017-04-08",
+      "time": "",
+      "home_team_id": 14536,
+      "away_team_id": 13322,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=581195",
+      "status": "AWO"
+    },
+    {
+      "date": "2017-04-08",
+      "time": "",
+      "home_team_id": 20425,
+      "away_team_id": 24703,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576280",
+      "status": "HWO"
+    },
+    {
+      "date": "2017-04-08",
+      "time": "",
+      "home_team_id": 25743,
+      "away_team_id": 4118,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=576281"
     },
     {
       "date": "2017-04-29",

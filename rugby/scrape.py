@@ -23,8 +23,10 @@ _PYRAMID_COMPETITIONS = [
 _MERIT_COMPETITIONS = [
     183,  # 'IMPACT' Rugby North West Leagues
     230,  # Lancashire County Rugby Union Leagues (historical)
-    202,  # Hampshire Merit Tables
-    2330,  # Hampshire Counties 5/6 (2026-2027+; live tables moved off comp 202)
+    202,  # Hampshire Merit Tables (primary; Counties 5/6 live here for most seasons)
+    # Hampshire also lists Counties 5/6 on competition 2330 from 2018-2019 onward — duplicate
+    # meta-page IDs for the same leagues we store under comp 202 (e.g. Counties_5_Hampshire.json).
+    2330,  # Hampshire Counties 5/6 (alternate RFU competition ID; do not scrape separately)
     1600,  # Midlands Reserve Team Leagues
     252,  # Leicestershire Competitions
     1694,  # Group 1 Automotive Essex Merit League
@@ -509,6 +511,10 @@ _BANNED_DIVISION_IDS = {
     36765,  # 2021-2022 Sussex 2 Championship, Premier (new IDs)
     36927,
     37770,  # 2021-2022 Sussex 3 Championship, Premier (new IDs)
+    36762,
+    37775,
+    37777,  # 2021-2022 Harvey's Olympia Sussex 3 Conference A, All, B
+    48970,  # 2023-2024 Harvey's Wharf IPA Counties 4 Sussex Conference
     53453,  # 2023-2024 Sussex Combined
     57770,  # 2024-2025 Sussex Conference
     73164,  # 2025-2026 Sussex Conference

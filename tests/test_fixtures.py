@@ -12,6 +12,8 @@ from rugby.fixtures import (
     _fixture_sort_key,
     _is_placeholder_team_name,
     _parse_fixture_card,
+    _should_preserve_existing_fixtures,
+    _skip_incomplete_rescrape,
     expected_fixture_count,
     find_incomplete_fixture_leagues,
     normalize_fixtures,
@@ -105,6 +107,22 @@ def test_expected_fixture_count_is_double_round_robin() -> None:
     assert expected_fixture_count(10) == 90
     assert expected_fixture_count(2) == 2
     assert expected_fixture_count(1) == 0
+
+
+def test_skip_incomplete_rescrape_excludes_gallagher_premiership() -> None:
+    assert _skip_incomplete_rescrape(Path("Premiership.json"))
+    assert not _skip_incomplete_rescrape(Path("merit/Hampshire/Premiership_North.json"))
+
+
+def test_should_preserve_existing_fixtures_on_empty_rescrape() -> None:
+    assert _should_preserve_existing_fixtures(120, 0, "2022-2023")
+    assert not _should_preserve_existing_fixtures(0, 0, "2022-2023")
+    assert not _should_preserve_existing_fixtures(90, 72, "2025-2026")
+
+
+def test_should_preserve_existing_fixtures_on_historical_shrink() -> None:
+    assert _should_preserve_existing_fixtures(30, 9, "2015-2016")
+    assert not _should_preserve_existing_fixtures(30, 9, "2025-2026")
 
 
 def test_find_incomplete_fixture_leagues(tmp_path, monkeypatch) -> None:

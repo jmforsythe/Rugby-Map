@@ -33,6 +33,8 @@ from rugby.scrape import (
 
 logger = logging.getLogger(__name__)
 
+_REQUEST_DELAY_SECONDS = 1.0
+
 _RFU_BASE = "https://www.englandrugby.com"
 
 # RFU fixture views that are not represented under league_data/ (e.g. playoff
@@ -184,7 +186,7 @@ def scrape_fixtures_from_league(
     logger.info("Scraping fixtures from: %s", fixtures_url)
 
     referer = f"{_RFU_BASE}/fixtures-and-results"
-    response = make_request(fixtures_url, referer=referer, delay_seconds=1)
+    response = make_request(fixtures_url, referer=referer, delay_seconds=_REQUEST_DELAY_SECONDS)
     soup = BeautifulSoup(response.content, "html.parser")
 
     page_heading = _fixtures_page_heading(soup)
@@ -342,6 +344,39 @@ def expected_fixture_count(team_count: int) -> int:
     return team_count * (team_count - 1)
 
 
+def _skip_incomplete_rescrape(relative: Path) -> bool:
+    """Leagues excluded from ``--only-incomplete`` rescrapes.
+
+    Gallagher Premiership (``Premiership.json`` at season root) often returns no
+    fixture cards from RFU ``#fixtures`` pages for past seasons, while older
+    committed data remains valid.
+    """
+    return relative.as_posix() == "Premiership.json"
+
+
+# Seasons before this must not lose fixture rows on rescrape (RFU division IDs drift).
+_FIXTURE_SHRINK_PROTECT_BEFORE = "2024-2025"
+
+
+def _should_preserve_existing_fixtures(existing_count: int, new_count: int, season: str) -> bool:
+    """Return whether to keep on-disk fixtures after a failed or regressive rescrape."""
+    if existing_count > 0 and new_count == 0:
+        return True
+    if season < _FIXTURE_SHRINK_PROTECT_BEFORE and existing_count > new_count > 0:
+        return True
+    return False
+
+
+def _existing_fixture_count(output_path: Path) -> int:
+    if not output_path.is_file():
+        return 0
+    try:
+        data = json.loads(output_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return 0
+    return len(normalize_fixtures(data.get("fixtures", [])))
+
+
 def _league_data_seasons(season: str | None = None) -> list[str]:
     league_root = DATA_DIR / "league_data"
     if season is not None:
@@ -377,6 +412,8 @@ def find_incomplete_fixture_leagues(season: str | None = None) -> list[Incomplet
             team_count = data.get("team_count") or len(data.get("teams", []))
             expected = expected_fixture_count(team_count)
             relative = json_file.relative_to(league_dir)
+            if _skip_incomplete_rescrape(relative):
+                continue
             fixture_path = fixture_dir / relative
             actual = 0
             if fixture_path.is_file():
@@ -708,9 +745,18 @@ def main() -> None:
             "Omit --season to scan every season from EARLIEST_SEASON onward."
         ),
     )
+    parser.add_argument(
+        "--delay",
+        type=float,
+        default=1.0,
+        help="Seconds to wait before each HTTP request (default: 1.0).",
+    )
     args = parser.parse_args()
 
     setup_logging()
+
+    global _REQUEST_DELAY_SECONDS
+    _REQUEST_DELAY_SECONDS = max(0.0, args.delay)
 
     if args.list_incomplete:
         rows = find_incomplete_fixture_leagues(args.season)
@@ -781,6 +827,21 @@ def main() -> None:
             )
 
         fixtures = normalize_fixtures(fixtures)
+        existing_count = _existing_fixture_count(output_path)
+        if _should_preserve_existing_fixtures(existing_count, len(fixtures), season):
+            logger.warning(
+                "Skipping write for %s: scrape returned %d fixtures but %d exist on disk",
+                league_name,
+                len(fixtures),
+                existing_count,
+            )
+            errors.append(
+                f"REGRESSIVE_RESCRAPE | {league_name} | preserved {existing_count} fixtures | "
+                f"scraped {len(fixtures)} | {league_url}"
+            )
+            skipped += 1
+            continue
+
         league_data_path = DATA_DIR / "league_data" / season / relative_path
         if league_data_path.is_file():
             with open(league_data_path, encoding="utf-8") as f:

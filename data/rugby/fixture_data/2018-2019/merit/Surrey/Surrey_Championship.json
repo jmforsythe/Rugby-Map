@@ -5,6 +5,22 @@
     {
       "date": "2018-09-22",
       "time": "",
+      "home_team_id": 1642,
+      "away_team_id": 15680,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713842",
+      "status": "HWO"
+    },
+    {
+      "date": "2018-09-22",
+      "time": "",
+      "home_team_id": 15945,
+      "away_team_id": 12514,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713844",
+      "status": "HWO"
+    },
+    {
+      "date": "2018-09-22",
+      "time": "",
       "home_team_id": 18039,
       "away_team_id": 12536,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713843",
@@ -185,6 +201,14 @@
     {
       "date": "2018-11-03",
       "time": "",
+      "home_team_id": 15680,
+      "away_team_id": 12514,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713871",
+      "status": "HWO"
+    },
+    {
+      "date": "2018-11-03",
+      "time": "",
       "home_team_id": 18039,
       "away_team_id": 24283,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713868",
@@ -266,6 +290,14 @@
     {
       "date": "2018-12-08",
       "time": "",
+      "home_team_id": 12514,
+      "away_team_id": 18039,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713885",
+      "status": "AWO"
+    },
+    {
+      "date": "2018-12-08",
+      "time": "",
       "home_team_id": 12536,
       "away_team_id": 1642,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713886",
@@ -280,6 +312,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713884",
       "home_score": 17,
       "away_score": 10
+    },
+    {
+      "date": "2018-12-08",
+      "time": "",
+      "home_team_id": 24283,
+      "away_team_id": 15680,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713882",
+      "status": "HWO"
     },
     {
       "date": "2019-01-12",
@@ -545,6 +585,14 @@
     {
       "date": "2019-03-30",
       "time": "",
+      "home_team_id": 15680,
+      "away_team_id": 24283,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713926",
+      "status": "AWO"
+    },
+    {
+      "date": "2019-03-30",
+      "time": "",
       "home_team_id": 15945,
       "away_team_id": 15748,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713924",
@@ -572,11 +620,27 @@
     {
       "date": "2019-04-06",
       "time": "",
+      "home_team_id": 12514,
+      "away_team_id": 15945,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713929",
+      "status": "AWO"
+    },
+    {
+      "date": "2019-04-06",
+      "time": "",
       "home_team_id": 12536,
       "away_team_id": 18039,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713930",
       "home_score": 24,
       "away_score": 48
+    },
+    {
+      "date": "2019-04-06",
+      "time": "",
+      "home_team_id": 15680,
+      "away_team_id": 1642,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=713931",
+      "status": "AWO"
     }
   ]
 }

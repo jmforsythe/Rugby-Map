@@ -89,7 +89,7 @@ def _home_href(
     return up if is_prod else f"{up}index.html"
 
 
-def _season_menu_items(
+def season_menu_html(
     season: str,
     page_rel: str,
     page_label: str,
@@ -129,7 +129,7 @@ def _season_split_html(
     is_prod: bool,
 ) -> str:
     hub = _season_hub_href(output_file, season, subdirectory_depth, is_prod=is_prod)
-    menu = _season_menu_items(season, page_rel, page_label, output_file, is_prod=is_prod)
+    menu = season_menu_html(season, page_rel, page_label, output_file, is_prod=is_prod)
     return f"""
         <span class="map-header__split-season">
           <a class="map-header__split-label" href="{escape(hub)}">{escape(season)}</a>

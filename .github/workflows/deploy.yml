@@ -454,6 +454,11 @@ jobs:
             exit 1
           fi
 
+      # Matrix jobs bake season menus while only one dist/<season>/ exists; rebuild
+      # switchers now that every season tarball has been extracted into dist/.
+      - name: Patch season navigation menus
+        run: python -m rugby.patch_season_nav --production
+
       - name: Generate rugby and custom map outputs (parallel)
         run: |
           set -eo pipefail

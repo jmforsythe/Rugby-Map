@@ -410,6 +410,13 @@
     {
       "date": "2001-12-22",
       "time": "",
+      "home_team_id": 10541,
+      "away_team_id": 6674,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=43338"
+    },
+    {
+      "date": "2001-12-22",
+      "time": "",
       "home_team_id": 18947,
       "away_team_id": 18436,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=43341",
@@ -793,6 +800,13 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=43360",
       "home_score": 38,
       "away_score": 5
+    },
+    {
+      "date": "2002-04-27",
+      "time": "",
+      "home_team_id": 14633,
+      "away_team_id": 18947,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=43371"
     }
   ]
 }

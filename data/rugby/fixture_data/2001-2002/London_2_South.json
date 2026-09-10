@@ -203,6 +203,14 @@
     {
       "date": "2001-09-29",
       "time": "",
+      "home_team_id": 23175,
+      "away_team_id": 4123,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34560",
+      "status": "AWO"
+    },
+    {
+      "date": "2001-09-29",
+      "time": "",
       "home_team_id": 25512,
       "away_team_id": 17112,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34562",
@@ -599,6 +607,14 @@
     {
       "date": "2001-12-22",
       "time": "",
+      "home_team_id": 8880,
+      "away_team_id": 8808,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34606",
+      "status": "AWO"
+    },
+    {
+      "date": "2001-12-22",
+      "time": "",
       "home_team_id": 13128,
       "away_team_id": 4123,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34607",
@@ -986,6 +1002,14 @@
     {
       "date": "2002-03-16",
       "time": "",
+      "home_team_id": 8808,
+      "away_team_id": 23285,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34653",
+      "status": "HWO"
+    },
+    {
+      "date": "2002-03-16",
+      "time": "",
       "home_team_id": 9046,
       "away_team_id": 17112,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34654",
@@ -1153,6 +1177,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34668",
       "home_score": 15,
       "away_score": 16
+    },
+    {
+      "date": "2002-04-27",
+      "time": "",
+      "home_team_id": 8808,
+      "away_team_id": 19006,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=34625",
+      "status": "HWO"
     }
   ]
 }

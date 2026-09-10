@@ -77,16 +77,22 @@ def get_google_analytics_script() -> str:
 
 
 def get_service_worker_registration_script() -> str:
-    """Script to register the site service worker (path is root-relative, production only)."""
+    """Script to register the site service worker on the live site hostname only."""
     return """
     <script>
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(function(reg) {
-                if (reg.waiting) { reg.waiting.postMessage({type: 'SKIP_WAITING'}); }
-            })
-            .catch(function(err) { console.log('ServiceWorker registration failed:', err); });
-        navigator.serviceWorker.addEventListener('controllerchange', function() {});
+        var host = location.hostname;
+        var onLiveSite = host === 'rugbyunionmap.uk'
+            || host.endsWith('.github.io')
+            || host.endsWith('.githubpages.io');
+        if (onLiveSite) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(reg) {
+                    if (reg.waiting) { reg.waiting.postMessage({type: 'SKIP_WAITING'}); }
+                })
+                .catch(function(err) { console.log('ServiceWorker registration failed:', err); });
+            navigator.serviceWorker.addEventListener('controllerchange', function() {});
+        }
     }
     </script>
     """

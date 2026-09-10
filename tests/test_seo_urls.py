@@ -38,7 +38,7 @@ def test_resolve_merit_404_to_season(tmp_path: Path) -> None:
         dist,
         set(),
     )
-    assert target == "https://rugbyunionmap.uk/2016-2017/"
+    assert target == "/2016-2017/"
 
 
 def test_resolve_team_to_teams_index(tmp_path: Path) -> None:
@@ -46,7 +46,7 @@ def test_resolve_team_to_teams_index(tmp_path: Path) -> None:
     (dist / "teams").mkdir(parents=True)
     (dist / "teams" / "index.html").write_text("<html></html>", encoding="utf-8")
     target = resolve_redirect_target("/teams/Missing_Club.html", dist, {"Other"})
-    assert target == "https://rugbyunionmap.uk/teams/"
+    assert target == "/teams/"
 
 
 def test_resolve_team_redirect_to_directory_slug(tmp_path: Path) -> None:
@@ -55,7 +55,7 @@ def test_resolve_team_redirect_to_directory_slug(tmp_path: Path) -> None:
     (teams / "Bath_Rugby").mkdir(parents=True)
     (teams / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
     target = resolve_redirect_target("/teams/Bath.html", dist, {"Bath_Rugby"})
-    assert target == "https://rugbyunionmap.uk/teams/Bath_Rugby/"
+    assert target == "/teams/Bath_Rugby/"
 
 
 def test_resolve_not_found_redirect_to_parent_index() -> None:
@@ -121,6 +121,8 @@ def test_generate_legacy_redirects_writes_team_rename_stub(tmp_path: Path) -> No
     text = stub.read_text(encoding="utf-8")
     assert 'data-rugby-redirect="1"' in text
     assert "Middlesbrough_III.html" in text
+    assert "rugbyunionmap.uk" not in text.split("location.replace", 1)[-1]
+    assert 'rel="canonical" href="https://rugbyunionmap.uk/teams/Middlesbrough_III.html"' in text
 
 
 def test_sitemap_omits_team_rename_redirect_stubs(tmp_path: Path) -> None:
@@ -147,7 +149,7 @@ def test_redirect_target_url_prefers_explicit_rename(tmp_path: Path) -> None:
         set(),
         explicit,
     )
-    assert target == absolute_url("/teams/Middlesbrough_III.html")
+    assert target == "/teams/Middlesbrough_III.html"
 
 
 def test_discover_feature_rename_redirects_match_day_to_fixtures(tmp_path: Path) -> None:
@@ -167,7 +169,7 @@ def test_resolve_redirect_target_root_fixtures_to_latest_season(tmp_path: Path) 
     (season / "fixtures").mkdir(parents=True)
     (season / "fixtures" / "index.html").write_text("<html></html>", encoding="utf-8")
     target = resolve_redirect_target("/fixtures/", dist, set())
-    assert target == "https://rugbyunionmap.uk/2026-2027/fixtures/"
+    assert target == "/2026-2027/fixtures/"
 
 
 def test_discover_apostrophe_tier_redirects(tmp_path: Path) -> None:

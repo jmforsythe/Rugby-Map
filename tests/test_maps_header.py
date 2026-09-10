@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from rugby.maps import SIBLING_DIVIDER, _header_bar_html, _mens_sibling_links, _tier_sibling_links
+from rugby.map_chrome import header_bar_html
+from rugby.maps import SIBLING_DIVIDER, _mens_sibling_links, _tier_sibling_links
 
 PYRAMID_ORDER = ["Premiership", "Counties 4", "Counties 5"]
 PYRAMID_NUMS = {"Premiership": 1, "Counties 4": 10, "Counties 5": 11}
@@ -45,7 +46,7 @@ def test_mens_sibling_links_without_merit_matches_plain_tier_links() -> None:
 
 
 def test_header_bar_renders_divider_as_a_disabled_option() -> None:
-    html = _header_bar_html(
+    html = header_bar_html(
         "2025-2026",
         "Counties 5 + Merit",
         sibling_tiers=_mens_sibling_links(

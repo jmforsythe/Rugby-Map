@@ -191,6 +191,24 @@ def test_matchday_widget_initializes_cluster_cache_and_passes_crest_badge() -> N
     assert "crestBadge: md.crestBadge || ''" in html
 
 
+def test_matchday_control_html_is_valid_folium_jinja_template() -> None:
+    """Folium parses injected HTML as Jinja2; doubled braces break deploy builds."""
+    import folium
+
+    html = build_matchday_control_html(
+        dropdown_options="<option>2026-09-06</option>",
+        updated_display="1 Sep 2026",
+        date_info_json="{}",
+        all_dates_json="[]",
+        tier_proxy_vars_json="{}",
+        tier_label_json="{}",
+        data_base_url_json='"/data/"',
+        parent_cluster_var_json='"marker_cluster"',
+        historic_archive_js="false",
+    )
+    folium.Element(html)
+
+
 def test_custom_map_template_omits_zoom_crest_resync_hooks() -> None:
     custom_map_path = (
         Path(__file__).resolve().parents[1] / "rugby" / "custom_map_assets" / "index.html"

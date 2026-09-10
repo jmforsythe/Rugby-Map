@@ -10,6 +10,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from core.asset_utils import CDN_TO_VENDOR, LEAFLET_VENDOR_IMAGE_PATHS
+from core.config import get_service_worker_registration_script
 
 _SW_PATH = Path(__file__).resolve().parent.parent / "dist" / "service-worker.js"
 
@@ -52,3 +53,10 @@ def test_json_sidecars_use_stale_while_revalidate() -> None:
 def test_vendor_assets_served_cache_first() -> None:
     text = _read_sw()
     assert "/shared/vendor/" in text
+
+
+def test_registration_script_only_runs_on_live_hostnames() -> None:
+    script = get_service_worker_registration_script()
+    assert "rugbyunionmap.uk" in script
+    assert "onLiveSite" in script
+    assert "serviceWorker.register" in script

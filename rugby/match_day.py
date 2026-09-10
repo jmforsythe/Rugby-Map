@@ -64,6 +64,7 @@ from core.map_builder import (
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.addresses import team_lower_xv_roman
 from rugby.clubs import iter_geocoded_leagues
+from rugby.map_chrome import header_bar_html
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
 from rugby.team_pages import build_team_info_page_filenames, team_info_page_filename
 from rugby.tiers import (
@@ -426,13 +427,13 @@ _MATCHDAY_WIDGET_HTML = """
                 iconAnchor: md.iconAnchor,
                 className: 'empty'
             });
-            var marker = L.marker([md.lat, md.lng], {{
+            var marker = L.marker([md.lat, md.lng], {
                 icon: icon,
                 imageUrl: md.imageUrl,
                 itemName: md.itemName,
                 tierOrder: md.tierOrder,
                 crestBadge: md.crestBadge || ''
-            }});
+            });
             bindMatchdayPopup(marker, md.popup);
             if (md.tooltip) marker.bindTooltip(md.tooltip);
             return marker;
@@ -1061,124 +1062,12 @@ def build_match_day_map(
     header.add_child(folium.Element(DARK_MODE_JS))
     header.add_child(folium.Element(_match_day_seo_head(season, historic_archive=historic_archive)))
 
-    is_prod = get_config().is_production
-    home_href = "../../" if is_prod else "../../index.html"
-    season_href = "../" if is_prod else "../index.html"
-    season_esc = escape(season)
-    home_h_e = escape(home_href)
-    season_h_e = escape(season_href)
-
-    nav_html = f"""
-    <div class="map-header-wrap" id="mapHeaderWrap">
-    <div class="map-header" id="mapHeader">
-        <a class="map-header__crumb" href="{home_h_e}">Home</a>
-        <span class="map-header__sep">&rsaquo;</span>
-        <a class="map-header__crumb" href="{season_h_e}">{season_esc}</a>
-        <span class="map-header__sep">&rsaquo;</span>
-        <span class="map-header__title">Fixtures &amp; Results</span>
-        <span class="map-header__theme">
-        <label class="map-header__theme-label" for="rugbyMapThemeSelect">Appearance</label>
-        <select id="rugbyMapThemeSelect" class="map-header__theme-select" aria-label="Map color theme">
-            <option value="light">Light</option>
-            <option value="system" selected>System</option>
-            <option value="dark">Dark</option>
-        </select>
-        </span>
-    </div>
-    </div>
-    <style>
-    .map-header-wrap {{
-        position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-        background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
-        border-bottom: 1px solid #e0e0e0;
-    }}
-    html[data-rugby-effective="dark"] .map-header-wrap {{
-        background: rgba(22,33,62,0.92); border-bottom-color: #2a2a4a;
-    }}
-    .map-header {{
-        position: static;
-        display: flex; align-items: center; gap: 0.4em;
-        padding: 6px 12px;
-        border-bottom: none;
-        font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 14px;
-    }}
-    .map-header__crumb {{
-        text-decoration: none; color: #0066cc; white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .map-header__crumb {{
-        color: #4da6ff;
-    }}
-    .map-header__crumb:hover {{ text-decoration: underline; }}
-    .map-header__sep {{ color: #999; font-size: 0.9em; }}
-    html[data-rugby-effective="dark"] .map-header__sep {{
-        color: #666;
-    }}
-    .map-header__title {{
-        font-family: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-weight: 600; letter-spacing: 0.01em; color: #2c3e50; white-space: nowrap;
-        overflow: hidden; text-overflow: ellipsis;
-        flex: 1 1 auto; min-width: 0;
-    }}
-    html[data-rugby-effective="dark"] .map-header__title {{
-        color: #e0e8f0;
-    }}
-    .map-header__theme {{
-        margin-left: auto;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35em;
-        flex-shrink: 0;
-    }}
-    .map-header__theme-label {{
-        font-size: 12px;
-        font-weight: 500;
-        color: #444;
-        white-space: nowrap;
-    }}
-    html[data-rugby-effective="dark"] .map-header__theme-label {{
-        color: #aab8d8;
-    }}
-    .map-header__theme-select {{
-        padding: 3px 6px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 12px;
-        background: #fff;
-        color: #333;
-        cursor: pointer;
-        max-width: 118px;
-    }}
-    html[data-rugby-effective="dark"] .map-header__theme-select {{
-        background: #1e2a45;
-        color: #e0e0e0;
-        border-color: #2a2a4a;
-    }}
-    .leaflet-top {{
-        top: var(--rugby-map-chrome-top, 56px) !important;
-    }}
-    @media (max-width: 480px) {{
-        .map-header {{ font-size: 12px; }}
-        .map-header__theme-label {{ display: none; }}
-        .map-header__theme-select {{ max-width: 100px; font-size: 11px; }}
-    }}
-    </style>
-    <script>
-    (function () {{
-        function syncRugbyMapChromeTop() {{
-            var el = document.getElementById("mapHeaderWrap");
-            var px = el && el.offsetHeight ? String(el.offsetHeight) + "px" : "56px";
-            document.documentElement.style.setProperty("--rugby-map-chrome-top", px);
-        }}
-        syncRugbyMapChromeTop();
-        window.addEventListener("resize", syncRugbyMapChromeTop);
-        var wrap = document.getElementById("mapHeaderWrap");
-        if (wrap && window.ResizeObserver) {{
-            new ResizeObserver(syncRugbyMapChromeTop).observe(wrap);
-        }}
-    }})();
-    </script>
-    """
+    nav_html = header_bar_html(
+        season,
+        "Fixtures & Results",
+        subdirectory_depth=1,
+        output_file=output_path,
+    )
     html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(nav_html))
 

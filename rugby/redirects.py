@@ -67,22 +67,29 @@ def resolve_not_found_redirect(pathname: str, *, is_prod: bool) -> str:
     return f"{parent}/" if is_prod else f"{parent}/index.html"
 
 
-def _redirect_stub_html(target_url: str, title: str) -> str:
-    t = escape(target_url)
+def _redirect_stub_html(navigation_path: str, title: str) -> str:
+    """Write a redirect stub.
+
+    *navigation_path* is origin-relative (``/season/Tier/``) so the same stub
+    works on localhost and production. ``rel=canonical`` keeps the absolute
+    production URL for crawlers.
+    """
+    nav = escape(navigation_path)
+    canonical = escape(absolute_url(navigation_path))
     title_esc = escape(title)
     return f"""<!DOCTYPE html>
 <html lang="en" {_REDIRECT_MARKER}>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url={t}">
-    <link rel="canonical" href="{t}">
+    <meta http-equiv="refresh" content="0;url={nav}">
+    <link rel="canonical" href="{canonical}">
     <meta name="robots" content="noindex,follow">
     <meta name="description" content="This page has moved.">
     <title>{title_esc}</title>
-    <script>location.replace({json.dumps(target_url)});</script>
+    <script>location.replace({json.dumps(navigation_path)});</script>
 </head>
 <body>
-    <p>This page has moved. <a href="{t}">Continue</a>.</p>
+    <p>This page has moved. <a href="{nav}">Continue</a>.</p>
 </body>
 </html>
 """
@@ -138,39 +145,39 @@ def resolve_redirect_target(site_path: str, dist_dir: Path, team_slugs: set[str]
     path = _normalize_site_path(site_path)
 
     if path in ("/merit", "/merit/"):
-        return absolute_url("/")
+        return "/"
 
     if path in (f"/{FEATURE_FIXTURES}", f"/{FEATURE_FIXTURES}/index.html"):
         latest = _latest_season_with_fixtures(dist_dir)
         if latest:
-            return absolute_url(f"/{latest}/{FEATURE_FIXTURES}/")
+            return f"/{latest}/{FEATURE_FIXTURES}/"
 
     m = _MERIT_RE.match(path)
     if m:
         season, comp = m.group(1), m.group(2)
         all_tiers = dist_dir / season / "merit" / comp / "All_Tiers" / "index.html"
         if all_tiers.is_file():
-            return absolute_url(f"/{season}/merit/{comp}/All_Tiers/")
-        return absolute_url(f"/{season}/")
+            return f"/{season}/merit/{comp}/All_Tiers/"
+        return f"/{season}/"
 
     m = _TEAM_RE.match(path)
     if m:
         alt = _resolve_team_slug(m.group(1), team_slugs)
         if alt:
-            return absolute_url(f"/teams/{alt}/")
-        return absolute_url("/teams/")
+            return f"/teams/{alt}/"
+        return "/teams/"
 
     m = _SEASON_RE.match(path)
     if m and path.count("/") >= 2:
-        return absolute_url(f"/{m.group(1)}/")
+        return f"/{m.group(1)}/"
 
     if path.startswith("/teams"):
-        return absolute_url("/teams/")
+        return "/teams/"
 
     if path.startswith("/custom-map"):
-        return absolute_url("/custom-map/")
+        return "/custom-map/"
 
-    return absolute_url("/")
+    return "/"
 
 
 def discover_legacy_tier_html_redirects(dist_dir: Path) -> list[tuple[str, str]]:
@@ -326,8 +333,9 @@ def _redirect_target_url(
     team_slugs: set[str],
     explicit: dict[str, str],
 ) -> str:
+    """Origin-relative destination path for a legacy redirect stub."""
     if site_path in explicit:
-        return absolute_url(explicit[site_path])
+        return explicit[site_path]
     return resolve_redirect_target(site_path, dist_dir, team_slugs)
 
 

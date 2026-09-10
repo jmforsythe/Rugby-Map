@@ -806,6 +806,14 @@
     {
       "date": "2004-01-31",
       "time": "",
+      "home_team_id": 10541,
+      "away_team_id": 14069,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64302",
+      "status": "HWO"
+    },
+    {
+      "date": "2004-01-31",
+      "time": "",
       "home_team_id": 16278,
       "away_team_id": 18436,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64303",
@@ -1013,6 +1021,13 @@
     {
       "date": "2004-03-13",
       "time": "",
+      "home_team_id": 6889,
+      "away_team_id": 14069,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64326"
+    },
+    {
+      "date": "2004-03-13",
+      "time": "",
       "home_team_id": 16247,
       "away_team_id": 16132,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64327",
@@ -1162,6 +1177,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64341",
       "home_score": 8,
       "away_score": 14
+    },
+    {
+      "date": "2004-04-24",
+      "time": "",
+      "home_team_id": 10541,
+      "away_team_id": 947,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=64331",
+      "status": "HWO"
     }
   ]
 }

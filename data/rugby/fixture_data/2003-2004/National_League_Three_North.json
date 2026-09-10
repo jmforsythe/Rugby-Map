@@ -1094,6 +1094,13 @@
     {
       "date": "2004-03-06",
       "time": "",
+      "home_team_id": 12441,
+      "away_team_id": 6105,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=63667"
+    },
+    {
+      "date": "2004-03-06",
+      "time": "",
       "home_team_id": 23390,
       "away_team_id": 8162,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=63149",
@@ -1389,6 +1396,13 @@
       "away_score": 44
     },
     {
+      "date": "2004-05-01",
+      "time": "",
+      "home_team_id": 12767,
+      "away_team_id": 23390,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=71416"
+    },
+    {
       "date": "2004-05-08",
       "time": "",
       "home_team_id": 8162,
@@ -1396,6 +1410,13 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=71418",
       "home_score": 22,
       "away_score": 3
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 8162,
+      "away_team_id": 12767,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=67181"
     }
   ]
 }

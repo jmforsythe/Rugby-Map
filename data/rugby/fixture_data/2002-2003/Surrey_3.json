@@ -338,6 +338,14 @@
     {
       "date": "2003-02-01",
       "time": "",
+      "home_team_id": 15438,
+      "away_team_id": 12516,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=52477",
+      "status": "HWO"
+    },
+    {
+      "date": "2003-02-01",
+      "time": "",
       "home_team_id": 26117,
       "away_team_id": 16060,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=52480",
@@ -388,6 +396,14 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=52482",
       "home_score": 5,
       "away_score": 83
+    },
+    {
+      "date": "2003-02-22",
+      "time": "",
+      "home_team_id": 24237,
+      "away_team_id": 9632,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=52478",
+      "status": "HWO"
     }
   ]
 }

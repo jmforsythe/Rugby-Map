@@ -356,11 +356,27 @@
     {
       "date": "2003-04-12",
       "time": "",
+      "home_team_id": 8687,
+      "away_team_id": 9340,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=56747",
+      "status": "AWO"
+    },
+    {
+      "date": "2003-04-12",
+      "time": "",
       "home_team_id": 25337,
       "away_team_id": 1523,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=56746",
       "home_score": 67,
       "away_score": 5
+    },
+    {
+      "date": "2003-05-03",
+      "time": "",
+      "home_team_id": 4111,
+      "away_team_id": 8687,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=56744",
+      "status": "HWO"
     }
   ]
 }

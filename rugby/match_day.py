@@ -77,6 +77,9 @@ from rugby.tiers import (
 logger = logging.getLogger(__name__)
 
 RFU_FALLBACK_ICON = "https://rfu.widen.net/content/klppexqa5i/svg/Fallback-logo.svg"
+# Reserve-XV badges sit above/right of crest tiles; pad Leaflet divIcon bounds so they are not clipped.
+MATCHDAY_CREST_BADGE_PAD_TOP = 8
+MATCHDAY_CREST_BADGE_PAD_RIGHT = 6
 
 
 def _matchday_crest_div(url: str, size: int, badge: str | None = None) -> str:
@@ -1074,6 +1077,10 @@ def build_match_day_map(
     icon_size = 30
     crest = icon_size
     total_w = crest * 2 + 2
+    marker_w = total_w + MATCHDAY_CREST_BADGE_PAD_RIGHT
+    marker_h = crest + MATCHDAY_CREST_BADGE_PAD_TOP
+    marker_anchor_x = total_w // 2
+    marker_anchor_y = (crest // 2) + MATCHDAY_CREST_BADGE_PAD_TOP
 
     resolved_per_date: dict[
         str,
@@ -1183,7 +1190,9 @@ def build_match_day_map(
                 away_badge = team_lower_xv_roman(away_name)
 
                 icon_html = (
-                    f'<div style="display:flex;align-items:center;gap:2px">'
+                    f'<div style="display:flex;align-items:center;gap:2px;'
+                    f"padding:{MATCHDAY_CREST_BADGE_PAD_TOP}px "
+                    f'{MATCHDAY_CREST_BADGE_PAD_RIGHT}px 0 0;box-sizing:content-box">'
                     f"{_matchday_crest_div(home_icon_url, crest, home_badge)}"
                     f"{_matchday_crest_div(away_icon_url, crest, away_badge)}"
                     f"</div>"
@@ -1204,8 +1213,8 @@ def build_match_day_map(
                         "lat": lat,
                         "lng": lng,
                         "icon": icon_html,
-                        "iconSize": [total_w, crest],
-                        "iconAnchor": [total_w // 2, crest // 2],
+                        "iconSize": [marker_w, marker_h],
+                        "iconAnchor": [marker_anchor_x, marker_anchor_y],
                         "popup": popup_html,
                         "tooltip": (
                             f"{home_name} vs {away_name} ({tooltip_detail})"

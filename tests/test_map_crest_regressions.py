@@ -107,7 +107,9 @@ def test_tier_cluster_icon_create_function_avoids_img_and_caches_badges() -> Non
     assert "rugbyCrestClusterInner" in source
     assert "rugbyClusterIconCache" in source
     assert "count === 1" in source
-    assert "cacheKey = imageUrl + '|' + count + '|' + crestBadge" in source
+    assert "cacheKey = imageUrl + '|' + count + '|' + crestBadge + '|' + sharedColor" in source
+    assert "groupColor" in source
+    assert "rugbyCrestClusterInner(imageUrl, crestBadge, sharedColor)" in source
     assert "<img" not in source
 
 
@@ -162,7 +164,34 @@ def test_matchday_marker_builder_uses_inline_background_crest_divs() -> None:
     assert "_matchday_crest_div" in icon_block
     assert "team_lower_xv_roman" in source
     assert '"crestBadge": home_badge or ""' in source
+    assert "MATCHDAY_CREST_BADGE_PAD_TOP" in source
+    assert "marker_h" in source
     assert "<img" not in icon_block
+
+
+def test_matchday_icon_html_includes_badge_for_parenthetical_reserve_side() -> None:
+    from rugby.addresses import team_lower_xv_roman
+    from rugby.match_day import (
+        MATCHDAY_CREST_BADGE_PAD_RIGHT,
+        MATCHDAY_CREST_BADGE_PAD_TOP,
+        _matchday_crest_div,
+    )
+
+    home_badge = team_lower_xv_roman("Garstang Blues (2nd XV)")
+    away_badge = team_lower_xv_roman("Eccles 2nd XV")
+    assert home_badge == "II"
+    assert away_badge == "II"
+    crest = 30
+    icon_html = (
+        f'<div style="display:flex;align-items:center;gap:2px;'
+        f"padding:{MATCHDAY_CREST_BADGE_PAD_TOP}px "
+        f'{MATCHDAY_CREST_BADGE_PAD_RIGHT}px 0 0;box-sizing:content-box">'
+        f"{_matchday_crest_div('https://example.com/home.png', crest, home_badge)}"
+        f"{_matchday_crest_div('https://example.com/away.png', crest, away_badge)}"
+        f"</div>"
+    )
+    assert icon_html.count("rugby-crest-badge") == 2
+    assert icon_html.count(">II</span>") == 2
 
 
 def test_matchday_cluster_js_avoids_img_and_caches_with_badge_guard() -> None:
@@ -207,6 +236,13 @@ def test_matchday_control_html_is_valid_folium_jinja_template() -> None:
         historic_archive_js="false",
     )
     folium.Element(html)
+
+
+def test_popup_css_allows_div_icon_badge_overflow() -> None:
+    from core.map_builder import POPUP_CSS
+
+    assert ".folium-map .leaflet-div-icon" in POPUP_CSS
+    assert "overflow: visible" in POPUP_CSS
 
 
 def test_custom_map_template_omits_zoom_crest_resync_hooks() -> None:

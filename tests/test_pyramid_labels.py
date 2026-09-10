@@ -63,6 +63,9 @@ def test_team_lower_xv_roman_reserve_suffixes() -> None:
     assert team_lower_xv_roman("Club 2nd XV") == "II"
     assert team_lower_xv_roman("Club 4th XV") == "IV"
     assert team_lower_xv_roman("Club 6th XV") == "VI"
+    assert team_lower_xv_roman("Garstang Blues (2nd XV)") == "II"
+    assert team_lower_xv_roman("Thamesians 2nd XV (Spartans)") == "II"
+    assert team_lower_xv_roman("Old Gravesendians/Vigo 2nd XV men") == "II"
 
 
 def test_team_lower_xv_roman_principal_or_unknown() -> None:

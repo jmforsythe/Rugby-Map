@@ -8,6 +8,7 @@ import argparse
 import concurrent.futures
 import json
 import random
+import re
 import threading
 import time
 from pathlib import Path
@@ -109,28 +110,52 @@ def team_name_to_club_name(team_name: str) -> str:
     return team_name
 
 
+_RESERVE_ORDINAL_ROMAN = {
+    "2nd": "II",
+    "3rd": "III",
+    "4th": "IV",
+    "5th": "V",
+    "6th": "VI",
+}
+_RESERVE_SUFFIX_ROMAN = {
+    "2nd XV": "II",
+    "(2nd XV)": "II",
+    "2nd XV Men": "II",
+    "2nd XV men": "II",
+    "3rd XV": "III",
+    "(3rd XV)": "III",
+    "3rd XV Men": "III",
+    "3rd XV men": "III",
+    "4th XV": "IV",
+    "(4th XV)": "IV",
+    "5th XV": "V",
+    "(5th XV)": "V",
+    "6th XV": "VI",
+}
+_RESERVE_XV_IN_PARENS = re.compile(r"\(\s*(2nd|3rd|4th|5th|6th)\s+XVs?\s*\)", re.I)
+_RESERVE_XV_TOKEN = re.compile(r"\b(2nd|3rd|4th|5th|6th)\s+XVs?\b", re.I)
+
+
 def team_lower_xv_roman(team_name: str) -> str | None:
     """Roman ordinal for reserve XVs (RFU ``II`` / ``2nd XV`` style); ``None`` for principal sides."""
     raw = (team_name or "").strip()
     if not raw:
         return None
     parts = raw.split()
-    if len(parts) < 2:
-        return None
-    last = parts[-1]
-    if last in ("II", "III", "IV", "V"):
-        return last
-    last_two = f"{parts[-2]} {parts[-1]}"
-    if last_two == "2nd XV":
-        return "II"
-    if last_two == "3rd XV":
-        return "III"
-    if last_two == "4th XV":
-        return "IV"
-    if last_two == "5th XV":
-        return "V"
-    if last_two == "6th XV":
-        return "VI"
+    if len(parts) >= 1 and parts[-1] in ("II", "III", "IV", "V", "VI"):
+        return parts[-1]
+    for width in (3, 2):
+        if len(parts) >= width:
+            suffix = " ".join(parts[-width:])
+            roman = _RESERVE_SUFFIX_ROMAN.get(suffix)
+            if roman:
+                return roman
+    paren = _RESERVE_XV_IN_PARENS.search(raw)
+    if paren:
+        return _RESERVE_ORDINAL_ROMAN.get(paren.group(1).lower())
+    token = _RESERVE_XV_TOKEN.search(raw)
+    if token:
+        return _RESERVE_ORDINAL_ROMAN.get(token.group(1).lower())
     return None
 
 

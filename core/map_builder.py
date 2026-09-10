@@ -1803,6 +1803,9 @@ POPUP_CSS = """
   position: relative;
   display: inline-block;
 }
+.folium-map .leaflet-div-icon {
+  overflow: visible !important;
+}
 .folium-map .rugby-crest-badge {
   position: absolute;
   top: -1px;
@@ -2540,10 +2543,13 @@ def _deferred_image_loader_script() -> str:
             window.rugbyLoadedCrests.add(src);
             warmCrest(src);
         }}
-        window.rugbyCrestClusterInner = function(imageUrl, crestBadge) {{
+        window.rugbyCrestClusterInner = function(imageUrl, crestBadge, borderColor) {{
             if (!imageUrl) return "";
             var attr = imageUrl.replace(/"/g, "&quot;");
-            var baseStyle = "width:30px;height:30px;border-radius:50%;";
+            var borderStyle = borderColor
+                ? "border:2px solid " + borderColor + ";box-shadow:0 0 3px rgba(0,0,0,0.3);"
+                : "";
+            var baseStyle = "width:30px;height:30px;border-radius:50%;" + borderStyle;
             var crestDiv;
             if (!window.rugbyCrestsEnabled) {{
                 crestDiv = '<div class="rugby-crest-cluster" data-crest-url="' + attr + '" style="' + baseStyle + 'background-color:rgba(0,0,0,0.06);"></div>';
@@ -2821,6 +2827,7 @@ def _add_marker(
     marker.options["imageUrl"] = icon_url or ""  # type: ignore[index]
     marker.options["itemName"] = item["name"]  # type: ignore[index]
     marker.options["crestBadge"] = item.get("crest_badge") or ""  # type: ignore[index]
+    marker.options["groupColor"] = color if league_border else ""  # type: ignore[index]
     marker.add_to(marker_group)
 
 
@@ -2831,6 +2838,7 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
         var bestMarker = null;
         var bestTier = Infinity;
         var names = [];
+        var sharedColor = '';
         for (var i = 0; i < markers.length; i++) {
             var mk = markers[i];
             if (mk.options.tierOrder !== undefined && mk.options.tierOrder !== null && mk.options.tierOrder < bestTier) {
@@ -2838,6 +2846,14 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
                 bestMarker = mk;
             }
             if (mk.options.itemName) { names.push(mk.options.itemName); }
+            var gc = mk.options.groupColor || '';
+            if (!gc) {
+                sharedColor = '';
+            } else if (i === 0 || sharedColor === gc) {
+                sharedColor = gc;
+            } else {
+                sharedColor = '';
+            }
         }
         names.sort();
         var count = cluster.getChildCount();
@@ -2848,12 +2864,12 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
         }
         var tooltipText = names.length > 0 ? names.slice(0, 5).join('\\n') : count + ' items';
         if (imageUrl) {
-            var cacheKey = imageUrl + '|' + count + '|' + crestBadge + '|' + (window.rugbyCrestsEnabled ? '1' : '0');
+            var cacheKey = imageUrl + '|' + count + '|' + crestBadge + '|' + sharedColor + '|' + (window.rugbyCrestsEnabled ? '1' : '0');
             if (window.rugbyClusterIconCache && window.rugbyClusterIconCache[cacheKey]) {
                 return window.rugbyClusterIconCache[cacheKey];
             }
             var crestInner = window.rugbyCrestClusterInner
-                ? window.rugbyCrestClusterInner(imageUrl, crestBadge)
+                ? window.rugbyCrestClusterInner(imageUrl, crestBadge, sharedColor)
                 : ('<div class="rugby-crest-wrap" style="width:30px;height:30px;"><div class="rugby-crest-cluster" data-crest-url="' + imageUrl.replace(/"/g, '&quot;') + '" style="width:30px;height:30px;border-radius:50%;background-color:rgba(0,0,0,0.06);"></div></div>');
             var clusterIcon = L.divIcon({
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
@@ -2868,9 +2884,10 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
             }
             return clusterIcon;
         } else {
+            var fallbackBg = sharedColor || '#666';
             return L.divIcon({
                 html: '<div style="text-align:center;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
-                      '<div style="width:30px;height:30px;border-radius:50%;background:#666;color:white;font-size:12px;line-height:30px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3);">' + count + '</div></div>',
+                      '<div style="width:30px;height:30px;border-radius:50%;background:' + fallbackBg + ';color:white;font-size:12px;line-height:30px;text-align:center;border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3);">' + count + '</div></div>',
                 className: 'marker-cluster-custom',
                 iconSize: L.point(30, 30),
                 iconAnchor: L.point(15, 15)

@@ -1574,20 +1574,21 @@ def _write_territories_sidecar(
 def _inject_territory_boot_hook(output_path: Path) -> None:
     """Inject a call to apply territory shading after Folium feature groups exist.
 
-    Folium emits empty territory ``FeatureGroup`` layers, then builds every
-    marker cluster. Booting territory apply in between lets shading paint while
-    marker DOM is still being constructed instead of after the full script.
+    Folium may emit the shared ``MarkerCluster`` before territory
+    ``FeatureGroup`` layers (``FeatureGroupSubGroup`` depends on the cluster),
+    so the hook is appended at the end of Folium's boot script — after every
+    empty territory layer variable is on ``window``.
     """
     text = output_path.read_text(encoding="utf-8")
     hook = "if (window.rugbyTryApplyTerritories) window.rugbyTryApplyTerritories();"
     if hook in text:
         return
-    pos = text.find("var marker_cluster_")
-    if pos == -1:
-        pos = text.find("L.markerClusterGroup(")
+    pos = text.rfind("</script>")
     if pos == -1:
         return
-    output_path.write_text(text[:pos] + hook + "\n            " + text[pos:], encoding="utf-8")
+    output_path.write_text(
+        text[:pos] + "\n            " + hook + "\n" + text[pos:], encoding="utf-8"
+    )
 
 
 def _inject_presentation_ready_hook(output_path: Path) -> None:
@@ -1619,7 +1620,7 @@ def _finalize_map_html(output_path: Path, *, territory_export: bool) -> None:
 
 def _get_territories_preload_link(sidecar_name: str) -> str:
     """Hint the browser to fetch territory GeoJSON in parallel with page parse."""
-    return f'<link rel="preload" href="{escape(sidecar_name)}" as="fetch">'
+    return f'<link rel="preload" href="{escape(sidecar_name)}" as="fetch" crossorigin>'
 
 
 def _signal_presentation_ready_script() -> str:
@@ -1634,10 +1635,9 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
 
     Fetch starts in ``<head>`` so it runs in parallel with Folium's boot
     script. :func:`_inject_territory_boot_hook` calls
-    ``rugbyTryApplyTerritories()`` after feature groups are created but
-    before marker clusters, so shading can paint without waiting for every
-    marker. Groups are added progressively across animation frames rather
-    than in one blocking batch.
+    ``rugbyTryApplyTerritories()`` at the end of that script, once every
+    empty territory ``FeatureGroup`` variable exists. Groups are added
+    progressively across animation frames rather than in one blocking batch.
 
     Retries the fetch on failure (a transient network blip or cold CDN edge
     can take longer than a couple of seconds to clear) and, if a controlling
@@ -1713,7 +1713,6 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                     return;
                 }}
                 console.warn('Territory layer variables were not ready in time');
-                finishPresentationReady();
                 return;
             }}
             territoryApplyStarted = true;

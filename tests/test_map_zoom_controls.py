@@ -150,15 +150,15 @@ def test_territory_loader_prefetches_before_leaflet_init() -> None:
     assert "presentationReadySent" in script
 
 
-def test_inject_territory_boot_hook_inserts_before_marker_cluster() -> None:
+def test_inject_territory_boot_hook_appends_to_folium_boot_script() -> None:
     from core.map_builder import _inject_territory_boot_hook
 
     with tempfile.TemporaryDirectory() as tmp:
         html_path = Path(tmp) / "map.html"
         html_path.write_text(
-            "<script>\nvar fg = L.featureGroup({});\n"
+            "<script>\nvar marker_cluster_abc123 = L.markerClusterGroup({});\n"
+            "var fg = L.featureGroup({});\n"
             "fg.addTo(map_1);\n"
-            "var marker_cluster_abc123 = L.markerClusterGroup({});\n"
             "</script>",
             encoding="utf-8",
         )
@@ -166,9 +166,20 @@ def test_inject_territory_boot_hook_inserts_before_marker_cluster() -> None:
         text = html_path.read_text(encoding="utf-8")
         hook_pos = text.find("rugbyTryApplyTerritories")
         cluster_pos = text.find("var marker_cluster_")
+        fg_pos = text.find("fg.addTo(map_1)")
         assert hook_pos != -1
         assert cluster_pos != -1
-        assert hook_pos < cluster_pos
+        assert fg_pos != -1
+        assert cluster_pos < fg_pos < hook_pos
+
+
+def test_territories_preload_link_sets_crossorigin_for_fetch() -> None:
+    from core.map_builder import _get_territories_preload_link
+
+    link = _get_territories_preload_link("territories.json")
+    assert 'rel="preload"' in link
+    assert 'as="fetch"' in link
+    assert "crossorigin" in link
 
 
 def test_inject_presentation_ready_hook_appends_to_saved_map() -> None:
@@ -229,14 +240,15 @@ def test_finalize_map_html_injects_territory_boot_on_sidecar_maps() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp) / "sidecar.html"
         out.write_text(
-            "<script>var fg = L.featureGroup({}); fg.addTo(map_1);\n"
-            "var marker_cluster_x = L.markerClusterGroup({});\n</script>",
+            "<script>var marker_cluster_x = L.markerClusterGroup({});\n"
+            "var fg = L.featureGroup({}); fg.addTo(map_1);\n</script>",
             encoding="utf-8",
         )
         _finalize_map_html(out, territory_export=True)
         text = out.read_text(encoding="utf-8")
         assert "rugbyTryApplyTerritories" in text
-        assert text.find("rugbyTryApplyTerritories") < text.find("var marker_cluster_")
+        assert text.find("rugbyTryApplyTerritories") > text.find("var marker_cluster_")
+        assert text.find("rugbyTryApplyTerritories") > text.find("fg.addTo(map_1)")
 
 
 def test_layer_control_hook_refreshes_overlay_panel_after_update() -> None:

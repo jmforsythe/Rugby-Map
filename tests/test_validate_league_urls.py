@@ -134,6 +134,91 @@ def test_load_stored_leagues_reads_league_data(tmp_path: Path, monkeypatch) -> N
     assert stored[0].source == "league_data"
 
 
+def test_compare_stored_to_rfu_keeps_historical_url_when_fixtures_exist(
+    tmp_path: Path, monkeypatch
+) -> None:
+    import rugby.analysis.validate_league_urls as mod
+
+    season = "2015-2016"
+    stored_url = (
+        "https://www.englandrugby.com/fixtures-and-results/search-results"
+        "?competition=49&division=9722&season=2015-2016#tables"
+    )
+    expected_url = normalize_rfu_league_url(
+        "https://www.englandrugby.com/fixtures-and-results/search-results"
+        "?competition=49&division=9583&season=2015-2016#tables",
+        season,
+    )
+    relative = "merit/CANDY/Division_2.json"
+    fixture_dir = tmp_path / "fixture_data" / season / "merit" / "CANDY"
+    fixture_dir.mkdir(parents=True)
+    (fixture_dir / "Division_2.json").write_text(
+        json.dumps(
+            {
+                "league_name": "Division 2",
+                "league_url": stored_url,
+                "fixtures": [
+                    {
+                        "date": "2016-01-09",
+                        "time": "",
+                        "home_team_id": 1,
+                        "away_team_id": 2,
+                        "match_url": "https://example.com/m1",
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(mod, "FIXTURE_DATA_DIR", tmp_path / "fixture_data")
+
+    stored = [
+        StoredLeague(
+            league_name="Division 2",
+            league_url=stored_url,
+            relative_path=relative,
+            source="league_data",
+        )
+    ]
+    rfu_by_key = {rfu_league_lookup_key(stored_url, "Division 2"): expected_url}
+
+    issues = compare_stored_to_rfu(stored, rfu_by_key, season)
+
+    assert len(issues) == 1
+    assert issues[0].kind == "stale_url_keep_fixtures"
+    assert "9722" in issues[0].detail
+    assert "9583" in issues[0].detail
+
+
+def test_compare_stored_to_rfu_still_flags_recent_season_stale_url() -> None:
+    season = "2025-2026"
+    stored_url = (
+        "https://www.englandrugby.com/fixtures-and-results/search-results"
+        "?competition=104&season=2025-2026&division=77284#tables"
+    )
+    expected_url = normalize_rfu_league_url(
+        "https://www.englandrugby.com/fixtures-and-results/search-results"
+        "?competition=104&season=2025-2026&division=79185#tables",
+        season,
+    )
+    stored = [
+        StoredLeague(
+            league_name="Eastern Counties Division One North",
+            league_url=stored_url,
+            relative_path="merit/Eastern_Counties/Eastern_Counties_Division_One_North.json",
+            source="league_data",
+        )
+    ]
+    issues = compare_stored_to_rfu(
+        stored,
+        {rfu_league_lookup_key(stored_url, "Eastern Counties Division One North"): expected_url},
+        season,
+    )
+    assert len(issues) == 1
+    assert issues[0].kind == "stale_url"
+
+
 def test_compare_fixture_to_league_data_detects_drift(tmp_path: Path, monkeypatch) -> None:
     import rugby.analysis.validate_league_urls as mod
 

@@ -203,7 +203,11 @@ def load_levels(season: str, *, include_merit: bool = True) -> dict[int, list[Ma
     map at all.
     """
     loaded = _load_marker_items(
-        str(DATA_DIR / "league_data" / season), season, travel_distances=None
+        str(DATA_DIR / "league_data" / season),
+        season,
+        travel_distances=None,
+        team_info_pages={},
+        include_popups=False,
     )
     items = [it for it in loaded.pyramid if it.tier_num < 100]
     if include_merit:
@@ -1071,13 +1075,12 @@ def generate_tier_graphics(
     """
     by_level = load_levels(season, include_merit=include_merit)
 
-    boundary_paths = boundary_paths_for_detail(boundary_detail)
-    if boundary_detail:
-        logger.info(
-            "Using ONS boundary detail %s from %s",
-            boundary_detail.upper(),
-            boundary_paths["countries"],
-        )
+    boundary_paths = boundary_paths_for_detail(boundary_detail or "BUC")
+    logger.info(
+        "Using ONS boundary detail %s from %s",
+        (boundary_detail or "BUC").upper(),
+        boundary_paths["countries"],
+    )
     itl_hierarchy = load_itl_hierarchy(boundary_paths)
     all_items = [it for items in by_level.values() for it in items]
     preassign_itl_regions(all_items, itl_hierarchy)
@@ -1090,18 +1093,6 @@ def generate_tier_graphics(
     output_dir.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []
 
-    crest_hrefs: dict[str, str] = {}
-    if badge_diameter is None or badge_diameter > 0:
-        crest_px = _crest_inline_px(
-            badge_diameter=badge_diameter,
-            png_scale=png_scale if write_png else 1.0,
-        )
-        crest_hrefs = build_crest_href_map(
-            [it.icon_url or "" for level in levels for it in by_level[level]],
-            px=crest_px,
-        )
-        logger.info("Inlining crests at %d px", crest_px)
-
     for tier_num in levels:
         tier_items = by_level[tier_num]
         palette = _rotated_palette(tier_num)
@@ -1110,6 +1101,17 @@ def generate_tier_graphics(
         if not territories:
             logger.warning("No territories for tier %d, skipping", tier_num)
             continue
+
+        crest_hrefs: dict[str, str] = {}
+        if badge_diameter is None or badge_diameter > 0:
+            crest_px = _crest_inline_px(
+                badge_diameter=badge_diameter,
+                png_scale=png_scale if write_png else 1.0,
+            )
+            crest_hrefs = build_crest_href_map(
+                [it.icon_url or "" for it in tier_items],
+                px=crest_px,
+            )
 
         svg_text = render_tier_svg(
             season=season,
@@ -1214,7 +1216,7 @@ def main() -> None:
         metavar="LEVEL",
         help=(
             "ONS boundary generalisation (BFE/BFC/BGC/BUC). "
-            "Default uses data/boundaries/ (BGC). "
+            "Default BUC (ultra generalised) for faster static graphics. "
             "Coarser levels remove estuary/river coastline detail."
         ),
     )

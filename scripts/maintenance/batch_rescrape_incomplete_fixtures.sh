@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Rescrape incomplete fixtures per season and commit.
+# Rescrape incomplete fixtures for every season and commit when changed.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -8,33 +8,12 @@ cd "$ROOT"
 REQUEST_DELAY="${REQUEST_DELAY:-3}"
 COOLDOWN_SECONDS="${COOLDOWN_SECONDS:-900}"
 MAX_ANTIBOT_RETRIES="${MAX_ANTIBOT_RETRIES:-5}"
-
-# Seasons already walkover-rescraped (newest first).
-DONE=(
+EARLIEST="${EARLIEST:-2000-2001}"
+# Newest seasons already re-scraped in the descending pass (2026-2027 .. 2024-2025).
+SKIP=(
   "2026-2027"
   "2025-2026"
-  "2024-2025"
-  "2023-2024"
-  "2022-2023"
-  "2021-2022"
-  "2020-2021"
-  "2019-2020"
-  "2018-2019"
-  "2017-2018"
-  "2016-2017"
-  "2015-2016"
-  "2014-2015"
-  "2013-2014"
-  "2012-2013"
 )
-
-is_done() {
-  local s="$1"
-  for d in "${DONE[@]}"; do
-    [[ "$d" == "$s" ]] && return 0
-  done
-  return 1
-}
 
 scrape_season() {
   local season="$1"
@@ -63,21 +42,30 @@ Targeted --only-incomplete rescrape with walkover statuses and deduped fixtures.
   echo "Committed $season"
 }
 
+is_skipped() {
+  local s="$1"
+  for skip in "${SKIP[@]}"; do
+    [[ "$skip" == "$s" ]] && return 0
+  done
+  return 1
+}
+
 mapfile -t SEASONS < <(
   for season_dir in data/rugby/league_data/*/; do
     season="$(basename "$season_dir")"
     [[ "$season" =~ ^[0-9]{4}-[0-9]{4}$ ]] || continue
-    [[ "$season" < "2000-2001" ]] && continue
-    is_done "$season" && continue
+    [[ "$season" < "$EARLIEST" ]] && continue
+    is_skipped "$season" && continue
     echo "$season"
-  done | sort -r
+  done | sort
 )
 
 if ((${#SEASONS[@]} == 0)); then
-  echo "All seasons already processed."
+  echo "No seasons to process."
   exit 0
 fi
 
+echo "Processing ${#SEASONS[@]} seasons (${SEASONS[0]} .. ${SEASONS[-1]}, oldest first)"
 echo "Waiting ${COOLDOWN_SECONDS}s for RFU anti-bot cooldown..."
 sleep "$COOLDOWN_SECONDS"
 

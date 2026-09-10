@@ -387,6 +387,7 @@ def _load_marker_items(
     include_league_link: bool = True,
     strip_team_url_to_team_only: bool = False,
     team_info_pages: dict[int, str] | None = None,
+    include_popups: bool = True,
 ) -> LoadedItems:
     """Join league_data JSON files with club address/geocode data and build
     MarkerItem objects.
@@ -398,6 +399,9 @@ def _load_marker_items(
     league_path = Path(league_data_dir)
     if not league_path.is_dir():
         return LoadedItems()
+
+    if include_popups and team_info_pages is None:
+        team_info_pages = build_team_info_page_filenames()
 
     subsume_lancs = lancashire_merit_geocoded_nonempty(league_path)
 
@@ -435,16 +439,20 @@ def _load_marker_items(
             address = team.get("formatted_address") or team.get("address") or ""
             icon_url = team.get("image_url") or RFU_FALLBACK_ICON
 
-            popup = _render_popup_html(
-                team_name,
-                league_name,
-                league_url,
-                team_url,
-                address,
-                travel_distances,
-                include_league_link=include_league_link,
-                strip_team_url_to_team_only=strip_team_url_to_team_only,
-                team_info_pages=team_info_pages,
+            popup = (
+                _render_popup_html(
+                    team_name,
+                    league_name,
+                    league_url,
+                    team_url,
+                    address,
+                    travel_distances,
+                    include_league_link=include_league_link,
+                    strip_team_url_to_team_only=strip_team_url_to_team_only,
+                    team_info_pages=team_info_pages,
+                )
+                if include_popups
+                else None
             )
 
             category = comp_key.replace("_", " ") if is_merit else PYRAMID_CATEGORY

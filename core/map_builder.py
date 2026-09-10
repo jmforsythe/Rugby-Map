@@ -12,6 +12,7 @@ import logging
 import math
 from collections import defaultdict
 from dataclasses import dataclass, field
+from functools import lru_cache
 from html import escape
 from pathlib import Path
 from typing import Any, TypedDict, cast
@@ -258,6 +259,12 @@ def load_itl_hierarchy(paths: dict[str, str]) -> ITLHierarchy:
     missing or absent, this function falls back to the legacy centroid /
     feature-property heuristics so older deployments keep working.
     """
+    return _load_itl_hierarchy_cached(frozenset(paths.items()))
+
+
+@lru_cache(maxsize=8)
+def _load_itl_hierarchy_cached(paths_items: frozenset[tuple[str, str]]) -> ITLHierarchy:
+    paths = dict(paths_items)
     itl3_data = _load_geojson(paths["itl3"])
     itl2_data = _load_geojson(paths["itl2"])
     itl1_data = _load_geojson(paths["itl1"])

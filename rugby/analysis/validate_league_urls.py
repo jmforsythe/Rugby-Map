@@ -23,6 +23,7 @@ from dataclasses import dataclass
 from core import League, setup_logging
 from core.config import CURRENT_SEASON
 from rugby import DATA_DIR
+from rugby.fixtures import normalize_fixtures
 from rugby.scrape import (
     _BANNED_DIVISION_IDS,
     _BANNED_FILENAMES,
@@ -40,6 +41,10 @@ logger = logging.getLogger(__name__)
 
 LEAGUE_DATA_DIR = DATA_DIR / "league_data"
 FIXTURE_DATA_DIR = DATA_DIR / "fixture_data"
+
+# Align with ``rugby.fixtures._FIXTURE_SHRINK_PROTECT_BEFORE``: do not treat RFU
+# division changes as actionable when committed historical fixtures exist.
+_STALE_URL_PROTECT_BEFORE = "2024-2025"
 
 
 @dataclass(frozen=True)
@@ -62,6 +67,26 @@ class LeagueUrlIssue:
 
 def _is_rfu_url(url: str) -> bool:
     return "englandrugby.com" in url.lower()
+
+
+def _committed_fixture_count(season: str, relative_path: str) -> int:
+    """Return normalized fixture count from ``fixture_data`` when present."""
+    fixture_path = FIXTURE_DATA_DIR / season / relative_path
+    if not fixture_path.is_file():
+        return 0
+    try:
+        data = json.loads(fixture_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return 0
+    return len(normalize_fixtures(data.get("fixtures", [])))
+
+
+def _should_keep_stored_url(season: str, relative_path: str) -> tuple[bool, int]:
+    """Return whether a stale RFU division should not replace the stored URL."""
+    if season >= _STALE_URL_PROTECT_BEFORE:
+        return False, 0
+    fixture_count = _committed_fixture_count(season, relative_path)
+    return fixture_count > 0, fixture_count
 
 
 def _rfu_would_skip_league(league_name: str, league_url: str) -> bool:
@@ -175,6 +200,23 @@ def compare_stored_to_rfu(
         stored_key = rfu_league_url_key(normalize_rfu_league_url(item.league_url, season))
         rfu_key = rfu_league_url_key(rfu_url)
         if stored_key != rfu_key:
+            keep_stored, fixture_count = _should_keep_stored_url(season, item.relative_path)
+            if keep_stored:
+                issues.append(
+                    LeagueUrlIssue(
+                        kind="stale_url_keep_fixtures",
+                        league_name=item.league_name,
+                        relative_path=item.relative_path,
+                        stored_url=item.league_url,
+                        expected_url=rfu_url,
+                        detail=(
+                            f"RFU lists division {rfu_key[1]} but {fixture_count} fixtures "
+                            f"committed for division {stored_key[1]}; keeping stored URL "
+                            f"(season before {_STALE_URL_PROTECT_BEFORE}) [{item.source}]"
+                        ),
+                    )
+                )
+                continue
             issues.append(
                 LeagueUrlIssue(
                     kind="stale_url",
@@ -268,11 +310,20 @@ def _print_issues(season: str, issues: list[LeagueUrlIssue]) -> None:
     print(f"\n{season}: {len(issues)} issue(s)")
     labels = {
         "stale_url": "Stale league_data URL (RFU division changed)",
+        "stale_url_keep_fixtures": (
+            "RFU division differs but stored URL kept (historical fixtures on disk)"
+        ),
         "missing_on_rfu": "Stored league not found on RFU",
         "missing_in_data": "RFU league missing from league_data",
         "fixture_drift": "fixture_data URL differs from league_data",
     }
-    for kind in ("stale_url", "fixture_drift", "missing_on_rfu", "missing_in_data"):
+    for kind in (
+        "stale_url",
+        "stale_url_keep_fixtures",
+        "fixture_drift",
+        "missing_on_rfu",
+        "missing_in_data",
+    ):
         group = by_kind.get(kind)
         if not group:
             continue
@@ -343,7 +394,8 @@ def main() -> None:
         offline=args.offline,
         check_fixtures=args.check_fixtures,
     )
-    if issues:
+    actionable = [issue for issue in issues if issue.kind != "stale_url_keep_fixtures"]
+    if actionable:
         sys.exit(1)
 
 

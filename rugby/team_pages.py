@@ -8,6 +8,7 @@ import urllib.parse
 from collections import defaultdict
 from collections.abc import Callable, Iterable
 from datetime import date, datetime
+from functools import lru_cache
 from html import escape
 from pathlib import Path
 from typing import Any, NotRequired, TypedDict
@@ -174,6 +175,7 @@ def _team_page_output_filename(team_data: TeamData, ambiguous_display_names: set
     return f"{slug}.html"
 
 
+@lru_cache(maxsize=1)
 def build_team_info_page_filenames() -> dict[int, str]:
     """Map RFU ``team=`` id to canonical team page href under dist (``teams/`` relative)."""
     all_teams = collect_all_teams_data()

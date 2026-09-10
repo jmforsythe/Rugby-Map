@@ -1382,11 +1382,25 @@
     {
       "date": "2001-04-07",
       "time": "",
+      "home_team_id": 979,
+      "away_team_id": 18658,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30837"
+    },
+    {
+      "date": "2001-04-07",
+      "time": "",
       "home_team_id": 6559,
       "away_team_id": 24202,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30844",
       "home_score": 39,
       "away_score": 22
+    },
+    {
+      "date": "2001-04-07",
+      "time": "",
+      "home_team_id": 23390,
+      "away_team_id": 6857,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30847"
     },
     {
       "date": "2001-04-14",
@@ -1427,6 +1441,13 @@
     {
       "date": "2001-04-14",
       "time": "",
+      "home_team_id": 23390,
+      "away_team_id": 25225,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30892"
+    },
+    {
+      "date": "2001-04-14",
+      "time": "",
       "home_team_id": 24202,
       "away_team_id": 18658,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30829",
@@ -1454,11 +1475,25 @@
     {
       "date": "2001-04-28",
       "time": "",
+      "home_team_id": 979,
+      "away_team_id": 21144,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30823"
+    },
+    {
+      "date": "2001-04-28",
+      "time": "",
       "home_team_id": 1822,
       "away_team_id": 6857,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30866",
       "home_score": 27,
       "away_score": 22
+    },
+    {
+      "date": "2001-04-28",
+      "time": "",
+      "home_team_id": 18924,
+      "away_team_id": 23390,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30828"
     },
     {
       "date": "2001-05-05",
@@ -1468,6 +1503,104 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30824",
       "home_score": 23,
       "away_score": 20
+    },
+    {
+      "date": "2001-05-05",
+      "time": "",
+      "home_team_id": 6857,
+      "away_team_id": 979,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30859"
+    },
+    {
+      "date": "2001-05-05",
+      "time": "",
+      "home_team_id": 23390,
+      "away_team_id": 18658,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30863"
+    },
+    {
+      "date": "2001-05-05",
+      "time": "",
+      "home_team_id": 25225,
+      "away_team_id": 6559,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30878"
+    },
+    {
+      "date": "2001-05-12",
+      "time": "",
+      "home_team_id": 979,
+      "away_team_id": 6559,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30865"
+    },
+    {
+      "date": "2001-05-12",
+      "time": "",
+      "home_team_id": 14326,
+      "away_team_id": 23390,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30868"
+    },
+    {
+      "date": "2001-05-12",
+      "time": "",
+      "home_team_id": 25225,
+      "away_team_id": 1822,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30850"
+    },
+    {
+      "date": "2001-05-19",
+      "time": "",
+      "home_team_id": 1822,
+      "away_team_id": 979,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30872"
+    },
+    {
+      "date": "2001-05-19",
+      "time": "",
+      "home_team_id": 23390,
+      "away_team_id": 12441,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30877"
+    },
+    {
+      "date": "2001-05-19",
+      "time": "",
+      "home_team_id": 25225,
+      "away_team_id": 14326,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30864"
+    },
+    {
+      "date": "2001-05-26",
+      "time": "",
+      "home_team_id": 6559,
+      "away_team_id": 23390,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30879"
+    },
+    {
+      "date": "2001-05-26",
+      "time": "",
+      "home_team_id": 25225,
+      "away_team_id": 979,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30885"
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 979,
+      "away_team_id": 24202,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30886"
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 14116,
+      "away_team_id": 979,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30907"
+    },
+    {
+      "date": "2026-09-10",
+      "time": "",
+      "home_team_id": 23390,
+      "away_team_id": 24202,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=30910"
     }
   ]
 }

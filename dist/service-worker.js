@@ -1,6 +1,6 @@
 // Service Worker for caching external resources (especially RFU images)
 // and the self-hosted vendor JS/CSS bundles introduced to cut CDN round-trips.
-const CACHE_NAME = "rugby-maps-v3";
+const CACHE_NAME = "rugby-maps-v4";
 const IMAGE_CACHE = "rugby-images-v2";
 const VENDOR_CACHE = "rugby-vendor-v2";
 const CURRENT_CACHES = [CACHE_NAME, IMAGE_CACHE, VENDOR_CACHE];
@@ -131,9 +131,28 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Data sidecars (territories.json, boundaries*.json, per-date match-day
-  // payloads, teams.json, etc.) with stale-while-revalidate: serve the cached
-  // copy instantly if present while refreshing it in the background.
+  // Fixture date payloads regenerate on deploy; network-first avoids serving
+  // stale marker HTML (e.g. missing reserve-XV badges) while a background
+  // revalidate has not yet updated the cache.
+  if (/\/fixtures\/data\/[^/]+\.json$/.test(url.pathname)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) => {
+        return fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.ok) {
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          })
+          .catch(() => cache.match(event.request));
+      }),
+    );
+    return;
+  }
+
+  // Other data sidecars (territories.json, boundaries*.json, teams.json, etc.)
+  // with stale-while-revalidate: serve the cached copy instantly if present
+  // while refreshing it in the background.
   if (url.pathname.endsWith(".json")) {
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {

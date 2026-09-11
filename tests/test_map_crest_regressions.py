@@ -215,9 +215,14 @@ def test_matchday_widget_initializes_cluster_cache_and_passes_crest_badge() -> N
         data_base_url_json='"/data/"',
         parent_cluster_var_json='"marker_cluster"',
         historic_archive_js="false",
+        fixture_data_version_json='"2026-09-01T00:00:00"',
     )
     assert "window.rugbyClusterIconCache = window.rugbyClusterIconCache || {};" in html
     assert "crestBadge: md.crestBadge || ''" in html
+    assert "cache: 'no-store'" in html
+    assert "refreshMatchdayClusters" in html
+    assert "fixtureDataVersion" in html
+    assert "window.rugbyClusterIconCache = {};" in html
 
 
 def test_matchday_control_html_is_valid_folium_jinja_template() -> None:
@@ -234,6 +239,7 @@ def test_matchday_control_html_is_valid_folium_jinja_template() -> None:
         data_base_url_json='"/data/"',
         parent_cluster_var_json='"marker_cluster"',
         historic_archive_js="false",
+        fixture_data_version_json='"2026-09-01T00:00:00"',
     )
     folium.Element(html)
 

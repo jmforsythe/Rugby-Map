@@ -318,6 +318,7 @@ def test_match_day_registers_overlay_panel_refresh_callback() -> None:
         data_base_url_json='"/data/"',
         parent_cluster_var_json='"marker_cluster"',
         historic_archive_js="false",
+        fixture_data_version_json='"2026-09-01T00:00:00"',
     )
 
     assert "window.rugbyRefreshOverlayPanel = function()" in html

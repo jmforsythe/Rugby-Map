@@ -50,6 +50,12 @@ def test_json_sidecars_use_stale_while_revalidate() -> None:
     assert '.endsWith(".json")' in text
 
 
+def test_fixture_date_json_uses_network_first() -> None:
+    text = _read_sw()
+    assert r"\/fixtures\/data\/" in text
+    assert "Fixture date payloads regenerate on deploy" in text
+
+
 def test_vendor_assets_served_cache_first() -> None:
     text = _read_sw()
     assert "/shared/vendor/" in text

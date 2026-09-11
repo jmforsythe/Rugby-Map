@@ -233,6 +233,7 @@ _MATCHDAY_WIDGET_HTML = """
     var dataBaseUrl = @@DATA_BASE_URL_JSON@@;
     var parentClusterVar = @@PARENT_CLUSTER_VAR_JSON@@;
     var historicSeason = @@HISTORIC_ARCHIVE_JS@@;
+    var fixtureDataVersion = @@FIXTURE_DATA_VERSION_JSON@@;
     window.rugbyClusterIconCache = window.rugbyClusterIconCache || {};
     var mapObj = null;
     var tierProxies = {};
@@ -406,11 +407,19 @@ _MATCHDAY_WIDGET_HTML = """
     });
 
     function loadDateData(date) {
-        if (dateDataCache[date]) return Promise.resolve(dateDataCache[date]);
-        return fetch(dataBaseUrl + date + '.json').then(function(r) { return r.json(); }).then(function(d) {
-            dateDataCache[date] = d;
+        var cacheKey = date + '|' + fixtureDataVersion;
+        if (dateDataCache[cacheKey]) return Promise.resolve(dateDataCache[cacheKey]);
+        return fetch(dataBaseUrl + date + '.json', { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(d) {
+            dateDataCache[cacheKey] = d;
             return d;
         });
+    }
+
+    function refreshMatchdayClusters() {
+        var cluster = window[parentClusterVar];
+        if (cluster && typeof cluster.refreshClusters === 'function') {
+            cluster.refreshClusters();
+        }
     }
 
     function bindMatchdayPopup(marker, html) {
@@ -447,6 +456,7 @@ _MATCHDAY_WIDGET_HTML = """
     function rebindLayerControlForDate(date, data) {
         var map = getMap();
         if (!map || !window.layerControl) return;
+        window.rugbyClusterIconCache = {};
         var tiersData = (data && data.tiers) || {};
         matchdaySuppressEvents = true;
         var tierKeys = Object.keys(tierProxies).sort(function(a, b) {
@@ -479,6 +489,7 @@ _MATCHDAY_WIDGET_HTML = """
         matchdaySuppressEvents = false;
         sortMatchdayOverlayLabels();
         applyMatchdayLayerSectionHeadings();
+        refreshMatchdayClusters();
     }
 
     function initMatchdayLayerWiring() {
@@ -589,6 +600,7 @@ def build_matchday_control_html(
     data_base_url_json: str,
     parent_cluster_var_json: str,
     historic_archive_js: str,
+    fixture_data_version_json: str,
 ) -> str:
     """Dropdown + scripts for date switching and tier overlay rebinding."""
     return (
@@ -601,6 +613,7 @@ def build_matchday_control_html(
         .replace("@@DATA_BASE_URL_JSON@@", data_base_url_json)
         .replace("@@PARENT_CLUSTER_VAR_JSON@@", parent_cluster_var_json)
         .replace("@@HISTORIC_ARCHIVE_JS@@", historic_archive_js)
+        .replace("@@FIXTURE_DATA_VERSION_JSON@@", fixture_data_version_json)
     )
 
 
@@ -1265,6 +1278,7 @@ def build_match_day_map(
 
     updated_display = f"{generated_at.day} {generated_at.strftime('%b %Y')}"
 
+    fixture_data_version_json = json.dumps(generated_at.isoformat())
     control_html = build_matchday_control_html(
         dropdown_options=dropdown_options,
         updated_display=updated_display,
@@ -1275,6 +1289,7 @@ def build_match_day_map(
         data_base_url_json=data_base_url_json,
         parent_cluster_var_json=parent_cluster_var_json,
         historic_archive_js="true" if historic_archive else "false",
+        fixture_data_version_json=fixture_data_version_json,
     )
     html_el = m.get_root().html  # type: ignore[attr-defined]
     html_el.add_child(folium.Element(control_html))

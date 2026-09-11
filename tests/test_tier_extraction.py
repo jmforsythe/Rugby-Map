@@ -721,6 +721,27 @@ class TestGetNumberFromTierName:
     def test_letter_d(self):
         assert get_number_from_tier_name("Leicestershire_Merit_D.json", "Leicestershire_Merit") == 4
 
+    def test_letter_e_through_z(self):
+        assert get_number_from_tier_name("NOWIRUL_Cluster_E.json", "NOWIRUL") == 5
+        assert get_number_from_tier_name("NOWIRUL_Cluster_T.json", "NOWIRUL") == 20
+        assert get_number_from_tier_name("NOWIRUL_Cluster_Z.json", "NOWIRUL") == 26
+
+    def test_nowirul_cluster_letter_chain_2020_2021(self):
+        """COVID-season NOWIRUL clusters A–T form one local ladder step per letter."""
+        for letter, local in zip(
+            "ABCDEFGHIJKLMNOPQRST",
+            range(1, 21),
+            strict=True,
+        ):
+            result = extract_tier(f"merit/NOWIRUL/NOWIRUL_Cluster_{letter}.json", "2020-2021")
+            assert result == (local, f"NOWIRUL {local}")
+        assert get_competition_offset("NOWIRUL", "2020-2021") == 6
+        assert (
+            extract_tier("merit/NOWIRUL/NOWIRUL_Cluster_A.json", "2020-2021")[0]
+            + get_competition_offset("NOWIRUL", "2020-2021")
+            == 7
+        )
+
     def test_compound_5a(self):
         assert get_number_from_tier_name("Yorkshire_5A.json", "Yorkshire") == 5
 

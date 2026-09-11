@@ -43,6 +43,7 @@ from rugby.tiers import (
     extract_tier,
     get_competition_offset,
     mens_current_tier_name,
+    merit_competition_public_excluded,
     womens_current_tier_name,
 )
 from rugby.webpages import get_footer_html
@@ -304,6 +305,10 @@ def compute_club_timelines(
             season_dir, team_club_map=team_club_map
         ):
             rel_path = league_file.relative_to(season_dir).as_posix()
+            if rel_path.startswith("merit/"):
+                comp = rel_path.split("/")[1]
+                if merit_competition_public_excluded(season, comp):
+                    continue
             abs_tier = _league_absolute_tier(rel_path, season)
             if abs_tier is None:
                 continue

@@ -30,6 +30,32 @@ def test_merit_only_tiers_exclude_pyramid_and_combined_levels(tmp_path: Path) ->
     assert tier_files["merit_only_tiers"] == [("Level 12", "Level_12_All_Leagues.html")]
 
 
+def test_detect_tier_files_excludes_nowirul_2020_2021_merit_links(tmp_path: Path) -> None:
+    season = tmp_path / "2020-2021"
+    season.mkdir()
+    _touch(season / "Premiership.html")
+    _touch(season / "All_Leagues.html")
+    _touch(season / "Level_9_All_Leagues.html")
+    _touch(season / "Level_12_All_Leagues.html")
+
+    nowirul = season / "merit" / "NOWIRUL"
+    nowirul.mkdir(parents=True)
+    _touch(nowirul / "All_Tiers.html")
+    _touch(nowirul / "NOWIRUL_1.html")
+
+    herts = season / "merit" / "Herts_Middlesex"
+    herts.mkdir(parents=True)
+    _touch(herts / "All_Tiers.html")
+    _touch(herts / "Herts_Middlesex_1.html")
+
+    tier_files = detect_tier_files(season)
+
+    assert tier_files["has_all_leagues"] is True
+    assert tier_files["tier_plus_merit"] == {}
+    assert tier_files["merit_only_tiers"] == []
+    assert [comp[0] for comp in tier_files["merit"]] == ["Herts Middlesex"]
+
+
 def test_pyramid_section_keeps_row_aligned_table_without_duplicate_merit() -> None:
     html = _build_pyramid_section(
         [

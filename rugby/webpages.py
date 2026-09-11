@@ -29,6 +29,7 @@ from core import (
 from core.config import DIST_DIR
 from rugby import BRAND, short_season
 from rugby.seo import BASE_URL, OG_DEFAULT_IMAGE, breadcrumb_ld_script, og_image_meta_html
+from rugby.tiers import SEASONS_WITHOUT_MERIT_COLUMN_LINKS, merit_competition_public_excluded
 
 
 def discover_latest_season_dirname(dist_dir: Path) -> str:
@@ -887,6 +888,7 @@ def _detect_existing(
 
 def detect_tier_files(season_dir: Path) -> dict:
     """Detect available tier map files in a season directory."""
+    season = season_dir.name
 
     mens_candidates = [
         ("Premiership", "Premiership"),
@@ -939,12 +941,18 @@ def detect_tier_files(season_dir: Path) -> dict:
         if display not in pyramid_tier_names and display not in combined_tier_names
     ]
 
+    if season in SEASONS_WITHOUT_MERIT_COLUMN_LINKS:
+        tier_plus_merit = {}
+        merit_only_tiers = []
+
     # Detect merit competitions
     merit_dir = season_dir / "merit"
     merit_competitions: list[tuple[str, str, list[tuple[str, str]], dict[str, str | None]]] = []
     if merit_dir.is_dir():
         for comp_dir in sorted(merit_dir.iterdir()):
             if not comp_dir.is_dir():
+                continue
+            if merit_competition_public_excluded(season, comp_dir.name):
                 continue
             all_tiers_href = f"merit/{comp_dir.name}/{_link('All_Tiers')}"
             if not (season_dir / all_tiers_href).exists():

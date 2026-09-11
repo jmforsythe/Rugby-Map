@@ -127,7 +127,7 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2022-2023", "2022-2023", 8),
         ("2023-2024", "2023-2024", 7),
         ("2024-2025", "2024-2025", 6),
-        ("2025-2026", "2025-2026", 7),
+        ("2025-2026", "2025-2026", 6),
     ],
     "Herts_Middlesex": [
         # Verified against each season's national pyramid (apex parent's actual absolute tier
@@ -137,6 +137,7 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         # 2008-2009..2009-2010, 2011-2012..2013-2014, 2017-2018..2021-2022) were all wrong.
         # 2010-2011 alone is a genuine exception: its apex is local 2, not 1, so it needs 8.
         ("2010-2011", "2010-2011", 8),
+        ("2020-2021", "2020-2021", 6),
         ("2022-2023", "2022-2023", 7),
         ("2023-2024", "2023-2024", 8),
         ("2024-2025", "", 7),
@@ -198,6 +199,8 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2017-2018", "2017-2018", 7),
         ("2018-2019", "2018-2019", 8),
         ("2019-2020", "2019-2020", 7),
+        # Cluster-only COVID season: local 1 (A) → absolute 7, bracketed with 2021-2022 (6).
+        ("2020-2021", "2020-2021", 6),
         # 2021-2022: apex parent "North One West" (as literally recorded in tier_mappings —
         # this entry was missing from an earlier read of the file and only surfaced on a
         # fresh regen) sits at tier 6, not 7.
@@ -260,6 +263,20 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2022-2023", "", 6),
     ],
 }
+
+# COVID-era NOWIRUL cluster leagues exist in league_data and all-leagues maps but are omitted
+# from season-page merit listings and club tier-history charts.
+EXCLUDED_MERIT_COMPETITIONS: dict[str, frozenset[str]] = {
+    "2020-2021": frozenset({"NOWIRUL"}),
+}
+
+# Seasons where per-tier "+ Merit" / "(Merit)" column links are hidden (All Leagues stays).
+SEASONS_WITHOUT_MERIT_COLUMN_LINKS: frozenset[str] = frozenset({"2020-2021"})
+
+
+def merit_competition_public_excluded(season: str, competition: str) -> bool:
+    """True when merit data should not appear on season pages or tier-history stats."""
+    return competition in EXCLUDED_MERIT_COMPETITIONS.get(season, frozenset())
 
 
 def get_competition_offset(comp_name: str, season: str = "") -> int:
@@ -1003,7 +1020,9 @@ def extract_tier_men_current(filename: str, season: str) -> tuple[int, str] | No
         # in 2018-2020 was misplaced at local 2, leaving a gap at local 1.
         "merit/Lancashire": 1,
         "merit/NOWIRUL/Premier": 1,
-        "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
+        "merit/NOWIRUL": (
+            2 if "2016-2017" <= season <= "2019-2020" else 0 if season == "2020-2021" else 1
+        ),
         "merit/Nottinghamshire": 0,
         "merit/Rural_Kent": 0,
         "merit/Surrey": 1,
@@ -1128,7 +1147,9 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         # Premier league is local 1 directly.
         "merit/Lancashire": 1,
         "merit/NOWIRUL/Premier": 1,
-        "merit/NOWIRUL": (2 if "2016-2017" <= season <= "2019-2020" else 1),
+        "merit/NOWIRUL": (
+            2 if "2016-2017" <= season <= "2019-2020" else 0 if season == "2020-2021" else 1
+        ),
         "merit/Nottinghamshire": 0,
         # Rural Kent 2013-2018 has a single "Premier 2 East" file at the top of the merit
         # pyramid; the `_2_` is the tier number, so a specific prefix forces num extraction
@@ -1311,5 +1332,8 @@ def get_number_from_tier_name(filename: str, prefix: str) -> int:
     for part in other_words:
         if part in num_map:
             num = num_map[part]
+            break
+        if len(part) == 1 and part.isalpha():
+            num = ord(part.upper()) - ord("A") + 1
             break
     return num

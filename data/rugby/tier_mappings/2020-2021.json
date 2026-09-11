@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "season": "2020-2021",
+  "men": {},
+  "Herts_Middlesex": {
+    "2": {
+      "Merit 2 North": "Merit 1 North",
+      "Merit 2 South": "Merit 1 South"
+    },
+    "3": {
+      "Merit 3 North": "Merit 2 North",
+      "Merit 3 South": "Merit 2 South"
+    },
+    "4": {
+      "Merit 4 North": "Merit 3 North",
+      "Merit 4 South": "Merit 3 South"
+    },
+    "5": {
+      "Merit 5 North": "Merit 4 North",
+      "Merit 5 South": "Merit 4 South"
+    }
+  },
+  "NOWIRUL": {
+    "2": {
+      "NOWIRUL Cluster B": "NOWIRUL Cluster A"
+    },
+    "3": {
+      "NOWIRUL Cluster C": "NOWIRUL Cluster B"
+    },
+    "4": {
+      "NOWIRUL Cluster D": "NOWIRUL Cluster C"
+    },
+    "5": {
+      "NOWIRUL Cluster E": "NOWIRUL Cluster D"
+    },
+    "6": {
+      "NOWIRUL Cluster F": "NOWIRUL Cluster E"
+    },
+    "7": {
+      "NOWIRUL Cluster G": "NOWIRUL Cluster F"
+    },
+    "8": {
+      "NOWIRUL Cluster H": "NOWIRUL Cluster G"
+    },
+    "9": {
+      "NOWIRUL Cluster I": "NOWIRUL Cluster H"
+    },
+    "10": {
+      "NOWIRUL Cluster J": "NOWIRUL Cluster I"
+    },
+    "11": {
+      "NOWIRUL Cluster K": "NOWIRUL Cluster J"
+    },
+    "12": {
+      "NOWIRUL Cluster L": "NOWIRUL Cluster K"
+    },
+    "13": {
+      "NOWIRUL Cluster M": "NOWIRUL Cluster L"
+    },
+    "14": {
+      "NOWIRUL Cluster N": "NOWIRUL Cluster M"
+    },
+    "15": {
+      "NOWIRUL Cluster O": "NOWIRUL Cluster N"
+    },
+    "16": {
+      "NOWIRUL Cluster P": "NOWIRUL Cluster O"
+    },
+    "17": {
+      "NOWIRUL Cluster Q": "NOWIRUL Cluster P"
+    },
+    "18": {
+      "NOWIRUL Cluster R": "NOWIRUL Cluster Q"
+    },
+    "19": {
+      "NOWIRUL Cluster S": "NOWIRUL Cluster R"
+    },
+    "20": {
+      "NOWIRUL Cluster T": "NOWIRUL Cluster S"
+    }
+  }
+}

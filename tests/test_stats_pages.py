@@ -194,6 +194,30 @@ def test_compute_club_timelines_applies_merit_competition_offset(tmp_path: Path)
     assert by_club["Delta RFC"]["teams"][0]["points"][0]["is_merit"] is True
 
 
+def test_compute_club_timelines_excludes_nowirul_2020_2021(tmp_path: Path) -> None:
+    league_data_dir = tmp_path / "league_data"
+    _write_league(
+        league_data_dir / "2020-2021" / "Premiership.json",
+        ["Alpha RFC", "Beta RFC"],
+    )
+    _write_league(
+        league_data_dir / "2020-2021" / "merit" / "NOWIRUL" / "NOWIRUL_Cluster_A.json",
+        ["Alpha RFC", "Gamma RFC"],
+    )
+    _write_league(
+        league_data_dir / "2020-2021" / "merit" / "Herts_Middlesex" / "Herts_Middlesex_1.json",
+        ["Delta RFC"],
+    )
+
+    timelines = compute_club_timelines(league_data_dir, current_season="2099-2100")
+    by_club = {c["club"]: c for c in timelines["clubs"]}
+
+    assert timelines["seasons"] == ["2020-2021"]
+    assert "Gamma RFC" not in by_club
+    assert _levels(by_club["Alpha RFC"]["teams"][0]) == [1.0]
+    assert _levels(by_club["Delta RFC"]["teams"][0]) == [7.0]
+
+
 def test_compute_club_timelines_tags_womens_leagues(tmp_path: Path) -> None:
     league_data_dir = tmp_path / "league_data"
     _write_league(

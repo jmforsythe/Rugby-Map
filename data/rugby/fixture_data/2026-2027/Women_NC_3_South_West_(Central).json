@@ -26,13 +26,6 @@
     {
       "date": "2026-10-11",
       "time": "",
-      "home_team_id": 25789,
-      "away_team_id": 21776,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301750"
-    },
-    {
-      "date": "2026-10-11",
-      "time": "",
       "home_team_id": 123998,
       "away_team_id": 3138,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301752"
@@ -43,6 +36,13 @@
       "home_team_id": 128521,
       "away_team_id": 4395,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301751"
+    },
+    {
+      "date": "2026-10-11",
+      "time": "",
+      "home_team_id": 25789,
+      "away_team_id": 21776,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301750"
     },
     {
       "date": "2026-11-01",
@@ -75,23 +75,16 @@
     {
       "date": "2026-11-22",
       "time": "",
-      "home_team_id": 123998,
-      "away_team_id": 25789,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301757"
-    },
-    {
-      "date": "2026-11-22",
-      "time": "",
       "home_team_id": 128521,
       "away_team_id": 21776,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301756"
     },
     {
-      "date": "2026-12-13",
+      "date": "2026-11-22",
       "time": "",
-      "home_team_id": 4395,
-      "away_team_id": 123998,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301759"
+      "home_team_id": 123998,
+      "away_team_id": 25789,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301757"
     },
     {
       "date": "2026-12-13",
@@ -99,6 +92,13 @@
       "home_team_id": 21776,
       "away_team_id": 3138,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301761"
+    },
+    {
+      "date": "2026-12-13",
+      "time": "",
+      "home_team_id": 4395,
+      "away_team_id": 123998,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301759"
     },
     {
       "date": "2026-12-13",
@@ -131,6 +131,13 @@
     {
       "date": "2027-01-31",
       "time": "",
+      "home_team_id": 128521,
+      "away_team_id": 3138,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301765"
+    },
+    {
+      "date": "2027-01-31",
+      "time": "",
       "home_team_id": 25789,
       "away_team_id": 4395,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301767"
@@ -141,13 +148,6 @@
       "home_team_id": 123998,
       "away_team_id": 21776,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301766"
-    },
-    {
-      "date": "2027-01-31",
-      "time": "",
-      "home_team_id": 128521,
-      "away_team_id": 3138,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301765"
     },
     {
       "date": "2027-02-14",
@@ -193,17 +193,17 @@
     },
     {
       "date": "2027-03-14",
-      "time": "14:30",
-      "home_team_id": 21776,
-      "away_team_id": 4395,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301774"
-    },
-    {
-      "date": "2027-03-14",
       "time": "",
       "home_team_id": 25789,
       "away_team_id": 3138,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301775"
+    },
+    {
+      "date": "2027-03-14",
+      "time": "14:30",
+      "home_team_id": 21776,
+      "away_team_id": 4395,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1301774"
     },
     {
       "date": "2027-03-14",

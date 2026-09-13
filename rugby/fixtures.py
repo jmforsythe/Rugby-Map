@@ -15,13 +15,22 @@ import json
 import logging
 import re
 import urllib.parse
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import TypedDict
 
 from bs4 import BeautifulSoup, Tag
 
-from core import AntiBotDetectedError, Fixture, FixtureLeague, League, make_request, setup_logging
+from core import (
+    AntiBotBackoffBudget,
+    AntiBotDetectedError,
+    Fixture,
+    FixtureLeague,
+    League,
+    make_request,
+    setup_logging,
+)
 from core.config import CURRENT_SEASON, EARLIEST_SEASON
 from rugby import DATA_DIR
 from rugby.scrape import (
@@ -34,6 +43,12 @@ from rugby.scrape import (
 logger = logging.getLogger(__name__)
 
 _REQUEST_DELAY_SECONDS = 1.0
+# Cloudflare lockouts have lasted 20+ minutes, so one league is allowed to wait
+# that long: 9 attempts backing off 5s, 10s, 20s ... 600s is ~20 minutes.
+_ANTIBOT_MAX_ATTEMPTS = 9
+# Cumulative anti-bot wait across the whole run, after which leagues fail fast.
+# Keep below the workflow's timeout-minutes so the commit step is still reached.
+_ANTIBOT_BACKOFF_BUDGET_SECONDS = 3600.0
 
 _RFU_BASE = "https://www.englandrugby.com"
 
@@ -176,7 +191,10 @@ def _fixtures_page_heading(soup: BeautifulSoup) -> str | None:
 
 
 def scrape_fixtures_from_league(
-    league_url: str, league_name: str
+    league_url: str,
+    league_name: str,
+    *,
+    antibot_budget: AntiBotBackoffBudget | None = None,
 ) -> tuple[list[Fixture], str | None]:
     """Scrape all fixtures from one league's fixtures page.
 
@@ -186,7 +204,13 @@ def scrape_fixtures_from_league(
     logger.info("Scraping fixtures from: %s", fixtures_url)
 
     referer = f"{_RFU_BASE}/fixtures-and-results"
-    response = make_request(fixtures_url, referer=referer, delay_seconds=_REQUEST_DELAY_SECONDS)
+    response = make_request(
+        fixtures_url,
+        referer=referer,
+        delay_seconds=_REQUEST_DELAY_SECONDS,
+        max_retries=_ANTIBOT_MAX_ATTEMPTS,
+        antibot_budget=antibot_budget,
+    )
     soup = BeautifulSoup(response.content, "html.parser")
 
     page_heading = _fixtures_page_heading(soup)
@@ -248,8 +272,16 @@ def _is_placeholder_team_name(name: str) -> bool:
     return text.startswith(_PLACEHOLDER_TEAM_PREFIXES)
 
 
-def _fixture_dedupe_key(fixture: Fixture) -> tuple[str, int, int]:
-    return fixture["date"], fixture["home_team_id"], fixture["away_team_id"]
+def _fixture_pair_key(fixture: Fixture) -> tuple[str, int, int]:
+    """Date plus unordered team pair, used for both dedupe and on-disk sort order.
+
+    Orientation-insensitive so RFU cards that repeat a match with home and away
+    swapped collapse to one row. The two legs of a double round-robin stay
+    distinct because they fall on different dates.
+    """
+    home_id = fixture["home_team_id"]
+    away_id = fixture["away_team_id"]
+    return fixture["date"], min(home_id, away_id), max(home_id, away_id)
 
 
 def _fixture_row_quality(fixture: Fixture) -> int:
@@ -265,7 +297,7 @@ def _fixture_row_quality(fixture: Fixture) -> int:
 
 
 def normalize_fixtures(fixtures: list[Fixture]) -> list[Fixture]:
-    """Drop self-fixtures and dedupe on ``(date, home_team_id, away_team_id)``."""
+    """Drop self-fixtures and dedupe on ``(date, min(home, away), max(home, away))``."""
     best: dict[tuple[str, int, int], Fixture] = {}
     for fixture in fixtures:
         date = fixture.get("date")
@@ -277,11 +309,11 @@ def normalize_fixtures(fixtures: list[Fixture]) -> list[Fixture]:
             continue
         if home_id == away_id:
             continue
-        key = (date, home_id, away_id)
+        key = _fixture_pair_key(fixture)
         existing = best.get(key)
         if existing is None or _fixture_row_quality(fixture) > _fixture_row_quality(existing):
             best[key] = fixture
-    return sorted(best.values(), key=_fixture_sort_key)
+    return sorted(best.values(), key=_fixture_pair_key)
 
 
 def _league_team_ids(league: League) -> set[int]:
@@ -318,11 +350,6 @@ def _warn_fixture_team_mismatch(
         extra[:5],
         hint,
     )
-
-
-def _fixture_sort_key(fixture: Fixture) -> tuple[str, int, int]:
-    """Stable on-disk fixture order: date, then home id, then away id."""
-    return fixture["date"], fixture["home_team_id"], fixture["away_team_id"]
 
 
 class IncompleteFixtureLeague(TypedDict):
@@ -751,6 +778,28 @@ def _discover_leagues_from_fixture_data(season: str) -> list[tuple[str, str, Pat
     return leagues
 
 
+@dataclass
+class _ScrapeProgress:
+    """Running counters for one scrape run, logged once per league."""
+
+    total: int
+    saved: int = 0
+    skipped: int = 0
+    errors: list[str] = field(default_factory=list)
+
+    def report(self, index: int, league_name: str, result: str) -> None:
+        logger.info(
+            "Progress %d/%d | saved=%d skipped=%d errors=%d | %s: %s",
+            index,
+            self.total,
+            self.saved,
+            self.skipped,
+            len(self.errors),
+            league_name,
+            result,
+        )
+
+
 def _write_timestamp(output_dir: Path) -> None:
     """Write an ISO timestamp to ``last_updated.txt`` inside *output_dir*."""
     ts_path = output_dir / "last_updated.txt"
@@ -849,16 +898,20 @@ def main() -> None:
     output_dir = DATA_DIR / "fixture_data" / season
     error_log_path = output_dir / "scrape_errors.log"
     output_dir.mkdir(parents=True, exist_ok=True)
-    errors: list[str] = []
 
-    scraped = 0
-    skipped = 0
+    progress = _ScrapeProgress(total=len(leagues))
+    errors = progress.errors
+    antibot_budget = AntiBotBackoffBudget(max_seconds=_ANTIBOT_BACKOFF_BUDGET_SECONDS)
+    logger.info("Scraping %d leagues for season %s", progress.total, season)
 
-    for league_name, league_url, relative_path, used_meta_override in leagues:
+    for index, (league_name, league_url, relative_path, used_meta_override) in enumerate(
+        leagues, start=1
+    ):
         output_path = output_dir / relative_path
         rel_posix = relative_path.as_posix()
         if args.only_incomplete and rel_posix not in incomplete_paths:
-            skipped += 1
+            progress.skipped += 1
+            progress.report(index, league_name, "skipped (complete)")
             continue
 
         skip_existing = False
@@ -871,18 +924,27 @@ def main() -> None:
                 skip_existing = False
         if skip_existing:
             logger.info("Skipping %s (already exists)", league_name)
-            skipped += 1
+            progress.skipped += 1
+            progress.report(index, league_name, "skipped (exists)")
             continue
 
         try:
-            fixtures, _page_heading = scrape_fixtures_from_league(league_url, league_name)
-        except AntiBotDetectedError:
-            logger.error("Anti-bot detection triggered while scraping %s", league_name)
-            logger.error("Please wait before running the script again.")
-            raise
+            fixtures, _page_heading = scrape_fixtures_from_league(
+                league_url, league_name, antibot_budget=antibot_budget
+            )
+        except AntiBotDetectedError as exc:
+            logger.error(
+                "Anti-bot detection persisted while scraping %s after retries: %s",
+                league_name,
+                exc,
+            )
+            errors.append(f"ANTIBOT | {league_name} | {league_url}")
+            progress.report(index, league_name, "error (anti-bot)")
+            continue
         except Exception:
             logger.exception("Failed to scrape fixtures for %s", league_name)
             errors.append(f"SCRAPE_ERROR | {league_name} | {league_url}")
+            progress.report(index, league_name, "error")
             continue
 
         status_fixtures = [f for f in fixtures if f.get("status")]
@@ -908,7 +970,8 @@ def main() -> None:
                 f"REGRESSIVE_RESCRAPE | {league_name} | preserved {existing_count} fixtures | "
                 f"scraped {len(fixtures)} | {league_url}"
             )
-            skipped += 1
+            progress.skipped += 1
+            progress.report(index, league_name, "skipped (regressive scrape)")
             continue
 
         league_data_path = DATA_DIR / "league_data" / season / relative_path
@@ -932,14 +995,16 @@ def main() -> None:
         new_content = json.dumps(fixture_league, indent=2, ensure_ascii=False) + "\n"
         if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
             logger.info("  Unchanged: %s", league_name)
-            skipped += 1
+            progress.skipped += 1
+            progress.report(index, league_name, "unchanged")
             continue
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(new_content, encoding="utf-8")
 
-        scraped += 1
+        progress.saved += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
+        progress.report(index, league_name, f"saved {len(fixtures)} fixtures")
 
     extra_urls = _EXTRA_FIXTURE_URLS_BY_SEASON.get(season, [])
     if not extra_urls:
@@ -953,14 +1018,21 @@ def main() -> None:
         url = _resolve_extra_fixture_url(url_template, season)
         if rfu_league_url_key(url) in discovered_keys:
             logger.info("Skipping extra URL already covered by league discovery: %s", url)
-            skipped += 1
+            progress.skipped += 1
             continue
 
         try:
-            fixtures, page_heading = scrape_fixtures_from_league(url, url)
-        except AntiBotDetectedError:
-            logger.error("Anti-bot detection triggered on extra URL %s", url)
-            raise
+            fixtures, page_heading = scrape_fixtures_from_league(
+                url, url, antibot_budget=antibot_budget
+            )
+        except AntiBotDetectedError as exc:
+            logger.error(
+                "Anti-bot detection persisted on extra URL %s after retries: %s",
+                url,
+                exc,
+            )
+            errors.append(f"ANTIBOT | {url}")
+            continue
         except Exception:
             logger.exception("Failed to scrape extra fixture URL %s", url)
             errors.append(f"SCRAPE_ERROR | {url}")
@@ -992,12 +1064,12 @@ def main() -> None:
         new_content = json.dumps(extra_league, indent=2, ensure_ascii=False) + "\n"
         if output_path.exists() and output_path.read_text(encoding="utf-8") == new_content:
             logger.info("  Unchanged: %s", resolved_league_name)
-            skipped += 1
+            progress.skipped += 1
             continue
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(new_content, encoding="utf-8")
-        scraped += 1
+        progress.saved += 1
         logger.info("  Saved %d fixtures to %s", len(fixtures), output_path)
 
     if errors:
@@ -1007,13 +1079,14 @@ def main() -> None:
         )
         logger.warning("Wrote %d errors to %s", len(errors), error_log_path)
 
-    if scraped > 0:
+    if progress.saved > 0:
         _write_timestamp(output_dir)
 
     logger.info(
-        "Complete! Scraped %d leagues, skipped %d. Output in %s",
-        scraped,
-        skipped,
+        "Complete! Scraped %d leagues, skipped %d, %d error(s). Output in %s",
+        progress.saved,
+        progress.skipped,
+        len(errors),
         output_dir,
     )
 

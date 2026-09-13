@@ -1,4 +1,4 @@
-"""Compare fixture keys (date, home_team_id, away_team_id) between two trees."""
+"""Compare fixture keys (date, min home/away, max home/away) between two trees."""
 
 from __future__ import annotations
 
@@ -12,8 +12,8 @@ from pathlib import Path
 @dataclass(frozen=True)
 class FixtureKey:
     date: str
-    home_team_id: int
-    away_team_id: int
+    team_a_id: int
+    team_b_id: int
 
     @classmethod
     def from_fixture(cls, fixture: dict) -> FixtureKey | None:
@@ -24,7 +24,7 @@ class FixtureKey:
             return None
         if not isinstance(home_id, int) or not isinstance(away_id, int):
             return None
-        return cls(date, home_id, away_id)
+        return cls(date, min(home_id, away_id), max(home_id, away_id))
 
 
 def load_fixture_keys(path: Path) -> dict[FixtureKey, dict]:
@@ -158,8 +158,8 @@ def main() -> int:
                     fixture = baseline_map[key]
                     print(
                         f"      - {key.date}  "
-                        f"{fixture.get('home_team', '?')} ({key.home_team_id}) vs "
-                        f"{fixture.get('away_team', '?')} ({key.away_team_id})  "
+                        f"home={fixture.get('home_team_id')} away={fixture.get('away_team_id')}  "
+                        f"pair=({key.team_a_id}, {key.team_b_id})  "
                         f"status={fixture.get('status') or ''}"
                     )
     else:

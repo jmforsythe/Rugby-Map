@@ -19,7 +19,14 @@ from core.config import (
     set_config,
     setup_logging,
 )
-from core.http import AntiBotDetectedError, get_headers, get_session, make_request, print_block
+from core.http import (
+    AntiBotBackoffBudget,
+    AntiBotDetectedError,
+    get_headers,
+    get_session,
+    make_request,
+    print_block,
+)
 from core.slugs import (
     FEATURE_FIXTURES,
     PYRAMID_STEM,
@@ -63,6 +70,7 @@ __all__ = [
     "EARLIEST_SEASON",
     "AddressLeague",
     "AddressTeam",
+    "AntiBotBackoffBudget",
     "AntiBotDetectedError",
     "AppConfig",
     "Fixture",

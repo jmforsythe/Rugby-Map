@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 from rugby.fixtures import (
     _discover_fixture_only_leagues,
-    _fixture_sort_key,
+    _fixture_pair_key,
     _is_placeholder_team_name,
     _parse_fixture_card,
     _should_preserve_existing_fixtures,
@@ -103,6 +103,31 @@ def test_normalize_fixtures_dedupes_same_date_and_orientation() -> None:
     assert normalized[0]["match_url"] == "https://example.com/b"
 
 
+def test_normalize_fixtures_dedupes_swapped_home_away() -> None:
+    fixtures = [
+        {
+            "date": "2026-10-10",
+            "time": "",
+            "home_team_id": 24392,
+            "away_team_id": 10764,
+            "match_url": "https://example.com/a",
+        },
+        {
+            "date": "2026-10-10",
+            "time": "",
+            "home_team_id": 10764,
+            "away_team_id": 24392,
+            "match_url": "https://example.com/b",
+            "home_score": 24,
+            "away_score": 12,
+        },
+    ]
+    normalized = normalize_fixtures(fixtures)
+    assert len(normalized) == 1
+    assert normalized[0]["home_score"] == 24
+    assert normalized[0]["match_url"] == "https://example.com/b"
+
+
 def test_expected_fixture_count_is_double_round_robin() -> None:
     assert expected_fixture_count(10) == 90
     assert expected_fixture_count(2) == 2
@@ -157,14 +182,18 @@ def test_find_incomplete_fixture_leagues(tmp_path, monkeypatch) -> None:
     assert rows[0]["actual_count"] == 0
 
 
-def test_fixture_sort_key_orders_by_date_then_team_ids() -> None:
+def test_fixture_pair_key_orders_by_date_then_unordered_pair() -> None:
     fixtures = [
         {"date": "2026-01-01", "home_team_id": 2, "away_team_id": 1},
         {"date": "2025-12-31", "home_team_id": 9, "away_team_id": 8},
-        {"date": "2026-01-01", "home_team_id": 1, "away_team_id": 2},
+        {"date": "2026-01-01", "home_team_id": 5, "away_team_id": 6},
     ]
-    fixtures.sort(key=_fixture_sort_key)
-    assert [f["home_team_id"] for f in fixtures] == [9, 1, 2]
+    fixtures.sort(key=_fixture_pair_key)
+    assert [_fixture_pair_key(f) for f in fixtures] == [
+        ("2025-12-31", 8, 9),
+        ("2026-01-01", 1, 2),
+        ("2026-01-01", 5, 6),
+    ]
 
 
 def test_parse_fixture_card_walkover_from_versace_span() -> None:

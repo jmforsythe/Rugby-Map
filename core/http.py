@@ -53,6 +53,42 @@ class AntiBotDetectedError(Exception):
         self.log_text = log_text
 
 
+class AntiBotBackoffBudget:
+    """Caps cumulative anti-bot sleep so a long scrape cannot stall for hours.
+
+    Not thread-safe: give each worker its own budget rather than sharing one
+    across the thread pools in e.g. ``rugby.addresses``.
+    """
+
+    def __init__(self, max_seconds: float = 3600.0) -> None:
+        self.max_seconds = max_seconds
+        self.used_seconds = 0.0
+
+    @property
+    def remaining(self) -> float:
+        return max(0.0, self.max_seconds - self.used_seconds)
+
+    @property
+    def exhausted(self) -> bool:
+        return self.remaining <= 0
+
+    def sleep(self, requested: float) -> float:
+        """Sleep up to *requested* seconds; raise when the budget is exhausted."""
+        if self.exhausted:
+            raise AntiBotDetectedError(
+                f"anti-bot backoff budget exhausted ({self.max_seconds:.0f}s)"
+            )
+        actual = min(requested, self.remaining)
+        if actual > 0:
+            time.sleep(actual)
+            self.used_seconds += actual
+        if actual < requested:
+            raise AntiBotDetectedError(
+                f"anti-bot backoff budget exhausted after {self.used_seconds:.0f}s"
+            )
+        return actual
+
+
 _thread_local = threading.local()
 _print_lock = threading.Lock()
 
@@ -118,17 +154,31 @@ def _curl_fallback(url: str, referer: str | None, timeout: int) -> requests.Resp
     return resp
 
 
+def _anti_bot_sleep(seconds: float, budget: AntiBotBackoffBudget | None) -> None:
+    if budget is not None:
+        budget.sleep(seconds)
+    else:
+        time.sleep(seconds)
+
+
 def make_request(
     url: str,
     referer: str | None = None,
     max_retries: int = 3,
     timeout: int = 30,
     delay_seconds: float = 2.0,
+    antibot_budget: AntiBotBackoffBudget | None = None,
+    antibot_backoff_base: float = 5.0,
+    antibot_backoff_cap: float = 600.0,
 ) -> requests.Response:
     """Make an HTTP GET request with retry logic and exponential backoff.
 
     Falls back to curl when the requests library receives a Cloudflare 202
     challenge (TLS fingerprint mismatch).
+
+    Anti-bot responses (202/403) retry with exponential backoff, doubling from
+    *antibot_backoff_base* up to *antibot_backoff_cap* per wait. Pass an
+    *antibot_budget* to bound the cumulative wait across many calls.
     """
     for attempt in range(max_retries):
         try:
@@ -142,6 +192,19 @@ def make_request(
                 raise AntiBotDetectedError(f"{response.status_code} code")
             response.raise_for_status()
             return response
+
+        except AntiBotDetectedError as exc:
+            if attempt == max_retries - 1:
+                raise
+            backoff = min(antibot_backoff_base * (2**attempt), antibot_backoff_cap)
+            logger.warning(
+                "Anti-bot detection (%s); backing off %.0fs before retry %d/%d",
+                exc,
+                backoff,
+                attempt + 2,
+                max_retries,
+            )
+            _anti_bot_sleep(backoff, antibot_budget)
 
         except requests.exceptions.RequestException:
             if attempt == max_retries - 1:

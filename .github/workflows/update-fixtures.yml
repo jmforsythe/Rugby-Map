@@ -1,0 +1,150 @@
+name: Update Fixtures and Results
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season to refresh (blank = core.config.CURRENT_SEASON)"
+        required: false
+        type: string
+      deploy:
+        description: "Trigger the Pages deploy when fixtures change"
+        required: false
+        type: boolean
+        default: true
+  # Weekly refresh, once the RFU has published weekend results.
+  # Cron is UTC, so this is 07:00 BST in summer and 06:00 GMT in winter.
+  # Uncomment once a manual run has confirmed the RFU scrape works from a runner IP.
+  # schedule:
+  #   - cron: "0 6 * * 1"
+
+permissions:
+  # Commit the refreshed fixture_data back to main.
+  contents: write
+  # workflow_dispatch the Pages deploy: a push made with GITHUB_TOKEN does not
+  # raise a `push` event, so deploy.yml would never see this commit otherwise.
+  actions: write
+
+concurrency:
+  group: update-fixtures
+  cancel-in-progress: false
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Resolve season
+        id: season
+        env:
+          SEASON_INPUT: ${{ inputs.season }}
+        run: |
+          set -eo pipefail
+          season="$SEASON_INPUT"
+          if [ -z "$season" ]; then
+            season="$(python -c 'from core.config import CURRENT_SEASON; print(CURRENT_SEASON)')"
+          fi
+          # Validated before use: this value reaches shell paths and `git add`.
+          if ! printf '%s' "$season" | grep -Eq '^[0-9]{4}-[0-9]{4}$'; then
+            echo "Invalid season: expected YYYY-YYYY, got '$season'"
+            exit 1
+          fi
+          if [ ! -d "data/rugby/fixture_data/$season" ]; then
+            echo "No committed fixture_data for $season; run rugby.fixtures locally first"
+            exit 1
+          fi
+          echo "Refreshing season: $season"
+          echo "season=$season" >> "$GITHUB_OUTPUT"
+
+      - name: Scrape fixtures and results
+        env:
+          SEASON: ${{ steps.season.outputs.season }}
+        run: |
+          # --from-fixture-data reuses the league_url recorded in each committed
+          # fixture file, so the run needs no RFU listing pages and no
+          # _meta_leagues_cache.json (gitignored, so never present here). It
+          # implies --force, which is required anyway: a played match only gains
+          # scores on an existing row, so the row count never changes and
+          # --only-incomplete would skip every complete league.
+          #
+          # Slower than the 1.0s local default because the RFU sits behind
+          # Cloudflare, which challenges datacenter runner IPs far more readily
+          # than a residential connection.
+          python -m rugby.fixtures --season "$SEASON" --from-fixture-data --delay 2.0
+
+      - name: Report per-league scrape errors
+        if: always()
+        env:
+          SEASON: ${{ steps.season.outputs.season }}
+        run: |
+          # Individual league failures are caught and logged rather than raised,
+          # so the run exits 0 with partial data. Surface them or they're invisible.
+          log="data/rugby/fixture_data/${SEASON}/scrape_errors.log"
+          if [ -f "$log" ]; then
+            {
+              echo "### Per-league scrape errors"
+              echo ''
+              echo '```'
+              cat "$log"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '### No per-league scrape errors' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit refreshed fixture data
+        id: commit
+        env:
+          SEASON: ${{ steps.season.outputs.season }}
+        run: |
+          set -eo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "data/rugby/fixture_data/${SEASON}"
+          if git diff --cached --quiet; then
+            echo "No fixture changes for ${SEASON}."
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo "### No fixture changes for ${SEASON}" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          count="$(git diff --cached --name-only | wc -l | tr -d ' ')"
+          git commit -m "Update ${SEASON} fixtures/results from RFU"
+          echo 'changed=true' >> "$GITHUB_OUTPUT"
+          echo "### Committed ${count} changed file(s) for ${SEASON}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Push to main
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          set -eo pipefail
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push rejected (attempt ${attempt}); rebasing onto origin/main"
+            git pull --rebase --autostash origin main
+          done
+          echo 'Could not push after 3 attempts.'
+          exit 1
+
+      # Rebuilds match-day maps, team pages and the stats dashboard against the
+      # new data. Skipped when nothing changed, so a quiet week costs one short job.
+      - name: Trigger Pages deploy
+        if: >-
+          steps.commit.outputs.changed == 'true' &&
+          (github.event_name != 'workflow_dispatch' || inputs.deploy)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main

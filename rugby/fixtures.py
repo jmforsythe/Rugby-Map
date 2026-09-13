@@ -700,6 +700,57 @@ def _discover_leagues(season: str) -> list[tuple[str, str, Path, bool]]:
     return leagues
 
 
+def _discover_leagues_from_fixture_data(season: str) -> list[tuple[str, str, Path, bool]]:
+    """Read fixture_data/<season>/ to get (league_name, league_url, relative_output_path) tuples.
+
+    Each fixture file records the ``league_url`` it was scraped from, including any
+    meta-cache division override that applied at the time, so a refresh can reuse
+    the division that last produced data without reading RFU listing pages or
+    ``_meta_leagues_cache.json`` (gitignored, so absent in CI).
+
+    Leagues with no league_data counterpart come along for free: both
+    ``_fixture_only_leagues.json`` entries and ``_EXTRA_FIXTURE_URLS_BY_SEASON``
+    playoff pages already have committed fixture files.
+
+    Only refreshes leagues that already have a file — a league added since the last
+    scrape needs a league_data-driven run to create one.
+    """
+    fixture_dir = DATA_DIR / "fixture_data" / season
+    if not fixture_dir.exists():
+        logger.error("Fixture data directory not found: %s", fixture_dir)
+        return []
+
+    leagues: list[tuple[str, str, Path, bool]] = []
+    for json_file in sorted(fixture_dir.rglob("*.json")):
+        if json_file.name.startswith("_"):
+            continue
+        with open(json_file, encoding="utf-8") as f:
+            data: FixtureLeague = json.load(f)
+
+        league_name = data.get("league_name", "")
+        if not league_name:
+            logger.warning("Skipping %s — no league_name recorded", json_file)
+            continue
+        if _is_junior_league(league_name):
+            continue
+
+        league_url = data.get("league_url", "")
+        if not league_url:
+            logger.warning("Skipping %s — no league_url recorded to refresh from", league_name)
+            continue
+        if "englandrugby.com" not in league_url.lower():
+            logger.warning(
+                "Skipping %s — league_url must be RFU (englandrugby.com): %s",
+                league_name,
+                league_url,
+            )
+            continue
+
+        leagues.append((league_name, league_url, json_file.relative_to(fixture_dir), False))
+
+    return leagues
+
+
 def _write_timestamp(output_dir: Path) -> None:
     """Write an ISO timestamp to ``last_updated.txt`` inside *output_dir*."""
     ts_path = output_dir / "last_updated.txt"
@@ -726,6 +777,16 @@ def main() -> None:
             "Re-scrape leagues even if fixture files already exist. "
             "URLs come from league_data (with meta-cache overrides when the division "
             "changed); use ``rugby.scrape --force`` to refresh league_data itself."
+        ),
+    )
+    parser.add_argument(
+        "--from-fixture-data",
+        action="store_true",
+        help=(
+            "Discover leagues from existing fixture_data/<season>/ files rather than "
+            "league_data, reusing each file's recorded league_url. Refreshes results "
+            "without needing the gitignored meta-league cache, so it suits unattended "
+            "runs; implies --force. Will not pick up newly added leagues."
         ),
     )
     parser.add_argument(
@@ -766,8 +827,16 @@ def main() -> None:
     season = args.season or CURRENT_SEASON
     logger.info("Scraping fixtures for season: %s", season)
 
-    leagues = _discover_leagues(season)
-    logger.info("Found %d leagues in league_data/%s/", len(leagues), season)
+    if args.from_fixture_data:
+        leagues = _discover_leagues_from_fixture_data(season)
+        logger.info("Found %d leagues in fixture_data/%s/", len(leagues), season)
+    else:
+        leagues = _discover_leagues(season)
+        logger.info("Found %d leagues in league_data/%s/", len(leagues), season)
+
+    # Every league found in fixture_data already has a file whose URL matches by
+    # construction, so the skip-existing check below would skip all of them.
+    rescrape_existing = args.force or args.only_incomplete or args.from_fixture_data
 
     incomplete_paths: set[str] = set()
     if args.only_incomplete:
@@ -793,7 +862,7 @@ def main() -> None:
             continue
 
         skip_existing = False
-        if output_path.exists() and not args.force and not args.only_incomplete:
+        if output_path.exists() and not rescrape_existing:
             try:
                 existing = json.loads(output_path.read_text(encoding="utf-8"))
                 existing_url = existing.get("league_url", "")
@@ -876,8 +945,16 @@ def main() -> None:
     if not extra_urls:
         logger.info("No extra fixture URLs configured for season %s", season)
 
+    # Extra playoff pages have committed fixture files, so --from-fixture-data
+    # discovers them as normal leagues; without this they'd be scraped twice.
+    discovered_keys = {rfu_league_url_key(url) for _, url, _, _ in leagues}
+
     for url_template in extra_urls:
         url = _resolve_extra_fixture_url(url_template, season)
+        if rfu_league_url_key(url) in discovered_keys:
+            logger.info("Skipping extra URL already covered by league discovery: %s", url)
+            skipped += 1
+            continue
 
         try:
             fixtures, page_heading = scrape_fixtures_from_league(url, url)

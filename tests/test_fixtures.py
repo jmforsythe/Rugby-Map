@@ -181,6 +181,43 @@ def test_parse_fixture_card_walkover_from_versace_span() -> None:
     assert "away_score" not in fixture
 
 
+def test_discover_leagues_from_fixture_data(tmp_path: Path, monkeypatch) -> None:
+    import rugby.fixtures as fx
+
+    fixture_dir = tmp_path / "fixture_data" / "2026-2027"
+    (fixture_dir / "merit" / "Essex").mkdir(parents=True)
+
+    def write(relative: str, payload: dict[str, object]) -> None:
+        (fixture_dir / relative).write_text(json.dumps(payload), encoding="utf-8")
+
+    rfu = "https://www.englandrugby.com/fixtures-and-results/search-results"
+    write(
+        "Championship.json",
+        {"league_name": "Championship", "league_url": f"{rfu}?division=1", "fixtures": []},
+    )
+    write(
+        "merit/Essex/Division_2.json",
+        {"league_name": "Division 2", "league_url": f"{rfu}?division=2", "fixtures": []},
+    )
+    write(
+        "Counties_2_Essex_U20.json",
+        {"league_name": "Counties 2 Essex U20", "league_url": f"{rfu}?division=3", "fixtures": []},
+    )
+    write("No_Url.json", {"league_name": "No Url", "league_url": "", "fixtures": []})
+    write(
+        "Offsite.json",
+        {"league_name": "Offsite", "league_url": "https://example.com/x", "fixtures": []},
+    )
+
+    monkeypatch.setattr(fx, "DATA_DIR", tmp_path)
+    discovered = fx._discover_leagues_from_fixture_data("2026-2027")
+
+    assert discovered == [
+        ("Championship", f"{rfu}?division=1", Path("Championship.json"), False),
+        ("Division 2", f"{rfu}?division=2", Path("merit/Essex/Division_2.json"), False),
+    ]
+
+
 def test_fixture_only_merit_leagues_use_competition_subdir(tmp_path: Path) -> None:
     sidecar = [
         {

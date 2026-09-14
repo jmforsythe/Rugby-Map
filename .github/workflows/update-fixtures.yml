@@ -14,9 +14,8 @@ on:
         default: true
   # Weekly refresh, once the RFU has published weekend results.
   # Cron is UTC, so this is 07:00 BST in summer and 06:00 GMT in winter.
-  # Uncomment once a manual run has confirmed the RFU scrape works from a runner IP.
-  # schedule:
-  #   - cron: "0 6 * * 1"
+  schedule:
+    - cron: "0 6 * * 1"
 
 permissions:
   # Commit the refreshed fixture_data back to main.

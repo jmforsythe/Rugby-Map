@@ -743,6 +743,60 @@ def test_tier7_herts_middx_split_keeps_parent_column_position() -> None:
     ]
 
 
+def _tier7_merit_lg(name: str, competition: str):
+    from rugby.pyramid_image import LeagueData
+
+    return LeagueData(
+        tier_num=7,
+        tier_name="",
+        league_name=name,
+        teams=[],
+        team_count=0,
+        merit_geocoded_competition=competition,
+        merit_local_tier=1,
+    )
+
+
+def test_tier7_merit_inserted_after_nearest_national_centroid(monkeypatch) -> None:
+    """Tier-7 merit rows sit just after the closest national Counties 1 column."""
+    import rugby.pyramid_image as pi
+
+    national = [
+        _tier7_lg("Counties 1 Tribute Ale Western West", "1699"),
+        _tier7_lg("Counties 1 Kent", "261"),
+    ]
+    merit = [_tier7_merit_lg("Merit 1 North", "Herts_Middlesex")]
+    centroids = {
+        pi._tier7_league_centroid_key(national[0]): (50.0, -5.0),
+        pi._tier7_league_centroid_key(national[1]): (51.2, 0.5),
+        pi._tier7_league_centroid_key(merit[0]): (51.0, 0.2),
+    }
+    monkeypatch.setattr(pi, "_tier7_league_centroids", lambda _season, _leagues: centroids)
+
+    ordered = pi._tier7_ordered_leagues(national + merit, "2020-2021")
+    assert [x.league_name for x in ordered] == [
+        "Counties 1 Tribute Ale Western West",
+        "Counties 1 Kent",
+        "Merit 1 North",
+    ]
+
+
+def test_tier7_merit_without_centroid_falls_back_to_row_end(monkeypatch) -> None:
+    """Merit rows with no geocoded teams stay at the end of the tier-7 row."""
+    import rugby.pyramid_image as pi
+
+    national = [_tier7_lg("Counties 1 Kent", "261")]
+    merit = [_tier7_merit_lg("Merit 1 North", "Herts_Middlesex")]
+    centroids = {pi._tier7_league_centroid_key(national[0]): (51.2, 0.5)}
+    monkeypatch.setattr(pi, "_tier7_league_centroids", lambda _season, _leagues: centroids)
+
+    ordered = pi._tier7_ordered_leagues(national + merit, "2020-2021")
+    assert [x.league_name for x in ordered] == [
+        "Counties 1 Kent",
+        "Merit 1 North",
+    ]
+
+
 def test_tier7_unslotted_league_sorts_to_end_of_its_own_block() -> None:
     """An unrecognised tail stays inside its ROC block rather than scrambling the row."""
     from rugby.pyramid_image import _tier7_ordered_leagues

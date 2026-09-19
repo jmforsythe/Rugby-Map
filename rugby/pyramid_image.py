@@ -81,7 +81,14 @@ from core.slugs import (
 from core.slugs import stem_wants_full_png as _stem_wants_full_png
 from rugby import DATA_DIR, short_season
 from rugby.addresses import team_lower_xv_roman, team_name_to_club_name
-from rugby.clubs import load_geocoded_league
+from rugby.clubs import (
+    load_club_addresses,
+    load_club_geocodes,
+    load_geocoded_league,
+    load_rfu_club_coords,
+    load_team_club_map,
+)
+from rugby.distance_lookup import haversine_km
 from rugby.tiers import (
     LEAGUE_TITLE_SPONSOR_PHRASES,
     _strip_sponsor_prefix,
@@ -2594,21 +2601,21 @@ def load_pyramid_leagues_with_merit(season: str) -> list[LeagueData]:
 # Regional 1) come from ``data/rugby/tier_mappings/<season>.json`` (same file as the
 # Counties stem). Siblings under each parent keep JSON insertion order **within** the
 # same RFU regional competition (``competition=`` on ``league_url``); competition
-# blocks are ordered South West → Midlands → London & SE → Northern (see
-# :data:`RFU_REGIONAL_COMPETITION_ORDER`).
+# blocks are ordered South West → Midlands → Northern → London & SE (see
+# :data:`RFU_ROC_BLOCK_ORDER`).
 
 
 # RFU meta-league / regional organising competition IDs (``rugby.scrape._PYRAMID_COMPETITIONS``).
-RFU_REGIONAL_COMPETITION_ORDER: tuple[str, ...] = (
+# Single west→east block sequence for tiers 5–7 (South West → Midlands → Northern → London & SE).
+RFU_ROC_BLOCK_ORDER: tuple[str, ...] = (
     "1699",  # South West
     "1597",  # Midlands
-    "261",  # London and SE
     "1623",  # Northern
+    "261",  # London and SE
 )
+RFU_REGIONAL_COMPETITION_ORDER = RFU_ROC_BLOCK_ORDER
 RFU_NATIONAL_LEAGUES_COMPETITION = "1605"
-_PYRAMID_REGIONAL_COMP_RANK: dict[str, int] = {
-    cid: i for i, cid in enumerate(RFU_REGIONAL_COMPETITION_ORDER)
-}
+_PYRAMID_REGIONAL_COMP_RANK: dict[str, int] = {cid: i for i, cid in enumerate(RFU_ROC_BLOCK_ORDER)}
 
 
 def _rfu_competition_id_from_url(league_url: str | None) -> str:
@@ -5706,6 +5713,8 @@ def _tier67_separator_bar_svg() -> str:
 # competition (``competition=`` on ``league_url``) in the fixed :data:`TIER7_ROC_BLOCK_ORDER`
 # sequence, then by canonical column slot within each block (:data:`_TIER7_ROC_COLUMN_SLOTS`).
 # Neither depends on the season, so this row keeps the same shape across all seasons.
+# Rare merged merit rows at absolute tier 7 (``pyramid_All_Leagues`` only) are inserted
+# immediately after the national Counties 1 league whose team centroid is closest.
 # Tiers 8–11 remain alphabetically sorted. Legacy ``tier7_column_order`` in tier_mappings JSON
 # is still read for cross-season merge but no longer drives render order.
 #
@@ -5952,12 +5961,7 @@ def _merit_parent_aligned_band_placements(
 # Counties 1 row (tier 7): fixed RFU regional organising competition (ROC) block order,
 # then a canonical column slot within each block. Both are season-independent so the row
 # keeps the same shape from 1999-2000 to the current season.
-TIER7_ROC_BLOCK_ORDER: tuple[str, ...] = (
-    "1699",  # South West
-    "1597",  # Midlands
-    "1623",  # Northern
-    "261",  # London and SE
-)
+TIER7_ROC_BLOCK_ORDER = RFU_ROC_BLOCK_ORDER
 _TIER7_ROC_BLOCK_RANK: dict[str, int] = {c: i for i, c in enumerate(TIER7_ROC_BLOCK_ORDER)}
 
 # Canonical left-to-right column slots per ROC. Each slot lists every sponsor-stripped tail
@@ -6139,6 +6143,142 @@ def _tier7_roc_column_slot(roc: str, tail: str) -> int | None:
     return entry[1]
 
 
+def _tier7_league_centroid_key(lg: LeagueData) -> tuple[str, str]:
+    """Lookup key for tier-7 centroid maps: ``(merit_competition or "", league_name)``."""
+    return (lg.merit_geocoded_competition or "", lg.league_name)
+
+
+def _geocoded_league_centroid(data: dict) -> tuple[float, float] | None:
+    """Mean team lat/lon for a :func:`load_geocoded_league` payload, or ``None`` when empty."""
+    lats: list[float] = []
+    lons: list[float] = []
+    for team in data.get("teams") or ():
+        lat = team.get("latitude")
+        lon = team.get("longitude")
+        if isinstance(lat, int | float) and isinstance(lon, int | float):
+            lats.append(float(lat))
+            lons.append(float(lon))
+    if not lats:
+        return None
+    return sum(lats) / len(lats), sum(lons) / len(lons)
+
+
+@functools.lru_cache(maxsize=64)
+def _season_league_path_index(season: str) -> dict[tuple[str, str], Path]:
+    """Map ``(merit_competition or "", league_name)`` → ``league_data`` JSON path."""
+    season_dir = LEAGUE_DATA_DIR / season
+    if not season_dir.is_dir():
+        return {}
+    index: dict[tuple[str, str], Path] = {}
+    for filepath in season_dir.rglob("*.json"):
+        if filepath.name.startswith("_"):
+            continue
+        rel = filepath.relative_to(season_dir)
+        comp = rel.parts[1] if len(rel.parts) >= 3 and rel.parts[0] == "merit" else ""
+        try:
+            with open(filepath, encoding="utf-8") as f:
+                payload = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+        name = payload.get("league_name", filepath.stem)
+        if isinstance(name, str) and name.strip():
+            index[(comp, name.strip())] = filepath
+    return index
+
+
+def _tier7_league_centroids(
+    season: str,
+    leagues: list[LeagueData],
+) -> dict[tuple[str, str], tuple[float, float]]:
+    """Mean team coordinates per tier-7 league from geocoded ``league_data`` JSON."""
+    if not leagues:
+        return {}
+    path_index = _season_league_path_index(season)
+    team_club_map = load_team_club_map()
+    club_addresses = load_club_addresses()
+    club_geocodes = load_club_geocodes()
+    rfu_club_coords = load_rfu_club_coords()
+    out: dict[tuple[str, str], tuple[float, float]] = {}
+    for lg in leagues:
+        key = _tier7_league_centroid_key(lg)
+        if key in out:
+            continue
+        filepath = path_index.get(key)
+        if filepath is None:
+            continue
+        data = load_geocoded_league(
+            filepath,
+            team_club_map=team_club_map,
+            club_addresses=club_addresses,
+            club_geocodes=club_geocodes,
+            rfu_club_coords=rfu_club_coords,
+        )
+        centroid = _geocoded_league_centroid(data)
+        if centroid is not None:
+            out[key] = centroid
+    return out
+
+
+def _tier7_nearest_national_anchor_index(
+    merit: LeagueData,
+    national_ordered: list[LeagueData],
+    centroids: dict[tuple[str, str], tuple[float, float]],
+) -> tuple[int, float]:
+    """Index of the closest national tier-7 league and the distance in km."""
+    merit_centroid = centroids.get(_tier7_league_centroid_key(merit))
+    if merit_centroid is None:
+        return len(national_ordered), float("inf")
+    best_idx = len(national_ordered)
+    best_dist = float("inf")
+    for idx, nat in enumerate(national_ordered):
+        nat_centroid = centroids.get(_tier7_league_centroid_key(nat))
+        if nat_centroid is None:
+            continue
+        dist = haversine_km(
+            merit_centroid[0],
+            merit_centroid[1],
+            nat_centroid[0],
+            nat_centroid[1],
+        )
+        if dist < best_dist or (dist == best_dist and idx < best_idx):
+            best_idx = idx
+            best_dist = dist
+    return best_idx, best_dist
+
+
+def _tier7_insert_merit_after_nearest_national(
+    national_ordered: list[LeagueData],
+    merit_leagues: list[LeagueData],
+    centroids: dict[tuple[str, str], tuple[float, float]],
+) -> list[LeagueData]:
+    """Place each tier-7 merit row immediately after its closest national Counties 1 column."""
+    if not merit_leagues:
+        return national_ordered
+
+    merit_anchors: list[tuple[int, float, LeagueData]] = []
+    for merit in merit_leagues:
+        anchor_idx, dist = _tier7_nearest_national_anchor_index(merit, national_ordered, centroids)
+        merit_anchors.append((anchor_idx, dist, merit))
+
+    buckets: dict[int, list[tuple[float, LeagueData]]] = defaultdict(list)
+    trailing: list[LeagueData] = []
+    for anchor_idx, dist, merit in merit_anchors:
+        if anchor_idx >= len(national_ordered):
+            trailing.append(merit)
+        else:
+            buckets[anchor_idx].append((dist, merit))
+
+    out: list[LeagueData] = []
+    for idx, nat in enumerate(national_ordered):
+        out.append(nat)
+        grouped = buckets.get(idx, [])
+        grouped.sort(key=lambda pair: (pair[0], _stem_sort_key_league_name(pair[1].league_name)))
+        out.extend(lg for _, lg in grouped)
+    trailing.sort(key=lambda lg: _stem_sort_key_league_name(lg.league_name))
+    out.extend(trailing)
+    return out
+
+
 def _tier7_ordered_leagues(
     leagues: list[LeagueData],
     season: str,
@@ -6152,32 +6292,43 @@ def _tier7_ordered_leagues(
     :data:`_TIER7_ROC_COLUMN_SLOTS`, so neither depends on the season, the feeder tree, or
     RFU sponsor/renaming churn. Leagues whose ROC or tail is unrecognised sort to the end of
     their block (or the end of the row) by name, and are logged so new leagues get a slot.
+
+    Merged merit rows at absolute tier 7 are inserted immediately after the national Counties 1
+    league whose team centroid is closest (``pyramid_All_Leagues`` only).
     """
-    if not any(_league_rfu_competition_id(lg) in _TIER7_ROC_BLOCK_RANK for lg in leagues):
-        return _tier7_ordered_leagues_legacy(leagues, season)
+    national = [lg for lg in leagues if lg.merit_geocoded_competition is None]
+    merit = [lg for lg in leagues if lg.merit_geocoded_competition is not None]
 
-    unknown_block = len(TIER7_ROC_BLOCK_ORDER)
-    unslotted: list[str] = []
+    if not any(_league_rfu_competition_id(lg) in _TIER7_ROC_BLOCK_RANK for lg in national):
+        ordered = _tier7_ordered_leagues_legacy(national, season)
+    else:
+        unknown_block = len(TIER7_ROC_BLOCK_ORDER)
+        unslotted: list[str] = []
 
-    def sort_key(lg: LeagueData) -> tuple[int, int, int, tuple[object, ...]]:
-        roc = _league_rfu_competition_id(lg)
-        block = _TIER7_ROC_BLOCK_RANK.get(roc, unknown_block)
-        name_key = _stem_sort_key_league_name(lg.league_name)
-        slot = _tier7_roc_column_slot(roc, _tier7_normalized_tail(lg.league_name, season))
-        if slot is None:
-            if block != unknown_block:
-                unslotted.append(lg.league_name)
-            return (block, 1, 0, name_key)
-        return (block, 0, slot, name_key)
+        def sort_key(lg: LeagueData) -> tuple[int, int, int, tuple[object, ...]]:
+            roc = _league_rfu_competition_id(lg)
+            block = _TIER7_ROC_BLOCK_RANK.get(roc, unknown_block)
+            name_key = _stem_sort_key_league_name(lg.league_name)
+            slot = _tier7_roc_column_slot(roc, _tier7_normalized_tail(lg.league_name, season))
+            if slot is None:
+                if block != unknown_block:
+                    unslotted.append(lg.league_name)
+                return (block, 1, 0, name_key)
+            return (block, 0, slot, name_key)
 
-    ordered = sorted(leagues, key=sort_key)
-    if unslotted:
-        logger.warning(
-            "Tier 7: no canonical ROC column slot for %s — placed at the end of their "
-            "competition block; add the sponsor-stripped tail to _TIER7_ROC_COLUMN_SLOTS.",
-            ", ".join(sorted(unslotted)),
-        )
-    return ordered
+        ordered = sorted(national, key=sort_key)
+        if unslotted:
+            logger.warning(
+                "Tier 7: no canonical ROC column slot for %s — placed at the end of their "
+                "competition block; add the sponsor-stripped tail to _TIER7_ROC_COLUMN_SLOTS.",
+                ", ".join(sorted(unslotted)),
+            )
+
+    if not merit:
+        return ordered
+
+    centroids = _tier7_league_centroids(season, ordered + merit)
+    return _tier7_insert_merit_after_nearest_national(ordered, merit, centroids)
 
 
 def _sorted_stem_leagues_at_tier(

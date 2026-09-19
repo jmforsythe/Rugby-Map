@@ -56,6 +56,7 @@ import math
 import re
 import sys
 import time
+import urllib.parse
 from collections import defaultdict
 from collections.abc import Callable, Iterator, Sequence
 from concurrent.futures import ThreadPoolExecutor
@@ -618,6 +619,8 @@ class LeagueData:
     merit_chain_placeholder: bool = False
     #: Diagram-only spacer filling a parent column when no real (or bridge) league maps there (sparse rows).
     merit_column_spacer: bool = False
+    #: RFU league page URL (``competition=`` encodes regional organising competition below NL2).
+    league_url: str | None = None
 
 
 @dataclass
@@ -2291,12 +2294,16 @@ def _load_league_file(
     tc = data.get("team_count")
     team_count = int(tc) if isinstance(tc, int) else len(teams_raw)
 
+    league_url_raw = data.get("league_url")
+    league_url = str(league_url_raw).strip() if isinstance(league_url_raw, str) else None
+
     return LeagueData(
         tier_num=tier_num,
         tier_name=tier_name,
         league_name=data.get("league_name", filepath.stem),
         teams=teams,
         team_count=team_count,
+        league_url=league_url or None,
     )
 
 
@@ -2576,7 +2583,7 @@ def load_pyramid_leagues_with_merit(season: str) -> list[LeagueData]:
 
 
 # ---------------------------------------------------------------------------
-# Tiers 4-6 nesting: leaf ordering driven by feeder hierarchy + JSON insertion order
+# Tiers 4-6 nesting: feeder hierarchy + RFU regional competition clustering
 # ---------------------------------------------------------------------------
 #
 # Tiers 4-6 nest using each parent's visible trapezoid span (pyramid slants plus
@@ -2585,8 +2592,56 @@ def load_pyramid_leagues_with_merit(season: str) -> list[LeagueData]:
 # Regional 1, and Regional 2 dividers stay vertically aligned and heavier leagues gain
 # horizontal space. Parent links for tiers 5 and 6 (Regional 1 -> NL2, Regional 2 ->
 # Regional 1) come from ``data/rugby/tier_mappings/<season>.json`` (same file as the
-# Counties stem). JSON insertion order within each tier dictates the left-to-right
-# ordering of siblings under each parent, so the layout is fully driven by the JSON.
+# Counties stem). Siblings under each parent keep JSON insertion order **within** the
+# same RFU regional competition (``competition=`` on ``league_url``); competition
+# blocks are ordered South West → Midlands → London & SE → Northern (see
+# :data:`RFU_REGIONAL_COMPETITION_ORDER`).
+
+
+# RFU meta-league / regional organising competition IDs (``rugby.scrape._PYRAMID_COMPETITIONS``).
+RFU_REGIONAL_COMPETITION_ORDER: tuple[str, ...] = (
+    "1699",  # South West
+    "1597",  # Midlands
+    "261",  # London and SE
+    "1623",  # Northern
+)
+RFU_NATIONAL_LEAGUES_COMPETITION = "1605"
+_PYRAMID_REGIONAL_COMP_RANK: dict[str, int] = {
+    cid: i for i, cid in enumerate(RFU_REGIONAL_COMPETITION_ORDER)
+}
+
+
+def _rfu_competition_id_from_url(league_url: str | None) -> str:
+    """Return RFU ``competition=`` query value from a league page URL, or ``""``."""
+    if not league_url:
+        return ""
+    params = urllib.parse.parse_qs(urllib.parse.urlparse(league_url).query)
+    comp_ids = params.get("competition", [])
+    return comp_ids[0] if comp_ids else ""
+
+
+def _league_rfu_competition_id(lg: LeagueData) -> str:
+    return _rfu_competition_id_from_url(lg.league_url)
+
+
+def _cluster_feeder_child_names(
+    child_names: list[str],
+    leagues_by_tier: dict[int, list[LeagueData]],
+    child_tier: int,
+) -> list[str]:
+    """Stable-sort feeder siblings so leagues in the same RFU regional comp sit adjacent."""
+    if len(child_names) <= 1:
+        return list(child_names)
+    by_fk = _leagues_by_feeder_key(leagues_by_tier.get(child_tier, []))
+
+    def comp_rank(name: str) -> int:
+        lg = by_fk.get(_feeder_match_key(name))
+        if lg is None:
+            return len(_PYRAMID_REGIONAL_COMP_RANK) + 1
+        cid = _league_rfu_competition_id(lg)
+        return _PYRAMID_REGIONAL_COMP_RANK.get(cid, len(_PYRAMID_REGIONAL_COMP_RANK) + 1)
+
+    return sorted(child_names, key=comp_rank)
 
 
 def _parents_for_child_tier(
@@ -2970,10 +3025,10 @@ def order_pyramid_leaves(
     (and grandparent) are adjacent.
 
     Walks the feeder tree top-down: NL2 (tier 4) ordered West→North→East; each NL2's R1
-    children in JSON order; each R1's R2 children in JSON order. Parent assignments come
-    from ``parent_overrides`` (the per-season ``tier_mappings`` JSON). Any tier 6 league
-    missing from the feeder map is appended at the end so it still appears in the visual
-    (with no parent linkage).
+    children and each R1's R2 children clustered by RFU regional competition (JSON order
+    preserved within each comp block). Parent assignments come from ``parent_overrides``
+    (the per-season ``tier_mappings`` JSON). Any tier 6 league missing from the feeder
+    map is appended at the end so it still appears in the visual (with no parent linkage).
     """
     tier_6_by_feeder = _leagues_by_feeder_key(leagues_by_tier.get(6, []))
     tier_4_ordered = _ordered_tier4_leagues(leagues_by_tier.get(4, []))
@@ -2984,8 +3039,18 @@ def order_pyramid_leaves(
     ordered: list[LeagueData] = []
 
     for nl2 in tier_4_ordered:
-        for r1_name in t4_to_t5.get(_feeder_match_key(nl2.league_name), []):
-            for r2_name in t5_to_t6.get(_feeder_match_key(r1_name), []):
+        r1_names = _cluster_feeder_child_names(
+            t4_to_t5.get(_feeder_match_key(nl2.league_name), []),
+            leagues_by_tier,
+            5,
+        )
+        for r1_name in r1_names:
+            r2_names = _cluster_feeder_child_names(
+                t5_to_t6.get(_feeder_match_key(r1_name), []),
+                leagues_by_tier,
+                6,
+            )
+            for r2_name in r2_names:
                 lg = tier_6_by_feeder.get(_feeder_match_key(r2_name))
                 if lg is not None and lg.league_name not in seen:
                     ordered.append(lg)
@@ -3541,8 +3606,18 @@ def compute_nested_tier56_layout(
 
     for nl2 in t4_ordered:
         nk = nl2.league_name
-        for r1_name in t4_to_t5.get(_feeder_match_key(nk), []):
-            for r2_name in t5_to_t6.get(_feeder_match_key(r1_name), []):
+        r1_names = _cluster_feeder_child_names(
+            t4_to_t5.get(_feeder_match_key(nk), []),
+            leagues_by_tier,
+            5,
+        )
+        for r1_name in r1_names:
+            r2_names = _cluster_feeder_child_names(
+                t5_to_t6.get(_feeder_match_key(r1_name), []),
+                leagues_by_tier,
+                6,
+            )
+            for r2_name in r2_names:
                 lg = tier6_by_feeder.get(_feeder_match_key(r2_name))
                 if lg is not None:
                     tier6_ordered.append(lg)
@@ -3561,7 +3636,12 @@ def compute_nested_tier56_layout(
 
     tier5_expected_names: list[str] = []
     for nl2 in t4_ordered:
-        for r1_name in t4_to_t5.get(_feeder_match_key(nl2.league_name), []):
+        r1_names = _cluster_feeder_child_names(
+            t4_to_t5.get(_feeder_match_key(nl2.league_name), []),
+            leagues_by_tier,
+            5,
+        )
+        for r1_name in r1_names:
             lg5 = tier5_by_feeder.get(_feeder_match_key(r1_name))
             if lg5 is not None:
                 tier5_expected_names.append(lg5.league_name)
@@ -3616,7 +3696,11 @@ def compute_nested_tier56_layout(
 
     for i_nl2, nl2 in enumerate(t4_ordered):
         outer_l, outer_r = _outer_span_for_cell(i_nl2, n4, tier4_cells_list, y_alloc5)
-        r1_feed = t4_to_t5.get(_feeder_match_key(nl2.league_name), [])
+        r1_feed = _cluster_feeder_child_names(
+            t4_to_t5.get(_feeder_match_key(nl2.league_name), []),
+            leagues_by_tier,
+            5,
+        )
         r1_kids: list[LeagueData] = []
         for r1_name in r1_feed:
             lg = tier5_by_feeder.get(_feeder_match_key(r1_name))
@@ -3652,7 +3736,11 @@ def compute_nested_tier56_layout(
     name_to_idx = {lg.league_name: i for i, lg in enumerate(tier6_ordered)}
     for j, r1 in enumerate(tier5_order_list):
         outer_l, outer_r = _outer_span_for_cell(j, n5, tier5_cells_ordered, y_alloc6)
-        r2_feed = t5_to_t6.get(_feeder_match_key(r1.league_name), [])
+        r2_feed = _cluster_feeder_child_names(
+            t5_to_t6.get(_feeder_match_key(r1.league_name), []),
+            leagues_by_tier,
+            6,
+        )
         kids: list[LeagueData] = []
         for r2_name in r2_feed:
             lg = tier6_by_feeder.get(_feeder_match_key(r2_name))
@@ -5614,10 +5702,12 @@ def _tier67_separator_bar_svg() -> str:
 # bands instead of collapsing when breadth sits on different absolute tiers (the older
 # ``max descendants on one tier`` heuristic missed stacked merit depth).
 #
-# Tier 7 (Counties 1) league columns are ordered left-to-right by the postfix-order index of
-# each league's chosen feeder parent in tiers 1–6 (``men`` tier ``"7"`` in tier_mappings JSON,
-# collected via the interactive linker). When no mappings exist, a fixed geographic-ish order
-# applies (see :data:`_TIER7_TAIL_SORT_ORDER`). Tiers 8–11 remain alphabetically sorted.
+# Tier 7 (Counties 1) league columns are ordered left-to-right by RFU regional organising
+# competition (``competition=`` on ``league_url``) in the fixed :data:`TIER7_ROC_BLOCK_ORDER`
+# sequence, then by canonical column slot within each block (:data:`_TIER7_ROC_COLUMN_SLOTS`).
+# Neither depends on the season, so this row keeps the same shape across all seasons.
+# Tiers 8–11 remain alphabetically sorted. Legacy ``tier7_column_order`` in tier_mappings JSON
+# is still read for cross-season merge but no longer drives render order.
 #
 # Parent override values in ``data/rugby/tier_mappings/<season>.json`` may be a single
 # string (one parent) or a JSON array (one stem cell stretched across the horizontal
@@ -5859,29 +5949,78 @@ def _merit_parent_aligned_band_placements(
     return out
 
 
-# Counties 1 row (tier 7): Western → Southern → Midlands blocks, then northern blocks,
-# home counties roughly clockwise — overrides alphabetical stem ordering for this tier only.
-_TIER7_TAIL_SORT_ORDER: tuple[str, ...] = (
-    "western west",
-    "western north",
-    "southern south",
-    "southern north",
-    "midlands west (south)",
-    "midlands west (north)",
-    "midlands east (south)",
-    "midlands east (north)",
-    "adm lancashire and cheshire",
-    "cumbria",
-    "durham and northumberland",
-    "yorkshire",
-    "eastern counties",
-    "essex",
-    "herts",
-    "middx",
-    "kent",
-    "surrey sussex",
-    "hampshire",
+# Counties 1 row (tier 7): fixed RFU regional organising competition (ROC) block order,
+# then a canonical column slot within each block. Both are season-independent so the row
+# keeps the same shape from 1999-2000 to the current season.
+TIER7_ROC_BLOCK_ORDER: tuple[str, ...] = (
+    "1699",  # South West
+    "1597",  # Midlands
+    "1623",  # Northern
+    "261",  # London and SE
 )
+_TIER7_ROC_BLOCK_RANK: dict[str, int] = {c: i for i, c in enumerate(TIER7_ROC_BLOCK_ORDER)}
+
+# Canonical left-to-right column slots per ROC. Each slot lists every sponsor-stripped tail
+# (:func:`_tier7_normalized_tail`) that RFU has used for that league, so renames keep the same
+# column: e.g. ``Wadworth Southern Counties North`` (2019-2020) and ``Counties 1 Tribute Ale
+# Southern North`` (2026-2027) both resolve to South West slot 0. Historical and current tails
+# coexist in one list because no two eras' names appear in the same season.
+_TIER7_ROC_COLUMN_SLOTS: dict[str, tuple[tuple[str, ...], ...]] = {
+    "1699": (  # South West — west (most remote) → east
+        ("western counties west", "western west"),
+        ("western counties north", "western north"),
+        ("southern counties north", "southern north"),
+        ("southern counties south", "southern south"),
+    ),
+    "1597": (  # Midlands
+        ("midlands 3 east (north)", "midlands 2 east (north)", "midlands east (north)"),
+        ("midlands 3 east (south)", "midlands 2 east (south)", "midlands east (south)"),
+        ("midlands 3 west (north)", "midlands 2 west (north)", "midlands west (north)"),
+        ("midlands 3 west (south)", "midlands 2 west (south)", "midlands west (south)"),
+    ),
+    "1623": (  # Northern
+        (
+            "north west 3",
+            "south lancs cheshire 1",
+            "south lancs cheshire division one",
+            "lancs cheshire division one",
+            "north two west",
+            "adm lancashire and cheshire",
+        ),
+        ("north lancs cumbria", "cumbria division one", "cumbria"),
+        (
+            "north east 3",
+            "durham northumberland division one",
+            "durham northumberland one",
+            "durham and northumberland",
+            "north east",
+        ),
+        ("yorkshire 1", "yorkshire division one", "yorkshire one", "yorkshire"),
+    ),
+    "261": (  # London and SE
+        ("london 3 north east", "london 2 north east"),
+        ("london 3 north west", "london 2 north west"),
+        ("london 3 south east", "london 2 south east"),
+        ("london 3 south west", "london 2 south west"),
+        ("eastern counties",),
+        ("essex",),
+        ("hampshire",),
+        # Herts/Middx ran as one league to 2024-2025 and split in 2025-2026; the successors
+        # keep the parent's column position so the row does not reshuffle around the split.
+        ("herts middx", "herts"),
+        ("middx",),
+        ("kent",),
+        ("surrey sussex",),
+    ),
+}
+
+# ``tail -> (roc competition id, slot index)`` flattened from :data:`_TIER7_ROC_COLUMN_SLOTS`.
+_TIER7_TAIL_TO_ROC_SLOT: dict[str, tuple[str, int]] = {
+    tail: (roc, slot_idx)
+    for roc, slots in _TIER7_ROC_COLUMN_SLOTS.items()
+    for slot_idx, tails in enumerate(slots)
+    for tail in tails
+}
 
 
 def _pyramid_above_tier7_postfix_order(
@@ -5912,7 +6051,12 @@ def _pyramid_above_tier7_postfix_order(
 
     def postfix_regional1(r1_name: str) -> None:
         fk_r1 = _feeder_match_key(r1_name)
-        for r2_name in t5_to_t6.get(fk_r1, []):
+        r2_names = _cluster_feeder_child_names(
+            t5_to_t6.get(fk_r1, []),
+            leagues_by_tier,
+            6,
+        )
+        for r2_name in r2_names:
             lg6 = by_tier_fk[6].get(_feeder_match_key(r2_name))
             if lg6 is not None:
                 emit(lg6)
@@ -5922,7 +6066,12 @@ def _pyramid_above_tier7_postfix_order(
 
     for nl2 in _ordered_tier4_leagues(leagues_by_tier.get(4, [])):
         fk4 = _feeder_match_key(nl2.league_name)
-        for r1_name in t4_to_t5.get(fk4, []):
+        r1_names = _cluster_feeder_child_names(
+            t4_to_t5.get(fk4, []),
+            leagues_by_tier,
+            5,
+        )
+        for r1_name in r1_names:
             postfix_regional1(r1_name)
         emit(nl2)
 
@@ -5966,15 +6115,28 @@ def _tier7_normalized_tail(league_name: str, season: str) -> str:
 
 
 def _tier7_ordered_leagues_legacy(leagues: list[LeagueData], season: str) -> list[LeagueData]:
-    """Tier‑7 left‑to‑right per :data:`_TIER7_TAIL_SORT_ORDER` when no JSON sort parents exist."""
-    order = {name: i for i, name in enumerate(_TIER7_TAIL_SORT_ORDER)}
+    """Tier‑7 fallback when no league carries a recognised ROC: canonical slots, then name."""
+    flat = [
+        tail
+        for roc in TIER7_ROC_BLOCK_ORDER
+        for tails in _TIER7_ROC_COLUMN_SLOTS.get(roc, ())
+        for tail in tails
+    ]
+    order = {name: i for i, name in enumerate(flat)}
 
     def sort_key(lg: LeagueData) -> tuple[int, tuple[object, ...]]:
         nt = _tier7_normalized_tail(lg.league_name, season)
-        idx = order.get(nt, len(_TIER7_TAIL_SORT_ORDER))
-        return idx, _stem_sort_key_league_name(lg.league_name)
+        return order.get(nt, len(flat)), _stem_sort_key_league_name(lg.league_name)
 
     return sorted(leagues, key=sort_key)
+
+
+def _tier7_roc_column_slot(roc: str, tail: str) -> int | None:
+    """Canonical column index of ``tail`` within its ROC block, or ``None`` when unlisted."""
+    entry = _TIER7_TAIL_TO_ROC_SLOT.get(tail)
+    if entry is None or entry[0] != roc:
+        return None
+    return entry[1]
 
 
 def _tier7_ordered_leagues(
@@ -5984,27 +6146,38 @@ def _tier7_ordered_leagues(
     leagues_by_tier: dict[int, list[LeagueData]] | None = None,
     parent_overrides: StemParentOverrides | None = None,
 ) -> list[LeagueData]:
-    """Tier‑7 stem leagues left‑to‑right by feeder-parent postfix index, then alphabetically."""
-    use_json_sort = bool(
-        parent_overrides
-        and leagues_by_tier
-        and any(t == 7 and parents for (t, _), parents in parent_overrides.items())
-    )
-    if not use_json_sort:
+    """Tier‑7 left‑to‑right: fixed ROC blocks, then canonical column slot inside each block.
+
+    Block order is :data:`TIER7_ROC_BLOCK_ORDER` and slots come from
+    :data:`_TIER7_ROC_COLUMN_SLOTS`, so neither depends on the season, the feeder tree, or
+    RFU sponsor/renaming churn. Leagues whose ROC or tail is unrecognised sort to the end of
+    their block (or the end of the row) by name, and are logged so new leagues get a slot.
+    """
+    if not any(_league_rfu_competition_id(lg) in _TIER7_ROC_BLOCK_RANK for lg in leagues):
         return _tier7_ordered_leagues_legacy(leagues, season)
 
-    postfix = _pyramid_above_tier7_postfix_order(leagues_by_tier, parent_overrides)
-    unset = len(postfix)
+    unknown_block = len(TIER7_ROC_BLOCK_ORDER)
+    unslotted: list[str] = []
 
-    def sort_key(lg: LeagueData) -> tuple[int, tuple[object, ...]]:
-        pspec = parent_overrides.get((7, lg.league_name)) if parent_overrides else None
-        if pspec:
-            idx = _tier7_parent_sort_index(pspec[0], postfix)
-            if idx is not None:
-                return idx, _stem_sort_key_league_name(lg.league_name)
-        return unset, _stem_sort_key_league_name(lg.league_name)
+    def sort_key(lg: LeagueData) -> tuple[int, int, int, tuple[object, ...]]:
+        roc = _league_rfu_competition_id(lg)
+        block = _TIER7_ROC_BLOCK_RANK.get(roc, unknown_block)
+        name_key = _stem_sort_key_league_name(lg.league_name)
+        slot = _tier7_roc_column_slot(roc, _tier7_normalized_tail(lg.league_name, season))
+        if slot is None:
+            if block != unknown_block:
+                unslotted.append(lg.league_name)
+            return (block, 1, 0, name_key)
+        return (block, 0, slot, name_key)
 
-    return sorted(leagues, key=sort_key)
+    ordered = sorted(leagues, key=sort_key)
+    if unslotted:
+        logger.warning(
+            "Tier 7: no canonical ROC column slot for %s — placed at the end of their "
+            "competition block; add the sponsor-stripped tail to _TIER7_ROC_COLUMN_SLOTS.",
+            ", ".join(sorted(unslotted)),
+        )
+    return ordered
 
 
 def _sorted_stem_leagues_at_tier(

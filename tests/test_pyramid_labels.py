@@ -650,36 +650,116 @@ def test_pyramid_above_tier7_postfix_order() -> None:
     assert names[-1] == "Prem"
 
 
-def test_tier7_ordered_by_feeder_parent_postfix_index() -> None:
-    from rugby.pyramid_image import LeagueData, _tier7_ordered_leagues
+def _tier7_lg(name: str, comp: str):
+    from rugby.pyramid_image import LeagueData
 
-    def lg(t: int, name: str) -> LeagueData:
-        return LeagueData(tier_num=t, tier_name="", league_name=name, teams=[], team_count=0)
-
-    leagues_by_tier = {
-        4: [lg(4, "National League 2 West"), lg(4, "National League 2 North")],
-        5: [lg(5, "Regional 1 South West"), lg(5, "Regional 1 North West")],
-        6: [lg(6, "Regional 2 SW"), lg(6, "Regional 2 NW")],
-        7: [
-            lg(7, "Counties 1 North"),
-            lg(7, "Counties 1 South"),
-        ],
-    }
-    ovs = {
-        (5, "Regional 1 South West"): ("National League 2 West",),
-        (5, "Regional 1 North West"): ("National League 2 North",),
-        (6, "Regional 2 SW"): ("Regional 1 South West",),
-        (6, "Regional 2 NW"): ("Regional 1 North West",),
-        (7, "Counties 1 South"): ("Regional 2 SW",),
-        (7, "Counties 1 North"): ("Regional 2 NW",),
-    }
-    ordered = _tier7_ordered_leagues(
-        list(leagues_by_tier[7]),
-        "2024-2025",
-        leagues_by_tier=leagues_by_tier,
-        parent_overrides=ovs,
+    return LeagueData(
+        tier_num=7,
+        tier_name="",
+        league_name=name,
+        teams=[],
+        team_count=0,
+        league_url=f"https://www.englandrugby.com/x?competition={comp}&division=1",
     )
-    assert [x.league_name for x in ordered] == ["Counties 1 South", "Counties 1 North"]
+
+
+def test_tier7_blocks_follow_fixed_roc_order() -> None:
+    """ROC blocks render South West → Midlands → Northern → London & SE, whatever the input order."""
+    from rugby.pyramid_image import _tier7_ordered_leagues
+
+    leagues = [
+        _tier7_lg("Counties 1 Kent", "261"),
+        _tier7_lg("Counties 1 Yorkshire", "1623"),
+        _tier7_lg("Counties 1 Midlands East (North)", "1597"),
+        _tier7_lg("Counties 1 Tribute Ale Southern North", "1699"),
+    ]
+    ordered = _tier7_ordered_leagues(leagues, "2026-2027")
+    assert [x.league_name for x in ordered] == [
+        "Counties 1 Tribute Ale Southern North",
+        "Counties 1 Midlands East (North)",
+        "Counties 1 Yorkshire",
+        "Counties 1 Kent",
+    ]
+
+
+def test_tier7_column_slots_survive_sponsor_and_rename_churn() -> None:
+    """The same league keeps its column across eras despite sponsor swaps and renames."""
+    from rugby.pyramid_image import _tier7_ordered_leagues
+
+    # 2019-2020: Southern carried "Wadworth", Western carried "Tribute" — slot order
+    # is geographic (west → east), not alphabetical by sponsor prefix.
+    old = _tier7_ordered_leagues(
+        [
+            _tier7_lg("Tribute Western Counties West", "1699"),
+            _tier7_lg("Wadworth Southern Counties North", "1699"),
+            _tier7_lg("Tribute Western Counties North", "1699"),
+            _tier7_lg("Wadworth Southern Counties South", "1699"),
+        ],
+        "2019-2020",
+    )
+    new = _tier7_ordered_leagues(
+        [
+            _tier7_lg("Counties 1 Tribute Ale Western West", "1699"),
+            _tier7_lg("Counties 1 Tribute Ale Southern North", "1699"),
+            _tier7_lg("Counties 1 Tribute Ale Western North", "1699"),
+            _tier7_lg("Counties 1 Tribute Ale Southern South", "1699"),
+        ],
+        "2026-2027",
+    )
+    assert [x.league_name for x in old] == [
+        "Tribute Western Counties West",
+        "Tribute Western Counties North",
+        "Wadworth Southern Counties North",
+        "Wadworth Southern Counties South",
+    ]
+    assert [x.league_name for x in new] == [
+        "Counties 1 Tribute Ale Western West",
+        "Counties 1 Tribute Ale Western North",
+        "Counties 1 Tribute Ale Southern North",
+        "Counties 1 Tribute Ale Southern South",
+    ]
+
+
+def test_tier7_herts_middx_split_keeps_parent_column_position() -> None:
+    """Herts and Middx stay adjacent where the combined Herts/Middx league used to sit."""
+    from rugby.pyramid_image import _tier7_ordered_leagues
+
+    ordered = _tier7_ordered_leagues(
+        [
+            _tier7_lg("Counties 1 Surrey/Sussex", "261"),
+            _tier7_lg("Counties 1 Middx", "261"),
+            _tier7_lg("Counties 1 Kent", "261"),
+            _tier7_lg("Counties 1 Herts", "261"),
+            _tier7_lg("Counties 1 Hampshire", "261"),
+        ],
+        "2026-2027",
+    )
+    assert [x.league_name for x in ordered] == [
+        "Counties 1 Hampshire",
+        "Counties 1 Herts",
+        "Counties 1 Middx",
+        "Counties 1 Kent",
+        "Counties 1 Surrey/Sussex",
+    ]
+
+
+def test_tier7_unslotted_league_sorts_to_end_of_its_own_block() -> None:
+    """An unrecognised tail stays inside its ROC block rather than scrambling the row."""
+    from rugby.pyramid_image import _tier7_ordered_leagues
+
+    ordered = _tier7_ordered_leagues(
+        [
+            _tier7_lg("Counties 1 Kent", "261"),
+            _tier7_lg("Counties 1 Brand New Midlands League", "1597"),
+            _tier7_lg("Counties 1 Midlands East (North)", "1597"),
+        ],
+        "2026-2027",
+    )
+    assert [x.league_name for x in ordered] == [
+        "Counties 1 Midlands East (North)",
+        "Counties 1 Brand New Midlands League",
+        "Counties 1 Kent",
+    ]
 
 
 def test_tier7_sort_parent_merge_cross_season(tmp_path, monkeypatch) -> None:

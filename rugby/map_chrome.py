@@ -8,6 +8,9 @@ from pathlib import Path
 
 from core import get_config
 from core.config import DIST_DIR
+from rugby.tiers import mens_pyramid_map_tier_slug
+
+_ALL_LEAGUES_SUFFIX = "_All_Leagues"
 
 _SEASON_DIR = re.compile(r"^\d{4}-\d{4}$")
 
@@ -30,6 +33,33 @@ def page_rel_from_output(output_file: Path, season: str) -> str:
         parent = rel.parent.as_posix()
         return "" if parent == "." else parent
     return rel.with_suffix("").as_posix()
+
+
+def _mens_tier_num_from_page_rel(page_rel: str, season: str) -> int | None:
+    """Absolute men's pyramid tier for a top-level tier map slug, if recognised."""
+    base = page_rel
+    if base.endswith(_ALL_LEAGUES_SUFFIX):
+        base = base[: -len(_ALL_LEAGUES_SUFFIX)]
+    for tier_num in range(1, 30):
+        if mens_pyramid_map_tier_slug(tier_num, season) == base:
+            return tier_num
+    return None
+
+
+def equivalent_page_rel(page_rel: str, source_season: str, target_season: str) -> str:
+    """Same men's pyramid tier map path in *target_season* (e.g. Level_5 ↔ Regional_1)."""
+    if source_season == target_season or "/" in page_rel:
+        return page_rel
+    suffix = ""
+    base = page_rel
+    if page_rel.endswith(_ALL_LEAGUES_SUFFIX):
+        suffix = _ALL_LEAGUES_SUFFIX
+        base = page_rel[: -len(_ALL_LEAGUES_SUFFIX)]
+    tier_num = _mens_tier_num_from_page_rel(base, source_season)
+    if tier_num is None:
+        return page_rel
+    target_base = mens_pyramid_map_tier_slug(tier_num, target_season)
+    return target_base + suffix
 
 
 def season_page_path(season: str, page_rel: str, *, is_prod: bool) -> Path:
@@ -105,8 +135,9 @@ def season_menu_html(
                 f'aria-current="true">{escape(target)}</span>'
             )
             continue
-        if season_page_path(target, page_rel, is_prod=is_prod).is_file():
-            href = season_switch_href(output_file, target, page_rel, is_prod=is_prod)
+        target_rel = equivalent_page_rel(page_rel, season, target)
+        if season_page_path(target, target_rel, is_prod=is_prod).is_file():
+            href = season_switch_href(output_file, target, target_rel, is_prod=is_prod)
             items.append(
                 f'<a class="map-header__menu-item" href="{escape(href)}">{escape(target)}</a>'
             )

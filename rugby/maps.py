@@ -642,7 +642,7 @@ def main() -> None:
         "--tiers",
         nargs="+",
         help=(
-            "Only these tier display names (pyramid and merit use the same names). "
+            "Only these tier display names and/or absolute tier numbers (e.g. 5). "
             "Restricts merit-tier maps and pyramid+merit combinations; no extra merit-only maps for other levels."
         ),
     )
@@ -756,8 +756,14 @@ def main() -> None:
     }
 
     if args.tiers:
-        mens_pyramid = [it for it in mens_pyramid if it.tier in args.tiers]
-        womens_pyramid = [it for it in womens_pyramid if it.tier in args.tiers]
+        tier_names = {t for t in args.tiers if not t.isdigit()}
+        tier_nums = {int(t) for t in args.tiers if t.isdigit()}
+        mens_pyramid = [
+            it for it in mens_pyramid if it.tier in tier_names or it.tier_num in tier_nums
+        ]
+        womens_pyramid = [
+            it for it in womens_pyramid if it.tier in tier_names or it.tier_num in tier_nums
+        ]
 
     # Group pyramid items by tier
     mens_by_tier, mens_tier_order = _group_by_tier(mens_pyramid)
@@ -792,11 +798,14 @@ def main() -> None:
     merit_header_tier_nums = {it.tier_num for it in adjusted_merit}
 
     if args.tiers:
-        tier_sel = frozenset(args.tiers)
+        tier_names = {t for t in args.tiers if not t.isdigit()}
+        tier_nums = {int(t) for t in args.tiers if t.isdigit()}
         before_merit = len(adjusted_merit)
-        adjusted_merit = [it for it in adjusted_merit if it.tier in tier_sel]
+        adjusted_merit = [
+            it for it in adjusted_merit if it.tier in tier_names or it.tier_num in tier_nums
+        ]
         logger.debug(
-            "Tier name filter %s: merit items %d -> %d",
+            "Tier filter %s: merit items %d -> %d",
             list(args.tiers),
             before_merit,
             len(adjusted_merit),

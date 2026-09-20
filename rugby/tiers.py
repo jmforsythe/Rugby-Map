@@ -9,10 +9,11 @@ Use :func:`get_competition_offset` to translate back to absolute pyramid positio
 
 import functools
 import logging
+from collections import Counter, defaultdict
 from pathlib import Path
 
-from core.config import CURRENT_SEASON
-from core.slugs import normalize_filename_stem, normalize_league_filepath
+from core.config import CURRENT_SEASON, REPO_ROOT
+from core.slugs import normalize_filename_stem, normalize_league_filepath, slugify_content
 
 logger = logging.getLogger(__name__)
 
@@ -344,6 +345,58 @@ def mens_current_tier_name(tier: int, season: str = "") -> str:
     if 7 <= tier <= 11:
         return f"Counties {tier - 6}"
     return f"Level {tier}"
+
+
+def _mens_pyramid_map_tier_display_name_heuristic(tier: int, season: str) -> str:
+    """Fallback map title when league_data for *season* is unavailable."""
+    if season >= "2022-2023":
+        return mens_current_tier_name(tier, season)
+    pre_champ = season < "2009-2010"
+    if tier == 1:
+        return "Premiership"
+    if tier == 2 and not pre_champ:
+        return "Championship"
+    if pre_champ and 2 <= tier <= 4:
+        return f"National League {tier - 1}"
+    if 3 <= tier <= 4:
+        return f"National League {tier - 2}"
+    return f"Level {tier}"
+
+
+@functools.lru_cache(maxsize=128)
+def mens_pyramid_map_tier_names(season: str) -> dict[int, str]:
+    """Absolute men's pyramid tier → map page title for *season*.
+
+    Derived from ``extract_tier`` on root ``league_data/<season>/*.json`` files —
+    the same names ``rugby.maps`` uses when grouping pyramid tier maps (e.g.
+    tier 5 is ``National League 3`` in 2009-2016, ``Level 5`` from 2017, and
+    ``Regional 1`` from 2022).
+    """
+    league_dir = REPO_ROOT / "data" / "rugby" / "league_data" / season
+    if not league_dir.is_dir():
+        return {}
+    counts: dict[int, Counter[str]] = defaultdict(Counter)
+    for filepath in league_dir.glob("*.json"):
+        if filepath.name.startswith("_"):
+            continue
+        tier_num, tier_name = extract_tier(filepath.name, season)
+        if tier_num == 999:
+            continue
+        counts[tier_num][tier_name] += 1
+    return {num: names.most_common(1)[0][0] for num, names in counts.items()}
+
+
+def mens_pyramid_map_tier_display_name(tier: int, season: str) -> str:
+    """Men's pyramid tier map title for *season* (source of map URL slugs)."""
+    names = mens_pyramid_map_tier_names(season)
+    if tier in names:
+        return names[tier]
+    return _mens_pyramid_map_tier_display_name_heuristic(tier, season)
+
+
+def mens_pyramid_map_tier_slug(tier: int, season: str) -> str:
+    """Map page slug (PascalSnake) for absolute men's pyramid tier *tier*."""
+    return slugify_content(mens_pyramid_map_tier_display_name(tier, season))
 
 
 def _merit_tier_name(comp_display: str, local_tier: int) -> str:

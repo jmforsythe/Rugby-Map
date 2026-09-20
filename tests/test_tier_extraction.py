@@ -834,3 +834,13 @@ class TestNamedMeritLeagues:
         assert first == (1, "Middlesex 1")
         assert third == (3, "Middlesex 3")
         assert seventh == (7, "Middlesex 7")
+
+
+def test_mens_pyramid_map_tier_names_from_league_data() -> None:
+    from rugby.tiers import mens_pyramid_map_tier_display_name, mens_pyramid_map_tier_names
+
+    names_2010 = mens_pyramid_map_tier_names("2010-2011")
+    assert names_2010[5] == "National League 3"
+    assert mens_pyramid_map_tier_display_name(5, "2010-2011") == "National League 3"
+    assert mens_pyramid_map_tier_display_name(5, "2022-2023") == "Regional 1"
+    assert mens_pyramid_map_tier_display_name(5, "2017-2018") == "Level 5"

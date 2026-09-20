@@ -326,7 +326,7 @@ def test_match_day_registers_overlay_panel_refresh_callback() -> None:
     assert "rugbyNotifyOverlayPanelRefresh" in html
 
 
-def test_matchday_crest_markers_use_inline_background_not_img() -> None:
+def test_matchday_crest_markers_use_img_onerror_fallback() -> None:
     from rugby.match_day import (
         RFU_FALLBACK_ICON,
         _matchday_crest_div,
@@ -335,9 +335,9 @@ def test_matchday_crest_markers_use_inline_background_not_img() -> None:
 
     div = _matchday_crest_div(RFU_FALLBACK_ICON, 24)
     assert "rugby-crest-marker" in div
-    assert "background:url(" in div
+    assert "<img" in div
     assert RFU_FALLBACK_ICON in div
-    assert "<img" not in div
+    assert "onerror" in div
 
     badge_div = _matchday_crest_div(RFU_FALLBACK_ICON, 24, "II")
     assert "rugby-crest-wrap" in badge_div
@@ -346,7 +346,6 @@ def test_matchday_crest_markers_use_inline_background_not_img() -> None:
 
     cluster_js = matchday_cluster_icon_create_js(32)
     assert "rugbyClusterIconCache" in cluster_js
-    assert "background:url(" in cluster_js
+    assert "onerror" in cluster_js
     assert "crestBadge" in cluster_js
     assert "rugby-crest-badge" in cluster_js
-    assert "<img" not in cluster_js

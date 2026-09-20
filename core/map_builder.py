@@ -38,6 +38,7 @@ from core.basemap_tiles import (
 )
 from core.config import get_config, get_resource_hints_html
 from core.json_utils import write_compact_json
+from core.map_search import inject_team_search, team_search_rows, write_team_search_sidecar
 from core.patterns import stripe_css_gradient, stripe_pattern_svg
 
 logger = logging.getLogger(__name__)
@@ -1610,12 +1611,16 @@ def _inject_presentation_ready_hook(output_path: Path) -> None:
     )
 
 
-def _finalize_map_html(output_path: Path, *, territory_export: bool) -> None:
+def _finalize_map_html(
+    output_path: Path, *, territory_export: bool, team_search: bool = False
+) -> None:
     """Post-save hooks that must run after Folium has written the page."""
     if territory_export:
         _inject_territory_boot_hook(output_path)
     else:
         _inject_presentation_ready_hook(output_path)
+    if team_search:
+        inject_team_search(output_path)
 
 
 def _get_territories_preload_link(sidecar_name: str) -> str:
@@ -3541,7 +3546,12 @@ def generate_single_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
-    _finalize_map_html(output_path, territory_export=bool(territory_export))
+    search_rows = team_search_rows(all_placed)
+    if search_rows:
+        write_team_search_sidecar(output_path, search_rows)
+    _finalize_map_html(
+        output_path, territory_export=bool(territory_export), team_search=bool(search_rows)
+    )
     rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, len(all_placed), output_path)
 
@@ -3586,6 +3596,9 @@ def generate_multi_group_map(
     territory_groups: dict[str, folium.FeatureGroup] = {}
     marker_groups: dict[str, FeatureGroupSubGroup] = {}
     sorted_tiers = [t for t in sorted_tier_names if t in items_by_tier]
+    all_placed: list[_PlacedItem] = []
+    for placed_list in items_by_tier.values():
+        all_placed.extend(placed_list)
 
     parent_cluster = _add_marker_cluster(m, fallback_icon_url=config.fallback_icon_url)
     for tier in sorted_tiers:
@@ -3653,6 +3666,11 @@ def generate_multi_group_map(
     m.save(output_path)
     if territory_export:
         _write_territories_sidecar(output_path, config.territories_sidecar_name, territory_export)
-    _finalize_map_html(output_path, territory_export=bool(territory_export))
+    search_rows = team_search_rows(all_placed)
+    if search_rows:
+        write_team_search_sidecar(output_path, search_rows)
+    _finalize_map_html(
+        output_path, territory_export=bool(territory_export), team_search=bool(search_rows)
+    )
     rewrite_cdn_urls_in_html(output_path, root_relative=get_config().is_production)
     logger.info("Saved %s map with %d items to: %s", config.title, num_items, output_path)

@@ -156,7 +156,7 @@ def test_tier_saved_map_marker_carries_prebaked_crest_class() -> None:
     assert f"rugby-crest-marker {crest_style_class(crest_url)}" in html.replace("\\", "")
 
 
-def test_matchday_marker_builder_uses_inline_background_crest_divs() -> None:
+def test_matchday_marker_builder_uses_crest_img_with_onerror_fallback() -> None:
     from rugby import match_day
 
     source = inspect.getsource(match_day.build_match_day_map)
@@ -166,7 +166,17 @@ def test_matchday_marker_builder_uses_inline_background_crest_divs() -> None:
     assert '"crestBadge": home_badge or ""' in source
     assert "MATCHDAY_CREST_BADGE_PAD_TOP" in source
     assert "marker_h" in source
-    assert "<img" not in icon_block
+    crest_div_source = inspect.getsource(match_day._matchday_crest_div)
+    assert "_matchday_crest_img" in crest_div_source
+
+
+def test_matchday_crest_img_includes_rfu_fallback_onerror() -> None:
+    from rugby.match_day import RFU_FALLBACK_ICON, _matchday_crest_img
+
+    html = _matchday_crest_img("https://example.com/broken.png", 30)
+    assert "<img" in html
+    assert RFU_FALLBACK_ICON in html
+    assert "onerror" in html
 
 
 def test_matchday_icon_html_includes_badge_for_parenthetical_reserve_side() -> None:
@@ -194,14 +204,16 @@ def test_matchday_icon_html_includes_badge_for_parenthetical_reserve_side() -> N
     assert icon_html.count(">II</span>") == 2
 
 
-def test_matchday_cluster_js_avoids_img_and_caches_with_badge_guard() -> None:
+def test_matchday_cluster_js_uses_img_onerror_and_caches_with_badge_guard() -> None:
+    from rugby.match_day import RFU_FALLBACK_ICON
+
     js = matchday_cluster_icon_create_js(32)
     assert "rugbyClusterIconCache" in js
-    assert "background:url(" in js
+    assert "onerror" in js
+    assert RFU_FALLBACK_ICON in js
     assert "count === 1" in js
     assert "cacheKey = imageUrl + '|' + count + '|' + crestBadge" in js
     assert "rugby-crest-wrap" in js
-    assert "<img" not in js
 
 
 def test_matchday_widget_initializes_cluster_cache_and_passes_crest_badge() -> None:

@@ -61,6 +61,7 @@ from core.map_builder import (
     LayerControlHook,
     _crest_badge_html,
 )
+from core.map_search import FIXTURE_SEARCH_HTML, FIXTURE_SEARCH_JS, SEARCH_STYLES
 from rugby import BRAND, DATA_DIR, short_season
 from rugby.addresses import team_lower_xv_roman
 from rugby.clubs import iter_geocoded_leagues
@@ -82,14 +83,24 @@ MATCHDAY_CREST_BADGE_PAD_TOP = 8
 MATCHDAY_CREST_BADGE_PAD_RIGHT = 6
 
 
+def _matchday_crest_img(url: str, size: int) -> str:
+    """Crest ``<img>`` with the same onerror fallback as match popups."""
+    esc_url = escape(url)
+    return (
+        f'<img src="{esc_url}" alt="" width="{size}" height="{size}" '
+        f'style="width:100%;height:100%;object-fit:cover;display:block" '
+        f"onerror=\"this.onerror=null;this.src='{RFU_FALLBACK_ICON}'\">"
+    )
+
+
 def _matchday_crest_div(url: str, size: int, badge: str | None = None) -> str:
-    """Div tile with inline background (stable on MarkerCluster zoom rebuilds)."""
-    css_url = url.replace("\\", "\\\\").replace("'", "%27")
+    """Div tile wrapping a crest img (stable on MarkerCluster zoom rebuilds)."""
     inner = (
         f'<div class="rugby-crest-marker" '
-        f'style="width:{size}px;height:{size}px;border-radius:50%;'
-        f"box-shadow:0 0 3px rgba(0,0,0,0.3);"
-        f"background:url('{css_url}') center/cover no-repeat\"></div>"
+        f'style="width:{size}px;height:{size}px;border-radius:50%;overflow:hidden;'
+        f'box-shadow:0 0 3px rgba(0,0,0,0.3);">'
+        f"{_matchday_crest_img(url, size)}"
+        f"</div>"
     )
     badge_html = _crest_badge_html(badge)
     if badge_html:
@@ -103,6 +114,7 @@ def _matchday_crest_div(url: str, size: int, badge: str | None = None) -> str:
 def matchday_cluster_icon_create_js(icon_size: int) -> str:
     """Leaflet MarkerCluster `icon_create_function` body (cluster crest + count)."""
     half = icon_size // 2
+    fallback_js = RFU_FALLBACK_ICON.replace("\\", "\\\\").replace("'", "\\'")
     return f"""
     function(cluster) {{
         var markers = cluster.getAllChildMarkers();
@@ -131,13 +143,16 @@ def matchday_cluster_icon_create_js(icon_size: int) -> str:
             if (window.rugbyClusterIconCache && window.rugbyClusterIconCache[cacheKey]) {{
                 return window.rugbyClusterIconCache[cacheKey];
             }}
-            var esc = imageUrl.replace(/'/g, "%27");
+            var fallbackCrest = '{fallback_js}';
             var badgeHtml = crestBadge
                 ? '<span class="rugby-crest-badge" aria-hidden="true">' + crestBadge + '</span>'
                 : '';
+            var crestImg = '<img src="' + imageUrl.replace(/"/g, '&quot;') + '" ' +
+                'style="width:100%;height:100%;object-fit:cover;display:block" ' +
+                'onerror="this.onerror=null;this.src=\\'' + fallbackCrest + '\\'" />';
             var crestInner = '<div class="rugby-crest-wrap" style="width:{icon_size}px;height:{icon_size}px;">' +
-                '<div class="rugby-crest-cluster" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;background:url(\\'' + esc + '\\') center/cover no-repeat"></div>' +
-                badgeHtml + '</div>';
+                '<div class="rugby-crest-cluster" style="width:{icon_size}px;height:{icon_size}px;border-radius:50%;overflow:hidden;">' +
+                crestImg + '</div>' + badgeHtml + '</div>';
             var clusterIcon = L.divIcon({{
                 html: '<div style="text-align:center;position:relative;" title="' + tooltipText.replace(/"/g,'&quot;') + '">' +
                       crestInner +
@@ -163,16 +178,21 @@ def matchday_cluster_icon_create_js(icon_size: int) -> str:
     """
 
 
-_MATCHDAY_WIDGET_HTML = """
+_MATCHDAY_WIDGET_HTML = (
+    """
     <style>
     .matchday-control {
-        position:fixed; top:42px; left:50%; transform:translateX(-50%); z-index:999;
+        position:fixed;
+        top:calc(var(--rugby-map-chrome-top, 56px) + 8px);
+        left:50%; transform:translateX(-50%); z-index:999;
+        box-sizing:border-box;
         background:white; padding:8px 16px; border-radius:8px;
         border:1px solid #e0e0e0; font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
         text-align:center;
         box-shadow:0 2px 10px rgba(0,0,0,0.1);
     }
     .matchday-control select {
+        width:100%; max-width:100%; box-sizing:border-box;
         font-size:15px; padding:4px 8px; border-radius:4px; border:1px solid #ccc;
         cursor:pointer;
     }
@@ -200,8 +220,13 @@ _MATCHDAY_WIDGET_HTML = """
         color:#4da6ff;
     }
     @media only screen and (max-width: 768px) {
-        .matchday-control { width:90%; max-width:360px; padding:6px 10px; }
+        /* Narrower than viewport so zoom (left) and layers (right) stay clear */
+        .matchday-control {
+            width:min(280px, calc(100vw - 96px));
+            padding:6px 10px;
+        }
         .matchday-control select { font-size:13px; }
+        .matchday-subtitle { font-size:12px; }
     }
     html[data-rugby-effective="dark"] .matchday-control {
         background-color:#16213e !important;
@@ -215,6 +240,9 @@ _MATCHDAY_WIDGET_HTML = """
     }
     html[data-rugby-effective="dark"] .matchday-subtitle { color:#aaa !important; }
     html[data-rugby-effective="dark"] .matchday-updated { color:#777 !important; }
+    """
+    + SEARCH_STYLES
+    + """
     </style>
 
     <div class="matchday-control">
@@ -222,6 +250,9 @@ _MATCHDAY_WIDGET_HTML = """
             @@DROPDOWN_OPTIONS@@
         </select>
         <p class="matchday-subtitle" id="matchday-info"></p>
+        """
+    + FIXTURE_SEARCH_HTML
+    + """
         <p class="matchday-updated">Data updated: @@UPDATED_DISPLAY@@</p>
     </div>
 
@@ -530,6 +561,9 @@ _MATCHDAY_WIDGET_HTML = """
         }
         loadDateData(selectedDate).then(function(data) {
             rebindLayerControlForDate(selectedDate, data);
+            if (typeof window.rugbyRefreshFixtureSearch === 'function') {
+                window.rugbyRefreshFixtureSearch();
+            }
         }).catch(function(e) {
             console.warn('Could not load match day data for', selectedDate, e);
         });
@@ -586,7 +620,11 @@ _MATCHDAY_WIDGET_HTML = """
     } else {
         initMatchdayDefaultDate();
     }
+    """
+    + FIXTURE_SEARCH_JS
+    + """
     </script>"""
+)
 
 
 def build_matchday_control_html(
@@ -1151,6 +1189,7 @@ def build_match_day_map(
     # Folium FeatureGroupSubGroup + Marker objects for every date up front, which
     # previously produced a single multi-tens-of-MB HTML file.
     date_json_data: dict[str, dict[str, dict[str, list[dict[str, Any]]]]] = {}
+    fixture_search_rows: list[dict[str, Any]] = []
 
     for date_iso in sorted_dates:
         resolved = resolved_per_date.get(date_iso)
@@ -1238,6 +1277,18 @@ def build_match_day_map(
                         "crestBadge": home_badge or "",
                         "itemName": f"{home_name} vs {away_name}",
                         "tierOrder": tier_num,
+                    }
+                )
+                fixture_search_rows.append(
+                    {
+                        "d": date_iso,
+                        "h": home_name,
+                        "a": away_name,
+                        "label": f"{home_name} vs {away_name}",
+                        "lat": round(float(lat), 6),
+                        "lng": round(float(lng), 6),
+                        "t": group_key,
+                        "time": fixture.get("time") or "",
                     }
                 )
             if markers_payload:
@@ -1372,6 +1423,8 @@ def build_match_day_map(
     data_dir = output_path.parent / "data"
     for date_iso, payload in date_json_data.items():
         write_compact_json(data_dir / f"{date_iso}.json", payload)
+    if fixture_search_rows:
+        write_compact_json(data_dir / "search.json", fixture_search_rows)
 
     total_placed = sum(total for _, total, _ in date_meta)
     logger.info(

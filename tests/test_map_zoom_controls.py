@@ -143,11 +143,26 @@ def test_territory_loader_prefetches_before_leaflet_init() -> None:
     assert "territoryDataPromise" in script
     assert "fetchTerritories(0)" in script
     assert "rugby-map-presentation-ready" in script
-    assert "rugbyTryApplyTerritories" in script
+    assert "rugbyMarkFoliumBootComplete" in script
+    assert "foliumBootComplete" in script
     assert "GROUPS_PER_FRAME" in script
     assert "applyTerritoriesProgressive" in script
     assert "PRESENTATION_FALLBACK_MS" in script
     assert "presentationReadySent" in script
+
+
+def test_territory_render_waits_for_folium_boot_before_applying() -> None:
+    """Rendering must be gated on the boot hook, not a wall-clock retry budget.
+
+    The sidecar fetch can resolve while the parser is still blocked on the
+    vendor <script> tags, so polling for layer variables raced the boot script
+    on large maps (see the repeated fixes in git history).
+    """
+    from core.map_builder import _get_territory_loader_script
+
+    script = _get_territory_loader_script("territories.json")
+    assert "if (!cachedLayers || !foliumBootComplete) return;" in script
+    assert "MAX_RENDER_ATTEMPTS" not in script
 
 
 def test_inject_territory_boot_hook_appends_to_folium_boot_script() -> None:
@@ -164,7 +179,7 @@ def test_inject_territory_boot_hook_appends_to_folium_boot_script() -> None:
         )
         _inject_territory_boot_hook(html_path)
         text = html_path.read_text(encoding="utf-8")
-        hook_pos = text.find("rugbyTryApplyTerritories")
+        hook_pos = text.find("rugbyMarkFoliumBootComplete")
         cluster_pos = text.find("var marker_cluster_")
         fg_pos = text.find("fg.addTo(map_1)")
         assert hook_pos != -1
@@ -173,13 +188,18 @@ def test_inject_territory_boot_hook_appends_to_folium_boot_script() -> None:
         assert cluster_pos < fg_pos < hook_pos
 
 
-def test_territories_preload_link_sets_crossorigin_for_fetch() -> None:
-    from core.map_builder import _get_territories_preload_link
+def test_sidecar_maps_do_not_emit_a_redundant_territories_preload() -> None:
+    """The loader script is inlined in <head>, so a preload adds no head start.
 
-    link = _get_territories_preload_link("territories.json")
-    assert 'rel="preload"' in link
-    assert 'as="fetch"' in link
-    assert "crossorigin" in link
+    It only produced a second, unmatched cache entry, which is what triggered
+    Chrome's "preloaded but not used" warning on live map pages.
+    """
+    import core.map_builder as map_builder
+    from core.map_builder import _get_territory_loader_script
+
+    script = _get_territory_loader_script("territories.json")
+    assert 'rel="preload"' not in script
+    assert not hasattr(map_builder, "_get_territories_preload_link")
 
 
 def test_inject_presentation_ready_hook_appends_to_saved_map() -> None:
@@ -246,9 +266,9 @@ def test_finalize_map_html_injects_territory_boot_on_sidecar_maps() -> None:
         )
         _finalize_map_html(out, territory_export=True)
         text = out.read_text(encoding="utf-8")
-        assert "rugbyTryApplyTerritories" in text
-        assert text.find("rugbyTryApplyTerritories") > text.find("var marker_cluster_")
-        assert text.find("rugbyTryApplyTerritories") > text.find("fg.addTo(map_1)")
+        assert "rugbyMarkFoliumBootComplete" in text
+        assert text.find("rugbyMarkFoliumBootComplete") > text.find("var marker_cluster_")
+        assert text.find("rugbyMarkFoliumBootComplete") > text.find("fg.addTo(map_1)")
 
 
 def test_layer_control_hook_refreshes_overlay_panel_after_update() -> None:

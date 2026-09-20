@@ -1581,7 +1581,7 @@ def _inject_territory_boot_hook(output_path: Path) -> None:
     empty territory layer variable is on ``window``.
     """
     text = output_path.read_text(encoding="utf-8")
-    hook = "if (window.rugbyTryApplyTerritories) window.rugbyTryApplyTerritories();"
+    hook = "if (window.rugbyMarkFoliumBootComplete) window.rugbyMarkFoliumBootComplete();"
     if hook in text:
         return
     pos = text.rfind("</script>")
@@ -1623,11 +1623,6 @@ def _finalize_map_html(
         inject_team_search(output_path)
 
 
-def _get_territories_preload_link(sidecar_name: str) -> str:
-    """Hint the browser to fetch territory GeoJSON in parallel with page parse."""
-    return f'<link rel="preload" href="{escape(sidecar_name)}" as="fetch" crossorigin>'
-
-
 def _signal_presentation_ready_script() -> str:
     """Notify deferred crest loading that territory shading has been painted."""
     return "document.dispatchEvent(new Event('rugby-map-presentation-ready'));"
@@ -1638,11 +1633,15 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
     the (already-created, empty) territory FeatureGroups by their Folium JS
     variable name, matching the ``_get_boundary_loader_script`` pattern.
 
-    Fetch starts in ``<head>`` so it runs in parallel with Folium's boot
-    script. :func:`_inject_territory_boot_hook` calls
-    ``rugbyTryApplyTerritories()`` at the end of that script, once every
-    empty territory ``FeatureGroup`` variable exists. Groups are added
-    progressively across animation frames rather than in one blocking batch.
+    This script is inlined in ``<head>``, so the fetch starts at parse time.
+    Rendering is gated on *both* the sidecar JSON having arrived and Folium's
+    boot script having finished: :func:`_inject_territory_boot_hook` calls
+    ``rugbyMarkFoliumBootComplete()`` at the end of that script, once every
+    empty territory ``FeatureGroup`` variable exists on ``window``. Gating on
+    the boot hook rather than polling matters because the fetch can resolve
+    while the parser is still blocked on the vendor ``<script>`` tags, i.e.
+    long before any layer variable exists. Groups are then added progressively
+    across animation frames rather than in one blocking batch.
 
     Retries the fetch on failure (a transient network blip or cold CDN edge
     can take longer than a couple of seconds to clear) and, if a controlling
@@ -1654,11 +1653,11 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
     <script>
     (function() {{
         var MAX_ATTEMPTS = 6;
-        var MAX_RENDER_ATTEMPTS = 60;
         var GROUPS_PER_FRAME = 2;
         var PRESENTATION_FALLBACK_MS = {PRESENTATION_READY_FALLBACK_MS};
         var territoryDataPromise = null;
         var cachedLayers = null;
+        var foliumBootComplete = false;
         var territoryApplyStarted = false;
         var presentationReadySent = false;
         function requestPrecache() {{
@@ -1710,17 +1709,16 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                 return false;
             }}
         }}
-        function applyTerritoriesProgressive(layers, attempt) {{
+        function applyTerritoriesProgressive(layers) {{
             if (territoryApplyStarted) return;
+            // Only reachable once Folium's boot script has run, so missing
+            // layer variables here are permanent rather than a timing race.
+            territoryApplyStarted = true;
             if (!layersReady(layers)) {{
-                if (attempt < MAX_RENDER_ATTEMPTS) {{
-                    setTimeout(function() {{ applyTerritoriesProgressive(layers, attempt + 1); }}, 50);
-                    return;
-                }}
-                console.warn('Territory layer variables were not ready in time');
+                console.warn('Territory layer variables missing after Folium boot');
+                finishPresentationReady();
                 return;
             }}
-            territoryApplyStarted = true;
             var queue = buildRenderQueue(layers);
             if (!queue.length) {{
                 finishPresentationReady();
@@ -1745,13 +1743,17 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
             flushFrame();
         }}
         function scheduleTerritoryRender() {{
-            if (!cachedLayers) return;
-            applyTerritoriesProgressive(cachedLayers, 0);
+            if (!cachedLayers || !foliumBootComplete) return;
+            applyTerritoriesProgressive(cachedLayers);
         }}
-        window.rugbyTryApplyTerritories = scheduleTerritoryRender;
+        function markFoliumBootComplete() {{
+            foliumBootComplete = true;
+            scheduleTerritoryRender();
+        }}
+        window.rugbyMarkFoliumBootComplete = markFoliumBootComplete;
         function fetchTerritories(attempt) {{
             if (!territoryDataPromise) {{
-                territoryDataPromise = fetch('{sidecar_name}', {{ cache: 'no-store' }}).then(function(r) {{
+                territoryDataPromise = fetch('{sidecar_name}').then(function(r) {{
                     if (!r.ok) throw new Error('HTTP ' + r.status);
                     return r.json();
                 }});
@@ -3519,9 +3521,6 @@ def generate_single_group_map(
         header.add_child(
             folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
         )
-        header.add_child(
-            folium.Element(_get_territories_preload_link(config.territories_sidecar_name))
-        )
 
     if hatch_defs_html:
         html_el.add_child(folium.Element(hatch_defs_html))
@@ -3650,9 +3649,6 @@ def generate_multi_group_map(
     if territory_export:
         header.add_child(
             folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
-        )
-        header.add_child(
-            folium.Element(_get_territories_preload_link(config.territories_sidecar_name))
         )
 
     html_el.add_child(

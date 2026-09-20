@@ -1108,6 +1108,22 @@ def extract_tier_women_current(filename: str, season: str) -> tuple[int, str] | 
     return None
 
 
+# London/SE county bands sat directly below London 3 in 1999-2000 (London 4 did not exist).
+# Filename offsets assume a tier-8 London 4 rung; demote one level for that season only.
+_LONDON_SE_COUNTY_NO_LONDON4_SEASON = "1999-2000"
+_LONDON_SE_COUNTY_PREFIXES = frozenset(
+    {
+        "Eastern_Counties",
+        "East_Counties",
+        "Hampshire",
+        "Sussex",
+        "Herts_Middlesex",
+        "Kent",
+        "Surrey",
+    }
+)
+
+
 def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | None:
     """Extract tier from 2021-2022 and earlier filename format."""
     filename = _strip_sponsor_prefix(filename)
@@ -1115,6 +1131,7 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         filename = filename[1:]
 
     pre_champ = season < "2009-2010"
+    london_se_no_london4 = season == _LONDON_SE_COUNTY_NO_LONDON4_SEASON
 
     zeroth_tier_map = {
         "National_League": (1 if pre_champ else 2),
@@ -1135,6 +1152,10 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         # 2021-2022: Cumbria One tied with North Two West at abs 7 under the plain
         # >=2018-2019 offset; demoted one level to sit below North Two West instead.
         "Cumbria": (7 if season == "2021-2022" else (6 if season >= "2018-2019" else 8)),
+        # ``Durham_Nthmland_1`` slugifies from ``Durham/N'thm'land 1``; the apostrophe
+        # variant prefix matches but ``len(prefix)`` leaves no ordinal tail, so every
+        # numbered division collapsed to tier 6.  ``Durham_Nthmland`` must precede it.
+        "Durham_Nthmland": 6,
         "Durham_Northumberland": 6,
         "Durham_N'thm'land": 6,
         "Essex": 8,
@@ -1146,6 +1167,9 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
         "Surrey": 8,
         "Berks_Bucks_&_Oxon": 8,
         "Berks_Bucks_and_Oxon": 8,
+        # 1999-2000 only: RFU ran combined Berks/Dorset/Wilts county bands before splitting.
+        "Berks_Dorset_Wilts": 7,
+        "Bucks_Oxon": 8,
         "Cornwall_Devon": 8,
         "Cornwall": 8,
         "Devon": 8,
@@ -1234,6 +1258,8 @@ def extract_tier_men_pre_2021(filename: str, season: str) -> tuple[int, str] | N
                 "South_West_Pilot",
             }
             if pre_champ and prefix in main_pyramid_prefixes:
+                tier -= 1
+            if london_se_no_london4 and prefix in _LONDON_SE_COUNTY_PREFIXES:
                 tier -= 1
             if prefix == "National_League":
                 # Filename league number is authoritative (NL3 stays NL3; never "Regional 1").

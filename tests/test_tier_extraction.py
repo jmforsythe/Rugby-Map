@@ -183,9 +183,51 @@ class TestExtractTierMenPre2021:
             "Level 9",
         )
 
+    def test_berks_dorset_wilts_combined_1999_2000(self):
+        """1999-2000 ran combined Berks/Dorset/Wilts county bands before the RFU split them."""
+        assert extract_tier("xBerks_Dorset_Wilts_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("xBerks_Dorset_Wilts_2.json", "1999-2000") == (9, "Level 9")
+        assert extract_tier("xBerks_Dorset_Wilts_3.json", "1999-2000") == (10, "Level 10")
+        assert extract_tier("xBucks_Oxon.json", "1999-2000") == (8, "Level 8")
+
+    def test_london_se_counties_tier_8_when_no_london_4(self):
+        """1999-2000 had no London 4; London/SE county bands sat directly below London 3."""
+        for fn in (
+            "Eastern_Counties_1.json",
+            "Hampshire_1.json",
+            "Herts_Middlesex_1.json",
+            "Kent_1.json",
+            "Surrey_1.json",
+            "Sussex_1.json",
+            "Eastern_Counties_2.json",
+            "xHerts_Middlesex_2.json",
+            "xKent_2_East.json",
+            "xSussex_2.json",
+        ):
+            tier, _ = extract_tier(fn, "1999-2000")
+            assert tier <= 10, fn
+        assert extract_tier("Eastern_Counties_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Hampshire_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Herts_Middlesex_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Kent_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Surrey_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Sussex_1.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Eastern_Counties_2.json", "1999-2000") == (9, "Level 9")
+        assert extract_tier("xEast_Counties_3_North.json", "1999-2000") == (10, "Level 10")
+
+    def test_london_se_counties_still_tier_9_from_2000_2001(self):
+        """London 4 from 2000-2001 restores the tier-8 gap above county '1' leagues."""
+        assert extract_tier("Eastern_Counties_1.json", "2000-2001") == (9, "Level 9")
+        assert extract_tier("Hampshire_1.json", "2000-2001") == (9, "Level 9")
+        assert extract_tier("Kent_1.json", "2000-2001") == (9, "Level 9")
+        assert extract_tier("Cornwall_1.json", "1999-2000") == (9, "Level 9")
+        assert extract_tier("Cornwall_1.json", "2000-2001") == (9, "Level 9")
+
     def test_slugified_historical_filenames(self):
         """Post-slugify basenames still match legacy tier prefix tables."""
-        assert extract_tier("Durham_Nthmland_1.json", "2000-2001") == (6, "Level 6")
+        assert extract_tier("Durham_Nthmland_1.json", "2000-2001") == (7, "Level 7")
+        assert extract_tier("Durham_Nthmland_2.json", "1999-2000") == (8, "Level 8")
+        assert extract_tier("Durham_Nthmland_4.json", "1999-2000") == (10, "Level 10")
         assert extract_tier("Berks_Bucks_and_Oxon_Premier.json", "2005-2006") == (8, "Level 8")
         assert extract_tier("Women_NC_2_South_West_(West).json", "2026-2027") == (
             105,

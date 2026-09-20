@@ -2,32 +2,76 @@
   "schema_version": 2,
   "season": "1999-2000",
   "men": {
+    "5": {
+      "London 1": "-",
+      "Midlands 1": "-",
+      "North 1": "-",
+      "South West 1": "-",
+      "xNorth East 1": "-",
+      "xNorth West 1": "-"
+    },
     "6": {
       "Midlands 2 East": "Midlands 1",
       "London 2 North": "London 1",
       "London 2 South": "London 1",
       "North 2 East": "North 1",
-      "xNorth West 2": "North 1",
+      "xNorth West 2": "xNorth West 1",
       "South West 2 East": "South West 1",
-      "South West 2 West": "South West 1"
+      "South West 2 West": "South West 1",
+      "xNorth East 2": "xNorth East 1"
+    },
+    "7": {
+      "Durham/N'thm'land 1": "North 2 East"
     },
     "8": {
       "Cornwall/Devon": "Western Counties West",
       "Cumbria": "North Lancs/Cumbria",
-      "North Lancs 1": "North Lancs/Cumbria"
-    },
-    "9": {
-      "Cornwall 1": "Cornwall/Devon",
-      "Devon 1": "Cornwall/Devon",
+      "Durham/N'thm'land 2": "Durham/N'thm'land 1",
       "Eastern Counties 1": "London 3 North East",
       "Hampshire 1": "London 3 South West",
       "Herts/Middlesex 1": "London 3 North West",
       "Kent 1": "London 3 South East",
+      "North Lancs 1": "North Lancs/Cumbria",
       "Surrey 1": "London 3 South West",
       "Sussex 1": "London 3 South West",
+      "xGloucester/Somerset": "Western Counties North",
+      "xBerks/Dorset/Wilts 1": "Southern Counties South",
+      "xBucks/Oxon": "Southern Counties North"
+    },
+    "9": {
+      "Cornwall 1": "Cornwall/Devon",
+      "Devon 1": "Cornwall/Devon",
+      "Durham/N'thm'land 3": "Durham/N'thm'land 2",
+      "Eastern Counties 2": "Eastern Counties 1",
+      "Gloucester 1": "xGloucester/Somerset",
+      "Hampshire 2": "Hampshire 1",
+      "Somerset 1": "xGloucester/Somerset",
+      "Surrey 2": "Surrey 1",
+      "xBerks/Dorset/Wilts 2": "xBerks/Dorset/Wilts 1",
       "xEast Midlands 1": "Midlands 4 East (South)",
+      "xHerts/Middlesex 2": "Herts/Middlesex 1",
+      "xKent 2 East": "Kent 1",
+      "xKent 2 West": "Kent 1",
       "xNLD/Leics 1 East": "Midlands 4 East (North)",
-      "xNLD/Leics 1 West": "Midlands 4 East (North)"
+      "xNLD/Leics 1 West": "Midlands 4 East (North)",
+      "xNorth Midlands 1": "Midlands 4 East (South)",
+      "xStaffordshire 1": "Midlands 4 East (North)",
+      "xSussex 2": "Sussex 1",
+      "xWarwickshire 1": "Midlands 4 East (South)"
+    },
+    "10": {
+      "Durham/N'thm'land 4": "Durham/N'thm'land 3",
+      "Hampshire 3": "Hampshire 2",
+      "Surrey 3": "Surrey 2",
+      "xBerks/Dorset/Wilts 3": "xBerks/Dorset/Wilts 2",
+      "xEast Counties 3 North": "Eastern Counties 2",
+      "xEast Counties 3 South": "Eastern Counties 2"
+    },
+    "11": {
+      "Herts/Middlesex 3 North": "xHerts/Middlesex 2",
+      "Herts/Middlesex 3 South": "xHerts/Middlesex 2",
+      "Surrey 4": "Surrey 3",
+      "xSussex 3": "xSussex 2"
     }
   },
   "tier7_column_order": {
@@ -44,6 +88,8 @@
     "Southern Counties South": "South West 2 East",
     "Western Counties North": "South West 2 West",
     "Western Counties West": "South West 2 West",
-    "Yorkshire 1": "North 2 East"
+    "Yorkshire 1": "North 2 East",
+    "xNorth East 3": "North 2 East",
+    "xNorth West 3": "xNorth West 2"
   }
 }

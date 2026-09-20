@@ -11,8 +11,9 @@ Sponsor name changes between seasons are detected and collapsed so they don't
 add spurious hops to the graph.
 
 Usage:
-    python validate_tiers_by_movement.py 2024-2025 2025-2026
-    python validate_tiers_by_movement.py --all
+    python -m rugby.analysis.validate_tiers 2024-2025 2025-2026
+    python -m rugby.analysis.validate_tiers 1999-2000 2000-2001 --focus-season-a
+    python -m rugby.analysis.validate_tiers --all
 """
 
 from __future__ import annotations
@@ -24,13 +25,17 @@ import sys
 from collections import defaultdict, deque
 from typing import NamedTuple
 
-from core import EARLIEST_SEASON, setup_logging
+from core import setup_logging
 from rugby import DATA_DIR
 from rugby.tiers import extract_tier, get_competition_offset
 
 logger = logging.getLogger(__name__)
 
 LEAGUE_DATA_DIR = DATA_DIR / "league_data"
+
+# ``EARLIEST_SEASON`` (2000-2001) gates fixture/geocode pipelines; league_data exists back to
+# 1999-2000 and movement validation can use that season when regional apexes replace NL1/2/3.
+VALIDATE_TIERS_EARLIEST_SEASON = "1999-2000"
 
 WOMENS_MIN_TIER = 100
 UNKNOWN_TIER = 999
@@ -218,19 +223,51 @@ def bfs_distances(adj: dict[str, dict[str, int]], start: str) -> dict[str, int]:
     return distances
 
 
+def _anchor_specs(season: str) -> list[tuple[list[str], int]]:
+    """Return ``(candidate league names, absolute tier)`` anchor rows for *season*."""
+    pre_champ = season < "2009-2010"
+    regional_apex: list[tuple[list[str], int]] = [
+        (["London 1"], 5),
+        (["Midlands 1"], 5),
+        (["North 1"], 5),
+        (["South West 1"], 5),
+        (["xNorth East 1"], 5),
+        (["xNorth West 1"], 5),
+    ]
+    if season <= "1999-2000":
+        # 1999-2000 has no Premiership/NL files. Cross-season edges into 2000-2001 NL1/2/3 would
+        # shorten hop counts for northern/Lancashire leagues via reorganization, so use regional
+        # tier-5 apexes only (same anchors as tier_mappings ``men["5"]: "-"``).
+        return regional_apex
+
+    specs: list[tuple[list[str], int]] = [
+        (["Premiership"], 1),
+        (["Championship"], 2),
+        (["National League 1", "National League One"], 2 if pre_champ else 3),
+        (
+            ["National League Two", "National League 2"],
+            3 if pre_champ else 4,
+        ),
+        (
+            [
+                "National League Three North",
+                "National League Three South",
+                "National League 3 North",
+                "National League 3 South",
+            ],
+            4 if pre_champ else 5,
+        ),
+    ]
+    return specs
+
+
 def infer_tiers(adj: dict[str, dict[str, int]], season: str) -> dict[str, tuple[int, str]]:
     """Infer tiers via shortest path from anchor leagues.
 
     Returns {league_name: (inferred_tier, anchor_used)}.
     """
-    anchor_specs: list[tuple[list[str], int]] = [
-        (["Premiership"], 1),
-        (["Championship"], 2),
-        (["National League 1", "National League One"], 2 if season < "2009-2010" else 3),
-    ]
-
     anchors: list[tuple[str, int]] = []
-    for candidates, base_tier in anchor_specs:
+    for candidates, base_tier in _anchor_specs(season):
         for name in candidates:
             if name in adj:
                 anchors.append((name, base_tier))
@@ -254,7 +291,7 @@ def get_available_seasons() -> list[str]:
     return sorted(
         d.name
         for d in LEAGUE_DATA_DIR.iterdir()
-        if d.is_dir() and "-" in d.name and d.name >= EARLIEST_SEASON
+        if d.is_dir() and "-" in d.name and d.name >= VALIDATE_TIERS_EARLIEST_SEASON
     )
 
 
@@ -274,12 +311,18 @@ def _collect_file_tiers(
     return tiers
 
 
+def _league_names_in_season(season: str) -> set[str]:
+    """Return men's pyramid league display names scraped for *season*."""
+    return set(_collect_file_tiers(load_season(season)))
+
+
 def analyse_pair(
     season_a: str,
     season_b: str,
     *,
     verbose: bool = False,
     show_movements: bool = False,
+    focus_season_a: bool = False,
 ) -> PairResult:
     """Analyse one pair of adjacent seasons. Optionally print detailed output."""
     teams_a = load_season(season_a)
@@ -307,7 +350,11 @@ def analyse_pair(
     matches: list[tuple[str, int]] = []
     unconnected: list[tuple[str, int]] = []
 
+    focus_names: set[str] | None = _league_names_in_season(season_a) if focus_season_a else None
+
     for league in all_leagues:
+        if focus_names is not None and league not in focus_names:
+            continue
         ft_entry = file_tiers.get(league)
         gt = inferred.get(league)
         if ft_entry is not None and gt is not None:
@@ -320,6 +367,8 @@ def analyse_pair(
             unconnected.append((league, ft_entry[0]))
 
     if verbose:
+        if focus_season_a:
+            print(f"\n  (Showing {season_a} leagues only — {len(focus_names or ())} in scope)")
         print(f"\n{'=' * 80}")
         print(f"MOVEMENT GRAPH: {season_a} -> {season_b}")
         print(f"{'=' * 80}")
@@ -554,6 +603,11 @@ def main() -> None:
         action="store_true",
         help="Print every individual team movement (single-pair mode only)",
     )
+    parser.add_argument(
+        "--focus-season-a",
+        action="store_true",
+        help="Compare tiers for season A leagues only (useful for 1999-2000 transition pairs)",
+    )
     args = parser.parse_args()
 
     if args.all:
@@ -580,6 +634,7 @@ def main() -> None:
         args.season_b,
         verbose=True,
         show_movements=args.show_movements,
+        focus_season_a=args.focus_season_a,
     )
     total = len(result.matches) + len(result.mismatches)
     if total:

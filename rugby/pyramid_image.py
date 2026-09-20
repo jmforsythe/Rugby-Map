@@ -5994,6 +5994,7 @@ _TIER7_ROC_COLUMN_SLOTS: dict[str, tuple[tuple[str, ...], ...]] = {
         ("north lancs cumbria", "cumbria division one", "cumbria"),
         (
             "north east 3",
+            "durham nthmland 1",
             "durham northumberland division one",
             "durham northumberland one",
             "durham and northumberland",

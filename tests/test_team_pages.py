@@ -5,6 +5,8 @@ from rugby.team_pages import (
     TeamData,
     TeamFixtureEntry,
     _format_fixture_date,
+    _format_fixture_date_cell,
+    _format_fixture_date_short,
     _format_fixture_result,
     _render_fixtures_section,
     _team_page_sibling_href,
@@ -168,6 +170,14 @@ class TestBuildClubIndex:
 class TestFixtureHelpers:
     def test_format_fixture_date(self):
         assert _format_fixture_date("2026-09-25") == "Fri 25 Sep 2026"
+
+    def test_format_fixture_date_short(self):
+        assert _format_fixture_date_short("2026-09-25") == "Fri 25 Sep"
+
+    def test_format_fixture_date_cell_includes_both_formats(self):
+        cell = _format_fixture_date_cell("2026-09-25")
+        assert 'class="fixture-date-full">Fri 25 Sep 2026<' in cell
+        assert 'class="fixture-date-short">Fri 25 Sep<' in cell
 
     def test_format_fixture_result_score_home(self):
         entry: TeamFixtureEntry = {

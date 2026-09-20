@@ -722,6 +722,24 @@ def _format_fixture_date(iso_date: str) -> str:
         return iso_date
 
 
+def _format_fixture_date_short(iso_date: str) -> str:
+    """Compact date for narrow viewports (year omitted)."""
+    try:
+        dt = datetime.strptime(iso_date, "%Y-%m-%d")
+        return f"{dt.strftime('%a')} {dt.day} {dt.strftime('%b')}"
+    except ValueError:
+        return iso_date
+
+
+def _format_fixture_date_cell(iso_date: str) -> str:
+    full = escape(_format_fixture_date(iso_date))
+    short = escape(_format_fixture_date_short(iso_date))
+    return (
+        f'<span class="fixture-date-full">{full}</span>'
+        f'<span class="fixture-date-short">{short}</span>'
+    )
+
+
 def _walkover_badge(entry: TeamFixtureEntry, status: str) -> tuple[str, str]:
     """Win/loss badge for HWO/AWO from this team page's perspective."""
     if status == "HWO":
@@ -834,7 +852,7 @@ def _render_fixture_table_rows(
                 f'title="View on England Rugby">↗</a>'
             )
         html += f"""                <tr>
-                    <td class="fixture-date-cell">{escape(_format_fixture_date(entry["date"]))}</td>
+                    <td class="fixture-date-cell">{_format_fixture_date_cell(entry["date"])}</td>
                     <td class="fixture-opponent-cell">
                         <div class="fixture-opponent">
                             <span class="fixture-venue">{escape(venue)}</span>

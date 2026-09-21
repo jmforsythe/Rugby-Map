@@ -13,9 +13,11 @@ on:
         type: boolean
         default: true
   # Weekly refresh, once the RFU has published weekend results.
-  # Cron is UTC, so this is 07:00 BST in summer and 06:00 GMT in winter.
+  # Cron is UTC, so this is 07:23 BST in summer and 06:23 GMT in winter.
+  # Deliberately off the hour: GitHub sheds queued schedule events at peak, and
+  # the first :00 run was dropped without ever being created.
   schedule:
-    - cron: "0 6 * * 1"
+    - cron: "23 6 * * 1"
 
 permissions:
   # Commit the refreshed fixture_data back to main.

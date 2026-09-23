@@ -6,7 +6,7 @@ import argparse
 import json
 import re
 import shutil
-from datetime import UTC, datetime
+from datetime import date
 from pathlib import Path
 from urllib.parse import quote
 
@@ -97,12 +97,55 @@ def copy_share_image(dist_dir: Path) -> None:
     shutil.copy2(src, dest)
 
 
-def _lastmod_utc_date(path: Path) -> str:
-    try:
-        ts = path.stat().st_mtime
-        return datetime.fromtimestamp(ts, tz=UTC).date().isoformat()
-    except OSError:
-        return ""
+FIXTURE_DATA_DIR = REPO_ROOT / "data" / "rugby" / "fixture_data"
+
+# Set on team pages' <html> tag so the sitemap can date them without reloading
+# every season's league data.
+LATEST_SEASON_ATTR = "data-latest-season"
+_LATEST_SEASON_ATTR_RE = re.compile(rf'{LATEST_SEASON_ATTR}="(\d{{4}}-\d{{4}})"')
+_SEASON_PATH_RE = re.compile(r"^/(\d{4}-\d{4})/")
+
+# Site-wide pages rebuilt from the current season's data.
+_CURRENT_SEASON_PATHS = frozenset(
+    {"/", "/teams/", "/stats/", "/custom-map/", "/constituent-bodies/"}
+)
+
+
+def season_scrape_dates(fixture_dir: Path | None = None) -> dict[str, str]:
+    """Season slug -> ``YYYY-MM-DD`` of its last fixture scrape (``last_updated.txt``).
+
+    Every deploy rebuilds all of dist/, so file mtimes are always the build date
+    and would claim every URL changed. The committed scrape timestamps are stable
+    for closed seasons and advance with the weekly fixtures cron for the live one.
+    """
+    root = fixture_dir or FIXTURE_DATA_DIR
+    dates: dict[str, str] = {}
+    for ts_path in root.glob("*/last_updated.txt"):
+        if not _SEASON_DIR_NAME.fullmatch(ts_path.parent.name):
+            continue
+        try:
+            day = date.fromisoformat(ts_path.read_text(encoding="utf-8").strip()[:10])
+        except (OSError, ValueError):
+            continue
+        dates[ts_path.parent.name] = day.isoformat()
+    return dates
+
+
+def _page_season(site_path: str, html_file: Path, latest_season: str) -> str:
+    """Season whose data a page is built from; ``""`` when unknown."""
+    m = _SEASON_PATH_RE.match(site_path)
+    if m:
+        return m.group(1)
+    if site_path in _CURRENT_SEASON_PATHS:
+        return latest_season
+    if site_path.startswith("/teams/"):
+        try:
+            head = html_file.read_text(encoding="utf-8", errors="replace")[:800]
+        except OSError:
+            return ""
+        m = _LATEST_SEASON_ATTR_RE.search(head)
+        return m.group(1) if m else ""
+    return ""
 
 
 # Path on site (pathname + query is empty): "/2025-2026/", "/teams/foo.html".
@@ -180,7 +223,7 @@ def _skip_sitemap_html(dist_dir: Path, html_file: Path, rel_path: Path) -> bool:
     return False
 
 
-def generate_sitemap(dist_dir: Path) -> str:
+def generate_sitemap(dist_dir: Path, season_dates: dict[str, str] | None = None) -> str:
     """Walk dist/ HTML and produce a sitemap.xml string.
 
     Emits trailing-slash URLs for ``index.html`` (directory canonical form) and
@@ -189,9 +232,15 @@ def generate_sitemap(dist_dir: Path) -> str:
     ``<priority>`` reflects hub vs leaf tiers; the latest season's hub gets a
     small boost above older seasons. Entries are sorted with higher priority
     first then by URL.
+
+    ``<lastmod>`` is the fixture scrape date of the season a page is built from
+    (*season_dates*, default :func:`season_scrape_dates`), and is omitted when
+    that season is unknown rather than guessed.
     """
     url_parts: list[tuple[float, str, str]] = []
     latest_season = _discover_latest_season(dist_dir)
+    if season_dates is None:
+        season_dates = season_scrape_dates()
 
     for html_file in sorted(dist_dir.rglob("*.html")):
         try:
@@ -203,13 +252,14 @@ def generate_sitemap(dist_dir: Path) -> str:
             continue
 
         loc = absolute_url_for_dist_file(dist_dir, html_file)
-        url_path = encode_url_path(
-            "/" + rel_path.parent.as_posix() + "/"
-            if rel_path.name == "index.html"
-            else f"/{rel_path.as_posix()}"
-        )
+        if rel_path.name == "index.html":
+            parent = rel_path.parent.as_posix()
+            site_path = "/" if parent == "." else f"/{parent}/"
+        else:
+            site_path = f"/{rel_path.as_posix()}"
+        url_path = encode_url_path(site_path)
         prio = _priority_for_site_path(url_path, latest_season=latest_season)
-        lm = _lastmod_utc_date(html_file)
+        lm = season_dates.get(_page_season(site_path, html_file, latest_season), "")
         url_parts.append((prio, loc, lm))
 
     url_parts.sort(key=lambda row: (-row[0], row[1]))
@@ -297,7 +347,8 @@ def main() -> None:
     sitemap_path = dist_dir / "sitemap.xml"
     sitemap_path.write_text(sitemap, encoding="utf-8")
     url_count = sitemap.count("<url>")
-    print(f"Created {sitemap_path} ({url_count} URLs)")
+    dated = sitemap.count("<lastmod>")
+    print(f"Created {sitemap_path} ({url_count} URLs, {dated} with lastmod)")
 
     robots = generate_robots()
     robots_path = dist_dir / "robots.txt"

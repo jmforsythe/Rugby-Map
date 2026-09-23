@@ -37,7 +37,13 @@ from rugby.constituent_bodies import get_constituent_body
 from rugby.distance_lookup import DistanceLookup
 from rugby.distances import enrich_island_excl_stats
 from rugby.seo import BASE_URL as SITE_BASE_URL
-from rugby.seo import OG_DEFAULT_IMAGE, absolute_url, breadcrumb_ld_script, og_image_meta_html
+from rugby.seo import (
+    LATEST_SEASON_ATTR,
+    OG_DEFAULT_IMAGE,
+    absolute_url,
+    breadcrumb_ld_script,
+    og_image_meta_html,
+)
 from rugby.tiers import extract_tier
 from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
 from rugby.webpages import get_footer_html
@@ -1048,8 +1054,13 @@ def get_team_page_html(
             "</script>\n"
         )
 
+    # rugby.seo dates the sitemap entry from this season's fixture scrape.
+    latest_season_attr = (
+        f' {LATEST_SEASON_ATTR}="{escape(league_history[0]["season"])}"' if league_history else ""
+    )
+
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en"{latest_season_attr}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

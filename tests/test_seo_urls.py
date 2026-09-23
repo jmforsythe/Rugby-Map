@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from core.config import get_config
 from rugby.maps import _render_popup_html
 from rugby.redirects import (
     _redirect_target_url,
+    _resolve_team_slug,
     discover_apostrophe_tier_redirects,
     discover_feature_rename_redirects,
     discover_legacy_team_html_redirects,
@@ -15,7 +17,7 @@ from rugby.redirects import (
     resolve_not_found_redirect,
     resolve_redirect_target,
 )
-from rugby.seo import absolute_url, encode_url_path, generate_sitemap
+from rugby.seo import absolute_url, encode_url_path, generate_sitemap, season_scrape_dates
 from rugby.team_pages import discover_team_rename_redirects, team_info_page_filename
 
 
@@ -266,4 +268,90 @@ def test_team_page_href_and_canonical_are_directory_style_in_production(
     assert _team_page_href("Bath_Rugby") == "Bath_Rugby/"
     assert _team_page_output_path(Path("teams"), "Bath_Rugby") == Path(
         "teams/Bath_Rugby/index.html"
+    )
+
+
+def _sitemap_dist(tmp_path: Path) -> Path:
+    dist = tmp_path / "dist"
+    for season in ("2025-2026", "2026-2027"):
+        (dist / season / "Counties_1").mkdir(parents=True)
+        (dist / season / "index.html").write_text("<html>hub</html>", encoding="utf-8")
+        (dist / season / "Counties_1" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (dist / "index.html").write_text("<html>home</html>", encoding="utf-8")
+    return dist
+
+
+_SEASON_DATES = {"2025-2026": "2026-05-10", "2026-2027": "2026-09-21"}
+
+
+def _lastmod(sitemap: str, loc: str) -> str | None:
+    m = re.search(
+        rf"<loc>{re.escape(loc)}</loc><priority>[^<]*</priority>(?:<lastmod>([^<]*))?", sitemap
+    )
+    assert m, loc
+    return m.group(1)
+
+
+def test_sitemap_dates_season_pages_from_that_seasons_scrape(tmp_path: Path) -> None:
+    sitemap = generate_sitemap(_sitemap_dist(tmp_path), _SEASON_DATES)
+    base = "https://rugbyunionmap.uk"
+    assert _lastmod(sitemap, f"{base}/2025-2026/Counties_1/") == "2026-05-10"
+    assert _lastmod(sitemap, f"{base}/2026-2027/") == "2026-09-21"
+
+
+def test_sitemap_dates_site_wide_pages_from_latest_season(tmp_path: Path) -> None:
+    sitemap = generate_sitemap(_sitemap_dist(tmp_path), _SEASON_DATES)
+    assert _lastmod(sitemap, "https://rugbyunionmap.uk/") == "2026-09-21"
+
+
+def test_sitemap_dates_team_pages_from_their_latest_season(tmp_path: Path) -> None:
+    dist = _sitemap_dist(tmp_path)
+    for slug, attr in (("Old_Club", ' data-latest-season="2025-2026"'), ("No_History", "")):
+        (dist / "teams" / slug).mkdir(parents=True)
+        (dist / "teams" / slug / "index.html").write_text(
+            f'<!DOCTYPE html>\n<html lang="en"{attr}></html>', encoding="utf-8"
+        )
+    sitemap = generate_sitemap(dist, _SEASON_DATES)
+    assert _lastmod(sitemap, "https://rugbyunionmap.uk/teams/Old_Club/") == "2026-05-10"
+    assert _lastmod(sitemap, "https://rugbyunionmap.uk/teams/No_History/") is None
+
+
+def test_sitemap_omits_lastmod_for_undated_seasons(tmp_path: Path) -> None:
+    sitemap = generate_sitemap(_sitemap_dist(tmp_path), {"2026-2027": "2026-09-21"})
+    assert _lastmod(sitemap, "https://rugbyunionmap.uk/2025-2026/") is None
+
+
+def test_season_scrape_dates_reads_last_updated(tmp_path: Path) -> None:
+    for season, stamp in (("2025-2026", "2026-05-10T07:00:00.1"), ("2026-2027", "garbage")):
+        (tmp_path / season).mkdir()
+        (tmp_path / season / "last_updated.txt").write_text(stamp, encoding="utf-8")
+    assert season_scrape_dates(tmp_path) == {"2025-2026": "2026-05-10"}
+
+
+def test_sitemap_gives_home_page_top_priority(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    dist.mkdir()
+    (dist / "index.html").write_text("<html>home</html>", encoding="utf-8")
+    sitemap = generate_sitemap(dist, {})
+    assert "<loc>https://rugbyunionmap.uk/</loc><priority>1</priority>" in sitemap
+
+
+def test_discover_apostrophe_tier_redirects_on_clean_build(tmp_path: Path) -> None:
+    # CI builds from scratch, so the legacy apostrophe directory never exists.
+    dist = tmp_path / "dist"
+    tier = dist / "2024-2025" / "Premiership_Women"
+    tier.mkdir(parents=True)
+    (tier / "index.html").write_text("<html></html>", encoding="utf-8")
+    pairs = dict(discover_apostrophe_tier_redirects(dist))
+    assert pairs == {"/2024-2025/Premiership_Women's/": "/2024-2025/Premiership_Women/"}
+
+
+def test_resolve_team_slug_prefix_matches_multi_word_names() -> None:
+    slugs = {"Stratford_Upon_Avon"}
+    assert _resolve_team_slug("Stratford_Upon_Avon_II.html", slugs) == "Stratford_Upon_Avon"
+
+
+def test_resolve_team_slug_ignores_curly_apostrophes() -> None:
+    assert _resolve_team_slug("CCS_Women\u2019s_Rugby.html", {"CCS_Women's_Rugby"}) == (
+        "CCS_Women's_Rugby"
     )

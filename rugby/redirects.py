@@ -25,6 +25,7 @@ _SEASON_RE = re.compile(r"^/(\d{4}-\d{4})(?:/|$)")
 _MERIT_RE = re.compile(r"^/(\d{4}-\d{4})/merit/([^/]+)")
 _TEAM_RE = re.compile(r"^/teams/([^/]+\.html)$", re.I)
 _SEASON_DIR = re.compile(r"^\d{4}-\d{4}$")
+_LEGACY_WOMEN_RE = re.compile(r"_Women(?=_|$)")
 
 
 def _normalize_site_path(path: str) -> str:
@@ -124,7 +125,7 @@ def _resolve_team_slug(filename: str, existing: set[str]) -> str | None:
         return None
 
     def norm(name: str) -> str:
-        return name.lower().replace("_", "").replace("'", "")
+        return name.lower().replace("_", "").replace("'", "").replace("\u2019", "")
 
     target_key = norm(stem)
     for slug in existing:
@@ -217,25 +218,27 @@ def discover_legacy_team_html_redirects(dist_dir: Path) -> list[tuple[str, str]]
 
 
 def discover_apostrophe_tier_redirects(dist_dir: Path) -> list[tuple[str, str]]:
-    """``/season/Premiership_Women's/`` → ``/season/Premiership_Women/`` when canonical exists."""
+    """``/season/Premiership_Women's/`` → ``/season/Premiership_Women/`` when canonical exists.
+
+    Legacy names are derived from the canonical directories because a clean build
+    (as in CI) never contains the old apostrophe directories.
+    """
     pairs: list[tuple[str, str]] = []
     for season_dir in sorted(dist_dir.iterdir()):
         if not season_dir.is_dir() or not _SEASON_DIR.fullmatch(season_dir.name):
             continue
         for tier_dir in sorted(season_dir.iterdir()):
-            if not tier_dir.is_dir():
+            if not (tier_dir / "index.html").is_file() or "'" in tier_dir.name:
                 continue
-            canonical = legacy_apostrophe_tier_slug(tier_dir.name)
-            if not canonical:
+            legacy = _LEGACY_WOMEN_RE.sub("_Women's", tier_dir.name)
+            if legacy == tier_dir.name or legacy_apostrophe_tier_slug(legacy) != tier_dir.name:
                 continue
-            canonical_index = season_dir / canonical / "index.html"
-            if canonical_index.is_file():
-                pairs.append(
-                    (
-                        f"/{season_dir.name}/{tier_dir.name}/",
-                        f"/{season_dir.name}/{canonical}/",
-                    )
+            pairs.append(
+                (
+                    f"/{season_dir.name}/{legacy}/",
+                    f"/{season_dir.name}/{tier_dir.name}/",
                 )
+            )
     return pairs
 
 

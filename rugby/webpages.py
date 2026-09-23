@@ -786,8 +786,8 @@ def get_top_level_index_html(seasons: list[str]) -> str:
     home_head_extra = ""
     if is_prod:
         home_head_extra = (
-            f'    <link rel="canonical" href="{escape(BASE_URL)}">\n'
-            f'    <meta property="og:url" content="{escape(BASE_URL)}" />\n'
+            f'    <link rel="canonical" href="{escape(BASE_URL + "/")}">\n'
+            f'    <meta property="og:url" content="{escape(BASE_URL + "/")}" />\n'
             + og_image_meta_html(escape(OG_DEFAULT_IMAGE), indent="    ")
             + "\n"
             f"    {get_twitter_card_meta()}\n" + _home_page_json_ld_script()

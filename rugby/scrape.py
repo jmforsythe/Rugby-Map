@@ -582,7 +582,7 @@ _BANNED_FILENAMES = [
     "Tribute_Duchy_League.json",
     "Social_Rugby_Group.json",
     "Area_2_Merit_League.json",
-    "Bombardier___Eagle_2017.json",
+    "Bombardier_Eagle_2017.json",
     "Bristol_and_District_3-4.json",
     "Gloucester_and_District_3-4.json",
     "Midlands_East_(South)_A.json",

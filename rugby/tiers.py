@@ -249,8 +249,7 @@ _SEASON_OFFSETS: dict[str, list[tuple[str, str, int]]] = {
         ("2009-2010", "2012-2013", 9),
         ("2013-2014", "2014-2015", 7),
         ("2015-2016", "2017-2018", 8),
-        ("2018-2019", "2018-2019", 7),
-        ("2019-2020", "2019-2020", 8),
+        ("2018-2019", "2019-2020", 8),
         ("2021-2022", "2021-2022", 9),
         # Verified against each season's national pyramid: the literally-recorded apex parent
         # ("Counties 2 Surrey") sits at tier 8 across all four seasons, same method as the

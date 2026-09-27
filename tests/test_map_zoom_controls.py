@@ -139,8 +139,9 @@ def test_custom_map_widens_vector_renderer_buffer_for_panning() -> None:
 def test_territory_loader_prefetches_before_leaflet_init() -> None:
     from core.map_builder import _get_territory_loader_script
 
-    script = _get_territory_loader_script("territories.json")
+    script = _get_territory_loader_script("territories.json", "abc123def456")
     assert "territoryDataPromise" in script
+    assert "territories.json?v=abc123def456" in script
     assert "fetchTerritories(0)" in script
     assert "rugby-map-presentation-ready" in script
     assert "rugbyMarkFoliumBootComplete" in script
@@ -160,9 +161,10 @@ def test_territory_render_waits_for_folium_boot_before_applying() -> None:
     """
     from core.map_builder import _get_territory_loader_script
 
-    script = _get_territory_loader_script("territories.json")
+    script = _get_territory_loader_script("territories.json", "abc123def456")
     assert "if (!cachedLayers || !foliumBootComplete) return;" in script
     assert "MAX_RENDER_ATTEMPTS" not in script
+    assert "refetchSidecarAfterMismatch" in script
 
 
 def test_inject_territory_boot_hook_appends_to_folium_boot_script() -> None:
@@ -197,9 +199,18 @@ def test_sidecar_maps_do_not_emit_a_redundant_territories_preload() -> None:
     import core.map_builder as map_builder
     from core.map_builder import _get_territory_loader_script
 
-    script = _get_territory_loader_script("territories.json")
+    script = _get_territory_loader_script("territories.json", "abc123def456")
     assert 'rel="preload"' not in script
     assert not hasattr(map_builder, "_get_territories_preload_link")
+
+
+def test_territory_sidecar_version_fingerprint_changes_with_layer_keys() -> None:
+    from core.map_builder import _territory_sidecar_version
+
+    layers_a = {"feature_group_a": {"groups": {}}, "feature_group_b": {"groups": {}}}
+    layers_b = {"feature_group_a": {"groups": {}}, "feature_group_c": {"groups": {}}}
+    assert _territory_sidecar_version(layers_a) != _territory_sidecar_version(layers_b)
+    assert len(_territory_sidecar_version(layers_a)) == 12
 
 
 def test_inject_presentation_ready_hook_appends_to_saved_map() -> None:

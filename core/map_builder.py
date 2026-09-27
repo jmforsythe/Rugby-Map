@@ -7,6 +7,7 @@ sport, league structure, or data source -- the caller provides pre-built
 MarkerItem objects and a MapConfig with all project-specific settings.
 """
 
+import hashlib
 import json
 import logging
 import math
@@ -1564,6 +1565,17 @@ def _collect_territory_export(
     return feature_group.get_name(), {"groups": groups}
 
 
+def _territory_sidecar_version(layers: dict[str, Any]) -> str:
+    """Fingerprint of Folium layer variable names embedded in the sidecar fetch URL.
+
+    Each map regeneration gets new ``feature_group_*`` hashes, so a version query
+    param busts the service worker's stale-while-revalidate cache when HTML and
+    JSON would otherwise disagree after deploy.
+    """
+    digest = hashlib.sha256("|".join(sorted(layers)).encode()).hexdigest()
+    return digest[:12]
+
+
 def _write_territories_sidecar(
     output_path: Path, sidecar_name: str, layers: dict[str, Any]
 ) -> None:
@@ -1628,7 +1640,7 @@ def _signal_presentation_ready_script() -> str:
     return "document.dispatchEvent(new Event('rugby-map-presentation-ready'));"
 
 
-def _get_territory_loader_script(sidecar_name: str) -> str:
+def _get_territory_loader_script(sidecar_name: str, sidecar_version: str) -> str:
     """Client-side loader that fetches the territories sidecar and populates
     the (already-created, empty) territory FeatureGroups by their Folium JS
     variable name, matching the ``_get_boundary_loader_script`` pattern.
@@ -1643,11 +1655,14 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
     long before any layer variable exists. Groups are then added progressively
     across animation frames rather than in one blocking batch.
 
-    Retries the fetch on failure (a transient network blip or cold CDN edge
-    can take longer than a couple of seconds to clear) and, if a controlling
-    service worker is present, also asks it to precache the sidecar in the
-    background -- so a *second* tab/reload hitting the same cold edge has a
-    cached copy to fall back on instead of racing the network again.
+    The fetch URL carries a build-time ``?v=`` fingerprint of the Folium layer
+    variable names so a service-worker cache entry from a previous deploy cannot
+    be served against freshly generated HTML. Retries the fetch on failure (a
+    transient network blip or cold CDN edge can take longer than a couple of
+    seconds to clear) and, if a controlling service worker is present, also
+    asks it to precache the sidecar in the background -- so a *second* tab/reload
+    hitting the same cold edge has a cached copy to fall back on instead of
+    racing the network again.
     """
     return f"""
     <script>
@@ -1655,16 +1670,18 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
         var MAX_ATTEMPTS = 6;
         var GROUPS_PER_FRAME = 2;
         var PRESENTATION_FALLBACK_MS = {PRESENTATION_READY_FALLBACK_MS};
+        var sidecarUrl = '{sidecar_name}?v={sidecar_version}';
         var territoryDataPromise = null;
         var cachedLayers = null;
         var foliumBootComplete = false;
         var territoryApplyStarted = false;
+        var sidecarMismatchRetries = 0;
         var presentationReadySent = false;
         function requestPrecache() {{
             if (navigator.serviceWorker && navigator.serviceWorker.controller) {{
                 navigator.serviceWorker.controller.postMessage({{
                     type: 'PRECACHE_JSON',
-                    url: '{sidecar_name}',
+                    url: sidecarUrl,
                 }});
             }}
         }}
@@ -1680,10 +1697,15 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                 setTimeout(signalPresentationReady, 0);
             }}
         }}
+        function missingLayerVars(layers) {{
+            return Object.keys(layers).filter(function(varName) {{
+                return !window[varName];
+            }});
+        }}
         function layersReady(layers) {{
             var varNames = Object.keys(layers);
             if (!varNames.length) return false;
-            return varNames.every(function(varName) {{ return window[varName]; }});
+            return missingLayerVars(layers).length === 0;
         }}
         function buildRenderQueue(layers) {{
             var queue = [];
@@ -1709,16 +1731,34 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
                 return false;
             }}
         }}
+        function refetchSidecarAfterMismatch(missing) {{
+            if (sidecarMismatchRetries >= 1) return false;
+            sidecarMismatchRetries += 1;
+            territoryDataPromise = null;
+            cachedLayers = null;
+            fetch(sidecarUrl + '&_=' + Date.now(), {{ cache: 'no-store' }}).then(function(r) {{
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            }}).then(onTerritoryData).catch(function(e) {{
+                console.warn('Territory sidecar stale-cache retry failed:', e, missing.slice(0, 3));
+                territoryApplyStarted = true;
+                finishPresentationReady();
+            }});
+            return true;
+        }}
         function applyTerritoriesProgressive(layers) {{
             if (territoryApplyStarted) return;
-            // Only reachable once Folium's boot script has run, so missing
-            // layer variables here are permanent rather than a timing race.
-            territoryApplyStarted = true;
             if (!layersReady(layers)) {{
-                console.warn('Territory layer variables missing after Folium boot');
+                var missing = missingLayerVars(layers);
+                if (refetchSidecarAfterMismatch(missing)) {{
+                    return;
+                }}
+                console.warn('Territory layer variables missing after Folium boot', missing.slice(0, 5));
+                territoryApplyStarted = true;
                 finishPresentationReady();
                 return;
             }}
+            territoryApplyStarted = true;
             var queue = buildRenderQueue(layers);
             if (!queue.length) {{
                 finishPresentationReady();
@@ -1753,7 +1793,7 @@ def _get_territory_loader_script(sidecar_name: str) -> str:
         window.rugbyMarkFoliumBootComplete = markFoliumBootComplete;
         function fetchTerritories(attempt) {{
             if (!territoryDataPromise) {{
-                territoryDataPromise = fetch('{sidecar_name}').then(function(r) {{
+                territoryDataPromise = fetch(sidecarUrl).then(function(r) {{
                     if (!r.ok) throw new Error('HTTP ' + r.status);
                     return r.json();
                 }});
@@ -3519,7 +3559,12 @@ def generate_single_group_map(
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
     if territory_export:
         header.add_child(
-            folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+            folium.Element(
+                _get_territory_loader_script(
+                    config.territories_sidecar_name,
+                    _territory_sidecar_version(territory_export),
+                )
+            )
         )
 
     if hatch_defs_html:
@@ -3648,7 +3693,12 @@ def generate_multi_group_map(
         html_el.add_child(folium.Element(_get_debug_boundary_loader_script(config)))
     if territory_export:
         header.add_child(
-            folium.Element(_get_territory_loader_script(config.territories_sidecar_name))
+            folium.Element(
+                _get_territory_loader_script(
+                    config.territories_sidecar_name,
+                    _territory_sidecar_version(territory_export),
+                )
+            )
         )
 
     html_el.add_child(

@@ -4,24 +4,30 @@
   "fixtures": [
     {
       "date": "2026-09-26",
-      "time": "14:00",
+      "time": "",
       "home_team_id": 24890,
       "away_team_id": 6749,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1311915"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1311915",
+      "home_score": 33,
+      "away_score": 0
     },
     {
       "date": "2026-09-26",
       "time": "",
       "home_team_id": 11258,
       "away_team_id": 19149,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1323431"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1323431",
+      "home_score": 26,
+      "away_score": 34
     },
     {
       "date": "2026-09-27",
       "time": "",
       "home_team_id": 3544,
       "away_team_id": 3830,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1300106"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1300106",
+      "home_score": 36,
+      "away_score": 17
     },
     {
       "date": "2026-09-27",

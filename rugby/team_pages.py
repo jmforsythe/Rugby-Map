@@ -930,6 +930,173 @@ def _render_fixtures_section(
     return html
 
 
+# (key, column heading) for the Record Results tables, in display order.
+_RECORD_CATEGORIES: tuple[tuple[str, str], ...] = (
+    ("most_scored", "Most points scored"),
+    ("most_conceded", "Most points conceded"),
+    ("biggest_win", "Biggest win"),
+    ("biggest_defeat", "Biggest defeat"),
+)
+
+
+def _own_and_opponent_score(entry: TeamFixtureEntry) -> tuple[int, int] | None:
+    """(own, opponent) score for a played fixture; None for walkovers and unplayed games."""
+    if entry.get("status"):
+        return None
+    home_score = entry.get("home_score")
+    away_score = entry.get("away_score")
+    if home_score is None or away_score is None:
+        return None
+    return (home_score, away_score) if entry["is_home"] else (away_score, home_score)
+
+
+def compute_team_records(fixtures: list[TeamFixtureEntry]) -> dict[str, TeamFixtureEntry]:
+    """Best/worst scored results, keyed by ``_RECORD_CATEGORIES`` key.
+
+    Ties go to the more emphatic result (e.g. equal points scored → bigger margin),
+    then the earliest date, so a record stands until it is beaten. Categories with
+    no qualifying fixture (e.g. no wins) are omitted.
+    """
+    best: dict[str, tuple[tuple[int, int], TeamFixtureEntry]] = {}
+    for entry in fixtures:
+        scores = _own_and_opponent_score(entry)
+        if scores is None:
+            continue
+        own, opponent = scores
+        margin = own - opponent
+        ranks: dict[str, tuple[int, int] | None] = {
+            "most_scored": (own, margin),
+            "most_conceded": (opponent, -margin),
+            "biggest_win": (margin, own) if margin > 0 else None,
+            "biggest_defeat": (-margin, opponent) if margin < 0 else None,
+        }
+        for key, rank in ranks.items():
+            if rank is None:
+                continue
+            current = best.get(key)
+            if (
+                current is None
+                or rank > current[0]
+                or (rank == current[0] and entry["date"] < current[1]["date"])
+            ):
+                best[key] = (rank, entry)
+    return {key: entry for key, (_, entry) in best.items()}
+
+
+def _render_record_cell(
+    entry: TeamFixtureEntry | None,
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    scores = _own_and_opponent_score(entry) if entry else None
+    if entry is None or scores is None:
+        return '<td class="record-cell record-empty">—</td>'
+    own, opponent = scores
+    if own > opponent:
+        badge_class, badge_label = "result-win", "W"
+    elif own < opponent:
+        badge_class, badge_label = "result-loss", "L"
+    else:
+        badge_class, badge_label = "result-draw", "D"
+    score_html = f"{own}–{opponent}"
+    if entry.get("match_url"):
+        score_html = (
+            f'<a href="{escape(entry["match_url"])}" target="_blank" '
+            f'title="View on England Rugby">{score_html}</a>'
+        )
+    opponent_name = team_id_names.get(entry["opponent_id"], f"Team {entry['opponent_id']}")
+    opponent_html = _opponent_page_link(
+        entry["opponent_id"],
+        opponent_name,
+        all_teams,
+        id_to_page_key,
+        ambiguous_display_names,
+    )
+    venue = "H" if entry["is_home"] else "A"
+    return (
+        f'<td class="record-cell">'
+        f'<span class="record-score">{score_html} '
+        f'<span class="result-badge {badge_class}">{badge_label}</span></span>'
+        f'<span class="record-detail">v {opponent_html} ({venue})</span>'
+        f'<span class="record-detail">{escape(_format_fixture_date(entry["date"]))}</span>'
+        f"</td>"
+    )
+
+
+def _render_records_table(
+    rows: list[tuple[str, dict[str, TeamFixtureEntry]]],
+    first_heading: str,
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    headings = "".join(f"<th>{escape(heading)}</th>" for _, heading in _RECORD_CATEGORIES)
+    html = f"""        <div class="table-wrapper">
+        <table class="records-table">
+            <thead>
+                <tr><th>{escape(first_heading)}</th>{headings}</tr>
+            </thead>
+            <tbody>
+"""
+    for label, records in rows:
+        cells = "".join(
+            _render_record_cell(
+                records.get(key),
+                all_teams,
+                id_to_page_key,
+                team_id_names,
+                ambiguous_display_names,
+            )
+            for key, _ in _RECORD_CATEGORIES
+        )
+        html += f"""                <tr><td class="season-cell">{escape(label)}</td>{cells}</tr>
+"""
+    html += """            </tbody>
+        </table>
+        </div>
+"""
+    return html
+
+
+def _render_records_section(
+    fixtures: list[TeamFixtureEntry],
+    all_teams: dict[str, TeamData],
+    id_to_page_key: dict[int, str],
+    team_id_names: dict[int, str],
+    ambiguous_display_names: set[str],
+) -> str:
+    """All-time and per-season best/worst results; empty when no scored fixtures exist."""
+    all_time = compute_team_records(fixtures)
+    if not all_time:
+        return ""
+
+    by_season: defaultdict[str, list[TeamFixtureEntry]] = defaultdict(list)
+    for entry in fixtures:
+        by_season[entry["season"]].append(entry)
+    season_rows = [
+        (season, records)
+        for season in sorted(by_season, reverse=True)
+        if (records := compute_team_records(by_season[season]))
+    ]
+
+    table_args = (all_teams, id_to_page_key, team_id_names, ambiguous_display_names)
+    html = """    <div class="info-section records-section">
+        <h2>Record Results</h2>
+"""
+    html += _render_records_table([("All time", all_time)], "", *table_args)
+    html += """        <details class="fixtures-season records-by-season">
+            <summary>By season</summary>
+"""
+    html += _render_records_table(season_rows, "Season", *table_args)
+    html += """        </details>
+    </div>
+"""
+    return html
+
+
 def _team_page_structured_data(
     team_name: str,
     team_data: TeamData,
@@ -1219,6 +1386,14 @@ def get_team_page_html(
         </div>
     </div>
 """
+
+    html += _render_records_section(
+        team_fixtures,
+        all_teams,
+        id_to_page_key,
+        team_id_names,
+        ambiguous_display_names,
+    )
 
     fixtures_html = _render_fixtures_section(
         team_fixtures,

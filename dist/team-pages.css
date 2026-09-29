@@ -370,6 +370,85 @@
     padding: 0 0.5em 0.75em;
 }
 
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 0.85em;
+}
+
+.records-table th,
+.records-table td {
+    padding: 0.5em 0.6em;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+}
+
+.records-table th {
+    background: var(--bg-card-alt);
+    font-weight: 600;
+    color: var(--text-heading);
+    border-bottom: 2px solid var(--accent);
+}
+
+.records-table th:first-child,
+.records-table td:first-child {
+    width: 6.5em;
+}
+
+.records-table tr:hover {
+    background: var(--bg-card-alt);
+}
+
+.record-score {
+    display: block;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.record-score a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.record-score a:hover {
+    text-decoration: underline;
+}
+
+.record-detail {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.record-empty {
+    color: var(--text-muted);
+}
+
+/* Opponent links read as plain inline text here, not the fixtures table's pill. */
+.record-detail a.card-link,
+.record-detail .fixture-opponent-name {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--accent);
+    white-space: normal;
+}
+
+.record-detail a.card-link:hover {
+    transform: none;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.record-detail .fixture-opponent-name {
+    color: inherit;
+}
+
 .distance-header-full {
     display: inline;
 }
@@ -461,6 +540,15 @@
 
     /* Fixtures: single row with horizontal scroll when content is wider than the card */
     .fixtures-season .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .records-table {
+        min-width: 40em;
+    }
+
+    .records-section .table-wrapper {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }

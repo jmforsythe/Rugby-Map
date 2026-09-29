@@ -9,10 +9,12 @@ from rugby.team_pages import (
     _format_fixture_date_short,
     _format_fixture_result,
     _render_fixtures_section,
+    _render_records_section,
     _team_page_sibling_href,
     build_club_index,
     build_id_to_page_key,
     collect_team_fixtures,
+    compute_team_records,
     get_team_page_html,
 )
 from rugby.travel_display import format_team_travel_distance_km, format_team_travel_time_min
@@ -378,6 +380,88 @@ class TestRenderFixturesSection:
         assert html.index("2026-2027") < html.index("2025-2026")
         assert html.count('<details class="fixtures-season"') == 2
         assert "Fixtures & Results" in html
+
+
+def _result(
+    date: str,
+    own: int | None,
+    opponent: int | None,
+    *,
+    is_home: bool = True,
+    season: str = "2024-2025",
+    opponent_id: int = 42,
+    status: str | None = None,
+) -> TeamFixtureEntry:
+    entry: TeamFixtureEntry = {
+        "season": season,
+        "league_name": "Test League",
+        "date": date,
+        "time": "",
+        "is_home": is_home,
+        "opponent_id": opponent_id,
+        "match_url": f"https://example.com/{date}",
+        "home_score": own if is_home else opponent,
+        "away_score": opponent if is_home else own,
+    }
+    if status:
+        entry["status"] = status
+    return entry
+
+
+class TestComputeTeamRecords:
+    def test_picks_each_category_from_own_perspective(self):
+        fixtures = [
+            _result("2024-09-07", 50, 10, is_home=False),
+            _result("2024-09-14", 20, 45),
+            _result("2024-09-21", 55, 40),
+            _result("2024-09-28", 3, 30, is_home=False),
+        ]
+        records = compute_team_records(fixtures)
+        assert records["most_scored"]["date"] == "2024-09-21"
+        assert records["most_conceded"]["date"] == "2024-09-14"
+        assert records["biggest_win"]["date"] == "2024-09-07"
+        assert records["biggest_defeat"]["date"] == "2024-09-28"
+
+    def test_ties_prefer_bigger_margin_then_earliest(self):
+        fixtures = [
+            _result("2024-10-05", 40, 30),
+            _result("2024-09-07", 40, 20),
+            _result("2024-09-28", 40, 20),
+        ]
+        assert compute_team_records(fixtures)["most_scored"]["date"] == "2024-09-07"
+
+    def test_skips_walkovers_unplayed_and_missing_categories(self):
+        fixtures = [
+            _result("2024-09-07", None, None, status="HWO"),
+            _result("2024-09-14", None, None),
+            _result("2024-09-21", 10, 10),
+        ]
+        records = compute_team_records(fixtures)
+        assert set(records) == {"most_scored", "most_conceded"}
+        assert compute_team_records(fixtures[:2]) == {}
+
+
+class TestRenderRecordsSection:
+    def test_all_time_and_per_season_tables(self):
+        fixtures = [
+            _result("2024-09-07", 50, 10, season="2024-2025"),
+            _result("2023-09-09", 5, 60, is_home=False, season="2023-2024", opponent_id=43),
+        ]
+        html = _render_records_section(fixtures, {}, {}, {42: "Opp A", 43: "Opp B"}, set())
+
+        assert "Record Results" in html
+        assert html.count('<table class="records-table">') == 2
+        assert "All time" in html
+        assert html.index("2024-2025") < html.index("2023-2024")
+        assert "50–10" in html
+        assert "5–60" in html
+        assert 'v <span class="fixture-opponent-name">Opp B</span> (A)' in html
+        # 2023-2024 had no win, so its biggest-win cell is empty.
+        assert 'record-empty">—' in html
+
+    def test_empty_without_scored_fixtures(self):
+        fixtures = [_result("2026-10-03", None, None)]
+        assert _render_records_section(fixtures, {}, {}, {}, set()) == ""
 
 
 class TestGetTeamPageHtml:

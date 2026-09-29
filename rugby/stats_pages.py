@@ -47,6 +47,13 @@ from rugby.tiers import (
     womens_current_tier_name,
 )
 from rugby.webpages import get_footer_html
+from rugby.weekly_report import (
+    WEEKLY_REPORT_HTML,
+    WEEKLY_REPORT_SCRIPT,
+    WEEKLY_REPORT_STYLE,
+    WeeklyIndexEntry,
+    write_weekly_report,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -1333,7 +1340,11 @@ def _axis_tier_labels_women() -> dict[str, str]:
     return {str(tier): womens_current_tier_name(tier + 100) for tier in range(1, 10)}
 
 
-def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimelines) -> str:
+def get_stats_index_html(
+    breakdown: StatsBreakdown,
+    club_timelines: ClubTimelines,
+    weekly_index: list[WeeklyIndexEntry] | None = None,
+) -> str:
     """Generate HTML content for the stats dashboard page."""
     is_prod = get_config().is_production
     home_href = "../" if is_prod else "../index.html"
@@ -1341,7 +1352,8 @@ def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimeline
     page_title = f"Stats | {BRAND}"
     page_desc = (
         "Historical stats for English rugby union: number of teams and clubs "
-        "fielded each season, filterable by pyramid or merit competition."
+        "fielded each season, filterable by pyramid or merit competition, plus a "
+        "weekly report of the biggest scores and winning margins."
     )
 
     head_extra = ""
@@ -1381,6 +1393,8 @@ def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimeline
         }
     )
 
+    weekly_index_json = json.dumps({"seasons": weekly_index or []})
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1393,7 +1407,7 @@ def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimeline
 {head_extra}    <title>{escape(page_title)}</title>
     <link rel="stylesheet" href="../styles.css">
     {get_favicon_html(depth=1)}
-{_CHART_STYLE}    {get_google_analytics_script()}
+{_CHART_STYLE}{WEEKLY_REPORT_STYLE}    {get_google_analytics_script()}
 </head>
 <body>
     <div class="back-link">
@@ -1401,11 +1415,12 @@ def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimeline
     </div>
 
     <h1>Stats</h1>
-    <p>Teams and clubs fielded each season. Each chart has its own filter, defaulting to the men's + women's pyramid (excluding merit leagues).</p>
+    <p>The biggest results of each week, plus teams and clubs fielded each season. Each section has its own filter, defaulting to the men's + women's pyramid (excluding merit leagues).</p>
 
     <div class="stats-tiles">
 {_stat_tile("tile-teams-value", "tile-teams-label")}{_stat_tile("tile-clubs-value", "tile-clubs-label")}    </div>
 
+{WEEKLY_REPORT_HTML}
     <div class="info-section">
         <div class="chart-card-header">
             <h2>Teams per season</h2>
@@ -1475,6 +1490,8 @@ def get_stats_index_html(breakdown: StatsBreakdown, club_timelines: ClubTimeline
 {_CHART_SCRIPT}
     <script type="application/json" id="club-timeline-dataset">{club_timeline_json}</script>
 {_CLUB_TIMELINE_SCRIPT}
+    <script type="application/json" id="weekly-index">{weekly_index_json}</script>
+{WEEKLY_REPORT_SCRIPT}
 {get_footer_html()}
 </body>
 </html>
@@ -1494,7 +1511,9 @@ def generate_stats_page() -> None:
     stats_dir = DIST_DIR / "stats"
     stats_dir.mkdir(parents=True, exist_ok=True)
 
-    html_content = get_stats_index_html(breakdown, club_timelines)
+    weekly_index = write_weekly_report(stats_dir / "weekly")
+
+    html_content = get_stats_index_html(breakdown, club_timelines, weekly_index)
     index_path = stats_dir / "index.html"
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_content)

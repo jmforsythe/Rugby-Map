@@ -4,12 +4,15 @@ from core import TeamTravelDistances, get_config
 from rugby.team_pages import (
     TeamData,
     TeamFixtureEntry,
+    _fixture_has_result,
+    _fixture_is_upcoming,
     _format_fixture_date,
     _format_fixture_date_cell,
     _format_fixture_date_short,
     _format_fixture_result,
     _render_fixtures_section,
     _render_records_section,
+    _sort_season_fixtures,
     _team_page_sibling_href,
     build_club_index,
     build_id_to_page_key,
@@ -348,6 +351,101 @@ class TestCollectTeamFixtures:
         assert fixtures["home-team"][0]["opponent_id"] == 20
         assert len(fixtures["away-team"]) == 1
         assert fixtures["away-team"][0]["is_home"] is False
+
+
+class TestFixtureSorting:
+    def test_scored_fixture_is_not_upcoming_even_with_future_date(self):
+        played: TeamFixtureEntry = {
+            "season": "2026-2027",
+            "league_name": "Test League",
+            "date": "2026-10-03",
+            "time": "",
+            "is_home": True,
+            "opponent_id": 42,
+            "match_url": "https://example.com/played",
+            "home_score": 24,
+            "away_score": 17,
+        }
+        kickoff_later: TeamFixtureEntry = {
+            "season": "2026-2027",
+            "league_name": "Test League",
+            "date": "2026-10-03",
+            "time": "15:00",
+            "is_home": False,
+            "opponent_id": 43,
+            "match_url": "https://example.com/upcoming",
+        }
+
+        assert _fixture_has_result(played)
+        assert not _fixture_is_upcoming(played)
+        assert not _fixture_has_result(kickoff_later)
+        assert _fixture_is_upcoming(kickoff_later)
+
+    def test_walkover_counts_as_result_not_upcoming(self):
+        entry: TeamFixtureEntry = {
+            "season": "2026-2027",
+            "league_name": "Test League",
+            "date": "2026-10-10",
+            "time": "",
+            "is_home": True,
+            "opponent_id": 42,
+            "match_url": "https://example.com/wo",
+            "status": "HWO",
+        }
+        assert _fixture_has_result(entry)
+        assert not _fixture_is_upcoming(entry)
+
+    def test_sort_season_fixtures_integrates_results_and_fixtures_chronologically(self):
+        rows: list[TeamFixtureEntry] = [
+            {
+                "season": "2026-2027",
+                "league_name": "Test League",
+                "date": "2027-04-10",
+                "time": "14:30",
+                "is_home": False,
+                "opponent_id": 3,
+                "match_url": "https://example.com/3",
+            },
+            {
+                "season": "2026-2027",
+                "league_name": "Test League",
+                "date": "2026-09-26",
+                "time": "",
+                "is_home": True,
+                "opponent_id": 4,
+                "match_url": "https://example.com/4",
+                "home_score": 0,
+                "away_score": 86,
+            },
+            {
+                "season": "2026-2027",
+                "league_name": "Test League",
+                "date": "2027-04-03",
+                "time": "15:00",
+                "is_home": True,
+                "opponent_id": 2,
+                "match_url": "https://example.com/2",
+            },
+            {
+                "season": "2026-2027",
+                "league_name": "Test League",
+                "date": "2026-09-12",
+                "time": "",
+                "is_home": True,
+                "opponent_id": 1,
+                "match_url": "https://example.com/1",
+                "home_score": 10,
+                "away_score": 20,
+            },
+        ]
+
+        sorted_rows = _sort_season_fixtures(rows)
+        assert [r["match_url"] for r in sorted_rows] == [
+            "https://example.com/1",
+            "https://example.com/4",
+            "https://example.com/2",
+            "https://example.com/3",
+        ]
 
 
 class TestRenderFixturesSection:

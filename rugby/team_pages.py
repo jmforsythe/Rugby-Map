@@ -657,20 +657,22 @@ def collect_team_fixtures(id_to_page_key: dict[int, str]) -> dict[str, list[Team
 
     result: dict[str, list[TeamFixtureEntry]] = {}
     for page_key, rows in by_page_key.items():
-        upcoming = sorted(
-            (r for r in rows if _fixture_is_upcoming(r)),
-            key=lambda r: (r["date"], r["match_url"]),
-        )
-        past = sorted(
-            (r for r in rows if not _fixture_is_upcoming(r)),
-            key=lambda r: (r["date"], r["match_url"]),
-            reverse=True,
-        )
-        result[page_key] = upcoming + past
+        result[page_key] = _sort_fixtures_chronologically(rows)
     return result
 
 
+def _fixture_has_result(entry: TeamFixtureEntry) -> bool:
+    """True when the RFU row is a played result or walkover, not a scheduled fixture."""
+    if entry.get("status"):
+        return True
+    home_score = entry.get("home_score")
+    away_score = entry.get("away_score")
+    return home_score is not None and away_score is not None
+
+
 def _fixture_is_upcoming(entry: TeamFixtureEntry) -> bool:
+    if _fixture_has_result(entry):
+        return False
     try:
         return date.fromisoformat(entry["date"]) >= date.today()
     except ValueError:
@@ -818,18 +820,14 @@ def _opponent_page_link(
     return f'<span class="fixture-opponent-name">{escape(opponent_name)}</span>'
 
 
+def _sort_fixtures_chronologically(rows: list[TeamFixtureEntry]) -> list[TeamFixtureEntry]:
+    """Sort fixtures and results together by date, earliest first."""
+    return sorted(rows, key=lambda r: (r["date"], r["match_url"]))
+
+
 def _sort_season_fixtures(rows: list[TeamFixtureEntry]) -> list[TeamFixtureEntry]:
-    """Within one season: upcoming fixtures first, then past results (newest first)."""
-    upcoming = sorted(
-        (r for r in rows if _fixture_is_upcoming(r)),
-        key=lambda r: (r["date"], r["match_url"]),
-    )
-    past = sorted(
-        (r for r in rows if not _fixture_is_upcoming(r)),
-        key=lambda r: (r["date"], r["match_url"]),
-        reverse=True,
-    )
-    return upcoming + past
+    """Within one season: fixtures and results in chronological order."""
+    return _sort_fixtures_chronologically(rows)
 
 
 def _render_fixture_table_rows(

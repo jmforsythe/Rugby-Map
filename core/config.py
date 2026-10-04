@@ -1,5 +1,6 @@
 """Application configuration, logging setup, and HTML helpers."""
 
+import json
 import logging
 import os
 from dataclasses import dataclass
@@ -59,19 +60,49 @@ def get_google_analytics_script() -> str:
     """Return Google Analytics script for embedding in HTML pages.
 
     Uses the GA_TRACKING_ID environment variable. Returns an empty string if not set.
+
+    Tracking is gated to reduce bot noise: production hostname only, skips common
+    crawler user agents, and defers the first page_view until user engagement or
+    a short timeout (whichever comes first).
     """
     ga_id = os.environ.get("GA_TRACKING_ID", "")
     if not ga_id:
         return ""
+    ga_id_js = json.dumps(ga_id)
     return f"""
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>
+    <!-- Google tag (gtag.js) — gated load -->
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){{dataLayer.push(arguments);}}
-    gtag('js', new Date());
-
-    gtag('config', '{ga_id}');
+    (function() {{
+        var host = location.hostname;
+        if (host !== 'rugbyunionmap.uk') {{
+            return;
+        }}
+        var ua = navigator.userAgent || '';
+        if (/bot|crawler|spider|crawling|headless|phantomjs|slurp|bingpreview|facebookexternalhit/i.test(ua)) {{
+            return;
+        }}
+        var gaId = {ga_id_js};
+        var loaded = false;
+        function loadGa() {{
+            if (loaded) {{
+                return;
+            }}
+            loaded = true;
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', gaId);
+        }}
+        ['scroll', 'click', 'keydown', 'touchstart'].forEach(function(eventName) {{
+            window.addEventListener(eventName, loadGa, {{once: true, passive: true}});
+        }});
+        setTimeout(loadGa, 5000);
+    }})();
     </script>
 """
 

@@ -39,6 +39,7 @@ from pathlib import Path
 from core.config import DIST_DIR, REPO_ROOT, setup_logging
 from rugby import DATA_DIR
 from rugby.analysis.instagram_leaderboard import (
+    RANK_COL_WIDTH,
     SITE_HOST,
     LeaderboardEntry,
     _latest_data_timestamp,
@@ -57,6 +58,35 @@ from rugby.weekly_report import (
     rank_week,
     saturday_of_week,
 )
+
+# (key, title) for the carousel's cover rows and slides, in display order. Kept
+# separate from WEEKLY_CATEGORIES, which the stats page also ranks by: team score
+# is split by level group so men's, women's and merit each get their own slide.
+CAROUSEL_CATEGORIES: tuple[tuple[str, str], ...] = (
+    ("mens_score", "Highest men's score"),
+    ("womens_score", "Highest women's score"),
+    ("merit_score", "Highest merit score"),
+    ("points_in_defeat", "Highest losing score"),
+    ("aggregate", "Highest combined score"),
+)
+_SCORE_GROUPS = {"mens_score": "mens", "womens_score": "womens", "merit_score": "merit"}
+_SCORE_SCOPE_LABELS = {
+    "mens_score": "Men's pyramid",
+    "womens_score": "Women's pyramid",
+    "merit_score": "Merit leagues",
+}
+# Slide before each group's top 10: its best score at every level (stem suffix, title).
+_PER_LEVEL_SLIDES = {
+    "mens_score": ("mens_by_level", "Highest men's score at each level"),
+    "womens_score": ("womens_by_level", "Highest women's score at each level"),
+    "merit_score": ("merit_by_competition", "Highest score in each merit competition"),
+}
+LEVEL_LABEL_COL_WIDTH = 184  # level / competition name instead of rank numbers
+_CATEGORY_TITLES = dict(WEEKLY_CATEGORIES) | dict(CAROUSEL_CATEGORIES)
+
+# Caption template (Instagram and TikTok share the same wording and hashtags).
+CAPTION_HASHTAGS = "#rugby #rugbyunion #grassrootsrugby #englishrugby #rugbyresults"
+CAPTION_CTA = "Swipe for the top 10s and the best score at every level."
 
 INSTAGRAM_ROOT = REPO_ROOT / "output" / "instagram"
 RENDER_ROOT = INSTAGRAM_ROOT / "weekly"
@@ -123,6 +153,42 @@ def _team_lookup(saturday: date) -> dict[int, TeamInfo]:
     return lookup
 
 
+def rank_carousel(results: list[ScoredFixture], top: int = 10) -> dict[str, list[RankedResult]]:
+    """Top ``top`` results per ``CAROUSEL_CATEGORIES`` key."""
+    league_wide = rank_week(results, top=top)
+    ranked: dict[str, list[RankedResult]] = {}
+    for key, _title in CAROUSEL_CATEGORIES:
+        group = _SCORE_GROUPS.get(key)
+        if group is None:
+            ranked[key] = league_wide[key]
+        else:
+            in_group = [fx for fx in results if fx.level["group"] == group]
+            ranked[key] = rank_week(in_group, top=top)["team_score"]
+    return ranked
+
+
+def rank_score_per_level(results: list[ScoredFixture], group: str) -> list[RankedResult]:
+    """Highest team score at each level in ``group``: pyramid by tier, merit A–Z."""
+    by_level: dict[str, list[ScoredFixture]] = {}
+    for fx in results:
+        if fx.level["group"] == group:
+            by_level.setdefault(fx.level["key"], []).append(fx)
+    best = [rank_week(fixtures, top=1)["team_score"][0] for fixtures in by_level.values()]
+    if group == "merit":
+        return sorted(best, key=lambda r: r.fixture.level["label"].casefold())
+    return sorted(best, key=lambda r: int(r.fixture.level["key"]))
+
+
+def _level_row_label(level: dict[str, str]) -> str:
+    """Left-column label on per-level slides: tier name or merit competition."""
+    label = level["label"]
+    if level["group"] == "merit" and label.endswith(" Merit"):
+        return label[: -len(" Merit")]
+    if label == "Premiership Women's":
+        return "Premiership"
+    return label
+
+
 def _score_line(fx: ScoredFixture, side: str | None) -> tuple[int, int]:
     """(first, second) score as read from ``side``'s perspective (home first for matches)."""
     if side == "away":
@@ -131,7 +197,13 @@ def _score_line(fx: ScoredFixture, side: str | None) -> tuple[int, int]:
 
 
 def _entry(
-    category: str, ranked: RankedResult, teams: dict[int, TeamInfo], *, headline: bool = False
+    category: str,
+    ranked: RankedResult,
+    teams: dict[int, TeamInfo],
+    *,
+    headline: bool = False,
+    detail_suffix: str | None = None,
+    rank_label: str | None = None,
 ) -> LeaderboardEntry:
     fx = ranked.fixture
 
@@ -141,7 +213,7 @@ def _entry(
     home, away = team(fx.home_id), team(fx.away_id)
     first, second = _score_line(fx, ranked.side)
     value = f"+{ranked.value}" if category == "winning_margin" else str(ranked.value)
-    title = dict(WEEKLY_CATEGORIES)[category]
+    title = _CATEGORY_TITLES[category]
 
     second_name: str | None = None
     second_logo: str | None = None
@@ -156,14 +228,18 @@ def _entry(
         name = own.name
         detail = f"{first}–{second} v {opponent.name}"
         logo = own.logo_url
-    detail = (
-        f"{title} · {detail}" if headline else f"{detail} · {short_league_name(fx.league_name)}"
-    )
+    if headline:
+        match_detail = detail
+    else:
+        suffix = detail_suffix if detail_suffix is not None else short_league_name(fx.league_name)
+        match_detail = f"{detail} · {suffix}"
     return LeaderboardEntry(
         team_name=name,
-        detail=detail,
+        detail=match_detail,
         value=value,
         logo_url=logo,
+        category_label=title if headline else None,
+        rank_label=rank_label,
         second_name=second_name,
         second_logo_url=second_logo,
     )
@@ -176,35 +252,34 @@ def _saturday_label(saturday: date) -> str:
     return f"{saturday:%a} {saturday.day} {saturday:%b %Y}"
 
 
+def _week_containing_label(saturday: date) -> str:
+    """Cover pretitle: the Wednesday-to-Tuesday week anchored on ``saturday``."""
+    return f"Week containing {_saturday_label(saturday)}"
+
+
 def build_caption(
     saturday: date,
     results: list[ScoredFixture],
     ranked: dict[str, list[RankedResult]],
     teams: dict[int, TeamInfo],
     level_label: str,
-    *,
-    tiktok: bool = False,
 ) -> str:
+    """Build the weekly carousel caption from the template in :data:`CAPTION_HASHTAGS`."""
     points = sum(fx.home_score + fx.away_score for fx in results)
     lines = [
-        f"Weekly rugby round-up: weekend of {_saturday_label(saturday)}",
+        f"Weekly rugby round-up — weekend of {_saturday_label(saturday)}",
         f"{len(results):,} results and {points:,} points ({level_label.lower()}).",
         "",
     ]
-    labels = {
-        "team_score": "Highest score",
-        "winning_margin": "Largest win",
-        "aggregate": "Most points in a match",
-        "points_in_defeat": "Most points in defeat",
-    }
-    # One line per headline match: a 115-0 is often both the top score and the
-    # biggest win, so its labels are merged rather than repeating the match.
-    # Keyed by identity: ScoredFixture holds a dict (its level) so isn't hashable.
+    # One line per headline match: a 64-59 is often both the highest losing score
+    # and the highest combined score, so its labels are merged rather than
+    # repeating the match. Keyed by identity: ScoredFixture holds a dict (its
+    # level) so isn't hashable.
     headline_labels: dict[int, tuple[ScoredFixture, list[str]]] = {}
-    for key, _title in WEEKLY_CATEGORIES:
-        if ranked[key]:
+    for key, title in CAROUSEL_CATEGORIES:
+        if ranked.get(key):
             fx = ranked[key][0].fixture
-            headline_labels.setdefault(id(fx), (fx, []))[1].append(labels[key])
+            headline_labels.setdefault(id(fx), (fx, []))[1].append(title)
     for fx, fx_labels in headline_labels.values():
         home = teams.get(fx.home_id, TeamInfo(f"Team {fx.home_id}", None)).name
         away = teams.get(fx.away_id, TeamInfo(f"Team {fx.away_id}", None)).name
@@ -213,13 +288,10 @@ def build_caption(
         lines.append(f"· {label}: {match} ({short_league_name(fx.league_name)})")
     lines += [
         "",
-        f"Swipe for the top 10s. Every result → {SITE_HOST}/stats/?week={saturday.isoformat()}",
+        CAPTION_CTA,
+        f"Every result → {SITE_HOST}/stats/?week={saturday.isoformat()}",
         "",
-        (
-            "#rugby #rugbyunion #rugbytok #grassrootsrugby #englishrugby"
-            if tiktok
-            else "#rugby #rugbyunion #grassrootsrugby #englishrugby #rugbyresults"
-        ),
+        CAPTION_HASHTAGS,
     ]
     return "\n".join(lines)
 
@@ -241,6 +313,8 @@ class Slide:
     subtitle: str
     entries: list[LeaderboardEntry]
     headline: str | None = None
+    pretitle: str | None = None
+    rank_col_width: int | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -272,6 +346,9 @@ def _render_slide(
         # Cover rows are one headline per category, not a ranking.
         show_rank=slide.stem != "00_cover",
         headline=slide.headline,
+        pretitle=slide.pretitle,
+        cover_layout=slide.stem == "00_cover",
+        rank_col_width=slide.rank_col_width or RANK_COL_WIDTH,
     )
     return written[-1]
 
@@ -286,7 +363,7 @@ def _load_weekly_carousel_data(
     results = load_week_results(saturday, level_groups=level_groups)
     if not results:
         raise SystemExit(f"No scored results for the week around {saturday.isoformat()}")
-    ranked = rank_week(results, top=top)
+    ranked = rank_carousel(results, top=top)
     teams = _team_lookup(saturday)
     data_as_of = _latest_data_timestamp()
     range_label = f"Weekend of {_saturday_label(saturday)}"
@@ -295,26 +372,44 @@ def _load_weekly_carousel_data(
         Slide(
             "00_cover",
             "Weekly rugby round-up",
-            f"{len(results):,} results · {level_label}",
+            f"{_week_containing_label(saturday)} · {len(results):,} results · {level_label}",
             [
                 _entry(key, ranked[key][0], teams, headline=True)
-                for key, _ in WEEKLY_CATEGORIES
+                for key, _ in CAROUSEL_CATEGORIES
                 if ranked[key]
             ],
             # The date is what tells covers apart in the profile grid.
             headline=f"{saturday.day} {saturday:%b %Y}".upper(),
         )
     ]
-    for i, (key, title) in enumerate(WEEKLY_CATEGORIES, start=1):
-        if ranked[key]:
+    for key, title in CAROUSEL_CATEGORIES:
+        if not ranked[key]:
+            continue
+        subtitle = f"{range_label} · {_SCORE_SCOPE_LABELS.get(key, level_label)}"
+        if key in _PER_LEVEL_SLIDES:
+            stem_suffix, level_title = _PER_LEVEL_SLIDES[key]
+            per_level = rank_score_per_level(results, _SCORE_GROUPS[key])
             slides.append(
                 Slide(
-                    f"{i:02d}_{key}",
-                    title,
-                    f"{range_label} · {level_label}",
-                    [_entry(key, r, teams) for r in ranked[key]],
+                    f"{len(slides):02d}_{stem_suffix}",
+                    level_title,
+                    subtitle,
+                    [
+                        _entry(key, r, teams, rank_label=_level_row_label(r.fixture.level))
+                        for r in per_level
+                    ],
+                    rank_col_width=LEVEL_LABEL_COL_WIDTH,
                 )
             )
+        slides.append(
+            Slide(
+                f"{len(slides):02d}_{key}",
+                title,
+                subtitle,
+                [_entry(key, r, teams) for r in ranked[key]],
+            )
+        )
+
     return WeeklyCarouselData(
         saturday=saturday,
         results=results,
@@ -391,6 +486,15 @@ def publish_weekly_instagram(
     return post_path
 
 
+def _clean_output_dir(path: Path) -> None:
+    """Remove stale renders from a prior carousel layout."""
+    if not path.is_dir():
+        return
+    for child in path.iterdir():
+        if child.is_file():
+            child.unlink()
+
+
 def generate_weekly_carousel(
     saturday: date,
     *,
@@ -406,6 +510,8 @@ def generate_weekly_carousel(
     for fmt_key in formats or list(FORMATS):
         fmt = FORMATS[fmt_key]
         post_id = f"weekly-{saturday.isoformat()}{fmt.post_suffix}"
+        _clean_output_dir(RENDER_ROOT / saturday.isoformat() / fmt.key)
+        _clean_output_dir(UPLOAD_ROOT / post_id)
         assets: list[str] = []
         for slide in data.slides:
             png = _render_slide(
@@ -432,7 +538,6 @@ def generate_weekly_carousel(
                         data.ranked,
                         data.teams,
                         data.level_label,
-                        tiktok=fmt.key == "tiktok",
                     ),
                     "assets": assets,
                     "scheduled_for": None,

@@ -328,6 +328,17 @@ def week_reported_counts(saturday: date, fixture_data_dir: Path | None = None) -
     return reported, due
 
 
+def _winning_margin_candidates(fx: ScoredFixture) -> list[tuple[tuple[int, ...], RankedResult]]:
+    """Sort keys for one fixture's winning margin (empty when drawn)."""
+    hs, aws = fx.home_score, fx.away_score
+    if hs == aws:
+        return []
+    margin = abs(hs - aws)
+    winner = "home" if hs > aws else "away"
+    day = fx.date.toordinal()
+    return [((-margin, -max(hs, aws), day), RankedResult(fx, winner, margin))]
+
+
 def rank_week(results: list[ScoredFixture], top: int = 10) -> dict[str, list[RankedResult]]:
     """Top ``top`` results per ``WEEKLY_CATEGORIES`` key.
 
@@ -348,7 +359,8 @@ def rank_week(results: list[ScoredFixture], top: int = 10) -> dict[str, list[Ran
         aggregates.append(((-total, margin, day), RankedResult(fx, None, total)))
         if hs != aws:
             winner, loser = ("home", "away") if hs > aws else ("away", "home")
-            wins.append(((-margin, -max(hs, aws), day), RankedResult(fx, winner, margin)))
+            for sort_key, ranked in _winning_margin_candidates(fx):
+                wins.append((sort_key, ranked))
             losing_score = min(hs, aws)
             if losing_score > 0:
                 defeats.append(

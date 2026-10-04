@@ -95,6 +95,9 @@ DARK_PALETTE = Palette(
 PALETTES: dict[str, Palette] = {"light": LIGHT_PALETTE, "dark": DARK_PALETTE}
 
 MARGIN_X = 64
+PRETITLE_TOP_Y = 58
+PRETITLE_FONT_SIZE = 26
+PRETITLE_TITLE_GAP = 38
 TITLE_TOP_Y = 90
 TITLE_FONT_SIZE = 60
 TITLE_LINE_HEIGHT = 64
@@ -105,15 +108,29 @@ HEADLINE_FONT_SIZE = 200
 HEADLINE_GAP = 215
 HEADLINE_SUBTITLE_GAP = 62
 SUBTITLE_LIST_GAP = 64
+# Tighter cover header: title → date → week line, without the 215 px dead zone.
+COVER_TITLE_TOP_Y = 88
+COVER_HEADLINE_GAP = 20
+COVER_HEADLINE_FONT_SIZE = 168
+COVER_HEADLINE_SUBTITLE_GAP = 34
+COVER_SUBTITLE_LIST_GAP = 52
 FOOTER_HEIGHT = 90
+# Approximate Oswald vertical metrics (fraction of font-size) for stacking text blocks.
+_TEXT_CAP = 0.75
+_TEXT_DESCENT = 0.25
 
 RANK_COL_WIDTH = 76
+# Margin slides label the row by level or merit competition instead of a rank number.
+RANK_LABEL_COL_WIDTH = 128
+RANK_LABEL_FONT_SIZE = 20
 LOGO_DIAMETER = 68
 LOGO_TEXT_GAP = 24
 VALUE_COL_WIDTH = 140
 ROW_TEXT_GAP = 6
 NAME_FONT_SIZE = 32
 DETAIL_FONT_SIZE = 22
+# Cover rows show the category above the team name (accent, heading weight).
+COVER_CATEGORY_FONT_SIZE = 28
 VALUE_FONT_SIZE = 40
 # Minimum gap between the end of a name/detail line and the value column.
 VALUE_TEXT_GAP = 28
@@ -132,6 +149,10 @@ class LeaderboardEntry:
     detail: str
     value: str
     logo_url: str | None = None
+    # Cover slide: category title rendered above the team name in accent colour.
+    category_label: str | None = None
+    # When set, shown in the rank column instead of the row index (e.g. pyramid tier).
+    rank_label: str | None = None
     # Set for rows that belong to two teams (e.g. a match aggregate): a second,
     # overlapping crest (or its initial when there's no usable crest) is drawn.
     second_name: str | None = None
@@ -148,6 +169,16 @@ def _font_import_style_svg() -> str:
         "family=Oswald:wght@500;600;700&amp;family=Barlow:wght@400;500;600&amp;display=swap');"
         "</style>"
     )
+
+
+def _text_block_bottom(baseline_y: float, font_size: float) -> float:
+    """Lower edge of a single text line given its baseline and font size."""
+    return baseline_y + font_size * _TEXT_DESCENT
+
+
+def _baseline_for_block_top(top_y: float, font_size: float) -> float:
+    """Baseline for a line whose cap height should start at ``top_y``."""
+    return top_y + font_size * _TEXT_CAP
 
 
 def _wrap_title(
@@ -228,25 +259,40 @@ def _row_svg(
     palette: Palette,
     show_rank: bool = True,
     logo_col_extra: float = 0.0,
+    rank_col_width: int = RANK_COL_WIDTH,
 ) -> str:
     """One row; ``logo_col_extra`` widens the crest column (for two-team rows) so
     every row on a slide keeps its text aligned."""
     cy = y + row_height / 2
-    rank_x = x + RANK_COL_WIDTH / 2
-    logo_cx = x + RANK_COL_WIDTH + LOGO_DIAMETER / 2
+    rank_x = x + rank_col_width / 2
+    logo_cx = x + rank_col_width + LOGO_DIAMETER / 2
     logo_r = LOGO_DIAMETER / 2
     text_x = logo_cx + logo_r + logo_col_extra + LOGO_TEXT_GAP
     value_x = x + width
 
-    rank_svg = (
-        ""
-        if not show_rank
-        else (
-            f'<text x="{rank_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="34" '
-            f'font-weight="600" fill="{palette.accent}" text-anchor="middle" '
-            f'dominant-baseline="central">{rank}</text>'
-        )
-    )
+    rank_svg = ""
+    if show_rank:
+        if entry.rank_label is not None:
+            label, label_size = fit_line(
+                entry.rank_label,
+                kind="heading",
+                weight=600,
+                size=RANK_LABEL_FONT_SIZE,
+                max_width=rank_col_width - 12,
+            )
+            rank_svg = (
+                f'<text x="{x + 6:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" '
+                f'font-size="{label_size:.2f}" font-weight="600" fill="{palette.text_heading}" '
+                f'text-anchor="start" dominant-baseline="central">{escape(label)}</text>'
+            )
+        else:
+            rank_text = str(rank)
+            rank_size = 28 if len(rank_text) >= 3 else 34
+            rank_svg = (
+                f'<text x="{rank_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" '
+                f'font-size="{rank_size}" font-weight="600" fill="{palette.accent}" '
+                f'text-anchor="middle" dominant-baseline="central">{escape(rank_text)}</text>'
+            )
 
     logo_svg = _badge_svg(
         entry.logo_url, entry.team_name, cx=logo_cx, cy=cy, crest_hrefs=crest_hrefs, palette=palette
@@ -283,9 +329,29 @@ def _row_svg(
         entry.detail, kind="body", weight=500, size=DETAIL_FONT_SIZE, max_width=text_max
     )
 
-    name_y = cy - ROW_TEXT_GAP
-    detail_y = cy + 24
+    category_svg = ""
+    if entry.category_label:
+        category, category_size = fit_line(
+            entry.category_label.upper(),
+            kind="heading",
+            weight=600,
+            size=COVER_CATEGORY_FONT_SIZE,
+            max_width=text_max,
+        )
+        category_y = cy - 24
+        name_y = cy + 6
+        detail_y = cy + 34
+        category_svg = (
+            f'<text x="{text_x:.2f}" y="{category_y:.2f}" font-family="{FONT_HEADING}" '
+            f'font-size="{category_size:.2f}" font-weight="600" fill="{palette.accent}" '
+            f'dominant-baseline="alphabetic">{escape(category)}</text>'
+        )
+    else:
+        name_y = cy - ROW_TEXT_GAP
+        detail_y = cy + 24
+
     text_svg = (
+        f"{category_svg}"
         f'<text x="{text_x:.2f}" y="{name_y:.2f}" font-family="{FONT_HEADING}" '
         f'font-size="{name_size:.2f}" font-weight="600" fill="{palette.text_heading}" '
         f'dominant-baseline="alphabetic">{escape(name)}</text>'
@@ -322,17 +388,39 @@ def render_leaderboard_svg(
     data_as_of: str | None = None,
     show_rank: bool = True,
     headline: str | None = None,
+    pretitle: str | None = None,
+    cover_layout: bool = False,
+    rank_col_width: int = RANK_COL_WIDTH,
 ) -> str:
     """Build the full SVG document for a top-N leaderboard graphic.
 
     *data_as_of* is a short display string (e.g. ``"24 Aug 2026"``) stamped in
     the footer to record how current the underlying data is; pass ``None`` to
     omit it. *headline* adds an oversized accent line between the title and
-    subtitle.
+    subtitle. *pretitle* adds a muted line above the title (e.g. the week date).
+    *cover_layout* tightens the weekly cover header (title, date, week line).
     """
     palette = PALETTES[mode]
     crest_hrefs = crest_hrefs or {}
     available_title_width = width - 2 * MARGIN_X
+
+    pretitle_svg = ""
+    title_top_y = COVER_TITLE_TOP_Y if cover_layout else TITLE_TOP_Y
+    if pretitle and not cover_layout:
+        pretitle_text, pretitle_size = fit_line(
+            pretitle,
+            kind="body",
+            weight=500,
+            size=PRETITLE_FONT_SIZE,
+            max_width=available_title_width,
+        )
+        pretitle_svg = (
+            f'<text x="{MARGIN_X}" y="{PRETITLE_TOP_Y:.2f}" font-family="{FONT_BODY}" '
+            f'font-size="{pretitle_size:.2f}" font-weight="500" fill="{palette.text_muted}" '
+            f'text-anchor="start">{escape(pretitle_text)}</text>'
+        )
+        title_top_y = PRETITLE_TOP_Y + PRETITLE_TITLE_GAP
+
     title_lines, title_font_size = _wrap_title(
         title, max_width=available_title_width, font_size=TITLE_FONT_SIZE
     )
@@ -340,32 +428,49 @@ def render_leaderboard_svg(
 
     title_svg_lines: list[str] = []
     for i, line in enumerate(title_lines):
-        line_y = TITLE_TOP_Y + i * title_line_height
+        line_y = title_top_y + i * title_line_height
         title_svg_lines.append(
             f'<text x="{MARGIN_X}" y="{line_y:.2f}" font-family="{FONT_HEADING}" '
             f'font-size="{title_font_size:.2f}" font-weight="700" fill="{palette.text_heading}" '
             f'text-anchor="start">{escape(line)}</text>'
         )
-    title_bottom_y = TITLE_TOP_Y + (len(title_lines) - 1) * title_line_height
+    title_bottom_y = title_top_y + (len(title_lines) - 1) * title_line_height
 
     headline_svg = ""
+    headline_size = 0.0
     if headline:
+        headline_font = COVER_HEADLINE_FONT_SIZE if cover_layout else HEADLINE_FONT_SIZE
         headline_text, headline_size = fit_line(
             headline,
             kind="heading",
             weight=700,
-            size=HEADLINE_FONT_SIZE,
+            size=headline_font,
             max_width=available_title_width,
         )
-        title_bottom_y += HEADLINE_GAP
+        if cover_layout:
+            title_block_bottom = _text_block_bottom(title_bottom_y, title_font_size)
+            headline_y = _baseline_for_block_top(
+                title_block_bottom + COVER_HEADLINE_GAP, headline_size
+            )
+        else:
+            title_bottom_y += HEADLINE_GAP
+            headline_y = title_bottom_y
         headline_svg = (
-            f'<text x="{MARGIN_X}" y="{title_bottom_y:.2f}" font-family="{FONT_HEADING}" '
+            f'<text x="{MARGIN_X}" y="{headline_y:.2f}" font-family="{FONT_HEADING}" '
             f'font-size="{headline_size:.2f}" font-weight="700" fill="{palette.accent}" '
             f'text-anchor="start">{escape(headline_text)}</text>'
         )
+        title_bottom_y = headline_y
 
-    subtitle_y = title_bottom_y + (HEADLINE_SUBTITLE_GAP if headline else TITLE_SUBTITLE_GAP)
-    list_top = subtitle_y + SUBTITLE_LIST_GAP if subtitle else title_bottom_y + SUBTITLE_LIST_GAP
+    if headline:
+        if cover_layout:
+            subtitle_y = _text_block_bottom(headline_y, headline_size) + COVER_HEADLINE_SUBTITLE_GAP
+        else:
+            subtitle_y = title_bottom_y + headline_size * 0.35 + HEADLINE_SUBTITLE_GAP
+    else:
+        subtitle_y = title_bottom_y + TITLE_SUBTITLE_GAP
+    subtitle_list_gap = COVER_SUBTITLE_LIST_GAP if cover_layout else SUBTITLE_LIST_GAP
+    list_top = subtitle_y + subtitle_list_gap if subtitle else title_bottom_y + subtitle_list_gap
 
     list_bottom = height - FOOTER_HEIGHT - 40
     list_area_height = list_bottom - list_top
@@ -395,6 +500,7 @@ def render_leaderboard_svg(
                 palette=palette,
                 show_rank=show_rank,
                 logo_col_extra=logo_col_extra,
+                rank_col_width=rank_col_width,
             )
         )
 
@@ -440,6 +546,7 @@ def render_leaderboard_svg(
         "</filter>"
         "</defs>\n"
         f'<rect width="{width}" height="{height}" fill="{palette.bg}"/>\n'
+        f"{pretitle_svg}\n"
         f"{''.join(title_svg_lines)}\n"
         f"{headline_svg}\n"
         f"{subtitle_svg}\n"
@@ -484,6 +591,9 @@ def write_leaderboard(
     height: int = IMAGE_HEIGHT,
     show_rank: bool = True,
     headline: str | None = None,
+    pretitle: str | None = None,
+    cover_layout: bool = False,
+    rank_col_width: int = RANK_COL_WIDTH,
 ) -> list[Path]:
     """Render *entries* to *output_path* (``.svg``), embedding crests inline."""
     crest_hrefs = build_crest_href_map(
@@ -502,6 +612,9 @@ def write_leaderboard(
         data_as_of=data_as_of,
         show_rank=show_rank,
         headline=headline,
+        pretitle=pretitle,
+        cover_layout=cover_layout,
+        rank_col_width=rank_col_width,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(svg_text, encoding="utf-8")

@@ -1,4 +1,8 @@
-"""Generate Instagram-ready leaderboard graphics (3:4 portrait).
+"""Generate Instagram-ready leaderboard graphics.
+
+Default canvas is 3:4 (1080×1440) for manual in-app posts and legacy map
+graphics. The weekly report passes 4:5 (1080×1350) for Graph API publishing;
+content margins keep the card inside the profile grid's center 3:4 preview crop.
 
 Generic top-N list template following the site's light/dark card style
 (``dist/styles.css``, both ``:root`` and its ``prefers-color-scheme: dark``
@@ -38,12 +42,21 @@ from rugby.instagram_maps import _site_logo_href, build_crest_href_map, rasteris
 from rugby.maps import RFU_FALLBACK_ICON
 from rugby.pyramid_image import _valid_image_url
 from rugby.seo import BASE_URL
+from rugby.text_fit import fit_line, fit_pair, text_width
 
 OUTPUT_ROOT = REPO_ROOT / "output" / "instagram" / "leaderboards"
 
-# 3:4 portrait — Instagram feed friendly (matches rugby.instagram_maps).
+# Default 3:4 — matches rugby.instagram_maps and manual in-app uploads.
 IMAGE_WIDTH = 1080
 IMAGE_HEIGHT = 1440
+
+# Graph API minimum portrait is 4:5 (Meta IG User Media image specs). The profile
+# grid previews a center 3:4 slice (~1012×1350), trimming ~34 px from each side
+# of a 1080×1350 upload. MARGIN_X (64) keeps the card inside that safe width.
+API_IMAGE_WIDTH = 1080
+API_IMAGE_HEIGHT = 1350
+GRID_SAFE_WIDTH = (API_IMAGE_HEIGHT * 3) // 4  # 1012 — 3:4 at full canvas height
+GRID_SIDE_TRIM = (API_IMAGE_WIDTH - GRID_SAFE_WIDTH + 1) // 2  # 34 px per side
 
 FONT_HEADING = "Oswald, system-ui, -apple-system, Segoe UI, sans-serif"
 FONT_BODY = "Barlow, system-ui, -apple-system, Segoe UI, sans-serif"
@@ -86,6 +99,11 @@ TITLE_TOP_Y = 90
 TITLE_FONT_SIZE = 60
 TITLE_LINE_HEIGHT = 64
 TITLE_SUBTITLE_GAP = 46
+# Optional oversized accent line under the title (e.g. the cover's date), sized
+# to stay legible in the profile grid thumbnail (~1/8 scale on a phone).
+HEADLINE_FONT_SIZE = 200
+HEADLINE_GAP = 215
+HEADLINE_SUBTITLE_GAP = 62
 SUBTITLE_LIST_GAP = 64
 FOOTER_HEIGHT = 90
 
@@ -94,6 +112,13 @@ LOGO_DIAMETER = 68
 LOGO_TEXT_GAP = 24
 VALUE_COL_WIDTH = 140
 ROW_TEXT_GAP = 6
+NAME_FONT_SIZE = 32
+DETAIL_FONT_SIZE = 22
+VALUE_FONT_SIZE = 40
+# Minimum gap between the end of a name/detail line and the value column.
+VALUE_TEXT_GAP = 28
+# Horizontal offset of the second crest in a two-team row (overlaps the first).
+PAIR_LOGO_OFFSET = 44
 
 SITE_LOGO_SIZE = 30
 SITE_URL_FONT_SIZE = 30
@@ -107,6 +132,10 @@ class LeaderboardEntry:
     detail: str
     value: str
     logo_url: str | None = None
+    # Set for rows that belong to two teams (e.g. a match aggregate): a second,
+    # overlapping crest (or its initial when there's no usable crest) is drawn.
+    second_name: str | None = None
+    second_logo_url: str | None = None
 
 
 def _usable_crest_url(url: str | None) -> bool:
@@ -121,48 +150,70 @@ def _font_import_style_svg() -> str:
     )
 
 
-# Rough average glyph width for Oswald 700 uppercase, as a fraction of font-size —
-# good enough to wrap/shrink a title without measuring real text metrics.
-_TITLE_CHAR_WIDTH_FACTOR = 0.56
-
-
 def _wrap_title(
     text: str, *, max_width: float, font_size: float, max_lines: int = 2
 ) -> tuple[list[str], float]:
-    """Word-wrap *text* to fit *max_width*, shrinking ``font_size`` if needed.
+    """Fit *text* (upper-cased) in at most two lines, shrinking ``font_size`` if needed.
 
-    Returns the wrapped lines (already upper-cased) and the font-size used.
-    Wraps at 88% of the available width first so a two-word title breaks into
-    a balanced pair of lines rather than an almost-full first line and a
-    near-empty second one.
+    Uses one line when it fits; otherwise picks the two-line split whose longer
+    line is shortest, so titles break into a balanced pair rather than leaving a
+    lone word ("MOST TOTAL POINTS IN A / MATCH"). Widths are real Oswald 700
+    metrics (see rugby.text_fit).
     """
     words = text.upper().split()
     size = font_size
+    lines = [" ".join(words)]
 
     for _ in range(12):
-        target_width = max_width * 0.88
 
         def line_width(s: str, size: float = size) -> float:
-            return len(s) * size * _TITLE_CHAR_WIDTH_FACTOR
+            return text_width(s, kind="heading", weight=700, size=size)
 
-        lines: list[str] = []
-        current = ""
-        for word in words:
-            candidate = f"{current} {word}".strip()
-            if not current or line_width(candidate) <= target_width:
-                current = candidate
-            else:
-                lines.append(current)
-                current = word
-        if current:
-            lines.append(current)
-
-        fits = len(lines) <= max_lines and all(line_width(ln) <= max_width for ln in lines)
-        if fits:
+        lines = [" ".join(words)]
+        if line_width(lines[0]) <= max_width:
             return lines, size
+        if max_lines >= 2 and len(words) > 1:
+            splits = [[" ".join(words[:i]), " ".join(words[i:])] for i in range(1, len(words))]
+            lines = min(splits, key=lambda pair: max(line_width(ln) for ln in pair))
+            if all(line_width(ln) <= max_width for ln in lines):
+                return lines, size
         size *= 0.9
 
     return lines, size
+
+
+def _badge_svg(
+    logo_url: str | None,
+    name: str,
+    *,
+    cx: float,
+    cy: float,
+    crest_hrefs: dict[str, str],
+    palette: Palette,
+) -> str:
+    """Circular crest badge, falling back to the team's initial."""
+    r = LOGO_DIAMETER / 2
+    icon_url = logo_url or ""
+    inline_href = crest_hrefs.get(icon_url) if _usable_crest_url(icon_url) else None
+    if inline_href:
+        badge_inner = (
+            f'<image x="{cx - r:.2f}" y="{cy - r:.2f}" '
+            f'width="{LOGO_DIAMETER:.2f}" height="{LOGO_DIAMETER:.2f}" '
+            f'href="{escape(inline_href, quote=True)}" preserveAspectRatio="xMidYMid meet" '
+            f'clip-path="url(#leaderboardCrestClip)"/>'
+        )
+    else:
+        initial = (name.strip() or "?")[0].upper()
+        badge_inner = (
+            f'<text x="{cx:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="28" '
+            f'font-weight="600" fill="{palette.text_muted}" text-anchor="middle" '
+            f'dominant-baseline="central">{escape(initial)}</text>'
+        )
+    return (
+        f'<circle cx="{cx:.2f}" cy="{cy:.2f}" r="{r:.2f}" fill="{palette.card_bg}" '
+        f'stroke="{palette.border}" stroke-width="1.5"/>'
+        f"{badge_inner}"
+    )
 
 
 def _row_svg(
@@ -175,55 +226,76 @@ def _row_svg(
     row_height: float,
     crest_hrefs: dict[str, str],
     palette: Palette,
+    show_rank: bool = True,
+    logo_col_extra: float = 0.0,
 ) -> str:
+    """One row; ``logo_col_extra`` widens the crest column (for two-team rows) so
+    every row on a slide keeps its text aligned."""
     cy = y + row_height / 2
     rank_x = x + RANK_COL_WIDTH / 2
     logo_cx = x + RANK_COL_WIDTH + LOGO_DIAMETER / 2
     logo_r = LOGO_DIAMETER / 2
-    text_x = logo_cx + logo_r + LOGO_TEXT_GAP
+    text_x = logo_cx + logo_r + logo_col_extra + LOGO_TEXT_GAP
     value_x = x + width
 
     rank_svg = (
-        f'<text x="{rank_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="34" '
-        f'font-weight="600" fill="{palette.accent}" text-anchor="middle" '
-        f'dominant-baseline="central">{rank}</text>'
+        ""
+        if not show_rank
+        else (
+            f'<text x="{rank_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="34" '
+            f'font-weight="600" fill="{palette.accent}" text-anchor="middle" '
+            f'dominant-baseline="central">{rank}</text>'
+        )
     )
 
-    icon_url = entry.logo_url or ""
-    inline_href = crest_hrefs.get(icon_url) if _usable_crest_url(icon_url) else None
-    if inline_href:
-        badge_inner = (
-            f'<image x="{logo_cx - logo_r:.2f}" y="{cy - logo_r:.2f}" '
-            f'width="{LOGO_DIAMETER:.2f}" height="{LOGO_DIAMETER:.2f}" '
-            f'href="{escape(inline_href, quote=True)}" preserveAspectRatio="xMidYMid meet" '
-            f'clip-path="url(#leaderboardCrestClip)"/>'
+    logo_svg = _badge_svg(
+        entry.logo_url, entry.team_name, cx=logo_cx, cy=cy, crest_hrefs=crest_hrefs, palette=palette
+    )
+    if entry.second_name is not None:
+        logo_svg += _badge_svg(
+            entry.second_logo_url,
+            entry.second_name,
+            cx=logo_cx + PAIR_LOGO_OFFSET,
+            cy=cy,
+            crest_hrefs=crest_hrefs,
+            palette=palette,
+        )
+
+    # Both text lines sit level with the value, so each must stop short of it:
+    # shrink a little if needed, then truncate (see rugby.text_fit).
+    value_width = text_width(entry.value, kind="heading", weight=700, size=VALUE_FONT_SIZE)
+    text_max = value_x - value_width - VALUE_TEXT_GAP - text_x
+    pair_suffix = f" v {entry.second_name}" if entry.second_name else None
+    if pair_suffix and entry.team_name.endswith(pair_suffix):
+        name, name_size = fit_pair(
+            entry.team_name.removesuffix(pair_suffix),
+            entry.second_name or "",
+            kind="heading",
+            weight=600,
+            size=NAME_FONT_SIZE,
+            max_width=text_max,
         )
     else:
-        initial = (entry.team_name.strip() or "?")[0].upper()
-        badge_inner = (
-            f'<text x="{logo_cx:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="28" '
-            f'font-weight="600" fill="{palette.text_muted}" text-anchor="middle" '
-            f'dominant-baseline="central">{escape(initial)}</text>'
+        name, name_size = fit_line(
+            entry.team_name, kind="heading", weight=600, size=NAME_FONT_SIZE, max_width=text_max
         )
-    logo_svg = (
-        f'<circle cx="{logo_cx:.2f}" cy="{cy:.2f}" r="{logo_r:.2f}" fill="{palette.card_bg}" '
-        f'stroke="{palette.border}" stroke-width="1.5"/>'
-        f"{badge_inner}"
+    detail, detail_size = fit_line(
+        entry.detail, kind="body", weight=500, size=DETAIL_FONT_SIZE, max_width=text_max
     )
 
     name_y = cy - ROW_TEXT_GAP
     detail_y = cy + 24
     text_svg = (
-        f'<text x="{text_x:.2f}" y="{name_y:.2f}" font-family="{FONT_HEADING}" font-size="32" '
-        f'font-weight="600" fill="{palette.text_heading}" dominant-baseline="alphabetic">'
-        f"{escape(entry.team_name)}</text>"
-        f'<text x="{text_x:.2f}" y="{detail_y:.2f}" font-family="{FONT_BODY}" font-size="22" '
-        f'font-weight="500" fill="{palette.text_muted}" dominant-baseline="alphabetic">'
-        f"{escape(entry.detail)}</text>"
+        f'<text x="{text_x:.2f}" y="{name_y:.2f}" font-family="{FONT_HEADING}" '
+        f'font-size="{name_size:.2f}" font-weight="600" fill="{palette.text_heading}" '
+        f'dominant-baseline="alphabetic">{escape(name)}</text>'
+        f'<text x="{text_x:.2f}" y="{detail_y:.2f}" font-family="{FONT_BODY}" '
+        f'font-size="{detail_size:.2f}" font-weight="500" fill="{palette.text_muted}" '
+        f'dominant-baseline="alphabetic">{escape(detail)}</text>'
     )
 
     value_svg = (
-        f'<text x="{value_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="40" '
+        f'<text x="{value_x:.2f}" y="{cy:.2f}" font-family="{FONT_HEADING}" font-size="{VALUE_FONT_SIZE}" '
         f'font-weight="700" fill="{palette.accent}" text-anchor="end" '
         f'dominant-baseline="central">{escape(entry.value)}</text>'
     )
@@ -248,12 +320,15 @@ def render_leaderboard_svg(
     height: int = IMAGE_HEIGHT,
     mode: str = "light",
     data_as_of: str | None = None,
+    show_rank: bool = True,
+    headline: str | None = None,
 ) -> str:
     """Build the full SVG document for a top-N leaderboard graphic.
 
     *data_as_of* is a short display string (e.g. ``"24 Aug 2026"``) stamped in
     the footer to record how current the underlying data is; pass ``None`` to
-    omit it.
+    omit it. *headline* adds an oversized accent line between the title and
+    subtitle.
     """
     palette = PALETTES[mode]
     crest_hrefs = crest_hrefs or {}
@@ -273,7 +348,23 @@ def render_leaderboard_svg(
         )
     title_bottom_y = TITLE_TOP_Y + (len(title_lines) - 1) * title_line_height
 
-    subtitle_y = title_bottom_y + TITLE_SUBTITLE_GAP
+    headline_svg = ""
+    if headline:
+        headline_text, headline_size = fit_line(
+            headline,
+            kind="heading",
+            weight=700,
+            size=HEADLINE_FONT_SIZE,
+            max_width=available_title_width,
+        )
+        title_bottom_y += HEADLINE_GAP
+        headline_svg = (
+            f'<text x="{MARGIN_X}" y="{title_bottom_y:.2f}" font-family="{FONT_HEADING}" '
+            f'font-size="{headline_size:.2f}" font-weight="700" fill="{palette.accent}" '
+            f'text-anchor="start">{escape(headline_text)}</text>'
+        )
+
+    subtitle_y = title_bottom_y + (HEADLINE_SUBTITLE_GAP if headline else TITLE_SUBTITLE_GAP)
     list_top = subtitle_y + SUBTITLE_LIST_GAP if subtitle else title_bottom_y + SUBTITLE_LIST_GAP
 
     list_bottom = height - FOOTER_HEIGHT - 40
@@ -289,6 +380,7 @@ def render_leaderboard_svg(
         f'stroke="{palette.border}" stroke-width="1" filter="url(#cardShadow)"/>'
     )
 
+    logo_col_extra = PAIR_LOGO_OFFSET if any(e.second_name is not None for e in entries) else 0
     rows_svg: list[str] = []
     for i, entry in enumerate(entries):
         rows_svg.append(
@@ -301,6 +393,8 @@ def render_leaderboard_svg(
                 row_height=row_height,
                 crest_hrefs=crest_hrefs,
                 palette=palette,
+                show_rank=show_rank,
+                logo_col_extra=logo_col_extra,
             )
         )
 
@@ -347,6 +441,7 @@ def render_leaderboard_svg(
         "</defs>\n"
         f'<rect width="{width}" height="{height}" fill="{palette.bg}"/>\n'
         f"{''.join(title_svg_lines)}\n"
+        f"{headline_svg}\n"
         f"{subtitle_svg}\n"
         f"{card_svg}\n"
         f"{''.join(rows_svg)}\n"
@@ -385,10 +480,14 @@ def write_leaderboard(
     data_as_of: str | None = None,
     write_png: bool = False,
     png_scale: float = 3.0,
+    width: int = IMAGE_WIDTH,
+    height: int = IMAGE_HEIGHT,
+    show_rank: bool = True,
+    headline: str | None = None,
 ) -> list[Path]:
     """Render *entries* to *output_path* (``.svg``), embedding crests inline."""
     crest_hrefs = build_crest_href_map(
-        [e.logo_url or "" for e in entries],
+        [url or "" for e in entries for url in (e.logo_url, e.second_logo_url)],
         px=max(64, LOGO_DIAMETER * int(png_scale) if write_png else LOGO_DIAMETER),
     )
 
@@ -397,8 +496,12 @@ def write_leaderboard(
         entries,
         subtitle=subtitle,
         crest_hrefs=crest_hrefs,
+        width=width,
+        height=height,
         mode=mode,
         data_as_of=data_as_of,
+        show_rank=show_rank,
+        headline=headline,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(svg_text, encoding="utf-8")

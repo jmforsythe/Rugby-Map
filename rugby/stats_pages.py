@@ -48,6 +48,8 @@ from rugby.tiers import (
 )
 from rugby.webpages import get_footer_html
 from rugby.weekly_report import (
+    DEFAULT_LEVEL_GROUPS,
+    DEFAULT_LEVEL_LABEL,
     WEEKLY_REPORT_HTML,
     WEEKLY_REPORT_SCRIPT,
     WEEKLY_REPORT_STYLE,
@@ -1393,7 +1395,13 @@ def get_stats_index_html(
         }
     )
 
-    weekly_index_json = json.dumps({"seasons": weekly_index or []})
+    weekly_index_json = json.dumps(
+        {
+            "seasons": weekly_index or [],
+            "defaultGroups": sorted(DEFAULT_LEVEL_GROUPS),
+            "defaultLabel": DEFAULT_LEVEL_LABEL,
+        }
+    )
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1415,7 +1423,7 @@ def get_stats_index_html(
     </div>
 
     <h1>Stats</h1>
-    <p>The biggest results of each week, plus teams and clubs fielded each season. Each section has its own filter, defaulting to the men's + women's pyramid (excluding merit leagues).</p>
+    <p>The biggest results of each week, plus teams and clubs fielded each season. Each section has its own filter: the weekly report defaults to pyramid and merit leagues, the charts to the men's + women's pyramid (excluding merit leagues).</p>
 
     <div class="stats-tiles">
 {_stat_tile("tile-teams-value", "tile-teams-label")}{_stat_tile("tile-clubs-value", "tile-clubs-label")}    </div>

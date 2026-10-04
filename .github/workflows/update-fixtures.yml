@@ -16,8 +16,12 @@ on:
   # Cron is UTC, so this is 07:23 BST in summer and 06:23 GMT in winter.
   # Deliberately off the hour: GitHub sheds queued schedule events at peak, and
   # the first :00 run was dropped without ever being created.
+  #
+  # Tuesday's run catches the results clubs report late (~10% are missing on
+  # Monday) and then deploys with the weekly Instagram carousel and posts it.
   schedule:
     - cron: "23 6 * * 1"
+    - cron: "23 6 * * 2"
 
 permissions:
   # Commit the refreshed fixture_data back to main.
@@ -145,11 +149,21 @@ jobs:
           exit 1
 
       # Rebuilds match-day maps, team pages and the stats dashboard against the
-      # new data. Skipped when nothing changed, so a quiet week costs one short job.
+      # new data. Skipped when nothing changed, so a quiet week costs one short job
+      # (except Tuesday, which always deploys to host and post the carousel;
+      # social-weekly.yml skips the post if the week's results are incomplete).
       - name: Trigger Pages deploy
         if: >-
-          steps.commit.outputs.changed == 'true' &&
-          (github.event_name != 'workflow_dispatch' || inputs.deploy)
+          github.event.schedule == '23 6 * * 2' ||
+          (steps.commit.outputs.changed == 'true' &&
+          (github.event_name != 'workflow_dispatch' || inputs.deploy))
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh workflow run deploy.yml --ref main
+          SOCIAL: ${{ github.event.schedule == '23 6 * * 2' }}
+        run: |
+          set -eo pipefail
+          if [ "$SOCIAL" = "true" ]; then
+            gh workflow run deploy.yml --ref main -f publish_social=true -f post_instagram=true
+          else
+            gh workflow run deploy.yml --ref main
+          fi

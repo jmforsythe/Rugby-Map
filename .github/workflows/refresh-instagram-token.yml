@@ -1,0 +1,46 @@
+name: Refresh Instagram token
+
+# Instagram Login tokens last 60 days and can be refreshed once they're 24h old.
+# Refreshing on the 1st and 15th keeps IG_ACCESS_TOKEN well clear of expiry.
+# Writing the secret back needs SOCIAL_ADMIN_PAT: a fine-grained PAT for this
+# repo with "Secrets: Read and write" and "Environments: Read and write"
+# (GITHUB_TOKEN can't write secrets).
+on:
+  schedule:
+    - cron: "17 5 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment: social
+    steps:
+      - name: Refresh and store token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.SOCIAL_ADMIN_PAT }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -eo pipefail
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::SOCIAL_ADMIN_PAT is not set in the 'social' environment; IG_ACCESS_TOKEN will expire 60 days after it was created."
+            exit 1
+          fi
+          resp="$(curl -sS --fail-with-body -G https://graph.instagram.com/refresh_access_token \
+            --data-urlencode grant_type=ig_refresh_token \
+            --data-urlencode "access_token=${IG_ACCESS_TOKEN}")" || {
+            echo "::error::Token refresh failed: $(printf '%s' "$resp" | jq -c '.error // .' 2>/dev/null)"
+            exit 1
+          }
+          token="$(printf '%s' "$resp" | jq -r '.access_token // empty')"
+          expires_in="$(printf '%s' "$resp" | jq -r '.expires_in // 0')"
+          if [ -z "$token" ]; then
+            echo "::error::No access_token in refresh response"
+            exit 1
+          fi
+          echo "::add-mask::${token}"
+          printf '%s' "$token" | gh secret set IG_ACCESS_TOKEN --env social
+          echo "### Instagram token refreshed; valid for $((expires_in / 86400)) days" >> "$GITHUB_STEP_SUMMARY"

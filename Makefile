@@ -2,7 +2,7 @@ SEASON ?= 2026-2027
 # Set FORCE=1 to re-scrape / re-address / re-geocode even when output files exist
 FORCE_FLAG := $(if $(filter 1,$(FORCE)),--force,)
 
-.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages stats-page custom-map-data constituent-map all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery audit-fixtures validate-tiers validate-league-urls test lint clean
+.PHONY: help install install-dev boundaries scrape addresses geocode distances routed-distances maps pages webpages stats-page custom-map-data constituent-map all scrape-fixtures match-day review-screenshots pyramid-gallery pyramid-all-leagues-gallery pyramid-merit-all-seasons instagram-maps instagram-maps-all-seasons instagram-gallery instagram-weekly audit-fixtures validate-tiers validate-league-urls test lint clean
 
 help:
 	@echo "Usage: make <target> [SEASON=YYYY-YYYY]"
@@ -35,6 +35,7 @@ help:
 	@echo "  instagram-maps  Per-level league maps for Instagram, PNG/SVG (3:4, BUC boundaries)"
 	@echo "  instagram-maps-all-seasons  instagram-maps for every geocoded season"
 	@echo "  instagram-gallery HTML carousel for output/instagram/maps/ (+ gallery.html per season)"
+	@echo "  instagram-weekly  Weekly report carousel (Instagram 4:5 + TikTok 9:16) + queue entry; WEEK=YYYY-MM-DD"
 	@echo "  audit-fixtures  Sample RFU match venues vs home-team addresses"
 	@echo "  validate-tiers  Check tier extraction across all seasons"
 	@echo "  validate-league-urls  Compare league_data URLs to live RFU listings"
@@ -117,6 +118,9 @@ instagram-maps-all-seasons:
 
 instagram-gallery:
 	python -m rugby.analysis.instagram_gallery
+
+instagram-weekly:
+	python -m rugby.analysis.instagram_weekly $(if $(WEEK),--week $(WEEK),)
 
 audit-fixtures:
 	python -m rugby.analysis.fixture_location_audit

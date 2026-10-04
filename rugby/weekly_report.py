@@ -19,6 +19,8 @@ import json
 import logging
 import re
 from collections import defaultdict
+from collections.abc import Iterator
+from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
 from typing import TypedDict
@@ -39,6 +41,23 @@ logger = logging.getLogger(__name__)
 _UNKNOWN_TIER = 999
 OTHER_LEVEL_KEY = "other"
 _GROUP_ORDER = {"mens": 0, "womens": 1, "merit": 2, "other": 3}
+# Level groups included by default: every club league, pyramid and merit. "other"
+# (unrecognized files, mostly county championship representative fixtures) is opt-in.
+# Embedded in the stats page so the client-side default matches.
+DEFAULT_LEVEL_GROUPS = frozenset({"mens", "womens", "merit"})
+DEFAULT_LEVEL_LABEL = "Pyramid + merit leagues"
+ALL_LEVEL_GROUPS = frozenset(_GROUP_ORDER)
+
+# (key, title) for the ranked lists, in display order. Across every team in a
+# week "most points conceded" mirrors "most points scored" (and biggest defeat
+# mirrors biggest win), so the league-wide lists are team score, winning margin,
+# match aggregate and points in defeat. WEEKLY_REPORT_SCRIPT ranks the same way.
+WEEKLY_CATEGORIES: tuple[tuple[str, str], ...] = (
+    ("team_score", "Highest team score"),
+    ("winning_margin", "Largest winning margin"),
+    ("aggregate", "Most total points in a match"),
+    ("points_in_defeat", "Most points in defeat"),
+)
 
 
 class WeeklyLevel(TypedDict):
@@ -73,6 +92,28 @@ class WeeklyIndexEntry(TypedDict):
     v: str
     # [saturday_iso, result_count] in chronological order.
     weeks: list[list[str | int]]
+
+
+@dataclass(frozen=True, slots=True)
+class ScoredFixture:
+    """One scored league fixture with its resolved level."""
+
+    date: date
+    home_id: int
+    away_id: int
+    home_score: int
+    away_score: int
+    league_name: str
+    level: WeeklyLevel
+
+
+@dataclass(frozen=True, slots=True)
+class RankedResult:
+    """A fixture's place in one ranked list; ``side`` is the team the value belongs to."""
+
+    fixture: ScoredFixture
+    side: str | None  # "home" | "away" | None (whole match)
+    value: int
 
 
 def saturday_of_week(d: date) -> date:
@@ -117,27 +158,11 @@ def _level_sort_key(level: WeeklyLevel) -> tuple[int, int, str]:
     return (_GROUP_ORDER[level["group"]], int(key) if key.isdigit() else 0, level["label"])
 
 
-def compute_weekly_season(
-    season_dir: Path,
-    team_names: dict[int, str],
-    team_hrefs: dict[int, str],
-) -> WeeklySeason | None:
-    """Group one season's scored fixtures into weeks; ``None`` when nothing is scored."""
+def _iter_scored_fixtures(season_dir: Path) -> Iterator[ScoredFixture]:
+    """Scored, in-season, de-duplicated fixtures from one ``fixture_data/<season>/``."""
     season = season_dir.name
     window_start, window_end = _season_date_window(season)
     seen: set[str] = set()
-    team_idx: dict[int, int] = {}
-    teams: list[list[str]] = []
-    leagues: list[list[str]] = []
-    levels: dict[str, WeeklyLevel] = {}
-    weeks: defaultdict[str, list[list[int]]] = defaultdict(list)
-
-    def team_index(team_id: int) -> int:
-        if team_id not in team_idx:
-            team_idx[team_id] = len(teams)
-            teams.append([team_names.get(team_id, f"Team {team_id}"), team_hrefs.get(team_id, "")])
-        return team_idx[team_id]
-
     for league_file in sorted(season_dir.rglob("*.json")):
         if league_file.name.startswith("_"):
             continue
@@ -152,7 +177,7 @@ def compute_weekly_season(
         with open(league_file, encoding="utf-8") as f:
             data: FixtureLeague = json.load(f)
 
-        league_i: int | None = None
+        level: WeeklyLevel | None = None
         for fixture in data.get("fixtures", []):
             home_score = fixture.get("home_score")
             away_score = fixture.get("away_score")
@@ -169,32 +194,176 @@ def compute_weekly_season(
             if dedupe_key in seen:
                 continue
             seen.add(dedupe_key)
-            if league_i is None:
+            if level is None:
                 level = _level_for_league(rel_path, season)
-                levels.setdefault(level["key"], level)
-                league_i = len(leagues)
-                leagues.append([data["league_name"], level["key"]])
-            saturday = saturday_of_week(d)
-            weeks[saturday.isoformat()].append(
-                [
-                    (d - saturday).days,
-                    team_index(home_id),
-                    team_index(away_id),
-                    home_score,
-                    away_score,
-                    league_i,
-                ]
+            yield ScoredFixture(
+                date=d,
+                home_id=home_id,
+                away_id=away_id,
+                home_score=home_score,
+                away_score=away_score,
+                league_name=data["league_name"],
+                level=level,
             )
+
+
+def compute_weekly_season(
+    season_dir: Path,
+    team_names: dict[int, str],
+    team_hrefs: dict[int, str],
+) -> WeeklySeason | None:
+    """Group one season's scored fixtures into weeks; ``None`` when nothing is scored."""
+    team_idx: dict[int, int] = {}
+    teams: list[list[str]] = []
+    league_idx: dict[tuple[str, str], int] = {}
+    leagues: list[list[str]] = []
+    levels: dict[str, WeeklyLevel] = {}
+    weeks: defaultdict[str, list[list[int]]] = defaultdict(list)
+
+    def team_index(team_id: int) -> int:
+        if team_id not in team_idx:
+            team_idx[team_id] = len(teams)
+            teams.append([team_names.get(team_id, f"Team {team_id}"), team_hrefs.get(team_id, "")])
+        return team_idx[team_id]
+
+    for fx in _iter_scored_fixtures(season_dir):
+        levels.setdefault(fx.level["key"], fx.level)
+        league_key = (fx.league_name, fx.level["key"])
+        if league_key not in league_idx:
+            league_idx[league_key] = len(leagues)
+            leagues.append([fx.league_name, fx.level["key"]])
+        saturday = saturday_of_week(fx.date)
+        weeks[saturday.isoformat()].append(
+            [
+                (fx.date - saturday).days,
+                team_index(fx.home_id),
+                team_index(fx.away_id),
+                fx.home_score,
+                fx.away_score,
+                league_idx[league_key],
+            ]
+        )
 
     if not weeks:
         return None
     return WeeklySeason(
-        season=season,
+        season=season_dir.name,
         teams=teams,
         leagues=leagues,
         levels=sorted(levels.values(), key=_level_sort_key),
         weeks={week: weeks[week] for week in sorted(weeks)},
     )
+
+
+def load_week_results(
+    saturday: date,
+    fixture_data_dir: Path | None = None,
+    level_groups: frozenset[str] = DEFAULT_LEVEL_GROUPS,
+) -> list[ScoredFixture]:
+    """Scored fixtures in the Wednesday-to-Tuesday week around ``saturday``.
+
+    Checks both season folders whose date window can contain the week (a late
+    summer week may straddle two seasons).
+    """
+    base = fixture_data_dir if fixture_data_dir is not None else DATA_DIR / "fixture_data"
+    results: list[ScoredFixture] = []
+    for y0 in (saturday.year - 1, saturday.year):
+        season_dir = base / f"{y0}-{y0 + 1}"
+        if not season_dir.is_dir():
+            continue
+        results.extend(
+            fx
+            for fx in _iter_scored_fixtures(season_dir)
+            if saturday_of_week(fx.date) == saturday and fx.level["group"] in level_groups
+        )
+    return results
+
+
+def week_reported_counts(saturday: date, fixture_data_dir: Path | None = None) -> tuple[int, int]:
+    """``(reported, due)`` fixtures for the week around ``saturday``.
+
+    *Due* is every de-duplicated fixture dated in the week; *reported* is those
+    with a score or a status (walkover, postponement, ...). The RFU publishes
+    results over several days, so a low ratio means the week's rankings may
+    still change.
+    """
+    base = fixture_data_dir if fixture_data_dir is not None else DATA_DIR / "fixture_data"
+    seen: set[str] = set()
+    reported = due = 0
+    for y0 in (saturday.year - 1, saturday.year):
+        season_dir = base / f"{y0}-{y0 + 1}"
+        if not season_dir.is_dir():
+            continue
+        season = season_dir.name
+        for league_file in sorted(season_dir.rglob("*.json")):
+            if league_file.name.startswith("_"):
+                continue
+            parts = league_file.relative_to(season_dir).parts
+            if (
+                parts[0] == "merit"
+                and len(parts) >= 2
+                and merit_competition_public_excluded(season, parts[1])
+            ):
+                continue
+            with open(league_file, encoding="utf-8") as f:
+                data: FixtureLeague = json.load(f)
+            for fixture in data.get("fixtures", []):
+                try:
+                    d = date.fromisoformat(fixture.get("date") or "")
+                except ValueError:
+                    continue
+                if saturday_of_week(d) != saturday:
+                    continue
+                key = fixture.get("match_url") or (
+                    f"{d}:{fixture.get('home_team_id')}:{fixture.get('away_team_id')}"
+                )
+                if key in seen:
+                    continue
+                seen.add(key)
+                due += 1
+                if fixture.get("status") or (
+                    fixture.get("home_score") is not None and fixture.get("away_score") is not None
+                ):
+                    reported += 1
+    return reported, due
+
+
+def rank_week(results: list[ScoredFixture], top: int = 10) -> dict[str, list[RankedResult]]:
+    """Top ``top`` results per ``WEEKLY_CATEGORIES`` key.
+
+    Ties: team score -> bigger margin; winning margin -> higher winning score;
+    aggregate -> closer match; points in defeat -> closer match; then earliest date.
+    """
+    team_scores: list[tuple[tuple[int, ...], RankedResult]] = []
+    wins: list[tuple[tuple[int, ...], RankedResult]] = []
+    aggregates: list[tuple[tuple[int, ...], RankedResult]] = []
+    defeats: list[tuple[tuple[int, ...], RankedResult]] = []
+    for fx in results:
+        day = fx.date.toordinal()
+        hs, aws = fx.home_score, fx.away_score
+        for side, own, opp in (("home", hs, aws), ("away", aws, hs)):
+            team_scores.append(((-own, opp - own, day), RankedResult(fx, side, own)))
+        total = hs + aws
+        margin = abs(hs - aws)
+        aggregates.append(((-total, margin, day), RankedResult(fx, None, total)))
+        if hs != aws:
+            winner, loser = ("home", "away") if hs > aws else ("away", "home")
+            wins.append(((-margin, -max(hs, aws), day), RankedResult(fx, winner, margin)))
+            losing_score = min(hs, aws)
+            if losing_score > 0:
+                defeats.append(
+                    ((-losing_score, margin, day), RankedResult(fx, loser, losing_score))
+                )
+
+    def best(rows: list[tuple[tuple[int, ...], RankedResult]]) -> list[RankedResult]:
+        return [r for _, r in sorted(rows, key=lambda row: row[0])[:top]]
+
+    return {
+        "team_score": best(team_scores),
+        "winning_margin": best(wins),
+        "aggregate": best(aggregates),
+        "points_in_defeat": best(defeats),
+    }
 
 
 def write_weekly_report(
@@ -371,17 +540,18 @@ WEEKLY_REPORT_STYLE = """    <style>
     </style>
 """
 
-# Ranks one week's results client-side against the lazily fetched season sidecar.
-# Across every team in a week "most points conceded" mirrors "most points scored"
-# (and biggest defeat mirrors biggest win), so the league-wide lists are team score,
-# winning margin, match aggregate and points in defeat.
+# Ranks one week's results client-side against the lazily fetched season sidecar,
+# using the same categories and tie-breaks as ``rank_week`` (see WEEKLY_CATEGORIES).
 WEEKLY_REPORT_SCRIPT = """    <script>
         (function () {
             var indexNode = document.getElementById('weekly-index');
             if (!indexNode) {
                 return;
             }
-            var seasons = JSON.parse(indexNode.textContent).seasons;
+            var weeklyIndex = JSON.parse(indexNode.textContent);
+            var seasons = weeklyIndex.seasons;
+            var defaultGroups = weeklyIndex.defaultGroups || [];
+            var defaultLabel = weeklyIndex.defaultLabel || '';
             var root = document.querySelector('.weekly-report');
             if (!seasons.length || !root) {
                 if (root) {
@@ -419,15 +589,18 @@ WEEKLY_REPORT_SCRIPT = """    <script>
             });
             var cache = {};
             // Level choices persist across weeks/seasons; unset keys use the default
-            // (pyramid levels on, merit/other off -- matching the charts' default).
+            // groups from the embedded index (DEFAULT_LEVEL_GROUPS).
             var levelChoice = {};
             var current = { pos: allWeeks.length - 1, data: null };
 
+            function defaultOn(level) {
+                return defaultGroups.indexOf(level.group) >= 0;
+            }
             function isOn(level) {
                 if (level.key in levelChoice) {
                     return levelChoice[level.key];
                 }
-                return level.group === 'mens' || level.group === 'womens';
+                return defaultOn(level);
             }
             function parseIso(iso) {
                 var p = iso.split('-');
@@ -601,14 +774,13 @@ WEEKLY_REPORT_SCRIPT = """    <script>
                 });
 
                 var onCount = data.levels.filter(isOn).length;
-                var isDefault = data.levels.every(function (l) { return !(l.key in levelChoice)
-                    || levelChoice[l.key] === (l.group === 'mens' || l.group === 'womens'); });
+                var isDefault = data.levels.every(function (l) { return isOn(l) === defaultOn(l); });
                 summaryBtn.classList.toggle('icon-btn--active', !isDefault);
                 subtitleEl.textContent = 'Biggest results of each week (Wednesday to Tuesday). ';
                 var strong = document.createElement('span');
                 strong.className = 'chart-card-subtitle__value';
                 if (isDefault) {
-                    strong.textContent = "Men's + women's pyramid";
+                    strong.textContent = defaultLabel;
                 } else if (onCount === data.levels.length) {
                     strong.textContent = 'All levels';
                 } else {
@@ -650,9 +822,9 @@ WEEKLY_REPORT_SCRIPT = """    <script>
                 gridEl.textContent = '';
                 var plain = function (v) { return String(v); };
                 gridEl.appendChild(renderCard(data, sat, 'Highest team score', teamScores, plain));
-                gridEl.appendChild(renderCard(data, sat, 'Biggest winning margin', wins,
+                gridEl.appendChild(renderCard(data, sat, 'Largest winning margin', wins,
                     function (v) { return '+' + v; }));
-                gridEl.appendChild(renderCard(data, sat, 'Highest match aggregate', aggregates, plain));
+                gridEl.appendChild(renderCard(data, sat, 'Most total points in a match', aggregates, plain));
                 gridEl.appendChild(renderCard(data, sat, 'Most points in defeat',
                     defeats.filter(function (e) { return e.value > 0; }), plain));
             }

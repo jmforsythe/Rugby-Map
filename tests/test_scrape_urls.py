@@ -6,7 +6,14 @@ import json
 from pathlib import Path
 
 from rugby.fixtures import _discover_leagues
-from rugby.scrape import normalize_rfu_league_url, rfu_league_url_key
+from rugby.scrape import get_womens_leagues, normalize_rfu_league_url, rfu_league_url_key
+
+
+def test_womens_premiership_url_for_current_season() -> None:
+    leagues = get_womens_leagues("2026-2027")
+    assert len(leagues) == 1
+    assert leagues[0]["name"] == "Women's Premiership"
+    assert rfu_league_url_key(leagues[0]["url"]) == ("1764", "77343", "2026-2027")
 
 
 def test_rfu_league_url_key_ignores_fragment() -> None:

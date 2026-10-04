@@ -426,7 +426,7 @@ def publish_weekly_instagram(
     publish_dir: Path,
     *,
     levels: str = "default",
-    mode: str = "light",
+    mode: str = "dark",
     top: int = 10,
 ) -> Path:
     """Render Instagram JPEGs and ``post.json`` for ephemeral site hosting.
@@ -500,7 +500,7 @@ def generate_weekly_carousel(
     *,
     levels: str = "default",
     formats: list[str] | None = None,
-    mode: str = "light",
+    mode: str = "dark",
     top: int = 10,
 ) -> list[Path]:
     """Render slides, JPEGs and queue entries for one week; returns the queue files."""
@@ -577,7 +577,7 @@ def main() -> None:
         default="both",
         help="instagram (4:5 API), tiktok (9:16) or both (default)",
     )
-    parser.add_argument("--mode", choices=["light", "dark"], default="light")
+    parser.add_argument("--mode", choices=["light", "dark"], default="dark")
     parser.add_argument("--top", type=int, default=10, help="Rows per category slide")
     parser.add_argument(
         "--publish-dir",

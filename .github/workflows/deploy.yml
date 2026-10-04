@@ -542,7 +542,7 @@ jobs:
             fi
             week_args=(--week "$SOCIAL_WEEK")
           fi
-          python -m rugby.analysis.instagram_weekly --publish-dir dist/social/weekly "${week_args[@]}"
+          python -m rugby.analysis.instagram_weekly --publish-dir dist/social/weekly --mode dark "${week_args[@]}"
           week="$(ls dist/social/weekly)"
           echo "week=${week}" >> "$GITHUB_OUTPUT"
           echo "### Social assets: https://rugbyunionmap.uk/social/weekly/${week}/post.json" >> "$GITHUB_STEP_SUMMARY"

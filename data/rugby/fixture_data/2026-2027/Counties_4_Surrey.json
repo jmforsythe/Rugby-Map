@@ -5,20 +5,6 @@
     {
       "date": "2026-09-26",
       "time": "",
-      "home_team_id": 7316,
-      "away_team_id": 17687,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305346"
-    },
-    {
-      "date": "2026-09-26",
-      "time": "",
-      "home_team_id": 15702,
-      "away_team_id": 20832,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305349"
-    },
-    {
-      "date": "2026-09-26",
-      "time": "",
       "home_team_id": 15711,
       "away_team_id": 24282,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305348",
@@ -26,39 +12,38 @@
       "away_score": 31
     },
     {
-      "date": "2026-09-26",
-      "time": "",
-      "home_team_id": 25882,
-      "away_team_id": 15903,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305347"
-    },
-    {
       "date": "2026-10-03",
       "time": "",
       "home_team_id": 15702,
       "away_team_id": 7316,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305353"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305353",
+      "status": "HWO"
     },
     {
       "date": "2026-10-03",
       "time": "",
       "home_team_id": 20832,
       "away_team_id": 15711,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305351"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305351",
+      "status": "HWO"
     },
     {
       "date": "2026-10-03",
       "time": "",
       "home_team_id": 15903,
       "away_team_id": 17687,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305350"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305350",
+      "home_score": 50,
+      "away_score": 0
     },
     {
       "date": "2026-10-03",
       "time": "",
       "home_team_id": 24282,
       "away_team_id": 25882,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305352"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305352",
+      "home_score": 101,
+      "away_score": 0
     },
     {
       "date": "2026-10-17",
@@ -145,6 +130,27 @@
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305363"
     },
     {
+      "date": "2026-11-07",
+      "time": "",
+      "home_team_id": 7316,
+      "away_team_id": 17687,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1329399"
+    },
+    {
+      "date": "2026-11-07",
+      "time": "",
+      "home_team_id": 15702,
+      "away_team_id": 20832,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1329400"
+    },
+    {
+      "date": "2026-11-07",
+      "time": "",
+      "home_team_id": 25882,
+      "away_team_id": 15903,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1327947"
+    },
+    {
       "date": "2026-11-14",
       "time": "",
       "home_team_id": 25882,
@@ -203,15 +209,15 @@
     {
       "date": "2026-12-05",
       "time": "",
-      "home_team_id": 7316,
-      "away_team_id": 15702,
+      "home_team_id": 15702,
+      "away_team_id": 7316,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305377"
     },
     {
       "date": "2026-12-05",
       "time": "",
-      "home_team_id": 15711,
-      "away_team_id": 20832,
+      "home_team_id": 20832,
+      "away_team_id": 15711,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305376"
     },
     {

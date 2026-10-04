@@ -1,7 +1,7 @@
 name: Publish weekly report to Instagram
 
 # Posts the weekly report carousel that deploy.yml (publish_social=true) hosts
-# under /social/weekly/<saturday>/. Dispatched by deploy.yml after the Tuesday
+# under /social/weekly/<saturday>/. Dispatched by deploy.yml after the Monday
 # fixtures refresh, or run by hand. Re-runs are safe: a week whose stats link
 # is already in a recent caption is skipped.
 on:

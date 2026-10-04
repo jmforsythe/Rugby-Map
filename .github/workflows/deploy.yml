@@ -567,7 +567,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   # A dispatch made with GITHUB_TOKEN does start a new run (unlike a push), so
-  # the Tuesday chain is fixtures -> deploy -> social-weekly.
+  # the Monday chain is fixtures -> deploy -> social-weekly.
   post-instagram:
     runs-on: ubuntu-latest
     needs: [assemble, deploy]

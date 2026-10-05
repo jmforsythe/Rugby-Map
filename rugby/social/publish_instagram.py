@@ -47,6 +47,7 @@ HTTP_TIMEOUT = 30
 # Pages can take a minute or two to serve a fresh deploy.
 ASSET_RETRIES = 10
 ASSET_RETRY_DELAY = 30
+SITE_USER_AGENT = "rugby-mapping/1.0 (+https://rugbyunionmap.uk; weekly-instagram-publish)"
 STATUS_POLL_ATTEMPTS = 30
 STATUS_POLL_DELAY = 5
 
@@ -76,10 +77,31 @@ def stats_link_marker(week: str) -> str:
     return f"/stats/?week={week}"
 
 
-def fetch_post(week: str, session: requests.Session) -> WeeklyPost:
+def site_session() -> requests.Session:
+    """HTTP session for rugbyunionmap.uk (no Instagram API credentials)."""
+    session = requests.Session()
+    session.headers["User-Agent"] = SITE_USER_AGENT
+    session.headers["Accept"] = "application/json, image/jpeg, */*"
+    return session
+
+
+def fetch_post(
+    week: str,
+    session: requests.Session,
+    *,
+    retries: int = ASSET_RETRIES,
+    delay: float = ASSET_RETRY_DELAY,
+    sleep: Callable[[float], None] = time.sleep,
+) -> WeeklyPost:
     url = absolute_url(f"/social/weekly/{week}/post.json")
-    resp = session.get(url, timeout=HTTP_TIMEOUT, allow_redirects=False)
-    if resp.status_code != 200:
+    for attempt in range(1, retries + 1):
+        resp = session.get(url, timeout=HTTP_TIMEOUT, allow_redirects=False)
+        if resp.status_code == 200:
+            break
+        if attempt < retries:
+            logger.info("%s returned HTTP %s; retrying in %ss", url, resp.status_code, delay)
+            sleep(delay)
+    else:
         raise PublishError(
             f"{url} returned HTTP {resp.status_code}; deploy with publish_social first"
         )
@@ -276,10 +298,10 @@ def main() -> None:
     week = saturday.isoformat()
     _summary(f"### Instagram weekly post: weekend of {week}")
 
-    session = requests.Session()
+    site = site_session()
     client = InstagramClient(_require_env("IG_USER_ID"), _require_env("IG_ACCESS_TOKEN"))
     try:
-        publish_week(week, client, session, dry_run=args.dry_run, force=args.force)
+        publish_week(week, client, site, dry_run=args.dry_run, force=args.force)
     except PublishError as exc:
         _summary(f"- **Failed:** {exc}")
         raise SystemExit(1) from exc

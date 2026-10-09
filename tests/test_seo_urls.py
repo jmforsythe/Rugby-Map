@@ -83,6 +83,12 @@ def test_discover_team_rename_redirects_includes_middlesbrough_a_xv() -> None:
     assert pairs["/teams/Middlesbrough_'A'_XV.html"] == "/teams/Middlesbrough_III.html"
 
 
+def test_discover_team_rename_redirects_targets_directory_in_production(monkeypatch) -> None:
+    monkeypatch.setattr(get_config(), "is_production", True)
+    pairs = dict(discover_team_rename_redirects())
+    assert pairs["/teams/Middlesbrough_'A'_XV.html"] == "/teams/Middlesbrough_III/"
+
+
 def test_team_info_page_filename_uses_canonical_name() -> None:
     lookup = {13794: "Middlesbrough_III.html"}
     assert (
@@ -110,10 +116,13 @@ def test_render_popup_links_to_canonical_team_page() -> None:
     assert "Middlesbrough_'A'_XV.html" not in html
 
 
-def test_generate_legacy_redirects_writes_team_rename_stub(tmp_path: Path) -> None:
+def test_generate_legacy_redirects_writes_team_rename_stub(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setattr(get_config(), "is_production", True)
     dist = tmp_path / "dist"
-    (dist / "teams").mkdir(parents=True)
-    (dist / "teams" / "Middlesbrough_III.html").write_text("<html></html>", encoding="utf-8")
+    teams = dist / "teams"
+    teams.mkdir(parents=True)
+    (teams / "Middlesbrough_III").mkdir()
+    (teams / "Middlesbrough_III" / "index.html").write_text("<html></html>", encoding="utf-8")
 
     written = generate_legacy_redirects(dist)
     assert written >= 1
@@ -122,36 +131,37 @@ def test_generate_legacy_redirects_writes_team_rename_stub(tmp_path: Path) -> No
     assert stub.is_file()
     text = stub.read_text(encoding="utf-8")
     assert 'data-rugby-redirect="1"' in text
-    assert "Middlesbrough_III.html" in text
+    assert "/teams/Middlesbrough_III/" in text
     assert "rugbyunionmap.uk" not in text.split("location.replace", 1)[-1]
-    assert 'rel="canonical" href="https://rugbyunionmap.uk/teams/Middlesbrough_III.html"' in text
+    assert 'rel="canonical" href="https://rugbyunionmap.uk/teams/Middlesbrough_III/"' in text
 
 
 def test_sitemap_omits_team_rename_redirect_stubs(tmp_path: Path) -> None:
     dist = tmp_path / "dist"
     teams = dist / "teams"
     teams.mkdir(parents=True)
-    (teams / "Middlesbrough_III.html").write_text("<html></html>", encoding="utf-8")
+    (teams / "Middlesbrough_III").mkdir()
+    (teams / "Middlesbrough_III" / "index.html").write_text("<html></html>", encoding="utf-8")
     (teams / "Middlesbrough_'A'_XV.html").write_text(
         '<html data-rugby-redirect="1"></html>',
         encoding="utf-8",
     )
 
     sitemap = generate_sitemap(dist)
-    assert "Middlesbrough_III.html" in sitemap
+    assert "Middlesbrough_III/" in sitemap
     assert "Middlesbrough_'A'_XV.html" not in sitemap
 
 
 def test_redirect_target_url_prefers_explicit_rename(tmp_path: Path) -> None:
     dist = tmp_path / "dist"
-    explicit = {"/teams/Middlesbrough_'A'_XV.html": "/teams/Middlesbrough_III.html"}
+    explicit = {"/teams/Middlesbrough_'A'_XV.html": "/teams/Middlesbrough_III/"}
     target = _redirect_target_url(
         "/teams/Middlesbrough_'A'_XV.html",
         dist,
         set(),
         explicit,
     )
-    assert target == "/teams/Middlesbrough_III.html"
+    assert target == "/teams/Middlesbrough_III/"
 
 
 def test_discover_feature_rename_redirects_match_day_to_fixtures(tmp_path: Path) -> None:

@@ -10,7 +10,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import quote
 
-from core.config import DIST_DIR, REPO_ROOT
+from core.config import DIST_DIR, REPO_ROOT, set_config
 from core.slugs import FEATURE_FIXTURES, LEGACY_FEATURE_MATCH_DAY
 
 BASE_URL = "https://rugbyunionmap.uk"
@@ -332,6 +332,9 @@ def main() -> None:
         help="Also minify dist/styles.css (skipped locally to keep it readable/editable)",
     )
     args = parser.parse_args()
+
+    if args.production:
+        set_config(is_production=True)
 
     dist_dir = DIST_DIR
     if not dist_dir.exists():

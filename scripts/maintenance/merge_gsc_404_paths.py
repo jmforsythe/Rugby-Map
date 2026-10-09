@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import csv
 import sys
+import zipfile
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
@@ -123,7 +124,19 @@ def main() -> None:
     if not export.is_file():
         parser.error(f"No such file: {export}")
 
-    paths, off_host = extract_paths(export.read_text(encoding="utf-8", errors="replace"))
+    if export.suffix.lower() == ".zip":
+        with zipfile.ZipFile(export) as zf:
+            names = [n for n in zf.namelist() if n.lower().endswith(".csv")]
+            table_name = next((n for n in names if Path(n).name.lower() == "table.csv"), None)
+            if table_name is None and names:
+                table_name = names[0]
+            if table_name is None:
+                parser.error(f"No CSV found inside zip: {export}")
+            export_text = zf.read(table_name).decode("utf-8-sig", errors="replace")
+    else:
+        export_text = export.read_text(encoding="utf-8", errors="replace")
+
+    paths, off_host = extract_paths(export_text)
     if not paths:
         print("No URLs found in the export -- is it the Search Console table CSV?")
         return

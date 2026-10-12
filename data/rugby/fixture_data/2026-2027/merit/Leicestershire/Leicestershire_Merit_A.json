@@ -3,13 +3,6 @@
   "league_url": "https://www.englandrugby.com/fixtures-and-results/search-results?competition=252&season=2026-2027&division=76681#tables",
   "fixtures": [
     {
-      "date": "2026-07-01",
-      "time": "",
-      "home_team_id": 5310,
-      "away_team_id": 13694,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1304505"
-    },
-    {
       "date": "2026-09-19",
       "time": "",
       "home_team_id": 13694,
@@ -65,17 +58,28 @@
     },
     {
       "date": "2026-10-09",
-      "time": "19:30",
+      "time": "",
       "home_team_id": 21566,
       "away_team_id": 128922,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1324338"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1324338",
+      "home_score": 28,
+      "away_score": 21
     },
     {
       "date": "2026-10-10",
-      "time": "15:00",
+      "time": "",
       "home_team_id": 19181,
       "away_team_id": 3654,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1317451"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1317451",
+      "status": "HWO"
+    },
+    {
+      "date": "2026-10-10",
+      "time": "",
+      "home_team_id": 5310,
+      "away_team_id": 13694,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1330121",
+      "status": "HWO"
     },
     {
       "date": "2026-10-17",
@@ -244,6 +248,13 @@
       "home_team_id": 1896,
       "away_team_id": 3654,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1323897"
+    },
+    {
+      "date": "2026-12-12",
+      "time": "15:00",
+      "home_team_id": 13694,
+      "away_team_id": 5310,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1330122"
     },
     {
       "date": "2026-12-19",

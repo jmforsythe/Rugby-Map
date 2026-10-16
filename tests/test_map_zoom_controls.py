@@ -123,6 +123,17 @@ def test_custom_map_template_defers_team_images_until_after_render() -> None:
     ), "PRESENTATION_FALLBACK_MS must be declared before setTimeout uses it"
 
 
+def test_hatch_pane_renders_with_svg_while_map_prefers_canvas() -> None:
+    """Canvas cannot paint ``url(#pattern)`` fills, so merit stripes need SVG."""
+    from core.map_builder import HATCH_PANE
+
+    m = _build_base_map(MapConfig(title="t", color_palette=["#000000"]))
+    html = m.get_root().render()
+
+    assert "preferCanvas" in html
+    assert f"._paneRenderers['{HATCH_PANE}'] = L.svg({{pane: '{HATCH_PANE}'}});" in html
+
+
 def test_custom_map_widens_vector_renderer_buffer_for_panning() -> None:
     custom_map_path = (
         Path(__file__).resolve().parents[1] / "rugby" / "custom_map_assets" / "index.html"

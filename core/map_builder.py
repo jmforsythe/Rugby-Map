@@ -2502,6 +2502,8 @@ DARK_MODE_JS = (
 _HATCH_PANE_JS = f"""
     {{{{ this._parent.get_name() }}}}.createPane('{HATCH_PANE}');
     {{{{ this._parent.get_name() }}}}.getPane('{HATCH_PANE}').style.zIndex = {HATCH_PANE_Z_INDEX};
+    {{{{ this._parent.get_name() }}}}._paneRenderers = {{{{ this._parent.get_name() }}}}._paneRenderers || {{}};
+    {{{{ this._parent.get_name() }}}}._paneRenderers['{HATCH_PANE}'] = L.svg({{pane: '{HATCH_PANE}'}});
 """
 
 
@@ -2510,6 +2512,9 @@ class HatchPane(MacroElement):
 
     Added while the map is being built so the pane exists before any layer names
     it; Leaflet resolves a layer's pane the moment it is added to the map.
+
+    The map prefers canvas, which cannot paint ``url(#pattern)`` fills, so the
+    pane is given its own SVG renderer; solid territories stay on canvas.
     """
 
     _template = FoliumTemplate(

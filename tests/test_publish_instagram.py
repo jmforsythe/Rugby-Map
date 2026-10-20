@@ -89,6 +89,51 @@ def test_publishes_carousel_in_order(complete_week):
     assert not any("secret-token" in path for _m, path, _kw in graph.calls)
 
 
+class NotReadyGraphSession(FakeGraphSession):
+    """media_publish fails with ``subcode`` for the first ``failures`` calls."""
+
+    def __init__(self, failures: int, subcode: int = pi.MEDIA_NOT_READY_SUBCODE):
+        super().__init__()
+        self.failures = failures
+        self.subcode = subcode
+
+    def request(self, method, url, **kwargs):
+        if url.endswith("/media_publish") and self.failures > 0:
+            self.failures -= 1
+            self.calls.append((method, url, kwargs))
+            return FakeResponse(
+                400,
+                body={
+                    "error": {
+                        "message": "Media ID is not available",
+                        "code": 9007,
+                        "error_subcode": self.subcode,
+                    }
+                },
+            )
+        return super().request(method, url, **kwargs)
+
+
+def test_publish_retries_media_not_ready(complete_week):
+    graph = NotReadyGraphSession(failures=2)
+    link = pi.publish_week(WEEK, _client(graph), FakeSiteSession(), dry_run=False)
+    assert link == "https://www.instagram.com/p/abc/"
+    assert sum(1 for _m, path, _kw in graph.calls if path.endswith("media_publish")) == 3
+
+
+def test_publish_gives_up_after_max_attempts(complete_week):
+    graph = NotReadyGraphSession(failures=pi.PUBLISH_ATTEMPTS)
+    with pytest.raises(pi.PublishError, match="Media ID is not available"):
+        pi.publish_week(WEEK, _client(graph), FakeSiteSession(), dry_run=False)
+
+
+def test_publish_does_not_retry_other_errors(complete_week):
+    graph = NotReadyGraphSession(failures=1, subcode=123)
+    with pytest.raises(pi.PublishError, match="subcode 123"):
+        pi.publish_week(WEEK, _client(graph), FakeSiteSession(), dry_run=False)
+    assert sum(1 for _m, path, _kw in graph.calls if path.endswith("media_publish")) == 1
+
+
 def test_dry_run_publishes_nothing(complete_week):
     graph = FakeGraphSession()
     assert pi.publish_week(WEEK, _client(graph), FakeSiteSession(), dry_run=True) is None

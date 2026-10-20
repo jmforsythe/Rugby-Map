@@ -50,10 +50,17 @@ ASSET_RETRY_DELAY = 30
 SITE_USER_AGENT = "rugby-mapping/1.0 (+https://rugbyunionmap.uk; weekly-instagram-publish)"
 STATUS_POLL_ATTEMPTS = 30
 STATUS_POLL_DELAY = 5
+# Graph can still reject media_publish with "Media ID is not available" just
+# after the container reports FINISHED; it succeeds on a later attempt.
+MEDIA_NOT_READY_SUBCODE = 2207027
+PUBLISH_ATTEMPTS = 6
+PUBLISH_RETRY_DELAY = 20
 
 
 class PublishError(RuntimeError):
-    pass
+    def __init__(self, message: str, *, subcode: int | None = None) -> None:
+        super().__init__(message)
+        self.subcode = subcode
 
 
 @dataclass(frozen=True, slots=True)
@@ -170,7 +177,8 @@ class InstagramClient:
             raise PublishError(
                 f"{method} /{path} failed (HTTP {resp.status_code}): "
                 f"{error.get('message', resp.text[:200])} "
-                f"[code {error.get('code')}, subcode {error.get('error_subcode')}]"
+                f"[code {error.get('code')}, subcode {error.get('error_subcode')}]",
+                subcode=error.get("error_subcode"),
             )
         return body
 
@@ -211,10 +219,18 @@ class InstagramClient:
         raise PublishError(f"Container {container_id} not ready after polling")
 
     def publish(self, container_id: str) -> str:
-        body = self._call(
-            "POST", f"{self.user_id}/media_publish", data={"creation_id": container_id}
-        )
-        return body["id"]
+        for attempt in range(1, PUBLISH_ATTEMPTS + 1):
+            try:
+                body = self._call(
+                    "POST", f"{self.user_id}/media_publish", data={"creation_id": container_id}
+                )
+                return body["id"]
+            except PublishError as exc:
+                if exc.subcode != MEDIA_NOT_READY_SUBCODE or attempt == PUBLISH_ATTEMPTS:
+                    raise
+                logger.info("Media not ready to publish; retrying in %ss", PUBLISH_RETRY_DELAY)
+                self.sleep(PUBLISH_RETRY_DELAY)
+        raise AssertionError("unreachable")
 
     def permalink(self, media_id: str) -> str:
         return self._call("GET", media_id, params={"fields": "permalink"}).get("permalink", "")

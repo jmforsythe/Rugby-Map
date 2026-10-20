@@ -1,0 +1,195 @@
+{
+  "league_name": "Gloucestershire County League",
+  "league_url": "https://en.wikipedia.org/wiki/Gloucestershire_County_Football_League",
+  "teams": [
+    {
+      "name": "AFC Mangotsfield",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bishops Cleeve Development",
+      "url": "https://en.wikipedia.org/wiki/Bishops_Cleeve_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/Bishop%27s_Cleeve_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Bishops_Cleeve_F.C.",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Broadwell Amateurs",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Bromley Heath United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Chalford",
+      "url": "",
+      "image_url": null,
+      "address": "Chalford, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.727065,
+      "longitude": -2.1546482,
+      "formatted_address": "Chalford, Stroud, Gloucestershire, England, United Kingdom",
+      "place_id": 281828665,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Filton Athletic",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Frampton United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Henbury & Rockleaze",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Longlevens Reserves",
+      "url": "https://en.wikipedia.org/wiki/Longlevens_A.F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/99/Longlevens_A.F.C._logo.png",
+      "address": "Saw Mills End, Gloucester",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Longlevens_A.F.C.",
+      "address_source": "wikipedia",
+      "latitude": 51.8640322,
+      "longitude": -2.2094614,
+      "formatted_address": "Saw Mills End, Barnwood, Gloucester, Gloucestershire, England, GL4 3HD, United Kingdom",
+      "place_id": 281347069,
+      "geocode_source": "wikipedia"
+    },
+    {
+      "name": "Quedgeley Wanderers",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ruardean Hill Rangers",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Stoke Gifford SGS United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Tewkesbury Town",
+      "url": "",
+      "image_url": null,
+      "address": "Tewkesbury Town, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.9938645,
+      "longitude": -2.1573968,
+      "formatted_address": "Tewkesbury Town Hall, 18, High Street, Mythe, Tewkesbury, Gloucestershire, England, GL20 5AL, United Kingdom",
+      "place_id": 281689866,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Totterdown United",
+      "url": "",
+      "image_url": null,
+      "address": "Totterdown United, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.425487,
+      "longitude": -2.5554421,
+      "formatted_address": "Totterdown United FC, Beechwood Close, Hengrove, Bristol, City of Bristol, West of England, England, BS14 8BQ, United Kingdom",
+      "place_id": 283324628,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "University of Bristol",
+      "url": "",
+      "image_url": null,
+      "address": "University of Bristol, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.4905582,
+      "longitude": -2.6304825,
+      "formatted_address": "University of Bristol, Barrow Gurney, North Somerset, England, BS9 3RZ, United Kingdom",
+      "place_id": 282125513,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Wick",
+      "url": "",
+      "image_url": null,
+      "address": "Wick, Littlehampton, Arun, West Sussex, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 50.8218492,
+      "longitude": -0.5427639,
+      "formatted_address": "Wick, Littlehampton, Lyminster, Arun, West Sussex, England, BN17 6JR, United Kingdom",
+      "place_id": 282905063,
+      "geocode_precision": "region",
+      "geocode_source": "ground_override",
+      "location_outlier": true,
+      "centroid_distance_km": 132.42,
+      "centroid_distance_z": 9.05
+    }
+  ],
+  "team_count": 16,
+  "location_sanity": {
+    "centroid_latitude": 51.553809,
+    "centroid_longitude": -2.041699,
+    "mean_distance_km": 37.28,
+    "stdev_distance_km": 10.51,
+    "threshold_km": 58.3,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
+}

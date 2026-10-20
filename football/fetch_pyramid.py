@@ -75,12 +75,28 @@ def _sanitize_filename(name: str) -> str:
     return re.sub(r"_+", "_", s).strip("_")
 
 
+_WIKI_ARTICLE_PREFIXES = (
+    "/wiki/",
+    "https://en.wikipedia.org/wiki/",
+    "//en.wikipedia.org/wiki/",
+)
+
+
+def wiki_title_from_href(href: str) -> str | None:
+    """Return the article title for a relative or absolute en.wikipedia link."""
+    for prefix in _WIKI_ARTICLE_PREFIXES:
+        if href.startswith(prefix):
+            path = href[len(prefix) :].split("#", 1)[0]
+            return urllib.parse.unquote(path) or None
+    return None
+
+
 def _wiki_article_url(link) -> str | None:
-    """Return a full Wikipedia URL from an ``<a href="/wiki/...">`` tag."""
-    href = link.get("href", "")
-    if not href.startswith("/wiki/"):
+    """Return a full Wikipedia URL from an ``<a href=".../wiki/...">`` tag."""
+    title = wiki_title_from_href(link.get("href", ""))
+    if not title:
         return None
-    return f"https://en.wikipedia.org{href}"
+    return f"https://en.wikipedia.org/wiki/{urllib.parse.quote(title)}"
 
 
 def _extract_club_from_cell(club_cell) -> tuple[str, str] | None:
@@ -88,10 +104,9 @@ def _extract_club_from_cell(club_cell) -> tuple[str, str] | None:
     best: tuple[str, str] | None = None
 
     for link in club_cell.find_all("a", href=True):
-        href = link["href"]
-        if not href.startswith("/wiki/"):
+        title = wiki_title_from_href(link["href"])
+        if not title:
             continue
-        title = urllib.parse.unquote(href.split("/wiki/")[-1])
         if title in _COUNTRY_TITLES or title.startswith(("File:", "Category:")):
             continue
         name = link.get_text(strip=True)

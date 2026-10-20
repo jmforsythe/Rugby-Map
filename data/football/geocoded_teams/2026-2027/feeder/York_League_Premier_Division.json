@@ -1,0 +1,166 @@
+{
+  "league_name": "York League Premier Division",
+  "league_url": "https://en.wikipedia.org/wiki/York_Football_League",
+  "teams": [
+    {
+      "name": "Dringhouses",
+      "url": "",
+      "image_url": null,
+      "address": "Dringhouses York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9381369,
+      "longitude": -1.1098538,
+      "formatted_address": "Dringhouses, York, York and North Yorkshire, England, YO24 1LT, United Kingdom",
+      "place_id": 278927369,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
+    },
+    {
+      "name": "Dunnington",
+      "url": "",
+      "image_url": null,
+      "address": "Dunnington York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9646114,
+      "longitude": -0.9817563,
+      "formatted_address": "Dunnington, York, York and North Yorkshire, England, United Kingdom",
+      "place_id": 275775901,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
+    },
+    {
+      "name": "Easingwold Town AFC",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Huntington Rovers",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Kirkbymoorside",
+      "url": "",
+      "image_url": null,
+      "address": "Kirkbymoorside York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 54.262097,
+      "longitude": -0.9193133,
+      "formatted_address": "Kirkbymoorside, North Yorkshire, York and North Yorkshire, England, United Kingdom",
+      "place_id": 275024010,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club",
+      "location_outlier": true,
+      "centroid_distance_km": 29.0,
+      "centroid_distance_z": 15.08
+    },
+    {
+      "name": "Malt Shovel",
+      "url": "",
+      "image_url": null,
+      "address": "Malt Shovel York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9576391,
+      "longitude": -1.0770412,
+      "formatted_address": "Malt Shovel Court, Fishergate, York, York and North Yorkshire, England, YO1 9TB, United Kingdom",
+      "place_id": 275058147,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
+    },
+    {
+      "name": "Old Malton St Mary's",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Osbaldwick",
+      "url": "",
+      "image_url": null,
+      "address": "Osbaldwick York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9582534,
+      "longitude": -1.0332491,
+      "formatted_address": "Osbaldwick, York, York and North Yorkshire, England, United Kingdom",
+      "place_id": 279117580,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
+    },
+    {
+      "name": "Poppleton United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Rawcliffe",
+      "url": "",
+      "image_url": null,
+      "address": "Rawcliffe York FC, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 53.9846611,
+      "longitude": -1.1140941,
+      "formatted_address": "Rawcliffe, York, York and North Yorkshire, England, United Kingdom",
+      "place_id": 277828025,
+      "geocode_precision": "club",
+      "geocode_source": "nominatim_club"
+    },
+    {
+      "name": "Tadcaster Magnets",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Thorpe United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wigginton Grasshoppers",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 13,
+  "location_sanity": {
+    "centroid_latitude": 54.0109,
+    "centroid_longitude": -1.039218,
+    "mean_distance_km": 6.73,
+    "stdev_distance_km": 1.48,
+    "threshold_km": 9.69,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
+}

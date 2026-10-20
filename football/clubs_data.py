@@ -15,9 +15,14 @@ from football.location_sanity import (
     pick_best_league_geocode,
     team_geocode_source,
 )
+from rugby.distances import distance as haversine_km
 from rugby.geocode import flush_cache, geocode_with_nominatim, load_cache, search_nominatim
 
 logger = logging.getLogger(__name__)
+
+# Bare infobox ground names ("City Ground", "St James' Park") often resolve to a
+# same-named place elsewhere; beyond this gap Wikidata's coordinates win.
+WIKIDATA_DISAGREEMENT_KM = 25.0
 
 NOMINATIM_MULTI_LIMIT = 5
 
@@ -60,11 +65,51 @@ def infer_territory_from_team(name: str, wiki_title: str = "") -> str:
     return "England"
 
 
-# Clubs whose names Nominatim cannot resolve; use known home grounds instead.
+# Known home grounds for clubs whose name or Wikipedia ground string Nominatim
+# cannot resolve (or resolves to a same-named place elsewhere). Takes priority
+# over the Wikipedia infobox ground.
 _GROUND_OVERRIDES: dict[str, str] = {
     "jersey bulls": "Springfield Stadium, St Helier, Jersey",
     "isle of man": "The Bowl, Douglas, Isle of Man",
     "wivenhoe town": "Broad Lane, Wivenhoe CO7 9QT, Essex, England",
+    "anstey town": "Anstey, Charnwood, Leicestershire, England",
+    "ash united": "Ash, Guildford, Surrey, England",
+    "ashville": "Wallasey, Wirral, England",
+    "beverley town": "Beverley, East Riding of Yorkshire, England",
+    "bradford town": "Bradford-on-Avon, Wiltshire, England",
+    "clipstone": "Clipstone, Newark and Sherwood, Nottinghamshire, England",
+    "corinthian": "Longfield, Dartford, Kent, England",
+    "dial square": "Knaphill, Woking, Surrey, England",
+    "droitwich spa": "Droitwich Spa, Wychavon, Worcestershire, England",
+    "dunkirk": "Dunkirk, Nottingham, England",
+    "durham united": "Durham, County Durham, England",
+    "field olympic": "Bradford, West Yorkshire, England",
+    "greenways": "Gravesend, Gravesham, Kent, England",
+    "grimsby borough": "Grimsby, North East Lincolnshire, England",
+    "hadleigh united": "Hadleigh, Babergh, Suffolk, England",
+    "haywards heath town": "Haywards Heath, Mid Sussex, West Sussex, England",
+    "heather st johns": "Heather, North West Leicestershire, England",
+    "horden community welfare": "Horden, County Durham, England",
+    "hutton": "Hutton, Brentwood, Essex, England",
+    "hythe town": "Hythe, Folkestone and Hythe, Kent, England",
+    "liv": "Haworth Park, Kingston upon Hull, England",
+    "lordswood": "Lordswood, Medway, Kent, England",
+    "lydd town": "Lydd, Folkestone and Hythe, Kent, England",
+    "lymore gardens": "Barkingside, London Borough of Redbridge, England",
+    "maidenhead town": "Maidenhead, Windsor and Maidenhead, England",
+    "malmesbury victoria": "Malmesbury, Wiltshire, England",
+    "mulbarton wanderers": "Mulbarton, South Norfolk, Norfolk, England",
+    "new milton town": "New Milton, New Forest, Hampshire, England",
+    "northfield town": "Northfield, Birmingham, England",
+    "rayleigh town": "Pitsea, Basildon, Essex, England",
+    "sheppey united": "Minster-on-Sea, Swale, Kent, England",
+    "stonehouse town": "Stonehouse, Stroud, Gloucestershire, England",
+    "street": "Street, Somerset, BA16, England",
+    "thame united": "Thame, South Oxfordshire, Oxfordshire, England",
+    "torrington": "Great Torrington, Torridge, Devon, England",
+    "uppermill": "Seel Park, Mossley, Tameside, England",
+    "whyteleafe": "Whyteleafe, Tandridge, Surrey, England",
+    "wick": "Wick, Littlehampton, Arun, West Sussex, England",
 }
 
 
@@ -256,6 +301,18 @@ def refine_league_nominatim_teams(league: dict[str, Any]) -> int:
         refined += 1
 
     return refined
+
+
+def _disagrees_with_wikidata(result: dict, wikidata: dict) -> bool:
+    if wikidata.get("latitude") is None or wikidata.get("longitude") is None:
+        return False
+    gap = haversine_km(
+        float(result["latitude"]),
+        float(result["longitude"]),
+        float(wikidata["latitude"]),
+        float(wikidata["longitude"]),
+    )
+    return gap > WIKIDATA_DISAGREEMENT_KM
 
 
 def _apply_wikidata_coords(team: dict, wikidata: dict) -> dict:
@@ -529,21 +586,11 @@ def geocode_pyramid_team(
     *,
     league_name: str = "",
 ) -> dict:
-    """Geocode a pyramid team using Wikipedia ground, then Wikidata, then name fallback."""
+    """Geocode a pyramid team using override, Wikipedia ground, Wikidata, then name fallback."""
     wiki_title = team.get("wiki_title", "")
     wikidata = wikidata_coords.get(wiki_title)
-
-    if team.get("address"):
-        result = geocode_team(team)
-        if "error" not in result:
-            if team.get("address_source"):
-                result["geocode_source"] = team["address_source"]
-            return result
-
-    if wikidata and _wikidata_ground_is_venue(wikidata.get("ground") or "", team):
-        return _apply_wikidata_coords(team, wikidata)
-
     name = team.get("name", "")
+
     override = ground_override_address(name)
     if override:
         coords, _ = geocode_with_nominatim(override)
@@ -555,22 +602,43 @@ def geocode_pyramid_team(
                 source="ground_override",
             )
 
-    if name:
-        if league_name:
-            enriched = geocode_with_club_queries(team, league_name)
-            if enriched:
-                return enriched
+    if team.get("address"):
+        result = geocode_team(team)
+        if "error" not in result:
+            if team.get("address_source"):
+                result["geocode_source"] = team["address_source"]
+            if wikidata and _disagrees_with_wikidata(result, wikidata):
+                corrected = _apply_wikidata_coords(team, wikidata)
+                if not _wikidata_ground_is_venue(wikidata.get("ground") or "", team):
+                    corrected["address"] = team["address"]
+                    corrected["formatted_address"] = team["address"]
+                logger.info(
+                    "  %s: Wikipedia ground geocode is far from Wikidata; using Wikidata",
+                    name,
+                )
+                return corrected
+            return result
 
-        territory = team.get("territory") or infer_territory_from_team(name, wiki_title)
-        fallback_addr = f"{name}, {territory}"
-        coords, _ = geocode_with_nominatim(fallback_addr)
-        if coords:
-            return _apply_nominatim_result(
-                team,
-                fallback_addr,
-                coords,
-                territory=territory,
-            )
+    if wikidata and _wikidata_ground_is_venue(wikidata.get("ground") or "", team):
+        return _apply_wikidata_coords(team, wikidata)
+
+    if name:
+        guess = geocode_with_club_queries(team, league_name) if league_name else None
+        if not guess:
+            territory = team.get("territory") or infer_territory_from_team(name, wiki_title)
+            fallback_addr = f"{name}, {territory}"
+            coords, _ = geocode_with_nominatim(fallback_addr)
+            if coords:
+                guess = _apply_nominatim_result(
+                    team,
+                    fallback_addr,
+                    coords,
+                    territory=territory,
+                )
+        if guess:
+            if wikidata and _disagrees_with_wikidata(guess, wikidata):
+                return _apply_wikidata_coords(team, wikidata)
+            return guess
 
     result = dict(team)
     result["error"] = "geocoding_failed"

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from html import escape
 from pathlib import Path
 
@@ -15,6 +16,13 @@ from core import (
 from core.colors import COLOR_PALETTE
 from core.config import BOUNDARIES_DIR, DIST_DIR
 from core.map_builder import MapConfig, MarkerItem, export_shared_boundaries, load_itl_hierarchy
+from football.location_sanity import is_definitely_wrong_location
+
+logger = logging.getLogger(__name__)
+
+# Real outliers (e.g. Torquay in National League South) come from ground data;
+# far-flung name-only Nominatim matches are almost always a same-named place.
+_NAME_GUESS_SOURCES = frozenset({"nominatim_name", "nominatim_club"})
 
 FOOTBALL_DIST = DIST_DIR / "football"
 FOOTBALL_BRAND = "English Football Pyramid Maps"
@@ -128,6 +136,16 @@ def load_pyramid_items(*geocoded_dirs: Path) -> list[MarkerItem]:
             for team in data.get("teams", []):
                 if "latitude" not in team or "longitude" not in team:
                     continue
+                if team.get("geocode_source") in _NAME_GUESS_SOURCES and (
+                    is_definitely_wrong_location(team)
+                ):
+                    logger.warning(
+                        "Skipping %s (%s): geocode %.0fkm from league centroid",
+                        team["name"],
+                        league_name,
+                        team["centroid_distance_km"],
+                    )
+                    continue
                 level = int(team.get("level", 0))
                 if level < 1:
                     continue
@@ -205,7 +223,7 @@ def header_bar_html(
         for tier_display, tier_href in sibling_tiers:
             selected = " selected" if tier_display == current_tier else ""
             options.append(
-                f'<option value="{escape(tier_href)}"{selected}>' f"{escape(tier_display)}</option>"
+                f'<option value="{escape(tier_href)}"{selected}>{escape(tier_display)}</option>'
             )
         title_html = (
             f'<select class="map-header__select" '

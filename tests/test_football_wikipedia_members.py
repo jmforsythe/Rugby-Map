@@ -36,6 +36,8 @@ _MIDLAND_HTML = """
 
 def test_is_valid_club_name_rejects_champion_rows() -> None:
     assert not is_valid_club_name("1995–96 Ortonians")
+    assert not is_valid_club_name("2003–04: Fulbourn Institute")
+    assert not is_valid_club_name("2019-20: Season declared NULL AND VOID")
     assert not is_valid_club_name("9th [ a ]")
     assert is_valid_club_name("Acle United")
 

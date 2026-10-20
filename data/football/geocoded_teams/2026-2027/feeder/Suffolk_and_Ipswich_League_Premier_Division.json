@@ -1,0 +1,43 @@
+{
+  "league_name": "Suffolk & Ipswich League Premier Division",
+  "league_url": "https://en.wikipedia.org/wiki/Suffolk_and_Ipswich_Football_League",
+  "teams": [
+    {
+      "name": "Suffolk Senior Cup: Premier Division sides",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Suffolk Senior Reserve Cup: Division 2 to 5 sides, that are reserve teams of teams playing in the Senior Cup",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Suffolk Junior Cups: Championship and Division 2 Sides",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Suffolk Primary Cup: Division 3 to 5 sides",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 4
+}

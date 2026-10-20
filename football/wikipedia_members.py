@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import re
-import urllib.parse
 
 from bs4 import BeautifulSoup, Tag
 
-from football.fetch_pyramid import _extract_club_from_cell
+from football.fetch_pyramid import _extract_club_from_cell, wiki_title_from_href
 
-_SEASON_PREFIX_RE = re.compile(r"^\d{4}\s*[\u2013\u2014\u2212\-–—]\s*\d{2,4}\s+")
+_SEASON_PREFIX_RE = re.compile(r"^\d{4}\s*[\u2013\u2014\u2212\-–—]\s*\d{2,4}\s*[:\s]")
 _CHAMPION_ROW_RE = re.compile(r"^\d{4}\s*[\u2013\u2014\u2212\-–—]\s*\d{2,4}\s*$")
 _INVALID_NAMES = frozenset(
     {
@@ -129,9 +128,7 @@ def clubs_from_ul(ul: Tag, seen: set[str]) -> list[dict]:
         if not is_valid_club_name(name) or name.casefold() in seen:
             continue
         link = li.find("a", href=True)
-        wiki_title = None
-        if link and link["href"].startswith("/wiki/"):
-            wiki_title = urllib.parse.unquote(link["href"].split("/wiki/")[-1])
+        wiki_title = wiki_title_from_href(link["href"]) if link else None
         clubs.append({"name": name, "wiki_title": wiki_title})
         seen.add(name.casefold())
     return clubs

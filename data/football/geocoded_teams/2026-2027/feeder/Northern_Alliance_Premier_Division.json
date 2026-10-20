@@ -1,0 +1,200 @@
+{
+  "league_name": "Northern Alliance Premier Division",
+  "league_url": "https://en.wikipedia.org/wiki/Northern_Football_Alliance",
+  "teams": [
+    {
+      "name": "Burradon & New Fordley",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Cramlington United",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gateshead Rutherford",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Gosforth Bohemians",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Haltwhistle Jubilee",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hazlerigg Victory",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Heaton Stannington 'A'",
+      "url": "https://en.wikipedia.org/wiki/Heaton_Stannington_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/0/02/Heaton_Stannington_F.C.png",
+      "address": "Grounsell Park, High Heaton",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Heaton_Stannington_F.C.",
+      "address_source": "wikipedia",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Hebburn Town Reserves",
+      "url": "https://en.wikipedia.org/wiki/Hebburn_Town_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/Hebburn_Town_FC_crest.svg",
+      "address": "Hebburn Sports & Social Ground, Hebburn",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Hebburn_Town_F.C.",
+      "address_source": "wikipedia",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Killingworth",
+      "url": "",
+      "image_url": null,
+      "address": "Killingworth, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 55.035572,
+      "longitude": -1.5673971,
+      "formatted_address": "Killingworth, Killingworth Village, North Tyneside, Tyne and Wear, North East, England, NE12 6YT, United Kingdom",
+      "place_id": 271512054,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "Newcastle Chemfica",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Newcastle East End",
+      "url": "https://en.wikipedia.org/wiki/Newcastle_East_End_F.C.",
+      "image_url": null,
+      "address": "Newcastle East End, England",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Newcastle_East_End_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 54.9183418,
+      "longitude": -1.3841279,
+      "formatted_address": "Newcastle Road, Fulwell, Sunderland, Tyne and Wear, North East, England, SR5 1JB, United Kingdom",
+      "place_id": 273894598,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name"
+    },
+    {
+      "name": "North Shields Athletic",
+      "url": "https://en.wikipedia.org/wiki/North_Shields_Athletic",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/7/70/North_shields_fc_badge.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "North_Shields_Athletic",
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Ponteland United",
+      "url": "https://en.wikipedia.org/wiki/Ponteland_United_F.C.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/8/89/Ponteland_United_F.C.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+      "address": "Ponteland Leisure Centre, Ponteland",
+      "territory": "England",
+      "level": 11,
+      "wiki_title": "Ponteland_United_F.C.",
+      "address_source": "wikipedia",
+      "latitude": 55.0464426,
+      "longitude": -1.7398598,
+      "formatted_address": "Ponteland Leisure Centre, Callerton Lane, Darras Hall, Prestwick, Ponteland, Northumberland, North East, England, NE20 9NJ, United Kingdom",
+      "place_id": 274083092,
+      "geocode_source": "wikipedia"
+    },
+    {
+      "name": "Seaton Delaval AFC",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "Wallington",
+      "url": "",
+      "image_url": null,
+      "address": "Wallington, England",
+      "territory": "England",
+      "level": 11,
+      "latitude": 51.9872386,
+      "longitude": -0.1190634,
+      "formatted_address": "Wallington, North Hertfordshire, Hertfordshire, England, United Kingdom",
+      "place_id": 282195499,
+      "geocode_precision": "name",
+      "geocode_source": "nominatim_name",
+      "location_outlier": true,
+      "centroid_distance_km": 261.45,
+      "centroid_distance_z": 16.8
+    },
+    {
+      "name": "Wallsend Boys Club",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    },
+    {
+      "name": "West Moor & Jesmond",
+      "url": "",
+      "image_url": null,
+      "address": null,
+      "territory": "England",
+      "level": 11,
+      "error": "geocoding_failed"
+    }
+  ],
+  "team_count": 17,
+  "location_sanity": {
+    "centroid_latitude": 54.246899,
+    "centroid_longitude": -1.202612,
+    "mean_distance_km": 87.25,
+    "stdev_distance_km": 10.37,
+    "threshold_km": 107.99,
+    "sigma": 2.0,
+    "outlier_count": 1
+  }
+}

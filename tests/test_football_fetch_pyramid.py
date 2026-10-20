@@ -27,3 +27,24 @@ def test_parse_wikipedia_clubs_extracts_league_season_url() -> None:
         clubs[1]["league_url"]
         == "https://en.wikipedia.org/wiki/2025%E2%80%9326_United_Counties_League"
     )
+
+
+def test_parse_wikipedia_clubs_accepts_absolute_links() -> None:
+    html = """
+<table class="wikitable">
+<tr><th>Club</th><th>League/Division</th><th>Lvl</th></tr>
+<tr>
+  <td><a href="https://en.wikipedia.org/wiki/AS_London_F.C.">AS London</a></td>
+  <td><a href="https://en.wikipedia.org/wiki/2026\u201327_Eastern_Counties_Football_League">Eastern Counties League Division One South</a></td>
+  <td>10</td>
+</tr>
+</table>
+"""
+    clubs = parse_wikipedia_clubs(html)
+    assert len(clubs) == 1
+    assert clubs[0]["wiki_title"] == "AS_London_F.C."
+    assert clubs[0]["level"] == 10
+    assert (
+        clubs[0]["league_url"]
+        == "https://en.wikipedia.org/wiki/2026%E2%80%9327_Eastern_Counties_Football_League"
+    )

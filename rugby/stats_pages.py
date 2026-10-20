@@ -70,13 +70,21 @@ GENDER_LABELS: dict[str, str] = {
     GENDER_MEN: "Men's",
     GENDER_WOMEN: "Women's",
 }
-# Every women's league file (pyramid or merit) is named ``Women's_*`` or ``Women_*``;
-# everything else in league_data/ is men's. See rugby.tiers.extract_tier_women.
-_WOMENS_FILENAME_PREFIXES = ("Women's_", "Women_")
+# Women's league files are named ``Women's_*`` / ``Women_*`` (current), ``RFUW_*``
+# (2007-2012), or ``w<Name>`` (pre-2007), optionally behind the legacy ``x`` marker
+# that men's files also carry (``xwEastern_2`` vs ``xWarwickshire_1``). Everything
+# else in league_data/ is men's. See rugby.tiers.extract_tier_women_pre_2012.
+_WOMENS_FILENAME_PREFIXES = ("Women's_", "Women_", "RFUW_")
+# Women's tiers are numbered 101+ (see rugby.tiers); men's sit below this.
+WOMENS_MIN_TIER = 100
 
 
 def _is_womens_league_filename(filename: str) -> bool:
-    return filename.startswith(_WOMENS_FILENAME_PREFIXES)
+    if filename.startswith("x") and len(filename) > 1:
+        filename = filename[1:]
+    if filename.startswith(_WOMENS_FILENAME_PREFIXES):
+        return True
+    return len(filename) > 1 and filename[0] == "w" and filename[1].isupper()
 
 
 class SeasonStats(TypedDict):
@@ -324,6 +332,15 @@ def compute_club_timelines(
             is_merit = rel_path.startswith("merit/")
             filename = rel_path.rsplit("/", 1)[-1]
             gender = GENDER_WOMEN if _is_womens_league_filename(filename) else GENDER_MEN
+            if (abs_tier >= WOMENS_MIN_TIER) != (gender == GENDER_WOMEN):
+                logger.warning(
+                    "Skipping %s/%s: filename says %s but tier %d disagrees",
+                    season,
+                    rel_path,
+                    gender,
+                    abs_tier,
+                )
+                continue
 
             teams = league_data["teams"]
             team_count = len(teams)
@@ -789,8 +806,16 @@ _CLUB_TIMELINE_SCRIPT = """    <script>
 
             // Women's tiers are stored as absolute pyramid numbers (101+); rebase to the
             // same 1-based scale as men's once the toggle has filtered to one gender.
+            var WOMENS_LEVEL_OFFSET = 100;
             function displayLevel(point) {
-                return state.gender === 'women' ? point.level - 100 : point.level;
+                return state.gender === 'women' ? point.level - WOMENS_LEVEL_OFFSET : point.level;
+            }
+
+            // The level range must agree with the gender tag, so a mis-tagged league
+            // can never put 101+ women's levels on the men's axis (or vice versa).
+            function pointInGender(p, gender) {
+                if (!p || p.gender !== gender) { return false; }
+                return (p.level >= WOMENS_LEVEL_OFFSET) === (gender === 'women');
             }
 
             function tierLabel(value) {
@@ -837,7 +862,7 @@ _CLUB_TIMELINE_SCRIPT = """    <script>
             }
 
             function teamHasGender(t, gender) {
-                return t.points.some(function (p) { return p && p.gender === gender; });
+                return t.points.some(function (p) { return pointInGender(p, gender); });
             }
 
             function clubHasGender(club, gender) {
@@ -861,7 +886,7 @@ _CLUB_TIMELINE_SCRIPT = """    <script>
                 var allValues = [];
                 teamsInView.forEach(function (t) {
                     t.points.forEach(function (p) {
-                        if (p && p.gender === state.gender) { allValues.push(displayLevel(p)); }
+                        if (pointInGender(p, state.gender)) { allValues.push(displayLevel(p)); }
                     });
                 });
                 if (!allValues.length) {
@@ -935,7 +960,7 @@ _CLUB_TIMELINE_SCRIPT = """    <script>
                 teamsInView.forEach(function (t, idx) {
                     var color = COLORS[idx % COLORS.length];
                     var pts = t.points.map(function (p, i) {
-                        if (!p || p.gender !== state.gender) { return null; }
+                        if (!pointInGender(p, state.gender)) { return null; }
                         return { i: i, x: xAt(i), y: yAt(displayLevel(p)), point: p };
                     });
 

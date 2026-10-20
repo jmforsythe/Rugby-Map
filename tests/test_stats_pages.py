@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from rugby import stats_pages
 from rugby.stats_pages import (
     ALL_COMPETITIONS_KEY,
     GENDER_ALL,
@@ -231,6 +232,38 @@ def test_compute_club_timelines_tags_womens_leagues(tmp_path: Path) -> None:
     point = club["teams"][0]["points"][0]
     assert point["gender"] == "women"
     assert point["level"] == 101.0
+
+
+def test_compute_club_timelines_tags_legacy_womens_filenames(tmp_path: Path) -> None:
+    league_data_dir = tmp_path / "league_data"
+    _write_league(league_data_dir / "2004-2005" / "wPremiership_1.json", ["Alpha RFC Women"])
+    _write_league(league_data_dir / "2004-2005" / "xwEastern_2.json", ["Beta RFC Women"])
+    _write_league(league_data_dir / "2010-2011" / "RFUW_Premiership.json", ["Gamma RFC Women"])
+    _write_league(league_data_dir / "2004-2005" / "xWarwickshire_1.json", ["Delta RFC"])
+
+    timelines = compute_club_timelines(league_data_dir, current_season="2099-2100")
+    gender_by_club = {
+        c["club"]: next(p for p in c["teams"][0]["points"] if p)["gender"]
+        for c in timelines["clubs"]
+    }
+
+    assert gender_by_club == {
+        "Alpha RFC Women": "women",
+        "Beta RFC Women": "women",
+        "Gamma RFC Women": "women",
+        "Delta RFC": "men",
+    }
+
+
+def test_compute_club_timelines_skips_gender_tier_mismatch(tmp_path: Path, monkeypatch) -> None:
+    league_data_dir = tmp_path / "league_data"
+    _write_league(league_data_dir / "2024-2025" / "Premiership.json", ["Alpha RFC"])
+    _write_league(league_data_dir / "2024-2025" / "Women's_Premiership.json", ["Beta RFC Women"])
+    monkeypatch.setattr(stats_pages, "_is_womens_league_filename", lambda _filename: False)
+
+    timelines = compute_club_timelines(league_data_dir, current_season="2099-2100")
+
+    assert [c["club"] for c in timelines["clubs"]] == ["Alpha RFC"]
 
 
 def test_compute_club_timelines_empty_dir_returns_empty(tmp_path: Path) -> None:

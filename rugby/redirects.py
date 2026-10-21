@@ -26,6 +26,39 @@ _MERIT_RE = re.compile(r"^/(\d{4}-\d{4})/merit/([^/]+)")
 _TEAM_RE = re.compile(r"^/teams/([^/]+\.html)$", re.I)
 _SEASON_DIR = re.compile(r"^\d{4}-\d{4}$")
 _LEGACY_WOMEN_RE = re.compile(r"_Women(?=_|$)")
+_CB_TEAM_RE = re.compile(r"\(CB\)|_County_RFU(_|$)", re.I)
+_COUNTY_TEAM_STEMS = frozenset(
+    {
+        "Berkshire",
+        "Buckinghamshire",
+        "Cheshire",
+        "Cornwall",
+        "Cumbria",
+        "Devon",
+        "Dorset_&_Wilts",
+        "Durham",
+        "East_Midlands",
+        "Eastern_Counties",
+        "Essex",
+        "Gloucestershire",
+        "Hampshire",
+        "Hertfordshire",
+        "Kent",
+        "Lancashire",
+        "Leicestershire",
+        "Middlesex",
+        "North_Midlands",
+        "Northumberland",
+        "Notts_Lincs_&_Derbyshire",
+        "Oxfordshire",
+        "Somerset",
+        "Staffordshire",
+        "Surrey",
+        "Sussex",
+        "Warwickshire",
+        "Yorkshire",
+    }
+)
 
 
 def _normalize_site_path(path: str) -> str:
@@ -141,6 +174,14 @@ def _resolve_team_slug(filename: str, existing: set[str]) -> str | None:
     return None
 
 
+def _is_county_team_page(filename: str, team_slugs: set[str]) -> bool:
+    """True for retired county representative-side pages (``/teams/Kent.html``)."""
+    stem = filename[:-5] if filename.endswith(".html") else filename
+    if stem in team_slugs:
+        return False
+    return stem in _COUNTY_TEAM_STEMS or bool(_CB_TEAM_RE.search(stem))
+
+
 def resolve_redirect_target(site_path: str, dist_dir: Path, team_slugs: set[str]) -> str:
     """Choose the canonical destination URL for a legacy *site_path*."""
     path = _normalize_site_path(site_path)
@@ -163,6 +204,8 @@ def resolve_redirect_target(site_path: str, dist_dir: Path, team_slugs: set[str]
 
     m = _TEAM_RE.match(path)
     if m:
+        if _is_county_team_page(m.group(1), team_slugs):
+            return "/constituent-bodies/"
         alt = _resolve_team_slug(m.group(1), team_slugs)
         if alt:
             return f"/teams/{alt}/"
@@ -175,7 +218,7 @@ def resolve_redirect_target(site_path: str, dist_dir: Path, team_slugs: set[str]
     if path.startswith("/teams"):
         return "/teams/"
 
-    if path.startswith("/custom-map"):
+    if path.startswith("/custom-"):
         return "/custom-map/"
 
     return "/"

@@ -4,7 +4,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from rugby.webpages import _build_pyramid_section, detect_tier_files
+from core.config import get_config
+from rugby.webpages import _build_pyramid_section, detect_tier_files, get_top_level_index_html
+
+
+def test_home_fixtures_card_links_season_page_not_redirect_stub(monkeypatch) -> None:
+    monkeypatch.setattr(get_config(), "is_production", True)
+    html = get_top_level_index_html(["2025-2026", "2026-2027"], "2026-2027")
+    assert 'href="./2026-2027/fixtures/"' in html
+    assert 'href="./fixtures/"' not in html
 
 
 def _touch(path: Path) -> None:

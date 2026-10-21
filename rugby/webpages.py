@@ -761,8 +761,12 @@ def get_season_index_html(season: str, tier_files: dict) -> str:
     return html
 
 
-def get_top_level_index_html(seasons: list[str]) -> str:
-    """Generate HTML content for the top-level index page."""
+def get_top_level_index_html(seasons: list[str], fixtures_season: str | None = None) -> str:
+    """Generate HTML content for the top-level index page.
+
+    *fixtures_season* points the fixtures card straight at that season's page;
+    the root ``/fixtures/`` URL is only a noindex redirect stub.
+    """
     sorted_seasons = sorted(seasons, reverse=True)
     latest = sorted_seasons[0] if sorted_seasons else ""
     is_prod = get_config().is_production
@@ -771,7 +775,10 @@ def get_top_level_index_html(seasons: list[str]) -> str:
         return f"{s}/" if is_prod else f"{s}/index.html"
 
     teams_href = "./teams/" if is_prod else "./teams/index.html"
-    fixtures_href = f"./{FEATURE_FIXTURES}/" if is_prod else f"./{FEATURE_FIXTURES}/index.html"
+    fixtures_dir = (
+        f"./{fixtures_season}/{FEATURE_FIXTURES}" if fixtures_season else f"./{FEATURE_FIXTURES}"
+    )
+    fixtures_href = f"{fixtures_dir}/" if is_prod else f"{fixtures_dir}/index.html"
     custom_map_href = "./custom-map/" if is_prod else "./custom-map/index.html"
     cb_map_href = "./constituent-bodies/" if is_prod else "./constituent-bodies/index.html"
     stats_href = "./stats/" if is_prod else "./stats/index.html"
@@ -1064,7 +1071,15 @@ def main() -> None:
         )
 
     # Generate top-level index.html
-    top_level_html = get_top_level_index_html(seasons)
+    fixtures_season = next(
+        (
+            s
+            for s in sorted(seasons, reverse=True)
+            if (dist_dir / s / FEATURE_FIXTURES / "index.html").is_file()
+        ),
+        None,
+    )
+    top_level_html = get_top_level_index_html(seasons, fixtures_season)
     top_level_path = dist_dir / "index.html"
 
     with open(top_level_path, "w", encoding="utf-8") as f:

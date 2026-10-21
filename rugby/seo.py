@@ -223,24 +223,35 @@ def _skip_sitemap_html(dist_dir: Path, html_file: Path, rel_path: Path) -> bool:
     return False
 
 
-def generate_sitemap(dist_dir: Path, season_dates: dict[str, str] | None = None) -> str:
-    """Walk dist/ HTML and produce a sitemap.xml string.
+# Child sitemaps listed from the sitemap.xml index. Search Console reports
+# indexing per submitted sitemap, so each section's coverage shows separately.
+SITEMAP_SECTIONS = ("current", "teams", "recent-seasons", "archive-seasons")
+RECENT_SEASON_COUNT = 5
 
-    Emits trailing-slash URLs for ``index.html`` (directory canonical form) and
-    full paths for every other ``*.html`` (tier maps, team pages, etc.).
 
-    ``<priority>`` reflects hub vs leaf tiers; the latest season's hub gets a
-    small boost above older seasons. Entries are sorted with higher priority
-    first then by URL.
+def _sitemap_section(site_path: str, latest_season: str, recent_seasons: frozenset[str]) -> str:
+    """Which child sitemap *site_path* belongs to (see :data:`SITEMAP_SECTIONS`)."""
+    if site_path.startswith("/teams/") and site_path != "/teams/":
+        return "teams"
+    m = _SEASON_PATH_RE.match(site_path)
+    if not m or m.group(1) == latest_season:
+        return "current"
+    return "recent-seasons" if m.group(1) in recent_seasons else "archive-seasons"
 
-    ``<lastmod>`` is the fixture scrape date of the season a page is built from
-    (*season_dates*, default :func:`season_scrape_dates`), and is omitted when
-    that season is unknown rather than guessed.
-    """
-    url_parts: list[tuple[float, str, str]] = []
+
+def _sitemap_rows(
+    dist_dir: Path, season_dates: dict[str, str] | None
+) -> list[tuple[float, str, str, str]]:
+    """``(priority, loc, lastmod, section)`` for every sitemap URL, highest priority first."""
+    url_parts: list[tuple[float, str, str, str]] = []
     latest_season = _discover_latest_season(dist_dir)
     if season_dates is None:
         season_dates = season_scrape_dates()
+    seasons = sorted(
+        (d.name for d in dist_dir.iterdir() if d.is_dir() and _SEASON_DIR_NAME.fullmatch(d.name)),
+        reverse=True,
+    )
+    recent_seasons = frozenset([s for s in seasons if s != latest_season][:RECENT_SEASON_COUNT])
 
     for html_file in sorted(dist_dir.rglob("*.html")):
         try:
@@ -260,12 +271,16 @@ def generate_sitemap(dist_dir: Path, season_dates: dict[str, str] | None = None)
         url_path = encode_url_path(site_path)
         prio = _priority_for_site_path(url_path, latest_season=latest_season)
         lm = season_dates.get(_page_season(site_path, html_file, latest_season), "")
-        url_parts.append((prio, loc, lm))
+        section = _sitemap_section(site_path, latest_season, recent_seasons)
+        url_parts.append((prio, loc, lm, section))
 
     url_parts.sort(key=lambda row: (-row[0], row[1]))
+    return url_parts
 
+
+def _urlset_xml(rows: list[tuple[float, str, str, str]]) -> str:
     url_lines = []
-    for prio, loc, lm in url_parts:
+    for prio, loc, lm, _section in rows:
         prio_s = f"{prio:.10g}"
         chunk = f"  <url><loc>{loc}</loc><priority>{prio_s}</priority>"
         if lm:
@@ -280,6 +295,54 @@ def generate_sitemap(dist_dir: Path, season_dates: dict[str, str] | None = None)
         f"{xml_entries}\n"
         "</urlset>\n"
     )
+
+
+def generate_sitemap(dist_dir: Path, season_dates: dict[str, str] | None = None) -> str:
+    """Walk dist/ HTML and produce a single urlset of every sitemap URL.
+
+    Emits trailing-slash URLs for ``index.html`` (directory canonical form) and
+    full paths for every other ``*.html`` (tier maps, team pages, etc.).
+
+    ``<priority>`` reflects hub vs leaf tiers; the latest season's hub gets a
+    small boost above older seasons. Entries are sorted with higher priority
+    first then by URL.
+
+    ``<lastmod>`` is the fixture scrape date of the season a page is built from
+    (*season_dates*, default :func:`season_scrape_dates`), and is omitted when
+    that season is unknown rather than guessed.
+    """
+    return _urlset_xml(_sitemap_rows(dist_dir, season_dates))
+
+
+def sitemap_filename(section: str) -> str:
+    return f"sitemap-{section}.xml"
+
+
+def generate_sitemap_files(
+    dist_dir: Path, season_dates: dict[str, str] | None = None
+) -> dict[str, str]:
+    """``sitemap.xml`` (a sitemap index) plus one urlset file per non-empty section."""
+    rows = _sitemap_rows(dist_dir, season_dates)
+    files: dict[str, str] = {}
+    index_lines = []
+    for section in SITEMAP_SECTIONS:
+        section_rows = [row for row in rows if row[3] == section]
+        if not section_rows:
+            continue
+        name = sitemap_filename(section)
+        files[name] = _urlset_xml(section_rows)
+        chunk = f"  <sitemap><loc>{BASE_URL}/{name}</loc>"
+        newest = max((row[2] for row in section_rows if row[2]), default="")
+        if newest:
+            chunk += f"<lastmod>{newest}</lastmod>"
+        index_lines.append(chunk + "</sitemap>")
+    files["sitemap.xml"] = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(index_lines)
+        + "\n</sitemapindex>\n"
+    )
+    return files
 
 
 def generate_robots() -> str:
@@ -346,12 +409,14 @@ def main() -> None:
     if args.production:
         minify_styles_css(dist_dir)
 
-    sitemap = generate_sitemap(dist_dir)
-    sitemap_path = dist_dir / "sitemap.xml"
-    sitemap_path.write_text(sitemap, encoding="utf-8")
-    url_count = sitemap.count("<url>")
-    dated = sitemap.count("<lastmod>")
-    print(f"Created {sitemap_path} ({url_count} URLs, {dated} with lastmod)")
+    for stale in dist_dir.glob("sitemap-*.xml"):
+        stale.unlink()
+    for name, xml in generate_sitemap_files(dist_dir).items():
+        (dist_dir / name).write_text(xml, encoding="utf-8")
+        if name == "sitemap.xml":
+            print(f"Created {dist_dir / name} (index of {xml.count('<sitemap>')} sitemaps)")
+        else:
+            print(f"Created {dist_dir / name} ({xml.count('<url>')} URLs)")
 
     robots = generate_robots()
     robots_path = dist_dir / "robots.txt"

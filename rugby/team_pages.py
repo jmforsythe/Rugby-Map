@@ -1608,6 +1608,12 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
     is_ix_prod = get_config().is_production
     home_href_teams_ix = "../" if is_ix_prod else "../index.html"
 
+    # Crawlers need plain links to every team page; the script swaps these for crest cards.
+    static_team_links = "\n".join(
+        f'<div class="card team-card"><a href="{escape(t["file"])}">{escape(t["name"])}</a></div>'
+        for t in teams_list
+    )
+
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1640,7 +1646,9 @@ def generate_teams_index(all_teams: dict[str, TeamData] | None = None) -> None:
         <span id="visibleCount"></span> teams
     </div>
 
-    <div class="teams-grid" id="teamsGrid"></div>
+    <div class="teams-grid" id="teamsGrid">
+{static_team_links}
+    </div>
 
     <div class="no-results" id="noResults">No teams found matching your search.</div>
 

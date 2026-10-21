@@ -100,6 +100,8 @@ class MarkerItem:
     popup_html: str | None = None
     # Optional overlay on the crest marker (e.g. Roman "II" for reserve XVs).
     crest_badge: str | None = None
+    # Page about this item, linked from the legend's per-group lists.
+    link_url: str | None = None
     category: str | None = None
     extra: dict[str, Any] | None = None
     itl0: str | None = None
@@ -156,6 +158,10 @@ class MapConfig:
     # Append "- <item count>" to the legend title. Off for maps where the raw
     # club count isn't a meaningful headline figure (e.g. Constituent Bodies).
     show_legend_item_count: bool = True
+    # Make each legend group expandable to list its items (linked via
+    # MarkerItem.link_url) as plain HTML, so crawlers see who is on the map
+    # without running the marker JavaScript.
+    legend_item_lists: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +181,7 @@ class _PlacedItem(TypedDict):
     icon_url: str | None
     popup_html: str | None
     crest_badge: str | None
+    link_url: str | None
     category: str | None
     structure: str
     itl0: str | None
@@ -829,6 +836,7 @@ def _items_to_placed(
             "icon_url": item.icon_url,
             "popup_html": item.popup_html,
             "crest_badge": item.crest_badge,
+            "link_url": item.link_url,
             "category": item.category,
             "structure": item.structure,
             "itl0": item.itl0,
@@ -2965,17 +2973,34 @@ def _add_marker_cluster(m: folium.Map, fallback_icon_url: str | None = None) -> 
     return parent_cluster
 
 
+def _legend_item_list_html(items: list[_PlacedItem]) -> str:
+    """``<ul>`` of item names, sorted and de-duplicated, linked where a page exists."""
+    by_name: dict[str, str | None] = {}
+    for it in items:
+        by_name.setdefault(it["name"], it.get("link_url"))
+    rows = []
+    for name in sorted(by_name, key=str.lower):
+        url = by_name[name]
+        text = escape(name)
+        rows.append(f'<li><a href="{escape(url)}">{text}</a></li>' if url else f"<li>{text}</li>")
+    return f"<ul>{''.join(rows)}</ul>"
+
+
 def _legend(
     title: str,
     items_by_tier: dict[str, list[_PlacedItem]],
     tier_order: list[str],
     group_colors: dict[str, str],
     hatched_groups: set[str] | None = None,
+    item_lists: bool = False,
 ) -> folium.Element:
     html = f"""
     <style>
     .legend-toggle {{ cursor:pointer; user-select:none; display:inline-block; float:right; font-weight:bold; font-size:18px; }}
     .legend-content.collapsed {{ display:none; }}
+    .legend-items summary {{ cursor:pointer; }}
+    .legend-items ul {{ margin:2px 0 6px 0; padding-left:26px; font-size:13px; }}
+    html[data-rugby-effective="dark"] .legend-items a {{ color:#8ab4f8; }}
     @media only screen and (max-width: 768px) {{
         .map-legend {{ bottom:10px !important; right:10px !important; width:200px !important; max-height:300px !important; font-size:11px !important; padding:8px !important; }}
         .map-legend h4 {{ font-size:13px !important; }}
@@ -3031,13 +3056,19 @@ def _legend(
                 color = group_colors[grp]
                 # Match the map: striped swatch for structures drawn as an overlay.
                 swatch = stripe_css_gradient(color) if grp in (hatched_groups or set()) else color
-                count = sum(1 for it in cat_items if it["group"] == grp)
-                html += (
-                    f'<p style="margin:2px 0 2px {indent};">'
+                grp_items = [it for it in cat_items if it["group"] == grp]
+                label = (
                     f'<i style="background:{swatch}; width:16px; height:16px; '
                     f'display:inline-block; border-radius:50%; border:1px solid black;"></i> '
-                    f"{escape(grp)} ({count})</p>"
+                    f"{escape(grp)} ({len(grp_items)})"
                 )
+                if item_lists:
+                    html += (
+                        f'<details class="legend-items" style="margin:2px 0 2px {indent};">'
+                        f"<summary>{label}</summary>{_legend_item_list_html(grp_items)}</details>"
+                    )
+                else:
+                    html += f'<p style="margin:2px 0 2px {indent};">{label}</p>'
 
     html += """</div></div>
     <script>
@@ -3585,6 +3616,7 @@ def generate_single_group_map(
             list(items_by_tier.keys()),
             group_colors,
             hatched_groups,
+            item_lists=config.legend_item_lists,
         )
     )
 
@@ -3707,7 +3739,13 @@ def generate_multi_group_map(
         )
 
     html_el.add_child(
-        _legend(f"{config.title} - {num_items}", items_by_tier, sorted_tiers, group_colors)
+        _legend(
+            f"{config.title} - {num_items}",
+            items_by_tier,
+            sorted_tiers,
+            group_colors,
+            item_lists=config.legend_item_lists,
+        )
     )
 
     for elem in config.body_elements:

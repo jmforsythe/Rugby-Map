@@ -282,6 +282,12 @@ def _load_marker_items(
                 else None
             )
 
+            link_url = (
+                f"__INFO_PREFIX__teams/"
+                f"{team_info_page_filename(team_url, team_name, team_info_pages)}"
+                if include_popups and league_url
+                else None
+            )
             category = comp_key.replace("_", " ") if is_merit else PYRAMID_CATEGORY
             item = MarkerItem(
                 name=team_name,
@@ -294,6 +300,7 @@ def _load_marker_items(
                 popup_html=popup,
                 category=category,
                 crest_badge=team_lower_xv_roman(team_name),
+                link_url=link_url,
             )
 
             if is_merit:
@@ -310,14 +317,19 @@ def _load_marker_items(
 
 
 def _resolve_info_links(items: list[MarkerItem], subdirectory_depth: int = 0) -> list[MarkerItem]:
-    """Replace the ``__INFO_PREFIX__`` placeholder in popup HTML with a path
-    that is correct for the output file's depth relative to the season folder."""
+    """Replace the ``__INFO_PREFIX__`` placeholder in popup HTML and team-page
+    links with a path that is correct for the output file's depth relative to
+    the season folder."""
     if get_config().is_production:
         prefix = "/"
     else:
         prefix = "../" * (1 + subdirectory_depth)
     return [
-        replace(it, popup_html=(it.popup_html or "").replace("__INFO_PREFIX__", prefix))
+        replace(
+            it,
+            popup_html=(it.popup_html or "").replace("__INFO_PREFIX__", prefix),
+            link_url=it.link_url.replace("__INFO_PREFIX__", prefix) if it.link_url else None,
+        )
         for it in items
     ]
 
@@ -452,6 +464,7 @@ def _build_config(
         header_elements=header_elements,
         body_elements=body_elements,
         hatched_structures=hatched_structures,
+        legend_item_lists=True,
     )
 
 

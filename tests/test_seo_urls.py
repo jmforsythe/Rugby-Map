@@ -17,7 +17,13 @@ from rugby.redirects import (
     resolve_not_found_redirect,
     resolve_redirect_target,
 )
-from rugby.seo import absolute_url, encode_url_path, generate_sitemap, season_scrape_dates
+from rugby.seo import (
+    absolute_url,
+    encode_url_path,
+    generate_sitemap,
+    generate_sitemap_files,
+    season_scrape_dates,
+)
 from rugby.team_pages import discover_team_rename_redirects, team_info_page_filename
 
 
@@ -58,6 +64,29 @@ def test_resolve_team_redirect_to_directory_slug(tmp_path: Path) -> None:
     (teams / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
     target = resolve_redirect_target("/teams/Bath.html", dist, {"Bath_Rugby"})
     assert target == "/teams/Bath_Rugby/"
+
+
+def test_resolve_county_team_pages_to_constituent_bodies(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    slugs = {"Kent_Vets", "Durham_City", "Bath_Rugby"}
+    for path in (
+        "/teams/Kent.html",
+        "/teams/Durham.html",
+        "/teams/Staffordshire_County_RFU_(CB)_1st_XV_Men.html",
+    ):
+        assert resolve_redirect_target(path, dist, slugs) == "/constituent-bodies/"
+    assert resolve_redirect_target("/teams/Bath.html", dist, slugs) == "/teams/Bath_Rugby/"
+
+
+def test_resolve_county_name_with_real_team_page_is_not_redirected_to_cbs(
+    tmp_path: Path,
+) -> None:
+    target = resolve_redirect_target("/teams/Cornwall.html", tmp_path, {"Cornwall"})
+    assert target != "/constituent-bodies/"
+
+
+def test_resolve_truncated_custom_map_path(tmp_path: Path) -> None:
+    assert resolve_redirect_target("/custom-/", tmp_path, set()) == "/custom-map/"
 
 
 def test_resolve_not_found_redirect_to_parent_index() -> None:
@@ -336,6 +365,50 @@ def test_season_scrape_dates_reads_last_updated(tmp_path: Path) -> None:
         (tmp_path / season).mkdir()
         (tmp_path / season / "last_updated.txt").write_text(stamp, encoding="utf-8")
     assert season_scrape_dates(tmp_path) == {"2025-2026": "2026-05-10"}
+
+
+def test_sitemap_files_split_by_section(tmp_path: Path) -> None:
+    dist = _sitemap_dist(tmp_path)
+    (dist / "2010-2011").mkdir()
+    (dist / "2010-2011" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (dist / "teams" / "Bath_Rugby").mkdir(parents=True)
+    (dist / "teams" / "index.html").write_text("<html></html>", encoding="utf-8")
+    (dist / "teams" / "Bath_Rugby" / "index.html").write_text("<html></html>", encoding="utf-8")
+
+    files = generate_sitemap_files(dist, _SEASON_DATES)
+    base = "https://rugbyunionmap.uk"
+
+    index = files["sitemap.xml"]
+    assert "<sitemapindex" in index
+    assert f"<loc>{base}/sitemap-current.xml</loc><lastmod>2026-09-21</lastmod>" in index
+    assert "<url>" not in index
+
+    current = files["sitemap-current.xml"]
+    assert f"<loc>{base}/</loc>" in current
+    assert f"<loc>{base}/teams/</loc>" in current
+    assert f"<loc>{base}/2026-2027/Counties_1/</loc>" in current
+    assert "2025-2026" not in current
+    assert f"<loc>{base}/teams/Bath_Rugby/</loc>" in files["sitemap-teams.xml"]
+    assert f"<loc>{base}/2025-2026/Counties_1/</loc>" in files["sitemap-recent-seasons.xml"]
+    assert f"<loc>{base}/2010-2011/</loc>" in files["sitemap-recent-seasons.xml"]
+
+    total = sum(xml.count("<url>") for name, xml in files.items() if name != "sitemap.xml")
+    assert total == generate_sitemap(dist, _SEASON_DATES).count("<url>")
+
+
+def test_sitemap_files_archive_seasons_beyond_recent_window(tmp_path: Path) -> None:
+    dist = tmp_path / "dist"
+    for year in range(2015, 2027):
+        season = dist / f"{year}-{year + 1}"
+        season.mkdir(parents=True)
+        (season / "index.html").write_text("<html></html>", encoding="utf-8")
+
+    files = generate_sitemap_files(dist, {})
+    recent = files["sitemap-recent-seasons.xml"]
+    archive = files["sitemap-archive-seasons.xml"]
+    assert "/2025-2026/" in recent and "/2021-2022/" in recent
+    assert "/2020-2021/" in archive and "/2020-2021/" not in recent
+    assert "/2026-2027/" in files["sitemap-current.xml"]
 
 
 def test_sitemap_gives_home_page_top_priority(tmp_path: Path) -> None:

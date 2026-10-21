@@ -29,10 +29,12 @@ def test_generate_teams_index_writes_teams_json_sidecar(tmp_path: Path, monkeypa
 
     index_html = (teams_dir / "index.html").read_text(encoding="utf-8")
     assert "fetch('teams.json')" in index_html
-    # The full team catalogue must no longer be inlined into the HTML.
+    # The catalogue is not inlined as JS data (teams.json carries it)...
     assert "const teams = [" not in index_html
-    assert "Bath" not in index_html
-    assert "Exeter" not in index_html
+    # ...but every team gets a plain crawlable link, without crest images.
+    assert '<a href="Bath.html">Bath</a>' in index_html
+    assert '<a href="Exeter_Chiefs.html">Exeter Chiefs</a>' in index_html
+    assert 'team-card__logo" loading' not in index_html.split("<script>")[0]
     # Data fetched from teams.json is untrusted; it must be HTML-escaped
     # client-side before being interpolated into innerHTML.
     assert "escapeHtml" in index_html

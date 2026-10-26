@@ -147,37 +147,38 @@
     {
       "date": "2026-10-24",
       "time": "",
-      "home_team_id": 16004,
-      "away_team_id": 333,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288436"
-    },
-    {
-      "date": "2026-10-24",
-      "time": "14:00",
       "home_team_id": 1227,
       "away_team_id": 5169,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288437"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288437",
+      "home_score": 14,
+      "away_score": 26
     },
     {
       "date": "2026-10-24",
       "time": "",
       "home_team_id": 12006,
       "away_team_id": 11210,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288433"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288433",
+      "home_score": 0,
+      "away_score": 43
     },
     {
       "date": "2026-10-24",
       "time": "",
       "home_team_id": 12171,
       "away_team_id": 11999,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288434"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288434",
+      "home_score": 34,
+      "away_score": 14
     },
     {
       "date": "2026-10-24",
-      "time": "15:00",
+      "time": "",
       "home_team_id": 126284,
       "away_team_id": 18125,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288435"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288435",
+      "home_score": 40,
+      "away_score": 7
     },
     {
       "date": "2026-10-31",
@@ -192,13 +193,6 @@
       "home_team_id": 11210,
       "away_team_id": 1227,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288438"
-    },
-    {
-      "date": "2026-10-31",
-      "time": "15:00",
-      "home_team_id": 11999,
-      "away_team_id": 18125,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288441"
     },
     {
       "date": "2026-10-31",
@@ -419,6 +413,13 @@
     },
     {
       "date": "2027-01-09",
+      "time": "",
+      "home_team_id": 16004,
+      "away_team_id": 333,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1331239"
+    },
+    {
+      "date": "2027-01-09",
       "time": "14:00",
       "home_team_id": 1227,
       "away_team_id": 126284,
@@ -602,6 +603,13 @@
     {
       "date": "2027-02-27",
       "time": "",
+      "home_team_id": 11999,
+      "away_team_id": 5169,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1331863"
+    },
+    {
+      "date": "2027-02-27",
+      "time": "",
       "home_team_id": 126284,
       "away_team_id": 12006,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1328146"
@@ -644,13 +652,6 @@
     {
       "date": "2027-03-13",
       "time": "",
-      "home_team_id": 11999,
-      "away_team_id": 5169,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288495"
-    },
-    {
-      "date": "2027-03-13",
-      "time": "",
       "home_team_id": 12006,
       "away_team_id": 16004,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288496"
@@ -661,6 +662,13 @@
       "home_team_id": 18125,
       "away_team_id": 12171,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1288497"
+    },
+    {
+      "date": "2027-03-20",
+      "time": "",
+      "home_team_id": 11999,
+      "away_team_id": 18125,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1331862"
     }
   ]
 }

@@ -1190,6 +1190,34 @@
         );
       }
 
+      // Marker icons are rebuilt from this HTML whenever MarkerCluster re-adds
+      // them (e.g. on zoom), so once crests are enabled the image must be inline
+      // rather than relying on the one-shot deferred activation pass.
+      function rugbyCrestMarkerInner(imageUrl, borderColor) {
+        const style =
+          "width:30px;height:30px;border-radius:50%;border:2px solid " +
+          escAttr(borderColor) +
+          ";box-shadow:0 0 3px rgba(0,0,0,0.3);";
+        if (!window.rugbyCrestsEnabled) {
+          return (
+            '<div class="rugby-crest-marker" data-crest-url="' +
+            escAttr(imageUrl) +
+            '" style="' +
+            style +
+            'background-color:rgba(0,0,0,0.06)"></div>'
+          );
+        }
+        warmCrest(imageUrl);
+        const esc = escAttr(imageUrl.replace(/'/g, "%27"));
+        return (
+          '<div class="rugby-crest-marker" data-crest-ready="1" style="' +
+          style +
+          "background:url('" +
+          esc +
+          "') center/cover no-repeat\"></div>"
+        );
+      }
+
       function rugbyRefreshMarkerClusters() {
         for (const key of Object.keys(window)) {
           if (!key.startsWith("marker_cluster_")) continue;
@@ -2067,11 +2095,7 @@
                 ? L.divIcon({
                     html:
                       "<div style='text-align:center'>" +
-                      "<div class='rugby-crest-marker' data-crest-url='" +
-                      escAttr(team.img) +
-                      "' style='width:30px;height:30px;border-radius:50%;border:2px solid " +
-                      league.color +
-                      ";box-shadow:0 0 3px rgba(0,0,0,0.3);background-color:rgba(0,0,0,0.06)'></div>" +
+                      rugbyCrestMarkerInner(team.img, league.color) +
                       "</div>",
                     className: "",
                     iconSize: [30, 30],

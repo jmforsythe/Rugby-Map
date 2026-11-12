@@ -270,3 +270,23 @@ def test_custom_map_template_omits_zoom_crest_resync_hooks() -> None:
     html = custom_map_path.read_text(encoding="utf-8")
     for forbidden in _TIER_CREST_FORBIDDEN:
         assert forbidden not in html, f"custom map reintroduced {forbidden!r}"
+
+
+def test_custom_map_solo_markers_bake_crest_into_icon_html() -> None:
+    """MarkerCluster rebuilds icons from ``L.divIcon`` HTML on zoom, so a crest
+    applied only to the live DOM node is lost and the marker turns blank."""
+    custom_map_path = (
+        Path(__file__).resolve().parents[1] / "rugby" / "custom_map_assets" / "index.html"
+    )
+    html = custom_map_path.read_text(encoding="utf-8")
+
+    helper_start = html.index("function rugbyCrestMarkerInner(")
+    helper = html[helper_start : html.index("\n      }\n", helper_start)]
+    assert "if (!window.rugbyCrestsEnabled)" in helper
+    assert "background:url(" in helper
+    assert 'data-crest-ready="1"' in helper
+
+    render_start = html.index("function renderMarkers(")
+    render = html[render_start : html.index("function buildTeamPopupHtml(", render_start)]
+    assert "rugbyCrestMarkerInner(team.img, league.color)" in render
+    assert "data-crest-url" not in render

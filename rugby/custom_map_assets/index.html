@@ -1311,8 +1311,16 @@
         if (!mapPresentationPending) return;
         mapPresentationPending = false;
         signalPresentationReady();
-        renderMarkers();
-        renderStats();
+        try {
+          renderMarkers();
+        } catch (e) {
+          console.error("renderMarkers failed:", e);
+        }
+        try {
+          renderStats();
+        } catch (e) {
+          console.error("renderStats failed:", e);
+        }
       }
 
       setTimeout(function () {
@@ -2045,262 +2053,293 @@
           });
 
           for (const team of league.teams) {
-            const ts = league._stats.teams.find((s) => s.name === team.n);
-
-            function popupTravelBlock(
-              including,
-              teamAvg,
-              teamTot,
-              teamAvgMin,
-              teamTotMin,
-              leagueAvg,
-              leagueAvgMin,
-            ) {
-              const spaced = including ? "" : " island-stat-group--spaced";
-              let html =
-                '<div class="island-stat-group' +
-                spaced +
-                '"><p>' +
-                islandTravelLabelHtml(including, true) +
-                "</p>" +
-                "<p>Team Average: " +
-                fmtKmMin(teamAvg, teamAvgMin) +
-                "</p>" +
-                "<p>Team Total: " +
-                fmtKmMin(teamTot, teamTotMin) +
-                "</p>";
-              if (leagueAvg != null) {
-                html +=
-                  "<p>League Average: " +
-                  fmtKmMin(leagueAvg, leagueAvgMin) +
-                  "</p>";
-              }
-              return html + "</div>";
+            let popup;
+            try {
+              popup = buildTeamPopupHtml(team, league);
+            } catch (e) {
+              console.error("Popup failed for " + team.n + ":", e);
+              popup = fallbackTeamPopupHtml(team, league);
             }
 
-            function popupDualTravel(
+            try {
+              const hasImg = team.img;
+              const icon = hasImg
+                ? L.divIcon({
+                    html:
+                      "<div style='text-align:center'>" +
+                      "<div class='rugby-crest-marker' data-crest-url='" +
+                      escAttr(team.img) +
+                      "' style='width:30px;height:30px;border-radius:50%;border:2px solid " +
+                      league.color +
+                      ";box-shadow:0 0 3px rgba(0,0,0,0.3);background-color:rgba(0,0,0,0.06)'></div>" +
+                      "</div>",
+                    className: "",
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15],
+                    popupAnchor: [0, -15],
+                  })
+                : L.divIcon({
+                    html:
+                      "<div style='text-align:center'>" +
+                      "<div style='width:30px;height:30px;border-radius:50%;background:" +
+                      league.color +
+                      ";border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3)'></div>" +
+                      "</div>",
+                    className: "",
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15],
+                    popupAnchor: [0, -15],
+                  });
+
+              const marker = L.marker([team.lat, team.lng], {
+                icon,
+                imageUrl: team.img || "",
+              }).bindPopup(popup, { maxWidth: 250 });
+              cluster.addLayer(marker);
+            } catch (e) {
+              console.error("Marker failed for " + team.n + ":", e);
+            }
+          }
+          markersGroup.addLayer(cluster);
+        }
+      }
+
+      function buildTeamPopupHtml(team, league) {
+        const stats = league._stats;
+        const ts = stats.teams.find((s) => s.name === team.n);
+
+        function popupTravelBlock(
+          including,
+          teamAvg,
+          teamTot,
+          teamAvgMin,
+          teamTotMin,
+          leagueAvg,
+          leagueAvgMin,
+        ) {
+          const spaced = including ? "" : " island-stat-group--spaced";
+          let html =
+            '<div class="island-stat-group' +
+            spaced +
+            '"><p>' +
+            islandTravelLabelHtml(including, true) +
+            "</p>" +
+            "<p>Team Average: " +
+            fmtKmMin(teamAvg, teamAvgMin) +
+            "</p>" +
+            "<p>Team Total: " +
+            fmtKmMin(teamTot, teamTotMin) +
+            "</p>";
+          if (leagueAvg != null) {
+            html +=
+              "<p>League Average: " +
+              fmtKmMin(leagueAvg, leagueAvgMin) +
+              "</p>";
+          }
+          return html + "</div>";
+        }
+
+        function popupDualTravel(
+          inclTeamAvg,
+          inclTeamTot,
+          inclTeamAvgMin,
+          inclTeamTotMin,
+          inclLeagueAvg,
+          inclLeagueAvgMin,
+          exclTeamAvg,
+          exclTeamTot,
+          exclTeamAvgMin,
+          exclTeamTotMin,
+          exclLeagueAvg,
+          exclLeagueAvgMin,
+        ) {
+          return (
+            '<p class="island-travel-note">' +
+            escHtml(ISLAND_TRAVEL_DUAL_NOTE) +
+            "</p>" +
+            popupTravelBlock(
+              true,
               inclTeamAvg,
               inclTeamTot,
               inclTeamAvgMin,
               inclTeamTotMin,
               inclLeagueAvg,
               inclLeagueAvgMin,
+            ) +
+            popupTravelBlock(
+              false,
               exclTeamAvg,
               exclTeamTot,
               exclTeamAvgMin,
               exclTeamTotMin,
               exclLeagueAvg,
               exclLeagueAvgMin,
-            ) {
-              return (
-                '<p class="island-travel-note">' +
-                escHtml(ISLAND_TRAVEL_DUAL_NOTE) +
-                "</p>" +
-                popupTravelBlock(
-                  true,
-                  inclTeamAvg,
-                  inclTeamTot,
-                  inclTeamAvgMin,
-                  inclTeamTotMin,
-                  inclLeagueAvg,
-                  inclLeagueAvgMin,
-                ) +
-                popupTravelBlock(
-                  false,
-                  exclTeamAvg,
-                  exclTeamTot,
-                  exclTeamAvgMin,
-                  exclTeamTotMin,
-                  exclLeagueAvg,
-                  exclLeagueAvgMin,
-                )
-              );
-            }
-
-            let officialHtml = "";
-            if (team.lg) {
-              const hasOfficialTravel =
-                team.tavg != null &&
-                team.ttot != null &&
-                Number.isFinite(team.tavg) &&
-                Number.isFinite(team.ttot);
-              const hasDual =
-                hasOfficialTravel &&
-                team.tavg_excl != null &&
-                team.ttot_excl != null;
-              officialHtml =
-                "<hr>" +
-                '<p><span class="popup-label">Official League:</span> ' +
-                escHtml(team.lg) +
-                "</p>";
-              if (hasDual) {
-                officialHtml += popupDualTravel(
-                  team.tavg,
-                  team.ttot,
-                  team.tavg_min != null ? team.tavg_min : null,
-                  team.ttot_min != null ? team.ttot_min : null,
-                  team.lavg != null ? team.lavg : null,
-                  team.lavg_min != null ? team.lavg_min : null,
-                  team.tavg_excl,
-                  team.ttot_excl,
-                  team.tavg_min_excl != null ? team.tavg_min_excl : null,
-                  team.ttot_min_excl != null ? team.ttot_min_excl : null,
-                  team.lavg_excl != null ? team.lavg_excl : null,
-                  team.lavg_min_excl != null ? team.lavg_min_excl : null,
-                );
-              } else if (hasOfficialTravel) {
-                officialHtml +=
-                  "<p>Team Average: " +
-                  fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
-                  "</p>" +
-                  "<p>Team Total: " +
-                  fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
-                  "</p>" +
-                  (team.lavg != null
-                    ? "<p>League Average: " +
-                      fmtKmMin(
-                        team.lavg,
-                        team.lavg_min != null ? team.lavg_min : null,
-                      ) +
-                      "</p>"
-                    : "");
-              }
-            }
-
-            let customHtml = "";
-            if (ts && league.teams.length > 1) {
-              customHtml =
-                "<hr>" +
-                '<p><span class="popup-label">Custom Distances:</span></p>';
-              if (ts.avgExcl != null) {
-                customHtml += popupDualTravel(
-                  ts.avg,
-                  ts.total,
-                  ts.avgMin,
-                  ts.totalMin,
-                  stats.avg,
-                  stats.avgMin,
-                  ts.avgExcl,
-                  ts.totalExcl,
-                  ts.avgMinExcl,
-                  ts.totalMinExcl,
-                  stats.avgExcl != null ? stats.avgExcl : null,
-                  stats.avgMinExcl != null ? stats.avgMinExcl : null,
-                );
-              } else {
-                customHtml +=
-                  "<p>Team Average: " +
-                  fmtKmMin(ts.avg, ts.avgMin) +
-                  "</p>" +
-                  "<p>Team Total: " +
-                  fmtKmMin(ts.total, ts.totalMin) +
-                  "</p>" +
-                  "<p>League Average: " +
-                  fmtKmMin(stats.avg, stats.avgMin) +
-                  "</p>";
-              }
-            }
-
-            let moveItems = "";
-            for (const ol of leagues) {
-              if (ol.id === league.id) continue;
-              moveItems +=
-                '<div class="move-dropdown-item" data-to="' +
-                ol.id +
-                '">' +
-                '<span class="dd-swatch" style="background:' +
-                ol.color +
-                '"></span>' +
-                '<span class="dd-name">' +
-                escHtml(ol.name) +
-                "</span>" +
-                '<span class="dd-count">' +
-                ol.teams.length +
-                "</span></div>";
-            }
-            moveItems +=
-              '<div class="move-dropdown-item dd-new" data-to="__new__">+ New League</div>';
-            let moveHtml =
-              '<hr><div class="move-dropdown" data-team="' +
-              escAttr(team.n) +
-              '" data-from="' +
-              league.id +
-              '">' +
-              '<button type="button" class="move-dropdown-btn">Move to\u2026 <span class="dd-arrow">&#9654;</span></button>' +
-              '<div class="move-dropdown-list">' +
-              moveItems +
-              "</div></div>";
-
-            var linksHtml = "";
-            if (team.url) {
-              linksHtml +=
-                '<p><a href="' + escAttr(team.url) + '" target="_blank">View Team Page</a></p>';
-            }
-            if (team.lu) {
-              linksHtml +=
-                '<p><a href="' + escAttr(team.lu) + '" target="_blank">View League Page</a></p>';
-            }
-            linksHtml +=
-              '<p><a href="' + INFO_PREFIX + 'teams/' + sanitizeTeamName(team.n) + TEAM_HREF_SUFFIX + '" target="_blank">View Info page</a></p>';
-
-            const popup =
-              '<div class="rugby-popup">' +
-              '<h4 class="popup-title" style="color:' +
-              league.color +
-              '">' +
-              escHtml(team.n) +
-              "</h4><hr>" +
-              '<p><span class="popup-label">League:</span> ' +
-              escHtml(league.name) +
-              "</p>" +
-              (team.addr
-                ? '<p><span class="popup-label">Address:</span> ' +
-                  escHtml(team.addr) +
-                  "</p>"
-                : "") +
-              linksHtml +
-              officialHtml +
-              customHtml +
-              moveHtml +
-              "</div>";
-
-            const hasImg = team.img;
-            const icon = hasImg
-              ? L.divIcon({
-                  html:
-                    "<div style='text-align:center'>" +
-                    "<div class='rugby-crest-marker' data-crest-url='" +
-                    escAttr(team.img) +
-                    "' style='width:30px;height:30px;border-radius:50%;border:2px solid " +
-                    league.color +
-                    ";box-shadow:0 0 3px rgba(0,0,0,0.3);background-color:rgba(0,0,0,0.06)'></div>" +
-                    "</div>",
-                  className: "",
-                  iconSize: [30, 30],
-                  iconAnchor: [15, 15],
-                  popupAnchor: [0, -15],
-                })
-              : L.divIcon({
-                  html:
-                    "<div style='text-align:center'>" +
-                    "<div style='width:30px;height:30px;border-radius:50%;background:" +
-                    league.color +
-                    ";border:2px solid white;box-shadow:0 0 3px rgba(0,0,0,0.3)'></div>" +
-                    "</div>",
-                  className: "",
-                  iconSize: [30, 30],
-                  iconAnchor: [15, 15],
-                  popupAnchor: [0, -15],
-                });
-
-            const marker = L.marker([team.lat, team.lng], {
-              icon,
-              imageUrl: team.img || "",
-            }).bindPopup(popup, { maxWidth: 250 });
-            cluster.addLayer(marker);
-          }
-          markersGroup.addLayer(cluster);
+            )
+          );
         }
+
+        let officialHtml = "";
+        if (team.lg) {
+          const hasOfficialTravel =
+            team.tavg != null &&
+            team.ttot != null &&
+            Number.isFinite(team.tavg) &&
+            Number.isFinite(team.ttot);
+          const hasDual =
+            hasOfficialTravel &&
+            team.tavg_excl != null &&
+            team.ttot_excl != null;
+          officialHtml =
+            "<hr>" +
+            '<p><span class="popup-label">Official League:</span> ' +
+            escHtml(team.lg) +
+            "</p>";
+          if (hasDual) {
+            officialHtml += popupDualTravel(
+              team.tavg,
+              team.ttot,
+              team.tavg_min != null ? team.tavg_min : null,
+              team.ttot_min != null ? team.ttot_min : null,
+              team.lavg != null ? team.lavg : null,
+              team.lavg_min != null ? team.lavg_min : null,
+              team.tavg_excl,
+              team.ttot_excl,
+              team.tavg_min_excl != null ? team.tavg_min_excl : null,
+              team.ttot_min_excl != null ? team.ttot_min_excl : null,
+              team.lavg_excl != null ? team.lavg_excl : null,
+              team.lavg_min_excl != null ? team.lavg_min_excl : null,
+            );
+          } else if (hasOfficialTravel) {
+            officialHtml +=
+              "<p>Team Average: " +
+              fmtKmMin(team.tavg, team.tavg_min != null ? team.tavg_min : null) +
+              "</p>" +
+              "<p>Team Total: " +
+              fmtKmMin(team.ttot, team.ttot_min != null ? team.ttot_min : null) +
+              "</p>" +
+              (team.lavg != null
+                ? "<p>League Average: " +
+                  fmtKmMin(
+                    team.lavg,
+                    team.lavg_min != null ? team.lavg_min : null,
+                  ) +
+                  "</p>"
+                : "");
+          }
+        }
+
+        let customHtml = "";
+        if (ts && league.teams.length > 1) {
+          customHtml =
+            "<hr>" +
+            '<p><span class="popup-label">Custom Distances:</span></p>';
+          if (ts.avgExcl != null) {
+            customHtml += popupDualTravel(
+              ts.avg,
+              ts.total,
+              ts.avgMin,
+              ts.totalMin,
+              stats.avg,
+              stats.avgMin,
+              ts.avgExcl,
+              ts.totalExcl,
+              ts.avgMinExcl,
+              ts.totalMinExcl,
+              stats.avgExcl != null ? stats.avgExcl : null,
+              stats.avgMinExcl != null ? stats.avgMinExcl : null,
+            );
+          } else {
+            customHtml +=
+              "<p>Team Average: " +
+              fmtKmMin(ts.avg, ts.avgMin) +
+              "</p>" +
+              "<p>Team Total: " +
+              fmtKmMin(ts.total, ts.totalMin) +
+              "</p>" +
+              "<p>League Average: " +
+              fmtKmMin(stats.avg, stats.avgMin) +
+              "</p>";
+          }
+        }
+
+        let moveItems = "";
+        for (const ol of leagues) {
+          if (ol.id === league.id) continue;
+          moveItems +=
+            '<div class="move-dropdown-item" data-to="' +
+            ol.id +
+            '">' +
+            '<span class="dd-swatch" style="background:' +
+            ol.color +
+            '"></span>' +
+            '<span class="dd-name">' +
+            escHtml(ol.name) +
+            "</span>" +
+            '<span class="dd-count">' +
+            ol.teams.length +
+            "</span></div>";
+        }
+        moveItems +=
+          '<div class="move-dropdown-item dd-new" data-to="__new__">+ New League</div>';
+        let moveHtml =
+          '<hr><div class="move-dropdown" data-team="' +
+          escAttr(team.n) +
+          '" data-from="' +
+          league.id +
+          '">' +
+          '<button type="button" class="move-dropdown-btn">Move to\u2026 <span class="dd-arrow">&#9654;</span></button>' +
+          '<div class="move-dropdown-list">' +
+          moveItems +
+          "</div></div>";
+
+        var linksHtml = "";
+        if (team.url) {
+          linksHtml +=
+            '<p><a href="' + escAttr(team.url) + '" target="_blank">View Team Page</a></p>';
+        }
+        if (team.lu) {
+          linksHtml +=
+            '<p><a href="' + escAttr(team.lu) + '" target="_blank">View League Page</a></p>';
+        }
+        linksHtml +=
+          '<p><a href="' + INFO_PREFIX + 'teams/' + sanitizeTeamName(team.n) + TEAM_HREF_SUFFIX + '" target="_blank">View Info page</a></p>';
+
+        const popup =
+          '<div class="rugby-popup">' +
+          '<h4 class="popup-title" style="color:' +
+          league.color +
+          '">' +
+          escHtml(team.n) +
+          "</h4><hr>" +
+          '<p><span class="popup-label">League:</span> ' +
+          escHtml(league.name) +
+          "</p>" +
+          (team.addr
+            ? '<p><span class="popup-label">Address:</span> ' +
+              escHtml(team.addr) +
+              "</p>"
+            : "") +
+          linksHtml +
+          officialHtml +
+          customHtml +
+          moveHtml +
+          "</div>";
+        return popup;
+      }
+
+      function fallbackTeamPopupHtml(team, league) {
+        return (
+          '<div class="rugby-popup">' +
+          '<h4 class="popup-title" style="color:' +
+          escAttr(league.color) +
+          '">' +
+          escHtml(team.n) +
+          "</h4><hr>" +
+          '<p><span class="popup-label">League:</span> ' +
+          escHtml(league.name) +
+          "</p>" +
+          "</div>"
+        );
       }
 
       function renderMap() {
@@ -2630,14 +2669,18 @@
 
       function renderTerritories(allPlaced, onComplete) {
         territoryLayer.clearLayers();
-        if (!territoriesVisible || allPlaced.length < 1) {
-          if (onComplete) {
-            if (window.requestAnimationFrame) {
-              window.requestAnimationFrame(onComplete);
-            } else {
-              setTimeout(onComplete, 0);
-            }
+
+        function complete() {
+          if (!onComplete) return;
+          if (window.requestAnimationFrame) {
+            window.requestAnimationFrame(onComplete);
+          } else {
+            setTimeout(onComplete, 0);
           }
+        }
+
+        if (!territoriesVisible || allPlaced.length < 1) {
+          complete();
           return;
         }
 
@@ -2645,29 +2688,32 @@
           return;
         }
 
-        const regionIdx = buildRegionIndex(allPlaced);
-        const allCells = [];
+        let mergedCells;
+        try {
+          const regionIdx = buildRegionIndex(allPlaced);
+          const allCells = [];
 
-        const entryRegions = regionIdx[ENTRY_LEVEL];
-        for (const regionKey of Object.keys(entryRegions)) {
-          const cells = splitRegion(
-            ENTRY_LEVEL,
-            regionKey,
-            entryRegions[regionKey],
-            regionIdx,
-          );
-          allCells.push(...cells);
+          const entryRegions = regionIdx[ENTRY_LEVEL];
+          for (const regionKey of Object.keys(entryRegions)) {
+            const cells = splitRegion(
+              ENTRY_LEVEL,
+              regionKey,
+              entryRegions[regionKey],
+              regionIdx,
+            );
+            allCells.push(...cells);
+          }
+
+          mergedCells = mergeCellsByColor(allCells);
+        } catch (e) {
+          console.error("Territory calculation failed:", e);
+          territoryLayer.clearLayers();
+          complete();
+          return;
         }
 
-        const mergedCells = mergeCellsByColor(allCells);
         if (!mergedCells.length) {
-          if (onComplete) {
-            if (window.requestAnimationFrame) {
-              window.requestAnimationFrame(onComplete);
-            } else {
-              setTimeout(onComplete, 0);
-            }
-          }
+          complete();
           return;
         }
 
@@ -2676,7 +2722,11 @@
         function flushTerritoryBatch() {
           const end = Math.min(index + batchSize, mergedCells.length);
           for (; index < end; index++) {
-            addTerritoryCell(mergedCells[index].geom, mergedCells[index].color);
+            try {
+              addTerritoryCell(mergedCells[index].geom, mergedCells[index].color);
+            } catch (e) {
+              console.error("Territory cell failed:", e);
+            }
           }
           if (index < mergedCells.length) {
             if (window.requestAnimationFrame) {
@@ -2684,12 +2734,8 @@
             } else {
               setTimeout(flushTerritoryBatch, 16);
             }
-          } else if (onComplete) {
-            if (window.requestAnimationFrame) {
-              window.requestAnimationFrame(onComplete);
-            } else {
-              setTimeout(onComplete, 0);
-            }
+          } else {
+            complete();
           }
         }
         flushTerritoryBatch();
@@ -3801,7 +3847,10 @@
             window.BOUNDARIES = results[0];
             onBoundariesLoaded();
           })
-          .catch(function (e) { console.warn("Could not load boundaries:", e); });
+          .catch(function (e) {
+            console.warn("Could not load boundaries:", e);
+            finishMapPresentation();
+          });
       }
 
       // distances.js (~8-9 MB) is only needed once a league has 2+ teams to

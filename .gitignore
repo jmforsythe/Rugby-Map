@@ -12,6 +12,7 @@ dist/*
 !dist/service-worker.js
 !dist/styles.css
 !dist/team-pages.css
+!dist/fonts/
 !dist/favicon.svg
 !dist/favicon-dark.svg
 !dist/favicon.ico

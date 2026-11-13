@@ -110,9 +110,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Self-hosted vendor JS/CSS bundles: filenames are pinned per-version, so
+  // Self-hosted vendor JS/CSS bundles and fonts: filenames are pinned per-version, so
   // once cached they never need revalidation (cache-first, network fallback).
-  if (url.pathname.includes("/shared/vendor/")) {
+  if (
+    url.pathname.includes("/shared/vendor/") ||
+    (url.pathname.includes("/fonts/") && url.pathname.endsWith(".woff2"))
+  ) {
     event.respondWith(
       caches.open(VENDOR_CACHE).then((cache) => {
         return cache.match(event.request).then((response) => {

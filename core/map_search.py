@@ -18,7 +18,7 @@ SEARCH_STYLES = """
   transform: translateX(-50%);
   z-index: 999;
   width: min(420px, calc(100vw - 24px));
-  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Barlow', 'Barlow Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 .rugby-search-control__input-wrap {
   position: relative;

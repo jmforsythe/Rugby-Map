@@ -4,6 +4,7 @@ import json
 import logging
 import os
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -148,21 +149,36 @@ def get_twitter_card_meta() -> str:
 
 
 #: Brand typography: Oswald for headings (condensed, athletic), Barlow for body
-#: text. Loaded from Google Fonts on every generated page; see dist/styles.css
-#: for the corresponding --font-heading / --font-body variables.
+#: text. Self-hosted under dist/fonts/ by scripts/fetch_fonts.py from this
+#: Google Fonts URL; see dist/styles.css for the corresponding --font-heading /
+#: --font-body variables.
 FONT_STYLESHEET_URL = (
     "https://fonts.googleapis.com/css2?"
     "family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap"
 )
 
+FONTS_DIR = DIST_DIR / "fonts"
 
-def get_font_html() -> str:
-    """Return <link> tags that preconnect to and load the brand Google Fonts."""
-    return (
-        '    <link rel="preconnect" href="https://fonts.googleapis.com">\n'
-        '    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-        f'    <link href="{FONT_STYLESHEET_URL}" rel="stylesheet">'
+
+@lru_cache(maxsize=1)
+def _font_preloads() -> tuple[str, ...]:
+    manifest = json.loads((FONTS_DIR / "fonts.json").read_text(encoding="utf-8"))
+    return tuple(manifest["preload"])
+
+
+def get_font_html(depth: int = 0) -> str:
+    """Return <link> tags that preload and load the self-hosted brand fonts."""
+    if get_config().is_production:
+        prefix = "/"
+    else:
+        prefix = "../" * depth if depth > 0 else ""
+    # crossorigin is required even same-origin: fonts are fetched in CORS mode,
+    # so a preload without it is discarded and the file downloaded twice.
+    preloads = "".join(
+        f'    <link rel="preload" href="{prefix}fonts/{name}" as="font" type="font/woff2" crossorigin>\n'
+        for name in _font_preloads()
     )
+    return f'{preloads}    <link rel="stylesheet" href="{prefix}fonts/fonts.css">'
 
 
 def get_stylesheet_href(depth: int = 0, *, filename: str = "styles.css") -> str:
@@ -192,5 +208,5 @@ def get_favicon_html(depth: int = 0) -> str:
         f'    <link rel="icon" href="{prefix}favicon.ico" sizes="any">\n'
         f'    <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml">\n'
         f'    <link rel="manifest" href="{prefix}manifest.json">\n'
-        f"{get_font_html()}"
+        f"{get_font_html(depth)}"
     )

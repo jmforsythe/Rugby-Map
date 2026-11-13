@@ -187,7 +187,7 @@ _MATCHDAY_WIDGET_HTML = (
         left:50%; transform:translateX(-50%); z-index:999;
         box-sizing:border-box;
         background:white; padding:8px 16px; border-radius:8px;
-        border:1px solid #e0e0e0; font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        border:1px solid #e0e0e0; font-family:'Barlow', 'Barlow Fallback', -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
         text-align:center;
         box-shadow:0 2px 10px rgba(0,0,0,0.1);
     }

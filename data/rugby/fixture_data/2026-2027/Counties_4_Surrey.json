@@ -117,13 +117,6 @@
     {
       "date": "2026-11-07",
       "time": "",
-      "home_team_id": 7316,
-      "away_team_id": 17687,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1329399"
-    },
-    {
-      "date": "2026-11-07",
-      "time": "",
       "home_team_id": 15702,
       "away_team_id": 20832,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1329400",
@@ -135,21 +128,27 @@
       "time": "",
       "home_team_id": 15702,
       "away_team_id": 15903,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305367"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305367",
+      "home_score": 24,
+      "away_score": 52
     },
     {
       "date": "2026-11-14",
       "time": "",
       "home_team_id": 15711,
       "away_team_id": 17687,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305366"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305366",
+      "home_score": 34,
+      "away_score": 7
     },
     {
       "date": "2026-11-14",
       "time": "",
       "home_team_id": 20832,
       "away_team_id": 24282,
-      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305368"
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305368",
+      "home_score": 9,
+      "away_score": 21
     },
     {
       "date": "2026-11-21",
@@ -171,6 +170,13 @@
       "home_team_id": 15903,
       "away_team_id": 15711,
       "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1305372"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "",
+      "home_team_id": 7316,
+      "away_team_id": 17687,
+      "match_url": "https://www.englandrugby.com/fixtures-and-results/match-centre-community?matchId=1333169"
     },
     {
       "date": "2026-12-05",
